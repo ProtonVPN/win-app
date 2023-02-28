@@ -17,11 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.Serialization;
+
 namespace ProtonVPN.Common.Networking
 {
+    [DataContract]
     public enum OpenVpnAdapter
     {
+        [EnumMember]
         Tap,
+
+        [EnumMember]
         Tun
     }
 }

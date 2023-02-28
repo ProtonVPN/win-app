@@ -23,12 +23,13 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using ProtonVPN.Common.Go;
+using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.Core.Srp
 {
     public static class SrpPInvoke
     {
-        private const string BinaryName = "GoSrp.dll";
+        private const string BINARY_NAME = "GoSrp.dll";
 
         static SrpPInvoke()
         {
@@ -41,8 +42,7 @@ namespace ProtonVPN.Core.Srp
             }
         }
 
-        private static string BinaryPath =>
-            Environment.Is64BitOperatingSystem ? $"x64\\{BinaryName}" : $"x86\\{BinaryName}";
+        private static string BinaryPath => PathProvider.GetResourcesPath(BINARY_NAME);
 
         [DllImport("Kernel32.dll")]
         private static extern IntPtr LoadLibrary(string path);

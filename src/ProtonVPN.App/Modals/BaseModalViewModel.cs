@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Windows;
 
@@ -37,17 +38,33 @@ namespace ProtonVPN.Modals
 
         public override void CloseAction()
         {
-            TryCloseWithFailure();
+            TryCloseWithFailureAsync();
         }
 
-        public void TryCloseWithSuccess()
+        public async void TryCloseWithSuccessAsync()
         {
-            TryClose(true);
+            await SafeTryCloseAsync(true);
         }
 
-        public void TryCloseWithFailure()
+        public async void TryCloseWithFailureAsync()
         {
-            TryClose(false);
+            await SafeTryCloseAsync(false);
+        }
+
+        public async void TryClose(bool? dialogResult = null)
+        {
+            await SafeTryCloseAsync(dialogResult);
+        }
+
+        private async Task SafeTryCloseAsync(bool? dialogResult = null)
+        {
+            try
+            {
+                await TryCloseAsync(dialogResult);
+            }
+            catch
+            {
+            }
         }
 
         public virtual void BeforeOpenModal(dynamic options)

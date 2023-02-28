@@ -107,7 +107,7 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PreLinkEvent>
-      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=x86 -target:Clean;Build</Command>
+      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:OutDir=$(OutDir) /property:Platform=x86 -target:Clean;Build</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +133,7 @@
       <AdditionalDependencies>Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=x86 -target:Clean;Build</Command>
+      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:OutDir=$(OutDir) /property:Platform=x86 -target:Clean;Build</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -155,7 +155,7 @@
       <AdditionalDependencies>Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=x64 -target:Clean;Build</Command>
+      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:OutDir=$(OutDir) /property:Platform=x64 -target:Clean;Build</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -181,7 +181,7 @@
       <AdditionalDependencies>Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=x64 -target:Clean;Build</Command>
+      <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:OutDir=$(OutDir) /property:Platform=x64 -target:Clean;Build</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

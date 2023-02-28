@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using ProtonVPN.Service.Start;
 
 namespace ProtonVPN.Service
@@ -26,14 +25,8 @@ namespace ProtonVPN.Service
     {
         public static void Main(string[] args)
         {
-            if (!Environment.UserInteractive)
-            {
-                Bootstrapper bootstrapper = new();
-                bootstrapper.Initialize();
-                return;
-            }
-
-            new CommandLineStartStrategy().Start(args);
+            Bootstrapper bootstrapper = new();
+            bootstrapper.Initialize();
         }
     }
 }

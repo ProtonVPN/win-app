@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.HumanVerification.Contracts;
 
@@ -33,9 +34,9 @@ namespace ProtonVPN.HumanVerification
             _humanVerificationViewModel = humanVerificationViewModel;
         }
 
-        public bool? Verify(string token)
+        public async Task<bool?> VerifyAsync(string token)
         {
-            return _modals.Show<HumanVerificationViewModel>(token);
+            return await _modals.ShowAsync<HumanVerificationViewModel>(token);
         }
 
         public string GetResolvedToken()

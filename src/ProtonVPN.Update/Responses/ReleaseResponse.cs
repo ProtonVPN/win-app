@@ -29,10 +29,7 @@ namespace ProtonVPN.Update.Responses
         public FileResponse File;
 
         public IReadOnlyList<string> ChangeLog;
-
-        [Obsolete("To be deleted on 3.0.0")]
-        public bool DisableAutoUpdate;
-
+        
         public DateTimeOffset? ReleaseDate;
 
         public string MinimumOsVersion;

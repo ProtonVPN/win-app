@@ -20,7 +20,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:behaviour="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                     xmlns:splittunneling="clr-namespace:ProtonVPN.Settings.SplitTunneling"
                     xmlns:settings="clr-namespace:ProtonVPN.Settings"

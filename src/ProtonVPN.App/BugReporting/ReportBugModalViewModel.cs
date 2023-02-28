@@ -21,6 +21,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using ProtonVPN.Account;
 using ProtonVPN.Api;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
@@ -131,7 +132,7 @@ namespace ProtonVPN.BugReporting
             _logger.Info<AppLog>("Timeout action completed.");
         }
 
-        public async void Handle(SendReportAction message)
+        public async Task HandleAsync(SendReportAction message, CancellationToken cancellationToken)
         {
             _timeoutAction.Run();
             await _eventAggregator.PublishOnUIThreadAsync(new FormStateChange(FormState.Sending));
@@ -162,12 +163,12 @@ namespace ProtonVPN.BugReporting
             await _eventAggregator.PublishOnUIThreadAsync(new FormStateChange(FormState.Sent));
         }
 
-        public void Handle(FinishReportAction message)
+        public async Task HandleAsync(FinishReportAction message, CancellationToken cancellationToken)
         {
             TryClose();
         }
 
-        public void Handle(FormStateChange message)
+        public async Task HandleAsync(FormStateChange message, CancellationToken cancellationToken)
         {
             _formState = message.State;
             if (_formState is not FormState.Sending)
@@ -188,14 +189,14 @@ namespace ProtonVPN.BugReporting
             }
         }
 
-        public void Handle(GoBackAfterFailureAction message)
+        public async Task HandleAsync(GoBackAfterFailureAction message, CancellationToken cancellationToken)
         {
             ShowStepsView();
         }
 
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
-            base.OnDeactivate(close);
+            await base.OnDeactivateAsync(close, cancellationToken);
             if (_formState == FormState.Sent)
             {
                 ShowStepsView();

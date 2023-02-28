@@ -57,7 +57,7 @@ namespace ProtonVPN.App.Tests.Core.Service
         public async Task ItShouldNotExecuteActionIfServiceIsDisabled()
         {
             // Arrange
-            _serviceEnabler.GetServiceEnabledResult(Arg.Any<IService>()).Returns(Result.Fail());
+            _serviceEnabler.GetServiceEnabledResultAsync(Arg.Any<IService>()).Returns(Result.Fail());
             SafeServiceAction sut = new SafeServiceAction(_service, _logger, _serviceEnabler);
             int timesCalled = 0;
             Func<Task<Result>> action = () =>
@@ -79,7 +79,7 @@ namespace ProtonVPN.App.Tests.Core.Service
             // Arrange
             _service.StartAsync(Arg.Any<CancellationToken>()).Returns(Result.Ok);
             _service.Exists().Returns(true);
-            _serviceEnabler.GetServiceEnabledResult(Arg.Any<IService>()).Returns(Result.Ok);
+            _serviceEnabler.GetServiceEnabledResultAsync(Arg.Any<IService>()).Returns(Result.Ok);
             SafeServiceAction sut = new SafeServiceAction(_service, _logger, _serviceEnabler);
             int timesCalled = 0;
 
@@ -89,7 +89,7 @@ namespace ProtonVPN.App.Tests.Core.Service
                 if (timesCalled == 0)
                 {
                     timesCalled++;
-                    throw new EndpointNotFoundException();
+                    throw new EndpointNotFoundException("Test");
                 }
 
                 timesCalled++;
@@ -110,7 +110,7 @@ namespace ProtonVPN.App.Tests.Core.Service
             // Arrange
             Exception ex = (Exception)Activator.CreateInstance(e);
             SafeServiceAction sut = new(_service, _logger, _serviceEnabler);
-            _serviceEnabler.GetServiceEnabledResult(Arg.Any<IService>()).Returns(Result.Ok);
+            _serviceEnabler.GetServiceEnabledResultAsync(Arg.Any<IService>()).Returns(Result.Ok);
 
             // Act
             Result result = await sut.InvokeServiceAction(() => throw ex);

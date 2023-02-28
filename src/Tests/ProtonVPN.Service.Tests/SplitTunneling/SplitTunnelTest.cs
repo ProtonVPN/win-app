@@ -19,10 +19,10 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
@@ -53,9 +53,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnecting_WhenBlockMode_DisableReversed()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block
+                Mode = SplitTunnelModeIpcEntity.Block
             });
             SplitTunnel splitTunnel = GetSplitTunnel(false, true);
 
@@ -70,9 +70,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnecting_WhenBlockMode_Disable()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Permit
+                Mode = SplitTunnelModeIpcEntity.Permit
             });
             SplitTunnel splitTunnel = GetSplitTunnel(true);
 
@@ -88,9 +88,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         {
             // Arrange
             string[] addresses = new[] { "127.0.0.1", "192.168.0.1", "8.8.8.8" };
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block,
+                Mode = SplitTunnelModeIpcEntity.Block,
                 Ips = addresses,
                 AppPaths = new string[] {},
             });
@@ -107,9 +107,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnected_WhenBlockMode_CallEnable()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block,
+                Mode = SplitTunnelModeIpcEntity.Block,
                 AppPaths = new string[] {},
                 Ips = new string[] {},
             });
@@ -126,9 +126,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnected_WhenBlockMode_CalloutDriverStart()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block,
+                Mode = SplitTunnelModeIpcEntity.Block,
                 AppPaths = new string[] {},
                 Ips = new string[] { },
             });
@@ -142,9 +142,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnected_WhenPermitMode_CalloutDriverStart()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Permit
+                Mode = SplitTunnelModeIpcEntity.Permit
             });
             SplitTunnel splitTunnel = GetSplitTunnel();
 
@@ -156,9 +156,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnected_WhenDisabled_CalloutDriverDoNotStart()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Disabled
+                Mode = SplitTunnelModeIpcEntity.Disabled
             });
             SplitTunnel splitTunnel = GetSplitTunnel();
 
@@ -170,9 +170,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnected_WhenDisabled_DoNotEnable()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Disabled
+                Mode = SplitTunnelModeIpcEntity.Disabled
             });
             SplitTunnel splitTunnel = GetSplitTunnel();
 
@@ -187,9 +187,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnConnected_WhenPermitMode_EnableReversed()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Permit
+                Mode = SplitTunnelModeIpcEntity.Permit
             });
             SplitTunnel splitTunnel = GetSplitTunnel();
 
@@ -207,9 +207,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         {
             // Arrange
             string[] apps = new[] { "app1", "app2", "app3" };
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block,
+                Mode = SplitTunnelModeIpcEntity.Block,
                 AppPaths = apps,
                 Ips = new string[] {},
             });
@@ -227,9 +227,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         {
             // Arrange
             string[] apps = new [] {"app1", "app2", "app3"};
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Permit,
+                Mode = SplitTunnelModeIpcEntity.Permit,
                 AppPaths = apps
             });
             SplitTunnel splitTunnel = GetSplitTunnel(true);
@@ -245,9 +245,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnDisconnected_ManualDisconnect_ShouldDisable()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block
+                Mode = SplitTunnelModeIpcEntity.Block
             });
             SplitTunnel splitTunnel = GetSplitTunnel(true);
 
@@ -262,9 +262,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnDisconnected_ManualDisconnect_ShouldDisableReversed()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Permit
+                Mode = SplitTunnelModeIpcEntity.Permit
             });
             SplitTunnel splitTunnel = GetSplitTunnel(false, true);
 
@@ -279,9 +279,9 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void OnVpnDisconnected_ManualDisconnect_ShouldStopCalloutDriver()
         {
             // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Permit
+                Mode = SplitTunnelModeIpcEntity.Permit
             });
             SplitTunnel splitTunnel = GetSplitTunnel();
 

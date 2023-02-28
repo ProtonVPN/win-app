@@ -23,6 +23,8 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Notifications;
 using System.Collections.ObjectModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -47,12 +49,12 @@ namespace ProtonVPN.FlashNotifications
         public ICommand CloseMessageCommand { get; set; }
         public ObservableCollection<INotification> Notifications { get; set; }
 
-        public void Handle(ShowFlashMessage message)
+        public async Task HandleAsync(ShowFlashMessage message, CancellationToken cancellationToken)
         {
             ShowMessage(message.Message);
         }
 
-        public void Handle(HideFlashMessage message)
+        public async Task HandleAsync(HideFlashMessage message, CancellationToken cancellationToken)
         {
             CloseMessage(message.Message);
         }

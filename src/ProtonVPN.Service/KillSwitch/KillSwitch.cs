@@ -18,13 +18,13 @@
  */
 
 using Autofac;
-using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
@@ -95,21 +95,22 @@ namespace ProtonVPN.Service.KillSwitch
             }
         }
 
-        public void OnServiceSettingsChanged(SettingsContract settings)
+        public void OnServiceSettingsChanged(MainSettingsIpcEntity settings)
         {
-            if (_killSwitchMode != settings.KillSwitchMode)
+            KillSwitchMode killSwitchMode = (KillSwitchMode)settings.KillSwitchMode;
+            if (_killSwitchMode != killSwitchMode)
             {
-                HandleKillSwitchModeChange(settings.KillSwitchMode);
+                HandleKillSwitchModeChange(killSwitchMode);
             }
             else
             {
-                if (settings.KillSwitchMode == KillSwitchMode.Hard && !_firewall.LeakProtectionEnabled)
+                if (killSwitchMode == KillSwitchMode.Hard && !_firewall.LeakProtectionEnabled)
                 {
                     EnableLeakProtection();
                 }
             }
 
-            _killSwitchMode = settings.KillSwitchMode;
+            _killSwitchMode = killSwitchMode;
         }
 
         private void HandleKillSwitchModeChange(KillSwitchMode killSwitchMode)
@@ -136,7 +137,7 @@ namespace ProtonVPN.Service.KillSwitch
 
         private void EnableLeakProtection()
         {
-            bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit;
+            bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit;
             bool persistent = _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
             INetworkInterface networkInterface = _networkInterfaceLoader.GetByVpnProtocol(_lastVpnState.VpnProtocol, _lastVpnState.OpenVpnAdapter);
             uint interfaceIndex = networkInterface?.Index ?? 0;

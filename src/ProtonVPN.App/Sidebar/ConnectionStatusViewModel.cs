@@ -21,13 +21,13 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
@@ -55,7 +55,6 @@ namespace ProtonVPN.Sidebar
         IServersAware,
         IUserLocationAware,
         ISettingsAware,
-        IServiceSettingsStateAware,
         IConnectionDetailsAware
     {
         private readonly IAppSettings _appSettings;
@@ -68,8 +67,7 @@ namespace ProtonVPN.Sidebar
         private readonly ILogger _logger;
         private readonly SettingsModalViewModel _settingsModalViewModel;
         private readonly EnumToDisplayTextConverter _enumToDisplayTextConverter;
-
-        private readonly DispatcherTimer _timer;
+        private readonly ISchedulerTimer _timer;
 
         private VpnStatus _vpnStatus;
         private bool _sidebarMode;
@@ -85,7 +83,8 @@ namespace ProtonVPN.Sidebar
             ILogger logger,
             SettingsModalViewModel settingsModalViewModel,
             AnnouncementsViewModel announcementsViewModel,
-            PortForwardingActivePortViewModel activePortViewModel)
+            PortForwardingActivePortViewModel activePortViewModel,
+            IScheduler scheduler)
         {
             _appSettings = appSettings;
             _sidebarManager = sidebarManager;
@@ -108,7 +107,9 @@ namespace ProtonVPN.Sidebar
             ActivePortViewModel = activePortViewModel;
             ActivePortViewModel.PropertyChanged += OnActivePortViewModelPropertyChanged;
 
-            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            _timer = scheduler.Timer();
+            _timer.IsEnabled = false;
+            _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += OnSecondPassed;
         }
 
@@ -381,11 +382,6 @@ namespace ProtonVPN.Sidebar
             }
         }
 
-        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
-        {
-            SetKillSwitchActivated(e.IsNetworkBlocked, e.CurrentState.State.Status);
-        }
-
         public async Task OnConnectionDetailsChanged(ConnectionDetails connectionDetails)
         {
             if (!connectionDetails.ServerIpAddress.IsNullOrEmpty())
@@ -481,11 +477,11 @@ namespace ProtonVPN.Sidebar
             OnPropertyChanged(nameof(IsToShowVpnAcceleratorReconnectionPopup));
         }
 
-        private void OpenNotificationSettingsAction()
+        private async void OpenNotificationSettingsAction()
         {
             CloseVpnAcceleratorReconnectionPopupAction();
             _settingsModalViewModel.OpenConnectionTab();
-            _modals.Show<SettingsModalViewModel>();
+            await _modals.ShowAsync<SettingsModalViewModel>();
         }
     }
 }

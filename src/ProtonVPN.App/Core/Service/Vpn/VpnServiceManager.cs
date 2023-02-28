@@ -18,59 +18,95 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Service.Contract.Crypto;
-using ProtonVPN.Service.Contract.PortForwarding;
-using ProtonVPN.Service.Contract.Settings;
-using ProtonVPN.Service.Contract.Vpn;
+using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnServiceManager : IVpnServiceManager
     {
         private readonly VpnService _vpnService;
-        private readonly SettingsContractProvider _settingsContractProvider;
+        private readonly MainSettingsProvider _settingsContractProvider;
         private readonly ILogger _logger;
+        private readonly IAppController _appController;
+        private readonly IEntityMapper _entityMapper;
+        private Action<VpnStateChangedEventArgs> _vpnStateCallback;
+        private Action<PortForwardingState> _portForwardingStateCallback;
+        private Action<ConnectionDetails> _connectionDetailsCallback;
 
         public VpnServiceManager(
             VpnService vpnService,
-            SettingsContractProvider settingsContractProvider,
-            ILogger logger)
+            MainSettingsProvider settingsContractProvider,
+            ILogger logger,
+            IAppController appController,
+            IEntityMapper entityMapper)
         {
-            _logger = logger;
-            _settingsContractProvider = settingsContractProvider;
             _vpnService = vpnService;
+            _settingsContractProvider = settingsContractProvider;
+            _logger = logger;
+            _appController = appController;
+            _entityMapper = entityMapper;
+            _appController.OnVpnStateChanged += OnVpnStateChanged;
+            _appController.OnPortForwardingStateChanged += OnPortForwardingStateChanged;
+            _appController.OnConnectionDetailsChanged += OnConnectionDetailsChanged;
+        }
+
+        private void OnConnectionDetailsChanged(object sender, ConnectionDetailsIpcEntity connectionDetails)
+        {
+            Action<ConnectionDetails> callback = _connectionDetailsCallback;
+            if (callback is not null)
+            {
+                callback(_entityMapper.Map<ConnectionDetailsIpcEntity, ConnectionDetails>(connectionDetails));
+            }
+        }
+
+        private void OnVpnStateChanged(object sender, VpnStateIpcEntity state)
+        {
+            Action<VpnStateChangedEventArgs> callback = _vpnStateCallback;
+            if (callback is not null)
+            {
+                callback(_entityMapper.Map<VpnStateIpcEntity, VpnStateChangedEventArgs>(state));
+            }
+        }
+
+        private void OnPortForwardingStateChanged(object sender, PortForwardingStateIpcEntity state)
+        {
+            Action<PortForwardingState> callback = _portForwardingStateCallback;
+            if (callback is not null)
+            {
+                callback(_entityMapper.Map<PortForwardingStateIpcEntity, PortForwardingState>(state));
+            }
         }
 
         public async Task Connect(VpnConnectionRequest request)
         {
             Ensure.NotNull(request, nameof(request));
-
-            VpnConnectionRequestContract contract = Map(request);
-
-            await _vpnService.Connect(contract);
+            ConnectionRequestIpcEntity connectionRequest = 
+                _entityMapper.Map<VpnConnectionRequest, ConnectionRequestIpcEntity>(request);
+            connectionRequest.Settings = _settingsContractProvider.Create(request.Config.OpenVpnAdapter);
+            await _vpnService.Connect(connectionRequest);
         }
 
         public async Task UpdateAuthCertificate(string certificate)
         {
-            await _vpnService.UpdateAuthCertificate(certificate);
+            await _vpnService.UpdateAuthCertificate(new AuthCertificateIpcEntity() { Certificate = certificate });
         }
 
         public async Task<InOutBytes> Total()
         {
-            return Map(await _vpnService.Total());
+            return _entityMapper.Map<TrafficBytesIpcEntity, InOutBytes>(await _vpnService.Total());
         }
 
         public async Task RepeatState()
@@ -85,177 +121,27 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             _logger.Info<DisconnectTriggerLog>($"Disconnect requested (Error: {vpnError})",
                 sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
-            return _vpnService.Disconnect(_settingsContractProvider.GetSettingsContract(), Map(vpnError));
+            DisconnectionRequestIpcEntity disconnectionRequest = new()
+            {
+                Settings = _settingsContractProvider.Create(),
+                ErrorType = (VpnErrorTypeIpcEntity)vpnError
+            };
+            return _vpnService.Disconnect(disconnectionRequest);
         }
 
         public void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback)
-            => _vpnService.VpnStateChanged += (s, e) => callback(Map(e));
-
-        public void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> callback)
-            => _vpnService.ServiceSettingsStateChanged += (s, e) => callback(Map(e));
+        {
+            _vpnStateCallback = callback;
+        }
 
         public void RegisterPortForwardingStateCallback(Action<PortForwardingState> callback)
-            => _vpnService.PortForwardingStateChanged += (s, e) => callback(Map(e));
+        {
+            _portForwardingStateCallback = callback;
+        }
 
         public void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback)
-            => _vpnService.ConnectionDetailsChanged += (s, e) => callback(Map(e));
-
-        private static ConnectionDetails Map(ConnectionDetailsContract contract)
         {
-            return new ConnectionDetails
-            {
-                ClientIpAddress = contract.ClientIpAddress,
-                ClientCountryIsoCode = contract.ClientCountryIsoCode,
-                ServerIpAddress = contract.ServerIpAddress,
-            };
-        }
-
-        private static PortForwardingState Map(PortForwardingStateContract contract)
-        {
-            return new()
-            {
-                MappedPort = CreateTemporaryMappedPort(contract.MappedPort),
-                Status = (PortMappingStatus)contract.Status,
-                TimestampUtc = contract.TimestampUtc
-            };
-        }
-
-        private static TemporaryMappedPort CreateTemporaryMappedPort(TemporaryMappedPortContract contract)
-        {
-            if (contract is null)
-            {
-                return null;
-            }
-            return new()
-            {
-                MappedPort = new(internalPort: contract.InternalPort, externalPort: contract.ExternalPort),
-                Lifetime = contract.Lifetime,
-                ExpirationDateUtc = contract.ExpirationDateUtc
-            };
-        }
-
-        private static ServiceSettingsStateChangedEventArgs Map(ServiceSettingsStateContract contract)
-        {
-            return new(contract.IsNetworkBlocked, Map(contract.CurrentState));
-        }
-
-        private VpnConnectionRequestContract Map(VpnConnectionRequest request)
-        {
-            return new()
-            {
-                Servers = Map(request.Servers),
-                Protocol = Map(request.VpnProtocol),
-                VpnConfig = Map(request.Config),
-                Credentials = Map(request.Credentials),
-                Settings = _settingsContractProvider.GetSettingsContract(request.Config.OpenVpnAdapter)
-            };
-        }
-
-        private static VpnHostContract[] Map(IEnumerable<VpnHost> servers)
-        {
-            return servers.Select(Map).ToArray();
-        }
-
-        private static VpnHostContract Map(VpnHost host)
-        {
-            return new()
-            {
-                Name = host.Name,
-                Ip = host.Ip,
-                Label = host.Label,
-                X25519PublicKey = host.X25519PublicKey != null ? new ServerPublicKeyContract(host.X25519PublicKey) : null,
-                Signature = host.Signature,
-            };
-        }
-
-        private static VpnCredentialsContract Map(VpnCredentials credentials)
-        {
-            return new()
-            {
-                Username = credentials.Username,
-                Password = credentials.Password,
-                ClientCertPem = credentials.ClientCertPem,
-                ClientKeyPair = credentials.ClientKeyPair == null ? null : new AsymmetricKeyPairContract(credentials.ClientKeyPair)
-            };
-        }
-
-        private static VpnConfigContract Map(VpnConfig config)
-        {
-            Dictionary<VpnProtocolContract, int[]> portConfig =
-                config.Ports.ToDictionary(p => Map(p.Key), p => p.Value.ToArray());
-            return new VpnConfigContract
-            {
-                Ports = portConfig,
-                CustomDns = config.CustomDns.ToList(),
-                AllowNonStandardPorts = config.AllowNonStandardPorts,
-                SplitTunnelMode = config.SplitTunnelMode,
-                SplitTunnelIPs = config.SplitTunnelIPs.ToList(),
-                NetShieldMode = config.NetShieldMode,
-                VpnProtocol = Map(config.VpnProtocol),
-                ModerateNat = config.ModerateNat,
-                PreferredProtocols = Map(config.PreferredProtocols),
-                SplitTcp = config.SplitTcp,
-                PortForwarding = config.PortForwarding,
-            };
-        }
-
-        private static IList<VpnProtocolContract> Map(IList<VpnProtocol> protocols)
-        {
-            return protocols.Select(Map).ToList();
-        }
-
-        private static VpnStateChangedEventArgs Map(VpnStateContract contract)
-        {
-            VpnStatus status = Map(contract.Status);
-            VpnError error = Map(contract.Error);
-            VpnProtocol protocol = Map(contract.VpnProtocol);
-
-            return new(status, error, contract.EndpointIp, contract.NetworkBlocked, protocol, contract.OpenVpnAdapterType, contract.Label);
-        }
-
-        private static InOutBytes Map(InOutBytesContract bytes)
-        {
-            return new(bytes.BytesIn, bytes.BytesOut);
-        }
-
-        private static VpnProtocolContract Map(VpnProtocol protocol)
-        {
-            return protocol switch
-            {
-                VpnProtocol.OpenVpnUdp => VpnProtocolContract.OpenVpnUdp,
-                VpnProtocol.OpenVpnTcp => VpnProtocolContract.OpenVpnTcp,
-                VpnProtocol.WireGuard => VpnProtocolContract.WireGuard,
-                VpnProtocol.Smart => VpnProtocolContract.Smart,
-                _ => throw new NotImplementedException("VpnProtocol has an unknown value.")
-            };
-        }
-
-
-        private static VpnProtocol Map(VpnProtocolContract protocol)
-        {
-            return protocol switch
-            {
-                VpnProtocolContract.OpenVpnUdp => VpnProtocol.OpenVpnUdp,
-                VpnProtocolContract.OpenVpnTcp => VpnProtocol.OpenVpnTcp,
-                VpnProtocolContract.WireGuard => VpnProtocol.WireGuard,
-                VpnProtocolContract.Smart => VpnProtocol.Smart,
-                _ => throw new NotImplementedException("VpnProtocol has an unknown value.")
-            };
-        }
-
-        private static VpnStatus Map(VpnStatusContract status)
-        {
-            return (VpnStatus)status;
-        }
-
-        private static VpnErrorTypeContract Map(VpnError vpnError)
-        {
-            return (VpnErrorTypeContract)vpnError;
-        }
-
-        private static VpnError Map(VpnErrorTypeContract vpnError)
-        {
-            return (VpnError)vpnError;
+            _connectionDetailsCallback = callback;
         }
     }
 }

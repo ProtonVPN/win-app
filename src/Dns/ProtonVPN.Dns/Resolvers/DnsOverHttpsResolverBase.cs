@@ -25,9 +25,9 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using ARSoft.Tools.Net;
 using ARSoft.Tools.Net.Dns;
+using Microsoft.AspNetCore.WebUtilities;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -35,7 +35,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.DnsLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Exceptions;
-using ProtonVPN.Dns.HttpClients;
+using IHttpClientFactory = ProtonVPN.Dns.HttpClients.IHttpClientFactory;
 
 namespace ProtonVPN.Dns.Resolvers
 {
@@ -199,7 +199,9 @@ namespace ProtonVPN.Dns.Resolvers
         {
             if (!response.IsSuccessStatusCode)
             {
-                throw new HttpException((int)response.StatusCode, $"Unexpected HTTP response '{response.StatusCode}' " +
+                int statusNumber = (int)response.StatusCode;
+                string statusDescription = ReasonPhrases.GetReasonPhrase(statusNumber);
+                throw new Exception($"Unexpected HTTP response {statusNumber} '{statusDescription}' " +
                     $"when resolving for host '{config.Host}' with DNS over HTTPS provider '{config.ProviderUrl}'.");
             }
         }

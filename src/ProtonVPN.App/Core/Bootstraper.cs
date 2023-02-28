@@ -43,6 +43,7 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
@@ -68,6 +69,7 @@ using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Installers;
+using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.ErrorHandling;
 using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.Login;
@@ -82,6 +84,9 @@ using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.Partners;
 using ProtonVPN.PlanDowngrading;
+using ProtonVPN.ProcessCommunication.App.Installers;
+using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
@@ -95,19 +100,15 @@ using ProtonVPN.Windows;
 
 namespace ProtonVPN.Core
 {
-    internal class Bootstrapper : BootstrapperBase
+    public class Bootstrapper : BootstrapperBase
     {
         private IContainer _container;
 
         private T Resolve<T>() => _container.Resolve<T>();
 
-        private readonly string[] _args;
-
-        private INotificationUserActionHandler _notificationUserActionHandler;
-
-        public Bootstrapper(string[] args)
+        public Bootstrapper()
         {
-            _args = args;
+            Initialize();
         }
 
         protected override void Configure()
@@ -124,7 +125,10 @@ namespace ProtonVPN.Core
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
                 .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly)
                 .RegisterAssemblyModules<AnnouncementsModule>(typeof(AnnouncementsModule).Assembly)
-                .RegisterAssemblyModules<DnsModule>(typeof(DnsModule).Assembly);
+                .RegisterAssemblyModules<DnsModule>(typeof(DnsModule).Assembly)
+                .RegisterAssemblyModules<EntityMappingModule>(typeof(EntityMappingModule).Assembly)
+                .RegisterAssemblyModules<ProcessCommunicationModule>(typeof(ProcessCommunicationModule).Assembly)
+                .RegisterAssemblyModules<AppProcessCommunicationModule>(typeof(AppProcessCommunicationModule).Assembly);
 
             new ProtonVPN.Update.Config.Module().Load(builder);
 
@@ -140,8 +144,6 @@ namespace ProtonVPN.Core
 
             Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
 
-            Resolve<ServicePointConfiguration>().Apply();
-
             Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 10);
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
@@ -153,15 +155,17 @@ namespace ProtonVPN.Core
             IncreaseAppStartCount();
             SetHardwareAcceleration();
             RegisterEvents();
-            Resolve<Language>().Initialize(_args);
+            Resolve<Language>().Initialize(e.Args);
 
             if (Resolve<IAppSettings>().StartMinimized == StartMinimizedMode.Disabled)
             {
                 ShowInitialWindow();
             }
 
-            await Resolve<IReportAnIssueFormDataProvider>().FetchData();
-            await StartVpnService();
+            Resolve<IReportAnIssueFormDataProvider>().FetchDataAsync();
+            StartVpnServiceAsync();
+
+            StartGrpcServerAsync();
 
             if (Resolve<IUserStorage>().GetUser().Empty() || !await IsUserValid() || await SessionExpired())
             {
@@ -172,11 +176,29 @@ namespace ProtonVPN.Core
             await Resolve<IUserAuthenticator>().InvokeAutoLoginEventAsync();
         }
 
+        private async Task StartGrpcServerAsync()
+        {
+            try
+            {
+                IGrpcServer grpcServer = Resolve<IGrpcServer>();
+                grpcServer.CreateAndStart();
+                int appServerPort = grpcServer.Port.Value;
+                Resolve<ILogger>().Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort} to service.");
+                await Resolve<VpnService>().RegisterVpnClient(appServerPort);
+            }
+            catch (Exception e)
+            {
+                Resolve<ILogger>().Error<AppServiceStartFailedLog>("An error occurred when starting the VPN Client gRPC server.", e);
+                throw;
+            }
+        }
+
         public void OnExit()
         {
+            Resolve<IGrpcServer>().KillAsync();
             Resolve<ILogger>().Info<AppStopLog>("The app is exiting. Requesting services to stop.");
             Resolve<TrayIcon>().Hide();
-            Resolve<MonitoredVpnService>().StopAsync();
+            Resolve<IMonitoredVpnService>().StopAsync();
         }
 
         private async Task<bool> SessionExpired()
@@ -225,14 +247,14 @@ namespace ProtonVPN.Core
                 AuthResult result = await Resolve<UserValidator>().GetValidateResult();
                 if (result.Failure)
                 {
-                    loginViewModel.HandleAuthFailure(result);
+                    await loginViewModel.HandleAuthFailureAsync(result);
                     ShowLoginForm();
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                loginViewModel.HandleAuthFailure(AuthResult.Fail(ex.Message));
+                await loginViewModel.HandleAuthFailureAsync(AuthResult.Fail(ex.Message));
                 ShowLoginForm();
                 return false;
             }
@@ -240,10 +262,10 @@ namespace ProtonVPN.Core
             return true;
         }
 
-        private async Task StartVpnService()
+        private async Task StartVpnServiceAsync()
         {
             await StartService(Resolve<VpnSystemService>());
-            await InitializeStateFromService();
+            await InitializeStateFromServiceAsync();
         }
 
         private void ShowInitialWindow()
@@ -262,7 +284,6 @@ namespace ProtonVPN.Core
             IUserAuthenticator userAuthenticator = Resolve<IUserAuthenticator>();
             AppWindow appWindow = Resolve<AppWindow>();
             IAppSettings appSettings = Resolve<IAppSettings>();
-            _notificationUserActionHandler = Resolve<INotificationUserActionHandler>();
             Resolve<ISettingsServiceClientManager>();
 
             Resolve<IServerUpdater>().ServersUpdated += (sender, e) =>
@@ -377,15 +398,6 @@ namespace ProtonVPN.Core
                 await Resolve<AlternativeHostHandler>().OnVpnStateChanged(e);
             });
 
-            vpnServiceManager.RegisterServiceSettingsStateCallback((e) =>
-            {
-                IEnumerable<IServiceSettingsStateAware> instances = Resolve<IEnumerable<IServiceSettingsStateAware>>();
-                foreach (IServiceSettingsStateAware instance in instances)
-                {
-                    instance.OnServiceSettingsStateChanged(e);
-                }
-            });
-
             vpnServiceManager.RegisterPortForwardingStateCallback((state) =>
             {
                 IEnumerable<IPortForwardingStateAware> instances = Resolve<IEnumerable<IPortForwardingStateAware>>();
@@ -412,7 +424,7 @@ namespace ProtonVPN.Core
                     instance.OnVpnStateChanged(e);
                 }
 
-                Resolve<IEventAggregator>().PublishOnCurrentThread(e);
+                Resolve<IEventAggregator>().PublishOnCurrentThreadAsync(e);
             };
 
             Resolve<UpdateService>().UpdateStateChanged += (sender, e) =>
@@ -523,11 +535,11 @@ namespace ProtonVPN.Core
 
             if (Resolve<IAppSettings>().StartMinimized != StartMinimizedMode.Disabled)
             {
-                await StartVpnService();
+                StartVpnServiceAsync();
             }
 
             await Resolve<ISettingsServiceClientManager>().UpdateServiceSettings();
-            
+
             Resolve<PinFactory>().BuildPins();
             LoadViewModels();
             Resolve<IP2PDetector>();
@@ -565,7 +577,7 @@ namespace ProtonVPN.Core
             Resolve<ConnectionStatusViewModel>().Load();
         }
 
-        private async Task InitializeStateFromService()
+        private async Task InitializeStateFromServiceAsync()
         {
             try
             {
@@ -594,11 +606,6 @@ namespace ProtonVPN.Core
             {
                 subject.RegisterMigration(migration);
             }
-        }
-
-        public void OnToastNotificationUserAction(NotificationUserAction data)
-        {
-            _notificationUserActionHandler?.Handle(data);
         }
     }
 }

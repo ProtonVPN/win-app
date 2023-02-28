@@ -20,6 +20,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -272,7 +273,7 @@ namespace ProtonVPN.QuickLaunch
             }
         }
 
-        private void ShowAppAction()
+        private async void ShowAppAction()
         {
             _appWindow.Show();
             if (_appWindow.WindowState.Equals(WindowState.Minimized))
@@ -283,7 +284,7 @@ namespace ProtonVPN.QuickLaunch
             _appWindow.Activate();
             if (Connecting)
             {
-                _appWindow.Handle(new ToggleOverlay(true));
+                await _appWindow.HandleAsync(new ToggleOverlay(true), new CancellationTokenSource().Token);
             }
         }
     }

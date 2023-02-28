@@ -75,12 +75,7 @@ namespace ProtonVPN.Account
             await Handle();
         }
 
-        public async void Handle(UpdateVpnInfoMessage message)
-        {
-            await Update();
-        }
-
-        public async void Handle(WindowStateMessage message)
+        public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
             if (!message.Active)
             {
@@ -88,6 +83,11 @@ namespace ProtonVPN.Account
             }
 
             await Handle();
+        }
+
+        public async Task HandleAsync(UpdateVpnInfoMessage message, CancellationToken cancellationToken)
+        {
+            await Update();
         }
 
         private async Task Handle()

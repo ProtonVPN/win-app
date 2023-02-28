@@ -17,11 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net.Http;
 using Autofac;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
@@ -40,7 +37,6 @@ using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS;
-using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.ReportAnIssue;
@@ -67,7 +63,6 @@ namespace ProtonVPN.Core.Ioc
             base.Load(builder);
             
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
-            builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<ServerManager>().SingleInstance();
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();
             builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();

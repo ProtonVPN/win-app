@@ -55,7 +55,7 @@ This creates TAP setup file "ProtonVPNTap.exe" in "Setup\ProtonVPNTap-SetupFiles
 folder. Otherwise, keep the previously built file. The code signing USB key must be
 provided during build.
 - Build the "Setup\ProtonVPN.aip" project using Advanced Installer. This creates 
-Proton VPN setup file "ProtonVPN_win_x.x.x.exe" in "Setup\ProtonVPN-SetupFiles" folder,
+Proton VPN setup file "ProtonVPN_win_x.x.x.exe" in "Setup\Installers" folder,
 where "x.x.x" is the application version number. The code signing USB key must be
 provided during build.
 

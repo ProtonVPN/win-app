@@ -23,8 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:ProtonVPN.Map.Views"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:command="http://www.galasoft.ch/mvvmlight"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
              mc:Ignorable="d">
 
@@ -84,7 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Ellipse x:Name="Pin" Style="{StaticResource SecurePin}"/>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewTouchDown">
-                                <command:EventToCommand Command="{Binding ShowTooltipCommand}"/>
+                                <i:InvokeCommandAction Command="{Binding ShowTooltipCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>

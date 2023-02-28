@@ -28,12 +28,14 @@ using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Service;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.EntityMapping.Installers;
+using ProtonVPN.ProcessCommunication.Installers;
+using ProtonVPN.ProcessCommunication.Service.Installers;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
-using ProtonVPN.Service.ServiceHosts;
+using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
 using ProtonVPN.Service.Vpn;
@@ -61,8 +63,8 @@ namespace ProtonVPN.Service.Start
 
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
-            builder.RegisterType<SettingsHandler>().SingleInstance();
-            builder.RegisterType<VpnConnectionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<ServiceController>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppControllerCaller>().AsImplementedInterfaces().SingleInstance();
 
             builder.Register(_ => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
@@ -85,8 +87,6 @@ namespace ProtonVPN.Service.Start
             vpnModule.Load(builder);
 
             builder.Register(c => GetVpnConnection(c, vpnModule.GetVpnConnection(c))).As<IVpnConnection>().SingleInstance();
-            builder.RegisterType<ServiceSettingsHostFactory>().As<ServiceHostFactory>().SingleInstance();
-            builder.RegisterType<VpnConnectionHostFactory>().As<ServiceHostFactory>().SingleInstance();
             builder.Register(_ => new SerialTaskQueue()).As<ITaskQueue>().SingleInstance();
             builder.RegisterType<KillSwitch.KillSwitch>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnService>().SingleInstance();
@@ -128,6 +128,10 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<NetworkAdapterManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
             builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
+
+            builder.RegisterAssemblyModules<EntityMappingModule>(typeof(EntityMappingModule).Assembly);
+            builder.RegisterAssemblyModules<ProcessCommunicationModule>(typeof(ProcessCommunicationModule).Assembly);
+            builder.RegisterAssemblyModules<ServiceProcessCommunicationModule>(typeof(ServiceProcessCommunicationModule).Assembly);
         }
 
         private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)

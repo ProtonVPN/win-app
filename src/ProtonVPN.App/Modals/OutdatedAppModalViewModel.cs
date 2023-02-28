@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.About;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Update;
@@ -63,7 +64,7 @@ namespace ProtonVPN.Modals
             Application.Current.Shutdown();
         }
 
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
             CloseAction();
         }

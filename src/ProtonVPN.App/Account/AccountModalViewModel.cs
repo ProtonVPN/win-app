@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
@@ -143,14 +145,13 @@ namespace ProtonVPN.Account
             set => Set(ref _accountType, value);
         }
 
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             SetUserDetails();
         }
 
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
-            base.OnDeactivate(close);
             CloseActionMessageAction();
         }
 
@@ -162,7 +163,7 @@ namespace ProtonVPN.Account
             NotifyOfPropertyChange(nameof(IsPlusPlan));
         }
 
-        public void Handle(AccountActionMessage message)
+        public async Task HandleAsync(AccountActionMessage message, CancellationToken cancellationToken)
         {
             ActionMessage = message.Message;
         }

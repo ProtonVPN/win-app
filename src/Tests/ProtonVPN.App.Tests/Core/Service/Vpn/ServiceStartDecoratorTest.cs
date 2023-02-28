@@ -97,7 +97,7 @@ namespace ProtonVPN.App.Tests.Core.Service.Vpn
         public async Task Connect_ShouldNotBeExecuted_WhenServiceIsDisabled()
         {
             // Arrange
-            _vpnService.Enabled().Returns(false);
+            _vpnService.IsEnabled().Returns(false);
             _baseFilteringEngineService.Running().Returns(true);
             VpnServiceActionDecorator sut = new(_service, _decorated, _modals, _baseFilteringEngineService);
         

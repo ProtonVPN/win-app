@@ -65,6 +65,8 @@ namespace ProtonVPN.Vpn
 
         private string _lastAuthCertificate = string.Empty;
         private bool _loggedIn;
+        private VpnStatus? _vpnStatus;
+        private VpnError _vpnError;
 
         public DisconnectError(IModals modals,
             IAppSettings appSettings,
@@ -99,9 +101,17 @@ namespace ProtonVPN.Vpn
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
+            if (e.State?.Status == _vpnStatus && e.Error == _vpnError)
+            {
+                return;
+            }
+
+            _vpnStatus = e.State?.Status;
+            _vpnError = e.Error;
+
             if (_appSettings.NetworkAdapterType == OpenVpnAdapter.Tun && e.Error == VpnError.TapAdapterInUseError)
             {
-                _modals.Show<TunInUseModalViewModel>();
+                await _modals.ShowAsync<TunInUseModalViewModel>();
                 return;
             }
 
@@ -187,6 +197,9 @@ namespace ProtonVPN.Vpn
 
             switch (error)
             {
+                case VpnError.WireGuardAdapterInUseError:
+                    await _modals.ShowAsync<WireGuardAdapterInUseModalViewModel>();
+                    break;
                 case VpnError.UserTierTooLowError:
                     await ForceReconnectAsync();
                     break;
@@ -194,7 +207,7 @@ namespace ProtonVPN.Vpn
                     await ShowDelinquencyPopupViewModelAsync();
                     break;
                 case VpnError.SessionLimitReached:
-                    ShowMaximumDeviceLimitModalViewModel();
+                    await ShowMaximumDeviceLimitModalViewModelAsync();
                     break;
                 case VpnError.NoTapAdaptersError:
                     await OnNoTapAdaptersErrorAsync(error, e.NetworkBlocked);
@@ -206,7 +219,7 @@ namespace ProtonVPN.Vpn
                     await _vpnInfoUpdater.Update();
                     break;
                 default:
-                    ShowDisconnectErrorModalViewModel(error, e.NetworkBlocked);
+                    await ShowDisconnectErrorModalViewModelAsync(error, e.NetworkBlocked);
                     break;
             }
         }
@@ -227,7 +240,7 @@ namespace ProtonVPN.Vpn
             await ForceReconnectAsync();
         }
 
-        private void ShowMaximumDeviceLimitModalViewModel()
+        private async Task ShowMaximumDeviceLimitModalViewModelAsync()
         {
             bool hasMaxTierPlan = HasMaxTierPlan();
 
@@ -241,7 +254,7 @@ namespace ProtonVPN.Vpn
                 $"Has VPN Plus or Visionary? {hasMaxTierPlan.ToYesNoString()}.");
 
             _maximumDeviceLimitModalViewModel.SetPlan(hasMaxTierPlan);
-            _modals.Show<MaximumDeviceLimitModalViewModel>();
+            await _modals.ShowAsync<MaximumDeviceLimitModalViewModel>();
         }
 
         private bool HasMaxTierPlan()
@@ -272,17 +285,17 @@ namespace ProtonVPN.Vpn
             else
             {
                 _logger.Warn<DisconnectLog>("Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
-                ShowDisconnectErrorModalViewModel(error, networkBlocked);
+                await ShowDisconnectErrorModalViewModelAsync(error, networkBlocked);
             }
         }
 
-        private void ShowDisconnectErrorModalViewModel(VpnError error, bool networkBlocked)
+        private async Task ShowDisconnectErrorModalViewModelAsync(VpnError error, bool networkBlocked)
         {
             dynamic options = new ExpandoObject();
             options.Error = error;
             options.NetworkBlocked = networkBlocked;
 
-            _modals.Show<DisconnectErrorModalViewModel>(options);
+            await _modals.ShowAsync<DisconnectErrorModalViewModel>(options);
         }
 
         private async Task OnServerUnreachableError()
@@ -293,7 +306,7 @@ namespace ProtonVPN.Vpn
             }
             else if (!_appSettings.DoNotShowEnableSmartProtocolDialog)
             {
-                bool? isToChangeProtocolToAuto = _modals.Show<EnableSmartProtocolModalViewModel>();
+                bool? isToChangeProtocolToAuto = await _modals.ShowAsync<EnableSmartProtocolModalViewModel>();
                 if (isToChangeProtocolToAuto.HasValue && isToChangeProtocolToAuto.Value)
                 {
                     _appSettings.OvpnProtocol = "auto";

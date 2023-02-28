@@ -1,10 +1,12 @@
 ﻿#pragma once
-
-#include <msi.h>
+#include <functional>
 #include <string>
 
-void SetMsiHandle(MSIHANDLE msiHandle);
-void LogMessage(std::wstring message, int result);
+using namespace std;
+
+void LogMessage(std::wstring message, UINT result);
 void LogMessage(std::wstring message);
-std::wstring GetProperty(std::wstring name);
-void SetProperty(const std::wstring name, const std::wstring value);
+int VersionCompare(std::string v1, std::string v2);
+bool FindCaseInsensitive(string data, string toSearch);
+std::wstring StrToConstWChar(string str);
+DWORD ExecuteAction(const function<void()>& func);

@@ -146,7 +146,7 @@ namespace ProtonVPN.Core.Service.Vpn
             _isToShowReconnectionPopup = settings.IsToShowReconnectionPopup;
             VpnReconnectionSteps reconnectionStep = _reconnectionStep;
             SetTargetServerAndProfile(lastServer, lastProfile, reconnectionStep);
-            reconnectionStep = IncrementReconnectionStep(reconnectionStep);
+            reconnectionStep = await IncrementReconnectionStepAsync(reconnectionStep);
             await ExecuteReconnectionAsync(reconnectionStep, isToTryLastServer: !settings.IsToExcludeLastServer);
 
             if (reconnectionStep == VpnReconnectionSteps.Disconnect)
@@ -182,7 +182,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
         }
 
-        private VpnReconnectionSteps IncrementReconnectionStep(VpnReconnectionSteps reconnectionStep)
+        private async Task<VpnReconnectionSteps> IncrementReconnectionStepAsync(VpnReconnectionSteps reconnectionStep)
         {
             if (reconnectionStep < VpnReconnectionSteps.RestartReconnectionSteps)
             {
@@ -190,7 +190,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
 
             reconnectionStep = UpdateReconnectionStepIfLastConnectionDataIsNotAvailable(reconnectionStep);
-            reconnectionStep = UpdateReconnectionStepIfSimilarOnAutoProtocol(reconnectionStep);
+            reconnectionStep = await UpdateReconnectionStepIfSimilarOnAutoProtocolAsync(reconnectionStep);
             reconnectionStep = RestartReconnectionStepsIfRequested(reconnectionStep);
 
             return reconnectionStep;
@@ -211,17 +211,17 @@ namespace ProtonVPN.Core.Service.Vpn
             return reconnectionStep;
         }
 
-        private VpnReconnectionSteps UpdateReconnectionStepIfSimilarOnAutoProtocol(VpnReconnectionSteps reconnectionStep)
+        private async Task<VpnReconnectionSteps> UpdateReconnectionStepIfSimilarOnAutoProtocolAsync(VpnReconnectionSteps reconnectionStep)
         {
             if (reconnectionStep == VpnReconnectionSteps.SimilarOnSmartProtocol)
             {
-                reconnectionStep = CalculateSimilarOnAutoProtocolReconnectionStep();
+                reconnectionStep = await CalculateSimilarOnAutoProtocolReconnectionStepAsync();
             }
 
             return reconnectionStep;
         }
 
-        private VpnReconnectionSteps CalculateSimilarOnAutoProtocolReconnectionStep()
+        private async Task<VpnReconnectionSteps> CalculateSimilarOnAutoProtocolReconnectionStepAsync()
         {
             if (_appSettings.DoNotShowEnableSmartProtocolDialog || _appSettings.GetProtocol() == VpnProtocol.Smart)
             {
@@ -238,7 +238,7 @@ namespace ProtonVPN.Core.Service.Vpn
                     Translation.Get("Notifications_EnableSmartProtocol_msg"));
             }
             
-            bool? isToChangeProtocolToAuto = _modals.Show<EnableSmartProtocolModalViewModel>();
+            bool? isToChangeProtocolToAuto = await _modals.ShowAsync<EnableSmartProtocolModalViewModel>();
             if (isToChangeProtocolToAuto.HasValue && isToChangeProtocolToAuto.Value)
             {
                 _appSettings.OvpnProtocol = "auto";

@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.KillSwitch;
@@ -185,9 +185,9 @@ namespace ProtonVPN.Modals
             TryClose();
         }
 
-        private void ReportBugAction()
+        private async void ReportBugAction()
         {
-            _modals.Show<ReportBugModalViewModel>();
+            await _modals.ShowAsync<ReportBugModalViewModel>();
         }
 
         private void OpenRpcServerProblemUrl()

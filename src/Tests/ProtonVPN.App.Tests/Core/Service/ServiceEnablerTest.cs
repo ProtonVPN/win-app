@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Logging;
@@ -50,23 +51,23 @@ namespace ProtonVPN.App.Tests.Core.Service
         }
 
         [TestMethod]
-        public void ItShouldTryToEnableServiceWhenItIsDisabled()
+        public async Task ItShouldTryToEnableServiceWhenItIsDisabled()
         {
             // Arrange
             IService service = Substitute.For<IService>();
             service.Enabled().Returns(false);
-            _modals.Show<IModal>().Returns(true);
+            _modals.ShowAsync<IModal>().Returns(true);
 
             // Act
             ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
-            sut.GetServiceEnabledResult(service);
+            await sut.GetServiceEnabledResultAsync(service);
 
             // Assert
             service.Received().Enable();
         }
 
         [TestMethod]
-        public void ItShouldNotTryToEnableServiceWhenItIsEnabled()
+        public async Task ItShouldNotTryToEnableServiceWhenItIsEnabled()
         {
             // Arrange
             IService service = Substitute.For<IService>();
@@ -74,23 +75,23 @@ namespace ProtonVPN.App.Tests.Core.Service
 
             // Act
             ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
-            sut.GetServiceEnabledResult(service);
+            await sut.GetServiceEnabledResultAsync(service);
 
             // Assert
-            _modals.Received(0).Show<IModal>();
+            await _modals.Received(0).ShowAsync<IModal>();
         }
 
         [TestMethod]
-        public void ItShouldNotTryToEnableServiceWhenUserClosedTheModal()
+        public async Task ItShouldNotTryToEnableServiceWhenUserClosedTheModal()
         {
             // Arrange
             IService service = Substitute.For<IService>();
             service.Enabled().Returns(false);
-            _modals.Show<IModal>().Returns(false);
+            _modals.ShowAsync<IModal>().Returns(false);
 
             // Act
             ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
-            sut.GetServiceEnabledResult(service);
+            await sut.GetServiceEnabledResultAsync(service);
 
             // Assert
             service.Received(0).Enable();

@@ -16,6 +16,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
@@ -38,12 +39,12 @@ namespace ProtonVPN.Core.Service
             _appExitInvoker = appExitInvoker;
         }
 
-        public Result GetServiceEnabledResult(IService service)
+        public async Task<Result> GetServiceEnabledResultAsync(IService service)
         {
             if (!service.Enabled())
             {
                 _logger.Info<AppServiceLog>($"Service {service.Name} is disabled. Displaying modal to enable it.");
-                bool? result = _modals.Show<DisabledServiceModalViewModel>();
+                bool? result = await _modals.ShowAsync<DisabledServiceModalViewModel>();
                 if (!result.HasValue || !result.Value)
                 {
                     _logger.Info<AppServiceLog>($"The user refused to enable service {service.Name}. Shutting down the application.");

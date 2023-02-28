@@ -168,15 +168,21 @@ namespace ProtonVPN.UI.Tests
             return this;
         }
 
-        protected dynamic CheckIfDoesNotExistsByAutomationId(string automationId)
+        protected dynamic CheckIfDoesNotExistByAutomationId(string automationId)
         {
             Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)));
             return this;
         }
 
-        protected dynamic CheckIfDoesNotExistsByName(string name)
+        protected dynamic CheckIfDoesNotExistByName(string name)
         {
             Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName(name)));
+            return this;
+        }
+
+        protected dynamic CheckIfDoesNotExistByClassName(string className)
+        {
+            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByClassName(className)));
             return this;
         }
 

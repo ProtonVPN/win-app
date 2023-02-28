@@ -25,11 +25,9 @@ namespace ProtonVPN.Vpn.LocalAgent
 {
     internal class PInvoke
     {
-        private static int Bits => Environment.Is64BitOperatingSystem ? 64 : 32;
-
         private const string DllName = "LocalAgent";
 
-        private static string BinaryPath => $"Resources\\{Bits}-bit\\{DllName}.dll";
+        private static string BinaryPath => $"Resources\\{DllName}.dll";
 
         static PInvoke()
         {

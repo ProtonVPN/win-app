@@ -23,7 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -145,14 +145,14 @@ namespace ProtonVPN.Sidebar
             NumOfProfilesText = $"({customProfiles.Count})";
         }
 
-        private void CreateProfileAction()
+        private async void CreateProfileAction()
         {
-            _modals.Show<ProfileFormModalViewModel>();
+            await _modals.ShowAsync<ProfileFormModalViewModel>();
         }
 
-        private void ManageProfilesAction()
+        private async void ManageProfilesAction()
         {
-            _modals.Show<ProfileListModalViewModel>();
+            await _modals.ShowAsync<ProfileListModalViewModel>();
         }
     }
 }

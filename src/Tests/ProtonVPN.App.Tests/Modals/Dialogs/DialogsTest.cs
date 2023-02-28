@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -41,92 +42,92 @@ namespace ProtonVPN.App.Tests.Modals.Dialogs
         }
 
         [TestMethod]
-        public void ShowWarning_ShouldCall_Modals_Show()
+        public async Task ShowWarning_ShouldCall_Modals_Show()
         {
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowWarning("");
+            await dialogs.ShowWarningAsync("");
 
-            _modals.Received(1).Show<WarningModalViewModel>();
+            await _modals.Received(1).ShowAsync<WarningModalViewModel>();
         }
 
         [TestMethod]
-        public void ShowWarning_ShouldSet_WarningModalViewModel_Message()
+        public async Task ShowWarning_ShouldSet_WarningModalViewModel_Message()
         {
             const string message = "Message test text";
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowWarning(message);
+            await dialogs.ShowWarningAsync(message);
 
             _warningViewModel.Message.Should().Be(message);
         }
 
         [TestMethod]
-        public void ShowQuestion_ShouldCall_Modals_Show()
+        public async Task ShowQuestion_ShouldCall_Modals_Show()
         {
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowQuestion("");
+            await dialogs.ShowQuestionAsync("");
 
-            _modals.Received(1).Show<QuestionModalViewModel>();
+            await _modals.Received(1).ShowAsync<QuestionModalViewModel>();
         }
 
         [TestMethod]
-        public void ShowQuestion_ShouldSet_QuestionModalViewModel_Message()
+        public async Task ShowQuestion_ShouldSet_QuestionModalViewModel_Message()
         {
             const string message = "Message test text";
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowQuestion(message);
+            await dialogs.ShowQuestionAsync(message);
 
             _questionViewModel.Message.Should().Be(message);
         }
 
         [TestMethod]
-        public void ShowQuestion_Override_ShouldCall_Modals_Show()
+        public async Task ShowQuestion_Override_ShouldCall_Modals_Show()
         {
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowQuestion(_settings);
+            await dialogs.ShowQuestionAsync(_settings);
 
-            _modals.Received(1).Show<QuestionModalViewModel>();
+            await _modals.Received(1).ShowAsync<QuestionModalViewModel>();
         }
 
         [TestMethod]
-        public void ShowQuestion_Override_ShouldSet_QuestionModalViewModel_Message()
+        public async Task ShowQuestion_Override_ShouldSet_QuestionModalViewModel_Message()
         {
             const string message = "Message text";
             _settings.Message.Returns(message);
 
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowQuestion(_settings);
+            await dialogs.ShowQuestionAsync(_settings);
 
             _questionViewModel.Message.Should().Be(message);
         }
 
         [TestMethod]
-        public void ShowQuestion_Override_ShouldSet_QuestionModalViewModel_PrimaryButtonText()
+        public async Task ShowQuestion_Override_ShouldSet_QuestionModalViewModel_PrimaryButtonText()
         {
             const string primaryText = "Primary button text";
             _settings.PrimaryButtonText.Returns(primaryText);
 
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowQuestion(_settings);
+            await dialogs.ShowQuestionAsync(_settings);
 
             _questionViewModel.PrimaryButtonText.Should().Be(primaryText);
         }
 
         [TestMethod]
-        public void ShowQuestion_Override_ShouldSet_QuestionModalViewModel_SecondaryButtonText()
+        public async Task ShowQuestion_Override_ShouldSet_QuestionModalViewModel_SecondaryButtonText()
         {
             const string secondaryText = "Secondary button text";
             _settings.SecondaryButtonText.Returns(secondaryText);
 
             ProtonVPN.Modals.Dialogs.Dialogs dialogs = new ProtonVPN.Modals.Dialogs.Dialogs(_modals, _warningViewModel, _questionViewModel);
 
-            dialogs.ShowQuestion(_settings);
+            await dialogs.ShowQuestionAsync(_settings);
 
             _questionViewModel.SecondaryButtonText.Should().Be(secondaryText);
         }

@@ -53,7 +53,7 @@ namespace ProtonVPN.Settings.SplitTunneling
                 {
                     if (_appSettings.KillSwitchMode != KillSwitchMode.Off)
                     {
-                        bool? result = _dialogs.ShowQuestion(Translation.Get("Dialogs_SplitTunnelWarning_msg"));
+                        bool? result = _dialogs.ShowQuestionAsync(Translation.Get("Dialogs_SplitTunnelWarning_msg")).Result;
                         if (!result.HasValue || !result.Value)
                         {
                             return;

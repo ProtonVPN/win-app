@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
@@ -81,7 +82,7 @@ namespace ProtonVPN.Profiles
 
         public ProfileSyncViewModel ProfileSync { get; }
 
-        protected override async void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             await LoadProfiles();
         }
@@ -104,20 +105,24 @@ namespace ProtonVPN.Profiles
 
         private void ApplyProfileSyncStatus(IEnumerable<ProfileViewModel> profiles)
         {
-            if (profiles == null)
-                return;
-
-            foreach (var profile in profiles)
+            if (profiles != null)
             {
-                profile.OnProfileSyncStatusChanged(_profileSyncStatus);
+                foreach (ProfileViewModel profile in profiles)
+                {
+                    profile.OnProfileSyncStatusChanged(_profileSyncStatus);
+                }
             }
         }
 
         private async void RemoveAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            var result = _dialogs.ShowQuestion(Translation.Get("Profiles_msg_DeleteConfirm"));
+            if (viewModel == null)
+            {
+                return;
+            }
+
+            Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+            bool? result = await _dialogs.ShowQuestionAsync(Translation.Get("Profiles_msg_DeleteConfirm"));
 
             if (result.HasValue && result.Value)
             {
@@ -127,7 +132,7 @@ namespace ProtonVPN.Profiles
 
         private async Task LoadProfiles()
         {
-            var profiles = (await _profileHelper.GetProfiles())
+            List<ProfileViewModel> profiles = (await _profileHelper.GetProfiles())
                 .OrderByDescending(p => p.IsPredefined)
                 .ThenBy(p => p.Name)
                 .ToList();
@@ -139,32 +144,38 @@ namespace ProtonVPN.Profiles
 
         private async void ConnectAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            if (profile == null) return;
-
-            await _vpnManager.ConnectAsync(profile);
+            if (viewModel != null)
+            {
+                Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+                if (profile != null)
+                {
+                    await _vpnManager.ConnectAsync(profile);
+                }
+            }
         }
 
         private async void EditProfileAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            if (profile == null) return;
-
-            dynamic options = new ExpandoObject();
-            options.Profile = profile;
-            _modals.Show<ProfileFormModalViewModel>(options);
+            if (viewModel != null)
+            {
+                Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+                if (profile != null)
+                {
+                    dynamic options = new ExpandoObject();
+                    options.Profile = profile;
+                    await _modals.ShowAsync<ProfileFormModalViewModel>(options);
+                }
+            }
         }
 
-        private void CreateProfileAction()
+        private async void CreateProfileAction()
         {
-            _modals.Show<ProfileFormModalViewModel>();
+            await _modals.ShowAsync<ProfileFormModalViewModel>();
         }
 
-        private void TroubleshootAction()
+        private async void TroubleshootAction()
         {
-            _modals.Show<TroubleshootModalViewModel>();
+            await _modals.ShowAsync<TroubleshootModalViewModel>();
         }
     }
 }

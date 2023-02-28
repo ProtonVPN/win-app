@@ -21,7 +21,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
@@ -134,7 +134,7 @@ namespace ProtonVPN.ViewModels
             {
                 if (_connecting != value)
                 {
-                    _eventAggregator.PublishOnUIThread(new ToggleOverlay(value));
+                    _eventAggregator.PublishOnUIThreadAsync(new ToggleOverlay(value));
                 }
                 Set(ref _connecting, value);
                 CommandManager.InvalidateRequerySuggested();
@@ -211,24 +211,24 @@ namespace ProtonVPN.ViewModels
             return !Connecting;
         }
 
-        private void AboutAction()
+        private async void AboutAction()
         {
-            _modals.Show<AboutModalViewModel>();
+            await _modals.ShowAsync<AboutModalViewModel>();
         }
 
-        private void AccountAction()
+        private async void AccountAction()
         {
-            _modals.Show<AccountModalViewModel>();
+            await _modals.ShowAsync<AccountModalViewModel>();
         }
 
-        public void ProfilesAction()
+        public async void ProfilesAction()
         {
-            _modals.Show<ProfileListModalViewModel>();
+            await _modals.ShowAsync<ProfileListModalViewModel>();
         }
 
-        private void SettingsAction()
+        private async void SettingsAction()
         {
-            _modals.Show<SettingsModalViewModel>();
+            await _modals.ShowAsync<SettingsModalViewModel>();
         }
 
         private void HelpAction()
@@ -236,9 +236,9 @@ namespace ProtonVPN.ViewModels
             _urls.HelpUrl.Open();
         }
 
-        private void ReportBugAction()
+        private async void ReportBugAction()
         {
-            _modals.Show<ReportBugModalViewModel>();
+            await _modals.ShowAsync<ReportBugModalViewModel>();
         }
 
         private void DeveloperToolsAction()
@@ -256,7 +256,7 @@ namespace ProtonVPN.ViewModels
         {
             if (VpnStatus != VpnStatus.Disconnected && VpnStatus != VpnStatus.Disconnecting)
             {
-                bool? result = _dialogs.ShowQuestion(Translation.Get("App_msg_LogoutConnectedConfirm"));
+                bool? result = await _dialogs.ShowQuestionAsync(Translation.Get("App_msg_LogoutConnectedConfirm"));
                 if (!result.HasValue || !result.Value)
                 {
                     return;

@@ -19,9 +19,13 @@
 
 using System;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
@@ -84,8 +88,14 @@ namespace ProtonVPN.Api
             }
             catch (JsonException)
             {
-                throw new HttpRequestException(response.StatusCode.Description());
+                throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode));
             }
+        }
+
+        public string GetStatusCodeDescription(HttpStatusCode code)
+        {
+            string description = ReasonPhrases.GetReasonPhrase((int)code);
+            return string.IsNullOrEmpty(description) ? $"HTTP error code: {code}." : description;
         }
 
         private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpResponseMessage responseMessage)

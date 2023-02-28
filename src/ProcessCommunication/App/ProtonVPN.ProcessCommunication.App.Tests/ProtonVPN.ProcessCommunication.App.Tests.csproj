@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputPath>..\..\..\bin</OutputPath>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+    <PackageReference Include="NSubstitute" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Common.Tests\ProtonVPN.ProcessCommunication.Common.Tests.csproj" />
+    <ProjectReference Include="..\ProtonVPN.ProcessCommunication.App\ProtonVPN.ProcessCommunication.App.csproj" />
+  </ItemGroup>
+
+</Project>

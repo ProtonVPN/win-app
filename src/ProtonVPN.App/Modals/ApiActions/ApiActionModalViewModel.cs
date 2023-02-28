@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;

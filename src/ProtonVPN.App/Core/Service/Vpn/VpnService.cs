@@ -18,149 +18,103 @@
  */
 
 using System;
-using System.ServiceModel;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Service.Contract.PortForwarding;
-using ProtonVPN.Service.Contract.Settings;
-using ProtonVPN.Service.Contract.Vpn;
+using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnService
     {
-        private readonly ServiceChannelFactory _channelFactory;
         private readonly ILogger _logger;
-        private ServiceChannel<IVpnConnectionContract> _channel;
-        private readonly VpnEvents _vpnEvents;
+        private readonly IAppGrpcClient _grpcClient;
+        private readonly VpnSystemService _vpnSystemService;
 
-        public VpnService(
-            ServiceChannelFactory channelFactory,
-            VpnEvents vpnEvents,
-            ILogger logger)
+        public VpnService(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService)
         {
-            _channelFactory = channelFactory;
             _logger = logger;
-            _vpnEvents = vpnEvents;
+            _grpcClient = grpcClient;
+            _vpnSystemService = vpnSystemService;
+            _grpcClient.CreateAsync();
         }
 
-        public event EventHandler<VpnStateContract> VpnStateChanged
+        public Task ApplySettings(MainSettingsIpcEntity settings)
         {
-            add => _vpnEvents.VpnStateChanged += value;
-            remove => _vpnEvents.VpnStateChanged -= value;
+            return Invoke(c => c.ApplySettings(settings).Wrap());
         }
 
-        public event EventHandler<ServiceSettingsStateContract> ServiceSettingsStateChanged
+        public Task Connect(ConnectionRequestIpcEntity connectionRequest)
         {
-            add => _vpnEvents.ServiceSettingsStateChanged += value;
-            remove => _vpnEvents.ServiceSettingsStateChanged -= value;
+            return Invoke(c => c.Connect(connectionRequest).Wrap());
         }
 
-        public event EventHandler<PortForwardingStateContract> PortForwardingStateChanged
+        public Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate)
         {
-            add => _vpnEvents.PortForwardingStateChanged += value;
-            remove => _vpnEvents.PortForwardingStateChanged -= value;
+            return Invoke(c => c.UpdateAuthCertificate(certificate).Wrap());
         }
 
-        public event EventHandler<ConnectionDetailsContract> ConnectionDetailsChanged
+        public Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
         {
-            add => _vpnEvents.ConnectionDetailsChanged += value;
-            remove => _vpnEvents.ConnectionDetailsChanged -= value;
+            return Invoke(c => c.Disconnect(disconnectionRequest).Wrap());
         }
 
-        public Task Connect(VpnConnectionRequestContract vpnConnectionRequest) =>
-            Invoke(p => p.Connect(vpnConnectionRequest).Wrap());
+        public Task RepeatState()
+        {
+            return Invoke(c => c.RepeatState().Wrap());
+        }
 
-        public Task UpdateAuthCertificate(string certificate) =>
-            Invoke(p => p.UpdateAuthCertificate(certificate).Wrap());
+        public Task<TrafficBytesIpcEntity> Total()
+        {
+            return Invoke(c => c.GetTrafficBytes());
+        }
 
-        public Task Disconnect(SettingsContract settings, VpnErrorTypeContract vpnError) =>
-            Invoke(p => p.Disconnect(settings, vpnError).Wrap());
+        public Task RegisterVpnClient(int port)
+        {
+            return Invoke(c => c.RegisterStateConsumer(new StateConsumerIpcEntity() { ServerPort = port }).Wrap());
+        }
 
-        public Task RepeatState() =>
-            Invoke(p => p.RepeatState().Wrap());
-
-        public Task<InOutBytesContract> Total() =>
-            Invoke(p => p.Total());
-
-        private async Task<T> Invoke<T>(Func<IVpnConnectionContract, Task<T>> serviceCall,
+        private async Task<T> Invoke<T>(Func<IServiceController, Task<T>> serviceCall,
             [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
-            int retryCount = 1;
+            int retryCount = 5;
             while (true)
             {
                 try
                 {
-                    ServiceChannel<IVpnConnectionContract> channel = GetChannel();
-                    return await serviceCall(channel.Proxy);
+                    IServiceController serviceController = await _grpcClient.GetServiceControllerOrThrowAsync(TimeSpan.FromSeconds(1));
+                    T result = await serviceCall(serviceController);
+                    if (result is Task task)
+                    {
+                        await task;
+                    }
+                    return result;
                 }
-                catch (Exception exception) when (IsCommunicationException(exception))
+                catch (Exception e)
                 {
-                    CloseChannel();
+                    await StartServiceIfStoppedAsync();
                     if (retryCount <= 0)
                     {
-                        LogError(exception, memberName, isToRetry: false);
+                        LogError(e, memberName, isToRetry: false);
                         throw;
                     }
-                    LogError(exception, memberName, isToRetry: true);
+                    await _grpcClient.RecreateAsync();
+                    LogError(e, memberName, isToRetry: true);
                 }
-
                 retryCount--;
             }
         }
 
-        private ServiceChannel<IVpnConnectionContract> GetChannel()
+        private async Task StartServiceIfStoppedAsync()
         {
-            return _channel ??= NewChannel();
+            await _vpnSystemService.StartIfStoppedAsync();
         }
-
-        private ServiceChannel<IVpnConnectionContract> NewChannel()
-        {
-            ServiceChannel<IVpnConnectionContract> channel = _channelFactory.Create<IVpnConnectionContract>(
-                "protonvpn-service/connection",
-                _vpnEvents);
-
-            RegisterCallback(channel);
-
-            return channel;
-        }
-
-        private void RegisterCallback(ServiceChannel<IVpnConnectionContract> channel)
-        {
-            try
-            {
-                channel.Proxy.RegisterCallback();
-            }
-            catch (Exception)
-            {
-                channel.Dispose();
-                throw;
-            }
-        }
-
-        public void UnRegisterCallback()
-        {
-            try
-            {
-                _channel?.Proxy.UnRegisterCallback();
-            }
-            catch (Exception e) when (IsCommunicationException(e))
-            {
-            }
-        }
-
-        private void CloseChannel()
-        {
-            _channel?.Dispose();
-            _channel = null;
-        }
-
-        private static bool IsCommunicationException(Exception ex) =>
-            ex is CommunicationException ||
-            ex is TimeoutException ||
-            ex is ObjectDisposedException ode && ode.ObjectName == "System.ServiceModel.Channels.ClientFramingDuplexSessionChannel";
 
         private void LogError(Exception exception, string callerMemberName, bool isToRetry)
         {

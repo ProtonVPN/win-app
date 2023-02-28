@@ -23,7 +23,15 @@ namespace ProtonVPN.UI.Tests.Results
 {
     public class ProfilesResult : UIActions
     {
-        public ProfilesResult CheckIfProfileIsDisplayed(string profileName) => WaitUntilElementExistsByName(profileName, TestConstants.VeryShortTimeout);
+        public ProfilesResult CheckIfProfileIsDisplayed(string profileName)
+        {
+            return WaitUntilElementExistsByName(profileName, TestConstants.VeryShortTimeout);
+        }
+
+        public ProfilesResult CheckIfProfileCreationErrorIsNotShown()
+        {
+            return CheckIfDoesNotExistByClassName("FormErrorsPanel");
+        }
 
         public ProfilesResult CheckIfDefaultProfilesAreDisplayed()
         {
@@ -46,7 +54,7 @@ namespace ProtonVPN.UI.Tests.Results
 
         public ProfilesResult CheckIfProfileIsNotDisplayed(string profile)
         {
-            CheckIfDoesNotExistsByAutomationId(profile);
+            CheckIfDoesNotExistByAutomationId(profile);
             return this;
         }
     }

@@ -51,19 +51,19 @@ namespace ProtonVPN.BugReporting.Screens
         public ICommand RetryCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
-        private void TroubleshootAction()
+        private async void TroubleshootAction()
         {
-            _modals.Show<TroubleshootModalViewModel>();
+            await _modals.ShowAsync<TroubleshootModalViewModel>();
         }
 
         private void RetryAction()
         {
-            _eventAggregator.PublishOnUIThread(new RetryAction());
+            _eventAggregator.PublishOnUIThreadAsync(new RetryAction());
         }
 
         private void BackAction()
         {
-            _eventAggregator.PublishOnUIThread(new GoBackAfterFailureAction());
+            _eventAggregator.PublishOnUIThreadAsync(new GoBackAfterFailureAction());
         }
     }
 }

@@ -53,11 +53,11 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeResult.CheckIfUpgradeRequiredModalIsShownSecureCore();
             _homeWindow.ClickWindowsCloseButton();
 
-            _homeWindow.ConnectViaProfile("PaidCountry");
+            _homeWindow.ConnectViaProfile("Paid");
             _homeResult.CheckIfUpgradeRequiredModalIsShown();
             _homeWindow.ClickWindowsCloseButton();
 
-            _homeWindow.PerformConnectionViaMap("MX");
+            _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry);
             _homeResult.CheckIfUpgradeRequiredModalIsShown();
         }
 

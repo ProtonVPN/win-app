@@ -23,11 +23,20 @@ namespace ProtonVPN.UI.Tests.Results
 {
     public class LoginResult : UIActions
     {
-        public LoginResult CheckIfKillSwitchIsNotActive() => CheckIfNotDisplayedByName("Disable");
+        public LoginResult CheckIfKillSwitchIsNotActive()
+        {
+            return CheckIfDoesNotExistByAutomationId("Disable");
+        }
 
-        public LoginResult CheckIfLoginErrorIsDisplayed() => WaitUntilElementExistsByClassName("LoginErrorView", TestConstants.MediumTimeout);
+        public LoginResult CheckIfLoginErrorIsDisplayed()
+        {
+            return WaitUntilElementExistsByClassName("LoginErrorView", TestConstants.MediumTimeout);
+        }
 
-        public LoginResult CheckIfLoginWindowIsDisplayed() => WaitUntilElementExistsByAutomationId("LoginInput", TestConstants.VeryShortTimeout);
+        public LoginResult CheckIfLoginWindowIsDisplayed()
+        {
+            return WaitUntilElementExistsByAutomationId("LoginInput", TestConstants.VeryShortTimeout);
+        }
 
         public LoginResult CheckIfZeroAssignedConnectionsModalIsShown()
         {

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Translations;
 
@@ -35,33 +36,33 @@ namespace ProtonVPN.Modals.Dialogs
             _questionViewModel = questionViewModel;
         }
 
-        public bool? ShowWarning(string message)
+        public async Task<bool?> ShowWarningAsync(string message)
         {
-            var settings = DialogSettings.FromMessage(message)
+            DialogSettings settings = DialogSettings.FromMessage(message)
                 .WithPrimaryButtonText(Translation.Get("Dialogs_btn_Close"));
 
             _warningViewModel.ApplySettings(settings);
-            return _modals.Show<WarningModalViewModel>();
+            return await _modals.ShowAsync<WarningModalViewModel>();
         }
 
-        public bool? ShowWarning(string message, string buttonLabel)
+        public async Task<bool?> ShowWarningAsync(string message, string buttonLabel)
         {
-            var settings = DialogSettings.FromMessage(message).WithPrimaryButtonText(buttonLabel);
+            DialogSettings settings = DialogSettings.FromMessage(message).WithPrimaryButtonText(buttonLabel);
             _warningViewModel.ApplySettings(settings);
-            return _modals.Show<WarningModalViewModel>();
+            return await _modals.ShowAsync<WarningModalViewModel>();
         }
 
-        public bool? ShowQuestion(string message)
+        public async Task<bool?> ShowQuestionAsync(string message)
         {
-            var settings = DialogSettings.FromMessage(message);
+            DialogSettings settings = DialogSettings.FromMessage(message);
             _questionViewModel.ApplySettings(settings);
-            return _modals.Show<QuestionModalViewModel>();
+            return await _modals.ShowAsync<QuestionModalViewModel>();
         }
 
-        public bool? ShowQuestion(IDialogSettings settings)
+        public async Task<bool?> ShowQuestionAsync(IDialogSettings settings)
         {
             _questionViewModel.ApplySettings(settings);
-            return _modals.Show<QuestionModalViewModel>();
+            return await _modals.ShowAsync<QuestionModalViewModel>();
         }
     }
 }

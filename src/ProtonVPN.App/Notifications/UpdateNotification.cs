@@ -69,12 +69,12 @@ namespace ProtonVPN.Notifications
         private void Show()
         {
             _lastNotified = DateTime.Now;
-            _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_notificationViewModel));
+            _eventAggregator.PublishOnUIThreadAsync(new ShowFlashMessage(_notificationViewModel));
         }
 
         private void Hide()
         {
-            _eventAggregator.PublishOnUIThread(new HideFlashMessage(_notificationViewModel));
+            _eventAggregator.PublishOnUIThreadAsync(new HideFlashMessage(_notificationViewModel));
         }
     }
 }

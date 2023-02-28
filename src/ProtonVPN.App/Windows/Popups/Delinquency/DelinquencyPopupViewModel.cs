@@ -19,7 +19,7 @@
 
 using System;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Servers.Reconnections;
@@ -70,10 +70,10 @@ namespace ProtonVPN.Windows.Popups.Delinquency
 
         public ICommand GoToBillingCommand { get; set; }
 
-        protected virtual void GoToBillingAction()
+        protected virtual async void GoToBillingAction()
         {
             _urls.InvoicesUrl.Open();
-            TryClose();
+            await TryCloseAsync();
         }
 
         public void SetNoReconnectionData()

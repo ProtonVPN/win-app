@@ -38,20 +38,18 @@ namespace ProtonVPN.Notifications
             _dialogs = dialogs;
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             if (e.State.Status == VpnStatus.Connected && _proxy.Enabled() && !_modalShown)
             {
                 _modalShown = true;
-                _dialogs.ShowWarning(Translation.Get("Dialogs_Proxy_msg_ProxyDetected"));
+                await _dialogs.ShowWarningAsync(Translation.Get("Dialogs_Proxy_msg_ProxyDetected"));
             }
 
             if (e.State.Status == VpnStatus.Disconnected)
             {
                 _modalShown = false;
             }
-
-            return Task.CompletedTask;
         }
     }
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using System.Windows;
 using ProtonVPN.Core.Windows.Popups;
 
@@ -31,14 +32,14 @@ namespace ProtonVPN.Windows.Popups
             Owner = appWindow;
         }
 
-        public override void CloseAction()
+        public override async void CloseAction()
         {
-            TryClose();
+            await TryCloseAsync();
         }
 
-        public void TryClose()
+        public async Task TryCloseAsync()
         {
-            base.TryClose();
+            await base.TryCloseAsync();
         }
     }
 }

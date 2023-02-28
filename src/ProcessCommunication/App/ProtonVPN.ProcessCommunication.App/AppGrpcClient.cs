@@ -1,0 +1,130 @@
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
+using ProtonVPN.ProcessCommunication.Common;
+using ProtonVPN.ProcessCommunication.Common.Channels;
+using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
+using ProtonVPN.ProcessCommunication.Contracts.Registration;
+
+namespace ProtonVPN.ProcessCommunication.App
+{
+    public class AppGrpcClient : GrpcClientBase, IAppGrpcClient
+    {
+        private readonly IServiceServerPortRegister _serviceServerPortRegister;
+        private readonly IGrpcServer _grpcServer;
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
+
+        public IServiceController ServiceController { get; private set; }
+
+        public AppGrpcClient(ILogger logger,
+            IServiceServerPortRegister serviceServerPortRegister,
+            IGrpcServer grpcServer,
+            IGrpcChannelWrapperFactory grpcChannelWrapperFactory)
+            : base(logger, grpcChannelWrapperFactory)
+        {
+            _serviceServerPortRegister = serviceServerPortRegister;
+            _grpcServer = grpcServer;
+        }
+
+        public async Task CreateAsync()
+        {
+            await SafeWrapperAsync(async () =>
+            {
+                if (ServiceController is null)
+                {
+                    await CreateInternalAsync();
+                }
+            });
+        }
+
+        private async Task SafeWrapperAsync(Func<Task> function)
+        {
+            bool isToEnter = await _semaphore.WaitAsync(0);
+            if (isToEnter)
+            {
+                try
+                {
+                    await function();
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    _semaphore.Release();
+                }
+            }
+        }
+
+        private async Task CreateInternalAsync()
+        {
+            CancellationTokenSource cts = new CancellationTokenSource();
+            int serviceServerPort = await _serviceServerPortRegister.ReadAsync(cts.Token);
+            await CreateWithPortAsync(serviceServerPort);
+            int? appServerPort = _grpcServer?.Port;
+            if (ServiceController is not null && appServerPort is not null)
+            {
+                Logger.Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort.Value} to service.");
+                await ServiceController.RegisterStateConsumer(new StateConsumerIpcEntity() { ServerPort = appServerPort.Value });
+            }
+        }
+
+        public async Task RecreateAsync()
+        {
+            await SafeWrapperAsync(async () =>
+            {
+                ServiceController = null;
+                await CreateInternalAsync();
+            });
+        }
+
+        protected override void RegisterServices(IGrpcChannelWrapper channel)
+        {
+            ServiceController = channel.CreateService<IServiceController>();
+        }
+
+        public async Task<IServiceController> GetServiceControllerOrThrowAsync(TimeSpan timeout)
+        {
+            CancellationTokenSource cts = new(timeout);
+            IServiceController serviceController = ServiceController;
+            try
+            {
+                while (serviceController is null && !cts.IsCancellationRequested)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1), cts.Token);
+                    serviceController = ServiceController;
+                }
+            }
+            catch
+            {
+            }
+            if (serviceController is null)
+            {
+                string errorMessage = $"Failed to get the Service Controller within the allotted time '{timeout}'.";
+                Logger.Error<ProcessCommunicationErrorLog>(errorMessage);
+                throw new TimeoutException(errorMessage);
+            }
+            return serviceController;
+        }
+    }
+}

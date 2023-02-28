@@ -15,43 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="Installer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Service.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StringHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StartupApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Wintun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TunAdapter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EnvironmentVariable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StringConverter.h">
+    <ClInclude Include="Os.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PathManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Installer.h">
+    <ClInclude Include="ProcessExecutionResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TapInstallationOutputParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TapInstaller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinApiErrorException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sha1.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AppSettingsMigration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,38 +59,42 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Installer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Service.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StartupApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TunAdapter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EnvironmentVariable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StringConverter.cpp">
+    <ClCompile Include="Os.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Installer.cpp">
+    <ClCompile Include="ProcessExecutionResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TapInstallationOutputParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TapInstaller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WinApiErrorException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AppSettingsMigration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pugixml\pugixml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ProtonVPN.InstallActions.aps" />
   </ItemGroup>
 </Project>

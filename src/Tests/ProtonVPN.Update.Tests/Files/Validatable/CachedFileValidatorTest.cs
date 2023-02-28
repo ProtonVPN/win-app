@@ -160,7 +160,7 @@ namespace ProtonVPN.Update.Tests.Files.Validatable
 
             _origin.ClearReceivedCalls();
             DateTime lastWriteTime = File.GetLastWriteTimeUtc(filename);
-            CopyFile("win-update.json", updatesPath, "ProtonVPN_win_v1.5.1.exe");
+            CopyFile("windows-releases.json", updatesPath, "ProtonVPN_win_v1.5.1.exe");
             File.SetLastWriteTimeUtc(filename, lastWriteTime);
 
             await _cachedFileValidator.Valid(filename, checkSum);

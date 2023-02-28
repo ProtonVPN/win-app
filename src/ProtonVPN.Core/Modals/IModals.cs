@@ -18,16 +18,17 @@
  */
 
 using System;
+using System.Threading.Tasks;
 
 namespace ProtonVPN.Core.Modals
 {
     public interface IModals
     {
-        bool? Show<T>(dynamic options = null) where T : IModal;
+        Task<bool?> ShowAsync<T>(dynamic options = null) where T : IModal;
         bool IsOpen<T>() where T : IModal;
         void Close<T>(bool? dialogResult = null) where T : IModal;
         void CloseAll();
 
-        bool? Show(Type type, dynamic options = null);
+        Task<bool?> ShowAsync(Type type, dynamic options = null);
     }
 }

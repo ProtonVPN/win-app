@@ -20,6 +20,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -119,11 +120,17 @@ namespace ProtonVPN.Windows
 
         private void SetGenericTooltipBehaviour()
         {
-            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
-            ToolTipService.InitialShowDelayProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(0));
+            try
+            {
+                ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+                ToolTipService.InitialShowDelayProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(0));
+            }
+            catch
+            {
+            }
         }
 
-        public void Handle(ToggleOverlay message)
+        public async Task HandleAsync(ToggleOverlay message, CancellationToken cancellationToken)
         {
             if (message.Show)
             {
@@ -197,7 +204,7 @@ namespace ProtonVPN.Windows
 
         public void TriggerAccountInfoUpdate()
         {
-            _eventAggregator.PublishOnUIThread(new UpdateVpnInfoMessage());
+            _eventAggregator.PublishOnUIThreadAsync(new UpdateVpnInfoMessage());
         }
 
         private void UpdateIcon(VpnStatus vpnStatus)
@@ -281,7 +288,7 @@ namespace ProtonVPN.Windows
             SaveWindowsPlacement();
         }
 
-        private void TrayIconClick(object sender, MouseEventArgs e)
+        private async void TrayIconClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -296,7 +303,7 @@ namespace ProtonVPN.Windows
                     Activate();
                     if (_isConnecting)
                     {
-                        Handle(new ToggleOverlay(true));
+                        await HandleAsync(new ToggleOverlay(true), new CancellationTokenSource().Token);
                     }
                 }
             }
@@ -434,7 +441,7 @@ namespace ProtonVPN.Windows
 
         private void PublishWindowState(object sender, EventArgs e)
         {
-            _eventAggregator.PublishOnUIThread(new WindowStateMessage(IsActive));
+            _eventAggregator.PublishOnUIThreadAsync(new WindowStateMessage(IsActive));
         }
     }
 }

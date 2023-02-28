@@ -17,12 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Common.OS.Services
 {
     public interface IServiceEnabler
     {
-        Result GetServiceEnabledResult(IService service);
+        Task<Result> GetServiceEnabledResultAsync(IService service);
     }
 }

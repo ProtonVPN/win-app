@@ -46,7 +46,7 @@ namespace ProtonVPN.Core.Service
                 return Result.Fail();
             }
 
-            Result serviceEnableResult = _serviceEnabler.GetServiceEnabledResult(Service);
+            Result serviceEnableResult = await _serviceEnabler.GetServiceEnabledResultAsync(Service);
             if (serviceEnableResult.Failure)
             {
                 return serviceEnableResult;
@@ -81,5 +81,12 @@ namespace ProtonVPN.Core.Service
         }
 
         private bool IsConnectionException(Exception ex) => ex is CommunicationException or TimeoutException;
+
+        public async Task<Result> StartIfStoppedAsync()
+        {
+            return IsRunning()
+                ? Result.Ok()
+                : await StartAsync();
+        }
     }
 }

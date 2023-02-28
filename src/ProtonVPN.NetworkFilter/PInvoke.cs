@@ -19,14 +19,15 @@
 
 using System;
 using System.Runtime.InteropServices;
+using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.NetworkFilter
 {
     internal class PInvoke
     {
-        private const string BinaryName = "ProtonVPN.IpFilter.dll";
+        private const string BINARY_NAME = "ProtonVPN.IpFilter.dll";
 
-        private static string BinaryPath => $"{(Environment.Is64BitOperatingSystem ? "x64" : "x86")}\\{BinaryName}";
+        private static string BinaryPath => PathProvider.GetResourcesPath(BINARY_NAME);
 
         static PInvoke()
         {
@@ -41,43 +42,43 @@ namespace ProtonVPN.NetworkFilter
         private static extern IntPtr LoadLibrary(string path);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateDynamicSession",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateDynamicSession(ref IntPtr handle);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateSession",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateSession(ref IntPtr handle);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroySession",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroySession(IntPtr handle);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterStartTransaction",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint StartTransaction(IntPtr sessionHandle);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterAbortTransaction",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint AbortTransaction(IntPtr sessionHandle);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCommitTransaction",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CommitTransaction(IntPtr sessionHandle);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateProvider",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateProvider(
@@ -87,7 +88,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterIsProviderRegistered",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint IsProviderRegistered(
@@ -96,7 +97,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref uint result);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroyProvider",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroyProvider(
@@ -104,7 +105,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateProviderContext",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateProviderContext(
@@ -117,7 +118,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroyProviderContext",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroyProviderContext(
@@ -125,7 +126,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateCallout",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateCallout(
@@ -137,7 +138,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroyCallout",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroyCallout(
@@ -145,7 +146,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateSublayer",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateSublayer(
@@ -157,7 +158,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroySublayer",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroySublayer(
@@ -165,7 +166,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDoesSublayerExist",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DoesSublayerExist(
@@ -174,7 +175,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref uint result);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDoesFilterExist",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DoesFilterExist(
@@ -183,7 +184,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref uint result);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDoesProviderContextExist",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DoesProviderContextExist(
@@ -192,7 +193,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref uint result);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDoesCalloutExist",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DoesCalloutExist(
@@ -201,7 +202,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref uint result);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroySublayerFilters",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroySublayerFilters(
@@ -210,7 +211,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid sublayerId);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterGetSublayerFilterCount",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint GetSublayerFilterCount(
@@ -220,13 +221,13 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref uint result);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroyCallouts",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroyCallouts(IntPtr sessionHandle, [In] ref Guid providerId);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterDestroyFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DestroyFilter(
@@ -234,7 +235,7 @@ namespace ProtonVPN.NetworkFilter
             [In] ref Guid key);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateLayerFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateLayerFilter(
@@ -251,7 +252,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateRemoteIPv4Filter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateRemoteIPv4Filter(
@@ -269,7 +270,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateAppFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateAppFilter(
@@ -287,7 +288,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateRemoteTCPPortFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateRemoteTCPPortFilter(
@@ -303,7 +304,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateRemoteUDPPortFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateRemoteUDPPortFilter(
@@ -319,7 +320,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateRemoteNetworkIPv4Filter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateRemoteNetworkIPv4Filter(
@@ -337,7 +338,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateNetInterfaceFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateNetInterfaceFilter(
@@ -353,7 +354,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "IPFilterCreateLoopbackFilter",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint CreateLoopbackFilter(
@@ -368,7 +369,7 @@ namespace ProtonVPN.NetworkFilter
             [In, Out] ref Guid filterKey);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "BlockOutsideDns",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint BlockOutsideDns(

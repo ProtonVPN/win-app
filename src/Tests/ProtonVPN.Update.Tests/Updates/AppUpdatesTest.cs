@@ -44,11 +44,7 @@ namespace ProtonVPN.Update.Tests.Updates
         private IHttpClient _httpClient;
         private IFeedUrlProvider _feedUrlProvider;
         private DefaultAppUpdateConfig _config;
-        private IEnumerable<Uri> _feedUrls = new List<Uri>()
-        {
-            new Uri("http://127.0.0.1/windows-releases.json"),
-            new Uri("http://127.0.0.1/win-update.json")
-        };
+        private Uri _feedUrl = new Uri("http://127.0.0.1/windows-releases.json");
 
         #region Initialization
 
@@ -59,7 +55,7 @@ namespace ProtonVPN.Update.Tests.Updates
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
             _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
-            _feedUrlProvider.GetFeedUrls().Returns(_feedUrls);
+            _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
             _config = new DefaultAppUpdateConfig
             {
                 HttpClient = _httpClient,

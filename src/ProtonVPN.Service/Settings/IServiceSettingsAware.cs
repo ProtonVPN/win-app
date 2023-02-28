@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
     public interface IServiceSettingsAware
     {
-        void OnServiceSettingsChanged(SettingsContract settings);
+        void OnServiceSettingsChanged(MainSettingsIpcEntity settings);
     }
 }

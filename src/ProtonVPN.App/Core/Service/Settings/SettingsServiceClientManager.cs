@@ -17,72 +17,60 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.ComponentModel;
-using System.ServiceModel;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Core.Service.Settings
 {
     public class SettingsServiceClientManager : ISettingsServiceClientManager, ISettingsAware
     {
-        private readonly SettingsServiceClient _client;
         private readonly ILogger _logger;
-        private readonly SettingsContractProvider _settingsContractProvider;
-        private readonly VpnSystemService _service;
+        private readonly VpnService _vpnService;
+        private readonly MainSettingsProvider _settingsContractProvider;
+        private readonly IAppGrpcClient _grpcClient;
 
         public SettingsServiceClientManager(
-            SettingsServiceClient client,
             ILogger logger,
-            VpnSystemService service,
-            SettingsContractProvider settingsContractProvider)
+            VpnService vpnService,
+            MainSettingsProvider settingsContractProvider,
+            IAppGrpcClient grpcClient)
         {
-            _client = client;
             _logger = logger;
-            _service = service;
+            _vpnService = vpnService;
             _settingsContractProvider = settingsContractProvider;
+            _grpcClient = grpcClient;
+            _grpcClient.CreateAsync();
         }
 
         public async Task UpdateServiceSettings()
         {
-            await UpdateServiceSettingsInternal(_settingsContractProvider.GetSettingsContract());
+            await UpdateServiceSettingsInternal(_settingsContractProvider.Create());
+        }
+
+        private async Task UpdateServiceSettingsInternal(MainSettingsIpcEntity settings)
+        {
+            await _vpnService.ApplySettings(settings);
         }
 
         public async Task DisableKillSwitch()
         {
-            SettingsContract settingsContract = _settingsContractProvider.GetSettingsContract();
-            settingsContract.KillSwitchMode = KillSwitchMode.Off;
-            await UpdateServiceSettingsInternal(settingsContract);
+            MainSettingsIpcEntity settings = _settingsContractProvider.Create();
+            settings.KillSwitchMode = KillSwitchModeIpcEntity.Off;
+            await UpdateServiceSettingsInternal(settings);
         }
 
         public async Task EnableHardKillSwitch()
         {
-            SettingsContract settingsContract = _settingsContractProvider.GetSettingsContract();
-            settingsContract.KillSwitchMode = KillSwitchMode.Hard;
-            await UpdateServiceSettingsInternal(settingsContract);
-        }
-
-        private async Task UpdateServiceSettingsInternal(SettingsContract settingsContract)
-        {
-            await _service.InvokeServiceAction(async () =>
-            {
-                try
-                {
-                    await Task.Run(() => _client.Apply(settingsContract));
-                    return Result.Ok();
-                }
-                catch (Exception ex) when (ex is CommunicationException or TimeoutException or TaskCanceledException)
-                {
-                    _logger.Error<AppServiceCommunicationFailedLog>("The request to update service settings failed.", ex);
-                    return Result.Fail();
-                }
-            });
+            MainSettingsIpcEntity settings = _settingsContractProvider.Create();
+            settings.KillSwitchMode = KillSwitchModeIpcEntity.Hard;
+            await UpdateServiceSettingsInternal(settings);
         }
 
         public async void OnAppSettingsChanged(PropertyChangedEventArgs e)

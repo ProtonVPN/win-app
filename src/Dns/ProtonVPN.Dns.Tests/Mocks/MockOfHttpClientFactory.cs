@@ -18,8 +18,8 @@
  */
 
 using System.Net.Http;
-using ProtonVPN.Dns.HttpClients;
 using RichardSzalay.MockHttp;
+using IHttpClientFactory = ProtonVPN.Dns.HttpClients.IHttpClientFactory;
 
 namespace ProtonVPN.Dns.Tests.Mocks
 {

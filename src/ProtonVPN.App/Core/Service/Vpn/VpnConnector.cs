@@ -160,7 +160,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
             else
             {
-                _profileConnector.HandleNoServersAvailable(profileCandidates);
+                await _profileConnector.HandleNoServersAvailableAsync(profileCandidates);
             }
         }
 

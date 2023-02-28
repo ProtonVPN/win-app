@@ -31,7 +31,5 @@ namespace ProtonVPN.Update
         bool New { get; }
 
         IReadOnlyList<string> ChangeLog { get; }
-
-        bool DisableAutoUpdate { get; }
     }
 }

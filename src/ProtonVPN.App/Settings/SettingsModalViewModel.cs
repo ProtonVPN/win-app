@@ -20,9 +20,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
@@ -181,13 +182,18 @@ namespace ProtonVPN.Settings
             {
                 if (value && !_userStorage.GetUser().Paid())
                 {
-                    _modals.Show<NonStandardPortsUpsellModalViewModel>();
+                    ShowNonStandardPortsUpsellModal();
                     return;
                 }
 
                 _appSettings.AllowNonStandardPorts = value;
                 NotifyOfPropertyChange();
             }
+        }
+
+        private async void ShowNonStandardPortsUpsellModal()
+        {
+            await _modals.ShowAsync<NonStandardPortsUpsellModalViewModel>();
         }
 
         public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
@@ -199,13 +205,18 @@ namespace ProtonVPN.Settings
             {
                 if (value && !_userStorage.GetUser().Paid())
                 {
-                    _modals.Show<ModerateNatUpsellModalViewModel>();
+                    ShowModerateNatUpsellModal();
                     return;
                 }
 
                 _appSettings.ModerateNat = value;
                 NotifyOfPropertyChange();
             }
+        }
+
+        private async void ShowModerateNatUpsellModal()
+        {
+            await _modals.ShowAsync<ModerateNatUpsellModalViewModel>();
         }
 
         public bool VpnAccelerator
@@ -342,8 +353,8 @@ namespace ProtonVPN.Settings
             {
                 if (value && _appSettings.IsNetShieldEnabled())
                 {
-                    bool? result =
-                        _dialogs.ShowQuestion(Translation.Get("Settings_Connection_Warning_CustomDnsServer"));
+                    bool? result = _dialogs.ShowQuestionAsync(
+                        Translation.Get("Settings_Connection_Warning_CustomDnsServer")).Result;
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -478,7 +489,7 @@ namespace ProtonVPN.Settings
 
         public SplitTunnelingViewModel SplitTunnelingViewModel { get; }
 
-        protected override async void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             SetDisconnected();
             await LoadProfiles();

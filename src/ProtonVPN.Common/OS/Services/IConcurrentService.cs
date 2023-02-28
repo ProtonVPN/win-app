@@ -26,14 +26,11 @@ namespace ProtonVPN.Common.OS.Services
     {
         string Name { get; }
 
-        bool Running();
-
-        bool Enabled();
-
+        bool IsEnabled();
         void Enable();
 
+        bool IsRunning();
         Task<Result> StartAsync();
-
         Task<Result> StopAsync();
     }
 }

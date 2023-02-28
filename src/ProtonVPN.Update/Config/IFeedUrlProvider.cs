@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using ProtonVPN.Update.Feed;
 
 namespace ProtonVPN.Update.Config
@@ -26,6 +25,6 @@ namespace ProtonVPN.Update.Config
     public interface IFeedUrlProvider
     {
         event EventHandler<FeedUrlChangeEventArgs> FeedUrlChanged;
-        IEnumerable<Uri> GetFeedUrls();
+        Uri GetFeedUrl();
     }
 }

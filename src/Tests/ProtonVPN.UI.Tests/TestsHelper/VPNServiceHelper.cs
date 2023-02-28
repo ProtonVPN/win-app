@@ -17,73 +17,79 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.ServiceModel;
+using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common;
-using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Service;
-using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Service.Contract.Settings;
-using ProtonVPN.Service.Contract.Vpn;
+using NSubstitute;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.ProcessCommunication.Common;
+using ProtonVPN.ProcessCommunication.Common.Channels;
+using ProtonVPN.ProcessCommunication.Common.Registration;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {
-    public class VPNServiceHelper
+    public class VPNServiceHelper : GrpcClientBase
     {
-        private ServiceChannelFactory _channelFactory = new ServiceChannelFactory();
-        private VpnEvents _vpnEvents = new VpnEvents();
+        private readonly IServiceServerPortRegister _serviceServerPortRegister;
+        private static readonly ILogger _logger = Substitute.For<ILogger>();
+        private static readonly GrpcChannelWrapperFactory _grpcChannelWrapperFactory = new(_logger);
 
-        private SettingsContract settings = new SettingsContract()
+        public IServiceController ServiceController { get; private set; }
+
+        public VPNServiceHelper()
+            : base(_logger, _grpcChannelWrapperFactory)
         {
-            KillSwitchMode = Common.KillSwitch.KillSwitchMode.Off,
-            SplitTunnel = new SplitTunnelSettingsContract
-            {
-                Mode = SplitTunnelMode.Disabled,
-                AppPaths = new string[] { },
-                Ips = new string[] { },
-            },
-            NetShieldMode = 0,
-            SplitTcp = true,
-            Ipv6LeakProtection = true,
-            VpnProtocol = VpnProtocol.Smart,
-            OpenVpnAdapter = OpenVpnAdapter.Tun,
-        };
+            _serviceServerPortRegister = new ServiceServerPortRegister(_logger);
+        }
+
+        protected override void RegisterServices(IGrpcChannelWrapper channel)
+        {
+            ServiceController = channel.CreateService<IServiceController>();
+        }
 
         public async Task Disconnect()
         {
             try
             {
-                await NewChannel().Proxy.Disconnect(settings, VpnErrorTypeContract.None);
+                CancellationTokenSource cts = new CancellationTokenSource();
+                int serviceServerPort = await _serviceServerPortRegister.ReadAsync(cts.Token);
+                await CreateWithPortAsync(serviceServerPort);
+                if (ServiceController is not null)
+                {
+                    DisconnectionRequestIpcEntity disconnectionRequestIpcEntity = CreateDisconnectionRequestIpcEntity();
+                    await ServiceController.Disconnect(disconnectionRequestIpcEntity);
+                }
             }
-            catch (EndpointNotFoundException)
+            catch
             {
                 //Ignore, because user might be disconnect by UI before
             }
         }
 
-        private ServiceChannel<IVpnConnectionContract> NewChannel()
+        private DisconnectionRequestIpcEntity CreateDisconnectionRequestIpcEntity()
         {
-            ServiceChannel<IVpnConnectionContract> channel = _channelFactory.Create<IVpnConnectionContract>(
-                "protonvpn-service/connection",
-                _vpnEvents
-            );
-            RegisterCallback(channel);
-
-            return channel;
-        }
-
-        private void RegisterCallback(ServiceChannel<IVpnConnectionContract> channel)
-        {
-            try
+            return new DisconnectionRequestIpcEntity()
             {
-                channel.Proxy.RegisterCallback();
-            }
-            catch (Exception)
-            {
-                channel.Dispose();
-                throw;
-            }
+                Settings = new MainSettingsIpcEntity()
+                {
+                    KillSwitchMode = KillSwitchModeIpcEntity.Off,
+                    SplitTunnel = new SplitTunnelSettingsIpcEntity
+                    {
+                        Mode = SplitTunnelModeIpcEntity.Disabled,
+                        AppPaths = new string[] { },
+                        Ips = new string[] { },
+                    },
+                    NetShieldMode = 0,
+                    SplitTcp = true,
+                    Ipv6LeakProtection = true,
+                    VpnProtocol = VpnProtocolIpcEntity.Smart,
+                    OpenVpnAdapter = OpenVpnAdapterIpcEntity.Tun,
+                },
+                ErrorType = VpnErrorTypeIpcEntity.None
+            };
         }
     }
 }

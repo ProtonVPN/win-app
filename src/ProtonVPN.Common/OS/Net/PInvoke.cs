@@ -19,14 +19,15 @@
 
 using System;
 using System.Runtime.InteropServices;
+using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.Common.Os.Net
 {
     internal class PInvoke
     {
-        private const string BinaryName = "ProtonVPN.NetworkUtil.dll";
+        private const string BINARY_NAME = "ProtonVPN.NetworkUtil.dll";
 
-        private static string BinaryPath => $"{(Environment.Is64BitOperatingSystem ? "x64" : "x86")}\\{BinaryName}";
+        private static string BinaryPath => PathProvider.GetResourcesPath(BINARY_NAME);
 
         static PInvoke()
         {
@@ -41,7 +42,7 @@ namespace ProtonVPN.Common.Os.Net
         private static extern IntPtr LoadLibrary(string path);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "NetworkUtilEnableIPv6OnAllAdapters",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint EnableIPv6OnAllAdapters(
@@ -49,7 +50,7 @@ namespace ProtonVPN.Common.Os.Net
             [MarshalAs(UnmanagedType.LPWStr)] string excludeId);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "NetworkUtilDisableIPv6OnAllAdapters",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint DisableIPv6OnAllAdapters(
@@ -57,7 +58,7 @@ namespace ProtonVPN.Common.Os.Net
             [MarshalAs(UnmanagedType.LPWStr)] string excludeId);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "NetworkUtilEnableIPv6",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint EnableIPv6(
@@ -65,7 +66,7 @@ namespace ProtonVPN.Common.Os.Net
             [MarshalAs(UnmanagedType.LPWStr)] string interfaceId);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "GetBestInterfaceIp",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint GetBestInterfaceIp(
@@ -73,13 +74,13 @@ namespace ProtonVPN.Common.Os.Net
             [MarshalAs(UnmanagedType.LPWStr)] string excludedIfaceHwid);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "SetLowestTapMetric",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint SetLowestTapMetric(uint index);
 
         [DllImport(
-            BinaryName,
+            BINARY_NAME,
             EntryPoint = "RestoreDefaultTapMetric",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint RestoreDefaultTapMetric(uint index);

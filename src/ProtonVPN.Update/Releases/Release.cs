@@ -36,7 +36,6 @@ namespace ProtonVPN.Update.Releases
             Version = Version.Parse(_release.Version);
             EarlyAccess = earlyAccess;
             New = Version > currentVersion;
-            DisableAutoUpdate = release.DisableAutoUpdate;
         }
 
         public Version Version { get; }
@@ -46,8 +45,6 @@ namespace ProtonVPN.Update.Releases
         public bool EarlyAccess { get; }
 
         public bool New { get; }
-
-        public bool DisableAutoUpdate { get; }
 
         public FileResponse File => _release.File;
 

@@ -26,5 +26,6 @@ namespace ProtonVPN.Common.OS.Services
     public interface ISafeServiceAction
     {
         Task<Result> InvokeServiceAction(Func<Task<Result>> action);
+        Task<Result> StartIfStoppedAsync();
     }
 }

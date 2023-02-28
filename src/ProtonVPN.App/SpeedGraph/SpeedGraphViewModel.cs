@@ -59,9 +59,9 @@ namespace ProtonVPN.SpeedGraph
         private readonly Lazy<string> _uploadColor;
         private readonly Lazy<string> _downloadColor;
 
-        public SpeedGraphViewModel(ILogger logger, 
-            VpnConnectionSpeed speedTracker, 
-            IScheduler scheduler, 
+        public SpeedGraphViewModel(ILogger logger,
+            VpnConnectionSpeed speedTracker,
+            IScheduler scheduler,
             IColorPalette colorPalette)
         {
             _logger = logger;
@@ -190,7 +190,7 @@ namespace ProtonVPN.SpeedGraph
 
         private void InitPlotModel()
         {
-            PlotModel = new ViewResolvingPlotModel {PlotAreaBorderThickness = new OxyThickness(0)};
+            PlotModel = new ViewResolvingPlotModel { PlotAreaBorderThickness = new OxyThickness(0) };
             PlotModel.Updated += HideAxis;
         }
 

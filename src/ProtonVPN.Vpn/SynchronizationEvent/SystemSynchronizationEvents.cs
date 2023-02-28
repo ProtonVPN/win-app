@@ -42,8 +42,10 @@ namespace ProtonVPN.Vpn.SynchronizationEvent
         {
             try
             {
-                if (EventWaitHandle.TryOpenExisting(eventName, EventWaitHandleRights.Modify, out EventWaitHandle eventWaitHandle))
+                if (EventWaitHandle.TryOpenExisting(eventName, out EventWaitHandle eventWaitHandle))
+                {
                     return new SystemSynchronizationEvent(eventWaitHandle);
+                }
             }
             catch (UnauthorizedAccessException ex)
             {

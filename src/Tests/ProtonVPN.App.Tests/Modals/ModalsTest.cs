@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
 using Caliburn.Micro;
@@ -30,6 +31,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Modals;
 using ProtonVPN.Resource;
+using Action = System.Action;
 
 namespace ProtonVPN.App.Tests.Modals
 {
@@ -46,7 +48,7 @@ namespace ProtonVPN.App.Tests.Modals
         public void TestInitialize()
         {
             _scheduler = Substitute.For<IScheduler>();
-            _scheduler.Schedule(Arg.Any<Func<bool?>>()).Returns(c => c.Arg<Func<bool?>>()());
+            _scheduler.Schedule(Arg.Any<Func<Task<bool?>>>()).Returns(async c => await c.Arg<Func<Task<bool?>>>()());
 
             _windowManager = Substitute.For<IWindowManager>();
             _modalWindows = Substitute.For<IModalWindows>();
@@ -58,38 +60,38 @@ namespace ProtonVPN.App.Tests.Modals
         }
 
         [TestMethod]
-        public void Show_ShouldCall_Modal_BeforeOpenModal()
+        public async Task Show_ShouldCall_Modal_BeforeOpenModal()
         {
             ProtonVPN.Modals.Modals modals = new ProtonVPN.Modals.Modals(_scheduler, _container, _windowManager, _modalWindows);
             dynamic options = new ExpandoObject();
 
-            modals.Show<WrappedModal>(options);
+            await modals.ShowAsync<WrappedModal>(options);
 
             _modal.Received(1).BeforeOpenModal(options);
         }
 
         [TestMethod]
-        public void Show_ShouldCall_WindowManager_ShowDialog()
+        public async Task Show_ShouldCall_WindowManager_ShowDialog()
         {
             WrappedModal wrappedModal = _container.Resolve<WrappedModal>();
             ProtonVPN.Modals.Modals modals = new ProtonVPN.Modals.Modals(_scheduler, _container, _windowManager, _modalWindows);
 
-            modals.Show<WrappedModal>();
+            await modals.ShowAsync<WrappedModal>();
 
-            _windowManager.Received(1).ShowDialog(
+            await _windowManager.Received(1).ShowDialogAsync(
                 wrappedModal,
                 Arg.Is<object>(o => o == null),
                 Arg.Any<IDictionary<string, object>>());
         }
 
         [TestMethod]
-        public void Show_ShouldCall_WindowManager_ShowDialog_WithDefaultSettings()
+        public async Task Show_ShouldCall_WindowManager_ShowDialog_WithDefaultSettings()
         {
             ProtonVPN.Modals.Modals modals = new ProtonVPN.Modals.Modals(_scheduler, _container, _windowManager, _modalWindows);
 
-            modals.Show<WrappedModal>();
+            await modals.ShowAsync<WrappedModal>();
 
-            _windowManager.Received(1).ShowDialog(
+            await _windowManager.Received(1).ShowDialogAsync(
                 Arg.Any<object>(),
                 Arg.Any<object>(),
                 Arg.Is<IDictionary<string, object>>(d =>
@@ -159,16 +161,22 @@ namespace ProtonVPN.App.Tests.Modals
         [TestMethod]
         public void Show_ShouldReturnFalse_IfAlreadyOpened()
         {
-            // Arrange
-            WrappedModal modalViewModel = new WrappedModal(_modal);
-            _modalWindows.List().Returns(new[]
+            System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke((Action)async delegate 
             {
-                new BaseModalWindow {DataContext = modalViewModel}
-            });
-            ProtonVPN.Modals.Modals modals = new ProtonVPN.Modals.Modals(_scheduler, _container, _windowManager, _modalWindows);
+                // Arrange
+                WrappedModal modalViewModel = new WrappedModal(_modal);
+                _modalWindows.List().Returns(new[]
+                {
+                    new BaseModalWindow { DataContext = modalViewModel }
+                });
+                ProtonVPN.Modals.Modals modals = new ProtonVPN.Modals.Modals(_scheduler, _container, _windowManager, _modalWindows);
 
-            // Assert
-            modals.Show<WrappedModal>().Should().BeFalse("Modal already opened");
+                // Act
+                bool? result = await modals.ShowAsync<WrappedModal>();
+
+                // Assert
+                result.Should().Be(false, "Modal already opened");
+            });
         }
 
         public class WrappedModal : IModal

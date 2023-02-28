@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <OutputType>WinExe</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <ApplicationIcon>protonvpn.ico</ApplicationIcon>
+        <StartupObject>ProtonVPN.Launcher.Program</StartupObject>
+        <BaseOutputPath>..\bin</BaseOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="protonvpn.ico" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="protonvpn.ico" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="protonvpn.ico" />
+    </ItemGroup>
+</Project>

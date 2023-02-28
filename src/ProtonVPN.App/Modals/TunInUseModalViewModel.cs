@@ -18,7 +18,7 @@
  */
 
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;

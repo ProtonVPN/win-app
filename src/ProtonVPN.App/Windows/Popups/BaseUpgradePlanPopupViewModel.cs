@@ -18,7 +18,7 @@
  */
 
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 
 namespace ProtonVPN.Windows.Popups
@@ -37,10 +37,10 @@ namespace ProtonVPN.Windows.Popups
 
         public ICommand UpgradeCommand { get; set; }
 
-        protected virtual void UpgradeAction()
+        protected virtual async void UpgradeAction()
         {
-            _subscriptionManager.UpgradeAccountAsync();
-            TryClose();
+            await _subscriptionManager.UpgradeAccountAsync();
+            await TryCloseAsync();
         }
     }
 }

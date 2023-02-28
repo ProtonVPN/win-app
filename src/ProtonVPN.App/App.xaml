@@ -25,12 +25,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="clr-namespace:ProtonVPN.Core.MVVM.Converters"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings"
+    xmlns:quickSettings="clr-namespace:ProtonVPN.Sidebar.QuickSettings" 
+    xmlns:core="clr-namespace:ProtonVPN.Core"
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
+                    <core:Bootstrapper x:Key="Bootstrapper" />
                     <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
                     <converters:CountryToFlagConverter x:Key="CountryToFlagConverter"/>

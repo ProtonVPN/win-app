@@ -1,112 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A16637C2-2D91-4953-AE04-D91EC188DD7B}</ProjectGuid>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProtonVPN.Vpn.Tests</RootNamespace>
-    <AssemblyName>ProtonVPN.Vpn.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>..\..\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <IsPublishable>false</IsPublishable>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Connection\HandlingRequestsWrapperTest.cs" />
-    <Compile Include="Management\OpenVpnManagementPortsTest.cs" />
-    <Compile Include="Management\ManagementErrorTest.cs" />
-    <Compile Include="OpenVpn\Arguments\LocalHostArgumentsTest.cs" />
-    <Compile Include="OpenVpn\Arguments\NoBindArgumentsTest.cs" />
-    <Compile Include="OpenVpn\Arguments\ManagementArgumentsTest.cs" />
-    <Compile Include="OpenVpn\Arguments\EndpointArgumentsTest.cs" />
-    <Compile Include="OpenVpn\Arguments\BasicArgumentsTest.cs" />
-    <Compile Include="OpenVpn\Arguments\CommandLineArgumentsTest.cs" />
-    <Compile Include="OpenVpn\Arguments\TlsVerifyArgumentsTest.cs" />
-    <Compile Include="PortMapping\Serializers\Common\MessageSerializerFactoryTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WireGuard\WireGuardConnectionTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj">
-      <Project>{03B8E43C-5680-4803-A745-0A104FE6620C}</Project>
-      <Name>ProtonVPN.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
-      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
-      <Name>ProtonVPN.Crypto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj">
-      <Project>{4aa7ce6f-7154-49c1-b598-46055d590cad}</Project>
-      <Name>ProtonVPN.Vpn</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
+    <ProjectReference Include="..\..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
+    <ProjectReference Include="..\..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions">
       <Version>6.7.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
     <PackageReference Include="MSTest.TestAdapter">
-      <Version>2.2.7</Version>
+      <Version>2.2.10</Version>
     </PackageReference>
     <PackageReference Include="MSTest.TestFramework">
-      <Version>2.2.7</Version>
+      <Version>2.2.10</Version>
     </PackageReference>
     <PackageReference Include="NSubstitute">
       <Version>4.3.0</Version>
     </PackageReference>
-    <PackageReference Include="System.Net.Http">
-      <Version>4.3.4</Version>
-    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
     <PackageReference Include="System.Runtime">
       <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>5.0.0</Version>
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.4</Version>
     </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

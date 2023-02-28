@@ -17,36 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
 using System;
+using HashCode = ProtonVPN.Common.Helpers.HashCode;
 
 namespace ProtonVPN.Core.Settings.Contracts
 {
     public class SplitTunnelingApp: IEquatable<SplitTunnelingApp>
     {
         public string Name { get; set; }
-
         public string Path { get; set; }
-
         public string[] AdditionalPaths { get; set; }
-
         public bool Enabled { get; set; }
-
-        #region IEquatable
 
         public bool Equals(SplitTunnelingApp other)
         {
-            if (other == null)
-                return false;
-
-            return string.Equals(Path, other.Path, StringComparison.OrdinalIgnoreCase);
+            return other == null 
+                ? false 
+                : string.Equals(Path, other.Path, StringComparison.OrdinalIgnoreCase);
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
             return Equals(obj as SplitTunnelingApp);
         }
 
@@ -55,7 +58,5 @@ namespace ProtonVPN.Core.Settings.Contracts
             return HashCode.Start
                 .Hash(Path?.ToUpperInvariant());
         }
-
-        #endregion
     }
 }

@@ -20,9 +20,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Extensions;
@@ -44,26 +46,26 @@ namespace ProtonVPN.BugReporting.Steps
         private readonly IEventAggregator _eventAggregator;
         private readonly IUserStorage _userStorage;
         private readonly IFormElementBuilder _formElementBuilder;
-        private bool _isToIncludeLogs = true;
-        private List<FormElement> _formElements = new();
         private bool _isFormBeingSent;
-        private bool _hasErrors = true;
-        private bool _isEmailValid = true;
         private string _category;
         private bool _isLoggedIn;
 
-        public FormViewModel(IEventAggregator eventAggregator, IUserStorage userStorage,
-            IFormElementBuilder formElementBuilder)
-        {
-            _eventAggregator = eventAggregator;
-            _userStorage = userStorage;
-            _formElementBuilder = formElementBuilder;
-            eventAggregator.Subscribe(this);
-            SendReportCommand = new RelayCommand(SendReportAction, () => !_hasErrors && !_isFormBeingSent);
-        }
-
         public ICommand SendReportCommand { get; }
 
+        private bool _hasErrors = true;
+        public bool HasErrors
+        {
+            get => _hasErrors;
+            private set
+            {
+                Set(ref _hasErrors, value);
+                NotifyOfPropertyChange(nameof(IsSendAllowed));
+            }
+        }
+
+        public bool IsSendAllowed => !HasErrors;
+
+        private bool _isToIncludeLogs = true;
         public bool IsToIncludeLogs
         {
             get => _isToIncludeLogs;
@@ -74,18 +76,43 @@ namespace ProtonVPN.BugReporting.Steps
             }
         }
 
+        public bool IsToShowLogsWarning => !IsToIncludeLogs;
+
+        private bool _isEmailValid;
         public bool IsEmailValid
         {
             get => _isEmailValid;
             set => Set(ref _isEmailValid, value);
         }
 
-        public bool IsToShowLogsWarning => !IsToIncludeLogs;
-
+        private List<FormElement> _formElements = new();
         public List<FormElement> FormElements
         {
             get => _formElements;
             set => Set(ref _formElements, value);
+        }
+
+        public FormViewModel(IEventAggregator eventAggregator, IUserStorage userStorage,
+            IFormElementBuilder formElementBuilder)
+        {
+            _eventAggregator = eventAggregator;
+            _userStorage = userStorage;
+            _formElementBuilder = formElementBuilder;
+            eventAggregator.Subscribe(this);
+            SendReportCommand = new RelayCommand(SendReportActionIfAllowedAndNotAlreadySending);
+        }
+
+        private void SendReportActionIfAllowedAndNotAlreadySending()
+        {
+            if (IsSendAllowed && !_isFormBeingSent)
+            {
+                SendReportAction();
+            }
+        }
+
+        private void SendReportAction()
+        {
+            _eventAggregator.PublishOnUIThreadAsync(new SendReportAction(_category, FormElements, IsToIncludeLogs));
         }
 
         public void OnUserLoggedIn()
@@ -103,8 +130,8 @@ namespace ProtonVPN.BugReporting.Steps
 
             FormElements.Clear();
             IsToIncludeLogs = true;
-            _hasErrors = true;
-            _isEmailValid = true;
+            HasErrors = true;
+            _isEmailValid = false;
             _category = null;
         }
 
@@ -114,7 +141,7 @@ namespace ProtonVPN.BugReporting.Steps
             ResetForm();
         }
 
-        public void Handle(FillTheFormAction message)
+        public async Task HandleAsync(FillTheFormAction message, CancellationToken cancellationToken)
         {
             if (!_category.IsNullOrEmpty() && _category != message.Category)
             {
@@ -138,15 +165,16 @@ namespace ProtonVPN.BugReporting.Steps
 
             UpdateEmailInput();
             UpdateUsernameInput();
+            ValidateForm();
         }
 
-        public void Handle(FormStateChange message)
+        public async Task HandleAsync(FormStateChange message, CancellationToken cancellationToken)
         {
             _isFormBeingSent = message.State == FormState.Sending;
             if (message.State == FormState.Sent)
             {
                 ResetForm();
-                _hasErrors = true;
+                HasErrors = true;
             }
         }
 
@@ -158,7 +186,7 @@ namespace ProtonVPN.BugReporting.Steps
         private void ValidateForm()
         {
             ValidateEmailField();
-            _hasErrors = FormElements.Any(element => !element.IsValid());
+            HasErrors = FormElements.Any(element => !element.IsValid());
         }
 
         private void ValidateEmailField()
@@ -170,14 +198,9 @@ namespace ProtonVPN.BugReporting.Steps
             }
         }
 
-        public void Handle(RetryAction message)
+        public async Task HandleAsync(RetryAction message, CancellationToken cancellationToken)
         {
             SendReportAction();
-        }
-
-        private void SendReportAction()
-        {
-            _eventAggregator.PublishOnUIThread(new SendReportAction(_category, FormElements, IsToIncludeLogs));
         }
 
         public void OnUserDataChanged()

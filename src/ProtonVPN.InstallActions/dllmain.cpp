@@ -1,51 +1,32 @@
-#pragma once
-#include "pch.h"
 #include <filesystem>
-#include <fstream>
+#include <functional>
 #include <string>
 #include <strsafe.h>
-#include "EnvironmentVariable.h"
-#include "Service.h"
-#include "msiquery.h"
-#include "StartupApp.h"
-#include "SystemState.h"
-#include "Utils.h"
-#include "bitcompressor.hpp"
-#include "bitexception.hpp"
-#include "PathManager.h"
-#include "StringConverter.h"
+#include "ServiceManager.h"
 #include "Installer.h"
-#include "TunAdapter.h"
+#include "TapInstaller.h"
 #include "ip_filter.h"
+#include "Logger.h"
+#include "Os.h"
+#include "Utils.h"
+#include <string>
+
+#include "AppSettingsMigration.h"
 
 #define EXPORT __declspec(dllexport)
 
 using namespace std;
 
-const auto ServiceNameProperty = L"ServiceName";
-const auto CalloutServiceNameProperty = L"CalloutServiceName";
-const auto CalloutServiceDisplayNameProperty = L"CalloutServiceDisplayName";
-const auto CalloutDriverFileProperty = L"CalloutDriverFile";
-const auto SplitTunnelServiceNameProperty = L"SplitTunnelServiceName";
-const auto SplitTunnelServiceDisplayNameProperty = L"SplitTunnelServiceDisplayName";
-const auto SplitTunnelDriverFileProperty = L"SplitTunnelDriverFile";
-const auto ProductLanguageProperty = L"ProductLanguage";
-const auto SelectedLanguageProperty = L"SelectedLanguage";
-const auto MsiLogFileLocationProperty = L"MsiLogFileLocation";
-const auto LocalAppDataFolderProperty = L"LocalAppDataFolder";
-const auto ApplicationDirectoryProperty = L"APPDIR";
-const auto WintunDllPathProperty = L"WintunDllPath";
-const auto ProductUpgradeCodeProperty = L"ProductUpgradeCode";
-const auto RebootRequiredProperty = L"RebootRequired";
-const auto ProductNameProperty = L"ProductName";
+GUID providerGUID = {0x20865f68, 0x0b04, 0x44da, {0xbb, 0x83, 0x22, 0x38, 0x62, 0x25, 0x40, 0xfa}};
+GUID sublayerGUID = {0xaa867e71, 0x5765, 0x4be3, {0x93, 0x99, 0x58, 0x15, 0x85, 0xc2, 0x26, 0xce}};
 
-GUID providerGUID = { 0x20865f68, 0x0b04, 0x44da, { 0xbb, 0x83, 0x22, 0x38, 0x62, 0x25, 0x40, 0xfa } };
-GUID sublayerGUID = { 0xaa867e71, 0x5765, 0x4be3, { 0x93, 0x99, 0x58, 0x15, 0x85, 0xc2, 0x26, 0xce } };
-
-extern "C" EXPORT long RemoveWfpObjects(MSIHANDLE hInstall)
+extern "C" EXPORT void InitLogger(LoggerFunc loggerFunc)
 {
-    SetMsiHandle(hInstall);
+    logger = loggerFunc;
+}
 
+extern "C" EXPORT long RemoveWfpObjects()
+{
     IPFilterSessionHandle h = nullptr;
     UINT status = IPFilterCreateSession(&h);
     if (status != NO_ERROR)
@@ -85,201 +66,77 @@ close_session:
     return status;
 }
 
-extern "C" EXPORT long UninstallProduct(MSIHANDLE hInstall)
+extern "C" EXPORT DWORD UninstallProduct(const wchar_t* upgrade_code)
 {
-    SetMsiHandle(hInstall);
-    return Uninstall(GetProperty(ProductUpgradeCodeProperty).c_str());
-}
-
-extern "C" EXPORT long InstallTunAdapter(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-    return InstallTunAdapter(GetProperty(WintunDllPathProperty).c_str());
-}
-
-extern "C" EXPORT long UninstallTunAdapter(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-    BOOL* rebootRequired = nullptr;
-    const auto result = UninstallTunAdapter(GetProperty(WintunDllPathProperty).c_str(), rebootRequired);
-    if (rebootRequired)
+    return ExecuteAction([upgrade_code]
     {
-        MsiSetProperty(hInstall, RebootRequiredProperty, L"1");
-    }
-
-    return result;
+        return Uninstall(upgrade_code);
+    });
 }
 
-extern "C" EXPORT long ModifyServicePermissions(MSIHANDLE hInstall)
+extern "C" EXPORT DWORD InstallService(const wchar_t* name, const wchar_t* display_name, const wchar_t* path)
 {
-    SetMsiHandle(hInstall);
-    auto serviceName = GetProperty(ServiceNameProperty);
-    auto result = ModifyServicePermissions(serviceName);
-    LogMessage(L"ModifyServicePermissions returned: ", result);
-
-    return result;
-}
-
-extern "C" EXPORT long UninstallCalloutDriver(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-    const auto serviceName = GetProperty(CalloutServiceNameProperty);
-
-    const auto result = DeleteService(serviceName);
-    LogMessage(L"DeleteService returned: ", result);
-
-    return result;
-}
-
-extern "C" EXPORT long InstallCalloutDriver(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-    const auto driverFile = GetProperty(CalloutDriverFileProperty);
-    const auto serviceName = GetProperty(CalloutServiceNameProperty);
-    const auto serviceDisplayName = GetProperty(CalloutServiceDisplayNameProperty);
-
-    const auto result = CreateDriverService(
-        serviceName,
-        serviceDisplayName,
-        driverFile
-    );
-    LogMessage(L"CreateDriverService returned: ", result);
-
-    return result;
-}
-
-extern "C" EXPORT long PendingReboot(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-    const auto result = pending_reboot();
-    if (result)
+    return ExecuteAction([name, display_name, path]
     {
-        SetProperty(L"PENDING_REBOOT", L"1");
-    }
-
-    LogMessage(L"Pending reboot value is: ", result);
-
-    return 0;
+        ServiceManager service_manager;
+        service_manager.Create(name, display_name, path, SERVICE_WIN32_OWN_PROCESS);
+    });
 }
 
-extern "C" EXPORT long Reboot(MSIHANDLE hInstall)
+extern "C" EXPORT DWORD UninstallService(const wchar_t* name)
 {
-    SetMsiHandle(hInstall);
-
-    HANDLE h_token = nullptr;
-    TOKEN_PRIVILEGES tkp;
-
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &h_token))
+    return ExecuteAction([name]
     {
+        ServiceManager service_manager;
+        return service_manager.Delete(name);
+    });
+}
+
+extern "C" EXPORT DWORD InstallCalloutDriver(const wchar_t* name, const wchar_t* display_name, const wchar_t* path)
+{
+    return ExecuteAction([name, display_name, path]
+    {
+        ServiceManager service_manager;
+        return service_manager.Create(name, display_name, path, SERVICE_KERNEL_DRIVER);
+    });
+}
+
+extern "C" EXPORT DWORD InstallTapAdapter(const wchar_t* tap_files_path)
+{
+    TapInstaller tap_installer(tap_files_path);
+    return tap_installer.Install();
+}
+
+extern "C" EXPORT DWORD UninstallTapAdapter(const wchar_t* tap_files_path)
+{
+    TapInstaller tap_installer(tap_files_path);
+    return tap_installer.Uninstall();
+}
+
+extern "C" EXPORT bool IsProcessRunning(const wchar_t* process_name)
+{
+    return Os::IsProcessRunning(process_name);
+}
+
+extern "C" EXPORT DWORD SaveOldUserConfigFolder()
+{
+    return ExecuteAction([]
+    {
+        AppSettingsMigration app_settings;
+        app_settings.SaveOldUserConfigFolder();
+
         return 0;
-    }
-
-    LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
-    tkp.PrivilegeCount = 1;
-    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    AdjustTokenPrivileges(h_token, FALSE, &tkp, 0, static_cast<PTOKEN_PRIVILEGES>(nullptr), nullptr);
-    if (GetLastError() == ERROR_SUCCESS)
-    {
-        add_installer_to_startup();
-        ExitWindowsEx(EWX_REBOOT, SHTDN_REASON_MINOR_INSTALLATION);
-
-        return 1;
-    }
-
-    return 0;
+    });
 }
 
-extern "C" EXPORT long RemoveProgramData(MSIHANDLE hInstall)
+extern "C" EXPORT DWORD RestoreOldUserConfigFolder(const wchar_t* application_path)
 {
-    SetMsiHandle(hInstall);
-
-    const string programDataPath = GetEnvironmentVariable("PROGRAMDATA");
-    if (programDataPath.empty())
+    return ExecuteAction([application_path]
     {
-        return -1;
-    }
-    const std::filesystem::path path(programDataPath + "\\ProtonVPN");
-    std::filesystem::remove_all(path);
+        std::wstring w_path(application_path);
+        AppSettingsMigration app_settings;
+        app_settings.RestoreOldUserConfigFolder(string(w_path.begin(), w_path.end()));
 
-    return 0;
-}
-
-extern "C" EXPORT long SetLanguageISOCode(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-
-    const wstring strValue = GetProperty(ProductLanguageProperty);
-    const int value = std::stoi(strValue);
-    wstring language = L"";
-    switch (value)
-    {
-        case 1031: language = L"de-DE"; break;
-        case 1033: language = L"en-US"; break;
-        case 1034: language = L"es-ES"; break;
-        case 58378: language = L"es-419"; break;
-        case 1065: language = L"fa-IR"; break;
-        case 1036: language = L"fr-FR"; break;
-        case 1040: language = L"it-IT"; break;
-        case 1043: language = L"nl-NL"; break;
-        case 1045: language = L"pl-PL"; break;
-        case 1046: language = L"pt-BR"; break;
-        case 2070: language = L"pt-PT"; break;
-        case 1049: language = L"ru-RU"; break;
-        case 1055: language = L"tr-TR"; break;
-        case 1050: language = L"hr-HR"; break;
-        case 1057: language = L"id-ID"; break;
-        case 1058: language = L"uk-UA"; break;
-        case 1029: language = L"cs-CZ"; break;
-        case 1048: language = L"ro-RO"; break;
-    }
-    if (!language.empty())
-    {
-        SetProperty(SelectedLanguageProperty, language);
-    }
-
-    return 0;
-}
-
-void AddFileToZip(const std::wstring& zipFileName, const std::wstring& fileName)
-{
-    std::wstring installDirectory = GetProperty(ApplicationDirectoryProperty);
-    const std::wstring sevenZipDllPath = AddEndingSlashIfNotExists(installDirectory) + L"7za.dll";
-
-    try
-    {
-        bit7z::Bit7zLibrary lib{ sevenZipDllPath };
-        bit7z::BitCompressor compressor{ lib, bit7z::BitFormat::SevenZip };
-
-        std::vector<std::wstring> files = { fileName };
-
-        compressor.setUpdateMode(true);
-        compressor.compressFiles(files, zipFileName);
-    }
-    catch (const bit7z::BitException& ex)
-    {
-        LogMessage(L"Error when compressing file to zip: " + Utf8StringToWstring(ex.what()));
-    }
-}
-
-extern "C" EXPORT long CopyInstallLog(MSIHANDLE hInstall)
-{
-    SetMsiHandle(hInstall);
-
-    const std::wstring productName = GetProperty(ProductNameProperty);
-    const std::wstring logFile = GetProperty(MsiLogFileLocationProperty);
-    std::wstring localAppDataFolder = GetProperty(LocalAppDataFolderProperty);
-    const std::wstring logFolder = AddEndingSlashIfNotExists(localAppDataFolder) + L"ProtonVPN\\DiagnosticLogs\\";
-    const std::wstring tmpLogFile = logFolder + productName + L"_install.log";
-
-    std::filesystem::create_directories(logFolder);
-    const std::filesystem::copy_options copyOptions = std::filesystem::copy_options::overwrite_existing;
-    copy_file(logFile, tmpLogFile, copyOptions);
-
-    const std::wstring zipFileName = logFolder + productName + L"_install-log.7z";
-
-    AddFileToZip(zipFileName, tmpLogFile);
-    std::filesystem::remove(tmpLogFile);
-
-    return 0;
+        return 0;
+    });
 }

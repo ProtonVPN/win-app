@@ -31,6 +31,7 @@ using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
+using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.PortMapping;
@@ -52,6 +53,8 @@ namespace ProtonVPN.Vpn.Config
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<SplitTunnelRouting>().SingleInstance();
             builder.RegisterType<UdpPingClient>().SingleInstance();
+            builder.RegisterType<WintunAdapter>().SingleInstance();
+            builder.RegisterType<TapAdapter>().SingleInstance();
             builder.Register(c =>
                 {
                     ILogger logger = c.Resolve<ILogger>();
@@ -114,6 +117,8 @@ namespace ProtonVPN.Vpn.Config
                                     eventPublisher,
                                     networkAdapterManager,
                                     networkInterfaceLoader,
+                                    c.Resolve<WintunAdapter>(),
+                                    c.Resolve<TapAdapter>(),
                                     new QueueingEventsWrapper(
                                         taskQueue,
                                         new PortForwardingWrapper(

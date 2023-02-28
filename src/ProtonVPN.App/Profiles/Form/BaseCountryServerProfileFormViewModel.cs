@@ -70,9 +70,9 @@ namespace ProtonVPN.Profiles.Form
             {
                 if (value?.CountryCode != _selectedCountry?.CountryCode)
                 {
-                    if (ShowUpgradeModal(value))
+                    if (IsToShowUpsellModal(value))
                     {
-                        _modals.Show<UpsellModalViewModel>();
+                        _modals.ShowAsync<UpsellModalViewModel>().Wait();
                     }
 
                     if (EditMode && _selectedCountry != null)
@@ -196,7 +196,7 @@ namespace ProtonVPN.Profiles.Form
             Servers = GetServersByCountry(SelectedCountry?.CountryCode);
         }
 
-        private bool ShowUpgradeModal(CountryViewModel value)
+        private bool IsToShowUpsellModal(CountryViewModel value)
         {
             if (value != null && value.UpgradeRequired)
             {

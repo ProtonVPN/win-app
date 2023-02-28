@@ -95,7 +95,7 @@ namespace ProtonVPN.Modals.Welcome
             _popupWindows.Show<OfferPopupViewModel>();
         }
 
-        private void ShowStandardUpsellModal()
+        private async void ShowStandardUpsellModal()
         {
             int randomNumber = _random.Next(0, 100);
             if (randomNumber >= 15)
@@ -103,12 +103,12 @@ namespace ProtonVPN.Modals.Welcome
                 return;
             }
 
-            _modals.Show<UpsellModalViewModel>();
+            await _modals.ShowAsync<UpsellModalViewModel>();
         }
 
-        private void ShowWelcomeModal()
+        private async void ShowWelcomeModal()
         {
-            _modals.Show<WelcomeModalViewModel>();
+            await _modals.ShowAsync<WelcomeModalViewModel>();
             _appSettings.WelcomeModalShown = true;
         }
 

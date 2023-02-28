@@ -57,23 +57,9 @@ namespace ProtonVPN.Update.Storage
 
         private async Task<CategoriesResponse> Categories()
         {
-            int numOfFeeds = 0;
-
-            foreach (Uri feedUrl in _config.FeedUriProvider.GetFeedUrls())
-            {
-                numOfFeeds++;
-                CategoriesResponse response = await GetFilteredAsync(feedUrl);
-                if (DoesResponseContainReleases(response))
-                {
-                    return response;
-                }
-
-                _logger.Warn<AppLog>($"The feed '{feedUrl}' has no releases.");
-            }
-
-            string errorMessage = $"All feeds failed to return any release version. Called {numOfFeeds} feed(s).";
-            _logger.Error<AppLog>(errorMessage);
-            throw new Exception(errorMessage);
+            Uri feedUrl = _config.FeedUriProvider.GetFeedUrl();
+            CategoriesResponse response = await GetFilteredAsync(feedUrl);
+            return response;
         }
 
         private async Task<CategoriesResponse> GetFilteredAsync(Uri feedUrl)
@@ -126,13 +112,6 @@ namespace ProtonVPN.Update.Storage
             }
 
             return result;
-        }
-
-        private bool DoesResponseContainReleases(CategoriesResponse response)
-        {
-            return response is not null &&
-                   response.Categories.Any() &&
-                   response.Categories.SelectMany(c => c.Releases).Any();
         }
     }
 }

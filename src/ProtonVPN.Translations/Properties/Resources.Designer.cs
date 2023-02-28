@@ -3883,42 +3883,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restart.
-        /// </summary>
-        public static string Dialogs_Reboot_btn_Reboot {
-            get {
-                return ResourceManager.GetString("Dialogs_Reboot_btn_Reboot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Continue without.
-        /// </summary>
-        public static string Dialogs_Reboot_btn_SkipReboot {
-            get {
-                return ResourceManager.GetString("Dialogs_Reboot_btn_SkipReboot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To avoid any Proton VPN errors, we strongly recommend restarting your computer to update other applications first. Proton VPN will automatically resume installation afterward. Restart now?.
-        /// </summary>
-        public static string Dialogs_Reboot_msg {
-            get {
-                return ResourceManager.GetString("Dialogs_Reboot_msg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your computer needs to restart.
-        /// </summary>
-        public static string Dialogs_Reboot_ttl {
-            get {
-                return ResourceManager.GetString("Dialogs_Reboot_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Got it.
         /// </summary>
         public static string Dialogs_Rebranding_btn_GotIt_new_plans {

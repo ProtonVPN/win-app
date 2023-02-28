@@ -17,27 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Service.Contract.Settings;
 using System;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
     public interface IServiceSettings
     {
-        event EventHandler<SettingsContract> SettingsChanged;
-
         KillSwitchMode KillSwitchMode { get; }
-
-        SplitTunnelSettingsContract SplitTunnelSettings { get; }
-
+        SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
         bool Ipv6LeakProtection { get; }
-
         VpnProtocol VpnProtocol { get; }
-
         OpenVpnAdapter OpenVpnAdapter { get; }
 
-        void Apply(SettingsContract settings);
+        event EventHandler<MainSettingsIpcEntity> SettingsChanged;
+
+        void Apply(MainSettingsIpcEntity settings);
     }
 }

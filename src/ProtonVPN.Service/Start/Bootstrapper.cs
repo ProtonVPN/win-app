@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.ServiceProcess;
+using System.Threading;
 using Autofac;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
@@ -74,7 +75,10 @@ namespace ProtonVPN.Service.Start
 
             Resolve<LogCleaner>().Clean(config.ServiceLogFolder, 10);
             FixNetworkAdapters();
-            ServiceBase.Run(Resolve<VpnService>());
+
+            VpnService vpnService = Resolve<VpnService>();
+            ServiceBase.Run(vpnService);
+            vpnService.CancellationToken.WaitHandle.WaitOne();
 
             logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
         }

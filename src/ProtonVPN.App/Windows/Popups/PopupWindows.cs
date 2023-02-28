@@ -52,7 +52,7 @@ namespace ProtonVPN.Windows.Popups
             {
                 if (!IsOpen<T>())
                 {
-                    _windowManager.ShowWindow(screen);
+                    _windowManager.ShowWindowAsync(screen);
                 }
             });
         }
@@ -72,28 +72,28 @@ namespace ProtonVPN.Windows.Popups
             return Application.Current.Windows.OfType<BasePopupWindow>();
         }
 
-        public void Close<T>() where T : IPopupWindow
+        public async void Close<T>() where T : IPopupWindow
         {
-            _container.Resolve<T>().TryClose();
+            await _container.Resolve<T>().TryCloseAsync();
         }
 
-        public void CloseAll()
+        public async void CloseAll()
         {
             IEnumerable<IPopupWindow> windows = _container.Resolve<IEnumerable<IPopupWindow>>();
             foreach (IPopupWindow window in windows)
             {
-                window.TryClose();
+                await window.TryCloseAsync();
             }
         }
 
         public void Show(Type type, dynamic options = null)
         {
             IPopupWindow screen = (IPopupWindow)_container.Resolve(type);
-            _scheduler.Schedule(() =>
+            _scheduler.Schedule(async () =>
             {
                 if (!IsOpen(type))
                 {
-                    _windowManager.ShowWindow(screen);
+                    await _windowManager.ShowWindowAsync(screen);
                 }
             });
         }

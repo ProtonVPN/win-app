@@ -18,7 +18,7 @@
  */
 
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Common.Extensions;
@@ -90,7 +90,7 @@ namespace ProtonVPN.Windows.Popups.Offers
             _webAuthenticator = webAuthenticator;
 
             ButtonCommand = new RelayCommand(ButtonAction);
-            FullScreenImageButtonCommand = new RelayCommand(OpenFullScreeImageButtonLink);
+            FullScreenImageButtonCommand = new RelayCommand(OpenFullScreenImageButtonLink);
         }
 
         private void OnPanelChange(Panel value)
@@ -120,7 +120,7 @@ namespace ProtonVPN.Windows.Popups.Offers
             }
         }
 
-        private async void OpenFullScreeImageButtonLink()
+        private async void OpenFullScreenImageButtonLink()
         {
             if (Panel.Button.Action == "OpenURL")
             {
@@ -134,15 +134,15 @@ namespace ProtonVPN.Windows.Popups.Offers
                 _logger.Error<AppLog>($"Unsupported button action {Panel.Button.Action}");
             }
 
-            TryClose();
+            await TryCloseAsync();
         }
 
-        protected virtual void ButtonAction()
+        protected virtual async void ButtonAction()
         {
             if (_buttonUrl != null)
             {
                 _buttonUrl.Open();
-                TryClose();
+                await TryCloseAsync();
             }
         }
     }

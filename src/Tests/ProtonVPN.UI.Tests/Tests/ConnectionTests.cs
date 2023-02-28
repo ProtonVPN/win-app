@@ -194,6 +194,10 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void CancelConnectionWhileConnecting()
         {
+            _homeWindow.NavigateToSettings()
+                .NavigateToConnectionTab()
+                .SelectProtocolOpenVpnUdp()
+                .CloseSettings();
             _homeWindow.PressQuickConnectButton()
                 .CancelConnection()
                 .WaitUntilDisconnected();

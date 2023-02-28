@@ -140,7 +140,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
             // Act
             _timer.Tick += Raise.Event();
             // Assert
-            _dialogs.ReceivedWithAnyArgs(1).ShowWarning("");
+            await _dialogs.ReceivedWithAnyArgs(1).ShowWarningAsync("");
         }
 
         [TestMethod]
@@ -178,7 +178,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
             // Act
             _timer.Tick += Raise.Event();
             // Assert
-            _dialogs.ReceivedWithAnyArgs(1).ShowWarning("");
+            await _dialogs.ReceivedWithAnyArgs(1).ShowWarningAsync("");
         }
 
         [TestMethod]

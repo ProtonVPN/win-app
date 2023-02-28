@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
 using Caliburn.Micro;
@@ -48,16 +49,16 @@ namespace ProtonVPN.Modals
             _windowManager = windowManager;
         }
 
-        public bool? Show<T>(dynamic options = null) where T : IModal
+        public async Task<bool?> ShowAsync<T>(dynamic options = null) where T : IModal
         {
-            return _scheduler.Schedule<bool?>(() =>
+            return await _scheduler.Schedule<Task<bool?>>(async () =>
             {
                 if (IsOpen<T>())
                 {
                     return false;
                 }
 
-                return _windowManager.ShowDialog(Screen<T>(options), null, Settings());
+                return await _windowManager.ShowDialogAsync(Screen<T>(options), null, Settings());
             });
         }
 
@@ -101,16 +102,16 @@ namespace ProtonVPN.Modals
             }
         }
 
-        public bool? Show(Type type, dynamic options = null)
+        public async Task<bool?> ShowAsync(Type type, dynamic options = null)
         {
-            return _scheduler.Schedule<bool?>(() =>
+            return await _scheduler.Schedule<Task<bool?>>(async () =>
             {
                 if (IsOpen(type))
                 {
                     return false;
                 }
 
-                return _windowManager.ShowDialog(Screen(type, options), null, Settings());
+                return await _windowManager.ShowDialogAsync(Screen(type, options), null, Settings());
             });
         }
 

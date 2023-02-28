@@ -41,30 +41,16 @@ namespace ProtonVPN.Core.Update
             _config = config;
         }
 
-        public IEnumerable<Uri> GetFeedUrls()
+        public Uri GetFeedUrl()
         {
             if (_feedType is FeedType.Internal)
             {
-                if (IsSystemCompatibleWithNet6())
-                {
-                    yield return new Uri(GlobalConfig.InternalReleaseUpdateUrl);
-                }
-                yield return new Uri(GlobalConfig.InternalReleaseOldUpdateUrl);
+                return new Uri(GlobalConfig.InternalReleaseUpdateUrl);
             }
             else
             {
-                if (IsSystemCompatibleWithNet6())
-                {
-                    yield return new Uri(_config.Urls.UpdateUrl);
-                }
-                yield return new Uri(_config.Urls.OldUpdateUrl);
+                return new Uri(_config.Urls.UpdateUrl);
             }
-        }
-
-        private bool IsSystemCompatibleWithNet6()
-        {
-            return Environment.OSVersion.Version.Major >= 10
-                && Environment.Is64BitOperatingSystem;
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)

@@ -56,7 +56,7 @@ namespace ProtonVPN.Core
             if (networkTime.HasValue && Math.Abs((networkTime.Value - DateTime.UtcNow).TotalSeconds) > TIME_LIMIT_IN_SECONDS)
             {
                 _logger.Warn<OperatingSystemLog>("Incorrect system time detected.");
-                _modals.Show<IncorrectSystemTimeModalViewModel>();
+                await _modals.ShowAsync<IncorrectSystemTimeModalViewModel>();
             }
         }
     }

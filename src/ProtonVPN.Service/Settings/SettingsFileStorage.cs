@@ -21,11 +21,11 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Text.Serialization;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
-    public class SettingsFileStorage : FileStorageBase<SettingsContract>, ISettingsFileStorage
+    public class SettingsFileStorage : FileStorageBase<MainSettingsIpcEntity>, ISettingsFileStorage
     {
         public SettingsFileStorage(ILogger logger,
             ITextSerializerFactory serializerFactory, IConfiguration config)

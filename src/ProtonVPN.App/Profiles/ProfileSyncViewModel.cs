@@ -20,7 +20,7 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Settings;

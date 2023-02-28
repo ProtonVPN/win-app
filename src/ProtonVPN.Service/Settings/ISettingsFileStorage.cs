@@ -18,11 +18,11 @@
  */
 
 using ProtonVPN.Common.FileStoraging;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
-    public interface ISettingsFileStorage : IFileStorageBase<SettingsContract>
+    public interface ISettingsFileStorage : IFileStorageBase<MainSettingsIpcEntity>
     {
     }
 }

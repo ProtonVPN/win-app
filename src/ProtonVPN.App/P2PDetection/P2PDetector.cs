@@ -86,13 +86,13 @@ namespace ProtonVPN.P2PDetection
             {
                 _logger.Info<AppLog>("Blocked traffic detected");
                 StopTimer();
-                ShowBlockedTrafficModal();
+                await ShowBlockedTrafficModalAsync();
             }
         }
 
-        private void ShowBlockedTrafficModal()
+        private async Task ShowBlockedTrafficModalAsync()
         {
-            _dialogs.ShowWarning(Translation.Get("Dialogs_P2PBlocked_msg_Blocked"));
+            await _dialogs.ShowWarningAsync(Translation.Get("Dialogs_P2PBlocked_msg_Blocked"));
         }
 
         private void StartTimer()

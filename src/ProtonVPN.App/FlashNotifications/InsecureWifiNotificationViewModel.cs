@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Notifications;

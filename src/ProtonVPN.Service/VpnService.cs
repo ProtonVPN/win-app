@@ -18,9 +18,7 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 using ProtonVPN.Common.Configuration;
@@ -31,9 +29,8 @@ using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Service;
-using ProtonVPN.Common.ServiceModel.Server;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
 
@@ -41,35 +38,39 @@ namespace ProtonVPN.Service
 {
     internal partial class VpnService : ServiceBase
     {
+        public CancellationToken CancellationToken { get; private set; }
+
+        private readonly CancellationTokenSource _cancellationTokenSource;
         private readonly ILogger _logger;
         private readonly IEventPublisher _eventPublisher;
         private readonly IConfiguration _config;
         private readonly IOsProcesses _osProcesses;
         private readonly IVpnConnection _vpnConnection;
-        private readonly List<ServiceHostFactory> _serviceHostsFactories;
-        private readonly List<SafeServiceHost> _hosts;
         private readonly Ipv6 _ipv6;
         private bool _isConnected;
+        private IGrpcServer _grpcServer;
 
         public VpnService(
             ILogger logger,
             IEventPublisher eventPublisher,
             IConfiguration config,
             IOsProcesses osProcesses,
-            IEnumerable<ServiceHostFactory> serviceHostsFactories,
             IVpnConnection vpnConnection,
-            Ipv6 ipv6)
+            Ipv6 ipv6,
+            IGrpcServer grpcServer)
         {
             _logger = logger;
             _eventPublisher = eventPublisher;
             _config = config;
             _osProcesses = osProcesses;
-            _serviceHostsFactories = new(serviceHostsFactories);
             _vpnConnection = vpnConnection;
             _ipv6 = ipv6;
+            _grpcServer = grpcServer;
             _vpnConnection.StateChanged += OnVpnStateChanged;
 
-            _hosts = new();
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken = _cancellationTokenSource.Token;
+
             InitializeComponent();
         }
 
@@ -77,12 +78,7 @@ namespace ProtonVPN.Service
         {
             try
             {
-                foreach (ServiceHostFactory factory in _serviceHostsFactories)
-                {
-                    SafeServiceHost host = factory.Create();
-                    host.Open();
-                    _hosts.Add(host);
-                }
+                _grpcServer.CreateAndStart();
             }
             catch (Exception ex)
             {
@@ -92,7 +88,7 @@ namespace ProtonVPN.Service
             }
         }
 
-        protected override void OnStop()
+        protected override async void OnStop()
         {
             try
             {
@@ -107,17 +103,17 @@ namespace ProtonVPN.Service
                     _ipv6.Enable();
                 }
 
-                foreach (SafeServiceHost host in _hosts.ToList())
-                {
-                    _hosts.Remove(host);
-                    host.Dispose();
-                }
+                await _grpcServer?.KillAsync();
             }
             catch (Exception ex)
             {
                 _logger.Error<AppServiceStopFailedLog>("An error occurred when stopping VPN Service.", ex);
                 LogEvent($"OnStop: {ex}");
                 _eventPublisher.CaptureError(ex);
+            }
+            finally
+            {
+                _cancellationTokenSource.Cancel();
             }
         }
 

@@ -22,7 +22,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Modals;
@@ -103,11 +103,10 @@ namespace ProtonVPN.Profiles.Form
             get => _selectedServer;
             set
             {
-                if (ShowUpgradeModal(value))
+                if (IsToShowUpsellModal(value))
                 {
-                    _modals.Show<UpsellModalViewModel>();
+                    _modals.ShowAsync<UpsellModalViewModel>().Wait();
                 }
-
                 Set(ref _selectedServer, value);
                 _unsavedChanges = true;
             }
@@ -231,11 +230,11 @@ namespace ProtonVPN.Profiles.Form
             ClearServers();
         }
 
-        public bool? Cancel()
+        public async Task<bool?> CancelAsync()
         {
             if (HasUnsavedChanges())
             {
-                bool? result = ShowDiscardModal();
+                bool? result = await ShowDiscardModalAsync();
                 if (result == false)
                 {
                     _unsavedChanges = false;
@@ -364,7 +363,7 @@ namespace ProtonVPN.Profiles.Form
             }
         }
 
-        private bool ShowUpgradeModal(IServerViewModel value)
+        private bool IsToShowUpsellModal(IServerViewModel value)
         {
             if (value != null && value.UpgradeRequired)
             {
@@ -384,14 +383,14 @@ namespace ProtonVPN.Profiles.Form
             return false;
         }
 
-        private bool? ShowDiscardModal()
+        private async Task<bool?> ShowDiscardModalAsync()
         {
             DialogSettings settings = DialogSettings
                 .FromMessage(Translation.Get("Profiles_Profile_msg_DiscardChangesConfirm"))
                 .WithPrimaryButtonText(Translation.Get("Profiles_Profile_btn_KeepEditing"))
                 .WithSecondaryButtonText(Translation.Get("Profiles_Profile_btn_Discard"));
 
-            return _dialogs.ShowQuestion(settings);
+            return await _dialogs.ShowQuestionAsync(settings);
         }
     }
 }

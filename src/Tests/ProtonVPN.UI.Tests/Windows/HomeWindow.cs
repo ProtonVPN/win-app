@@ -146,13 +146,15 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public HomeWindow PerformConnectionViaMap(string countryCode)
         {
+            MoveMouseToElement(CountryPin(countryCode), 0, 20);
             CountryPin(countryCode).FindFirstChild().AsButton().Invoke();
             return this;
         }
 
         public HomeWindow PerformConnectionViaMapSecureCore(string countryCode)
         {
-            CountryPin(countryCode).FindFirstChild().FindFirstChild().AsButton().Invoke();
+            MoveMouseToElement(CountryPin(countryCode), 0, 20);
+            CountryPin(countryCode).FindFirstChild().FindFirstChild().Click();
             return this;
         }
 
@@ -179,12 +181,6 @@ namespace ProtonVPN.UI.Tests.Windows
         public HomeWindow ClickWindowsCloseButton()
         {
             ModalCloseButton.Click();
-            return this;
-        }
-
-        public HomeWindow ClickOnSidebarModeButton()
-        {
-            SidebarModeButton.Click();
             return this;
         }
 
