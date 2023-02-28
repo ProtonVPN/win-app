@@ -110,7 +110,8 @@ namespace ProtonVPN.UI.Tests
 
         protected static void LaunchApp()
         {
-            App = Application.Launch(TestConstants.AppFolderPath + @"\ProtonVPN.exe");
+            string[] path = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
+            App = Application.Launch(path[0] + @"\ProtonVPN.exe");
         }
 
         protected static void KillProtonVpnProcess()

@@ -19,7 +19,7 @@
 
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.Translations;
 
@@ -52,7 +52,7 @@ namespace ProtonVPN.BugReporting.Screens
 
         private void FinishReportAction()
         {
-            _eventAggregator.PublishOnUIThread(new FinishReportAction());
+            _eventAggregator.PublishOnUIThreadAsync(new FinishReportAction());
         }
     }
 }

@@ -21,7 +21,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
@@ -332,7 +332,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             {
                 if (!_appSettings.DoNotShowDiscourageSecureCoreDialog)
                 {
-                    bool? result = _modals.Show<DiscourageSecureCoreModalViewModel>();
+                    bool? result = await _modals.ShowAsync<DiscourageSecureCoreModalViewModel>();
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -388,7 +388,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
             if (!_appSettings.DoNotShowKillSwitchConfirmationDialog)
             {
-                bool? result = _modals.Show<KillSwitchConfirmationModalViewModel>();
+                bool? result = await _modals.ShowAsync<KillSwitchConfirmationModalViewModel>();
                 if (result.HasValue && !result.Value)
                 {
                     return;
@@ -481,19 +481,19 @@ namespace ProtonVPN.Sidebar.QuickSettings
             _urls.AboutPortForwardingUrl.Open();
         }
 
-        private void ShowSecureCoreUpsellModalAction()
+        private async void ShowSecureCoreUpsellModalAction()
         {
-            _modals.Show<SecureCoreUpsellModalViewModel>();
+            await _modals.ShowAsync<SecureCoreUpsellModalViewModel>();
         }
 
-        private void ShowNetshieldUpsellModalAction()
+        private async void ShowNetshieldUpsellModalAction()
         {
-            _modals.Show<NetshieldUpsellModalViewModel>();
+            await _modals.ShowAsync<NetshieldUpsellModalViewModel>();
         }
 
-        private void ShowPortForwardingUpsellModalAction()
+        private async void ShowPortForwardingUpsellModalAction()
         {
-            _modals.Show<PortForwardingUpsellModalViewModel>();
+            await _modals.ShowAsync<PortForwardingUpsellModalViewModel>();
         }
 
         private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)

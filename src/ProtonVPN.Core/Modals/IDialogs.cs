@@ -17,16 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+
 namespace ProtonVPN.Core.Modals
 {
     public interface IDialogs
     {
-        bool? ShowWarning(string message);
+        Task<bool?> ShowWarningAsync(string message);
 
-        bool? ShowWarning(string message, string buttonLabel);
+        Task<bool?> ShowWarningAsync(string message, string buttonLabel);
 
-        bool? ShowQuestion(string message);
+        Task<bool?> ShowQuestionAsync(string message);
 
-        bool? ShowQuestion(IDialogSettings settings);
+        Task<bool?> ShowQuestionAsync(IDialogSettings settings);
     }
 }

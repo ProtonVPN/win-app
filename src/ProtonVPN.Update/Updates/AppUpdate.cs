@@ -96,7 +96,9 @@ namespace ProtonVPN.Update.Updates
         public async Task<IAppUpdate> Downloaded()
         {
             if (Available && !Ready)
+            {
                 await _state.AppUpdates.Download(_state.NewRelease);
+            }
 
             return this;
         }
@@ -109,13 +111,7 @@ namespace ProtonVPN.Update.Updates
 
         public async Task<IAppUpdate> Started(bool auto)
         {
-            if (auto && _state.NewRelease.DisableAutoUpdate)
-            {
-                throw new AppUpdateException("Automatic update to this release is disabled");
-            }
-
             await _state.AppUpdates.StartUpdate(_state.NewRelease);
-
             return this;
         }
 
@@ -129,7 +125,9 @@ namespace ProtonVPN.Update.Updates
             state.Releases = releases;
             state.NewRelease = newRelease;
             if (releaseChanged)
+            {
                 state.Ready = false;
+            }
 
             return new AppUpdate(state);
         }

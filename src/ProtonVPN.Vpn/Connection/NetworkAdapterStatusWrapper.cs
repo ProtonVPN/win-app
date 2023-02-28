@@ -29,6 +29,7 @@ using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.Networks;
 
 namespace ProtonVPN.Vpn.Connection
@@ -39,6 +40,8 @@ namespace ProtonVPN.Vpn.Connection
         private readonly IEventPublisher _eventPublisher;
         private readonly INetworkAdapterManager _networkAdapterManager;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private readonly WintunAdapter _wintunAdapter;
+        private readonly TapAdapter _tapAdapter;
         private readonly ISingleVpnConnection _origin;
 
         private VpnEndpoint _endpoint;
@@ -51,11 +54,15 @@ namespace ProtonVPN.Vpn.Connection
             IEventPublisher eventPublisher,
             INetworkAdapterManager networkAdapterManager,
             INetworkInterfaceLoader networkInterfaceLoader,
+            WintunAdapter wintunAdapter,
+            TapAdapter tapAdapter,
             ISingleVpnConnection origin)
         {
             _logger = logger;
             _eventPublisher = eventPublisher;
             _networkAdapterManager = networkAdapterManager;
+            _wintunAdapter = wintunAdapter;
+            _tapAdapter = tapAdapter;
             _networkInterfaceLoader = networkInterfaceLoader;
             _origin = origin;
 
@@ -82,15 +89,27 @@ namespace ProtonVPN.Vpn.Connection
                 _logger.Info<ConnectLog>("WireGuard protocol selected. No network adapters to check.");
                 Connect();
             }
-            else if (IsOpenVpnNetworkAdapterAvailable(config.OpenVpnAdapter))
-            {
-                _logger.Info<ConnectLog>("Preferred network adapter found. " +
-                    $"(Protocol: {_config.VpnProtocol}, OpenVpnAdapter: {_config.OpenVpnAdapter})");
-                Connect();
-            }
             else
             {
-                HandleOpenVpnAdapterUnavailable();
+                if (config.OpenVpnAdapter == OpenVpnAdapter.Tun)
+                {
+                    _wintunAdapter.Create();
+                }
+                else
+                {
+                    _tapAdapter.Create();
+                }
+
+                if (IsOpenVpnNetworkAdapterAvailable(config.OpenVpnAdapter))
+                {
+                    _logger.Info<ConnectLog>("Preferred network adapter found. " +
+                                             $"(Protocol: {_config.VpnProtocol}, OpenVpnAdapter: {_config.OpenVpnAdapter})");
+                    Connect();
+                }
+                else
+                {
+                    HandleOpenVpnAdapterUnavailable();
+                }
             }
         }
 
@@ -201,6 +220,10 @@ namespace ProtonVPN.Vpn.Connection
             if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol == VpnProtocol.WireGuard)
             {
                 HandleConnectedWithWireGuard();
+            }
+            else if (e.Data.Status == VpnStatus.Disconnected && e.Data.VpnProtocol is VpnProtocol.OpenVpnTcp or VpnProtocol.OpenVpnUdp)
+            {
+                _wintunAdapter.Close();
             }
             else if (e.Data.Error != VpnError.None &&
                      e.Data.Error != VpnError.NoneKeepEnabledKillSwitch &&

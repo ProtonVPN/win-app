@@ -38,7 +38,7 @@ namespace ProtonVPN.Common.OS.Registry
         {
             _logger = logger;
             _name = appConfig.AppName;
-            _command = appConfig.AppExePath;
+            _command = appConfig.AppLauncherExePath;
         }
 
         public bool Exists()

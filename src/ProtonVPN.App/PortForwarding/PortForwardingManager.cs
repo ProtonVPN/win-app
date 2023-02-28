@@ -57,7 +57,7 @@ namespace ProtonVPN.PortForwarding
             }
             else
             {
-                _modals.Show<PortForwardingUpsellModalViewModel>();
+                await _modals.ShowAsync<PortForwardingUpsellModalViewModel>();
             }
         }
 
@@ -69,7 +69,7 @@ namespace ProtonVPN.PortForwarding
             }
             else
             {
-                bool? result = _modals.Show<PortForwardingConfirmationModalViewModel>();
+                bool? result = await _modals.ShowAsync<PortForwardingConfirmationModalViewModel>();
 
                 if (result.HasValue && result.Value)
                 {

@@ -30,6 +30,7 @@ using System.Windows.Forms;
 using System.Windows.Threading;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using System.Threading;
 
 namespace ProtonVPN.Windows
 {
@@ -167,7 +168,7 @@ namespace ProtonVPN.Windows
             _nIcon.Icon = _notConnected.Value();
         }
 
-        public void Handle(ShowNotificationMessage message)
+        public async Task HandleAsync(ShowNotificationMessage message, CancellationToken cancellationToken)
         {
             ShowBalloon(message.Text);
         }

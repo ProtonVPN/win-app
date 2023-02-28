@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using ProtonVPN.Api.Contracts.Servers;
@@ -80,7 +81,8 @@ namespace ProtonVPN.Core.Servers
             _timer.Stop();
         }
 
-        public void Handle(WindowStateMessage message)
+        // [.NET Migration] TO DO: Use CancellationToken
+        public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
             if (!message.Active || !TimeToUpdateLoads())
             {

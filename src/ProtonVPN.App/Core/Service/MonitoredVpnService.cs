@@ -31,7 +31,7 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service
 {
-    internal class MonitoredVpnService : IVpnStateAware, IConcurrentService
+    public class MonitoredVpnService : IMonitoredVpnService, IVpnStateAware, IConcurrentService
     {
         private VpnStatus _vpnStatus;
         private readonly DispatcherTimer _timer = new();
@@ -54,9 +54,9 @@ namespace ProtonVPN.Core.Service
 
         public string Name => _service.Name;
 
-        public bool Running() => _service.Running();
+        public bool IsRunning() => _service.IsRunning();
 
-        public bool Enabled() => _service.Enabled();
+        public bool IsEnabled() => _service.IsEnabled();
 
         public void Enable() => _service.Enable();
 
@@ -67,7 +67,7 @@ namespace ProtonVPN.Core.Service
 
         public Task<Result> StopAsync() => _service.StopAsync();
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             _vpnStatus = e.State.Status;
 
@@ -80,13 +80,11 @@ namespace ProtonVPN.Core.Service
             {
                 _timer.Stop();
             }
-
-            return Task.CompletedTask;
         }
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            if (_vpnStatus == VpnStatus.Disconnected || _vpnStatus == VpnStatus.Disconnecting || Running())
+            if (_vpnStatus == VpnStatus.Disconnected || _vpnStatus == VpnStatus.Disconnecting || IsRunning())
             {
                 return;
             }

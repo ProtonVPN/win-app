@@ -62,7 +62,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_ShouldContain_AllReleases_FromCategories()
         {
-            string json = File.ReadAllText(@"TestData\win-update.json");
+            string json = File.ReadAllText(@"TestData\windows-releases.json");
             CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             Update.Releases.Releases releases = new(categories.Categories, new Version(), "");
 
@@ -72,7 +72,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_Version_ShouldBe_FromReleases()
         {
-            string json = File.ReadAllText(@"TestData\win-update.json");
+            string json = File.ReadAllText(@"TestData\windows-releases.json");
             CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             List<Version> expected = categories.Categories.SelectMany(c => c.Releases).Select(r => Version.Parse(r.Version)).ToList();
 
@@ -88,7 +88,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_EarlyAccess_ShouldBeTrue_ForEarlyAccess()
         {
-            string json = File.ReadAllText(@"TestData\win-update.json");
+            string json = File.ReadAllText(@"TestData\windows-releases.json");
             CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             Update.Releases.Releases releases = new(categories.Categories, new Version(), "EarlyAccess");
 
@@ -98,7 +98,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_New_ShouldBeTrue_ForNewReleases()
         {
-            string json = File.ReadAllText(@"TestData\win-update.json");
+            string json = File.ReadAllText(@"TestData\windows-releases.json");
             CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             Update.Releases.Releases releases = new(categories.Categories, Version.Parse("1.5.0"), "");
 

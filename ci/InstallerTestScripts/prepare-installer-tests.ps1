@@ -3,7 +3,7 @@ $virtualMachinesPath = Join-Path -Path $env:CI_PROJECT_DIR -ChildPath "\ci\Insta
 
 $testStatus = @{}
 $installerSharedFolderPath = "C:/Shared/Installers/" + $env:CI_PROJECT_ID
-$installerPath = $env:CI_PROJECT_DIR + "/setup/ProtonVPN-SetupFiles/*.exe"
+$installerPath = $env:CI_PROJECT_DIR + "/setup/Installers/*.exe"
 $testScriptsSharedPath = "C:/Shared/Scripts/"
 $testScriptsPath = $env:CI_PROJECT_DIR + "/src/Tests/ProtonVPN.UI.Tests/InstallerScripts/FreshInstall.xml"
 $testRunnerScript = $env:CI_PROJECT_DIR + "/ci/InstallerTestScripts/run-installer-tests.ps1"

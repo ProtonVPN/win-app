@@ -105,7 +105,7 @@ namespace ProtonVPN.Api.Handlers
             {
                 await Semaphore.WaitAsync();
 
-                bool? result = _humanVerifier.Verify(hvToken);
+                bool? result = await _humanVerifier.VerifyAsync(hvToken);
                 if (result.HasValue && result.Value)
                 {
                     string token = _humanVerifier.GetResolvedToken();

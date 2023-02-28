@@ -220,11 +220,11 @@ namespace ProtonVPN.Vpn.Connectors
             return profile.Features;
         }
 
-        public void HandleNoServersAvailable(VpnManagerProfileCandidates profileCandidates)
+        public async Task HandleNoServersAvailableAsync(VpnManagerProfileCandidates profileCandidates)
         {
             if (profileCandidates.Profile.ProfileType == ProfileType.Custom)
             {
-                HandleNoCustomServerAvailable(profileCandidates.Candidates.FirstOrDefault());
+                await HandleNoCustomServerAvailableAsync(profileCandidates.Candidates.FirstOrDefault());
                 return;
             }
 
@@ -238,7 +238,7 @@ namespace ProtonVPN.Vpn.Connectors
                 (profileCandidates.Profile.IsPredefined && _appSettings.SecureCore)) &&
                 _userStorage.GetUser().MaxTier < ServerTiers.Plus)
             {
-                _modals.Show<SecureCoreUpsellModalViewModel>();
+                await _modals.ShowAsync<SecureCoreUpsellModalViewModel>();
                 return;
             }
 
@@ -246,19 +246,19 @@ namespace ProtonVPN.Vpn.Connectors
                  (profileCandidates.Profile.IsPredefined && _appSettings.IsPortForwardingEnabled())) &&
                 _userStorage.GetUser().MaxTier < ServerTiers.Plus)
             {
-                _modals.Show<PortForwardingUpsellModalViewModel>();
+                await _modals.ShowAsync<PortForwardingUpsellModalViewModel>();
                 return;
             }
 
             if (!string.IsNullOrEmpty(profileCandidates.Profile.CountryCode))
             {
-                HandleNoCountryServersAvailable(profileCandidates.Candidates);
+                await HandleNoCountryServersAvailableAsync(profileCandidates.Candidates);
                 return;
             }
 
             if (!profileCandidates.Candidates.Any())
             {
-                _dialogs.ShowWarning(Translation.Get("Profiles_msg_NoServersAvailable"));
+                await _dialogs.ShowWarningAsync(Translation.Get("Profiles_msg_NoServersAvailable"));
                 return;
             }
 
@@ -266,24 +266,24 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!userTierServers.Any())
             {
-                _modals.Show<UpsellModalViewModel>();
+                await _modals.ShowAsync<UpsellModalViewModel>();
                 return;
             }
 
             if (!profileCandidates.Candidates.OnlineServers().Any())
             {
-                _dialogs.ShowWarning(Translation.Get("Profiles_msg_AllServersOffline"));
+                await _dialogs.ShowWarningAsync(Translation.Get("Profiles_msg_AllServersOffline"));
                 return;
             }
 
-            _modals.Show<UpsellModalViewModel>();
+            await _modals.ShowAsync<UpsellModalViewModel>();
         }
 
-        private void HandleNoCountryServersAvailable(IReadOnlyCollection<Server> candidates)
+        private async Task HandleNoCountryServersAvailableAsync(IReadOnlyCollection<Server> candidates)
         {
             if (!candidates.Any())
             {
-                _dialogs.ShowWarning(Translation.Get("Profiles_msg_NoServersAvailable"));
+                await _dialogs.ShowWarningAsync(Translation.Get("Profiles_msg_NoServersAvailable"));
                 return;
             }
 
@@ -291,17 +291,17 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (!userTierServers.Any())
             {
-                _modals.Show<UpsellModalViewModel>();
+                await _modals.ShowAsync<UpsellModalViewModel>();
                 return;
             }
 
             if (!candidates.OnlineServers().Any())
             {
-                _dialogs.ShowWarning(Translation.Get("Profiles_msg_CountryOffline"));
+                await _dialogs.ShowWarningAsync(Translation.Get("Profiles_msg_CountryOffline"));
                 return;
             }
 
-            _modals.Show<UpsellModalViewModel>();
+            await _modals.ShowAsync<UpsellModalViewModel>();
         }
 
         private VpnConfig VpnConfig(VpnProtocol protocol)
@@ -379,7 +379,7 @@ namespace ProtonVPN.Vpn.Connectors
             Result<VpnCredentials> credentialsResult = await _vpnCredentialProvider.Credentials();
             if (credentialsResult.Failure)
             {
-                _dialogs.ShowWarning(Translation.Get("ProfileConnector_msg_MissingAuthCert"));
+                await _dialogs.ShowWarningAsync(Translation.Get("ProfileConnector_msg_MissingAuthCert"));
                 return;
             }
 
@@ -416,11 +416,11 @@ namespace ProtonVPN.Vpn.Connectors
             }
         }
 
-        private void HandleNoCustomServerAvailable(Server server)
+        private async Task HandleNoCustomServerAvailableAsync(Server server)
         {
             if (server == null)
             {
-                HandleEmptyServer();
+                await HandleEmptyServerAsync();
                 return;
             }
 
@@ -432,19 +432,19 @@ namespace ProtonVPN.Vpn.Connectors
 
             if (_userStorage.GetUser().MaxTier < server.Tier)
             {
-                HandleUserTierTooLow(server);
+                await HandleUserTierTooLowAsync(server);
                 return;
             }
 
             if (!server.Online())
             {
-                HandleOfflineServer();
+                await HandleOfflineServerAsync();
             }
         }
 
-        private void HandleEmptyServer()
+        private async Task HandleEmptyServerAsync()
         {
-            _dialogs.ShowWarning(Translation.Get("Servers_msg_CantConnect_Missing"));
+            await _dialogs.ShowWarningAsync(Translation.Get("Servers_msg_CantConnect_Missing"));
         }
 
         private void HandleDelinquentUser()
@@ -453,20 +453,21 @@ namespace ProtonVPN.Vpn.Connectors
             _popupWindows.Show<DelinquencyPopupViewModel>();
         }
 
-        private void HandleOfflineServer()
+        private async Task HandleOfflineServerAsync()
         {
-            _dialogs.ShowWarning(Translation.Get("Servers_msg_CantConnect_Maintenance"));
+            await _dialogs.ShowWarningAsync(Translation.Get("Servers_msg_CantConnect_Maintenance"));
         }
 
-        private void HandleUserTierTooLow(Server server)
+        private async Task HandleUserTierTooLowAsync(Server server)
         {
             if (server.IsSecureCore())
             {
-                _modals.Show<SecureCoreUpsellModalViewModel>();
-                return;
+                await _modals.ShowAsync<SecureCoreUpsellModalViewModel>();
             }
-
-            _modals.Show<UpsellModalViewModel>();
+            else
+            {
+                await _modals.ShowAsync<UpsellModalViewModel>();
+            }
         }
 
         private IReadOnlyList<VpnHost> GetValidServers(IEnumerable<Server> servers)

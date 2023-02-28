@@ -1,347 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{03B8E43C-5680-4803-A745-0A104FE6620C}</ProjectGuid>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProtonVPN.Common</RootNamespace>
-    <AssemblyName>ProtonVPN.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Abstract\GenericResult.cs" />
-    <Compile Include="Cli\CommandLineOption.cs" />
-    <Compile Include="Configuration\Api\Handlers\TlsPinning\TlsPinnedDomain.cs" />
-    <Compile Include="Configuration\Api\Handlers\TlsPinning\TlsPinningConfig.cs" />
-    <Compile Include="Configuration\Config.cs" />
-    <Compile Include="Configuration\ConfigExtensions.cs" />
-    <Compile Include="Configuration\ConfigFactory.cs" />
-    <Compile Include="Configuration\ConfigWriter.cs" />
-    <Compile Include="Configuration\IConfiguration.cs" />
-    <Compile Include="Configuration\IConfigWriter.cs" />
-    <Compile Include="Configuration\WireGuardConfig.cs" />
-    <Compile Include="Configuration\Source\ConfigMode.cs" />
-    <Compile Include="Configuration\Source\CustomConfig.cs" />
-    <Compile Include="Configuration\Source\DefaultConfig.cs" />
-    <Compile Include="Configuration\Source\IConfigSource.cs" />
-    <Compile Include="Configuration\Storage\ConfigFile.cs" />
-    <Compile Include="Configuration\Storage\FileConfigStorage.cs" />
-    <Compile Include="Configuration\Storage\IConfigStorage.cs" />
-    <Compile Include="Configuration\Storage\IStorageFile.cs" />
-    <Compile Include="Configuration\Storage\PropertiesContractResolver.cs" />
-    <Compile Include="Configuration\Storage\SafeConfigStorage.cs" />
-    <Compile Include="Configuration\Storage\ValidatedConfigStorage.cs" />
-    <Compile Include="Configuration\OpenVpnConfig.cs" />
-    <Compile Include="Configuration\UrlConfig.cs" />
-    <Compile Include="Events\EventPublisher.cs" />
-    <Compile Include="Events\IEventPublisher.cs" />
-    <Compile Include="Events\SentryHttpClientHandler.cs" />
-    <Compile Include="Extensions\BoolExtensions.cs" />
-    <Compile Include="Extensions\ByteExtensions.cs" />
-    <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="Extensions\ColorExtensions.cs" />
-    <Compile Include="Extensions\DateTimeExtensions.cs" />
-    <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Extensions\SecureStringExtensions.cs" />
-    <Compile Include="Extensions\TaskExtensions.cs" />
-    <Compile Include="Go\GoExtensions.cs" />
-    <Compile Include="Go\GoString.cs" />
-    <Compile Include="Go\GoBytes.cs" />
-    <Compile Include="Go\PInvoke.cs" />
-    <Compile Include="Helpers\CallerProfile.cs" />
-    <Compile Include="KillSwitch\KillSwitchMode.cs" />
-    <Compile Include="Logging\Categorization\Categories\ApiLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\AppLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\AppServiceLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\AppUpdateLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\ConnectLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\ConnectionLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\DisconnectLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\DnsLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\FirewallLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\GuestHoleLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\LocalAgentLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\NetworkLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\OperativeSystemLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\ProcessLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\ProtocolLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\ServerSwitchLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\SettingsLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\UserCertificateLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\UserInterfaceLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\UserLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Categories\UserPlanLogCategory.cs" />
-    <Compile Include="Logging\Categorization\Events\ApiLogs\ApiErrorLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ApiLogs\ApiLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ApiLogs\ApiRequestLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ApiLogs\ApiResponseLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppLogs\AppCrashLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppLogs\AppLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppLogs\AppStartLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppLogs\AppStopLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppServiceLogs\AppServiceCommunicationFailedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppServiceLogs\AppServiceLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppServiceLogs\AppServiceStartFailedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppServiceLogs\AppServiceStartLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppServiceLogs\AppServiceStopFailedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppServiceLogs\AppServiceStopLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppUpdateLogs\AppUpdateCheckLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppUpdateLogs\AppUpdateLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppUpdateLogs\AppUpdatedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppUpdateLogs\AppUpdateStartLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectionLogs\ConnectionLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectionLogs\ConnectionErrorLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectionLogs\ConnectionStateChangeLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectConnectedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectScanFailLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectScanLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectScanResultLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectStartLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ConnectLogs\ConnectTriggerLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DisconnectLogs\DisconnectLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DisconnectLogs\DisconnectTriggerLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsErrorLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsNameServerLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsResolveLog.cs" />
-    <Compile Include="Logging\Categorization\Events\DnsLogs\DnsResponseLog.cs" />
-    <Compile Include="Logging\Categorization\Events\FirewallLogs\FirewallLog.cs" />
-    <Compile Include="Logging\Categorization\Events\GuestHoleLogs\GuestHoleLog.cs" />
-    <Compile Include="Logging\Categorization\Events\LocalAgentLogs\LocalAgentStateChangeLog.cs" />
-    <Compile Include="Logging\Categorization\Events\LocalAgentLogs\LocalAgentErrorLog.cs" />
-    <Compile Include="Logging\Categorization\Events\LocalAgentLogs\LocalAgentLog.cs" />
-    <Compile Include="Logging\Categorization\Events\NetworkLogs\NetworkUnavailableLog.cs" />
-    <Compile Include="Logging\Categorization\Events\NetworkLogs\NetworkChangedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\NetworkLogs\NetworkLog.cs" />
-    <Compile Include="Logging\Categorization\Events\AppLogs\AppFileAccessFailedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\OperatingSystemLogs\OperatingSystemLog.cs" />
-    <Compile Include="Logging\Categorization\Events\OperatingSystemLogs\OperatingSystemRegistryAccessFailedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\OperatingSystemLogs\OperatingSystemRegistryChangedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ProcessLogs\ProcessLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ProcessLogs\ProcessStartLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ProcessLogs\ProcessStopLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ProtocolLogs\ProtocolLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ServerSwitchLogs\ServerSwitchFailedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ServerSwitchLogs\ServerSwitchLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ServerSwitchLogs\ServerSwitchSelectedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\ServerSwitchLogs\ServerSwitchTriggerLog.cs" />
-    <Compile Include="Logging\Categorization\Events\SettingsLogs\SettingsChangeLog.cs" />
-    <Compile Include="Logging\Categorization\Events\SettingsLogs\SettingsLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserCertificateLogs\UserCertificateLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserCertificateLogs\UserCertificateNewLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserCertificateLogs\UserCertificateRefreshErrorLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserCertificateLogs\UserCertificateRefreshLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserCertificateLogs\UserCertificateRevokedLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserCertificateLogs\UserCertificateScheduleRefreshLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserInterfaceLogs\UserInterfaceExitLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserInterfaceLogs\UserInterfaceLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserLogs\UserLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserPlanLogs\UserPlanChangeLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserPlanLogs\UserPlanLog.cs" />
-    <Compile Include="Logging\Categorization\Events\UserPlanLogs\UserPlanMaxSessionsReachedLog.cs" />
-    <Compile Include="Logging\Categorization\ILogEvent.cs" />
-    <Compile Include="Logging\Categorization\LogEventBase.cs" />
-    <Compile Include="Logging\Categorization\ILogCategory.cs" />
-    <Compile Include="Logging\Log4Net\Log4NetLogger.cs" />
-    <Compile Include="Logging\Log4Net\Log4NetLoggerFactory.cs" />
-    <Compile Include="Logging\LoggerExtensions.cs" />
-    <Compile Include="Networking\IpAddress.cs" />
-    <Compile Include="Networking\OpenVpnAdapter.cs" />
-    <Compile Include="Networking\VpnProtocol.cs" />
-    <Compile Include="OS\DeviceInfoProvider.cs" />
-    <Compile Include="OS\IDeviceInfoProvider.cs" />
-    <Compile Include="OS\Net\Http\HttpRequestMessageExtensions.cs" />
-    <Compile Include="OS\Net\INetworkInterfaceLoader.cs" />
-    <Compile Include="OS\Net\NetworkInterfaceLoader.cs" />
-    <Compile Include="OS\Net\NetworkAddress.cs" />
-    <Compile Include="OS\Net\NetworkUtil.cs" />
-    <Compile Include="OS\Net\NetworkUtilException.cs" />
-    <Compile Include="OS\Net\PInvoke.cs" />
-    <Compile Include="OS\Net\Routing\Ip4RouteEntry.cs" />
-    <Compile Include="OS\Net\Routing\IPForwardTable.cs" />
-    <Compile Include="OS\Net\Routing\MibIPForwardRow.cs" />
-    <Compile Include="OS\Net\Routing\MibIPInterfaceRow.cs" />
-    <Compile Include="OS\Net\Routing\PInvoke.cs" />
-    <Compile Include="OS\Net\Routing\RoutingTableHelper.cs" />
-    <Compile Include="OS\Processes\BaseSystemProcess.cs" />
-    <Compile Include="OS\Processes\CmdOutputProcess.cs" />
-    <Compile Include="OS\Processes\ProcessStartInfoExtensions.cs" />
-    <Compile Include="OS\Services\ConcurrentService.cs" />
-    <Compile Include="OS\Services\IServiceEnabler.cs" />
-    <Compile Include="OS\Services\ISafeServiceAction.cs" />
-    <Compile Include="OS\Services\IConcurrentService.cs" />
-    <Compile Include="OS\Services\IService.cs" />
-    <Compile Include="OS\Services\IServiceRetryPolicy.cs" />
-    <Compile Include="OS\Services\LoggingService.cs" />
-    <Compile Include="OS\Services\ReliableService.cs" />
-    <Compile Include="OS\Services\SafeService.cs" />
-    <Compile Include="OS\Services\Service.cs" />
-    <Compile Include="OS\Services\ServiceControllerExtensions.cs" />
-    <Compile Include="OS\Services\ServiceRetryPolicy.cs" />
-    <Compile Include="OS\Services\SystemService.cs" />
-    <Compile Include="OS\Services\Win32.cs" />
-    <Compile Include="PortForwarding\MappedPort.cs" />
-    <Compile Include="PortForwarding\PortForwardingState.cs" />
-    <Compile Include="PortForwarding\PortMappingStatus.cs" />
-    <Compile Include="PortForwarding\TemporaryMappedPort.cs" />
-    <Compile Include="Service\Validation\IObjectValidator.cs" />
-    <Compile Include="Service\Validation\ParameterValidatingBehavior.cs" />
-    <Compile Include="Service\Validation\ValidatableObjectValidator.cs" />
-    <Compile Include="Service\Validation\ValidatingParameterInspector.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Extensions\ExceptionMessageExtensions.cs" />
-    <Compile Include="Extensions\ExceptionTypeExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\TimeSpanExtensions.cs" />
-    <Compile Include="Helpers\Ensure.cs" />
-    <Compile Include="EventArgsTValue.cs" />
-    <Compile Include="Extensions\VersionExtensions.cs" />
-    <Compile Include="Helpers\HashCode.cs" />
-    <Compile Include="Helpers\RandomStrings.cs" />
-    <Compile Include="Helpers\StructConverter.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\ILoggerFactory.cs" />
-    <Compile Include="Logging\LogCleaner.cs" />
-    <Compile Include="OS\Event\EventLog.cs" />
-    <Compile Include="OS\Net\Http\HttpClients.cs" />
-    <Compile Include="OS\Net\Http\HttpStatusCodeExtensions.cs" />
-    <Compile Include="OS\Net\Http\IHttpClient.cs" />
-    <Compile Include="OS\Net\Http\IHttpClients.cs" />
-    <Compile Include="OS\Net\Http\IHttpContent.cs" />
-    <Compile Include="OS\Net\Http\IHttpResponseMessage.cs" />
-    <Compile Include="OS\Net\Http\WrappedHttpClient.cs" />
-    <Compile Include="OS\Net\Http\WrappedHttpContent.cs" />
-    <Compile Include="OS\Net\Http\WrappedHttpResponseMessage.cs" />
-    <Compile Include="OS\Net\NetworkInterface\INetworkInterface.cs" />
-    <Compile Include="OS\Net\NetworkInterface\INetworkInterfaces.cs" />
-    <Compile Include="OS\Net\NetworkInterface\NullNetworkInterface.cs" />
-    <Compile Include="OS\Net\NetworkInterface\SystemNetworkInterface.cs" />
-    <Compile Include="OS\Net\NetworkInterface\SafeSystemNetworkInterfaces.cs" />
-    <Compile Include="OS\Net\NetworkInterface\SystemNetworkInterfaces.cs" />
-    <Compile Include="OS\Processes\IOsProcess.cs" />
-    <Compile Include="OS\Processes\IOsProcesses.cs" />
-    <Compile Include="OS\Processes\NullOsProcess.cs" />
-    <Compile Include="OS\Processes\OsProcessesExtensions.cs" />
-    <Compile Include="OS\Processes\SystemProcess.cs" />
-    <Compile Include="OS\Processes\SystemProcesses.cs" />
-    <Compile Include="OS\Registry\ICurrentUserStartupRecord.cs" />
-    <Compile Include="OS\Registry\CurrentUserStartupRecord.cs" />
-    <Compile Include="OS\Registry\ISystemProxy.cs" />
-    <Compile Include="OS\Registry\SafeSystemProxy.cs" />
-    <Compile Include="OS\Registry\SystemProxy.cs" />
-    <Compile Include="OS\Services\DriverService.cs" />
-    <Compile Include="OS\Services\ExceptionExtensions.cs" />
-    <Compile Include="Abstract\Result.cs" />
-    <Compile Include="ServiceModel\Server\InprocHostFactory.cs" />
-    <Compile Include="ServiceModel\Server\SafeServiceHost.cs" />
-    <Compile Include="Service\ErrorHandler.cs" />
-    <Compile Include="Service\ErrorLoggingBehavior.cs" />
-    <Compile Include="Service\SentryDiagnosticLogger.cs" />
-    <Compile Include="Service\ServiceHostFactory.cs" />
-    <Compile Include="SplitTunnelMode.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FileStoraging\FileStorageBase.cs" />
-    <Compile Include="FileStoraging\IFileStorageBase.cs" />
-    <Compile Include="Text\Serialization\ITextSerializerFactory.cs" />
-    <Compile Include="Text\Serialization\ITextSerializer.cs" />
-    <Compile Include="Text\Serialization\JsonSerializer.cs" />
-    <Compile Include="Text\Serialization\JsonSerializerFactory.cs" />
-    <Compile Include="Threading\CancellationHandle.cs" />
-    <Compile Include="Threading\CoalescingAction.cs" />
-    <Compile Include="Threading\CoalescingTaskQueue.cs" />
-    <Compile Include="Threading\CoalescingTaskQueueExtensions.cs" />
-    <Compile Include="Threading\ISchedulerTimer.cs" />
-    <Compile Include="Threading\ISingleAction.cs" />
-    <Compile Include="Threading\ISingleActionFactory.cs" />
-    <Compile Include="Threading\ITaskQueue.cs" />
-    <Compile Include="Threading\ITaskQueueExtensions.cs" />
-    <Compile Include="Threading\IScheduler.cs" />
-    <Compile Include="Threading\SerialTaskQueue.cs" />
-    <Compile Include="Threading\SingleAction.cs" />
-    <Compile Include="Threading\SingleActionFactory.cs" />
-    <Compile Include="Threading\TaskCompletedEventArgs.cs" />
-    <Compile Include="Threading\TaskCompletionSourceExtensions.cs" />
-    <Compile Include="Threading\TaskQueueing\CoalescingTaskQueueData.cs" />
-    <Compile Include="Threading\TaskQueueing\QueuedTask.cs" />
-    <Compile Include="Vpn\ConnectionDetails.cs" />
-    <Compile Include="Vpn\VpnFeatures.cs" />
-    <Compile Include="Vpn\InOutBytes.cs" />
-    <Compile Include="Vpn\VpnConfig.cs" />
-    <Compile Include="Vpn\VpnConfigParameters.cs" />
-    <Compile Include="Vpn\VpnCredentials.cs" />
-    <Compile Include="Vpn\VpnError.cs" />
-    <Compile Include="Vpn\VpnHost.cs" />
-    <Compile Include="Vpn\VpnStatus.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
-      <Project>{B7B19A7B-5A20-4690-81F4-83002CA064FB}</Project>
-      <Name>ProtonVPN.SourceGenerators</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
-      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
-      <Name>ProtonVPN.Crypto</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DeviceId.Windows.Wmi">
@@ -350,6 +31,7 @@
     <PackageReference Include="log4net">
       <Version>2.0.12</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
@@ -359,6 +41,20 @@
     <PackageReference Include="Sentry">
       <Version>3.12.3</Version>
     </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="6.0.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Remove="Configuration\GlobalConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
 </Project>

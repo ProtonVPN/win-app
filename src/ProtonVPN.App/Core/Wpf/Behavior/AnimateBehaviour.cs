@@ -20,8 +20,8 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interactivity;
 using System.Windows.Media.Animation;
+using Microsoft.Xaml.Behaviors;
 
 namespace ProtonVPN.Core.Wpf.Behavior
 {

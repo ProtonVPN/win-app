@@ -33,12 +33,10 @@ using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.About
@@ -50,7 +48,6 @@ namespace ProtonVPN.About
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
-        private readonly ISystemState _systemState;
         private readonly ISettingsServiceClientManager _settingsServiceClientManager;
         private readonly IConfiguration _appConfig;
 
@@ -63,7 +60,6 @@ namespace ProtonVPN.About
             IOsProcesses osProcesses,
             IModals modals,
             IAppSettings appSettings,
-            ISystemState systemState,
             ISettingsServiceClientManager settingsServiceClientManager,
             IConfiguration appConfig)
         {
@@ -72,7 +68,6 @@ namespace ProtonVPN.About
             _osProcesses = osProcesses;
             _modals = modals;
             _appSettings = appSettings;
-            _systemState = systemState;
             _settingsServiceClientManager = settingsServiceClientManager;
             _appConfig = appConfig;
 
@@ -149,19 +144,8 @@ namespace ProtonVPN.About
 
         private async void Update()
         {
-            if (!CanUpdate() || !AllowToDisconnect())
+            if (!CanUpdate() || !(await IsAllowedToDisconnectAsync()))
             {
-                return;
-            }
-
-            if (_systemState.PendingReboot())
-            {
-                bool? result = _modals.Show<RebootModalViewModel>();
-                if (result.HasValue && result.Value)
-                {
-                    await UpdateInternal();
-                }
-
                 return;
             }
 
@@ -220,11 +204,11 @@ namespace ProtonVPN.About
 
         private bool CanUpdate() => !Updating && Ready;
 
-        private bool AllowToDisconnect()
+        private async Task<bool> IsAllowedToDisconnectAsync()
         {
             if (ShowConfirmationModal())
             {
-                bool? result = _dialogs.ShowQuestion(Translation.Get("App_msg_UpdateConnectedConfirm"));
+                bool? result = await _dialogs.ShowQuestionAsync(Translation.Get("App_msg_UpdateConnectedConfirm"));
                 if (result.HasValue && result.Value == false)
                 {
                     return false;
@@ -234,11 +218,11 @@ namespace ProtonVPN.About
             return true;
         }
 
-        private void OpenAbout()
+        private async void OpenAbout()
         {
             dynamic options = new ExpandoObject();
             options.SkipUpdateCheck = true;
-            _modals.Show<AboutModalViewModel>(options);
+            await _modals.ShowAsync<AboutModalViewModel>(options);
         }
 
         private bool ShowConfirmationModal()

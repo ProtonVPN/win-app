@@ -20,11 +20,11 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
@@ -48,10 +48,10 @@ namespace ProtonVPN.Service.Tests.KillSwitch
         }
 
         [TestMethod]
-        [DataRow(SplitTunnelMode.Block, false)]
-        [DataRow(SplitTunnelMode.Permit, true)]
-        [DataRow(SplitTunnelMode.Disabled, false)]
-        public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelMode mode, bool dnsLeakOnly)
+        [DataRow(SplitTunnelModeIpcEntity.Block, false)]
+        [DataRow(SplitTunnelModeIpcEntity.Permit, true)]
+        [DataRow(SplitTunnelModeIpcEntity.Disabled, false)]
+        public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelModeIpcEntity mode, bool dnsLeakOnly)
         {
             // Arrange
             Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(mode);
@@ -68,7 +68,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
         public void OnVpnConnected_WhenSplitTunnelPermitMode_DoNotBlockInternet()
         {
             // Arrange
-            Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(SplitTunnelMode.Permit);
+            Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(SplitTunnelModeIpcEntity.Permit);
 
             // Act
             killSwitch.OnVpnConnected(GetConnectedVpnState());
@@ -114,9 +114,9 @@ namespace ProtonVPN.Service.Tests.KillSwitch
         {
             // Arrange
             var state = new VpnState(status, default);
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
-                Mode = SplitTunnelMode.Block
+                Mode = SplitTunnelModeIpcEntity.Block
             });
             Service.KillSwitch.KillSwitch killSwitch =
                 new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
@@ -189,9 +189,9 @@ namespace ProtonVPN.Service.Tests.KillSwitch
             result.Should().Be(leakProtectionEnabled);
         }
 
-        private Service.KillSwitch.KillSwitch GetKillSwitch(SplitTunnelMode mode)
+        private Service.KillSwitch.KillSwitch GetKillSwitch(SplitTunnelModeIpcEntity mode)
         {
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsContract
+            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
             {
                 Mode = mode, AppPaths = new string[0], Ips = new string[0]
             });

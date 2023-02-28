@@ -2501,18 +2501,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="ErrorWindow_lbl_Close" xml:space="preserve">
     <value>Close</value>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot" xml:space="preserve">
-    <value>Restart</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot" xml:space="preserve">
-    <value>Continue without</value>
-  </data>
-  <data name="Dialogs_Reboot_msg" xml:space="preserve">
-    <value>To avoid any Proton VPN errors, we strongly recommend restarting your computer to update other applications first. Proton VPN will automatically resume installation afterward. Restart now?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl" xml:space="preserve">
-    <value>Your computer needs to restart</value>
-  </data>
   <data name="Dialogs_btn_Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
@@ -2660,6 +2648,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_TunInUse_msg" xml:space="preserve">
     <value>Proton VPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
+  </data>
+    <data name="Dialogs_WireGuardAdapterInUse_msg" xml:space="preserve">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
     <value>Check invoices</value>

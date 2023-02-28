@@ -44,7 +44,7 @@ namespace ProtonVPN.Core.MVVM.Converters
                 }
             }
 
-            return size.ToString(format, CultureInfo.InvariantCulture);
+            return size.ToString(format, culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

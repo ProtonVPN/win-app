@@ -20,6 +20,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 [assembly: AssemblyTitle("ProtonVPN.Core.Tests")]
 [assembly: AssemblyDescription("")]
@@ -39,3 +40,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+[assembly: SupportedOSPlatform("windows")]

@@ -61,6 +61,8 @@ namespace ProtonVPN.Vpn.WireGuard
         private VpnConfig _vpnConfig;
         private bool _isConnected;
         private bool _isServiceStopPending;
+        private VpnStatus _vpnStatus;
+        private CancellationTokenSource _disconnectCancellationTokenSource;
 
         public WireGuardConnection(
             ILogger logger,
@@ -117,12 +119,28 @@ namespace ProtonVPN.Vpn.WireGuard
             await EnsureServiceIsStopped(cancellationToken);
             _statusManager.Start();
             await StartWireGuardService(cancellationToken);
-            await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
+
+            CancellationToken linkedCancellationToken = CreateLinkedCancellationToken(cancellationToken);
+            await Task.Delay(CONNECT_TIMEOUT, linkedCancellationToken);
             if (!_isConnected)
             {
                 _logger.Warn<ConnectLog>("Timeout reached, disconnecting.");
                 Disconnect(VpnError.AdapterTimeoutError);
             }
+        }
+
+        private CancellationToken CreateLinkedCancellationToken(CancellationToken cancellationToken)
+        {
+            CancelDisconnectCancellationToken();
+            _disconnectCancellationTokenSource = new CancellationTokenSource();
+            CancellationTokenSource childCancellationTokenSource =
+                CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _disconnectCancellationTokenSource.Token);
+            return childCancellationTokenSource.Token;
+        }
+
+        private void CancelDisconnectCancellationToken()
+        {
+            _disconnectCancellationTokenSource?.Cancel();
         }
 
         private void UpdateGatewayCache()
@@ -152,7 +170,10 @@ namespace ProtonVPN.Vpn.WireGuard
         private async Task DisconnectAction(CancellationToken cancellationToken)
         {
             _logger.Info<DisconnectLog>("Disconnect action started.");
-            InvokeStateChange(VpnStatus.Disconnecting, _lastVpnError);
+            if (_vpnStatus is not VpnStatus.Disconnected)
+            {
+                InvokeStateChange(VpnStatus.Disconnecting, _lastVpnError);
+            }
 
             Task connectTask = _connectAction.Task;
             if (!connectTask.IsCompleted)
@@ -164,6 +185,7 @@ namespace ProtonVPN.Vpn.WireGuard
             StopServiceDependencies();
             await EnsureServiceIsStopped(cancellationToken);
             _isConnected = false;
+            CancelDisconnectCancellationToken();
         }
 
         private void OnConnectActionCompleted(object sender, TaskCompletedEventArgs e)
@@ -174,7 +196,10 @@ namespace ProtonVPN.Vpn.WireGuard
         private void OnDisconnectActionCompleted(object sender, TaskCompletedEventArgs e)
         {
             _logger.Info<DisconnectLog>("Disconnect action completed.");
-            InvokeStateChange(VpnStatus.Disconnected, _lastVpnError);
+            if (_vpnStatus is not VpnStatus.Disconnected)
+            {
+                InvokeStateChange(VpnStatus.Disconnected, _lastVpnError);
+            }
             _lastVpnError = VpnError.None;
         }
 
@@ -243,6 +268,7 @@ namespace ProtonVPN.Vpn.WireGuard
             _serviceHealthCheckTimer.Stop();
             StopServiceDependencies();
             InvokeStateChange(VpnStatus.Disconnected, state.Data.Error);
+            CancelDisconnectCancellationToken();
         }
 
         private void StopServiceDependencies()
@@ -288,6 +314,7 @@ namespace ProtonVPN.Vpn.WireGuard
 
         private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
         {
+            _vpnStatus = status;
             VpnState vpnState = CreateVpnState(status, error);
             StateChanged?.Invoke(this, new EventArgs<VpnState>(vpnState));
         }

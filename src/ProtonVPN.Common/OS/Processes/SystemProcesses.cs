@@ -102,7 +102,11 @@ namespace ProtonVPN.Common.OS.Processes
         {
             try
             {
-                System.Diagnostics.Process.Start(filename);
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = filename,
+                    UseShellExecute = true
+                });
             }
             catch (Win32Exception)
             {

@@ -27,7 +27,7 @@ namespace ProtonVPN.UI.Tests.Windows
         private ListBoxItem OpenVpnUdpOption => StartMinimizedComboBox.FindChildAt(2).AsListBoxItem();
         private ListBoxItem OpenVpnTcpOption => StartMinimizedComboBox.FindChildAt(3).AsListBoxItem();
         private ListBoxItem OptionDisabled => StartMinimizedComboBox.FindFirstChild().AsListBoxItem();
-        private AutomationElement SettingsCloseButton => ElementByAutomationId("ModalCloseButton");
+        private Button SettingsCloseButton => ElementByAutomationId("ModalCloseButton").AsButton();
         private CheckBox ConnectOnBootCheckBox => ElementByAutomationId("ConnectOnBootCheckbox").AsCheckBox();
         private AutomationElement ConnectionTab => ElementByName("Connection").FindFirstChild();
         private AutomationElement AdvancedTab => ElementByName("Advanced").FindFirstChild();
@@ -44,6 +44,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public SettingsWindow DisableStartToTray()
         {
+            StartMinimizedComboBox.Click();
             OptionDisabled.Select();
             return this;
         }
@@ -56,7 +57,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public HomeWindow CloseSettings()
         {
-            SettingsCloseButton.Click();
+            SettingsCloseButton.Invoke();
             return new HomeWindow();
         }
 
@@ -124,12 +125,14 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public SettingsWindow SelectProtocolOpenVpnUdp()
         {
+            StartMinimizedComboBox.Click();
             OpenVpnUdpOption.Select();
             return this;
         }
 
         public SettingsWindow SelectProtocolOpenVpnTcp()
         {
+            StartMinimizedComboBox.Click();
             OpenVpnTcpOption.Select();
             return this;
         }

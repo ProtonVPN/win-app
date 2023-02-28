@@ -26,8 +26,10 @@ namespace ProtonVPN.UI.Tests.Windows
     {
         private Button CreateProfileButton => ElementByAutomationId("NewProfileButton").AsButton();
         private TextBox ProfileNameInput => ElementByAutomationId("textSource").AsTextBox();
-        private ListBoxItem CountryFirstOption => ElementByAutomationId("CountryBox").AsComboBox().FindChildAt(1).AsListBoxItem();
-        private ListBoxItem ServerFirstOption => ElementByAutomationId("ServerBox").AsComboBox().FindChildAt(2).AsListBoxItem();
+        private ComboBox CountryBox => ElementByAutomationId("CountryBox").AsComboBox();
+        private ComboBox ServerBox => ElementByAutomationId("ServerBox").AsComboBox();
+        private ListBoxItem CountryFirstOption => CountryBox.FindChildAt(1).AsListBoxItem();
+        private ListBoxItem ServerFirstOption => ServerBox.FindChildAt(2).AsListBoxItem();
         private Button SaveButton => ElementByName("Save").AsButton();
         private AutomationElement SecureCoreButton => ElementByName("Secure Core");
         private AutomationElement P2PButton => ElementByName("P2P");
@@ -38,8 +40,12 @@ namespace ProtonVPN.UI.Tests.Windows
         public ProfilesWindow CreateProfile(string profileName)
         {
             ProfileNameInput.Enter(profileName);
+            CountryBox.Click();
             CountryFirstOption.Select();
+            CountryBox.Click();
+            ServerBox.Click();
             ServerFirstOption.Select();
+            ServerBox.Click();
             SaveButton.Invoke();
             return this;
         }
@@ -53,6 +59,7 @@ namespace ProtonVPN.UI.Tests.Windows
         public ProfilesWindow CreateProfileWithoutCountry(string profileName)
         {
             ProfileNameInput.Enter(profileName);
+            ServerBox.Click();
             ServerFirstOption.Select();
             SaveButton.Invoke();
             return this;

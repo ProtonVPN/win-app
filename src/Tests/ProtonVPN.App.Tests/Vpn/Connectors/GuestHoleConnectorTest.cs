@@ -27,7 +27,6 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Contracts;
-using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.GuestHoles.FileStoraging;
@@ -43,7 +42,6 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
         private GuestHoleConnector _connector;
         private readonly IVpnServiceManager _serviceManager = Substitute.For<IVpnServiceManager>();
         private readonly IAppSettings _appSettings = Substitute.For<IAppSettings>();
-        private readonly INetworkAdapterValidator _networkAdapterValidator = Substitute.For<INetworkAdapterValidator>();
         private readonly ILogger _logger = Substitute.For<ILogger>();
         private readonly IConfiguration _config = new Common.Configuration.Config()
         {
@@ -59,10 +57,9 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
         {
             GuestHoleState guestHoleState = new();
             guestHoleState.SetState(true);
-            _networkAdapterValidator.IsOpenVpnAdapterAvailable().Returns(true);
             _guestHoleServers.Get().Returns(new List<GuestHoleServerContract>());
             _connector = new GuestHoleConnector(_serviceManager, _appSettings, guestHoleState, 
-                _config, _guestHoleServers, _networkAdapterValidator, _logger);
+                _config, _guestHoleServers, _logger);
         }
 
         [TestMethod]

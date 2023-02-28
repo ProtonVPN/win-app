@@ -18,7 +18,7 @@
  */
 
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Vpn;

@@ -102,12 +102,12 @@ namespace ProtonVPN.Notifications
         private void ShowNotification()
         {
             _insecureWifiNotificationViewModel.Name = _currentInsecureWifiName;
-            _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_insecureWifiNotificationViewModel));
+            _eventAggregator.PublishOnUIThreadAsync(new ShowFlashMessage(_insecureWifiNotificationViewModel));
         }
 
         private void HideNotification()
         {
-            _eventAggregator.PublishOnUIThread(new HideFlashMessage(_insecureWifiNotificationViewModel));
+            _eventAggregator.PublishOnUIThreadAsync(new HideFlashMessage(_insecureWifiNotificationViewModel));
         }
     }
 }

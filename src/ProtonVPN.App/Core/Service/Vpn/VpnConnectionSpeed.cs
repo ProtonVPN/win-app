@@ -20,7 +20,6 @@
 using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
@@ -31,19 +30,19 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         private readonly SerialTaskQueue _lock = new();
         private readonly IVpnServiceManager _vpnServiceManager;
-        private readonly DispatcherTimer _timer;
+        private readonly ISchedulerTimer _timer;
 
         private InOutBytes _total;
         private InOutBytes _speed;
 
-        public VpnConnectionSpeed(IVpnServiceManager vpnServiceManager)
+        public VpnConnectionSpeed(IVpnServiceManager vpnServiceManager,
+            IScheduler scheduler)
         {
             _vpnServiceManager = vpnServiceManager;
 
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(1)
-            };
+            _timer = scheduler.Timer();
+            _timer.IsEnabled = false;
+            _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += UpdateSpeed;
         }
 
@@ -62,11 +61,11 @@ namespace ProtonVPN.Core.Service.Vpn
             return _total.BytesOut;
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             if (e.State.Status == VpnStatus.ActionRequired)
             {
-                return Task.CompletedTask;
+                return;
             }
 
             if (e.State.Status == VpnStatus.Connected)
@@ -77,8 +76,6 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 _timer.Stop();
             }
-
-            return Task.CompletedTask;
         }
 
         private async void UpdateSpeed(object sender, EventArgs e)

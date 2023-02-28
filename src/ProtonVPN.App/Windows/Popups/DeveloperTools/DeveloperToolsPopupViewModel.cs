@@ -23,7 +23,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
@@ -125,7 +125,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ResetDoNotShowAgainCommand = new RelayCommand(ResetDoNotShowAgainAction);
             FullToastCommand = new RelayCommand(FullToastAction);
             BasicToastCommand = new RelayCommand(BasicToastAction);
-            ClearToastNotificationLogsCommand = new RelayCommand(ClearToastNotificationLogsAction);
             TriggerIntentionalCrashCommand = new RelayCommand(TriggerIntentionalCrashAction);
             DisableTlsPinningCommand = new RelayCommand(DisableTlsPinningAction);
         }
@@ -209,34 +208,19 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             }
         }
 
-        private string _toastNotificationLog;
-        public string ToastNotificationLog
-        {
-            get => _toastNotificationLog;
-            private set
-            {
-                if (value == _toastNotificationLog)
-                {
-                    return;
-                }
-                _toastNotificationLog = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        private void OpenModalAction()
+        private async void OpenModalAction()
         {
             if (ModalsByName.TryGetValue(SelectedModalName, out IModal modal))
             {
-                _modalOpener.Show(type: modal.GetType());
+                await _modalOpener.ShowAsync(type: modal.GetType());
             }
         }
 
-        private void OpenAllModalsAction()
+        private async void OpenAllModalsAction()
         {
             foreach (KeyValuePair<string, IModal> modalByName in ModalsByName)
             {
-                _modalOpener.Show(type: modalByName.Value.GetType());
+                await _modalOpener.ShowAsync(type: modalByName.Value.GetType());
             }
         }
 
@@ -331,29 +315,6 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _notificationSender.Send(
                 Translation.Get("Dialogs_Delinquency_Title"),
                 Translation.Get("Dialogs_Delinquency_Subtitle"));
-        }
-
-        public void OnToastNotificationUserAction(NotificationUserAction data)
-        {
-            string toastNotificationLog = $"Date: {DateTime.Now}" + Environment.NewLine;
-            toastNotificationLog += $"Arguments: {data.Arguments.Count}" + Environment.NewLine;
-            foreach (KeyValuePair<string, string> argument in data.Arguments)
-            {
-                toastNotificationLog += $"   {argument.Key}: {argument.Value}" + Environment.NewLine;
-            }
-            toastNotificationLog += $"User inputs: {data.UserInputs.Count}" + Environment.NewLine;
-            foreach (KeyValuePair<string, object> userInput in data.UserInputs)
-            {
-                toastNotificationLog += $"   {userInput.Key}: {userInput.Value}" + Environment.NewLine;
-            }
-            toastNotificationLog += "--------------------" + Environment.NewLine;
-
-            ToastNotificationLog = toastNotificationLog + ToastNotificationLog;
-        }
-
-        private void ClearToastNotificationLogsAction()
-        {
-            ToastNotificationLog = string.Empty;
         }
 
         private void TriggerIntentionalCrashAction()

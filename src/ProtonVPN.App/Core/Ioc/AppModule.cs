@@ -121,7 +121,8 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<VpnService>().SingleInstance();
+            builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppController>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
             builder.RegisterType<PopupWindows>().As<IPopupWindows>().SingleInstance();
@@ -189,11 +190,8 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<VpnEvents>();
             builder.RegisterType<SettingsServiceClientManager>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<SettingsServiceClient>().SingleInstance();
-            builder.RegisterType<ServiceChannelFactory>().SingleInstance();
-            builder.RegisterType<SettingsContractProvider>().SingleInstance();
+            builder.RegisterType<MainSettingsProvider>().SingleInstance();
             builder.RegisterType<AutoConnect>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterInstance(Properties.Settings.Default);
 
@@ -285,7 +283,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<PartnersUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PartnersFileStorage>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
-            builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
 
             builder.RegisterType<Ed25519Asn1KeyGenerator>().As<IEd25519Asn1KeyGenerator>().SingleInstance();
             builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();

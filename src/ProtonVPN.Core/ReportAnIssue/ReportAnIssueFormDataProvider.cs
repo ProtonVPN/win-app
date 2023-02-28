@@ -20,7 +20,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
@@ -44,7 +43,7 @@ namespace ProtonVPN.Core.ReportAnIssue
             _appSettings = appSettings;
         }
 
-        public async Task FetchData()
+        public async Task FetchDataAsync()
         {
             try
             {
@@ -92,7 +91,7 @@ namespace ProtonVPN.Core.ReportAnIssue
         {
             if (e.PropertyName == nameof(IAppSettings.Language))
             {
-                await FetchData();
+                await FetchDataAsync();
             }
         }
 

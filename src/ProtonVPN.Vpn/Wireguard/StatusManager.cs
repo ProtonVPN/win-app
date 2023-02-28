@@ -95,6 +95,10 @@ namespace ProtonVPN.Vpn.WireGuard
                     {
                         _lastError = VpnError.NoTapAdaptersError;
                     }
+                    else if (line.Contains("Unable to configure adapter network settings: unable to set ips: The object already exists"))
+                    {
+                        _lastError = VpnError.WireGuardAdapterInUseError;
+                    }
                 }
 
                 try

@@ -6,7 +6,7 @@ $newVersionBlockString  = @"
 {
 	"Version": "$($version)",
 	"File": {
-		"Url":  "https://protonvpn.com/download/ProtonVPN_win_v$($version).exe",
+		"Url":  "https://protonvpn.com/download/ProtonVPN_v$($version).exe",
 		"CheckSum":  "$($hash.Hash)",
 		"Arguments":  "/qb"
 	},

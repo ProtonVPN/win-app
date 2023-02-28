@@ -42,7 +42,7 @@ namespace ProtonVPN.Modals.ApiActions
             tokenClient.OnActionableFailureResult += OnActionableFailureResult;
         }
 
-        private void OnActionableFailureResult(object sender, ActionableFailureApiResultEventArgs e)
+        private async void OnActionableFailureResult(object sender, ActionableFailureApiResultEventArgs e)
         {
             string error = e.Result.Error;
             if (e.Result.ResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
@@ -51,7 +51,7 @@ namespace ProtonVPN.Modals.ApiActions
             }
 
             _apiActionModalViewModel.SetView(error, e.Result.Actions);
-            _modals.Show<ApiActionModalViewModel>();
+            await _modals.ShowAsync<ApiActionModalViewModel>();
         }
     }
 }

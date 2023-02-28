@@ -20,8 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Settings;
@@ -98,7 +100,7 @@ namespace ProtonVPN.About
             Releases = e.ReleaseHistory;
         }
 
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             LastUpdate = _appSettings.LastUpdate;
         }
@@ -108,9 +110,9 @@ namespace ProtonVPN.About
             _appUpdater.StartCheckingForUpdate();
         }
 
-        private void ShowLicense()
+        private async void ShowLicense()
         {
-            _modals.Show<LicenseModalViewModel>();
+            await _modals.ShowAsync<LicenseModalViewModel>();
         }
     }
 }

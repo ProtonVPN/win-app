@@ -15,15 +15,14 @@ variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
   SCREENSHOT_PATH: src/bin/TestFailureData/
   TEST_REPORT_PATH: results/
-  PROJECT_ID: "1"
-  MILESTONE: "Automation"
+  PROJECT_ID: "13"
+  MILESTONE: "Windows"
 
 stages:
   - release
   - bot # comes from translations/generator job
   - build
   - test
-  - sign
   - build-installer
   - internal-beta
   - publish-to-slack
@@ -34,42 +33,27 @@ stages:
   - test-cleanup
   - mirror
 
-sign:
-  stage: sign
-  tags:
-    - windows
-  script:
-    - echo "Signing files..."
-    - python ci\main.py sign
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - src/bin/
-  only:
-    - master
-    - /^release.*$/
-    - develop
-
 build-release:
   stage: build
   tags:
     - windows
   script:
-    - echo "Restoring NuGet Packages..."
-    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
-    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
     - cmd.exe /c BuildDependencies.bat
+    - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
+    - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
-    - echo "Building release..."
-    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "ProtonVpn.sln"
+    - echo "Publishing release..."
+    - dotnet publish ProtonVpn.sln --arch x64 -c Release --no-self-contained --verbosity q -o src\bin
+    - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin/
+      - src/bin
+      - src/ProtonVPN.NativeHost/bin
   only:
     - master
     - /^release.*$/
@@ -81,22 +65,22 @@ build-debug:
   tags:
     - windows
   script:
-    - echo "Restoring NuGet Packages..."
-    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
-    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "src\\ProtonVPN.MarkupValidator\\ProtonVPN.MarkupValidator.csproj"
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
     - cmd.exe /c BuildDependencies.bat
+    - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
-    - echo "Building debug..."
-    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
+    - echo "Publishing debug..."
+    - dotnet publish ProtonVpn.sln --arch x64 -c Debug --no-self-contained --verbosity q -o src\bin
+    - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin/
+      - src/bin
+      - src/ProtonVPN.NativeHost/bin
   except:
     - master
     - /^release.*$/
@@ -108,10 +92,9 @@ tests:
   tags:
     - windows
   script:
-    - echo "Running tests..."
-    - 'c:\nuget\nuget.exe restore ProtonVpn.sln'
-    - MSBuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Debug /verbosity:quiet "ProtonVpn.sln"
-    - coverlet src\bin --target "vstest.console.exe" --targetargs "src/bin/ProtonVPN*Tests*.dll /TestCaseFilter:TestCategory!=UI&TestCategory!=Connection /Platform:x64" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[TapInstaller]*" --exclude "[*.Installers]*"
+    - dotnet restore ProtonVpn.sln
+    - dotnet build ProtonVpn.sln
+    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
   artifacts:
@@ -126,15 +109,11 @@ build-installer-for-release:
   tags:
     - windows
   script:
-    - python ci\main.py tap-installer
-    - python ci\main.py tun-installer
     - python ci\main.py update-gh-list
     - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
-      - Setup/ProtonVPN-SetupFiles/
-      - Setup/ProtonVPNTun-SetupFiles/
-      - Setup/ProtonVPNTap-SetupFiles/
+      - Setup/Installers/
     expire_in: 4 weeks
   only:
     - master
@@ -156,13 +135,11 @@ build-installer-for-debug:
   tags:
     - windows
   script:
-    - python ci\main.py tap-installer
-    - python ci\main.py tun-installer
     - python ci\main.py update-gh-list
     - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
-      - Setup/ProtonVPN-SetupFiles/
+      - Setup/Installers/
     expire_in: 4 weeks
   except:
     - master
@@ -181,19 +158,21 @@ testmo-setup:
         SOURCE: "Release"
     - when: always
   variables:
-    SOURCE: "Automation"
+    SOURCE: "Windows"
     NAME: "$CI_JOB_STARTED_AT UTC"
     TAGS: "$CI_COMMIT_REF_SLUG"
 
 ui-test:
   stage: ui-test
   tags:
-    - ui_tests
+    - ino-setup
   script:
-    - powershell -File ci\uninstall-app.ps1
-    - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=UI" /Settings:ci/TestRun/test-run-settings.xml
-    - powershell -File ci\uninstall-app.ps1
+    - ci\uninstall-app.ps1
+    - ci\install-the-app.ps1
+    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
+    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml
+    - ci\uninstall-app.ps1
   after_script:
     - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
   except:
@@ -207,54 +186,12 @@ ui-test:
       - $SCREENSHOT_PATH
       - "results/*"
     expire_in: 1 weeks
-  
-connection-tests:
-  stage: ui-test
-  tags:
-    - connection_tests
-  script:
-    - powershell -File ci\uninstall-app.ps1
-    - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Connection" /Settings:ci/TestRun/test-run-settings.xml
-    - powershell -File ci\uninstall-app.ps1
-  after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-  artifacts:
-    when: always
-    name: "result-connection"
-    paths:
-      - $SCREENSHOT_PATH
-      - "results/*"
-    expire_in: 1 weeks
     
 testmo-upload:
   allow_failure: true
   stage: test-upload
   variables:
     RESULT_FOLDER: "results/*.xml"
-
-win-11-tests:
-  stage: ui-test
-  when: manual
-  tags:
-    - win11
-  script:
-    - powershell -File ci\uninstall-app.ps1
-    - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Smoke"
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-  artifacts:
-    when: on_failure
-    paths:
-      - $SCREENSHOT_PATH
-    expire_in: 2 weeks
 
 mirror:
   stage: mirror

@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
@@ -113,7 +115,7 @@ namespace ProtonVPN.BugReporting.Steps
             ShowFirstStep();
         }
 
-        public void Handle(FormStateChange message)
+        public async Task HandleAsync(FormStateChange message, CancellationToken cancellationToken)
         {
             if (message.State == FormState.Sent)
             {
@@ -121,7 +123,7 @@ namespace ProtonVPN.BugReporting.Steps
             }
         }
 
-        public void Handle(SelectCategoryAction message)
+        public async Task HandleAsync(SelectCategoryAction message, CancellationToken cancellationToken)
         {
             _category = message.Category;
 
@@ -131,7 +133,7 @@ namespace ProtonVPN.BugReporting.Steps
             }
             else
             {
-                _eventAggregator.PublishOnUIThread(new FillTheFormAction(message.Category));
+                _eventAggregator.PublishOnUIThreadAsync(new FillTheFormAction(message.Category));
             }
         }
 
@@ -140,7 +142,7 @@ namespace ProtonVPN.BugReporting.Steps
             return !_reportAnIssueFormDataProvider.GetSuggestions(category).IsNullOrEmpty();
         }
 
-        public void Handle(FillTheFormAction message)
+        public async Task HandleAsync(FillTheFormAction message, CancellationToken cancellationToken)
         {
             Step = 3;
         }

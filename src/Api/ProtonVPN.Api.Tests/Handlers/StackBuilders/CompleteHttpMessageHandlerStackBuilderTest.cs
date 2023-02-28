@@ -32,12 +32,12 @@ namespace ProtonVPN.Api.Tests.Handlers.StackBuilders
         [TestMethod]
         public void Test_WithNullDelegatingHandler()
         {
-            MockOfWebRequestHandler mockOfWebRequestHandler = new();
+            MockOfHttpClientHandler mockOfHttpClientHandler = new();
 
-            CompleteHttpMessageHandlerStackBuilder completeStackBuilder = new(mockOfWebRequestHandler);
+            CompleteHttpMessageHandlerStackBuilder completeStackBuilder = new(mockOfHttpClientHandler);
             HttpMessageHandler resultHandler = completeStackBuilder.Build();
             
-            Assert.AreEqual(resultHandler, mockOfWebRequestHandler);
+            Assert.AreEqual(resultHandler, mockOfHttpClientHandler);
         }
 
         [TestMethod]
@@ -62,10 +62,10 @@ namespace ProtonVPN.Api.Tests.Handlers.StackBuilders
             {
                 mockOfDelegatingHandlers.Add(new MockOfDelegatingHandler());
             }
-            MockOfWebRequestHandler mockOfWebRequestHandler = new();
+            MockOfHttpClientHandler mockOfHttpClientHandler = new();
 
             // Act
-            CompleteHttpMessageHandlerStackBuilder completeStackBuilder = new(mockOfWebRequestHandler, 
+            CompleteHttpMessageHandlerStackBuilder completeStackBuilder = new(mockOfHttpClientHandler, 
                 mockOfDelegatingHandlers.Select(dh => (DelegatingHandler)dh).ToList());
             HttpMessageHandler resultHandler = completeStackBuilder.Build();
            
@@ -76,7 +76,7 @@ namespace ProtonVPN.Api.Tests.Handlers.StackBuilders
                 Assert.AreEqual(mockOfDelegatingHandler, handlerToEvaluate);
                 handlerToEvaluate = mockOfDelegatingHandler.InnerHandler;
             }
-            Assert.AreEqual(mockOfWebRequestHandler, handlerToEvaluate);
+            Assert.AreEqual(mockOfHttpClientHandler, handlerToEvaluate);
         }
     }
 }

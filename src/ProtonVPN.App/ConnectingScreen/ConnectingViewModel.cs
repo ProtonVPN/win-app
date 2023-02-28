@@ -19,7 +19,7 @@
 
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Servers.Models;

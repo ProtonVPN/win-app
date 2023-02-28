@@ -25,6 +25,6 @@ namespace ProtonVPN.Core.Modals
 
         bool StayOnTop { get; }
 
-        void TryClose(bool? dialogResult);
+        void TryClose(bool? dialogResult = null);
     }
 }

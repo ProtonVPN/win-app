@@ -28,14 +28,13 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
     /// <summary>
     /// Enforces SSL certificate validation.
     /// </summary>
-    public class CertificateHandler : WebRequestHandler
+    public class CertificateHandler : HttpClientHandler
     {
         private readonly ICertificateValidator _certificateValidator;
 
         public CertificateHandler(ICertificateValidator certificateValidator)
         {
             _certificateValidator = certificateValidator;
-
             ServerCertificateCustomValidationCallback = CertificateCustomValidationCallback;
             AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
         }

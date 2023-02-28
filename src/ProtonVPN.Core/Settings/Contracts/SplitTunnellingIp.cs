@@ -17,41 +17,43 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
 using System;
+using HashCode = ProtonVPN.Common.Helpers.HashCode;
 
 namespace ProtonVPN.Core.Settings.Contracts
 {
     public class IpContract : IEquatable<IpContract>
     {
         public string Ip { get; set; }
-
         public bool Enabled { get; set; }
-
-        #region IEquatable
 
         public bool Equals(IpContract other)
         {
-            if (other == null)
-                return false;
-
-            return string.Equals(Ip, other.Ip, StringComparison.OrdinalIgnoreCase);
+            return other == null
+                ? false
+                : string.Equals(Ip, other.Ip, StringComparison.OrdinalIgnoreCase);
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
             return Equals(obj as IpContract);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Start
-                .Hash(Ip?.ToUpperInvariant());
+            return HashCode.Start.Hash(Ip?.ToUpperInvariant());
         }
-
-        #endregion
     }
 }

@@ -1,17 +1,3 @@
-$protonVpnString = "ProtonVPN"
-
-$app = Get-WmiObject -Class Win32_Product | Where-Object {
-    $_.Name -match $protonVpnString
-}
-
-if ($app) {
-    $appPath = ($app | Where-Object {
-        $_.Name -eq $protonVpnString
-    }).InstallLocation
-
-    $output = $app.Uninstall();
-
-    if (Test-Path $appPath) {
-        Remove-Item $appPath -Recurse
-    }
+if (Test-Path -Path "C:\Program Files\Proton\VPN") {
+    Start-Process -FilePath "C:\Program Files\Proton\VPN\unins000.exe" -ArgumentList "/verysilent" -ErrorAction SilentlyContinue
 }

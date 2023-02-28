@@ -40,6 +40,9 @@ namespace ProtonVPN.Common.Configuration
         public string AppExePath { get; set; }
 
         [Required]
+        public string AppLauncherExePath { get; set; }
+
+        [Required]
         public string AppLogFolder { get; set; }
 
         [Required]
@@ -242,5 +245,9 @@ namespace ProtonVPN.Common.Configuration
         public TimeSpan AlternativeRoutingCheckInterval { get; set; }
 
         public string AutoLoginBaseUrl { get; set; }
+
+        public string WintunDriverPath { get; set; }
+        public string WintunAdapterName { get; set; }
+        public string InstallActionsPath { get; set; }
     }
 }

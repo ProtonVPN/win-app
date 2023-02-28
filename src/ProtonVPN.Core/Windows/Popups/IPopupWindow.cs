@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+
 namespace ProtonVPN.Core.Windows.Popups
 {
     public interface IPopupWindow
     {
-        void TryClose();
+        Task TryCloseAsync();
     }
 }
