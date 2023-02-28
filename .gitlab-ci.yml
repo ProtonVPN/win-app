@@ -148,20 +148,15 @@ build-installer-for-debug:
 testmo-setup:
   allow_failure: true
   stage: test-setup
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      when: never
-    - if: $CI_COMMIT_REF_NAME == "release/9.9.9" || $CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME =~ "/debug/"
-      when: never
-    - if: $CI_COMMIT_REF_NAME =~ "/release/"
-      variables:
-        SOURCE: "Release"
-    - when: always
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
   variables:
     SOURCE: "Windows"
     NAME: "$CI_JOB_STARTED_AT UTC"
     TAGS: "$CI_COMMIT_REF_SLUG"
-
+    
 ui-test:
   stage: ui-test
   tags:
@@ -171,7 +166,58 @@ ui-test:
     - ci\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
     - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
+    - ci\uninstall-app.ps1
+  after_script:
+    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+  artifacts:
+    when: always
+    name: "result-ui"
+    paths:
+      - $SCREENSHOT_PATH
+      - "results/*"
+    expire_in: 1 weeks
+    
+connection-test:
+  stage: ui-test
+  tags:
+    - connection_tests
+  script:
+    - ci\uninstall-app.ps1
+    - ci\install-the-app.ps1
+    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
+    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
+    - ci\uninstall-app.ps1
+  after_script:
+    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+  artifacts:
+    when: always
+    name: "result-ui"
+    paths:
+      - $SCREENSHOT_PATH
+      - "results/*"
+    expire_in: 1 weeks
+    
+win-11-test:
+  stage: ui-test
+  when: manual
+  tags:
+    - win11
+  script:
+    - ci\uninstall-app.ps1
+    - ci\install-the-app.ps1
+    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
+    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Smoke"
     - ci\uninstall-app.ps1
   after_script:
     - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
@@ -190,6 +236,10 @@ ui-test:
 testmo-upload:
   allow_failure: true
   stage: test-upload
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
   variables:
     RESULT_FOLDER: "results/*.xml"
 
