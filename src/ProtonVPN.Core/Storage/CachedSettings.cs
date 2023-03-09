@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace ProtonVPN.Core.Storage
 {
     public class CachedSettings : ISettingsStorage
     {
         private readonly ISettingsStorage _storage;
-        private readonly Dictionary<string, object> _cache = new Dictionary<string, object>();
+        private readonly ConcurrentDictionary<string, object> _cache = new();
 
         public CachedSettings(ISettingsStorage storage)
         {
@@ -34,7 +34,9 @@ namespace ProtonVPN.Core.Storage
         public T Get<T>(string key)
         {
             if (_cache.TryGetValue(key, out object cachedValue))
+            {
                 return cachedValue is T result ? result : default;
+            }
 
             T value = _storage.Get<T>(key);
             _cache[key] = value;
