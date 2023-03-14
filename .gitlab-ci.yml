@@ -301,6 +301,7 @@ create-release:
   only:
     refs:
       - develop
+      - develop-v2
   script:
     - apt-get update && apt-get install -y python3 python3-pip git
     - python3 ci/release.py
