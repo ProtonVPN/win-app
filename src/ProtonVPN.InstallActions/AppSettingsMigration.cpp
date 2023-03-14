@@ -95,7 +95,7 @@ void AppSettingsMigration::FixUserConfigFile(fs::path user_config_folder_path)
 fs::path AppSettingsMigration::GetOldUserConfigPath()
 {
     const string local_app_data_path = GetLocalAppDataPath();
-    fs::file_time_type latest_version;
+    fs::file_time_type latest_version_time;
     fs::path latest_version_folder_path;
     fs::path app_data_folder_path = local_app_data_path / fs::path("ProtonVPN");
     if (!fs::exists(app_data_folder_path))
@@ -112,13 +112,12 @@ fs::path AppSettingsMigration::GetOldUserConfigPath()
             {
                 for (auto& version_folder : fs::directory_iterator(p))
                 {
-                    if (version_folder.last_write_time() > latest_version)
+                    if (version_folder.last_write_time() > latest_version_time)
                     {
-                        latest_version = version_folder.last_write_time();
+                        latest_version_time = version_folder.last_write_time();
                         latest_version_folder_path = version_folder.path();
                     }
                 }
-                break;
             }
         }
     }
