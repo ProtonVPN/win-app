@@ -54,7 +54,6 @@ using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Network;
-using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.PortForwarding;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.ReportAnIssue;
@@ -569,7 +568,6 @@ namespace ProtonVPN.Core
 
         private void LoadViewModels()
         {
-            Resolve<MainViewModel>().Load();
             Resolve<CountriesViewModel>().Load();
             Resolve<QuickLaunchViewModel>().Load();
             Resolve<MapViewModel>().Load();
