@@ -84,9 +84,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
         <Style x:Key="BlockableTopMenuItem" TargetType="MenuItem" BasedOn="{StaticResource SubmenuItem}">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding BlockMenu}" Value="True">
+                <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Opacity" Value="0.4"/>
-                </DataTrigger>
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="BlurBorder" TargetType="Border">
@@ -109,18 +109,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       AutomationProperties.AutomationId="{StaticResource MenuHamburgerButton}">
                     <MenuItem Style="{StaticResource TopMenuItem}">
                         <MenuItem Command="{Binding AboutCommand}"
+                                  IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"
                                   Style="{StaticResource BlockableTopMenuItem}"
                                   Margin="0,5,0,0"
                                   Header="{translations:Loc App_mnu_About}"/>
                         <MenuItem Command="{Binding AccountCommand}"
+                                  IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"
                                   Header="{translations:Loc App_mnu_Account}"
                                   Style="{StaticResource BlockableTopMenuItem}"
                                   AutomationProperties.AutomationId="{StaticResource MenuAccountButton}"/>
                         <MenuItem Command="{Binding ProfilesCommand}"
+                                  IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"
                                   Header="{translations:Loc App_mnu_Profiles}"
                                   Style="{StaticResource BlockableTopMenuItem}"
                                   AutomationProperties.AutomationId="{StaticResource MenuProfilesButton}"/>
                         <MenuItem Command="{Binding SettingsCommand}"
+                                  IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"
                                   Header="{translations:Loc App_mnu_Settings}"
                                   Style="{StaticResource BlockableTopMenuItem}"
                                   AutomationProperties.AutomationId="{StaticResource MenuSettingsButton}"/>
@@ -129,6 +133,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Header="{translations:Loc App_mnu_Help}"
                                   AutomationProperties.AutomationId="{StaticResource MenuHelpButton}"/>
                         <MenuItem Command="{Binding ReportBugCommand}"
+                                  IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"
                                   Style="{StaticResource BlockableTopMenuItem}"
                                   Header="{translations:Loc App_mnu_ReportBug}"
                                   AutomationProperties.AutomationId="{StaticResource MenuReportBugButton}"/>

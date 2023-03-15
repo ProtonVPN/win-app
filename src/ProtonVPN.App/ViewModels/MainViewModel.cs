@@ -90,12 +90,12 @@ namespace ProtonVPN.ViewModels
 
             eventAggregator.Subscribe(this);
 
-            AboutCommand = new RelayCommand(AboutAction, CanClick);
-            AccountCommand = new RelayCommand(AccountAction, CanClick);
-            ProfilesCommand = new RelayCommand(ProfilesAction, CanClick);
-            SettingsCommand = new RelayCommand(SettingsAction, CanClick);
+            AboutCommand = new RelayCommand(AboutAction);
+            AccountCommand = new RelayCommand(AccountAction);
+            ProfilesCommand = new RelayCommand(ProfilesAction);
+            SettingsCommand = new RelayCommand(SettingsAction);
             HelpCommand = new RelayCommand(HelpAction);
-            ReportBugCommand = new RelayCommand(ReportBugAction, CanClick);
+            ReportBugCommand = new RelayCommand(ReportBugAction);
             DeveloperToolsCommand = new RelayCommand(DeveloperToolsAction);
             LogoutCommand = new RelayCommand(LogoutAction);
             ExitCommand = new RelayCommand(ExitAction);
@@ -137,18 +137,9 @@ namespace ProtonVPN.ViewModels
                     _eventAggregator.PublishOnUIThreadAsync(new ToggleOverlay(value));
                 }
                 Set(ref _connecting, value);
-                CommandManager.InvalidateRequerySuggested();
-                SetupMenuItems();
             }
         }
 
-        private bool _blockMenu;
-        public bool BlockMenu
-        {
-            get => _blockMenu;
-            set => Set(ref _blockMenu, value);
-        }
-        
         private bool _showOnboarding;
         public bool ShowOnboarding
         {
@@ -161,11 +152,6 @@ namespace ProtonVPN.ViewModels
         {
             get => _vpnStatus;
             set => Set(ref _vpnStatus, value);
-        }
-
-        public void Load()
-        {
-            SetupMenuItems();
         }
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -189,7 +175,6 @@ namespace ProtonVPN.ViewModels
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:
                     Connecting = false;
-                    SetupMenuItems();
                     break;
             }
 
@@ -199,16 +184,6 @@ namespace ProtonVPN.ViewModels
         public void OnStepChanged(int step)
         {
             ShowOnboarding = step > 0;
-        }
-
-        private void SetupMenuItems()
-        {
-            BlockMenu = Connecting;
-        }
-
-        private bool CanClick()
-        {
-            return !Connecting;
         }
 
         private async void AboutAction()
