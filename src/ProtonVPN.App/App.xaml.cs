@@ -17,25 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Reflection;
 using System.Runtime;
 using System.Threading.Tasks;
 using System.Windows;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Config;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Startup;
-using ProtonVPN.ErrorHandling;
 using ProtonVPN.Native.PInvoke;
 
 namespace ProtonVPN
 {
     public partial class App
     {
-        private static bool _failedToLoadAssembly;
-
         protected override async void OnStartup(StartupEventArgs e)
         {
             // The app v1.13.0 starts update installer under local SYSTEM account.
@@ -55,8 +49,6 @@ namespace ProtonVPN
 
             if (await SingleInstanceApplication.InitializeAsFirstInstance("{588dc704-8eac-4a43-9345-ec7186b23f05}", e.Args))
             {
-                AppDomain.CurrentDomain.AssemblyResolve += OnAssemblyLoadFailed;
-
                 SetDllDirectories();
 
                 IConfiguration config = GetConfig();
@@ -64,39 +56,6 @@ namespace ProtonVPN
 
                 base.OnStartup(e);
             }
-        }
-
-        private static Assembly OnAssemblyLoadFailed(object sender, ResolveEventArgs args)
-        {
-            if (_failedToLoadAssembly)
-            {
-                return null;
-            }
-
-            string name = new AssemblyName(args.Name).Name;
-
-            if (name.ContainsIgnoringCase(".resources") ||
-                name.EndsWithIgnoringCase("XmlSerializers") ||
-                name.StartsWithIgnoringCase("PresentationFramework.") ||
-                name.EqualsIgnoringCase("Xamarin.iOS") ||
-                name.EqualsIgnoringCase("Mono.Android"))
-            {
-                return null;
-            }
-
-#if DEBUG
-            if (name.StartsWithIgnoringCase("System.Windows"))
-            {
-                return null;
-            }
-#endif
-
-            _failedToLoadAssembly = true;
-
-            FatalErrorHandler fatalErrorHandler = new();
-            fatalErrorHandler.Exit($"The assembly file \"{name}\" is missing.");
-
-            return null;
         }
 
         private static void CreateProfileOptimization(IConfiguration config)

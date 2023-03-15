@@ -23,8 +23,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
@@ -33,7 +31,6 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
-using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
