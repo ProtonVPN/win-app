@@ -19,17 +19,16 @@ You can download the latest stable release, either on [Proton VPN official websi
 The app consists of these interacting parts:
 - Proton VPN GUI application
 - Proton VPN Service
-- Proton VPN Update Service
 - OpenVPN
 - TAP adapter
 - Split Tunnel driver
 
 #### GUI application
 
-The Proton VPN GUI app is installed into "C:\Program Files\Proton AG\Proton VPN"
-directory by default. The main executable is "ProtonVPN.exe".
+The Proton VPN GUI app is installed into "C:\Program Files\Proton\VPN\<version>" directory by default. 
+The main executable is "ProtonVPN.exe".
 
-Proton VPN GUI app starts Proton VPN Service and Update Service when launched and stops services
+Proton VPN GUI app starts Proton VPN Service when launched and stops the service
 when closed.
 
 App logs are saved to "%LOCALAPPDATA%\ProtonVPN\Logs" directory.
@@ -51,7 +50,7 @@ TLS certificate pinning. To disable TLS certificate pinning the configuration fi
 #### Proton VPN Service
 
 The Windows service "ProtonVPN Service" is installed into
-"C:\Program Files\Proton AG\Proton VPN" directory by default. Service
+"C:\Program Files\Proton\VPN\<version>" directory by default. Service
 executable is "ProtonVPNService.exe". The service is started and stopped by the Proton VPN
 GUI app.
 
@@ -67,55 +66,13 @@ driver.
 
 Service logs are saved to "%ALLUSERSPROFILE%\ProtonVPN\Logs" directory.
 
-#### Proton VPN Update Service
-
-The Windows service "ProtonVPN Update Service" is installed into
-"C:\Program Files\Proton AG\Proton VPN" directory by default. Service
-executable is "ProtonVPN.UpdateService.exe". The service is started and stopped by the Proton VPN
-GUI app.
-
-During installation, the service is configured to be started and stopped by the unprivileged
-interactive users.
-
-Service is responsible for checking, downloading and installing app updates.
-
-Service logs are saved to "%ALLUSERSPROFILE%\ProtonVPN\UpdaterLogs" directory.
-
-To monitor Http traffic of Proton VPN update service using Fiddler or another tool, you need to disable
-TLS certificate pinning. To disable TLS certificate pinning the configuration file with empty
-"TlsPinningConfig" value should be provided:
-```
-    ...
-    "TlsPinningConfig": {}
-    ...
-```
-
-Also, the file "ProtonVPN.UpdateService.exe.config" should be put into the app folder with the
-following content or an existing file should be updated to contain the "<system.net>" section:
-```
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <startup>
-    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
-  </startup>
-  <system.net>
-    <defaultProxy enabled="true">
-      <proxy proxyaddress="http://127.0.0.1:8888" bypassonlocal="False"/>
-    </defaultProxy>
-  </system.net>
-</configuration>
-```
-
-This forces the Proton VPN update service to send all Web traffic through local proxy opened
-by the Fiddler.
-
 #### OpenVPN
 
 The Proton VPN uses OpenVPN for maintaining a VPN tunnel. The new OpenVPN process is started on each
 connect to a VPN and closed on disconnect. Communication with the OpenVPN process is maintained through
 TCP management interface.
 
-OpenVPN is installed into "C:\Program Files\Proton AG\Proton VPN\Resources\"
+OpenVPN is installed into "C:\Program Files\Proton\VPN\<version>\Resources\"
 directory by default. The OpenVPN config file is static, it doesn't change for each VPN server.
 
 The OpenVPN is built from official source by applying a patch to support Proton VPN specific
