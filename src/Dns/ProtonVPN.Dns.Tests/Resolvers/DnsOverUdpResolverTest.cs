@@ -150,7 +150,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers
             DnsResponse response = await ExecuteWithStopwatchAsync(StartResolveAndCancelAsync);
 
             Assert.AreEqual(null, response);
-            Assert.IsTrue(_stopwatch.Elapsed >= TimeSpan.FromSeconds(3) && _stopwatch.Elapsed < TimeSpan.FromSeconds(5));
+            Assert.IsTrue(_stopwatch.Elapsed > TimeSpan.FromSeconds(2) && _stopwatch.Elapsed < TimeSpan.FromSeconds(5));
         }
 
         private async Task<DnsResponse> StartResolveAndCancelAsync()

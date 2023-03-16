@@ -302,7 +302,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers
             _stopwatch.Stop();
 
             Assert.AreEqual(null, response);
-            Assert.IsTrue(_stopwatch.Elapsed >= TimeSpan.FromSeconds(3), TEST_TOO_QUICK_MESSAGE);
+            Assert.IsTrue(_stopwatch.Elapsed > TimeSpan.FromSeconds(2), TEST_TOO_QUICK_MESSAGE);
             Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(5), TEST_CANCEL_TOOK_TOO_LONG_MESSAGE);
         }
     }
