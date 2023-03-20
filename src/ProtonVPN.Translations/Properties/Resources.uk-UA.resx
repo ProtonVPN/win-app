@@ -265,7 +265,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info">
-    <value>Підтримка протоколів обміну файлами, наприклад, BitTorrent.</value>
+    <value>Підтримка протоколів обміну файлами, як-от BitTorrent.</value>
     <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_Plus">
@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Вийти</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -348,11 +348,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Вихід із програми від'єднає активне VPN-з'єднання. Бажаєте продовжити?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Щоб завершити процес оновлення, Proton VPN тимчасово від'єднається і деактивує Постійний Kіll Swіtch, якщо хоч один з них активний. Ви хочете продовжити?</value>
+    <value>Щоб завершити процес оновлення, Proton VPN тимчасово від'єднається і деактивує Постійний Kill Switch, якщо хоч один з них активний. Ви хочете продовжити?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -403,7 +403,7 @@
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Ця е-пошта використовується для зв'язку з вами з приводу цієї проблеми.</value>
+    <value>Ця е-пошта використовуватиметься для зв'язку з вами з приводу цієї проблеми.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -1561,13 +1561,13 @@
     <value>Призначити VPN-з'єднання</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Увійти знову</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Щоб почати свою подорож у Proton VPN, призначте з'єднання VPN для свого облікового запису або будь-якого іншого підлеглого облікового запису.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Цей крок займе всього кілька хвилин. Після цього ви зможете увійти в систему і захистити всі свої пристрої.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Дякуємо за передплату Professional/Visionary</value>
@@ -1583,7 +1583,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Ви зможете знову отримати доступ до преміум функцій після оплати. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
+    <value>Після оплати ви зможете знову отримати доступ до преміумфункцій. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
@@ -1591,7 +1591,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>У вашому VPN обліковому записі є несплачені рахунки</value>
+    <value>У вашому обліковому записі VPN є несплачені рахунки</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_btn_Invoices">
@@ -1638,7 +1638,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch захищає вашу IP-адресу, блокуючи всі з'єднання. У випадку виникнення проблем ви можете вимкнути Kill Switch.</value>
+    <value>Kill Switch захищає вашу IP-адресу, блокуючи всі з'єднання. У разі виникнення проблем ви можете вимкнути Kill Switch.</value>
     <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1697,7 +1697,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Kill Switch блокує всі з'єднання, щоб уникнути витоку ваших даних. Вихід з програми вимкне Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Увімкнено Постійний Kіll Swіtch. Вихід з програми заблокує всі вихідні з'єднання, доки Proton VPN не буде знову під'єднано.</value>
+    <value>Увімкнено Постійний Kill Switch. Вихід з програми заблокує всі вихідні з'єднання, доки Proton VPN не буде знову під'єднано.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Перевірка "Я не робот"</value>
@@ -1846,11 +1846,11 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Взаємодія з антивірусом&lt;/Bold&gt; - Тимчасово вимкнітеь або видаліть ваше антивірусне програмне забезпечення.</value>
+    <value>&lt;Bold&gt;Перешкоджання антивірусу&lt;/Bold&gt; - Тимчасово вимкніть або видаліть ваше антивірусне програмне забезпечення.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Взаємодія з проксі/мережевим екраном&lt;/Bold&gt; - Вимкніть будь-які проксі або мережеві екрани, або зверніться до свого мережевого адміністратора.</value>
+    <value>&lt;Bold&gt;Перешкоджання проксі або мережевого екрана&lt;/Bold&gt; - Вимкніть будь-які проксі та мережеві екрани, або зверніться до свого мережевого адміністратора.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
@@ -1858,7 +1858,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Government block&lt;/Bold&gt; - Можливо, у вашій країні заблокований доступ до Proton. Спробуйте використовувати &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; для доступу до Proton.</value>
+    <value>&lt;Bold&gt;Блокування урядом&lt;/Bold&gt; - Можливо, у вашій країні заблокований доступ до Proton. Спробуйте використовувати &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; для доступу до Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
@@ -1874,7 +1874,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Потенційні проблеми, які можуть викликати тайм-аут вашого з'єднання, та як їх розв'язати</value>
+    <value>Потенційні проблеми, які можуть викликати призупинення вашого з'єднання, та як їх усунути</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
@@ -1907,7 +1907,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Гаразд</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Із сервера:</value>
@@ -1954,11 +1954,11 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Термін дії вашого сеансу минув. Будь ласка, увійдіть знову.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Недійсний токен відновлення, будь ласка, увійдіть знову.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1969,7 +1969,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Автентифікація</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Увійти</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -2115,11 +2115,11 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>NetShield</value>
   </data>
   <data name="Notifications_Delinquency_Description">
-    <value>Ви зможете знову отримати доступ до преміум функцій після оплати.</value>
+    <value>Ви зможете знову отримати доступ до преміумфункцій після оплати.</value>
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Ви зможете знову отримати доступ до преміум функцій після оплати. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
+    <value>Після оплати ви зможете знову отримати доступ до преміумфункцій. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
@@ -2143,7 +2143,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Від’єднайте інший пристрій, щоб під'єднати цей.</value>
+    <value>Від'єднайте інший пристрій, щоб під'єднати цей.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
@@ -2159,7 +2159,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>ВашУ передплату було змінено на нижчий рівень, тому ми перепідключаємося до найшвидшого з доступних серверів. Передплатіть знову, щоб користуватися всіма функціями.</value>
+    <value>Вашу передплату було змінено на нижчий рівень, тому зараз встановлюється повторне з'єднання із найшвидшим доступним сервером. Передплатіть тарифний план знову, щоб користуватися всіма функціями.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
@@ -2191,7 +2191,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_1">
-    <value>Автоматично з'єднуйтеся з сервером, який забезпечує найшвидше з'єднання.</value>
+    <value>Автоматично з'єднуйтеся з сервером, який забезпечує найвищу швидкість.</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
@@ -2277,7 +2277,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Random">
-    <value>Інший сервер кожного разу</value>
+    <value>Щоразу інший сервер</value>
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
@@ -2444,10 +2444,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Застосувати</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Код купону</value>
+    <value>Код купона</value>
   </data>
   <data name="PromoCode_lbl_Success">
-    <value>Купон використано успішно.</value>
+    <value>Купон успішно застосовано.</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
     <value>Використати купон</value>
@@ -2515,7 +2515,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
-    <value>Якщо вебсайти не завантажуються, спробуйте вимкнути NetShіeld</value>
+    <value>Якщо вебсайти не завантажуються, спробуйте вимкнути NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
     <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
@@ -2662,7 +2662,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Запобігання витоку подробиць DNS-запитів стороннім особам. Завжди увімкнено.</value>
+    <value>Запобігання витоку подробиць DNS-запитів третім сторонам. Завжди увімкнено.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
@@ -2733,7 +2733,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Виключити програму чи ІP-адресу із трафіку VPN або включити тільки певні програми. Не можна увімкнути разом з Kіll Swіtch.</value>
+    <value>Виключення програми чи IP-адреси з трафіку VPN або включення тільки певних програм. Не можна використовувати разом із Kill Switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2772,7 +2772,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Введіть приватний сервер DNS (наприклад, NextDNS) для обробки запитів DNS. Використання власних серверів DNS призведе до вимкнення NetShіeld. Сервери DNS відповідають за спрямування вас на потрібний сайт, тому використовуйте лише сервери, яким ви довіряєте.</value>
+    <value>Введіть приватний сервер DNS (наприклад, NextDNS) для обробки запитів DNS. Використання власних серверів DNS призведе до вимкнення NetShield. Сервери DNS відповідають за спрямування вас на потрібний сайт, тому використовуйте лише сервери, яким ви довіряєте.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
@@ -3048,7 +3048,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>до панелі сповіщень</value>
+    <value>до системного лотка</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
@@ -3111,7 +3111,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Блокуйте рекламу та зловмисні програми за допомогою NetShield</value>
   </data>
   <data name="Upsell_Countries_BrowseFast">
-    <value>Переглядайте на найвищій швидкості (10 Гбіт/с)</value>
+    <value>Користуйтеся інтернетом із найвищою швидкістю (10 Гбіт/с)</value>
   </data>
   <data name="Upsell_Countries_GlobalStreamingServices">
     <value>Отримайте доступ до глобальних сервісів трансляції</value>
@@ -3146,7 +3146,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Блокування реклами та стеження</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
-    <value>Переглядайте на найвищій швидкості</value>
+    <value>Користуйтеся інтернетом із найвищою швидкістю</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
     <value>Захистіть свій пристрій від зловмисних програм</value>
@@ -3155,7 +3155,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>У разі оновлення до тарифного плану Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
-    <value>Насолоджуйтесь переглядом без реклами з NetShield</value>
+    <value>Насолоджуйтесь інтернетом без реклами завдяки NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
     <value>Докладніше</value>
@@ -3166,7 +3166,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Маєте додаткові чи професійні обчислювальні потреби, які потребують нестандартних портів? Перейдіть до VPN Plus, щоб отримати доступ до цієї та інших преміальних функцій.</value>
+    <value>Маєте додаткові чи професійні обчислювальні потреби, які потребують нестандартних портів? Передплатіть VPN Plus, щоб отримати доступ до цієї та інших преміумфункцій.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">

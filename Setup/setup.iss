@@ -244,6 +244,7 @@ Source: "..\src\bin\es-ES\ProtonVPN.Translations.resources.dll"; DestDir: "{app}
 Source: "..\src\bin\es-419\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\es-419"; Flags: signonce;
 Source: "..\src\bin\uk-UA\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\uk-UA"; Flags: signonce;
 Source: "..\src\bin\tr-TR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\tr-TR"; Flags: signonce;
+Source: "..\src\bin\be-BY\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
 
 Source: "..\src\bin\Resources\GoSrp.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\src\bin\Resources\ProtonVPN.IPFilter.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;

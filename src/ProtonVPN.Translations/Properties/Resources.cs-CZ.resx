@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Odhlásit se</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -348,7 +348,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Odhlášením z aplikace se odpojí aktivní připojení VPN. Chcete pokračovat?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -1198,7 +1198,7 @@
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE">
-    <value>Niger</value>
+    <value>Nigérie</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF">
@@ -1561,13 +1561,13 @@
     <value>Přiřaďte VPN připojení</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Přihlásit se znovu</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Pro použití Proton VPN prosím přiřaďte VPN připojení k vašemu účtu nebo k podřízenému účtu.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Tento krok zabere jen několik minut. Poté se budete moci přihlásit a chránit všechna svá zařízení.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Děkujeme, že jste přešli na tarif Professional/Visionary</value>
@@ -1794,7 +1794,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Rozumím</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Aby rozdělené tunelování fungovalo správně, je nutné vypnout funkci Kill Switch.</value>
+    <value>Aby fungoval Split Tunneling správně, je nutné vypnout funkci Kill Switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Stovky serverů v 55 zemích</value>
@@ -1906,7 +1906,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Ze serveru:</value>
@@ -1953,11 +1953,11 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Vaše relace vypršela, musíte se znovu přihlásit.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Neplatný obnovovací token, přihlaste se prosím znovu.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1968,7 +1968,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Ověřit</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Přihlásit se</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">

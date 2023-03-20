@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Cerrar sesión</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,11 +324,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Cerrar la sesión de la aplicación desconectará la conexión VPN activa. ¿Quieres continuar?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Para completar el proceso de actualización, Proton VPN desconectará temporalmente y desactivará el Kill Switch permanente si alguno de ellos está activo. ¿Desea continuar?</value>
+    <value>Para completar el proceso de actualización, Proton VPN desconectará temporalmente y desactivará el Kill switch permanente si alguno de ellos está activo. ¿Deseas continuar?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -902,7 +902,7 @@
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY">
-    <value>Guyana</value>
+    <value>Guayana</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
@@ -1378,7 +1378,7 @@
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
-    <value>Eswatini</value>
+    <value>Suazilandia</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC">
@@ -1537,13 +1537,13 @@
     <value>Asignar conexiones VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Iniciar sesión de nuevo</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Para comenzar su viaje en Proton VPN, asigne conexiones VPN a su cuenta o a cualquier otra subcuenta.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Este paso le llevará sólo unos minutos. Después de eso podrás iniciar sesión y proteger todos tus dispositivos.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Gracias por pasar a Profesional/Visionary</value>
@@ -1761,7 +1761,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Tu equipo necesita reiniciarse</value>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Presentamos la nueva imagen de Proton. Varios servicios, pero una misma misión. Estás ante un nuevo Internet cimentado sobre la base de la privacidad. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
+    <value>Presentamos el nuevo aspecto de Proton. Muchos servicios, una sola misión. Te damos la bienvenida a una internet donde la privacidad es la norma.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Nueva imagen, máxima protección</value>
@@ -1805,7 +1805,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
-    <value>Solución de problemas de Proton VPN</value>
+    <value>Resolución de problemas de Proton VPN</value>
     <comment>The text displayed in Troubleshoot modal window title</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_Close">
@@ -1825,15 +1825,15 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Interferencia Proxy/Firewall&lt;/Bold&gt; - Desactiva cualquier proxy o firewalls, o ponte en contacto con el administrador de tu red.</value>
+    <value>&lt;Bold&gt;Interferencia do proxy/cortafuegol&lt;/Bold&gt; - Desactiva cualquier proxy o cortafuego, o ponte en contacto con el administrador de tu red.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Bloqueo del gobierno&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
+    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Bloqueo del gobierno&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
+    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
@@ -1845,7 +1845,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
-    <value>&lt;Bold&gt;Proton está apagado&lt;/Bold&gt; - Compruebe &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; para el estado de nuestro sistema.</value>
+    <value>&lt;Bold&gt;Proton está fuera de servicio&lt;/Bold&gt; - Consula el &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Estado de Proton&lt;/Hyperlink&gt; para conocer el estado de nuestro sistema.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
@@ -1882,7 +1882,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Desde el servidor:</value>
@@ -1929,11 +1929,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token de actualización no válido, por favor, inicie sesión de nuevo.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1944,7 +1944,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Autentificar</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Iniciar sesión</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -1971,7 +1971,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Código de autenticación de doble factor</value>
+    <value>Código de autenticación de dos factores</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Nombre de usuario</value>
@@ -2110,11 +2110,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Learn More</value>
+    <value>Más información</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Insecure Wi-Fi connection detected: {0}</value>
+    <value>Conexión Wi-Fi insegura detectada: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
@@ -2142,11 +2142,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
-    <value>What's new</value>
+    <value>Novedades</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>A new app version is now available!</value>
+    <value>¡Nueva versión de la aplicación disponible!</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
@@ -2170,7 +2170,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Guarda tus ajustes y servidores preferidos para futuro uso.</value>
+    <value>Guarda tu configuración y servidores preferidos para futuro uso.</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
@@ -2342,7 +2342,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil sin guardar. ¿&lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Estás seguro de que deseas descartarlo?</value>
+    <value>Hay cambios de perfil no guardados. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Estás seguro de que deseas descartarlos?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
@@ -2442,10 +2442,10 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch Off</value>
+    <value>Kill switch desactivado</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch On</value>
+    <value>Kill switch activado</value>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Más información</value>
@@ -2469,10 +2469,10 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Redirección de puertos activada</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core Off</value>
+    <value>Secure Core desactivado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core On</value>
+    <value>Secure Core activado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>MEJORAR</value>
@@ -2603,7 +2603,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>APPS:</value>
+    <value>APLICACIONES:</value>
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
@@ -2639,7 +2639,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>En caso de que la página web de Proton esté bloqueada, esta configuración permite a la aplicación probar rutas alternativas de red para llegar a Proton, lo que puede ser útil para evitar problemas de red o de firewalls. Recomendamos mantener esta configuración para mayor fiabilidad.</value>
+    <value>En caso de que la página web de Proton esté bloqueada, esta configuración permite a la aplicación probar rutas alternativas de red para llegar a Proton, lo que puede ser útil para evitar problemas de red o de cortafuegos. Recomendamos mantener esta configuración para mayor fiabilidad.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
@@ -2753,10 +2753,10 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>NAT Moderado</value>
+    <value>NAT moderada</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>El NAT moderado desactiva la aleatorización del mapeo de las direcciones locales, lo que puede reducir ligeramente su seguridad, pero permite técnicas como las conexiones directas para aplicaciones como los juegos en línea.</value>
+    <value>La NAT moderada desactiva la aleatorización del mapeo de las direcciones locales, lo que puede reducir ligeramente su seguridad, pero permite técnicas como las conexiones directas para aplicaciones como los juegos en línea.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Conexión rápida</value>
@@ -2998,7 +2998,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Streaming - {0}</value>
+    <value>Streaming: {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
     <value>Características</value>
@@ -3055,7 +3055,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Ajustes de Notificaciones</value>
+    <value>Configuración de las notificaciones</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Countries_BlockAds">
@@ -3082,13 +3082,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
-    <value>¿Qué es el NAT moderado?</value>
+    <value>¿Qué es la NAT moderada?</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>El NAT moderado, también conocido como Nat Tipo 2, puede mejorar su experiencia en línea con varias aplicaciones y videojuegos en línea.</value>
+    <value>La NAT moderada, también conocida como NAT Tipo 2, puede mejorar tu experiencia en línea con varias aplicaciones y videojuegos en línea.</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Habilitar NAT moderado</value>
+    <value>Habilitar NAT moderada</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
     <value>Actualiza a un plan de pago para desbloquear esta y muchas otras funciones.</value>
@@ -3196,7 +3196,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">
-    <value>¡BIENVENIDO A BORDO!</value>
+    <value>¡TE DAMOS LA BIENVENIDAD!</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_ttl">

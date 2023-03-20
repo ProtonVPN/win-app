@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Oturumu kapat</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Uygulama oturumunu kapatmak, etkin VPN bağlantısını kesecek. İlerlemek istiyor musunuz?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -518,7 +518,7 @@
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value></value>
+    <value> </value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
@@ -1537,13 +1537,13 @@
     <value>VPN bağlantısı ata</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Yeniden oturum aç</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Proton VPN yolculuğunuza başlamak için lütfen hesabınıza ya da başka bir alt hesaba VPN bağlantıları atayın.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Bu adım birkaç dakika sürecek. Bundan sonra oturum açabilir ve tüm aygıtlarınızı koruyabilirsiniz.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Professional/Visionary tarifesine yükselttiğiniz için teşekkürler</value>
@@ -1881,7 +1881,7 @@
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Tamam</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Şu sunucudan:</value>
@@ -1928,11 +1928,11 @@
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Oturumunuzun süresi dolmuş. Lütfen yeniden oturum açın.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Yenileme kodu geçersiz. Lütfen yeniden oturum açın.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1943,7 +1943,7 @@
     <value>Kimliği doğrula</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Oturum aç</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -1970,7 +1970,7 @@
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>İki aşamalı doğrulama kodu</value>
+    <value>İki adımlı doğrulama kodu</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Kullanıcı adı</value>
@@ -2009,7 +2009,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>İki aşamalı doğrulama kodu geçersiz</value>
+    <value>İki adımlı doğrulama kodu geçersiz</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Oturum açma bilgileri yanlış. Lütfen yeniden deneyin.</value>
@@ -2755,14 +2755,14 @@
     <value>Ilımlı NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Ilımlı NAT, güvenliğinizi biraz azaltabilir. Ancak çevrimiçi oyunlar gibi uygulamalar için doğrudan bağlantı kurma gibi tekniklere izin veren yerel adres eşlemelerinin rastgeleleştirilmesi özelliğini devre dışı bırakır.</value>
+    <value>Ilımlı NAT, güvenliğinizi biraz azaltabilir. Ancak çevrimiçi oyunlar gibi uygulamaların doğrudan bağlantı kurması gibi tekniklere izin veren yerel adres eşlemelerini rastgeleleştirme özelliğini devre dışı bırakır.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Hızlı bağlan</value>
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Hızlı bağlan düğmesi sizi seçilmiş profile bağlar.</value>
+    <value>Hızlı Bağlan düğmesinin seçtiğiniz profile göre bağlantı kurmasını sağlar.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">

@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Abmelden</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Wenn du dich von der Anwendung abmeldest, wird die aktive VPN-Verbindung getrennt. Möchtest du fortfahren?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -670,7 +670,7 @@
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY">
-    <value>Belarus</value>
+    <value>Weißrussland</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ">
@@ -766,7 +766,7 @@
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM">
-    <value>Dominica</value>
+    <value>Dominika</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO">
@@ -778,7 +778,7 @@
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC">
-    <value>Ecuador</value>
+    <value>Ekuador</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE">
@@ -994,7 +994,7 @@
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH">
-    <value>Cambodia</value>
+    <value>Kambodscha</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI">
@@ -1022,7 +1022,7 @@
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY">
-    <value>Cayman Islands</value>
+    <value>Kaimaninseln</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ">
@@ -1537,13 +1537,13 @@
     <value>VPN-Verbindungen zuweisen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Erneut anmelden</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Um damit zu beginnen Proton VPN zu nutzen, weise bitte deinem Konto oder einem anderen Unterkonto VPN-Verbindungen zu.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Dieser Schritt dauert nur wenige Minuten. Danach kannst du dich anmelden und alle deine Geräte schützen.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Danke für das Upgrade auf Professional/Visionary</value>
@@ -1601,7 +1601,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1699,7 +1699,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1929,11 +1929,11 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Ungültiges Aktualisierungs‐Token. Bitte melde dich erneut an.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1944,7 +1944,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Authentifizieren</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Anmelden</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -2570,7 +2570,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">

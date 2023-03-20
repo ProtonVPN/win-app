@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Encerrar sessão</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Encerrar a sessão do programa irá desconectar a conexão VPN ativa. Você tem certeza que deseja continuar?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -610,7 +610,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF">
-    <value>Burkina Faso</value>
+    <value>Burquina Faso</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG">
@@ -758,7 +758,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Djibouti</value>
+    <value>Djibuti</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
@@ -1094,7 +1094,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG">
-    <value>Madagascar</value>
+    <value>Madagáscar</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH">
@@ -1306,7 +1306,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC">
-    <value>Seychelles</value>
+    <value>Seicheles</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD">
@@ -1410,7 +1410,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Timor-Leste</value>
+    <value>Timor Leste</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
@@ -1537,13 +1537,13 @@ Informações sobre a tabela de roteamento</value>
     <value>Atribuir conexões VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Iniciar sessão novamente</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Para iniciar sua jornada no Proton VPN, atribua conexões VPN à sua conta ou a qualquer outra subconta.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Esta etapa levará apenas alguns minutos. Depois disso, você poderá fazer login e proteger todos os seus dispositivos.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Obrigado por fazer upgrade para Professional/Visionary</value>
@@ -1601,7 +1601,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Fazer upgrade</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1882,7 +1882,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Do servidor:</value>
@@ -1929,11 +1929,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Sua sessão expirou. Por favor, entre novamente.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token de atualização inválido. Por favor, faça o login novamente.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1944,7 +1944,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Autenticar</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Entrar</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -2110,11 +2110,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Learn More</value>
+    <value>Saiba mais</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Insecure Wi-Fi connection detected: {0}</value>
+    <value>Rede Wi-Fi não segura detectada: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
@@ -2142,11 +2142,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
-    <value>What's new</value>
+    <value>Novidades</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>A new app version is now available!</value>
+    <value>Uma nova versão do programa está disponível.</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
@@ -2442,10 +2442,10 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch Off</value>
+    <value>Kill switch desativado</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch On</value>
+    <value>Kill switch ativado</value>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Saiba mais</value>
@@ -2469,10 +2469,10 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Encaminhamento de portas Ativado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core Off</value>
+    <value>Secure Core ativado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core On</value>
+    <value>Secure Core desativado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>ATUALIZAR</value>
@@ -2574,7 +2574,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
+    <value>Fazer upgrade</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2733,7 +2733,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Fazer upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -2767,7 +2767,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
-    <value>Reconexão Automática</value>
+    <value>Reconexão automática</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
