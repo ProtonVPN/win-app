@@ -235,7 +235,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Adblocker (NetShield)</value>
+    <value>Advertentieblokkering (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Afmelden</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Uitloggen van de applicatie zal de actieve VPN-verbinding verbreken. Wilt u doorgaan?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -351,7 +351,7 @@
     <value>Contacteer ons</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Update</value>
+    <value>Bijwerken</value>
   </data>
   <data name="BugReport_btn_GotIt">
     <value>Klaar</value>
@@ -406,7 +406,7 @@
     <value>Een logboek is een type bestand dat ons laat zien welke acties u heeft ondernomen die geleid hebben tot een fout. We gebruiken ze enkel om uw probleem te helpen oplossen.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Update Proton VPN</value>
+    <value>Proton VPN bijwerken</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
     <value>Deze versie van Proton VPN heeft misschien uw probleem al opgelost!</value>
@@ -906,7 +906,7 @@
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Hong Kong</value>
+    <value>Hongkonger</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
@@ -1537,13 +1537,13 @@
     <value>VPN-verbindingen toewijzen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Opnieuw inloggen</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Om uw reis met Proton VPN te beginnen wijst u VPN-verbindingen toe aan uw account of een ander sub-account.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Deze stap duurt slechts een paar minuten. Daarna kunt u zich aanmelden en al uw apparaten beveiligen.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Bedankt om te upgraden naar Professional/Visionary</value>
@@ -1601,7 +1601,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1699,7 +1699,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1882,7 +1882,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Oké</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Van server:</value>
@@ -1929,11 +1929,11 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Uw sessie is verlopen. Log opnieuw in.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Ongeldige vernieuwingstoken, log opnieuw in.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1944,7 +1944,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Authenticeren</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Inloggen</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -2362,7 +2362,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
   <data name="Profiles_btn_Sync">
-    <value>Sync</value>
+    <value>Synchroniseren</value>
     <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
   </data>
   <data name="Profiles_btn_Troubleshoot">
@@ -2475,7 +2475,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Secure Core Aan</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>UPGRADE</value>
+    <value>UPGRADEN</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
@@ -2570,11 +2570,11 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2673,10 +2673,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>TAP adapter</value>
+    <value>TAP-adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>TUN adapter</value>
+    <value>TUN-adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>Port forwarding</value>
@@ -2994,7 +2994,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
-    <value>Plus Server</value>
+    <value>Plus server</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
@@ -3150,7 +3150,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Verdubbel de encryptie met Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3217,7 +3217,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Save button in data entry windows</comment>
   </data>
   <data name="Window_lbl_Error">
-    <value>Error:</value>
+    <value>Fout:</value>
     <comment>The label for list of errors on Error Panel of data entry Window</comment>
   </data>
   <data name="Window_lbl_Loading">

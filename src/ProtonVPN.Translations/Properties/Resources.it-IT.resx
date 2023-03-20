@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Logout</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>La disconnesione dall'applicazione disconnetterà la connessione VPN attiva. Vuoi continuare?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -590,7 +590,7 @@
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
-    <value>Azerbaijan</value>
+    <value>Azerbaigian</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
@@ -618,7 +618,7 @@
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH">
-    <value>Bahrain</value>
+    <value>Bahrein</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI">
@@ -1386,7 +1386,7 @@
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD">
-    <value>Chad</value>
+    <value>Ciad</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF">
@@ -1537,13 +1537,13 @@
     <value>Assegna connessioni VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Accedi di nuovo</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Per iniziare il tuo viaggio in Proton VPN, assegna le connessioni VPN al tuo account o a qualsiasi altro account secondario.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Questo passaggio richiederà solo pochi minuti. Dopodiché sarai in grado di accedere e proteggere tutti i tuoi dispositivi.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Grazie per l'aggiornamento a Professional/Visionary</value>
@@ -1699,7 +1699,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Upgrade</value>
+    <value>Effettua l'upgrade</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1715,7 +1715,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>A problem occurred while downloading a newer version. Update manually to get the latest one.</value>
+    <value>Si è verificato un problema durante il download di una versione più recente. Aggiorna manualmente per ottenere quella più recente.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
@@ -1727,11 +1727,11 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>The application version you are using is no longer supported. Please, as soon as the update is available, update to the latest version.</value>
+    <value>La versione dell'applicazione che stai utilizzando non è più supportata. Per favore, appena l'aggiornamento è disponibile, aggiorna all'ultima versione.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note that the Kill Switch is enabled. Updating or quitting the application will disable it.</value>
+    <value>Kill switch è abilitato. Aggiornare o uscire dall'applicazione lo disattiverà.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1882,7 +1882,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Dal server:</value>
@@ -1929,11 +1929,11 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>La tua sessione è scaduta. Per favore effettua nuovamente l'accesso.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token di aggiornamento non valido, per favore accedi di nuovo.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1944,7 +1944,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Autentica</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Login</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -2475,7 +2475,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Secure Core Attivato</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>UPGRADE</value>
+    <value>EFFETTUA L'UPGRADE</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
@@ -2574,7 +2574,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
+    <value>Effettua l'upgrade</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2733,7 +2733,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Effettua l'upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">

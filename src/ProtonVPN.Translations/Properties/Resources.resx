@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -126,7 +126,7 @@
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm" xml:space="preserve">
-    <value>Logging out of the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="Window_btn_Cancel" xml:space="preserve">
@@ -246,7 +246,7 @@
     <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired" xml:space="preserve">
-    <value>Your session has expired. Please re-log in.</value>
+    <value>Your session has expired. Please sign in again.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying" xml:space="preserve">
@@ -382,7 +382,7 @@
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere" xml:space="preserve">
-    <value>Secure Internet Anywhere</value>
+    <value>Secure internet anywhere</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_Username" xml:space="preserve">
@@ -399,7 +399,7 @@
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Login_btn_Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lnk_CreateAccount" xml:space="preserve">
@@ -639,7 +639,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Feature_val_Plus" xml:space="preserve">
-    <value>PLUS Server</value>
+    <value>Plus server</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_P2P" xml:space="preserve">
@@ -695,7 +695,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Sign out</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Exit" xml:space="preserve">
@@ -2143,7 +2143,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2" xml:space="preserve">
-    <value />
+    <value/>
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore" xml:space="preserve">
@@ -2183,7 +2183,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized" xml:space="preserve">
-    <value>Invalid refresh token, please log in again.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer" xml:space="preserve">
@@ -2562,13 +2562,13 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Secure Core On</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo" xml:space="preserve">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet.</value>
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo" xml:space="preserve">
-    <value>Disables Internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo" xml:space="preserve">
-    <value>Browse the Internet without ads and malware.</value>
+    <value>Browse the internet without ads and malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning" xml:space="preserve">
     <value>If websites don't load, try disabling NetShield</value>
@@ -2613,7 +2613,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Permanent Kill Switch</value>
   </data>
   <data name="Dialogs_btn_Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit" xml:space="preserve">
     <value>Exit</value>
@@ -2635,7 +2635,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Cancel</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg" xml:space="preserve">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the Internet.</value>
+    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl" xml:space="preserve">
     <value>Enable Permanent Kill Switch?</value>
@@ -2649,7 +2649,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_TunInUse_msg" xml:space="preserve">
     <value>Proton VPN could not connect because the TUN network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, switch to the TAP adapter (you can change back to TUN in the Advanced Settings).</value>
   </data>
-    <data name="Dialogs_WireGuardAdapterInUse_msg" xml:space="preserve">
+  <data name="Dialogs_WireGuardAdapterInUse_msg" xml:space="preserve">
     <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
@@ -2674,7 +2674,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>BASIC Servers ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2" xml:space="preserve">
-    <value>PLUS Servers ({0})</value>
+    <value>Plus servers ({0})</value>
   </data>
   <data name="Servers_Feature_val_Streaming" xml:space="preserve">
     <value>Streaming</value>
@@ -2743,7 +2743,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc" xml:space="preserve">
-    <value>Route your Internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl" xml:space="preserve">
     <value>Smart Protocol is currently disabled</value>
@@ -2928,7 +2928,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Smart Routing</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey" xml:space="preserve">
-    <value>Unfortunatelly, this server does not support WireGuard.</value>
+    <value>Unfortunately, this server does not support WireGuard.</value>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired" xml:space="preserve">
     <value>Proton VPN was unable to refresh client authentication certificate.</value>
@@ -2950,13 +2950,13 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Assign VPN connections</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain" xml:space="preserve">
-    <value>Login again</value>
+    <value>Sign in again</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1" xml:space="preserve">
     <value>To start your journey in Proton VPN please assign VPN connections to your account or any other sub-account.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2" xml:space="preserve">
-    <value>This step will take just a few minutes. After that you will be able to log in and protect all your devices.</value>
+    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks" xml:space="preserve">
     <value>Thanks for upgrading to Professional/Visionary</value>
@@ -3146,7 +3146,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Don’t show again</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore" xml:space="preserve">
-    <value>Learn More</value>
+    <value>Learn more</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle" xml:space="preserve">
     <value>Secure Core offers the highest level of security and privacy, but it may reduce your internet speed. If you need more performance, you can disable Secure Core.</value>
