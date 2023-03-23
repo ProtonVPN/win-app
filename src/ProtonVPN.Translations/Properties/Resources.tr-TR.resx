@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Abonelik yönetimi</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Engellenen içeriğe erişin</value>
@@ -1747,18 +1747,6 @@
     <value>Proton VPN, yerel ağınızda yapılandırılmış bir vekil sunucu algıladı. Proton VPN uygulaması, bu vekil sunucudan geçen trafiği koruyamaz. Bu durum, bağlantınızın beklendiği gibi tamamen korunmayacağı anlamına gelir.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Yeniden başlat</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Şu olmadan ilerle</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Proton VPN ile ilgili bir sorun çıkmaması için öncelikle bilgisayarınızı yeniden başlatarak diğer uygulamaların güncellemelerini tamamlamanızı öneririz. Ardından Proton VPN kurulumu otomatik olarak sürdürülür. Şimdi yeniden başlatmak ister misiniz?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Bilgisayarınızın yeniden başlatılması gerekiyor</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğin doğal sayıldığı internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
@@ -1860,6 +1848,9 @@
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>TUN ağ bağdaştırıcısı kullanıldığından Proton VPN bağlantı kuramadı. Lütfen etkin VPN bağlantısını kestikten sonra yeniden deneyin. Alternatif olarak, TAP bağdaştırıcısına geçin (Gelişmiş ayarlar bölümünden TUN bağdaştırıcısına geri dönebilirsiniz).</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>İptal</value>
@@ -1970,7 +1961,7 @@
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>İki adımlı doğrulama kodu</value>
+    <value>İki aşamalı doğrulama kodu</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Kullanıcı adı</value>
@@ -2009,7 +2000,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>İki adımlı doğrulama kodu geçersiz</value>
+    <value>İki aşamalı doğrulama kodu geçersiz</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Oturum açma bilgileri yanlış. Lütfen yeniden deneyin.</value>
@@ -2150,7 +2141,7 @@
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>{0} ile BAĞLANTI KURULDU</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>BAĞLI DEĞİL</value>
@@ -2894,6 +2885,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Free konumları ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Our partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Plus konumları ({0})</value>
   </data>
@@ -3226,8 +3229,5 @@ hızlıca göz atın.</value>
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

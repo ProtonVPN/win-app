@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Gestionar suscripción</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Acceso a contenido bloqueado</value>
@@ -1748,18 +1748,6 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Proton VPN ha detectado un servidor proxy configurado en su red local. La aplicación Proton VPN no puede proteger el tráfico que pasa por este proxy. Esto significa que su conexión no estará completamente protegida como se esperaba.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Reiniciar</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Continúa sin</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Para evitar cualquier error de Proton VPN, le recomendamos encarecidamente que reinicie su ordenador para actualizar otras aplicaciones primero. Proton VPN reanudará automáticamente la instalación después. ¿Reiniciar ahora?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Tu equipo necesita reiniciarse</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Presentamos el nuevo aspecto de Proton. Muchos servicios, una sola misión. Te damos la bienvenida a una internet donde la privacidad es la norma.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
   </data>
@@ -1861,6 +1849,9 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN no pudo conectarse porque el adaptador de red TUN ya está en uso. Por favor, desconecte cualquier VPN activa y vuelva a intentarlo. Alternativamente, cambie al adaptador TAP (puede volver a cambiar a TUN en la configuración avanzada).</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Cancelar</value>
@@ -2151,7 +2142,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>CONECTADO a {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>DESCONECTADO</value>
@@ -2895,6 +2886,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Ubicaciones FREE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Our partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Ubicaciones PLUS ({0})</value>
   </data>
@@ -3226,8 +3229,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

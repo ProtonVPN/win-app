@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Кіраванне падпіскай</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Доступ да заблакіраванага змесціва</value>
@@ -1772,18 +1772,6 @@
     <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігурыраваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша злучэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Перазапусціць</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Працягнуць без</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Для таго, каб пазбегнуць любых памылак у Proton VPN, мы вельмі раім перазапусціць ваш камп'ютар для папярэдняга абнаўлення іншых праграм. Пасля гэтага Proton VPN аўтаматычна працягне ўсталяванне. Выканаць перазапуск?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Неабходна перазапусціць камп'ютар</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Уводзіны ў абноўлены выгляд Proton. Шмат сэрвісаў, адна місія. Запрашаем у інтэрнэт, дзе прыватнасць з'яўляецца паўсядзённасцю. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Даведацца больш&lt;/Hyperlink&gt;</value>
   </data>
@@ -1885,6 +1873,9 @@
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN не змог падлучыцца таму, што зараз выкарыстоўваецца адаптар TUN. Адключыце ўсе актыўныя злучэнні з VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць пераключыцца на адаптар TAP (заўсёды можна вярнуцца на TUN у пашыраных наладах праграмы).</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Скасаваць</value>
@@ -2175,7 +2166,7 @@
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>ПАДЛУЧАНА да {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>АДЛУЧАНА</value>
@@ -2925,6 +2916,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Размяшчэнні FREE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Our partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Размяшчэнні PLUS ({0})</value>
   </data>
@@ -3274,8 +3277,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

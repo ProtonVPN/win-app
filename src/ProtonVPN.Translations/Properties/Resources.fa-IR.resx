@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>مدیریت اشتراک</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>دسترسی به محتوای مسدود شده</value>
@@ -1747,18 +1747,6 @@
     <value>برنامه Proton VPN یک سرور پروکسی پیکربندی شده در شبکه محلی شما یافته است. برنامه Proton VPN قادر به حفاظت ترافیکی که از طریق این پروکسی میگذرد نیست. این بدان معناست که اتصال شما بطور کامل همانطور که انتظار میرود محافظت نخواهد شد.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>شروع مجدد</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>ادامه بدون</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>برای جلوگیری از هر گونه خطای Proton VPN، ما به شدت توصیه می‌کنیم رایانه خود را ریستارت نموده تا ابتدا دیگر برنامه‌ها به روز شوند. Proton VPN بعد از آن به‌طور خودکار نصب را از سر خواهد گرفت. اکنون ریستارت میکنید؟</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>رایانه شما نیاز به شروع مجدد دارد</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>معرفی نمای تازه Proton. خدمات بسیار، یک مأموریت. به اینترنتی که در آن حریم خصوصی پیش‌فرض است خوش آمدید. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;بیشتر بدانید&lt;/Hyperlink&gt;</value>
   </data>
@@ -1860,6 +1848,9 @@
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>ProtonVPN نمی تواند اتصال برقرار کند زیرا آداپتور شبکه TUN در حال استفاده است. لطفا هر گونه VPN فعال را قطع کنید و دوباره امتحان کنید. همچنین میتوانید به آداپتور TAP تغییر دهید (می توانید در تنظیمات پیشرفته به TUN تغییر دهید).</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>لغو</value>
@@ -2150,7 +2141,7 @@
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>متصل به {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>قطع شده</value>
@@ -2894,6 +2885,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>مکان‌های رایگان ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Our partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>مکان‌های پلاس({0})</value>
   </data>
@@ -3225,8 +3228,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

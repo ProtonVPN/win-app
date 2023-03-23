@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Abonnement beheren</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Toegang tot geblokkeerde inhoud</value>
@@ -1748,18 +1748,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN heeft een proxyserver gedetecteerd die is geconfigureerd op uw lokale netwerk. De Proton VPN-app kan het verkeer dat door deze proxy gaat, niet beschermen. Dit betekent dat uw verbinding niet volledig wordt beveiligd zoals verwacht.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Herstarten</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Doorgaan zonder</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Om Proton VPN-fouten te voorkomen, raden we ten sterkste aan uw computer te herstarten om eerst andere applicaties bij te werken. Proton VPN zal de installatie daarna automatisch hervatten. Nu herstarten?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Uw computer moet opnieuw opstarten</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Ontdek de nieuwe look van Proton. Veel diensten, één missie. Welkom in een internetomgeving waar privacy de standaard is.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Meer info&lt;/Hyperlink&gt;</value>
   </data>
@@ -1861,6 +1849,9 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN kon geen verbinding maken omdat de TUN-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u overschakelen naar de TAP-adapter (u kunt terugschakelen naar TUN in de Geavanceerde Instellingen).</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Annuleer</value>
@@ -2151,7 +2142,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>VERBONDEN met {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>NIET VERBONDEN</value>
@@ -2895,6 +2886,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>GRATIS locaties ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Our partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>PLUS locaties ({0})</value>
   </data>
@@ -3227,8 +3230,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>
