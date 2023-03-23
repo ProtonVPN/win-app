@@ -4,8 +4,6 @@ using Microsoft.UI.Xaml;
 
 using ProtonVPN.Gui.Activation;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Core.Contracts.Services;
-using ProtonVPN.Gui.Core.Services;
 using ProtonVPN.Gui.Helpers;
 using ProtonVPN.Gui.Models;
 using ProtonVPN.Gui.Services;

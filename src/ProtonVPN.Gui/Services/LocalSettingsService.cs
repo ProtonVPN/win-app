@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Core.Contracts.Services;
-using ProtonVPN.Gui.Core.Helpers;
 using ProtonVPN.Gui.Helpers;
 using ProtonVPN.Gui.Models;
 
