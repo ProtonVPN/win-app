@@ -556,7 +556,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?.
+        ///   Looks up a localized string similar to To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?.
         /// </summary>
         public static string App_msg_UpdateConnectedConfirm {
             get {
@@ -3514,7 +3514,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable Kill Switch.
+        ///   Looks up a localized string similar to Disable kill switch.
         /// </summary>
         public static string Dialogs_DisconnectError_btn_DisableKillSwitch {
             get {
@@ -3550,7 +3550,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is protecting your IP by blocking all connections. In case of trouble you can disable Kill Switch..
+        ///   Looks up a localized string similar to kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch..
         /// </summary>
         public static string Dialogs_DisconnectError_msg_KillSwitch {
             get {
@@ -3685,7 +3685,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data. Exiting the application will disable the Kill Switch..
+        ///   Looks up a localized string similar to kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch..
         /// </summary>
         public static string Dialogs_Exit_msg_KillSwitchOn {
             get {
@@ -3694,7 +3694,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again..
+        ///   Looks up a localized string similar to Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again..
         /// </summary>
         public static string Dialogs_Exit_msg_PermanentKillSwitch {
             get {
@@ -3721,7 +3721,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With Permanent Kill Switch, if the VPN is not connected for any reason, you won&apos;t be able to access the Internet..
+        ///   Looks up a localized string similar to With Permanent kill switch, if the VPN is not connected for any reason, you won&apos;t be able to access the internet..
         /// </summary>
         public static string Dialogs_KillSwitchConfirmation_msg {
             get {
@@ -3730,7 +3730,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable Permanent Kill Switch?.
+        ///   Looks up a localized string similar to Enable Permanent kill switch?.
         /// </summary>
         public static string Dialogs_KillSwitchConfirmation_ttl {
             get {
@@ -3838,7 +3838,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note that the Kill Switch is enabled. Updating or quitting the application will disable it..
+        ///   Looks up a localized string similar to Note that the kill switch is enabled. Updating or quitting the application will disable it..
         /// </summary>
         public static string Dialogs_OutdatedApp_msg_KillSwitchActive {
             get {
@@ -3928,7 +3928,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For Split Tunneling to function properly, you must disable Kill Switch..
+        ///   Looks up a localized string similar to For Split Tunneling to function properly, you must disable kill switch..
         /// </summary>
         public static string Dialogs_SplitTunnelWarning_msg {
             get {
@@ -4225,7 +4225,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch.
+        ///   Looks up a localized string similar to kill switch.
         /// </summary>
         public static string KillSwitch {
             get {
@@ -4288,7 +4288,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is currently active.
+        ///   Looks up a localized string similar to kill switch is currently active.
         /// </summary>
         public static string Login_lbl_KillSwitch {
             get {
@@ -4306,7 +4306,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure Internet Anywhere.
+        ///   Looks up a localized string similar to Secure internet Anywhere.
         /// </summary>
         public static string Login_lbl_SecureInternetAnywhere {
             get {
@@ -5449,7 +5449,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch Off.
+        ///   Looks up a localized string similar to kill switch Off.
         /// </summary>
         public static string QuickSettings_btn_KillSwitchOff {
             get {
@@ -5458,7 +5458,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch On.
+        ///   Looks up a localized string similar to kill switch On.
         /// </summary>
         public static string QuickSettings_btn_KillSwitchOn {
             get {
@@ -5503,7 +5503,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Permanent Kill Switch.
+        ///   Looks up a localized string similar to Permanent kill switch.
         /// </summary>
         public static string QuickSettings_btn_PermanentKillSwitch {
             get {
@@ -5557,7 +5557,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disables Internet if the VPN connection drops to prevent accidental IP leak..
+        ///   Looks up a localized string similar to Disables internet if the VPN connection drops to prevent accidental IP leak..
         /// </summary>
         public static string QuickSettings_lbl_KillSwitchInfo {
             get {
@@ -5566,7 +5566,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Browse the Internet without ads and malware..
+        ///   Looks up a localized string similar to Browse the internet without ads and malware..
         /// </summary>
         public static string QuickSettings_lbl_NetShieldInfo {
             get {
@@ -5584,7 +5584,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the Internet..
+        ///   Looks up a localized string similar to Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet..
         /// </summary>
         public static string QuickSettings_lbl_PortForwardingInfo {
             get {
@@ -6052,7 +6052,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with Kill Switch..
+        ///   Looks up a localized string similar to Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch..
         /// </summary>
         public static string Settings_Advanced_lbl_SplitTunnel_Info {
             get {
@@ -6484,7 +6484,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch activated!.
+        ///   Looks up a localized string similar to kill switch activated!.
         /// </summary>
         public static string Sidebar_Connection_lbl_KillSwitch {
             get {
@@ -6493,7 +6493,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kill Switch is blocking all connections to avoid leaking your data..
+        ///   Looks up a localized string similar to kill switch is blocking all connections to avoid leaking your data..
         /// </summary>
         public static string Sidebar_Connection_lbl_KillSwitch_Info {
             get {
@@ -6790,7 +6790,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Route your Internet traffic through the Tor network. Slower, but more private..
+        ///   Looks up a localized string similar to Route your internet traffic through the Tor network. Slower, but more private..
         /// </summary>
         public static string Sidebar_FeaturesPopup_Tor_Desc {
             get {
