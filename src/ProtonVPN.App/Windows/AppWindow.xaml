@@ -160,7 +160,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </DockPanel>
         </StackPanel>
 
-        <Grid VerticalAlignment="Top" Margin="0,36,0,0">
+        <Grid VerticalAlignment="Stretch" Margin="0,36,0,0">
             <Border x:Name="BlurBorder" Style="{StaticResource BlurBorder}">
                 <Grid Margin="20">
                     <ContentControl Content="{Binding Map}"/>
