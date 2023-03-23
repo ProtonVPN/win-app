@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 
@@ -39,5 +40,6 @@ namespace ProtonVPN.Core.Vpn
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback);
         void RegisterPortForwardingStateCallback(Action<PortForwardingState> callback);
         void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback);
+        void RegisterNetShieldStatisticChangeCallback(Action<NetShieldStatistic> callback);
     }
 }

@@ -353,6 +353,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AlternativeRoutingCheckInterval = TimeSpan.FromMinutes(30),
 
+                NetShieldStatisticRequestInterval = TimeSpan.FromSeconds(60),
+
                 AutoLoginBaseUrl = "https://account.proton.me/lite",
 
                 WintunDriverPath = Path.Combine(resourcesFolder, "wintun.dll"),

@@ -18,6 +18,7 @@
  */
 
 using System.ServiceModel;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -29,9 +30,11 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
         event EventHandler<VpnStateIpcEntity> OnVpnStateChanged;
         event EventHandler<PortForwardingStateIpcEntity> OnPortForwardingStateChanged;
         event EventHandler<ConnectionDetailsIpcEntity> OnConnectionDetailsChanged;
+        event EventHandler<NetShieldStatisticIpcEntity> OnNetShieldStatisticChanged;
 
         Task VpnStateChange(VpnStateIpcEntity vpnState);
         Task PortForwardingStateChange(PortForwardingStateIpcEntity portForwardingState);
         Task ConnectionDetailsChange(ConnectionDetailsIpcEntity connectionDetails);
+        Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic);
     }
 }

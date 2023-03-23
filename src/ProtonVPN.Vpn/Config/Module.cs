@@ -31,6 +31,7 @@ using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
+using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
@@ -55,6 +56,7 @@ namespace ProtonVPN.Vpn.Config
             builder.RegisterType<UdpPingClient>().SingleInstance();
             builder.RegisterType<WintunAdapter>().SingleInstance();
             builder.RegisterType<TapAdapter>().SingleInstance();
+            builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                 {
                     ILogger logger = c.Resolve<ILogger>();
@@ -132,8 +134,9 @@ namespace ProtonVPN.Vpn.Config
             ILogger logger = c.Resolve<ILogger>();
             IConfiguration config = c.Resolve<IConfiguration>();
             IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+            INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
 
-            return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+            return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
                 gatewayCache,
                 new WireGuardConnection(logger, config, gatewayCache,
                     new WireGuardService(logger, config, new SafeService(
@@ -149,8 +152,9 @@ namespace ProtonVPN.Vpn.Config
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
             IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+            INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
 
-            return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+            return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
                 gatewayCache,
                 new OpenVpnConnection(
                     logger,

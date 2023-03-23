@@ -17,33 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+using System;
+using ProtonVPN.Common.NetShield;
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
+namespace ProtonVPN.Vpn.NetShield
 {
-    public class FeatureFlagsResponse
+    public class NetShieldStatisticEventManager : INetShieldStatisticEventManager
     {
-        public bool NetShield { get; set; }
+        public event EventHandler<NetShieldStatistic> NetShieldStatisticChanged;
 
-        public bool GuestHoles { get; set; }
-
-        public bool? ServerRefresh { get; set; }
-
-        public bool? PortForwarding { get; set; }
-
-        public bool? VpnAccelerator { get; set; }
-
-        [JsonProperty(PropertyName = "PollNotificationAPI")]
-        public bool? PollNotificationApi { get; set; }
-
-        public bool? StreamingServicesLogos { get; set; }
-
-        public bool? SmartReconnect { get; set; }
-
-        public bool? SafeMode { get; set; }
-
-        public bool? PromoCode { get; set; }
-
-        public bool? NetShieldStats { get; set; }
+        public void Invoke(object sender, NetShieldStatistic netShieldStatistic)
+        {
+            NetShieldStatisticChanged?.Invoke(sender, netShieldStatistic);
+        }
     }
 }

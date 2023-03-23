@@ -174,6 +174,7 @@ ui-test:
     - /^debug.*$/
     - release/9.9.9
     - master
+    - feature/inno-setup-net6
   artifacts:
     when: always
     name: "result-ui"
@@ -199,6 +200,7 @@ connection-test:
     - /^debug.*$/
     - release/9.9.9
     - master
+    - feature/inno-setup-net6
   artifacts:
     when: always
     name: "result-ui"

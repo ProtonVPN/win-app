@@ -35,5 +35,6 @@ namespace ProtonVPN.Vpn.Common
         void Disconnect(VpnError error = VpnError.None);
         void SetFeatures(VpnFeatures vpnFeatures);
         void UpdateAuthCertificate(string certificate);
+        void RequestNetShieldStats();
     }
 }

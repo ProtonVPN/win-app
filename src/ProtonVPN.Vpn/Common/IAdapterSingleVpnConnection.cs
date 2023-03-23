@@ -17,33 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+using System;
+using ProtonVPN.Common;
+using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
+namespace ProtonVPN.Vpn.Common
 {
-    public class FeatureFlagsResponse
+    public interface IAdapterSingleVpnConnection
     {
-        public bool NetShield { get; set; }
+        event EventHandler<EventArgs<VpnState>> StateChanged;
+        event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-        public bool GuestHoles { get; set; }
+        InOutBytes Total { get; }
 
-        public bool? ServerRefresh { get; set; }
-
-        public bool? PortForwarding { get; set; }
-
-        public bool? VpnAccelerator { get; set; }
-
-        [JsonProperty(PropertyName = "PollNotificationAPI")]
-        public bool? PollNotificationApi { get; set; }
-
-        public bool? StreamingServicesLogos { get; set; }
-
-        public bool? SmartReconnect { get; set; }
-
-        public bool? SafeMode { get; set; }
-
-        public bool? PromoCode { get; set; }
-
-        public bool? NetShieldStats { get; set; }
+        void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
+        void Disconnect(VpnError error);
     }
 }

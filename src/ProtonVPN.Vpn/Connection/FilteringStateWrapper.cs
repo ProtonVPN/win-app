@@ -73,6 +73,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.UpdateAuthCertificate(certificate);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             OnStateChanged(e.Data);

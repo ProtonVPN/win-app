@@ -77,7 +77,7 @@ namespace ProtonVPN.Account
 
         public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
-            if (!message.Active)
+            if (!message.IsActive)
             {
                 return;
             }

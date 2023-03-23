@@ -34,7 +34,7 @@ namespace ProtonVPN.Core.Windows
 
         public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
-            Active = message.Active;
+            Active = message.IsActive;
         }
     }
 }

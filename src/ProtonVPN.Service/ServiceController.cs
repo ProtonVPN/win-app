@@ -132,5 +132,10 @@ namespace ProtonVPN.Service
         {
             _portMappingProtocolClient.RepeatState();
         }
+
+        public async Task RequestNetShieldStats()
+        {
+            _vpnConnection.RequestNetShieldStats();
+        }
     }
 }

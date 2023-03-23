@@ -97,6 +97,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.UpdateAuthCertificate(certificate);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         private async void ScanPorts(CancellationToken cancellationToken)
         {
             _logger.Info<ConnectScanLog>($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");

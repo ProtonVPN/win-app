@@ -84,7 +84,7 @@ namespace ProtonVPN.Core.Servers
         // [.NET Migration] TO DO: Use CancellationToken
         public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
-            if (!message.Active || !TimeToUpdateLoads())
+            if (!message.IsActive || !TimeToUpdateLoads())
             {
                 return;
             }

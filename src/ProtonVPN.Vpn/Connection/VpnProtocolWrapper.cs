@@ -85,6 +85,11 @@ namespace ProtonVPN.Vpn.Connection
             VpnConnection?.UpdateAuthCertificate(certificate);
         }
 
+        public void RequestNetShieldStats()
+        {
+            VpnConnection?.RequestNetShieldStats();
+        }
+
         private void OnStateChanged(object sender, EventArgs<VpnState> e)
         {
             StateChanged?.Invoke(this, e);

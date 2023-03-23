@@ -53,6 +53,7 @@ using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
+using ProtonVPN.Core.NetShield;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.PortForwarding;
 using ProtonVPN.Core.Profiles;
@@ -412,6 +413,15 @@ namespace ProtonVPN.Core
                 foreach (IConnectionDetailsAware instance in instances)
                 {
                     instance.OnConnectionDetailsChanged(ipAddressInfo);
+                }
+            });
+
+            vpnServiceManager.RegisterNetShieldStatisticChangeCallback(stats =>
+            {
+                IEnumerable<INetShieldStatisticAware> instances = Resolve<IEnumerable<INetShieldStatisticAware>>();
+                foreach (INetShieldStatisticAware instance in instances)
+                {
+                    instance.OnNetShieldStatisticChanged(stats);
                 }
             });
 

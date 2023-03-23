@@ -38,5 +38,7 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
 
         Task RepeatState();
         Task RepeatPortForwardingState();
+
+        Task RequestNetShieldStats();
     }
 }
