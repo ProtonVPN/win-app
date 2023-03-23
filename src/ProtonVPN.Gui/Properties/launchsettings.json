@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "ProtonVPN.Gui (Unpackaged)": {
+      "commandName": "Project"
+    },
+    "ProtonVPN.Gui (Package)": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
