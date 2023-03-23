@@ -20,11 +20,15 @@
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Modals.Dialogs;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class UpsellModalViewModel : QuestionModalViewModel
     {
+        private const int SERVERS_COUNT_ROUNDED_DOWN = 2500;
+        private const int COUNTRIES_COUNT = 67;
+
         private readonly ISubscriptionManager _subscriptionManager;
         protected readonly IActiveUrls Urls;
 
@@ -39,5 +43,8 @@ namespace ProtonVPN.Modals.Upsell
             _subscriptionManager.UpgradeAccountAsync();
             TryClose(true);
         }
+
+        public string UpsellCountriesTitle
+            => Translation.Format("Upsell_Countries_Title", SERVERS_COUNT_ROUNDED_DOWN, COUNTRIES_COUNT);
     }
 }

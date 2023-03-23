@@ -286,7 +286,7 @@
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info" xml:space="preserve">
-    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with Kill Switch.</value>
+    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="ProfileSyncStatus_val_InProgress" xml:space="preserve">
@@ -532,7 +532,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable" xml:space="preserve">
     <value>Disable</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Profiles_col_Profile" xml:space="preserve">
     <value>Profile</value>
@@ -2087,11 +2087,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch" xml:space="preserve">
-    <value>Kill Switch is protecting your IP by blocking all connections. In case of trouble you can disable Kill Switch.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch" xml:space="preserve">
-    <value>Disable Kill Switch</value>
+    <value>Disable kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse" xml:space="preserve">
@@ -2127,15 +2127,15 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch" xml:space="preserve">
-    <value>Kill Switch activated!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <value>Kill switch activated!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info" xml:space="preserve">
-    <value>Kill Switch is blocking all connections to avoid leaking your data.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm" xml:space="preserve">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore" xml:space="preserve">
@@ -2211,8 +2211,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Login_lbl_KillSwitch" xml:space="preserve">
-    <value>Kill Switch is currently active</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>Kill switch is currently active</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="License_ttl" xml:space="preserve">
     <value>License</value>
@@ -2243,8 +2243,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive" xml:space="preserve">
-    <value>Note that the Kill Switch is enabled. Updating or quitting the application will disable it.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title" xml:space="preserve">
     <value>Potential problems that could cause your connection to time out and their solution</value>
@@ -2538,10 +2538,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Port Forwarding On</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff" xml:space="preserve">
-    <value>Kill Switch Off</value>
+    <value>Kill switch Off</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn" xml:space="preserve">
-    <value>Kill Switch On</value>
+    <value>Kill switch On</value>
   </data>
   <data name="QuickSettings_btn_LearnMore" xml:space="preserve">
     <value>Learn more</value>
@@ -2586,7 +2586,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Port Forwarding</value>
   </data>
   <data name="KillSwitch" xml:space="preserve">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
   </data>
   <data name="NetShield" xml:space="preserve">
     <value>NetShield</value>
@@ -2610,7 +2610,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>TUN adapter</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch" xml:space="preserve">
-    <value>Permanent Kill Switch</value>
+    <value>Permanent kill switch</value>
   </data>
   <data name="Dialogs_btn_Ok" xml:space="preserve">
     <value>OK</value>
@@ -2620,28 +2620,28 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_Exit_msg_Confirm" xml:space="preserve">
     <value>Do you want to continue?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected" xml:space="preserve">
     <value>Exiting the application will disconnect you from the VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch" xml:space="preserve">
-    <value>Permanent Kill Switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn" xml:space="preserve">
-    <value>Kill Switch is blocking all connections to avoid leaking your data. Exiting the application will disable the Kill Switch.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
   </data>
   <data name="Dialogs_Exit_btn_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg" xml:space="preserve">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl" xml:space="preserve">
-    <value>Enable Permanent Kill Switch?</value>
+    <value>Enable Permanent kill switch?</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg" xml:space="preserve">
-    <value>For Split Tunneling to function properly, you must disable Kill Switch.</value>
+    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap" xml:space="preserve">
     <value>Switch to TAP</value>
@@ -2959,7 +2959,8 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks" xml:space="preserve">
-    <value>Thanks for upgrading to Professional/Visionary</value>
+    <value>Thanks for upgrading</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="BugReport_btn_FillOutTheForm" xml:space="preserve">
     <value>Contact us</value>
@@ -3012,8 +3013,8 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title" xml:space="preserve">
-    <value>Access over 1200 secure servers in 63 countries</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_Countries_BlockAds" xml:space="preserve">
     <value>Block ads and malware with NetShield</value>
