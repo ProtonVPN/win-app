@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Zarządzaj subskrypcją</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Dostęp do zablokowanych treści</value>
@@ -1772,18 +1772,6 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Proton VPN wykrył serwer proxy skonfigurowany w lokalnej sieci. Aplikacja Proton VPN nie może chronić ruchu, który przechodzi przez ten serwer. Oznacza to, że Twoje połączenie nie będzie całkowicie chronione.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Uruchom ponownie</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Kontynuuj bez</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Aby uniknąć błędów aplikacji Proton VPN, zdecydowanie zalecamy ponowne uruchomienie komputera, aby w pierwszej kolejności zaktualizować inne aplikacje. Proton VPN automatycznie wznowi instalację. Uruchomić ponownie?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Musisz ponownie uruchomić komputer</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Przedstawiamy odświeżony wygląd usługi Proton. Wiele usług, jedna misja. Witaj w Internecie, w którym prywatność jest standardem. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Dowiedz się więcej&lt;/Hyperlink&gt;</value>
   </data>
@@ -1885,6 +1873,9 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>Aplikacja Proton VPN nie może się połączyć, ponieważ adapter TUN jest już w użyciu. Rozłącz się z siecią VPN i spróbuj ponownie. Opcjonalnie, przełącz się na adapter TAP. Możesz to zrobić w ustawieniach zaawansowanych.</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Anuluj</value>
@@ -2175,7 +2166,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>POŁĄCZONO z {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>ROZŁĄCZONO</value>
@@ -2925,6 +2916,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Lokalizacje planu FREE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Information</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Our partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Lokalizacje planu PLUS ({0})</value>
   </data>
@@ -3274,8 +3277,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>
