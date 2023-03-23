@@ -1,4 +1,4 @@
-﻿using ProtonVPN.Gui.Core.Helpers;
+﻿using ProtonVPN.Gui.Helpers;
 
 using Windows.Storage;
 using Windows.Storage.Streams;
