@@ -59,6 +59,9 @@ namespace ProtonVPN.Vpn.LocalAgent
         [DllImport(DllName, EntryPoint = "GetStatus", CallingConvention = CallingConvention.Cdecl)]
         public static extern GoBytes GetStatus();
 
+        [DllImport(DllName, EntryPoint = "SendGetStatus", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SendGetStatus(bool withStatistics);
+
         [DllImport(DllName, EntryPoint = "SetFeatures", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetFeatures(GoString featuresJson);
     }

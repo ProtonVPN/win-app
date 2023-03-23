@@ -58,6 +58,7 @@ using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Welcome;
+using ProtonVPN.NetShield;
 using ProtonVPN.Notifications;
 using ProtonVPN.Partners;
 using ProtonVPN.PlanDowngrading;
@@ -304,6 +305,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
             builder.RegisterType<SubscriptionManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<NetShieldStatsManager>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

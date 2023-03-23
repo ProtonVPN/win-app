@@ -572,6 +572,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeatureNetShieldStatsEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get

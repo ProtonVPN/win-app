@@ -23,6 +23,7 @@ using System.Windows;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -35,6 +36,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<VpnStateIpcEntity> OnVpnStateChanged;
         public event EventHandler<PortForwardingStateIpcEntity> OnPortForwardingStateChanged;
         public event EventHandler<ConnectionDetailsIpcEntity> OnConnectionDetailsChanged;
+        public event EventHandler<NetShieldStatisticIpcEntity> OnNetShieldStatisticChanged;
 
         public AppController(ILogger logger)
         {
@@ -73,6 +75,16 @@ namespace ProtonVPN.Core.Service.Vpn
             _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
                 $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
             InvokeOnUiThread(() => OnConnectionDetailsChanged?.Invoke(this, connectionDetails));
+        }
+
+        public async Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic)
+        {
+            _logger.Info<ProcessCommunicationLog>(
+                $"Received NetShield statistic change with timestamp '{netShieldStatistic.TimestampUtc}' " +
+                $"[Ads: '{netShieldStatistic.NumOfAdvertisementUrlsBlocked}']" +
+                $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
+                $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']");
+            InvokeOnUiThread(() => OnNetShieldStatisticChanged?.Invoke(this, netShieldStatistic));
         }
     }
 }

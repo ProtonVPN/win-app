@@ -40,7 +40,7 @@ using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Vpn.WireGuard
 {
-    public class WireGuardConnection : ISingleVpnConnection
+    public class WireGuardConnection : IAdapterSingleVpnConnection
     {
         private const int CONNECT_TIMEOUT = 5000;
 
@@ -202,10 +202,6 @@ namespace ProtonVPN.Vpn.WireGuard
             }
             _lastVpnError = VpnError.None;
         }
-
-        public void SetFeatures(VpnFeatures vpnFeatures) => throw new NotSupportedException();
-
-        public void UpdateAuthCertificate(string certificate) => throw new NotSupportedException();
 
         private void OnTrafficSent(object sender, InOutBytes total)
         {

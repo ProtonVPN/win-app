@@ -75,6 +75,11 @@ namespace ProtonVPN.Core.Service.Vpn
             return Invoke(c => c.GetTrafficBytes());
         }
 
+        public Task RequestNetShieldStats()
+        {
+            return Invoke(c => c.RequestNetShieldStats().Wrap());
+        }
+
         public Task RegisterVpnClient(int port)
         {
             return Invoke(c => c.RegisterStateConsumer(new StateConsumerIpcEntity() { ServerPort = port }).Wrap());

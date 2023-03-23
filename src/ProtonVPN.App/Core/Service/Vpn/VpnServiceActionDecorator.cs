@@ -21,6 +21,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
@@ -105,6 +106,11 @@ namespace ProtonVPN.Core.Service.Vpn
         public void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback)
         {
             _decorated.RegisterConnectionDetailsChangeCallback(callback);
+        }
+
+        public void RegisterNetShieldStatisticChangeCallback(Action<NetShieldStatistic> callback)
+        {
+            _decorated.RegisterNetShieldStatisticChangeCallback(callback);
         }
 
         private async Task InvokeAction(Func<Task<Result>> action)

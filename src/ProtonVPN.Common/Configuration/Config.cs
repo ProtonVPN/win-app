@@ -244,6 +244,9 @@ namespace ProtonVPN.Common.Configuration
         [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
         public TimeSpan AlternativeRoutingCheckInterval { get; set; }
 
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan NetShieldStatisticRequestInterval { get; set; }
+
         public string AutoLoginBaseUrl { get; set; }
 
         public string WintunDriverPath { get; set; }

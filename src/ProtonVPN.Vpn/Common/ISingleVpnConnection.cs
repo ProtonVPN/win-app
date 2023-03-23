@@ -17,22 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Common;
 using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Vpn.Common
 {
-    public interface ISingleVpnConnection
+    public interface ISingleVpnConnection : IAdapterSingleVpnConnection
     {
-        event EventHandler<EventArgs<VpnState>> StateChanged;
-        event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-
-        InOutBytes Total { get; }
-
-        void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
-        void Disconnect(VpnError error);
         void SetFeatures(VpnFeatures vpnFeatures);
         void UpdateAuthCertificate(string certificate);
+        void RequestNetShieldStats();
     }
 }

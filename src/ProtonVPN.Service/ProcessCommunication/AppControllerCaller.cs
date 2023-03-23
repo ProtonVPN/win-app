@@ -23,17 +23,20 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.PortMapping;
 
 namespace ProtonVPN.Service.ProcessCommunication
@@ -46,10 +49,12 @@ namespace ProtonVPN.Service.ProcessCommunication
         private readonly IEntityMapper _entityMapper;
         private readonly IVpnConnection _vpnConnection;
         private readonly IPortMappingProtocolClient _portMappingProtocolClient;
+        private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
 
         private VpnState _vpnState;
         private PortForwardingState _portForwardingState;
         private ConnectionDetails _connectionDetails;
+        private NetShieldStatistic _netShieldStatistic;
 
         public AppControllerCaller(
             KillSwitch.KillSwitch killSwitch,
@@ -57,7 +62,8 @@ namespace ProtonVPN.Service.ProcessCommunication
             IServiceGrpcClient grpcClient,
             IEntityMapper entityMapper,
             IVpnConnection vpnConnection,
-            IPortMappingProtocolClient portMappingProtocolClient)
+            IPortMappingProtocolClient portMappingProtocolClient,
+            INetShieldStatisticEventManager netShieldStatisticEventManager)
         {
             _killSwitch = killSwitch;
             _logger = logger;
@@ -68,6 +74,8 @@ namespace ProtonVPN.Service.ProcessCommunication
             _vpnConnection.ConnectionDetailsChanged += OnConnectionDetailsChanged;
             _portMappingProtocolClient = portMappingProtocolClient;
             _portMappingProtocolClient.StateChanged += OnPortForwardingStateChanged;
+            _netShieldStatisticEventManager = netShieldStatisticEventManager;
+            _netShieldStatisticEventManager.NetShieldStatisticChanged += OnNetShieldStatisticChanged;
         }
 
         private async Task SendAsync(Func<IAppController, Task> action)
@@ -203,6 +211,18 @@ namespace ProtonVPN.Service.ProcessCommunication
             PortForwardingStateIpcEntity stateIpcEntity = 
                 _entityMapper.Map<PortForwardingState, PortForwardingStateIpcEntity>(state);
             await SendAsync(appController => appController.PortForwardingStateChange(stateIpcEntity));
+        }
+
+        private async void OnNetShieldStatisticChanged(object sender, NetShieldStatistic stats)
+        {
+            _netShieldStatistic = stats;
+            _logger.Info<ProcessCommunicationLog>($"Sending NetShield statistic triggered at '{stats.TimestampUtc}' " +
+                $"[Ads: '{stats.NumOfAdvertisementUrlsBlocked}']" +
+                $"[Malware: '{stats.NumOfMaliciousUrlsBlocked}']" +
+                $"[Trackers: '{stats.NumOfTrackingUrlsBlocked}']");
+            NetShieldStatisticIpcEntity statsIpcEntity =
+                _entityMapper.Map<NetShieldStatistic, NetShieldStatisticIpcEntity>(stats);
+            await SendAsync(appController => appController.NetShieldStatisticChange(statsIpcEntity));
         }
 
         public async void OnServiceSettingsChanged(MainSettingsIpcEntity settings)

@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -26,20 +27,25 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Go;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.LocalAgentLogs;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
+using ProtonVPN.Vpn.NetShield;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {
     internal class EventReceiver
     {
+        private readonly ILogger _logger;
+        private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
+
         private Task _loggerTask;
         private CancellationTokenSource _cancellationTokenSource;
-        private readonly ILogger _logger;
 
-        public EventReceiver(ILogger logger)
+        public EventReceiver(ILogger logger, INetShieldStatisticEventManager netShieldStatisticEventManager)
         {
             _logger = logger;
+            _netShieldStatisticEventManager = netShieldStatisticEventManager;
         }
 
         public event EventHandler<EventArgs<LocalAgentState>> StateChanged;
@@ -102,7 +108,43 @@ namespace ProtonVPN.Vpn.LocalAgent
                 case "error":
                     HandleError(e);
                     break;
+                case "stats":
+                    HandleStats(e);
+                    break;
             }
+        }
+
+        private void HandleStats(EventContract eventContract)
+        {
+            Dictionary<string, Dictionary<string, long>> featuresStatistics;
+            try
+            {
+                featuresStatistics = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, long>>>(
+                    eventContract.FeaturesStatistics);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error<LocalAgentErrorLog>($"Failed to deserialize JSON object " +
+                    $"'{eventContract.FeaturesStatistics}'.", ex);
+                return;
+            }
+            if (featuresStatistics is not null &&
+                featuresStatistics.TryGetValue("netshield-level", out Dictionary<string, long> netShieldStats))
+            {
+                OnNetShieldStatsEvent(netShieldStats);
+            }
+        }
+
+        private void OnNetShieldStatsEvent(Dictionary<string, long> eventValue)
+        {
+            NetShieldStatistic netShieldStatistic = new();
+            if (eventValue != null)
+            {
+                netShieldStatistic.NumOfMaliciousUrlsBlocked = eventValue.TryGetValue("DNSBL/1b", out long v1b) ? v1b : 0;
+                netShieldStatistic.NumOfAdvertisementUrlsBlocked = eventValue.TryGetValue("DNSBL/2a", out long v2a) ? v2a : 0;
+                netShieldStatistic.NumOfTrackingUrlsBlocked = eventValue.TryGetValue("DNSBL/2b", out long v2b) ? v2b : 0;
+            }
+            _netShieldStatisticEventManager.Invoke(this, netShieldStatistic);
         }
 
         private void HandleStatusMessage(EventContract e)

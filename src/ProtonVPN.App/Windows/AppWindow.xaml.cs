@@ -112,6 +112,7 @@ namespace ProtonVPN.Windows
 
             Deactivated += PublishWindowState;
             Activated += PublishWindowState;
+            StateChanged += PublishWindowState;
 
             _icon = new(ICON_PATH);
             _connectedIcon = new(CONNECTED_ICON_PATH);
@@ -441,7 +442,7 @@ namespace ProtonVPN.Windows
 
         private void PublishWindowState(object sender, EventArgs e)
         {
-            _eventAggregator.PublishOnUIThreadAsync(new WindowStateMessage(IsActive));
+            _eventAggregator.PublishOnUIThreadAsync(new WindowStateMessage(IsActive, WindowState));
         }
     }
 }

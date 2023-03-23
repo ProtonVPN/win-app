@@ -20,6 +20,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -78,7 +79,7 @@ namespace ProtonVPN.Core.Tests.Servers
             ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.Now.Subtract(TimeSpan.FromHours(1)));
 
             // Act
-            await sut.HandleAsync(new WindowStateMessage(true), new CancellationTokenSource().Token);
+            await sut.HandleAsync(new WindowStateMessage(true, WindowState.Normal), new CancellationTokenSource().Token);
 
             // Assert
             _task.Started.Should().BeTrue();
@@ -91,7 +92,7 @@ namespace ProtonVPN.Core.Tests.Servers
             ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.Now);
 
             // Act
-            await sut.HandleAsync(new WindowStateMessage(true), new CancellationTokenSource().Token);
+            await sut.HandleAsync(new WindowStateMessage(true, WindowState.Normal), new CancellationTokenSource().Token);
 
             // Assert
             _task.Started.Should().BeFalse();

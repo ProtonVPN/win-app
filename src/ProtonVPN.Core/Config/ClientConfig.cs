@@ -85,6 +85,7 @@ namespace ProtonVPN.Core.Config
                     _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
                     _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
                     _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
+                    _appSettings.FeatureNetShieldStatsEnabled = response?.Value?.FeatureFlags?.NetShieldStats ?? false;
 
                     if (response.Value.FeatureFlags.ServerRefresh.HasValue)
                     {

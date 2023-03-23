@@ -29,7 +29,7 @@ namespace ProtonVPN.Update.Responses
         public FileResponse File;
 
         public IReadOnlyList<string> ChangeLog;
-        
+
         public DateTimeOffset? ReleaseDate;
 
         public string MinimumOsVersion;

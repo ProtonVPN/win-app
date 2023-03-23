@@ -45,6 +45,7 @@ namespace ProtonVPN.Vpn.Connection
 {
     internal class LocalAgentWrapper : ISingleVpnConnection
     {
+        private const int MINIMUM_NETSHIELD_STATS_TIMEOUT_IN_SECONDS = 20;
         private const int DEFAULT_PORT = 65432;
         private const int CONNECT_TIMEOUT = 10000;
 
@@ -52,7 +53,13 @@ namespace ProtonVPN.Vpn.Connection
         private readonly EventReceiver _eventReceiver;
         private readonly SplitTunnelRouting _splitTunnelRouting;
         private readonly IGatewayCache _gatewayCache;
-        private readonly ISingleVpnConnection _origin;
+        private readonly IAdapterSingleVpnConnection _origin;
+        private readonly ISingleAction _timeoutAction;
+        private readonly List<VpnError> _avoidDisconnectOnErrors = new()
+        {
+            VpnError.UnableToVerifyCert,
+            VpnError.CertificateNotYetProvided,
+        };
 
         private VpnStatus _currentStatus;
         private VpnEndpoint _endpoint;
@@ -64,19 +71,14 @@ namespace ProtonVPN.Vpn.Connection
         private EventArgs<VpnState> _vpnState;
         private string _clientCertPem = string.Empty;
         private string _localIp = string.Empty;
-        private readonly ISingleAction _timeoutAction;
-        private readonly List<VpnError> _avoidDisconnectOnErrors = new()
-        {
-            VpnError.UnableToVerifyCert,
-            VpnError.CertificateNotYetProvided,
-        };
+        private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
 
         public LocalAgentWrapper(
             ILogger logger,
             EventReceiver eventReceiver,
             SplitTunnelRouting splitTunnelRouting,
             IGatewayCache gatewayCache,
-            ISingleVpnConnection origin)
+            IAdapterSingleVpnConnection origin)
         {
             _logger = logger;
             _eventReceiver = eventReceiver;
@@ -227,6 +229,16 @@ namespace ProtonVPN.Vpn.Connection
             if (_timeoutAction.IsRunning)
             {
                 _timeoutAction.Cancel();
+            }
+        }
+
+        public void RequestNetShieldStats()
+        {
+            if (_lastNetShieldStatsRequestDate.AddSeconds(MINIMUM_NETSHIELD_STATS_TIMEOUT_IN_SECONDS) < DateTime.UtcNow
+                && _tlsConnected)
+            {
+                _lastNetShieldStatsRequestDate = DateTime.UtcNow;
+                PInvoke.SendGetStatus(true);
             }
         }
 

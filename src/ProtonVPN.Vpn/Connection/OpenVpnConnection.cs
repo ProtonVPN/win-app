@@ -40,7 +40,7 @@ using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Vpn.Connection
 {
-    internal class OpenVpnConnection : ISingleVpnConnection
+    internal class OpenVpnConnection : IAdapterSingleVpnConnection
     {
         private static readonly TimeSpan WaitForConnectionTaskToFinishAfterClose = TimeSpan.FromSeconds(3);
         private static readonly TimeSpan WaitForConnectionTaskToFinishAfterCancellation = TimeSpan.FromSeconds(3);
@@ -104,14 +104,6 @@ namespace ProtonVPN.Vpn.Connection
         {
             _disconnectError = error;
             _disconnectAction.Run();
-        }
-
-        public void SetFeatures(VpnFeatures vpnFeatures)
-        {
-        }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
         }
 
         private async Task ConnectAction(CancellationToken cancellationToken)

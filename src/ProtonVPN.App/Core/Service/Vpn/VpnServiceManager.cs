@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
@@ -30,6 +31,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -45,6 +47,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private Action<VpnStateChangedEventArgs> _vpnStateCallback;
         private Action<PortForwardingState> _portForwardingStateCallback;
         private Action<ConnectionDetails> _connectionDetailsCallback;
+        private Action<NetShieldStatistic> _netShieldStatisticCallback;
 
         public VpnServiceManager(
             VpnService vpnService,
@@ -61,6 +64,7 @@ namespace ProtonVPN.Core.Service.Vpn
             _appController.OnVpnStateChanged += OnVpnStateChanged;
             _appController.OnPortForwardingStateChanged += OnPortForwardingStateChanged;
             _appController.OnConnectionDetailsChanged += OnConnectionDetailsChanged;
+            _appController.OnNetShieldStatisticChanged += OnNetShieldStatisticChanged;
         }
 
         private void OnConnectionDetailsChanged(object sender, ConnectionDetailsIpcEntity connectionDetails)
@@ -87,6 +91,15 @@ namespace ProtonVPN.Core.Service.Vpn
             if (callback is not null)
             {
                 callback(_entityMapper.Map<PortForwardingStateIpcEntity, PortForwardingState>(state));
+            }
+        }
+
+        private void OnNetShieldStatisticChanged(object sender, NetShieldStatisticIpcEntity stats)
+        {
+            Action<NetShieldStatistic> callback = _netShieldStatisticCallback;
+            if (callback is not null)
+            {
+                callback(_entityMapper.Map<NetShieldStatisticIpcEntity, NetShieldStatistic>(stats));
             }
         }
 
@@ -142,6 +155,11 @@ namespace ProtonVPN.Core.Service.Vpn
         public void RegisterConnectionDetailsChangeCallback(Action<ConnectionDetails> callback)
         {
             _connectionDetailsCallback = callback;
+        }
+
+        public void RegisterNetShieldStatisticChangeCallback(Action<NetShieldStatistic> callback)
+        {
+            _netShieldStatisticCallback = callback;
         }
     }
 }

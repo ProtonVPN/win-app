@@ -109,6 +109,11 @@ namespace ProtonVPN.Service.Vpn
             _origin.SetFeatures(vpnFeatures);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         private async void Connect()
         {
             if (!_connectRequested)

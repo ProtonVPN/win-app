@@ -215,6 +215,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.UpdateAuthCertificate(certificate);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol == VpnProtocol.WireGuard)

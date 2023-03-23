@@ -120,6 +120,8 @@ namespace ProtonVPN.Core.Settings
         bool HardwareAccelerationEnabled { get; set; }
         bool IsToShowRebrandingPopup { get; set; }
         ConcurrentDictionary<string, DnsResponse> DnsCache { get; set; }
+        bool FeatureNetShieldStatsEnabled { get; set; }
+
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();

@@ -43,6 +43,72 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="MinHeight" Value="52" />
         </Style>
+        <Style x:Key="NetShieldStatsExternalBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="Padding" Value="6" />
+            <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}" />
+            <Setter Property="Visibility" Value="{Binding HasNetShieldStatsContainer, Converter={StaticResource BoolToVis}}" />
+        </Style>
+        <Style x:Key="NetShieldStatsElementStyle" TargetType="{x:Type HeaderedContentControl}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Border.CornerRadius" Value="4" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="Padding" Value="0,0,0,5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding Border.CornerRadius}">
+                            <StackPanel Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Width="78"
+                                        Orientation="Vertical">
+                                <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Text="{TemplateBinding Content}"
+                                           TextAlignment="Center" />
+                                <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           FontSize="12"
+                                           FontWeight="Normal"
+                                           Foreground="{StaticResource TextWeakBrushColor}"
+                                           Text="{TemplateBinding Header}"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding HasNetShieldStats}" Value="False">
+                                                    <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
+                </Trigger>
+                <DataTrigger Binding="{Binding HasNetShieldStats}" Value="False">
+                    <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="NetShieldToggle" TargetType="{x:Type quickSettings:MultiValueSettingsButton}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -65,12 +131,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Width="20"
                                           Height="20"
                                           Visibility="Collapsed" />
+                            <Viewbox Width="27"
+                                     Height="16"
+                                     Margin="35,3,0,0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"
+                                     Visibility="{Binding HasNetShieldStats, Converter={StaticResource BoolToVis}}">
+                                <Border x:Name="NetShieldStatsBorder"
+                                        Background="{StaticResource BackgroundNormBrushColor}" 
+                                        BorderThickness="0" 
+                                        CornerRadius="4"
+                                        Padding="2,1,3,1">
+                                    <TextBlock Text="{Binding NetShieldBadgeValue}"
+                                               Foreground="{StaticResource TextNormBrushColor}"
+                                               TextAlignment="Left" />
+                                </Border>
+                            </Viewbox>
                             <ContentPresenter Content="{TemplateBinding Popup}" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="{StaticResource InteractionDefaultActiveBrushColor}" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
                                 <Setter TargetName="Border" Property="Effect" Value="{x:Null}" />
+                                <Setter TargetName="NetShieldStatsBorder" Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
@@ -260,11 +343,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter>
             <Setter Property="Width" Value="290" />
             <Setter Property="CornerRadius" Value="8" />
-            <Setter Property="Padding" Value="18,22" />
+            <Setter Property="Padding" Value="22,22,0,22" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="{StaticResource BorderWeakBrushColor}" />
             <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}" />
+        </Style>
+        <Style x:Key="PopupScroll" TargetType="ScrollViewer">
+            <Setter Property="PanningMode" Value="VerticalOnly" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Padding" Value="0,0,22,0" />
+            <Setter Property="Template" Value="{StaticResource DarkScrollViewerControlTemplate}" />
         </Style>
         <Style x:Key="FeatureTitleText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
@@ -347,39 +436,41 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Polygon.Margin>
                             </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource FeatureTitleText}"
-                                               Text="{translations:Loc SecureCore}" />
-                                    <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               Text="{translations:Loc QuickSettings_lbl_SecureCoreInfo}" />
-                                    <TextBlock Style="{StaticResource ReadMoreText}">
-                                        <Hyperlink Command="{Binding SecureCoreLearnMoreCommand}">
-                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding SecureCoreOffCommand}"
-                                                                 Active="{Binding IsSecureCoreOffButtonOn}"
-                                                                 AutomationProperties.AutomationId="{StaticResource SecureCoreOffButton}"
-                                                                 Title="{translations:Loc QuickSettings_btn_SecureCoreOff}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:Lock Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding SecureCoreOnCommand}"
-                                                                 Active="{Binding IsSecureCoreOnButtonOn}"
-                                                                 IsTurnOnButton="True"
-                                                                 AutomationProperties.AutomationId="{StaticResource SecureCoreOnButton}"
-                                                                 Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
-                                                                 Title="{translations:Loc QuickSettings_btn_SecureCoreOn}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:Locks Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <TextBlock Style="{StaticResource FeatureWarningText}"
-                                               Text="{translations:Loc QuickSettings_lbl_SecureCoreWarning}" />
-                                </StackPanel>
+                                <ScrollViewer Style="{StaticResource PopupScroll}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource FeatureTitleText}"
+                                                   Text="{translations:Loc SecureCore}" />
+                                        <TextBlock Style="{StaticResource FeatureInfoText}"
+                                                   Text="{translations:Loc QuickSettings_lbl_SecureCoreInfo}" />
+                                        <TextBlock Style="{StaticResource ReadMoreText}">
+                                            <Hyperlink Command="{Binding SecureCoreLearnMoreCommand}">
+                                                <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding SecureCoreOffCommand}"
+                                                                     Active="{Binding IsSecureCoreOffButtonOn}"
+                                                                     AutomationProperties.AutomationId="{StaticResource SecureCoreOffButton}"
+                                                                     Title="{translations:Loc QuickSettings_btn_SecureCoreOff}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:Lock Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding SecureCoreOnCommand}"
+                                                                     Active="{Binding IsSecureCoreOnButtonOn}"
+                                                                     IsTurnOnButton="True"
+                                                                     AutomationProperties.AutomationId="{StaticResource SecureCoreOnButton}"
+                                                                     Disabled="{Binding IsUserTierPlusOrHigher, Converter={StaticResource InvertedBoolConverter}}"
+                                                                     Title="{translations:Loc QuickSettings_btn_SecureCoreOn}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:Locks Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <TextBlock Style="{StaticResource FeatureWarningText}"
+                                                   Text="{translations:Loc QuickSettings_lbl_SecureCoreWarning}" />
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Border>
                         </Grid>
                     </Popup>
@@ -427,47 +518,70 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Polygon.Margin>
                             </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource FeatureTitleText}"
-                                               Text="{translations:Loc NetShield}" />
-                                    <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               Text="{translations:Loc QuickSettings_lbl_NetShieldInfo}" />
-                                    <TextBlock Style="{StaticResource ReadMoreText}">
-                                        <Hyperlink Command="{Binding NetShieldLearnMoreCommand}">
-                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding NetShieldOffCommand}"
-                                                                 Active="{Binding IsNetShieldOffButtonOn}"
-                                                                 Title="{translations:Loc QuickSettings_btn_NetshieldOff}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:Shield Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding NetShieldOnFirstCommand}"
-                                                                 Active="{Binding IsNetShieldFirstButtonOn}"
-                                                                 IsTurnOnButton="True"
-                                                                 Disabled="{Binding IsFreeUser}"
-                                                                 Title="{translations:Loc QuickSettings_btn_NetshieldOnFirst}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:ShieldHalfFilled Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding NetShieldOnSecondCommand}"
-                                                                 Active="{Binding IsNetShieldSecondButtonOn}"
-                                                                 IsTurnOnButton="True"
-                                                                 Disabled="{Binding IsFreeUser}"
-                                                                 Title="{translations:Loc QuickSettings_btn_NetshieldOnSecond}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:ShieldFilled Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <TextBlock Style="{StaticResource FeatureWarningText}"
-                                               Text="{translations:Loc QuickSettings_lbl_NetShieldWarning}" />
-                                </StackPanel>
+                                <ScrollViewer Style="{StaticResource PopupScroll}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource FeatureTitleText}"
+                                                   Text="{translations:Loc NetShield}" />
+                                        <Border Style="{StaticResource NetShieldStatsExternalBorder}"
+                                                Padding="8"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Background="{StaticResource BackgroundWeakBrushColor}"
+                                                CornerRadius="8">
+                                            <UniformGrid Columns="3">
+                                                <HeaderedContentControl Content="{Binding NetShieldStatsNumOfAdvertisementUrlsBlocked}"
+                                                                        Header="{translations:Loc QuickSettings_lbl_NetShieldStatsAds}"
+                                                                        ToolTip="{translations:Loc QuickSettings_lbl_NetShieldStatsAdsTooltip}"
+                                                                        Style="{StaticResource NetShieldStatsElementStyle}" />
+                                                <HeaderedContentControl Content="{Binding NetShieldStatsNumOfTrackingUrlsBlocked}"
+                                                                        Header="{translations:Loc QuickSettings_lbl_NetShieldStatsTrackers}"
+                                                                        ToolTip="{translations:Loc QuickSettings_lbl_NetShieldStatsTrackersTooltip}"
+                                                                        Style="{StaticResource NetShieldStatsElementStyle}" />
+                                                <HeaderedContentControl Content="{Binding NetShieldStatsDataSaved}"
+                                                                        Header="{translations:Loc QuickSettings_lbl_NetShieldStatsDataSaved}"
+                                                                        ToolTip="{translations:Loc QuickSettings_lbl_NetShieldStatsDataSavedTooltip}"
+                                                                        Style="{StaticResource NetShieldStatsElementStyle}" />
+                                            </UniformGrid>
+                                        </Border>
+                                        <TextBlock Style="{StaticResource FeatureInfoText}"
+                                                   Text="{translations:Loc QuickSettings_lbl_NetShieldInfo}" />
+                                        <TextBlock Style="{StaticResource ReadMoreText}">
+                                            <Hyperlink Command="{Binding NetShieldLearnMoreCommand}">
+                                                <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding NetShieldOffCommand}"
+                                                                     Active="{Binding IsNetShieldOffButtonOn}"
+                                                                     Title="{translations:Loc QuickSettings_btn_NetshieldOff}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:Shield Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding NetShieldOnFirstCommand}"
+                                                                     Active="{Binding IsNetShieldFirstButtonOn}"
+                                                                     IsTurnOnButton="True"
+                                                                     Disabled="{Binding IsFreeUser}"
+                                                                     Title="{translations:Loc QuickSettings_btn_NetshieldOnFirst}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:ShieldHalfFilled Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding NetShieldOnSecondCommand}"
+                                                                     Active="{Binding IsNetShieldSecondButtonOn}"
+                                                                     IsTurnOnButton="True"
+                                                                     Disabled="{Binding IsFreeUser}"
+                                                                     Title="{translations:Loc QuickSettings_btn_NetshieldOnSecond}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:ShieldFilled Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <TextBlock Style="{StaticResource FeatureWarningText}"
+                                                   Text="{translations:Loc QuickSettings_lbl_NetShieldWarning}" />
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Border>
                         </Grid>
                     </Popup>
@@ -509,43 +623,45 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Polygon.Margin>
                             </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource FeatureTitleText}"
-                                               Text="{translations:Loc KillSwitch}" />
-                                    <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               Text="{translations:Loc QuickSettings_lbl_KillSwitchInfo}" />
-                                    <TextBlock Style="{StaticResource ReadMoreText}">
-                                        <Hyperlink Command="{Binding KillSwitchLearnMoreCommand}">
-                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding DisableKillSwitchCommand}"
-                                                                 Active="{Binding IsKillSwitchDisabled}"
-                                                                 Title="{translations:Loc QuickSettings_btn_KillSwitchOff}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:SwitchOff Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding EnableSoftKillSwitchCommand}"
-                                                                 Active="{Binding IsSoftKillSwitchEnabled}"
-                                                                 IsTurnOnButton="True"
-                                                                 Title="{translations:Loc QuickSettings_btn_KillSwitchOn}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:SwitchOn Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding EnableHardKillSwitchCommand}"
-                                                                 Active="{Binding IsHardKillSwitchEnabled}"
-                                                                 IsTurnOnButton="True"
-                                                                 Title="{translations:Loc QuickSettings_btn_PermanentKillSwitch}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:SwitchOnLock Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                </StackPanel>
+                                <ScrollViewer Style="{StaticResource PopupScroll}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource FeatureTitleText}"
+                                                   Text="{translations:Loc KillSwitch}" />
+                                        <TextBlock Style="{StaticResource FeatureInfoText}"
+                                                   Text="{translations:Loc QuickSettings_lbl_KillSwitchInfo}" />
+                                        <TextBlock Style="{StaticResource ReadMoreText}">
+                                            <Hyperlink Command="{Binding KillSwitchLearnMoreCommand}">
+                                                <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding DisableKillSwitchCommand}"
+                                                                     Active="{Binding IsKillSwitchDisabled}"
+                                                                     Title="{translations:Loc QuickSettings_btn_KillSwitchOff}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:SwitchOff Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding EnableSoftKillSwitchCommand}"
+                                                                     Active="{Binding IsSoftKillSwitchEnabled}"
+                                                                     IsTurnOnButton="True"
+                                                                     Title="{translations:Loc QuickSettings_btn_KillSwitchOn}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:SwitchOn Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding EnableHardKillSwitchCommand}"
+                                                                     Active="{Binding IsHardKillSwitchEnabled}"
+                                                                     IsTurnOnButton="True"
+                                                                     Title="{translations:Loc QuickSettings_btn_PermanentKillSwitch}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:SwitchOnLock Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Border>
                         </Grid>
                     </Popup>
@@ -588,58 +704,60 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Polygon.Margin>
                             </Polygon>
                             <Border Style="{StaticResource PopupBorder}">
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource FeatureTitleText}"
-                                               Text="{translations:Loc PortForwarding}" />
-                                    <TextBlock Style="{StaticResource FeatureInfoText}"
-                                               Text="{translations:Loc QuickSettings_lbl_PortForwardingInfo}" />
-                                    <TextBlock Style="{StaticResource ReadMoreText}">
-                                        <Hyperlink Command="{Binding PortForwardingLearnMoreCommand}">
-                                            <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding PortForwardingOffCommand}"
-                                                                 Active="{Binding IsPortForwardingOffButtonOn}"
-                                                                 AutomationProperties.AutomationId="{StaticResource PortForwardingOffButton}"
-                                                                 Title="{translations:Loc QuickSettings_btn_PortForwardingOff}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:ArrowAngleLeftUpLineVertical Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
-                                                                 Command="{Binding PortForwardingOnCommand}"
-                                                                 Active="{Binding IsPortForwardingOnButtonOn}"
-                                                                 IsTurnOnButton="True"
-                                                                 AutomationProperties.AutomationId="{StaticResource PortForwardingOnButton}"
-                                                                 Disabled="{Binding IsPaidUser, Converter={StaticResource InvertedBoolConverter}}"
-                                                                 Title="{translations:Loc QuickSettings_btn_PortForwardingOn}">
-                                        <quickSettings:SettingButton.Icon>
-                                            <icons:ArrowsSwitch Style="{StaticResource Icon}" />
-                                        </quickSettings:SettingButton.Icon>
-                                    </quickSettings:SettingButton>
-                                    <StackPanel Orientation="Horizontal" 
-                                                Margin="0,10,0,0" 
-                                                Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
-                                        <Ellipse Width="10"
-                                                 Height="10"
-                                                 Margin="0,2,5,0"
-                                                 VerticalAlignment="Top"
-                                                 Fill="{StaticResource PrimaryBrushColor}" />
-                                        <TextBlock
-                                            Margin="0,0,5,0"
-                                            TextWrapping="Wrap"
-                                            FontSize="12"
-                                            Foreground="{StaticResource TextNormBrushColor}"
-                                            Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
-                                        <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
-                                                                                  FontWeight="Bold"/>
+                                <ScrollViewer Style="{StaticResource PopupScroll}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource FeatureTitleText}"
+                                                   Text="{translations:Loc PortForwarding}" />
+                                        <TextBlock Style="{StaticResource FeatureInfoText}"
+                                                   Text="{translations:Loc QuickSettings_lbl_PortForwardingInfo}" />
+                                        <TextBlock Style="{StaticResource ReadMoreText}">
+                                            <Hyperlink Command="{Binding PortForwardingLearnMoreCommand}">
+                                                <Run Text="{translations:Loc QuickSettings_btn_LearnMore}" />
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding PortForwardingOffCommand}"
+                                                                     Active="{Binding IsPortForwardingOffButtonOn}"
+                                                                     AutomationProperties.AutomationId="{StaticResource PortForwardingOffButton}"
+                                                                     Title="{translations:Loc QuickSettings_btn_PortForwardingOff}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:ArrowAngleLeftUpLineVertical Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <quickSettings:SettingButton Style="{StaticResource FeatureOnOffButton}"
+                                                                     Command="{Binding PortForwardingOnCommand}"
+                                                                     Active="{Binding IsPortForwardingOnButtonOn}"
+                                                                     IsTurnOnButton="True"
+                                                                     AutomationProperties.AutomationId="{StaticResource PortForwardingOnButton}"
+                                                                     Disabled="{Binding IsPaidUser, Converter={StaticResource InvertedBoolConverter}}"
+                                                                     Title="{translations:Loc QuickSettings_btn_PortForwardingOn}">
+                                            <quickSettings:SettingButton.Icon>
+                                                <icons:ArrowsSwitch Style="{StaticResource Icon}" />
+                                            </quickSettings:SettingButton.Icon>
+                                        </quickSettings:SettingButton>
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="0,10,0,0" 
+                                                    Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
+                                            <Ellipse Width="10"
+                                                     Height="10"
+                                                     Margin="0,2,5,0"
+                                                     VerticalAlignment="Top"
+                                                     Fill="{StaticResource PrimaryBrushColor}" />
+                                            <TextBlock
+                                                Margin="0,0,5,0"
+                                                TextWrapping="Wrap"
+                                                FontSize="12"
+                                                Foreground="{StaticResource TextNormBrushColor}"
+                                                Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
+                                            <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
+                                                                                      FontWeight="Bold"/>
                                         </StackPanel>
-                                    <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
-                                    <TextBlock Style="{StaticResource FeatureWarningText}" Margin="0,10,0,0"
-                                               Text="{translations:Loc PortForwarding_lbl_Info}"
-                                               Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}" />
-                                </StackPanel>
+                                        <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
+                                        <TextBlock Style="{StaticResource FeatureWarningText}" Margin="0,10,0,0"
+                                                   Text="{translations:Loc PortForwarding_lbl_Info}"
+                                                   Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}" />
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Border>
                         </Grid>
                     </Popup>

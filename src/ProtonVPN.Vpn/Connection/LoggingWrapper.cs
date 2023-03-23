@@ -76,6 +76,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.SetFeatures(vpnFeatures);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             VpnState state = e.Data;
