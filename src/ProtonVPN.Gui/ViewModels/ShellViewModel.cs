@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
 using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.Helpers;
+using ProtonVPN.Gui.ViewModels.Bases;
 using ProtonVPN.Gui.Views;
 using ProtonVPN.Gui.Views.Pages;
 
@@ -35,6 +37,8 @@ public class ShellViewModel : ObservableRecipient
         set => SetProperty(ref _selected, value);
     }
 
+    public PageViewModelBase? CurrentPage => NavigationService?.Frame?.GetPageViewModel() as PageViewModelBase;
+
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
     {
         NavigationService = navigationService;
@@ -51,5 +55,7 @@ public class ShellViewModel : ObservableRecipient
         {
             Selected = selectedItem;
         }
+
+        OnPropertyChanged(nameof(CurrentPage));
     }
 }

@@ -1,67 +1,141 @@
-﻿<Page
-    x:Class="ProtonVPN.Gui.Views.Pages.SettingsPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:helpers="using:ProtonVPN.Gui.Helpers"
-    xmlns:xaml="using:Microsoft.UI.Xaml"
-    mc:Ignorable="d">
+﻿<Page x:Class="ProtonVPN.Gui.Views.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:helpers="using:ProtonVPN.Gui.Helpers"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xaml="using:Microsoft.UI.Xaml"
+      mc:Ignorable="d">
     <Page.Resources>
         <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+
+        <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource SubtitleTextBlockStyle}" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,24,0,16" />
+        </Style>
+
     </Page.Resources>
-    <Grid>
-        <StackPanel
-            x:Name="ContentArea">
-            <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
-            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                <TextBlock x:Uid="Settings_Theme" />
 
-                <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                    <RadioButton
-                        x:Uid="Settings_Theme_Light"
-                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
-                        FontSize="15"
-                        GroupName="AppTheme">
-                        <RadioButton.CommandParameter>
-                            <xaml:ElementTheme>Light</xaml:ElementTheme>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
-                    <RadioButton
-                        x:Uid="Settings_Theme_Dark"
-                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
-                        FontSize="15"
-                        GroupName="AppTheme">
-                        <RadioButton.CommandParameter>
-                            <xaml:ElementTheme>Dark</xaml:ElementTheme>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
-                    <RadioButton
-                        x:Uid="Settings_Theme_Default"
-                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
-                        FontSize="15"
-                        GroupName="AppTheme">
-                        <RadioButton.CommandParameter>
-                            <xaml:ElementTheme>Default</xaml:ElementTheme>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
-                </StackPanel>
-            </StackPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  Margin="0,0,-24,24"
+                  Padding="0,0,24,0">
 
-            <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
+        <StackPanel x:Name="ContentArea">
+
+            <TextBlock Text="Features"
+                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}" />
+            
+            <labs:SettingsCard x:Uid="Settings_NetShield"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.NetShieldViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE705;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard x:Uid="Settings_KillSwitch"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.KillSwitchViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xEF1F;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard x:Uid="Settings_PortForwarding"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.PortForwardingViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xF591;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard x:Uid="Settings_SplitTunneling"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.SplitTunnelingViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xEDA3;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+
+            <TextBlock Text="Connection"
+                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}" />
+            <labs:SettingsCard x:Uid="Settings_Protocol"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.ProtocolViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8CE;" />
+                </labs:SettingsCard.HeaderIcon>
+                <TextBlock Text="Smart"/>
+            </labs:SettingsCard>
+            <labs:SettingsCard x:Uid="Settings_VpnAccelerator"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.VpnAcceleratorViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE945;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+            <labs:SettingsCard x:Uid="Settings_AdvancedSettings"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.AdvancedSettingsViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE713;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <TextBlock Text="General"
+                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}" />
+            <labs:SettingsCard x:Uid="Settings_AutoConnect"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.AutoConnectViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE7E8;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+            <labs:SettingsCard Description="Select which app theme to display"
+                               Header="App theme">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE793;" />
+                </labs:SettingsCard.HeaderIcon>
+                <ComboBox x:Name="themeMode"
+                          DisplayMemberPath="Header"
+                          ItemsSource="{x:Bind ViewModel.Themes}"
+                          SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
+            </labs:SettingsCard>
+
+            <TextBlock Text="Improve Proton"
+                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}" />
+
+            <labs:SettingsCard x:Uid="Settings_Censorship"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Gui.ViewModels.Pages.Settings.CensorshipViewModel"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE716;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <!--<TextBlock x:Uid="Settings_About"
+                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" />
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
 
-                <TextBlock
-                    x:Uid="Settings_AboutDescription"
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Style="{ThemeResource BodyTextBlockStyle}" />
-                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
-            </StackPanel>
+                <TextBlock x:Uid="Settings_AboutDescription"
+                           Margin="{StaticResource XSmallTopMargin}"
+                           Style="{ThemeResource BodyTextBlockStyle}" />
+                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink"
+                                 Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
+            </StackPanel>-->
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>

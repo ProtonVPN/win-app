@@ -11,12 +11,12 @@ using ProtonVPN.Gui.ViewModels;
 using ProtonVPN.Gui.ViewModels.Pages;
 using ProtonVPN.Gui.ViewModels.Pages.Countries;
 using ProtonVPN.Gui.ViewModels.Pages.Settings;
-using ProtonVPN.Gui.ViewModels.Pages.Settings.AdvancedSettings;
+using ProtonVPN.Gui.ViewModels.Pages.Settings.Advanced;
 using ProtonVPN.Gui.Views;
 using ProtonVPN.Gui.Views.Pages;
 using ProtonVPN.Gui.Views.Pages.Countries;
 using ProtonVPN.Gui.Views.Pages.Settings;
-using ProtonVPN.Gui.Views.Pages.Settings.AdvancedSettings;
+using ProtonVPN.Gui.Views.Pages.Settings.Advanced;
 
 namespace ProtonVPN.Gui;
 
@@ -79,8 +79,8 @@ public partial class App : Application
             services.AddTransient<CensorshipPage>();
             services.AddTransient<AutoConnectViewModel>();
             services.AddTransient<AutoConnectPage>();
-            services.AddTransient<CustomDnsServerViewModel>();
-            services.AddTransient<CustomDnsServerPage>();
+            services.AddTransient<CustomDnsServersViewModel>();
+            services.AddTransient<CustomDnsServersPage>();
             services.AddTransient<VpnLogsViewModel>();
             services.AddTransient<VpnLogsPage>();
             services.AddTransient<AdvancedSettingsViewModel>();

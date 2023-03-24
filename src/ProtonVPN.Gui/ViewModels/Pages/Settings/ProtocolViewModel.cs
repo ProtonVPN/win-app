@@ -1,10 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.ViewModels.Bases;
 
 namespace ProtonVPN.Gui.ViewModels.Pages.Settings;
 
-public class ProtocolViewModel : ObservableRecipient
+public class ProtocolViewModel : PageViewModelBase
 {
-    public ProtocolViewModel()
+    public ProtocolViewModel(INavigationService navigationService)
+        : base(navigationService, "Protocol", true)
     {
     }
 }

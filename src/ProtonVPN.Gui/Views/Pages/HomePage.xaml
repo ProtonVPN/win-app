@@ -1,12 +1,25 @@
-﻿<Page
-    x:Class="ProtonVPN.Gui.Views.Pages.HomePage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="ProtonVPN.Gui.Views.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        
+        <SplitView IsPaneOpen="{Binding IsChecked, Mode=TwoWay, ElementName=tgbtnConnectionDetails}"
+                   PanePlacement="Right" OpenPaneLength="360" CompactPaneLength="40" DisplayMode="Overlay">
+            <SplitView.PaneBackground>
+                <AcrylicBrush AlwaysUseFallback="False"
+                              TintColor="Black"
+                              TintLuminosityOpacity="0.85" 
+                              TintOpacity="0.6" />
+            </SplitView.PaneBackground>
+            <SplitView.Pane>
+                <TextBlock Text="Connection Details" />
+            </SplitView.Pane>
+
+            <ToggleButton x:Name="tgbtnConnectionDetails"
+                          Content="Connection details" />
+        </SplitView>
     </Grid>
 </Page>
