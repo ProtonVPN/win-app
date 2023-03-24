@@ -1,12 +1,19 @@
 ﻿<Page x:Class="ProtonVPN.Gui.Views.ShellPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:bases="using:ProtonVPN.Gui.ViewModels.Bases"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:helpers="using:ProtonVPN.Gui.Helpers"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:bases="using:ProtonVPN.Gui.ViewModels.Bases"
-      Loaded="OnLoaded" 
-      >
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="OnLoaded">
+
+    <Page.Resources>
+        <helpers:IsHeaderVisibleToPaneContentMarginConverter x:Key="IsHeaderVisibleToPaneContentMarginConverter"
+                                                             DefaultPaneContentMargin="16"/>
+
+        <Thickness x:Key="NavigationViewHeaderMargin">16,16,16,0</Thickness>
+    </Page.Resources>
 
     <Grid x:Name="page">
         <Grid x:Name="AppTitleBar"
@@ -25,16 +32,19 @@
                        TextWrapping="NoWrap" />
         </Grid>
         <NavigationView x:Name="NavigationViewControl"
+                        AlwaysShowHeader="{Binding Header.IsHeaderVisible, RelativeSource={RelativeSource Mode=Self}}"
                         Canvas.ZIndex="0"
+                        CompactModeThresholdWidth="408"
+                        CompactPaneLength="48"
                         DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                        ExpandedModeThresholdWidth="520"
+                        Header="{x:Bind ViewModel.CurrentPage, Mode=OneWay}"
                         IsBackButtonVisible="Collapsed"
                         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                         IsSettingsVisible="False"
-                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-                        Header="{x:Bind ViewModel.CurrentPage,Mode=OneWay}">
+                        OpenPaneLength="160"
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
-                        <!--Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"-->
-            
             <NavigationView.MenuItems>
                 <!--
                 TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
@@ -67,24 +77,44 @@
             </NavigationView.MenuItems>
             <NavigationView.HeaderTemplate>
                 <DataTemplate x:DataType="bases:PageViewModelBase">
-                    <StackPanel Orientation="Horizontal"
-                    Visibility="{x:Bind IsHeaderVisible}">
+                    <StackPanel Orientation="Horizontal">
                         <Button Margin="0,4,16,0"
-                    Padding="4"
-                    Background="Transparent"
-                    BorderBrush="Transparent" Visibility="{x:Bind CanGoBack}"
-                                Command="{x:Bind GoBackCommand}">
+                                Padding="4"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Command="{x:Bind GoBackCommand}"
+                                Visibility="{x:Bind CanGoBack}">
                             <FontIcon FontSize="14"
-                          Glyph="&#xE72B;" />
+                                      Glyph="&#xE72B;" />
                         </Button>
                         <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                       Text="{x:Bind Title}" />
+                                   Text="{x:Bind Title}" />
                     </StackPanel>
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
-            <Grid Margin="{StaticResource NavigationViewPageContentMargin}">
-                <Frame x:Name="NavigationFrame" />
-            </Grid>
+            <NavigationView.PaneFooter>
+                <Button Margin="4,0" Padding="4"
+                        Width="40" Height="36"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Vertical"
+                                        Spacing="16">
+                                <HyperlinkButton Content="Manage subscription"/>
+                                <Button Content="Sign out"
+                                        Height="32"
+                                        Width="175"/>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                    <FontIcon Glyph="&#xE77B;"
+                              FontSize="16"/>
+                </Button>
+            </NavigationView.PaneFooter>
+            <Frame x:Name="NavigationFrame" Margin="{Binding Header.IsHeaderVisible, ElementName=NavigationViewControl, Converter={StaticResource IsHeaderVisibleToPaneContentMarginConverter}}"/>
         </NavigationView>
     </Grid>
 </Page>

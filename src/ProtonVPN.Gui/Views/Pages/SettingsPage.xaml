@@ -17,8 +17,8 @@
     </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  Margin="0,0,-24,24"
-                  Padding="0,0,24,0">
+                  Margin="0,0,-12,0"
+                  Padding="0,0,12,0">
 
         <StackPanel x:Name="ContentArea">
 
