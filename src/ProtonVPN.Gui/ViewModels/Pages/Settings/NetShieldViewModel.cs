@@ -1,10 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.ViewModels.Bases;
 
 namespace ProtonVPN.Gui.ViewModels.Pages.Settings;
 
-public class NetShieldViewModel : ObservableRecipient
+public class NetShieldViewModel : PageViewModelBase
 {
-    public NetShieldViewModel()
+    public NetShieldViewModel(INavigationService navigationService)
+        : base(navigationService, "NetShield", true)
     {
     }
 }

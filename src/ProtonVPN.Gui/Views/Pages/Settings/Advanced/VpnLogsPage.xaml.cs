@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Gui.ViewModels.Pages.Settings.AdvancedSettings;
+using ProtonVPN.Gui.ViewModels.Pages.Settings.Advanced;
 
-namespace ProtonVPN.Gui.Views.Pages.Settings.AdvancedSettings;
+namespace ProtonVPN.Gui.Views.Pages.Settings.Advanced;
 
 public sealed partial class VpnLogsPage : Page
 {

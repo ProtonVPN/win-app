@@ -1,10 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.ViewModels.Bases;
 
 namespace ProtonVPN.Gui.ViewModels.Pages.Settings;
 
-public class KillSwitchViewModel : ObservableRecipient
+public class KillSwitchViewModel : PageViewModelBase
 {
-    public KillSwitchViewModel()
+    public KillSwitchViewModel(INavigationService navigationService)
+        : base(navigationService, "Kill switch", true)
     {
     }
 }

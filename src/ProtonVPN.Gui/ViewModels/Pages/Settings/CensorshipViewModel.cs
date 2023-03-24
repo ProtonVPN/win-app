@@ -1,10 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.ViewModels.Bases;
 
 namespace ProtonVPN.Gui.ViewModels.Pages.Settings;
 
-public class CensorshipViewModel : ObservableRecipient
+public class CensorshipViewModel : PageViewModelBase
 {
-    public CensorshipViewModel()
+    public CensorshipViewModel(INavigationService navigationService)
+        : base(navigationService, "Help us fight censorship", true)
     {
     }
 }

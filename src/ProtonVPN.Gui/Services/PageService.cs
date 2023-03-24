@@ -6,11 +6,11 @@ using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.ViewModels.Pages;
 using ProtonVPN.Gui.ViewModels.Pages.Countries;
 using ProtonVPN.Gui.ViewModels.Pages.Settings;
-using ProtonVPN.Gui.ViewModels.Pages.Settings.AdvancedSettings;
+using ProtonVPN.Gui.ViewModels.Pages.Settings.Advanced;
 using ProtonVPN.Gui.Views.Pages;
 using ProtonVPN.Gui.Views.Pages.Countries;
 using ProtonVPN.Gui.Views.Pages.Settings;
-using ProtonVPN.Gui.Views.Pages.Settings.AdvancedSettings;
+using ProtonVPN.Gui.Views.Pages.Settings.Advanced;
 
 namespace ProtonVPN.Gui.Services;
 
@@ -31,7 +31,7 @@ public class PageService : IPageService
         Configure<VpnAcceleratorViewModel, VpnAcceleratorPage>();
         Configure<AdvancedSettingsViewModel, AdvancedSettingsPage>();
         Configure<VpnLogsViewModel, VpnLogsPage>();
-        Configure<CustomDnsServerViewModel, CustomDnsServerPage>();
+        Configure<CustomDnsServersViewModel, CustomDnsServersPage>();
         Configure<AutoConnectViewModel, AutoConnectPage>();
         Configure<CensorshipViewModel, CensorshipPage>();
         Configure<SettingsViewModel, SettingsPage>();
