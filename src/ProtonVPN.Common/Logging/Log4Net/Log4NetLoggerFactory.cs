@@ -49,12 +49,11 @@ namespace ProtonVPN.Common.Logging.Log4Net
 
             hierarchy.Root.RemoveAllAppenders();
             RollingFileAppender roller = CreateRollingFileAppender(defaultLogFilePath);
-            hierarchy.Root.AddAppender(roller);
 
             SetLoggerLevel(hierarchy);
 
             hierarchy.Configured = true;
-            BasicConfigurator.Configure(hierarchy);
+            BasicConfigurator.Configure(hierarchy, roller);
         }
 
         private RollingFileAppender CreateRollingFileAppender(string defaultLogFilePath)
