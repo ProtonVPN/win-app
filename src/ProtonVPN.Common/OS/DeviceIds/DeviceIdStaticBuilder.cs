@@ -23,19 +23,25 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 
-namespace ProtonVPN.Common.OS
+namespace ProtonVPN.Common.OS.DeviceIds
 {
-    public class DeviceInfoProvider : IDeviceInfoProvider
+    public static class DeviceIdStaticBuilder
     {
-        private readonly ILogger _logger;
-        private string _deviceId;
+        private static ILogger _logger;
+        private static Exception _cachedException;
+        private static string _deviceId;
 
-        public DeviceInfoProvider(ILogger logger)
+        public static void SetLogger(ILogger logger)
         {
             _logger = logger;
+            if (_cachedException is not null)
+            {
+                LogError(_cachedException, "[Cached exception] ");
+                _cachedException = null;
+            }
         }
 
-        public string GetDeviceId()
+        public static string GetDeviceId()
         {
             if (!_deviceId.IsNullOrEmpty())
             {
@@ -53,11 +59,28 @@ namespace ProtonVPN.Common.OS
             }
             catch (Exception e)
             {
-                _logger.Error<OperatingSystemLog>("Failed to generate device id.", e);
+                LogOrCacheError(e);
                 _deviceId = "Undefined";
             }
 
             return _deviceId;
+        }
+
+        private static void LogOrCacheError(Exception e)
+        {
+            if (_logger is null)
+            {
+                _cachedException = e;
+            }
+            else
+            {
+                LogError(e);
+            }
+        }
+
+        private static void LogError(Exception e, string prefix = null)
+        {
+            _logger.Error<OperatingSystemLog>($"{prefix}Failed to generate device id.", e);
         }
     }
 }

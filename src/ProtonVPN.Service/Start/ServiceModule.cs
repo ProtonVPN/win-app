@@ -21,10 +21,9 @@ using System;
 using Autofac;
 using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
+using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Log4Net;
-using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -33,6 +32,7 @@ using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.EntityMapping.Installers;
+using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Service.Installers;
 using ProtonVPN.Service.Config;
@@ -131,17 +131,21 @@ namespace ProtonVPN.Service.Start
 
             builder.RegisterType<NetworkAdaptersLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkAdapterManager>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
-            builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
             builder.RegisterType<HttpClients>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ApiAppVersion>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
 
-            builder.RegisterAssemblyModules<EntityMappingModule>(typeof(EntityMappingModule).Assembly);
-            builder.RegisterAssemblyModules<ProcessCommunicationModule>(typeof(ProcessCommunicationModule).Assembly);
-            builder.RegisterAssemblyModules<ServiceProcessCommunicationModule>(typeof(ServiceProcessCommunicationModule).Assembly);
+            RegisterModules(builder);
+        }
+
+        private void RegisterModules(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyModule<EntityMappingModule>()
+                   .RegisterAssemblyModule<ProcessCommunicationModule>()
+                   .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
+                   .RegisterAssemblyModule<IssueReportingModule>();
         }
 
         private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)

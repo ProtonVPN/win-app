@@ -17,17 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Runtime.CompilerServices;
+using Autofac;
+using Autofac.Core;
+using Autofac.Core.Registration;
 
-namespace ProtonVPN.Common.Events
+namespace ProtonVPN.Common.Installers.Extensions
 {
-    public interface IEventPublisher
+    public static class ModuleRegistrarExtensions
     {
-        void Init();
-        void CaptureError(Exception e, [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0);
-        void CaptureError(string message);
-        void CaptureMessage(string message);
+        public static IModuleRegistrar RegisterAssemblyModule<TModule>(this IModuleRegistrar registrar) 
+            where TModule : IModule
+        {
+            return registrar.RegisterAssemblyModules<TModule>(typeof(TModule).Assembly);
+        }
+
+        public static IModuleRegistrar RegisterAssemblyModule<TModule>(this ContainerBuilder builder) 
+            where TModule : IModule
+        {
+            return builder.RegisterAssemblyModules<TModule>(typeof(TModule).Assembly);
+        }
     }
 }

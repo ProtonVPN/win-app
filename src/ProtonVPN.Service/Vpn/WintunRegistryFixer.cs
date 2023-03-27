@@ -19,10 +19,10 @@
 
 using System.Security;
 using Microsoft.Win32;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
+using ProtonVPN.IssueReporting.Contracts;
 
 namespace ProtonVPN.Service.Vpn
 {
@@ -35,12 +35,12 @@ namespace ProtonVPN.Service.Vpn
         // https://docs.microsoft.com/en-us/windows-hardware/drivers/install/system-defined-device-setup-classes-available-to-vendors
         private readonly string _regPath = "SYSTEM\\ControlSet001\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}";
         private readonly ILogger _logger;
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IIssueReporter _issueReporter;
 
-        public WintunRegistryFixer(ILogger logger, IEventPublisher eventPublisher)
+        public WintunRegistryFixer(ILogger logger, IIssueReporter issueReporter)
         {
             _logger = logger;
-            _eventPublisher = eventPublisher;
+            _issueReporter = issueReporter;
         }
 
         public void EnsureTunAdapterRegistryIsCorrect()
@@ -77,7 +77,7 @@ namespace ProtonVPN.Service.Vpn
                     if (componentId.IsNullOrEmpty())
                     {
                         Registry.SetValue($"HKEY_LOCAL_MACHINE\\{_regPath}\\{folder}", "ComponentId", matchingDeviceId);
-                        _eventPublisher.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
+                        _issueReporter.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
                     }
                     else if (matchingDeviceId != componentId)
                     {
