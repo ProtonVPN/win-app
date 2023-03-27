@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Sign out</value>
+    <value>Encerrar sessão</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,11 +324,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>Encerrar a sessão do programa irá desconectar a conexão VPN ativa. Você tem certeza que deseja continuar?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Para concluir o processo de atualização, o Proton VPN desconectará temporariamente e desativará o Kill Switch permanente se qualquer um destes estiver ativo. Deseja continuar?</value>
+    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1537,16 +1537,17 @@ Informações sobre a tabela de roteamento</value>
     <value>Atribuir conexões VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Sign in again</value>
+    <value>Iniciar sessão novamente</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Para iniciar sua jornada no Proton VPN, atribua conexões VPN à sua conta ou a qualquer outra subconta.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
+    <value>Esta etapa levará apenas alguns minutos. Depois disso, você poderá iniciar sessão e proteger todos os seus dispositivos.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Obrigado por fazer upgrade para Professional/Visionary</value>
+    <value>Thanks for upgrading</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Um dos serviços exigidos pelo Proton VPN (Motor base de filtragem) não está a executando.&lt;LineBreak/&gt;
@@ -1597,7 +1598,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Alguns componentes Proton VPN podem estar bloqueados ou desabilitados, impedindo que você se conecte. Clique em habilitar para corrigir.&lt;LineBreak/&gt;Note que esta operação requer privilégios administrativos.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Desativar Kill Switch</value>
+    <value>Disable kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1613,8 +1614,8 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>O Kill Switch está protegendo seu IP bloqueando todas as conexões. Em caso de problemas, você pode desativar o Kill Switch.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Não há servidores disponíveis neste momento para opção selecionada. Por favor, selecione uma opção diferente.</value>
@@ -1663,16 +1664,16 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Deseja continuar?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Sair do aplicativo desconectará você da VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>O Kill Switch está bloqueando todas as conexões para evitar o vazamento dos seus dados. Sair do aplicativo desativará o Kill Switch.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>O Kill Switch permanente está ativado. A saída do aplicativo bloqueará todas as conexões de saída até que o Proton VPN seja conectado novamente.</value>
+    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Verificação humana</value>
@@ -1681,10 +1682,10 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>O relógio do seu sistema não parece estar sincronizado, o que pode impedir a VPN de se conectar com sucesso. Por favor &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt; verifique aqui&lt;/Hyperlink&gt; para mais informações.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Ativar o Kill Switch?</value>
+    <value>Enable Permanent kill switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Entendi</value>
@@ -1731,8 +1732,8 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note que o Kill Switch está ativado. Ao atualizar ou sair do programa, ele será desativado.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Sua conexão foi desativada porque você está usando um servidor que não oferece suporte a tráfego ponto a ponto (P2P). P2P não é compatível com servidores gratuitos. Use um servidor diferente para P2P.</value>
@@ -1758,7 +1759,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Entendi</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Para que o tunelamento dividido funcione corretamente, você deve desabilitar a chave de segurança.</value>
+    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Centenas de servidores em 55 países</value>
@@ -1913,18 +1914,18 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Por favor, repare sua instalação.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
   </data>
   <data name="License_ttl">
     <value>Licença</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Your session has expired. Please sign in again.</value>
+    <value>Sua sessão expirou. Por favor, entre novamente.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Invalid refresh token, please sign in again.</value>
+    <value>Token de atualização inválido. Por favor, faça o login novamente.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1935,19 +1936,19 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Autenticar</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>Iniciar sessão</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>O Kill Switch está ativo</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>Kill switch is currently active</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Senha</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Internet segura em qualquer lugar</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2069,7 +2070,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Não mostrar novamente</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Saiba mais</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>O Secure Core oferece o mais alto nível de segurança e privacidade, mas pode reduzir a velocidade da sua internet. Se precisar de mais desempenho, você pode desabilitar o Secure Core.</value>
@@ -2433,10 +2434,10 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch desativado</value>
+    <value>Kill switch Off</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch ativado</value>
+    <value>Kill switch On</value>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Saiba mais</value>
@@ -2451,7 +2452,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Bloqueio de malware, anúncios e rastreadores</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Kill Switch permanente</value>
+    <value>Permanent kill switch</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Encaminhamento de Porta Desligado</value>
@@ -2469,16 +2470,40 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>ATUALIZAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Desativa a internet se a conexão VPN cair para evitar vazamento acidental de IP.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Navegue pela internet sem anúncios e malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds">
+    <value>Ads blocked</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Bandwidth saved</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+    <value>Trackers stopped</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Se os sites não carregarem, tente desativar o NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Permita que aplicativos locais suportadas sejam alcançáveis a partir da Internet, acelerando torrents e jogos online.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Encaminhe os seus dados mais sensíveis através dos nossos servidores mais seguros em países amigos da privacidade.</value>
@@ -2510,7 +2535,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Servidor Plus</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2587,7 +2612,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Proton VPN não pode se conectar porque o servidor RPC não está disponível em seu sistema. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Veja possíveis soluções&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Infelizmente, este servidor não oferece suporte ao WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Adicionar programa</value>
@@ -2693,7 +2718,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclua um programa, um endereço IP do tráfego VPN ou incluir apenas aplicativos específicos. Não pode ser ativado juntamente com o Kill Switch.</value>
+    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2867,11 +2892,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>O Kill Switch está ativado!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <value>Kill switch activated!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>O Kill Switch está bloqueando todas as conexões para evitar o vazamento dos seus dados.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -2887,16 +2912,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Localizações FREE ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Free servers</value>
+    <value>Servidores gratuitos</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+    <value>Servidores gratuitos não tem limitação de dados nem supressão de rede. A velocidade só pode ser limitada devido ao grande número de usuários conectados.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>Informação</value>
   </data>
   <data name="Sidebar_Countries_OurPartners">
-    <value>Our partners</value>
+    <value>Nossos parceiros</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Localizações PLUS ({0})</value>
@@ -2908,7 +2933,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Servidores BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Servidores Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>Servidores INTERNOS</value>
@@ -2978,7 +3003,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Roteie seu tráfego de internet pela rede Tor. Mais lento, mas mais privado.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Criar perfil</value>
@@ -3081,8 +3106,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Acesse 1200 servidores seguros em 63 países</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>O que é NAT moderado?</value>
@@ -3212,7 +3237,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>Desativar</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Salvar</value>

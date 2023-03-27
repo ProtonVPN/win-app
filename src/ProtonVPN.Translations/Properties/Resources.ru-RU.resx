@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Sign out</value>
+    <value>Выйти</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -348,11 +348,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>Выход из приложения отключит активное VPN-соединение. Хотите продолжить?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Для завершения процесса обновления Proton VPN временно прервет подключение и деактивирует Постоянный Kill Switch, если что-либо из этого активно. Вы хотите продолжить?</value>
+    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1561,16 +1561,17 @@
     <value>Назначить подключения к VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Sign in again</value>
+    <value>Войти снова</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Чтобы начать свое путешествие в Proton VPN, пожалуйста, назначьте подключения к VPN для своего аккаунта или любого другого субаккаунта.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
+    <value>Этот шаг займет всего несколько минут. После него вы сможете авторизоваться и защитить все свои устройства.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Спасибо за улучшение до Professional/Visionary</value>
+    <value>Thanks for upgrading</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Одна из служб, требуемых Proton VPN (Base Filtering Engine) не запущена.&lt;LineBreak/&gt;
@@ -1621,7 +1622,7 @@
     <value>Некоторые компоненты Proton VPN могут быть заблокированы или отключены, что мешает вам подключиться. Нажмите на Включить, чтобы исправить это.&lt;LineBreak/&gt;Обратите внимание, что эта операция требует полномочий администратора.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Отключить Kill Switch</value>
+    <value>Disable kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1637,8 +1638,8 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch защищает ваш IP, блокируя все подключения. Если возникнут проблемы, вы сможете выключить Kill Switch.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Для вашего выбора сейчас нет доступных серверов. Пожалуйста, выберите другой вариант.</value>
@@ -1687,16 +1688,16 @@
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Хотите продолжить?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Выход из приложения отключит Вас от VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill Switch блокирует все подключения, чтобы избежать утечки данных. Выход из приложения отключит Kill Switch.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Включен постоянный Kill Switch. Выход из приложения заблокирует все исходящие подключения, пока Proton VPN не подключится снова.</value>
+    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Проверка "Я не робот"</value>
@@ -1705,10 +1706,10 @@
     <value>Похоже, что ваши системные часы не синхронизированы, что может препятствовать успешному подключению VPN. Дополнительную информацию смотрите тут: &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;здесь&lt;/Hyperlink&gt;.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Включить постоянный Kill Switch?</value>
+    <value>Enable Permanent kill switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Я понял</value>
@@ -1755,8 +1756,8 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Обратите внимание, что Kill Switch включен. Обновление или выход из приложения отключит его.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Ваше соединение было отключено, потому что вы используете сервер, не поддерживающий трафик peer-to-peer (P2P). P2P не поддерживается на бесплатных серверах. Пожалуйста, используйте другой сервер для P2P.</value>
@@ -1782,7 +1783,7 @@
     <value>Понятно</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Для правильной работы раздельного туннелирования, вы должны выключить Kill Switch.</value>
+    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Сотни серверов в 55 странах</value>
@@ -1875,7 +1876,7 @@
     <value>Proton VPN не смог подключиться, потому что сетевой адаптер TUN уже используется. Пожалуйста, отключите все активные VPN и повторите попытку. Или же переключитесь на адаптер TAP (вы можете снова переключиться на TUN в расширенных настройках).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+    <value>Proton VPN не смог подключиться, потому что в данный момент используется сетевой адаптер WireGuard. Пожалуйста, отключите все активные VPN и повторите попытку, или же поменяйте протокол в расширенных настройках.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Отмена</value>
@@ -1937,18 +1938,18 @@
     <value>Пожалуйста, исправьте вашу установку.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
   </data>
   <data name="License_ttl">
     <value>Лицензия</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Your session has expired. Please sign in again.</value>
+    <value>Ваш сеанс истек. Пожалуйста, войдите снова.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Invalid refresh token, please sign in again.</value>
+    <value>Недействительный refresh-токен: пожалуйста, войдите снова.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1959,19 +1960,19 @@
     <value>Аутентифицировать</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>Войти</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill Switch сейчас активен</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>Kill switch is currently active</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Пароль</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Безопасный Интернет где угодно</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2093,7 +2094,7 @@
     <value>Больше не показывать</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Подробнее</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core обеспечивает наивысший уровень безопасности и конфиденциальности, но может снизить скорость вашего подключения к Интернету. Если вам нужна более высокая производительность, вы можете отключить Secure Core.</value>
@@ -2463,10 +2464,10 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch выкл</value>
+    <value>Kill switch Off</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch вкл</value>
+    <value>Kill switch On</value>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Подробнее</value>
@@ -2481,7 +2482,7 @@
     <value>Блокировать вредоносные программы, рекламу и трекеры</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Постоянный Kill Switch</value>
+    <value>Permanent kill switch</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Проброс портов выкл</value>
@@ -2499,16 +2500,40 @@
     <value>УЛУЧШИТЬ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Отключает Интернет при обрыве подключения к VPN для предотвращения случайной утечки IP-адресов.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Просматривайте Интернет без рекламы и вредоносных программ.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds">
+    <value>Ads blocked</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Bandwidth saved</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+    <value>Trackers stopped</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Если веб-сайты не загружаются, попробуйте отключить NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Ускорьте ваши торренты и онлайн-игры, разрешив Интернет-доступ к поддерживаемым локальным приложениям.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Направляйте свои самые чувствительные данные через наши самые безопасные серверы в странах, уважающих конфиденциальность.</value>
@@ -2540,7 +2565,7 @@
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Сервер Plus</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2617,7 +2642,7 @@
     <value>Proton VPN не может подключиться, потому что сервер RPC недоступен в вашей системе. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Посмотреть возможные решения&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>К сожалению, этот сервер не поддерживает WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Добавить приложение</value>
@@ -2723,7 +2748,7 @@
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Исключение программ или IP-адресов из VPN трафика, или включение только определенных приложений. Невозможно включить одновременно с Kill Switch.</value>
+    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2897,11 +2922,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill Switch активирован!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <value>Kill switch activated!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill Switch блокирует все соединения, чтобы избежать утечки ваших данных.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -2917,16 +2942,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Местоположения FREE ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Free servers</value>
+    <value>Бесплатные серверы</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+    <value>Бесплатные серверы не имеют ограничений трафика или скорости передачи данных. Скорость может быть ограничена только из-за большого числа активных пользователей.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>Информация</value>
   </data>
   <data name="Sidebar_Countries_OurPartners">
-    <value>Our partners</value>
+    <value>Наши партнеры</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Местоположения PLUS ({0})</value>
@@ -2938,7 +2963,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Серверы BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Серверы Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>ВНУТРЕННИЕ серверы</value>
@@ -3008,7 +3033,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Направляйте ваш трафик через сеть Tor. Медленнее, но конфиденциальнее.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Создать профиль</value>
@@ -3129,8 +3154,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Доступ к более чем 1200 серверам в 63 странах</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Что такое NAT Type 2?</value>
@@ -3260,7 +3285,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>Отключить</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Сохранить</value>
