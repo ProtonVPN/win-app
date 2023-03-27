@@ -38,8 +38,8 @@ using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
@@ -70,6 +70,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.ErrorHandling;
+using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
@@ -108,6 +109,7 @@ namespace ProtonVPN.Core
 
         public Bootstrapper()
         {
+            IssueReportingInitializer.Run();
             Initialize();
         }
 
@@ -121,13 +123,14 @@ namespace ProtonVPN.Core
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
                 .RegisterModule<ProfilesModule>()
-                .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
-                .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly)
-                .RegisterAssemblyModules<AnnouncementsModule>(typeof(AnnouncementsModule).Assembly)
-                .RegisterAssemblyModules<DnsModule>(typeof(DnsModule).Assembly)
-                .RegisterAssemblyModules<EntityMappingModule>(typeof(EntityMappingModule).Assembly)
-                .RegisterAssemblyModules<ProcessCommunicationModule>(typeof(ProcessCommunicationModule).Assembly)
-                .RegisterAssemblyModules<AppProcessCommunicationModule>(typeof(AppProcessCommunicationModule).Assembly);
+                .RegisterAssemblyModule<HumanVerificationModule>()
+                .RegisterAssemblyModule<ApiModule>()
+                .RegisterAssemblyModule<IssueReportingModule>()
+                .RegisterAssemblyModule<AnnouncementsModule>()
+                .RegisterAssemblyModule<DnsModule>()
+                .RegisterAssemblyModule<EntityMappingModule>()
+                .RegisterAssemblyModule<ProcessCommunicationModule>()
+                .RegisterAssemblyModule<AppProcessCommunicationModule>();
 
             _container = builder.Build();
         }
@@ -137,7 +140,6 @@ namespace ProtonVPN.Core
             base.OnStartup(sender, e);
 
             IConfiguration appConfig = Resolve<IConfiguration>();
-            Resolve<IEventPublisher>().Init();
 
             Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
 

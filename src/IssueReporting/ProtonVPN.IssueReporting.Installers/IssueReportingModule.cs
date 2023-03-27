@@ -17,20 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
+using Autofac;
 
-namespace ProtonVPN.Common.Events
+namespace ProtonVPN.IssueReporting.Installers
 {
-    public class SentryHttpClientHandler : HttpClientHandler
+    public class IssueReportingModule : Module
     {
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
+        protected override void Load(ContainerBuilder builder)
         {
-            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-sentry-envelope");
-            return await base.SendAsync(request, cancellationToken);
+            builder.RegisterType<IssueReporter>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

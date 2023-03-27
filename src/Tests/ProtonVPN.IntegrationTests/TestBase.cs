@@ -34,6 +34,7 @@ using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
+using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.P2PDetection;
 using RichardSzalay.MockHttp;
 using File = System.IO.File;
@@ -67,7 +68,7 @@ namespace ProtonVPN.IntegrationTests
             httpClient.BaseAddress = new Uri("http://localhost");
             ContainerBuilder builder = new();
 
-            builder.RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly);
+            builder.RegisterAssemblyModule<ApiModule>();
             builder.Register(_ =>
             {
                 IApiHttpClientFactory httpClientFactory = Substitute.For<IApiHttpClientFactory>();
@@ -83,7 +84,7 @@ namespace ProtonVPN.IntegrationTests
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
                 .RegisterModule<ProfilesModule>()
-                .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly);
+                .RegisterAssemblyModule<HumanVerificationModule>();
 
             builder.Register(_ =>
             {
@@ -91,7 +92,7 @@ namespace ProtonVPN.IntegrationTests
                 httpClients.GetFileDownloadHttpClient().Returns(new WrappedHttpClient(httpClient));
                 return httpClients;
             }).As<IFileDownloadHttpClientFactory>().SingleInstance();
-            builder.RegisterAssemblyModules<AnnouncementsModule>(typeof(AnnouncementsModule).Assembly);
+            builder.RegisterAssemblyModule<AnnouncementsModule>();
 
             builder.Register(_ => Substitute.For<IScheduler>()).As<IScheduler>().SingleInstance();
             builder.Register(_ => new AnnouncementCacheMock()).As<IAnnouncementCache>().SingleInstance();

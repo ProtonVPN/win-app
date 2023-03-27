@@ -24,7 +24,7 @@ using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.OS;
+using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.OS;
@@ -41,17 +41,17 @@ namespace ProtonVPN.BugReporting
         private readonly IUserStorage _userStorage;
         private readonly IConfiguration _config;
         private readonly ISystemState _systemState;
-        private readonly IDeviceInfoProvider _deviceInfoProvider;
+        private readonly IDeviceIdCache _deviceIdCache;
 
         private bool _isLoggedIn;
 
         public ReportFieldProvider(IUserStorage userStorage, IConfiguration config,
-            ISystemState systemState, IDeviceInfoProvider deviceInfoProvider)
+            ISystemState systemState, IDeviceIdCache deviceIdCache)
         {
             _config = config;
             _userStorage = userStorage;
             _systemState = systemState;
-            _deviceInfoProvider = deviceInfoProvider;
+            _deviceIdCache = deviceIdCache;
         }
 
         public KeyValuePair<string, string>[] GetFields(SendReportAction message)
@@ -108,7 +108,7 @@ namespace ProtonVPN.BugReporting
         {
             stringBuilder.AppendLine("Additional info")
                 .AppendLine($"Pending reboot: {_systemState.PendingReboot().ToYesNoString()}")
-                .AppendLine($"DeviceID: {_deviceInfoProvider.GetDeviceId()}");
+                .AppendLine($"DeviceID: {_deviceIdCache.GetDeviceId()}");
         }
 
         private string GetUsername(User user, IList<FormElement> formElements)

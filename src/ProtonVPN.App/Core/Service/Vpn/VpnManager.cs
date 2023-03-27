@@ -20,7 +20,6 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
@@ -29,6 +28,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.IssueReporting.Contracts;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
@@ -39,20 +39,20 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly IVpnReconnector _vpnReconnector;
         private readonly IVpnConnector _vpnConnector;
         private readonly ILogger _logger;
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IIssueReporter _issueReporter;
 
         public VpnManager(
             IVpnServiceManager vpnServiceManager,
             IVpnReconnector vpnReconnector,
             IVpnConnector vpnConnector,
             ILogger logger,
-            IEventPublisher eventPublisher)
+            IIssueReporter issueReporter)
         {
             _vpnServiceManager = vpnServiceManager;
             _vpnReconnector = vpnReconnector;
             _vpnConnector = vpnConnector;
             _logger = logger;
-            _eventPublisher = eventPublisher;
+            _issueReporter = issueReporter;
             _vpnConnector.VpnStateChanged += OnConnectorVpnStateChanged;
         }
 
@@ -130,7 +130,7 @@ namespace ProtonVPN.Core.Service.Vpn
             }
             catch (Exception exception)
             {
-                _eventPublisher.CaptureError(exception,
+                _issueReporter.CaptureError(exception,
                     sourceFilePath: sourceFilePath,
                     sourceMemberName: sourceMemberName,
                     sourceLineNumber: sourceLineNumber);

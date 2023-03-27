@@ -20,16 +20,15 @@
 using System;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using Sentry.Extensibility;
 using Sentry;
 
-namespace ProtonVPN.Common.Service
+namespace ProtonVPN.IssueReporting.DiagnosticLogging
 {
-    public class SentryDiagnosticLogger : IDiagnosticLogger
+    public class SentryDiagnosticLogger : ISentryDiagnosticLogger
     {
-        private readonly ILogger _logger;
+        private ILogger _logger;
 
-        public SentryDiagnosticLogger(ILogger logger)
+        public void SetLogger(ILogger logger)
         {
             _logger = logger;
         }
@@ -45,19 +44,19 @@ namespace ProtonVPN.Common.Service
             switch (logLevel)
             {
                 case SentryLevel.Debug:
-                    _logger.Debug<AppLog>(logMessage, exception);
+                    _logger?.Debug<AppLog>(logMessage, exception);
                     break;
                 case SentryLevel.Info:
-                    _logger.Info<AppLog>(logMessage);
+                    _logger?.Info<AppLog>(logMessage);
                     break;
                 case SentryLevel.Warning:
-                    _logger.Warn<AppLog>(logMessage);
+                    _logger?.Warn<AppLog>(logMessage);
                     break;
                 case SentryLevel.Error:
-                    _logger.Error<AppLog>(logMessage);
+                    _logger?.Error<AppLog>(logMessage);
                     break;
                 case SentryLevel.Fatal:
-                    _logger.Fatal<AppCrashLog>(logMessage);
+                    _logger?.Fatal<AppCrashLog>(logMessage);
                     break;
             }
         }

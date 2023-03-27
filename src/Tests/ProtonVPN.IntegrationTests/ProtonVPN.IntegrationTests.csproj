@@ -8,6 +8,11 @@
     <IsPublishable>false</IsPublishable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>

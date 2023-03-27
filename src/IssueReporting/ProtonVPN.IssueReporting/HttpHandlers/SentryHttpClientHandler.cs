@@ -17,10 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.OS
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ProtonVPN.IssueReporting.HttpHandlers
 {
-    public interface IDeviceInfoProvider
+    public class SentryHttpClientHandler : HttpClientHandler
     {
-        string GetDeviceId();
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-sentry-envelope");
+            return await base.SendAsync(request, cancellationToken);
+        }
     }
 }

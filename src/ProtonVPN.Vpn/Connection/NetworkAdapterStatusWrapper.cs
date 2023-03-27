@@ -19,7 +19,6 @@
 
 using System;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
@@ -28,6 +27,7 @@ using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.Networks;
@@ -37,7 +37,7 @@ namespace ProtonVPN.Vpn.Connection
     internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     {
         private readonly ILogger _logger;
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IIssueReporter _issueReporter;
         private readonly INetworkAdapterManager _networkAdapterManager;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
         private readonly WintunAdapter _wintunAdapter;
@@ -51,7 +51,7 @@ namespace ProtonVPN.Vpn.Connection
 
         public NetworkAdapterStatusWrapper(
             ILogger logger,
-            IEventPublisher eventPublisher,
+            IIssueReporter issueReporter,
             INetworkAdapterManager networkAdapterManager,
             INetworkInterfaceLoader networkInterfaceLoader,
             WintunAdapter wintunAdapter,
@@ -59,7 +59,7 @@ namespace ProtonVPN.Vpn.Connection
             ISingleVpnConnection origin)
         {
             _logger = logger;
-            _eventPublisher = eventPublisher;
+            _issueReporter = issueReporter;
             _networkAdapterManager = networkAdapterManager;
             _wintunAdapter = wintunAdapter;
             _tapAdapter = tapAdapter;
@@ -189,7 +189,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (!_hasSentTunFallbackEventToSentry)
             {
-                _eventPublisher.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
+                _issueReporter.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
                 _hasSentTunFallbackEventToSentry = true;
             }
         }

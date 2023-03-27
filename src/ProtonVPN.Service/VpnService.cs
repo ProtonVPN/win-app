@@ -22,7 +22,6 @@ using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
@@ -30,6 +29,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
@@ -42,7 +42,7 @@ namespace ProtonVPN.Service
 
         private readonly CancellationTokenSource _cancellationTokenSource;
         private readonly ILogger _logger;
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IIssueReporter _issueReporter;
         private readonly IConfiguration _config;
         private readonly IOsProcesses _osProcesses;
         private readonly IVpnConnection _vpnConnection;
@@ -52,7 +52,7 @@ namespace ProtonVPN.Service
 
         public VpnService(
             ILogger logger,
-            IEventPublisher eventPublisher,
+            IIssueReporter issueReporter,
             IConfiguration config,
             IOsProcesses osProcesses,
             IVpnConnection vpnConnection,
@@ -60,7 +60,7 @@ namespace ProtonVPN.Service
             IGrpcServer grpcServer)
         {
             _logger = logger;
-            _eventPublisher = eventPublisher;
+            _issueReporter = issueReporter;
             _config = config;
             _osProcesses = osProcesses;
             _vpnConnection = vpnConnection;
@@ -84,7 +84,7 @@ namespace ProtonVPN.Service
             {
                 _logger.Error<AppServiceStartFailedLog>("An error occurred when starting VPN Service.", ex);
                 LogEvent($"OnStart: {ex}");
-                _eventPublisher.CaptureError(ex);
+                _issueReporter.CaptureError(ex);
             }
         }
 
@@ -109,7 +109,7 @@ namespace ProtonVPN.Service
             {
                 _logger.Error<AppServiceStopFailedLog>("An error occurred when stopping VPN Service.", ex);
                 LogEvent($"OnStop: {ex}");
-                _eventPublisher.CaptureError(ex);
+                _issueReporter.CaptureError(ex);
             }
             finally
             {

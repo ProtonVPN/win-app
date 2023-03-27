@@ -126,6 +126,8 @@ Source: "..\src\bin\ProtonVPN.Api.Installers.deps.json"; DestDir: "{app}\{#Versi
 Source: "..\src\bin\ProtonVPN.Common.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Common.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Common.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Common.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Common.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Core.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Core.deps.json"; DestDir: "{app}\{#VersionFolder}";
@@ -155,6 +157,12 @@ Source: "..\src\bin\ProtonVPN.HumanVerification.dll"; DestDir: "{app}\{#VersionF
 Source: "..\src\bin\ProtonVPN.HumanVerification.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.HumanVerification.Gui.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.HumanVerification.Gui.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.IssueReporting.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.IssueReporting.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.IssueReporting.Contracts.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.IssueReporting.Contracts.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.IssueReporting.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.IssueReporting.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Native.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Native.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.NetworkFilter.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
