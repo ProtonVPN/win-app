@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.IO;
+using System.Reflection;
+
 namespace ProtonVPN.Common.Helpers
 {
     public class PathProvider

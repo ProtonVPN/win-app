@@ -18,6 +18,7 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
 namespace ProtonVPN.Service.ProcessCommunication
 {
@@ -25,5 +26,6 @@ namespace ProtonVPN.Service.ProcessCommunication
     {
         Task SendCurrentVpnStateAsync();
         Task SendCurrentPortForwardingStateAsync();
+        Task SendUpdateStateAsync(UpdateStateIpcEntity updateState);
     }
 }

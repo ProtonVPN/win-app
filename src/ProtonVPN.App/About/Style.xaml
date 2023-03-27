@@ -19,8 +19,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:update="clr-namespace:ProtonVPN.Core.Update;assembly=ProtonVPN.Core"
-                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
+                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+                    xmlns:update="clr-namespace:ProtonVPN.Update.Contracts;assembly=ProtonVPN.Update.Contracts">
 
     <Style x:Key="UpdateStatus" TargetType="Label">
         <Setter Property="FontSize" Value="16"/>
@@ -28,21 +28,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_None}"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.Checking}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.Checking}">
                 <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_Checking}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.CheckFailed}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.CheckFailed}">
                 <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_CheckFailed}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.Downloading}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.Downloading}">
                 <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_Downloading}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.DownloadFailed}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.DownloadFailed}">
                 <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_DownloadFailed}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.Ready}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.Ready}">
                 <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_Ready}"/>
-                <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.AutoUpdated}">
+                <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_Ready}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.AutoUpdateFailed}">
+                <Setter Property="Content" Value="{translations:Loc About_UpdateStatus_val_Ready}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -69,16 +74,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="UpdateStatusSpinner" TargetType="UserControl" BasedOn="{StaticResource UserControlSpinner}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.None}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.None}">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.CheckFailed}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.CheckFailed}">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.DownloadFailed}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.DownloadFailed}">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.Ready}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.Ready}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.AutoUpdated}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.AutoUpdateFailed}">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
         </Style.Triggers>
@@ -92,8 +103,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Content" Value="{translations:Loc About_lnk_Update}"/>
         <Setter Property="Command" Value="{Binding UpdateCommand}"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:UpdateStatus.Ready}">
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.Ready}">
                 <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.AutoUpdated}">
+                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Content" Value="{translations:Loc Notifications_Update_lnk_Restart}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="{x:Static update:AppUpdateStatus.AutoUpdateFailed}">
+                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Content" Value="{translations:Loc About_lnk_Update}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding Updating}" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}"/>

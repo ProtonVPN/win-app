@@ -53,10 +53,12 @@
     <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Contracts\ProtonVPN.Announcements.Contracts.csproj" />
     <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
     <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
+    <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
     <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
     <ProjectReference Include="..\ProtonVPN.Resources\ProtonVPN.Resource.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Update\ProtonVPN.Update.csproj" />
+    <ProjectReference Include="..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Abstract\File.cs" />

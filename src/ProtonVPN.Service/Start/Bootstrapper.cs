@@ -20,8 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.ServiceProcess;
-using System.Threading;
 using Autofac;
+using ProtonVPN.Api.Installers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
@@ -32,6 +32,7 @@ using ProtonVPN.Native.PInvoke;
 using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
+using ProtonVPN.Update.Installers;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
@@ -57,7 +58,9 @@ namespace ProtonVPN.Service.Start
             new ConfigDirectories(config).Prepare();
 
             ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<ServiceModule>()
+                .RegisterModule<ApiModule>()
+                .RegisterAssemblyModules<UpdateModule>(typeof(UpdateModule).Assembly);
             _container = builder.Build();
         }
 
@@ -66,7 +69,8 @@ namespace ProtonVPN.Service.Start
             IConfiguration config = Resolve<IConfiguration>();
             ILogger logger = Resolve<ILogger>();
 
-            logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
+            logger.Info<AppServiceStartLog>(
+                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 

@@ -65,7 +65,6 @@ using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
-using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Installers;
@@ -94,6 +93,7 @@ using ProtonVPN.Sidebar;
 using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
+using ProtonVPN.Update;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
@@ -121,7 +121,6 @@ namespace ProtonVPN.Core
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
                 .RegisterModule<ProfilesModule>()
-                .RegisterModule<UpdateModule>()
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly)
                 .RegisterAssemblyModules<ApiModule>(typeof(ApiModule).Assembly)
                 .RegisterAssemblyModules<AnnouncementsModule>(typeof(AnnouncementsModule).Assembly)
@@ -129,8 +128,6 @@ namespace ProtonVPN.Core
                 .RegisterAssemblyModules<EntityMappingModule>(typeof(EntityMappingModule).Assembly)
                 .RegisterAssemblyModules<ProcessCommunicationModule>(typeof(ProcessCommunicationModule).Assembly)
                 .RegisterAssemblyModules<AppProcessCommunicationModule>(typeof(AppProcessCommunicationModule).Assembly);
-
-            new ProtonVPN.Update.Config.Module().Load(builder);
 
             _container = builder.Build();
         }
@@ -156,6 +153,7 @@ namespace ProtonVPN.Core
             SetHardwareAcceleration();
             RegisterEvents();
             Resolve<Language>().Initialize(e.Args);
+            Resolve<UpdateService>().Initialize();
 
             if (Resolve<IAppSettings>().StartMinimized == StartMinimizedMode.Disabled)
             {
@@ -184,7 +182,7 @@ namespace ProtonVPN.Core
                 grpcServer.CreateAndStart();
                 int appServerPort = grpcServer.Port.Value;
                 Resolve<ILogger>().Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort} to service.");
-                await Resolve<VpnService>().RegisterVpnClient(appServerPort);
+                await Resolve<VpnServiceCaller>().RegisterVpnClient(appServerPort);
             }
             catch (Exception e)
             {

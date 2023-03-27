@@ -91,7 +91,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateFilePath = Path.Combine(localAppDataFolder, "Updates", "update.txt"),
 
-                UpdatesPath = Path.Combine(localAppDataFolder, "Updates"),
+                UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
 
                 CalloutServiceName = "ProtonVPNCallout",
 

@@ -87,29 +87,29 @@ ProcessExecutionResult Os::RunProcess(const wchar_t* application_path, wstring c
     if (stdout_rd)
     {
         stdout_thread = thread([&]
-        {
-            DWORD n;
-            const size_t buffer_size = 1000;
-            char buffer[buffer_size];
-            for (;;)
             {
-                n = 0;
-                const int success = ReadFile(
-                    stdout_rd,
-                    buffer,
-                    buffer_size,
-                    &n,
-                    nullptr
-                );
+                DWORD n;
+        const size_t buffer_size = 1000;
+        char buffer[buffer_size];
+        for (;;)
+        {
+            n = 0;
+            const int success = ReadFile(
+                stdout_rd,
+                buffer,
+                buffer_size,
+                &n,
+                nullptr
+            );
 
-                if (!success || n == 0)
-                {
-                    break;
-                }
-                string s(buffer, n);
-                std_out += s;
+            if (!success || n == 0)
+            {
+                break;
             }
-        });
+            string s(buffer, n);
+            std_out += s;
+        }
+            });
     }
 
     uint32_t return_code;
@@ -130,7 +130,7 @@ ProcessExecutionResult Os::RunProcess(const wchar_t* application_path, wstring c
     CloseHandle(stdout_rd);
     CloseHandle(stderr_rd);
 
-    return {std_out, return_code};
+    return { std_out, return_code };
 }
 
 bool Os::IsProcessRunning(const wchar_t* process_name)

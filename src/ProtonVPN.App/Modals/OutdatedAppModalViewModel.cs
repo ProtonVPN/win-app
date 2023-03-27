@@ -24,8 +24,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.About;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Update;
 
 namespace ProtonVPN.Modals
 {

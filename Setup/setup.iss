@@ -38,6 +38,7 @@ ArchitecturesInstallIn64BitMode=x64
 SetupIconFile=Images\protonvpn.ico
 SetupLogging=yes
 DisableFinishedPage=yes
+DisableStartupPrompt=yes
 VersionInfoProductTextVersion={#MyAppVersion}-{#hash}
 VersionInfoVersion={#MyAppVersion}
 AppCopyright=© 2022 {#MyPublisher}
@@ -99,6 +100,7 @@ Source: "..\src\bin\Microsoft.Toolkit.Uwp.Notifications.dll"; DestDir: "{app}\{#
 Source: "..\src\bin\Microsoft.Web.WebView2.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Microsoft.Web.WebView2.Wpf.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Microsoft.Win32.Registry.AccessControl.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Windows.SDK.NET.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Newtonsoft.Json.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\OxyPlot.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\OxyPlot.Wpf.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -180,6 +182,10 @@ Source: "..\src\bin\ProtonVPN.Translations.dll"; DestDir: "{app}\{#VersionFolder
 Source: "..\src\bin\ProtonVPN.Translations.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Update.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Update.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Update.Contracts.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Update.Contracts.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Update.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Update.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Vpn.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Vpn.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.WireGuardDriver.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -192,10 +198,6 @@ Source: "..\src\bin\System.IO.Packaging.dll"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\System.Text.Encodings.Web.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Text.Json.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Management.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-
-;Do we really need this file?
-Source: "..\src\bin\Microsoft.Windows.SDK.NET.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-
 Source: "..\src\bin\System.Private.ServiceModel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Reflection.Context.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -400,15 +402,19 @@ var
   WindowsVersion: TWindowsVersion;
 begin
   if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
-    MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
-    ShellExec('open', 'https://protonvpn.com/free-vpn/windows/windows7', '', '', SW_SHOW, ewNoWait, ErrCode);
+    if WizardSilent() = false then begin
+      MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
+      ShellExec('open', 'https://protonvpn.com/free-vpn/windows/windows7', '', '', SW_SHOW, ewNoWait, ErrCode);
+    end;
     Result := False;
     exit;
   end;
   if RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion') then begin
     RegQueryStringValue(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion', Version);
     if Version > '{#MyAppVersion}' then begin
-      MsgBox(ExpandConstant('{#MyAppName} is already installed with the newer version ' + Version + '.'), mbInformation, MB_OK);
+      if WizardSilent() = false then begin
+        MsgBox(ExpandConstant('{#MyAppName} is already installed with the newer version ' + Version + '.'), mbInformation, MB_OK);
+      end;
       Result := False;
     end
     else begin
@@ -471,13 +477,12 @@ begin
     end;
     RestoreOldUserConfigFolder(ExpandConstant('{app}'));
     if not IsToReboot or WizardForm.NoRadio.Checked = True then begin
-      launcherArgs := '';
       if WizardSilent() = false then begin
         langCode := ActiveLanguage();
         StringChangeEx(langCode, '_', '-', True);
         launcherArgs := '/lang ' + langCode;
+        ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
       end;
-      ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
     end;
   end
 end;

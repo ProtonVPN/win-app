@@ -32,18 +32,18 @@ namespace ProtonVPN.Core.Service.Settings
     public class SettingsServiceClientManager : ISettingsServiceClientManager, ISettingsAware
     {
         private readonly ILogger _logger;
-        private readonly VpnService _vpnService;
+        private readonly VpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
         private readonly IAppGrpcClient _grpcClient;
 
         public SettingsServiceClientManager(
             ILogger logger,
-            VpnService vpnService,
+            VpnServiceCaller vpnServiceCaller,
             MainSettingsProvider settingsContractProvider,
             IAppGrpcClient grpcClient)
         {
             _logger = logger;
-            _vpnService = vpnService;
+            _vpnServiceCaller = vpnServiceCaller;
             _settingsContractProvider = settingsContractProvider;
             _grpcClient = grpcClient;
             _grpcClient.CreateAsync();
@@ -56,7 +56,7 @@ namespace ProtonVPN.Core.Service.Settings
 
         private async Task UpdateServiceSettingsInternal(MainSettingsIpcEntity settings)
         {
-            await _vpnService.ApplySettings(settings);
+            await _vpnServiceCaller.ApplySettings(settings);
         }
 
         public async Task DisableKillSwitch()

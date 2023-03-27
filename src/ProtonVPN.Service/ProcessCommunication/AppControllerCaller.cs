@@ -33,6 +33,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
@@ -158,7 +159,7 @@ namespace ProtonVPN.Service.ProcessCommunication
                 _vpnState = new VpnState(state.Status, state.Error, state.VpnProtocol);
             }
 
-            return new VpnStateIpcEntity()
+            return new VpnStateIpcEntity
             {
                 Status = _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(state.Status),
                 Error = _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(state.Error),
@@ -188,6 +189,11 @@ namespace ProtonVPN.Service.ProcessCommunication
         public async Task SendCurrentPortForwardingStateAsync()
         {
             await SendPortForwardingStateChangeAsync(_portForwardingState);
+        }
+
+        public async Task SendUpdateStateAsync(UpdateStateIpcEntity updateState)
+        {
+            await SendAsync(appController => appController.UpdateStateChange(updateState));
         }
 
         private async void OnPortForwardingStateChanged(object sender, EventArgs<PortForwardingState> e)

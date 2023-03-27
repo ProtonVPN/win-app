@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 using System;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
@@ -37,6 +39,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<PortForwardingStateIpcEntity> OnPortForwardingStateChanged;
         public event EventHandler<ConnectionDetailsIpcEntity> OnConnectionDetailsChanged;
         public event EventHandler<NetShieldStatisticIpcEntity> OnNetShieldStatisticChanged;
+        public event EventHandler<UpdateStateIpcEntity> OnUpdateStateChanged;
 
         public AppController(ILogger logger)
         {
@@ -53,7 +56,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private void InvokeOnUiThread(Action action)
         {
-            Application.Current?.Dispatcher?.Invoke(() => action());
+            Application.Current?.Dispatcher?.Invoke(action);
         }
 
         public async Task PortForwardingStateChange(PortForwardingStateIpcEntity state)
@@ -75,6 +78,14 @@ namespace ProtonVPN.Core.Service.Vpn
             _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
                 $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
             InvokeOnUiThread(() => OnConnectionDetailsChanged?.Invoke(this, connectionDetails));
+        }
+
+        public async Task UpdateStateChange(UpdateStateIpcEntity updateStateDetails)
+        {
+            _logger.Info<ProcessCommunicationLog>(
+                $"Received update state change with status {updateStateDetails.Status}.");
+
+            InvokeOnUiThread(() => OnUpdateStateChanged?.Invoke(this, updateStateDetails));
         }
 
         public async Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic)

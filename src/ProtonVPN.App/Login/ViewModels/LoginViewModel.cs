@@ -38,6 +38,7 @@ using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.ErrorHandling;
+using ProtonVPN.FlashNotifications;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
@@ -58,6 +59,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
+        public FlashNotificationViewModel FlashNotificationViewModel { get; }
 
         private string _loginText;
         private SecureString _password;
@@ -96,6 +98,7 @@ namespace ProtonVPN.Login.ViewModels
             IActiveUrls urls,
             IAppSettings appSettings,
             LoginErrorViewModel loginErrorViewModel,
+            FlashNotificationViewModel flashNotificationViewModel,
             IUserAuthenticator userAuthenticator,
             IModals modals,
             GuestHoleConnector guestHoleConnector,
@@ -115,6 +118,7 @@ namespace ProtonVPN.Login.ViewModels
 
             LoginErrorViewModel = loginErrorViewModel;
             LoginErrorViewModel.ClearError();
+            FlashNotificationViewModel = flashNotificationViewModel;
 
             LoginCommand = new RelayCommand(LoginAction);
             RegisterCommand = new RelayCommand(RegisterAction);

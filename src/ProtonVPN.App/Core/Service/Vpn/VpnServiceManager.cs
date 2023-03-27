@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
@@ -39,7 +40,7 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnServiceManager : IVpnServiceManager
     {
-        private readonly VpnService _vpnService;
+        private readonly VpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
         private readonly ILogger _logger;
         private readonly IAppController _appController;
@@ -50,13 +51,13 @@ namespace ProtonVPN.Core.Service.Vpn
         private Action<NetShieldStatistic> _netShieldStatisticCallback;
 
         public VpnServiceManager(
-            VpnService vpnService,
+            VpnServiceCaller vpnServiceCaller,
             MainSettingsProvider settingsContractProvider,
             ILogger logger,
             IAppController appController,
             IEntityMapper entityMapper)
         {
-            _vpnService = vpnService;
+            _vpnServiceCaller = vpnServiceCaller;
             _settingsContractProvider = settingsContractProvider;
             _logger = logger;
             _appController = appController;
@@ -109,22 +110,22 @@ namespace ProtonVPN.Core.Service.Vpn
             ConnectionRequestIpcEntity connectionRequest = 
                 _entityMapper.Map<VpnConnectionRequest, ConnectionRequestIpcEntity>(request);
             connectionRequest.Settings = _settingsContractProvider.Create(request.Config.OpenVpnAdapter);
-            await _vpnService.Connect(connectionRequest);
+            await _vpnServiceCaller.Connect(connectionRequest);
         }
 
         public async Task UpdateAuthCertificate(string certificate)
         {
-            await _vpnService.UpdateAuthCertificate(new AuthCertificateIpcEntity() { Certificate = certificate });
+            await _vpnServiceCaller.UpdateAuthCertificate(new AuthCertificateIpcEntity() { Certificate = certificate });
         }
 
         public async Task<InOutBytes> Total()
         {
-            return _entityMapper.Map<TrafficBytesIpcEntity, InOutBytes>(await _vpnService.Total());
+            return _entityMapper.Map<TrafficBytesIpcEntity, InOutBytes>(await _vpnServiceCaller.Total());
         }
 
         public async Task RepeatState()
         {
-            await _vpnService.RepeatState();
+            await _vpnServiceCaller.RepeatState();
         }
 
         public Task Disconnect(VpnError vpnError = VpnError.None,
@@ -139,7 +140,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 Settings = _settingsContractProvider.Create(),
                 ErrorType = (VpnErrorTypeIpcEntity)vpnError
             };
-            return _vpnService.Disconnect(disconnectionRequest);
+            return _vpnServiceCaller.Disconnect(disconnectionRequest);
         }
 
         public void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback)

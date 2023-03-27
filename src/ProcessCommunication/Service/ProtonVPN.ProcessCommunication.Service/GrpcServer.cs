@@ -28,20 +28,23 @@ namespace ProtonVPN.ProcessCommunication.Service
 {
     public class GrpcServer : GrpcServerBase
     {
-        private readonly IServiceController _serviceController;
+        private readonly IVpnController _vpnController;
+        private readonly IUpdateController _updateController;
         private readonly IServiceServerPortRegister _serviceServerPortRegister;
 
-        public GrpcServer(ILogger logger, IServiceController serviceController,
+        public GrpcServer(ILogger logger, IVpnController vpnController, IUpdateController updateController,
             IServiceServerPortRegister serviceServerPortRegister)
             : base(logger)
         {
-            _serviceController = serviceController;
+            _vpnController = vpnController;
+            _updateController = updateController;
             _serviceServerPortRegister = serviceServerPortRegister;
         }
 
         protected override void RegisterServices(ServiceDefinitionCollection services)
         {
-            services.AddCodeFirst<IServiceController>(_serviceController);
+            services.AddCodeFirst(_vpnController);
+            services.AddCodeFirst(_updateController);
         }
 
         public override void CreateAndStart()

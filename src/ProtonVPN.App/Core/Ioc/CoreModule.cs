@@ -31,6 +31,7 @@ using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Config;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
@@ -44,7 +45,6 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Threading;
-using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows;
 using ProtonVPN.HumanVerification;
@@ -85,23 +85,17 @@ namespace ProtonVPN.Core.Ioc
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
             builder.RegisterType<SafeServiceAction>().As<ISafeServiceAction>().SingleInstance();
-            builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UserValidator>().SingleInstance();
             builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<DnsClients>().As<IDnsClients>().SingleInstance();
+            builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                     new SafeDnsClient(
                         new CoreDnsClient(
                             c.Resolve<IDnsClients>(),
                             c.Resolve<INetworkInterfaces>())))
                 .As<IDnsClient>().SingleInstance();
-
-            builder.Register(c =>
-                    new CachingReportClient(
-                        new ReportClient(c.Resolve<IActiveUrls>().TlsReportUrl.Uri)))
-                .As<IReportClient>()
-                .SingleInstance();
 
             builder.RegisterType<EventClient>().SingleInstance();
             builder.RegisterType<UserInfoHandler>().AsImplementedInterfaces().SingleInstance();

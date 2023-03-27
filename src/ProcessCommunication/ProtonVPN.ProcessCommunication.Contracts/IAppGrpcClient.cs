@@ -22,10 +22,11 @@ namespace ProtonVPN.ProcessCommunication.Contracts
 {
     public interface IAppGrpcClient
     {
-        IServiceController? ServiceController { get; }
+        IVpnController? VpnController { get; }
+        IUpdateController? UpdateController { get; }
 
         Task CreateAsync();
         Task RecreateAsync();
-        Task<IServiceController> GetServiceControllerOrThrowAsync(TimeSpan timeout);
+        Task<Controller> GetServiceControllerOrThrowAsync<Controller>(TimeSpan timeout) where Controller : IServiceController;
     }
 }

@@ -158,6 +158,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool IsToAutoUpdate
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool SecureCore
         {
             get => GetPerUser<bool>();
