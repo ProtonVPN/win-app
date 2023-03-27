@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>برای تکمیل فرایند به‌روزرسانی، Proton VPN به طور موقت قطع و Kill Switch دائمی را در صورت فعال بودن غیرفعال خواهد کرد. آیا می‌خواهید ادامه دهید؟</value>
+    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1546,7 +1546,8 @@
     <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>با تشکر از شما برای ارتقا به Profissional/Visionary</value>
+    <value>Thanks for upgrading</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>یکی از سرویسهای مورد نیاز Proton VPN (موتور اصلی فیلترکردن) کار نمیکند.&lt;LineBreak/&gt; لطفاً این &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; دستورالعمل‌ها را دنبال کنید تا دوباره آن را فعال کرده و مجدداً امتحان کنید.</value>
@@ -1596,7 +1597,7 @@
     <value>برخی بخش های Proton VPN ممکن است مسدود یا غیرفعال شده باشند، که از اتاصل شما جلوگیری میکند. بر روی فعال سازی کلیک کنید تا مشکل رفع شود.&lt;LineBreak/&gt;توجه کنید که این عملیات نیاز به امتیازات ادمین دارد.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>غیرفعال کردن Kill Switch</value>
+    <value>Disable kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1612,8 +1613,8 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch با مسدود کردن تمامی اتصال‌ها در حال محافظت از IP شماست. در صورت بروز مشکل می‌توانید Kill Switch را غیرفعال کنید.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>در حال حاضر سروری برای انتخاب شما وجود ندارد. لطفاً گزینۀ دیگری را انتخاب نمائید.</value>
@@ -1662,16 +1663,16 @@
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>ادامه می‌دهید؟</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>خارج شدن از برنامه اتصال VPN شما را قطع می‌کند.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>فناوری Kill Switch در حال مسدود کردن همهٔ اتصال‌هاست تا از نشت داده‌های شما جلوگیری کند. خارج شدن از برنامه Kill Switch را غیرفعال خواهد کرد.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Kill Switch دائمی فعال است. خروج از برنامه همهٔ اتصالات خروجی را مسدود می‌کند تا Proton VPN دوباره متصل شود.</value>
+    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>تأیید ربات نبودن</value>
@@ -1680,10 +1681,10 @@
     <value>ساعت سیستم شما ناهماهنگ است، که میتواند از اتصال موفقیت آمیز VPN جلوگیری کند. لطفا برای اطلاعات بیشتر به &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;اینجا&lt;/Hyperlink&gt; مراجعه کنید.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>فعال کردن Kill Switch دائمی؟</value>
+    <value>Enable Permanent kill switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>فهمیدم</value>
@@ -1730,8 +1731,8 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>توجه کنید که Kill Switch(دکمه مرگ) فعال میباشد. به روز کردن یا پایان دادن برنامه آن را غیرفعال میکند.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>اتصال شما غیرفعال شده است زیرا شما از سروری استفاده می کنید که از ترافیک نظیر به نظیر (P2P) پشتیبانی نمی کند. P2P در سرورهای رایگان پشتیبانی نمی شود. لطفاً از سرور دیگری برای P2P استفاده کنید.</value>
@@ -1757,7 +1758,7 @@
     <value>متوجه شدم</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>برای اینکه split tunneling به‌درستی کار کند، شما باید Kill Switch را غیرفعال کنید.</value>
+    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>صدها سرور در ۵۵ کشور</value>
@@ -1912,7 +1913,7 @@
     <value>لطفاً نصب خود را تعمیر کنید.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
   </data>
   <data name="License_ttl">
     <value>گواهینامه</value>
@@ -1938,8 +1939,8 @@
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>قابلیت Kill Switch در حال حاضر فعال است</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>Kill switch is currently active</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>رمزعبور</value>
@@ -2432,10 +2433,10 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch خاموش</value>
+    <value>Kill switch Off</value>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch روشن</value>
+    <value>Kill switch On</value>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>بیشتر بدانید</value>
@@ -2450,7 +2451,7 @@
     <value>مسدود کردن بدافزار، آگهی &amp; ردیابها</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Kill Switch دائمی</value>
+    <value>Permanent kill switch</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>روشن کردن هدایت درگاه (Port Forwarding)</value>
@@ -2472,6 +2473,30 @@
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Browse the internet without ads and malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds">
+    <value>Ads blocked</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Bandwidth saved</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+    <value>Trackers stopped</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>اگر وبسایتها بار نمی‌شوند، غیرفعّال کردن NetShield را امتحان کنید</value>
@@ -2692,7 +2717,7 @@
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>یک برنامه یا یک آدرس IP را از ترافیک VPN استثنا کنید یا فقط برنامه های خاصی را شامل شوید. با Kill Switch روشن نیست.</value>
+    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2866,11 +2891,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill Switch فعال شد!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <value>Kill switch activated!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>قابلیت Kill Switch برای جلوگیری از نشت اطلاعات شما ، کلیه اتصالات را مسدود می کند.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -3080,8 +3105,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>به بیش از ۱۲۰۰ سرور امن در ۶۳ کشور دنیا دسترسی پیدا کنید</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Moderate NAT چیست؟</value>
@@ -3211,7 +3236,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>غیرفعال</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>ذخیره</value>
