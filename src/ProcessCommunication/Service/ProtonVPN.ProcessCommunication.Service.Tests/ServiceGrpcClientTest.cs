@@ -42,7 +42,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
         {
             _logger = Substitute.For<ILogger>();
             _grpcChannelWrapper = Substitute.For<IGrpcChannelWrapper>();
-            _grpcChannelWrapper.CreateService<IServiceController>().Returns(c => Substitute.For<IServiceController>());
+            _grpcChannelWrapper.CreateService<IVpnController>().Returns(c => Substitute.For<IVpnController>());
             _grpcChannelWrapperFactory = Substitute.For<IGrpcChannelWrapperFactory>();
             _grpcChannelWrapperFactory.Create(Arg.Any<int>()).Returns(_grpcChannelWrapper);
             _serviceGrpcClient = new ServiceGrpcClient(_logger, _grpcChannelWrapperFactory);

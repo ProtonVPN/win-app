@@ -34,7 +34,8 @@ namespace ProtonVPN.ProcessCommunication.App
         private readonly IGrpcServer _grpcServer;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-        public IServiceController ServiceController { get; private set; }
+        public IVpnController VpnController { get; private set; }
+        public IUpdateController UpdateController { get; private set; }
 
         public AppGrpcClient(ILogger logger,
             IServiceServerPortRegister serviceServerPortRegister,
@@ -50,7 +51,7 @@ namespace ProtonVPN.ProcessCommunication.App
         {
             await SafeWrapperAsync(async () =>
             {
-                if (ServiceController is null)
+                if (VpnController is null || UpdateController is null)
                 {
                     await CreateInternalAsync();
                 }
@@ -82,10 +83,13 @@ namespace ProtonVPN.ProcessCommunication.App
             int serviceServerPort = await _serviceServerPortRegister.ReadAsync(cts.Token);
             await CreateWithPortAsync(serviceServerPort);
             int? appServerPort = _grpcServer?.Port;
-            if (ServiceController is not null && appServerPort is not null)
+            if (VpnController is not null && appServerPort is not null)
             {
                 Logger.Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort.Value} to service.");
-                await ServiceController.RegisterStateConsumer(new StateConsumerIpcEntity() { ServerPort = appServerPort.Value });
+                await VpnController.RegisterStateConsumer(new StateConsumerIpcEntity
+                {
+                    ServerPort = appServerPort.Value
+                });
             }
         }
 
@@ -93,38 +97,58 @@ namespace ProtonVPN.ProcessCommunication.App
         {
             await SafeWrapperAsync(async () =>
             {
-                ServiceController = null;
+                VpnController = null;
+                UpdateController = null;
                 await CreateInternalAsync();
             });
         }
 
         protected override void RegisterServices(IGrpcChannelWrapper channel)
         {
-            ServiceController = channel.CreateService<IServiceController>();
+            VpnController = channel.CreateService<IVpnController>();
+            UpdateController = channel.CreateService<IUpdateController>();
         }
 
-        public async Task<IServiceController> GetServiceControllerOrThrowAsync(TimeSpan timeout)
+        public async Task<T> GetServiceControllerOrThrowAsync<T>(TimeSpan timeout) where T : IServiceController
         {
             CancellationTokenSource cts = new(timeout);
-            IServiceController serviceController = ServiceController;
+            IServiceController serviceController = GetServiceController<T>();
+
             try
             {
                 while (serviceController is null && !cts.IsCancellationRequested)
                 {
                     await Task.Delay(TimeSpan.FromSeconds(1), cts.Token);
-                    serviceController = ServiceController;
+                    serviceController = GetServiceController<T>();
                 }
             }
             catch
             {
             }
+
             if (serviceController is null)
             {
                 string errorMessage = $"Failed to get the Service Controller within the allotted time '{timeout}'.";
                 Logger.Error<ProcessCommunicationErrorLog>(errorMessage);
                 throw new TimeoutException(errorMessage);
             }
-            return serviceController;
+
+            return (T)serviceController;
+        }
+
+        public IServiceController GetServiceController<T>()
+        {
+            if (typeof(T).IsAssignableFrom(typeof(IVpnController)))
+            {
+                return VpnController;
+            }
+
+            if (typeof(T).IsAssignableFrom(typeof(IUpdateController)))
+            {
+                return UpdateController;
+            }
+
+            throw new NotImplementedException($"Controller of type {typeof(T)} is not supported.");
         }
     }
 }

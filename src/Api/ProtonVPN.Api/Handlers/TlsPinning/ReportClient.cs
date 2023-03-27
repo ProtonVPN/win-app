@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Threading;
 
 namespace ProtonVPN.Api.Handlers.TlsPinning
@@ -29,11 +29,11 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
     {
         private readonly HttpClient _httpClient;
         private readonly ITaskQueue _taskQueue = new SerialTaskQueue();
-        private readonly Uri _uri;
+        private readonly IReportClientUriProvider _reportClientUriProvider;
 
-        public ReportClient(Uri uri)
+        public ReportClient(IReportClientUriProvider reportClientUriProvider)
         {
-            _uri = uri;
+            _reportClientUriProvider = reportClientUriProvider;
             _httpClient = new HttpClient();
         }
 
@@ -44,7 +44,7 @@ namespace ProtonVPN.Api.Handlers.TlsPinning
             {
                 try
                 {
-                    _httpClient.PostAsync(_uri, content);
+                    _httpClient.PostAsync(_reportClientUriProvider.GetReportClientUri(), content);
                 }
                 catch
                 {

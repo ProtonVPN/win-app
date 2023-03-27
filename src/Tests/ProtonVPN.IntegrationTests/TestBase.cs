@@ -83,7 +83,6 @@ namespace ProtonVPN.IntegrationTests
                 .RegisterModule<LoginModule>()
                 .RegisterModule<P2PDetectionModule>()
                 .RegisterModule<ProfilesModule>()
-                .RegisterModule<UpdateModule>()
                 .RegisterAssemblyModules<HumanVerificationModule>(typeof(HumanVerificationModule).Assembly);
 
             builder.Register(_ =>

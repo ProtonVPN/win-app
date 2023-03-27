@@ -8,13 +8,16 @@
     <IsPublishable>false</IsPublishable>
   </PropertyGroup>
   <ItemGroup>
+    <None Update="TestData\windows-releases-invalid-versions.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\windows-releases.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Update\ProtonVPN.Update.csproj" />
+    <ProjectReference Include="..\..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
     <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
   </ItemGroup>
   <ItemGroup>

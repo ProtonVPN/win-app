@@ -41,7 +41,7 @@ namespace ProtonVPN.NetShield
         private const int MINIMUM_REQUEST_TIMEOUT_IN_SECONDS = 20;
         
         private readonly ILogger _logger;
-        private readonly VpnService _vpnService;
+        private readonly VpnServiceCaller _vpnServiceCaller;
         private readonly IAppSettings _appSettings;
         private readonly ISchedulerTimer _timer;
         private readonly TimeSpan _requestTimeout;
@@ -52,7 +52,7 @@ namespace ProtonVPN.NetShield
         private DateTime _nextRequestDateUtc = DateTime.MinValue;
 
         public NetShieldStatsManager(ILogger logger,
-            VpnService vpnService,
+            VpnServiceCaller vpnServiceCaller,
             IAppSettings appSettings,
             IScheduler scheduler,
             IEventAggregator eventAggregator,
@@ -61,7 +61,7 @@ namespace ProtonVPN.NetShield
             eventAggregator.Subscribe(this);
 
             _logger = logger;
-            _vpnService = vpnService;
+            _vpnServiceCaller = vpnServiceCaller;
             _appSettings = appSettings;
 
             _timer = scheduler.Timer();
@@ -94,7 +94,7 @@ namespace ProtonVPN.NetShield
             if (isToRequest)
             {
                 _logger.Debug<AppLog>("NetShield Stats - Request made");
-                _vpnService.RequestNetShieldStats();
+                _vpnServiceCaller.RequestNetShieldStats();
             }
         }
 

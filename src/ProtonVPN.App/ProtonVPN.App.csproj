@@ -327,7 +327,6 @@
     <ProjectReference Include="..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj" />
     <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
     <ProjectReference Include="..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
-    <ProjectReference Include="..\Api\ProtonVPN.Api\ProtonVPN.Api.csproj" />
     <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
     <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
     <ProjectReference Include="..\ProcessCommunication\App\ProtonVPN.ProcessCommunication.App.Installers\ProtonVPN.ProcessCommunication.App.Installers.csproj" />
@@ -341,7 +340,6 @@
     <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
     <ProjectReference Include="..\ProtonVPN.Resources\ProtonVPN.Resource.csproj" />
     <ProjectReference Include="..\ProtonVPN.Translations\ProtonVPN.Translations.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Update\ProtonVPN.Update.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\SidebarFlags\ad.jpg" />

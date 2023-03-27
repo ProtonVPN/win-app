@@ -21,7 +21,7 @@
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
     <ProjectReference Include="..\..\HumanVerification\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Update\ProtonVPN.Update.csproj" />
+    <ProjectReference Include="..\..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">

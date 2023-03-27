@@ -1,0 +1,49 @@
+{
+    "Categories": [
+        {
+            "Name": "EarlyAccess",
+            "Releases": []
+        },
+        {
+            "Name": "Stable",
+            "Releases": [
+                {
+                    "Version": "this is a broken version",
+                    "File": {
+                        "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.0.0.exe",
+                        "Sha512CheckSum": "0fc1e744a3ecb5a5f4a904ecb1140f19bf9587e20fd7d27e1c95615c2c7bd2280769060de1b0851732323f7ea0683b721963734a6ab469e8619d6f5977aedaa2",
+                        "Args": "/qb"
+                    },
+                    "ChangeLog": [
+                        "didn\u0027t added feature",
+                        "fixed bug"
+                    ]
+                },
+                {
+                    "Version": "1.5.0",
+                    "File": {
+                        "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.5.0.exe",
+                        "Sha512CheckSum": "8743cc8601d94ff4e23e3378296aa3efdb207a9b6e5a55c334c51c23f23f9a154010da5a0e8ab58c5c97e516ecd2bd6b580770dc94024916c56ee11b7f71f9f1",
+                        "Args": "/qb"
+                    },
+                    "ChangeLog": [
+                        "added feature",
+                        "fixed bug"
+                    ]
+                },
+                {
+                    "Version": "1.5.1",
+                    "File": {
+                        "Url": "https://protonvpn.com/download/ProtonVPN_win_v1.5.1.exe",
+                        "Sha512CheckSum": "c011146ae24f5a49ef86ff6199ec0bd42223b408e1dce3ffef9a2ef4b9c1806b1c823ce427d7473378b7d8c427ba6cb3701320740523ad79fc9ec8cfeb907875",
+                        "Args": "/qb"
+                    },
+                    "ChangeLog": [
+                        "added feature",
+                        "fixed bug"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -40,6 +40,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.FileStoraging;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
+using ProtonVPN.Core.Service.Update;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
@@ -71,6 +72,7 @@ using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Streaming;
+using ProtonVPN.Update;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
@@ -122,7 +124,9 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<VpnService>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<VpnServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AppController>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
@@ -249,13 +253,7 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .SingleInstance();
             builder.RegisterType<BaseFilteringEngineService>().SingleInstance();
-            builder.Register(c => new UpdateNotification(
-                    c.Resolve<IConfiguration>().UpdateRemindInterval, // REMOVE THIS CUSTOM REGISTRATION
-                    c.Resolve<IUserAuthenticator>(),
-                    c.Resolve<IEventAggregator>(),
-                    c.Resolve<UpdateFlashNotificationViewModel>()))
-                .AsImplementedInterfaces()
-                .SingleInstance();
+            builder.RegisterType<UpdateNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SystemProxyNotification>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.Register(c => new Language(

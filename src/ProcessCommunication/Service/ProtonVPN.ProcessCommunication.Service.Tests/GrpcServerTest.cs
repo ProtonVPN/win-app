@@ -31,28 +31,31 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
     public class GrpcServerTest : GrpcServerTestBase
     {
         private ILogger _logger;
-        private IServiceController _serviceController;
+        private IVpnController _vpnController;
+        private IUpdateController _updateController;
         private IServiceServerPortRegister _serviceServerPortRegister;
 
         [TestInitialize]
         public override void Initialize()
         {
             _logger = Substitute.For<ILogger>();
-            _serviceController = Substitute.For<IServiceController>();
+            _vpnController = Substitute.For<IVpnController>();
+            _updateController = Substitute.For<IUpdateController>();
             _serviceServerPortRegister = Substitute.For<IServiceServerPortRegister>();
             base.Initialize();
         }
 
         protected override IGrpcServer CreateGrpcServer()
         {
-            return new GrpcServer(_logger, _serviceController, _serviceServerPortRegister);
+            return new GrpcServer(_logger, _vpnController, _updateController, _serviceServerPortRegister);
         }
 
         [TestCleanup]
         public override void Cleanup()
         {
             _logger = null;
-            _serviceController = null;
+            _vpnController = null;
+            _updateController = null;
             _serviceServerPortRegister = null;
             base.Initialize();
         }

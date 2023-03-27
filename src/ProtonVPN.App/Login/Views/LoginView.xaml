@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos;assembly=ProtonVPN.Resource"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              xmlns:graphics="clr-namespace:ProtonVPN.Resource.Graphics;assembly=ProtonVPN.Resource"
+             xmlns:flashNotifications="clr-namespace:ProtonVPN.FlashNotifications"
              mc:Ignorable="d"
              d:DesignWidth="440"
              d:DesignHeight="570"
@@ -349,6 +350,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                VerticalAlignment="Top"
                HorizontalAlignment="Right"
                Margin="0,0,5,5" />
+        <flashNotifications:FlashNotifications VerticalAlignment="Bottom"
+                                               MinHeight="40"
+                                               HorizontalAlignment="Stretch"
+                                               DataContext="{Binding FlashNotificationViewModel}"/>
         <Grid Background="{StaticResource BackgroundWeakBrushColor}"
               Height="50"
               Visibility="{Binding KillSwitchActive, Converter={StaticResource BoolToVis}}"

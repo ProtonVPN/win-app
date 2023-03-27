@@ -52,6 +52,7 @@ namespace ProtonVPN.Core.Settings
         bool StartOnBoot { get; set; }
         StartMinimizedMode StartMinimized { get; set; }
         bool EarlyAccess { get; set; }
+        bool IsToAutoUpdate { get; set; }
         bool SecureCore { get; set; }
         string LastUpdate { get; set; }
         KillSwitchMode KillSwitchMode { get; set; }

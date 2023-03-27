@@ -35,16 +35,16 @@ namespace ProtonVPN.Core
     {
         private readonly ILogger _logger;
         private readonly IModals _modals;
-        private readonly VpnService _vpnService;
+        private readonly VpnServiceCaller _vpnServiceCaller;
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
         private bool _isNetworkBlocked;
 
         public bool PendingExit { get; private set; }
 
-        public AppExitHandler(ILogger logger, IModals modals, VpnService vpnService)
+        public AppExitHandler(ILogger logger, IModals modals, VpnServiceCaller vpnServiceCaller)
         {
             _logger = logger;
-            _vpnService = vpnService;
+            _vpnServiceCaller = vpnServiceCaller;
             _modals = modals;
         }
 

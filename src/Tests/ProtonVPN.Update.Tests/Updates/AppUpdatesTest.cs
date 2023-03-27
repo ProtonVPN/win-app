@@ -29,6 +29,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
+using ProtonVPN.Update.Contracts.Config;
 using ProtonVPN.Update.Files.Launchable;
 using ProtonVPN.Update.Updates;
 

@@ -48,7 +48,8 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
             _serviceServerPortRegister = Substitute.For<IServiceServerPortRegister>();
             _grpcServer = Substitute.For<IGrpcServer>();
             _grpcChannelWrapper = Substitute.For<IGrpcChannelWrapper>();
-            _grpcChannelWrapper.CreateService<IServiceController>().Returns(c => Substitute.For<IServiceController>());
+            _grpcChannelWrapper.CreateService<IVpnController>().Returns(c => Substitute.For<IVpnController>());
+            _grpcChannelWrapper.CreateService<IUpdateController>().Returns(c => Substitute.For<IUpdateController>());
             _grpcChannelWrapperFactory = Substitute.For<IGrpcChannelWrapperFactory>();
             _grpcChannelWrapperFactory.Create(Arg.Any<int>()).Returns(_grpcChannelWrapper);
             _appGrpcClient = new AppGrpcClient(_logger, _serviceServerPortRegister, _grpcServer, _grpcChannelWrapperFactory);
@@ -73,7 +74,7 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
 
             await _appGrpcClient.CreateAsync();
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
         }
 
         [TestMethod]
@@ -86,7 +87,7 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
             ParallelTestRunner.ExecuteInParallel(numOfCalls,
                 (int _) => _appGrpcClient.CreateAsync());
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
             await _serviceServerPortRegister.Received(1).ReadAsync(Arg.Any<CancellationToken>());
         }
 
@@ -98,13 +99,13 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
 
             await _appGrpcClient.CreateAsync();
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
             await _serviceServerPortRegister.Received(1).ReadAsync(Arg.Any<CancellationToken>());
-            IServiceController serviceController = _appGrpcClient.ServiceController;
+            IVpnController vpnController = _appGrpcClient.VpnController;
 
             await _appGrpcClient.CreateAsync();
 
-            Assert.AreEqual(serviceController, _appGrpcClient.ServiceController);
+            Assert.AreEqual(vpnController, _appGrpcClient.VpnController);
             await _serviceServerPortRegister.Received(1).ReadAsync(Arg.Any<CancellationToken>());
         }
 
@@ -116,7 +117,7 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
 
             await _appGrpcClient.RecreateAsync();
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
         }
 
         [TestMethod]
@@ -129,7 +130,7 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
             ParallelTestRunner.ExecuteInParallel(numOfCalls,
                 (int _) => _appGrpcClient.RecreateAsync());
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
             await _serviceServerPortRegister.Received(numOfCalls).ReadAsync(Arg.Any<CancellationToken>());
             await _grpcChannelWrapper.Received(numOfCalls - 1).ShutdownAsync();
         }
@@ -142,15 +143,15 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
 
             await _appGrpcClient.RecreateAsync();
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
             await _serviceServerPortRegister.Received(1).ReadAsync(Arg.Any<CancellationToken>());
-            IServiceController serviceController = _appGrpcClient.ServiceController;
+            IVpnController vpnController = _appGrpcClient.VpnController;
 
             await _appGrpcClient.RecreateAsync();
 
-            Assert.IsNotNull(_appGrpcClient.ServiceController);
+            Assert.IsNotNull(_appGrpcClient.VpnController);
             await _serviceServerPortRegister.Received(2).ReadAsync(Arg.Any<CancellationToken>());
-            Assert.AreNotEqual(serviceController, _appGrpcClient.ServiceController);
+            Assert.AreNotEqual(vpnController, _appGrpcClient.VpnController);
             await _grpcChannelWrapper.Received(1).ShutdownAsync();
         }
 
@@ -162,7 +163,8 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
             TimeSpan timeout = TimeSpan.FromSeconds(0);
             await _appGrpcClient.CreateAsync();
 
-            await _appGrpcClient.GetServiceControllerOrThrowAsync(timeout);
+            await _appGrpcClient.GetServiceControllerOrThrowAsync<IVpnController>(timeout);
+            await _appGrpcClient.GetServiceControllerOrThrowAsync<IUpdateController>(timeout);
         }
 
         [TestMethod]
@@ -172,12 +174,12 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
             _grpcServer.Port.Returns(APP_SERVER_PORT);
             TimeSpan timeout = TimeSpan.FromSeconds(5);
 
-            Task<IServiceController> task = _appGrpcClient.GetServiceControllerOrThrowAsync(timeout);
+            Task<IVpnController> task = _appGrpcClient.GetServiceControllerOrThrowAsync<IVpnController>(timeout);
             await Task.Delay(TimeSpan.FromSeconds(1));
             await _appGrpcClient.CreateAsync();
-            IServiceController serviceController = await task;
+            IVpnController vpnController = await task;
 
-            Assert.IsNotNull(serviceController);
+            Assert.IsNotNull(vpnController);
         }
 
         [TestMethod]
@@ -186,7 +188,7 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
         {
             TimeSpan timeout = TimeSpan.FromSeconds(0);
 
-            await _appGrpcClient.GetServiceControllerOrThrowAsync(timeout);
+            await _appGrpcClient.GetServiceControllerOrThrowAsync<IVpnController>(timeout);
         }
 
         [TestMethod]
@@ -195,7 +197,7 @@ namespace ProtonVPN.ProcessCommunication.App.Tests
         {
             TimeSpan timeout = TimeSpan.FromSeconds(3);
 
-            await _appGrpcClient.GetServiceControllerOrThrowAsync(timeout);
+            await _appGrpcClient.GetServiceControllerOrThrowAsync<IVpnController>(timeout);
         }
     }
 }

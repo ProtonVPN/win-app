@@ -37,7 +37,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         private static readonly ILogger _logger = Substitute.For<ILogger>();
         private static readonly GrpcChannelWrapperFactory _grpcChannelWrapperFactory = new(_logger);
 
-        public IServiceController ServiceController { get; private set; }
+        public IVpnController VpnController { get; private set; }
 
         public VPNServiceHelper()
             : base(_logger, _grpcChannelWrapperFactory)
@@ -47,7 +47,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
 
         protected override void RegisterServices(IGrpcChannelWrapper channel)
         {
-            ServiceController = channel.CreateService<IServiceController>();
+            VpnController = channel.CreateService<IVpnController>();
         }
 
         public async Task Disconnect()
@@ -57,10 +57,10 @@ namespace ProtonVPN.UI.Tests.TestsHelper
                 CancellationTokenSource cts = new CancellationTokenSource();
                 int serviceServerPort = await _serviceServerPortRegister.ReadAsync(cts.Token);
                 await CreateWithPortAsync(serviceServerPort);
-                if (ServiceController is not null)
+                if (VpnController is not null)
                 {
                     DisconnectionRequestIpcEntity disconnectionRequestIpcEntity = CreateDisconnectionRequestIpcEntity();
-                    await ServiceController.Disconnect(disconnectionRequestIpcEntity);
+                    await VpnController.Disconnect(disconnectionRequestIpcEntity);
                 }
             }
             catch

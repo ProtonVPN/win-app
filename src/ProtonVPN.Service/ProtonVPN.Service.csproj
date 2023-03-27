@@ -24,9 +24,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="VpnService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Update="VpnService.cs" />
     <Compile Update="VpnService.Designer.cs">
       <DependentUpon>VpnService.cs</DependentUpon>
     </Compile>
@@ -42,16 +40,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
     <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
     <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
     <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
     <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
     <ProjectReference Include="..\ProcessCommunication\Service\ProtonVPN.ProcessCommunication.Service.Installers\ProtonVPN.ProcessCommunication.Service.Installers.csproj" />
     <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
     <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
     <ProjectReference Include="..\ProtonVPN.NetworkFilter\ProtonVPN.NetworkFilter.csproj" />
     <ProjectReference Include="..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
+    <ProjectReference Include="..\Update\ProtonVPN.Update.Installers\ProtonVPN.Update.Installers.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">

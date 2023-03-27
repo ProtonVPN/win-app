@@ -17,14 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Update.Releases;
-using ProtonVPN.Update.Responses;
 using ProtonVPN.Update.Storage;
 
 namespace ProtonVPN.Update.Tests.Storage
@@ -53,14 +51,14 @@ namespace ProtonVPN.Update.Tests.Storage
         [TestMethod]
         public async Task Releases_ShouldBe_InDescendingOrder()
         {
-            Release[] releases = new[]
-            {
-                new Release(new ReleaseResponse {Version = "0.1.2"}, false, new Version()),
-                new Release(new ReleaseResponse {Version = "5.5.5"}, false, new Version()),
-                new Release(new ReleaseResponse {Version = "4.4.4"}, false, new Version()),
-                new Release(new ReleaseResponse {Version = "3.3.3"}, false, new Version()),
-                new Release(new ReleaseResponse {Version = "2.1.0"}, false, new Version()),
+            Release[] releases = {
+                new() {Version = new(0, 1, 2)},
+                new() {Version = new(5, 5, 5)},
+                new() {Version = new(4, 4, 4)},
+                new() {Version = new(3, 3, 3)},
+                new() {Version = new(2, 1, 0)}
             };
+
             _origin.Releases().Returns(releases);
             OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
 

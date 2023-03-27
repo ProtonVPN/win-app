@@ -920,18 +920,6 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("01/01/1970 00:00:00")]
-        public global::System.DateTime LastPrimaryApiFailDateUtc {
-            get {
-                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
-            }
-            set {
-                this["LastPrimaryApiFailDateUtc"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AlternativeApiBaseUrls {
             get {
@@ -1575,6 +1563,30 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["DnsCache"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1970-01-01")]
+        public global::System.DateTime LastPrimaryApiFailDateUtc {
+            get {
+                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
+            }
+            set {
+                this["LastPrimaryApiFailDateUtc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsToAutoUpdate {
+            get {
+                return ((bool)(this["IsToAutoUpdate"]));
+            }
+            set {
+                this["IsToAutoUpdate"] = value;
             }
         }
         
