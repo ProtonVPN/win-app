@@ -2499,7 +2499,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Bandwidth saved</value>
+    <value>Data saved</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
