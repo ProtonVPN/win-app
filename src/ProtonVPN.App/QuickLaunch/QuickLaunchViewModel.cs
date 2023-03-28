@@ -20,14 +20,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Events;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers.Models;
@@ -275,17 +272,7 @@ namespace ProtonVPN.QuickLaunch
 
         private async void ShowAppAction()
         {
-            _appWindow.Show();
-            if (_appWindow.WindowState.Equals(WindowState.Minimized))
-            {
-                _appWindow.WindowState = WindowState.Normal;
-            }
-
-            _appWindow.Activate();
-            if (Connecting)
-            {
-                await _appWindow.HandleAsync(new ToggleOverlay(true), new CancellationTokenSource().Token);
-            }
+            await _appWindow.OpenWindowAsync();
         }
     }
 }

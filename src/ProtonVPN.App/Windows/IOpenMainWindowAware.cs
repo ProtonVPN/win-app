@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2022 Proton Technologies AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Registration
+using System.Threading.Tasks;
+
+namespace ProtonVPN.Windows
 {
-    public interface IServiceServerPortRegister : IServerPortRegister
+    public interface IOpenMainWindowAware
     {
-        Task<int> ReadAsync(CancellationToken cancellationToken);
+        Task OnOpenMainWindow();
     }
 }

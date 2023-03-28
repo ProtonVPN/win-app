@@ -21,9 +21,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.ProcessCommunication.Common.Channels;
+using ProtonVPN.ProcessCommunication.Common.Registration;
 using ProtonVPN.ProcessCommunication.Common.Tests;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
 namespace ProtonVPN.ProcessCommunication.Service.Tests
 {
@@ -35,6 +37,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
         private ILogger _logger;
         private IGrpcChannelWrapper _grpcChannelWrapper;
         private IGrpcChannelWrapperFactory _grpcChannelWrapperFactory;
+        private IAppServerPortRegister _appServerPortRegister;
         private IServiceGrpcClient _serviceGrpcClient;
 
         [TestInitialize]
@@ -45,7 +48,8 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
             _grpcChannelWrapper.CreateService<IVpnController>().Returns(c => Substitute.For<IVpnController>());
             _grpcChannelWrapperFactory = Substitute.For<IGrpcChannelWrapperFactory>();
             _grpcChannelWrapperFactory.Create(Arg.Any<int>()).Returns(_grpcChannelWrapper);
-            _serviceGrpcClient = new ServiceGrpcClient(_logger, _grpcChannelWrapperFactory);
+            _appServerPortRegister = Substitute.For<IAppServerPortRegister>();
+            _serviceGrpcClient = new ServiceGrpcClient(_logger, _grpcChannelWrapperFactory, _appServerPortRegister);
         }
 
         [TestCleanup]
@@ -54,6 +58,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
             _logger = null;
             _grpcChannelWrapper = null;
             _grpcChannelWrapperFactory = null;
+            _appServerPortRegister = null;
             _serviceGrpcClient = null;
         }
 
@@ -62,6 +67,8 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
         {
             await _serviceGrpcClient.CreateAsync(APP_SERVER_PORT);
 
+            _appServerPortRegister.Received(1).Write(Arg.Any<int>());
+            _appServerPortRegister.Received(1).Write(APP_SERVER_PORT);
             Assert.IsNotNull(_serviceGrpcClient.AppController);
         }
 
@@ -73,6 +80,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
             ParallelTestRunner.ExecuteInParallel(numOfCalls,
                 (int i) => _serviceGrpcClient.CreateAsync(APP_SERVER_PORT + i));
 
+            _appServerPortRegister.Received(numOfCalls).Write(Arg.Any<int>());
             Assert.IsNotNull(_serviceGrpcClient.AppController);
             _grpcChannelWrapperFactory.Received(numOfCalls).Create(Arg.Any<int>());
         }
@@ -82,8 +90,13 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
         {
             await _serviceGrpcClient.CreateAsync(APP_SERVER_PORT);
 
+            _appServerPortRegister.Received(1).Write(Arg.Any<int>());
+            _appServerPortRegister.Received(1).Write(APP_SERVER_PORT);
+
             await _serviceGrpcClient.RecreateAsync();
 
+            _appServerPortRegister.Received(2).Write(Arg.Any<int>());
+            _appServerPortRegister.Received(2).Write(APP_SERVER_PORT);
             Assert.IsNotNull(_serviceGrpcClient.AppController);
         }
 
@@ -92,6 +105,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
         {
             await _serviceGrpcClient.RecreateAsync();
 
+            _appServerPortRegister.Received(0).Write(Arg.Any<int>());
             Assert.IsNull(_serviceGrpcClient.AppController);
         }
 
@@ -104,6 +118,8 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
             ParallelTestRunner.ExecuteInParallel(numOfCalls,
                 (int _) => _serviceGrpcClient.RecreateAsync());
 
+            _appServerPortRegister.Received(numOfCalls + 1).Write(Arg.Any<int>());
+            _appServerPortRegister.Received(numOfCalls + 1).Write(APP_SERVER_PORT);
             Assert.IsNotNull(_serviceGrpcClient.AppController);
             _grpcChannelWrapperFactory.Received(numOfCalls + 1).Create(Arg.Any<int>());
             await _grpcChannelWrapper.Received(numOfCalls).ShutdownAsync();

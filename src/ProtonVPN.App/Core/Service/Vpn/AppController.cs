@@ -40,6 +40,7 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<ConnectionDetailsIpcEntity> OnConnectionDetailsChanged;
         public event EventHandler<NetShieldStatisticIpcEntity> OnNetShieldStatisticChanged;
         public event EventHandler<UpdateStateIpcEntity> OnUpdateStateChanged;
+        public event EventHandler OnOpenWindowInvoked;
 
         public AppController(ILogger logger)
         {
@@ -84,7 +85,6 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             _logger.Info<ProcessCommunicationLog>(
                 $"Received update state change with status {updateStateDetails.Status}.");
-
             InvokeOnUiThread(() => OnUpdateStateChanged?.Invoke(this, updateStateDetails));
         }
 
@@ -96,6 +96,12 @@ namespace ProtonVPN.Core.Service.Vpn
                 $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
                 $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']");
             InvokeOnUiThread(() => OnNetShieldStatisticChanged?.Invoke(this, netShieldStatistic));
+        }
+
+        public async Task OpenWindow()
+        {
+            _logger.Debug<ProcessCommunicationLog>("Another process requested to open the main window.");
+            InvokeOnUiThread(() => OnOpenWindowInvoked?.Invoke(this, null));
         }
     }
 }

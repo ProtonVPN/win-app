@@ -33,11 +33,14 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
         event EventHandler<ConnectionDetailsIpcEntity> OnConnectionDetailsChanged;
         event EventHandler<NetShieldStatisticIpcEntity> OnNetShieldStatisticChanged;
         event EventHandler<UpdateStateIpcEntity> OnUpdateStateChanged;
+        event EventHandler OnOpenWindowInvoked;
 
         Task VpnStateChange(VpnStateIpcEntity vpnState);
         Task PortForwardingStateChange(PortForwardingStateIpcEntity portForwardingState);
         Task ConnectionDetailsChange(ConnectionDetailsIpcEntity connectionDetails);
         Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic);
         Task UpdateStateChange(UpdateStateIpcEntity updateState);
+        
+        Task OpenWindow();
     }
 }

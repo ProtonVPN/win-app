@@ -23,20 +23,27 @@ using ProtonVPN.ProcessCommunication.Common;
 using ProtonVPN.ProcessCommunication.Common.Channels;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
 namespace ProtonVPN.ProcessCommunication.Service
 {
     public class ServiceGrpcClient : GrpcClientBase, IServiceGrpcClient
     {
+        private readonly IAppServerPortRegister _appServerPortRegister;
+
         public IAppController AppController { get; private set; }
 
-        public ServiceGrpcClient(ILogger logger, IGrpcChannelWrapperFactory grpcChannelWrapperFactory) 
+        public ServiceGrpcClient(ILogger logger, 
+            IGrpcChannelWrapperFactory grpcChannelWrapperFactory, 
+            IAppServerPortRegister appServerPortRegister) 
             : base(logger, grpcChannelWrapperFactory)
         {
+            _appServerPortRegister = appServerPortRegister;
         }
 
         public async Task CreateAsync(int serverPort)
         {
+            _appServerPortRegister.Write(serverPort);
             await CreateWithPortAsync(serverPort);
         }
 

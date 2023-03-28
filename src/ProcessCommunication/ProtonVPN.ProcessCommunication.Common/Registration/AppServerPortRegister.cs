@@ -22,13 +22,11 @@ using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
 namespace ProtonVPN.ProcessCommunication.Common.Registration
 {
-    public class ServiceServerPortRegister : ServerPortRegisterBase, IServiceServerPortRegister
+    public class AppServerPortRegister : ServerPortRegisterBase, IAppServerPortRegister
     {
-        private const string KEY = "ServiceServerPort";
+        private const string KEY = "AppServerPort";
 
-        private static readonly TimeSpan DELAY = TimeSpan.FromMilliseconds(100);
-
-        public ServiceServerPortRegister(ILogger logger) 
+        public AppServerPortRegister(ILogger logger)
             : base(logger)
         {
         }
@@ -36,19 +34,6 @@ namespace ProtonVPN.ProcessCommunication.Common.Registration
         protected override string GetKey()
         {
             return KEY;
-        }
-
-        public async Task<int> ReadAsync(CancellationToken cancellationToken)
-        {
-            while (true)
-            {
-                int? serverBoundPort = ReadOnce();
-                if (serverBoundPort.HasValue && serverBoundPort.Value > 0)
-                {
-                    return serverBoundPort.Value;
-                }
-                await Task.Delay(DELAY, cancellationToken);
-            }
         }
     }
 }
