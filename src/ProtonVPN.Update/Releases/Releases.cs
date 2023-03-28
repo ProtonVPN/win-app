@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,7 +20,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Update.Contracts;
+using ProtonVPN.Update.Responses;
 
 namespace ProtonVPN.Update.Releases
 {
@@ -29,11 +29,11 @@ namespace ProtonVPN.Update.Releases
     /// </summary>
     public class Releases : IEnumerable<Release>
     {
-        private readonly IEnumerable<CategoryContract> _categories;
+        private readonly IEnumerable<CategoryResponse> _categories;
         private readonly Version _currentVersion;
         private readonly string _earlyAccessCategoryName;
 
-        public Releases(IEnumerable<CategoryContract> categories, Version currentVersion, string earlyAccessCategoryName)
+        public Releases(IEnumerable<CategoryResponse> categories, Version currentVersion, string earlyAccessCategoryName)
         {
             _categories = categories;
             _currentVersion = currentVersion;
@@ -42,14 +42,16 @@ namespace ProtonVPN.Update.Releases
 
         public IEnumerator<Release> GetEnumerator()
         {
-            foreach (var category in _categories)
+            foreach (CategoryResponse category in _categories)
             {
                 if (category.Releases == null)
+                {
                     continue;
+                }
 
-                var earlyAccess = string.Equals(_earlyAccessCategoryName, category.Name, StringComparison.OrdinalIgnoreCase);
+                bool earlyAccess = string.Equals(_earlyAccessCategoryName, category.Name, StringComparison.OrdinalIgnoreCase);
 
-                foreach (var release in category.Releases)
+                foreach (ReleaseResponse release in category.Releases)
                 {
                     yield return new Release(release, earlyAccess, _currentVersion);
                 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
@@ -25,7 +26,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {
-    public class DnsUtils
+    public class NetworkUtils
     {
         [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
         public static extern uint DnsFlushResolverCache();
@@ -45,6 +46,16 @@ namespace ProtonVPN.UI.Tests.TestsHelper
                 dnsAddress = null;
             }
             return dnsAddress;
+        }
+
+        public static IPAddress GetDefaultGatewayAddress()
+        {
+            return NetworkInterface
+                .GetAllNetworkInterfaces()
+                .Where(n => n.Name.EndsWith("Wi-Fi") || n.Name.EndsWith("Ethernet"))
+                .SelectMany(n => n.GetIPProperties()?.GatewayAddresses)
+                .Select(g => g?.Address)
+                .FirstOrDefault(a => a != null);
         }
 
         private static string GetDnsAddressForAdapterByName(string adapterName)

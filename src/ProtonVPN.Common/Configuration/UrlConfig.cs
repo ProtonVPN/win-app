@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,7 +31,10 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string ForgetUsernameUrl { get; set; }
-        
+
+        [Required]
+        public string OldUpdateUrl { get; set; }
+
         [Required]
         public string UpdateUrl { get; set; }
 

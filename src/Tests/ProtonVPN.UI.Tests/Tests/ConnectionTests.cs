@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -43,21 +43,11 @@ namespace ProtonVPN.UI.Tests.Tests
 
         [Test]
         [Category("Smoke")]
-        public async Task QuickConnectAndDisconnect()
+        public async Task QuickConnectDisconnectAndValidateIP()
         {
-            TestCaseId = 221;
-
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 229;
-
             await _homeResult.CheckIfCorrectIpAddressIsDisplayed();
-
-            ReportTestResults();
-            TestCaseId = 222;
-
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilDisconnected();
         }
@@ -65,8 +55,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectToProfileViaProfileTab()
         {
-            TestCaseId = 225;
-
             _homeWindow.NavigateToProfilesTab()
                 .ConnectViaProfile("Fastest")
                 .WaitUntilConnected();
@@ -75,14 +63,8 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectByCountryList()
         {
-            TestCaseId = 223;
-
             _homeWindow.ConnectViaCountry("Netherlands")
                 .WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 224;
-
             _homeWindow.PressDisconnectButtonInCountryList("Netherlands")
                 .WaitUntilDisconnected();
         }
@@ -91,7 +73,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void ConnectToCreatedProfile()
         {
-            TestCaseId = 21551;
             DeleteProfiles();
 
             _homeWindow.NavigateToProfiles();
@@ -104,8 +85,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void LogoutWhileConnectedToVpn()
         {
-            TestCaseId = 212;
-
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected()
                 .Logout();
@@ -116,8 +95,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void CancelLogoutWhileConnectedToVpn()
         {
-            TestCaseId = 21549;
-
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected()
                 .Logout();
@@ -126,10 +103,8 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        public void CheckIfKillSwitchIsNotActiveOnLogout()
+        public void KillSwitchIsNotActiveOnLogout()
         {
-            TestCaseId = 215;
-
             _homeWindow.EnableKillSwitch()
                 .PressQuickConnectButton()
                 .WaitUntilConnected()
@@ -141,10 +116,8 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        public void CheckIfConnectionIsRestoredToSameServerAfterAppKill()
+        public void ConnectionIsRestoredToSameServerAfterAppKill()
         {
-            TestCaseId = 217;
-
             _homeWindow.NavigateToSettings()
                 .DisableStartToTray()
                 .ClickOnConnectOnBoot()
@@ -156,10 +129,8 @@ namespace ProtonVPN.UI.Tests.Tests
 
         [Test]
         [Category("Smoke")]
-        public void CheckIfAutoConnectConnectsAutomatically()
+        public void AutoConnectConnectsAutomatically()
         {
-            TestCaseId = 204;
-
             _homeWindow.NavigateToSettings();
             _settingsWindow.DisableStartToTray()
                 .CloseSettings()
@@ -170,10 +141,6 @@ namespace ProtonVPN.UI.Tests.Tests
             LaunchApp();
 
             _homeWindow.WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 205;
-
             _homeWindow.PressQuickConnectButton()
                 .NavigateToSettings();
             _settingsWindow.ClickOnConnectOnBoot()
@@ -190,33 +157,22 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectAndDisconnectViaMap()
         {
-            TestCaseId = 219;
-
             _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
                 .WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 220;
-
             _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
                 .WaitUntilDisconnected();
         }
 
         [Test]
         [Category("Smoke")]
-        public void CheckCustomDnsManipulation()
+        public void CustomDnsManipulation()
         {
-            TestCaseId = 4578;
-
             _homeWindow.NavigateToSettings();
             _settingsWindow.NavigateToConnectionTab()
                 .ClickOnCustomDnsCheckBox()
                 .PressContinueToDisableNetshield()
                 .CloseSettings();
             _homeResult.CheckIfNetshieldIsDisabled();
-
-            ReportTestResults();
-            TestCaseId = 4579;
 
             _homeWindow.NavigateToSettings();
             _settingsWindow.NavigateToConnectionTab()
@@ -225,9 +181,6 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
             _settingsResult.CheckIfDnsAddressMatches(DNS_ADDRESS);
-
-            ReportTestResults();
-            TestCaseId = 4581;
 
             _homeWindow.NavigateToSettings();
             _settingsWindow.NavigateToConnectionTab()
@@ -241,8 +194,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void CancelConnectionWhileConnecting()
         {
-            TestCaseId = 227;
-
             _homeWindow.PressQuickConnectButton()
                 .CancelConnection()
                 .WaitUntilDisconnected();
@@ -252,8 +203,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void AppExitWithKillSwitchEnabled()
         {
-            TestCaseId = 216;
-
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected()
                 .EnableKillSwitch()
@@ -265,8 +214,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectUsingOpenVpnUdp()
         {
-            TestCaseId = 153137;
-
             _homeWindow.NavigateToSettings()
                 .NavigateToConnectionTab()
                 .SelectProtocolOpenVpnUdp()
@@ -278,14 +225,20 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectUsingOpenVpnTcp()
         {
-            TestCaseId = 153139;
-
             _homeWindow.NavigateToSettings()
                 .NavigateToConnectionTab()
                 .SelectProtocolOpenVpnTcp()
                 .CloseSettings();
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
+        }
+
+        [Test]
+        public void LocalNetworkingIsReachable()
+        {
+            _homeWindow.PressQuickConnectButton()
+                .WaitUntilConnected();
+            _homeResult.CheckIfLocalNetworkingWorks(NetworkUtils.GetDefaultGatewayAddress().ToString());
         }
 
         [SetUp]

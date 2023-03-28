@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,8 +23,8 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Releases;
+using ProtonVPN.Update.Responses;
 using ProtonVPN.Update.Storage;
 
 namespace ProtonVPN.Update.Tests.Storage
@@ -55,11 +55,11 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             Release[] releases = new[]
             {
-                new Release(new ReleaseContract {Version = "0.1.2"}, false, new Version()),
-                new Release(new ReleaseContract {Version = "5.5.5"}, false, new Version()),
-                new Release(new ReleaseContract {Version = "4.4.4"}, false, new Version()),
-                new Release(new ReleaseContract {Version = "3.3.3"}, false, new Version()),
-                new Release(new ReleaseContract {Version = "2.1.0"}, false, new Version()),
+                new Release(new ReleaseResponse {Version = "0.1.2"}, false, new Version()),
+                new Release(new ReleaseResponse {Version = "5.5.5"}, false, new Version()),
+                new Release(new ReleaseResponse {Version = "4.4.4"}, false, new Version()),
+                new Release(new ReleaseResponse {Version = "3.3.3"}, false, new Version()),
+                new Release(new ReleaseResponse {Version = "2.1.0"}, false, new Version()),
             };
             _origin.Releases().Returns(releases);
             OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);

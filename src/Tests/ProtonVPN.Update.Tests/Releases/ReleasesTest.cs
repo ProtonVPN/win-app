@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,8 +24,8 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Releases;
+using ProtonVPN.Update.Responses;
 
 namespace ProtonVPN.Update.Tests.Releases
 {
@@ -35,7 +35,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_ShouldImplement_IEnumerable()
         {
-            CategoryContract[] categories = new CategoryContract[0];
+            CategoryResponse[] categories = new CategoryResponse[0];
             Update.Releases.Releases releases = new(categories, new Version(), "");
 
             releases.Should().BeAssignableTo<IEnumerable<Release>>();
@@ -44,7 +44,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_ShouldBeEmpty_WhenCategories_AreEmpty()
         {
-            CategoryContract[] categories = new CategoryContract[0];
+            CategoryResponse[] categories = new CategoryResponse[0];
             Update.Releases.Releases releases = new(categories, new Version(), "");
 
             releases.Should().HaveCount(0);
@@ -53,7 +53,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Releases_ShouldBeEmpty_WhenCategories_HaveNoReleases()
         {
-            CategoryContract[] categories = { new() { Name = "Stable" } };
+            CategoryResponse[] categories = { new() { Name = "Stable" } };
             Update.Releases.Releases releases = new(categories, new Version(), "");
 
             releases.Should().HaveCount(0);
@@ -63,7 +63,7 @@ namespace ProtonVPN.Update.Tests.Releases
         public void Releases_ShouldContain_AllReleases_FromCategories()
         {
             string json = File.ReadAllText(@"TestData\win-update.json");
-            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             Update.Releases.Releases releases = new(categories.Categories, new Version(), "");
 
             releases.Should().HaveCount(5);
@@ -73,7 +73,7 @@ namespace ProtonVPN.Update.Tests.Releases
         public void Releases_Version_ShouldBe_FromReleases()
         {
             string json = File.ReadAllText(@"TestData\win-update.json");
-            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             List<Version> expected = categories.Categories.SelectMany(c => c.Releases).Select(r => Version.Parse(r.Version)).ToList();
 
             Update.Releases.Releases releases = new(categories.Categories, new Version(), "");
@@ -89,7 +89,7 @@ namespace ProtonVPN.Update.Tests.Releases
         public void Releases_EarlyAccess_ShouldBeTrue_ForEarlyAccess()
         {
             string json = File.ReadAllText(@"TestData\win-update.json");
-            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             Update.Releases.Releases releases = new(categories.Categories, new Version(), "EarlyAccess");
 
             releases.Where(r => r.EarlyAccess).Should().HaveCount(2);
@@ -99,7 +99,7 @@ namespace ProtonVPN.Update.Tests.Releases
         public void Releases_New_ShouldBeTrue_ForNewReleases()
         {
             string json = File.ReadAllText(@"TestData\win-update.json");
-            CategoriesContract categories = JsonConvert.DeserializeObject<CategoriesContract>(json);
+            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
             Update.Releases.Releases releases = new(categories.Categories, Version.Parse("1.5.0"), "");
 
             releases.Where(r => r.New).Should().HaveCount(3);

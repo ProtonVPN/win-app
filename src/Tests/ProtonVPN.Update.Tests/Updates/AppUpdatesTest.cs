@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,12 +18,14 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
@@ -37,20 +39,27 @@ namespace ProtonVPN.Update.Tests.Updates
     [TestClass]
     public class AppUpdatesTest
     {
+        private ILogger _logger;
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
         private IFeedUrlProvider _feedUrlProvider;
         private DefaultAppUpdateConfig _config;
+        private IEnumerable<Uri> _feedUrls = new List<Uri>()
+        {
+            new Uri("http://127.0.0.1/windows-releases.json"),
+            new Uri("http://127.0.0.1/win-update.json")
+        };
 
         #region Initialization
 
         [TestInitialize]
         public void TestInitialize()
         {
+            _logger = Substitute.For<ILogger>();
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
             _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
-            _feedUrlProvider.GetFeedUrl().Returns(new Uri("http://127.0.0.1/win-update.json"));
+            _feedUrlProvider.GetFeedUrls().Returns(_feedUrls);
             _config = new DefaultAppUpdateConfig
             {
                 HttpClient = _httpClient,
@@ -70,7 +79,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
         private IAppUpdates AppUpdates()
         {
-            return new AppUpdates(_config, _launchableFile);
+            return new AppUpdates(_config, _launchableFile, _logger);
         }
 
         #endregion
@@ -80,7 +89,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public void AppUpdates_ShouldNotTrow()
         {
-            Action f = () => new AppUpdates(_config, _launchableFile);
+            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
 
             f.Should().NotThrow<Exception>();
         }
@@ -88,7 +97,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public void AppUpdates_ShouldTrow_WhenConfig_IsNull()
         {
-            Action f = () => new AppUpdates(null, _launchableFile);
+            Action f = () => new AppUpdates(null, _launchableFile, _logger);
 
             f.Should().Throw<ArgumentException>();
         }
@@ -97,7 +106,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenHttpClient_IsNull()
         {
             _config.HttpClient = null;
-            Action f = () => new AppUpdates(_config, _launchableFile);
+            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
 
             f.Should().Throw<ArgumentException>();
         }
@@ -106,7 +115,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenCurrentVersion_IsNull()
         {
             _config.CurrentVersion = null;
-            Action f = () => new AppUpdates(_config, _launchableFile);
+            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
 
             f.Should().Throw<ArgumentException>();
         }
@@ -115,7 +124,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenFeedUri_IsNull()
         {
             _config.FeedUriProvider = null;
-            Action f = () => new AppUpdates(_config, _launchableFile);
+            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
 
             f.Should().Throw<ArgumentException>();
         }
@@ -124,7 +133,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenUpdatesPath_IsNull()
         {
             _config.UpdatesPath = null;
-            Action f = () => new AppUpdates(_config, _launchableFile);
+            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
 
             f.Should().Throw<ArgumentException>();
         }
@@ -133,7 +142,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenUpdatesPath_IsEmpty()
         {
             _config.UpdatesPath = "";
-            Action f = () => new AppUpdates(_config, _launchableFile);
+            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
 
             f.Should().Throw<ArgumentException>();
         }

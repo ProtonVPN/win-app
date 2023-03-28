@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,7 @@
 using System;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.Windows;
 
 namespace ProtonVPN.UI.Tests.Windows
@@ -33,7 +34,6 @@ namespace ProtonVPN.UI.Tests.Windows
         private AutomationElement ExitOption => ElementByName("Exit");
         private Button ProfilesChevron => ElementByAutomationId("TogglePopupButton").AsButton();
         private AutomationElement RandomProfile => ElementByName("Random");
-        private AutomationElement TaskBar => ElementByClassName("Shell_TrayWnd");
 
         public SysTrayWindow OpenSysTrayWindow()
         {
@@ -90,7 +90,14 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public SysTrayWindow ClickOnTaskBar()
         {
-            TaskBar.Click();
+            if (!TestEnvironment.IsWindows11())
+            {
+                ElementByClassName("Shell_TrayWnd").Click();
+            }
+            else
+            {
+                ElementByAutomationId("TaskbarFrame").Click();
+            }
             return this;
         }
 

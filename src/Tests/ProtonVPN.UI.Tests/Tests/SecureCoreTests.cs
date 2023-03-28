@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -38,13 +38,8 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void QuickConnectWhileSecureCoreIsEnabled()
         {
-            TestCaseId = 255;
-
             _mainWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 256;
 
             _mainWindow.PressQuickConnectButton()
                 .WaitUntilDisconnected();
@@ -53,8 +48,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void CheckIfAfterKillingAppSecureCoreConnectionIsRestored()
         {
-            TestCaseId = 218;
-
              _mainWindow.NavigateToSettings();
             _settingsWindow.DisableStartToTray()
                 .CloseSettings();
@@ -66,14 +59,8 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectAndDisconnectViaMapSecureCore()
         {
-            TestCaseId = 253;
-
             _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)
                 .WaitUntilConnected();
-
-            ReportTestResults();
-            TestCaseId = 254;
-
             _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)
                 .WaitUntilDisconnected();
         }

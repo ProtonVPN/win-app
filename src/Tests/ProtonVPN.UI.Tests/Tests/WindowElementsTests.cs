@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,8 +35,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void EnableSidebarMode()
         {
-            TestCaseId = 251;
-
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.ClickOnSidebarModeButton();
             _mainWindowResults.CheckIfSidebarModeIsEnabled();

@@ -1,6 +1,22 @@
+include:
+  - project: 'tpe/testmo-reporter'
+    ref: master
+    file: '/scenarios/testmo-multiple.yml'
+
+  - project: 'translations/generator'
+    ref: master
+    file: '/jobs/commit-locales.gitlab-ci.yml'
+
+  - project: 'translations/generator'
+    ref: master
+    file: '/jobs/sync-crowdin.gitlab-ci.yml'
+
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
   SCREENSHOT_PATH: src/bin/TestFailureData/
+  TEST_REPORT_PATH: results/
+  PROJECT_ID: "1"
+  MILESTONE: "Automation"
 
 stages:
   - release
@@ -11,8 +27,11 @@ stages:
   - build-installer
   - internal-beta
   - publish-to-slack
+  - test-setup
   - ui-test
+  - test-upload
   - installation-test
+  - test-cleanup
   - mirror
 
 sign:
@@ -120,7 +139,7 @@ build-installer-for-release:
   only:
     - master
     - /^release.*$/
-    
+
 prepare-internal-beta-release:
   stage: internal-beta
   tags:
@@ -149,6 +168,23 @@ build-installer-for-debug:
     - master
     - /^release.*$/
 
+testmo-setup:
+  allow_failure: true
+  stage: test-setup
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_COMMIT_REF_NAME == "release/9.9.9" || $CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME =~ "/debug/"
+      when: never
+    - if: $CI_COMMIT_REF_NAME =~ "/release/"
+      variables:
+        SOURCE: "Release"
+    - when: always
+  variables:
+    SOURCE: "Automation"
+    NAME: "$CI_JOB_STARTED_AT UTC"
+    TAGS: "$CI_COMMIT_REF_SLUG"
+
 ui-test:
   stage: ui-test
   tags:
@@ -156,18 +192,22 @@ ui-test:
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=UI"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=UI" /Settings:ci/TestRun/test-run-settings.xml
     - powershell -File ci\uninstall-app.ps1
+  after_script:
+    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
     - master
   artifacts:
-    when: on_failure
+    when: always
+    name: "result-ui"
     paths:
       - $SCREENSHOT_PATH
-    expire_in: 2 weeks
-    
+      - "results/*"
+    expire_in: 1 weeks
+  
 connection-tests:
   stage: ui-test
   tags:
@@ -175,17 +215,27 @@ connection-tests:
   script:
     - powershell -File ci\uninstall-app.ps1
     - powershell -File ci\install-the-app.ps1
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Connection"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Connection" /Settings:ci/TestRun/test-run-settings.xml
     - powershell -File ci\uninstall-app.ps1
+  after_script:
+    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
     - master
   artifacts:
-    when: on_failure
+    when: always
+    name: "result-connection"
     paths:
       - $SCREENSHOT_PATH
-    expire_in: 2 weeks
+      - "results/*"
+    expire_in: 1 weeks
+    
+testmo-upload:
+  allow_failure: true
+  stage: test-upload
+  variables:
+    RESULT_FOLDER: "results/*.xml"
 
 win-11-tests:
   stage: ui-test
@@ -196,7 +246,6 @@ win-11-tests:
     - powershell -File ci\uninstall-app.ps1
     - powershell -File ci\install-the-app.ps1
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=Smoke"
-    - powershell -File ci\uninstall-app.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
@@ -224,19 +273,10 @@ mirror:
     - git push public master
     - git push public "$(git describe --abbrev=0)"
 
-include:
-  - project: 'translations/generator'
-    ref: master
-    file: '/jobs/commit-locales.gitlab-ci.yml'
-
-  - project: 'translations/generator'
-    ref: master
-    file: '/jobs/sync-crowdin.gitlab-ci.yml'
-
 i18n-sync-crowdin:
   when: manual
   variables:
-      I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
+    I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
   extends: .i18n-sync-crowdin-common
 
 i18n-manual-sync-crowdin:
@@ -244,13 +284,13 @@ i18n-manual-sync-crowdin:
   only:
     - branches
   variables:
-      I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
+    I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
   extends: .i18n-sync-crowdin-common
 
 i18n-commit-translations:
   extends: .i18n-commit-locales-shared
   variables:
-      I18N_COMMIT_CROWDIN_PROJECT: 'windows-vpn'
+    I18N_COMMIT_CROWDIN_PROJECT: 'windows-vpn'
   before_script:
     - git config --global core.autocrlf false
 
@@ -261,10 +301,11 @@ create-release:
   only:
     refs:
       - develop
+      - develop-v2
   script:
     - apt-get update && apt-get install -y python3 python3-pip git
     - python3 ci/release.py
-    
+
 send-slack-notification:
   tags:
     - windows

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using FlaUI.Core.AutomationElements;
@@ -52,7 +53,14 @@ namespace ProtonVPN.UI.Tests.Results
             KillAndRestartProtonVpnClient();
             new HomeWindow().WaitUntilConnected();
             Assert.IsTrue(ipAddress == IpAddressLabelText, "IP Address: " + IpAddressLabelText + " does not match previous " + ipAddress + " address");
-            return new HomeResult();
+            return this;
+        }
+
+        public HomeResult CheckIfLocalNetworkingWorks(string localIpAddress)
+        {
+            PingReply reply = new Ping().Send(localIpAddress);
+            Assert.IsTrue(reply.Status == IPStatus.Success);
+            return this;
         }
 
         public async Task CheckIfCorrectIpAddressIsDisplayed()

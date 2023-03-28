@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-using ProtonVPN.Update.Config;
-using ProtonVPN.Update.Contracts;
-using ProtonVPN.Update.Releases;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
+using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using ProtonVPN.Common.Logging;
+using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Update.Config;
+using ProtonVPN.Update.Releases;
+using ProtonVPN.Update.Responses;
 
 namespace ProtonVPN.Update.Storage
 {
@@ -37,29 +40,79 @@ namespace ProtonVPN.Update.Storage
         private static readonly JsonSerializer JsonSerializer = new();
 
         private readonly IAppUpdateConfig _config;
+        private readonly ILogger _logger;
 
-        public WebReleaseStorage(IAppUpdateConfig config)
+        public WebReleaseStorage(IAppUpdateConfig config, ILogger logger)
         {
             _config = config;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<Release>> Releases()
         {
-            CategoriesContract categories = await Categories();
+            CategoriesResponse categories = await Categories();
             Releases.Releases releases = new(categories.Categories, _config.CurrentVersion, _config.EarlyAccessCategoryName);
             return releases;
         }
 
-        private async Task<CategoriesContract> Categories()
+        private async Task<CategoriesResponse> Categories()
         {
-            using IHttpResponseMessage response = await _config.HttpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl());
-            if (!response.IsSuccessStatusCode)
+            int numOfFeeds = 0;
+
+            foreach (Uri feedUrl in _config.FeedUriProvider.GetFeedUrls())
             {
-                throw new HttpRequestException("Response status code is not success");
+                numOfFeeds++;
+                CategoriesResponse response = await GetFilteredAsync(feedUrl);
+                if (DoesResponseContainReleases(response))
+                {
+                    return response;
+                }
+
+                _logger.Warn<AppLog>($"The feed '{feedUrl}' has no releases.");
             }
 
-            using Stream stream = await response.Content.ReadAsStreamAsync();
-            return ResponseStreamResult<CategoriesContract>(stream);
+            string errorMessage = $"All feeds failed to return any release version. Called {numOfFeeds} feed(s).";
+            _logger.Error<AppLog>(errorMessage);
+            throw new Exception(errorMessage);
+        }
+
+        private async Task<CategoriesResponse> GetFilteredAsync(Uri feedUrl)
+        {
+            CategoriesResponse response = await GetAsync(feedUrl);
+            foreach(CategoryResponse category in response.Categories)
+            {
+                category.Releases = category.Releases.Where(ReleaseFilter).ToList();
+            }
+            return response;
+        }
+
+        private bool ReleaseFilter(ReleaseResponse r)
+        {
+            return (r.ReleaseDate is null || r.ReleaseDate.Value <= DateTimeOffset.UtcNow) &&
+                   (r.MinimumOsVersion is null ||
+                    !Version.TryParse(r.MinimumOsVersion, out Version minimumOsVersion) ||
+                    Environment.OSVersion.Version >= minimumOsVersion);
+        }
+
+        private async Task<CategoriesResponse> GetAsync(Uri feedUrl)
+        {
+            try
+            {
+                using IHttpResponseMessage response = await _config.HttpClient.GetAsync(feedUrl);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.Error<AppLog>($"Response status code of feed {feedUrl} is not success.");
+                    return null;
+                }
+
+                using Stream stream = await response.Content.ReadAsStreamAsync();
+                return ResponseStreamResult<CategoriesResponse>(stream);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error<AppLog>($"An error occurred when obtaining the list of releases from feed '{feedUrl}'.", ex);
+            }
+            return null;
         }
 
         private static T ResponseStreamResult<T>(Stream stream)
@@ -73,6 +126,13 @@ namespace ProtonVPN.Update.Storage
             }
 
             return result;
+        }
+
+        private bool DoesResponseContainReleases(CategoriesResponse response)
+        {
+            return response is not null &&
+                   response.Categories.Any() &&
+                   response.Categories.SelectMany(c => c.Releases).Any();
         }
     }
 }

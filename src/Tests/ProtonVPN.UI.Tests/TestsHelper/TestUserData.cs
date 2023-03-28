@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -54,12 +54,6 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         public static TestUserData GetVisionaryUser()
         {
             (string username, string password) = GetUsernameAndPassword("VISIONARY_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static TestUserData GetTestrailUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("TESTRAIL_USER");
             return new TestUserData(username, password);
         }
 

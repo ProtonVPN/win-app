@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,7 @@
 
 using System;
 using System.Collections.Generic;
-using ProtonVPN.Update.Contracts;
+using ProtonVPN.Update.Responses;
 
 namespace ProtonVPN.Update.Releases
 {
@@ -28,9 +28,9 @@ namespace ProtonVPN.Update.Releases
     /// </summary>
     public class Release : IRelease, IComparable, IComparable<IRelease>
     {
-        private readonly ReleaseContract _release;
+        private readonly ReleaseResponse _release;
 
-        public Release(ReleaseContract release, bool earlyAccess, Version currentVersion)
+        public Release(ReleaseResponse release, bool earlyAccess, Version currentVersion)
         {
             _release = release;
             Version = Version.Parse(_release.Version);
@@ -49,7 +49,7 @@ namespace ProtonVPN.Update.Releases
 
         public bool DisableAutoUpdate { get; }
 
-        public FileContract File => _release.File;
+        public FileResponse File => _release.File;
 
         public bool Empty()
         {
@@ -61,7 +61,7 @@ namespace ProtonVPN.Update.Releases
 
         public static Release EmptyRelease()
         {
-            return new Release(new ReleaseContract { Version = "0.0.0" }, false, new Version(0, 0, 0));
+            return new Release(new ReleaseResponse { Version = "0.0.0" }, false, new Version(0, 0, 0));
         }
 
         public int CompareTo(IRelease other)

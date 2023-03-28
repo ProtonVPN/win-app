@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,8 +21,8 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Releases;
+using ProtonVPN.Update.Responses;
 
 namespace ProtonVPN.Update.Tests.Releases
 {
@@ -32,8 +32,8 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Version_ShouldBe_Release_Version()
         {
-            ReleaseContract contract = new ReleaseContract { Version = "3.2.1" };
-            Release release = new Release(contract, false, new Version());
+            ReleaseResponse contract = new() { Version = "3.2.1" };
+            Release release = new(contract, false, new Version());
 
             Version result = release.Version;
 
@@ -47,8 +47,8 @@ namespace ProtonVPN.Update.Tests.Releases
         public void ChangeLog_ShouldBe_Release_ChangeLog()
         {
             string[] changeLog = new[] { "Super new changes.", "Super new feature.", "Fixed bugs!" };
-            ReleaseContract contract = new ReleaseContract { Version = "3.2.1", ChangeLog = changeLog };
-            Release release = new Release(contract, false, new Version());
+            ReleaseResponse contract = new() { Version = "3.2.1", ChangeLog = changeLog };
+            Release release = new(contract, false, new Version());
 
             IReadOnlyList<string> result = release.ChangeLog;
 
@@ -60,8 +60,8 @@ namespace ProtonVPN.Update.Tests.Releases
         [DataRow(true)]
         public void EarlyAccess_ShouldBe_EarlyAccess(bool expected)
         {
-            ReleaseContract contract = new ReleaseContract { Version = "1.1.1" };
-            Release release = new Release(contract, expected, new Version());
+            ReleaseResponse contract = new() { Version = "1.1.1" };
+            Release release = new(contract, expected, new Version());
 
             bool result = release.EarlyAccess;
 
@@ -75,8 +75,9 @@ namespace ProtonVPN.Update.Tests.Releases
         [DataRow(true, "1.2.3", "10.10.10")]
         public void New_ShouldBe_WhenReleaseVersion_AndCurrentVersion(bool expected, string releaseVersion, string currentVersion)
         {
-            ReleaseContract contract = new ReleaseContract { Version = releaseVersion };
-            Release release = new Release(contract, expected, Version.Parse(currentVersion));
+            ReleaseResponse contract = new()
+            { Version = releaseVersion };
+            Release release = new(contract, expected, Version.Parse(currentVersion));
 
             bool result = release.EarlyAccess;
 
@@ -86,11 +87,11 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void File_ShouldBe_Release_File()
         {
-            FileContract file = new FileContract();
-            ReleaseContract contract = new ReleaseContract { Version = "9.9.9", File = file };
-            Release release = new Release(contract, false, new Version());
+            FileResponse file = new();
+            ReleaseResponse contract = new() { Version = "9.9.9", File = file };
+            Release release = new(contract, false, new Version());
 
-            FileContract result = release.File;
+            FileResponse result = release.File;
 
             result.Should().BeSameAs(file);
         }
@@ -98,9 +99,9 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Empty_ShouldBeTrue_WhenReleaseVersion_IsZero()
         {
-            FileContract file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "012345", Arguments = "-install" };
-            ReleaseContract contract = new ReleaseContract { Version = "0.0.0", ChangeLog = new[] { "Fixed" }, File = file };
-            Release release = new Release(contract, false, new Version());
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "012345", Arguments = "-install" };
+            ReleaseResponse contract = new() { Version = "0.0.0", ChangeLog = new[] { "Fixed" }, File = file };
+            Release release = new(contract, false, new Version());
 
             bool result = release.Empty();
 
@@ -110,9 +111,9 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Empty_ShouldBeFalse_WhenReleaseVersion_IsNotZero()
         {
-            FileContract file = new FileContract { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "012345", Arguments = "-install" };
-            ReleaseContract contract = new ReleaseContract { Version = "0.0.1", ChangeLog = new[] { "Fixed" }, File = file };
-            Release release = new Release(contract, false, new Version());
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "012345", Arguments = "-install" };
+            ReleaseResponse contract = new() { Version = "0.0.1", ChangeLog = new[] { "Fixed" }, File = file };
+            Release release = new(contract, false, new Version());
 
             bool result = release.Empty();
 
@@ -141,7 +142,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Release_ShouldImplement_IComparable()
         {
-            Release release = new Release(new ReleaseContract { Version = "1.2.3" }, false, new Version());
+            Release release = new(new ReleaseResponse { Version = "1.2.3" }, false, new Version());
 
             release.Should().BeAssignableTo<IComparable<IRelease>>();
         }
@@ -154,8 +155,8 @@ namespace ProtonVPN.Update.Tests.Releases
         [DataRow(1, "10.20.30", "1.2.3")]
         public void CompareTo_ShouldCompare_ReleaseVersions(int expected, string version, string otherVersion)
         {
-            Release release = new Release(new ReleaseContract { Version = version }, false, new Version());
-            Release other = new Release(new ReleaseContract { Version = otherVersion }, true, new Version());
+            Release release = new(new ReleaseResponse { Version = version }, false, new Version());
+            Release other = new(new ReleaseResponse { Version = otherVersion }, true, new Version());
 
             int result = release.CompareTo(other);
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -56,9 +56,13 @@ namespace ProtonVPN.Update.Updates
         private void AppUpdate_StateChanged(object sender, IAppUpdateState state)
         {
             if (ProgressStarted(state))
+            {
                 HandleProgressStart();
+            }
             else if (ProgressEnded(state))
+            {
                 HandleProgressEnd();
+            }
 
             _prevState = state;
             _notifyQueue.Enqueue(() => OnStateChanged(state));
@@ -82,7 +86,7 @@ namespace ProtonVPN.Update.Updates
 
         private void HandleProgressEnd()
         {
-            var requiredDelay = _progressStartedAt + _minProgressDuration - DateTime.UtcNow;
+            TimeSpan requiredDelay = _progressStartedAt + _minProgressDuration - DateTime.UtcNow;
             if (requiredDelay > TimeSpan.Zero)
             {
                 _notifyQueue.Enqueue(() => Delay(requiredDelay));

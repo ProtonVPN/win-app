@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,7 +25,7 @@ namespace ProtonVPN.Common.Service
 {
     public abstract class ServiceHostFactory
     {
-        private const int MaxMessageSize = 1024 * 1000;
+        private const int MaxMessageSize = int.MaxValue; // 2 gigabytes
 
         public abstract SafeServiceHost Create();
 

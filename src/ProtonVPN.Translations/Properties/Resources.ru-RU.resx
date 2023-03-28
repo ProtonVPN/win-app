@@ -415,12 +415,12 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Если вы предоставите следующие данные, наша команда сможет определить вашу проблему и возможное решение с большей вероятностью и в более короткие сроки:
-- Журнал установки драйверов
-- Список установленных приложений
-- Журнал регистрации приложений Proton VPN и службы Proton VPN
-- Список сетевых адаптеров
-- Таблицу маршрутизации</value>
+    <value>Наша команда сможет надёжнее и быстрее определить вашу проблему и возможное решение, если вы предоставите следующую информацию:
+• Журнал установки драйверов
+• Список установленных приложений
+• Логи приложения и службы Proton VPN
+• Список сетевых адаптеров
+• Таблицу маршрутизации</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
@@ -1574,7 +1574,7 @@
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Одна из служб, требуемых Proton VPN (Base Filtering Engine) не запущена.&lt;LineBreak/&gt;
-Пожалуйста, следуйте &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="этим"/&gt;&lt;/Hyperlink&gt; инструкциям, чтобы включить ее снова и повторить.</value>
+Пожалуйста, следуйте &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="этим"/&gt;&lt;/Hyperlink&gt; инструкциям, чтобы включить её снова и повторить.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1582,7 +1582,7 @@
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Вы снова получите доступ к платным функциям, когда эти счета будут оплачены. А пока, мы подключаем Вас к самому быстрому доступному бесплатному серверу.</value>
+    <value>Вы снова получите доступ к платным функциям, когда эти счета будут оплачены. А пока, мы подключаем вас к самому быстрому доступному бесплатному серверу.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
@@ -1590,7 +1590,7 @@
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>В Вашем аккаунте VPN есть неоплаченные счета</value>
+    <value>В вашем аккаунте VPN есть неоплаченные счета</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_btn_Invoices">
@@ -1602,7 +1602,7 @@
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
-    <value>Просроченный счет</value>
+    <value>Аккаунт с задоженностью</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1657,7 +1657,7 @@
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>C проверкой сертификата сервера VPN есть проблема, которая может указывать на вмешательство в сетевое подключение или проблему с настройками сервера, к которому вы пытаетесь подключиться. Получите помощь нашей службы поддержки, отправив &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="отчет о проблеме"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>C проверкой сертификата сервера VPN есть проблема, которая может указывать на вмешательство в сетевое соединение или проблему с настройками сервера, к которому вы пытаетесь подключиться. Получите помощь нашей службы поддержки, отправив &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="отчет о проблеме"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -2118,7 +2118,7 @@
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Вы снова получите доступ к платным функциям, когда это будет оплачено. А пока мы подключаем Вас к самому быстрому доступному бесплатному серверу.</value>
+    <value>Вы снова получите доступ к платным функциям, когда это будет оплачено. А пока мы подключаем вас к самому быстрому доступному бесплатному серверу.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
@@ -2150,7 +2150,7 @@
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Пожалуйста, отключитесь с другого устройства, чтобы подключить это, или улучшите до PLUS, чтобы подключать до 10 устройств одновременно.</value>
+    <value>Пожалуйста, отключитесь с другого устройства, чтобы подключить это, или перейдите на PLUS, чтобы подключать до 10 устройств одновременно.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2158,11 +2158,11 @@
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Вы перешли на более дешевую подписку, поэтому мы переподключаемся к самому быстрому доступному серверу. Улучшите снова, чтобы пользоваться всеми функциями.</value>
+    <value>Ваша подписка была понижена, поэтому мы переподключаемся к самому доступному серверу. Улучшите снова, чтобы наслаждаться всеми функциями.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Срок вашей подписки на тариф VPN истек</value>
+    <value>Срок вашей подписки на VPN истек</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
@@ -2712,7 +2712,7 @@
     <value>Перенаправление портов</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Сочетание клавиш Переадресации портов</value>
+    <value>Сочетание клавиш для переадресации портов</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
     <value>Доступ к настройкам Переадресации портов из Быстрых настроек</value>
@@ -2724,7 +2724,7 @@
     <value>Получать уведомления об изменении номера Переадресации портов</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Ускоряет работу торрентов и онлайн-игр, позволяя поддерживаемым локальным приложениям быть доступными из Интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
+    <value>Ускоряет скачивание торрентов и сетевые игры, позволяя поддерживаемым локальным приложениям быть доступными из Интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
@@ -2783,10 +2783,10 @@
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>Умеренное NAT</value>
+    <value>NAT Type 2</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Умеренное NAT выключает рандомизацию переназначений локальных адресов, что может слегка уменьшить безопасность, но позволит работать таким функциям, как прямое подключение для приложений, например, для онлайн игр.</value>
+    <value>NAT Type 2 выключает рандомизацию переназначений локальных адресов, что может слегка уменьшить безопасность, но позволит работать таким функциям, как прямое подключение для приложений, например, для сетевых игр.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Быстрое подключение</value>
@@ -2917,7 +2917,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Местоположения ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
-    <value>Местоположения BASIC &amp; PLUS ({0})</value>
+    <value>Местоположения BASIC и PLUS ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicLocationCount">
     <value>Местоположения BASIC ({0})</value>
@@ -2996,7 +2996,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Трансляция</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>Серверы PLUS поддерживают просмотр трансляций (Netflix, Disney+, и т. д.) из любой точки мира.</value>
+    <value>Серверы PLUS поддерживают просмотр Netflix, Disney+ и подобных служб из любой точки мира.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Функции</value>
@@ -3034,7 +3034,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Функции</value>
   </data>
   <data name="Sidebar_Streaming_Info">
-    <value>Подключитесь к серверу Plus в этой стране, чтобы начать просмотр трансляции.</value>
+    <value>Подключитесь к серверу Plus в этой стране, чтобы начать просмотр.</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
     <value>Обратите внимание: чтобы появилось новое содержимое, может потребоваться использовать новую вкладку браузера и/или очистить кэш.</value>
@@ -3130,13 +3130,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
-    <value>Включить умеренный NAT?</value>
+    <value>Что такое NAT Type 2?</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Умеренное NAT, также известное как Nat Type 2, может повысить удобство работы в Интернете с различными приложениями и сетевыми видеоиграми.</value>
+    <value>Nat Type 2 может повысить удобство работы в Интернете с различными приложениями и сетевыми видеоиграми.</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Включить умеренный NAT</value>
+    <value>Включить NAT Type 2</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
     <value>Улучшите до платного тарифна, чтобы разблокировать эту и многие другие функции.</value>

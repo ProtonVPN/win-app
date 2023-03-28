@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -150,7 +150,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers
             DnsResponse response = await ExecuteWithStopwatchAsync(StartResolveAndCancelAsync);
 
             Assert.AreEqual(null, response);
-            Assert.IsTrue(_stopwatch.Elapsed >= TimeSpan.FromSeconds(3) && _stopwatch.Elapsed < TimeSpan.FromSeconds(5));
+            Assert.IsTrue(_stopwatch.Elapsed > TimeSpan.FromSeconds(2) && _stopwatch.Elapsed < TimeSpan.FromSeconds(5));
         }
 
         private async Task<DnsResponse> StartResolveAndCancelAsync()

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -132,11 +132,11 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            serverCollection.Expanded = true;
-
-            int index = _items.IndexOf(serverCollection) + 1;
             _scheduler.Schedule(() =>
             {
+                serverCollection.Expanded = true;
+                int index = _items.IndexOf(serverCollection) + 1;
+
                 ObservableCollection<IServerListItem> collection = 
                     new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
                 foreach (IServerListItem serverListItem in collection)

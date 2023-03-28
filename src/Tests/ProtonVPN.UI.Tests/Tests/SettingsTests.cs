@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,18 +36,14 @@ namespace ProtonVPN.UI.Tests.Tests
 
         [Test]
         [Category("Smoke")]
-        public void CheckIfSettingsGeneralTabHasAllInfo()
+        public void SettingsGeneralTabHasAllInfo()
         {
-            TestCaseId = 21555;
-
             _settingsResult.CheckIfSettingsAreDisplayed();
         }
 
         [Test]
-        public void CheckIfInvalidDnsIsNotPermitted()
+        public void InvalidDnsIsNotPermitted()
         {
-            TestCaseId = 4580;
-
             _settingsWindow.NavigateToConnectionTab()
                 .ClickOnCustomDnsCheckBox()
                 .PressContinueToDisableNetshield()
@@ -56,10 +52,8 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        public void CheckIfPortForwdingSettingGetsHidden()
+        public void PortForwdingSettingGetsHidden()
         {
-            TestCaseId = 128748;
-
             _settingsWindow.NavigateToAdvancedTab()
                 .ClickOnPortForwardingShortcutCheckBox()
                 .CloseSettings();
@@ -72,10 +66,8 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        public void CheckIfModerateNatIsEnabledWithPortForwarding()
+        public void ModerateNatIsEnabledWithPortForwarding()
         {
-            TestCaseId = 132740;
-
             _settingsWindow.NavigateToConnectionTab();
             _settingsResult.CheckIfModerateNatIsDisabled();
             _settingsWindow.NavigateToAdvancedTab()

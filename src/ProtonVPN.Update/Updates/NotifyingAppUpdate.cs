@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -56,7 +56,9 @@ namespace ProtonVPN.Update.Updates
             if (_checkForUpdate.Running)
             {
                 if (_requestedEarlyAccess == earlyAccess)
+                {
                     return;
+                }
 
                 _checkForUpdate.Cancel();
             }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Files;
 using ProtonVPN.Update.Files.Downloadable;
@@ -45,7 +46,7 @@ namespace ProtonVPN.Update.Updates
         private readonly IFileValidator _fileValidator;
         private readonly ILaunchableFile _launchable;
 
-        public AppUpdates(IAppUpdateConfig config, ILaunchableFile launchableFile)
+        public AppUpdates(IAppUpdateConfig config, ILaunchableFile launchableFile, ILogger logger)
         {
             Ensure.NotNull(config, nameof(config));
 
@@ -54,7 +55,7 @@ namespace ProtonVPN.Update.Updates
             _releaseStorage =
                 new OrderedReleaseStorage(
                     new SafeReleaseStorage(
-                        new WebReleaseStorage(config)));
+                        new WebReleaseStorage(config, logger)));
 
             _updatesDirectory = 
                 new SafeUpdatesDirectory(

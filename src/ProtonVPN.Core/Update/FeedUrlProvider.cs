@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Vpn;
@@ -40,9 +41,30 @@ namespace ProtonVPN.Core.Update
             _config = config;
         }
 
-        public Uri GetFeedUrl()
+        public IEnumerable<Uri> GetFeedUrls()
         {
-            return new Uri(GetFeedStringUrl());
+            if (_feedType is FeedType.Internal)
+            {
+                if (IsSystemCompatibleWithNet6())
+                {
+                    yield return new Uri(GlobalConfig.InternalReleaseUpdateUrl);
+                }
+                yield return new Uri(GlobalConfig.InternalReleaseOldUpdateUrl);
+            }
+            else
+            {
+                if (IsSystemCompatibleWithNet6())
+                {
+                    yield return new Uri(_config.Urls.UpdateUrl);
+                }
+                yield return new Uri(_config.Urls.OldUpdateUrl);
+            }
+        }
+
+        private bool IsSystemCompatibleWithNet6()
+        {
+            return Environment.OSVersion.Version.Major >= 10
+                && Environment.Is64BitOperatingSystem;
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
@@ -55,17 +77,6 @@ namespace ProtonVPN.Core.Update
             {
                 _feedType = type;
                 FeedUrlChanged?.Invoke(this, new FeedUrlChangeEventArgs(type));
-            }
-        }
-
-        private string GetFeedStringUrl()
-        {
-            switch (_feedType)
-            {
-                case FeedType.Public: return _config.Urls.UpdateUrl;
-                case FeedType.Internal: return GlobalConfig.InternalReleaseUpdateUrl;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
     }

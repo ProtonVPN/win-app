@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,9 +27,9 @@ using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
 using FlaUI.UIA3;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework.Interfaces;
+using NUnit.Framework;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.UI.Tests.ApiClient;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests
@@ -39,8 +39,6 @@ namespace ProtonVPN.UI.Tests
         protected static Application App;
         protected static Application Service;
         protected static Window Window;
-        public static TestRailApiClient TestRailClient;
-        public static ulong TestCaseId { get; set; }
 
         public static void DeleteProfiles()
         {
@@ -71,7 +69,7 @@ namespace ProtonVPN.UI.Tests
 
         protected static void Cleanup()
         {
-            ReportTestResults();
+            SaveScreenshotAndLogsIfFailed();
             VPNServiceHelper serviceHelper = new VPNServiceHelper();
             serviceHelper.Disconnect().GetAwaiter().GetResult();
             App.Close();
@@ -147,9 +145,17 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void ReportTestResults()
+        private static void SaveScreenshotAndLogsIfFailed()
         {
-            TestRailClient?.MarkTestsByStatus();
+            if (!TestEnvironment.AreTestsRunningLocally() && !TestEnvironment.IsWindows11())
+            {
+                TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
+                string testName = TestContext.CurrentContext.Test.MethodName;
+                if (status == TestStatus.Failed)
+                {
+                    TestsRecorder.SaveScreenshotAndLogs(testName);
+                }
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,8 +35,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void SendBugReport()
         {
-            TestCaseId = 21554;
-
             _loginWindow.SignIn(TestUserData.GetFreeUser());
             _mainWindow.NavigateToBugReport();
             _bugReportWindow.FillBugReportForm("Connecting to VPN")
@@ -47,8 +45,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void SendBugReportViaLoginScreen()
         {
-            TestCaseId = 141591;
-
             _loginWindow.NavigateToBugReport();
             _bugReportWindow.FillBugReportForm("Connecting to VPN")
                 .VerifySendingIsSuccessful();

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,7 +36,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void TryToCreateStandardProfile()
         {
-            TestCaseId = 235;
             _profileWindow.PressCreateNewProfile()
                 .CreateProfile(TestConstants.ProfileName);
             _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
@@ -45,16 +44,12 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void DefaultProfilesOptions()
         {
-            TestCaseId = 234;
-
             _profileResult.CheckIfDefaultProfilesAreDisplayed();
         }
 
         [Test]
         public void TryToCreateProfileWithoutName()
         {
-            TestCaseId = 235;
-
             _profileWindow.PressCreateNewProfile()
                 .CreateProfile("");
             _profileResult.CheckIfProfileNameErrorDisplayed();
@@ -63,8 +58,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void TryToCreateProfileWithoutCountry()
         {
-            TestCaseId = 235;
-
             _profileWindow.PressCreateNewProfile()
                 .CreateStandartProfileWithoutCountry(TestConstants.ProfileName);
             _profileResult.CheckIfCountryErrorDisplayed();
@@ -73,8 +66,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void TryToCreateSecureCoreProfile()
         {
-            TestCaseId = 236;
-
             _profileWindow.PressCreateNewProfile()
                 .SelectSecureCoreOption()
                 .CreateProfile(TestConstants.ProfileName);      
@@ -85,8 +76,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void TryToCreateP2PProfile()
         {
-            TestCaseId = 21553;
-
             _profileWindow.PressCreateNewProfile()
                .SelectP2POption()
                .CreateProfileWithoutCountry(TestConstants.ProfileName);
@@ -96,8 +85,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void TryToCreateTorProfile()
         {
-            TestCaseId = 21552;
-
             _profileWindow.PressCreateNewProfile()
                .SelectTorOption()
                .CreateProfileWithoutCountry(TestConstants.ProfileName);
@@ -108,8 +95,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void DeleteProfile()
         {
-            TestCaseId = 239;
-
             _profileWindow.PressCreateNewProfile()
                 .CreateProfile(TestConstants.ProfileName);
             _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
@@ -121,8 +106,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void EditProfile()
         {
-            TestCaseId = 238;
-
             string newProfileName = "@ProfileToEdit-v2";
 
             _profileWindow.PressCreateNewProfile()
@@ -137,8 +120,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void DiscardNewProfile()
         {
-            TestCaseId = 21550;
-
             _profileWindow.PressCreateNewProfile()
                 .EnterProfileName(TestConstants.ProfileName)
                 .DiscardProfile();

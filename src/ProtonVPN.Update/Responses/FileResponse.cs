@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,9 +19,9 @@
 
 using System;
 
-namespace ProtonVPN.Update.Contracts
+namespace ProtonVPN.Update.Responses
 {
-    public class FileContract : IEquatable<FileContract>
+    public class FileResponse : IEquatable<FileResponse>
     {
         public string Url;
 
@@ -31,10 +31,12 @@ namespace ProtonVPN.Update.Contracts
 
         #region IEquatable
 
-        public bool Equals(FileContract other)
+        public bool Equals(FileResponse other)
         {
             if (other == null)
+            {
                 return false;
+            }
 
             return string.Equals(Url, other.Url) &&
                    string.Equals(Sha512CheckSum, other.Sha512CheckSum) &&
@@ -43,10 +45,20 @@ namespace ProtonVPN.Update.Contracts
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals(obj as FileContract);
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals(obj as FileResponse);
         }
 
         public override int GetHashCode()

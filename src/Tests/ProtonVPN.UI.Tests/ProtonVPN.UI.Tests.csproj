@@ -66,11 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiClient\TestsApiClient.cs" />
-    <Compile Include="ApiClient\TestRailApiClient.cs" />
     <Compile Include="DesktopActions.cs" />
     <Compile Include="Results\SysTrayResult.cs" />
     <Compile Include="TestSession.cs" />
-    <Compile Include="TestsHelper\DnsUtils.cs" />
+    <Compile Include="TestsHelper\NetworkUtils.cs" />
     <Compile Include="TestsHelper\TestsRecorder.cs" />
     <Compile Include="Tests\NetshieldTests.cs" />
     <Compile Include="Tests\SysTrayTests.cs" />
@@ -166,9 +165,6 @@
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.4</Version>
-    </PackageReference>
-    <PackageReference Include="TestRail">
-      <Version>3.2.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

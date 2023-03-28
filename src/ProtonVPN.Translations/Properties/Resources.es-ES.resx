@@ -400,10 +400,10 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Los registros de errores nos ayudan a llegar al fondo de su problema. Si no los incluyes, es posible que no podamos investigar a fondo.</value>
+    <value>Los registros de errores nos ayudan a entender las razones de tu problema. Si no los incluyes, es posible que no podamos investigar completamente tu problema.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Un registro es un tipo de archivo que nos muestra las acciones que realizaste y que condujeron a un error. Solo los utilizaremos para ayudar a nuestros ingenieros a solucionar los errores.</value>
+    <value>Un registro es un tipo de archivo que nos muestra las acciones que has realizado y que te han conducido a un error. Solo los utilizaremos para ayudar a nuestros ingenieros a solucionar los errores.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Actualizar Proton VPN</value>
@@ -425,7 +425,7 @@
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Tu usuario de Proton, en caso de que ya tengas una cuenta.</value>
+    <value>Tu usuario de Proton si ya tienes una cuenta.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
@@ -450,7 +450,7 @@
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>Su informe no fue enviado</value>
+    <value>No se ha enviado tu informe.</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
@@ -1885,7 +1885,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Ok</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
-    <value>Del servidor:</value>
+    <value>Desde el servidor:</value>
     <comment>The label for the previous server in dialog windows</comment>
   </data>
   <data name="Dialogs_reconnection_ToServer">

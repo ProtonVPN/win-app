@@ -12,8 +12,8 @@ def configure_git(git_email, git_username):
     os.system(f"git config user.name \"{git_username}\"")
 
 def checkout_develop():
-    os.system("git fetch origin develop:develop")
-    os.system("git checkout develop")
+    os.system("git fetch origin develop-v2:develop-v2")
+    os.system("git checkout develop-v2")
     os.system(f"git remote set-url origin {get_remote_url()}")
 
 def checkout_branch(name):

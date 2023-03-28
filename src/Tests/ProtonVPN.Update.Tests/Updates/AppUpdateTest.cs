@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,6 +29,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
@@ -43,20 +44,27 @@ namespace ProtonVPN.Update.Tests.Updates
     [TestClass]
     public class AppUpdateTest
     {
+        private ILogger _logger;
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
         private IFeedUrlProvider _feedUrlProvider;
         private DefaultAppUpdateConfig _config;
+        private IEnumerable<Uri> _feedUrls = new List<Uri>()
+        {
+            new Uri("http://127.0.0.1/windows-releases.json"),
+            new Uri("http://127.0.0.1/win-update.json")
+        };
 
         #region Initialization
 
         [TestInitialize]
         public void TestInitialize()
         {
+            _logger = Substitute.For<ILogger>();
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
             _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
-            _feedUrlProvider.GetFeedUrl().Returns(new Uri("http://127.0.0.1/win-update.json"));
+            _feedUrlProvider.GetFeedUrls().Returns(_feedUrls);
             _config = new DefaultAppUpdateConfig
             {
                 HttpClient = _httpClient,
@@ -76,20 +84,20 @@ namespace ProtonVPN.Update.Tests.Updates
         private IAppUpdate AppUpdate(Task<IHttpResponseMessage> httpResponse, [CallerMemberName] string updatesPath = null)
         {
             _config.UpdatesPath = TestConfig.GetFolderPath(updatesPath);
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
+            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrls().First()).Returns(httpResponse);
             return AppUpdate();
         }
 
         private IAppUpdate AppUpdate(IHttpResponseMessage httpResponse, [CallerMemberName] string updatesPath = null)
         {
             _config.UpdatesPath = TestConfig.GetFolderPath(updatesPath);
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
+            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrls().First()).Returns(httpResponse);
             return AppUpdate();
         }
 
         private IAppUpdate AppUpdate()
         {
-            return new AppUpdate(new AppUpdates(_config, _launchableFile));
+            return new AppUpdate(new AppUpdates(_config, _launchableFile, _logger));
         }
 
         #endregion
@@ -296,7 +304,7 @@ namespace ProtonVPN.Update.Tests.Updates
             update.Available.Should().BeTrue();
 
             IHttpResponseMessage response = HttpResponseFromFile("win-update.json");
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(response);
+            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrls().First()).Returns(response);
 
             update = await update.Latest(false);
             update.Available.Should().BeFalse();
@@ -415,12 +423,12 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Latest_ShouldGet_JsonFile_UsingFeedUri()
         {
-            _feedUrlProvider.GetFeedUrl().Returns(new Uri("http://protonvpn.com/update.json"));
+            _feedUrlProvider.GetFeedUrls().Returns(_feedUrls);
             IAppUpdate update = AppUpdate(HttpResponseFromFile("win-update.json"));
 
             await update.Latest(false);
 
-            await _httpClient.Received().GetAsync(_config.FeedUriProvider.GetFeedUrl());
+            await _httpClient.Received().GetAsync(_config.FeedUriProvider.GetFeedUrls().First());
         }
 
         [TestMethod]

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -32,8 +33,10 @@ namespace ProtonVPN.Settings
         private const string KeyPrefix = "User";
         private const string DefaultKeySuffix = "Default";
         private const string UserKey = "Username";
+
         private readonly ISettingsStorage _storage;
-        private readonly Dictionary<string, object> _cache = new Dictionary<string, object>();
+        private readonly ConcurrentDictionary<string, object> _cache = new();
+
         private string _user = string.Empty;
 
         public PerUserSettings(ISettingsStorage storage)
@@ -44,10 +47,12 @@ namespace ProtonVPN.Settings
         public T Get<T>(string key)
         {
             if (_cache.TryGetValue(key, out object cachedValue))
+            {
                 return cachedValue is T result ? result : default;
+            }
 
-            var perUser = _storage.Get<PerUser<T>[]>(PerUserKey(key))?.SingleOrDefault(i => i.User == User);
-            var value = perUser != null
+            PerUser<T> perUser = _storage.Get<PerUser<T>[]>(PerUserKey(key))?.SingleOrDefault(i => i.User == User);
+            T value = perUser != null
                 ? perUser.Value
                 : GetDefault<T>(key);
 
@@ -59,8 +64,8 @@ namespace ProtonVPN.Settings
         {
             _cache[key] = value;
 
-            var all = _storage.Get<PerUser<T>[]>(PerUserKey(key))?.ToList() ?? new List<PerUser<T>>();
-            var perUser = all.FirstOrDefault(i => i.User == User);
+            List<PerUser<T>> all = _storage.Get<PerUser<T>[]>(PerUserKey(key))?.ToList() ?? new List<PerUser<T>>();
+            PerUser<T> perUser = all.FirstOrDefault(i => i.User == User);
             if (perUser == null)
             {
                 perUser = new PerUser<T> { User = User };
@@ -103,7 +108,9 @@ namespace ProtonVPN.Settings
             get
             {
                 if (!string.IsNullOrEmpty(_user))
+                {
                     return _user;
+                }
 
                 _cache.Clear();
                 return GetUser();
@@ -112,9 +119,11 @@ namespace ProtonVPN.Settings
 
         private string GetUser()
         {
-            var user = _storage.Get<string>(UserKey);
+            string user = _storage.Get<string>(UserKey);
             if (string.IsNullOrEmpty(user))
+            {
                 throw new InvalidOperationException("Access to user settings is not allowed: user is not logged in");
+            }
 
             return TrimDomain(user.Decrypt()).ToUpperInvariant();
         }
@@ -122,7 +131,9 @@ namespace ProtonVPN.Settings
         private static string TrimDomain(string username)
         {
             if (username.IndexOf('@') is var i && i >= 0)
+            {
                 return username.Substring(0, i);
+            }
 
             return username;
         }

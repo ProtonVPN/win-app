@@ -1,6 +1,6 @@
 # Proton VPN Windows app
 
-Copyright (c) 2022 Proton Technologies AG
+Copyright (c) 2023 Proton AG
 
 This repository holds the Proton VPN Windows app.
 For a detailed build information see [BUILD](BUILD.md).

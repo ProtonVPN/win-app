@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,8 +40,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void NetshieldLevelTwo()
         {
-            TestCaseId = 4574;
-
             _homeWindow.EnableNetshieldLevelTwo()
                 .PressQuickConnectButton()
                 .WaitUntilConnected();
@@ -55,8 +53,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void NetshieldLevelOne()
         {
-            TestCaseId = 4573;
-
             _homeWindow.EnableNetshieldLevelOne()
                 .PressQuickConnectButton()
                 .WaitUntilConnected();
@@ -70,8 +66,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void NetshieldOff()
         {
-            TestCaseId = 146925;
-
             _homeWindow.DisableNetshield()
                 .PressQuickConnectButton()
                 .WaitUntilConnected();
@@ -84,15 +78,13 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void EnableNetshieldWhileConnected()
         {
-            TestCaseId = 4577;
-
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
             _homeResult.CheckIfDnsIsResolved(NETSHIELD_NO_BLOCK)
                 .CheckIfDnsIsNotResolved(NETSHIELD_LEVEL_ONE)
                 .CheckIfDnsIsResolved(NETSHIELD_LEVEL_TWO);
 
-            DnsUtils.DnsFlushResolverCache();
+            NetworkUtils.DnsFlushResolverCache();
 
             _homeWindow.EnableNetshieldLevelTwo();
             _homeResult.CheckIfDnsIsResolved(NETSHIELD_NO_BLOCK)
