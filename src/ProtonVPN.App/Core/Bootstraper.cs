@@ -70,8 +70,8 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.ErrorHandling;
-using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.HumanVerification.Installers;
+using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
@@ -86,6 +86,7 @@ using ProtonVPN.Partners;
 using ProtonVPN.PlanDowngrading;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.Settings;
@@ -295,7 +296,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<IUserLocationService>().UserLocationChanged += (sender, location) =>
+            Resolve<IUserLocationService>().UserLocationChanged += (_, location) =>
             {
                 IEnumerable<IUserLocationAware> instances = Resolve<IEnumerable<IUserLocationAware>>();
                 foreach (IUserLocationAware instance in instances)
@@ -304,7 +305,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<IAnnouncementService>().AnnouncementsChanged += (sender, e) =>
+            Resolve<IAnnouncementService>().AnnouncementsChanged += (_, _) =>
             {
                 IEnumerable<IAnnouncementsAware> instances = Resolve<IEnumerable<IAnnouncementsAware>>();
                 foreach (IAnnouncementsAware instance in instances)
@@ -313,9 +314,9 @@ namespace ProtonVPN.Core
                 }
             };
 
-            userAuthenticator.UserLoggingIn += (sender, e) => OnUserLoggingIn();
+            userAuthenticator.UserLoggingIn += (_, _) => OnUserLoggingIn();
 
-            userAuthenticator.UserLoggedIn += async (sender, e) =>
+            userAuthenticator.UserLoggedIn += async (_, e) =>
             {
                 await Resolve<IUserLocationService>().Update();
                 await Resolve<IServerUpdater>().Update();
@@ -339,7 +340,7 @@ namespace ProtonVPN.Core
                 await SwitchToAppWindow(e.IsAutoLogin);
             };
 
-            userAuthenticator.UserLoggedOut += (sender, e) =>
+            userAuthenticator.UserLoggedOut += (_, _) =>
             {
                 Resolve<IModals>().CloseAll();
 
@@ -353,7 +354,7 @@ namespace ProtonVPN.Core
                 Resolve<AppWindow>().Hide();
             };
 
-            Resolve<IUserStorage>().UserDataChanged += (sender, e) =>
+            Resolve<IUserStorage>().UserDataChanged += (_, _) =>
             {
                 IEnumerable<IUserDataAware> instances = Resolve<IEnumerable<IUserDataAware>>();
                 foreach (IUserDataAware instance in instances)
@@ -362,7 +363,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<IUserStorage>().VpnPlanChanged += async (sender, e) =>
+            Resolve<IUserStorage>().VpnPlanChanged += async (_, e) =>
             {
                 IEnumerable<IVpnPlanAware> instances = Resolve<IEnumerable<IVpnPlanAware>>();
                 foreach (IVpnPlanAware instance in instances)
@@ -371,7 +372,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<SyncProfiles>().SyncStatusChanged += (sender, e) =>
+            Resolve<SyncProfiles>().SyncStatusChanged += (_, e) =>
             {
                 IEnumerable<IProfileSyncStatusAware> instances = Resolve<IEnumerable<IProfileSyncStatusAware>>();
                 foreach (IProfileSyncStatusAware instance in instances)
@@ -380,7 +381,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<PinFactory>().PinsChanged += (sender, e) =>
+            Resolve<PinFactory>().PinsChanged += (_, _) =>
             {
                 IEnumerable<IPinChangeAware> instances = Resolve<IEnumerable<IPinChangeAware>>();
                 foreach (IPinChangeAware instance in instances)
@@ -425,7 +426,16 @@ namespace ProtonVPN.Core
                 }
             });
 
-            Resolve<IVpnManager>().VpnStateChanged += (sender, e) =>
+            Resolve<IAppController>().OnOpenWindowInvoked += (_, _) =>
+            {
+                IEnumerable<IOpenMainWindowAware> instances = Resolve<IEnumerable<IOpenMainWindowAware>>();
+                foreach (IOpenMainWindowAware instance in instances)
+                {
+                    instance.OnOpenMainWindow();
+                }
+            };
+
+            Resolve<IVpnManager>().VpnStateChanged += (_, e) =>
             {
                 IEnumerable<IVpnStateAware> instances = Resolve<IEnumerable<IVpnStateAware>>();
                 foreach (IVpnStateAware instance in instances)
@@ -436,7 +446,7 @@ namespace ProtonVPN.Core
                 Resolve<IEventAggregator>().PublishOnCurrentThreadAsync(e);
             };
 
-            Resolve<UpdateService>().UpdateStateChanged += (sender, e) =>
+            Resolve<UpdateService>().UpdateStateChanged += (_, e) =>
             {
                 IEnumerable<IUpdateStateAware> instances = Resolve<IEnumerable<IUpdateStateAware>>();
                 foreach (IUpdateStateAware instance in instances)
@@ -447,7 +457,7 @@ namespace ProtonVPN.Core
 
             Resolve<SidebarManager>().ManualSidebarModeChangeRequested += appWindow.OnManualSidebarModeChangeRequested;
 
-            appSettings.PropertyChanged += (sender, e) =>
+            appSettings.PropertyChanged += (_, e) =>
             {
                 if (e.PropertyName == nameof(IAppSettings.Language))
                 {
@@ -461,7 +471,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<Onboarding.Onboarding>().StepChanged += (sender, e) =>
+            Resolve<Onboarding.Onboarding>().StepChanged += (_, e) =>
             {
                 IEnumerable<IOnboardingStepAware> instances = Resolve<IEnumerable<IOnboardingStepAware>>();
                 foreach (IOnboardingStepAware instance in instances)
@@ -470,7 +480,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<GuestHoleState>().GuestHoleStateChanged += (sender, active) =>
+            Resolve<GuestHoleState>().GuestHoleStateChanged += (_, active) =>
             {
                 IEnumerable<IGuestHoleStateAware> instances = Resolve<IEnumerable<IGuestHoleStateAware>>();
                 foreach (IGuestHoleStateAware instance in instances)
@@ -479,7 +489,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<EventClient>().ApiDataChanged += async (sender, e) =>
+            Resolve<EventClient>().ApiDataChanged += async (_, e) =>
             {
                 IEnumerable<IApiDataChangeAware> instances = Resolve<IEnumerable<IApiDataChangeAware>>();
                 foreach (IApiDataChangeAware instance in instances)
@@ -488,7 +498,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<UnauthorizedResponseHandler>().SessionExpired += (sender, e) =>
+            Resolve<UnauthorizedResponseHandler>().SessionExpired += (_, _) =>
             {
                 Resolve<ExpiredSessionHandler>().Execute();
             };

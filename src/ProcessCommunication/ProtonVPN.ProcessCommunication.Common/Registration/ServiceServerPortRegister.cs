@@ -17,129 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.Win32;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
 namespace ProtonVPN.ProcessCommunication.Common.Registration
 {
-    public class ServiceServerPortRegister : IServiceServerPortRegister
+    public class ServiceServerPortRegister : ServerPortRegisterBase, IServiceServerPortRegister
     {
-        private const string PATH = "SOFTWARE\\Proton AG\\Proton VPN\\gRPC";
         private const string KEY = "ServiceServerPort";
+
         private static readonly TimeSpan DELAY = TimeSpan.FromMilliseconds(100);
 
-        private readonly ILogger _logger;
-
-        public ServiceServerPortRegister(ILogger logger)
+        public ServiceServerPortRegister(ILogger logger) 
+            : base(logger)
         {
-            _logger = logger;
         }
 
-        public void Write(int serverBoundPort)
+        protected override string GetKey()
         {
-            RegistryKey key = OpenBaseKey().CreateSubKey(PATH);
-            if (key == null)
-            {
-                string errorMessage = "Failed to write gRPC server port to registry.";
-                _logger.Error<ProcessCommunicationErrorLog>(errorMessage);
-                throw new Exception(errorMessage);
-            }
-            try
-            {
-                key.SetValue(KEY, serverBoundPort, RegistryValueKind.DWord);
-            }
-            finally
-            {
-                key.Close();
-            }
-        }
-
-        private RegistryKey OpenBaseKey()
-        {
-            return RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-        }
-
-        public void Delete()
-        {
-            RegistryKey key = OpenBaseKey().OpenSubKey(PATH, RegistryKeyPermissionCheck.ReadWriteSubTree);
-            if (key != null)
-            {
-                try
-                {
-                    key.DeleteValue(KEY);
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    key.Close();
-                }
-            }
-        }
-
-        public int? ReadOnce()
-        {
-            object rawRegistryValue = ReadRawRegistryValue();
-            return ParseRawRegistryValue(rawRegistryValue);
-        }
-
-        private object ReadRawRegistryValue()
-        {
-            RegistryKey key = null;
-            try
-            {
-                key = OpenBaseKey().OpenSubKey(PATH);
-                if (key == null)
-                {
-                    _logger.Error<ProcessCommunicationErrorLog>("Failed to open gRPC server port key from registry.");
-                    return null;
-                }
-                object? serverBoundPortObject = key.GetValue(KEY);
-                return serverBoundPortObject;
-            }
-            catch (Exception e)
-            {
-                _logger.Error<ProcessCommunicationErrorLog>("Failed to read gRPC server port from registry.", e);
-                return null;
-            }
-            finally
-            {
-                try
-                {
-                    key?.Close();
-                }
-                catch
-                {
-                }
-            }
-        }
-
-        private int? ParseRawRegistryValue(object registryValue)
-        {
-            if (registryValue is not null)
-            {
-                int serverBoundPort;
-                try
-                {
-                    serverBoundPort = (int)registryValue;
-                    return serverBoundPort;
-                }
-                catch
-                {
-                }
-                try
-                {
-                    int.TryParse(registryValue.ToString(), out serverBoundPort);
-                    return serverBoundPort;
-                }
-                catch
-                {
-                }
-            }
-            return null;
+            return KEY;
         }
 
         public async Task<int> ReadAsync(CancellationToken cancellationToken)

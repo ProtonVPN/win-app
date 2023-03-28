@@ -30,7 +30,10 @@ namespace ProtonVPN.ProcessCommunication.Installers
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GrpcChannelWrapperFactory>().AsImplementedInterfaces().SingleInstance();
+
             builder.RegisterType<ServiceServerPortRegister>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppServerPortRegister>().AsImplementedInterfaces().SingleInstance();
+
             builder.RegisterAssemblyTypes(typeof(AsymmetricKeyPairMapper).Assembly)
                 .Where(t => typeof(IMapper).IsAssignableFrom(t))
                 .AsImplementedInterfaces()

@@ -34,6 +34,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
         private IVpnController _vpnController;
         private IUpdateController _updateController;
         private IServiceServerPortRegister _serviceServerPortRegister;
+        private IAppServerPortRegister _appServerPortRegister;
 
         [TestInitialize]
         public override void Initialize()
@@ -42,12 +43,13 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
             _vpnController = Substitute.For<IVpnController>();
             _updateController = Substitute.For<IUpdateController>();
             _serviceServerPortRegister = Substitute.For<IServiceServerPortRegister>();
+            _appServerPortRegister = Substitute.For<IAppServerPortRegister>();
             base.Initialize();
         }
 
         protected override IGrpcServer CreateGrpcServer()
         {
-            return new GrpcServer(_logger, _vpnController, _updateController, _serviceServerPortRegister);
+            return new GrpcServer(_logger, _vpnController, _updateController, _serviceServerPortRegister, _appServerPortRegister);
         }
 
         [TestCleanup]
@@ -57,6 +59,7 @@ namespace ProtonVPN.ProcessCommunication.Service.Tests
             _vpnController = null;
             _updateController = null;
             _serviceServerPortRegister = null;
+            _appServerPortRegister = null;
             base.Initialize();
         }
 

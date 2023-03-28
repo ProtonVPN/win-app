@@ -19,6 +19,7 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.ProcessCommunication.App.Installers;
 
 namespace ProtonVPN.Core
 {
@@ -27,12 +28,13 @@ namespace ProtonVPN.Core
         private static Mutex _singleInstanceMutex;
         private static IAppExitInvoker _appExitInvoker = new AppExitInvoker();
 
-        public static async Task<bool> InitializeAsFirstInstance(string uniqueName, string[] args)
+        public static async Task<bool> InitializeAsFirstInstance(string uniqueName)
         {
             _singleInstanceMutex = new Mutex(true, uniqueName, out bool firstInstance);
 
             if (!firstInstance)
             {
+                await FirstAppInstanceCallerInitializer.OpenMainWindowAsync();
                 _appExitInvoker.Exit();
             }
 

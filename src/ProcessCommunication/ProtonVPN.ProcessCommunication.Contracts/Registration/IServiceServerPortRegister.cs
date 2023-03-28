@@ -19,11 +19,8 @@
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Registration
 {
-    public interface IServiceServerPortRegister
+    public interface IServiceServerPortRegister : IServerPortRegister
     {
-        void Write(int serverBoundPort);
-        void Delete();
-        int? ReadOnce();
         Task<int> ReadAsync(CancellationToken cancellationToken);
     }
 }

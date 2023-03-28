@@ -31,14 +31,19 @@ namespace ProtonVPN.ProcessCommunication.Service
         private readonly IVpnController _vpnController;
         private readonly IUpdateController _updateController;
         private readonly IServiceServerPortRegister _serviceServerPortRegister;
+        private readonly IAppServerPortRegister _appServerPortRegister;
 
-        public GrpcServer(ILogger logger, IVpnController vpnController, IUpdateController updateController,
-            IServiceServerPortRegister serviceServerPortRegister)
+        public GrpcServer(ILogger logger, 
+            IVpnController vpnController, 
+            IUpdateController updateController,
+            IServiceServerPortRegister serviceServerPortRegister,
+            IAppServerPortRegister appServerPortRegister)
             : base(logger)
         {
             _vpnController = vpnController;
             _updateController = updateController;
             _serviceServerPortRegister = serviceServerPortRegister;
+            _appServerPortRegister = appServerPortRegister;
         }
 
         protected override void RegisterServices(ServiceDefinitionCollection services)
@@ -60,12 +65,14 @@ namespace ProtonVPN.ProcessCommunication.Service
         public override async Task ShutdownAsync()
         {
             _serviceServerPortRegister.Delete();
+            _appServerPortRegister.Delete();
             await base.ShutdownAsync();
         }
 
         public override async Task KillAsync()
         {
             _serviceServerPortRegister.Delete();
+            _appServerPortRegister.Delete();
             await base.KillAsync();
         }
     }

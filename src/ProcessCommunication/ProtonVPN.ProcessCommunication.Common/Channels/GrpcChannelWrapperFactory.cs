@@ -37,9 +37,14 @@ namespace ProtonVPN.ProcessCommunication.Common.Channels
             return new GrpcChannelWrapper(serverPort);
         }
 
+        public static bool IsPortValid(int serverPort)
+        {
+            return serverPort > 0 && serverPort <= ushort.MaxValue;
+        }
+
         private void ValidatePort(int serverPort)
         {
-            if (serverPort < 1 || serverPort > ushort.MaxValue)
+            if (!IsPortValid(serverPort))
             {
                 string errorMessage = $"Cannot create a gRPC Client to Server Port {serverPort}. " +
                     $"It needs to be between [1-{ushort.MaxValue}].";

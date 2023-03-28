@@ -47,7 +47,7 @@ namespace ProtonVPN
                 return;
             }
 
-            if (await SingleInstanceApplication.InitializeAsFirstInstance("{588dc704-8eac-4a43-9345-ec7186b23f05}", e.Args))
+            if (await SingleInstanceApplication.InitializeAsFirstInstance("{588dc704-8eac-4a43-9345-ec7186b23f05}"))
             {
                 SetDllDirectories();
 
