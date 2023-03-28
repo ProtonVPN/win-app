@@ -346,7 +346,7 @@ function lstrcpyW(lpStringDest: String; lpStringSrc: Cardinal): Integer;
 external 'lstrcpyW@kernel32.dll stdcall';
 
 var
-  IsToReboot: Boolean;
+  IsToReboot, IsVerySilent: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -403,12 +403,26 @@ begin
     ((Version.Major = Major) and (Version.Minor = Minor) and (Version.Build >= Build));
 end;
 
+procedure SetIsVerySilent();
+var
+  i: Integer;
+begin
+  isVerySilent := False;
+  for i := 1 to ParamCount do
+    if CompareText(ParamStr(i), '/verysilent') = 0 then
+    begin
+      IsVerySilent := True;
+      break;
+    end;
+end;
+
 function InitializeSetup(): Boolean;
 var
   Version: String;
-  ErrCode: integer;
+  ErrCode: Integer;
   WindowsVersion: TWindowsVersion;
 begin
+  SetIsVerySilent();
   if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
     if WizardSilent() = false then begin
       MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
@@ -485,10 +499,13 @@ begin
     end;
     RestoreOldUserConfigFolder(ExpandConstant('{app}'));
     if not IsToReboot or WizardForm.NoRadio.Checked = True then begin
+      launcherArgs := '';
       if WizardSilent() = false then begin
         langCode := ActiveLanguage();
         StringChangeEx(langCode, '_', '-', True);
         launcherArgs := '/lang ' + langCode;
+      end;
+      if IsVerySilent = false then begin
         ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
       end;
     end;
