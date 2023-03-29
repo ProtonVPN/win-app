@@ -17,6 +17,10 @@ variables:
   TEST_REPORT_PATH: results/
   PROJECT_ID: "13"
   MILESTONE: "Windows"
+  FF_USE_FASTZIP: "true"
+  TRANSFER_METER_FREQUENCY: "2s"
+  ARTIFACT_COMPRESSION_LEVEL: "fastest"
+  CACHE_COMPRESSION_LEVEL: "fastest"
 
 stages:
   - release
@@ -36,7 +40,7 @@ stages:
 build-release:
   stage: build
   tags:
-    - windows
+    - windows-dot-net
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
@@ -63,7 +67,7 @@ build-release:
 build-debug:
   stage: build
   tags:
-    - windows
+    - windows-dot-net
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
@@ -90,7 +94,7 @@ build-debug:
 tests:
   stage: test
   tags:
-    - windows
+    - windows-dot-net
   script:
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
@@ -122,7 +126,7 @@ build-installer-for-release:
 prepare-internal-beta-release:
   stage: internal-beta
   tags:
-    - windows
+    - windows-dot-net
   when: manual
   script:
     - python -m pip install -r ci\python-libs.txt
