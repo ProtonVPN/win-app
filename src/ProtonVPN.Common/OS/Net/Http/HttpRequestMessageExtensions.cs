@@ -26,8 +26,8 @@ namespace ProtonVPN.Common.OS.Net.Http
 {
     public static class HttpRequestMessageExtensions
     {
-        private const string CUSTOM_TIMEOUT_PROPERTY_NAME = "CustomTimeout";
-        private const string RETRY_COUNT_PROPERTY_NAME = "RetryCount";
+        private static readonly HttpRequestOptionsKey<TimeSpan> CustomTimeoutOptionsKey = new("CustomTimeout");
+        private static readonly HttpRequestOptionsKey<int> RetryCountOptionsKey = new("RetryCount");
 
         public static bool AuthHeadersInvalid(this HttpRequestMessage request)
         {
@@ -36,38 +36,28 @@ namespace ProtonVPN.Common.OS.Net.Http
 
         public static TimeSpan? GetCustomTimeout(this HttpRequestMessage request)
         {
-            if (request.Properties.TryGetValue(CUSTOM_TIMEOUT_PROPERTY_NAME, out object timeout))
-            {
-                return (TimeSpan)timeout;
-            }
-
-            return null;
+            return request.Options.TryGetValue(CustomTimeoutOptionsKey, out TimeSpan timeout) ? timeout : null;
         }
 
         public static void SetCustomTimeout(this HttpRequestMessage request, TimeSpan timeout)
         {
-            if (!request.Properties.ContainsKey(CUSTOM_TIMEOUT_PROPERTY_NAME))
+            if (!request.Options.TryGetValue(CustomTimeoutOptionsKey, out _))
             {
-                request.Properties.Add(CUSTOM_TIMEOUT_PROPERTY_NAME, timeout);
+                request.Options.Set(CustomTimeoutOptionsKey, timeout);
             }
         }
 
         public static void SetRetryCount(this HttpRequestMessage request, int retryCount)
         {
-            if (!request.Properties.ContainsKey(RETRY_COUNT_PROPERTY_NAME))
+            if (!request.Options.TryGetValue(RetryCountOptionsKey, out _))
             {
-                request.Properties.Add(RETRY_COUNT_PROPERTY_NAME, retryCount);
+                request.Options.Set(RetryCountOptionsKey, retryCount);
             }
         }
 
         public static int? GetRetryCount(this HttpRequestMessage request)
         {
-            if (request.Properties.TryGetValue(RETRY_COUNT_PROPERTY_NAME, out object timeout))
-            {
-                return (int)timeout;
-            }
-
-            return null;
+            return request.Options.TryGetValue(RetryCountOptionsKey, out int timeout) ? timeout : null;
         }
 
         private static bool AuthHeaderSet(this HttpRequestMessage request)

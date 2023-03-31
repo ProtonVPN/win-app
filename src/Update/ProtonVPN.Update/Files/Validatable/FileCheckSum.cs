@@ -38,8 +38,8 @@ namespace ProtonVPN.Update.Files.Validatable
 
         public async Task<string> Value()
         {
-            using var stream = new FileStream(_filename, FileMode.Open, FileAccess.Read, FileShare.Read, Config.FILE_BUFFER_SIZE, true);
-            using var sha512 = new SHA512CryptoServiceProvider();
+            using FileStream stream = new(_filename, FileMode.Open, FileAccess.Read, FileShare.Read, Config.FILE_BUFFER_SIZE, true);
+            using SHA512 sha512 = SHA512.Create();
 
             byte[] buffer = new byte[Config.FILE_BUFFER_SIZE];
             int bytesRead;
@@ -50,7 +50,12 @@ namespace ProtonVPN.Update.Files.Validatable
             }
             sha512.TransformFinalBlock(buffer, 0, 0);
 
-            return BitConverter.ToString(sha512.Hash).Replace("-", "").ToLowerInvariant();
+            if (sha512.Hash != null)
+            {
+                return BitConverter.ToString(sha512.Hash).Replace("-", "").ToLowerInvariant();
+            }
+
+            return string.Empty;
         }
     }
 }

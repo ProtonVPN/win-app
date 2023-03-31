@@ -104,10 +104,10 @@ Source: "..\src\bin\Microsoft.Windows.SDK.NET.dll"; DestDir: "{app}\{#VersionFol
 Source: "..\src\bin\Newtonsoft.Json.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\OxyPlot.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\OxyPlot.Wpf.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\OxyPlot.Wpf.Shared.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\PInvoke.Kernel32.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\PInvoke.Windows.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\PInvoke.Windows.ShellScalingApi.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\PluralNet.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Polly.Contrib.WaitAndRetry.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Polly.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Announcements.Contracts.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -198,6 +198,7 @@ Source: "..\src\bin\ProtonVPN.Vpn.dll"; DestDir: "{app}\{#VersionFolder}"; Flags
 Source: "..\src\bin\ProtonVPN.Vpn.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.WireGuardDriver.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.WireGuardDriver.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ReswPlusLib.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Sentry.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Diagnostics.EventLog.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
