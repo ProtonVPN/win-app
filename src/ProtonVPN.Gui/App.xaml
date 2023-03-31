@@ -4,14 +4,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
         <ResourceDictionary>
+
+            <ResourceDictionary.ThemeDictionaries>
+
+                <ResourceDictionary x:Key="Light"
+                                    Source="ms-appx:///ProtonVPN.Common.UI/Themes/LightTheme.xaml" />
+
+                <ResourceDictionary x:Key="Dark"
+                                    Source="ms-appx:///ProtonVPN.Common.UI/Themes/DarkTheme.xaml" />
+
+            </ResourceDictionary.ThemeDictionaries>
+
             <ResourceDictionary.MergedDictionaries>
+
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Converters.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Brushes.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Icons.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Typography.xaml" />
+
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/ButtonStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/HyperlinkButtonStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/ToggleSwitchStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/CheckBoxStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/RadioButtonStyles.xaml" />
+
+                <!--  To Remove once all references to these styles have been removed  -->
                 <ResourceDictionary Source="/Styles/FontSizes.xaml" />
+                <!--  To Remove once all references to these styles have been removed  -->
                 <ResourceDictionary Source="/Styles/Thickness.xaml" />
+                <!--  To Remove once all references to these styles have been removed  -->
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
+
             <SolidColorBrush x:Key="WindowCaptionBackground">Transparent</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled">Transparent</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionForeground"
+                             Color="{ThemeResource TextNormColor}" />
+            <SolidColorBrush x:Key="WindowCaptionForegroundDisabled"
+                             Color="{ThemeResource TextNormColor}" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

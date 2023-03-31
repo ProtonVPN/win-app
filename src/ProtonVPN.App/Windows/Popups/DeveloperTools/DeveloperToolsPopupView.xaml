@@ -279,6 +279,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Text="{Binding ToastNotificationLog}" />
                         </ScrollViewer>
                     </StackPanel>
+
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <icons:Rocket Style="{StaticResource Icon}" />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Content="Proton VPN (v4.0)" Style="{StaticResource Title}"/>
+                            <Label Style="{StaticResource Description}">
+                                <Label.Content>
+                                    <TextBlock>
+                                        <Run Text="Checkout the future of the Proton VPN Windows app" />
+                                    </TextBlock>
+                                </Label.Content>
+                            </Label>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Style="{StaticResource Button}"
+                                Command="{Binding OpenProtonRedesignCommand}"
+                                Content="Open"/>
+                    </StackPanel>
+
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
