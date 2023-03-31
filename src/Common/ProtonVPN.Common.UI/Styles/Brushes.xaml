@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Brushes  -->
+
+    <!--  Primary  -->
+    <SolidColorBrush x:Key="PrimaryColorBrush"
+                     Color="{ThemeResource PrimaryColor}" />
+    <!--  Link  -->
+    <SolidColorBrush x:Key="LinkNormColorBrush"
+                     Color="{ThemeResource LinkNormColor}" />
+    <SolidColorBrush x:Key="LinkHoverColorBrush"
+                     Color="{ThemeResource LinkHoverColor}" />
+    <SolidColorBrush x:Key="LinkActiveColorBrush"
+                     Color="{ThemeResource LinkActiveColor}" />
+    <!--  InteractionNorm  -->
+    <SolidColorBrush x:Key="InteractionNormColorBrush"
+                     Color="{ThemeResource InteractionNormColor}" />
+    <SolidColorBrush x:Key="InteractionNormHoverColorBrush"
+                     Color="{ThemeResource InteractionNormHoverColor}" />
+    <SolidColorBrush x:Key="InteractionNormActiveColorBrush"
+                     Color="{ThemeResource InteractionNormActiveColor}" />
+    <!--  InteractionWeak  -->
+    <SolidColorBrush x:Key="InteractionWeakColorBrush"
+                     Color="{ThemeResource InteractionWeakColor}" />
+    <SolidColorBrush x:Key="InteractionWeakHoverColorBrush"
+                     Color="{ThemeResource InteractionWeakHoverColor}" />
+    <SolidColorBrush x:Key="InteractionWeakActiveColorBrush"
+                     Color="{ThemeResource InteractionWeakActiveColor}" />
+    <!--  InteractionDefault  -->
+    <SolidColorBrush x:Key="InteractionDefaultColorBrush"
+                     Color="{ThemeResource InteractionDefaultColor}" />
+    <SolidColorBrush x:Key="InteractionDefaultHoverColorBrush"
+                     Color="{ThemeResource InteractionDefaultHoverColor}" />
+    <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush"
+                     Color="{ThemeResource InteractionDefaultActiveColor}" />
+    <!--  Text  -->
+    <SolidColorBrush x:Key="TextNormColorBrush"
+                     Color="{ThemeResource TextNormColor}" />
+    <SolidColorBrush x:Key="TextWeakColorBrush"
+                     Color="{ThemeResource TextWeakColor}" />
+    <SolidColorBrush x:Key="TextHintColorBrush"
+                     Color="{ThemeResource TextHintColor}" />
+    <SolidColorBrush x:Key="TextDisabledColorBrush"
+                     Color="{ThemeResource TextDisabledColor}" />
+    <SolidColorBrush x:Key="TextInvertColorBrush"
+                     Color="{ThemeResource TextInvertColor}" />
+    <!--  Background  -->
+    <SolidColorBrush x:Key="BackgroundNormColorBrush"
+                     Color="{ThemeResource BackgroundNormColor}" />
+    <SolidColorBrush x:Key="BackgroundWeakColorBrush"
+                     Color="{ThemeResource BackgroundWeakColor}" />
+    <SolidColorBrush x:Key="BackgroundStrongColorBrush"
+                     Color="{ThemeResource BackgroundStrongColor}" />
+    <SolidColorBrush x:Key="BackgroundInvertColorBrush"
+                     Color="{ThemeResource BackgroundInvertColor}" />
+    <!--  Border  -->
+    <SolidColorBrush x:Key="BorderNormColorBrush"
+                     Color="{ThemeResource BorderNormColor}" />
+    <SolidColorBrush x:Key="BorderWeakColorBrush"
+                     Color="{ThemeResource BorderWeakColor}" />
+    <SolidColorBrush x:Key="BorderFocusColorBrush"
+                     Color="{ThemeResource BorderFocusColor}" />
+    <SolidColorBrush x:Key="BorderFocusRingColorBrush"
+                     Color="{ThemeResource BorderFocusRingColor}" />
+    <!--  Signal  -->
+    <SolidColorBrush x:Key="SignalDangerColorBrush"
+                     Color="{ThemeResource SignalDangerColor}" />
+    <SolidColorBrush x:Key="SignalWarningColorBrush"
+                     Color="{ThemeResource SignalWarningColor}" />
+    <SolidColorBrush x:Key="SignalSuccessColorBrush"
+                     Color="{ThemeResource SignalSuccessColor}" />
+    <!--  Backdrop  -->
+    <SolidColorBrush x:Key="BackdropNormColorBrush"
+                     Color="{ThemeResource BackdropNormColor}" />
+    <!--  VPN  -->
+    <SolidColorBrush x:Key="VpnGreenColorBrush"
+                     Color="{ThemeResource VpnGreenColor}" />
+    <!--  Gradient  -->
+    <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="{ThemeResource GradientFadingStartColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource GradientFadingEndColor}" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="{ThemeResource GradientUnprotectedStartColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource GradientUnprotectedEndColor}" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientConnectingColorBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="{ThemeResource GradientConnectingStartColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource GradientConnectingEndColor}" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientProtectedColorBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="{ThemeResource GradientProtectedStartColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource GradientProtectedEndColor}" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientConnectionLineColorBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="{ThemeResource GradientConnectionLineStartColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource GradientConnectionLineEndColor}" />
+    </LinearGradientBrush>
+
+    <!--  Composite Brushes  -->
+
+    <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
+    <SolidColorBrush x:Key="BackgroundWeakHoverColorBrush"
+                     Color="{ThemeResource BackgroundWeakHoverColor}" />
+    <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
+    <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush"
+                     Color="{ThemeResource BackgroundWeakActiveColor}" />
+
+</ResourceDictionary>

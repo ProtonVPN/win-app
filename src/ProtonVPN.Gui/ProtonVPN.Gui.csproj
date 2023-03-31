@@ -6,12 +6,12 @@
     <RootNamespace>ProtonVPN.Gui</RootNamespace>
     <ApplicationIcon>Assets/WindowIcon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>x86;x64;arm64</Platforms>
-    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <Platforms>x64</Platforms>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
     <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
-	<ImplicitUsings>enable</ImplicitUsings>
-	<Nullable>enable</Nullable>
-	<UseWinUI>true</UseWinUI>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
@@ -59,5 +59,9 @@
   
   <ItemGroup>
     <PRIResource Remove="Views\Pages\Settings\AdvancedSettings\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Common\ProtonVPN.Common.UI\ProtonVPN.Common.UI.csproj" />
   </ItemGroup>
 </Project>

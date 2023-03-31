@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -55,6 +56,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
         private readonly IAppExitInvoker _appExitInvoker;
+        private readonly IDialogs _dialogs;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             IConfiguration config,
@@ -68,7 +70,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ReconnectManager reconnectManager,
             IAppExitInvoker appExitInvoker,
             IEnumerable<IModal> modals,
-            IEnumerable<IPopupWindow> popupWindows)
+            IEnumerable<IPopupWindow> popupWindows,
+            IDialogs dialogs)
             : base(appWindow)
         {
             _config = config;
@@ -81,6 +84,8 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
             _appExitInvoker = appExitInvoker;
+            _dialogs = dialogs;
+
             LoadModals(modals);
             LoadPopupWindows(popupWindows);
             InitializeCommands();
@@ -127,6 +132,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             BasicToastCommand = new RelayCommand(BasicToastAction);
             TriggerIntentionalCrashCommand = new RelayCommand(TriggerIntentionalCrashAction);
             DisableTlsPinningCommand = new RelayCommand(DisableTlsPinningAction);
+            OpenProtonRedesignCommand = new RelayCommand(OpenProtonRedesignAction);
         }
 
         public ICommand OpenModalCommand { get; set; }
@@ -142,6 +148,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand ClearToastNotificationLogsCommand { get; set; }
         public ICommand TriggerIntentionalCrashCommand { get; set; }
         public ICommand DisableTlsPinningCommand { get; set; }
+        public ICommand OpenProtonRedesignCommand { get; set; }
 
         private IDictionary<string, IModal> _modalsByName;
         public IDictionary<string, IModal> ModalsByName
@@ -361,6 +368,23 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         {
             _configWriter.Write(_config.DisableTlsPinning());
             _appExitInvoker.Exit();
+        }
+
+        private void OpenProtonRedesignAction()
+        {
+            var baseDirectory = Environment.CurrentDirectory;
+            var redesignApp64Path = @"..\ProtonVPN.Gui\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64";
+            var applicationExe = "ProtonVPN.Gui.exe";
+
+            var app64Path = Path.GetFullPath(Path.Combine(baseDirectory, redesignApp64Path, applicationExe));
+
+            if (File.Exists(app64Path))
+            {
+                Process.Start(app64Path);
+                return;
+            }
+
+            _dialogs.ShowWarningAsync($"Process {applicationExe} not found. Make sure to build the ProtonVPN.Gui app as unpackaged before or just setup ProtonVPN.Gui as startup project from Visual Studio.");
         }
     }
 }

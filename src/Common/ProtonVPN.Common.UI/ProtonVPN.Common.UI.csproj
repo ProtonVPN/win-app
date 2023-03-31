@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>ProtonVPN.Common.UI</RootNamespace>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Styles\Brushes.xaml" />
+    <None Remove="Styles\Controls\ButtonStyles.xaml" />
+    <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
+    <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
+    <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
+    <None Remove="Styles\Controls\TextBoxStyles.xaml" />
+    <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
+    <None Remove="Styles\Converters.xaml" />
+    <None Remove="Styles\Icons.xaml" />
+    <None Remove="Styles\Typography.xaml" />
+    <None Remove="Themes\DarkTheme.xaml" />
+    <None Remove="Themes\LightTheme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\ToggleSwitchStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\TextBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\RadioButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\HyperlinkButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\CheckBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Typography.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
