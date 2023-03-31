@@ -105,7 +105,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxServiceLogsAttached = 3,
 
-                ApiClientId = "WindowsVPN",
+                ApiClientId = "windows-vpn",
 
                 ApiVersion = "3",
 
