@@ -31,7 +31,7 @@ namespace ProtonVPN.Crypto
             byte[] secretKeyLast32Bytes = secretKey.Bytes.Skip(secretKey.Bytes.Length - 32).Take(32).ToArray();
 
             byte[] x25519SecretKey;
-            using (SHA512 shaM = new SHA512Managed())
+            using (SHA512 shaM = SHA512.Create())
             {
                 x25519SecretKey = shaM.ComputeHash(secretKeyLast32Bytes);
             }

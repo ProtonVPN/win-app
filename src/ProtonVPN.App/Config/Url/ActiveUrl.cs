@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Processes;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Web;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Primitives;
+using ProtonVPN.Common.OS.Processes;
 
 namespace ProtonVPN.Config.Url
 {
@@ -41,13 +42,13 @@ namespace ProtonVPN.Config.Url
             try
             {
                 UriBuilder uriBuilder = new UriBuilder(_url);
-                NameValueCollection query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                Dictionary<string, StringValues> query = QueryHelpers.ParseQuery(uriBuilder.Query);
                 foreach (KeyValuePair<string, string> item in parameters)
                 {
                     query[item.Key] = item.Value;
                 }
 
-                uriBuilder.Query = query.ToString();
+                uriBuilder.Query = QueryString.Create(query).ToString();
                 _url = uriBuilder.ToString();
             }
             catch (UriFormatException)
