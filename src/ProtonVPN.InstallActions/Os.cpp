@@ -1,17 +1,20 @@
 #include <string>
-#include <fstream>
-#include <iostream>
 #include <windows.h>
 #include <cstdint>
 #include <string>
 #include <thread>
 #include <tlhelp32.h>
+#include <shobjidl_core.h>
+#include "shlguid.h"
+#include <filesystem>
 
 #include "ProcessExecutionResult.h"
 #include "Os.h"
+#include "WinApiErrorException.h"
 
 using namespace std;
 using namespace Os;
+namespace fs = std::filesystem;
 
 ProcessExecutionResult Os::RunProcess(const wchar_t* application_path, wstring command_line_args)
 {
@@ -154,4 +157,86 @@ bool Os::IsProcessRunning(const wchar_t* process_name)
 
     CloseHandle(snapshot);
     return running;
+}
+
+string Os::GetEnvVariable(string name)
+{
+    char* value;
+    size_t len;
+    const errno_t err = _dupenv_s(&value, &len, name.c_str());
+    if (err != 0)
+    {
+        throw WinApiErrorException(L"Failed to get environment variable " + wstring(name.begin(), name.end()) + L".",
+            err);
+    }
+
+    string result = string(value);
+    free(value);
+
+    return result;
+}
+
+string Os::GetLocalAppDataPath()
+{
+    return GetEnvVariable("LOCALAPPDATA");
+}
+
+string Os::GetTmpFolderPath()
+{
+    return GetEnvVariable("TMP");
+}
+
+long Os::ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* target_path)
+{
+    HRESULT hr;
+    IShellLink* psl;
+    IPersistFile* ppf;
+
+    hr = CoInitialize(nullptr);
+    if (FAILED(hr)) {
+        return hr;
+    }
+
+    hr = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLink, reinterpret_cast<LPVOID*>(&psl));
+    if (FAILED(hr)) {
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = psl->QueryInterface(IID_IPersistFile, reinterpret_cast<LPVOID*>(&ppf));
+    if (FAILED(hr)) {
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = ppf->Load(shortcut_path, STGM_READWRITE);
+    if (FAILED(hr)) {
+        ppf->Release();
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = psl->SetPath(target_path);
+    if (FAILED(hr)) {
+        ppf->Release();
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = ppf->Save(shortcut_path, TRUE);
+    if (FAILED(hr)) {
+        ppf->Release();
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    ppf->Release();
+    psl->Release();
+    CoUninitialize();
+
+    return 0;
 }

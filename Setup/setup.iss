@@ -316,6 +316,9 @@ external 'InitLogger@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 function InitLoggerUninstall(logger: Longword): Integer;
 external 'InitLogger@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
+function UpdateTaskbarIconTarget(launcherPath: String): Integer;
+external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
 function UninstallProduct(upgradeCode: String): Integer;
 external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
@@ -477,6 +480,8 @@ function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
     Log('Trying to save user settings for the old ProtonVPN app if it is installed');
     SaveOldUserConfigFolder();
+    Log('Trying to update taskbar icon path if exists');
+    UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
     Log('Trying to uninstall an old version of ProtonVPN app');
     UninstallProduct('{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}');
     Log('Trying to uninstall an old version of ProtonVPN TUN adapter');

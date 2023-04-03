@@ -3,6 +3,7 @@
 #include "WinApiErrorException.h"
 #include "pugixml/pugixml.hpp"
 #include "AppSettingsMigration.h"
+#include "Os.h"
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -94,7 +95,7 @@ void AppSettingsMigration::FixUserConfigFile(fs::path user_config_folder_path)
 
 fs::path AppSettingsMigration::GetOldUserConfigPath()
 {
-    const string local_app_data_path = GetLocalAppDataPath();
+    const string local_app_data_path = Os::GetLocalAppDataPath();
     fs::file_time_type latest_version_time;
     fs::path latest_version_folder_path;
     fs::path app_data_folder_path = local_app_data_path / fs::path("ProtonVPN");
@@ -127,44 +128,17 @@ fs::path AppSettingsMigration::GetOldUserConfigPath()
 
 fs::path AppSettingsMigration::GetApplicationSettingsFolderPath(std::string application_path)
 {
-    return {GetLocalAppDataPath() + "\\ProtonVPN\\" + GetApplicationSettingsFolderName(application_path)};
+    return {Os::GetLocalAppDataPath() + "\\ProtonVPN\\" + GetApplicationSettingsFolderName(application_path)};
 }
 
 fs::path AppSettingsMigration::GetTmpFolderPathForStorage()
 {
-    return GetTmpFolderPath() / fs::path("ProtonVPN");
+    return Os::GetTmpFolderPath() / fs::path("ProtonVPN");
 }
 
 string AppSettingsMigration::GetApplicationSettingsFolderName(std::string application_path)
 {
     return "ProtonVPN_Url_" + GetHashForUserSettingsFolder(application_path);
-}
-
-string AppSettingsMigration::GetLocalAppDataPath()
-{
-    return GetEnvVariable("LOCALAPPDATA");
-}
-
-string AppSettingsMigration::GetTmpFolderPath()
-{
-    return GetEnvVariable("TMP");
-}
-
-string AppSettingsMigration::GetEnvVariable(string name)
-{
-    char* value;
-    size_t len;
-    const errno_t err = _dupenv_s(&value, &len, name.c_str());
-    if (err != 0)
-    {
-        throw WinApiErrorException(L"Failed to get environment variable " + wstring(name.begin(), name.end()) + L".",
-                                   err);
-    }
-
-    string result = string(value);
-    free(value);
-
-    return result;
 }
 
 string AppSettingsMigration::GetHashForUserSettingsFolder(std::string application_path)

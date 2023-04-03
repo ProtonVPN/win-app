@@ -9,13 +9,13 @@
 #include "Logger.h"
 #include "Os.h"
 #include "Utils.h"
-#include <string>
-
 #include "AppSettingsMigration.h"
+#include <string>
 
 #define EXPORT __declspec(dllexport)
 
 using namespace std;
+namespace fs = std::filesystem;
 
 GUID providerGUID = {0x20865f68, 0x0b04, 0x44da, {0xbb, 0x83, 0x22, 0x38, 0x62, 0x25, 0x40, 0xfa}};
 GUID sublayerGUID = {0xaa867e71, 0x5765, 0x4be3, {0x93, 0x99, 0x58, 0x15, 0x85, 0xc2, 0x26, 0xce}};
@@ -139,4 +139,23 @@ extern "C" EXPORT DWORD RestoreOldUserConfigFolder(const wchar_t* application_pa
 
         return 0;
     });
+}
+
+extern "C" EXPORT DWORD UpdateTaskbarIconTarget(const wchar_t* launcher_path)
+{
+    fs::path taskbar_path = fs::path(Os::GetEnvVariable("APPDATA")) / fs::path(L"Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar");
+    fs::path v2_shorcut_path = fs::path(taskbar_path) / fs::path(L"Proton VPN.lnk");
+    fs::path v3_shortcut_path = fs::path(taskbar_path) / fs::path(L"ProtonVPN.lnk");
+    fs::path shortcut_path;
+
+    if (fs::exists(v2_shorcut_path))
+    {
+        shortcut_path = v2_shorcut_path;
+    }
+    else if (fs::exists(v3_shortcut_path))
+    {
+        shortcut_path = v3_shortcut_path;
+    }
+
+    return shortcut_path.empty() ? 0 : Os::ChangeShortcutTarget(shortcut_path.c_str(), launcher_path);
 }
