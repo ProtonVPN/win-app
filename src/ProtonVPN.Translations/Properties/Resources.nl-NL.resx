@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Sign out</value>
+    <value>Uitloggen</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -1537,13 +1537,13 @@
     <value>VPN-verbindingen toewijzen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Sign in again</value>
+    <value>Opnieuw inloggen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Om uw reis met Proton VPN te beginnen wijst u VPN-verbindingen toe aan uw account of een ander sub-account.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
+    <value>Deze stap duurt slechts een paar minuten. Daarna kunt u zich inloggen en al uw apparaten beveiligen.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Thanks for upgrading</value>
@@ -1915,13 +1915,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="KillSwitch">
     <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licentie</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Your session has expired. Please sign in again.</value>
+    <value>Uw sessie is verlopen. Log opnieuw in.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -1936,7 +1937,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Authenticeren</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>Inloggen</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -1948,7 +1949,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Overal veilig internet</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2070,7 +2071,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Niet meer weergeven</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Meer informatie</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core biedt het hoogste niveau van beveiliging en privacy, maar het kan uw internetsnelheid verlagen. Als u hogere prestaties wilt, kan u Secure Core uitschakelen.</value>
@@ -2132,6 +2133,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Notifications_SubscriptionExpired_Title">
     <value>Uw VPN-abonnement is verlopen</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Restart</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Wat is er nieuw</value>
@@ -2435,9 +2440,11 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
     <value>Kill switch Off</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
     <value>Kill switch On</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Meer informatie</value>
@@ -2453,6 +2460,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Permanent kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Port Forwarding Uitgeschakeld</value>
@@ -2470,7 +2478,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>UPGRADEN</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Browse the internet without ads and malware.</value>
@@ -2503,7 +2511,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Als websites niet laden, probeer NetShield dan uit te schakelen</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Versnel uw torrents en online gaming door ondersteunde lokale apps toe te staan bereikbaar te zijn vanaf het internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Stuur uw meest gevoelige gegevens door onze veiligste servers in privacy-vriendelijke landen.</value>
@@ -2535,7 +2543,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Plus-servers</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2612,7 +2620,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN kan geen verbinding maken omdat de RPC-server niet beschikbaar is op uw systeem. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Bekijk mogelijke oplossingen&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Helaas ondersteunt deze server WireGuard niet.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>App toevoegen</value>
@@ -2810,6 +2818,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Verbinding</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Automatic updates</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Automatically check for and install updates to Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Verbinden wanneer app start</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2918,10 +2934,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>Informatie</value>
   </data>
   <data name="Sidebar_Countries_OurPartners">
-    <value>Our partners</value>
+    <value>Onze partners</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>PLUS locaties ({0})</value>
@@ -2933,7 +2949,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC-servers ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Plus-servers ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>INTERNE servers</value>
@@ -3003,7 +3019,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Leidt uw internetverkeer om via het Tor-netwerk. Trager, maar meer privé.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profiel aanmaken</value>

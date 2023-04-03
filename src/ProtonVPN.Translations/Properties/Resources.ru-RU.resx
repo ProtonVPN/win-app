@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Выйти</value>
+    <value>Выход из аккаунта</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -352,7 +352,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
+    <value>Чтобы завершить процесс обновления, Proton VPN временно прервёт подключение и отключит Постоянный Kill Switch, если что-либо из этого сейчас активно. Хотите продолжить?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -542,7 +542,7 @@
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value>Не удалось подключиться к</value>
+    <value></value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
@@ -550,7 +550,7 @@
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>сбой подключения</value>
+    <value>— сбой подключения</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Country_val_AD">
@@ -1570,7 +1570,7 @@
     <value>Этот шаг займет всего несколько минут. После него вы сможете авторизоваться и защитить все свои устройства.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Thanks for upgrading</value>
+    <value>Спасибо за улучшение тарифа</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1603,7 +1603,7 @@
     <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Dialogs_Delinquency_ttl">
-    <value>Аккаунт с задоженностью</value>
+    <value>Аккаунт с задолженностью</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1622,7 +1622,7 @@
     <value>Некоторые компоненты Proton VPN могут быть заблокированы или отключены, что мешает вам подключиться. Нажмите на Включить, чтобы исправить это.&lt;LineBreak/&gt;Обратите внимание, что эта операция требует полномочий администратора.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Отключить kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1638,7 +1638,7 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <value>Kill switch защищает ваш IP, блокируя все подключения. Если возникнут проблемы, вы можете выключить kill switch.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1694,10 +1694,10 @@
     <value>Выход из приложения отключит Вас от VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
+    <value>Kill switch блокирует все подключения, чтобы избежать утечки данных. Выход из приложения отключит kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>Включён Постоянный kill switch. Выход из приложения заблокирует все исходящие подключения, пока Proton VPN не подключится снова.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Проверка "Я не робот"</value>
@@ -1706,10 +1706,10 @@
     <value>Похоже, что ваши системные часы не синхронизированы, что может препятствовать успешному подключению VPN. Дополнительную информацию смотрите тут: &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;здесь&lt;/Hyperlink&gt;.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>При Постоянном kill switch, если VPN по какой-либо причине не подключён, у вас не будет доступа в Интернет.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Enable Permanent kill switch?</value>
+    <value>Включить Постоянный kill switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Я понял</value>
@@ -1756,7 +1756,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <value>Обратите внимание, что включён kill switch. Обновление или выход из приложения его отключит.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1783,7 +1783,7 @@
     <value>Понятно</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
+    <value>Для правильной работы раздельного туннелирования, вам нужно выключить kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Сотни серверов в 55 странах</value>
@@ -1939,17 +1939,18 @@
   </data>
   <data name="KillSwitch">
     <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Лицензия</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Ваш сеанс истек. Пожалуйста, войдите снова.</value>
+    <value>Ваш сеанс истёк. Пожалуйста, войдите снова.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Недействительный refresh-токен: пожалуйста, войдите снова.</value>
+    <value>Недействительный токен обновления: пожалуйста, войдите снова.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1964,7 +1965,7 @@
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill switch is currently active</value>
+    <value>Kill switch сейчас активен</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -1972,7 +1973,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Безопасный Интернет где угодно</value>
+    <value>Безопасный интернет где угодно</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2156,6 +2157,10 @@
   <data name="Notifications_SubscriptionExpired_Title">
     <value>Срок вашей подписки на VPN истек</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Перезапустить</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Что нового</value>
@@ -2464,10 +2469,12 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>Выключить Kill switch</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>Включить Kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Подробнее</value>
@@ -2482,7 +2489,8 @@
     <value>Блокировать вредоносные программы, рекламу и трекеры</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanent kill switch</value>
+    <value>Постоянный kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Проброс портов выкл</value>
@@ -2500,17 +2508,17 @@
     <value>УЛУЧШИТЬ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Отключает Интернет при обрыве подключения к VPN для предотвращения случайной утечки IP-адресов.</value>
+    <value>Отключает интернет при обрыве подключения к VPN для предотвращения случайной утечки IP-адресов.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Просматривайте Интернет без рекламы и вредоносных программ.</value>
+    <value>Просматривайте интернет без рекламы и вредоносных программ.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds">
     <value>Ads blocked</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <value>Рекламные сайты используют файлы cookie и трекеры, чтобы показывать вам персонализированную рекламу.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
@@ -2518,7 +2526,7 @@
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <value>Примерный объём рекламы, трекеров и вредоносных программ, которые заблокировал NetShield.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers">
@@ -2526,14 +2534,14 @@
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>Трекеры – это сторонние сайты, которые собирают, хранят и продают информацию о ваших действиях в интернете.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Если веб-сайты не загружаются, попробуйте отключить NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Ускорьте ваши торренты и онлайн-игры, разрешив Интернет-доступ к поддерживаемым локальным приложениям.</value>
+    <value>Ускорьте ваши торренты и онлайн-игры, разрешив интернет-доступ к поддерживаемым локальным приложениям.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Направляйте свои самые чувствительные данные через наши самые безопасные серверы в странах, уважающих конфиденциальность.</value>
@@ -2661,7 +2669,7 @@
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
-    <value>IP-адрес:</value>
+    <value>IP:</value>
     <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
@@ -2740,7 +2748,7 @@
     <value>Получать уведомления об изменении номера Переадресации портов</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Ускоряет загрузку торрентов и онлайн игр, разрешая доступ к поддерживаемым локальным приложениям из Интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
+    <value>Ускоряет загрузку торрентов и онлайн игр, разрешая доступ к поддерживаемым локальным приложениям из интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
@@ -2748,7 +2756,7 @@
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
+    <value>Исключение программ или IP-адресов из VPN трафика, или включение только определенных программ. Невозможно включить одновременно с kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2799,10 +2807,10 @@
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>NAT Type 2</value>
+    <value>Умеренный NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>NAT Type 2 выключает рандомизацию переназначений локальных адресов, что может слегка уменьшить безопасность, но позволит работать таким функциям, как прямое подключение для приложений, например, для сетевых игр.</value>
+    <value>Умеренный NAT выключает рандомизацию переназначений локальных адресов, что может слегка уменьшить безопасность, но позволит работать таким функциям, как прямое подключение для приложений, например, для сетевых игр.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Быстрое подключение</value>
@@ -2839,6 +2847,14 @@
   <data name="Settings_Connection_ttl">
     <value>Подключение</value>
     <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Автоматические обновления</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Автоматически проверять на наличие и устанавливать обновления Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Подключение при запуске приложения</value>
@@ -2922,11 +2938,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill switch activated!</value>
+    <value>Kill switch активирован!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
+    <value>Kill switch блокирует все соединения, чтобы избежать утечки ваших данных.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -2951,7 +2967,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Информация</value>
   </data>
   <data name="Sidebar_Countries_OurPartners">
-    <value>Наши партнеры</value>
+    <value>Наши партнёры</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Местоположения PLUS ({0})</value>
@@ -3024,7 +3040,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Трансляция</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>Серверы PLUS поддерживают стриминг (Netflix, Disney+ и др.) из любой точки мира.</value>
+    <value>Серверы PLUS поддерживают просмотр Netflix, Disney+ и подобных служб из любой точки мира.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Функции</value>
@@ -3158,16 +3174,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
-    <value>Что такое NAT Type 2?</value>
+    <value>Что такое Умеренный NAT?</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Nat Type 2 может повысить удобство работы в Интернете с различными приложениями и сетевыми видеоиграми.</value>
+    <value>Умеренный NAT, также известный как NAT Type 2, может повысить удобство работы в Интернете с различными приложениями и сетевыми видеоиграми.</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Включить NAT Type 2</value>
+    <value>Включить Умеренный NAT</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
-    <value>Улучшите до платного тарифна, чтобы разблокировать эту и многие другие функции.</value>
+    <value>Улучшите тариф до платного, чтобы разблокировать эту и многие другие функции.</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Блокируйте рекламу и трекеры</value>

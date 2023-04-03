@@ -1914,6 +1914,7 @@
   </data>
   <data name="KillSwitch">
     <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>گواهینامه</value>
@@ -2131,6 +2132,10 @@
   <data name="Notifications_SubscriptionExpired_Title">
     <value>اشتراک VPN شما به پایان رسیده است</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Restart</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>تازه ها چیست</value>
@@ -2434,9 +2439,11 @@
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
     <value>Kill switch Off</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
     <value>Kill switch On</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>بیشتر بدانید</value>
@@ -2452,6 +2459,7 @@
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Permanent kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>روشن کردن هدایت درگاه (Port Forwarding)</value>
@@ -2808,6 +2816,14 @@
   <data name="Settings_Connection_ttl">
     <value>اتصال</value>
     <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Automatic updates</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Automatically check for and install updates to Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>اتصال در باز شدن برنامه</value>

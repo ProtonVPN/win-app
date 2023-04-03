@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
+    <value>Um den Aktualisierungsprozess abzuschließen, wird Proton VPN die Verbindung vorübergehend unterbrechen und den permanenten Kill Switch deaktivieren, falls einer dieser Schalter aktiv ist. Möchtest du fortfahren?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1546,7 +1546,7 @@
     <value>Dieser Schritt dauert nur wenige Minuten. Danach kannst du dich anmelden und alle deine Geräte schützen.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Thanks for upgrading</value>
+    <value>Vielen Dank für das Upgrade</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1598,7 +1598,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Einige Komponenten von Proton VPN sind möglicherweise gesperrt oder deaktiviert, sodass du keine Verbindung herstellen kannst. Klicke auf „Aktivieren“, um dies zu beheben.&lt;LineBreak/&gt;Beachte, dass für diesen Vorgang Admin-Rechte erforderlich sind.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Kill Switch deaktivieren</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1614,7 +1614,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <value>Kill Switch schützt deine IP, indem es alle Verbindungen unterbindet. Im Falle von Problemen kannst du Kill Switch deaktivieren.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1670,10 +1670,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Wenn du die Anwendung beendest, wird die Verbindung zum VPN getrennt.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
+    <value>Kill Switch sperrt alle Verbindungen, um zu verhindern, dass deine Daten nach außen gelangen. Das Beenden der Anwendung beendet Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>„Permanent Kill Switch“ ist aktiviert. Beim Beenden der Anwendung werden alle ausgehenden Verbindungen unterbunden, bis Proton VPN erneut eine Verbindung hergestellt hat.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Menschliche Verifizierung</value>
@@ -1682,10 +1682,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Deine Systemuhr (Datum/Uhrzeit) scheint nicht mehr synchron zu sein, was eine erfolgreiche Verbindung mit dem VPN verhindern könnte. Bitte lies &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;hier&lt;/Hyperlink&gt; für weitere Informationen.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>Mit „Permanent Kill Switch“ kannst du nicht auf das Internet zugreifen, wenn zum VPN aus irgendeinem Grund keine Verbindung besteht.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Enable Permanent kill switch?</value>
+    <value>Permanent Kill Switch aktivieren?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Verstanden</value>
@@ -1732,7 +1732,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <value>Beachte, dass Kill Switch aktiviert ist. Durch das Aktualisieren oder Beenden der Anwendung wird dieser deaktiviert.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1759,7 +1759,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Verstanden</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
+    <value>Damit „Split-Tunneling“ richtig funktioniert, musst du „Kill Switch“ deaktivieren.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Hunderte von Servern in 55 Ländern</value>
@@ -1914,7 +1914,8 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Bitte repariere deine Installation.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill switch</value>
+    <value>Kill Switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Lizenz</value>
@@ -1940,7 +1941,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill switch is currently active</value>
+    <value>Kill Switch ist derzeit aktiv</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -2132,6 +2133,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Notifications_SubscriptionExpired_Title">
     <value>Dein VPN-Abonnement ist abgelaufen</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Neu starten</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Neue Funktionen</value>
@@ -2434,10 +2439,12 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>Kill Switch - Aus</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>Kill Switch - Ein</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Mehr erfahren</value>
@@ -2452,7 +2459,8 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Schadsoftware, Werbung &amp; Tracker blockieren</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanent kill switch</value>
+    <value>Permanent Kill Switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Port-Weiterleitung (Aus)</value>
@@ -2480,7 +2488,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <value>Werbe-Websites verwenden Cookies und Tracker, um dich anzusprechen.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
@@ -2488,7 +2496,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <value>Geschätzte Größe der Werbung, Tracker und Malware, die NetShield blockiert hat.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers">
@@ -2496,7 +2504,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>Tracker sind Websites von Drittanbietern, die Informationen über deine Webaktivitäten sammeln, speichern und verkaufen.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
@@ -2718,7 +2726,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
+    <value>Schließe eine Anwendung oder eine IP‐Adresse vom VPN‐Verkehr aus oder lasse nur bestimmte Anwendungen zu. Kann nicht in Kombination mit Kill Switch verwendet werden.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2810,6 +2818,14 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Verbindung</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Automatische Updates</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Automatisch auf Updates für Proton VPN prüfen und diese installieren.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Beim Starten der App verbinden</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2892,11 +2908,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill switch activated!</value>
+    <value>Kill Switch aktiviert!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
+    <value>Kill Switch sperrt alle deine Verbindungen, um die Weitergabe deiner Daten zu verhindern.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">

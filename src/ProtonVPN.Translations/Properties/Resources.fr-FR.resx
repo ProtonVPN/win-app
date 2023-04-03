@@ -1759,7 +1759,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>J'ai compris</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Pour que le split tunneling fonctionne correctement, vous devez désactiver la fonctionnalité Arrêt d'urgence (kill switch).</value>
+    <value>Pour que Split tunneling fonctionne correctement, vous devez désactiver la fonctionnalité Arrêt d'urgence (kill switch).</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Des centaines de serveurs dans 55 pays</value>
@@ -1915,6 +1915,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
   </data>
   <data name="KillSwitch">
     <value>Arrêt d'urgence (kill switch)</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licence</value>
@@ -2132,6 +2133,10 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
   <data name="Notifications_SubscriptionExpired_Title">
     <value>Votre abonnement VPN a expiré.</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Redémarrer</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Nouveautés</value>
@@ -2435,9 +2440,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
     <value>Arrêt d'urgence (kill switch) désactivé</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
     <value>Arrêt d'urgence (kill switch) activé</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>En savoir plus</value>
@@ -2453,6 +2460,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Arrêt d'urgence (kill switch) permanent</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Redirection de port désactivée</value>
@@ -2484,7 +2492,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Bande passante économisée</value>
+    <value>Données enregistrées</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -2809,6 +2817,14 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
   <data name="Settings_Connection_ttl">
     <value>Connexion</value>
     <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Mises à jour automatiques</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Vérifier et installer automatiquement les mises à jour pour Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Se connecter au démarrage de l'application</value>
