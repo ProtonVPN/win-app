@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
@@ -151,10 +150,7 @@ namespace ProtonVPN.Modals
 
         private async Task CloseModalAsync()
         {
-            // If TryClose() is called before any await (that actually awaits), Caliburn will throw a
-            // NullReferenceException after OnViewReady() ends.
-            await Task.Delay(TimeSpan.FromMilliseconds(1));
-            TryClose(true);
+            await TryCloseAsync(true);
         }
 
         private async Task ReconnectWithoutLastServerAsync()
