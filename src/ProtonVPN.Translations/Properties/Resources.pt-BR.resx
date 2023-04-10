@@ -227,7 +227,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Máxima&lt;/Bold&gt; velocidade ( até 10Gbps)</value>
+    <value>&lt;Bold&gt;Máxima&lt;/Bold&gt; velocidade (até 10Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
@@ -255,7 +255,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Encerrar a sessão do programa irá desconectar a conexão VPN ativa. Você tem certeza que deseja continuar?</value>
+    <value>Sair do aplicativo desconectará a conexão VPN ativa. Você quer continuar?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -2492,7 +2492,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Dados economizados</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">

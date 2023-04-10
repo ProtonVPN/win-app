@@ -3001,7 +3001,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>BASIC i PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Learn more</value>

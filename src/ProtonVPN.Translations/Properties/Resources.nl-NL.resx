@@ -2955,7 +2955,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>INTERNE servers</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
-    <value>Slimme routering</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
     <value>In onderhoud</value>
@@ -3001,7 +3001,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
-    <value>Slimme routering</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
     <value>Met deze technologie kan Proton VPN hogere snelheid en beveiliging bieden in landen waar de toegang tot VPNs beperkt is.</value>

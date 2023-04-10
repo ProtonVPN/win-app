@@ -255,7 +255,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>„Secure Core“-VPN</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -2395,7 +2395,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
-    <value>Dieses Profil wird gelöscht. Möchten Sie fortfahren?</value>
+    <value>Dieses Profil wird gelöscht. Möchtest du fortfahren?</value>
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
@@ -2492,7 +2492,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Daten gespart</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -3095,7 +3095,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
-    <value>VPN-Beschleuniger</value>
+    <value>VPN Accelerator</value>
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">

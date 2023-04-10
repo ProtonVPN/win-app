@@ -264,7 +264,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -2073,7 +2073,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
   </data>
   <data name="Map_lbl_SecureCore">
-    <value>Nucleu securizat</value>
+    <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
@@ -2507,7 +2507,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Date salvate</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -3001,7 +3001,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Detalii</value>
@@ -3013,7 +3013,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Aceste servere oferă cea mai bună performanță pentru BitTorrent și partajarea de fișiere.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
-    <value>Plus</value>
+    <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
     <value>Smart Routing</value>
@@ -3237,11 +3237,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnTcp">
-    <value>OpenVPN - (TCP)</value>
+    <value>OpenVPN (TCP)</value>
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnUdp">
-    <value>OpenVPN - (UDP)</value>
+    <value>OpenVPN (UDP)</value>
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_Smart">

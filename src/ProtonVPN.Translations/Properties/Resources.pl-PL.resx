@@ -3016,19 +3016,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>BASIC i PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Dowiedz się więcej</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
-    <value>P2P / BitTorrent</value>
+    <value>P2P/BitTorrent</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P_Desc">
     <value>Te serwery zapewniają najlepszą wydajność dla protokołu BitTorrent i udostępniania plików.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
-    <value>PLAN PLUS</value>
+    <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
     <value>Smart Routing</value>

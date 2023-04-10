@@ -255,7 +255,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">

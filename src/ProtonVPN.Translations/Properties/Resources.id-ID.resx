@@ -246,7 +246,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_Other">
@@ -1590,7 +1590,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1688,7 +1688,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1922,7 +1922,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Otentikasi</value>
+    <value>Autentikasi</value>
   </data>
   <data name="Login_btn_Login">
     <value>Masuk</value>
@@ -1952,7 +1952,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Kode otentikasi dua faktor</value>
+    <value>Kode autentikasi dua faktor</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Nama pengguna</value>
@@ -1991,7 +1991,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Kode otentikasi dua faktor tidak tepat</value>
+    <value>Kode autentikasi dua faktor tidak tepat</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Kredensial masuk salah. Silakan coba lagi.</value>
@@ -2198,7 +2198,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Untuk dapat menggunakan Port Forwarding, mohon &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;hubungkan&lt;/Hyperlink&gt; diri Anda ke server yang mendukung P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN tidak dapat mengambil sertifikat otentikasi karena masalah jaringan.</value>
+    <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
   <data name="ProfileSyncStatus_val_Failed">
     <value>Gagal</value>
@@ -2460,7 +2460,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Secure Core Aktif</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>TINGKATKAN AKUN</value>
+    <value>TINGKATKAN</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Menonaktifkan internet pada saat koneksi VPN terputus untuk mencegah kebocoran IP.</value>
@@ -2477,7 +2477,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Data disimpan</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -2579,11 +2579,11 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2591,7 +2591,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN tidak dapat memuat ulang sertifikat otentikasi klien.</value>
+    <value>Proton VPN tidak dapat memuat ulang sertifikat autentikasi klien.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
     <value>Server yang coba anda sambung saat ini sedang luring untuk pemeliharaaan. Silahkan pilih server atau profil yang lain.</value>
@@ -2742,7 +2742,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -2881,7 +2881,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
-    <value>Hubungkan diri Anda ke server VPN untuk mendapatkan koneksi yang aman.</value>
+    <value>Hubungkan diri Anda ke server VPN untuk memperoleh koneksi yang aman.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown">
@@ -3133,7 +3133,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3169,7 +3169,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Enkripsi berganda dengan Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

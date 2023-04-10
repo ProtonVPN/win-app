@@ -219,7 +219,7 @@
     <value>Dispositivos</value>
   </data>
   <data name="Account_lbl_Free">
-    <value>Proton VPN Gratuito</value>
+    <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_HighSpeed">
@@ -255,7 +255,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -375,7 +375,7 @@
     <value>Não funcionou?</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>E-mail</value>
+    <value>Correio electrónico</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
@@ -443,7 +443,7 @@
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Email inválido</value>
+    <value>Correio electrónico no válido</value>
   </data>
   <data name="BugReport_msg_Sending">
     <value>A enviar relatório...</value>
@@ -618,7 +618,7 @@
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH">
-    <value>Bahrain</value>
+    <value>Barém</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI">
@@ -626,7 +626,7 @@
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ">
-    <value>Benin</value>
+    <value>Benim</value>
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL">
@@ -654,7 +654,7 @@
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS">
-    <value>Bahamas</value>
+    <value>Baamas</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT">
@@ -666,7 +666,7 @@
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW">
-    <value>Botswana</value>
+    <value>Botsuana</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY">
@@ -750,7 +750,7 @@
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ">
-    <value>Czechia</value>
+    <value>Tchéquia</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE">
@@ -758,7 +758,7 @@
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Djibouti</value>
+    <value>Djibuti</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
@@ -998,11 +998,11 @@
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI">
-    <value>Kiribati</value>
+    <value>Quiribati</value>
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM">
-    <value>Comoros</value>
+    <value>Comores</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN">
@@ -1054,7 +1054,7 @@
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS">
-    <value>Lesotho</value>
+    <value>Lesoto</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT">
@@ -1110,7 +1110,7 @@
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM">
-    <value>Myanmar</value>
+    <value>Mianmar</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN">
@@ -1150,7 +1150,7 @@
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW">
-    <value>Malawi</value>
+    <value>Malauí</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX">
@@ -1378,7 +1378,7 @@
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
-    <value>Eswatini</value>
+    <value>Suazilândia</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC">
@@ -1406,7 +1406,7 @@
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
-    <value>Tokelau</value>
+    <value>Toquelau</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
@@ -1510,11 +1510,11 @@
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE">
-    <value>Yemen</value>
+    <value>Iémen</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT">
-    <value>Mayotte</value>
+    <value>Maiote</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA">
@@ -1842,7 +1842,7 @@ Siga as instruções &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Ainda não foi possível encontrar uma solução&lt;/Bold&gt; - contacte-nos directamente através do nosso &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulário de suporte&lt;/Hyperlink&gt;, email (support@protonvpn.com) ou &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Ainda não foi possível encontrar uma solução&lt;/Bold&gt; - contacte-nos directamente através do nosso &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulário de suporte&lt;/Hyperlink&gt;, correio electrónico (support@protonvpn.com) ou &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
@@ -1937,7 +1937,7 @@ Siga as instruções &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt
     <value>Autenticar</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>Iniciar sessão</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -1945,7 +1945,7 @@ Siga as instruções &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
-    <value>Senha</value>
+    <value>Palavra-passe</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
@@ -1999,7 +1999,7 @@ Siga as instruções &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Repor senha</value>
+    <value>Reinicializar a palavra-passe</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
@@ -2135,7 +2135,7 @@ Siga as instruções &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Restart</value>
+    <value>Reiniciar</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">

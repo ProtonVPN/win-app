@@ -255,7 +255,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -2492,7 +2492,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Datos guardados</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -2986,7 +2986,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>BASIC y PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Más información</value>
@@ -3221,7 +3221,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_Smart">
-    <value>Inteligente</value>
+    <value>Smart</value>
     <comment>The name of the VPN protocol. Means that the protocol will be automatically selected when connecting.</comment>
   </data>
   <data name="VpnProtocol_val_WireGuard">

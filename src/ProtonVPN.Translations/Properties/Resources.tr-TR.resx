@@ -2491,7 +2491,7 @@
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Kazanılan veri</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -2954,7 +2954,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Internal sunucuları</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
-    <value>Akıllı yöneltme</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
     <value>Bakım yapılıyor</value>
@@ -2985,7 +2985,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>Basic ve Plus</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Ayrıntılı bilgi alın</value>
@@ -2997,10 +2997,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Bu sunucular, BitTorrent ve dosya paylaşımı için en iyi başarımı sağlar.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
-    <value>Plus</value>
+    <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
-    <value>Akıllı yöneltme</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
     <value>Bu teknoloji, hizmet verilmesi zor ülkelerde Proton VPN için daha yüksek hız ve güvenlik sağlar.</value>

@@ -219,7 +219,7 @@
     <value>دستگاه‌</value>
   </data>
   <data name="Account_lbl_Free">
-    <value>Proton VPN رایگان</value>
+    <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_HighSpeed">
@@ -2519,7 +2519,7 @@
     <value>Secure Core سرعت VPN را ممکن است کاهش دهد</value>
   </data>
   <data name="SecureCore">
-    <value>هسته امن [Secure Core]</value>
+    <value>Secure Core</value>
   </data>
   <data name="ServerType_val_None">
     <value>استاندارد</value>
@@ -2806,7 +2806,7 @@
     <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
-    <value>شتاب دهنده VPN</value>
+    <value>VPN Accelerator</value>
     <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info">
@@ -2954,7 +2954,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>سرورهای داخلی</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
-    <value>مسیریابی هوشمند</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
     <value>تحت تعمیرات</value>
@@ -2985,7 +2985,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>پایه &amp; پلاس</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>بیشتر بدانید</value>
@@ -3000,7 +3000,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
-    <value>مسیریابی هوشمند</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
     <value>این فناوری به ProtonVPN اجازه می‌دهد تا در کشورهایی که ارائهٔ خدمات در آن‌ها دشوار است، سرعت و امنیت بالاتری را ارائه کند.</value>
@@ -3094,7 +3094,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
-    <value>شتاب دهنده VPN</value>
+    <value>VPN Accelerator</value>
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
@@ -3196,15 +3196,15 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
-    <value>Proton VPN رایگان</value>
+    <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnPlan_val_Visionary">
-    <value>طرح Proton رویایی</value>
+    <value>Proton Visionary</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnPlan_val_Vpnbasic">
-    <value>Proton VPN پایه</value>
+    <value>Proton VPN Basic</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnPlan_val_Vpnplus">
@@ -3212,7 +3212,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnTcp">
-    <value>OpenVPN - TCP</value>
+    <value>OpenVPN (TCP)</value>
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnUdp">
@@ -3220,7 +3220,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_Smart">
-    <value>هوشمند</value>
+    <value>Smart</value>
     <comment>The name of the VPN protocol. Means that the protocol will be automatically selected when connecting.</comment>
   </data>
   <data name="VpnProtocol_val_WireGuard">
