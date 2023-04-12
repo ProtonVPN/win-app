@@ -156,10 +156,8 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<PredefinedProfiles>().SingleInstance();
             builder.RegisterType<CachedProfiles>().SingleInstance();
-            builder.RegisterType<ApiProfiles>().SingleInstance();
             builder.RegisterType<Profiles.Profiles>().SingleInstance();
             builder.RegisterType<SyncProfiles>().AsSelf().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<SyncProfile>().SingleInstance();
 
             builder.RegisterType<AppSettings>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InitialAppSettingsMigration>().AsImplementedInterfaces().AsSelf().SingleInstance();

@@ -289,22 +289,6 @@
     <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="ProfileSyncStatus_val_InProgress" xml:space="preserve">
-    <value>Syncing</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded" xml:space="preserve">
-    <value>Synced</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed" xml:space="preserve">
-    <value>Failed</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden" xml:space="preserve">
-    <value>Overridden</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
   <data name="Account_lbl_AccountType" xml:space="preserve">
     <value>Account Type:</value>
     <comment>The label for account type in Account window</comment>
@@ -537,10 +521,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Profiles_col_Profile" xml:space="preserve">
     <value>Profile</value>
     <comment>The title of profile name column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status" xml:space="preserve">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection" xml:space="preserve">
     <value>Connection</value>
@@ -781,26 +761,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl" xml:space="preserve">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData" xml:space="preserve">
-    <value>No profile changes to synchronize</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info" xml:space="preserve">
-    <value>Profile changes synchronized {0} {1} ago</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info" xml:space="preserve">
-    <value>Profile synchronization has failed</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info" xml:space="preserve">
-    <value>Synchronizing profiles</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="Profiles_btn_Sync" xml:space="preserve">
-    <value>Sync</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
   </data>
   <data name="Settings_lnk_Reconnect" xml:space="preserve">
     <value>Reconnect</value>

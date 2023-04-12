@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
@@ -35,37 +34,13 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Profiles
 {
-    internal class ProfileListModalViewModel : BaseModalViewModel, IProfileSyncStatusAware
+    internal class ProfileListModalViewModel : BaseModalViewModel
     {
         private readonly ProfileManager _profileManager;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly ProfileViewModelFactory _profileHelper;
         private readonly IVpnManager _vpnManager;
-
-        private ProfileSyncStatus _profileSyncStatus = ProfileSyncStatus.Succeeded;
-
-        public ProfileListModalViewModel(
-            ProfileManager profileManager,
-            ProfileViewModelFactory profileHelper,
-            IModals modals,
-            IDialogs dialogs,
-            IVpnManager vpnManager,
-            ProfileSyncViewModel profileSync)
-        {
-            ProfileSync = profileSync;
-            _profileHelper = profileHelper;
-            _profileManager = profileManager;
-            _modals = modals;
-            _dialogs = dialogs;
-            _vpnManager = vpnManager;
-
-            ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectAction);
-            RemoveCommand = new RelayCommand<ProfileViewModel>(RemoveAction);
-            EditCommand = new RelayCommand<ProfileViewModel>(EditProfileAction);
-            CreateProfileCommand = new RelayCommand(CreateProfileAction);
-            TroubleshootCommand = new RelayCommand(TroubleshootAction);
-        }
 
         private IReadOnlyList<ProfileViewModel> _profiles;
         public IReadOnlyList<ProfileViewModel> Profiles
@@ -78,9 +53,25 @@ namespace ProtonVPN.Profiles
         public ICommand EditCommand { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand CreateProfileCommand { get; set; }
-        public ICommand TroubleshootCommand { get; set; }
 
-        public ProfileSyncViewModel ProfileSync { get; }
+        public ProfileListModalViewModel(
+            ProfileManager profileManager,
+            ProfileViewModelFactory profileHelper,
+            IModals modals,
+            IDialogs dialogs,
+            IVpnManager vpnManager)
+        {
+            _profileHelper = profileHelper;
+            _profileManager = profileManager;
+            _modals = modals;
+            _dialogs = dialogs;
+            _vpnManager = vpnManager;
+
+            ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectAction);
+            RemoveCommand = new RelayCommand<ProfileViewModel>(RemoveAction);
+            EditCommand = new RelayCommand<ProfileViewModel>(EditProfileAction);
+            CreateProfileCommand = new RelayCommand(CreateProfileAction);
+        }
 
         protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
@@ -94,23 +85,6 @@ namespace ProtonVPN.Profiles
             if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)))
             {
                 await LoadProfiles();
-            }
-        }
-
-        public void OnProfileSyncStatusChanged(ProfileSyncStatus status, string errorMessage, DateTime changesSyncedAt)
-        {
-            _profileSyncStatus = status;
-            ApplyProfileSyncStatus(Profiles);
-        }
-
-        private void ApplyProfileSyncStatus(IEnumerable<ProfileViewModel> profiles)
-        {
-            if (profiles != null)
-            {
-                foreach (ProfileViewModel profile in profiles)
-                {
-                    profile.OnProfileSyncStatusChanged(_profileSyncStatus);
-                }
             }
         }
 
@@ -136,8 +110,6 @@ namespace ProtonVPN.Profiles
                 .OrderByDescending(p => p.IsPredefined)
                 .ThenBy(p => p.Name)
                 .ToList();
-
-            ApplyProfileSyncStatus(profiles);
 
             Profiles = profiles;
         }
@@ -171,11 +143,6 @@ namespace ProtonVPN.Profiles
         private async void CreateProfileAction()
         {
             await _modals.ShowAsync<ProfileFormModalViewModel>();
-        }
-
-        private async void TroubleshootAction()
-        {
-            await _modals.ShowAsync<TroubleshootModalViewModel>();
         }
     }
 }

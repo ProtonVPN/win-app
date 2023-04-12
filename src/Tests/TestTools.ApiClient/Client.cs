@@ -30,7 +30,6 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
-using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
@@ -96,34 +95,6 @@ namespace TestTools.ApiClient
             }
         }
 
-        public async Task<ApiResponseResult<ProfilesResponse>> GetProfiles()
-        {
-            try
-            {
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/profiles");
-                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                return await GetResponseStreamResult<ProfilesResponse>(response);
-            }
-            catch (Exception e) when (e.IsApiCommunicationException())
-            {
-                throw new HttpRequestException(e.Message, e);
-            }
-        }
-
-        public async Task<ApiResponseResult<ProfileWrapperResponse>> DeleteProfile(string id)
-        {
-            try
-            {
-                HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, $"vpn/profiles/{id}");
-                using HttpResponseMessage response = await _client.SendAsync(request).ConfigureAwait(false);
-                return await GetApiResponseResult<ProfileWrapperResponse>(response);
-            }
-            catch (Exception e) when (e.IsApiCommunicationException())
-            {
-                throw new HttpRequestException(e.Message, e);
-            }
-        }
-
         public Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse() => throw new NotImplementedException();
 
         public Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid) => throw new NotImplementedException();
@@ -155,10 +126,6 @@ namespace TestTools.ApiClient
         public Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files) => throw new NotImplementedException();
 
         public Task<ApiResponseResult<SessionsResponse>> GetSessions() => throw new NotImplementedException();
-
-        public Task<ApiResponseResult<ProfileWrapperResponse>> CreateProfile(BaseProfileResponse profile) => throw new NotImplementedException();
-
-        public Task<ApiResponseResult<ProfileWrapperResponse>> UpdateProfile(string id, BaseProfileResponse profile) => throw new NotImplementedException();
 
         public Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig() => throw new NotImplementedException();
         

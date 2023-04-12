@@ -31,9 +31,8 @@ namespace TestTools.ProfileCleaner
                 return;
             }
 
-            var api = new Api(args[0], args[1]);
+            Api api = new Api(args[0], args[1]);
             await api.Login();
-            await api.DeleteProfiles();
         }
     }
 }

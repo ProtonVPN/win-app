@@ -372,15 +372,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<SyncProfiles>().SyncStatusChanged += (_, e) =>
-            {
-                IEnumerable<IProfileSyncStatusAware> instances = Resolve<IEnumerable<IProfileSyncStatusAware>>();
-                foreach (IProfileSyncStatusAware instance in instances)
-                {
-                    instance.OnProfileSyncStatusChanged(e.Status, e.ErrorMessage, e.ChangesSyncedAt);
-                }
-            };
-
             Resolve<PinFactory>().PinsChanged += (_, _) =>
             {
                 IEnumerable<IPinChangeAware> instances = Resolve<IEnumerable<IPinChangeAware>>();
@@ -580,7 +571,6 @@ namespace ProtonVPN.Core
             Resolve<WelcomeModalManager>().Load();
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().LoadAsync(autoLogin);
-            Resolve<SyncProfiles>().Sync();
             Resolve<INetworkClient>().CheckForInsecureWiFi();
             await Resolve<EventClient>().StoreLatestEvent();
             Resolve<EventTimer>().Start();

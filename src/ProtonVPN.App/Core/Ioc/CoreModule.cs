@@ -19,7 +19,6 @@
 
 using Autofac;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -100,7 +99,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<EventClient>().SingleInstance();
             builder.RegisterType<UserInfoHandler>().AsImplementedInterfaces().SingleInstance();
 
-            builder.RegisterType<VpnProfileHandler>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),

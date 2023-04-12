@@ -24,7 +24,6 @@ using System.Threading.Tasks;
 using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
-using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Core.Auth;
@@ -75,15 +74,6 @@ namespace TestTools.ApiClient
         {
             ApiResponseResult<UserLocationResponse> locationData = await _api.GetLocationDataAsync();
             return locationData.Value.Ip;
-        }
-
-        public async Task DeleteProfiles()
-        {
-            ApiResponseResult<ProfilesResponse> profiles = await _api.GetProfiles();
-            foreach (ProfileResponse profile in profiles.Value.Profiles)
-            {
-                await _api.DeleteProfile(profile.Id);
-            }
         }
 
         private SecureString ToSecureString(string value)
