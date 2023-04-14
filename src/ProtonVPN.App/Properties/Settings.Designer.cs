@@ -12,7 +12,7 @@ namespace ProtonVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -920,6 +920,18 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("01/01/1970 00:00:00")]
+        public global::System.DateTime LastPrimaryApiFailDateUtc {
+            get {
+                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
+            }
+            set {
+                this["LastPrimaryApiFailDateUtc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AlternativeApiBaseUrls {
             get {
@@ -1563,18 +1575,6 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["DnsCache"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1970-01-01")]
-        public global::System.DateTime LastPrimaryApiFailDateUtc {
-            get {
-                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
-            }
-            set {
-                this["LastPrimaryApiFailDateUtc"] = value;
             }
         }
         

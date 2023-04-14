@@ -24,7 +24,7 @@ namespace ProtonVPN.Gui.Models;
 
 public partial class Country : ObservableRecipient
 {
-    [ObservableProperty] 
+    [ObservableProperty]
     private string _countryName;
 
     public Country(string countryName)

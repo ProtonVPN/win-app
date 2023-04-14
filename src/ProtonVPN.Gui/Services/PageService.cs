@@ -1,7 +1,28 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 using Microsoft.UI.Xaml.Controls;
-
+using ProtonVPN.Common.UI.Gallery;
+using ProtonVPN.Common.UI.Gallery.Pages;
 using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.ViewModels.Pages;
 using ProtonVPN.Gui.ViewModels.Pages.Countries;
@@ -35,6 +56,8 @@ public class PageService : IPageService
         Configure<AutoConnectViewModel, AutoConnectPage>();
         Configure<CensorshipViewModel, CensorshipPage>();
         Configure<SettingsViewModel, SettingsPage>();
+
+        ConfigureDebugPages();
     }
 
     public Type GetPageType(string key)
@@ -57,13 +80,13 @@ public class PageService : IPageService
     {
         lock (_pages)
         {
-            var key = typeof(VM).FullName!;
+            string key = typeof(VM).FullName!;
             if (_pages.ContainsKey(key))
             {
                 throw new ArgumentException($"The key {key} is already configured in PageService");
             }
 
-            var type = typeof(V);
+            Type type = typeof(V);
             if (_pages.Any(p => p.Value == type))
             {
                 throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == type).Key}");
@@ -71,5 +94,37 @@ public class PageService : IPageService
 
             _pages.Add(key, type);
         }
+    }
+
+    private void Configure<V>()
+        where V : Page
+    {
+        lock (_pages)
+        {
+            string key = typeof(V).FullName!;
+            if (_pages.ContainsKey(key))
+            {
+                throw new ArgumentException($"The key {key} is already configured in PageService");
+            }
+
+            Type type = typeof(V);
+            if (_pages.Any(p => p.Value == type))
+            {
+                throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == type).Key}");
+            }
+
+            _pages.Add(key, type);
+        }
+    }
+
+    [Conditional("DEBUG")]
+    private void ConfigureDebugPages()
+    {
+        Configure<GalleryPage>();
+        Configure<ColorsPage>();
+        Configure<TypographyPage>();
+        Configure<InputsPage>();
+        Configure<TextFieldsPage>();
+        Configure<MapPage>();
     }
 }

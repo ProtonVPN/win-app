@@ -1,10 +1,28 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 
 using ProtonVPN.Gui.Activation;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Helpers;
 using ProtonVPN.Gui.Models;
 using ProtonVPN.Gui.Services;
 using ProtonVPN.Gui.ViewModels;
@@ -20,32 +38,8 @@ using ProtonVPN.Gui.Views.Pages.Settings.Advanced;
 
 namespace ProtonVPN.Gui;
 
-// To learn more about WinUI 3, see https://docs.microsoft.com/windows/apps/winui/winui3/.
 public partial class App : Application
 {
-    // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
-    // https://docs.microsoft.com/dotnet/core/extensions/generic-host
-    // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
-    // https://docs.microsoft.com/dotnet/core/extensions/configuration
-    // https://docs.microsoft.com/dotnet/core/extensions/logging
-    public IHost Host
-    {
-        get;
-    }
-
-    public static T GetService<T>()
-        where T : class
-    {
-        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
-        {
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
-        }
-
-        return service;
-    }
-
-    public static WindowEx MainWindow { get; } = new MainWindow();
-
     public App()
     {
         InitializeComponent();
@@ -114,10 +108,27 @@ public partial class App : Application
         UnhandledException += App_UnhandledException;
     }
 
-    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    public static WindowEx MainWindow { get; } = new MainWindow();
+
+    // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
+    // https://docs.microsoft.com/dotnet/core/extensions/generic-host
+    // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
+    // https://docs.microsoft.com/dotnet/core/extensions/configuration
+    // https://docs.microsoft.com/dotnet/core/extensions/logging
+    public IHost Host
     {
-        // TODO: Log and handle exceptions as appropriate.
-        // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
+        get;
+    }
+
+    public static T GetService<T>()
+        where T : class
+    {
+        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+        {
+            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+        }
+
+        return service;
     }
 
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
@@ -125,5 +136,11 @@ public partial class App : Application
         base.OnLaunched(args);
 
         await App.GetService<IActivationService>().ActivateAsync(args);
+    }
+
+    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    {
+        // TODO: Log and handle exceptions as appropriate.
+        // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
     }
 }

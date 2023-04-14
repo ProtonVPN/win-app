@@ -1,15 +1,31 @@
-﻿using Microsoft.UI.Xaml;
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using Microsoft.UI.Xaml;
 
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Helpers;
 
 namespace ProtonVPN.Gui.Services;
 
 public class ThemeSelectorService : IThemeSelectorService
 {
     private const string SettingsKey = "AppBackgroundRequestedTheme";
-
-    public ElementTheme Theme { get; set; } = ElementTheme.Default;
 
     private readonly ILocalSettingsService _localSettingsService;
 
@@ -18,18 +34,12 @@ public class ThemeSelectorService : IThemeSelectorService
         _localSettingsService = localSettingsService;
     }
 
+    public ElementTheme Theme { get; set; } = ElementTheme.Default;
+
     public async Task InitializeAsync()
     {
         Theme = await LoadThemeFromSettingsAsync();
         await Task.CompletedTask;
-    }
-
-    public async Task SetThemeAsync(ElementTheme theme)
-    {
-        Theme = theme;
-
-        await SetRequestedThemeAsync();
-        await SaveThemeInSettingsAsync(Theme);
     }
 
     public async Task SetRequestedThemeAsync()
@@ -42,9 +52,17 @@ public class ThemeSelectorService : IThemeSelectorService
         await Task.CompletedTask;
     }
 
+    public async Task SetThemeAsync(ElementTheme theme)
+    {
+        Theme = theme;
+
+        await SetRequestedThemeAsync();
+        await SaveThemeInSettingsAsync(Theme);
+    }
+
     private async Task<ElementTheme> LoadThemeFromSettingsAsync()
     {
-        var themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
+        string? themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
 
         if (Enum.TryParse(themeName, out ElementTheme cacheTheme))
         {
