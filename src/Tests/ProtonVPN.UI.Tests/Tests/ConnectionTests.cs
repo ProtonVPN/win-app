@@ -73,8 +73,6 @@ namespace ProtonVPN.UI.Tests.Tests
         [Category("Smoke")]
         public void ConnectToCreatedProfile()
         {
-            DeleteProfiles();
-
             _homeWindow.NavigateToProfiles();
             _profilesWindow.PressCreateNewProfile()
                 .CreateProfile(TestConstants.ProfileName)

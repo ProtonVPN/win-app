@@ -20,7 +20,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
 using FlaUI.Core;
@@ -39,19 +38,6 @@ namespace ProtonVPN.UI.Tests
         protected static Application App;
         protected static Application Service;
         protected static Window Window;
-
-        public static void DeleteProfiles()
-        {
-            string args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
-            Assembly asm = Assembly.GetExecutingAssembly();
-            string pathToProfileCleaner = Path.Combine(Path.GetDirectoryName(asm.Location), "TestTools.ProfileCleaner.exe");
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo(pathToProfileCleaner, args)
-            };
-            process.Start();
-            process.WaitForExit();
-        }
 
         protected static void DeleteUserConfig()
         {
@@ -72,7 +58,7 @@ namespace ProtonVPN.UI.Tests
             SaveScreenshotAndLogsIfFailed();
             VPNServiceHelper serviceHelper = new VPNServiceHelper();
             serviceHelper.Disconnect().GetAwaiter().GetResult();
-            App.Close();
+            App.Kill();
             App.Dispose();
             try
             {

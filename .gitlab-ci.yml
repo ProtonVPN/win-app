@@ -169,7 +169,6 @@ ui-test:
     - ci\uninstall-app.ps1
     - ci\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
     - ci\uninstall-app.ps1
   after_script:
@@ -195,7 +194,6 @@ connection-test:
     - ci\uninstall-app.ps1
     - ci\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
     - ci\uninstall-app.ps1
   after_script:

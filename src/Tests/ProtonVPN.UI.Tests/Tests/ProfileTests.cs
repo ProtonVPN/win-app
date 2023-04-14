@@ -136,7 +136,6 @@ namespace ProtonVPN.UI.Tests.Tests
         public void TestInitialize()
         {
             DeleteUserConfig();
-            DeleteProfiles();
             LaunchApp();
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToProfiles();

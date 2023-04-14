@@ -57,10 +57,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.MarkupValidator",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.TlsVerify", "src\ProtonVPN.TlsVerify\ProtonVPN.TlsVerify.csproj", "{643CA26B-B80E-4E6A-AAE4-BCEC021D2AA0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTools.ProfileCleaner", "src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj", "{4237AD33-596A-4B35-826A-B4E71461820F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTools.ApiClient", "src\Tests\TestTools.ApiClient\TestTools.ApiClient.csproj", "{F059E362-20A2-472B-82CA-E727D31AC0C7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Translations", "src\ProtonVPN.Translations\ProtonVPN.Translations.csproj", "{2A00C747-8BC0-4EF1-A53E-37A7E156D910}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.RestoreInternet", "ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj", "{8D07769D-0AAE-4224-AECB-DF68567F6B00}"
@@ -163,15 +159,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Update", "Update", "{7B4E66
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Update.Contracts", "src\Update\ProtonVPN.Update.Contracts\ProtonVPN.Update.Contracts.csproj", "{688CEDDE-8105-49ED-937C-567B0F28B7AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Update.Installers", "src\Update\ProtonVPN.Update.Installers\ProtonVPN.Update.Installers.csproj", "{C5CF6D06-C762-4DBE-8771-CE64B9CC81E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Update.Installers", "src\Update\ProtonVPN.Update.Installers\ProtonVPN.Update.Installers.csproj", "{C5CF6D06-C762-4DBE-8771-CE64B9CC81E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IssueReporting", "IssueReporting", "{D2A5F6DB-29AA-47C2-9AF9-96E294328139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IssueReporting", "src\IssueReporting\ProtonVPN.IssueReporting\ProtonVPN.IssueReporting.csproj", "{6DF66A16-6F21-4A72-A366-C5E70E4C34EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.IssueReporting", "src\IssueReporting\ProtonVPN.IssueReporting\ProtonVPN.IssueReporting.csproj", "{6DF66A16-6F21-4A72-A366-C5E70E4C34EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IssueReporting.Contracts", "src\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj", "{77BE3256-5CA0-490C-BB30-B187285E0EE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.IssueReporting.Contracts", "src\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj", "{77BE3256-5CA0-490C-BB30-B187285E0EE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IssueReporting.Installers", "src\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj", "{753A3B06-C763-4869-8ECF-74274049624D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.IssueReporting.Installers", "src\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj", "{753A3B06-C763-4869-8ECF-74274049624D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{56FAE5B5-F1F8-41AF-85E8-54B2CEC2B89E}"
 EndProject
@@ -415,30 +411,6 @@ Global
 		{643CA26B-B80E-4E6A-AAE4-BCEC021D2AA0}.Release|x64.Build.0 = Release|Any CPU
 		{643CA26B-B80E-4E6A-AAE4-BCEC021D2AA0}.Release|x86.ActiveCfg = Release|Any CPU
 		{643CA26B-B80E-4E6A-AAE4-BCEC021D2AA0}.Release|x86.Build.0 = Release|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Debug|x64.Build.0 = Debug|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Debug|x86.Build.0 = Debug|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Release|x64.ActiveCfg = Release|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Release|x64.Build.0 = Release|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Release|x86.ActiveCfg = Release|Any CPU
-		{4237AD33-596A-4B35-826A-B4E71461820F}.Release|x86.Build.0 = Release|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|x64.Build.0 = Debug|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|x86.Build.0 = Debug|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|x64.ActiveCfg = Release|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|x64.Build.0 = Release|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|x86.ActiveCfg = Release|Any CPU
-		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|x86.Build.0 = Release|Any CPU
 		{2A00C747-8BC0-4EF1-A53E-37A7E156D910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A00C747-8BC0-4EF1-A53E-37A7E156D910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A00C747-8BC0-4EF1-A53E-37A7E156D910}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1017,8 +989,6 @@ Global
 		{4290C007-2142-4AD1-8EB6-F80EF2F45AA4} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
 		{A16637C2-2D91-4953-AE04-D91EC188DD7B} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
 		{A0DA4200-6643-4F2C-8450-65B8CE8A5576} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
-		{4237AD33-596A-4B35-826A-B4E71461820F} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
-		{F059E362-20A2-472B-82CA-E727D31AC0C7} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
 		{7D608265-3330-4747-B5B4-9673A119FE6C} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
 		{3E905528-D87C-4552-A32D-66BF90D14DB0} = {DCDB1771-1943-4459-8040-F001758E6E1E}
 		{9E4D6072-C8DE-475A-B9A7-4B6BF6EEEAEB} = {DCDB1771-1943-4459-8040-F001758E6E1E}

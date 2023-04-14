@@ -48,15 +48,6 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.MoveMouseOnCountry("Canada");
             _homeResult.CheckIfConnectButtonIsNotDisplayed();
 
-            _homeWindow.NavigateToProfilesTab()
-                .ConnectViaProfile("SecureCore");
-            _homeResult.CheckIfUpgradeRequiredModalIsShownSecureCore();
-            _homeWindow.ClickWindowsCloseButton();
-
-            _homeWindow.ConnectViaProfile("Paid");
-            _homeResult.CheckIfUpgradeRequiredModalIsShown();
-            _homeWindow.ClickWindowsCloseButton();
-
             _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry);
             _homeResult.CheckIfUpgradeRequiredModalIsShown();
         }
