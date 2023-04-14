@@ -1,4 +1,23 @@
-﻿using Microsoft.UI.Xaml;
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 using ProtonVPN.Gui.Activation;
@@ -9,8 +28,8 @@ namespace ProtonVPN.Gui.Services;
 
 public class ActivationService : IActivationService
 {
-    private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
+    private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IThemeSelectorService _themeSelectorService;
     private UIElement? _shell = null;
 
@@ -45,7 +64,7 @@ public class ActivationService : IActivationService
 
     private async Task HandleActivationAsync(object activationArgs)
     {
-        var activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));
+        IActivationHandler? activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));
 
         if (activationHandler != null)
         {
@@ -66,6 +85,9 @@ public class ActivationService : IActivationService
 
     private async Task StartupAsync()
     {
+#warning Delaying the startup fix some issues with applying the requested theme (when the theme is different from the windows default one)
+        await Task.Delay(200);
+
         await _themeSelectorService.SetRequestedThemeAsync();
         await Task.CompletedTask;
     }

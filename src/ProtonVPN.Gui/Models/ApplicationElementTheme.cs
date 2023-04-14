@@ -29,12 +29,12 @@ public class ApplicationElementTheme
         Header = header;
     }
 
-    public ElementTheme Theme
+    public string Header
     {
         get;
     }
 
-    public string Header
+    public ElementTheme Theme
     {
         get;
     }

@@ -1,0 +1,164 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Common.UI.Gallery.Pages.TypographyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:ProtonVPN.Common.UI.Gallery.Controls"
+      Margin="16"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Gallery/GalleryStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <ScrollViewer Margin="0,0,-12,-12"
+                  Padding="0,0,12,12"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="ContentArea"
+                    Margin="{StaticResource GalleryPageMargin}"
+                    HorizontalAlignment="Left"
+                    Orientation="Vertical">
+
+            <Grid Margin="-4,0,0,16"
+                  Padding="{x:Bind Padding, Mode=OneWay}"
+                  HorizontalAlignment="Stretch"
+                  Background="{x:Bind Background, Mode=OneWay}"
+                  CornerRadius="{ThemeResource ControlCornerRadius}">
+                <Grid.Resources>
+                    <Style BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource TextHintColorBrush}" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="280" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Margin="24,0"
+                           Text="Example" />
+                <TextBlock Grid.Column="1"
+                           Text="Size / Line Height" />
+                <TextBlock Grid.Column="2"
+                           Text="Weight" />
+                <TextBlock Grid.Column="3"
+                           Text="Resource Name" />
+            </Grid>
+
+            <!--  Title Large  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                                        Example="Title Large"
+                                        LineHeight="{StaticResource TitleLargeLineHeight}"
+                                        Size="{StaticResource TitleLargeFontSize}"
+                                        TextResourceName="TitleLargeTextBlockStyle"
+                                        TextStyle="{StaticResource TitleLargeTextBlockStyle}"
+                                        TextWeight="{StaticResource TitleLargeFontWeight}" />
+
+            <!--  Title  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="Transparent"
+                                        Example="Title"
+                                        LineHeight="{StaticResource TitleLineHeight}"
+                                        Size="{StaticResource TitleFontSize}"
+                                        TextResourceName="TitleTextBlockStyle"
+                                        TextStyle="{StaticResource TitleTextBlockStyle}"
+                                        TextWeight="{StaticResource TitleFontWeight}" />
+
+            <!--  Subtitle  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                                        Example="Subtitle"
+                                        LineHeight="{StaticResource SubtitleLineHeight}"
+                                        Size="{StaticResource SubtitleFontSize}"
+                                        TextResourceName="SubtitleTextBlockStyle"
+                                        TextStyle="{StaticResource SubtitleTextBlockStyle}"
+                                        TextWeight="{StaticResource SubtitleFontWeight}" />
+
+            <!--  Body Large Strong  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="Transparent"
+                                        Example="Body Large Strong"
+                                        LineHeight="{StaticResource BodyLargeStrongLineHeight}"
+                                        Size="{StaticResource BodyLargeStrongFontSize}"
+                                        TextResourceName="BodyLargeStrongTextBlockStyle"
+                                        TextStyle="{StaticResource BodyLargeStrongTextBlockStyle}"
+                                        TextWeight="{StaticResource BodyLargeStrongFontWeight}" />
+
+            <!--  Body Large  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                                        Example="Body Large"
+                                        LineHeight="{StaticResource BodyLargeLineHeight}"
+                                        Size="{StaticResource BodyLargeFontSize}"
+                                        TextResourceName="BodyLargeTextBlockStyle"
+                                        TextStyle="{StaticResource BodyLargeTextBlockStyle}"
+                                        TextWeight="{StaticResource BodyLargeFontWeight}" />
+
+            <!--  Body Strong  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="Transparent"
+                                        Example="Body Strong"
+                                        LineHeight="{StaticResource BodyStrongLineHeight}"
+                                        Size="{StaticResource BodyStrongFontSize}"
+                                        TextResourceName="BodyStrongTextBlockStyle"
+                                        TextStyle="{StaticResource BodyStrongTextBlockStyle}"
+                                        TextWeight="{StaticResource BodyStrongFontWeight}" />
+
+            <!--  Body  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                                        Example="Body"
+                                        LineHeight="{StaticResource BodyLineHeight}"
+                                        Size="{StaticResource BodyFontSize}"
+                                        TextResourceName="BodyTextBlockStyle"
+                                        TextStyle="{StaticResource BodyTextBlockStyle}"
+                                        TextWeight="{StaticResource BodyFontWeight}" />
+
+            <!--  Caption Strong  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="Transparent"
+                                        Example="Caption Strong"
+                                        LineHeight="{StaticResource CaptionStrongLineHeight}"
+                                        Size="{StaticResource CaptionStrongFontSize}"
+                                        TextResourceName="CaptionStrongTextBlockStyle"
+                                        TextStyle="{StaticResource CaptionStrongTextBlockStyle}"
+                                        TextWeight="{StaticResource CaptionStrongFontWeight}" />
+
+            <!--  Caption  -->
+            <controls:TypographyControl HorizontalAlignment="Stretch"
+                                        Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                                        Example="Caption"
+                                        LineHeight="{StaticResource CaptionLineHeight}"
+                                        Size="{StaticResource CaptionFontSize}"
+                                        TextResourceName="CaptionTextBlockStyle"
+                                        TextStyle="{StaticResource CaptionTextBlockStyle}"
+                                        TextWeight="{StaticResource CaptionFontWeight}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

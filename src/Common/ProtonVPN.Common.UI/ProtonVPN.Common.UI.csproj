@@ -6,12 +6,24 @@
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <OutputPath>..\bin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Gallery\Controls\ColorsControl.xaml" />
+    <None Remove="Gallery\Controls\MapConnectionControl.xaml" />
+    <None Remove="Gallery\Controls\MapPinControl.xaml" />
+    <None Remove="Gallery\Controls\TypographyControl.xaml" />
+    <None Remove="Gallery\GalleryPage.xaml" />
+    <None Remove="Gallery\GalleryStyles.xaml" />
+    <None Remove="Gallery\Pages\InputsPage.xaml" />
+    <None Remove="Gallery\Pages\MapPage.xaml" />
+    <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
     <None Remove="Styles\Brushes.xaml" />
     <None Remove="Styles\Controls\ButtonStyles.xaml" />
     <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
+    <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
     <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
     <None Remove="Styles\Controls\TextBoxStyles.xaml" />
     <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
@@ -23,8 +35,45 @@
   </ItemGroup>
 
   <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
       <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\NavigationViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\Pages\TextFieldsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\Pages\InputsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\GalleryStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\Controls\TypographyControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\GalleryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -95,6 +144,32 @@
 
   <ItemGroup>
     <Page Update="Styles\Controls\ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\Controls\ColorsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Gallery\Pages\MapPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Remove="Gallery\Pages\MapPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\Controls\MapConnectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Gallery\Controls\MapPinControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -4,7 +4,7 @@
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <RootNamespace>ProtonVPN.Gui</RootNamespace>
-    <ApplicationIcon>Assets/WindowIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets/ProtonVPN.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x64</Platforms>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
@@ -14,6 +14,8 @@
 	  <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsPackageType>None</WindowsPackageType>
+    <OutputPath>..\bin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Views\Pages\Settings\AdvancedSettings\**" />
@@ -59,6 +61,10 @@
   
   <ItemGroup>
     <PRIResource Remove="Views\Pages\Settings\AdvancedSettings\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Assets\protonvpn.ico" />
   </ItemGroup>
   
   <ItemGroup>
