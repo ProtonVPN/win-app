@@ -104,4 +104,7 @@ elif args.command == 'update-gh-list':
 
 elif args.command == 'send-slack-notification':
     print('Sending installer file to slack')
-    slack.send()
+    channel = os.environ.get("SLACK_CHANNEL_ID")
+    if os.environ.get("CI_COMMIT_BRANCH") == 'redesign':
+        channel = os.environ.get("REDESIGN_SLACK_CHANNEL_ID")
+    slack.send(channel)

@@ -49,7 +49,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="System.Collections.Immutable">
       <Version>5.0.0</Version>
@@ -64,8 +64,8 @@
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy $(MSBuildProjectDirectory)\Resources\tunnel.dll $(MSBuildProjectDirectory)\$(OutputPath)tunnel.dll
-copy $(MSBuildProjectDirectory)\Resources\wireguard.dll $(MSBuildProjectDirectory)\$(OutputPath)wireguard.dll</PostBuildEvent>
+    <PostBuildEvent>copy $(MSBuildProjectDirectory)\Resources\tunnel.dll $(OutputPath)tunnel.dll
+copy $(MSBuildProjectDirectory)\Resources\wireguard.dll $(OutputPath)wireguard.dll</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
