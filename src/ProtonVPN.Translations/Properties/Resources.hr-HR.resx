@@ -2224,38 +2224,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Neuspješno</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Neuspješno sinkroniziranje profila</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Sinkronizacija</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Sinkronizacija profila</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Nadjačano</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sinkronizirano</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Promjene profila su sinkronizirane prije {0} {1}</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Nema promjena profila za sinkronizaciju</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Najbrži slobodni poslužitelj</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2373,10 +2341,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Stvori profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sinkroniziraj</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Rješavanje problema</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2396,10 +2360,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Profiles_col_Protocol">
     <value>Protocol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Poslužitelji su trenutno izvan mreže zbog održavanja.</value>
@@ -2498,9 +2458,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Browse the internet without ads and malware.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Ad blocked</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Ads blocked</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Advertisement websites use cookies and trackers to target you.</value>
@@ -2514,9 +2479,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Trackers stopped</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Tracker stopped</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Trackers stopped</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>

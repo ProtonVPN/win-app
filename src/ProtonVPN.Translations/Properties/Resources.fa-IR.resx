@@ -2211,38 +2211,6 @@
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>بدلیل مشکلات شبکه Proton VPN قادر به دریافت گواهینامه تایید تعیین اعتبار نیست.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>ناموفق</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>همگام سازی پروفایل انجام نشد</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>در حال همگام‌سازی</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>همگام سازی پروفایل ها</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>نادیده گرفته شده</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>همگام سازی</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>تغییرات پروفایل همگام‌سازی شدند {0} {1} پیش</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>هیچ تغییر پروفایل برای هماهنگ کردن وجود ندارد</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>سریع‌ترین سرور موجود</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2357,10 +2325,6 @@
     <value>ساخت پروفایل</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>همگام سازی</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>عیب یابی</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2380,10 +2344,6 @@
   <data name="Profiles_col_Protocol">
     <value>پروتکل</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>وضعیت</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>سرورها در دست تعمیر هستند.</value>
@@ -2482,9 +2442,11 @@
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Browse the internet without ads and malware.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Ad blocked</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Advertisement websites use cookies and trackers to target you.</value>
@@ -2498,9 +2460,11 @@
     <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Trackers stopped</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Tracker stopped</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>

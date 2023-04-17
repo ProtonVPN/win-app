@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Sair do aplicativo desconectará a conexão VPN ativa. Você quer continuar?</value>
+    <value>Encerrar a sessão do aplicativo irá desconectar a conexão VPN ativa. Você tem certeza que deseja continuar?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -2212,38 +2212,6 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>O Proton VPN falhou ao buscar o certificado de autenticação devido a um problema de rede.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Falhou</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Falha na sincronização de perfil</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Sincronizando</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Sincronizando perfis</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Substituída</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sincronizado</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Alterações de perfil sincronizadas {0} {1} atrás</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Não há mudanças de perfil para sincronizar</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Servidor mais rápido disponível</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2358,10 +2326,6 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Criar perfil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sincronizar</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Resolução de problemas</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2381,10 +2345,6 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="Profiles_col_Protocol">
     <value>Protocolo</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Os servidores estão atualmente offline para manutenção.</value>
@@ -2483,9 +2443,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Navegue pela internet sem anúncios e malware.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Anúncios bloqueados</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Anúncio Bloqueado</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Os sites de publicidade usam cookies e rastreadores para atingir você.</value>
@@ -2499,9 +2461,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Tamanho estimado de anúncios, rastreadores e malware que o NetShield bloqueou.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Rastreadores parados</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Rastreador parado</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Rastreadores são sites de terceiros que coletam, armazenam e vendem informações sobre sua atividade na web.</value>

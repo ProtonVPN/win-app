@@ -2212,38 +2212,6 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN no pudo obtener el certificado de autenticación debido a un problema de red.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Falló</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>La sincronización del perfil ha fallado</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Sincronizando</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Sincronizando perfiles</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Anulado</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sincronizado</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Cambios de perfil sincronizados hace {0} {1}</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>No hay cambios de perfil para sincronizar</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Servidor más rápido disponible</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2358,10 +2326,6 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Crear perfil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sincronizar</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Solución de problemas</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2381,10 +2345,6 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
   <data name="Profiles_col_Protocol">
     <value>Protocolo</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Estado</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Los servidores están actualmente fuera de línea por mantenimiento.</value>
@@ -2483,9 +2443,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Navegue por internet sin anuncios ni malware.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Anuncios bloqueados</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Anuncio bloqueado</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Los sitios web de publicidad usan cookies y rastreadores para dirigirse a usted.</value>
@@ -2499,9 +2461,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Tamaño estimado de anuncios, rastreadores y malware que NetShield ha bloqueado.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Rastreadores detenidos</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Rastreador detenido</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Los rastreadores son sitios web de terceros que recolectan, almacenan y venden información acerca de su actividad en línea.</value>

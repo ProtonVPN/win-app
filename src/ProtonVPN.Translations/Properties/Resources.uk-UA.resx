@@ -2237,38 +2237,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Стався збій</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Помилка синхронізації профілю</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Синхронізація</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Синхронізація профілів</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Перевизначено</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Синхронізовано</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Зміни профілю синхронізовано {0} {1} тому</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Немає змін профілю для синхронізації</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Найшвидший доступний сервер</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2389,10 +2357,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Створити профіль</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Синхронізувати</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Усунення проблем</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2412,10 +2376,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="Profiles_col_Protocol">
     <value>Протокол</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Стан</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Зараз сервери знаходяться не в мережі через технічне обслуговування.</value>
@@ -2514,25 +2474,41 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Користуйтеся інтернетом без реклами та зловмисних програм.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Реклама заблокована</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Реклами заблоковано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
+    <value>Оголошення заблоковано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Рекламні вебсайти використовують куки та елементи стеження, щоб персоналізувати вас.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Збережених даних</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Орієнтовний розмір рекламних оголошень, елементів стеження та зловмисних програм, заблокованих NetShield.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Трекери зупинено</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Tracker stopped</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
     <value>Trackers stopped</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
+    <value>Трекери зупинено</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Елементи стеження – це сторонні вебсайти, які збирають, зберігають і продають дані про вашу діяльність в інтернеті.</value>

@@ -2211,38 +2211,6 @@
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Eşitlenemedi</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Profil eşitlenemedi</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Eşitleniyor</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Profiller eşitleniyor</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Değiştirildi</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Eşitlendi</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Profil değişiklikleri {0} {1} önce eşitlendi</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Eşitlenecek bir profil değişikliği yok</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Kullanılabilecek en hızlı sunucu</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2357,10 +2325,6 @@
     <value>Profil oluştur</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Eşitle</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Sorun gider</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2380,10 +2344,6 @@
   <data name="Profiles_col_Protocol">
     <value>İletişim kuralı</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Durum</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Sunucular bakım nedeniyle çevrimdışı.</value>
@@ -2482,9 +2442,11 @@
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>İnternette reklamlar ve kötü amaçlı yazılımlar olmadan gezinin.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Reklam engellendi</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Reklam engellendi</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Reklam web siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
@@ -2498,9 +2460,11 @@
     <value>NetShield tarafından engellenen reklamların, izleyicilerin ve kötü amaçlı yazılımların öngörülen boyutu.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>İzleyici durduruldu</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>İzleyici durduruldu</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>İzleyiciler, sitelerdeki etkinliğiniz ile ilgili bilgi toplayan, depolayan ve satan üçüncü taraf siteleridir.</value>

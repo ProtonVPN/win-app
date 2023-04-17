@@ -198,16 +198,16 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Connection_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; злучэнне з VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнне па VPN</value>
   </data>
   <data name="Account_lbl_Connection_Few">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; злучэнні з VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнні па VPN</value>
   </data>
   <data name="Account_lbl_Connection_Many">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; злучэнняў з VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнняў па VPN</value>
   </data>
   <data name="Account_lbl_Connection_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; злучэнні з VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнні па VPN</value>
   </data>
   <data name="Account_lbl_Countries_Other">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краінах</value>
@@ -348,7 +348,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Выхад з праграмы прывядзе да адключэння ад VPN. Вы сапраўды хочаце працягнуць?</value>
+    <value>Выхад з праграмы прывядзе да адключэння ад актыўнага падключэння па VPN. Вы сапраўды хочаце працягнуць?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -1558,13 +1558,13 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_Assign">
-    <value>Прызначыць злучэнні з VPN</value>
+    <value>Прызначыць падключэнні па VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
     <value>Увайсці яшчэ раз</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Пачынаючы знаёмства з Proton VPN, прызначце злучэнні з VPN вашаму ўліковаму запісу або любым іншым падпарадкаваным уліковым запісам.</value>
+    <value>Пачынаючы знаёмства з Proton VPN, прызначце падключэнні па VPN вашаму ўліковаму запісу або любым іншым падпарадкаваным уліковым запісам.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
     <value>Гэты крок зойме ўсяго некалькі хвілін. Пасля гэтага ў вас будзе магчымасць увайсці і абараніць усе вашы прылады.</value>
@@ -1616,7 +1616,7 @@
     <value>Паказаць менш</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Некаторыя праграмы, такія як антывірус або аптымізатары камп'ютара, могуць умешвацца ў працу сістэмных служб, якія патрабуе Proton VPN для ўсталявання бяспечнага злучэння. Націснуўшы кнопку "Уключыць", вы дазваляеце Windows паўторна актываваць злучэнне служб Proton VPN.&lt;LineBreak/&gt;Калі праблема застанецца, то паспрабуйце перазапусціць камп'ютар або паўторна ўсталяваць ProtonVPN.</value>
+    <value>Некаторыя праграмы, такія як антывірус або аптымізатары камп'ютара, могуць умешвацца ў працу сістэмных служб, якія патрабуе Proton VPN для ўсталявання бяспечнага падключэння. Націснуўшы кнопку "Уключыць", вы дазваляеце Windows паўторна актываваць падключэнне са службамі Proton VPN.&lt;LineBreak/&gt;Калі праблема застанецца, то паспрабуйце перазапусціць камп'ютар або паўторна ўсталяваць ProtonVPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
     <value>Некаторыя кампаненты Proton VPN могуць быць заблакіраваны або адключаны, што перашкаджае вам падключыцца. Націсніце на кнопку "Уключыць", каб выправіць гэта.&lt;LineBreak/&gt;Звярніце ўвагу, што для гэтай аперацыі патрабуюцца правы адміністратара.</value>
@@ -1638,7 +1638,7 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch абараняе ваш IP, блакіруючы ўсе злучэнні. У выпадку ўзнікнення праблем вы можаце адключыць Kill Switch.</value>
+    <value>Kill Switch абараняе ваш IP, блакіруючы ўсе падключэнні. У выпадку ўзнікнення праблем вы можаце адключыць Kill Switch.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1658,7 +1658,7 @@
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Выяўлена праблема з праверкай сертыфіката сервера VPN, якая можа ўказваць на тое, што сеткавае злучэнне перахоплена або сервер да якога вы спрабуеце падключыцца мае праблемы з канфігурацыяй. Звярніцеся ў нашу службу падтрымкі, адправіўшы &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Выяўлена праблема з праверкай сертыфіката сервера VPN, якая можа ўказваць на тое, што сеткавае падключэнне перахоплена або сервер да якога вы спрабуеце падключыцца мае праблемы з канфігурацыяй. Звярніцеся ў нашу службу падтрымкі, адправіўшы &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -1673,7 +1673,7 @@
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN вызначыў, што ваша бягучая сетка блакіруе злучэнне VPN. Уключэнне Smart Protocol можа дапамагчы абысці гэта абмежаванне.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Даведацца больш пра Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN вызначыў, што ваша бягучая сетка блакіруе падключэнне да VPN. Уключэнне Smart Protocol можа дапамагчы абысці гэта абмежаванне.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Даведацца больш пра Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -1694,7 +1694,7 @@
     <value>Выхад з праграмы прывядзе да адключэння ад VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill Switch блакіруе ўсе злучэнні, каб пазбегнуць уцечкі вашых даных. Выхад з праграмы прывядзе да адключэння Kill Switch.</value>
+    <value>Kill Switch блакіруе ўсе падключэнні, каб пазбегнуць уцечкі вашых даных. Выхад з праграмы прывядзе да адключэння Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>Пастаянны Kill Switch уключаны. Выхад з праграмы заблакіруе ўсе выходныя падключэнні пакуль Proton VPN не падключыцца зноў.</value>
@@ -1703,10 +1703,10 @@
     <value>Антыспамавая праверка</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>Відавочна, што ваш сістэмны гадзіннік не сінхранізуецца, што можа перашкаджаць паспяховаму злучэнню з VPN. Паглядзіце &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;тут&lt;/Hyperlink&gt; для атрымання дадатковай інфармацыі.</value>
+    <value>Здаецца, ваш сістэмны гадзіннік не сінхранізаваны, што можа перашкаджаць паспяховаму падключэнню да VPN. Дадатковую інфармацыю глядзіце &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;тут&lt;/Hyperlink&gt;.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Калі па якой-небудзь прычыне VPN не будзе працаваць, то пастаянны Kill Switch будзе блакіраваць любыя спробы злучэння з інтэрнэтам.</value>
+    <value>Калі па якой-небудзь прычыне VPN не будзе працаваць, то пастаянны Kill Switch будзе блакіраваць любыя спробы падключэння да інтэрнэту.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Уключыць пастаянны Kill Switch?</value>
@@ -1760,7 +1760,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Злучэнне было разарвана па прычыне таго, што сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
+    <value>Падключэнне было разарвана па прычыне таго, што сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1770,7 +1770,7 @@
     <value>Уключыць перанакіраванне партоў?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігурыраваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша злучэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
+    <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігурыраваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша падключэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1854,7 +1854,7 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Няма злучэння з інтэрнэтам&lt;/Bold&gt; - Пераканайцеся, што ваша злучэнне з інтэрнэтам працуе.</value>
+    <value>&lt;Bold&gt;Няма падключэння да інтэрнэту&lt;/Bold&gt; - Пераканайцеся, што ваша падключэнне да інтэрнэту працуе.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1862,7 +1862,7 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Патэнцыйныя праблемы, якія маглі прывесці да сканчэння часу вашага злучэння, і іх вырашэнне</value>
+    <value>Патэнцыйныя праблемы, якія маглі прывесці да сканчэння часу вашага падключэння, і іх вырашэнне</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
@@ -1873,10 +1873,10 @@
     <value>Пераключыцца на TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN не змог падключыцца таму, што сеткавы адаптар TUN ужо выкарыстоўваецца. Адключыце ўсе актыўныя злучэнні з VPN і паспрабуйце яшчэ раз. Таксама можна пераключыцца на адаптар TAP. Вы заўсёды можаце вярнуцца на TUN у пашыраных наладах праграмы.</value>
+    <value>Proton VPN не змог падключыцца таму, што сеткавы адаптар TUN ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Таксама можна пераключыцца на адаптар TAP. Вы заўсёды можаце вярнуцца на TUN у пашыраных наладах праграмы.</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN не можа злучыцца па прычыне таго, што сеткавы адаптар WireGuard ужо выкарыстоўваецца. Адключыце ўсе актыўныя злучэнні з VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць выбраць іншы пратакол у пашыраных наладах праграмы.</value>
+    <value>Proton VPN не можа падключыцца па прычыне таго, што сеткавы адаптар WireGuard ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць выбраць іншы пратакол у пашыраных наладах праграмы.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Скасаваць</value>
@@ -2098,7 +2098,7 @@
     <value>Даведацца больш</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core прапануе высокі ўзровень бяспекі і прыватнасці, але можа запаволіць ваша злучэнне. Калі вам неабходна большая прадукцыйнасць, рэкамендуецца адключыць Secure Core.</value>
+    <value>Secure Core прапануе высокі ўзровень бяспекі і прыватнасці, але можа запаволіць ваша падключэнне. Калі вам неабходна большая прадукцыйнасць, рэкамендуецца адключыць Secure Core.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Нататка пра хуткасць...</value>
@@ -2119,7 +2119,7 @@
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN вызначыў, што ваша бягучая сетка блакіруе злучэнне VPN. Уключэнне Smart Protocol можа дапамагчы абысці гэта абмежаванне.</value>
+    <value>Proton VPN вызначыў, што ваша бягучая сетка блакіруе падключэнне да VPN. Уключэнне Smart Protocol можа дапамагчы абысці гэта абмежаванне.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
@@ -2187,7 +2187,7 @@
     <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_1">
-    <value>Аўтаматычна злучацца з серверам, які забяспечвае найлепшую хуткасць.</value>
+    <value>Аўтаматычна падключацца да сервера, які забяспечвае найлепшую хуткасць.</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
@@ -2199,11 +2199,11 @@
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>Адаптуйце ваша злучэнне VPN да вашай актыўнасці ў інтэрнэце з дапамогай адмысловых функцый Proton VPN для аптымальнай хуткасці і абароны прыватнасці.</value>
+    <value>Адаптуйце ваша падключэнне па VPN да вашай актыўнасці ў інтэрнэце з дапамогай адмысловых функцый Proton VPN для аптымальнай хуткасці і абароны прыватнасці.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
-    <value>Хуткае злучэнне</value>
+    <value>Хуткае падключэнне</value>
     <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_2">
@@ -2235,38 +2235,6 @@
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Не ўдалося атрымаць сертыфікат аўтэнтыфікацыі Proton VPN па прычыне праблем з сеткай.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Збой</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Збой сінхранізацыі профілю</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Сінхранізацыя</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Сінхранізацыя профіляў</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Перавызначана</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Сінхранізавана</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Змены ў профілі сінхранізаваны {0} {1} таму</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Няма змен у профілі для сінхранізацыі</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Найхутчэйшы даступны сервер</value>
@@ -2388,10 +2356,6 @@
     <value>Стварыць профіль</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Сінхранiзацыя</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Выпраўленне непаладак</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2411,10 +2375,6 @@
   <data name="Profiles_col_Protocol">
     <value>Пратакол</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Статус</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Зараз серверы па-за сеткай для тэхнічнага абслугоўвання.</value>
@@ -2449,7 +2409,7 @@
     <value>Выкарыстаць купон</value>
   </data>
   <data name="QuickLaunch_btn_Connect">
-    <value>Хуткае злучэнне</value>
+    <value>Хуткае падключэнне</value>
     <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
   </data>
   <data name="QuickLaunch_btn_Disconnect">
@@ -2508,14 +2468,22 @@
     <value>ПАЛЕПШЫЦЬ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Адключае інтэрнэт у выпадку разрыву злучэння з VPN для прадухілення выпадковай уцечкі IP-адраса.</value>
+    <value>Адключае інтэрнэт у выпадку разрыву падключэння па VPN для прадухілення выпадковай уцечкі IP-адраса.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Праглядайце старонкі ў інтэрнэце без рэкламы і шкодных праграм.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Рэкламы заблакіраваны</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Рэклама заблакіравана</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Рэкламы заблакіраваны</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
+    <value>Рэклам заблакіраваны</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Рэкламныя вэб-сайты выкарыстоўваюць файлы cookie і праграмы сачэння, каб прааналізаваць вашы перавагі.</value>
@@ -2526,12 +2494,20 @@
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Прыблізны аб'ём рэкламы, праграм сачэння і шкодных праграм, якія заблакіраваў NetShield.</value>
+    <value>Прыблізны памер рэкламы, праграм сачэння і шкодных праграм, якія заблакіраваў NetShield.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Праграмы сачэння спынены</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Праграма сачэння спынена</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Праграмы сачэння спынены</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
+    <value>Праграм сачэння спынены</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Праграмы сачэння (трэкеры) - гэта праграмнае забеспячэнне старонніх вэб-сайтаў, якія збіраюць, захоўваюць і прадаюць інфармацыю пра вашу дзейнасць у інтэрнэце.</value>
@@ -2547,7 +2523,7 @@
     <value>Перанакіроўваць самыя канфідэнцыяльныя даныя праз нашы бяспечныя серверы ў краінах, дзе асабістыя звесткі абаронены законам.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
-    <value>Secure Core можа знізіць хуткасць злучэння з VPN</value>
+    <value>Secure Core можа знізіць хуткасць падключэння па VPN</value>
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
@@ -2647,7 +2623,7 @@
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN не можа злучыцца таму, што сервер RPC недаступны ў вашай сістэме. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Паглядзець магчымыя рашэнні&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN не можа падключыцца таму, што сервер RPC недаступны ў вашай сістэме. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Паглядзець магчымыя рашэнні&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
     <value>Нам вельмі шкада, але дадзены сервер не падтрымлівае WireGuard.</value>
@@ -2716,7 +2692,7 @@
     <value>Сеткавы драйвер OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Сеткавыя драйверы могуць уплываць на ваша злучэнне і хуткасць. Новы адаптар TUN забяспечвае больш высокую хуткасць. У выпадку праблем са злучэннем, мы раім вярнуцца на адаптар TAP.</value>
+    <value>Сеткавыя драйверы могуць уплываць на ваша падключэнне і хуткасць. Новы адаптар TUN забяспечвае больш высокую хуткасць. У выпадку праблем з падключэннем, мы раім вярнуцца на адаптар TAP.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Нестандартныя парты</value>
@@ -2803,7 +2779,7 @@
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Уключыць Smart Protoctol для аўтаматычнага выкарыстання пратакола і парта, якія забяспечваюць лепшае злучэнне.</value>
+    <value>Уключыць Smart Protoctol для аўтаматычнага выкарыстання пратакола і парта, якія забяспечваюць лепшае падключэнне.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
@@ -2813,11 +2789,11 @@
     <value>Умераны NAT адключае рандамізацыю пераназначэнняў лакальных адрасоў, што можа крыху паменшыць вашу бяспеку, але дазволіць такія метады, як прамое падключэнне для праграм (напрыклад, сеткавых гульняў).</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
-    <value>Хуткае злучэнне</value>
+    <value>Хуткае падключэнне</value>
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Кнопка "Хуткае злучэнне" злучыць вас з выбраным профілем.</value>
+    <value>Кнопка "Хуткае падключэнне" падключыць вас да выбранага профілю.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
@@ -2861,7 +2837,7 @@
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Аўтаматычна падключацца да профілю "Хуткае злучэнне" пры запуску Proton VPN.</value>
+    <value>Аўтаматычна падключацца да профілю "Хуткае падключэнне" пры запуску Proton VPN.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
@@ -2914,7 +2890,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
-    <value>Хуткае злучэнне</value>
+    <value>Хуткае падключэнне</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Disconnect">
@@ -2926,7 +2902,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
-    <value>Каб у вас было бяспечнае злучэнне, падключыцеся да сервера VPN.</value>
+    <value>Падключыцеся да сервера VPN для атрымання бяспечнага падключэння.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown">
@@ -2942,7 +2918,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill Switch блакіруе ўсе злучэнні, каб пазбегнуць уцечкі вашых даных.</value>
+    <value>Kill Switch блакіруе ўсе падключэнні, каб пазбегнуць уцечкі вашых даных.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -3004,11 +2980,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Адключэнне Secure Core прывядзе да адключэння актыўнага злучэння з VPN. Вы сапраўды хочаце працягнуць?</value>
+    <value>Адключэнне Secure Core прывядзе да адключэння актыўнага падключэння па VPN. Вы сапраўды хочаце працягнуць?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
-    <value>Пераключэнне на рэжым Secure Core прывядзе да адключэння актыўнага злучэння з VPN. Вы сапраўды хочаце працягнуць?</value>
+    <value>Пераключэнне на рэжым Secure Core прывядзе да адключэння актыўнага падключэння па VPN. Вы сапраўды хочаце працягнуць?</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_ttl">
@@ -3226,7 +3202,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Уключыць перанакіраванне партоў</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Дадайце яшчэ адзін слой шыфравання ў ваша злучэнне з VPN</value>
+    <value>Дадайце яшчэ адзін слой шыфравання ў ваша падключэнне па VPN</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
     <value>Абараніце сябе ад сеткавых атак</value>

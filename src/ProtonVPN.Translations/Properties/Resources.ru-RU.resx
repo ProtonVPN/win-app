@@ -2236,38 +2236,6 @@
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Сбой</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Сбой синхронизации профилей</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Синхронизация</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Синхронизация профилей</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Переопределено</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Синхронизировано</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Изменения профиля синхронизированы {0} {1} назад</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Отсутствуют изменения профиля для синхронизации</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Самый быстрый доступный сервер</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2388,10 +2356,6 @@
     <value>Создать профиль</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Синхронизировать</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Устранение неполадок</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2411,10 +2375,6 @@
   <data name="Profiles_col_Protocol">
     <value>Протокол</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Состояние</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>В настоящее время серверы отключены для техобслуживания.</value>
@@ -2513,25 +2473,41 @@
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Просматривайте интернет без рекламы и вредоносных программ.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Реклам заблокировано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Реклама заблокирована</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Рекламы заблокировано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
+    <value>Реклам заблокировано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Рекламные сайты используют файлы cookie и трекеры, чтобы показывать вам персонализированную рекламу.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Экономия трафика</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Примерный объём рекламы, трекеров и вредоносных программ, которые заблокировал NetShield.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Трекеров заблокировано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Трекер заблокирован</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Трекера заблокировано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
+    <value>Трекеров заблокировано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Трекеры – это сторонние сайты, которые собирают, хранят и продают информацию о ваших действиях в интернете.</value>

@@ -2236,38 +2236,6 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Z powodu problemu z siecią, aplikacja Proton VPN nie może pobrać certyfikatu uwierzytelniania.</value>
   </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Nie powiodło się</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Synchronizacja profilu nie powiodła się</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Trwa synchronizacja</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Trwa synchronizowanie profili</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Nadpisany</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Zsynchronizowano</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Profile zostały zsynchronizowane {0} {1} temu</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Synchronizacja nie jest potrzebna</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Najszybszy dostępny serwer</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
@@ -2388,10 +2356,6 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Utwórz profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Synchronizuj</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Rozwiązywanie problemów</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2411,10 +2375,6 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   <data name="Profiles_col_Protocol">
     <value>Protokół</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Serwery są obecnie niedostępne z powodu prac technicznych.</value>
@@ -2513,25 +2473,41 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Przeglądaj Internet bez reklam i złośliwego oprogramowania.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>reklam zablokowanych</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>reklama zablokowana</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>reklamy zablokowane</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
+    <value>reklam zablokowanych</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Strony reklamowe wykorzystują pliki cookies i śledzą Cię.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>zaoszczędzonych danych</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Szacowany rozmiar reklam, skryptów śledzących i złośliwego oprogramowania zablokowanego przez funkcję NetShield.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>skryptów śledzących zatrzymanych</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>skrypt śledzący zatrzymany</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>skrypty śledzące zatrzymane</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
+    <value>skryptów śledzących zatrzymanych</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Skrypty śledzące to strony trzecie, które zbierają, przechowują i sprzedają informacje o Twojej aktywności w sieci.</value>
