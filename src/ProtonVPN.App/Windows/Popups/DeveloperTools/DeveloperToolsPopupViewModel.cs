@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -372,19 +371,15 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private void OpenProtonRedesignAction()
         {
-            var baseDirectory = Environment.CurrentDirectory;
-            var redesignApp64Path = @"..\ProtonVPN.Gui\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64";
-            var applicationExe = "ProtonVPN.Gui.exe";
-
-            var app64Path = Path.GetFullPath(Path.Combine(baseDirectory, redesignApp64Path, applicationExe));
-
-            if (File.Exists(app64Path))
+            string applicationExe = "ProtonVPN.Gui.exe";
+            try
             {
-                Process.Start(app64Path);
-                return;
+                Process.Start(applicationExe);
             }
-
-            _dialogs.ShowWarningAsync($"Process {applicationExe} not found. Make sure to build the ProtonVPN.Gui app as unpackaged before or just setup ProtonVPN.Gui as startup project from Visual Studio.");
+            catch (Exception ex)
+            {
+                _dialogs.ShowWarningAsync($"Failed to launch {applicationExe}. {ex.Message}");
+            }
         }
     }
 }

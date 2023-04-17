@@ -95,12 +95,6 @@ Source: "..\src\bin\DynamicExpresso.Core.dll"; DestDir: "{app}\{#VersionFolder}"
 Source: "..\src\bin\GalaSoft.MvvmLight.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Caliburn.Micro.Platform.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\log4net.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Toolkit.Uwp.Notifications.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Web.WebView2.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Web.WebView2.Wpf.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Win32.Registry.AccessControl.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Windows.SDK.NET.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Newtonsoft.Json.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\OxyPlot.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\OxyPlot.Wpf.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -128,6 +122,8 @@ Source: "..\src\bin\ProtonVPN.Common.dll.config"; DestDir: "{app}\{#VersionFolde
 Source: "..\src\bin\ProtonVPN.Common.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Common.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Common.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Common.UI.dll"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Common.UI.dll"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Core.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Core.deps.json"; DestDir: "{app}\{#VersionFolder}";
@@ -201,8 +197,7 @@ Source: "..\src\bin\ProtonVPN.WireGuardDriver.deps.json"; DestDir: "{app}\{#Vers
 Source: "..\src\bin\ReswPlusLib.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Sentry.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\System.Diagnostics.EventLog.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\System.Drawing.Common.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.IO.Packaging.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Text.Encodings.Web.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Text.Json.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -211,8 +206,6 @@ Source: "..\src\bin\System.Private.ServiceModel.dll"; DestDir: "{app}\{#VersionF
 Source: "..\src\bin\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Reflection.Context.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Runtime.Caching.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\System.Security.Cryptography.Pkcs.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Security.Cryptography.Xml.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.Security.Permissions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.ServiceModel.Duplex.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -222,20 +215,82 @@ Source: "..\src\bin\System.ServiceModel.NetTcp.dll"; DestDir: "{app}\{#VersionFo
 Source: "..\src\bin\System.ServiceModel.Primitives.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.ServiceModel.Security.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\System.ServiceModel.Syndication.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\System.Windows.Extensions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\WinRT.Runtime.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Grpc.Core.Api.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Grpc.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Grpc.Net.Client.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Grpc.Net.Common.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\grpc_csharp_ext.x64.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Win32.Registry.AccessControl.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Win32.SystemEvents.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\Microsoft.Xaml.Behaviors.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\protobuf-net.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\protobuf-net.Grpc.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\protobuf-net.Grpc.Native.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+
+Source: "..\src\bin\ProtonVPN.Gui.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Gui.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Gui.runtimeconfig.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Gui.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Common.UI.pri"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\resources.pri"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\App.xbf"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\MainWindow.xbf"; DestDir: "{app}\{#VersionFolder}";
+
+Source: "..\src\bin\CommunityToolkit.Labs.WinUI.SettingsControls.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\CommunityToolkit.Mvvm.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\CommunityToolkit.WinUI.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\CommunityToolkit.WinUI.UI.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+
+Source: "..\src\bin\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Toolkit.Uwp.Notifications.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Web.WebView2.Core.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Web.WebView2.Wpf.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Win32.Registry.AccessControl.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Windows.SDK.NET.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Win32.Registry.AccessControl.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Xaml.Behaviors.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.Abstractions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.Binder.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.CommandLine.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.EnvironmentVariables.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.FileExtensions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.Json.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Configuration.UserSecrets.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.DependencyInjection.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.FileProviders.Abstractions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.FileProviders.Physical.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.FileSystemGlobbing.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Hosting.Abstractions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Hosting.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Localization.Abstractions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.Abstractions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.Configuration.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.Console.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.Debug.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.EventLog.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Logging.EventSource.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Options.ConfigurationExtensions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Options.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Extensions.Primitives.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.InteractiveExperiences.Projection.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Windows.AppLifecycle.Projection.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Windows.ApplicationModel.Resources.Projection.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.WinUI.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\WinUIEx.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+
+Source: "..\src\bin\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win10-x64\native"; Flags: signonce;
+Source: "..\src\bin\runtimes\win-x64\native\grpc_csharp_ext.x64.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win-x64\native"; Flags: signonce;
+Source: "..\src\bin\runtimes\win-x64\native\WebView2Loader.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.Windows.Extensions.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.Drawing.Common.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
 
 Source: "..\src\bin\en-US\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\en-US"; Flags: signonce;
 Source: "..\src\bin\cs-CZ\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\cs-CZ"; Flags: signonce;
@@ -269,8 +324,6 @@ Source: "..\src\bin\Resources\vcruntime140.dll"; DestDir: "{app}\{#VersionFolder
 Source: "..\src\bin\Resources\config.ovpn"; DestDir: "{app}\{#VersionFolder}\Resources";
 Source: "..\src\ProtonVPN.Vpn\Resources\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\tunnel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-
-Source: "..\src\bin\runtimes\win-x64\native\WebView2Loader.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
 Source: "tap\tapinstall.exe"; DestDir: "{app}\{#VersionFolder}\Resources\tap"
 Source: "tap\OemVista.inf"; DestDir: "{app}\{#VersionFolder}\Resources\tap"
