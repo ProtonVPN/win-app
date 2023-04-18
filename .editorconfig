@@ -212,13 +212,26 @@ insert_final_newline=false
 tab_width=4
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_naming_
-# dotnet_naming_symbols.private_field_symbol.applicable_kinds = field
-# dotnet_naming_symbols.private_field_symbol.applicable_accessibilities = private
-# dotnet_naming_style.private_field_style.capitalization = camel_case
-# dotnet_naming_rule.private_fields_are_camel_case.severity = error
-# dotnet_naming_rule.private_fields_are_camel_case.symbols = private_field_symbol
-# dotnet_naming_rule.private_fields_are_camel_case.style = private_field_style
+# Private fields
+dotnet_naming_symbols.private_field_symbol.applicable_kinds = field
+dotnet_naming_symbols.private_field_symbol.applicable_accessibilities = private
+dotnet_naming_style.private_field_style.capitalization = camel_case
+dotnet_naming_style.private_field_style.required_prefix=_
+dotnet_naming_rule.private_fields_must_be_prefixed_with__.severity = error
+dotnet_naming_rule.private_fields_must_be_prefixed_with__.symbols = private_field_symbol
+dotnet_naming_rule.private_fields_must_be_prefixed_with__.style = private_field_style
 
+# Constant fields
+dotnet_naming_symbols.constant_field.applicable_kinds = field
+dotnet_naming_symbols.constant_field.applicable_accessibilities = *
+dotnet_naming_symbols.constant_field.required_modifiers = const
+dotnet_naming_style.uppercase.word_separator = _
+dotnet_naming_style.uppercase.capitalization = all_upper
+dotnet_naming_rule.constant_field_should_be_uppercase.severity = error
+dotnet_naming_rule.constant_field_should_be_uppercase.symbols = constant_field
+dotnet_naming_rule.constant_field_should_be_uppercase.style = uppercase
+
+# Non private fields
 dotnet_naming_symbols.non_private_field_symbol.applicable_kinds=field
 dotnet_naming_symbols.non_private_field_symbol.applicable_accessibilities=public,internal,friend,protected,protected_internal,protected_friend
 dotnet_naming_style.non_private_field_style.capitalization=pascal_case
@@ -226,18 +239,21 @@ dotnet_naming_rule.non_private_fields_are_pascal_case.severity=error
 dotnet_naming_rule.non_private_fields_are_pascal_case.symbols=non_private_field_symbol
 dotnet_naming_rule.non_private_fields_are_pascal_case.style=non_private_field_style
 
+# Parameters
 dotnet_naming_symbols.parameter_symbol.applicable_kinds=parameter
 dotnet_naming_style.parameter_style.capitalization=camel_case
 dotnet_naming_rule.parameters_are_camel_case.severity=error
 dotnet_naming_rule.parameters_are_camel_case.symbols=parameter_symbol
 dotnet_naming_rule.parameters_are_camel_case.style=parameter_style
 
+# Classes, struct, enums..
 dotnet_naming_symbols.non_interface_type_symbol.applicable_kinds=class,struct,enum,delegate
 dotnet_naming_style.non_interface_type_style.capitalization=pascal_case
 dotnet_naming_rule.non_interface_types_are_pascal_case.severity=error
 dotnet_naming_rule.non_interface_types_are_pascal_case.symbols=non_interface_type_symbol
 dotnet_naming_rule.non_interface_types_are_pascal_case.style=non_interface_type_style
 
+# Interfaces
 dotnet_naming_symbols.interface_type_symbol.applicable_kinds=interface
 dotnet_naming_style.interface_type_style.capitalization=pascal_case
 dotnet_naming_style.interface_type_style.required_prefix=I
@@ -245,19 +261,24 @@ dotnet_naming_rule.interface_types_must_be_prefixed_with_i.severity=error
 dotnet_naming_rule.interface_types_must_be_prefixed_with_i.symbols=interface_type_symbol
 dotnet_naming_rule.interface_types_must_be_prefixed_with_i.style=interface_type_style
 
+# Methods, Properties and events
 dotnet_naming_symbols.member_symbol.applicable_kinds=method,property,event
 dotnet_naming_style.member_style.capitalization=pascal_case
 dotnet_naming_rule.members_are_pascal_case.severity=error
 dotnet_naming_rule.members_are_pascal_case.symbols=member_symbol
 dotnet_naming_rule.members_are_pascal_case.style=member_style
 
-# Constant Fields Should Be PascalCase
-dotnet_naming_rule.constant_fields_should_be_upper_case.severity=warning
-dotnet_naming_rule.constant_fields_should_be_upper_case.symbols=constant_fields
-dotnet_naming_rule.constant_fields_should_be_upper_case.style=upper_case_style
-dotnet_naming_symbols.constant_fields.applicable_kinds=field
-dotnet_naming_symbols.constant_fields.required_modifiers=const
-dotnet_naming_style.pascal_case_style.capitalization=pascal_case
+# Async Methods
+dotnet_naming_symbols.async_method.applicable_kinds = method
+dotnet_naming_symbols.async_method.applicable_accessibilities = *
+dotnet_naming_symbols.async_method.required_modifiers = async
+dotnet_naming_style.ends_with_async.required_prefix = 
+dotnet_naming_style.ends_with_async.required_suffix = Async
+dotnet_naming_style.ends_with_async.word_separator = 
+dotnet_naming_style.ends_with_async.capitalization = pascal_case
+dotnet_naming_rule.async_method_should_be_ends_with_async.severity = suggestion
+dotnet_naming_rule.async_method_should_be_ends_with_async.symbols = async_method
+dotnet_naming_rule.async_method_should_be_ends_with_async.style = ends_with_async
 
 # ReSharper inspection severities
 resharper_arrange_this_qualifier_highlighting=hint
