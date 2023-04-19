@@ -232,6 +232,13 @@ begin
   Result := ShellExec('', ExpandConstant('{tmp}{\}') + 'netcorecheck' + Dependency_ArchSuffix + '.exe', '--runtimename ' + Name + ' --runtimeversion ' + Version, '', SW_HIDE, ewWaitUntilTerminated, ResultCode) and (ResultCode = 0);
 end;
 
+function IsAppxPackageInstalled(const Name: String): Boolean;
+var
+  ResultCode: Integer;
+begin
+  Result := Exec('PowerShell.exe', '-Command "if ((get-appxpackage -Name ''' + Name + ''').count -ge 1) { exit 0 } else { exit 1 }"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) and (ResultCode = 0);
+end;
+
 procedure Dependency_AddDotNet60Asp;
 begin
   // https://dotnet.microsoft.com/download/dotnet/6.0
@@ -264,6 +271,17 @@ begin
       '/passive /norestart',
       'Visual C++ 2015-2022 Redistributable' + Dependency_ArchTitle,
       Dependency_String('https://aka.ms/vs/17/release/vc_redist.x86.exe', 'https://aka.ms/vs/17/release/vc_redist.x64.exe'),
+      '', False, False);
+  end;
+end;
+
+procedure Dependency_AddWindowsAppSdk;
+begin
+  if not IsAppxPackageInstalled('Microsoft.WinAppRuntime.DDLM.3000.820.152.0-x6_3000.820.152.0_x64*') then begin
+    Dependency_Add('WindowsAppRuntimeInstall.exe',
+      '-q',
+      'Windows App SDK 1.3',
+      'https://aka.ms/windowsappsdk/1.3/1.3.230331000/windowsappruntimeinstall-x64.exe',
       '', False, False);
   end;
 end;
