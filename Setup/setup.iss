@@ -509,6 +509,7 @@ begin
   Dependency_AddDotNet60Asp;
   Dependency_AddDotNet60Desktop;
   Dependency_AddVC2015To2022;
+  Dependency_AddWindowsAppSdk;
   Result := true;
 end;
 
