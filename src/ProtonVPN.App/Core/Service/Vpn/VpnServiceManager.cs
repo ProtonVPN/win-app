@@ -20,7 +20,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
@@ -118,9 +118,12 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnServiceCaller.UpdateAuthCertificate(new AuthCertificateIpcEntity() { Certificate = certificate });
         }
 
-        public async Task<InOutBytes> Total()
+        public async Task<InOutBytes> GetTrafficBytes()
         {
-            return _entityMapper.Map<TrafficBytesIpcEntity, InOutBytes>(await _vpnServiceCaller.Total());
+            Result<TrafficBytesIpcEntity> trafficBytes = await _vpnServiceCaller.GetTrafficBytes();
+            return trafficBytes.Success
+                ? _entityMapper.Map<TrafficBytesIpcEntity, InOutBytes>(trafficBytes.Value)
+                : InOutBytes.Zero;
         }
 
         public async Task RepeatState()

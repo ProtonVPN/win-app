@@ -17,12 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace ProtonVPN.Windows
+namespace ProtonVPN.Common.Collections.Concurrent
 {
-    public interface IOpenMainWindowAware
+    public class ConcurrentHashSet<T>
     {
-        Task OnOpenMainWindow();
+        private readonly ConcurrentDictionary<T, bool> _dictionary = new();
+
+        public bool TryAdd(T item)
+        {
+            return _dictionary.TryAdd(item, true);
+        }
+
+        public List<T> ToList()
+        {
+            return _dictionary.Keys.ToList();
+        }
+
+        public void Clear()
+        {
+            _dictionary.Clear();
+        }
     }
 }

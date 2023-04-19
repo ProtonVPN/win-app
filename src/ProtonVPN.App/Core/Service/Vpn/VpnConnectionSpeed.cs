@@ -83,18 +83,7 @@ namespace ProtonVPN.Core.Service.Vpn
             InOutBytes total;
             using (await _lock.Lock())
             {
-                try
-                {
-                    total = await _vpnServiceManager.Total();
-                }
-                catch (CommunicationException)
-                {
-                    return;
-                }
-                catch (TimeoutException)
-                {
-                    return;
-                }
+                total = await _vpnServiceManager.GetTrafficBytes();
             }
 
             _speed = total - _total;

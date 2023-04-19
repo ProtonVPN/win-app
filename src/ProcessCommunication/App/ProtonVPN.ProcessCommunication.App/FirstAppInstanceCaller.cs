@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2022 Proton Technologies AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,10 +32,32 @@ namespace ProtonVPN.ProcessCommunication.App
             int? appServerPort = appServerPortRegister.ReadOnce();
             if (appServerPort.HasValue && GrpcChannelWrapperFactory.IsPortValid(appServerPort.Value))
             {
-                GrpcChannelWrapper grpcChannelWrapper = new(appServerPort.Value);
+                await CreateGrpcChannelAndSendOpenWindowCommandAsync(appServerPort.Value);
+            }
+        }
+
+        private static async Task CreateGrpcChannelAndSendOpenWindowCommandAsync(int appServerPort)
+        {
+            try
+            {
+                GrpcChannelWrapper grpcChannelWrapper = new(appServerPort);
                 IAppController appController = grpcChannelWrapper.CreateService<IAppController>();
-                await appController.OpenWindow();
+                await SendOpenWindowCommandAsync(appController);
                 await grpcChannelWrapper.ShutdownAsync();
+            }
+            catch
+            {
+            }
+        }
+
+        private static async Task SendOpenWindowCommandAsync(IAppController appController)
+        {
+            try
+            {
+                await appController.OpenWindow();
+            }
+            catch
+            {
             }
         }
     }

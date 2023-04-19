@@ -80,9 +80,9 @@ namespace ProtonVPN.Core.Service.Vpn
             });
         }
 
-        public async Task<InOutBytes> Total()
+        public async Task<InOutBytes> GetTrafficBytes()
         {
-            return await _decorated.Total();
+            return await _decorated.GetTrafficBytes();
         }
 
         public async Task RepeatState()

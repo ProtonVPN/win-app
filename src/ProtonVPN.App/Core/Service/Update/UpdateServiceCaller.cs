@@ -28,8 +28,8 @@ namespace ProtonVPN.Core.Service.Update
 {
     public class UpdateServiceCaller : ServiceControllerCaller<IUpdateController>
     {
-        public UpdateServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) : base(
-            logger, grpcClient, vpnSystemService)
+        public UpdateServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) 
+            : base(logger, grpcClient, vpnSystemService)
         {
         }
 
