@@ -25,7 +25,7 @@ using ProtonVPN.Gui.ViewModels.Bases;
 
 namespace ProtonVPN.Gui.ViewModels.Pages.Countries;
 
-public partial class CountryViewModel : PageViewModelBase, INavigationAware
+public partial class CountryViewModel : PageViewModelBase
 {
     [ObservableProperty]
     private Country? _currentCountry;
@@ -35,12 +35,10 @@ public partial class CountryViewModel : PageViewModelBase, INavigationAware
     {
     }
 
-    public void OnNavigatedFrom()
+    public override void OnNavigatedTo(object parameter)
     {
-    }
+        base.OnNavigatedTo(parameter);
 
-    public void OnNavigatedTo(object parameter)
-    {
         CurrentCountry = parameter as Country;
         if (CurrentCountry != null)
         {

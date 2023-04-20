@@ -26,6 +26,7 @@ using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.Models;
 using ProtonVPN.Gui.Services;
 using ProtonVPN.Gui.ViewModels;
+using ProtonVPN.Gui.ViewModels.Components;
 using ProtonVPN.Gui.ViewModels.Pages;
 using ProtonVPN.Gui.ViewModels.Pages.Countries;
 using ProtonVPN.Gui.ViewModels.Pages.Settings;
@@ -67,6 +68,8 @@ public partial class App : Application
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
+            services.AddTransient<VpnStatusViewModel>();
+            services.AddTransient<NetShieldStatsViewModel>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<CensorshipViewModel>();

@@ -64,7 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Foreground="{TemplateBinding Foreground}" />
                             </Border>
                             <PathIcon x:Name="LinkGlyph"
-                                      Data="{StaticResource IconArrowOutSquare16}"
+                                      Data="{StaticResource IconArrowOutSquare}"
                                       Foreground="{TemplateBinding Foreground}" />
                         </StackPanel>
 

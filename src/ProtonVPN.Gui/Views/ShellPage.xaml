@@ -35,6 +35,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Thickness x:Key="NavigationViewItemContentPresenterMargin">4,-1,8,-1</Thickness>
         <Thickness x:Key="NavigationViewItemOnLeftIconBoxMargin">2,0,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
+
+        <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="BackgroundNormColorBrush"/>
+        <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="BorderWeakColorBrush"/>
     </Page.Resources>
 
     <Grid x:Name="page">
@@ -118,7 +121,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Button>
             </NavigationView.PaneFooter>
 
-            <Frame x:Name="NavigationFrame"
+            <Frame x:Name="NavigationFrame" 
                    Margin="{Binding Header.IsHeaderVisible, ElementName=NavigationViewControl, Converter={StaticResource IsHeaderVisibleToPaneContentMarginConverter}}" />
         </NavigationView>
     </Grid>
