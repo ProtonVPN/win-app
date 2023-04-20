@@ -20,10 +20,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.Contracts.ViewModels;
 
 namespace ProtonVPN.Gui.ViewModels.Bases;
 
-public abstract partial class PageViewModelBase : ObservableRecipient
+public abstract partial class PageViewModelBase : ObservableRecipient, INavigationAware
 {
     [ObservableProperty]
     private bool _canGoBack;
@@ -67,5 +68,15 @@ public abstract partial class PageViewModelBase : ObservableRecipient
     public void NavigateTo(string pageKey)
     {
         NavigationService.NavigateTo(pageKey);
+    }
+
+    public virtual void OnNavigatedFrom()
+    {
+        OnDeactivated();
+    }
+
+    public virtual void OnNavigatedTo(object parameter)
+    {
+        OnActivated();
     }
 }

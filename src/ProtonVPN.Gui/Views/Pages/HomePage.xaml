@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:winui="using:CommunityToolkit.WinUI.UI"
       xmlns:helpers="using:ProtonVPN.Gui.Helpers"
+      xmlns:components="using:ProtonVPN.Gui.Views.Components"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -85,15 +86,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Viewbox Stretch="UniformToFill">
 
                     <PathIcon Margin="-2"
-                              Data="{StaticResource IconEarthFilled}">
+                              Data="{StaticResource IconEarthFilled}"
+                              Opacity="0.6">
                         <PathIcon.Foreground>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="#20FFFFFF" />
-                                <GradientStop Offset="0.6" Color="#00FFFFFF" />
+                                <GradientStop Offset="0" Color="{ThemeResource BorderNormColor}" />
+                                <GradientStop Offset="0.9" Color="Transparent" />
                             </LinearGradientBrush>
                         </PathIcon.Foreground>
                     </PathIcon>
                 </Viewbox>
+
+                <components:VpnStatusComponent HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Top" />
 
                 <Button x:Name="tgbtnConnectionDetails"
                         Height="72"

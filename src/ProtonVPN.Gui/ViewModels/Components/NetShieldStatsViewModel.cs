@@ -17,32 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Contracts.ViewModels;
-using ProtonVPN.Gui.Models;
-using ProtonVPN.Gui.ViewModels.Bases;
 
-namespace ProtonVPN.Gui.ViewModels.Pages.Countries;
+namespace ProtonVPN.Gui.ViewModels.Components;
 
-public partial class CountryViewModel : PageViewModelBase
+public partial class NetShieldStatsViewModel : ObservableRecipient
 {
     [ObservableProperty]
-    private Country? _currentCountry;
+    private int _numberOfTrackersStopped;
 
-    public CountryViewModel(INavigationService navigationService)
-        : base(navigationService, "Country", true)
+    [ObservableProperty]
+    private int _numberOfAdsBlocked;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DataSaved))]
+    private long _dataSavedInBytes;
+
+    public string DataSaved => $"{DataSavedInBytes} B";
+
+    public NetShieldStatsViewModel()
     {
-    }
-
-    public override void OnNavigatedTo(object parameter)
-    {
-        base.OnNavigatedTo(parameter);
-
-        CurrentCountry = parameter as Country;
-        if (CurrentCountry != null)
-        {
-            Title = CurrentCountry.CountryName;
-        }
+        _numberOfTrackersStopped = 14;
+        _numberOfAdsBlocked = 21;
+        _dataSavedInBytes = 1500;
     }
 }

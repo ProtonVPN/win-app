@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,32 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Contracts.ViewModels;
-using ProtonVPN.Gui.Models;
-using ProtonVPN.Gui.ViewModels.Bases;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Gui.ViewModels.Components;
 
-namespace ProtonVPN.Gui.ViewModels.Pages.Countries;
+namespace ProtonVPN.Gui.Views.Components;
 
-public partial class CountryViewModel : PageViewModelBase
+public sealed partial class NetShieldStatsComponent : UserControl
 {
-    [ObservableProperty]
-    private Country? _currentCountry;
-
-    public CountryViewModel(INavigationService navigationService)
-        : base(navigationService, "Country", true)
+    public NetShieldStatsComponent()
     {
+        ViewModel = App.GetService<NetShieldStatsViewModel>();
+        InitializeComponent();
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public NetShieldStatsViewModel ViewModel
     {
-        base.OnNavigatedTo(parameter);
-
-        CurrentCountry = parameter as Country;
-        if (CurrentCountry != null)
-        {
-            Title = CurrentCountry.CountryName;
-        }
+        get;
     }
 }

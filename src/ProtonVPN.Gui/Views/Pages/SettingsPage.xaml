@@ -26,8 +26,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:helpers="using:ProtonVPN.Gui.Helpers"
       mc:Ignorable="d">
     <Page.Resources>
-        <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
-
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource SubtitleTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="Margin" Value="0,24,0,16" />
         </Style>
