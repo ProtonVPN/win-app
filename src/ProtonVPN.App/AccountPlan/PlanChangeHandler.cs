@@ -32,9 +32,9 @@ using ProtonVPN.Translations;
 using ProtonVPN.Windows.Popups.Delinquency;
 using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
-namespace ProtonVPN.PlanDowngrading
+namespace ProtonVPN.AccountPlan
 {
-    public class PlanDowngradeHandler : IVpnPlanAware, IVpnStateAware
+    public class PlanChangeHandler : IVpnPlanAware, IVpnStateAware
     {
         private readonly IUserStorage _userStorage;
         private readonly IVpnManager _vpnManager;
@@ -51,7 +51,7 @@ namespace ProtonVPN.PlanDowngrading
         private bool _isUserDelinquent;
         private bool _isDisconnectedDueToPlanDowngrade;
 
-        public PlanDowngradeHandler(
+        public PlanChangeHandler(
             IUserStorage userStorage,
             IVpnManager vpnManager,
             IAppSettings appSettings,
@@ -71,10 +71,15 @@ namespace ProtonVPN.PlanDowngrading
 
         public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
         {
+            User user = _userStorage.GetUser();
             if (e.IsDowngrade)
             {
-                User user = _userStorage.GetUser();
                 await DowngradeUserAsync(user);
+            }
+            else if (user.Paid() && !_appSettings.CustomDnsEnabled)
+            {
+                _appSettings.NetShieldMode = 2;
+                _appSettings.NetShieldEnabled = true;
             }
         }
 

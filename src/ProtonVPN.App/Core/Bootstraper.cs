@@ -83,7 +83,7 @@ using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.Partners;
-using ProtonVPN.PlanDowngrading;
+using ProtonVPN.AccountPlan;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -566,7 +566,7 @@ namespace ProtonVPN.Core
 
             Resolve<LoginWindow>().Hide();
 
-            Resolve<PlanDowngradeHandler>();
+            Resolve<PlanChangeHandler>();
             await Resolve<IAnnouncementService>().Update();
             Resolve<WelcomeModalManager>().Load();
             await Resolve<SystemTimeValidator>().Validate();
