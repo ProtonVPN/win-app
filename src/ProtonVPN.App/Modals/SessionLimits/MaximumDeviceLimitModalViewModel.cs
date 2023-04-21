@@ -28,8 +28,8 @@ namespace ProtonVPN.Modals.SessionLimits
     {
         private readonly ISubscriptionManager _subscriptionManager;
 
-        public bool HasMaxTierPlan { get; private set; } = true;
-        public bool NotHasMaxTierPlan => !HasMaxTierPlan;
+        public bool IsPayingUser { get; private set; } = true;
+        public bool IsFreeUser => !IsPayingUser;
 
         public MaximumDeviceLimitModalViewModel(ISubscriptionManager subscriptionManager)
         {
@@ -38,9 +38,9 @@ namespace ProtonVPN.Modals.SessionLimits
             UpgradeCommand = new RelayCommand(UpgradeAction);
         }
 
-        public void SetPlan(bool hasMaxTierPlan)
+        public void SetPlan(bool isPayingUser)
         {
-            HasMaxTierPlan = hasMaxTierPlan;
+            IsPayingUser = isPayingUser;
         }
 
         public ICommand UpgradeCommand { get; set; }

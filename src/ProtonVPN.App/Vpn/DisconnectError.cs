@@ -242,32 +242,19 @@ namespace ProtonVPN.Vpn
 
         private async Task ShowMaximumDeviceLimitModalViewModelAsync()
         {
-            bool hasMaxTierPlan = HasMaxTierPlan();
+            bool isPayingUser = _userStorage.GetUser().Paid();
 
-            string notificationDescription = hasMaxTierPlan
+            string notificationDescription = isPayingUser
                 ? Translation.Get("Notifications_MaximumDeviceLimit_Disconnect_Description")
                 : Translation.Get("Notifications_MaximumDeviceLimit_Upgrade_Description");
             _notificationSender.Send(Translation.Get("Notifications_MaximumDeviceLimit_Title"),
                 notificationDescription);
 
             _logger.Info<UserPlanMaxSessionsReachedLog>("The user has reached the maximum device limit. " +
-                $"Has VPN Plus or Visionary? {hasMaxTierPlan.ToYesNoString()}.");
+                $"Is paid/non-free user? {isPayingUser.ToYesNoString()}.");
 
-            _maximumDeviceLimitModalViewModel.SetPlan(hasMaxTierPlan);
+            _maximumDeviceLimitModalViewModel.SetPlan(isPayingUser);
             await _modals.ShowAsync<MaximumDeviceLimitModalViewModel>();
-        }
-
-        private bool HasMaxTierPlan()
-        {
-            User user = _userStorage.GetUser();
-            switch (user.OriginalVpnPlan)
-            {
-                case "vpnplus":
-                case "visionary":
-                    return true;
-                default:
-                    return false;
-            }
         }
 
         private async Task OnNoTapAdaptersErrorAsync(VpnError error, bool networkBlocked)
