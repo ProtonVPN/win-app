@@ -30,8 +30,5 @@ public sealed partial class ProtocolPage : Page
         InitializeComponent();
     }
 
-    public ProtocolViewModel ViewModel
-    {
-        get;
-    }
+    public ProtocolViewModel ViewModel { get; }
 }

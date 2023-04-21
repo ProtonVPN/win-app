@@ -30,8 +30,5 @@ public sealed partial class AdvancedSettingsPage : Page
         InitializeComponent();
     }
 
-    public AdvancedSettingsViewModel ViewModel
-    {
-        get;
-    }
+    public AdvancedSettingsViewModel ViewModel { get; }
 }

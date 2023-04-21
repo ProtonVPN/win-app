@@ -59,20 +59,11 @@ public partial class ShellViewModel : ObservableRecipient
 
     public PageViewModelBase? CurrentPage => NavigationService?.Frame?.GetPageViewModel() as PageViewModelBase;
 
-    public INavigationService NavigationService
-    {
-        get;
-    }
+    public INavigationService NavigationService { get; }
 
-    public INavigationViewService NavigationViewService
-    {
-        get;
-    }
+    public INavigationViewService NavigationViewService { get; }
 
-    public ObservableCollection<NavigationPage> Pages
-    {
-        get;
-    }
+    public ObservableCollection<NavigationPage> Pages { get; }
 
     [Conditional("DEBUG")]
     private void AddDebugPages()

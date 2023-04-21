@@ -29,7 +29,7 @@ namespace ProtonVPN.Common.UI.Gallery.Controls;
 public sealed partial class TypographyControl : UserControl
 {
     public static readonly DependencyProperty ExampleProperty =
-           DependencyProperty.Register(nameof(Example), typeof(string), typeof(TypographyControl), new PropertyMetadata(""));
+        DependencyProperty.Register(nameof(Example), typeof(string), typeof(TypographyControl), new PropertyMetadata(""));
 
     public static readonly DependencyProperty LineHeightProperty =
         DependencyProperty.Register(nameof(LineHeight), typeof(double), typeof(TypographyControl), new PropertyMetadata(14.0));
@@ -38,7 +38,7 @@ public sealed partial class TypographyControl : UserControl
         DependencyProperty.Register(nameof(Size), typeof(double), typeof(TypographyControl), new PropertyMetadata(12.0));
 
     public static readonly DependencyProperty TextResourceNameProperty =
-            DependencyProperty.Register(nameof(TextResourceName), typeof(string), typeof(TypographyControl), new PropertyMetadata(""));
+        DependencyProperty.Register(nameof(TextResourceName), typeof(string), typeof(TypographyControl), new PropertyMetadata(""));
 
     public static readonly DependencyProperty TextStyleProperty =
         DependencyProperty.Register(nameof(TextStyle), typeof(Style), typeof(TypographyControl), new PropertyMetadata(null));

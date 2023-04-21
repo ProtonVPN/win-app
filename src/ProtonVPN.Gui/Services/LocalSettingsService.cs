@@ -28,8 +28,8 @@ namespace ProtonVPN.Gui.Services;
 
 public class LocalSettingsService : ILocalSettingsService
 {
-    private const string _defaultApplicationDataFolder = "ProtonVPN.Gui/ApplicationData";
-    private const string _defaultLocalSettingsFile = "LocalSettings.json";
+    private const string DEFAULT_APPLICATION_DATA_FOLDER = "ProtonVPN.Gui/ApplicationData";
+    private const string DEFAULT_LOCAL_SETTINGS_FILE = "LocalSettings.json";
 
     private readonly string _applicationDataFolder;
     private readonly IFileService _fileService;
@@ -44,8 +44,8 @@ public class LocalSettingsService : ILocalSettingsService
         _fileService = fileService;
         _options = options.Value;
 
-        _applicationDataFolder = Path.Combine(_localApplicationData, _options.ApplicationDataFolder ?? _defaultApplicationDataFolder);
-        _localsettingsFile = _options.LocalSettingsFile ?? _defaultLocalSettingsFile;
+        _applicationDataFolder = Path.Combine(_localApplicationData, _options.ApplicationDataFolder ?? DEFAULT_APPLICATION_DATA_FOLDER);
+        _localsettingsFile = _options.LocalSettingsFile ?? DEFAULT_LOCAL_SETTINGS_FILE;
 
         _settings = new Dictionary<string, object>();
     }
@@ -54,7 +54,7 @@ public class LocalSettingsService : ILocalSettingsService
     {
         if (RuntimeHelper.IsMSIX)
         {
-            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj))
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out object? obj))
             {
                 return await Json.ToObjectAsync<T>((string)obj);
             }
@@ -63,7 +63,7 @@ public class LocalSettingsService : ILocalSettingsService
         {
             await InitializeAsync();
 
-            if (_settings != null && _settings.TryGetValue(key, out var obj))
+            if (_settings != null && _settings.TryGetValue(key, out object? obj))
             {
                 return await Json.ToObjectAsync<T>((string)obj);
             }

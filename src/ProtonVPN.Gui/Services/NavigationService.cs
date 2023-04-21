@@ -71,7 +71,7 @@ public class NavigationService : INavigationService
     {
         if (CanGoBack)
         {
-            var vmBeforeNavigation = _frame.GetPageViewModel();
+            object? vmBeforeNavigation = _frame.GetPageViewModel();
             _frame.GoBack();
             if (vmBeforeNavigation is INavigationAware navigationAware)
             {
@@ -91,7 +91,7 @@ public class NavigationService : INavigationService
         if (_frame != null && (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
         {
             _frame.Tag = clearNavigation;
-            var vmBeforeNavigation = _frame.GetPageViewModel();
+            object? vmBeforeNavigation = _frame.GetPageViewModel();
             bool navigated = _frame.Navigate(pageType, parameter);
             if (navigated)
             {

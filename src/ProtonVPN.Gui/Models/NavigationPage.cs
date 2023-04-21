@@ -37,27 +37,11 @@ public class NavigationPage
         Children = new ObservableCollection<NavigationPage>();
     }
 
-    public ObservableCollection<NavigationPage> Children
-    {
-        get;
-        set;
-    }
+    public ObservableCollection<NavigationPage> Children { get; set; }
 
-    public IconElement Icon
-    {
-        get;
-        set;
-    }
+    public IconElement Icon { get; set; }
 
-    public string Name
-    {
-        get;
-        set;
-    }
+    public string Name { get; set; }
 
-    public Type PageKeyType
-    {
-        get;
-        set;
-    }
+    public Type PageKeyType { get; set; }
 }

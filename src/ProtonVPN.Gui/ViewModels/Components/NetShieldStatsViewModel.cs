@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ProtonVPN.Gui.ViewModels.Components;
@@ -34,12 +33,12 @@ public partial class NetShieldStatsViewModel : ObservableRecipient
     [NotifyPropertyChangedFor(nameof(DataSaved))]
     private long _dataSavedInBytes;
 
-    public string DataSaved => $"{DataSavedInBytes} B";
-
     public NetShieldStatsViewModel()
     {
         _numberOfTrackersStopped = 14;
         _numberOfAdsBlocked = 21;
         _dataSavedInBytes = 1500;
     }
+
+    public string DataSaved => $"{DataSavedInBytes} B";
 }

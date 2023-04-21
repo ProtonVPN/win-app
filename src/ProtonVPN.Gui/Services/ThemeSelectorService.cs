@@ -25,7 +25,7 @@ namespace ProtonVPN.Gui.Services;
 
 public class ThemeSelectorService : IThemeSelectorService
 {
-    private const string SettingsKey = "AppBackgroundRequestedTheme";
+    private const string SETTINGS_KEY = "AppBackgroundRequestedTheme";
 
     private readonly ILocalSettingsService _localSettingsService;
 
@@ -62,7 +62,7 @@ public class ThemeSelectorService : IThemeSelectorService
 
     private async Task<ElementTheme> LoadThemeFromSettingsAsync()
     {
-        string? themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
+        string? themeName = await _localSettingsService.ReadSettingAsync<string>(SETTINGS_KEY);
 
         if (Enum.TryParse(themeName, out ElementTheme cacheTheme))
         {
@@ -74,6 +74,6 @@ public class ThemeSelectorService : IThemeSelectorService
 
     private async Task SaveThemeInSettingsAsync(ElementTheme theme)
     {
-        await _localSettingsService.SaveSettingAsync(SettingsKey, theme.ToString());
+        await _localSettingsService.SaveSettingAsync(SETTINGS_KEY, theme.ToString());
     }
 }

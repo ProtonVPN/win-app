@@ -23,10 +23,7 @@ namespace ProtonVPN.Gui.Contracts.Services;
 
 public interface IThemeSelectorService
 {
-    ElementTheme Theme
-    {
-        get;
-    }
+    ElementTheme Theme { get; }
 
     Task InitializeAsync();
 

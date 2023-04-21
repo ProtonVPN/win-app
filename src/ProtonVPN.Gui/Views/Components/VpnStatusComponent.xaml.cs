@@ -41,10 +41,7 @@ public sealed partial class VpnStatusComponent : UserControl
         InitializeComponent();
     }
 
-    public VpnStatusViewModel ViewModel
-    {
-        get;
-    }
+    public VpnStatusViewModel ViewModel { get; }
 
     #region Simulation
 

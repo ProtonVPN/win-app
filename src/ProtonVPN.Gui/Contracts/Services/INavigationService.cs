@@ -26,15 +26,9 @@ public interface INavigationService
 {
     event NavigatedEventHandler Navigated;
 
-    bool CanGoBack
-    {
-        get;
-    }
+    bool CanGoBack { get; }
 
-    Frame? Frame
-    {
-        get; set;
-    }
+    Frame? Frame { get; set; }
 
     bool GoBack();
 

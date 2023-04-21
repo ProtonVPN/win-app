@@ -29,7 +29,6 @@ using Windows.System;
 
 namespace ProtonVPN.Gui.Views;
 
-// TODO: Update NavigationViewItem titles and icons in ShellPage.xaml.
 public sealed partial class ShellPage : Page
 {
     public ShellPage(ShellViewModel viewModel)
@@ -45,14 +44,10 @@ public sealed partial class ShellPage : Page
         // https://docs.microsoft.com/windows/apps/develop/title-bar?tabs=winui3#full-customization
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
-        App.MainWindow.Activated += MainWindow_Activated;
         AppTitleBarText.Text = "AppDisplayName".GetLocalized();
     }
 
-    public ShellViewModel ViewModel
-    {
-        get;
-    }
+    public ShellViewModel ViewModel { get; }
 
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
     {
@@ -75,12 +70,6 @@ public sealed partial class ShellPage : Page
         bool result = navigationService.GoBack();
 
         args.Handled = result;
-    }
-
-    private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
-    {
-        //var resource = args.WindowActivationState == WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
-        //AppTitleBarText.Foreground = (SolidColorBrush)App.Current.Resources[resource];
     }
 
     private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)

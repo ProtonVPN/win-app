@@ -40,7 +40,7 @@ public sealed partial class MapPage : Page
             child.IsTarget = false;
         }
 
-        MapPinControl pin = new() 
+        MapPinControl pin = new()
         {
             Position = p,
             IsTarget = true
@@ -48,7 +48,7 @@ public sealed partial class MapPage : Page
         canvas.Children.Add(pin);
     }
 
-    private void canvas_PointerReleased(object sender, PointerRoutedEventArgs e)
+    private void OnCanvasPointerReleased(object sender, PointerRoutedEventArgs e)
     {
         if (canvas.Children.OfType<MapPinControl>().Count() >= 10)
         {

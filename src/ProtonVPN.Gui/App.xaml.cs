@@ -118,10 +118,7 @@ public partial class App : Application
     // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
     // https://docs.microsoft.com/dotnet/core/extensions/configuration
     // https://docs.microsoft.com/dotnet/core/extensions/logging
-    public IHost Host
-    {
-        get;
-    }
+    public IHost Host { get; }
 
     public static T GetService<T>()
         where T : class
@@ -134,7 +131,7 @@ public partial class App : Application
         return service;
     }
 
-    protected async override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
 

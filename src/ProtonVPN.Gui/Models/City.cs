@@ -33,8 +33,5 @@ public partial class City : ObservableRecipient
         Servers = new ObservableCollection<Server>();
     }
 
-    public ObservableCollection<Server> Servers
-    {
-        get;
-    }
+    public ObservableCollection<Server> Servers { get; }
 }

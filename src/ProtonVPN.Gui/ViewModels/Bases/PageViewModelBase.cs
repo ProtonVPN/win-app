@@ -53,10 +53,7 @@ public abstract partial class PageViewModelBase : ObservableRecipient, INavigati
         _canGoBack = canGoBack;
     }
 
-    protected INavigationService NavigationService
-    {
-        get;
-    }
+    protected INavigationService NavigationService { get; }
 
     [RelayCommand]
     public void GoBack()

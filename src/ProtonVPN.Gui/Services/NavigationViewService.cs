@@ -102,7 +102,10 @@ public class NavigationViewService : INavigationViewService
         return false;
     }
 
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => _navigationService.GoBack();
+    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+    {
+        _navigationService.GoBack();
+    }
 
     private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {

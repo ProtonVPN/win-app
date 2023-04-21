@@ -31,8 +31,5 @@ public sealed partial class SettingsPage : Page
         InitializeComponent();
     }
 
-    public SettingsViewModel ViewModel
-    {
-        get;
-    }
+    public SettingsViewModel ViewModel { get; }
 }

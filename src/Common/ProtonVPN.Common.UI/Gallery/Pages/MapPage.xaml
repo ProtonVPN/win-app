@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -26,5 +27,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Canvas x:Name="canvas"
             Background="Transparent"
-            PointerReleased="canvas_PointerReleased" />
+            PointerReleased="OnCanvasPointerReleased" />
 </Page>

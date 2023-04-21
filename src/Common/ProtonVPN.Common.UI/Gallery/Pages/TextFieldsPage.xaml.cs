@@ -38,8 +38,5 @@ public sealed partial class TextFieldsPage : Page
         InitializeComponent();
     }
 
-    public ObservableCollection<string> Products
-    {
-        get;
-    }
+    public ObservableCollection<string> Products { get; }
 }
