@@ -30,7 +30,7 @@ namespace ProtonVPN.Common.UI.Gallery.Controls;
 public sealed partial class ColorsControl : UserControl
 {
     public static readonly DependencyProperty ColorBrushProperty =
-            DependencyProperty.Register(nameof(ColorBrush), typeof(Brush), typeof(ColorsControl), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+        DependencyProperty.Register(nameof(ColorBrush), typeof(Brush), typeof(ColorsControl), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
 
     public static readonly DependencyProperty HeaderProperty =
         DependencyProperty.Register(nameof(Header), typeof(string), typeof(TypographyControl), new PropertyMetadata(""));
@@ -49,23 +49,13 @@ public sealed partial class ColorsControl : UserControl
         set => SetValue(ColorBrushProperty, value);
     }
 
-    public string ColorCode
-    {
-        get
+    public string ColorCode =>
+        ColorBrush switch
         {
-            switch (ColorBrush)
-            {
-                case SolidColorBrush solidColorBrush:
-                    return solidColorBrush.Color.ToString();
-
-                case GradientBrush gradientBrush:
-                    return string.Join(" - ", gradientBrush.GradientStops.Select(c => c.Color.ToString()));
-
-                default:
-                    return string.Empty;
-            }
-        }
-    }
+            SolidColorBrush solidColorBrush => solidColorBrush.Color.ToString(),
+            GradientBrush gradientBrush => string.Join(" - ", gradientBrush.GradientStops.Select(c => c.Color.ToString())),
+            _ => string.Empty,
+        };
 
     public string Header
     {

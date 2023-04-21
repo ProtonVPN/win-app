@@ -30,8 +30,5 @@ public sealed partial class SplitTunnelingPage : Page
         InitializeComponent();
     }
 
-    public SplitTunnelingViewModel ViewModel
-    {
-        get;
-    }
+    public SplitTunnelingViewModel ViewModel { get; }
 }

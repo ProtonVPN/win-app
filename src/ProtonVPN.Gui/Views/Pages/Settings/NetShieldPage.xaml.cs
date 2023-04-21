@@ -30,8 +30,5 @@ public sealed partial class NetShieldPage : Page
         InitializeComponent();
     }
 
-    public NetShieldViewModel ViewModel
-    {
-        get;
-    }
+    public NetShieldViewModel ViewModel { get; }
 }

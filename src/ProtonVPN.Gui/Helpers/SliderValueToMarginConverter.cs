@@ -24,23 +24,11 @@ namespace ProtonVPN.Gui.Helpers;
 
 public class SliderValueToMarginConverter : IValueConverter
 {
-    public double GripSize
-    {
-        get;
-        set;
-    } = 4.0;
+    public double GripSize { get; set; } = 4.0;
 
-    public double MaximumValue
-    {
-        get;
-        set;
-    }
+    public double MaximumValue { get; set; }
 
-    public double MinimumValue
-    {
-        get;
-        set;
-    }
+    public double MinimumValue { get; set; }
 
     public object Convert(object value, Type targetType, object parameter, string language)
     {
@@ -50,5 +38,8 @@ public class SliderValueToMarginConverter : IValueConverter
         return new Thickness(coercedValue - MaximumValue + GripSize, 0, MinimumValue - GripSize, 0);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
+    }
 }

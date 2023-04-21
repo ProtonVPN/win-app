@@ -41,10 +41,7 @@ public partial class CountriesViewModel : PageViewModelBase
         };
     }
 
-    public ObservableCollection<Country> Countries
-    {
-        get;
-    }
+    public ObservableCollection<Country> Countries { get; }
 
     [RelayCommand]
     public void NavigateToCountry(Country country)

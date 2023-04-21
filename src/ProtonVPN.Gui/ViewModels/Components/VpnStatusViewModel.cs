@@ -78,7 +78,8 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
         {
             ConnectionStatus.Connected => "Browse the Internet safely",
             ConnectionStatus.Connecting => "Protecting your digital identity",
-            ConnectionStatus.Disconnected => "You're unprotected"
+            ConnectionStatus.Disconnected => "You're unprotected",
+            _ => string.Empty
         };
 
     public string Title =>
@@ -86,7 +87,8 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
         {
             ConnectionStatus.Connected => "Protected",
             ConnectionStatus.Connecting => string.Empty,
-            ConnectionStatus.Disconnected => string.Empty
+            ConnectionStatus.Disconnected => string.Empty,
+            _ => string.Empty
         };
 
     public void Receive(VpnStateChangedMessage message)

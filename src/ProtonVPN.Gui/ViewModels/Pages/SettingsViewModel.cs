@@ -64,10 +64,7 @@ public partial class SettingsViewModel : PageViewModelBase
         }
     }
 
-    public ObservableCollection<ApplicationElementTheme> Themes
-    {
-        get;
-    }
+    public ObservableCollection<ApplicationElementTheme> Themes { get; }
 
     public string VersionDescription
     {

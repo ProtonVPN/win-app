@@ -48,9 +48,7 @@ public static class SettingsStorageExtensions
 
     public static async Task<T?> ReadAsync<T>(this ApplicationDataContainer settings, string key)
     {
-        object? obj;
-
-        if (settings.Values.TryGetValue(key, out obj))
+        if (settings.Values.TryGetValue(key, out object? obj))
         {
             return await Json.ToObjectAsync<T>((string)obj);
         }
@@ -63,7 +61,7 @@ public static class SettingsStorageExtensions
         if (file != null)
         {
             using IRandomAccessStream stream = await file.OpenReadAsync();
-            using DataReader reader = new (stream.GetInputStreamAt(0));
+            using DataReader reader = new(stream.GetInputStreamAt(0));
             await reader.LoadAsync((uint)stream.Size);
             byte[] bytes = new byte[stream.Size];
             reader.ReadBytes(bytes);
@@ -89,8 +87,8 @@ public static class SettingsStorageExtensions
 
     public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
     {
-        var file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
-        var fileContent = await Json.StringifyAsync(content);
+        StorageFile file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
+        string fileContent = await Json.StringifyAsync(content);
 
         await FileIO.WriteTextAsync(file, fileContent);
     }

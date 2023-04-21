@@ -30,8 +30,5 @@ public sealed partial class CustomDnsServersPage : Page
         InitializeComponent();
     }
 
-    public CustomDnsServersViewModel ViewModel
-    {
-        get;
-    }
+    public CustomDnsServersViewModel ViewModel { get; }
 }

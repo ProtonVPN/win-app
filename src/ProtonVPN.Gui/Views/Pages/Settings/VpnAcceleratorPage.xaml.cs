@@ -30,8 +30,5 @@ public sealed partial class VpnAcceleratorPage : Page
         InitializeComponent();
     }
 
-    public VpnAcceleratorViewModel ViewModel
-    {
-        get;
-    }
+    public VpnAcceleratorViewModel ViewModel { get; }
 }

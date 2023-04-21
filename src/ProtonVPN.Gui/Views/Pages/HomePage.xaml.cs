@@ -35,10 +35,7 @@ public sealed partial class HomePage : Page
         SplitViewArea.SizeChanged += OnSplitViewAreaSizeChanged;
     }
 
-    public HomeViewModel ViewModel
-    {
-        get;
-    }
+    public HomeViewModel ViewModel { get; }
 
     private void OnSplitViewAreaSizeChanged(object sender, SizeChangedEventArgs e)
     {

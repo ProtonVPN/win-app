@@ -19,7 +19,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Models;
 using ProtonVPN.Gui.ViewModels.Bases;
 

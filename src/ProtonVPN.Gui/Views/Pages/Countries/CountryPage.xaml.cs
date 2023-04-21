@@ -30,8 +30,5 @@ public sealed partial class CountryPage : Page
         InitializeComponent();
     }
 
-    public CountryViewModel ViewModel
-    {
-        get;
-    }
+    public CountryViewModel ViewModel { get; }
 }

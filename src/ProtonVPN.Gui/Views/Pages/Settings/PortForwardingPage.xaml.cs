@@ -30,8 +30,5 @@ public sealed partial class PortForwardingPage : Page
         InitializeComponent();
     }
 
-    public PortForwardingViewModel ViewModel
-    {
-        get;
-    }
+    public PortForwardingViewModel ViewModel { get; }
 }

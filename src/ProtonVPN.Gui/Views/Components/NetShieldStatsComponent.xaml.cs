@@ -30,8 +30,5 @@ public sealed partial class NetShieldStatsComponent : UserControl
         InitializeComponent();
     }
 
-    public NetShieldStatsViewModel ViewModel
-    {
-        get;
-    }
+    public NetShieldStatsViewModel ViewModel { get; }
 }

@@ -30,8 +30,5 @@ public sealed partial class KillSwitchPage : Page
         InitializeComponent();
     }
 
-    public KillSwitchViewModel ViewModel
-    {
-        get;
-    }
+    public KillSwitchViewModel ViewModel { get; }
 }

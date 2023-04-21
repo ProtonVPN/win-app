@@ -30,8 +30,5 @@ public sealed partial class CensorshipPage : Page
         InitializeComponent();
     }
 
-    public CensorshipViewModel ViewModel
-    {
-        get;
-    }
+    public CensorshipViewModel ViewModel { get; }
 }

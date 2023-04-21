@@ -33,8 +33,5 @@ public partial class Country : ObservableRecipient
         Cities = new ObservableCollection<City>();
     }
 
-    public ObservableCollection<City> Cities
-    {
-        get;
-    }
+    public ObservableCollection<City> Cities { get; }
 }

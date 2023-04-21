@@ -30,8 +30,5 @@ public sealed partial class AutoConnectPage : Page
         InitializeComponent();
     }
 
-    public AutoConnectViewModel ViewModel
-    {
-        get;
-    }
+    public AutoConnectViewModel ViewModel { get; }
 }

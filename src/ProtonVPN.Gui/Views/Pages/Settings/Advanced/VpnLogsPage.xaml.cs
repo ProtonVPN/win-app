@@ -30,8 +30,5 @@ public sealed partial class VpnLogsPage : Page
         InitializeComponent();
     }
 
-    public VpnLogsViewModel ViewModel
-    {
-        get;
-    }
+    public VpnLogsViewModel ViewModel { get; }
 }
