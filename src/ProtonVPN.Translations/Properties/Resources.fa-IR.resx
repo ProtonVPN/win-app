@@ -1569,18 +1569,6 @@
     <value>حساب کاربری VPN شما دارای صورت‌حساب‌های در حال انتظار است</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>بررسی صورت‌حساب‌ها</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>این حساب کاربری به علت صورت‌حساب‌های پرداخت نشده بدهکار علامت زده شده است. شما می‌توانید به استفاده از Proton VPN ادامه دهید، اما همهٔ قابلیت‌های پرداختی در حال حاضر غیرفعال هستند.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;دربارهٔ بدهی بیشتر بخوانید.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>حساب با پرداخت‌های معوقه</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>فعال‌سازی</value>
   </data>

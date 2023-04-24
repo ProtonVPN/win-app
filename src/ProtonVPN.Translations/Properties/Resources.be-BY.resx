@@ -1594,18 +1594,6 @@
     <value>У вашым уліковым запісе ProtonVPN ёсць неаплачаныя рахункі</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Праверыць рахункі</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Гэты ўліковы запіс пазначаны як неаплачаны па прычыне пратэрмінаваных рахункаў. Вы можаце і далей карыстацца Proton VPN, але ўсе платныя функцыі цяпер будуць адключаны.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Даведацца больш пра запазычанасць.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Запазычаны ўліковы запіс</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Уключыць</value>
   </data>
@@ -1946,7 +1934,7 @@
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Час сеанса завяршыўся. Увайдзіце яшчэ раз.</value>
+    <value>Ваш сеанс пратэрмінаваны. Увайдзіце яшчэ раз.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -1984,7 +1972,7 @@
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Выконваецца падключэнне да Proton VPN...</value>
+    <value>Адбываецца падключэнне да Proton VPN...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
@@ -3146,7 +3134,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
+    <value>Доступ да больш як {0} сервераў у {1} краінах</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
