@@ -17,12 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Gui.ViewModels.Components;
 
 namespace ProtonVPN.Gui.Views.Components;
 
-public sealed partial class NetShieldStatsComponent : UserControl
+public sealed partial class NetShieldStatsComponent 
 {
     public NetShieldStatsComponent()
     {

@@ -17,12 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Gui.ViewModels.Pages.Countries;
 
 namespace ProtonVPN.Gui.Views.Pages.Countries;
 
-public sealed partial class CountryPage : Page
+public sealed partial class CountryPage 
 {
     public CountryPage()
     {

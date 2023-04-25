@@ -101,6 +101,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <GradientStop Offset="0" Color="{ThemeResource GradientFadingStartColor}" />
         <GradientStop Offset="1" Color="{ThemeResource GradientFadingEndColor}" />
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ReverseGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Offset="0" Color="{ThemeResource GradientFadingStartColor}" />
+        <GradientStop Offset="1" Color="{ThemeResource GradientFadingEndColor}" />
+    </LinearGradientBrush>
     <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="{ThemeResource GradientUnprotectedStartColor}" />
         <GradientStop Offset="1" Color="{ThemeResource GradientUnprotectedEndColor}" />

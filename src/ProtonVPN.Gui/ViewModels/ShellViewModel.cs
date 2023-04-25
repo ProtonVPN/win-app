@@ -79,6 +79,8 @@ public partial class ShellViewModel : ObservableRecipient
             new NavigationPage("Text Fields", "", typeof(TextFieldsPage)));
         galleryPage.Children.Add(
             new NavigationPage("Map", "", typeof(MapPage)));
+        galleryPage.Children.Add(
+            new NavigationPage("VPN Specific", "", typeof(VpnSpecificPage)));
 
         Pages.Add(galleryPage);
     }

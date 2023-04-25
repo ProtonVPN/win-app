@@ -17,13 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Gui.ViewModels.Pages.Settings;
 
 namespace ProtonVPN.Gui.Views.Pages.Settings;
 
-public sealed partial class VpnAcceleratorPage : Page
-{
+public sealed partial class VpnAcceleratorPage
+{ 
     public VpnAcceleratorPage()
     {
         ViewModel = App.GetService<VpnAcceleratorViewModel>();

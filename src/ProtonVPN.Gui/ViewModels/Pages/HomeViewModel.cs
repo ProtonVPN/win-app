@@ -45,4 +45,9 @@ public partial class HomeViewModel : PageViewModelBase
     {
         IsDetailsPaneOpen = true;
     }
+
+    public void ShowConnectionDetails()
+    {
+        IsDetailsPaneOpen = true;
+    }
 }

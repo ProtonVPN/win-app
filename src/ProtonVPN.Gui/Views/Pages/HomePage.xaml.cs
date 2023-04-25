@@ -23,7 +23,7 @@ using ProtonVPN.Gui.ViewModels.Pages;
 
 namespace ProtonVPN.Gui.Views.Pages;
 
-public sealed partial class HomePage : Page
+public sealed partial class HomePage 
 {
     private const double INLINE_MODE_THRESHOLD_WIDTH = 620.0;
 
