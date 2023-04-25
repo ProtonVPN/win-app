@@ -99,7 +99,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <CheckBox Name="cbCompactFlag"
                                   Margin="4,4,0,0"
                                   Content="Is Compact" />
-
                         <Border Height="40" />
                     </StackPanel>
                 </gallery:SampleControl.Options>
