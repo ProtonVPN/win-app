@@ -29,7 +29,7 @@ using Windows.System;
 
 namespace ProtonVPN.Gui.Views;
 
-public sealed partial class ShellPage : Page
+public sealed partial class ShellPage
 {
     public ShellPage(ShellViewModel viewModel)
     {

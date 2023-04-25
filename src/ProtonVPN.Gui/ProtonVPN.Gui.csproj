@@ -45,7 +45,13 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Page Update="Views\Controls\UserLocationControl.xaml">
+    <Page Update="Views\Components\HelpComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\Components\MapComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\Components\ConnectionCardComponent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\Components\NetShieldStatsComponent.xaml">
@@ -68,9 +74,11 @@
 
   <ItemGroup>
     <None Remove="Assets\protonvpn.ico" />
+    <None Remove="Views\Components\ConnectionCardComponent.xaml" />
+    <None Remove="Views\Components\HelpComponent.xaml" />
+    <None Remove="Views\Components\MapComponent.xaml" />
     <None Remove="Views\Components\NetShieldStatsComponent.xaml" />
     <None Remove="Views\Components\VpnStatusComponent.xaml" />
-    <None Remove="Views\Controls\UserLocationControl.xaml" />
   </ItemGroup>
   
   <ItemGroup>

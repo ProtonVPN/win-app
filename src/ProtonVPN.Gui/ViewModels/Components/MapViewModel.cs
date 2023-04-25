@@ -18,36 +18,9 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.ViewModels.Bases;
 
-namespace ProtonVPN.Gui.ViewModels.Pages;
+namespace ProtonVPN.Gui.ViewModels.Components;
 
-public partial class HomeViewModel : PageViewModelBase
+public class MapViewModel : ObservableRecipient
 {
-    [ObservableProperty]
-    private bool _isDetailsPaneOpen;
-
-    public HomeViewModel(INavigationService navigationService)
-        : base(navigationService)
-    {
-    }
-
-    [RelayCommand]
-    public void CloseDetailsPane()
-    {
-        IsDetailsPaneOpen = false;
-    }
-
-    [RelayCommand]
-    public void OpenDetailsPane()
-    {
-        IsDetailsPaneOpen = true;
-    }
-
-    public void ShowConnectionDetails()
-    {
-        IsDetailsPaneOpen = true;
-    }
 }

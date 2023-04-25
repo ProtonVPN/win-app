@@ -126,5 +126,6 @@ public class PageService : IPageService
         Configure<InputsPage>();
         Configure<TextFieldsPage>();
         Configure<MapPage>();
+        Configure<VpnSpecificPage>();
     }
 }

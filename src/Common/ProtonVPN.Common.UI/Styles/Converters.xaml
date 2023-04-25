@@ -23,4 +23,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:converters="using:ProtonVPN.Common.UI.Converters">
 
     <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
+    <converters:NotNullToBooleanConverter x:Key="NotNullToBooleanConverter" />
+    <converters:NotBooleanToBooleanConverter x:Key="NotBooleanToBooleanConverter" />
 </ResourceDictionary>

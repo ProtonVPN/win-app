@@ -29,27 +29,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <Page.Resources>
-        <x:Double x:Key="MinimumDetailsPaneWidth">260</x:Double>
-        <x:Double x:Key="MaximumDetailsPaneWidth">460</x:Double>
 
-        <helpers:SliderValueToMarginConverter x:Key="SliderValueToMarginConverter"
-                                              MaximumValue="{StaticResource MaximumDetailsPaneWidth}"
-                                              MinimumValue="{StaticResource MinimumDetailsPaneWidth}" />
+        <ResourceDictionary>
+           
+            <AcrylicBrush x:Key="ConnectionDetailsBackgroundBrush"
+                          FallbackColor="{ThemeResource BackgroundNormColor}"
+                          TintColor="{ThemeResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
 
-        <x:String x:Key="IconEarthFilled">M14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28ZM25.9966 14.2879C25.9989 14.1922 26 14.0962 26 14C26 11.1411 25.0002 8.51567 23.3312 6.45431C23.1206 6.48131 22.9101 6.54497 22.7107 6.64467L21.5515 7.22427C20.6612 7.66938 20.2338 8.70135 20.5485 9.64558L21.633 12.8989C21.8599 13.5798 22.4343 14.0869 23.1381 14.2276L24.6078 14.5216C25.1118 14.6224 25.6034 14.5241 25.9966 14.2879ZM2.00471 14.3396L2.48747 14.9833C3.41171 16.2156 4.96145 16.8077 6.47193 16.5056L7.19142 16.3617C8.21308 16.1574 9.22047 16.7716 9.5067 17.7734L10.7149 22.0022C10.8933 22.6266 11.3684 23.1228 11.9845 23.3282C13.0717 23.6906 14.2373 23.0507 14.5153 21.9389L14.8125 20.7501C14.9331 20.2675 15.2294 19.8471 15.6434 19.5711L17.5581 18.2946C17.8477 18.1016 18.0819 17.8363 18.2375 17.5249L18.3553 17.2893C18.7403 16.5194 18.5894 15.5894 17.9807 14.9807L16.5858 13.5858C16.2107 13.2107 15.702 13 15.1716 13H13.3852C13.1307 13 12.8786 12.9514 12.6424 12.857L10.0627 11.8251C9.08625 11.4345 8.82727 10.1727 9.57093 9.42907C9.84566 9.15434 10.2183 9 10.6068 9H12.6749C12.8887 9 13.0996 8.95022 13.2908 8.85459C14.1317 8.43417 14.3135 7.31352 13.6488 6.64877L12.374 5.37404C11.7989 4.7989 12.1144 3.81426 12.9167 3.68054L16.0952 3.15079C16.5202 3.07997 16.8528 2.76752 16.9618 2.36829C16.0145 2.1278 15.0222 2 14 2C7.37258 2 2 7.37258 2 14C2 14.1136 2.00158 14.2268 2.00471 14.3396Z</x:String>
+            <x:Double x:Key="MinimumDetailsPaneWidth">260</x:Double>
+            <x:Double x:Key="MaximumDetailsPaneWidth">460</x:Double>
+
+            <helpers:SliderValueToMarginConverter x:Key="SliderValueToMarginConverter"
+                                                  MaximumValue="{StaticResource MaximumDetailsPaneWidth}"
+                                                  MinimumValue="{StaticResource MinimumDetailsPaneWidth}" />
+
+            <x:Double x:Key="MapOverlayGradientHeight">82.0</x:Double>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
         <SplitView x:Name="SplitViewArea"
+                   BorderThickness="0"
+                   CornerRadius="4,0,0,4"
                    IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
                    OpenPaneLength="{Binding Value, ElementName=MasterSlider, Mode=OneWay}"
+                   PaneBackground="{StaticResource ConnectionDetailsBackgroundBrush}"
                    PanePlacement="Right">
-            <SplitView.PaneBackground>
-                <AcrylicBrush AlwaysUseFallback="False"
-                              TintColor="Black"
-                              TintLuminosityOpacity="0.85"
-                              TintOpacity="0.6" />
-            </SplitView.PaneBackground>
             <SplitView.Pane>
                 <Grid Name="PaneGrid">
                     <Slider Name="MasterSlider"
@@ -84,33 +90,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </SplitView.Pane>
 
             <Grid>
-                <Viewbox Stretch="UniformToFill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                    <PathIcon Margin="-2"
-                              Data="{StaticResource IconEarthFilled}"
-                              Opacity="0.6">
-                        <PathIcon.Foreground>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="{ThemeResource BorderNormColor}" />
-                                <GradientStop Offset="0.9" Color="Transparent" />
-                            </LinearGradientBrush>
-                        </PathIcon.Foreground>
-                    </PathIcon>
-                </Viewbox>
+                <Grid Grid.Row="0">
 
-                <components:VpnStatusComponent HorizontalAlignment="Stretch"
-                                               VerticalAlignment="Top" />
+                    <components:MapComponent />
 
-                <Button x:Name="tgbtnConnectionDetails"
-                        Height="72"
-                        MinWidth="0"
-                        MaxWidth="600"
-                        Margin="16,48"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Bottom"
-                        Command="{x:Bind ViewModel.OpenDetailsPaneCommand}"
-                        Content="Connection details"
-                        Style="{StaticResource SecondaryButtonStyle}" />
+                    <components:VpnStatusComponent Grid.Row="0" />
+
+                    <Border Height="{StaticResource MapOverlayGradientHeight}"
+                            VerticalAlignment="Bottom"
+                            Background="{StaticResource ReverseGradientFadingColorBrush}" />
+                </Grid>
+
+                <components:ConnectionCardComponent Grid.Row="1" />
             </Grid>
         </SplitView>
     </Grid>

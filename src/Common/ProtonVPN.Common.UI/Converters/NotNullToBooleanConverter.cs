@@ -17,37 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.ViewModels.Bases;
+using System;
+using Microsoft.UI.Xaml.Data;
 
-namespace ProtonVPN.Gui.ViewModels.Pages;
+namespace ProtonVPN.Common.UI.Converters;
 
-public partial class HomeViewModel : PageViewModelBase
+public class NotNullToBooleanConverter : IValueConverter
 {
-    [ObservableProperty]
-    private bool _isDetailsPaneOpen;
-
-    public HomeViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
+        return value is null || string.IsNullOrEmpty(value.ToString());
     }
 
-    [RelayCommand]
-    public void CloseDetailsPane()
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        IsDetailsPaneOpen = false;
-    }
-
-    [RelayCommand]
-    public void OpenDetailsPane()
-    {
-        IsDetailsPaneOpen = true;
-    }
-
-    public void ShowConnectionDetails()
-    {
-        IsDetailsPaneOpen = true;
+        throw new NotImplementedException();
     }
 }

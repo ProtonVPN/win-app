@@ -70,6 +70,9 @@ public partial class App : Application
             // Views and ViewModels
             services.AddTransient<VpnStatusViewModel>();
             services.AddTransient<NetShieldStatsViewModel>();
+            services.AddTransient<ConnectionCardViewModel>();
+            services.AddTransient<MapViewModel>();
+            services.AddTransient<HelpViewModel>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<CensorshipViewModel>();
@@ -98,7 +101,7 @@ public partial class App : Application
             services.AddTransient<CountryPage>();
             services.AddTransient<CountriesViewModel>();
             services.AddTransient<CountriesPage>();
-            services.AddTransient<HomeViewModel>();
+            services.AddSingleton<HomeViewModel>();
             services.AddTransient<HomePage>();
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();

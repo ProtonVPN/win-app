@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,37 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.ViewModels.Bases;
+using Microsoft.UI.Xaml.Controls;
 
-namespace ProtonVPN.Gui.ViewModels.Pages;
+namespace ProtonVPN.Common.UI.Gallery.Pages;
 
-public partial class HomeViewModel : PageViewModelBase
+public sealed partial class VpnSpecificPage : Page
 {
-    [ObservableProperty]
-    private bool _isDetailsPaneOpen;
-
-    public HomeViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public VpnSpecificPage()
     {
-    }
-
-    [RelayCommand]
-    public void CloseDetailsPane()
-    {
-        IsDetailsPaneOpen = false;
-    }
-
-    [RelayCommand]
-    public void OpenDetailsPane()
-    {
-        IsDetailsPaneOpen = true;
-    }
-
-    public void ShowConnectionDetails()
-    {
-        IsDetailsPaneOpen = true;
+        InitializeComponent();
     }
 }

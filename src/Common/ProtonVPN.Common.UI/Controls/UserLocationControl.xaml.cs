@@ -17,28 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Linq;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace ProtonVPN.Common.UI.Controls;
 
-namespace ProtonVPN.Gui.Views.Controls;
-
-public sealed partial class UserLocationControl : UserControl
+[TemplatePart(Name = "PART_ScrambledCountry", Type = typeof(Run))]
+[TemplatePart(Name = "PART_ScrambledIpAddress", Type = typeof(Run))]
+public sealed partial class UserLocationControl
 {
-    private const char SCRAMBLING_CHAR = '*';
-
-    private const int SCRAMBLING_TIMER_INTERVAL_IN_MS = 50;
-
     public static readonly DependencyProperty CountryProperty =
         DependencyProperty.Register(nameof(Country), typeof(string), typeof(UserLocationControl), new PropertyMetadata(default, OnCountryPropertyChanged));
-
-    public static readonly DependencyProperty FormattedCountryProperty =
-        DependencyProperty.Register(nameof(FormattedCountry), typeof(string), typeof(UserLocationControl), new PropertyMetadata(default));
-
-    public static readonly DependencyProperty FormattedIpAddressProperty =
-        DependencyProperty.Register(nameof(FormattedIpAddress), typeof(string), typeof(UserLocationControl), new PropertyMetadata(default));
 
     public static readonly DependencyProperty IpAddressProperty =
         DependencyProperty.Register(nameof(IpAddress), typeof(string), typeof(UserLocationControl), new PropertyMetadata(default, OnIpAddressPropertyChanged));
@@ -52,6 +43,9 @@ public sealed partial class UserLocationControl : UserControl
     public static readonly DependencyProperty IsScramblingProperty =
         DependencyProperty.Register(nameof(IsScrambling), typeof(bool), typeof(UserLocationControl), new PropertyMetadata(default, OnIsScramblingPropertyChanged));
 
+    private const char SCRAMBLING_CHAR = '*';
+
+    private const int SCRAMBLING_TIMER_INTERVAL_IN_MS = 50;
     private readonly Random _random = new();
 
     private readonly DispatcherTimer _scramblingTimer = new();
@@ -71,18 +65,6 @@ public sealed partial class UserLocationControl : UserControl
     {
         get => (string)GetValue(CountryProperty);
         set => SetValue(CountryProperty, value);
-    }
-
-    public string FormattedCountry
-    {
-        get => (string)GetValue(FormattedCountryProperty);
-        set => SetValue(FormattedCountryProperty, value);
-    }
-
-    public string FormattedIpAddress
-    {
-        get => (string)GetValue(FormattedIpAddressProperty);
-        set => SetValue(FormattedIpAddressProperty, value);
     }
 
     public string IpAddress
@@ -113,7 +95,7 @@ public sealed partial class UserLocationControl : UserControl
     {
         if (d is UserLocationControl ulc)
         {
-            ulc.FormattedCountry = ulc.Country ?? string.Empty;
+            ulc.PART_ScrambledCountry.Text = ulc.Country ?? string.Empty;
         }
     }
 
@@ -121,7 +103,7 @@ public sealed partial class UserLocationControl : UserControl
     {
         if (d is UserLocationControl ulc)
         {
-            ulc.FormattedIpAddress = ulc.IpAddress ?? string.Empty;
+            ulc.PART_ScrambledIpAddress.Text = ulc.IpAddress ?? string.Empty;
         }
     }
 
@@ -158,13 +140,13 @@ public sealed partial class UserLocationControl : UserControl
 
     private void CompleteScrambling()
     {
-        FormattedCountry = new string(SCRAMBLING_CHAR, Country?.Length ?? 0);
-        FormattedIpAddress = new string(SCRAMBLING_CHAR, IpAddress?.Length ?? 0);
+        PART_ScrambledCountry.Text = new string(SCRAMBLING_CHAR, Country?.Length ?? 0);
+        PART_ScrambledIpAddress.Text = new string(SCRAMBLING_CHAR, IpAddress?.Length ?? 0);
     }
 
     private void OnScramblingTimerTick(object? sender, object e)
     {
-        string userLocation = FormattedCountry + FormattedIpAddress;
+        string userLocation = PART_ScrambledCountry.Text + PART_ScrambledIpAddress.Text;
         if (string.IsNullOrEmpty(userLocation) || userLocation.All(c => c == SCRAMBLING_CHAR))
         {
             // Scrambling process complete
@@ -180,14 +162,14 @@ public sealed partial class UserLocationControl : UserControl
 
         userLocation = $"{userLocation.Remove(index)}{SCRAMBLING_CHAR}{userLocation.Remove(0, index + 1)}";
 
-        FormattedCountry = userLocation.Substring(0, FormattedCountry.Length);
-        FormattedIpAddress = userLocation.Substring(FormattedCountry.Length, FormattedIpAddress.Length);
+        PART_ScrambledCountry.Text = userLocation.Substring(0, Country.Length);
+        PART_ScrambledIpAddress.Text = userLocation.Substring(Country.Length, IpAddress.Length);
     }
 
     private void ResetScrambling()
     {
-        FormattedCountry = Country;
-        FormattedIpAddress = IpAddress;
+        PART_ScrambledCountry.Text = Country;
+        PART_ScrambledIpAddress.Text = IpAddress;
     }
 
     private void StartScrambling()

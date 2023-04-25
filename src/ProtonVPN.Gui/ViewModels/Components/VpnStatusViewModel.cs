@@ -19,10 +19,10 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Gui.Enums;
+using ProtonVPN.Gui.Mappers;
 using ProtonVPN.Gui.Messages;
 
 namespace ProtonVPN.Gui.ViewModels.Components;
@@ -76,7 +76,7 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
     public string Subtitle =>
         CurrentConnectionStatus switch
         {
-            ConnectionStatus.Connected or 
+            ConnectionStatus.Connected or
             ConnectionStatus.Connecting => "Protecting your digital identity",
             ConnectionStatus.Disconnected => "You're unprotected",
             _ => string.Empty
@@ -86,7 +86,7 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
         CurrentConnectionStatus switch
         {
             ConnectionStatus.Connected => "Protected",
-            ConnectionStatus.Connecting or 
+            ConnectionStatus.Connecting or
             ConnectionStatus.Disconnected => string.Empty,
             _ => string.Empty
         };
@@ -98,28 +98,7 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
             return;
         }
 
-        switch (message.Value.Status)
-        {
-            case VpnStatus.Disconnected:
-            case VpnStatus.Disconnecting:
-            case VpnStatus.ActionRequired:
-                CurrentConnectionStatus = ConnectionStatus.Disconnected;
-                break;
-
-            case VpnStatus.Pinging:
-            case VpnStatus.Connecting:
-            case VpnStatus.Reconnecting:
-            case VpnStatus.Waiting:
-            case VpnStatus.Authenticating:
-            case VpnStatus.RetrievingConfiguration:
-            case VpnStatus.AssigningIp:
-                CurrentConnectionStatus = ConnectionStatus.Connecting;
-                break;
-
-            case VpnStatus.Connected:
-                CurrentConnectionStatus = ConnectionStatus.Connected;
-                break;
-        }
+        CurrentConnectionStatus = ConnectionStatusMapper.Map(message.Value.Status);
 
         IsSecureCoreConnection = message.Value.Server?.IsSecureCore() ?? false;
     }

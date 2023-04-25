@@ -18,7 +18,6 @@
  */
 
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Common.Vpn;
@@ -32,7 +31,7 @@ using ProtonVPN.Gui.ViewModels.Components;
 
 namespace ProtonVPN.Gui.Views.Components;
 
-public sealed partial class VpnStatusComponent : UserControl
+public sealed partial class VpnStatusComponent 
 {
     public VpnStatusComponent()
     {
