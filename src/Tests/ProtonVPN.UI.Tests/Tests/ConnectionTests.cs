@@ -122,6 +122,8 @@ namespace ProtonVPN.UI.Tests.Tests
                 .CloseSettings();
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
+            //Tests detect connection too fast and on next launch app will reconnect to another server
+            Thread.Sleep(2000);
             _homeResult.KillClientAndCheckIfConnectionIsKept();
         }
 

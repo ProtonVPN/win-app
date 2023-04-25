@@ -52,7 +52,7 @@ namespace ProtonVPN.UI.Tests.Windows
         private AutomationElement NetshieldToggle => ElementByAutomationId("NetShieldToggle");
         private AutomationElement NetshieldOff => ElementByClassName("Shield");
         private AutomationElement NetshieldLevelOne => ElementByClassName("ShieldHalfFilled");
-        private AutomationElement NetshieldLevelTwo => ElementByClassName("ShieldFilled");
+        private Button NetshieldLevelTwo => ElementByClassName("ShieldFilled").Parent.AsButton();
         private AutomationElement ChevronDown => ElementByClassName("ChevronDown");
 
         public HomeWindow PressQuickConnectButton()
@@ -214,7 +214,7 @@ namespace ProtonVPN.UI.Tests.Windows
         public HomeWindow EnableNetshieldLevelTwo()
         {
             NetshieldToggle.Click();
-            NetshieldLevelTwo.Click();
+            NetshieldLevelTwo.Invoke();
             return this;
         }
 
