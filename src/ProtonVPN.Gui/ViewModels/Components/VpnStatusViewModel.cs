@@ -76,7 +76,7 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
     public string Subtitle =>
         CurrentConnectionStatus switch
         {
-            ConnectionStatus.Connected => "Browse the Internet safely",
+            ConnectionStatus.Connected or 
             ConnectionStatus.Connecting => "Protecting your digital identity",
             ConnectionStatus.Disconnected => "You're unprotected",
             _ => string.Empty
@@ -86,7 +86,7 @@ public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnSta
         CurrentConnectionStatus switch
         {
             ConnectionStatus.Connected => "Protected",
-            ConnectionStatus.Connecting => string.Empty,
+            ConnectionStatus.Connecting or 
             ConnectionStatus.Disconnected => string.Empty,
             _ => string.Empty
         };

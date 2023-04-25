@@ -228,12 +228,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <!--  Fade out VPN Status Details (subtitle + userlocation)  -->
-                        <DoubleAnimation BeginTime="0:0:1"
+                        <DoubleAnimation BeginTime="0:0:0"
                                          Storyboard.TargetName="VpnStatusDetails"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0"
                                          Duration="{StaticResource FadeInOutAnimationDuration}" />
-                        <DoubleAnimation BeginTime="0:0:1.2"
+                        <DoubleAnimation BeginTime="0:0:0.2"
                                          Storyboard.TargetName="VpnStatusDetailsTranslateTransform"
                                          Storyboard.TargetProperty="Y"
                                          To="-16"
@@ -276,12 +276,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <!--  Fade in NetShield Statistics  -->
-                        <DoubleAnimation BeginTime="0:0:1.5"
+                        <DoubleAnimation BeginTime="0:0:0.5"
                                          Storyboard.TargetName="NetShieldStats"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1"
                                          Duration="{StaticResource FadeInOutAnimationDuration}" />
-                        <DoubleAnimation BeginTime="0:0:1.3"
+                        <DoubleAnimation BeginTime="0:0:0.3"
                                          Storyboard.TargetName="NetShieldStatsTranslateTransform"
                                          Storyboard.TargetProperty="Y"
                                          To="0"
