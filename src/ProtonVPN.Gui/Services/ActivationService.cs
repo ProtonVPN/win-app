@@ -22,7 +22,7 @@ using Microsoft.UI.Xaml.Controls;
 
 using ProtonVPN.Gui.Activation;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Views;
+using ProtonVPN.Gui.UI;
 
 namespace ProtonVPN.Gui.Services;
 
