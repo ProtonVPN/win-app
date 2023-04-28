@@ -23,6 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:icons="using:ProtonVPN.Common.UI.Assets.Icons"
              HorizontalAlignment="Center"
              VerticalAlignment="Center"
              mc:Ignorable="d">
@@ -45,10 +46,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <CornerRadius x:Key="SmallFlagCornerRadius">2.5</CornerRadius>
         <CornerRadius x:Key="LargeShadowCornerRadius">0,3,0,5</CornerRadius>
         <CornerRadius x:Key="SmallShadowCornerRadius">0,2,0,4</CornerRadius>
-        
-        <SolidColorBrush x:Key="ShadowColorBrush" Color="#66000000"/>
+
+        <SolidColorBrush x:Key="ShadowColorBrush"
+                         Color="#66000000" />
         <StaticResource x:Key="SecureCoreOutlineColorBrush" ResourceKey="BorderNormColorBrush" />
-        <x:Double x:Key="SecureCoreOutlineThickness">2</x:Double>
     </UserControl.Resources>
 
     <Viewbox>
@@ -62,12 +63,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                   Visibility="Collapsed">
 
                 <!--  Middle Country flag (Secure Core)  -->
-                <Image Source="ms-appx:///ProtonVPN.Common.UI/Assets/Flags/Fastest.svg" 
-                       x:Name="PART_MiddleCountryFlag"
+                <Image x:Name="PART_MiddleCountryFlag"
                        Width="{StaticResource MediumFlagWidth}"
                        Height="{StaticResource MediumFlagHeight}"
                        HorizontalAlignment="Right"
-                       VerticalAlignment="Top"/>
+                       VerticalAlignment="Top"
+                       Source="ms-appx:///ProtonVPN.Common.UI/Assets/Flags/Fastest.svg" />
 
                 <!--  Casted shadow  -->
                 <Border Name="PART_Shadow"
@@ -76,26 +77,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Background="{StaticResource ShadowColorBrush}"
-                        CornerRadius="{StaticResource LargeShadowCornerRadius}"/>
+                        CornerRadius="{StaticResource LargeShadowCornerRadius}" />
             </Grid>
 
             <!--  Exit Country flag  -->
-            <Image Source="ms-appx:///ProtonVPN.Common.UI/Assets/Flags/Fastest.svg" 
-                   x:Name="PART_ExitCountryFlag"
+            <Image x:Name="PART_ExitCountryFlag"
                    Width="{StaticResource LargeFlagWidth}"
                    Height="{StaticResource LargeFlagHeight}"
                    HorizontalAlignment="Right"
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top"
+                   Source="ms-appx:///ProtonVPN.Common.UI/Assets/Flags/Fastest.svg" />
 
             <!--  Secure Core outline  -->
-            <Path x:Name="PART_SecureCoreOutline"
-                  Margin="-5,5,5,-5"
-                  Data="{StaticResource IconSecureCoreOutline}"
-                  Stroke="{StaticResource SecureCoreOutlineColorBrush}"
-                  StrokeEndLineCap="Round"
-                  StrokeStartLineCap="Round"
-                  StrokeThickness="{StaticResource SecureCoreOutlineThickness}"
-                  Visibility="Collapsed" />
+            <icons:SecureCoreFlagOutline x:Name="PART_SecureCoreOutline"
+                                         Foreground="{StaticResource SecureCoreOutlineColorBrush}"
+                                         Margin="-5,5,5,-5"
+                                         Visibility="Collapsed" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

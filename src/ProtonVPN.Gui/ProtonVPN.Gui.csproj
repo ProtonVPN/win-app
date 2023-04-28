@@ -19,10 +19,10 @@
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Views\Pages\Settings\AdvancedSettings\**" />
-    <EmbeddedResource Remove="Views\Pages\Settings\AdvancedSettings\**" />
-    <None Remove="Views\Pages\Settings\AdvancedSettings\**" />
-    <Page Remove="Views\Pages\Settings\AdvancedSettings\**" />
+    <Compile Remove="Views\**" />
+    <EmbeddedResource Remove="Views\**" />
+    <None Remove="Views\**" />
+    <Page Remove="Views\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,44 +45,18 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Page Update="Views\Components\HelpComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\Components\MapComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\Components\ConnectionCardComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\Components\NetShieldStatsComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\Components\VpnStatusComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\Modals\" />
-    <Folder Include="Views\Modals\" />
-    <Folder Include="Views\Pages\Countries\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PRIResource Remove="Views\Pages\Settings\AdvancedSettings\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Assets\protonvpn.ico" />
-    <None Remove="Views\Components\ConnectionCardComponent.xaml" />
-    <None Remove="Views\Components\HelpComponent.xaml" />
-    <None Remove="Views\Components\MapComponent.xaml" />
-    <None Remove="Views\Components\NetShieldStatsComponent.xaml" />
-    <None Remove="Views\Components\VpnStatusComponent.xaml" />
   </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Common\ProtonVPN.Common.UI\ProtonVPN.Common.UI.csproj" />
     <ProjectReference Include="..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PRIResource Remove="Views\**" />
   </ItemGroup>
 </Project>

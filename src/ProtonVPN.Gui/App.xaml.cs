@@ -25,17 +25,14 @@ using ProtonVPN.Gui.Activation;
 using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.Models;
 using ProtonVPN.Gui.Services;
-using ProtonVPN.Gui.ViewModels;
-using ProtonVPN.Gui.ViewModels.Components;
-using ProtonVPN.Gui.ViewModels.Pages;
-using ProtonVPN.Gui.ViewModels.Pages.Countries;
-using ProtonVPN.Gui.ViewModels.Pages.Settings;
-using ProtonVPN.Gui.ViewModels.Pages.Settings.Advanced;
-using ProtonVPN.Gui.Views;
-using ProtonVPN.Gui.Views.Pages;
-using ProtonVPN.Gui.Views.Pages.Countries;
-using ProtonVPN.Gui.Views.Pages.Settings;
-using ProtonVPN.Gui.Views.Pages.Settings.Advanced;
+using ProtonVPN.Gui.UI;
+using ProtonVPN.Gui.UI.Countries;
+using ProtonVPN.Gui.UI.Countries.Pages;
+using ProtonVPN.Gui.UI.Home;
+using ProtonVPN.Gui.UI.Home.Components;
+using ProtonVPN.Gui.UI.Settings;
+using ProtonVPN.Gui.UI.Settings.Pages;
+using ProtonVPN.Gui.UI.Settings.Pages.Advanced;
 
 namespace ProtonVPN.Gui;
 

@@ -24,14 +24,12 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Common.UI.Gallery;
 using ProtonVPN.Common.UI.Gallery.Pages;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.ViewModels.Pages;
-using ProtonVPN.Gui.ViewModels.Pages.Countries;
-using ProtonVPN.Gui.ViewModels.Pages.Settings;
-using ProtonVPN.Gui.ViewModels.Pages.Settings.Advanced;
-using ProtonVPN.Gui.Views.Pages;
-using ProtonVPN.Gui.Views.Pages.Countries;
-using ProtonVPN.Gui.Views.Pages.Settings;
-using ProtonVPN.Gui.Views.Pages.Settings.Advanced;
+using ProtonVPN.Gui.UI.Countries;
+using ProtonVPN.Gui.UI.Countries.Pages;
+using ProtonVPN.Gui.UI.Home;
+using ProtonVPN.Gui.UI.Settings;
+using ProtonVPN.Gui.UI.Settings.Pages;
+using ProtonVPN.Gui.UI.Settings.Pages.Advanced;
 
 namespace ProtonVPN.Gui.Services;
 

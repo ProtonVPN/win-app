@@ -17,32 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.UI.Home;
+using ProtonVPN.Gui.Contracts.ViewModels;
 
-namespace ProtonVPN.Gui.Activation;
+namespace ProtonVPN.Gui.UI.Home;
 
-public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+public partial class HomeViewModel : PageViewModelBase
 {
-    private readonly INavigationService _navigationService;
+    [ObservableProperty]
+    private bool _isDetailsPaneOpen;
 
-    public DefaultActivationHandler(INavigationService navigationService)
+    public HomeViewModel(INavigationService navigationService)
+        : base(navigationService)
     {
-        _navigationService = navigationService;
     }
 
-    protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+    [RelayCommand]
+    public void CloseDetailsPane()
     {
-        // None of the ActivationHandlers has handled the activation.
-        return _navigationService.Frame?.Content == null;
+        IsDetailsPaneOpen = false;
     }
 
-    protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+    [RelayCommand]
+    public void OpenDetailsPane()
     {
-        _navigationService.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
+        IsDetailsPaneOpen = true;
+    }
 
-        await Task.CompletedTask;
+    public void ShowConnectionDetails()
+    {
+        IsDetailsPaneOpen = true;
     }
 }

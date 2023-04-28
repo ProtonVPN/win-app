@@ -10,6 +10,21 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
+    <Content Remove="Assets\Icons\Help.xaml" />
+    <Content Remove="Assets\Icons\Help.xaml.cs" />
+    <Content Remove="Assets\Icons\Hyperlink.xaml" />
+    <Content Remove="Assets\Icons\IconUserControl.xaml.cs" />
+    <Content Remove="Assets\Icons\ProtectedLock.xaml" />
+    <Content Remove="Assets\Icons\ProtectedLock.xaml.cs" />
+    <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
+    <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml.cs" />
+    <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
+    <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml.cs" />
+    <Content Remove="Assets\Icons\UnprotectedLock.xaml" />
+    <Content Remove="Assets\Icons\UnprotectedLock.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\Flags\AD.svg" />
     <None Remove="Assets\Flags\AE.svg" />
     <None Remove="Assets\Flags\AF.svg" />
@@ -251,6 +266,12 @@
     <None Remove="Assets\Flags\ZA.svg" />
     <None Remove="Assets\Flags\ZM.svg" />
     <None Remove="Assets\Flags\ZW.svg" />
+    <None Remove="Assets\Icons\Help.xaml" />
+    <None Remove="Assets\Icons\Hyperlink.xaml" />
+    <None Remove="Assets\Icons\ProtectedLock.xaml" />
+    <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
+    <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
+    <None Remove="Assets\Icons\UnprotectedLock.xaml" />
     <None Remove="Controls\CountryFlagControl.xaml" />
     <None Remove="Controls\UserLocationControl.xaml" />
     <None Remove="Gallery\Controls\ColorsControl.xaml" />
@@ -273,7 +294,6 @@
     <None Remove="Styles\Controls\TextBoxStyles.xaml" />
     <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
     <None Remove="Styles\Converters.xaml" />
-    <None Remove="Styles\Icons.xaml" />
     <None Remove="Styles\Typography.xaml" />
     <None Remove="Themes\DarkTheme.xaml" />
     <None Remove="Themes\LightTheme.xaml" />
@@ -361,12 +381,6 @@
 
   <ItemGroup>
     <Page Update="Styles\Typography.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -1139,6 +1153,42 @@
     <Content Update="Assets\Flags\ZW.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\SecureCoreFlagOutline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\SecureCoreProtectedLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\ProtectedLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\UnprotectedLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\Hyperlink.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

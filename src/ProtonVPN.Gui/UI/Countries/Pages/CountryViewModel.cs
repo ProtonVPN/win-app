@@ -17,32 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.UI.Home;
+using ProtonVPN.Gui.Contracts.ViewModels;
+using ProtonVPN.Gui.Models;
 
-namespace ProtonVPN.Gui.Activation;
+namespace ProtonVPN.Gui.UI.Countries.Pages;
 
-public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+public partial class CountryViewModel : PageViewModelBase
 {
-    private readonly INavigationService _navigationService;
+    [ObservableProperty]
+    private Country? _currentCountry;
 
-    public DefaultActivationHandler(INavigationService navigationService)
+    public CountryViewModel(INavigationService navigationService)
+        : base(navigationService, "Country", true)
     {
-        _navigationService = navigationService;
     }
 
-    protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+    public override void OnNavigatedTo(object parameter)
     {
-        // None of the ActivationHandlers has handled the activation.
-        return _navigationService.Frame?.Content == null;
-    }
+        base.OnNavigatedTo(parameter);
 
-    protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
-    {
-        _navigationService.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
-
-        await Task.CompletedTask;
+        CurrentCountry = parameter as Country;
+        if (CurrentCountry != null)
+        {
+            Title = CurrentCountry.CountryName;
+        }
     }
 }

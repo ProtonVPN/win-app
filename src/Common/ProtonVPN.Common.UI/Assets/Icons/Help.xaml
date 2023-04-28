@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<base:IconUserControl x:Class="ProtonVPN.Common.UI.Assets.Icons.Help"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:base="using:ProtonVPN.Common.UI.Assets.Icons.Base"
+                      mc:Ignorable="d">
+
+    <Viewbox Stretch="{x:Bind Stretch, Mode=OneWay}">
+        <PathIcon Data="M7 13C10.3137 13 13 10.3137 13 7C13 3.68629 10.3137 1 7 1C3.68629 1 1 3.68629 1 7C1 10.3137 3.68629 13 7 13ZM7 14C10.866 14 14 10.866 14 7C14 3.13401 10.866 0 7 0C3.13401 0 0 3.13401 0 7C0 10.866 3.13401 14 7 14ZM6.5 10.5C6.5 10.2239 6.72386 10 7 10H7.00977C7.28591 10 7.50977 10.2239 7.50977 10.5C7.50977 10.7761 7.28591 11 7.00977 11H7C6.72386 11 6.5 10.7761 6.5 10.5ZM5.5 5.64844C5.5 4.82001 6.17157 4.14844 7 4.14844H7.14815C7.89476 4.14844 8.5 4.75368 8.5 5.50029C8.5 5.75093 8.38199 5.98694 8.18148 6.13733L7.5 6.64844C6.87049 7.12057 6.5 7.86154 6.5 8.64844C6.5 8.92458 6.72386 9.14844 7 9.14844C7.27614 9.14844 7.5 8.92458 7.5 8.64844C7.5 8.1763 7.72229 7.73172 8.1 7.44844L8.78148 6.93733C9.2338 6.59809 9.5 6.06569 9.5 5.50029C9.5 4.2014 8.44704 3.14844 7.14815 3.14844H7C5.61929 3.14844 4.5 4.26773 4.5 5.64844C4.5 5.92458 4.72386 6.14844 5 6.14844C5.27614 6.14844 5.5 5.92458 5.5 5.64844Z"
+                  Foreground="{x:Bind Foreground, Mode=OneWay}" />
+    </Viewbox>
+</base:IconUserControl>

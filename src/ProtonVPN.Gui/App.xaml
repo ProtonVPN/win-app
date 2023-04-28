@@ -39,7 +39,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Converters.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Brushes.xaml" />
-                <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Icons.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Typography.xaml" />
 
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Common.UI/Styles/Controls/TextBoxStyles.xaml" />
