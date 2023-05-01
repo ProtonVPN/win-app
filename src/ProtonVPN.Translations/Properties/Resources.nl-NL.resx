@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>Uitloggen van de applicatie zal de actieve VPN-verbinding verbreken. Wilt u doorgaan?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -1840,7 +1840,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN kon geen verbinding maken omdat de TUN-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u overschakelen naar de TAP-adapter (u kunt terugschakelen naar TUN in de Geavanceerde Instellingen).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+    <value>Proton VPN kon geen verbinding maken omdat de WireGuard-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u wisselen van protocol in de Geavanceerde Instellingen.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Annuleer</value>
@@ -1914,7 +1914,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Invalid refresh token, please sign in again.</value>
+    <value>Ongeldige vernieuwingstoken, log opnieuw in.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -2429,7 +2429,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Blader door internet zonder advertenties en malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
@@ -2880,10 +2880,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>GRATIS locaties ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Free servers</value>
+    <value>Gratis servers</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+    <value>Gratis servers hebben geen datalimiet noch netwerkbeperkingen. De snelheid is mogelijks beperkt enkel vanwege het grote aantal aangesloten gebruikers.</value>
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Informatie</value>

@@ -1667,7 +1667,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Verificación humana</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>El reloj de su sistema parece estar desincronizado, lo que podría impedir que la VPN se conecte con éxito. Por favor, consulte &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
+    <value>El reloj de su sistema parece estar desincronizado, lo que podría impedir que la VPN se conecte. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
     <value>Con Kill Switch permanente, si la VPN no está conectada por algún motivo, no podrás acceder a internet.</value>
@@ -2361,7 +2361,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Cupón de descuento</value>
   </data>
   <data name="PromoCode_lbl_Success">
-    <value>El cupón se ha aplicado con éxito.</value>
+    <value>El cupón se ha aplicado.</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
     <value>Usar cupón</value>

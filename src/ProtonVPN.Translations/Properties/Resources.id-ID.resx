@@ -1692,7 +1692,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Terdapat masalah pada saat mengunduh aplikasi versi terbaru. Silakan perbarui aplikasi secara manual untuk mendapatkan versi terbaru.</value>
+    <value>Terdapat kesalahan pada saat mengunduh versi aplikasi terbaru. Silakan perbarui aplikasi secara manual untuk mendapatkan versi terbaru.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">

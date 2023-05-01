@@ -403,7 +403,7 @@
     <value>Hata günlükleri, sorununuzun temeline inmemize yardımcı olur. Bunları göndermezeniz, sorunu tam olarak araştıramayabiliriz.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Bir günlük, soruna neden olan olayları görmemizi sağlayan bir dosya türüdür. Bunları yalnızca mühendislerimizin hataları düzeltmesine yardımcı olmaları için kullanacağız.</value>
+    <value>Bir günlük, soruna neden olan olayları görmemizi sağlayan bir dosya türüdür. Bunları yalnızca mühendislerimizin hataları gidermesine yardımcı olmaları için kullanacağız.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Proton VPN uygulamasını güncelle</value>
@@ -1917,7 +1917,7 @@
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
-    <value>Bilinmeyen hata</value>
+    <value>Bilinmeyen sorun</value>
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
