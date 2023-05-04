@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,15 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.UI.Home.Components;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-public sealed partial class MapComponent
+namespace ProtonVPN.Gui.UI.Home.NetShieldStats;
+
+public partial class NetShieldStatsViewModel : ObservableRecipient
 {
-    public MapComponent()
+    [ObservableProperty]
+    private int _numberOfTrackersStopped;
+
+    [ObservableProperty]
+    private int _numberOfAdsBlocked;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DataSaved))]
+    private long _dataSavedInBytes;
+
+    public NetShieldStatsViewModel()
     {
-        ViewModel = App.GetService<MapViewModel>();
-        InitializeComponent();
+        _numberOfTrackersStopped = 14;
+        _numberOfAdsBlocked = 21;
+        _dataSavedInBytes = 1500;
     }
 
-    public MapViewModel ViewModel { get; }
+    public string DataSaved => $"{DataSavedInBytes} B";
 }

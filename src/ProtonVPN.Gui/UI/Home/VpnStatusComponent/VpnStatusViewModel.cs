@@ -19,13 +19,12 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Gui.Enums;
 using ProtonVPN.Gui.Mappers;
 using ProtonVPN.Gui.Messages;
 
-namespace ProtonVPN.Gui.UI.Home.Components;
+namespace ProtonVPN.Gui.UI.Home.VpnStatusComponent;
 
 public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnStateChangedMessage>, IRecipient<UserLocationChangedMessage>
 {

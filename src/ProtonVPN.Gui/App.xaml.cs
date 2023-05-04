@@ -29,14 +29,20 @@ using ProtonVPN.Gui.UI;
 using ProtonVPN.Gui.UI.Countries;
 using ProtonVPN.Gui.UI.Countries.Pages;
 using ProtonVPN.Gui.UI.Home;
-using ProtonVPN.Gui.UI.Home.Components;
+using ProtonVPN.Gui.UI.Home.ConnectionCard;
+using ProtonVPN.Gui.UI.Home.Help;
+using ProtonVPN.Gui.UI.Home.Map;
+using ProtonVPN.Gui.UI.Home.NetShieldStats;
+using ProtonVPN.Gui.UI.Home.Recents;
+using ProtonVPN.Gui.UI.Home.VpnStatusComponent;
 using ProtonVPN.Gui.UI.Settings;
 using ProtonVPN.Gui.UI.Settings.Pages;
 using ProtonVPN.Gui.UI.Settings.Pages.Advanced;
+using ProtonVPN.Recents.Installers;
 
 namespace ProtonVPN.Gui;
 
-public partial class App : Application
+public partial class App
 {
     public App()
     {
@@ -65,6 +71,7 @@ public partial class App : Application
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
+            services.AddTransient<RecentsViewModel>();
             services.AddTransient<VpnStatusViewModel>();
             services.AddTransient<NetShieldStatsViewModel>();
             services.AddTransient<ConnectionCardViewModel>();
@@ -102,6 +109,8 @@ public partial class App : Application
             services.AddTransient<HomePage>();
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
+
+            services.AddRecents();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));

@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+namespace ProtonVPN.Gui.ConnectIntent;
 
-namespace ProtonVPN.Gui.UI.Home.Components;
-
-public class HelpViewModel : ObservableRecipient
+public interface IConnectIntent
 {
+    public bool IsPinned { get; set; }
 }

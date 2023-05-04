@@ -17,28 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+namespace ProtonVPN.Gui.ConnectIntent;
 
-namespace ProtonVPN.Gui.UI.Home.Components;
-
-public partial class NetShieldStatsViewModel : ObservableRecipient
+public class CountryConnectIntent : ConnectIntent
 {
-    [ObservableProperty]
-    private int _numberOfTrackersStopped;
-
-    [ObservableProperty]
-    private int _numberOfAdsBlocked;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(DataSaved))]
-    private long _dataSavedInBytes;
-
-    public NetShieldStatsViewModel()
-    {
-        _numberOfTrackersStopped = 14;
-        _numberOfAdsBlocked = 21;
-        _dataSavedInBytes = 1500;
-    }
-
-    public string DataSaved => $"{DataSavedInBytes} B";
+    public string Country { get; set; }
 }

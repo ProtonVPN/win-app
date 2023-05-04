@@ -28,7 +28,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Gui.Enums;
 using ProtonVPN.Gui.Messages;
 
-namespace ProtonVPN.Gui.UI.Home.Components;
+namespace ProtonVPN.Gui.UI.Home.VpnStatusComponent;
 
 public sealed partial class VpnStatusComponent
 {
