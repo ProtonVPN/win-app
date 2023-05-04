@@ -80,18 +80,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </gallery:SampleControl>
 
             <gallery:SampleControl Header="Country Flag">
-                <controls:CountryFlagControl CountryCode="{Binding Text, ElementName=tbCountryCode, Mode=OneWay}"
+                <controls:CountryFlagControl ExitCountryCode="{Binding Text, ElementName=tbCountryCode, Mode=OneWay}"
                                              IsCompact="{Binding IsChecked, ElementName=cbCompactFlag, Mode=OneWay}"
                                              IsSecureCore="{Binding IsChecked, ElementName=cbSecureCore, Mode=OneWay}"
-                                             MiddleCountryCode="{Binding Text, ElementName=tbMiddleCountryCode, Mode=OneWay}" />
+                                             EntryCountryCode="{Binding Text, ElementName=tbEntryCountryCode, Mode=OneWay}" />
                 <gallery:SampleControl.Options>
                     <StackPanel Orientation="Vertical"
                                 Spacing="4">
                         <TextBox Name="tbCountryCode"
                                  PlaceholderText="Country Code"
                                  Text="AD" />
-                        <TextBox Name="tbMiddleCountryCode"
-                                 PlaceholderText="Middle Country Code"
+                        <TextBox Name="tbEntryCountryCode"
+                                 PlaceholderText="Entry Country Code"
                                  Text="" />
                         <CheckBox Name="cbSecureCore"
                                   Margin="4,4,0,0"

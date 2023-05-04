@@ -62,8 +62,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                   VerticalAlignment="Bottom"
                   Visibility="Collapsed">
 
-                <!--  Middle Country flag (Secure Core)  -->
-                <Image x:Name="PART_MiddleCountryFlag"
+                <!--  Entry Country flag (Secure Core)  -->
+                <Image x:Name="PART_EntryCountryFlag"
                        Width="{StaticResource MediumFlagWidth}"
                        Height="{StaticResource MediumFlagHeight}"
                        HorizontalAlignment="Right"
@@ -104,8 +104,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="PART_Container.Height" Value="{StaticResource SmallContainerHeight}" />
                         <Setter Target="PART_ExitCountryFlag.Width" Value="{StaticResource MediumFlagWidth}" />
                         <Setter Target="PART_ExitCountryFlag.Height" Value="{StaticResource MediumFlagHeight}" />
-                        <Setter Target="PART_MiddleCountryFlag.Width" Value="{StaticResource SmallFlagWidth}" />
-                        <Setter Target="PART_MiddleCountryFlag.Height" Value="{StaticResource SmallFlagHeight}" />
+                        <Setter Target="PART_EntryCountryFlag.Width" Value="{StaticResource SmallFlagWidth}" />
+                        <Setter Target="PART_EntryCountryFlag.Height" Value="{StaticResource SmallFlagHeight}" />
                         <Setter Target="PART_Shadow.Width" Value="{StaticResource SmallShadowWidth}" />
                         <Setter Target="PART_Shadow.Height" Value="{StaticResource SmallShadowHeight}" />
                         <Setter Target="PART_Shadow.CornerRadius" Value="{StaticResource SmallShadowCornerRadius}" />
@@ -117,8 +117,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="PART_Container.Height" Value="{StaticResource LargeContainerHeight}" />
                         <Setter Target="PART_ExitCountryFlag.Width" Value="{StaticResource LargeFlagWidth}" />
                         <Setter Target="PART_ExitCountryFlag.Height" Value="{StaticResource LargeFlagHeight}" />
-                        <Setter Target="PART_MiddleCountryFlag.Width" Value="{StaticResource MediumFlagWidth}" />
-                        <Setter Target="PART_MiddleCountryFlag.Height" Value="{StaticResource MediumFlagHeight}" />
+                        <Setter Target="PART_EntryCountryFlag.Width" Value="{StaticResource MediumFlagWidth}" />
+                        <Setter Target="PART_EntryCountryFlag.Height" Value="{StaticResource MediumFlagHeight}" />
                         <Setter Target="PART_Shadow.Width" Value="{StaticResource LargeShadowWidth}" />
                         <Setter Target="PART_Shadow.Height" Value="{StaticResource LargeShadowHeight}" />
                         <Setter Target="PART_Shadow.CornerRadius" Value="{StaticResource LargeShadowCornerRadius}" />

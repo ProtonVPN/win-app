@@ -26,7 +26,7 @@ using ProtonVPN.Gui.Enums;
 using ProtonVPN.Gui.Mappers;
 using ProtonVPN.Gui.Messages;
 
-namespace ProtonVPN.Gui.UI.Home.Components;
+namespace ProtonVPN.Gui.UI.Home.ConnectionCard;
 
 public partial class ConnectionCardViewModel : ObservableRecipient, IRecipient<VpnStateChangedMessage>
 {

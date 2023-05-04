@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,15 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.UI.Home.Components;
-
-public sealed partial class NetShieldStatsComponent
+namespace ProtonVPN.Common.UI.Assets.Icons
 {
-    public NetShieldStatsComponent()
+    public partial class Pin
     {
-        ViewModel = App.GetService<NetShieldStatsViewModel>();
-        InitializeComponent();
+        public Pin()
+        {
+            InitializeComponent();
+        }
     }
-
-    public NetShieldStatsViewModel ViewModel { get; }
 }

@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.IO;
+using System.Reflection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -26,19 +26,18 @@ using Microsoft.UI.Xaml.Media.Imaging;
 namespace ProtonVPN.Common.UI.Controls;
 
 [TemplatePart(Name = "PART_ExitCountryFlag", Type = typeof(Image))]
-[TemplatePart(Name = "PART_MiddleCountryFlag", Type = typeof(Image))]
+[TemplatePart(Name = "PART_EntryCountryFlag", Type = typeof(Image))]
 public sealed partial class CountryFlagControl
 {
-    private const string FLAG_ASSETS_FOLDER_PATH = "ms-appx:///ProtonVPN.Common.UI/Assets/Flags/";
     private const string FLAG_ASSETS_FILE_EXTENSION = ".svg";
     private const string FLAG_ASSETS_FASTEST = "Fastest";
     private const string FLAG_ASSETS_PLACEHOLDER = "Placeholder";
 
-    public static readonly DependencyProperty CountryCodeProperty =
-        DependencyProperty.Register(nameof(CountryCode), typeof(string), typeof(CountryFlagControl), new PropertyMetadata(default, OnCountryCodePropertyChanged));
+    public static readonly DependencyProperty ExitCountryCodeProperty =
+        DependencyProperty.Register(nameof(ExitCountryCode), typeof(string), typeof(CountryFlagControl), new PropertyMetadata(default, OnExitCountryCodePropertyChanged));
 
-    public static readonly DependencyProperty MiddleCountryCodeProperty =
-        DependencyProperty.Register(nameof(MiddleCountryCode), typeof(string), typeof(CountryFlagControl), new PropertyMetadata(default, OnMiddleCountryCodePropertyChanged));
+    public static readonly DependencyProperty EntryCountryCodeProperty =
+        DependencyProperty.Register(nameof(EntryCountryCode), typeof(string), typeof(CountryFlagControl), new PropertyMetadata(default, OnEntryCountryCodePropertyChanged));
 
     public static readonly DependencyProperty IsSecureCoreProperty =
         DependencyProperty.Register(nameof(IsSecureCore), typeof(bool), typeof(CountryFlagControl), new PropertyMetadata(default, OnIsSecureCorePropertyChanged));
@@ -51,16 +50,16 @@ public sealed partial class CountryFlagControl
         InitializeComponent();
     }
 
-    public string CountryCode
+    public string ExitCountryCode
     {
-        get => (string)GetValue(CountryCodeProperty);
-        set => SetValue(CountryCodeProperty, value);
+        get => (string)GetValue(ExitCountryCodeProperty);
+        set => SetValue(ExitCountryCodeProperty, value);
     }
 
-    public string MiddleCountryCode
+    public string EntryCountryCode
     {
-        get => (string)GetValue(MiddleCountryCodeProperty);
-        set => SetValue(MiddleCountryCodeProperty, value);
+        get => (string)GetValue(EntryCountryCodeProperty);
+        set => SetValue(EntryCountryCodeProperty, value);
     }
 
     public bool IsSecureCore
@@ -75,7 +74,7 @@ public sealed partial class CountryFlagControl
         set => SetValue(IsCompactProperty, value);
     }
 
-    private static void OnCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnExitCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is CountryFlagControl control)
         {
@@ -83,11 +82,11 @@ public sealed partial class CountryFlagControl
         }
     }
 
-    private static void OnMiddleCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnEntryCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is CountryFlagControl control)
         {
-            control.UpdateMiddleCountryFlag();
+            control.UpdateEntryCountryFlag();
             control.InvalidateFlagsLayout();
         }
     }
@@ -110,15 +109,15 @@ public sealed partial class CountryFlagControl
 
     private void InvalidateFlagsLayout()
     {
-        bool isMiddleCountryUnknown = string.IsNullOrEmpty(MiddleCountryCode);
+        bool isEntryCountryUnknown = string.IsNullOrEmpty(EntryCountryCode);
 
         string secureCoreVisualState = !IsSecureCore
             ? "NonSecureCore"
-            : isMiddleCountryUnknown
+            : isEntryCountryUnknown
                 ? "SecureCoreUnknown"
                 : "SecureCore";
 
-        string flagLayoutVisualState = !IsSecureCore || isMiddleCountryUnknown
+        string flagLayoutVisualState = !IsSecureCore || isEntryCountryUnknown
             ? "SingleFlagMode"
             : IsCompact
                 ? "DualFlagsCompactMode"
@@ -130,12 +129,12 @@ public sealed partial class CountryFlagControl
 
     private void UpdateCountryFlag()
     {
-        PART_ExitCountryFlag.Source = GetImageSource(CountryCode);
+        PART_ExitCountryFlag.Source = GetImageSource(ExitCountryCode);
     }
 
-    private void UpdateMiddleCountryFlag()
+    private void UpdateEntryCountryFlag()
     {
-        PART_MiddleCountryFlag.Source = GetImageSource(MiddleCountryCode);
+        PART_EntryCountryFlag.Source = GetImageSource(EntryCountryCode);
     }
 
     private SvgImageSource GetImageSource(string countryCode)
@@ -145,18 +144,25 @@ public sealed partial class CountryFlagControl
             countryCode = FLAG_ASSETS_FASTEST;
         }
 
-        Uri uri = BuildUri(countryCode);
-
-        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + uri.LocalPath))
-        {
-            uri = BuildUri(FLAG_ASSETS_PLACEHOLDER);
-        }
-
-        return new SvgImageSource(uri);
+        return GetFlagResource(GetFlagResourceName(countryCode)) ??
+               GetFlagResource(GetFlagResourceName(FLAG_ASSETS_PLACEHOLDER));
     }
 
-    private Uri BuildUri(string resourceName)
+    private string GetFlagResourceName(string countryCode)
     {
-        return new(Path.Combine(FLAG_ASSETS_FOLDER_PATH, resourceName + FLAG_ASSETS_FILE_EXTENSION));
+        return $"ProtonVPN.Common.UI.Assets.Flags.{countryCode}{FLAG_ASSETS_FILE_EXTENSION}";
+    }
+
+    private SvgImageSource GetFlagResource(string resourceName)
+    {
+        using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        if (stream != null)
+        {
+            SvgImageSource svgImageSource = new();
+            svgImageSource.SetSourceAsync(stream.AsRandomAccessStream());
+            return svgImageSource;
+        }
+
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,15 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.UI.Home.Components;
+namespace ProtonVPN.Gui.ConnectIntent;
 
-public sealed partial class HelpComponent
+public class CityConnectIntent : ConnectIntent
 {
-    public HelpComponent()
-    {
-        ViewModel = App.GetService<HelpViewModel>();
-        InitializeComponent();
-    }
+    public string Country { get; set; }
 
-    public HelpViewModel ViewModel { get; }
+    public string City { get; set; }
 }

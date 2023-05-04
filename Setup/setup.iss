@@ -182,6 +182,12 @@ Source: "..\src\bin\ProtonVPN.ProcessCommunication.Service.Installers.deps.json"
 Source: "..\src\bin\ProtonVPN.Resource.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Resource.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Resource.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Recents.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Recents.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Recents.Contracts.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Recents.Contracts.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Recents.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Recents.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Translations.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Translations.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Update.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;

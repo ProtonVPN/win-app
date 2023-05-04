@@ -195,4 +195,1011 @@
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
     <value>https://YourPrivacyUrlGoesHere/</value>
   </data>
+  <data name="Country_val_AD" xml:space="preserve">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE" xml:space="preserve">
+    <value>United Arab Emirates</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF" xml:space="preserve">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG" xml:space="preserve">
+    <value>Antigua and Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI" xml:space="preserve">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL" xml:space="preserve">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM" xml:space="preserve">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO" xml:space="preserve">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ" xml:space="preserve">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR" xml:space="preserve">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS" xml:space="preserve">
+    <value>American Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT" xml:space="preserve">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU" xml:space="preserve">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW" xml:space="preserve">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX" xml:space="preserve">
+    <value>Aland Islands</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ" xml:space="preserve">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA" xml:space="preserve">
+    <value>Bosnia and Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB" xml:space="preserve">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD" xml:space="preserve">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE" xml:space="preserve">
+    <value>Belgium</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF" xml:space="preserve">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG" xml:space="preserve">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH" xml:space="preserve">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI" xml:space="preserve">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ" xml:space="preserve">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL" xml:space="preserve">
+    <value>Saint Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM" xml:space="preserve">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN" xml:space="preserve">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO" xml:space="preserve">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ" xml:space="preserve">
+    <value>Bonaire, Sint Eustatius and Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR" xml:space="preserve">
+    <value>Brazil</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS" xml:space="preserve">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT" xml:space="preserve">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV" xml:space="preserve">
+    <value>Bouvet Island</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW" xml:space="preserve">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY" xml:space="preserve">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ" xml:space="preserve">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA" xml:space="preserve">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC" xml:space="preserve">
+    <value>Cocos (Keeling) Islands</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD" xml:space="preserve">
+    <value>Congo (Democratic Republic of the)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF" xml:space="preserve">
+    <value>Central African Republic</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG" xml:space="preserve">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH" xml:space="preserve">
+    <value>Switzerland</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI" xml:space="preserve">
+    <value>Côte d'Ivoire</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK" xml:space="preserve">
+    <value>Cook Islands</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL" xml:space="preserve">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM" xml:space="preserve">
+    <value>Cameroon</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN" xml:space="preserve">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO" xml:space="preserve">
+    <value>Colombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR" xml:space="preserve">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU" xml:space="preserve">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV" xml:space="preserve">
+    <value>Cape Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW" xml:space="preserve">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX" xml:space="preserve">
+    <value>Christmas Island</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY" xml:space="preserve">
+    <value>Cyprus</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ" xml:space="preserve">
+    <value>Czechia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE" xml:space="preserve">
+    <value>Germany</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ" xml:space="preserve">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK" xml:space="preserve">
+    <value>Denmark</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM" xml:space="preserve">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO" xml:space="preserve">
+    <value>Dominican Republic</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ" xml:space="preserve">
+    <value>Algeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC" xml:space="preserve">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE" xml:space="preserve">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG" xml:space="preserve">
+    <value>Egypt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH" xml:space="preserve">
+    <value>Western Sahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER" xml:space="preserve">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES" xml:space="preserve">
+    <value>Spain</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET" xml:space="preserve">
+    <value>Ethiopia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI" xml:space="preserve">
+    <value>Finland</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ" xml:space="preserve">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK" xml:space="preserve">
+    <value>Falkland Islands (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM" xml:space="preserve">
+    <value>Micronesia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO" xml:space="preserve">
+    <value>Faroe Islands</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR" xml:space="preserve">
+    <value>France</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA" xml:space="preserve">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB" xml:space="preserve">
+    <value>United Kingdom</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD" xml:space="preserve">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE" xml:space="preserve">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF" xml:space="preserve">
+    <value>French Guiana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG" xml:space="preserve">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH" xml:space="preserve">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI" xml:space="preserve">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL" xml:space="preserve">
+    <value>Greenland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM" xml:space="preserve">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN" xml:space="preserve">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP" xml:space="preserve">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ" xml:space="preserve">
+    <value>Equatorial Guinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR" xml:space="preserve">
+    <value>Greece</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS" xml:space="preserve">
+    <value>South Georgia and the South Sandwich Islands</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT" xml:space="preserve">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU" xml:space="preserve">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW" xml:space="preserve">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY" xml:space="preserve">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK" xml:space="preserve">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM" xml:space="preserve">
+    <value>Heard Island and McDonald Islands</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN" xml:space="preserve">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR" xml:space="preserve">
+    <value>Croatia</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT" xml:space="preserve">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU" xml:space="preserve">
+    <value>Hungary</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID" xml:space="preserve">
+    <value>Indonesia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE" xml:space="preserve">
+    <value>Ireland</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL" xml:space="preserve">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM" xml:space="preserve">
+    <value>Isle of Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN" xml:space="preserve">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO" xml:space="preserve">
+    <value>British Indian Ocean Territory</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ" xml:space="preserve">
+    <value>Iraq</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR" xml:space="preserve">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS" xml:space="preserve">
+    <value>Iceland</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT" xml:space="preserve">
+    <value>Italy</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE" xml:space="preserve">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM" xml:space="preserve">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO" xml:space="preserve">
+    <value>Jordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP" xml:space="preserve">
+    <value>Japan</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE" xml:space="preserve">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG" xml:space="preserve">
+    <value>Kyrgyzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH" xml:space="preserve">
+    <value>Cambodia</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI" xml:space="preserve">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM" xml:space="preserve">
+    <value>Comoros</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN" xml:space="preserve">
+    <value>Saint Kitts and Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP" xml:space="preserve">
+    <value>North Korea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR" xml:space="preserve">
+    <value>South Korea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW" xml:space="preserve">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY" xml:space="preserve">
+    <value>Cayman Islands</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ" xml:space="preserve">
+    <value>Kazakhstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA" xml:space="preserve">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB" xml:space="preserve">
+    <value>Lebanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC" xml:space="preserve">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI" xml:space="preserve">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK" xml:space="preserve">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR" xml:space="preserve">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS" xml:space="preserve">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT" xml:space="preserve">
+    <value>Lithuania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU" xml:space="preserve">
+    <value>Luxembourg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV" xml:space="preserve">
+    <value>Latvia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY" xml:space="preserve">
+    <value>Libya</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA" xml:space="preserve">
+    <value>Morocco</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC" xml:space="preserve">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD" xml:space="preserve">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME" xml:space="preserve">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF" xml:space="preserve">
+    <value>Saint Martin (French part)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG" xml:space="preserve">
+    <value>Madagascar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH" xml:space="preserve">
+    <value>Marshall Islands</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK" xml:space="preserve">
+    <value>North Macedonia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML" xml:space="preserve">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM" xml:space="preserve">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN" xml:space="preserve">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO" xml:space="preserve">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP" xml:space="preserve">
+    <value>Northern Mariana Islands</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ" xml:space="preserve">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR" xml:space="preserve">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS" xml:space="preserve">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT" xml:space="preserve">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU" xml:space="preserve">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV" xml:space="preserve">
+    <value>Maldives</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW" xml:space="preserve">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX" xml:space="preserve">
+    <value>Mexico</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY" xml:space="preserve">
+    <value>Malaysia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ" xml:space="preserve">
+    <value>Mozambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA" xml:space="preserve">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC" xml:space="preserve">
+    <value>New Caledonia</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE" xml:space="preserve">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF" xml:space="preserve">
+    <value>Norfolk Island</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG" xml:space="preserve">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI" xml:space="preserve">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL" xml:space="preserve">
+    <value>Netherlands</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO" xml:space="preserve">
+    <value>Norway</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP" xml:space="preserve">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR" xml:space="preserve">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU" xml:space="preserve">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ" xml:space="preserve">
+    <value>New Zealand</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM" xml:space="preserve">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA" xml:space="preserve">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE" xml:space="preserve">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF" xml:space="preserve">
+    <value>French Polynesia</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG" xml:space="preserve">
+    <value>Papua New Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH" xml:space="preserve">
+    <value>Philippines</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK" xml:space="preserve">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL" xml:space="preserve">
+    <value>Poland</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM" xml:space="preserve">
+    <value>Saint Pierre and Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN" xml:space="preserve">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR" xml:space="preserve">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS" xml:space="preserve">
+    <value>Palestine</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT" xml:space="preserve">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW" xml:space="preserve">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY" xml:space="preserve">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA" xml:space="preserve">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE" xml:space="preserve">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO" xml:space="preserve">
+    <value>Romania</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS" xml:space="preserve">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU" xml:space="preserve">
+    <value>Russia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW" xml:space="preserve">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA" xml:space="preserve">
+    <value>Saudi Arabia</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB" xml:space="preserve">
+    <value>Solomon Islands</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC" xml:space="preserve">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD" xml:space="preserve">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE" xml:space="preserve">
+    <value>Sweden</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG" xml:space="preserve">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH" xml:space="preserve">
+    <value>Saint Helena, Ascension and Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI" xml:space="preserve">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ" xml:space="preserve">
+    <value>Svalbard and Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK" xml:space="preserve">
+    <value>Slovakia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL" xml:space="preserve">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM" xml:space="preserve">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN" xml:space="preserve">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO" xml:space="preserve">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR" xml:space="preserve">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS" xml:space="preserve">
+    <value>South Sudan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST" xml:space="preserve">
+    <value>Sao Tome and Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV" xml:space="preserve">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX" xml:space="preserve">
+    <value>Sint Maarten (Dutch part)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY" xml:space="preserve">
+    <value>Syrian Arab Republic</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ" xml:space="preserve">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC" xml:space="preserve">
+    <value>Turks and Caicos Islands</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD" xml:space="preserve">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF" xml:space="preserve">
+    <value>French Southern Territories</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG" xml:space="preserve">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH" xml:space="preserve">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ" xml:space="preserve">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK" xml:space="preserve">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL" xml:space="preserve">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM" xml:space="preserve">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN" xml:space="preserve">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO" xml:space="preserve">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR" xml:space="preserve">
+    <value>Turkey</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT" xml:space="preserve">
+    <value>Trinidad and Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV" xml:space="preserve">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW" xml:space="preserve">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ" xml:space="preserve">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA" xml:space="preserve">
+    <value>Ukraine</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG" xml:space="preserve">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK" xml:space="preserve">
+    <value>United Kingdom</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM" xml:space="preserve">
+    <value>United States Minor Outlying Islands</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US" xml:space="preserve">
+    <value>United States</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY" xml:space="preserve">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ" xml:space="preserve">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA" xml:space="preserve">
+    <value>Vatican City</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC" xml:space="preserve">
+    <value>Saint Vincent and the Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE" xml:space="preserve">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG" xml:space="preserve">
+    <value>Virgin Islands, British</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI" xml:space="preserve">
+    <value>Virgin Islands, U.S.</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN" xml:space="preserve">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU" xml:space="preserve">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF" xml:space="preserve">
+    <value>Wallis and Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS" xml:space="preserve">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE" xml:space="preserve">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT" xml:space="preserve">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA" xml:space="preserve">
+    <value>South Africa</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM" xml:space="preserve">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW" xml:space="preserve">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ" xml:space="preserve">
+    <value>Unknown</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Recents_Connect.Text" xml:space="preserve">
+    <value>Connect</value>
+  </data>
 </root>

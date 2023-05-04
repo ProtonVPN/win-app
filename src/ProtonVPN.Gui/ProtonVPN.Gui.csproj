@@ -19,9 +19,13 @@
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="UI\Home\VpnStatus\**" />
     <Compile Remove="Views\**" />
+    <EmbeddedResource Remove="UI\Home\VpnStatus\**" />
     <EmbeddedResource Remove="Views\**" />
+    <None Remove="UI\Home\VpnStatus\**" />
     <None Remove="Views\**" />
+    <Page Remove="UI\Home\VpnStatus\**" />
     <Page Remove="Views\**" />
   </ItemGroup>
 
@@ -35,6 +39,7 @@
     <PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230331000" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
@@ -52,11 +57,23 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Recents\ProtonVPN.Recents.Installers\ProtonVPN.Recents.Installers.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Common.UI\ProtonVPN.Common.UI.csproj" />
     <ProjectReference Include="..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
   </ItemGroup>
   
   <ItemGroup>
     <PRIResource Remove="Views\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="UI\Home\ConnectionCard\" />
+    <Folder Include="UI\Home\Map\" />
+    <Folder Include="UI\Home\Help\" />
+    <Folder Include="UI\Home\NetShieldStats\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PRIResource Remove="UI\Home\VpnStatus\**" />
   </ItemGroup>
 </Project>

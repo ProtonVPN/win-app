@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,10 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+namespace ProtonVPN.Gui.UI.Home.ConnectionCard;
 
-namespace ProtonVPN.Gui.UI.Home.Components;
-
-public class MapViewModel : ObservableRecipient
+public sealed partial class ConnectionCardComponent
 {
+    public ConnectionCardComponent()
+    {
+        ViewModel = App.GetService<ConnectionCardViewModel>();
+        InitializeComponent();
+    }
+
+    public ConnectionCardViewModel ViewModel { get; }
 }

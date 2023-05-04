@@ -25,7 +25,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:winui="using:CommunityToolkit.WinUI.UI"
       xmlns:helpers="using:ProtonVPN.Gui.Helpers" 
-      xmlns:components="using:ProtonVPN.Gui.UI.Home.Components"
+      xmlns:connectionCard="using:ProtonVPN.Gui.UI.Home.ConnectionCard"
+      xmlns:recents="using:ProtonVPN.Gui.UI.Home.Recents"
+      xmlns:map="using:ProtonVPN.Gui.UI.Home.Map"
+      xmlns:vpnStatusComponent="using:ProtonVPN.Gui.UI.Home.VpnStatusComponent"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -93,20 +96,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
 
-                    <components:MapComponent />
+                    <map:MapComponent />
 
-                    <components:VpnStatusComponent Grid.Row="0" />
+                    <vpnStatusComponent:VpnStatusComponent Grid.Row="0" />
 
                     <Border Height="{StaticResource MapOverlayGradientHeight}"
                             VerticalAlignment="Bottom"
                             Background="{StaticResource ReverseGradientFadingColorBrush}" />
                 </Grid>
 
-                <components:ConnectionCardComponent Grid.Row="1" />
+                <connectionCard:ConnectionCardComponent Grid.Row="1" />
+                <recents:RecentsComponent Grid.Row="2"/>
             </Grid>
         </SplitView>
     </Grid>
