@@ -17,11 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Gui.Contracts.ViewModels;
+namespace ProtonVPN.Localization.Contracts;
 
-namespace ProtonVPN.Gui.UI.Home.Help;
-
-public class HelpViewModel : ViewModelBase
+public interface ILocalizationProvider
 {
+    string Get(string resourceKey);
+
+    string GetFormat(string resourceKey, object arg0);
+
+    string GetFormat(string resourceKey, object arg0, object arg1);
+
+    string GetFormat(string resourceKey, object arg0, object arg1, object arg2);
+
+    string GetFormat(string resourceKey, params object[] args);
 }

@@ -19,52 +19,55 @@
 
 using System.Collections.ObjectModel;
 using System.Reflection;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 
 using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Helpers;
 using ProtonVPN.Gui.Models;
+using ProtonVPN.Localization.Contracts;
 using Windows.ApplicationModel;
 
 namespace ProtonVPN.Gui.UI.Settings;
 
-public partial class SettingsViewModel : PageViewModelBase
+public partial class SettingsViewModel : NavigationPageViewModelBase
 {
     private readonly IThemeSelectorService _themeSelectorService;
+    private readonly ILocalizationService _localizationService;
+
+    [ObservableProperty]
     private ApplicationElementTheme _selectedTheme;
+
+    [ObservableProperty]
+    private string _selectedLanguage;
+
     private string _versionDescription;
 
-    public SettingsViewModel(IThemeSelectorService themeSelectorService, INavigationService navigationService)
-        : base(navigationService, "Settings")
+    public SettingsViewModel(IThemeSelectorService themeSelectorService, INavigationService navigationService, ILocalizationService localizationService)
+        : base(navigationService)
     {
         _themeSelectorService = themeSelectorService;
+        _localizationService = localizationService;
 
         _versionDescription = GetVersionDescription();
 
         Themes = new ObservableCollection<ApplicationElementTheme>()
         {
-            new ApplicationElementTheme(ElementTheme.Light, "Settings_Theme_Light".GetLocalized()),
-            new ApplicationElementTheme(ElementTheme.Dark, "Settings_Theme_Dark".GetLocalized()),
-            new ApplicationElementTheme(ElementTheme.Default, "Settings_Theme_Default".GetLocalized())
+            new ApplicationElementTheme(ElementTheme.Light),
+            new ApplicationElementTheme(ElementTheme.Dark),
+            new ApplicationElementTheme(ElementTheme.Default)
         };
 
         _selectedTheme = Themes.FirstOrDefault(t => t.Theme == _themeSelectorService.Theme) ?? Themes.Last();
-    }
 
-    public ApplicationElementTheme SelectedTheme
-    {
-        get => _selectedTheme;
-        set
-        {
-            if (SetProperty(ref _selectedTheme, value))
-            {
-                _themeSelectorService.SetThemeAsync(value.Theme);
-            }
-        }
+        Languages = new ObservableCollection<string>(localizationService.GetAvailableLanguages());
+
+        _selectedLanguage = localizationService.GetCurrentLanguage();
     }
 
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
+    public ObservableCollection<string> Languages { get; }
 
     public string VersionDescription
     {
@@ -72,7 +75,7 @@ public partial class SettingsViewModel : PageViewModelBase
         set => SetProperty(ref _versionDescription, value);
     }
 
-    private static string GetVersionDescription()
+    private string GetVersionDescription()
     {
         Version version;
 
@@ -87,6 +90,20 @@ public partial class SettingsViewModel : PageViewModelBase
             version = Assembly.GetExecutingAssembly().GetName().Version!;
         }
 
-        return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        return $"{App.APPLICATION_NAME} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
+
+    partial void OnSelectedThemeChanged(ApplicationElementTheme value)
+    {
+        _themeSelectorService.SetThemeAsync(value?.Theme ?? ElementTheme.Default);
+    }
+    partial void OnSelectedLanguageChanged(string value)
+    {
+        _localizationService.SetLanguageAsync(value);
+    }
+
+    public override string IconGlyphCode => "\uE713";
+
+    public override string? Title => Localizer.Get("Settings_Page_Title");
+
 }

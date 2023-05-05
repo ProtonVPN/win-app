@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class PortForwardingViewModel : PageViewModelBase
 {
     public PortForwardingViewModel(INavigationService navigationService)
-        : base(navigationService, "Port forwarding", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Features_PortForwarding");
 }

@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class SplitTunnelingViewModel : PageViewModelBase
 {
     public SplitTunnelingViewModel(INavigationService navigationService)
-        : base(navigationService, "Split tunneling", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Features_SplitTunneling");
 }

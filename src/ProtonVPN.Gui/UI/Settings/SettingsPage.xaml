@@ -38,9 +38,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea">
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
-                       Text="Features" />
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features'), Mode=OneWay}" />
 
-            <labs:SettingsCard x:Uid="Settings_NetShield"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.NetShieldViewModel"
                                IsClickEnabled="True">
@@ -49,7 +49,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard x:Uid="Settings_KillSwitch"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.KillSwitchViewModel"
                                IsClickEnabled="True">
@@ -58,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard x:Uid="Settings_PortForwarding"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.PortForwardingViewModel"
                                IsClickEnabled="True">
@@ -66,8 +66,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <FontIcon Glyph="&#xF591;" />
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
-
-            <labs:SettingsCard x:Uid="Settings_SplitTunneling"
+            
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.SplitTunnelingViewModel"
                                IsClickEnabled="True">
@@ -77,17 +77,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </labs:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
-                       Text="Connection" />
-            <labs:SettingsCard x:Uid="Settings_Protocol"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection'), Mode=OneWay}" />
+
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.ProtocolViewModel"
                                IsClickEnabled="True">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE8CE;" />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Text="Smart" />
             </labs:SettingsCard>
-            <labs:SettingsCard x:Uid="Settings_VpnAccelerator"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.VpnAcceleratorViewModel"
                                IsClickEnabled="True">
@@ -95,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <FontIcon Glyph="&#xE945;" />
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
-            <labs:SettingsCard x:Uid="Settings_AdvancedSettings"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.AdvancedSettingsViewModel"
                                IsClickEnabled="True">
@@ -105,8 +105,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </labs:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
-                       Text="General" />
-            <labs:SettingsCard x:Uid="Settings_AutoConnect"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_General'), Mode=OneWay}" />
+
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.AutoConnectViewModel"
                                IsClickEnabled="True">
@@ -114,21 +115,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <FontIcon Glyph="&#xE7E8;" />
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
-            <labs:SettingsCard Description="Select which app theme to display"
-                               Header="App theme">
+
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Language'), Mode=OneWay}">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xF2B7;" />
+                </labs:SettingsCard.HeaderIcon>
+                <ComboBox x:Name="cbLanguage"
+                          ItemsSource="{x:Bind ViewModel.Languages}"
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Theme'), Mode=OneWay}">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE793;" />
                 </labs:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="themeMode"
-                          DisplayMemberPath="Header"
+                          DisplayMemberPath="Theme"
                           ItemsSource="{x:Bind ViewModel.Themes}"
                           SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
             </labs:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
-                       Text="Improve Proton" />
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Improve'), Mode=OneWay}" />
 
-            <labs:SettingsCard x:Uid="Settings_Censorship"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Improve_Censorship'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.CensorshipViewModel"
                                IsClickEnabled="True">

@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Gui.Contracts.ViewModels;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 
-namespace ProtonVPN.Gui.UI.Home.Help;
+namespace ProtonVPN.Localization.Messages;
 
-public class HelpViewModel : ViewModelBase
+public class LanguageChangedMessage : ValueChangedMessage<string>
 {
+    public LanguageChangedMessage(string value) 
+        : base(value)
+    {
+    }
 }

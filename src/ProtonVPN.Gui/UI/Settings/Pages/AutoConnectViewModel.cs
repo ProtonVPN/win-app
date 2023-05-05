@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class AutoConnectViewModel : PageViewModelBase
 {
     public AutoConnectViewModel(INavigationService navigationService)
-        : base(navigationService, "Auto connect", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_General_AutoStartup");
 }

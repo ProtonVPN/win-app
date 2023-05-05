@@ -22,13 +22,14 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Models;
+using ProtonVPN.Gui.UI.Countries.Pages;
 
 namespace ProtonVPN.Gui.UI.Countries;
 
-public partial class CountriesViewModel : PageViewModelBase
+public partial class CountriesViewModel : NavigationPageViewModelBase
 {
     public CountriesViewModel(INavigationService navigationService)
-        : base(navigationService, "Countries")
+        : base(navigationService)
     {
         Countries = new ObservableCollection<Country>()
         {
@@ -46,8 +47,10 @@ public partial class CountriesViewModel : PageViewModelBase
     [RelayCommand]
     public void NavigateToCountry(Country country)
     {
-        string countryPageKey = "ProtonVPN.Gui.UI.Countries.Pages.CountryViewModel";
-
-        NavigationService.NavigateTo(countryPageKey, country);
+        NavigationService.NavigateTo(typeof(CountryViewModel).FullName, country);
     }
+
+    public override string? Title => Localizer.Get("Countries_Page_Title");
+
+    public override string IconGlyphCode => "\uE909";
 }

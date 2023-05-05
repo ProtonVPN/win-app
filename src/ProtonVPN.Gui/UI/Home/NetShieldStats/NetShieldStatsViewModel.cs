@@ -18,10 +18,11 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.ViewModels;
 
 namespace ProtonVPN.Gui.UI.Home.NetShieldStats;
 
-public partial class NetShieldStatsViewModel : ObservableRecipient
+public partial class NetShieldStatsViewModel : ViewModelBase
 {
     [ObservableProperty]
     private int _numberOfTrackersStopped;

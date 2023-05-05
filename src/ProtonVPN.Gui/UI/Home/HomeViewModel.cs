@@ -24,7 +24,7 @@ using ProtonVPN.Gui.Contracts.ViewModels;
 
 namespace ProtonVPN.Gui.UI.Home;
 
-public partial class HomeViewModel : PageViewModelBase
+public partial class HomeViewModel : NavigationPageViewModelBase
 {
     [ObservableProperty]
     private bool _isDetailsPaneOpen;
@@ -50,4 +50,10 @@ public partial class HomeViewModel : PageViewModelBase
     {
         IsDetailsPaneOpen = true;
     }
+
+    public override string? Title => Localizer.Get("Home_Page_Title");
+
+    public override string IconGlyphCode => "\uE80F";
+
+    public override bool IsHeaderVisible => false;
 }

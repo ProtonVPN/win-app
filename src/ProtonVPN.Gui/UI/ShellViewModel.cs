@@ -21,25 +21,24 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Common.UI.Gallery;
-using ProtonVPN.Common.UI.Gallery.Pages;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Helpers;
-using ProtonVPN.Gui.Models;
 using ProtonVPN.Gui.UI.Countries;
+using ProtonVPN.Gui.UI.Gallery;
 using ProtonVPN.Gui.UI.Home;
 using ProtonVPN.Gui.UI.Settings;
 
 namespace ProtonVPN.Gui.UI;
 
-public partial class ShellViewModel : ObservableRecipient
+public partial class ShellViewModel : ViewModelBase
 {
     [ObservableProperty]
     private bool _isBackEnabled;
 
     [ObservableProperty]
-    private NavigationPage _selectedPage;
+    private NavigationPageViewModelBase? _selectedNavigationPage;
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
     {
@@ -47,55 +46,44 @@ public partial class ShellViewModel : ObservableRecipient
         NavigationService.Navigated += OnNavigated;
         NavigationViewService = navigationViewService;
 
-        Pages = new ObservableCollection<NavigationPage>
+        NavigationPages = new ObservableCollection<NavigationPageViewModelBase>
         {
-            new NavigationPage("Home", "E80F", typeof(HomeViewModel)),
-            new NavigationPage("Countries", "E909", typeof(CountriesViewModel)),
-            new NavigationPage("Settings", "E713", typeof(SettingsViewModel))
+            App.GetService<HomeViewModel>(),
+            App.GetService<CountriesViewModel>(),
+            App.GetService<SettingsViewModel>(),
         };
 
         AddDebugPages();
 
-        _selectedPage = Pages.First();
+        IsActive = true;
     }
 
-    public PageViewModelBase? CurrentPage => NavigationService?.Frame?.GetPageViewModel() as PageViewModelBase;
+    public PageViewModelBase? CurrentPage
+        => NavigationService?.Frame?.GetPageViewModel() as PageViewModelBase;
 
     public INavigationService NavigationService { get; }
 
     public INavigationViewService NavigationViewService { get; }
 
-    public ObservableCollection<NavigationPage> Pages { get; }
+    public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
 
-    [Conditional("DEBUG")]
-    private void AddDebugPages()
+    protected override void OnLanguageChanged()
     {
-        NavigationPage galleryPage = new("Gallery", "EB3C", typeof(GalleryPage));
-        galleryPage.Children.Add(
-            new NavigationPage("Colors", "", typeof(ColorsPage)));
-        galleryPage.Children.Add(
-            new NavigationPage("Typography", "", typeof(TypographyPage)));
-        galleryPage.Children.Add(
-            new NavigationPage("Inputs", "", typeof(InputsPage)));
-        galleryPage.Children.Add(
-            new NavigationPage("Text Fields", "", typeof(TextFieldsPage)));
-        galleryPage.Children.Add(
-            new NavigationPage("Map", "", typeof(MapPage)));
-        galleryPage.Children.Add(
-            new NavigationPage("VPN Specific", "", typeof(VpnSpecificPage)));
-
-        Pages.Add(galleryPage);
+        NavigationPages.ForEach(p => p.InvalidateTitle());
     }
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
         IsBackEnabled = NavigationService.CanGoBack;
 
-        if (CurrentPage != null)
-        {
-            SelectedPage = Pages.FirstOrDefault(p => p.PageKeyType == CurrentPage.GetType());
-        }
-
         OnPropertyChanged(nameof(CurrentPage));
+
+        SelectedNavigationPage = CurrentPage as NavigationPageViewModelBase ?? NavigationPages.FirstOrDefault(p => p.IsHostFor(CurrentPage));
+    }
+
+    [Conditional("DEBUG")]
+    private void AddDebugPages()
+    {
+        NavigationPages.Add(App.GetService<GalleryViewModel>());
     }
 }

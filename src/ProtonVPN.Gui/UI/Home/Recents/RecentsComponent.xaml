@@ -68,27 +68,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Grid.Column="1" />
                                     <StackPanel Grid.Column="2"
                                                 Orientation="Horizontal">
+                                        
                                         <TextBlock Margin="0,0,4,0"
-                                                   FontSize="14"
-                                                   Visibility="{x:Bind HasNoSubtitle}">
-                                            <Run Text="{x:Bind Title}"
-                                                 Foreground="{StaticResource TextNormColorBrush}" />
-                                        </TextBlock>
-
+                                                   Text="{x:Bind Title}"
+                                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                                        
                                         <TextBlock Margin="0,0,4,0"
-                                                   FontSize="14"
-                                                   Visibility="{x:Bind Subtitle, Converter={StaticResource NotNullToVisibilityConverter}}">
-                                            <Run Text="{x:Bind Title}"
-                                                 Foreground="{StaticResource TextNormColorBrush}" />
-                                            <Run Text="-"
-                                                 Foreground="{StaticResource TextWeakColorBrush}" />
-                                            <Run Text="{x:Bind Subtitle}"
-                                                 Foreground="{StaticResource TextWeakColorBrush}" />
+                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                   Visibility="{x:Bind HasSubtitle}"
+                                                 Foreground="{StaticResource TextWeakColorBrush}" >
+                                            <Run Text="-"/>
+                                            <Run Text="{x:Bind Subtitle, Mode=OneWay}"/>
                                         </TextBlock>
 
                                         <icons:ActiveDot Height="16"
                                                          Width="16"
-                                                         Visibility="{x:Bind IsActiveConnection}" />
+                                                         Visibility="{x:Bind IsActiveConnection, Mode=OneWay}" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>

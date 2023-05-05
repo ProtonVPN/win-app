@@ -18,16 +18,34 @@
  */
 
 using ProtonVPN.Gui.Contracts.Services;
-using ProtonVPN.Gui.Contracts.ViewModels;
 
-namespace ProtonVPN.Gui.UI.Settings.Pages;
+namespace ProtonVPN.Gui.Contracts.ViewModels;
 
-public class NetShieldViewModel : PageViewModelBase
+public abstract partial class NavigationPageViewModelBase : PageViewModelBase
 {
-    public NetShieldViewModel(INavigationService navigationService)
+    public NavigationPageViewModelBase(INavigationService navigationService)
         : base(navigationService)
-    {
-    }
+    { }
 
-    public override string? Title => Localizer.Get("Settings_Features_NetShield");
+    public virtual string IconGlyphCode { get; }
+
+    public override bool CanGoBack => false;
+
+    public virtual bool IsHostFor(PageViewModelBase? page)
+    {
+        if(page == null)
+        {
+            return false;
+        }
+
+        string? pageNamespace = page.GetType().Namespace;
+        string? hostNamespace = GetType().Namespace;
+
+        if (string.IsNullOrEmpty(pageNamespace) || string.IsNullOrEmpty(hostNamespace))
+        {
+            return false;
+        }
+
+        return pageNamespace.Contains(hostNamespace);
+    }
 }

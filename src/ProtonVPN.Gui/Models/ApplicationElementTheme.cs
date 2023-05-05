@@ -18,18 +18,16 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Gui.Contracts.ViewModels;
 
 namespace ProtonVPN.Gui.Models;
 
-public class ApplicationElementTheme
+public class ApplicationElementTheme 
 {
-    public ApplicationElementTheme(ElementTheme theme, string header)
+    public ApplicationElementTheme(ElementTheme theme)
     {
         Theme = theme;
-        Header = header;
     }
-
-    public string Header { get; }
 
     public ElementTheme Theme { get; }
 }

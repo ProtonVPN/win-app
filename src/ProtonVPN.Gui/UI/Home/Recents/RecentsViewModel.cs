@@ -20,12 +20,13 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Messages;
 using ProtonVPN.Recents.Contracts;
 
 namespace ProtonVPN.Gui.UI.Home.Recents;
 
-public class RecentsViewModel : ObservableRecipient, IRecipient<VpnStateChangedMessage>
+public class RecentsViewModel : ViewModelBase, IRecipient<VpnStateChangedMessage>
 {
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
 

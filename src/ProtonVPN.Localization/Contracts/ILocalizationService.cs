@@ -17,11 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Gui.Contracts.ViewModels;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace ProtonVPN.Gui.UI.Home.Help;
+namespace ProtonVPN.Localization.Contracts;
 
-public class HelpViewModel : ViewModelBase
+public interface ILocalizationService
 {
+    IEnumerable<string> GetAvailableLanguages();
+
+    string GetCurrentLanguage();
+
+    Task SetLanguageAsync(string language);
 }

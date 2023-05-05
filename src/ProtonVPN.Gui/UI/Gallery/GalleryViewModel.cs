@@ -17,11 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.Contracts.ViewModels;
 
-namespace ProtonVPN.Gui.UI.Home.Help;
-
-public class HelpViewModel : ViewModelBase
+namespace ProtonVPN.Gui.UI.Gallery
 {
+    public class GalleryViewModel : NavigationPageViewModelBase
+    {
+        public GalleryViewModel(INavigationService navigationService) 
+            : base(navigationService)
+        {
+        }
+
+        public override string? Title => "Gallery";
+
+        public override string IconGlyphCode => "\uEB3C";
+    }
 }

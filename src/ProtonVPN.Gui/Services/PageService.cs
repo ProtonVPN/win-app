@@ -26,6 +26,7 @@ using ProtonVPN.Common.UI.Gallery.Pages;
 using ProtonVPN.Gui.Contracts.Services;
 using ProtonVPN.Gui.UI.Countries;
 using ProtonVPN.Gui.UI.Countries.Pages;
+using ProtonVPN.Gui.UI.Gallery;
 using ProtonVPN.Gui.UI.Home;
 using ProtonVPN.Gui.UI.Settings;
 using ProtonVPN.Gui.UI.Settings.Pages;
@@ -54,6 +55,7 @@ public class PageService : IPageService
         Configure<AutoConnectViewModel, AutoConnectPage>();
         Configure<CensorshipViewModel, CensorshipPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<GalleryViewModel, GalleryPage>();
 
         ConfigureDebugPages();
     }
@@ -118,7 +120,6 @@ public class PageService : IPageService
     [Conditional("DEBUG")]
     private void ConfigureDebugPages()
     {
-        Configure<GalleryPage>();
         Configure<ColorsPage>();
         Configure<TypographyPage>();
         Configure<InputsPage>();

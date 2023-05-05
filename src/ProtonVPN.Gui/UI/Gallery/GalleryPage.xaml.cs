@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,31 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Controls;
 
-namespace ProtonVPN.Gui.Models;
+namespace ProtonVPN.Gui.UI.Gallery;
 
-public class NavigationPage
+public sealed partial class GalleryPage : Page
 {
-    public NavigationPage(string name, string iconCode, Type pageKeyType)
+    public GalleryPage()
     {
-        Name = name;
-        PageKeyType = pageKeyType;
-
-        if (!string.IsNullOrEmpty(iconCode))
-        {
-            Icon = new FontIcon() { Glyph = char.ConvertFromUtf32(Convert.ToInt32(iconCode, 16)) };
-        }
-
-        Children = new ObservableCollection<NavigationPage>();
+        ViewModel = App.GetService<GalleryViewModel>();
+        InitializeComponent();
     }
 
-    public ObservableCollection<NavigationPage> Children { get; set; }
-
-    public IconElement Icon { get; set; }
-
-    public string Name { get; set; }
-
-    public Type PageKeyType { get; set; }
+    public GalleryViewModel ViewModel { get; }
 }

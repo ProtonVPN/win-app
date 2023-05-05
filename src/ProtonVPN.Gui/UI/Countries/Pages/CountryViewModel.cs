@@ -27,21 +27,20 @@ namespace ProtonVPN.Gui.UI.Countries.Pages;
 public partial class CountryViewModel : PageViewModelBase
 {
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Title))]
     private Country? _currentCountry;
 
     public CountryViewModel(INavigationService navigationService)
-        : base(navigationService, "Country", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => CurrentCountry?.CountryName;
 
     public override void OnNavigatedTo(object parameter)
     {
         base.OnNavigatedTo(parameter);
 
         CurrentCountry = parameter as Country;
-        if (CurrentCountry != null)
-        {
-            Title = CurrentCountry.CountryName;
-        }
     }
 }

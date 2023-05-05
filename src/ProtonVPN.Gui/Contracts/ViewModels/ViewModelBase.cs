@@ -17,11 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Gui.Contracts.ViewModels;
+using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Localization.Contracts;
+using ProtonVPN.Localization.Messages;
 
-namespace ProtonVPN.Gui.UI.Home.Help;
+namespace ProtonVPN.Gui.Contracts.ViewModels;
 
-public class HelpViewModel : ViewModelBase
+public abstract partial class ViewModelBase : ObservableRecipient, ILanguageAware
 {
+    public ViewModelBase()
+    {
+        Localizer = App.GetService<ILocalizationProvider>();
+    }
+
+    public ILocalizationProvider Localizer { get; }
+
+    public void Receive(LanguageChangedMessage message)
+    {
+        OnPropertyChanged(nameof(Localizer));
+        OnLanguageChanged();
+    }
+
+    protected virtual void OnLanguageChanged()
+    {
+        // Override this method to invalidate any localized strings set up in your viewmodel
+    }
 }

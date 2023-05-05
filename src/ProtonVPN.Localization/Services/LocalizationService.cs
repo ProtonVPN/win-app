@@ -17,19 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Gui.Helpers;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Localization.Contracts;
+using ProtonVPN.Localization.Messages;
+using WinUI3Localizer;
 
-namespace ProtonVPN.Gui;
+namespace ProtonVPN.Localization.Services;
 
-public sealed partial class MainWindow : WindowEx
+public class LocalizationService : ILocalizationService
 {
-    public MainWindow()
-    {
-        InitializeComponent();
+    private readonly ILocalizer _localizer = Localizer.Get();
 
-        AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
-        Content = null;
-        Title = App.APPLICATION_NAME;
+    public IEnumerable<string> GetAvailableLanguages()
+    {
+        return _localizer.GetAvailableLanguages();
+    }
+
+    public string GetCurrentLanguage()
+    {
+        return _localizer.GetCurrentLanguage();
+    }
+
+    public async Task SetLanguageAsync(string language)
+    {
+        await _localizer.SetLanguage(language);
+
+        WeakReferenceMessenger.Default.Send(new LanguageChangedMessage(language));
     }
 }
