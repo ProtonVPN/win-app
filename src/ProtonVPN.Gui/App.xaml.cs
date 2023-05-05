@@ -28,6 +28,7 @@ using ProtonVPN.Gui.Services;
 using ProtonVPN.Gui.UI;
 using ProtonVPN.Gui.UI.Countries;
 using ProtonVPN.Gui.UI.Countries.Pages;
+using ProtonVPN.Gui.UI.Gallery;
 using ProtonVPN.Gui.UI.Home;
 using ProtonVPN.Gui.UI.Home.ConnectionCard;
 using ProtonVPN.Gui.UI.Home.Help;
@@ -39,11 +40,14 @@ using ProtonVPN.Gui.UI.Settings;
 using ProtonVPN.Gui.UI.Settings.Pages;
 using ProtonVPN.Gui.UI.Settings.Pages.Advanced;
 using ProtonVPN.Recents.Installers;
+using ProtonVPN.Localization;
 
 namespace ProtonVPN.Gui;
 
 public partial class App
 {
+    public const string APPLICATION_NAME = "Proton VPN";
+
     public App()
     {
         InitializeComponent();
@@ -70,6 +74,9 @@ public partial class App
             // Core Services
             services.AddSingleton<IFileService, FileService>();
 
+            // Localization
+            services.AddLocalizer();
+
             // Views and ViewModels
             services.AddTransient<RecentsViewModel>();
             services.AddTransient<VpnStatusViewModel>();
@@ -77,7 +84,7 @@ public partial class App
             services.AddTransient<ConnectionCardViewModel>();
             services.AddTransient<MapViewModel>();
             services.AddTransient<HelpViewModel>();
-            services.AddTransient<SettingsViewModel>();
+            services.AddSingleton<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<CensorshipViewModel>();
             services.AddTransient<CensorshipPage>();
@@ -103,12 +110,14 @@ public partial class App
             services.AddTransient<NetShieldPage>();
             services.AddTransient<CountryViewModel>();
             services.AddTransient<CountryPage>();
-            services.AddTransient<CountriesViewModel>();
+            services.AddSingleton<CountriesViewModel>();
             services.AddTransient<CountriesPage>();
             services.AddSingleton<HomeViewModel>();
             services.AddTransient<HomePage>();
+            services.AddSingleton<GalleryViewModel>();
+            services.AddTransient<GalleryPage>();
             services.AddTransient<ShellPage>();
-            services.AddTransient<ShellViewModel>();
+            services.AddSingleton<ShellViewModel>();
 
             services.AddRecents();
 
@@ -144,6 +153,7 @@ public partial class App
     {
         base.OnLaunched(args);
 
+        await LocalizationModule.BuildLocalizerAsync();
         await App.GetService<IActivationService>().ActivateAsync(args);
     }
 

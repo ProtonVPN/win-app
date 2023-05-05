@@ -25,7 +25,8 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class CensorshipViewModel : PageViewModelBase
 {
     public CensorshipViewModel(INavigationService navigationService)
-        : base(navigationService, "Help us fight censorship", true)
+        : base(navigationService)
     {
     }
+    public override string? Title => Localizer.Get("Settings_Improve_Censorship");
 }

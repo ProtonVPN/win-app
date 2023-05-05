@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class KillSwitchViewModel : PageViewModelBase
 {
     public KillSwitchViewModel(INavigationService navigationService)
-        : base(navigationService, "Kill switch", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Features_KillSwitch");
 }

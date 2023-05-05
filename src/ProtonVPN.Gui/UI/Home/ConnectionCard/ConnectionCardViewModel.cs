@@ -22,13 +22,14 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Enums;
 using ProtonVPN.Gui.Mappers;
 using ProtonVPN.Gui.Messages;
 
 namespace ProtonVPN.Gui.UI.Home.ConnectionCard;
 
-public partial class ConnectionCardViewModel : ObservableRecipient, IRecipient<VpnStateChangedMessage>
+public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<VpnStateChangedMessage>
 {
     private readonly HomeViewModel _homeViewModel;
 

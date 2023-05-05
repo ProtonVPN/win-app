@@ -32,12 +32,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard x:Uid="Settings_VpnLogs"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.Advanced.VpnLogsViewModel"
                                IsClickEnabled="True" />
 
-            <labs:SettingsCard x:Uid="Settings_CustomDnsServers"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers'), Mode=OneWay}"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Gui.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
                                IsClickEnabled="True" />

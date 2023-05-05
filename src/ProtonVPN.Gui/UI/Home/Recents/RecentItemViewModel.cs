@@ -20,62 +20,59 @@
 using Windows.ApplicationModel.Resources;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Recents.Contracts;
+using ProtonVPN.Gui.Contracts.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ProtonVPN.Gui.UI.Home.Recents;
 
-public class RecentItemViewModel
+public partial class RecentItemViewModel : ViewModelBase
 {
-    private IRecentConnection _recentConnection;
+    private readonly IRecentConnection _recentConnection;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Subtitle))]
+    [NotifyPropertyChangedFor(nameof(HasSubtitle))]
+    private string? _entryCountry;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Title))]
+    private string? _exitCountry;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Subtitle))]
+    [NotifyPropertyChangedFor(nameof(HasSubtitle))]
+    private bool _isSecureCore;
+
+    [ObservableProperty]
+    private bool _isPinned;
+
+    [ObservableProperty]
+    private bool _isActiveConnection;
 
     public RecentItemViewModel(IRecentConnection recentConnection)
     {
         _recentConnection = recentConnection;
 
-        EntryCountry = _recentConnection.EntryCountryCode;
-        ExitCountry = _recentConnection.ExitCountryCode;
-        IsPinned = _recentConnection.IsPinned;
-
-        if (!_recentConnection.EntryCountryCode.IsNullOrEmpty() && !_recentConnection.ExitCountryCode.IsNullOrEmpty())
-        {
-            Title = GetCountryName(_recentConnection.ExitCountryCode);
-            Subtitle = " via " + GetCountryName(_recentConnection.EntryCountryCode);
-            IsSecureCore = true;
-        }
-        else if (!_recentConnection.ExitCountryCode.IsNullOrEmpty() && !_recentConnection.City.IsNullOrEmpty())
-        {
-            Title = GetCountryName(_recentConnection.ExitCountryCode);
-            Subtitle = _recentConnection.City;
-        }
-        else if (!_recentConnection.ExitCountryCode.IsNullOrEmpty() && !_recentConnection.Server.IsNullOrEmpty())
-        {
-            Title = GetCountryName(_recentConnection.ExitCountryCode);
-            Subtitle = _recentConnection.Server;
-        }
-        else if (!_recentConnection.ExitCountryCode.IsNullOrEmpty())
-        {
-            Title = GetCountryName(_recentConnection.ExitCountryCode);
-        }
+        _entryCountry = _recentConnection.EntryCountryCode;
+        _exitCountry = _recentConnection.ExitCountryCode;
+        _isPinned = _recentConnection.IsPinned;
+        _isSecureCore = !_entryCountry.IsNullOrEmpty() && !_exitCountry.IsNullOrEmpty();
     }
 
-    private string GetCountryName(string countryCode)
+    public string Title => !ExitCountry.IsNullOrEmpty()
+        ? Localizer.Get($"Country_val_{ExitCountry}")
+        : Localizer.Get("Country_Fastest");
+
+    public string? Subtitle => IsSecureCore
+        ? Localizer.GetFormat("Connection_Via_SecureCore", Localizer.Get($"Country_val_{EntryCountry}"))
+        : _recentConnection.City ?? _recentConnection.Server;
+
+    public bool HasSubtitle => !Subtitle.IsNullOrEmpty();
+
+    protected override void OnLanguageChanged()
     {
-        return ResourceLoader.GetForViewIndependentUse().GetString($"Country_val_{countryCode}");
+        OnPropertyChanged(nameof(Title));
+        OnPropertyChanged(nameof(Subtitle));
+        OnPropertyChanged(nameof(HasSubtitle));
     }
-
-    public string Title { get; set; }
-
-    public string Subtitle { get; set; }
-
-    public string EntryCountry { get; set; }
-
-    public string ExitCountry { get; set; }
-
-    public bool IsSecureCore { get; set; }
-
-    public bool IsPinned { get; set; }
-    public bool IsRecent { get; set; }
-
-    public bool IsActiveConnection { get; set; }
-
-    public bool HasNoSubtitle => Subtitle.IsNullOrEmpty();
 }

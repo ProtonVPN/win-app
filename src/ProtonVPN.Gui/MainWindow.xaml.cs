@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Gui.Helpers;
+using ProtonVPN.Localization.Contracts;
 
 namespace ProtonVPN.Gui;
 
@@ -29,6 +30,6 @@ public sealed partial class MainWindow : WindowEx
 
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
         Content = null;
-        Title = "AppDisplayName".GetLocalized();
+        Title = App.APPLICATION_NAME;
     }
 }

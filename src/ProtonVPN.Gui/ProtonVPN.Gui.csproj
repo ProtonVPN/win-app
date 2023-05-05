@@ -50,16 +50,21 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Gallery\GalleryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Assets\protonvpn.ico" />
+    <None Remove="UI\Gallery\GalleryPage.xaml" />
   </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Recents\ProtonVPN.Recents.Installers\ProtonVPN.Recents.Installers.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Common.UI\ProtonVPN.Common.UI.csproj" />
     <ProjectReference Include="..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
+    <ProjectReference Include="..\ProtonVPN.Localization\ProtonVPN.Localization.csproj" />
   </ItemGroup>
   
   <ItemGroup>

@@ -20,37 +20,24 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Gui.Contracts.Services;
+using ProtonVPN.Gui.Messages;
 
 namespace ProtonVPN.Gui.Contracts.ViewModels;
 
-public abstract partial class PageViewModelBase : ObservableRecipient, INavigationAware
+public abstract partial class PageViewModelBase : ViewModelBase, INavigationAware
 {
-    [ObservableProperty]
-    private bool _canGoBack;
-
-    [ObservableProperty]
-    private bool _isHeaderVisible;
-
-    [ObservableProperty]
-    private string? _title;
-
     public PageViewModelBase(INavigationService navigationService)
     {
         NavigationService = navigationService;
     }
 
-    protected PageViewModelBase(INavigationService navigationService, string title)
-        : this(navigationService)
-    {
-        _title = title;
-        _isHeaderVisible = true;
-    }
+    public Type PageType => GetType();
 
-    protected PageViewModelBase(INavigationService navigationService, string title, bool canGoBack)
-        : this(navigationService, title)
-    {
-        _canGoBack = canGoBack;
-    }
+    public virtual string? Title { get; }
+
+    public virtual bool CanGoBack => true;
+
+    public virtual bool IsHeaderVisible => true;
 
     protected INavigationService NavigationService { get; }
 
@@ -68,11 +55,21 @@ public abstract partial class PageViewModelBase : ObservableRecipient, INavigati
 
     public virtual void OnNavigatedFrom()
     {
-        OnDeactivated();
+        IsActive = false;
     }
 
     public virtual void OnNavigatedTo(object parameter)
     {
-        OnActivated();
+        IsActive = true;
+    }
+
+    public void InvalidateTitle()
+    {
+        OnPropertyChanged(nameof(Title));
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        InvalidateTitle();
     }
 }

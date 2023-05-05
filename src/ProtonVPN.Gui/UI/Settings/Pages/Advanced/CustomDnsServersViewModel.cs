@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages.Advanced;
 public class CustomDnsServersViewModel : PageViewModelBase
 {
     public CustomDnsServersViewModel(INavigationService navigationService)
-        : base(navigationService, "Custom DNS servers", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
 }

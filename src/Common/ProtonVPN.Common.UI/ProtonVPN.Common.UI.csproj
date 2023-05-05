@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <RootNamespace>ProtonVPN.Common.UI</RootNamespace>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
@@ -528,7 +528,6 @@
     <None Remove="Gallery\Controls\MapPinControl.xaml" />
     <None Remove="Gallery\Controls\SampleControl.xaml" />
     <None Remove="Gallery\Controls\TypographyControl.xaml" />
-    <None Remove="Gallery\GalleryPage.xaml" />
     <None Remove="Gallery\GalleryStyles.xaml" />
     <None Remove="Gallery\Pages\InputsPage.xaml" />
     <None Remove="Gallery\Pages\MapPage.xaml" />
@@ -604,12 +603,6 @@
 
   <ItemGroup>
     <Page Update="Gallery\Controls\TypographyControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\GalleryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
+using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Localization.Contracts;
+using ProtonVPN.Localization.Messages;
 
-namespace ProtonVPN.Common.UI.Gallery;
+namespace ProtonVPN.Gui.Contracts.ViewModels;
 
-public sealed partial class GalleryPage : Page
+public interface ILanguageAware : IRecipient<LanguageChangedMessage>
 {
-    public GalleryPage()
-    {
-        InitializeComponent();
-    }
+    ILocalizationProvider Localizer { get; }
 }

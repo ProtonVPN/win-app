@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class ProtocolViewModel : PageViewModelBase
 {
     public ProtocolViewModel(INavigationService navigationService)
-        : base(navigationService, "Protocol", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Connection_Protocol");
 }

@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages.Advanced;
 public class VpnLogsViewModel : PageViewModelBase
 {
     public VpnLogsViewModel(INavigationService navigationService)
-        : base(navigationService, "VPN logs", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
 }

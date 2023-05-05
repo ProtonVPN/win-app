@@ -18,9 +18,10 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.ViewModels;
 
 namespace ProtonVPN.Gui.UI.Home.Help;
 
-public class HelpViewModel : ObservableRecipient
+public class HelpViewModel : ViewModelBase
 {
 }

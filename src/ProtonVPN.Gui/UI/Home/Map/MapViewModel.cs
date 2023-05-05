@@ -18,9 +18,10 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Gui.Contracts.ViewModels;
 
 namespace ProtonVPN.Gui.UI.Home.Map;
 
-public class MapViewModel : ObservableRecipient
+public class MapViewModel : ViewModelBase
 {
 }

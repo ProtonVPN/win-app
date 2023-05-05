@@ -43,7 +43,7 @@ public sealed partial class ShellPage
         // https://docs.microsoft.com/windows/apps/develop/title-bar?tabs=winui3#full-customization
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
-        AppTitleBarText.Text = "AppDisplayName".GetLocalized();
+        AppTitleBarText.Text = App.APPLICATION_NAME;
     }
 
     public ShellViewModel ViewModel { get; }
@@ -71,7 +71,7 @@ public sealed partial class ShellPage
         args.Handled = result;
     }
 
-    private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+    private void OnNavigationViewControlDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
     {
         AppTitleBar.Margin = new Thickness()
         {

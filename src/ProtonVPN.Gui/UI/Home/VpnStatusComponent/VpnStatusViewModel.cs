@@ -20,13 +20,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Gui.Contracts.ViewModels;
 using ProtonVPN.Gui.Enums;
 using ProtonVPN.Gui.Mappers;
 using ProtonVPN.Gui.Messages;
 
 namespace ProtonVPN.Gui.UI.Home.VpnStatusComponent;
 
-public partial class VpnStatusViewModel : ObservableRecipient, IRecipient<VpnStateChangedMessage>, IRecipient<UserLocationChangedMessage>
+public partial class VpnStatusViewModel : ViewModelBase, IRecipient<VpnStateChangedMessage>, IRecipient<UserLocationChangedMessage>
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsDisconnected))]

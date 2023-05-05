@@ -190,6 +190,8 @@ Source: "..\src\bin\ProtonVPN.Recents.Installers.dll"; DestDir: "{app}\{#Version
 Source: "..\src\bin\ProtonVPN.Recents.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Translations.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Translations.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Localization.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Localization.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Update.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Update.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Update.Contracts.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -286,6 +288,7 @@ Source: "..\src\bin\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Project
 Source: "..\src\bin\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Microsoft.WinUI.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\WinUIEx.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\WinUI3Localizer.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
 Source: "..\src\bin\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win10-x64\native"; Flags: signonce;
 Source: "..\src\bin\runtimes\win-x64\native\grpc_csharp_ext.x64.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win-x64\native"; Flags: signonce;

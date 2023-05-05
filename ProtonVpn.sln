@@ -187,7 +187,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Recents", "src\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Recents.Contracts", "src\Recents\ProtonVPN.Recents.Contracts\ProtonVPN.Recents.Contracts.csproj", "{EA131F3D-5B07-45F1-8764-FDA25F9E8B9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Recents.Installers", "src\Recents\ProtonVPN.Recents.Installers\ProtonVPN.Recents.Installers.csproj", "{89F47D29-2349-4042-9B34-7F10E033F391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Recents.Installers", "src\Recents\ProtonVPN.Recents.Installers\ProtonVPN.Recents.Installers.csproj", "{89F47D29-2349-4042-9B34-7F10E033F391}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Localization", "src\ProtonVPN.Localization\ProtonVPN.Localization.csproj", "{4C1F1E10-735F-4D2E-A314-529C34B75769}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1057,6 +1059,18 @@ Global
 		{89F47D29-2349-4042-9B34-7F10E033F391}.Tests|Any CPU.Build.0 = Debug|Any CPU
 		{89F47D29-2349-4042-9B34-7F10E033F391}.Tests|x64.ActiveCfg = Debug|Any CPU
 		{89F47D29-2349-4042-9B34-7F10E033F391}.Tests|x64.Build.0 = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Debug|x64.Build.0 = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Release|x64.ActiveCfg = Release|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Release|x64.Build.0 = Release|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Tests|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Tests|Any CPU.Build.0 = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Tests|x64.ActiveCfg = Debug|Any CPU
+		{4C1F1E10-735F-4D2E-A314-529C34B75769}.Tests|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

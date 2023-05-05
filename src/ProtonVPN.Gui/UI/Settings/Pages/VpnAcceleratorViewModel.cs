@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class VpnAcceleratorViewModel : PageViewModelBase
 {
     public VpnAcceleratorViewModel(INavigationService navigationService)
-        : base(navigationService, "VPN Accelerator", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Connection_VpnAccelerator");
 }

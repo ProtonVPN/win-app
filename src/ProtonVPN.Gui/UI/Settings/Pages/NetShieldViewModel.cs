@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class NetShieldViewModel : PageViewModelBase
 {
     public NetShieldViewModel(INavigationService navigationService)
-        : base(navigationService, "NetShield", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Features_NetShield");
 }

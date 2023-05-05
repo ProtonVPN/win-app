@@ -25,7 +25,9 @@ namespace ProtonVPN.Gui.UI.Settings.Pages;
 public class AdvancedSettingsViewModel : PageViewModelBase
 {
     public AdvancedSettingsViewModel(INavigationService navigationService)
-        : base(navigationService, "Advanced settings", true)
+        : base(navigationService)
     {
     }
+
+    public override string? Title => Localizer.Get("Settings_Connection_AdvancedSettings");
 }

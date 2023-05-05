@@ -48,6 +48,8 @@ public sealed partial class CountryFlagControl
     public CountryFlagControl()
     {
         InitializeComponent();
+
+        UpdateCountryFlag();
     }
 
     public string ExitCountryCode
