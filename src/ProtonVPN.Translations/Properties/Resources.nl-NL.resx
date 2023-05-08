@@ -1546,7 +1546,7 @@
     <value>Deze stap duurt slechts een paar minuten. Daarna kunt u zich inloggen en al uw apparaten beveiligen.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Thanks for upgrading</value>
+    <value>Bedankt voor het upgraden</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1586,7 +1586,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Sommige Proton VPN's componenten kunnen geblokkeerd of uitgeschakeld zijn, waardoor u geen verbinding kunt maken. Klik op Inschakelen om dit te verhelpen.&lt;LineBreak/&gt;Merk op dat deze operatie Admin rechten vereist.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Schakel Kill Switch uit</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1673,7 +1673,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Enable Permanent kill switch?</value>
+    <value>Permanente Kill Switch inschakelen?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Begrepen</value>
@@ -2123,7 +2123,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Restart</value>
+    <value>Herstarten</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
@@ -2429,7 +2429,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Blader door internet zonder advertenties en malware.</value>
+    <value>Surft op het internet zonder advertenties en malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
@@ -2883,7 +2883,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Gratis servers</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Gratis servers hebben geen datalimiet noch netwerkbeperkingen. De snelheid is mogelijks beperkt enkel vanwege het grote aantal aangesloten gebruikers.</value>
+    <value>Gratis servers hebben geen datalimiet noch netwerkbeperkingen. De snelheid is mogelijks beperkt alleen maar door het grote aantal aangesloten gebruikers.</value>
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Informatie</value>

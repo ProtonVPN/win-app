@@ -1826,7 +1826,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Konflikt z zaporą sieciową/serwerem proxy&lt;/Bold&gt; - Wyłącz zaporę oraz proxy lub skontaktuj się z administratorem sieci.</value>
+    <value>&lt;Bold&gt;Konflikt z zaporą sieciową / serwerem proxy&lt;/Bold&gt; - Wyłącz zaporę oraz proxy lub skontaktuj się z administratorem sieci.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">

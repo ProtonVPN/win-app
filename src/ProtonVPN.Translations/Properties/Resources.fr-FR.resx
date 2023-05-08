@@ -2404,7 +2404,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Bloquer uniquement les logiciels malveillants</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Bloquer les programmes malveillants, publicités et traqueurs</value>
+    <value>Bloquer les logiciels malveillants, publicités et traqueurs</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Arrêt d'urgence (kill switch) permanent</value>
