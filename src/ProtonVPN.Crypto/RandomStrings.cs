@@ -18,24 +18,26 @@
  */
 
 using System;
+using Org.BouncyCastle.Security;
 
-namespace ProtonVPN.Common.Helpers
+namespace ProtonVPN.Crypto
 {
-    /// <summary>
-    /// Generates random alphanumeric strings.
-    /// </summary>
+    /// <summary> Generates random alphanumeric strings. </summary>
     public class RandomStrings
     {
-        private readonly Random _random = new Random();
+        private readonly SecureRandom _random = new();
 
         public string RandomString(int length)
         {
-            Ensure.IsTrue(length >= 0);
+            if (length < 0)
+            {
+                throw new ArgumentException($"RandomString length can't be a negative number but is {length}.");
+            }
 
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var randomChars = new char[length];
+            char[] randomChars = new char[length];
 
-            for (var i = 0; i < randomChars.Length; i++)
+            for (int i = 0; i < randomChars.Length; i++)
             {
                 randomChars[i] = chars[_random.Next(chars.Length)];
             }

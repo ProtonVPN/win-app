@@ -20,9 +20,8 @@
 using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Helpers;
 
-namespace ProtonVPN.Common.Tests.Helpers
+namespace ProtonVPN.Crypto.Tests
 {
     [TestClass]
     public class ManagementPasswordsTest
@@ -30,7 +29,7 @@ namespace ProtonVPN.Common.Tests.Helpers
         [DataTestMethod]
         [DataRow(0)]
         [DataRow(1)]
-        [DataRow(10)]
+        [DataRow(16)]
         public void Password_ShouldHave_CorrectLength(int length)
         {
             // Arrange
