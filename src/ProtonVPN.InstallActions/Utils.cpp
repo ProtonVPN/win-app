@@ -1,57 +1,76 @@
-#include "pch.h"
-#include <string>
-#include <msiquery.h>
-#include "StringHelper.h"
+#include <windows.h>
+#include <algorithm>
+#include <functional>
+#include "Logger.h"
+#include "WinApiErrorException.h"
 
-MSIHANDLE msiHandle;
-
-void SetMsiHandle(MSIHANDLE hInstall)
+void LogMessage(std::wstring message, UINT result)
 {
-    msiHandle = hInstall;
-}
-
-void LogMessage(std::wstring message, int result)
-{
-    const MSIHANDLE hRecord = MsiCreateRecord(1);
-    MsiRecordSetString(hRecord, 0, (message + std::to_wstring(result)).c_str());
-    MsiProcessMessage(msiHandle, INSTALLMESSAGE_INFO, hRecord);
-    MsiCloseHandle(hRecord);
+    logger((message + L" Error code: " + std::to_wstring(result)).c_str());
 }
 
 void LogMessage(std::wstring message)
 {
-    const MSIHANDLE hRecord = MsiCreateRecord(1);
-    MsiRecordSetString(hRecord, 0, message.c_str());
-    MsiProcessMessage(msiHandle, INSTALLMESSAGE_INFO, hRecord);
-    MsiCloseHandle(hRecord);
+    logger(message.c_str());
 }
 
-std::wstring GetProperty(std::wstring name)
+int VersionCompare(std::string v1, std::string v2)
 {
-    DWORD valueBufSize = 0;
-    std::wstring valueBuf;
-
-    auto result = MsiGetProperty(msiHandle, name.c_str(), tmp_string(valueBuf, valueBufSize), &valueBufSize);
-
-    if (result == ERROR_MORE_DATA)
+    int vnum1 = 0, vnum2 = 0;
+    for (UINT i = 0, j = 0; i < v1.length() || j < v2.length();)
     {
-        // valueBufSize now contains the size of the property's string, without null termination
-        // Add 1 for null termination
-        ++valueBufSize;
-        result = MsiGetProperty(msiHandle, name.c_str(), tmp_string(valueBuf, valueBufSize), &valueBufSize);
+        while (i < v1.length() && v1[i] != '.')
+        {
+            vnum1 = vnum1 * 10 + (v1[i] - '0');
+            i++;
+        }
+
+        while (j < v2.length() && v2[j] != '.')
+        {
+            vnum2 = vnum2 * 10 + (v2[j] - '0');
+            j++;
+        }
+
+        if (vnum1 > vnum2)
+        {
+            return 1;
+        }
+
+        if (vnum2 > vnum1)
+        {
+            return -1;
+        }
+
+        vnum1 = vnum2 = 0;
+        i++;
+        j++;
     }
 
-    if (result != ERROR_SUCCESS)
-    {
-        return std::wstring();
-    }
-
-    valueBuf[valueBufSize] = '\0';
-
-    return valueBuf;
+    return 0;
 }
 
-void SetProperty(const std::wstring name, const std::wstring value)
+bool FindCaseInsensitive(std::string data, std::string toSearch)
 {
-    MsiSetProperty(msiHandle, name.c_str(), value.c_str());
+    std::transform(data.begin(), data.end(), data.begin(), ::tolower);
+    std::transform(toSearch.begin(), toSearch.end(), toSearch.begin(), ::tolower);
+    return data.find(toSearch, 0) != std::string::npos;
+}
+
+std::wstring StrToConstWChar(std::string str)
+{
+    return std::wstring(str.begin(), str.end());
+}
+
+DWORD ExecuteAction(const std::function<void()>& func)
+{
+    try
+    {
+        func();
+        return 0;
+    }
+    catch (WinApiErrorException& e)
+    {
+        LogMessage(e.GetError(), e.GetErrorCode());
+        return e.GetErrorCode();
+    }
 }

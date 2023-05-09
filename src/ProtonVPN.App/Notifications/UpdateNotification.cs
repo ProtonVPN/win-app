@@ -19,28 +19,26 @@
 
 using System;
 using Caliburn.Micro;
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Update;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.FlashNotifications;
+using ProtonVPN.Update;
+using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.Notifications
 {
     public class UpdateNotification : IUpdateStateAware
     {
         private readonly TimeSpan _remindInterval;
-        private readonly IUserAuthenticator _userAuthenticator;
         private readonly IEventAggregator _eventAggregator;
         private readonly UpdateFlashNotificationViewModel _notificationViewModel;
         private DateTime _lastNotified = DateTime.MinValue;
 
         public UpdateNotification(
-            TimeSpan remindInterval,
-            IUserAuthenticator userAuthenticator,
+            IConfiguration config,
             IEventAggregator eventAggregator,
             UpdateFlashNotificationViewModel notificationViewModel)
         {
-            _remindInterval = remindInterval;
-            _userAuthenticator = userAuthenticator;
+            _remindInterval = config.UpdateRemindInterval;
             _eventAggregator = eventAggregator;
             _notificationViewModel = notificationViewModel;
         }
@@ -49,7 +47,7 @@ namespace ProtonVPN.Notifications
         {
             if (e.Ready)
             {
-                if (RemindRequired(e) && _userAuthenticator.IsLoggedIn)
+                if (RemindRequired(e))
                 {
                     Show();
                 }
@@ -62,19 +60,20 @@ namespace ProtonVPN.Notifications
 
         private bool RemindRequired(UpdateStateChangedEventArgs e)
         {
-            return e.Status == UpdateStatus.Ready && (e.ManualCheck ||
-                DateTime.Now - _lastNotified >= _remindInterval);
+            return (e.Status is AppUpdateStatus.Ready
+                or AppUpdateStatus.AutoUpdated
+                or AppUpdateStatus.AutoUpdateFailed) && (e.ManualCheck || DateTime.UtcNow - _lastNotified >= _remindInterval);
         }
 
         private void Show()
         {
-            _lastNotified = DateTime.Now;
-            _eventAggregator.PublishOnUIThread(new ShowFlashMessage(_notificationViewModel));
+            _lastNotified = DateTime.UtcNow;
+            _eventAggregator.PublishOnUIThreadAsync(new ShowFlashMessage(_notificationViewModel));
         }
 
         private void Hide()
         {
-            _eventAggregator.PublishOnUIThread(new HideFlashMessage(_notificationViewModel));
+            _eventAggregator.PublishOnUIThreadAsync(new HideFlashMessage(_notificationViewModel));
         }
     }
 }

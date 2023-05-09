@@ -25,15 +25,16 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
-using Huyn.PluralNet;
+using ProtonVPN.Translations.Properties;
+using ReswPlusLib;
 
 namespace ProtonVPN.Translations
 {
     public class TranslationSource : INotifyPropertyChanged
     {
-        public static TranslationSource Instance { get; } = new TranslationSource();
+        public static TranslationSource Instance { get; } = new();
 
-        public string this[string key] => Properties.Resources.ResourceManager.GetString(GetStringName(key), _currentCulture);
+        public string this[string key] => Resources.ResourceManager.GetString(GetStringName(key), _currentCulture);
 
         private CultureInfo _currentCulture = CultureInfo.CurrentUICulture;
 
@@ -66,7 +67,7 @@ namespace ProtonVPN.Translations
                 ResetPluralProvider();
             }
 
-            return Properties.Resources.ResourceManager.GetPlural(GetStringName(key), number);
+            return Resources.ResourceManager.GetPlural(GetStringName(key), Convert.ToDouble(number));
         }
 
         private void ResetPluralProvider()

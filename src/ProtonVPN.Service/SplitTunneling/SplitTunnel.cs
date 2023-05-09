@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.NetworkFilter;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
@@ -77,7 +77,7 @@ namespace ProtonVPN.Service.SplitTunneling
             _appFilter.RemoveAll();
             _permittedRemoteAddress.RemoveAll();
 
-            if (_serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Permit)
+            if (_serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit)
             {
                 _appFilter.Add(_serviceSettings.SplitTunnelSettings.AppPaths, Action.SoftBlock);
             }
@@ -85,18 +85,18 @@ namespace ProtonVPN.Service.SplitTunneling
 
         public void OnVpnConnected(VpnState state)
         {
-            if (_serviceSettings.SplitTunnelSettings.Mode == SplitTunnelMode.Disabled)
+            if (_serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Disabled)
             {
                 return;
             }
 
             switch (_serviceSettings.SplitTunnelSettings.Mode)
             {
-                case SplitTunnelMode.Block:
+                case SplitTunnelModeIpcEntity.Block:
                     DisableReversed();
                     Enable();
                     break;
-                case SplitTunnelMode.Permit:
+                case SplitTunnelModeIpcEntity.Permit:
                     Disable();
                     EnableReversed(state);
                     _appFilter.RemoveAll();

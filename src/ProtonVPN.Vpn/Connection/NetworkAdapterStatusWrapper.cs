@@ -19,7 +19,6 @@
 
 using System;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
@@ -28,7 +27,9 @@ using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.Networks;
 
 namespace ProtonVPN.Vpn.Connection
@@ -36,9 +37,11 @@ namespace ProtonVPN.Vpn.Connection
     internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     {
         private readonly ILogger _logger;
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IIssueReporter _issueReporter;
         private readonly INetworkAdapterManager _networkAdapterManager;
         private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+        private readonly WintunAdapter _wintunAdapter;
+        private readonly TapAdapter _tapAdapter;
         private readonly ISingleVpnConnection _origin;
 
         private VpnEndpoint _endpoint;
@@ -48,14 +51,18 @@ namespace ProtonVPN.Vpn.Connection
 
         public NetworkAdapterStatusWrapper(
             ILogger logger,
-            IEventPublisher eventPublisher,
+            IIssueReporter issueReporter,
             INetworkAdapterManager networkAdapterManager,
             INetworkInterfaceLoader networkInterfaceLoader,
+            WintunAdapter wintunAdapter,
+            TapAdapter tapAdapter,
             ISingleVpnConnection origin)
         {
             _logger = logger;
-            _eventPublisher = eventPublisher;
+            _issueReporter = issueReporter;
             _networkAdapterManager = networkAdapterManager;
+            _wintunAdapter = wintunAdapter;
+            _tapAdapter = tapAdapter;
             _networkInterfaceLoader = networkInterfaceLoader;
             _origin = origin;
 
@@ -82,15 +89,27 @@ namespace ProtonVPN.Vpn.Connection
                 _logger.Info<ConnectLog>("WireGuard protocol selected. No network adapters to check.");
                 Connect();
             }
-            else if (IsOpenVpnNetworkAdapterAvailable(config.OpenVpnAdapter))
-            {
-                _logger.Info<ConnectLog>("Preferred network adapter found. " +
-                    $"(Protocol: {_config.VpnProtocol}, OpenVpnAdapter: {_config.OpenVpnAdapter})");
-                Connect();
-            }
             else
             {
-                HandleOpenVpnAdapterUnavailable();
+                if (config.OpenVpnAdapter == OpenVpnAdapter.Tun)
+                {
+                    _wintunAdapter.Create();
+                }
+                else
+                {
+                    _tapAdapter.Create();
+                }
+
+                if (IsOpenVpnNetworkAdapterAvailable(config.OpenVpnAdapter))
+                {
+                    _logger.Info<ConnectLog>("Preferred network adapter found. " +
+                                             $"(Protocol: {_config.VpnProtocol}, OpenVpnAdapter: {_config.OpenVpnAdapter})");
+                    Connect();
+                }
+                else
+                {
+                    HandleOpenVpnAdapterUnavailable();
+                }
             }
         }
 
@@ -170,7 +189,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             if (!_hasSentTunFallbackEventToSentry)
             {
-                _eventPublisher.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
+                _issueReporter.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
                 _hasSentTunFallbackEventToSentry = true;
             }
         }
@@ -196,11 +215,20 @@ namespace ProtonVPN.Vpn.Connection
             _origin.UpdateAuthCertificate(certificate);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol == VpnProtocol.WireGuard)
             {
                 HandleConnectedWithWireGuard();
+            }
+            else if (e.Data.Status == VpnStatus.Disconnected && e.Data.VpnProtocol is VpnProtocol.OpenVpnTcp or VpnProtocol.OpenVpnUdp)
+            {
+                _wintunAdapter.Close();
             }
             else if (e.Data.Error != VpnError.None &&
                      e.Data.Error != VpnError.NoneKeepEnabledKillSwitch &&

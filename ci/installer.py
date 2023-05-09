@@ -1,23 +1,24 @@
 import os
+import re
 import subprocess
+import pathlib
 
-def build(version, hash, setupFile, params=''):
-    installerFile = 'build-installer.txt'
-    script = """;aic
-SetVersion {version}""".format(version=version, hash=hash)
+def build(version, hash, setupFile):
+    fileData = ''
+    with open(setupFile, 'r') as file:
+      fileData = file.read()
+
+    fileData = re.sub('(#define MyAppVersion \")([0-9+]\.[0-9+]\.[0-9+])(\".+)', rf'\g<1>{version}\3', fileData, 1, flags = re.M | re.DOTALL)
 
     if hash:
-        script = script + "\r\nSetProperty CommitHash=\"{hash}\"".format(hash=hash)
+        fileData = fileData.replace('#define Hash ""', "#define Hash \"{hash}\"".format(hash=hash))
 
-    if params:
-        script = script + "\r\n{params}".format(params=params)
-    
-    script = script + "\r\nSave\r\nRebuild"
-    f = open(installerFile, 'w')
-    f.write(script)
-    f.close()
+    setupFile = pathlib.Path(setupFile).parent.resolve().__str__() + '\\' + 'setup-edited.iss'
+    print(setupFile)
+    with open(setupFile, 'w') as file:
+      file.write(fileData)
 
-    p = subprocess.Popen(['AdvancedInstaller.com', '/execute', setupFile, installerFile],
+    p = subprocess.Popen(['iscc', setupFile],
                          env=os.environ,
                          stdout=subprocess.PIPE,
                          universal_newlines=True)

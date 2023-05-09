@@ -97,6 +97,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.SetFeatures(vpnFeatures);
         }
 
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
+        }
+
         public void Disconnect(VpnError error = VpnError.None)
         {
             _isToConnect = false;

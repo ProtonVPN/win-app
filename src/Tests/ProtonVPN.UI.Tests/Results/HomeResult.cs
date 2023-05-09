@@ -75,7 +75,7 @@ namespace ProtonVPN.UI.Tests.Results
             bool isConnected = true;
             try
             {
-                Dns.GetHostEntry(url);
+                System.Net.Dns.GetHostEntry(url);
             }
             catch (SocketException)
             {
@@ -105,7 +105,7 @@ namespace ProtonVPN.UI.Tests.Results
 
         public HomeResult CheckIfConnectButtonIsNotDisplayed()
         {
-            CheckIfDoesNotExistsByName("Connect");
+            CheckIfDoesNotExistByName("Connect");
             return this;
         }
 
@@ -123,15 +123,9 @@ namespace ProtonVPN.UI.Tests.Results
             return this;
         }
 
-        public HomeResult CheckIfSidebarModeIsEnabled()
-        {
-            CheckIfNotDisplayedByAutomationId("Logo");
-            return this;
-        }
-
         public HomeResult CheckIfPortForwardingQuickSettingIsNotVisible()
         {
-            CheckIfNotDisplayedByAutomationId("PortForwardingButton");
+            CheckIfDoesNotExistByAutomationId("PortForwardingButton");
             return this;
         }
 

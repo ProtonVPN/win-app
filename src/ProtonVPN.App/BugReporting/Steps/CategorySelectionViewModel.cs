@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.Core.ReportAnIssue;
@@ -45,7 +45,7 @@ namespace ProtonVPN.BugReporting.Steps
 
         public void SelectCategoryAction(string category)
         {
-            _eventAggregator.PublishOnUIThread(new SelectCategoryAction(category));
+            _eventAggregator.PublishOnUIThreadAsync(new SelectCategoryAction(category));
         }
     }
 }

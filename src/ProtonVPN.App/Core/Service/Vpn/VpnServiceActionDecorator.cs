@@ -21,11 +21,11 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 
@@ -52,7 +52,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task Connect(VpnConnectionRequest connectionRequest)
         {
-            await InvokeAction(async() =>
+            await InvokeAction(async () =>
             {
                 await _decorated.Connect(connectionRequest);
                 return Result.Ok();
@@ -61,7 +61,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task UpdateAuthCertificate(string certificate)
         {
-            await InvokeAction(async() =>
+            await InvokeAction(async () =>
             {
                 await _decorated.UpdateAuthCertificate(certificate);
                 return Result.Ok();
@@ -73,16 +73,16 @@ namespace ProtonVPN.Core.Service.Vpn
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            await InvokeAction(async() =>
+            await InvokeAction(async () =>
             {
                 await _decorated.Disconnect(error);
                 return Result.Ok();
             });
         }
 
-        public async Task<InOutBytes> Total()
+        public async Task<InOutBytes> GetTrafficBytes()
         {
-            return await _decorated.Total();
+            return await _decorated.GetTrafficBytes();
         }
 
         public async Task RepeatState()
@@ -98,11 +98,6 @@ namespace ProtonVPN.Core.Service.Vpn
             _decorated.RegisterVpnStateCallback(onVpnStateChanged);
         }
 
-        public void RegisterServiceSettingsStateCallback(Action<ServiceSettingsStateChangedEventArgs> onServiceSettingsStateChanged)
-        {
-            _decorated.RegisterServiceSettingsStateCallback(onServiceSettingsStateChanged);
-        }
-
         public void RegisterPortForwardingStateCallback(Action<PortForwardingState> onPortForwardingStateChanged)
         {
             _decorated.RegisterPortForwardingStateCallback(onPortForwardingStateChanged);
@@ -113,11 +108,16 @@ namespace ProtonVPN.Core.Service.Vpn
             _decorated.RegisterConnectionDetailsChangeCallback(callback);
         }
 
+        public void RegisterNetShieldStatisticChangeCallback(Action<NetShieldStatistic> callback)
+        {
+            _decorated.RegisterNetShieldStatisticChangeCallback(callback);
+        }
+
         private async Task InvokeAction(Func<Task<Result>> action)
         {
             if (!_baseFilteringEngineService.Running())
             {
-                _modals.Show<BfeWarningModalViewModel>();
+                await _modals.ShowAsync<BfeWarningModalViewModel>();
                 return;
             }
 

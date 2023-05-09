@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows;
+
 namespace ProtonVPN.Core.Windows
 {
     public class WindowStateMessage
     {
-        public WindowStateMessage(bool active)
-        {
-            Active = active;
-        }
+        public bool IsActive { get; }
 
-        public bool Active { get; }
+        public WindowStateMessage(bool isActive, WindowState state)
+        {
+            IsActive = isActive && (state != WindowState.Minimized);
+        }
     }
 }

@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
@@ -106,6 +107,11 @@ namespace ProtonVPN.Service.Vpn
         public void SetFeatures(VpnFeatures vpnFeatures)
         {
             _origin.SetFeatures(vpnFeatures);
+        }
+
+        public void RequestNetShieldStats()
+        {
+            _origin.RequestNetShieldStats();
         }
 
         private async void Connect()
@@ -248,7 +254,7 @@ namespace ProtonVPN.Service.Vpn
             _taskQueue.Enqueue(action);
         }
 
-        private void OnServiceSettingsChanged(object sender, Contract.Settings.SettingsContract e)
+        private void OnServiceSettingsChanged(object sender, MainSettingsIpcEntity e)
         {
             Queued(ApplyIpv6Settings);
         }

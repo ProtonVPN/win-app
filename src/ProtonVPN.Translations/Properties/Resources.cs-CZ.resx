@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Spravovat předplatné</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Přístup k blokovanému obsahu</value>
@@ -352,7 +352,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Pro dokončení aktualizace, se Proton VPN odpojí a vypne se Kill Switch, pokud je aktivní. Chcete pokračovat?</value>
+    <value>Pro dokončení aktualizace se Proton VPN dočasně odpojí a Trvalý Kill Switch se vypne, pokud je aktivní. Chcete pokračovat?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1198,7 +1198,7 @@
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE">
-    <value>Niger</value>
+    <value>Nigérie</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF">
@@ -1570,7 +1570,8 @@
     <value>Tento krok zabere jen několik minut. Poté se budete moci přihlásit a chránit všechna svá zařízení.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Děkujeme, že jste přešli na tarif Professional/Visionary</value>
+    <value>Děkujeme za navýšení</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Jedna ze služeb, kterou vyžaduje Proton VPN (Base Filtering Engine) není spuštěna.&lt;LineBreak/&gt;
@@ -1638,7 +1639,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
     <value>Kill Switch chrání vaši IP adresu blokováním všech připojení. V případě potíží můžete Kill Switch vypnout.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Momentálně nejsou pro váš výběr k dispozici žádné servery. Vyberte jinou možnost.</value>
@@ -1687,13 +1688,13 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Chcete pokračovat?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Ukončením aplikace se odpojíte od sítě VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Funkce Kill Switch blokuje všechna připojení, aby nedošlo k úniku dat. Ukončením aplikace se přepínač Kill Switch vypne.</value>
+    <value>Funkce Kill Switch blokuje všechna připojení, aby nedošlo k úniku dat. Ukončením aplikace se Kill Switch vypne.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>Funkce Trvalý Kill Switch je zapnuta. Ukončení aplikace zablokuje všechna odchozí spojení, dokud se Proton VPN znovu nepřipojí.</value>
@@ -1705,7 +1706,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Zdá se, že vaše systémové hodiny nejsou synchronizovány, což může bránit úspěšnému připojení k síti VPN. Podívejte se prosím &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;zde&lt;/Hyperlink&gt; pro více informací.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>S funkcí Trvalý Kill Switch nebudete mít přístup k internetu, pokud se VPN z jakéhokoli důvodu odpojí.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Zapnout Trvalý Kill Switch?</value>
@@ -1756,7 +1757,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
     <value>Pamatujte, že je Kill Switch zapnut. Aktualizací nebo ukončením aplikace jej vypnete.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Vaše připojení bylo deaktivováno, protože používáte server, který nepodporuje provoz peer-to-peer (P2P). P2P není podporováno na bezplatných serverech. Pro P2P použijte jiný server.</value>
@@ -1772,18 +1773,6 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Proton VPN zjistila server proxy nakonfigurovaný ve vaší místní síti. Proton VPN nemůže chránit provoz, který prochází tímto proxy serverem. To znamená, že vaše připojení nebude zcela chráněno dle očekávání.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Restartovat</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Pokračovat bez</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Abyste se vyhnuli chybám Proton VPN, důrazně doporučujeme restartovat počítač a nejprve aktualizovat ostatní aplikace. Proton VPN poté automaticky obnoví instalaci. Restartovat nyní?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Váš počítač potřebuje restartovat</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Představujeme nový vzhled Protonu. Mnoho služeb, jedno poslání. Vítejte na internetu, kde je soukromí standardem. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Více informací&lt;/Hyperlink&gt;</value>
   </data>
@@ -1794,7 +1783,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Rozumím</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Aby rozdělené tunelování fungovalo správně, je nutné vypnout funkci Kill Switch.</value>
+    <value>Aby fungoval Split Tunneling správně, je nutné vypnout funkci Kill Switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Stovky serverů v 55 zemích</value>
@@ -1886,6 +1875,9 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN se nemohla připojit, protože síťový adaptér TUN je již používán. Odpojte prosím všechny aktivní sítě VPN a zkuste to znovu. Případně přepněte na adaptér TAP (v pokročilých nastaveních můžete změnit zpět na TUN).</value>
   </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN se nemohla připojit, protože síťový adaptér WireGuard je již používán. Odpojte prosím všechny aktivní sítě VPN a zkuste to znovu. Případně můžete protokoly přepínat také v pokročilých nastaveních.</value>
+  </data>
   <data name="Dialogs_btn_Cancel">
     <value>Zrušit</value>
     <comment>The text on Cancel button in dialog windows</comment>
@@ -1906,7 +1898,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Ze serveru:</value>
@@ -1947,6 +1939,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="KillSwitch">
     <value>Kill Switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licence</value>
@@ -1973,14 +1966,14 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Login_lbl_KillSwitch">
     <value>Kill Switch je momentálně zapnutý</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Heslo</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Zabezpečený internet kdekoli</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2102,7 +2095,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Příště nezobrazovat</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Více informací</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core nabízí nejvyšší úroveň zabezpečení a soukromí, ale může snížit rychlost internetu. Pokud potřebujete vyšší výkon, můžete Secure Core vypnout.</value>
@@ -2165,6 +2158,10 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Vaše VPN předplatné vypršelo</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Restartovat</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Co je nového</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
@@ -2175,7 +2172,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>PŘIPOJENO k {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>ODPOJENO</value>
@@ -2238,38 +2235,6 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN se nepodařilo načíst ověřovací certifikát kvůli problému se sítí.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Selhalo</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Synchronizace profilů se nezdařila</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Synchronizace</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Synchronizace profilů</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Potlačeno</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Synchronizován</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Změny profilu byly synchronizovány před {0} {1}</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Žádné změny profilu k synchronizaci</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Nejrychlejší dostupný server</value>
@@ -2391,10 +2356,6 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Vytvořit profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Synchronizovat</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Poradce při potížích</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2414,10 +2375,6 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Profiles_col_Protocol">
     <value>Protokol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Stav</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Servery jsou momentálně nedostupné z důvodu údržby.</value>
@@ -2472,10 +2429,12 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch vypnut</value>
+    <value>Kill Switch vyp.</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch zapnut</value>
+    <value>Kill Switch zap.</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Více informací</value>
@@ -2491,6 +2450,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Trvalý Kill Switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Přesměrování portů vypnuto</value>
@@ -2508,16 +2468,56 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>NAVÝŠIT</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Zakáže internet při přerušení VPN spojení, čímž zabrání úniku IP adresy.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Procházení internetu bez reklam a malwaru.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Reklam zablokováno</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Reklama zablokována</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Reklamy zablokováno</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
+    <value>Reklam zablokováno</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Reklamní webové stránky používají soubory cookie a sledovací prvky, aby na vás mohly cílit.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Dat uloženo</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Přibližný počet reklam, trackerů a malwaru, který NetShield zablokoval.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Sledovacích prvků zastaveno</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Sledovací prvek zastaven</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Sledovací prvky zastaveny</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
+    <value>Sledovacích prvků zastaveno</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Trackery jsou stránky třetích stran, které sbírají, ukládají a prodávají informace o vaší webové aktivitě.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Pokud se webové stránky nenačtou, zkuste deaktivovat NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Zrychlete práci s torrenty a online hrami tím, že podporované místní aplikace budou dostupné z internetu.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Směrujte vaše nejcitlivější data skrz naše nejbezpečnější servery v zemích respektujících soukromí.</value>
@@ -2626,7 +2626,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Proton VPN se nemůže připojit, protože server RPC není ve vašem systému dostupný. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Zobrazit možná řešení&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Tento server bohužel nepodporuje WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Přidat aplikaci</value>
@@ -2732,7 +2732,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Vyloučit aplikaci nebo IP adresu z provozu VPN nebo zahrnout pouze konkrétní aplikace. Nelze zapnout společně s Kill Switch.</value>
+    <value>Vyloučit aplikaci nebo IP adresu z provozu VPN nebo zahrnout pouze konkrétní aplikace. Nelze zapnout společně s funkcí Kill Switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2824,6 +2824,14 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Připojení</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Automatické aktualizace</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Automaticky kontrolovat a instalovat aktualizace Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Připojení při spuštění aplikace</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2907,7 +2915,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
     <value>Kill Switch zapnut!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
     <value>Kill Switch blokuje všechna připojení, aby nedošlo k úniku dat.</value>
@@ -2925,6 +2933,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Umístění FREE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Bezplatné servery</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Bezplatné servery nemají žádný datový limit ani omezení sítě. Rychlost může být omezena pouze kvůli vysokému počtu připojených uživatelů.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Informace</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Naši partneři</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Umístění PLUS ({0})</value>
   </data>
@@ -2935,7 +2955,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC Servery ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Plus servery ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>INTERNÍ servery</value>
@@ -3005,7 +3025,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Veďte veškerý internetový provoz přes síť Tor. Pomalejší, ale více soukromější.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Vytvořit profil</value>
@@ -3126,8 +3146,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Přístup k více než 1200 serverům v 63 zemích</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Co je Moderate NAT?</value>
@@ -3257,7 +3277,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>Zakázat</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Uložit</value>
@@ -3274,8 +3294,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

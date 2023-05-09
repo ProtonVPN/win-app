@@ -32,7 +32,7 @@ def get_file_hash(filename, hash, bytes):
 
 def generate_file_json(version, installer_path):
     file_json = {}
-    file_json['Url'] = f'{os.getenv("INTERNAL_INSTALLER_URL")}/ProtonVPN_win_v' + version + '.exe'
+    file_json['Url'] = f'{os.getenv("INTERNAL_INSTALLER_URL")}/ProtonVPN_v' + version + '.exe'
     file_json['SHA1CheckSum'] = get_file_hash(installer_path, hashlib.sha1(), 1024)
     file_json['SHA256CheckSum'] = get_file_hash(installer_path, hashlib.sha256(), 4096)
     file_json['SHA512CheckSum'] = get_file_hash(installer_path, hashlib.sha512(), 4096)
@@ -78,7 +78,7 @@ def get_full_update_json(version, installer_path):
     return win_update_json
 
 if __name__ == '__main__':
-    installer_path = glob(os.getenv('CI_PROJECT_DIR') + '\\setup\\ProtonVPN-SetupFiles\\Proton' + '*.exe')[0]
+    installer_path = glob(os.getenv('CI_PROJECT_DIR') + '\\setup\\Installers\\Proton' + '*.exe')[0]
     version = get_version_number(installer_path)[:-2]
 
     clone_main_branch()

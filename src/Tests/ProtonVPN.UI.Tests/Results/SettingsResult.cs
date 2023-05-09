@@ -42,7 +42,7 @@ namespace ProtonVPN.UI.Tests.Results
 
         public SettingsResult CheckIfCustomDnsAddressWasNotAdded()
         {
-            CheckIfDoesNotExistsByAutomationId("DeleteButton");
+            CheckIfDoesNotExistByAutomationId("DeleteButton");
             return this;
         }
 

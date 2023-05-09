@@ -67,8 +67,6 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
                 profile.ServerId = serverId;
                 profile.Features = new MigratedFeatures(_profile.ServerType, server);
                 profile.Status = ProfileStatus.Created;
-                profile.SyncStatus = ProfileSyncStatus.InProgress;
-                profile.ModifiedAt = DateTime.MinValue;
                 return profile;
             }
         }

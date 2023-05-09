@@ -21,7 +21,7 @@ using System;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Service.Settings
 {
@@ -29,9 +29,9 @@ namespace ProtonVPN.Service.Settings
     {
         private readonly ISettingsFileStorage _storage;
 
-        private SettingsContract _settings;
+        private MainSettingsIpcEntity _settings;
 
-        public event EventHandler<SettingsContract> SettingsChanged;
+        public event EventHandler<MainSettingsIpcEntity> SettingsChanged;
 
         public ServiceSettings(ISettingsFileStorage storage)
         {
@@ -43,16 +43,16 @@ namespace ProtonVPN.Service.Settings
             get
             {
                 Load();
-                return _settings.KillSwitchMode;
+                return (KillSwitchMode)_settings.KillSwitchMode;
             }
         }
 
-        public SplitTunnelSettingsContract SplitTunnelSettings
+        public SplitTunnelSettingsIpcEntity SplitTunnelSettings
         {
             get
             {
                 Load();
-                return _settings.SplitTunnel ??= new SplitTunnelSettingsContract();
+                return _settings.SplitTunnel ??= new SplitTunnelSettingsIpcEntity();
             }
         }
 
@@ -70,7 +70,7 @@ namespace ProtonVPN.Service.Settings
             get
             {
                 Load();
-                return _settings.VpnProtocol;
+                return (VpnProtocol)_settings.VpnProtocol;
             }
         }
 
@@ -79,11 +79,11 @@ namespace ProtonVPN.Service.Settings
             get
             {
                 Load();
-                return _settings.OpenVpnAdapter;
+                return (OpenVpnAdapter)_settings.OpenVpnAdapter;
             }
         }
 
-        public void Apply(SettingsContract settings)
+        public void Apply(MainSettingsIpcEntity settings)
         {
             Ensure.NotNull(settings, nameof(settings));
 
@@ -97,7 +97,7 @@ namespace ProtonVPN.Service.Settings
         {
             if (_settings == null)
             {
-                _settings = _storage.Get() ?? new SettingsContract();
+                _settings = _storage.Get() ?? new MainSettingsIpcEntity();
             }
         }
 

@@ -19,18 +19,20 @@
 
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Crypto;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
+using ProtonVPN.Vpn.NetShield;
+using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.PortMapping;
@@ -52,6 +54,9 @@ namespace ProtonVPN.Vpn.Config
             builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
             builder.RegisterType<SplitTunnelRouting>().SingleInstance();
             builder.RegisterType<UdpPingClient>().SingleInstance();
+            builder.RegisterType<WintunAdapter>().SingleInstance();
+            builder.RegisterType<TapAdapter>().SingleInstance();
+            builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                 {
                     ILogger logger = c.Resolve<ILogger>();
@@ -93,7 +98,7 @@ namespace ProtonVPN.Vpn.Config
             tcpPortScanner.Config(config.OpenVpnStaticKey);
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
-            IEventPublisher eventPublisher = c.Resolve<IEventPublisher>();
+            IIssueReporter issueReporter = c.Resolve<IIssueReporter>();
             IPortMappingProtocolClient portMappingProtocolClient = c.Resolve<IPortMappingProtocolClient>();
 
             return new LoggingWrapper(
@@ -111,9 +116,11 @@ namespace ProtonVPN.Vpn.Config
                                 endpointScanner,
                                 new NetworkAdapterStatusWrapper(
                                     logger,
-                                    eventPublisher,
+                                    issueReporter,
                                     networkAdapterManager,
                                     networkInterfaceLoader,
+                                    c.Resolve<WintunAdapter>(),
+                                    c.Resolve<TapAdapter>(),
                                     new QueueingEventsWrapper(
                                         taskQueue,
                                         new PortForwardingWrapper(
@@ -127,8 +134,9 @@ namespace ProtonVPN.Vpn.Config
             ILogger logger = c.Resolve<ILogger>();
             IConfiguration config = c.Resolve<IConfiguration>();
             IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+            INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
 
-            return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+            return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
                 gatewayCache,
                 new WireGuardConnection(logger, config, gatewayCache,
                     new WireGuardService(logger, config, new SafeService(
@@ -144,8 +152,9 @@ namespace ProtonVPN.Vpn.Config
             ILogger logger = c.Resolve<ILogger>();
             OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
             IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+            INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
 
-            return new LocalAgentWrapper(logger, new EventReceiver(logger), c.Resolve<SplitTunnelRouting>(),
+            return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
                 gatewayCache,
                 new OpenVpnConnection(
                     logger,

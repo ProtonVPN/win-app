@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using ProtonVPN.Common.Extensions;
 
@@ -30,54 +31,58 @@ namespace ProtonVPN.Core.Servers
             {
                 return 0;
             }
-
             if (x.IsNullOrEmpty())
             {
                 return -1;
             }
-
             if (y.IsNullOrEmpty())
             {
                 return 1;
             }
-
-            if (x.IndexOf('#') == -1 || y.IndexOf('#') == -1)
+            if (!x.Contains('#') || !y.Contains('#'))
             {
-                return CompareNames(x, y);
+                return string.Compare(x, y, StringComparison.InvariantCultureIgnoreCase);
             }
 
             return CompareNameWithHashSymbol(x, y);
         }
 
-        private int CompareNames(string x, string y)
-        {
-            return x.CompareTo(y);
-        }
-
         private int CompareNameWithHashSymbol(string x, string y)
         {
-            int? number1 = GetNumber(x);
-            int? number2 = GetNumber(y);
-            if (!number1.HasValue || !number2.HasValue)
+            int preHashtagNameComparisonResult = ComparePreHashtagNames(x, y);
+            if (preHashtagNameComparisonResult != 0)
             {
-                return CompareNames(x, y);
+                return preHashtagNameComparisonResult;
             }
 
-            string name1 = GetName(x);
-            string name2 = GetName(y);
-
-            int nameCompare = name1.CompareTo(name2);
-            if (nameCompare != 0)
+            int numberComparisonResult = CompareNumbers(x, y);
+            if (numberComparisonResult != 0)
             {
-                return nameCompare;
+                return numberComparisonResult;
             }
 
-            return number1.Value.CompareTo(number2.Value);
+            return ComparePostHashtagNames(x, y);
         }
 
-        private string GetName(string value)
+        private int ComparePreHashtagNames(string x, string y)
+        {
+            string preHashtagName1 = GetPreHashtagName(x);
+            string preHashtagName2 = GetPreHashtagName(y);
+
+            return preHashtagName1.CompareTo(preHashtagName2);
+        }
+
+        private string GetPreHashtagName(string value)
         {
             return value.Substring(0, value.IndexOf('#'));
+        }
+
+        private int CompareNumbers(string x, string y)
+        {
+            int number1 = GetNumber(x) ?? int.MaxValue;
+            int number2 = GetNumber(y) ?? int.MaxValue;
+
+            return number1.CompareTo(number2);
         }
 
         private int? GetNumber(string value)
@@ -91,6 +96,19 @@ namespace ProtonVPN.Core.Servers
         private int? ParseNumber(string value)
         {
             return int.TryParse(value, out int number) ? number : null;
+        }
+
+        private int ComparePostHashtagNames(string x, string y)
+        {
+            string postHashtagName1 = GetPostHashtagName(x);
+            string postHashtagName2 = GetPostHashtagName(y);
+
+            return postHashtagName1.CompareTo(postHashtagName2);
+        }
+
+        private string GetPostHashtagName(string value)
+        {
+            return value.Substring(value.IndexOf('#') + 1);
         }
     }
 }

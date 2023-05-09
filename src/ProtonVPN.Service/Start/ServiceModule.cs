@@ -19,23 +19,29 @@
 
 using System;
 using Autofac;
+using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
+using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Log4Net;
-using ProtonVPN.Common.OS;
 using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Service;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.EntityMapping.Installers;
+using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.ProcessCommunication.Installers;
+using ProtonVPN.ProcessCommunication.Service.Installers;
+using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
-using ProtonVPN.Service.ServiceHosts;
+using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
+using ProtonVPN.Service.Update;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
@@ -61,8 +67,9 @@ namespace ProtonVPN.Service.Start
 
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
-            builder.RegisterType<SettingsHandler>().SingleInstance();
-            builder.RegisterType<VpnConnectionHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<VpnController>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateController>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppControllerCaller>().AsImplementedInterfaces().SingleInstance();
 
             builder.Register(_ => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
@@ -85,8 +92,6 @@ namespace ProtonVPN.Service.Start
             vpnModule.Load(builder);
 
             builder.Register(c => GetVpnConnection(c, vpnModule.GetVpnConnection(c))).As<IVpnConnection>().SingleInstance();
-            builder.RegisterType<ServiceSettingsHostFactory>().As<ServiceHostFactory>().SingleInstance();
-            builder.RegisterType<VpnConnectionHostFactory>().As<ServiceHostFactory>().SingleInstance();
             builder.Register(_ => new SerialTaskQueue()).As<ITaskQueue>().SingleInstance();
             builder.RegisterType<KillSwitch.KillSwitch>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnService>().SingleInstance();
@@ -126,8 +131,21 @@ namespace ProtonVPN.Service.Start
 
             builder.RegisterType<NetworkAdaptersLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkAdapterManager>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
-            builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
+            builder.RegisterType<HttpClients>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ApiAppVersion>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
+
+            RegisterModules(builder);
+        }
+
+        private void RegisterModules(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyModule<EntityMappingModule>()
+                   .RegisterAssemblyModule<ProcessCommunicationModule>()
+                   .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
+                   .RegisterAssemblyModule<IssueReportingModule>();
         }
 
         private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)

@@ -38,13 +38,14 @@ using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.ErrorHandling;
+using ProtonVPN.FlashNotifications;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginViewModel : ViewModel, ISettingsAware, IServiceSettingsStateAware
+    public class LoginViewModel : ViewModel, ISettingsAware, IVpnStateAware
     {
         private readonly ILogger _logger;
         private readonly IConfiguration _appConfig;
@@ -58,6 +59,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
+        public FlashNotificationViewModel FlashNotificationViewModel { get; }
 
         private string _loginText;
         private SecureString _password;
@@ -96,6 +98,7 @@ namespace ProtonVPN.Login.ViewModels
             IActiveUrls urls,
             IAppSettings appSettings,
             LoginErrorViewModel loginErrorViewModel,
+            FlashNotificationViewModel flashNotificationViewModel,
             IUserAuthenticator userAuthenticator,
             IModals modals,
             GuestHoleConnector guestHoleConnector,
@@ -115,6 +118,7 @@ namespace ProtonVPN.Login.ViewModels
 
             LoginErrorViewModel = loginErrorViewModel;
             LoginErrorViewModel.ClearError();
+            FlashNotificationViewModel = flashNotificationViewModel;
 
             LoginCommand = new RelayCommand(LoginAction);
             RegisterCommand = new RelayCommand(RegisterAction);
@@ -245,7 +249,7 @@ namespace ProtonVPN.Login.ViewModels
                         break;
                     case VpnStatus.Disconnected:
                         _guestHoleState.SetState(false);
-                        ShowLoginScreenWithTroubleshoot();
+                        await ShowLoginScreenWithTroubleshootAsync();
                         IsToShowSignUpSpinner = false;
                         break;
                 }
@@ -325,7 +329,7 @@ namespace ProtonVPN.Login.ViewModels
             {
                 if (await DisableGuestHole() || _guestHoleConnector.Servers().Count == 0)
                 {
-                    ShowLoginScreenWithTroubleshoot();
+                    await ShowLoginScreenWithTroubleshootAsync();
                     return;
                 }
 
@@ -338,7 +342,7 @@ namespace ProtonVPN.Login.ViewModels
             AuthResult result = await SendTwoFactorAuthRequestAsync();
             if (result.Failure)
             {
-                HandleTwoFactorAuthFailure(result);
+                await HandleTwoFactorAuthFailureAsync(result);
             }
             else
             {
@@ -346,7 +350,7 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        private void HandleTwoFactorAuthFailure(AuthResult result)
+        private async Task HandleTwoFactorAuthFailureAsync(AuthResult result)
         {
             string error = result.Error;
             TwoFactorAuthCode = string.Empty;
@@ -354,7 +358,7 @@ namespace ProtonVPN.Login.ViewModels
             switch (result.Value)
             {
                 case AuthError.NoVpnAccess:
-                    _modals.Show<AssignVpnConnectionsModalViewModel>();
+                    await _modals.ShowAsync<AssignVpnConnectionsModalViewModel>();
                     IsToShowTwoFactorAuth = false;
                     IsToShowUsernameAndPassword = true;
                     ClearPasswordField();
@@ -369,7 +373,7 @@ namespace ProtonVPN.Login.ViewModels
                     IsToShowUsernameAndPassword = true;
                     break;
                 case AuthError.Unknown:
-                    _modals.Show<TroubleshootModalViewModel>();
+                    await _modals.ShowAsync<TroubleshootModalViewModel>();
                     ShowLoginForm();
                     return;
             }
@@ -404,22 +408,22 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        public void HandleAuthFailure(AuthResult result)
+        public async Task HandleAuthFailureAsync(AuthResult result)
         {
             if (!result.Error.IsNullOrEmpty())
             {
                 LoginErrorViewModel.SetError(result.Error);
             }
 
-            HandleAuthError(result.Value);
+            await HandleAuthErrorAsync(result.Value);
         }
 
-        private void HandleAuthError(AuthError error)
+        private async Task HandleAuthErrorAsync(AuthError error)
         {
             switch (error)
             {
                 case AuthError.NoVpnAccess:
-                    _modals.Show<AssignVpnConnectionsModalViewModel>();
+                    await _modals.ShowAsync<AssignVpnConnectionsModalViewModel>();
                     break;
                 case AuthError.MissingGoSrpDll:
                     _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
@@ -439,7 +443,7 @@ namespace ProtonVPN.Login.ViewModels
                 return;
             }
 
-            HandleAuthFailure(result);
+            await HandleAuthFailureAsync(result);
             ClearPasswordField();
             ShowLoginForm();
             await DisableGuestHole();
@@ -458,9 +462,9 @@ namespace ProtonVPN.Login.ViewModels
             return true;
         }
 
-        private void ShowLoginScreenWithTroubleshoot()
+        private async Task ShowLoginScreenWithTroubleshootAsync()
         {
-            _modals.Show<TroubleshootModalViewModel>();
+            await _modals.ShowAsync<TroubleshootModalViewModel>();
             ClearPasswordField();
             ShowLoginForm();
         }
@@ -501,9 +505,9 @@ namespace ProtonVPN.Login.ViewModels
             _urls.ForgetUsernameUrl.Open();
         }
 
-        private void ReportAnIssueAction()
+        private async void ReportAnIssueAction()
         {
-            _modals.Show<ReportBugModalViewModel>();
+            await _modals.ShowAsync<ReportBugModalViewModel>();
         }
 
         private void OpenSignInIssuesWebPageAction()
@@ -514,11 +518,6 @@ namespace ProtonVPN.Login.ViewModels
         private void DisableKillSwitchAction()
         {
             _appSettings.KillSwitchMode = KillSwitchMode.Off;
-        }
-
-        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
-        {
-            SetKillSwitchActive(e.IsNetworkBlocked, e.CurrentState.State.Status);
         }
     }
 }

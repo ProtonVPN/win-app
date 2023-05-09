@@ -33,24 +33,24 @@ using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.OS;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Modals;
 using ProtonVPN.Translations;
+using ProtonVPN.Update;
+using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.About
 {
     public class UpdateViewModel : ViewModel, IUpdateStateAware, IVpnStateAware
     {
+        private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
+
         private readonly ILogger _logger;
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
         private readonly IModals _modals;
         private readonly IAppSettings _appSettings;
-        private readonly ISystemState _systemState;
         private readonly ISettingsServiceClientManager _settingsServiceClientManager;
         private readonly IConfiguration _appConfig;
 
@@ -63,7 +63,6 @@ namespace ProtonVPN.About
             IOsProcesses osProcesses,
             IModals modals,
             IAppSettings appSettings,
-            ISystemState systemState,
             ISettingsServiceClientManager settingsServiceClientManager,
             IConfiguration appConfig)
         {
@@ -72,7 +71,6 @@ namespace ProtonVPN.About
             _osProcesses = osProcesses;
             _modals = modals;
             _appSettings = appSettings;
-            _systemState = systemState;
             _settingsServiceClientManager = settingsServiceClientManager;
             _appConfig = appConfig;
 
@@ -84,9 +82,9 @@ namespace ProtonVPN.About
 
         public ICommand OpenAboutCommand { get; }
 
-        private UpdateStatus _status;
+        private AppUpdateStatus _status;
 
-        public UpdateStatus Status
+        public AppUpdateStatus Status
         {
             get => _status;
             set => Set(ref _status, value);
@@ -124,9 +122,9 @@ namespace ProtonVPN.About
             }
         }
 
-        private Release _release;
+        private ReleaseContract _release;
 
-        public Release Release
+        public ReleaseContract Release
         {
             get => _release;
             set => Set(ref _release, value);
@@ -149,31 +147,40 @@ namespace ProtonVPN.About
 
         private async void Update()
         {
-            if (!CanUpdate() || !AllowToDisconnect())
+            if (!CanUpdate() || !(await IsAllowedToDisconnectAsync()))
             {
                 return;
             }
 
-            if (_systemState.PendingReboot())
-            {
-                bool? result = _modals.Show<RebootModalViewModel>();
-                if (result.HasValue && result.Value)
-                {
-                    await UpdateInternal();
-                }
-
-                return;
-            }
-
-            await UpdateInternal();
+            await UpdateInternalAsync();
         }
 
-        private async Task UpdateInternal()
+        private async Task UpdateInternalAsync()
+        {
+            if (Status == AppUpdateStatus.AutoUpdated)
+            {
+                RestartApp();
+            }
+            else
+            {
+                await UpdateManuallyAsync();
+            }
+        }
+
+        private void RestartApp()
+        {
+            string cmd = $"/c Timeout /t {APP_EXIT_TIMEOUT_IN_SECONDS} >nul & \"{_appConfig.AppLauncherExePath}\"";
+            using IOsProcess process = _osProcesses.CommandLineProcess(cmd);
+            process.Start();
+            ExitApp();
+        }
+
+        private async Task UpdateManuallyAsync()
         {
             string fileName = GetUpdateFileName();
             _logger.Info<AppUpdateStartLog>(
                 $"Closing the app and starting installer '{fileName}'. " +
-                $"Current app version: {_appConfig.AppVersion}, OS: {Environment.OSVersion.VersionString} { _appConfig.OsBits} bit");
+                $"Current app version: {_appConfig.AppVersion}, OS: {Environment.OSVersion.VersionString} {_appConfig.OsBits} bit");
             Updating = true;
 
             if (_appSettings.KillSwitchMode == KillSwitchMode.Hard)
@@ -187,7 +194,7 @@ namespace ProtonVPN.About
                     _updateStateChangedEventArgs.FilePath,
                     _updateStateChangedEventArgs.FileArguments).Start();
 
-                Application.Current.Shutdown();
+                ExitApp();
             }
             catch (System.ComponentModel.Win32Exception)
             {
@@ -199,6 +206,11 @@ namespace ProtonVPN.About
                 // Privileges were not granted
                 Updating = false;
             }
+        }
+
+        private void ExitApp()
+        {
+            Application.Current.Shutdown();
         }
 
         private string GetUpdateFileName()
@@ -220,11 +232,11 @@ namespace ProtonVPN.About
 
         private bool CanUpdate() => !Updating && Ready;
 
-        private bool AllowToDisconnect()
+        private async Task<bool> IsAllowedToDisconnectAsync()
         {
             if (ShowConfirmationModal())
             {
-                bool? result = _dialogs.ShowQuestion(Translation.Get("App_msg_UpdateConnectedConfirm"));
+                bool? result = await _dialogs.ShowQuestionAsync(Translation.Get("App_msg_UpdateConnectedConfirm"));
                 if (result.HasValue && result.Value == false)
                 {
                     return false;
@@ -234,11 +246,11 @@ namespace ProtonVPN.About
             return true;
         }
 
-        private void OpenAbout()
+        private async void OpenAbout()
         {
             dynamic options = new ExpandoObject();
             options.SkipUpdateCheck = true;
-            _modals.Show<AboutModalViewModel>(options);
+            await _modals.ShowAsync<AboutModalViewModel>(options);
         }
 
         private bool ShowConfirmationModal()

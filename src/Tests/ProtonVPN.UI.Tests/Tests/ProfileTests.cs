@@ -38,7 +38,8 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             _profileWindow.PressCreateNewProfile()
                 .CreateProfile(TestConstants.ProfileName);
-            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileCreationErrorIsNotShown()
+                .CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -68,8 +69,9 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             _profileWindow.PressCreateNewProfile()
                 .SelectSecureCoreOption()
-                .CreateProfile(TestConstants.ProfileName);      
-            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
+                .CreateProfile(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileCreationErrorIsNotShown()
+                .CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -79,7 +81,8 @@ namespace ProtonVPN.UI.Tests.Tests
             _profileWindow.PressCreateNewProfile()
                .SelectP2POption()
                .CreateProfileWithoutCountry(TestConstants.ProfileName);
-            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileCreationErrorIsNotShown()
+                .CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -88,7 +91,8 @@ namespace ProtonVPN.UI.Tests.Tests
             _profileWindow.PressCreateNewProfile()
                .SelectTorOption()
                .CreateProfileWithoutCountry(TestConstants.ProfileName);
-            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileCreationErrorIsNotShown()
+                .CheckIfProfileIsDisplayed(TestConstants.ProfileName);
         }
 
         [Test]
@@ -110,7 +114,8 @@ namespace ProtonVPN.UI.Tests.Tests
 
             _profileWindow.PressCreateNewProfile()
                 .CreateProfile(TestConstants.ProfileName);
-            _profileResult.CheckIfProfileIsDisplayed(TestConstants.ProfileName);
+            _profileResult.CheckIfProfileCreationErrorIsNotShown()
+                .CheckIfProfileIsDisplayed(TestConstants.ProfileName);
 
 
             _profileWindow.EditProfileName(TestConstants.ProfileName, newProfileName);
@@ -131,7 +136,6 @@ namespace ProtonVPN.UI.Tests.Tests
         public void TestInitialize()
         {
             DeleteUserConfig();
-            DeleteProfiles();
             LaunchApp();
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToProfiles();

@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Abonnement beheren</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Toegang tot geblokkeerde inhoud</value>
@@ -235,7 +235,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Adblocker (NetShield)</value>
+    <value>Advertentieblokkering (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Afmelden</value>
+    <value>Uitloggen</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,11 +324,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Uitloggen van de applicatie zal de actieve VPN-verbinding verbreken. Wilt u doorgaan?</value>
+    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Om het updateproces te voltooien, zal Proton VPN de verbinding tijdelijk verbreken en de Permanente Kill Switch uitschakelen als een van deze actief zijn. Wilt u doorgaan?</value>
+    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -351,7 +351,7 @@
     <value>Contacteer ons</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Update</value>
+    <value>Bijwerken</value>
   </data>
   <data name="BugReport_btn_GotIt">
     <value>Klaar</value>
@@ -406,7 +406,7 @@
     <value>Een logboek is een type bestand dat ons laat zien welke acties u heeft ondernomen die geleid hebben tot een fout. We gebruiken ze enkel om uw probleem te helpen oplossen.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Update Proton VPN</value>
+    <value>Proton VPN bijwerken</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
     <value>Deze versie van Proton VPN heeft misschien uw probleem al opgelost!</value>
@@ -906,7 +906,7 @@
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Hong Kong</value>
+    <value>Hongkonger</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
@@ -1543,10 +1543,11 @@
     <value>Om uw reis met Proton VPN te beginnen wijst u VPN-verbindingen toe aan uw account of een ander sub-account.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Deze stap duurt slechts een paar minuten. Daarna kunt u zich aanmelden en al uw apparaten beveiligen.</value>
+    <value>Deze stap duurt slechts een paar minuten. Daarna kunt u zich inloggen en al uw apparaten beveiligen.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Bedankt om te upgraden naar Professional/Visionary</value>
+    <value>Thanks for upgrading</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Een van de diensten die Proton VPN nodig heeft (Base Filtering Engine) is niet actief.&lt;LineBreak/&gt;
@@ -1597,11 +1598,11 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Sommige Proton VPN's componenten kunnen geblokkeerd of uitgeschakeld zijn, waardoor u geen verbinding kunt maken. Klik op Inschakelen om dit te verhelpen.&lt;LineBreak/&gt;Merk op dat deze operatie Admin rechten vereist.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Schakel Kill Switch uit</value>
+    <value>Disable kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1613,8 +1614,8 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch beschermt uw IP door alle verbindingen te blokkeren. In geval van problemen kunt u Kill Switch uitschakelen.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Er zijn momenteel geen servers beschikbaar voor uw selectie. Selecteer alstublieft een andere optie.</value>
@@ -1663,16 +1664,16 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Wilt u doorgaan?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Afsluiten van de app zal de verbinding met de VPN verbreken.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill Switch blokkeert alle verbindingen om te voorkomen dat uw gegevens lekken. Sluiten van de app zal de Kill Switch uitschakelen.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanente Kill Switch is ingeschakeld. Afsluiten van de applicatie zal alle uitgaande verbindingen blokkeren totdat Proton VPN opnieuw is verbonden.</value>
+    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Persoonsverificatie</value>
@@ -1681,10 +1682,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Uw systeemklok lijkt niet synchroon te lopen, waardoor de VPN mogelijk geen succesvolle verbinding kan maken. Zie &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;hier&lt;/Hyperlink&gt; voor meer informatie.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Permanente Kill Switch inschakelen?</value>
+    <value>Enable Permanent kill switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Begrepen</value>
@@ -1699,7 +1700,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1731,8 +1732,8 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Merk op dat de Kill Switch is ingeschakeld. Vernieuwen of stoppen van de app zal dit uitgeschakelen.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Uw verbinding is uitgeschakeld omdat u gebruik maakt van een server die geen peer-to-peer (P2P) verkeer ondersteunt. P2P wordt niet ondersteund op gratis servers. Gebruik een andere server voor P2P.</value>
@@ -1748,18 +1749,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN heeft een proxyserver gedetecteerd die is geconfigureerd op uw lokale netwerk. De Proton VPN-app kan het verkeer dat door deze proxy gaat, niet beschermen. Dit betekent dat uw verbinding niet volledig wordt beveiligd zoals verwacht.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Herstarten</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Doorgaan zonder</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Om Proton VPN-fouten te voorkomen, raden we ten sterkste aan uw computer te herstarten om eerst andere applicaties bij te werken. Proton VPN zal de installatie daarna automatisch hervatten. Nu herstarten?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Uw computer moet opnieuw opstarten</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Ontdek de nieuwe look van Proton. Veel diensten, één missie. Welkom in een internetomgeving waar privacy de standaard is.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Meer info&lt;/Hyperlink&gt;</value>
   </data>
@@ -1770,7 +1759,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Begrepen</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Om Split Tunneling goed te laten functioneren, moet u Kill Switch uitschakelen.</value>
+    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Honderden servers in 55 landen</value>
@@ -1862,6 +1851,9 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN kon geen verbinding maken omdat de TUN-netwerkadapter al in gebruik is. Verbreek alle actieve VPN's en probeer het opnieuw. Als alternatief kunt u overschakelen naar de TAP-adapter (u kunt terugschakelen naar TUN in de Geavanceerde Instellingen).</value>
   </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+  </data>
   <data name="Dialogs_btn_Cancel">
     <value>Annuleer</value>
     <comment>The text on Cancel button in dialog windows</comment>
@@ -1882,7 +1874,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Oké</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Van server:</value>
@@ -1922,7 +1914,8 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Herstel uw installatie alstublieft.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licentie</value>
@@ -1933,7 +1926,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Ongeldige vernieuwingstoken, log opnieuw in.</value>
+    <value>Invalid refresh token, please sign in again.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1948,15 +1941,15 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill Switch is momenteel actief</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>Kill switch is currently active</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Wachtwoord</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Overal veilig internet</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2078,7 +2071,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Niet meer weergeven</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Meer informatie</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core biedt het hoogste niveau van beveiliging en privacy, maar het kan uw internetsnelheid verlagen. Als u hogere prestaties wilt, kan u Secure Core uitschakelen.</value>
@@ -2141,6 +2134,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Uw VPN-abonnement is verlopen</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Restart</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Wat is er nieuw</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
@@ -2151,7 +2148,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>VERBONDEN met {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>NIET VERBONDEN</value>
@@ -2214,38 +2211,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Mislukt</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Profielsynchronisatie is mislukt</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Synchroniseren</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Profielen synchroniseren</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Overschreven</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Gesynchroniseerd</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Profielwijzigingen {0} {1} geleden gesynchroniseerd</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Geen profielwijzigingen om te synchroniseren</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Snelste beschikbare server</value>
@@ -2361,10 +2326,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Profiel aanmaken</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sync</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Probleemoplossing</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2384,10 +2345,6 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="Profiles_col_Protocol">
     <value>Protocol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Servers zijn momenteel offline voor onderhoud.</value>
@@ -2442,10 +2399,12 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch Uit</value>
+    <value>Kill switch Off</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch Aan</value>
+    <value>Kill switch On</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Meer informatie</value>
@@ -2460,7 +2419,8 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Blokkeer malware, advertenties &amp; trackers</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanente Kill Switch</value>
+    <value>Permanent kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Port Forwarding Uitgeschakeld</value>
@@ -2475,19 +2435,47 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Secure Core Aan</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>UPGRADE</value>
+    <value>UPGRADEN</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Schakelt internet uit als de VPN-verbinding wegvalt om onbedoeld IP-lekken te voorkomen.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Browse the internet without ads and malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Ads blocked</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Ad blocked</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Data saved</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Trackers stopped</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Tracker stopped</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Als websites niet laden, probeer NetShield dan uit te schakelen</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Versnel uw torrents en online gaming door ondersteunde lokale apps toe te staan bereikbaar te zijn vanaf het internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Stuur uw meest gevoelige gegevens door onze veiligste servers in privacy-vriendelijke landen.</value>
@@ -2519,7 +2507,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Plus-servers</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2570,11 +2558,11 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2596,7 +2584,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Proton VPN kan geen verbinding maken omdat de RPC-server niet beschikbaar is op uw systeem. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Bekijk mogelijke oplossingen&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Helaas ondersteunt deze server WireGuard niet.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>App toevoegen</value>
@@ -2673,10 +2661,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>TAP adapter</value>
+    <value>TAP-adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>TUN adapter</value>
+    <value>TUN-adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>Port forwarding</value>
@@ -2702,7 +2690,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Een applicatie of een IP-adres uit VPN-verkeer uitsluiten of alleen specifieke apps opnemen. Kan niet samen met de Kill Switch gebruikt worden.</value>
+    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2794,6 +2782,14 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Verbinding</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Automatic updates</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Automatically check for and install updates to Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Verbinden wanneer app start</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2876,11 +2872,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill Switch geactiveerd!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <value>Kill switch activated!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill Switch blokkeert alle verbindingen om te voorkomen dat uw gegevens worden uitgelekt.</value>
+    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -2895,6 +2891,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>GRATIS locaties ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free servers</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Informatie</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Onze partners</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>PLUS locaties ({0})</value>
   </data>
@@ -2905,13 +2913,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC-servers ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Plus-servers ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>INTERNE servers</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
-    <value>Slimme routering</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
     <value>In onderhoud</value>
@@ -2957,7 +2965,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
-    <value>Slimme routering</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
     <value>Met deze technologie kan Proton VPN hogere snelheid en beveiliging bieden in landen waar de toegang tot VPNs beperkt is.</value>
@@ -2975,7 +2983,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Leidt uw internetverkeer om via het Tor-netwerk. Trager, maar meer privé.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profiel aanmaken</value>
@@ -2994,7 +3002,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
-    <value>Plus Server</value>
+    <value>Plus server</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
@@ -3078,8 +3086,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Toegang tot meer dan 1200 servers in 63 landen</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Wat is Gemiddelde NAT?</value>
@@ -3150,7 +3158,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Verdubbel de encryptie met Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3210,14 +3218,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>Uitschakelen</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Opslaan</value>
     <comment>The text on Save button in data entry windows</comment>
   </data>
   <data name="Window_lbl_Error">
-    <value>Error:</value>
+    <value>Fout:</value>
     <comment>The label for list of errors on Error Panel of data entry Window</comment>
   </data>
   <data name="Window_lbl_Loading">
@@ -3227,8 +3235,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

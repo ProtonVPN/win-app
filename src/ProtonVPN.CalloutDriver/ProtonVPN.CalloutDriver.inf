@@ -48,7 +48,7 @@ LoadOrderGroup = NDIS
 Dependencies   = TCPIP                         ; Load after TCPIP.sys
 
 [Strings]
-ManufacturerName   = "Proton Technologies AG"
+ManufacturerName   = "Proton AG"
 DiskName           = "ProtonVPN Callout Driver Installation Disk"
 ServiceName        = "ProtonVPNCallout"
 ServiceDisplayName = "ProtonVPN Callout"

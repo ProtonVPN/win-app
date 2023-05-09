@@ -59,6 +59,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AppExePath = Path.Combine(baseFolder, "ProtonVPN.exe"),
 
+                AppLauncherExePath = Path.Combine(Path.GetDirectoryName(baseFolder) ?? string.Empty, "ProtonVPN.Launcher.exe"),
+
                 AppLogFolder = appLogFolder,
 
                 AppLogDefaultFullFilePath = Path.Combine(appLogFolder, "app-logs.txt"),
@@ -89,7 +91,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateFilePath = Path.Combine(localAppDataFolder, "Updates", "update.txt"),
 
-                UpdatesPath = Path.Combine(localAppDataFolder, "Updates"),
+                UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
 
                 CalloutServiceName = "ProtonVPNCallout",
 
@@ -103,7 +105,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxServiceLogsAttached = 3,
 
-                ApiClientId = "WindowsVPN",
+                ApiClientId = "windows-vpn",
 
                 ApiVersion = "3",
 
@@ -153,8 +155,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxProfileNameLength = 25,
 
-                ForcedProfileSyncInterval = TimeSpan.FromMinutes(3),
-
                 EventCheckInterval = TimeSpan.FromMinutes(5),
 
                 ServiceCheckInterval = TimeSpan.FromSeconds(30),
@@ -178,12 +178,11 @@ namespace ProtonVPN.Common.Configuration.Source
                     BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
-                    OldUpdateUrl = "https://protonvpn.com/download/win-update.json",
                     UpdateUrl = "https://protonvpn.com/download/windows-releases.json",
                     DownloadUrl = "https://protonvpn.com/download",
                     ApiUrl = "https://api.protonvpn.ch",
                     TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
-                    HelpUrl = "https://www.protonvpn.com/support",
+                    HelpUrl = "https://protonvpn.com/support/",
                     AccountUrl = "https://account.protonvpn.com/dashboard",
                     AboutSecureCoreUrl = "https://protonvpn.com/support/secure-core-vpn",
                     RegisterUrl = "https://account.protonvpn.com/signup",
@@ -217,7 +216,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 OpenVpn =
                 {
-                    ExePath = Path.Combine(resourcesFolder, $"{osBits}-bit", "openvpn.exe"),
+                    ExePath = Path.Combine(resourcesFolder, "openvpn.exe"),
 
                     ConfigPath = Path.Combine(resourcesFolder, "config.ovpn"),
 
@@ -240,6 +239,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     TlsExportCertFolder = Path.Combine(commonAppDataFolder, "ExportCert"),
 
                     TapAdapterId = "tapprotonvpn",
+
+                    TapInstallerDir = Path.Combine(resourcesFolder, "tap"),
 
                     TapAdapterDescription = "TAP-ProtonVPN Windows Adapter V9",
 
@@ -350,7 +351,15 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AlternativeRoutingCheckInterval = TimeSpan.FromMinutes(30),
 
+                NetShieldStatisticRequestInterval = TimeSpan.FromSeconds(60),
+
                 AutoLoginBaseUrl = "https://account.proton.me/lite",
+
+                WintunDriverPath = Path.Combine(resourcesFolder, "wintun.dll"),
+
+                WintunAdapterName = "ProtonVPN TUN",
+
+                InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
             };
         }
     }

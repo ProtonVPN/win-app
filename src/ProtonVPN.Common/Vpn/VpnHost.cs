@@ -78,9 +78,15 @@ namespace ProtonVPN.Common.Vpn
 
         public override bool Equals(object o)
         {
+            if (o == null)
+            {
+                return false;
+            }
+
             VpnHost vpnHost = (VpnHost)o;
-            return vpnHost != null && Ip == vpnHost.Ip &&
+            return Ip == vpnHost.Ip &&
                    (Label == vpnHost.Label || (string.IsNullOrEmpty(Label) && string.IsNullOrEmpty(vpnHost.Label)));
+
         }
 
         public override int GetHashCode() 

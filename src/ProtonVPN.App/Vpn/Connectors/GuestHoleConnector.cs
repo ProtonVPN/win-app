@@ -25,11 +25,10 @@ using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.GuestHoleLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.GuestHoles.FileStoraging;
@@ -47,7 +46,6 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly GuestHoleState _guestHoleState;
         private readonly IConfiguration _config;
         private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
-        private readonly INetworkAdapterValidator _networkAdapterValidator;
         private readonly ILogger _logger;
 
         public GuestHoleConnector(
@@ -56,7 +54,6 @@ namespace ProtonVPN.Vpn.Connectors
             GuestHoleState guestHoleState,
             IConfiguration config,
             IGuestHoleServersFileStorage guestHoleServersFileStorage,
-            INetworkAdapterValidator networkAdapterValidator, 
             ILogger logger)
         {
             _vpnServiceManager = vpnServiceManager;
@@ -64,31 +61,21 @@ namespace ProtonVPN.Vpn.Connectors
             _guestHoleState = guestHoleState;
             _config = config;
             _guestHoleServersFileStorage = guestHoleServersFileStorage;
-            _networkAdapterValidator = networkAdapterValidator;
             _logger = logger;
         }
 
         public async Task Connect()
         {
-            if (_networkAdapterValidator.IsOpenVpnAdapterAvailable())
-            {
-                _logger.Info<GuestHoleLog>("OpenVPN adapters are available. Proceeding with guest hole connection.");
+            _logger.Info<GuestHoleLog>("OpenVPN adapters are available. Proceeding with guest hole connection.");
 
-                VpnConnectionRequest request = new(
-                    Servers(),
-                    VpnProtocol.Smart,
-                    VpnConfig(),
-                    CreateVpnCredentials());
+            VpnConnectionRequest request = new(
+                Servers(),
+                VpnProtocol.Smart,
+                VpnConfig(),
+                CreateVpnCredentials());
 
-                _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
-                await _vpnServiceManager.Connect(request);
-            }
-            else
-            {
-                _logger.Info<GuestHoleLog>("OpenVPN adapters are unavailable. Disconnecting.");
-                _logger.Info<DisconnectTriggerLog>("Guest hole disconnection requested.");
-                await Disconnect();
-            }
+            _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
+            await _vpnServiceManager.Connect(request);
         }
 
         private VpnCredentials CreateVpnCredentials()
@@ -135,11 +122,12 @@ namespace ProtonVPN.Vpn.Connectors
 
         public IReadOnlyList<VpnHost> Servers()
         {
-            return _guestHoleServersFileStorage
-                   .Get()
-                   .Select(server => new VpnHost(server.Host, server.Ip, server.Label, null, server.Signature))
-                   .OrderBy(_ => _random.Next())
-                   .ToList();
+            IEnumerable<GuestHoleServerContract> servers = _guestHoleServersFileStorage.Get();
+            return servers != null
+                ? servers.Select(server => new VpnHost(server.Host, server.Ip, server.Label, null, server.Signature))
+                    .OrderBy(_ => _random.Next())
+                    .ToList()
+                : new List<VpnHost>();
         }
 
         private VpnConfig VpnConfig()

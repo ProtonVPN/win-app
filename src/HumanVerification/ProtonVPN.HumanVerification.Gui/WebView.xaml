@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:command="http://www.galasoft.ch/mvvmlight"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:gui="clr-namespace:ProtonVPN.HumanVerification.Gui"
              d:DataContext="{d:DesignInstance gui:WebViewViewModel}"
              mc:Ignorable="d">
@@ -21,7 +20,7 @@
         </wpf:WebView2.Source>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="WebMessageReceived">
-                <command:EventToCommand Command="{Binding Mode=OneWay, Path=OnMessageReceivedCommand}"
+                <i:InvokeCommandAction Command="{Binding Mode=OneWay, Path=OnMessageReceivedCommand}"
                                         PassEventArgsToCommand="True" />
             </i:EventTrigger>
         </i:Interaction.Triggers>

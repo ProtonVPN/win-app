@@ -28,6 +28,14 @@ namespace ProtonVPN.Crypto
 
         public AsymmetricKeyPair(SecretKey secretKey, PublicKey publicKey)
         {
+            if (secretKey is null)
+            {
+                throw new ArgumentNullException(nameof(secretKey), "The SecretKey argument is mandatory but is null.");
+            }
+            if (publicKey is null)
+            {
+                throw new ArgumentNullException(nameof(publicKey), "The PublicKey argument is mandatory but is null.");
+            }
             if (secretKey.Algorithm != publicKey.Algorithm)
             {
                 throw new ArgumentException("The algorithms used for the key pair are different. " +

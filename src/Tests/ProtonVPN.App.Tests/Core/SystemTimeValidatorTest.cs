@@ -63,7 +63,7 @@ namespace ProtonVPN.App.Tests.Core
             await sut.Validate();
 
             // Assert
-            _modals.Received(1).Show<IncorrectSystemTimeModalViewModel>();
+            await _modals.Received(1).ShowAsync<IncorrectSystemTimeModalViewModel>();
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace ProtonVPN.App.Tests.Core
             await sut.Validate();
 
             // Assert
-            _modals.Received(0).Show<IncorrectSystemTimeModalViewModel>();
+            await _modals.Received(0).ShowAsync<IncorrectSystemTimeModalViewModel>();
         }
     }
 }

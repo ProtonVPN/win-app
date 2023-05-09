@@ -48,6 +48,9 @@ namespace ProtonVPN.Common.Configuration
         public string TapAdapterId { get; set; }
 
         [Required]
+        public string TapInstallerDir { get; set; }
+
+        [Required]
         public string TapAdapterDescription { get; set; }
 
         [Required]

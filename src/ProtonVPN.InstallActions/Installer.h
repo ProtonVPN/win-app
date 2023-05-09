@@ -1,2 +1,3 @@
 #pragma once
-long Uninstall(LPCWSTR upgradeCode);
+long Uninstall(LPCWSTR upgrade_code);
+bool IsProductInstalled(LPCWSTR upgrade_code);

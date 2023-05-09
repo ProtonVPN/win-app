@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Abonelik yönetimi</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Engellenen içeriğe erişin</value>
@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Proton VPN, güncelleme işlemini tamamlamak için etkinse bağlantıyı geçici olarak kesecek ve Bağlantı kesiciyi devre dışı bırakacak. İlerlemek istiyor musunuz?</value>
+    <value>Bunlardan biri etkinse, Proton VPN güncelleme işlemini tamamlamak için geçici olarak bağlantıyı kesecek ve bağlantı kesiciyi devre dışı bırakacak. İlerlemek istiyor musunuz?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -518,7 +518,7 @@
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value></value>
+    <value> </value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
@@ -1546,7 +1546,8 @@
     <value>Bu adım birkaç dakika sürecek. Bundan sonra oturum açabilir ve tüm aygıtlarınızı koruyabilirsiniz.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Professional/Visionary tarifesine yükselttiğiniz için teşekkürler</value>
+    <value>Tarifenizi yükselttiğiniz için teşekkürler</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Proton VPN için gerekli hizmetlerden biri (temel süzme işleyici) çalışmıyor. &lt;LineBreak/&gt; Hizmeti etkinleştirmek ve yeniden denemek için &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="buradaki"/&gt;&lt;/Hyperlink&gt; yönergeleri izleyin.</value>
@@ -1613,7 +1614,7 @@
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
     <value>Bağlantı kesici, tüm bağlantıları engelleyerek IP adresinizi koruyor. Bir sorun olması durumunda Bağlantı kesiciyi devre dışı bırakabilirsiniz.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Şu anda seçiminize uygun bir sunucu yok. Lütfen başka bir seçim yapın.</value>
@@ -1662,13 +1663,13 @@
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>İlerlemek istiyor musunuz?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Uygulamadan çıkarsanız VPN ile bağlantınız kesilecek.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Bağlantı kesici, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor. Uygulamadan çıkmak, Bağlantı kesiciyi devre dışı bırakacak.</value>
+    <value>Bağlantı kesici, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor. Uygulamadan çıkmak, bağlantı kesiciyi devre dışı bırakacak.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>Kalıcı bağlantı kesici şu anda etkin. Uygulamadan çıkarsanız yeniden bağlantı kurulana kadar Proton VPN tüm giden bağlantıları engelleyecek.</value>
@@ -1680,7 +1681,7 @@
     <value>Sistem saatiniz doğru değil gibi görünüyor. Bu durum VPN bağlantısının kurulmasını engelleyebilir. Ayrıntılı bilgi almak için &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;buraya&lt;/Hyperlink&gt; bakabilirsiniz.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, internete erişemezsiniz.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Kalıcı bağlantı kesici etkinleştirilsin mi?</value>
@@ -1731,7 +1732,7 @@
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
     <value>Bağlantı kesicinin etkin olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesiciyi devre dışı bırakır.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Eşler arası (P2P) trafiği desteklemeyen bir sunucu kullandığınız için bağlantınız devre dışı bırakıldı. P2P, ücretsiz sunucularda desteklenmez. Lütfen P2P için başka bir sunucu kullanın.</value>
@@ -1747,18 +1748,6 @@
     <value>Proton VPN, yerel ağınızda yapılandırılmış bir vekil sunucu algıladı. Proton VPN uygulaması, bu vekil sunucudan geçen trafiği koruyamaz. Bu durum, bağlantınızın beklendiği gibi tamamen korunmayacağı anlamına gelir.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Yeniden başlat</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Şu olmadan ilerle</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Proton VPN ile ilgili bir sorun çıkmaması için öncelikle bilgisayarınızı yeniden başlatarak diğer uygulamaların güncellemelerini tamamlamanızı öneririz. Ardından Proton VPN kurulumu otomatik olarak sürdürülür. Şimdi yeniden başlatmak ister misiniz?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Bilgisayarınızın yeniden başlatılması gerekiyor</value>
-  </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğin doğal sayıldığı internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
@@ -1769,7 +1758,7 @@
     <value>Anladım</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Ayrılmış tünellemenin düzgün çalışması için Bağlantı kesiciyi devre dışı bırakmalısınız.</value>
+    <value>Ayrılmış tünellemenin düzgün çalışması için bağlantı kesiciyi devre dışı bırakmalısınız.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>55 ülkede yüzlerce sunucu</value>
@@ -1784,7 +1773,7 @@
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Tüm özelliklerin tadını çıkarmak için yeniden yükseltin:</value>
+    <value>Tüm özelliklerin tadını çıkarmak için tarifenizi yeniden yükseltin:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
@@ -1792,11 +1781,11 @@
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Aboneliğiniz düşürüldü.</value>
+    <value>Abonelik tarifeniz düşürüldü.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>VPN abonelik tarifenizin süresi dolmuş</value>
+    <value>VPN abonelik tarifenizin geçerlilik süresi dolmuş</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
@@ -1861,6 +1850,9 @@
   <data name="Dialogs_TunInUse_msg">
     <value>TUN ağ bağdaştırıcısı kullanıldığından Proton VPN bağlantı kuramadı. Lütfen etkin VPN bağlantısını kestikten sonra yeniden deneyin. Alternatif olarak, TAP bağdaştırıcısına geçin (Gelişmiş ayarlar bölümünden TUN bağdaştırıcısına geri dönebilirsiniz).</value>
   </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Zaten bir WireGuard ağ bağdaştırıcısı kullanıldığından Proton VPN bağlantı kuramadı. Lütfen etkin VPN bağlantısını kestikten sonra yeniden deneyin. Alternatif olarak, gelişmiş ayarlar bölümünden iletişim kurallarını değiştirebilirsiniz.</value>
+  </data>
   <data name="Dialogs_btn_Cancel">
     <value>İptal</value>
     <comment>The text on Cancel button in dialog windows</comment>
@@ -1922,13 +1914,14 @@
   </data>
   <data name="KillSwitch">
     <value>Bağlantı kesici</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Lisans</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Oturumunuzun süresi dolmuş. Lütfen yeniden oturum açın.</value>
+    <value>Oturumunuzun geçerlilik süresi dolmuş. Lütfen yeniden oturum açın.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -1948,14 +1941,14 @@
   </data>
   <data name="Login_lbl_KillSwitch">
     <value>Bağlantı kesici etkin</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Parola</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Her yerde güvenli internet</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2077,7 +2070,7 @@
     <value>Bir daha gösterme</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Ayrıntılı bilgi alın</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini devre dışı bırakabilirsiniz.</value>
@@ -2129,7 +2122,7 @@
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Abonelik tarifeniz düşürüldü. Tüm özelliklerin tadını çıkarmak için yeniden yükseltin.</value>
+    <value>Abonelik tarifeniz düşürüldü. Tüm özelliklerin tadını çıkarmak için tarifenizi yeniden yükseltin.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
@@ -2137,8 +2130,12 @@
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>VPN abonelik tarifenizin süresi dolmuş</value>
+    <value>VPN abonelik tarifenizin geçerlilik süresi dolmuş</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Yeniden başlat</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Yenilikler</value>
@@ -2150,7 +2147,7 @@
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>{0} ile BAĞLANTI KURULDU</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>BAĞLI DEĞİL</value>
@@ -2213,38 +2210,6 @@
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Eşitlenemedi</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Profil eşitlenemedi</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Eşitleniyor</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Profiller eşitleniyor</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Değiştirildi</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Eşitlendi</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Profil değişiklikleri {0} {1} önce eşitlendi</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Eşitlenecek bir profil değişikliği yok</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Kullanılabilecek en hızlı sunucu</value>
@@ -2360,10 +2325,6 @@
     <value>Profil oluştur</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Eşitle</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Sorun gider</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2383,10 +2344,6 @@
   <data name="Profiles_col_Protocol">
     <value>İletişim kuralı</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Durum</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Sunucular bakım nedeniyle çevrimdışı.</value>
@@ -2441,10 +2398,12 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Bağlantı kesici kapalı</value>
+    <value>Bağlantı kesiciyi kapat</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Bağlantı kesici açık</value>
+    <value>Bağlantı kesiciyi aç</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Ayrıntılı bilgi alın</value>
@@ -2460,6 +2419,7 @@
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Kalıcı bağlantı kesici</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Bağlantı noktası yönlendirme kapalı</value>
@@ -2477,16 +2437,44 @@
     <value>YÜKSELT</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için interneti devre dışı bırakır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>İnternette reklamlar ve kötü amaçlı yazılımlar olmadan gezinin.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Reklam engellendi</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Reklam engellendi</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Reklam web siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Kazanılan veri</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>NetShield tarafından engellenen reklamların, izleyicilerin ve kötü amaçlı yazılımların öngörülen boyutu.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>İzleyici durduruldu</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>İzleyici durduruldu</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>İzleyiciler, sitelerdeki etkinliğiniz ile ilgili bilgi toplayan, depolayan ve satan üçüncü taraf siteleridir.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
-    <value>Web siteleri yüklenmiyorsa, NetShield özelliğini devre dışı bırakmayı deneyin</value>
+    <value>Siteler yüklenmiyorsa, NetShield özelliğini devre dışı bırakmayı deneyin</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrimiçi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>En hassas verilerinizi gizliliğe saygı gösteren ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
@@ -2518,7 +2506,7 @@
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Plus sunucusu</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2595,7 +2583,7 @@
     <value>Sisteminiz üzerinde kullanılabilecek bir RPC sunucusu bulunamadığından Proton VPN bağlantı kuramıyor. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Olası çözümlere bakın&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Ne yazık ki bu sunucu WireGuard desteklemiyor.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Uygulama ekle</value>
@@ -2728,7 +2716,7 @@
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Özel DNS sunucularının kullanılması NetShield özelliğini devre dışı bırakır. DNS sunucuları sizi doğru web sitelerine yönlendirmekten sorumludur. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Yalnızca güvendiğiniz DNS sunucularını kullanın. Özel DNS sunucularını etkinleştirmek istiyor musunuz?</value>
+    <value>Özel DNS sunucularının kullanılması NetShield özelliğini devre dışı bırakır. DNS sunucuları sizi doğru sitelere yönlendirmekten sorumludur. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Yalnızca güvendiğiniz DNS sunucularını kullanın. Özel DNS sunucularını etkinleştirmek istiyor musunuz?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
@@ -2755,14 +2743,14 @@
     <value>Ilımlı NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Ilımlı NAT, güvenliğinizi biraz azaltabilir. Ancak çevrimiçi oyunlar gibi uygulamalar için doğrudan bağlantı kurma gibi tekniklere izin veren yerel adres eşlemelerinin rastgeleleştirilmesi özelliğini devre dışı bırakır.</value>
+    <value>Ilımlı NAT, güvenliğinizi biraz azaltabilir. Ancak çevrimiçi oyunlar gibi uygulamaların doğrudan bağlantı kurması gibi tekniklere izin veren yerel adres eşlemelerini rastgeleleştirme özelliğini devre dışı bırakır.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Hızlı bağlan</value>
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Hızlı bağlan düğmesi sizi seçilmiş profile bağlar.</value>
+    <value>Hızlı Bağlan düğmesinin seçtiğiniz profile göre bağlantı kurmasını sağlar.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
@@ -2792,6 +2780,14 @@
   <data name="Settings_Connection_ttl">
     <value>Bağlantı</value>
     <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Otomatik güncellemeler</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Proton VPN güncellemelerini otomatik olarak denetler ve kurar.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Uygulama başlatıldığında bağlansın</value>
@@ -2876,7 +2872,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
     <value>Bağlantı kesici etkinleştirildi!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
     <value>Bağlantı kesici, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor.</value>
@@ -2894,6 +2890,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Free konumları ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Free sunucuları</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Free tarife sunucularında veri sınırı veya ağ kısıtlaması yoktur. Hız, yalnızca bağlı kullanıcı sayısının fazla olması nedeniyle sınırlanıyor olabilir.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Bilgiler</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>İş ortaklarımız</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Plus konumları ({0})</value>
   </data>
@@ -2904,13 +2912,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Basic sunucuları ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Plus sunucuları ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>Internal sunucuları</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
-    <value>Akıllı yöneltme</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
     <value>Bakım yapılıyor</value>
@@ -2941,7 +2949,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>Basic ve Plus</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Ayrıntılı bilgi alın</value>
@@ -2953,10 +2961,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Bu sunucular, BitTorrent ve dosya paylaşımı için en iyi başarımı sağlar.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
-    <value>Plus</value>
+    <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
-    <value>Akıllı yöneltme</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
     <value>Bu teknoloji, hizmet verilmesi zor ülkelerde Proton VPN için daha yüksek hız ve güvenlik sağlar.</value>
@@ -2974,7 +2982,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>İnternet trafiğinizi Tor ağı üzerinden yöneltin. Yavaş ama daha güvenli.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profil oluştur</value>
@@ -3077,8 +3085,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>63 üzerinde ülkedeki 1.200 üzerinde sunucuya erişin</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Ilımlı NAT nedir?</value>
@@ -3209,7 +3217,7 @@ hızlıca göz atın.</value>
   </data>
   <data name="Window_btn_Disable">
     <value>Devre dışı bırak</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Kaydet</value>
@@ -3226,8 +3234,5 @@ hızlıca göz atın.</value>
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

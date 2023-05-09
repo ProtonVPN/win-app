@@ -7,7 +7,7 @@ from slack_sdk.errors import SlackApiError
 def send():
     client = WebClient(token=os.environ.get("SLACK_BOT_TOKEN"))
     logger = logging.getLogger(__name__)
-    files = glob.glob("./Setup/ProtonVPN-SetupFiles/*.exe")
+    files = glob.glob("./Setup/Installers/*.exe")
 
     if len(files) > 0:
         installer_path = files[0]

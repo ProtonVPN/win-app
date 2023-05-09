@@ -21,10 +21,13 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.NetShield;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
@@ -35,6 +38,8 @@ using ProtonVPN.Onboarding;
 using ProtonVPN.PortForwarding;
 using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Settings;
+using ProtonVPN.Translations;
+using static ProtonVPN.Common.Extensions.ExponentialExtensions;
 
 namespace ProtonVPN.Sidebar.QuickSettings
 {
@@ -42,14 +47,162 @@ namespace ProtonVPN.Sidebar.QuickSettings
         ISettingsAware,
         IUserDataAware,
         IVpnStateAware,
-        IOnboardingStepAware
+        IOnboardingStepAware,
+        INetShieldStatisticAware
     {
+        private const int AVG_AD_SIZE_IN_BYTES = 200000;
+        private const int AVG_TRACKER_SIZE_IN_BYTES = 50000;
+        private const int AVG_MALWARE_SIZE_IN_BYTES = 750000;
+        private const string NETSHIELD_ADS_BLOCKED_TRANSLATION = "QuickSettings_lbl_NetShieldStatsAds";
+        private const string NETSHIELD_TRACKERS_STOPPED_TRANSLATION = "QuickSettings_lbl_NetShieldStatsTrackers";
+
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
         private readonly IActiveUrls _urls;
         private readonly IModals _modals;
         private readonly IVpnManager _vpnManager;
         private readonly IPortForwardingManager _portForwardingManager;
+
+        private bool _isConnected;
+        private NetShieldStatistic _lastStats;
+
+        public PortForwardingActivePortViewModel ActivePortViewModel { get; }
+        public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
+
+        public ICommand SecureCoreOffCommand { get; }
+        public ICommand SecureCoreOnCommand { get; }
+
+        public ICommand KillSwitchLearnMoreCommand { get; }
+        public ICommand NetShieldLearnMoreCommand { get; }
+        public ICommand SecureCoreLearnMoreCommand { get; }
+        public ICommand PortForwardingLearnMoreCommand { get; }
+
+        public ICommand EnableSoftKillSwitchCommand { get; }
+        public ICommand EnableHardKillSwitchCommand { get; }
+        public ICommand DisableKillSwitchCommand { get; }
+
+        public ICommand NetShieldOffCommand { get; }
+        public ICommand NetShieldOnFirstCommand { get; }
+        public ICommand NetShieldOnSecondCommand { get; }
+
+        public ICommand PortForwardingOnCommand { get; }
+        public ICommand PortForwardingOffCommand { get; }
+
+        public ICommand ShowSecureCoreUpsellModalCommand { get; }
+        public ICommand ShowNetshieldUpsellModalCommand { get; }
+        public ICommand ShowPortForwardingUpsellModalCommand { get; }
+
+        public bool IsSecureCoreOnButtonOn => _appSettings.SecureCore;
+        public bool IsSecureCoreOffButtonOn => !_appSettings.SecureCore;
+
+        public bool IsNetShieldOffButtonOn => !_appSettings.NetShieldEnabled;
+        public bool IsNetShieldFirstButtonOn => _appSettings.NetShieldEnabled && _appSettings.NetShieldMode == 1;
+        public bool IsNetShieldSecondButtonOn => _appSettings.NetShieldEnabled && _appSettings.NetShieldMode == 2;
+        public int NetShieldMode => _appSettings.NetShieldMode;
+        public bool IsNetShieldOn => _appSettings.NetShieldEnabled;
+        public bool IsNetShieldVisible => _appSettings.FeatureNetShieldEnabled;
+        public bool HasNetShieldStats => _appSettings.IsNetShieldEnabled() && _appSettings.NetShieldMode == 2 && _isConnected && HasNetShieldStatsContainer;
+        public bool HasNetShieldStatsContainer => _userStorage.GetUser().Paid() && _appSettings.FeatureNetShieldStatsEnabled;
+
+        public bool IsSoftKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Soft;
+        public bool IsHardKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Hard;
+        public bool IsKillSwitchDisabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Off;
+        public bool IsKillSwitchEnabled => IsSoftKillSwitchEnabled || IsHardKillSwitchEnabled;
+        public int KillSwitchMode => (int)_appSettings.KillSwitchMode;
+
+        public bool IsPortForwardingOnButtonOn => _appSettings.PortForwardingEnabled;
+        public bool IsPortForwardingOffButtonOn => !_appSettings.PortForwardingEnabled;
+        public bool IsPortForwardingVisible => _appSettings.PortForwardingInQuickSettings && _appSettings.FeaturePortForwardingEnabled;
+
+        public int KillSwitchButtonNumber => _appSettings.FeatureNetShieldEnabled ? 2 : 1;
+        public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;
+
+        public int TotalButtons => 2 + (IsNetShieldVisible ? 1 : 0) + (IsPortForwardingVisible ? 1 : 0);
+
+        public bool IsFreeUser => !_userStorage.GetUser().Paid();
+        public bool IsUserTierPlusOrHigher => _userStorage.GetUser().IsTierPlusOrHigher();
+        public bool IsPaidUser => _userStorage.GetUser().Paid();
+
+        private bool _showSecureCorePopup;
+        public bool ShowSecureCorePopup
+        {
+            get => _showSecureCorePopup;
+            set => Set(ref _showSecureCorePopup, value);
+        }
+
+        private bool _showNetShieldPopup;
+        public bool ShowNetShieldPopup
+        {
+            get => _showNetShieldPopup;
+            set => Set(ref _showNetShieldPopup, value);
+        }
+
+        private string _netShieldBadgeValue = "0";
+        public string NetShieldBadgeValue
+        {
+            get => _netShieldBadgeValue;
+            set => Set(ref _netShieldBadgeValue, value);
+        }
+
+        private string _netShieldStatsNumOfAdvertisementUrlsBlocked = "0";
+        public string NetShieldStatsNumOfAdvertisementUrlsBlocked
+        {
+            get => _netShieldStatsNumOfAdvertisementUrlsBlocked;
+            set => Set(ref _netShieldStatsNumOfAdvertisementUrlsBlocked, value);
+        }
+
+        private string _netShieldStatsLabelOfAdvertisementUrlsBlocked;
+        public string NetShieldStatsLabelOfAdvertisementUrlsBlocked
+        {
+            get => _netShieldStatsLabelOfAdvertisementUrlsBlocked;
+            set => Set(ref _netShieldStatsLabelOfAdvertisementUrlsBlocked, value);
+        }
+
+        private string _netShieldStatsNumOfTrackingUrlsBlocked = "0";
+        public string NetShieldStatsNumOfTrackingUrlsBlocked
+        {
+            get => _netShieldStatsNumOfTrackingUrlsBlocked;
+            set => Set(ref _netShieldStatsNumOfTrackingUrlsBlocked, value);
+        }
+        
+        private string _netShieldStatsLabelOfTrackingUrlsBlocked;
+        public string NetShieldStatsLabelOfTrackingUrlsBlocked
+        {
+            get => _netShieldStatsLabelOfTrackingUrlsBlocked;
+            set => Set(ref _netShieldStatsLabelOfTrackingUrlsBlocked, value);
+        }
+
+        private string _netShieldStatsDataSaved = "0";
+        public string NetShieldStatsDataSaved
+        {
+            get => _netShieldStatsDataSaved;
+            set => Set(ref _netShieldStatsDataSaved, value);
+        }
+
+        private bool _showKillSwitchPopup;
+        public bool ShowKillSwitchPopup
+        {
+            get => _showKillSwitchPopup;
+            set => Set(ref _showKillSwitchPopup, value);
+        }
+
+        private bool _showPortForwardingPopup;
+        public bool ShowPortForwardingPopup
+        {
+            get => _showPortForwardingPopup;
+            set => Set(ref _showPortForwardingPopup, value);
+        }
+
+        public bool HasPortForwardingValue => ActivePortViewModel.HasPortForwardingValue;
+
+        private bool _showOnboardingStep;
+        public bool ShowOnboardingStep
+        {
+            get => _showOnboardingStep;
+            set => Set(ref _showOnboardingStep, value);
+        }
+
+        public bool ShowPortForwardingWarningLabel => PortForwardingWarningViewModel.IsToShowPortForwardingWarningLabel;
 
         public QuickSettingsViewModel(
             IAppSettings appSettings,
@@ -96,105 +249,6 @@ namespace ProtonVPN.Sidebar.QuickSettings
             ShowPortForwardingUpsellModalCommand = new RelayCommand(ShowPortForwardingUpsellModalAction);
         }
 
-        public PortForwardingActivePortViewModel ActivePortViewModel { get; }
-        public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
-
-        public ICommand SecureCoreOffCommand { get; }
-        public ICommand SecureCoreOnCommand { get; }
-
-        public ICommand KillSwitchLearnMoreCommand { get; }
-        public ICommand NetShieldLearnMoreCommand { get; }
-        public ICommand SecureCoreLearnMoreCommand { get; }
-        public ICommand PortForwardingLearnMoreCommand { get; }
-
-        public ICommand EnableSoftKillSwitchCommand { get; }
-        public ICommand EnableHardKillSwitchCommand { get; }
-        public ICommand DisableKillSwitchCommand { get; }
-
-        public ICommand NetShieldOffCommand { get; }
-        public ICommand NetShieldOnFirstCommand { get; }
-        public ICommand NetShieldOnSecondCommand { get; }
-
-        public ICommand PortForwardingOnCommand { get; }
-        public ICommand PortForwardingOffCommand { get; }
-
-        public ICommand ShowSecureCoreUpsellModalCommand { get; }
-        public ICommand ShowNetshieldUpsellModalCommand { get; }
-        public ICommand ShowPortForwardingUpsellModalCommand { get; }
-
-        public bool IsSecureCoreOnButtonOn => _appSettings.SecureCore;
-        public bool IsSecureCoreOffButtonOn => !_appSettings.SecureCore;
-
-        public bool IsNetShieldOffButtonOn => !_appSettings.NetShieldEnabled;
-        public bool IsNetShieldFirstButtonOn => _appSettings.NetShieldEnabled && _appSettings.NetShieldMode == 1;
-        public bool IsNetShieldSecondButtonOn => _appSettings.NetShieldEnabled && _appSettings.NetShieldMode == 2;
-        public int NetShieldMode => _appSettings.NetShieldMode;
-        public bool IsNetShieldOn => _appSettings.NetShieldEnabled;
-        public bool IsNetShieldVisible => _appSettings.FeatureNetShieldEnabled;
-
-        public bool IsSoftKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Soft;
-        public bool IsHardKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Hard;
-        public bool IsKillSwitchDisabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Off;
-        public bool IsKillSwitchEnabled => IsSoftKillSwitchEnabled || IsHardKillSwitchEnabled;
-        public int KillSwitchMode => (int)_appSettings.KillSwitchMode;
-
-        public bool IsPortForwardingOnButtonOn => _appSettings.PortForwardingEnabled;
-        public bool IsPortForwardingOffButtonOn => !_appSettings.PortForwardingEnabled;
-        public bool IsPortForwardingVisible => _appSettings.PortForwardingInQuickSettings && _appSettings.FeaturePortForwardingEnabled;
-
-        public int KillSwitchButtonNumber => _appSettings.FeatureNetShieldEnabled ? 2 : 1;
-        public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;
-
-        public int TotalButtons => 2 + (IsNetShieldVisible ? 1 : 0) + (IsPortForwardingVisible ? 1 : 0);
-
-        public bool IsFreeUser => !_userStorage.GetUser().Paid();
-        public bool IsUserTierPlusOrHigher => _userStorage.GetUser().IsTierPlusOrHigher();
-        public bool IsPaidUser => _userStorage.GetUser().Paid();
-
-        private bool _showSecureCorePopup;
-
-        public bool ShowSecureCorePopup
-        {
-            get => _showSecureCorePopup;
-            set => Set(ref _showSecureCorePopup, value);
-        }
-
-        private bool _showNetShieldPopup;
-
-        public bool ShowNetShieldPopup
-        {
-            get => _showNetShieldPopup;
-            set => Set(ref _showNetShieldPopup, value);
-        }
-
-        private bool _showKillSwitchPopup;
-
-        public bool ShowKillSwitchPopup
-        {
-            get => _showKillSwitchPopup;
-            set => Set(ref _showKillSwitchPopup, value);
-        }
-
-        private bool _showPortForwardingPopup;
-
-        public bool ShowPortForwardingPopup
-        {
-            get => _showPortForwardingPopup;
-            set => Set(ref _showPortForwardingPopup, value);
-        }
-
-        public bool HasPortForwardingValue => ActivePortViewModel.HasPortForwardingValue;
-
-        private bool _showOnboardingStep;
-
-        public bool ShowOnboardingStep
-        {
-            get => _showOnboardingStep;
-            set => Set(ref _showOnboardingStep, value);
-        }
-
-        public bool ShowPortForwardingWarningLabel => PortForwardingWarningViewModel.IsToShowPortForwardingWarningLabel;
-
         public void OnUserDataChanged()
         {
             if (!IsUserTierPlusOrHigher && _appSettings.SecureCore)
@@ -215,6 +269,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
             NotifyOfPropertyChange(nameof(IsFreeUser));
             NotifyOfPropertyChange(nameof(IsPaidUser));
             NotifyOfPropertyChange(nameof(IsUserTierPlusOrHigher));
+            NotifyOfPropertyChange(nameof(HasNetShieldStatsContainer));
+            NotifyOfPropertyChange(nameof(HasNetShieldStats));
         }
 
         private void DisableSecureCore()
@@ -261,6 +317,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
                     NotifyOfPropertyChange(nameof(IsNetShieldOffButtonOn));
                     NotifyOfPropertyChange(nameof(IsNetShieldFirstButtonOn));
                     NotifyOfPropertyChange(nameof(IsNetShieldSecondButtonOn));
+                    NotifyOfPropertyChange(nameof(HasNetShieldStats));
                     break;
                 case nameof(IAppSettings.SecureCore):
                     NotifyOfPropertyChange(nameof(IsSecureCoreOffButtonOn));
@@ -271,6 +328,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
                     NotifyOfPropertyChange(nameof(KillSwitchButtonNumber));
                     NotifyOfPropertyChange(nameof(PortForwardingButtonNumber));
                     NotifyOfPropertyChange(nameof(TotalButtons));
+                    NotifyOfPropertyChange(nameof(HasNetShieldStats));
                     break;
                 case nameof(IAppSettings.FeaturePortForwardingEnabled):
                 case nameof(IAppSettings.PortForwardingInQuickSettings):
@@ -282,10 +340,17 @@ namespace ProtonVPN.Sidebar.QuickSettings
                     NotifyOfPropertyChange(nameof(IsPortForwardingOffButtonOn));
                     NotifyOfPropertyChange(nameof(ShowPortForwardingWarningLabel));
                     break;
+                case nameof(IAppSettings.FeatureNetShieldStatsEnabled):
+                    NotifyOfPropertyChange(nameof(HasNetShieldStats));
+                    NotifyOfPropertyChange(nameof(HasNetShieldStatsContainer));
+                    break;
+                case nameof(IAppSettings.Language):
+                    SetNetShieldStatistic(_lastStats);
+                    break;
             }
         }
 
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
             NotifyOfPropertyChange(nameof(ShowPortForwardingWarningLabel));
 
@@ -299,7 +364,16 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 ShowPortForwardingPopup = false;
             }
 
-            return Task.CompletedTask;
+            bool newIsConnected = e.State.Status == VpnStatus.Connected;
+            if (_isConnected != newIsConnected)
+            {
+                _isConnected = newIsConnected;
+                NotifyOfPropertyChange(nameof(HasNetShieldStats));
+            }
+            if (!newIsConnected)
+            {
+                ClearNetShieldStatistic();
+            }
         }
 
         public void OnStepChanged(int step)
@@ -332,7 +406,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
             {
                 if (!_appSettings.DoNotShowDiscourageSecureCoreDialog)
                 {
-                    bool? result = _modals.Show<DiscourageSecureCoreModalViewModel>();
+                    bool? result = await _modals.ShowAsync<DiscourageSecureCoreModalViewModel>();
                     if (result.HasValue && !result.Value)
                     {
                         return;
@@ -388,7 +462,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
             if (!_appSettings.DoNotShowKillSwitchConfirmationDialog)
             {
-                bool? result = _modals.Show<KillSwitchConfirmationModalViewModel>();
+                bool? result = await _modals.ShowAsync<KillSwitchConfirmationModalViewModel>();
                 if (result.HasValue && !result.Value)
                 {
                     return;
@@ -481,24 +555,74 @@ namespace ProtonVPN.Sidebar.QuickSettings
             _urls.AboutPortForwardingUrl.Open();
         }
 
-        private void ShowSecureCoreUpsellModalAction()
+        private async void ShowSecureCoreUpsellModalAction()
         {
-            _modals.Show<SecureCoreUpsellModalViewModel>();
+            await _modals.ShowAsync<SecureCoreUpsellModalViewModel>();
         }
 
-        private void ShowNetshieldUpsellModalAction()
+        private async void ShowNetshieldUpsellModalAction()
         {
-            _modals.Show<NetshieldUpsellModalViewModel>();
+            await _modals.ShowAsync<NetshieldUpsellModalViewModel>();
         }
 
-        private void ShowPortForwardingUpsellModalAction()
+        private async void ShowPortForwardingUpsellModalAction()
         {
-            _modals.Show<PortForwardingUpsellModalViewModel>();
+            await _modals.ShowAsync<PortForwardingUpsellModalViewModel>();
         }
 
         private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             NotifyOfPropertyChange(e.PropertyName);
+        }
+
+        public void OnNetShieldStatisticChanged(NetShieldStatistic stats)
+        {
+            if (_isConnected)
+            {
+                SetNetShieldStatistic(stats);
+            }
+            else
+            {
+                ClearNetShieldStatistic();
+            }
+        }
+
+        private void ClearNetShieldStatistic()
+        {
+            SetNetShieldStatistic();
+        }
+
+        private void SetNetShieldStatistic(NetShieldStatistic stats = null)
+        {
+            _lastStats = stats;
+            if (stats is null)
+            {
+                NetShieldBadgeValue = "0";
+                NetShieldStatsNumOfAdvertisementUrlsBlocked = "0";
+                NetShieldStatsLabelOfAdvertisementUrlsBlocked = Translation.GetPlural(NETSHIELD_ADS_BLOCKED_TRANSLATION, 0);
+                NetShieldStatsNumOfTrackingUrlsBlocked = "0";
+                NetShieldStatsLabelOfTrackingUrlsBlocked = Translation.GetPlural(NETSHIELD_TRACKERS_STOPPED_TRANSLATION, 0);
+                NetShieldStatsDataSaved = "0 B";
+            }
+            else
+            {
+                long badgeSum = stats.NumOfAdvertisementUrlsBlocked + stats.NumOfTrackingUrlsBlocked;
+                NetShieldBadgeValue = badgeSum > 99 ? "99+" : $"{badgeSum}";
+
+                NetShieldStatsNumOfAdvertisementUrlsBlocked = $"{stats.NumOfAdvertisementUrlsBlocked}";
+                NetShieldStatsLabelOfAdvertisementUrlsBlocked = Translation.GetPlural(
+                    NETSHIELD_ADS_BLOCKED_TRANSLATION, stats.NumOfAdvertisementUrlsBlocked);
+
+                NetShieldStatsNumOfTrackingUrlsBlocked = $"{stats.NumOfTrackingUrlsBlocked}";
+                NetShieldStatsLabelOfTrackingUrlsBlocked = Translation.GetPlural(
+                    NETSHIELD_TRACKERS_STOPPED_TRANSLATION, stats.NumOfTrackingUrlsBlocked);
+
+                long adDataSavedInBytes = stats.NumOfAdvertisementUrlsBlocked * AVG_AD_SIZE_IN_BYTES;
+                long trackerDataSavedInBytes = stats.NumOfTrackingUrlsBlocked * AVG_TRACKER_SIZE_IN_BYTES;
+                long malwareDataSavedInBytes = stats.NumOfMaliciousUrlsBlocked * AVG_MALWARE_SIZE_IN_BYTES;
+                long dataSavedInBytes = adDataSavedInBytes + trackerDataSavedInBytes + malwareDataSavedInBytes;
+                NetShieldStatsDataSaved = dataSavedInBytes.ToShortString("B", UnitSpacing.WithSpace);
+            }
         }
     }
 }

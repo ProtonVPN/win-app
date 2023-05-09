@@ -32,6 +32,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
+using ProtonVPN.Update.Contracts.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Storage;
 
@@ -44,11 +45,7 @@ namespace ProtonVPN.Update.Tests.Storage
         private IHttpClient _httpClient;
         private IFeedUrlProvider _feedUrlProvider;
         private DefaultAppUpdateConfig _config;
-        private IEnumerable<Uri> _feedUrls = new List<Uri>()
-        {
-            new Uri("http://127.0.0.1/windows-releases.json"),
-            new Uri("http://127.0.0.1/win-update.json")
-        };
+        private Uri _feedUrl = new Uri("http://127.0.0.1/windows-releases.json");
 
         #region Initialization
 
@@ -58,7 +55,7 @@ namespace ProtonVPN.Update.Tests.Storage
             _logger = Substitute.For<ILogger>();
             _httpClient = Substitute.For<IHttpClient>();
             _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
-            _feedUrlProvider.GetFeedUrls().Returns(_feedUrls);
+            _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
             _config = new DefaultAppUpdateConfig
             {
                 HttpClient = _httpClient,
@@ -71,13 +68,13 @@ namespace ProtonVPN.Update.Tests.Storage
 
         private IReleaseStorage WebReleaseStorage(Task<IHttpResponseMessage> httpResponse)
         {
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrls().First()).Returns(httpResponse);
+            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
             return WebReleaseStorage();
         }
 
         private IReleaseStorage WebReleaseStorage(IHttpResponseMessage httpResponse)
         {
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrls().First()).Returns(httpResponse);
+            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
             return WebReleaseStorage();
         }
 
@@ -92,8 +89,8 @@ namespace ProtonVPN.Update.Tests.Storage
         public async Task Releases_ShouldGet_FromFeedUri()
         {
             Uri feedUri = new Uri("http://127.0.0.1/windows-releases.json");
-            _feedUrlProvider.GetFeedUrls().Returns(_feedUrls);
-            IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("win-update.json"));
+            _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
+            IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
 
             await storage.Releases();
 
@@ -103,7 +100,7 @@ namespace ProtonVPN.Update.Tests.Storage
         [TestMethod]
         public async Task Releases_ShouldBe_AllFromSource()
         {
-            IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("win-update.json"));
+            IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
 
             IEnumerable<Release> result = await storage.Releases();
 

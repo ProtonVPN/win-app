@@ -43,9 +43,9 @@ namespace ProtonVPN.Common.OS.Services
 
         public string Name => Service.Name;
 
-        public bool Running() => Service.Running();
+        public bool IsRunning() => Service.Running();
 
-        public bool Enabled() => Service.Enabled();
+        public bool IsEnabled() => Service.Enabled();
 
         public void Enable() => Service.Enable();
 
@@ -86,7 +86,7 @@ namespace ProtonVPN.Common.OS.Services
                 return Result.Fail(new FileNotFoundException($"Service {Service.Name} is not installed."));
             }
 
-            Result result = _serviceEnabler.GetServiceEnabledResult(Service);
+            Result result = await _serviceEnabler.GetServiceEnabledResultAsync(Service);
             if (result.Failure)
             {
                 return result;

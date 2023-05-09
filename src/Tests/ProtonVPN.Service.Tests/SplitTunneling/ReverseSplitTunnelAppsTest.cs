@@ -20,7 +20,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Service.Contract.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
 
@@ -33,17 +33,17 @@ namespace ProtonVPN.Service.Tests.SplitTunneling
         public void Value_ShouldContainApps()
         {
             // Arrange
-            var paths = new[]
+            string[] paths = new[]
             {
                 "path1", "path2", "path3"
             };
-            var settings = new SplitTunnelSettingsContract
+            SplitTunnelSettingsIpcEntity settings = new()
             {
                 AppPaths = paths
             };
-            var serviceSettings = Substitute.For<IServiceSettings>();
+            IServiceSettings serviceSettings = Substitute.For<IServiceSettings>();
             serviceSettings.SplitTunnelSettings.Returns(settings);
-            var sut = new IncludeModeApps(serviceSettings);
+            IncludeModeApps sut = new IncludeModeApps(serviceSettings);
 
             // Assert
             sut.Value().Should().Contain(paths);

@@ -18,9 +18,11 @@
  */
 
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.Common.OS.Processes;
@@ -36,7 +38,8 @@ namespace ProtonVPN.BugReporting.Steps
         private readonly IOsProcesses _osProcesses;
         private string _categorySubmitName;
 
-        public SolutionsViewModel(IEventAggregator eventAggregator, IReportAnIssueFormDataProvider reportAnIssueFormDataProvider, IOsProcesses osProcesses)
+        public SolutionsViewModel(IEventAggregator eventAggregator, 
+            IReportAnIssueFormDataProvider reportAnIssueFormDataProvider, IOsProcesses osProcesses)
         {
             eventAggregator.Subscribe(this);
             _eventAggregator = eventAggregator;
@@ -57,7 +60,7 @@ namespace ProtonVPN.BugReporting.Steps
             set => Set(ref _suggestions, value);
         }
 
-        public void Handle(SelectCategoryAction message)
+        public async Task HandleAsync(SelectCategoryAction message, CancellationToken cancellationToken)
         {
             _categorySubmitName = message.Category;
             Suggestions = _reportAnIssueFormDataProvider.GetSuggestions(message.Category);
@@ -65,7 +68,7 @@ namespace ProtonVPN.BugReporting.Steps
 
         private void FillTheFormAction()
         {
-            _eventAggregator.PublishOnUIThread(new FillTheFormAction(_categorySubmitName));
+            _eventAggregator.PublishOnUIThreadAsync(new FillTheFormAction(_categorySubmitName));
         }
 
         private void LearnMoreAction(string url)

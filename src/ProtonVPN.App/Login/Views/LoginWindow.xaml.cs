@@ -18,12 +18,14 @@
  */
 
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using ProtonVPN.Core;
+using ProtonVPN.Windows;
 
 namespace ProtonVPN.Login.Views
 {
-    public partial class LoginWindow
+    public partial class LoginWindow : IOpenMainWindowAware
     {
         private readonly AppExitHandler _appExitHandler;
 
@@ -50,6 +52,20 @@ namespace ProtonVPN.Login.Views
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        public async Task OnOpenMainWindow()
+        {
+            OpenWindow();
+        }
+
+        public void OpenWindow()
+        {
+            if (WindowState.Equals(WindowState.Minimized))
+            {
+                WindowState = WindowState.Normal;
+            }
+            Activate();
         }
     }
 }

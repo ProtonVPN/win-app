@@ -48,7 +48,7 @@ namespace ProtonVPN.Core.Tests.OS.Net.Dns
             const string ip = "125.247.41.7";
             _ = _dnsClient.Resolve(host, Arg.Any<CancellationToken>()).Returns(ip);
             // Act
-            var result = await DnsClientExtensions.Resolve(_dnsClient, host, TimeSpan.Zero);
+            string result = await DnsClientExtensions.Resolve(_dnsClient, host, TimeSpan.Zero);
             // Assert
             result.Should().Be(ip);
         }
@@ -57,14 +57,14 @@ namespace ProtonVPN.Core.Tests.OS.Net.Dns
         public async Task Resolve_ShouldBe_NullOrEmpty_WhenTimedOut()
         {
             // Arrange
-            var timeout = TimeSpan.FromMilliseconds(100);
+            TimeSpan timeout = TimeSpan.FromMilliseconds(100);
             _ = _dnsClient.Resolve(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(async _ => 
             {
                 await Task.Delay(timeout + TimeSpan.FromMilliseconds(200));
                 return "success";
             });
             // Act
-            var result = await DnsClientExtensions.Resolve(_dnsClient, "", timeout);
+            string result = await DnsClientExtensions.Resolve(_dnsClient, "", timeout);
             // Assert
             result.Should().BeNullOrEmpty();
         }
@@ -73,8 +73,8 @@ namespace ProtonVPN.Core.Tests.OS.Net.Dns
         public async Task Resolve_ShouldCancel_CancellationToken_AfterTimeout()
         {
             // Arrange
-            var timeout = TimeSpan.FromMilliseconds(100);
-            CancellationToken token;
+            TimeSpan timeout = TimeSpan.FromMilliseconds(100);
+            CancellationToken token = new CancellationTokenSource().Token;
             _ = _dnsClient.Resolve(Arg.Any<string>(), Arg.Do<CancellationToken>(x => token = x)).Returns(async _ =>
             {
                 await Task.Delay(timeout + TimeSpan.FromMilliseconds(200));

@@ -20,6 +20,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +35,7 @@ using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native;
@@ -50,7 +52,10 @@ namespace ProtonVPN.Windows
     public partial class AppWindow :
         IHandle<ToggleOverlay>,
         IOnboardingStepAware,
-        IVpnStateAware
+        IVpnStateAware,
+        ILoggedInAware,
+        ILogoutAware,
+        IOpenMainWindowAware
     {
         private const int BLUR_AMOUNT = 20;
         private const int SIDEBAR_WIDTH = 336;
@@ -74,6 +79,7 @@ namespace ProtonVPN.Windows
         private bool _blurOutInProgress;
         private bool _isConnected;
         private bool _isConnecting;
+        private bool _isUserLoggedIn;
 
         public bool AllowWindowHiding;
 
@@ -111,6 +117,7 @@ namespace ProtonVPN.Windows
 
             Deactivated += PublishWindowState;
             Activated += PublishWindowState;
+            StateChanged += PublishWindowState;
 
             _icon = new(ICON_PATH);
             _connectedIcon = new(CONNECTED_ICON_PATH);
@@ -119,11 +126,17 @@ namespace ProtonVPN.Windows
 
         private void SetGenericTooltipBehaviour()
         {
-            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
-            ToolTipService.InitialShowDelayProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(0));
+            try
+            {
+                ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+                ToolTipService.InitialShowDelayProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(0));
+            }
+            catch
+            {
+            }
         }
 
-        public void Handle(ToggleOverlay message)
+        public async Task HandleAsync(ToggleOverlay message, CancellationToken cancellationToken)
         {
             if (message.Show)
             {
@@ -197,7 +210,7 @@ namespace ProtonVPN.Windows
 
         public void TriggerAccountInfoUpdate()
         {
-            _eventAggregator.PublishOnUIThread(new UpdateVpnInfoMessage());
+            _eventAggregator.PublishOnUIThreadAsync(new UpdateVpnInfoMessage());
         }
 
         private void UpdateIcon(VpnStatus vpnStatus)
@@ -281,7 +294,7 @@ namespace ProtonVPN.Windows
             SaveWindowsPlacement();
         }
 
-        private void TrayIconClick(object sender, MouseEventArgs e)
+        private async void TrayIconClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -292,12 +305,7 @@ namespace ProtonVPN.Windows
                 }
                 else
                 {
-                    Show();
-                    Activate();
-                    if (_isConnecting)
-                    {
-                        Handle(new ToggleOverlay(true));
-                    }
+                    await OpenWindowAsync();
                 }
             }
             else if (e.Button == MouseButtons.Right)
@@ -305,6 +313,31 @@ namespace ProtonVPN.Windows
                 _trayContextMenu.Show();
                 _trayContextMenu.Activate();
             }
+        }
+
+        public async Task OpenWindowAsync()
+        {
+            if (!_isUserLoggedIn)
+            {
+                return;
+            }
+            
+            Show();
+            if (WindowState.Equals(WindowState.Minimized))
+            {
+                WindowState = WindowState.Normal;
+            }
+
+            Activate();
+            if (_isConnecting)
+            {
+                await HandleAsync(new ToggleOverlay(true), new CancellationTokenSource().Token);
+            }
+        }
+
+        public async Task OnOpenMainWindow()
+        {
+            await OpenWindowAsync();
         }
 
         private void SetToggleButton()
@@ -434,7 +467,17 @@ namespace ProtonVPN.Windows
 
         private void PublishWindowState(object sender, EventArgs e)
         {
-            _eventAggregator.PublishOnUIThread(new WindowStateMessage(IsActive));
+            _eventAggregator.PublishOnUIThreadAsync(new WindowStateMessage(IsActive, WindowState));
+        }
+
+        public void OnUserLoggedIn()
+        {
+            _isUserLoggedIn = true;
+        }
+
+        public void OnUserLoggedOut()
+        {
+            _isUserLoggedIn = false;
         }
     }
 }

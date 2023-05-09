@@ -54,7 +54,9 @@ namespace ProtonVPN.Common.OS.Services
             }
 
             if (controller.Status != desiredStatus)
+            {
                 throw new InvalidOperationException($"Service status changed to {controller.Status}");
+            }
         }
     }
 }

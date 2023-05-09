@@ -58,9 +58,10 @@ namespace ProtonVPN.Core.Auth
             eventAggregator.Subscribe(this);
         }
 
-        public async void Handle(WindowStateMessage message)
+        // [.NET Migration] TO DO: Use CancellationToken
+        public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
-            if (message.Active)
+            if (message.IsActive)
             {
                 await RequestNewCertificateAsync();
             }

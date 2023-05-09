@@ -25,11 +25,9 @@ namespace ProtonVPN.Vpn.LocalAgent
 {
     internal class PInvoke
     {
-        private static int Bits => Environment.Is64BitOperatingSystem ? 64 : 32;
-
         private const string DllName = "LocalAgent";
 
-        private static string BinaryPath => $"Resources\\{Bits}-bit\\{DllName}.dll";
+        private static string BinaryPath => $"Resources\\{DllName}.dll";
 
         static PInvoke()
         {
@@ -60,6 +58,9 @@ namespace ProtonVPN.Vpn.LocalAgent
 
         [DllImport(DllName, EntryPoint = "GetStatus", CallingConvention = CallingConvention.Cdecl)]
         public static extern GoBytes GetStatus();
+
+        [DllImport(DllName, EntryPoint = "SendGetStatus", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SendGetStatus(bool withStatistics);
 
         [DllImport(DllName, EntryPoint = "SetFeatures", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetFeatures(GoString featuresJson);

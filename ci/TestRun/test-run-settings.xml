@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
    <NUnit>
-     <TestOutputXml>../../nunit-results</TestOutputXml>
+	<OutputXmlFolderMode>UseResultDirectory</OutputXmlFolderMode>
+    <TestOutputXml>./</TestOutputXml>
  </NUnit>
 </RunSettings>

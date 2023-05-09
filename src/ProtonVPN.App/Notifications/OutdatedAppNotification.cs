@@ -72,7 +72,7 @@ namespace ProtonVPN.Notifications
 
                 await _userAuthenticator.LogoutAsync();
                 _loginWindow.Hide();
-                _modals.Show<OutdatedAppModalViewModel>();
+                await _modals.ShowAsync<OutdatedAppModalViewModel>();
             });
         }
 

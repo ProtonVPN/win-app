@@ -1,235 +1,77 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4AA7CE6F-7154-49C1-B598-46055D590CAD}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProtonVPN.Vpn</RootNamespace>
-    <AssemblyName>ProtonVPN.Vpn</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.IO" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\IVpnConnection.cs" />
-    <Compile Include="Common\ISingleVpnConnection.cs" />
-    <Compile Include="Common\VpnEndpoint.cs" />
-    <Compile Include="Common\VpnException.cs" />
-    <Compile Include="Common\VpnStateExtensions.cs" />
-    <Compile Include="Config\Module.cs" />
-    <Compile Include="Config\VpnCertConfig.cs" />
-    <Compile Include="Connection\BestPortWrapper.cs" />
-    <Compile Include="Connection\IEndpointScanner.cs" />
-    <Compile Include="Gateways\IGatewayCache.cs" />
-    <Compile Include="Connection\IVpnEndpointCandidates.cs" />
-    <Compile Include="Connection\LocalAgentWrapper.cs" />
-    <Compile Include="Connection\NetworkAdapterStatusWrapper.cs" />
-    <Compile Include="Connection\PortForwardingWrapper.cs" />
-    <Compile Include="Connection\VpnEndpointScanner.cs" />
-    <Compile Include="Connection\QueuingRequestsWrapper.cs" />
-    <Compile Include="Connection\ReconnectingWrapper.cs" />
-    <Compile Include="Connection\LoggingWrapper.cs" />
-    <Compile Include="Connection\QueueingEventsWrapper.cs" />
-    <Compile Include="Connection\HandlingRequestsWrapper.cs" />
-    <Compile Include="Connection\VpnEndpointCandidates.cs" />
-    <Compile Include="Connection\VpnProtocolWrapper.cs" />
-    <Compile Include="LocalAgent\Contracts\ConnectionDetailsContract.cs" />
-    <Compile Include="LocalAgent\Contracts\EventContract.cs" />
-    <Compile Include="LocalAgent\Contracts\FeaturesContract.cs" />
-    <Compile Include="LocalAgent\EventReceiver.cs" />
-    <Compile Include="LocalAgent\LocalAgentErrorArgs.cs" />
-    <Compile Include="LocalAgent\LocalAgentStatus.cs" />
-    <Compile Include="LocalAgent\LocalAgentState.cs" />
-    <Compile Include="LocalAgent\PInvoke.cs" />
-    <Compile Include="LocalAgent\UdpPingClient.cs" />
-    <Compile Include="Management\ManagementMessage.cs" />
-    <Compile Include="Management\ManagementMessages.cs" />
-    <Compile Include="Management\MessagingManagementChannel.cs" />
-    <Compile Include="Management\ReceivedManagementMessage.cs" />
-    <Compile Include="Common\VpnState.cs" />
-    <Compile Include="Connection\FilteringStateWrapper.cs" />
-    <Compile Include="Networks\Adapters\INetworkAdapter.cs" />
-    <Compile Include="Networks\Adapters\INetworkAdaptersLoader.cs" />
-    <Compile Include="Networks\Adapters\NetConnectionStatus.cs" />
-    <Compile Include="Networks\Adapters\NetworkAdapter.cs" />
-    <Compile Include="Networks\Adapters\NetworkAdaptersLoader.cs" />
-    <Compile Include="Networks\INetworkAdapterManager.cs" />
-    <Compile Include="Networks\NetworkAdapterManager.cs" />
-    <Compile Include="OpenVpn\Arguments\BasicArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\CustomDnsArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\LocalHostArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\BindArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\BaseRouteArgument.cs" />
-    <Compile Include="OpenVpn\Arguments\OpenVpnEndpointArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\SplitTunnelRoutesArgument.cs" />
-    <Compile Include="OpenVpn\Arguments\TlsVerifyArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\ManagementArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\NoBindArguments.cs" />
-    <Compile Include="OpenVpn\Arguments\NetworkDriverArgument.cs" />
-    <Compile Include="OpenVpn\BestLocalOpenVpnEndpoint.cs" />
-    <Compile Include="OpenVpn\ConfigTemplate.cs" />
-    <Compile Include="Gateways\GatewayCache.cs" />
-    <Compile Include="OpenVpn\OpenVpnProcessParams.cs" />
-    <Compile Include="OpenVpn\SafeBestNetworkInterface.cs" />
-    <Compile Include="OpenVpn\BestNetworkInterface.cs" />
-    <Compile Include="OpenVpn\OpenVpnHandshake.cs" />
-    <Compile Include="OpenVpn\TcpPortScanner.cs" />
-    <Compile Include="PortMapping\IPortMappingProtocolClient.cs" />
-    <Compile Include="PortMapping\Messages\HelloQueryMessage.cs" />
-    <Compile Include="PortMapping\Messages\HelloReplyMessage.cs" />
-    <Compile Include="PortMapping\Messages\Common\MessageBase.cs" />
-    <Compile Include="PortMapping\Messages\PortMappingQueryMessage.cs" />
-    <Compile Include="PortMapping\Messages\PortMappingReplyMessage.cs" />
-    <Compile Include="PortMapping\Messages\Common\ReplyMessageBase.cs" />
-    <Compile Include="PortMapping\PortMappingProtocolClient.cs" />
-    <Compile Include="PortMapping\Serializers\Common\IMessageSerializerOfType.cs" />
-    <Compile Include="PortMapping\Serializers\Common\IMessageSerializerProxy.cs" />
-    <Compile Include="PortMapping\Serializers\Common\MessageSerializerProxy.cs" />
-    <Compile Include="PortMapping\Serializers\HelloQueryMessageSerializer.cs" />
-    <Compile Include="PortMapping\Serializers\HelloReplyMessageSerializer.cs" />
-    <Compile Include="PortMapping\Serializers\Common\IMessageSerializer.cs" />
-    <Compile Include="PortMapping\Serializers\Common\IMessageSerializerFactory.cs" />
-    <Compile Include="PortMapping\Serializers\PortMappingQueryMessageSerializer.cs" />
-    <Compile Include="PortMapping\Serializers\PortMappingReplyMessageSerializer.cs" />
-    <Compile Include="PortMapping\Serializers\Common\MessageSerializerBase.cs" />
-    <Compile Include="PortMapping\Serializers\Common\MessageSerializerFactory.cs" />
-    <Compile Include="PortMapping\TransportProtocol.cs" />
-    <Compile Include="PortMapping\UdpClients\IUdpClientWrapper.cs" />
-    <Compile Include="PortMapping\UdpClients\UdpClientWrapper.cs" />
-    <Compile Include="SplitTunnel\SplitTunnelRouting.cs" />
-    <Compile Include="SynchronizationEvent\ISynchronizationEvents.cs" />
-    <Compile Include="SynchronizationEvent\NullSynchronizationEvent.cs" />
-    <Compile Include="SynchronizationEvent\SystemSynchronizationEvents.cs" />
-    <Compile Include="SynchronizationEvent\ISynchronizationEvent.cs" />
-    <Compile Include="Management\ConcurrentManagementChannel.cs" />
-    <Compile Include="Management\IManagementChannel.cs" />
-    <Compile Include="Management\ManagementClient.cs" />
-    <Compile Include="Management\ManagementError.cs" />
-    <Compile Include="Management\ManagementState.cs" />
-    <Compile Include="Management\TcpManagementChannel.cs" />
-    <Compile Include="Connection\OpenVpnConnection.cs" />
-    <Compile Include="Management\OpenVpnManagementPorts.cs" />
-    <Compile Include="OpenVpn\Arguments\CommandLineArguments.cs" />
-    <Compile Include="OpenVpn\OpenVpnExitEvent.cs" />
-    <Compile Include="OpenVpn\OpenVpnProcess.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SynchronizationEvent\SystemSynchronizationEvent.cs" />
-    <Compile Include="WireGuard\RingLogger.cs" />
-    <Compile Include="WireGuard\StatusManager.cs" />
-    <Compile Include="WireGuard\TrafficManager.cs" />
-    <Compile Include="WireGuard\WireGuardConnection.cs" />
-    <Compile Include="WireGuard\WireGuardService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj">
-      <Project>{03b8e43c-5680-4803-a745-0a104fe6620c}</Project>
-      <Name>ProtonVPN.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj">
-      <Project>{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}</Project>
-      <Name>ProtonVPN.Crypto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj">
-      <Project>{7882140D-32E1-4AB5-853D-F8DED5256DC2}</Project>
-      <Name>ProtonVPN.WireGuardDriver</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
+    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
+    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
+    <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\32-bit\libcrypto-1_1.dll">
+	  <Content Include="Resources\libcrypto-1_1-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\32-bit\libpkcs11-helper-1.dll">
+    <Content Include="Resources\libpkcs11-helper-1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\32-bit\libssl-1_1.dll">
+    <Content Include="Resources\libssl-1_1-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\32-bit\openvpn.exe">
+    <Content Include="Resources\openvpn.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\32-bit\tunnel.dll" />
-    <Content Include="Resources\32-bit\vcruntime140.dll">
+    <Content Include="Resources\tunnel.dll" />
+    <Content Include="Resources\vcruntime140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\32-bit\wireguard.dll" />
-    <Content Include="Resources\64-bit\libcrypto-1_1-x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\64-bit\libpkcs11-helper-1.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\64-bit\libssl-1_1-x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\64-bit\openvpn.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\64-bit\tunnel.dll" />
-    <Content Include="Resources\64-bit\vcruntime140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\64-bit\wireguard.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
+    <Content Include="Resources\wireguard.dll" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
       <Version>4.9.4</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Collections.Immutable">
       <Version>5.0.0</Version>
     </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>5.0.0</Version>
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)Resources\64-bit\tunnel.dll $(ProjectDir)$(OutDir)
-copy $(ProjectDir)Resources\64-bit\wireguard.dll $(ProjectDir)$(OutDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(MSBuildProjectDirectory)\Resources\tunnel.dll $(MSBuildProjectDirectory)\$(OutputPath)tunnel.dll
+copy $(MSBuildProjectDirectory)\Resources\wireguard.dll $(MSBuildProjectDirectory)\$(OutputPath)wireguard.dll</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
 </Project>

@@ -33,9 +33,6 @@ namespace ProtonVPN.Common.Configuration
         public string ForgetUsernameUrl { get; set; }
 
         [Required]
-        public string OldUpdateUrl { get; set; }
-
-        [Required]
         public string UpdateUrl { get; set; }
 
         [Required]

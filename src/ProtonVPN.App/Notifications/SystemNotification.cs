@@ -41,7 +41,7 @@ namespace ProtonVPN.Notifications
         {
             if (_appSettings.ShowNotifications && !_appExitHandler.PendingExit)
             {
-                _eventAggregator.PublishOnUIThread(new ShowNotificationMessage(message));
+                _eventAggregator.PublishOnUIThreadAsync(new ShowNotificationMessage(message));
             }
         }
     }

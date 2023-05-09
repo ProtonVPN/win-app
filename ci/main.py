@@ -29,8 +29,6 @@ subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
 subparsers.add_parser('lint-languages')
 subparsers.add_parser('defaultConfig')
-subparsers.add_parser('tap-installer')
-subparsers.add_parser('tun-installer')
 subparsers.add_parser('sign')
 
 custom_parser = subparsers.add_parser('app-installer')
@@ -82,28 +80,9 @@ elif args.command == 'sign':
 elif args.command == 'app-installer':
     v = win32api.GetFileVersionInfo('.\src\\bin\ProtonVPN.exe', '\\')
     semVersion = "%d.%d.%d" % (v['FileVersionMS'] / 65536, v['FileVersionMS'] % 65536, v['FileVersionLS'] / 65536)
-    params = ''
-    p = Path()
-    for f in list(p.glob('.\src\\bin\**\ProtonVPN.Translations.resources.dll')):
-        params = params + "\r\nAddFolder APPDIR {folder}".format(folder=f.parent.absolute())
-
     print('Building app installer')
-    err = installer.build(semVersion, args.hash, 'Setup/ProtonVPN.aip', params)
-    print_sha256('.\Setup\ProtonVPN-SetupFiles\ProtonVPN_win_v{semVersion}.exe'.format(semVersion=semVersion))
-    sys.exit(err)
-
-elif args.command == 'tap-installer':
-    print('Building tap installer')
-    version = '1.1.4'
-    err = installer.build(version, '', 'Setup/ProtonVPNTap.aip')
-    print_sha256('.\Setup\ProtonVPNTap-SetupFiles\ProtonVPNTap_{version}.exe'.format(version=version))
-    sys.exit(err)
-
-elif args.command == 'tun-installer':
-    print('Building tun installer')
-    version = '0.13.1'
-    err = installer.build(version, '', 'Setup/ProtonVPNTun.aip')
-    print_sha256('.\Setup\ProtonVPNTun-SetupFiles\ProtonVPNTun_{version}.exe'.format(version=version))
+    err = installer.build(semVersion, args.hash, 'Setup/setup.iss')
+    print_sha256('.\Setup\Installers\ProtonVPN_v{semVersion}.exe'.format(semVersion=semVersion))
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':

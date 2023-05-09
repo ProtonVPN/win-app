@@ -63,8 +63,6 @@ namespace ProtonVPN.Core.Profiles
 
         public ProfileStatus Status { get; set; }
 
-        public ProfileSyncStatus SyncStatus { get; set; }
-
         public DateTime ModifiedAt { get; set; }
 
         public string OriginalName { get; set; }

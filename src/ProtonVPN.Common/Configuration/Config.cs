@@ -40,6 +40,9 @@ namespace ProtonVPN.Common.Configuration
         public string AppExePath { get; set; }
 
         [Required]
+        public string AppLauncherExePath { get; set; }
+
+        [Required]
         public string AppLogFolder { get; set; }
 
         [Required]
@@ -181,9 +184,6 @@ namespace ProtonVPN.Common.Configuration
         public int MaxProfileNameLength { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan ForcedProfileSyncInterval { get; set; }
-
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan EventCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
@@ -241,6 +241,13 @@ namespace ProtonVPN.Common.Configuration
         [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
         public TimeSpan AlternativeRoutingCheckInterval { get; set; }
 
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
+        public TimeSpan NetShieldStatisticRequestInterval { get; set; }
+
         public string AutoLoginBaseUrl { get; set; }
+
+        public string WintunDriverPath { get; set; }
+        public string WintunAdapterName { get; set; }
+        public string InstallActionsPath { get; set; }
     }
 }

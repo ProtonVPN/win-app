@@ -17,12 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net.Http;
 using Autofac;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Handlers.Retries;
-using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
@@ -34,13 +30,13 @@ using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Config;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS;
-using ProtonVPN.Core.OS.Net;
 using ProtonVPN.Core.OS.Net.Dns;
 using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.ReportAnIssue;
@@ -48,7 +44,6 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Threading;
-using ProtonVPN.Core.Update;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows;
 using ProtonVPN.HumanVerification;
@@ -67,7 +62,6 @@ namespace ProtonVPN.Core.Ioc
             base.Load(builder);
             
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
-            builder.RegisterType<ServicePointConfiguration>().SingleInstance();
             builder.RegisterType<ServerManager>().SingleInstance();
             builder.RegisterType<ActiveUrls>().As<IActiveUrls>().SingleInstance();
             builder.RegisterType<ApiAppVersion>().As<IApiAppVersion>().SingleInstance();
@@ -90,11 +84,11 @@ namespace ProtonVPN.Core.Ioc
                 .As<ILogger>().SingleInstance();
             builder.RegisterType<LogCleaner>().SingleInstance();
             builder.RegisterType<SafeServiceAction>().As<ISafeServiceAction>().SingleInstance();
-            builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UserValidator>().SingleInstance();
             builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<DnsClients>().As<IDnsClients>().SingleInstance();
+            builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                     new SafeDnsClient(
                         new CoreDnsClient(
@@ -102,16 +96,9 @@ namespace ProtonVPN.Core.Ioc
                             c.Resolve<INetworkInterfaces>())))
                 .As<IDnsClient>().SingleInstance();
 
-            builder.Register(c =>
-                    new CachingReportClient(
-                        new ReportClient(c.Resolve<IActiveUrls>().TlsReportUrl.Uri)))
-                .As<IReportClient>()
-                .SingleInstance();
-
             builder.RegisterType<EventClient>().SingleInstance();
             builder.RegisterType<UserInfoHandler>().AsImplementedInterfaces().SingleInstance();
 
-            builder.RegisterType<VpnProfileHandler>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),

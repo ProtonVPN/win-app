@@ -60,16 +60,16 @@ namespace ProtonVPN.Common.OS.Services
             }).Wait();
         }
 
-        public Task<Result> StartAsync(CancellationToken cancellationToken)
+        public async Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            return Logged<AppServiceStartLog, AppServiceStartFailedLog>("Starting", 
-                () => _origin.StartAsync(cancellationToken));
+            return await Logged<AppServiceStartLog, AppServiceStartFailedLog>("Starting",
+                async () => await _origin.StartAsync(cancellationToken));
         }
 
-        public Task<Result> StopAsync(CancellationToken cancellationToken)
+        public async Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            return Logged<AppServiceStopLog, AppServiceStopFailedLog>("Stopping", 
-                () => _origin.StopAsync(cancellationToken));
+            return await Logged<AppServiceStopLog, AppServiceStopFailedLog>("Stopping",
+                async () => await _origin.StopAsync(cancellationToken));
         }
 
         private async Task<Result> Logged<TEventLog, TEventFailedLog>(string actionName, Func<Task<Result>> action) 

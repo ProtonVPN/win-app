@@ -19,24 +19,35 @@
 
 using System;
 using System.Collections.Generic;
-using ProtonVPN.Core.Update;
+using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.About
 {
-    public class ReleaseEqualityComparer: IEqualityComparer<Release>
+    public class ReleaseEqualityComparer: IEqualityComparer<ReleaseContract>
     {
-        public bool Equals(Release x, Release y)
+        public bool Equals(ReleaseContract x, ReleaseContract y)
         {
-            if (ReferenceEquals(x, y)) return true;
-            if (ReferenceEquals(x, null)) return false;
-            if (ReferenceEquals(y, null)) return false;
+            if (ReferenceEquals(x, y))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(x, null))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(y, null))
+            {
+                return false;
+            }
 
             return x.Version.Equals(y.Version) &&
                    x.EarlyAccess == y.EarlyAccess &&
                    x.New == y.New;
         }
 
-        public int GetHashCode(Release obj)
+        public int GetHashCode(ReleaseContract obj)
         {
             throw new NotImplementedException();
         }

@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
@@ -34,37 +34,13 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Profiles
 {
-    internal class ProfileListModalViewModel : BaseModalViewModel, IProfileSyncStatusAware
+    internal class ProfileListModalViewModel : BaseModalViewModel
     {
         private readonly ProfileManager _profileManager;
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly ProfileViewModelFactory _profileHelper;
         private readonly IVpnManager _vpnManager;
-
-        private ProfileSyncStatus _profileSyncStatus = ProfileSyncStatus.Succeeded;
-
-        public ProfileListModalViewModel(
-            ProfileManager profileManager,
-            ProfileViewModelFactory profileHelper,
-            IModals modals,
-            IDialogs dialogs,
-            IVpnManager vpnManager,
-            ProfileSyncViewModel profileSync)
-        {
-            ProfileSync = profileSync;
-            _profileHelper = profileHelper;
-            _profileManager = profileManager;
-            _modals = modals;
-            _dialogs = dialogs;
-            _vpnManager = vpnManager;
-
-            ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectAction);
-            RemoveCommand = new RelayCommand<ProfileViewModel>(RemoveAction);
-            EditCommand = new RelayCommand<ProfileViewModel>(EditProfileAction);
-            CreateProfileCommand = new RelayCommand(CreateProfileAction);
-            TroubleshootCommand = new RelayCommand(TroubleshootAction);
-        }
 
         private IReadOnlyList<ProfileViewModel> _profiles;
         public IReadOnlyList<ProfileViewModel> Profiles
@@ -77,11 +53,27 @@ namespace ProtonVPN.Profiles
         public ICommand EditCommand { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand CreateProfileCommand { get; set; }
-        public ICommand TroubleshootCommand { get; set; }
 
-        public ProfileSyncViewModel ProfileSync { get; }
+        public ProfileListModalViewModel(
+            ProfileManager profileManager,
+            ProfileViewModelFactory profileHelper,
+            IModals modals,
+            IDialogs dialogs,
+            IVpnManager vpnManager)
+        {
+            _profileHelper = profileHelper;
+            _profileManager = profileManager;
+            _modals = modals;
+            _dialogs = dialogs;
+            _vpnManager = vpnManager;
 
-        protected override async void OnActivate()
+            ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectAction);
+            RemoveCommand = new RelayCommand<ProfileViewModel>(RemoveAction);
+            EditCommand = new RelayCommand<ProfileViewModel>(EditProfileAction);
+            CreateProfileCommand = new RelayCommand(CreateProfileAction);
+        }
+
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             await LoadProfiles();
         }
@@ -96,28 +88,15 @@ namespace ProtonVPN.Profiles
             }
         }
 
-        public void OnProfileSyncStatusChanged(ProfileSyncStatus status, string errorMessage, DateTime changesSyncedAt)
-        {
-            _profileSyncStatus = status;
-            ApplyProfileSyncStatus(Profiles);
-        }
-
-        private void ApplyProfileSyncStatus(IEnumerable<ProfileViewModel> profiles)
-        {
-            if (profiles == null)
-                return;
-
-            foreach (var profile in profiles)
-            {
-                profile.OnProfileSyncStatusChanged(_profileSyncStatus);
-            }
-        }
-
         private async void RemoveAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            var result = _dialogs.ShowQuestion(Translation.Get("Profiles_msg_DeleteConfirm"));
+            if (viewModel == null)
+            {
+                return;
+            }
+
+            Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+            bool? result = await _dialogs.ShowQuestionAsync(Translation.Get("Profiles_msg_DeleteConfirm"));
 
             if (result.HasValue && result.Value)
             {
@@ -127,44 +106,43 @@ namespace ProtonVPN.Profiles
 
         private async Task LoadProfiles()
         {
-            var profiles = (await _profileHelper.GetProfiles())
+            List<ProfileViewModel> profiles = (await _profileHelper.GetProfiles())
                 .OrderByDescending(p => p.IsPredefined)
                 .ThenBy(p => p.Name)
                 .ToList();
-
-            ApplyProfileSyncStatus(profiles);
 
             Profiles = profiles;
         }
 
         private async void ConnectAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            if (profile == null) return;
-
-            await _vpnManager.ConnectAsync(profile);
+            if (viewModel != null)
+            {
+                Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+                if (profile != null)
+                {
+                    await _vpnManager.ConnectAsync(profile);
+                }
+            }
         }
 
         private async void EditProfileAction(ProfileViewModel viewModel)
         {
-            if (viewModel == null) return;
-            var profile = await _profileManager.GetProfileById(viewModel.Id);
-            if (profile == null) return;
-
-            dynamic options = new ExpandoObject();
-            options.Profile = profile;
-            _modals.Show<ProfileFormModalViewModel>(options);
+            if (viewModel != null)
+            {
+                Profile profile = await _profileManager.GetProfileById(viewModel.Id);
+                if (profile != null)
+                {
+                    dynamic options = new ExpandoObject();
+                    options.Profile = profile;
+                    await _modals.ShowAsync<ProfileFormModalViewModel>(options);
+                }
+            }
         }
 
-        private void CreateProfileAction()
+        private async void CreateProfileAction()
         {
-            _modals.Show<ProfileFormModalViewModel>();
-        }
-
-        private void TroubleshootAction()
-        {
-            _modals.Show<TroubleshootModalViewModel>();
+            await _modals.ShowAsync<ProfileFormModalViewModel>();
         }
     }
 }

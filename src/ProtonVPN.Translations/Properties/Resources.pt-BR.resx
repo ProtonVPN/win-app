@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Gerenciar assinatura</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Acesso ao conteúdo bloqueado</value>
@@ -227,7 +227,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Máxima&lt;/Bold&gt; velocidade ( até 10Gbps)</value>
+    <value>&lt;Bold&gt;Máxima&lt;/Bold&gt; velocidade (até 10Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
@@ -255,7 +255,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Encerrar a sessão do programa irá desconectar a conexão VPN ativa. Você tem certeza que deseja continuar?</value>
+    <value>Encerrar a sessão do aplicativo irá desconectar a conexão VPN ativa. Você tem certeza que deseja continuar?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -610,7 +610,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF">
-    <value>Burkina Faso</value>
+    <value>Burquina Faso</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG">
@@ -758,7 +758,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Djibouti</value>
+    <value>Djibuti</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
@@ -1094,7 +1094,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG">
-    <value>Madagascar</value>
+    <value>Madagáscar</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH">
@@ -1306,7 +1306,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC">
-    <value>Seychelles</value>
+    <value>Seicheles</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD">
@@ -1410,7 +1410,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Timor-Leste</value>
+    <value>Timor Leste</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
@@ -1543,10 +1543,11 @@ Informações sobre a tabela de roteamento</value>
     <value>Para iniciar sua jornada no Proton VPN, atribua conexões VPN à sua conta ou a qualquer outra subconta.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Esta etapa levará apenas alguns minutos. Depois disso, você poderá fazer login e proteger todos os seus dispositivos.</value>
+    <value>Esta etapa levará apenas alguns minutos. Depois disso, você poderá iniciar sessão e proteger todos os seus dispositivos.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Obrigado por fazer upgrade para Professional/Visionary</value>
+    <value>Obrigado por fazer o upgrade</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Um dos serviços exigidos pelo Proton VPN (Motor base de filtragem) não está a executando.&lt;LineBreak/&gt;
@@ -1597,11 +1598,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Alguns componentes Proton VPN podem estar bloqueados ou desabilitados, impedindo que você se conecte. Clique em habilitar para corrigir.&lt;LineBreak/&gt;Note que esta operação requer privilégios administrativos.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Desativar Kill Switch</value>
+    <value>Desativar kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Fazer upgrade</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1613,8 +1614,8 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>O Kill Switch está protegendo seu IP bloqueando todas as conexões. Em caso de problemas, você pode desativar o Kill Switch.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <value>O kill switch está protegendo seu IP bloqueando todas as conexões. Em caso de problemas, você pode desativar o kill switch.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Não há servidores disponíveis neste momento para opção selecionada. Por favor, selecione uma opção diferente.</value>
@@ -1663,13 +1664,13 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Deseja continuar?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Sair do aplicativo desconectará você da VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>O Kill Switch está bloqueando todas as conexões para evitar o vazamento dos seus dados. Sair do aplicativo desativará o Kill Switch.</value>
+    <value>O kill switch está bloqueando todas as conexões para evitar o vazamento dos seus dados. Sair do aplicativo desativará o kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>O Kill Switch permanente está ativado. A saída do aplicativo bloqueará todas as conexões de saída até que o Proton VPN seja conectado novamente.</value>
@@ -1681,10 +1682,10 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>O relógio do seu sistema não parece estar sincronizado, o que pode impedir a VPN de se conectar com sucesso. Por favor &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt; verifique aqui&lt;/Hyperlink&gt; para mais informações.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>Com o kill switch, se a VPN não estiver conectada por qualquer motivo, você não será capaz de acessar a internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Ativar o Kill Switch?</value>
+    <value>Ativar o Kill switch permanente?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Entendi</value>
@@ -1731,8 +1732,8 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note que o Kill Switch está ativado. Ao atualizar ou sair do programa, ele será desativado.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <value>Note que o kill switch está ativado. Ao atualizar ou sair do programa, ele será desativado.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Sua conexão foi desativada porque você está usando um servidor que não oferece suporte a tráfego ponto a ponto (P2P). P2P não é compatível com servidores gratuitos. Use um servidor diferente para P2P.</value>
@@ -1747,18 +1748,6 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="Dialogs_Proxy_msg_ProxyDetected">
     <value>O Proton VPN detectou um servidor proxy configurado na sua rede local. O Proton VPN não pode proteger o tráfego que passa por este proxy. Isto significa que a sua conexão não será completamente protegida como esperado.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
-  </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Reiniciar</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Continuar sem</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Para evitar erros do Proton VPN, é altamente recomendável reiniciar o computador para atualizar outros aplicativos primeiro. O Proton VPN irá automaticamente retomar a instalação depois disso. Reinicie agora?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Seu computador precisa reiniciar</value>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Apresentando a aparência renovada do Proton. Muitos serviços, uma missão. Boas-vindas a uma internet onde a privacidade é o padrão. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Saiba mais&lt;/Hyperlink&gt;</value>
@@ -1862,6 +1851,9 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="Dialogs_TunInUse_msg">
     <value>O Proton VPN não pôde se conectar porque o adaptador de rede TUN já está em uso. Por favor, desconecte qualquer VPN ativa e tente novamente. Como alternativa, você pode mudar para o adaptador TAP (você pode alterar de volta para TUN nas Configurações Avançadas).</value>
   </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN não pôde se conectar porque um adaptador de rede WireGuard já está em uso. Desconecte todas as VPNs ativas e tente novamente. Como alternativa, você pode alternar os protocolos nas Configurações avançadas.</value>
+  </data>
   <data name="Dialogs_btn_Cancel">
     <value>Cancelar</value>
     <comment>The text on Cancel button in dialog windows</comment>
@@ -1882,7 +1874,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Do servidor:</value>
@@ -1922,14 +1914,15 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Por favor, repare sua instalação.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licença</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Sua sessão expirou. Por favor, entre novamente.</value>
+    <value>Sua sessão expirou. Entre novamente.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -1944,19 +1937,19 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Autenticar</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Entrar</value>
+    <value>Iniciar sessão</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>O Kill Switch está ativo</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>O Kill switch está atuamente ativo</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Senha</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Internet segura em qualquer lugar</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2078,7 +2071,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Não mostrar novamente</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Saiba mais</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>O Secure Core oferece o mais alto nível de segurança e privacidade, mas pode reduzir a velocidade da sua internet. Se precisar de mais desempenho, você pode desabilitar o Secure Core.</value>
@@ -2110,11 +2103,11 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Learn More</value>
+    <value>Saiba mais</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Insecure Wi-Fi connection detected: {0}</value>
+    <value>Rede Wi-Fi não segura detectada: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
@@ -2141,17 +2134,21 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>A assinatura do seu plano de VPN expirou</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Reiniciar</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
   <data name="Notifications_Update_lnk_WhatsNew">
-    <value>What's new</value>
+    <value>Novidades</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>A new app version is now available!</value>
+    <value>Uma nova versão do programa está disponível.</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>CONECTADO a {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>DESCONECTADO</value>
@@ -2210,42 +2207,10 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Defina este número em seu aplicativo BitTorrent para maior velocidade.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Para usar o encaminhamento de porta, por favor &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conecte&lt;/Hyperlink&gt; no servidor que suporte P2P.</value>
+    <value>Para usar essa funcionalidade, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conecte&lt;/Hyperlink&gt; no servidor que suporte P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>O Proton VPN falhou ao buscar o certificado de autenticação devido a um problema de rede.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Falhou</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Falha na sincronização de perfil</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Sincronizando</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Sincronizando perfis</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Substituída</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sincronizado</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Alterações de perfil sincronizadas {0} {1} atrás</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Não há mudanças de perfil para sincronizar</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Servidor mais rápido disponível</value>
@@ -2361,10 +2326,6 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Criar perfil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sincronizar</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Resolução de problemas</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2384,10 +2345,6 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="Profiles_col_Protocol">
     <value>Protocolo</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Os servidores estão atualmente offline para manutenção.</value>
@@ -2442,10 +2399,12 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch Off</value>
+    <value>Kill switch está desativado</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch On</value>
+    <value>Kill switch ativado</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Saiba mais</value>
@@ -2461,6 +2420,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Kill Switch permanente</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Encaminhamento de Porta Desligado</value>
@@ -2469,25 +2429,53 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Encaminhamento de portas Ativado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core Off</value>
+    <value>Secure Core ativado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core On</value>
+    <value>Secure Core desativado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>ATUALIZAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Desativa a internet se a conexão VPN cair para evitar vazamento acidental de IP.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Navegue pela internet sem anúncios e malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Anúncios bloqueados</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Anúncio Bloqueado</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Os sites de publicidade usam cookies e rastreadores para atingir você.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Dados economizados</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Tamanho estimado de anúncios, rastreadores e malware que o NetShield bloqueou.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Rastreadores parados</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Rastreador parado</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Rastreadores são sites de terceiros que coletam, armazenam e vendem informações sobre sua atividade na web.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Se os sites não carregarem, tente desativar o NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Acelere seus torrents e jogos online permitindo que aplicativos locais suportados sejam acessíveis a partir da internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Encaminhe os seus dados mais sensíveis através dos nossos servidores mais seguros em países amigos da privacidade.</value>
@@ -2519,7 +2507,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Servidor Plus</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2574,7 +2562,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Upgrade</value>
+    <value>Fazer upgrade</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2596,7 +2584,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <value>Proton VPN não pode se conectar porque o servidor RPC não está disponível em seu sistema. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Veja possíveis soluções&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Infelizmente, este servidor não oferece suporte ao WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Adicionar programa</value>
@@ -2698,7 +2686,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
-    <value>Split tunneling</value>
+    <value>Tunelamento dividido</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
@@ -2733,7 +2721,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Fazer upgrade</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -2767,7 +2755,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
-    <value>Reconexão Automática</value>
+    <value>Reconexão automática</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
@@ -2793,6 +2781,14 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="Settings_Connection_ttl">
     <value>Conexão</value>
     <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Atualizações automáticas</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Verificar e instalar automaticamente atualizações para o Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Conectar ao iniciar o aplicativo</value>
@@ -2876,8 +2872,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>O Kill Switch está ativado!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <value>O Kill switch está ativado!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
     <value>O Kill Switch está bloqueando todas as conexões para evitar o vazamento dos seus dados.</value>
@@ -2895,6 +2891,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Localizações FREE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Servidores gratuitos</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Servidores gratuitos não tem limitação de dados nem supressão de rede. A velocidade só pode ser limitada devido ao grande número de usuários conectados.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Informação</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Nossos parceiros</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Localizações PLUS ({0})</value>
   </data>
@@ -2905,7 +2913,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Servidores BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Servidores Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>Servidores INTERNOS</value>
@@ -2975,7 +2983,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Roteie seu tráfego de internet pela rede Tor. Mais lento, mas mais privado.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Criar perfil</value>
@@ -3078,8 +3086,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Acesse 1200 servidores seguros em 63 países</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>O que é NAT moderado?</value>
@@ -3209,7 +3217,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>Desativar</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Salvar</value>
@@ -3226,8 +3234,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

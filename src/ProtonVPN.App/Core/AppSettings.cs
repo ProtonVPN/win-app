@@ -28,6 +28,7 @@ using Newtonsoft.Json;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Collections.Concurrent;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
@@ -53,7 +54,7 @@ namespace ProtonVPN.Core
         private readonly ISettingsStorage _storage;
         private readonly UserSettings _userSettings;
         private readonly IConfiguration _config;
-        private readonly HashSet<string> _accessedPerUserProperties = new();
+        private readonly ConcurrentHashSet<string> _accessedPerUserProperties = new();
 
         public AppSettings(ILogger logger,
             ISettingsStorage storage, 
@@ -153,6 +154,12 @@ namespace ProtonVPN.Core
         }
 
         public bool EarlyAccess
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
+        public bool IsToAutoUpdate
         {
             get => Get<bool>();
             set => Set(value);
@@ -572,6 +579,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeatureNetShieldStatsEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
@@ -683,21 +696,21 @@ namespace ProtonVPN.Core
 
         private T GetPerUser<T>([CallerMemberName] string propertyName = null)
         {
-            _accessedPerUserProperties.Add(propertyName);
+            _accessedPerUserProperties.TryAdd(propertyName);
 
             return _userSettings.Get<T>(propertyName);
         }
 
         private string GetPerUserDecrypted([CallerMemberName] string propertyName = null)
         {
-            _accessedPerUserProperties.Add(propertyName);
+            _accessedPerUserProperties.TryAdd(propertyName);
 
             return _userSettings.Get<string>(propertyName)?.Decrypt();
         }
 
         private void SetPerUserInner<T>(T value, string propertyName)
         {
-            _accessedPerUserProperties.Add(propertyName);
+            _accessedPerUserProperties.TryAdd(propertyName);
 
             T oldValue = default;
             Type toType = UnwrapNullable(typeof(T));

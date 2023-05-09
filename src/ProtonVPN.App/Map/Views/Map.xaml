@@ -23,8 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sidebarView="clr-namespace:ProtonVPN.Sidebar"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:command="http://www.galasoft.ch/mvvmlight"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
     xmlns:views="clr-namespace:ProtonVPN.Map.Views"
     xmlns:mapLine="clr-namespace:ProtonVPN.Map.ViewModels.MapLine"
@@ -252,7 +251,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Viewbox x:Name="MapViewBox" MinWidth="850" MinHeight="400" Margin="0,0,0,350" Width="{Binding Width, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SizeChanged">
-                            <command:EventToCommand Command="{Binding ResizePins}" PassEventArgsToCommand="True"/>
+                            <i:InvokeCommandAction Command="{Binding ResizePins}" PassEventArgsToCommand="True"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Canvas x:Name="MapCanvas" MinWidth="850" MinHeight="400">

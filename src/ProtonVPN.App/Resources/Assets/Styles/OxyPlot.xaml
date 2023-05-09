@@ -93,39 +93,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style TargetType="{x:Type oxy:Plot}">
-        <Setter Property="Background" Value="{StaticResource TextNormBrushColor}"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="DefaultTrackerTemplate">
-            <Setter.Value>
-                <ControlTemplate>
-                    <oxy:TrackerControl Position="{Binding Position}" LineExtents="{Binding PlotModel.PlotArea}">
-                        <oxy:TrackerControl.Content>
-                            <TextBlock Text="{Binding}" Margin="7"/>
-                        </oxy:TrackerControl.Content>
-                    </oxy:TrackerControl>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="ZoomRectangleTemplate">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Fill="{StaticResource ZoomRectangleBackgroundColor}" 
-                               Stroke="{StaticResource ZoomRectangleStrokeColor}" 
-                               StrokeDashArray="3,1"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type oxy:Plot}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid x:Name="PART_Grid"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 </ResourceDictionary>

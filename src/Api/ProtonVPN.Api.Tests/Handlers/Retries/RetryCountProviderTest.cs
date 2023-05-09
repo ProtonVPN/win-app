@@ -34,7 +34,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         {
             // Arrange
             int retryCount = 3;
-            IConfiguration config = new Config() { ApiRetries = retryCount };
+            IConfiguration config = new Config { ApiRetries = retryCount };
             RetryCountProvider sut = new(config);
 
             // Assert
@@ -45,7 +45,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         public void ItShouldUseCustomRetryCount()
         {
             // Arrange
-            IConfiguration config = new Config() { ApiRetries = 3 };
+            IConfiguration config = new Config { ApiRetries = 3 };
             RetryCountProvider sut = new(config);
             HttpRequestMessage request = new();
             int retryCount = 10;

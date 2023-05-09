@@ -25,7 +25,7 @@ namespace ProtonVPN.Core.ReportAnIssue
 {
     public interface IReportAnIssueFormDataProvider
     {
-        Task FetchData();
+        Task FetchDataAsync();
         List<IssueCategoryResponse> GetCategories();
         List<IssueSuggestionResponse> GetSuggestions(string category);
         List<IssueInputResponse> GetInputs(string categorySubmitName);

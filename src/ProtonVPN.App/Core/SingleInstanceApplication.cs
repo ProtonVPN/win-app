@@ -17,49 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
-using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using ProtonVPN.Account;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.ServiceModel.Server;
-using ProtonVPN.Core.Service;
-using ProtonVPN.Login.Views;
-using ProtonVPN.Windows;
-using WinApplication = System.Windows.Application;
+using ProtonVPN.ProcessCommunication.App.Installers;
 
 namespace ProtonVPN.Core
 {
-    internal static class SingleInstanceApplication
+    public static class SingleInstanceApplication
     {
         private static Mutex _singleInstanceMutex;
-        private static ServiceHost _host;
+        private static IAppExitInvoker _appExitInvoker = new AppExitInvoker();
 
-        public static async Task<bool> InitializeAsFirstInstance(string uniqueName, string[] args)
+        public static async Task<bool> InitializeAsFirstInstance(string uniqueName)
         {
             _singleInstanceMutex = new Mutex(true, uniqueName, out bool firstInstance);
 
-            try
+            if (!firstInstance)
             {
-                if (firstInstance)
-                {
-                    _host = new InprocHostFactory().Create<ApplicationProxy>("protonvpn-app/initialization");
-                    _host.Open(TimeSpan.FromSeconds(10));
-                }
-                else
-                {
-                    using ServiceChannel<IApplicationProxy> channel = new ServiceChannelFactory().Create<IApplicationProxy>("protonvpn-app/initialization");
-                    await channel.Proxy.InvokeRunningInstance(args);
-                }
-            }
-            catch (CommunicationException)
-            {
-            }
-            catch (TimeoutException)
-            {
+                await FirstAppInstanceCallerInitializer.OpenMainWindowAsync();
+                _appExitInvoker.Exit();
             }
 
             return firstInstance;
@@ -71,46 +47,6 @@ namespace ProtonVPN.Core
             {
                 _singleInstanceMutex.Close();
                 _singleInstanceMutex = null;
-            }
-        }
-
-        [ServiceContract]
-        private interface IApplicationProxy
-        {
-            [OperationContract(IsOneWay = true)]
-            Task InvokeRunningInstance(IList<string> args);
-        }
-
-        [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-        private class ApplicationProxy : IApplicationProxy
-        {
-            public async Task InvokeRunningInstance(IList<string> args)
-            {
-                if (WinApplication.Current != null)
-                {
-                    await WinApplication.Current.Dispatcher.InvokeAsync(() => ActivateFirstInstance(args));
-                }
-            }
-
-            private static void ActivateFirstInstance(IList<string> args)
-            {
-                if (WinApplication.Current != null)
-                {
-                    Window window = ((App)WinApplication.Current).MainWindow;
-                    if (window is AppWindow or LoginWindow && window.IsLoaded)
-                    {
-                        window.WindowState = WindowState.Minimized;
-                        window.Show();
-                        window.WindowState = WindowState.Normal;
-                        window.Activate();
-
-                        if (window is AppWindow appWindow && args.Count > 0 &&
-                            args[0].ContainsIgnoringCase(SubscriptionManager.REDIRECT_ENDPOINT))
-                        {
-                            appWindow.TriggerAccountInfoUpdate();
-                        }
-                    }
-                }
             }
         }
     }

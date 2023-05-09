@@ -98,7 +98,7 @@ namespace ProtonVPN.Service.SplitTunneling
         {
             _ipFilter = IpFilter.Create(
                 Session.Dynamic(),
-                new DisplayData { Name = "Proton Technologies AG", Description = "ProtonVPN Split Tunnel provider" });
+                new DisplayData { Name = "Proton AG", Description = "ProtonVPN Split Tunnel provider" });
 
             _subLayer = _ipFilter.CreateSublayer(
                 new DisplayData { Name = "ProtonVPN Split Tunnel filters" },

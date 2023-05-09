@@ -217,6 +217,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
         </ScrollViewer>
         <Button Style="{StaticResource PrimaryModalButton}"
+                IsEnabled="{Binding IsSendAllowed, Mode=OneWay}"
                 Command="{Binding SendReportCommand}"
                 HorizontalAlignment="Center"
                 Margin="0,32,0,0"

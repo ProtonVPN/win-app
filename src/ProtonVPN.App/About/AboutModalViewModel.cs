@@ -20,19 +20,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Update;
+using ProtonVPN.Update;
 using ProtonVPN.Modals;
+using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.About
 {
     public class AboutModalViewModel : BaseModalViewModel, IUpdateStateAware
     {
-        private static readonly ReleaseEqualityComparer ReleaseComparer = new ReleaseEqualityComparer();
+        private static readonly ReleaseEqualityComparer ReleaseComparer = new();
 
         private readonly IConfiguration _appConfig;
         private readonly UpdateService _appUpdater;
@@ -60,8 +63,8 @@ namespace ProtonVPN.About
 
         public UpdateViewModel Update { get; }
 
-        private IReadOnlyList<Release> _releases;
-        public IReadOnlyList<Release> Releases
+        private IReadOnlyList<ReleaseContract> _releases;
+        public IReadOnlyList<ReleaseContract> Releases
         {
             get => _releases;
             private set
@@ -81,7 +84,7 @@ namespace ProtonVPN.About
             get
             {
                 Version appVersion = Version.Parse(AppVersion);
-                Release release = Releases?.FirstOrDefault(r => appVersion == r.Version);
+                ReleaseContract release = Releases?.FirstOrDefault(r => appVersion == r.Version);
                 return release?.EarlyAccess;
             }
         }
@@ -98,7 +101,7 @@ namespace ProtonVPN.About
             Releases = e.ReleaseHistory;
         }
 
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             LastUpdate = _appSettings.LastUpdate;
         }
@@ -108,9 +111,9 @@ namespace ProtonVPN.About
             _appUpdater.StartCheckingForUpdate();
         }
 
-        private void ShowLicense()
+        private async void ShowLicense()
         {
-            _modals.Show<LicenseModalViewModel>();
+            await _modals.ShowAsync<LicenseModalViewModel>();
         }
     }
 }

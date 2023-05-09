@@ -52,6 +52,7 @@ namespace ProtonVPN.Core.Settings
         bool StartOnBoot { get; set; }
         StartMinimizedMode StartMinimized { get; set; }
         bool EarlyAccess { get; set; }
+        bool IsToAutoUpdate { get; set; }
         bool SecureCore { get; set; }
         string LastUpdate { get; set; }
         KillSwitchMode KillSwitchMode { get; set; }
@@ -120,6 +121,8 @@ namespace ProtonVPN.Core.Settings
         bool HardwareAccelerationEnabled { get; set; }
         bool IsToShowRebrandingPopup { get; set; }
         ConcurrentDictionary<string, DnsResponse> DnsCache { get; set; }
+        bool FeatureNetShieldStatsEnabled { get; set; }
+
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();

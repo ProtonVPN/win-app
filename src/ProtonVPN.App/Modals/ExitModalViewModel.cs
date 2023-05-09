@@ -19,7 +19,7 @@
 
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
@@ -27,7 +27,7 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Modals
 {
-    public class ExitModalViewModel : BaseModalViewModel, IVpnStateAware, IServiceSettingsStateAware
+    public class ExitModalViewModel : BaseModalViewModel, IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
 
@@ -37,8 +37,8 @@ namespace ProtonVPN.Modals
         public ExitModalViewModel(IAppSettings appSettings)
         {
             _appSettings = appSettings;
-            ExitCommand = new RelayCommand(TryCloseWithSuccess);
-            CancelCommand = new RelayCommand(TryCloseWithFailure);
+            ExitCommand = new RelayCommand(TryCloseWithSuccessAsync);
+            CancelCommand = new RelayCommand(TryCloseWithFailureAsync);
         }
 
         public ICommand ExitCommand { get; }
@@ -63,11 +63,6 @@ namespace ProtonVPN.Modals
             Disconnected = e.State.Status == VpnStatus.Disconnected;
 
             return Task.CompletedTask;
-        }
-
-        public void OnServiceSettingsStateChanged(ServiceSettingsStateChangedEventArgs e)
-        {
-            NetworkBlocked = e.IsNetworkBlocked;
         }
     }
 }

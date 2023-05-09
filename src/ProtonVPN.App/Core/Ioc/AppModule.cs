@@ -24,9 +24,8 @@ using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
 using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.OS;
+using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Registry;
 using ProtonVPN.Common.OS.Services;
@@ -40,6 +39,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.FileStoraging;
 using ProtonVPN.Core.Service;
 using ProtonVPN.Core.Service.Settings;
+using ProtonVPN.Core.Service.Update;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
@@ -58,6 +58,7 @@ using ProtonVPN.Map;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Welcome;
+using ProtonVPN.NetShield;
 using ProtonVPN.Notifications;
 using ProtonVPN.Partners;
 using ProtonVPN.PlanDowngrading;
@@ -70,6 +71,7 @@ using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Streaming;
+using ProtonVPN.Update;
 using ProtonVPN.Vpn;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows;
@@ -121,7 +123,10 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<VpnService>().SingleInstance();
+            builder.RegisterType<VpnServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppController>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
             builder.RegisterType<PopupWindows>().As<IPopupWindows>().SingleInstance();
@@ -151,10 +156,8 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<PredefinedProfiles>().SingleInstance();
             builder.RegisterType<CachedProfiles>().SingleInstance();
-            builder.RegisterType<ApiProfiles>().SingleInstance();
             builder.RegisterType<Profiles.Profiles>().SingleInstance();
             builder.RegisterType<SyncProfiles>().AsSelf().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<SyncProfile>().SingleInstance();
 
             builder.RegisterType<AppSettings>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InitialAppSettingsMigration>().AsImplementedInterfaces().AsSelf().SingleInstance();
@@ -189,11 +192,8 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<MapLineManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<VpnEvents>();
             builder.RegisterType<SettingsServiceClientManager>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<SettingsServiceClient>().SingleInstance();
-            builder.RegisterType<ServiceChannelFactory>().SingleInstance();
-            builder.RegisterType<SettingsContractProvider>().SingleInstance();
+            builder.RegisterType<MainSettingsProvider>().SingleInstance();
             builder.RegisterType<AutoConnect>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterInstance(Properties.Settings.Default);
 
@@ -250,13 +250,7 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .SingleInstance();
             builder.RegisterType<BaseFilteringEngineService>().SingleInstance();
-            builder.Register(c => new UpdateNotification(
-                    c.Resolve<IConfiguration>().UpdateRemindInterval, // REMOVE THIS CUSTOM REGISTRATION
-                    c.Resolve<IUserAuthenticator>(),
-                    c.Resolve<IEventAggregator>(),
-                    c.Resolve<UpdateFlashNotificationViewModel>()))
-                .AsImplementedInterfaces()
-                .SingleInstance();
+            builder.RegisterType<UpdateNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<SystemProxyNotification>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.Register(c => new Language(
@@ -285,7 +279,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<PartnersUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PartnersFileStorage>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
-            builder.RegisterType<NotificationUserActionHandler>().As<INotificationUserActionHandler>().SingleInstance();
 
             builder.RegisterType<Ed25519Asn1KeyGenerator>().As<IEd25519Asn1KeyGenerator>().SingleInstance();
             builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();
@@ -294,19 +287,19 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<AuthCredentialManager>().As<IAuthCredentialManager>().SingleInstance();
             builder.RegisterType<SystemTimeValidator>().SingleInstance();
             builder.RegisterType<WelcomeModalManager>().AsSelf().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
             builder.RegisterType<AppExitInvoker>().As<IAppExitInvoker>().SingleInstance();
             builder.RegisterType<PortForwardingManager>().As<IPortForwardingManager>().SingleInstance();
             builder.RegisterType<PortForwardingNotifier>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ApiAvailabilityVerifier>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PromoCodeManager>().As<IPromoCodeManager>().SingleInstance();
-            builder.RegisterType<DeviceInfoProvider>().As<IDeviceInfoProvider>().SingleInstance();
+            builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ApplicationResourcesLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WindowPositionSetter>().As<IWindowPositionSetter>().SingleInstance();
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
             builder.RegisterType<SubscriptionManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<NetShieldStatsManager>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

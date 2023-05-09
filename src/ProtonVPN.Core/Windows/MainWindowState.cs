@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 
 namespace ProtonVPN.Core.Windows
@@ -30,9 +32,9 @@ namespace ProtonVPN.Core.Windows
 
         public bool Active { get; private set; }
 
-        public void Handle(WindowStateMessage message)
+        public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
         {
-            Active = message.Active;
+            Active = message.IsActive;
         }
     }
 }

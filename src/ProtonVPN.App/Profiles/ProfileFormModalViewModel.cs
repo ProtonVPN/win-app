@@ -20,8 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Modals;
@@ -67,11 +69,11 @@ namespace ProtonVPN.Profiles
             get => _busy;
             private set
             {
-                if (!Set(ref _busy, value))
-                    return;
-
-                SaveCommand.RaiseCanExecuteChanged();
-                CancelCommand.RaiseCanExecuteChanged();
+                if (Set(ref _busy, value))
+                {
+                    SaveCommand.RaiseCanExecuteChanged();
+                    CancelCommand.RaiseCanExecuteChanged();
+                }
             }
         }
 
@@ -98,7 +100,9 @@ namespace ProtonVPN.Profiles
         public override void BeforeOpenModal(dynamic options)
         {
             if (options?.Profile == null)
+            {
                 return;
+            }
 
             Profile profile = options.Profile;
             SetServerType(profile.Features);
@@ -106,29 +110,31 @@ namespace ProtonVPN.Profiles
             Form.LoadProfile(profile);
         }
 
-        public override void CanClose(Action<bool> callback)
+        public override async Task<bool> CanCloseAsync(CancellationToken cancellationToken = default)
         {
             if (Form.HasUnsavedChanges())
             {
-                var result = Form.Cancel();
-                callback(result != true);
+                bool? result = await Form.CancelAsync();
+                return result != true;
             }
             else
             {
-                callback(true);
+                return true;
             }
         }
 
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             if (Form.EditMode)
+            {
                 return;
+            }
 
             SetServerType(Features.None);
             Form.Load();
         }
 
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
             if (close)
             {
@@ -139,37 +145,57 @@ namespace ProtonVPN.Profiles
         protected void SetServerType(Features features)
         {
             if (features.IsSecureCore())
+            {
                 SetServerType(ServerTypes.First(t => t.Features.IsSecureCore()));
+            }
             else if (features.SupportsTor())
+            {
                 SetServerType(ServerTypes.First(t => t.Features.SupportsTor()));
+            }
             else if (features.SupportsP2P())
+            {
                 SetServerType(ServerTypes.First(t => t.Features.SupportsP2P()));
+            }
             else
-                SetServerType(ServerTypes.First(t => !t.Features.IsSecureCore() && !t.Features.SupportsTor() && !t.Features.SupportsP2P()));
+            {
+                SetServerType(ServerTypes.First(t => !t.Features.IsSecureCore() 
+                                                  && !t.Features.SupportsTor() 
+                                                  && !t.Features.SupportsP2P()));
+            }
         }
 
         private void SetServerType(ServerTypeViewModel value)
         {
             ServerType = value;
             if (value == null)
+            {
                 return;
+            }
 
-            var features = value.Features;
+            Features features = value.Features;
             if (features.IsSecureCore())
+            {
                 Form = _secureCoreProfileFormViewModel;
+            }
             else if (features.SupportsTor())
+            {
                 Form = _torProfileFormViewModel;
+            }
             else if (features.SupportsP2P())
+            {
                 Form = _p2PProfileFormViewModel;
+            }
             else
+            {
                 Form = _standardProfileFormViewModel;
+            }
         }
 
         private void SelectServerTypeAction(ServerTypeViewModel item)
         {
-            var previousName = Form.ProfileName;
-            var previousProtocol = Form.VpnProtocol;
-            var previousColor = Form.ColorCode;
+            string previousName = Form.ProfileName;
+            Common.Networking.VpnProtocol previousProtocol = Form.VpnProtocol;
+            string previousColor = Form.ColorCode;
 
             SetServerType(item.Features);
             Form.Error = Error.None;
@@ -183,12 +209,14 @@ namespace ProtonVPN.Profiles
         private async void SaveAction()
         {
             if (!CanSave())
+            {
                 return;
+            }
 
             Busy = true;
             try
             {
-                var saved = await Form.Save();
+                bool saved = await Form.Save();
                 if (saved)
                 {
                     TryClose();
@@ -206,7 +234,9 @@ namespace ProtonVPN.Profiles
         private void CancelAction()
         {
             if (!CanCancel())
+            {
                 return;
+            }
 
             TryClose();
         }

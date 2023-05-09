@@ -21,16 +21,19 @@ using System;
 using System.Collections.Generic;
 using System.ServiceProcess;
 using Autofac;
+using ProtonVPN.Api.Installers;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Events;
+using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Native.PInvoke;
 using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
+using ProtonVPN.Update.Installers;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
@@ -40,8 +43,12 @@ namespace ProtonVPN.Service.Start
     internal class Bootstrapper
     {
         private IContainer _container;
-
         private T Resolve<T>() => _container.Resolve<T>();
+
+        public Bootstrapper()
+        {
+            IssueReportingInitializer.Run();
+        }
 
         public void Initialize()
         {
@@ -55,8 +62,10 @@ namespace ProtonVPN.Service.Start
             IConfiguration config = new ConfigFactory().Config();
             new ConfigDirectories(config).Prepare();
 
-            ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterModule<ServiceModule>();
+            ContainerBuilder builder = new();
+            builder.RegisterModule<ServiceModule>()
+                   .RegisterModule<ApiModule>()
+                   .RegisterAssemblyModule<UpdateModule>();
             _container = builder.Build();
         }
 
@@ -65,16 +74,19 @@ namespace ProtonVPN.Service.Start
             IConfiguration config = Resolve<IConfiguration>();
             ILogger logger = Resolve<ILogger>();
 
-            logger.Info<AppServiceStartLog>($"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
+            logger.Info<AppServiceStartLog>(
+                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            InitCrashReporting();
             RegisterEvents();
 
             Resolve<LogCleaner>().Clean(config.ServiceLogFolder, 10);
             FixNetworkAdapters();
-            ServiceBase.Run(Resolve<VpnService>());
+
+            VpnService vpnService = Resolve<VpnService>();
+            ServiceBase.Run(vpnService);
+            vpnService.CancellationToken.WaitHandle.WaitOne();
 
             logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
         }
@@ -84,11 +96,6 @@ namespace ProtonVPN.Service.Start
             INetworkAdapterManager networkAdapterManager = Resolve<INetworkAdapterManager>();
             networkAdapterManager.DisableDuplicatedWireGuardAdapters();
             networkAdapterManager.EnableOpenVpnAdapters();
-        }
-
-        private void InitCrashReporting()
-        {
-            Resolve<IEventPublisher>().Init();
         }
 
         private void RegisterEvents()

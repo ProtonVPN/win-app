@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 // AssemblyCompany should be left empty as it is used by the .NET in forming
 // the folder path where user settings are saved.
@@ -13,7 +14,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("2.4.1.0")]
-[assembly: AssemblyFileVersion("2.4.1.0")]
+[assembly: AssemblyVersion("3.0.5.0")]
+[assembly: AssemblyFileVersion("3.0.5.0")]
 [assembly: ComVisible(false)]
 [assembly: AssemblyInformationalVersion("$AssemblyVersion")]
+[assembly: SupportedOSPlatform("windows")]

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -133,10 +133,10 @@
     <value>English</value>
   </data>
   <data name="Language_es-419" xml:space="preserve">
-    <value>Latinoamérica</value>
+    <value>Español (Latinoamérica)</value>
   </data>
   <data name="Language_es-ES" xml:space="preserve">
-    <value>Español, España</value>
+    <value>Español (España)</value>
   </data>
   <data name="Language_es-MX" xml:space="preserve">
     <value>Español, México</value>
@@ -154,7 +154,7 @@
     <value>Magyar</value>
   </data>
   <data name="Language_id-ID" xml:space="preserve">
-    <value>Bahasa, Indonesia</value>
+    <value>Bahasa (Indonesia)</value>
   </data>
   <data name="Language_it-IT" xml:space="preserve">
     <value>Italiano</value>
@@ -172,10 +172,10 @@
     <value>Polski</value>
   </data>
   <data name="Language_pt-BR" xml:space="preserve">
-    <value>Português, Brazil</value>
+    <value>Português (Brasil)</value>
   </data>
   <data name="Language_pt-PT" xml:space="preserve">
-    <value>Português, Portugal</value>
+    <value>Português (Portugal)</value>
   </data>
   <data name="Language_ro-RO" xml:space="preserve">
     <value>Română</value>
@@ -187,12 +187,15 @@
     <value>Türkçe</value>
   </data>
   <data name="Language_uk-UA" xml:space="preserve">
-    <value>Украї́нська</value>
+    <value>Українська</value>
   </data>
   <data name="Language_zh-CN" xml:space="preserve">
     <value>简体中文</value>
   </data>
   <data name="Language_zh-TW" xml:space="preserve">
     <value>繁體中文</value>
+  </data>
+  <data name="Language_be-BY" xml:space="preserve">
+    <value>Беларуская</value>
   </data>
 </root>

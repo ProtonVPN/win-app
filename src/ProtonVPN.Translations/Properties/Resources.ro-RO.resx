@@ -179,7 +179,7 @@
   </data>
   <data name="Account_btn_ManageSubscription">
     <value>Gestionare abonament</value>
-    <comment>The text on Manage subscription button in Account window (opens account management web page)</comment>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
     <value>Accesare conținut blocat</value>
@@ -264,7 +264,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
@@ -336,7 +336,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Deconectântu-vă din aplicație veți deconecta conexiunea VPN activă. Doriți să continuați?</value>
+    <value>Deconectându-vă din aplicație veți deconecta conexiunea VPN activă. Doriți să continuați?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -602,7 +602,7 @@
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
-    <value>Azerbaijan</value>
+    <value>Azerbaidjan</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
@@ -642,7 +642,7 @@
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL">
-    <value>Saint Barthélemy</value>
+    <value>Sfântul Bartolomeu</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM">
@@ -778,7 +778,7 @@
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM">
-    <value>Dominica</value>
+    <value>Republica Dominicană</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO">
@@ -830,7 +830,7 @@
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM">
-    <value>Micronesia</value>
+    <value>Micronezia</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO">
@@ -882,7 +882,7 @@
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN">
-    <value>Guinea</value>
+    <value>Guineea</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP">
@@ -910,7 +910,7 @@
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW">
-    <value>Guinea-Bissau</value>
+    <value>Guineea-Bissau</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY">
@@ -1002,7 +1002,7 @@
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG">
-    <value>Kyrgyzstan</value>
+    <value>Kârgâzstan</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH">
@@ -1014,7 +1014,7 @@
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM">
-    <value>Comoros</value>
+    <value>Comore</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN">
@@ -1050,7 +1050,7 @@
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC">
-    <value>Saint Lucia</value>
+    <value>Sfânta Lucia</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI">
@@ -1094,7 +1094,7 @@
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD">
-    <value>Moldova</value>
+    <value>Republica Moldova</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME">
@@ -1270,7 +1270,7 @@
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS">
-    <value>Palestine</value>
+    <value>Palestina</value>
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT">
@@ -1398,7 +1398,7 @@
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD">
-    <value>Chad</value>
+    <value>Ciad</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF">
@@ -1414,7 +1414,7 @@
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ">
-    <value>Tajikistan</value>
+    <value>Tadjikistan</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
@@ -1422,7 +1422,7 @@
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Timor-Leste</value>
+    <value>Timorul De Est</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
@@ -1558,7 +1558,8 @@
     <value>Acest pas va dura doar câteva minute. După aceasta veți putea să vă conectați și să vă protejați toate dispozitivele.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Vă mulțumim pentru trecerea la planul Professional/Visionary</value>
+    <value>Vă mulțumim pentru modernizare</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Unul din serviciile solicitate de Proton VPN (Motorul de filtrare de bază) nu rulează..&lt;LineBreak/&gt;
@@ -1626,7 +1627,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
     <value>Blocarea conexiunii vă protejează adresa IP blocând toate conexiunile. În caz de probleme puteți dezactiva blocarea conexiunilor.</value>
-    <comment>The text displayed in Disconnect modal window ifn disconnect occurred with Kill Switch turned on.</comment>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
     <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
@@ -1675,7 +1676,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Doriți să continuați?</value>
-    <comment>The text displayed in the login window modal when the user tries to close the app while Kill Switch is active or VPN is on.</comment>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
     <value>Închizând aplicația se va deconecta de la VPN.</value>
@@ -1693,7 +1694,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Ceasul sistemului pare să nu fie sincronizat, ceea ce ar putea împiedica conectarea cu succes a VPN-ului. Vedeți &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aici&lt;/Hyperlink&gt; pentru mai multe informații.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent Kill Switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>Cu blocarea permanentă a conexiunii, dacă nu există conexiune la VPN din orice motiv, nu veți putea accesa internetul.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Activare blocare permanentă conexiune?</value>
@@ -1711,7 +1712,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Upgrade</value>
+    <value>Modernizare</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1744,7 +1745,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
     <value>Blocarea conexiunii este activată. Actualizarea sau închiderea aplicației o va dezactiva.</value>
-    <comment>The error message displayed on the outdated app window when the app version is outdated and Kill Switch is enabled</comment>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
     <value>Conexiunea a fost dezactivată deoarece folosiți un server care nu suportă traficul de la persoană-la-persoană (P2P). P2P nu este suportat pe serverele gratuite. Folosiți un server P2P diferit.</value>
@@ -1759,18 +1760,6 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   <data name="Dialogs_Proxy_msg_ProxyDetected">
     <value>Proton VPN a detectat un server proxy configurat în rețeaua locală. Aplicația Proton VPN nu poate proteja traficul care trece prin acest proxy. Prin urmare conexiunea nu va fi protejată complet așa cum e de așteptat.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
-  </data>
-  <data name="Dialogs_Reboot_btn_Reboot">
-    <value>Restart</value>
-  </data>
-  <data name="Dialogs_Reboot_btn_SkipReboot">
-    <value>Continuare fără</value>
-  </data>
-  <data name="Dialogs_Reboot_msg">
-    <value>Pentru a evita orice eroare Proton VPN, vă recomandăm insistent să reporniți computerul pentru a actualiza mai întâi alte aplicații. Proton VPN va relua automat instalarea ulterior. Reporniți acum?</value>
-  </data>
-  <data name="Dialogs_Reboot_ttl">
-    <value>Calculatorul trebuie repornit</value>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
     <value>Vă prezentăm noua față împrospătată a lui Proton. Multe servicii, o singură misiune. Bun venit la un internet unde intimitatea este implicită. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Detalii&lt;/Hyperlink&gt;</value>
@@ -1874,6 +1863,9 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN nu s-a putut conecta deoarece adaptorul de rețea TUN este deja în uz. Deconectați toate VPN-urile active și încercați din nou. Alternativ, comutați la adaptorul TAP (puteți reveni la TUN în Setări avansate).</value>
   </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN nu s-a putut conecta deoarece un adaptor de rețea WireGuard este deja utilizat. Deconectați orice VPN activ și reîncercați. Alternativ, puteți schimba protocolul în „Setări avansate”.</value>
+  </data>
   <data name="Dialogs_btn_Cancel">
     <value>Anulare</value>
     <comment>The text on Cancel button in dialog windows</comment>
@@ -1894,7 +1886,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>De la serverul:</value>
@@ -1934,7 +1926,8 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Reparați instalarea.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill Switch</value>
+    <value>Blocare conexiune</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licența</value>
@@ -1945,7 +1938,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token împrospătare nevalid, reautentificați-vă.</value>
+    <value>Token de împrospătare nevalid, reconectați-vă.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1960,15 +1953,15 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Blocarea coenxiunii este activă</value>
-    <comment>The text displayed on the login window when user was force logged out while Kill Switch is active</comment>
+    <value>Blocarea conexiunii este activă</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
     <value>Parola</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Internet sigur oriunde</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2080,7 +2073,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
   </data>
   <data name="Map_lbl_SecureCore">
-    <value>Nucleu securizat</value>
+    <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
@@ -2090,7 +2083,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Nu mai arăta asta</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Detalii</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core oferă cel mai înalt nivel de securitate și confidențialitate, dar vă poate reduce viteza pe internet. Dacă aveți nevoie de mai multe performanțe, puteți dezactiva Secure Core.</value>
@@ -2153,6 +2146,10 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Abonamentul planului VPN a expirat</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Repornire</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Ce este nou</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
@@ -2163,7 +2160,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="Notifications_VpnState_msg_Connected">
     <value>CONECTAT LA {0}</value>
-    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name, {1} - move to new line, {2} - public IP address.</comment>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
     <value>DECONECTAT</value>
@@ -2226,38 +2223,6 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Eșuată</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Sincronizarea profilului a eșuat</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Se sincronizează</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Se sincronizează profilurile</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Suprascris</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sincronizat</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Modificările profilului s-au sincronizat acum {0} {1}.</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Nu sunt modificări ale profilului de sincronizat.</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Cel mai rapid server disponibil</value>
@@ -2376,10 +2341,6 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Creare profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sincronizare</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Depanare</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2399,10 +2360,6 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   <data name="Profiles_col_Protocol">
     <value>Protocol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Stare</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Serverele sunt în mentenanță.</value>
@@ -2458,9 +2415,11 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
     <value>Blocare conexiune oprită</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
     <value>Blocare conexiune pornită</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Aflați mai multe</value>
@@ -2476,6 +2435,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Blocare permanentă conexiune</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Redirecționare port oprită</value>
@@ -2493,16 +2453,50 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>MODERNIZARE</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Dezactivează accesul la internet când cade conexiunea VPN pentru a preveni divulgarea accidentală a adresei IP.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Navigați pe internet fără reclame și malware.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Reclame blocate</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Reclamă blocată</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Reclame blocate</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Reclamele de pe paginile web folosesc fișiere cookie și scripturi de urmărire pentru a vă identifica.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Date salvate</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Mărimea estimată de reclame, urmăritori și malware pe care NetShield le-a blocat.</value>
+    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Urmăritori opriți</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Urmăritor oprit</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Urmăritori opriți</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Urmăritorii sunt site-uri terțe care colectează, stochează și vă vând informațiile despre activitatea pe internet.</value>
+    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Dacă paginile web nu se încarcă, încercați cu NetShield dezactivat.</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Accelerați-vă lucrul și jocul online, permițând ca aplicațiile locale să aibă acces direct la internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Direcționați-vă cele mai importante date prin serverele noastre sigure din țările care respectă intimitatea.</value>
@@ -2534,7 +2528,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Server Plus</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2549,7 +2543,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>Server IP:</value>
+    <value>IP server:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
@@ -2611,7 +2605,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Proton VPN nu se poate conecta deoarece serverul RPC nu este disponibil în sistemul dvs. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Vedeți posibile soluțiil&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>Din nefericire acest server nu suportă WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Adăugare aplicație</value>
@@ -2809,6 +2803,14 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Conexiune</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Actualizări automate</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Verificare automată și instalare actualizări pentru Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Conectare la pornirea aplicației</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2843,7 +2845,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Settings_General_ttl">
-    <value>General</value>
+    <value>Generale</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2892,7 +2894,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
     <value>Blocare conexiune activată!</value>
-    <comment>The text displayed in the sidebar when connection dropped and Kill Switch is turned on</comment>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
     <value>Blocarea conexiunii blochează toate conexiunile pentru e preveni divulgarea datelor.</value>
@@ -2910,6 +2912,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>Locuri GRATUITE ({0})</value>
   </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Servere gratuite</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Serverele gratuite nu au limita de date sau viteză. Viteza ar putea fi limitată doar datorită numărului mare de utilizatori conectați.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Informații</value>
+  </data>
+  <data name="Sidebar_Countries_OurPartners">
+    <value>Partenerii noștri</value>
+  </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Locuri PLUS ({0})</value>
   </data>
@@ -2920,7 +2934,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Servere BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Servere Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>Servere INTERNE</value>
@@ -2957,7 +2971,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Detalii</value>
@@ -2969,7 +2983,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Aceste servere oferă cea mai bună performanță pentru BitTorrent și partajarea de fișiere.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
-    <value>Plus</value>
+    <value>PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting">
     <value>Smart Routing</value>
@@ -2990,7 +3004,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Direcționează traficul de internet prin rețeaua Tor. Mai lent, dar mai privat.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Creare profil</value>
@@ -3102,8 +3116,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Accesați peste 1700 de servere sigure în peste 60 de țări.</value>
-    <comment>The message disaplyed in plus upgrade modal window</comment>
+    <value>Access over {0} secure servers in {1} countries</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Ce este NAT moderat?</value>
@@ -3193,11 +3207,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnTcp">
-    <value>OpenVPN - (TCP)</value>
+    <value>OpenVPN (TCP)</value>
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_OpenVpnUdp">
-    <value>OpenVPN - (UDP)</value>
+    <value>OpenVPN (UDP)</value>
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
   <data name="VpnProtocol_val_Smart">
@@ -3233,7 +3247,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Window_btn_Disable">
     <value>Dezactivare</value>
-    <comment>The button displayed when Kill Switch is enabled and in the login window or in the connection status in the sidebar when disconnected</comment>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
     <value>Salvare</value>
@@ -3250,8 +3264,5 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="Connecting_lbl_ConnectingTo_2">
-    <value></value>
   </data>
 </root>

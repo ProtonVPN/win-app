@@ -74,18 +74,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
-            <Style x:Key="TroubleshootButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="Margin" Value="10,0,0,0"/>
-                <Setter Property="Visibility" Value="Collapsed"/>
-                <Setter Property="Command" Value="{Binding TroubleshootCommand}"/>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding ProfileSync.SyncStatus}" Value="{x:Static coreProfiles:ProfileSyncStatus.Failed}">
-                        <Setter Property="Visibility" Value="Visible"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
             <Style x:Key="LineBorder" TargetType="Border">
                 <Setter Property="Padding" Value="20,10"/>
                 <Setter Property="Background" Value="Transparent"/>
@@ -103,17 +91,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Grid Style="{StaticResource ListHeading}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="VpnProtocol"/>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Style="{StaticResource HeadingLabel}" Padding="25,0,0,0" Text="{translations:Loc Profiles_col_Profile}"/>
-                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Status}"/>
-                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Connection}"/>
-                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Protocol}"/>
-                <TextBlock Grid.Column="4" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Action}"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Connection}"/>
+                <TextBlock Grid.Column="2" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Protocol}"/>
+                <TextBlock Grid.Column="3" Style="{StaticResource HeadingLabel}" Padding="30,0,0,0" Text="{translations:Loc Profiles_col_Action}"/>
             </Grid>
         </DockPanel>
 
@@ -125,7 +111,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="VpnProtocol"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
@@ -144,21 +129,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Foreground="{StaticResource TextNormBrushColor}"
                                            Content="{Binding Text}"/>
                                 </StackPanel>
-                                <Label Grid.Column="2"
+                                <Label Grid.Column="1"
                                        Padding="20,0"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Stretch"
                                        FontSize="16"
                                        Foreground="{StaticResource TextNormBrushColor}"
                                        Content="{Binding Description}"/>
-                                <Label Grid.Column="3"
+                                <Label Grid.Column="2"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        FontSize="16"
                                        Padding="20,5"
                                        Foreground="{StaticResource TextHintBrushColor}"
                                        Content="{Binding VpnProtocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
-                                <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="20,0,5,0">
+                                <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="20,0,5,0">
                                     <Button Style="{StaticResource RowButton}"
                                             VerticalAlignment="Center"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
@@ -173,7 +158,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Connection"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="VpnProtocol"/>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Action"/>
@@ -190,29 +174,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            TextTrimming="CharacterEllipsis"
                                            Text="{Binding Name}"/>
                                 </DockPanel>
-                                <DockPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0">
-                                    <ContentPresenter Margin="0,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                      Content="{Binding SyncStatus}"
-                                                      ContentTemplate="{StaticResource ProfileSyncStatusImage}"/>
-                                    <Label VerticalAlignment="Center"
-                                           HorizontalAlignment="Stretch"
-                                           FontSize="16"
-                                           Foreground="{StaticResource TextHintBrushColor}"
-                                           Content="{Binding SyncStatus, Converter={StaticResource EnumToDisplayTextConverter}}"/>
-                                </DockPanel>
-                                <profiles:ProfileConnectionView Grid.Column="2"
+                                <profiles:ProfileConnectionView Grid.Column="1"
                                                                 Margin="20,0"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Stretch"
                                                                 DataContext="{Binding ConnectionName}"
                                                                 FontSize="16"/>
-                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                     <Label Margin="20,0"
                                            Style="{StaticResource Protocol}"
                                            Content="{Binding VpnProtocol, Converter={StaticResource EnumToDisplayTextConverter}}"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="20,0,5,0">
+                                <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="20,0,5,0">
                                     <Button Style="{StaticResource RowButton}"
                                             AutomationProperties.AutomationId="{Binding ConnectAutomationId}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type resource:BaseModalWindow}}, Path=DataContext.ConnectCommand}" CommandParameter="{Binding}">
@@ -265,34 +239,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ScrollViewer>
 
         <DockPanel Background="{StaticResource BackgroundWeakBrushColor}" VerticalAlignment="Bottom">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <DockPanel Grid.Row="0" Grid.Column="0" Margin="25,0,0,0" VerticalAlignment="Center">
-                    <ContentPresenter Name="SyncStatus"
-                                      Content="{Binding ProfileSync.SyncStatus}" 
-                                      ContentTemplate="{StaticResource ProfileSyncStatusImage}"/>
-                    <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" MaxHeight="50"
-                               FontSize="16" Foreground="{StaticResource TextHintBrushColor}"
-                               Text="{Binding ProfileSync.SyncStatusMessage}"
-                               ToolTip="{Binding ProfileSync.SyncStatusMessage}"
-                               TextTrimming="CharacterEllipsis"/>
-                    <Button Style="{StaticResource TroubleshootButton}" Content="{translations:Loc Profiles_btn_Troubleshoot}" />
-                </DockPanel>
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SecondaryModalButton}"
-                            Margin="0,10,10,10"
-                            Command="{Binding ProfileSync.SyncCommand}"
-                            Content="{translations:Loc Profiles_btn_Sync}"/>
-                    <Button x:Name="NewProfileButton"
-                            Margin="0,10,10,10"
-                            Style="{StaticResource PrimaryModalButton}"
-                            Command="{Binding CreateProfileCommand}"
-                            Content="{translations:Loc Profiles_btn_Create}"/>
-                </StackPanel>
-            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="NewProfileButton"
+                        Margin="0,10,10,10"
+                        Style="{StaticResource PrimaryModalButton}"
+                        Command="{Binding CreateProfileCommand}"
+                        Content="{translations:Loc Profiles_btn_Create}"/>
+            </StackPanel>
         </DockPanel>
     </Grid>
 </resource:BaseModalWindow>

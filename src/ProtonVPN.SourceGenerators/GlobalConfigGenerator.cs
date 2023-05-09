@@ -35,7 +35,6 @@ namespace ProtonVPN.SourceGenerators
         {
             string sentryDsn = Environment.GetEnvironmentVariable("SENTRY_DSN_V2");
             string internalReleaseUrl = Environment.GetEnvironmentVariable("INTERNAL_RELEASE_URL");
-            string internalReleaseOldUrl = Environment.GetEnvironmentVariable("INTERNAL_RELEASE_OLD_URL");
 
             context.AddSource("GlobalConfig.g.cs", SourceText.From($@"
 namespace ProtonVPN.Common.Configuration
@@ -44,7 +43,6 @@ namespace ProtonVPN.Common.Configuration
     {{
         public const string SentryDsn = ""{sentryDsn}"";
         public const string InternalReleaseUpdateUrl = ""{internalReleaseUrl}"";
-        public const string InternalReleaseOldUpdateUrl = ""{internalReleaseOldUrl}"";
     }}
 }}", Encoding.UTF8));
         }
