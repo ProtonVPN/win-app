@@ -44,7 +44,13 @@ namespace ProtonVPN.Modals.Upsell
             TryClose(true);
         }
 
-        public string UpsellCountriesTitle
-            => Translation.Format("Upsell_Countries_Title", SERVERS_COUNT_ROUNDED_DOWN, COUNTRIES_COUNT);
+        public string UpsellCountriesTitle => GetUpsellCountriesTitleTranslation();
+
+        private string GetUpsellCountriesTitleTranslation()
+        {
+            string nSecureServers = string.Format(Translation.GetPlural("Secure_Servers_lbl", SERVERS_COUNT_ROUNDED_DOWN), SERVERS_COUNT_ROUNDED_DOWN);
+            string nCountries = string.Format(Translation.GetPlural("Countries_lbl", COUNTRIES_COUNT), COUNTRIES_COUNT);
+            return Translation.Format("Upsell_Countries_Title", nSecureServers, nCountries);
+        }
     }
 }

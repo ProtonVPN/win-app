@@ -3074,8 +3074,20 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
+    <value>Aceda a mais de {0} em {1}.</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+  </data>
+  <data name="Secure_Servers_lbl_One" xml:space="preserve">
+    <value>{0} servidor seguro</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other" xml:space="preserve">
+    <value>{0} servidores seguros</value>
+  </data>
+  <data name="Countries_lbl_One" xml:space="preserve">
+    <value>{0} país</value>
+  </data>
+  <data name="Countries_lbl_Other" xml:space="preserve">
+    <value>{0} países</value>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>O que é o Moderate NAT?</value>

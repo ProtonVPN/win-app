@@ -2362,10 +2362,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN connections</value>
     <comment>The text displayed in Account window</comment>
   </data>
-  <data name="Account_lbl_Countries_Other" xml:space="preserve">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
-    <comment>The text displayed in Account window</comment>
-  </data>
   <data name="Account_lbl_HighestSpeed" xml:space="preserve">
     <value>&lt;Bold&gt;Highest&lt;/Bold&gt; speed (up to 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
@@ -2997,8 +2993,20 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title" xml:space="preserve">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Access over {0} in {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
+  </data>
+  <data name="Secure_Servers_lbl_One" xml:space="preserve">
+    <value>{0} secure server</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other" xml:space="preserve">
+    <value>{0} secure servers</value>
+  </data>
+  <data name="Countries_lbl_One" xml:space="preserve">
+    <value>{0} country</value>
+  </data>
+  <data name="Countries_lbl_Other" xml:space="preserve">
+    <value>{0} countries</value>
   </data>
   <data name="Upsell_Countries_BlockAds" xml:space="preserve">
     <value>Block ads and malware with NetShield</value>
@@ -3203,6 +3211,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Account_lbl_Countries_One" xml:space="preserve">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; country</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Countries_Other" xml:space="preserve">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One" xml:space="preserve">
