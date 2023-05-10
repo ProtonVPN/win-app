@@ -20,13 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Strings\**\*.resw">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Compile Include="..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    <EmbeddedResource Include="Strings\en-US\Resources.resw" />
+    <EmbeddedResource Include="Strings\fr-FR\Resources.resw" />
   </ItemGroup>
 
   <ItemGroup>
