@@ -89,7 +89,7 @@ namespace ProtonVPN.IntegrationTests
             builder.Register(_ =>
             {
                 IFileDownloadHttpClientFactory httpClients = Substitute.For<IFileDownloadHttpClientFactory>();
-                httpClients.GetFileDownloadHttpClient().Returns(new WrappedHttpClient(httpClient));
+                httpClients.GetHttpClientWithTlsPinning().Returns(new WrappedHttpClient(httpClient));
                 return httpClients;
             }).As<IFileDownloadHttpClientFactory>().SingleInstance();
             builder.RegisterAssemblyModule<AnnouncementsModule>();

@@ -17,12 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Net.Http;
+using System.Net;
+using System.Net.Http;
 
-namespace ProtonVPN.Api.Contracts
+namespace ProtonVPN.Api.Handlers
 {
-    public interface INoDnsFileDownloadHttpClientFactory
+    public abstract class CertificateHandlerBase : HttpClientHandler
     {
-        IHttpClient GetHttpClient();
+        protected CertificateHandlerBase()
+        {
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+        }
     }
 }

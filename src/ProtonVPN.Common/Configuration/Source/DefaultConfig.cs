@@ -304,17 +304,13 @@ namespace ProtonVPN.Common.Configuration.Source
                         },
                         new()
                         {
-                            Name = "download.protonvpn.net",
-                            PublicKeyHashes = new HashSet<string>(),
-                            Enforce = false,
-                            SendReport = false,
-                        },
-                        new()
-                        {
                             Name = "[InternalReleaseHost]", //this is replaced by CI script
-                            PublicKeyHashes = new HashSet<string>(),
-                            Enforce = false,
-                            SendReport = false,
+                            PublicKeyHashes = new HashSet<string>
+                            {
+                                "C4SMuz+h4+fTsxOKLXRKqrR9rAzk9bknu+hlC4QYmh0=",
+                            },
+                            Enforce = true,
+                            SendReport = true,
                         },
                         new()
                         {

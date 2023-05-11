@@ -18,25 +18,20 @@
  */
 
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ProtonVPN.Api.Handlers.TlsPinning
 {
-    /// <summary>
-    /// Enforces SSL certificate validation.
-    /// </summary>
-    public class CertificateHandler : HttpClientHandler
+    public class TlsPinnedCertificateHandler : CertificateHandlerBase
     {
         private readonly ICertificateValidator _certificateValidator;
 
-        public CertificateHandler(ICertificateValidator certificateValidator)
+        public TlsPinnedCertificateHandler(ICertificateValidator certificateValidator)
         {
             _certificateValidator = certificateValidator;
             ServerCertificateCustomValidationCallback = CertificateCustomValidationCallback;
-            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
         }
 
         protected bool CertificateCustomValidationCallback(HttpRequestMessage request, X509Certificate certificate,

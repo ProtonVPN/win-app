@@ -17,19 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
+using System.Net.Http;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
-namespace ProtonVPN.Update.Config
+namespace ProtonVPN.Api.Handlers
 {
-    internal static class AppUpdateConfigExtensions
+    public class SslCertificateHandler : CertificateHandlerBase
     {
-        public static void Validate(this IAppUpdateConfig config)
+        public SslCertificateHandler()
         {
-            Ensure.NotNull(config.FeedHttpClient, nameof(config.FeedHttpClient));
-            Ensure.NotNull(config.FileHttpClient, nameof(config.FileHttpClient));
-            Ensure.NotNull(config.FeedUriProvider, nameof(config.FeedUriProvider));
-            Ensure.NotEmpty(config.UpdatesPath, nameof(config.UpdatesPath));
-            Ensure.NotNull(config.CurrentVersion, nameof(config.CurrentVersion));
+            ServerCertificateCustomValidationCallback = CertificateCustomValidationCallback;
+        }
+
+        protected bool CertificateCustomValidationCallback(HttpRequestMessage request, X509Certificate certificate,
+            X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return sslPolicyErrors == SslPolicyErrors.None;
         }
     }
 }

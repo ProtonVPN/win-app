@@ -17,19 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.OS.Net.Http;
 
-namespace ProtonVPN.Update.Config
+namespace ProtonVPN.Api.Contracts
 {
-    internal static class AppUpdateConfigExtensions
+    public interface IUpdateHttpClientFactory
     {
-        public static void Validate(this IAppUpdateConfig config)
-        {
-            Ensure.NotNull(config.FeedHttpClient, nameof(config.FeedHttpClient));
-            Ensure.NotNull(config.FileHttpClient, nameof(config.FileHttpClient));
-            Ensure.NotNull(config.FeedUriProvider, nameof(config.FeedUriProvider));
-            Ensure.NotEmpty(config.UpdatesPath, nameof(config.UpdatesPath));
-            Ensure.NotNull(config.CurrentVersion, nameof(config.CurrentVersion));
-        }
+        IHttpClient GetFeedHttpClient();
+        IHttpClient GetUpdateDownloadHttpClient();
     }
 }
