@@ -209,9 +209,6 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; połączenia VPN</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>w &lt;Bold&gt;{0}&lt;/Bold&gt; krajach</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>w &lt;Bold&gt;{0}&lt;/Bold&gt; kraju</value>
   </data>
@@ -219,6 +216,9 @@
     <value>w &lt;Bold&gt;{0}&lt;/Bold&gt; krajach</value>
   </data>
   <data name="Account_lbl_Countries_Many">
+    <value>w &lt;Bold&gt;{0}&lt;/Bold&gt; krajach</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
     <value>w &lt;Bold&gt;{0}&lt;/Bold&gt; krajach</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -552,6 +552,18 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>nie powiodło się</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} kraju</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} krajach</value>
+  </data>
+  <data name="Countries_lbl_Many">
+    <value>{0} krajach</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} krajach</value>
   </data>
   <data name="Country_val_AD">
     <value>Andora</value>
@@ -2516,6 +2528,18 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} bezpiecznego serwera</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} bezpiecznych serwerów</value>
+  </data>
+  <data name="Secure_Servers_lbl_Many">
+    <value>{0} bezpiecznych serwerów</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} bezpiecznych serwerów</value>
+  </data>
   <data name="ServerType_val_None">
     <value>Standardowy</value>
     <comment>The server type in Profile window</comment>
@@ -3134,8 +3158,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Dostęp do ponad {0} bezpiecznych serwerów w {1} krajach</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Dostęp do ponad {0} w {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Co to jest umiarkowany NAT?</value>

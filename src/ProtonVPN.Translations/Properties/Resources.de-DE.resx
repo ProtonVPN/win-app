@@ -203,11 +203,11 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-Verbindungen</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; Ländern</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; Land</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; Ländern</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
     <value>Aktuelles Abonnement</value>
@@ -528,6 +528,12 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>Verbindung ist fehlgeschlagen</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} Land</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} Länder</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -2213,15 +2219,15 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Bitte wählen Sie eine Farbe</value>
+    <value>Bitte wähle eine Farbe</value>
     <comment>The error message displayed in Profile window when color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Bitte wählen Sie ein Land</value>
+    <value>Bitte wähle ein Land</value>
     <comment>The error message displayed in Profile window when country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Bitte wählen Sie einen Profilnamen</value>
+    <value>Bitte wähle einen Profilnamen</value>
     <comment>The error message displayed in Profile window when profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
@@ -2339,7 +2345,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>Server in diesem Land sind aufgrund von Wartungsarbeiten derzeit offline. Bitte wählen Sie ein anderes Land.</value>
+    <value>Server in diesem Land sind aufgrund von Wartungsarbeiten derzeit offline. Bitte wähle ein anderes Land.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
@@ -2347,7 +2353,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Es gibt zurzeit keine Server, die auf Ihre Auswahl zutreffen. Bitte wählen Sie eine andere Option aus.</value>
+    <value>Es gibt zurzeit keine Server, die auf deine Auswahl zutreffen. Bitte wähle eine andere Option aus.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
@@ -2473,6 +2479,12 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} sicherer Server</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} sicherer Server</value>
   </data>
   <data name="ServerType_val_None">
     <value>Standard</value>
@@ -3074,8 +3086,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Zugriff auf über {0} sichere Server in {1} Ländern</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Greife auf über {0} in {1} zu.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Was ist Moderates NAT?</value>

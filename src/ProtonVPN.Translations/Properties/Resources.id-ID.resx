@@ -517,6 +517,9 @@
     <value>sambungan gagal</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} negara</value>
+  </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
     <comment>The name of AD country</comment>
@@ -2453,6 +2456,9 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} server aman</value>
+  </data>
   <data name="ServerType_val_None">
     <value>Standar</value>
     <comment>The server type in Profile window</comment>
@@ -3044,8 +3050,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Akses lebih dari {0} server aman di {1} negara</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Akses lebih dari {0} di {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Apa itu NAT Moderat?</value>

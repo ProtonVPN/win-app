@@ -203,11 +203,11 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN connections</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; country</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
     <value>Current plan</value>
@@ -528,6 +528,12 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>connection has failed</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} country</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} countries</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -2474,6 +2480,12 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} secure server</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} secure servers</value>
+  </data>
   <data name="ServerType_val_None">
     <value>Standard</value>
     <comment>The server type in Profile window</comment>
@@ -3075,7 +3087,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_Countries_Title">
     <value>Access over {0} in {1}.</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>What is Moderate NAT?</value>

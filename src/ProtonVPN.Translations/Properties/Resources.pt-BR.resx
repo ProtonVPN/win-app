@@ -203,11 +203,11 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; conexões VPN</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>em &lt;Bold&gt;{0}&lt;/Bold&gt; países</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>em &lt;Bold&gt;{0}&lt;/Bold&gt; país</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>em &lt;Bold&gt;{0}&lt;/Bold&gt; países</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
     <value>Plano atual</value>
@@ -281,7 +281,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Sua solicitação falhou. Por favor, tente novamente.</value>
+    <value>Sua solicitação falhou. Tente novamente.</value>
   </data>
   <data name="App_mnu_About">
     <value>Sobre</value>
@@ -528,6 +528,12 @@ Informações sobre a tabela de roteamento</value>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>conexão falhou</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} país</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} países</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -2411,16 +2417,16 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
-    <value>Encaminhamento de Porta Desligado</value>
+    <value>Encaminhamento de porta desligado</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOn">
-    <value>Encaminhamento de portas Ativado</value>
+    <value>Encaminhamento de portas ativado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core ativado</value>
+    <value>Secure Core desligado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core desativado</value>
+    <value>Secure Core ativado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>ATUALIZAR</value>
@@ -2473,6 +2479,12 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} servidor seguro</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} servidores seguros</value>
   </data>
   <data name="ServerType_val_None">
     <value>Padrão</value>
@@ -3074,8 +3086,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Acesse mais de {0} servidores seguros em {1} países</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Acesse mais de {0} em {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>O que é NAT moderado?</value>
