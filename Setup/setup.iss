@@ -254,6 +254,7 @@ Source: "..\src\bin\CommunityToolkit.Mvvm.dll"; DestDir: "{app}\{#VersionFolder}
 Source: "..\src\bin\CommunityToolkit.WinUI.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\CommunityToolkit.WinUI.UI.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\CommunityToolkit.WinUI.UI.Controls.Layout.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\CommunityToolkit.WinUI.UI.Controls.Primitives.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
 Source: "..\src\bin\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Microsoft.Toolkit.Uwp.Notifications.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
