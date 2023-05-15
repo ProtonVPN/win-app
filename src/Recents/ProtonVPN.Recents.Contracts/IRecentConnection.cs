@@ -17,17 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Connection.Contracts.Models.Intents;
+
 namespace ProtonVPN.Recents.Contracts;
 
 public interface IRecentConnection
 {
-    public string? Server { get; set; }
+    IConnectionIntent ConnectionIntent { get; }
 
-    public string? ExitCountryCode { get; set; }
-
-    public string? EntryCountryCode { get; set; }
-
-    public string? City { get; set; }
-
-    public bool IsPinned { get; set; }
+    bool IsPinned { get; set; }
 }

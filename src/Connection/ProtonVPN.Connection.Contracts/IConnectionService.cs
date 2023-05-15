@@ -17,11 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.ConnectIntent;
+using ProtonVPN.Connection.Contracts.Enums;
+using ProtonVPN.Connection.Contracts.Models;
+using ProtonVPN.Connection.Contracts.Models.Intents;
 
-public class SecureCoreConnectIntent : ConnectIntent
+namespace ProtonVPN.Connection.Contracts;
+
+public interface IConnectionService
 {
-    public string EntryCountry { get; set; }
+    ConnectionStatus ConnectionStatus { get; }
 
-    public string ExitCountry { get; set; }
+    Task ConnectAsync(IConnectionIntent? connectionIntent);
+
+    Task CancelConnectionAsync();
+
+    Task DisconnectAsync();
+
+    ConnectionDetails? GetConnectionDetails();
 }

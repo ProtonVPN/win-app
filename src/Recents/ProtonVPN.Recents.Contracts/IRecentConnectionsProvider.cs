@@ -21,5 +21,13 @@ namespace ProtonVPN.Recents.Contracts;
 
 public interface IRecentConnectionsProvider
 {
-    IReadOnlyList<IRecentConnection> GetRecentConnections();
+    IOrderedEnumerable<IRecentConnection> GetRecentConnections();
+
+    IRecentConnection? GetMostRecentConnection();
+
+    void Pin(IRecentConnection recentConnection);
+
+    void Unpin(IRecentConnection recentConnection);
+
+    void Remove(IRecentConnection recentConnection);
 }

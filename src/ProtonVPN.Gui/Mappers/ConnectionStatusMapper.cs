@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Gui.Enums;
+using ProtonVPN.Connection.Contracts.Enums;
 
 namespace ProtonVPN.Gui.Mappers;
 

@@ -17,6 +17,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <OutputPath>..\bin</OutputPath>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="UI\Home\VpnStatus\**" />
@@ -61,6 +62,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Connection\ProtonVPN.Connection.Contracts\ProtonVPN.Connection.Contracts.csproj" />
+    <ProjectReference Include="..\Connection\ProtonVPN.Connection.Installers\ProtonVPN.Connection.Installers.csproj" />
     <ProjectReference Include="..\Recents\ProtonVPN.Recents.Installers\ProtonVPN.Recents.Installers.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Common.UI\ProtonVPN.Common.UI.csproj" />
     <ProjectReference Include="..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
@@ -80,5 +83,9 @@
   
   <ItemGroup>
     <PRIResource Remove="UI\Home\VpnStatus\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
 </Project>

@@ -24,13 +24,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>
 
         <Style TargetType="controls:HeaderedContentControl">
             <Setter Property="Padding" Value="8,0" />
-            <Setter Property="Width" Value="94" />
+            <Setter Property="MinWidth" Value="94" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="controls:HeaderedContentControl">
@@ -47,8 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Foreground="{StaticResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                       TextAlignment="Center"
-                                       TextWrapping="WrapWholeWords" />
+                                       TextAlignment="Center" />
                         </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
@@ -61,10 +61,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            MaximumRowsOrColumns="3"
                            Orientation="Horizontal">
         <controls:HeaderedContentControl Content="{x:Bind ViewModel.NumberOfTrackersStopped}"
-                                         Header="Trackers stopped" />
+                                         Header="{x:Bind ViewModel.Localizer.Get('Home_NetShield_TrackersStopped')}" />
         <controls:HeaderedContentControl Content="{x:Bind ViewModel.NumberOfAdsBlocked}"
-                                         Header="Ads blocked" />
+                                         Header="{x:Bind ViewModel.Localizer.Get('Home_NetShield_AdsBlocked')}" />
         <controls:HeaderedContentControl Content="{x:Bind ViewModel.DataSaved}"
-                                         Header="Data saved" />
+                                         Header="{x:Bind ViewModel.Localizer.Get('Home_NetShield_DataSaved')}" />
     </VariableSizedWrapGrid>
 </UserControl>

@@ -27,7 +27,49 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       x:Name="PageArea"
       mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
+    <StackPanel x:Name="ContentArea"
+                Orientation="Vertical">
+        <Border Margin="0,0,0,24"
+                Padding="24,16"
+                x:DefaultBindMode="TwoWay"
+                BorderBrush="{StaticResource BorderWeakColorBrush}"
+                BorderThickness="1">
+
+            <StackPanel Orientation="Vertical"
+                        Spacing="12">
+                <TextBox Header="Exit Country:"
+                         MaxLength="2"
+                         PlaceholderText="Country code"
+                         Text="{x:Bind ViewModel.ExitCountryCode}" />
+                <TextBox Header="City/State:"
+                         IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
+                         PlaceholderText="City/State name"
+                         Text="{x:Bind ViewModel.CityState}" />
+                <TextBox Header="Server:"
+                         IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.CityState), Mode=OneWay}"
+                         PlaceholderText="Server number"
+                         Text="{x:Bind ViewModel.ServerNumber}" />
+
+                <StackPanel Orientation="Horizontal"
+                            Spacing="32">
+                    <ComboBox Width="160"
+                              Header="Features:"
+                              ItemsSource="{x:Bind ViewModel.Features, Mode=OneTime}"
+                              SelectedItem="{x:Bind ViewModel.SelectedFeature}" />
+                    <TextBox Width="160"
+                             Header="Entry Country:"
+                             IsEnabled="{x:Bind ViewModel.IsSecureCore, Mode=OneWay}"
+                             MaxLength="2"
+                             PlaceholderText="Country code"
+                             Text="{x:Bind ViewModel.EntryCountryCode}" />
+                </StackPanel>
+
+                <Button Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
+                        Content="Connect"
+                        Margin="0,8,0,0"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+            </StackPanel>
+        </Border>
         <ItemsControl ItemsSource="{x:Bind ViewModel.Countries}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -43,5 +85,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+    </StackPanel>
 </Page>

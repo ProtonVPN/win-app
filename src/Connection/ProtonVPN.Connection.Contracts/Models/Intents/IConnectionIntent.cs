@@ -17,9 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.ConnectIntent;
+using ProtonVPN.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Connection.Contracts.Models.Intents.Locations;
 
-public class CountryConnectIntent : ConnectIntent
+namespace ProtonVPN.Connection.Contracts.Models.Intents;
+
+public interface IConnectionIntent
 {
-    public string Country { get; set; }
+    ILocationIntent? Location { get; }
+
+    IFeatureIntent? Feature { get; }
 }

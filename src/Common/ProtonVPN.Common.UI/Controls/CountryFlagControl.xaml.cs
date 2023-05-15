@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -45,13 +47,6 @@ public sealed partial class CountryFlagControl
     public static readonly DependencyProperty IsCompactProperty =
         DependencyProperty.Register(nameof(IsCompact), typeof(bool), typeof(CountryFlagControl), new PropertyMetadata(default, OnIsCompactPropertyChanged));
 
-    public CountryFlagControl()
-    {
-        InitializeComponent();
-
-        UpdateCountryFlag();
-    }
-
     public string ExitCountryCode
     {
         get => (string)GetValue(ExitCountryCodeProperty);
@@ -76,20 +71,33 @@ public sealed partial class CountryFlagControl
         set => SetValue(IsCompactProperty, value);
     }
 
-    private static void OnExitCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    public CountryFlagControl()
+    {
+        InitializeComponent();
+    }
+
+    protected override async void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        InvalidateFlagsLayout();
+        await UpdateCountryFlagAsync();
+    }
+
+    private static async void OnExitCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is CountryFlagControl control)
         {
-            control.UpdateCountryFlag();
+            await control.UpdateCountryFlagAsync();
         }
     }
 
-    private static void OnEntryCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static async void OnEntryCountryCodePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is CountryFlagControl control)
         {
-            control.UpdateEntryCountryFlag();
             control.InvalidateFlagsLayout();
+            await control.UpdateEntryCountryFlagAsync();
         }
     }
 
@@ -129,25 +137,29 @@ public sealed partial class CountryFlagControl
         VisualStateManager.GoToState(this, flagLayoutVisualState, false);
     }
 
-    private void UpdateCountryFlag()
+    private async Task UpdateCountryFlagAsync()
     {
-        PART_ExitCountryFlag.Source = GetImageSource(ExitCountryCode);
+        PART_ExitCountryFlag.Source = await GetImageSourceAsync(ExitCountryCode);
     }
 
-    private void UpdateEntryCountryFlag()
+    private async Task UpdateEntryCountryFlagAsync()
     {
-        PART_EntryCountryFlag.Source = GetImageSource(EntryCountryCode);
+        PART_EntryCountryFlag.Source = await GetImageSourceAsync(EntryCountryCode);
     }
 
-    private SvgImageSource GetImageSource(string countryCode)
+    private async Task<SvgImageSource> GetImageSourceAsync(string countryCode)
     {
         if (string.IsNullOrEmpty(countryCode))
         {
             countryCode = FLAG_ASSETS_FASTEST;
         }
+        else
+        {
+            countryCode = countryCode.ToUpperInvariant();
+        }
 
-        return GetFlagResource(GetFlagResourceName(countryCode)) ??
-               GetFlagResource(GetFlagResourceName(FLAG_ASSETS_PLACEHOLDER));
+        return await GetFlagResourceAsync(GetFlagResourceName(countryCode)) ??
+               await GetFlagResourceAsync(GetFlagResourceName(FLAG_ASSETS_PLACEHOLDER));
     }
 
     private string GetFlagResourceName(string countryCode)
@@ -155,13 +167,20 @@ public sealed partial class CountryFlagControl
         return $"ProtonVPN.Common.UI.Assets.Flags.{countryCode}{FLAG_ASSETS_FILE_EXTENSION}";
     }
 
-    private SvgImageSource GetFlagResource(string resourceName)
+    private async Task<SvgImageSource> GetFlagResourceAsync(string resourceName)
     {
         using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+
         if (stream != null)
         {
             SvgImageSource svgImageSource = new();
-            svgImageSource.SetSourceAsync(stream.AsRandomAccessStream());
+
+            SvgImageSourceLoadStatus status = await svgImageSource.SetSourceAsync(stream.AsRandomAccessStream());
+            if (status != SvgImageSourceLoadStatus.Success)
+            {
+                return null;
+            }
+
             return svgImageSource;
         }
 
