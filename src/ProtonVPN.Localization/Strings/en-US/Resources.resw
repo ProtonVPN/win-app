@@ -117,6 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Common_Actions_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Common_Actions_Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="Common_Actions_Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="Common_Actions_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Connection_Intent_City_Server" xml:space="preserve">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the id of the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Free_Server" xml:space="preserve">
+    <value>Server #{0}</value>
+    <comment>Name of the server. {0} is a placeholder for the id of the server (eg. Server #30)</comment>
+  </data>
   <data name="Connection_Via_SecureCore" xml:space="preserve">
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
@@ -1131,8 +1151,53 @@
     <value>Unknown</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
+    <value>Browsing safely from</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
+    <value>Connecting to...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
+    <value>Last connected to</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
+    <value>Recommended</value>
+  </data>
+  <data name="Home_Help_Title" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
+    <value>Ads\nblocked</value>
+    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_DataSaved" xml:space="preserve">
+    <value>Data\nsaved</value>
+    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
+    <value>Trackers\nstopped</value>
+    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
   <data name="Home_Page_Title" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Home_Recents_Pin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="Home_Recents_Title" xml:space="preserve">
+    <value>Recents</value>
+  </data>
+  <data name="Home_Recents_Unpin" xml:space="preserve">
+    <value>Unpin</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
+    <value>Protecting your digital identity</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
+    <value>You're unprotected</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
+    <value>Protected</value>
   </data>
   <data name="Settings_Connection" xml:space="preserve">
     <value>Connection</value>

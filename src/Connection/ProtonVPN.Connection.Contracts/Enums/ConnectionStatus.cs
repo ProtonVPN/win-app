@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.ConnectIntent;
+namespace ProtonVPN.Connection.Contracts.Enums;
 
-public class CityConnectIntent : ConnectIntent
+public enum ConnectionStatus
 {
-    public string Country { get; set; }
-
-    public string City { get; set; }
+    Disconnected,
+    Connecting,
+    Connected
 }

@@ -122,5 +122,15 @@ namespace ProtonVPN.Common.Extensions
 
             return 0;
         }
+
+        public static string FormatIfNotEmpty(this string value, string format)
+        {
+            if (value.IsNullOrEmpty())
+            {
+                return value;
+            }
+
+            return string.Format(format, value);
+        }
     }
 }

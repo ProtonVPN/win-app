@@ -40,6 +40,7 @@ using ProtonVPN.Gui.UI.Settings;
 using ProtonVPN.Gui.UI.Settings.Pages;
 using ProtonVPN.Gui.UI.Settings.Pages.Advanced;
 using ProtonVPN.Recents.Installers;
+using ProtonVPN.Connection.Installers;
 using ProtonVPN.Localization;
 
 namespace ProtonVPN.Gui;
@@ -78,12 +79,12 @@ public partial class App
             services.AddLocalizer();
 
             // Views and ViewModels
-            services.AddTransient<RecentsViewModel>();
-            services.AddTransient<VpnStatusViewModel>();
-            services.AddTransient<NetShieldStatsViewModel>();
-            services.AddTransient<ConnectionCardViewModel>();
-            services.AddTransient<MapViewModel>();
-            services.AddTransient<HelpViewModel>();
+            services.AddSingleton<RecentsViewModel>();
+            services.AddSingleton<VpnStatusViewModel>();
+            services.AddSingleton<NetShieldStatsViewModel>();
+            services.AddSingleton<ConnectionCardViewModel>();
+            services.AddSingleton<MapViewModel>();
+            services.AddSingleton<HelpViewModel>();
             services.AddSingleton<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<CensorshipViewModel>();
@@ -120,6 +121,7 @@ public partial class App
             services.AddSingleton<ShellViewModel>();
 
             services.AddRecents();
+            services.AddConnection();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));

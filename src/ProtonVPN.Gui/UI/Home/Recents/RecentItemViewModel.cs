@@ -17,62 +17,97 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Windows.ApplicationModel.Resources;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Recents.Contracts;
-using ProtonVPN.Gui.Contracts.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Connection.Contracts;
+using ProtonVPN.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Gui.Contracts.ViewModels;
+using ProtonVPN.Gui.Helpers;
+using ProtonVPN.Recents.Contracts;
 
 namespace ProtonVPN.Gui.UI.Home.Recents;
 
 public partial class RecentItemViewModel : ViewModelBase
 {
+    private readonly IConnectionService _connectionService;
+    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
     private readonly IRecentConnection _recentConnection;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Subtitle))]
-    [NotifyPropertyChangedFor(nameof(HasSubtitle))]
-    private string? _entryCountry;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Title))]
-    private string? _exitCountry;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Subtitle))]
-    [NotifyPropertyChangedFor(nameof(HasSubtitle))]
-    private bool _isSecureCore;
-
-    [ObservableProperty]
-    private bool _isPinned;
-
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
     private bool _isActiveConnection;
 
-    public RecentItemViewModel(IRecentConnection recentConnection)
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
+    private bool _isServerInMaintenance;
+
+    public bool IsPinned => _recentConnection.IsPinned;
+
+    public string? ExitCountry => (_recentConnection.ConnectionIntent?.Location as CountryLocationIntent)?.CountryCode;
+
+    public string? EntryCountry => (_recentConnection.ConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode;
+
+    public bool IsSecureCore => _recentConnection.ConnectionIntent?.Feature is SecureCoreFeatureIntent;
+
+    public string Title => Localizer.GetConnectionIntentTitle(_recentConnection.ConnectionIntent);
+
+    public string Subtitle => Localizer.GetConnectionIntentSubtitle(_recentConnection.ConnectionIntent).FormatIfNotEmpty("- {0}");
+
+    public RecentItemViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, IRecentConnection recentConnection)
     {
+        ArgumentNullException.ThrowIfNull(recentConnection, nameof(recentConnection));
+
+        _connectionService = connectionService;
+        _recentConnectionsProvider = recentConnectionsProvider;
+
         _recentConnection = recentConnection;
-
-        _entryCountry = _recentConnection.EntryCountryCode;
-        _exitCountry = _recentConnection.ExitCountryCode;
-        _isPinned = _recentConnection.IsPinned;
-        _isSecureCore = !_entryCountry.IsNullOrEmpty() && !_exitCountry.IsNullOrEmpty();
     }
-
-    public string Title => !ExitCountry.IsNullOrEmpty()
-        ? Localizer.Get($"Country_val_{ExitCountry}")
-        : Localizer.Get("Country_Fastest");
-
-    public string? Subtitle => IsSecureCore
-        ? Localizer.GetFormat("Connection_Via_SecureCore", Localizer.Get($"Country_val_{EntryCountry}"))
-        : _recentConnection.City ?? _recentConnection.Server;
-
-    public bool HasSubtitle => !Subtitle.IsNullOrEmpty();
 
     protected override void OnLanguageChanged()
     {
         OnPropertyChanged(nameof(Title));
         OnPropertyChanged(nameof(Subtitle));
-        OnPropertyChanged(nameof(HasSubtitle));
     }
+
+    [RelayCommand(CanExecute = nameof(CanConnect))]
+    private async Task ConnectAsync()
+    {
+        await _connectionService.ConnectAsync(_recentConnection.ConnectionIntent);
+    }
+
+    private bool CanConnect()
+    {
+        return !IsActiveConnection && !IsServerInMaintenance;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanPin))]
+    private void Pin()
+    {
+        _recentConnectionsProvider.Pin(_recentConnection);
+    }
+
+    private bool CanPin()
+    {
+        return !IsPinned;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanUnpin))]
+    private void Unpin()
+    {
+        _recentConnectionsProvider.Unpin(_recentConnection);
+    }
+
+    private bool CanUnpin()
+    {
+        return IsPinned;
+    }
+
+    [RelayCommand]
+    private void Remove()
+    {
+        _recentConnectionsProvider.Remove(_recentConnection);
+    }
+
 }

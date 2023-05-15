@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.Enums;
+using CommunityToolkit.Mvvm.Messaging.Messages;
+using ProtonVPN.Connection.Contracts.Enums;
 
-public enum ConnectionStatus
+namespace ProtonVPN.Connection.Contracts.Messages;
+
+public class ConnectionStatusChanged : ValueChangedMessage<ConnectionStatus>
 {
-    Disconnected,
-    Connecting,
-    Connected
+    public ConnectionStatusChanged(ConnectionStatus value)
+        : base(value)
+    { }
 }

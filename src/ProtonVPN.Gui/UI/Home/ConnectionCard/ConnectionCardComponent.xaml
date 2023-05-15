@@ -24,7 +24,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:ProtonVPN.Common.UI.Controls"
-             xmlns:help="using:ProtonVPN.Gui.UI.Home.Help"
+             xmlns:help="using:ProtonVPN.Gui.UI.Home.Help" 
+             xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -140,9 +142,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Padding="16"
-                MaxWidth="600"
-                Background="{StaticResource BackgroundNormColorBrush}"
+    <StackPanel Background="{StaticResource BackgroundNormColorBrush}"
+                Padding="16,16,16,0" 
                 Orientation="Vertical"
                 Spacing="12">
 
@@ -155,7 +156,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Grid.Column="0"
                        Foreground="{StaticResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Header, Mode=OneWay}" />
+                       Text="{x:Bind ViewModel.Header}" />
 
             <help:HelpComponent Grid.Column="1" />
         </Grid>
@@ -176,34 +177,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button Grid.Column="0"
                     Command="{x:Bind ViewModel.ShowConnectionDetailsCommand}"
                     Style="{StaticResource ConnectionDetailsButtonStyle}">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="12">
-                    <controls:CountryFlagControl Margin="4,0,0,0"
-                                                 VerticalAlignment="Top" 
-                                                 Width="30"/>
+                <toolkit:DockPanel>
+                    <controls:CountryFlagControl Width="30"
+                                                 Margin="4,0,0,0"
+                                                 VerticalAlignment="Top"
+                                                 EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
+                                                 ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
+                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" 
+                                                 toolkit:DockPanel.Dock="Left"/>
                     <StackPanel Orientation="Vertical"
-                                Spacing="4">
+                                Spacing="4"
+                                Margin="12,0,0,0">
                         <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
+                                   Text="{x:Bind ViewModel.Title}"
+                                   TextWrapping="Wrap"/>
                         <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.IsSubtitleVisible, Mode=OneWay}" />
+                                   Text="{x:Bind ViewModel.Subtitle}"
+                                   Visibility="{x:Bind ViewModel.HasSubtitle}"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
-                </StackPanel>
+                </toolkit:DockPanel>
             </Button>
 
             <Grid Grid.Column="1">
-                <Button Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
-                        Content="Connect"
+                <Button Command="{x:Bind ViewModel.ConnectCommand}"
+                        Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}"
                         Style="{StaticResource PrimaryButtonStyle}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}" />
-                <Button Command="{x:Bind ViewModel.CancelConnectionCommand, Mode=OneWay}"
-                        Content="Cancel"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}" />
-                <Button Command="{x:Bind ViewModel.DisconnectCommand, Mode=OneWay}"
-                        Content="Disconnect"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}" />
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                <Button Command="{x:Bind ViewModel.CancelConnectionCommand}"
+                        Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                <Button Command="{x:Bind ViewModel.DisconnectCommand}"
+                        Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
             </Grid>
         </Grid>
     </StackPanel>

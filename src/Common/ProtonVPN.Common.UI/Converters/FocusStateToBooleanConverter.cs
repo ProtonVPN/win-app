@@ -17,10 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.ConnectIntent
+using System;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
+
+namespace ProtonVPN.Common.UI.Converters;
+
+public class FocusStateToBooleanConverter : IValueConverter
 {
-    public class ConnectIntent : IConnectIntent
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        public bool IsPinned { get; set; }
+        try
+        {
+            return (FocusState)value != FocusState.Unfocused;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
     }
 }

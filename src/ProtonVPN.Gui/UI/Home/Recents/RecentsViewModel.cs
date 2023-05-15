@@ -20,29 +20,49 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Connection.Contracts;
 using ProtonVPN.Gui.Contracts.ViewModels;
-using ProtonVPN.Gui.Messages;
 using ProtonVPN.Recents.Contracts;
+using ProtonVPN.Recents.Contracts.Messages;
 
 namespace ProtonVPN.Gui.UI.Home.Recents;
 
-public class RecentsViewModel : ViewModelBase, IRecipient<VpnStateChangedMessage>
+public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnectionsChanged>
 {
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+    private readonly IConnectionService _connectionService;
+
+    [ObservableProperty]
+    private bool _isRecentsComponentOpened;
 
     public ObservableCollection<RecentItemViewModel> RecentConnections { get; } = new();
 
-    public RecentsViewModel(IRecentConnectionsProvider recentConnectionsProvider)
+    public bool HasRecentConnections => RecentConnections.Any();
+
+    public RecentsViewModel(IRecentConnectionsProvider recentConnectionsProvider, IConnectionService connectionService)
     {
+        Messenger.RegisterAll(this);
+
         _recentConnectionsProvider = recentConnectionsProvider;
+        _connectionService = connectionService;
+
+        InvalidateRecentConnections();
+    }
+
+    public void Receive(RecentConnectionsChanged message)
+    {
+        InvalidateRecentConnections();
+    }
+
+    public void InvalidateRecentConnections()
+    {
+        RecentConnections.Clear();
 
         foreach (IRecentConnection recentConnection in _recentConnectionsProvider.GetRecentConnections())
         {
-            RecentConnections.Add(new RecentItemViewModel(recentConnection));
+            RecentConnections.Add(new RecentItemViewModel(_connectionService, _recentConnectionsProvider, recentConnection));
         }
-    }
 
-    public void Receive(VpnStateChangedMessage message)
-    {
+        OnPropertyChanged(nameof(HasRecentConnections));
     }
 }

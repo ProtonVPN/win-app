@@ -20,20 +20,29 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Vpn;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Connection.Contracts;
+using ProtonVPN.Connection.Contracts.Enums;
+using ProtonVPN.Connection.Contracts.Messages;
+using ProtonVPN.Connection.Contracts.Models.Intents;
+using ProtonVPN.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Gui.Contracts.ViewModels;
-using ProtonVPN.Gui.Enums;
-using ProtonVPN.Gui.Mappers;
-using ProtonVPN.Gui.Messages;
+using ProtonVPN.Gui.Helpers;
+using ProtonVPN.Recents.Contracts;
+using ProtonVPN.Recents.Contracts.Messages;
 
 namespace ProtonVPN.Gui.UI.Home.ConnectionCard;
 
-public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<VpnStateChangedMessage>
+public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<ConnectionStatusChanged>, IRecipient<RecentConnectionsChanged>
 {
+    private readonly IConnectionService _connectionService;
+    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+
     private readonly HomeViewModel _homeViewModel;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Header))]
     [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
     [NotifyCanExecuteChangedFor(nameof(CancelConnectionCommand))]
     [NotifyCanExecuteChangedFor(nameof(DisconnectCommand))]
@@ -41,53 +50,82 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<VpnStat
     private ConnectionStatus _currentConnectionStatus;
 
     [ObservableProperty]
-    private string _header;
+    [NotifyPropertyChangedFor(nameof(Header))]
+    [NotifyPropertyChangedFor(nameof(ExitCountry))]
+    [NotifyPropertyChangedFor(nameof(EntryCountry))]
+    [NotifyPropertyChangedFor(nameof(IsSecureCore))]
+    [NotifyPropertyChangedFor(nameof(Title))]
+    [NotifyPropertyChangedFor(nameof(Subtitle))]
+    [NotifyPropertyChangedFor(nameof(HasSubtitle))]
+    private IConnectionIntent? _currentConnectionIntent;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsSubtitleVisible))]
-    private string _subtitle;
+    public string Header =>
+        CurrentConnectionStatus switch
+        {
+            ConnectionStatus.Disconnected => CurrentConnectionIntent is null
+                ? Localizer.Get("Home_ConnectionCard_Header_Recommended")
+                : Localizer.Get("Home_ConnectionCard_Header_LastConnectedTo"),
+            ConnectionStatus.Connecting => Localizer.Get("Home_ConnectionCard_Header_ConnectingTo"),
+            ConnectionStatus.Connected => Localizer.Get("Home_ConnectionCard_Header_BrowseSafely")
+        };
 
-    [ObservableProperty]
-    private string _title;
+    public string? ExitCountry => (CurrentConnectionIntent?.Location as CountryLocationIntent)?.CountryCode;
 
-    public ConnectionCardViewModel(HomeViewModel homeViewModel)
+    public string? EntryCountry => (CurrentConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode;
+
+    public bool IsSecureCore => CurrentConnectionIntent?.Feature is SecureCoreFeatureIntent;
+
+    public string Title => Localizer.GetConnectionIntentTitle(CurrentConnectionIntent);
+
+    public string Subtitle => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent);
+
+    public bool HasSubtitle => !Subtitle.IsNullOrEmpty();
+
+    public ConnectionCardViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, HomeViewModel homeViewModel)
     {
-        Messenger.RegisterAll(this);
-
-        _header = "Last connected to";
-        _title = "Switzerland";
-        _subtitle = "Zurich";
+        _connectionService = connectionService;
+        _recentConnectionsProvider = recentConnectionsProvider;
 
         _homeViewModel = homeViewModel;
+
+        Messenger.RegisterAll(this);
+
+        InvalidateCurrentConnectionStatus();
+        InvalidateCurrentConnectionIntent();
     }
 
-    public bool IsSubtitleVisible => !string.IsNullOrEmpty(Subtitle);
-
-    public void Receive(VpnStateChangedMessage message)
+    public void Receive(ConnectionStatusChanged message)
     {
-        if (message?.Value is null)
-        {
-            return;
-        }
-
-        CurrentConnectionStatus = ConnectionStatusMapper.Map(message.Value.Status);
+        InvalidateCurrentConnectionStatus();
     }
 
-    [RelayCommand(CanExecute = nameof(CanConnect), IncludeCancelCommand = true)]
-    private async Task ConnectAsync(CancellationToken token)
+    public void Receive(RecentConnectionsChanged message)
     {
-        try
-        {
-            Messenger.Send(new VpnStateChangedMessage(new VpnState(VpnStatus.Connecting)));
+        InvalidateCurrentConnectionIntent();
+    }
 
-            await Task.Delay(TimeSpan.FromSeconds(2), token);
+    protected override void OnLanguageChanged()
+    {
+        OnPropertyChanged(nameof(Header));
+        OnPropertyChanged(nameof(Title));
+        OnPropertyChanged(nameof(Subtitle));
+        OnPropertyChanged(nameof(HasSubtitle));
+    }
 
-            Messenger.Send(new VpnStateChangedMessage(new VpnState(VpnStatus.Connected)));
-        }
-        catch (OperationCanceledException)
-        {
-            Messenger.Send(new VpnStateChangedMessage(new VpnState(VpnStatus.Disconnected)));
-        }
+    private void InvalidateCurrentConnectionStatus()
+    {
+        CurrentConnectionStatus = _connectionService.ConnectionStatus;
+    }
+
+    private void InvalidateCurrentConnectionIntent()
+    {
+        CurrentConnectionIntent = _recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanConnect))]
+    private async Task ConnectAsync()
+    {
+        await _connectionService.ConnectAsync(CurrentConnectionIntent);
     }
 
     private bool CanConnect()
@@ -96,9 +134,9 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<VpnStat
     }
 
     [RelayCommand(CanExecute = nameof(CanCancelConnection))]
-    private void CancelConnection()
+    private async Task CancelConnectionAsync()
     {
-        ConnectCommand.Cancel();
+        await _connectionService.CancelConnectionAsync();
     }
 
     private bool CanCancelConnection()
@@ -107,9 +145,9 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<VpnStat
     }
 
     [RelayCommand(CanExecute = nameof(CanDisconnect))]
-    private void Disconnect()
+    private async Task DisconnectAsync()
     {
-        Messenger.Send(new VpnStateChangedMessage(new VpnState(VpnStatus.Disconnected)));
+        await _connectionService.DisconnectAsync();
     }
 
     private bool CanDisconnect()

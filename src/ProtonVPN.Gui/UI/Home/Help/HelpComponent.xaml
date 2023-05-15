@@ -30,7 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Spacing="4">
         <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
                    Style="{StaticResource CaptionStrongTextBlockStyle}"
-                   Text="Help" />
+                   Text="{x:Bind ViewModel.Localizer.Get('Home_Help_Title'), Mode=OneWay}" />
 
         <icons:Help VerticalAlignment="Bottom"
                     Foreground="{StaticResource TextWeakColorBrush}" />

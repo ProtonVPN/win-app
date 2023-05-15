@@ -17,4 +17,12 @@
     <Folder Include="Properties\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Connection\ProtonVPN.Connection.Contracts\ProtonVPN.Connection.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -518,7 +518,7 @@
     <None Remove="Assets\Icons\UnprotectedLock.xaml" />
     <None Remove="Assets\Icons\ThreeDotsVertical.xaml" />
     <None Remove="Controls\CountryFlagControl.xaml" />
-    <None Remove="Controls\TwoChildControl.xaml" />
+    <None Remove="Controls\DualCommandsRowControl.xaml" />
     <None Remove="Controls\UserLocationControl.xaml" />
     <None Remove="Assets\Icons\ActiveDot.xaml" />
     <None Remove="Assets\Icons\Pin.xaml" />
@@ -536,6 +536,7 @@
     <None Remove="Styles\Brushes.xaml" />
     <None Remove="Styles\Controls\ButtonStyles.xaml" />
     <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
+    <None Remove="Styles\Controls\ExpanderStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
     <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
     <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
@@ -567,10 +568,6 @@
 	  <SubType>Designer</SubType>
 	</Page>
     <Page Update="Controls\CountryFlagControl.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\TwoChildControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -1485,5 +1482,21 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\ExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\DualCommandsRowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

@@ -17,9 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.ConnectIntent;
+namespace ProtonVPN.Connection.Contracts.Models.Intents.Features;
 
-public interface IConnectIntent
+public class SecureCoreFeatureIntent : IFeatureIntent
 {
-    public bool IsPinned { get; set; }
+    public SecureCoreFeatureIntent(string entryCountryCode)
+    {
+        EntryCountryCode = entryCountryCode;
+    }
+
+    public SecureCoreFeatureIntent()
+    { }
+
+    public string? EntryCountryCode { get; }
 }

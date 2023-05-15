@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Gui.ConnectIntent;
+namespace ProtonVPN.Connection.Contracts.Models.Intents.Locations;
 
-public class ServerConnectIntent : ConnectIntent
+public class FreeServerLocationIntent : CountryLocationIntent
 {
-    public string Country { get; set; }
+    public int ServerNumber { get; set; }
 
-    public string Server { get; set; }
+    public FreeServerLocationIntent(string countryCode, int serverNumber)
+            : base(countryCode)
+    {
+        ServerNumber = serverNumber;
+    }
 }

@@ -29,6 +29,12 @@ public partial class HomeViewModel : NavigationPageViewModelBase
     [ObservableProperty]
     private bool _isDetailsPaneOpen;
 
+    public override string? Title => Localizer.Get("Home_Page_Title");
+
+    public override string IconGlyphCode => "\uE80F";
+
+    public override bool IsHeaderVisible => false;
+
     public HomeViewModel(INavigationService navigationService)
         : base(navigationService)
     {
@@ -50,10 +56,4 @@ public partial class HomeViewModel : NavigationPageViewModelBase
     {
         IsDetailsPaneOpen = true;
     }
-
-    public override string? Title => Localizer.Get("Home_Page_Title");
-
-    public override string IconGlyphCode => "\uE80F";
-
-    public override bool IsHeaderVisible => false;
 }

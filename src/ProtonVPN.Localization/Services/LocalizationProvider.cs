@@ -29,7 +29,8 @@ public class LocalizationProvider : ILocalizationProvider
 
     public string Get(string resourceKey)
     {
-        return _localizer.GetLocalizedString(resourceKey);
+        return _localizer.GetLocalizedString(resourceKey)
+            .Replace("\\n", Environment.NewLine);
     }
 
     public string GetFormat(string resourceKey, object arg0)

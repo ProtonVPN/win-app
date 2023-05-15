@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -14,11 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+    <ProjectReference Include="..\..\Connection\ProtonVPN.Connection.Contracts\ProtonVPN.Connection.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Recents.Contracts\ProtonVPN.Recents.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
   </ItemGroup>
 
 </Project>
