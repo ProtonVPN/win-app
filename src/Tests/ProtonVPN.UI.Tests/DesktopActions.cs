@@ -118,19 +118,19 @@ namespace ProtonVPN.UI.Tests
             return this;
         }
 
-        protected AutomationElement ElementByAutomationId(string automationId)
+        protected AutomationElement DesktopElementByAutomationId(string automationId)
         {
             WaitUntilExistsByAutomationId(automationId, TestConstants.ShortTimeout);
             return Desktop.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
         }
 
-        protected AutomationElement ElementByClassName(string className)
+        protected AutomationElement DesktopElementByClassName(string className)
         {
             WaitUntilDisplayedByClass(className, TestConstants.ShortTimeout);
             return Desktop.FindFirstDescendant(cf => cf.ByClassName(className));
         }
 
-        protected AutomationElement ElementByName(string name)
+        protected AutomationElement DesktopElementByName(string name)
         {
             WaitUntilExistsByName(name, TestConstants.ShortTimeout);
             return Desktop.FindFirstDescendant(cf => cf.ByName(name));

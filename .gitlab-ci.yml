@@ -25,6 +25,7 @@ stages:
   - test
   - build-installer
   - internal-beta
+  - ui-test
   - publish-to-slack
   - mirror
 
@@ -144,6 +145,32 @@ build-installer-for-debug:
   except:
     - master
     - /^release.*$/
+    
+connection-test:
+  stage: ui-test
+  tags:
+    - connection_tests
+  script:
+    - ci\uninstall-app.ps1
+    - ci\install-the-app.ps1
+    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
+    - ci\uninstall-app.ps1
+  after_script:
+    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - feature/inno-setup-net6
+  artifacts:
+    when: always
+    name: "result-ui"
+    paths:
+      - $SCREENSHOT_PATH
+      - "results/*"
+    expire_in: 1 weeks
+
 
 mirror:
   stage: mirror
