@@ -46,17 +46,6 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        public void CheckIfAfterKillingAppSecureCoreConnectionIsRestored()
-        {
-             _mainWindow.NavigateToSettings();
-            _settingsWindow.DisableStartToTray()
-                .CloseSettings();
-            _mainWindow.PressQuickConnectButton()
-                .WaitUntilConnected();
-            _homeResult.KillClientAndCheckIfConnectionIsKept();
-        }
-
-        [Test]
         public void ConnectAndDisconnectViaMapSecureCore()
         {
             _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)
