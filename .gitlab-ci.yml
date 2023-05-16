@@ -45,18 +45,19 @@ build-release:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
     - cmd.exe /c BuildDependencies.bat
+    - cmd.exe /c BuildGoSrp.bat src\bin\win-x64\publish\Resources
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
     - echo "Publishing release..."
-    - dotnet publish ProtonVpn.sln --arch x64 -c Release --no-self-contained --verbosity q -o src\bin
+    - dotnet publish ProtonVpn.sln -c Release -r win-x64 --self-contained
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin
+      - src/bin/win-x64/publish
       - src/ProtonVPN.NativeHost/bin
   only:
     - master
@@ -72,18 +73,19 @@ build-debug:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
     - cmd.exe /c BuildDependencies.bat
+    - cmd.exe /c BuildGoSrp.bat src\bin\win-x64\publish\Resources
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
     - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\main.py defaultConfig
     - echo "Publishing debug..."
-    - dotnet publish ProtonVpn.sln --arch x64 -c Debug --no-self-contained --verbosity q -o src\bin
+    - dotnet publish ProtonVpn.sln -c Debug -r win-x64 --self-contained
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin
+      - src/bin/win-x64/publish
       - src/ProtonVPN.NativeHost/bin
   except:
     - master
@@ -96,6 +98,7 @@ tests:
   tags:
     - windows-dot-net
   script:
+    - cmd.exe /c BuildGoSrp.bat src\bin\Resources
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
     - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"

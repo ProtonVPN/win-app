@@ -78,7 +78,7 @@ elif args.command == 'sign':
     signing.sign()
 
 elif args.command == 'app-installer':
-    v = win32api.GetFileVersionInfo('.\src\\bin\ProtonVPN.exe', '\\')
+    v = win32api.GetFileVersionInfo('.\\src\\bin\\win-x64\\publish\\ProtonVPN.exe', '\\')
     semVersion = "%d.%d.%d" % (v['FileVersionMS'] / 65536, v['FileVersionMS'] % 65536, v['FileVersionLS'] / 65536)
     print('Building app installer')
     err = installer.build(semVersion, args.hash, 'Setup/setup.iss')
