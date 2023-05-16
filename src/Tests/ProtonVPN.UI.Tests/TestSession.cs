@@ -31,6 +31,7 @@ using NUnit.Framework.Interfaces;
 using NUnit.Framework;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Tests.TestsHelper;
+using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -69,12 +70,13 @@ namespace ProtonVPN.UI.Tests
 
         protected static void Cleanup()
         {
+            
             SaveScreenshotAndLogsIfFailed();
-            VPNServiceHelper serviceHelper = new VPNServiceHelper();
-            serviceHelper.Disconnect().GetAwaiter().GetResult();
+            //VPNServiceHelper serviceHelper = new VPNServiceHelper();
+            //serviceHelper.Disconnect().GetAwaiter().GetResult();
             App.Close();
             App.Dispose();
-            try
+            /*try
             {
                 ServiceController service = new ServiceController("ProtonVPN Service");
                 service.Stop();
@@ -82,7 +84,7 @@ namespace ProtonVPN.UI.Tests
             catch (InvalidOperationException)
             {
                 //Ignore because service might not be started.
-            }
+            }*/
         }
 
         protected static void RefreshWindow()
@@ -111,7 +113,7 @@ namespace ProtonVPN.UI.Tests
         protected static void LaunchApp()
         {
             string[] path = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
-            App = Application.Launch(path[0] + @"\ProtonVPN.exe");
+            App = Application.Launch(path.Last() + @"\ProtonVPN.Client.exe");
         }
 
         protected static void KillProtonVpnProcess()

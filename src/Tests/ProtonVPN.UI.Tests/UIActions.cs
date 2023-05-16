@@ -154,10 +154,24 @@ namespace ProtonVPN.UI.Tests
             return this;
         }
 
+        protected dynamic CheckIfDisplayedByElement(AutomationElement element)
+        {
+            RefreshWindow();
+            Assert.IsFalse(element.IsOffscreen);
+            return this;
+        }
+
         protected dynamic CheckIfNotDisplayedByName(string name)
         {
             RefreshWindow();
             Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen);
+            return this;
+        }
+
+        protected dynamic CheckIfNotDisplayedByElement(AutomationElement element)
+        {
+            RefreshWindow();
+            Assert.IsTrue(element.IsOffscreen);
             return this;
         }
 
