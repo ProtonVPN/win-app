@@ -40,6 +40,11 @@ namespace ProtonVPN.Common.OS.Services
 
         public void Create(string pathAndArgs, bool unrestricted) => _origin.Create(pathAndArgs, unrestricted);
 
+        public void UpdatePathAndArgs(string cmd)
+        {
+            _origin.UpdatePathAndArgs(cmd);
+        }
+
         public bool Running() => _origin.Running();
 
         public bool IsStopped() => _origin.IsStopped();
