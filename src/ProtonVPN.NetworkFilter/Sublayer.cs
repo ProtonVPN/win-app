@@ -25,7 +25,7 @@ namespace ProtonVPN.NetworkFilter
     public class Sublayer
     {
         private readonly IpFilter _ipFilter;
-        private readonly HashSet<Guid> _filters = new HashSet<Guid>();
+        private readonly HashSet<Guid> _filters = new();
 
         public Sublayer(IpFilter ipFilter, Guid id)
         {
@@ -64,7 +64,7 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             uint weight,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateLayerFilter(
                 Session.Handle,
@@ -91,7 +91,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             string address,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateRemoteIPv4Filter(
                 Session.Handle,
@@ -119,7 +119,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             string appPath,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateAppFilter(
                 Session.Handle,
@@ -147,7 +147,7 @@ namespace ProtonVPN.NetworkFilter
             ProviderContext providerContext,
             string appPath,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateAppFilter(
                 Session.Handle,
@@ -175,7 +175,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             NetworkAddress addr,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateRemoteNetworkIPv4Filter(
                 Session.Handle,
@@ -203,7 +203,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             uint port,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateRemoteUdpPortFilter(
                 Session.Handle,
@@ -229,7 +229,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             uint port,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateRemoteTcpPortFilter(
                 Session.Handle,
@@ -255,7 +255,7 @@ namespace ProtonVPN.NetworkFilter
             uint index,
             uint weight,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             Guid filterId = IpFilterNative.CreateNetInterfaceFilter(
                 Session.Handle,
@@ -314,6 +314,31 @@ namespace ProtonVPN.NetworkFilter
                 calloutGuid,
                 index,
                 (uint) (persistent ? 1 : 0));
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid BlockOutsideOpenVpn(DisplayData displayData,
+            Layer layer,
+            uint weight,
+            string openVpnPath,
+            string serverIpAddress,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.BlockOutsideOpenVpn(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                weight,
+                openVpnPath,
+                serverIpAddress,
+                (uint)(persistent ? 1 : 0),
+                id);
 
             AddFilter(filterId);
 

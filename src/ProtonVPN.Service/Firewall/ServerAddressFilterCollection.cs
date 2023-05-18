@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using ProtonVPN.NetworkFilter;
+
 namespace ProtonVPN.Service.Firewall
 {
-    internal enum FirewallItemType
+    public class ServerAddressFilterCollection
     {
-        DnsFilter,
-        DnsCalloutFilter,
-        PermitInterfaceFilter,
-        PermitFilter,
-        VariableFilter,
-        BlockOutsideOpenVpnFilter,
+        public string ServerIp { get; set; }
+
+        public SessionType SessionType { get; set; }
+
+        public List<Guid> Filters { get; set; } = new();
     }
 }

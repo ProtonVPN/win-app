@@ -1,6 +1,7 @@
 LIBRARY
 EXPORTS
 	BlockOutsideDns
+	BlockOutsideOpenVpn
 	IPFilterAbortTransaction
 	IPFilterCommitTransaction
 	IPFilterCreateAppFilter

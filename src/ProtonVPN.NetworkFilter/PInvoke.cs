@@ -384,5 +384,21 @@ namespace ProtonVPN.NetworkFilter
             uint index,
             uint persistent,
             [In, Out] ref Guid filterKey);
+
+        [DllImport(
+            BINARY_NAME,
+            EntryPoint = "BlockOutsideOpenVpn",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint BlockOutsideOpenVpn(
+            IntPtr sessionHandle,
+            [In] ref Guid providerKey,
+            [In] ref Guid sublayerKey,
+            ref DisplayData displayData,
+            uint layer,
+            uint weight,
+            [MarshalAs(UnmanagedType.LPWStr)] string appPath,
+            string serverIpAddress,
+            uint persistent,
+            [In, Out] ref Guid filterKey);
     }
 }
