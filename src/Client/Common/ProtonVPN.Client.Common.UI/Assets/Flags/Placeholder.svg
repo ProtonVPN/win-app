@@ -1,0 +1,18 @@
+<svg width="auto" height="auto" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Placeholder">
+    <g clip-path="url(#clip0_12576_62703)">
+      <rect width="24" height="16" rx="4" fill="#A7A4B5" fill-opacity="0.3"/>
+      <path id="Line 1 (Stroke)" opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M-8.99987 14.4558L16.456 -11L17.1631 -10.2929L-8.29276 15.1629L-8.99987 14.4558Z" fill="white"/>
+      <path id="Line 4 (Stroke)" opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M-0.514515 22.9411L24.9413 -2.51472L25.6484 -1.80762L0.192592 23.6482L-0.514515 22.9411Z" fill="white"/>
+      <path id="Line 2 (Stroke)" opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M-6.17125 17.2843L19.2846 -8.17158L19.9917 -7.46448L-5.46415 17.9914L-6.17125 17.2843Z" fill="white"/>
+      <path id="Line 5 (Stroke)" opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M2.3141 25.7695L27.7699 0.313706L28.4771 1.02081L3.0212 26.4767L2.3141 25.7695Z" fill="white"/>
+      <path id="Line 3 (Stroke)" opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M-3.34264 20.1127L22.1132 -5.34315L22.8203 -4.63605L-2.63553 20.8198L-3.34264 20.1127Z" fill="white"/>
+      <path id="Line 6 (Stroke)" opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M5.14222 28.598L30.5981 3.14214L31.3052 3.84924L5.84933 29.3051L5.14222 28.598Z" fill="white"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="clip0_12576_62703">
+      <rect width="24" height="16" rx="4" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>

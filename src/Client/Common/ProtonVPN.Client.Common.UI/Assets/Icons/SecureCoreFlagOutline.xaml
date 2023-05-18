@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<base:IconUserControl x:Class="ProtonVPN.Client.Common.UI.Assets.Icons.SecureCoreFlagOutline"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
+                      mc:Ignorable="d">
+
+    <Viewbox Stretch="{x:Bind Stretch, Mode=OneWay}">
+        <Path Data="M1.625 1.00037V8.50037C1.625 11.8141 4.31129 14.5004 7.625 14.5004H23.375"
+              Stroke="{x:Bind Foreground, Mode=OneWay}"
+              StrokeThickness="2"
+              StrokeEndLineCap="Round"
+              StrokeStartLineCap="Round" />
+    </Viewbox>
+</base:IconUserControl>

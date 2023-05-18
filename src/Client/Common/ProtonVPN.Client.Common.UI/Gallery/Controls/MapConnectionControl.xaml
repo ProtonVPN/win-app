@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.Common.UI.Gallery.Controls.MapConnectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <LinearGradientBrush x:Key="NonTargetConnectionLineBrush" StartPoint="{Binding BrushStartPoint, Mode=OneWay}" EndPoint="{Binding BrushEndPoint, Mode=OneWay}">
+            <GradientStop Offset="0" Color="{ThemeResource GradientConnectionLineStartColor}" />
+            <GradientStop Offset="0" Color="{ThemeResource GradientConnectionLineStartColor}" />
+            <GradientStop Offset="1" Color="{ThemeResource GradientConnectionLineEndColor}" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="TargetConnectionLineBrush" StartPoint="{Binding BrushStartPoint}" EndPoint="{Binding BrushEndPoint}">
+            <GradientStop Offset="0" Color="{ThemeResource GradientConnectionLineStartColor}" />
+            <GradientStop Offset="{Binding Opacity, Mode=OneWay}" Color="{ThemeResource GradientConnectionLineEndColor}" />
+            <GradientStop Offset="{Binding Opacity, Mode=OneWay}" Color="Transparent" />
+        </LinearGradientBrush>
+    </UserControl.Resources>
+
+    <Path x:Name="connectionLinePath"
+          StrokeThickness="4">
+
+        <Path.Stroke>
+            <LinearGradientBrush StartPoint="{x:Bind BrushStartPoint}" EndPoint="{x:Bind BrushEndPoint}">
+                <GradientStop Offset="0" Color="{x:Bind Offset1Color}" />
+                <GradientStop Offset="{x:Bind Opacity, Mode=OneWay}" Color="{x:Bind Offset2Color}" />
+                <GradientStop Offset="{x:Bind Opacity, Mode=OneWay}" Color="{x:Bind Offset3Color}" />
+                <GradientStop Offset="1" Color="{x:Bind Offset4Color}" />
+            </LinearGradientBrush>
+        </Path.Stroke>
+
+        <Path.Data>
+            <GeometryGroup>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure IsClosed="False"
+                                        StartPoint="{x:Bind SourcePin.Position}">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment x:Name="arcSegment"
+                                                    Point="{x:Bind TargetPin.Position}"
+                                                    Size="1,1"
+                                                    SweepDirection="Clockwise" />
+                                        <!--<BezierSegment Point1="{x:Bind SourceHandlePosition}"
+                                                       Point2="{x:Bind TargetHandlePosition}"
+                                                       Point3="{x:Bind TargetPosition}" />-->
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </GeometryGroup>
+        </Path.Data>
+    </Path>
+</UserControl>
