@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.Common.UI.Gallery.Pages.ColorsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Gallery.Controls"
+      Margin="16"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Gallery/GalleryStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="ColorGroupTextBlockStyle" BasedOn="{StaticResource SubtitleTextBlockStyle}" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource TextNormColorBrush}" />
+                <Setter Property="Margin" Value="4,12,24,0" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <ScrollViewer Margin="0,0,-12,-12"
+                  Padding="0,0,12,12"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid x:Name="ContentArea"
+              Margin="{StaticResource GalleryPageMargin}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Primary" />
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource PrimaryColorBrush}"
+                                        Header="primary"
+                                        ResourceName="PrimaryColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Link" />
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource LinkNormColorBrush}"
+                                        Header="link-norm"
+                                        ResourceName="LinkNormColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource LinkHoverColorBrush}"
+                                        Header="link-hover"
+                                        ResourceName="LinkHoverColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource LinkActiveColorBrush}"
+                                        Header="link-active"
+                                        ResourceName="LinkActiveColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Interaction-norm" />
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionNormColorBrush}"
+                                        Header="interaction-norm"
+                                        ResourceName="InteractionNormColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionNormHoverColorBrush}"
+                                        Header="interaction-norm-hover"
+                                        ResourceName="InteractionNormHoverColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionNormActiveColorBrush}"
+                                        Header="interaction-norm-active"
+                                        ResourceName="InteractionNormActiveColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="3"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Interaction-weak" />
+            <StackPanel Grid.Row="3"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionWeakColorBrush}"
+                                        Header="interaction-weak"
+                                        ResourceName="InteractionWeakColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionWeakHoverColorBrush}"
+                                        Header="interaction-weak-hover"
+                                        ResourceName="InteractionWeakHoverColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionWeakActiveColorBrush}"
+                                        Header="interaction-weak-active"
+                                        ResourceName="InteractionWeakActiveColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="4"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Interaction-default" />
+            <StackPanel Grid.Row="4"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionDefaultColorBrush}"
+                                        Header="interaction-default"
+                                        ResourceName="InteractionDefaultColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionDefaultHoverColorBrush}"
+                                        Header="interaction-default-hover"
+                                        ResourceName="InteractionDefaultHoverColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource InteractionDefaultActiveColorBrush}"
+                                        Header="interaction-default-active"
+                                        ResourceName="InteractionDefaultActiveColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="5"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Text" />
+            <StackPanel Grid.Row="5"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource TextNormColorBrush}"
+                                        Header="text-norm"
+                                        ResourceName="TextNormColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource TextWeakColorBrush}"
+                                        Header="text-weak"
+                                        ResourceName="TextWeakColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource TextHintColorBrush}"
+                                        Header="text-hint"
+                                        ResourceName="TextHintColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource TextDisabledColorBrush}"
+                                        Header="text-disabled"
+                                        ResourceName="TextDisabledColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource TextInvertColorBrush}"
+                                        Header="text-invert"
+                                        ResourceName="TextInvertColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="6"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Background" />
+            <StackPanel Grid.Row="6"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource BackgroundNormColorBrush}"
+                                        Header="background-norm"
+                                        ResourceName="BackgroundNormColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource BackgroundWeakColorBrush}"
+                                        Header="background-weak"
+                                        ResourceName="BackgroundWeakColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource BackgroundStrongColorBrush}"
+                                        Header="background-strong"
+                                        ResourceName="BackgroundStrongColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource BackgroundInvertColorBrush}"
+                                        Header="background-invert"
+                                        ResourceName="BackgroundInvertColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="7"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Border" />
+            <StackPanel Grid.Row="7"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource BorderNormColorBrush}"
+                                        Header="border-norm"
+                                        ResourceName="BorderNormColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource BorderWeakColorBrush}"
+                                        Header="border-weak"
+                                        ResourceName="BorderWeakColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource BorderFocusColorBrush}"
+                                        Header="border-focus"
+                                        ResourceName="BorderFocusColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource BorderFocusRingColorBrush}"
+                                        Header="border-focus-ring"
+                                        ResourceName="BorderFocusRingColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="8"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Signal" />
+            <StackPanel Grid.Row="8"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource SignalDangerColorBrush}"
+                                        Header="signal-danger"
+                                        ResourceName="SignalDangerColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource SignalWarningColorBrush}"
+                                        Header="signal-warning"
+                                        ResourceName="SignalWarningColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource SignalSuccessColorBrush}"
+                                        Header="signal-success"
+                                        ResourceName="SignalSuccessColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="9"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Backdrop" />
+            <StackPanel Grid.Row="9"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource BackdropNormColorBrush}"
+                                        Header="backdrop-norm"
+                                        ResourceName="BackdropNormColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="10"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="VPN Specific" />
+            <StackPanel Grid.Row="10"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource VpnGreenColorBrush}"
+                                        Header="proton-vpn-green"
+                                        ResourceName="VpnGreenColorBrush" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="11"
+                       Grid.Column="0"
+                       Style="{StaticResource ColorGroupTextBlockStyle}"
+                       Text="Gradients" />
+            <StackPanel Grid.Row="11"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <controls:ColorsControl ColorBrush="{StaticResource GradientFadingColorBrush}"
+                                        Header="gradient-fading"
+                                        ResourceName="GradientFadingColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource GradientUnprotectedColorBrush}"
+                                        Header="gradient-unprotected"
+                                        ResourceName="GradientUnprotectedColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource GradientConnectingColorBrush}"
+                                        Header="gradient-connecting"
+                                        ResourceName="GradientConnectingColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource GradientProtectedColorBrush}"
+                                        Header="gradient-protected"
+                                        ResourceName="GradientProtectedColorBrush" />
+                <controls:ColorsControl ColorBrush="{StaticResource GradientConnectionLineColorBrush}"
+                                        Header="gradient-connection-line"
+                                        ResourceName="GradientConnectionLineColorBrush" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

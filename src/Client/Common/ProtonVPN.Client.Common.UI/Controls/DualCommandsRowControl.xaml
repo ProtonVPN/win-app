@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.Common.UI.Controls.DualCommandsRowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:DefaultBindMode="OneWay"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <Thickness x:Key="RowContentMargin">12,0</Thickness>
+        <Thickness x:Key="PrimaryCommandTextMargin">-4,0,12,0</Thickness>
+        <Thickness x:Key="SecondaryCommandContentMargin">8,0</Thickness>
+        <x:Double x:Key="SecondaryCommandContentSpacing">8</x:Double>
+
+        <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+        <StaticResource x:Key="ButtonBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+
+        <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+        <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+
+        <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+        <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+
+        <Style x:Key="RowButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="btnSecondary"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Command="{x:Bind SecondaryCommand}"
+                Flyout="{x:Bind SecondaryCommandFlyout}"
+                Style="{StaticResource RowButtonStyle}"/>
+
+        <Button x:Name="btnPrimary"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Command="{x:Bind PrimaryCommand}"
+                Style="{StaticResource RowButtonStyle}"/>
+
+        <ContentPresenter Grid.Column="0"
+                          Margin="{StaticResource RowContentMargin}"
+                          VerticalAlignment="Center"
+                          Content="{x:Bind RowContent}"
+                          IsHitTestVisible="False"/>
+
+        <TextBlock x:Name="tbPrimary"
+                   Grid.Column="1"
+                   Margin="{StaticResource PrimaryCommandTextMargin}"
+                   VerticalAlignment="Center"
+                   IsHitTestVisible="False"
+                   Style="{StaticResource BodyStrongTextBlockStyle}"
+                   Text="{x:Bind PrimaryCommandText}"
+                   Visibility="Collapsed" />
+
+        <StackPanel Grid.Column="2"
+                    Margin="{StaticResource SecondaryCommandContentMargin}"
+                    IsHitTestVisible="False"
+                    Orientation="Horizontal"
+                    Spacing="{StaticResource SecondaryCommandContentSpacing}">
+            <TextBlock x:Name="tbSecondary"
+                       VerticalAlignment="Center"
+                       Foreground="{StaticResource TextWeakColorBrush}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Text="{x:Bind SecondaryCommandText}"
+                       Visibility="{x:Bind SecondaryCommandText, Converter={StaticResource NotNullToVisibilityConverter}}" />
+            <ContentPresenter x:Name="iconSecondary"
+                              VerticalAlignment="Center"
+                              Content="{x:Bind SecondaryCommandIcon}"
+                              Opacity="0.65"/>
+        </StackPanel>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HoveringStates">
+                <VisualState x:Name="PrimaryActionHovered">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding IsPointerOver, ElementName=btnPrimary}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tbPrimary.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SecondaryActionHovered">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding IsPointerOver, ElementName=btnSecondary}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tbSecondary.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                        <Setter Target="iconSecondary.Opacity" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NormalHovered" />
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="FocusingStates">
+                <VisualState x:Name="PrimaryActionFocused">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding FocusState, ElementName=btnPrimary, Converter={StaticResource FocusStateToBooleanConverter}}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tbPrimary.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SecondaryActionFocused">           
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding FocusState, ElementName=btnSecondary, Converter={StaticResource FocusStateToBooleanConverter}}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tbSecondary.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                        <Setter Target="iconSecondary.Opacity" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NormalFocused" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</UserControl>

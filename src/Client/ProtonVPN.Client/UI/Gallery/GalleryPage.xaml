@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.UI.Gallery.GalleryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="GallerySectionHeaderTextBlockStyle" BasedOn="{StaticResource SubtitleTextBlockStyle}" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,24,0,16" />
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer Margin="0,0,-12,0"
+                  Padding="0,0,12,0"
+                  VerticalScrollBarVisibility="Auto">
+
+        <StackPanel x:Name="ContentArea">
+
+            <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
+                       Text="General" />
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.ColorsPage"
+                               Header="Colors"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE790;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.TypographyPage"
+                               Header="Typography"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8D2;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
+                       Text="Universal Components" />
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.InputsPage"
+                               Header="Inputs"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE73A;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.TextFieldsPage"
+                               Header="Fields"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE929;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
+                       Text="VPN Components" />
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.VpnSpecificPage"
+                               Header="Custom controls"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE705;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.MapPage"
+                               Header="Map controls"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE707;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
