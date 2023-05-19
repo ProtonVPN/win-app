@@ -118,6 +118,11 @@ extern "C" EXPORT bool IsProcessRunning(const wchar_t* process_name)
     return Os::IsProcessRunning(process_name);
 }
 
+extern "C" EXPORT bool IsProcessRunningByPath(const wchar_t* process_path)
+{
+    return Os::IsProcessRunningByPath(process_path);
+}
+
 extern "C" EXPORT DWORD SaveOldUserConfigFolder()
 {
     return ExecuteAction([]

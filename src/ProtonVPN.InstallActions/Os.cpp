@@ -6,6 +6,7 @@
 #include <tlhelp32.h>
 #include <shobjidl_core.h>
 #include "shlguid.h"
+#include "psapi.h"
 #include <filesystem>
 
 #include "ProcessExecutionResult.h"
@@ -157,6 +158,35 @@ bool Os::IsProcessRunning(const wchar_t* process_name)
 
     CloseHandle(snapshot);
     return running;
+}
+
+bool Os::IsProcessRunningByPath(const std::wstring& process_path)
+{
+    PROCESSENTRY32 entry;
+    entry.dwSize = sizeof(PROCESSENTRY32);
+
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    if (Process32First(snapshot, &entry))
+    {
+        while (Process32Next(snapshot, &entry))
+        {
+            wchar_t path[MAX_PATH];
+            HANDLE process = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, entry.th32ProcessID);
+            if (process)
+            {
+                GetModuleFileNameEx(process, nullptr, path, MAX_PATH);
+                CloseHandle(process);
+                if (process_path == path)
+                {
+                    CloseHandle(snapshot);
+                    return true;
+                }
+            }
+        }
+    }
+
+    CloseHandle(snapshot);
+    return false;
 }
 
 string Os::GetEnvVariable(string name)

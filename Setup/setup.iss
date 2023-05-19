@@ -340,6 +340,9 @@ external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl delayload'
 function IsProcessRunning(processName: String): Boolean;
 external 'IsProcessRunning@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
+function IsProcessRunningByPath(processPath: String): Boolean;
+external 'IsProcessRunningByPath@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
 function InstallCalloutDriver(name, displayName, path: String): Integer;
 external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
@@ -351,6 +354,9 @@ external 'lstrlenW@kernel32.dll stdcall';
 
 function lstrcpyW(lpStringDest: String; lpStringSrc: Cardinal): Integer;
 external 'lstrcpyW@kernel32.dll stdcall';
+
+type
+  TInt64Array = array of Int64;
 
 var
   IsToReboot, IsVerySilent: Boolean;
@@ -372,6 +378,46 @@ begin
   if length > 0 then begin
     lstrcpyW(line, ptr);
     Log(line);
+  end;
+end;
+
+procedure DeleteNonRunningVersions(const Directory: string);
+var
+  VersionFolder: TFindRec;
+  VersionFolderPath: String;
+  i: Integer;
+  Processes: array of String;
+  IsRunningProcessFound: Boolean;
+begin
+  Processes := ['ProtonVPN.exe', 'ProtonVPNService.exe', 'ProtonVPN.WireGuardService.exe'];
+  if FindFirst(ExpandConstant(Directory + '\v*'), VersionFolder) then
+  try
+    repeat
+      VersionFolderPath := AddBackslash(Directory) + AddBackslash(VersionFolder.Name)
+      IsRunningProcessFound := False;
+      for i := 0 to GetArrayLength(Processes) - 1 do
+      begin
+        if IsProcessRunningByPath(VersionFolderPath + Processes[i]) then
+        begin
+          Log('Running process detected: ' + VersionFolderPath + Processes[i]);
+          IsRunningProcessFound := True;
+          Break;
+        end;
+      end;
+
+      if IsRunningProcessFound then
+        Log('Skipping version ' + VersionFolder.Name + ' as running processes were found.')
+      else
+      begin
+        if DelTree(VersionFolderPath, True, True, True) then
+          Log('An old version ' + VersionFolder.Name + ' was removed.')
+        else
+          Log('Failed to remove an old version: ' + VersionFolder.Name + 'Error: ' + SysErrorMessage(DLLGetLastError));
+      end;
+    until
+      not FindNext(VersionFolder);
+  finally
+    FindClose(VersionFolder);
   end;
 end;
 
@@ -481,6 +527,7 @@ end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
+    DeleteNonRunningVersions(ExpandConstant('{app}'));
     Log('Trying to save user settings for the old ProtonVPN app if it is installed');
     SaveOldUserConfigFolder();
     Log('Trying to update taskbar icon path if exists');
