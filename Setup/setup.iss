@@ -325,6 +325,9 @@ external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayloa
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
+function RemoveWfpObjects(): Integer;
+external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
+
 function SaveOldUserConfigFolder(): Integer;
 external 'SaveOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
@@ -532,5 +535,7 @@ begin
     Log('Uninstalling TAP adapter driver');
     res := UninstallTapAdapter(ExpandConstant('{app}\{#VersionFolder}\Resources\tap'));
     Log('TAP uninstallation returned: ' + IntToStr(res));
+    res := RemoveWfpObjects();
+    Log('RemoveWfpObjects returned: ' + IntToStr(res));
   end;
 end;
