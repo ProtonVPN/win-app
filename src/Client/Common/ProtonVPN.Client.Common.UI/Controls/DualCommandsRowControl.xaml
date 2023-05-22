@@ -42,6 +42,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
         <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
 
+        <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+        <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
+
         <Style x:Key="RowButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button">
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="MinHeight" Value="36" />
@@ -51,7 +54,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid x:Name="ContentArea">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -63,19 +66,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Grid.ColumnSpan="3"
                 Command="{x:Bind SecondaryCommand}"
                 Flyout="{x:Bind SecondaryCommandFlyout}"
-                Style="{StaticResource RowButtonStyle}"/>
+                Style="{StaticResource RowButtonStyle}" />
 
         <Button x:Name="btnPrimary"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Command="{x:Bind PrimaryCommand}"
-                Style="{StaticResource RowButtonStyle}"/>
+                Style="{StaticResource RowButtonStyle}" />
 
         <ContentPresenter Grid.Column="0"
                           Margin="{StaticResource RowContentMargin}"
                           VerticalAlignment="Center"
                           Content="{x:Bind RowContent}"
-                          IsHitTestVisible="False"/>
+                          IsHitTestVisible="False" />
 
         <TextBlock x:Name="tbPrimary"
                    Grid.Column="1"
@@ -86,9 +89,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Text="{x:Bind PrimaryCommandText}"
                    Visibility="Collapsed" />
 
-        <StackPanel Grid.Column="2"
+        <StackPanel x:Name="containerSecondary"
+                    Grid.Column="2"
                     Margin="{StaticResource SecondaryCommandContentMargin}"
                     IsHitTestVisible="False"
+                    Opacity="0"
                     Orientation="Horizontal"
                     Spacing="{StaticResource SecondaryCommandContentSpacing}">
             <TextBlock x:Name="tbSecondary"
@@ -100,7 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ContentPresenter x:Name="iconSecondary"
                               VerticalAlignment="Center"
                               Content="{x:Bind SecondaryCommandIcon}"
-                              Opacity="0.65"/>
+                              Opacity="0.65" />
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
@@ -111,6 +116,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="tbPrimary.Visibility" Value="Visible" />
+                        <Setter Target="containerSecondary.Opacity" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SecondaryActionHovered">
@@ -120,9 +126,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <VisualState.Setters>
                         <Setter Target="tbSecondary.Foreground" Value="{StaticResource TextNormColorBrush}" />
                         <Setter Target="iconSecondary.Opacity" Value="1" />
+                        <Setter Target="containerSecondary.Opacity" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="NormalHovered" />
+                <VisualState x:Name="NoneHovered" />
             </VisualStateGroup>
             <VisualStateGroup x:Name="FocusingStates">
                 <VisualState x:Name="PrimaryActionFocused">
@@ -131,18 +138,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="tbPrimary.Visibility" Value="Visible" />
+                        <Setter Target="containerSecondary.Opacity" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="SecondaryActionFocused">           
+                <VisualState x:Name="SecondaryActionFocused">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{Binding FocusState, ElementName=btnSecondary, Converter={StaticResource FocusStateToBooleanConverter}}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="tbSecondary.Foreground" Value="{StaticResource TextNormColorBrush}" />
                         <Setter Target="iconSecondary.Opacity" Value="1" />
+                        <Setter Target="containerSecondary.Opacity" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="NormalFocused" />
+                <VisualState x:Name="NoneFocused" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

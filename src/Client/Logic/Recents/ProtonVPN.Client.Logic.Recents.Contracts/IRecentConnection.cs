@@ -26,4 +26,10 @@ public interface IRecentConnection
     IConnectionIntent ConnectionIntent { get; }
 
     bool IsPinned { get; set; }
+
+    DateTime? PinTime { get; set; }
+
+    bool IsActiveConnection { get; set; }
+
+    bool IsServerInMaintenance { get; set; }
 }

@@ -19,8 +19,12 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
-public class SecureCoreFeatureIntent : IFeatureIntent
+public class SecureCoreFeatureIntent : FeatureIntentBase
 {
+    public string? EntryCountryCode { get; }
+
+    public bool IsFastest => string.IsNullOrEmpty(EntryCountryCode);
+
     public SecureCoreFeatureIntent(string entryCountryCode)
     {
         EntryCountryCode = entryCountryCode;
@@ -29,5 +33,10 @@ public class SecureCoreFeatureIntent : IFeatureIntent
     public SecureCoreFeatureIntent()
     { }
 
-    public string? EntryCountryCode { get; }
+    public override bool IsSameAs(IFeatureIntent? intent)
+    {
+        return base.IsSameAs(intent)
+            && intent is SecureCoreFeatureIntent secureCoreIntent
+            && EntryCountryCode == secureCoreIntent.EntryCountryCode;
+    }
 }

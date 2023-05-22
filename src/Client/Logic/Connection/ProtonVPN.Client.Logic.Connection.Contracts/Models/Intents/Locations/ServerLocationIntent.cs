@@ -24,8 +24,15 @@ public class ServerLocationIntent : CityStateLocationIntent
     public int ServerNumber { get; set; }
 
     public ServerLocationIntent(string countryCode, string cityState, int serverNumber)
-            : base(countryCode, cityState)
+        : base(countryCode, cityState)
     {
         ServerNumber = serverNumber;
+    }
+
+    public override bool IsSameAs(ILocationIntent? intent)
+    {
+        return base.IsSameAs(intent)
+            && intent is ServerLocationIntent serverIntent
+            && ServerNumber == serverIntent.ServerNumber;
     }
 }

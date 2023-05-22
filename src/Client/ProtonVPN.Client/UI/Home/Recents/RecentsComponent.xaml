@@ -26,97 +26,103 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
              xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
-             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <Expander Margin="16,0"
+    <Expander Margin="0,8,0,0"
+              Padding="16,0"
               ExpandDirection="Down"
-              Header="{x:Bind ViewModel.Localizer.Get('Home_Recents_Title')}"
+              Header="{x:Bind ViewModel.Localizer.Get('Home_Recents_Title'), Mode=OneWay}"
               IsExpanded="{x:Bind ViewModel.IsRecentsComponentOpened, Mode=TwoWay}"
               Style="{StaticResource GhostExpanderStyle}"
-              Visibility="{x:Bind ViewModel.HasRecentConnections}">
-        <ItemsControl ItemsSource="{x:Bind ViewModel.RecentConnections}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate x:DataType="recents:RecentItemViewModel">
-                    <controls:DualCommandsRowControl Padding="12,0"
-                                                     PrimaryCommand="{x:Bind ConnectCommand}"
-                                                     PrimaryCommandText="{x:Bind Localizer.Get('Common_Actions_Connect')}">
-                        
-                        <controls:DualCommandsRowControl.SecondaryCommandIcon>
-                            <icons:ThreeDotsVertical Height="16" />
-                        </controls:DualCommandsRowControl.SecondaryCommandIcon>
-                        
-                        <controls:DualCommandsRowControl.SecondaryCommandFlyout>
-                            <MenuFlyout Placement="BottomEdgeAlignedRight">
-                                <MenuFlyoutItem Command="{x:Bind PinCommand}"
-                                                Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
-                                                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  Glyph="&#xE718;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Command="{x:Bind UnpinCommand}"
-                                                Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
-                                                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  Glyph="&#xE77A;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Command="{x:Bind RemoveCommand}"
-                                                Text="{x:Bind Localizer.Get('Common_Actions_Remove')}"
-                                                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  Glyph="&#xE74D;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </controls:DualCommandsRowControl.SecondaryCommandFlyout>
+              Visibility="{x:Bind ViewModel.HasRecentConnections, Mode=OneWay}">
+        <ScrollViewer MaxHeight="180"
+                      Margin="0,0,-8,0"
+                      Padding="0,0,8,0"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{x:Bind ViewModel.RecentConnections}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="recents:RecentItemViewModel">
+                        <controls:DualCommandsRowControl Padding="12,0"
+                                                         PrimaryCommand="{x:Bind ToggleConnectionCommand}"
+                                                         PrimaryCommandText="{x:Bind PrimaryCommandText, Mode=OneWay}">
 
-                        <Grid ColumnSpacing="8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                            <controls:DualCommandsRowControl.SecondaryCommandIcon>
+                                <icons:ThreeDotsVertical Height="16" />
+                            </controls:DualCommandsRowControl.SecondaryCommandIcon>
 
-                            <Grid Grid.Column="0">
-                                <icons:Pin Height="16"
-                                           Foreground="{StaticResource TextHintColorBrush}"
-                                           Visibility="{x:Bind IsPinned}" />
-                                <icons:ClockRotateLeft Height="16"
-                                                       Foreground="{StaticResource TextHintColorBrush}"
-                                                       Visibility="{x:Bind IsPinned, Converter={StaticResource NotBoolToVisibilityConverter}}" />
+                            <controls:DualCommandsRowControl.SecondaryCommandFlyout>
+                                <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                    <MenuFlyoutItem Command="{x:Bind PinCommand}"
+                                                    Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
+                                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      Glyph="&#xE718;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Command="{x:Bind UnpinCommand}"
+                                                    Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
+                                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      Glyph="&#xE77A;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Command="{x:Bind RemoveCommand}"
+                                                    Text="{x:Bind Localizer.Get('Common_Actions_Remove')}"
+                                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      Glyph="&#xE74D;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </controls:DualCommandsRowControl.SecondaryCommandFlyout>
+
+                            <Grid HorizontalAlignment="Left"
+                                  ColumnSpacing="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0">
+                                    <icons:Pin Height="16"
+                                               Foreground="{StaticResource TextHintColorBrush}"
+                                               Visibility="{x:Bind IsPinned}" />
+                                    <icons:ClockRotateLeft Height="16"
+                                                           Foreground="{StaticResource TextHintColorBrush}"
+                                                           Visibility="{x:Bind IsPinned, Converter={StaticResource NotBoolToVisibilityConverter}}" />
+                                </Grid>
+
+                                <controls:CountryFlagControl Grid.Column="1"
+                                                             Height="16"
+                                                             EntryCountryCode="{x:Bind EntryCountry}"
+                                                             ExitCountryCode="{x:Bind ExitCountry}"
+                                                             IsCompact="{x:Bind IsSecureCore}"
+                                                             IsSecureCore="{x:Bind IsSecureCore}" />
+
+                                <TextBlock Grid.Column="2"
+                                           Foreground="{StaticResource TextWeakColorBrush}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap">
+                                    <Run Foreground="{StaticResource TextNormColorBrush}"
+                                         Text="{x:Bind Title, Mode=OneWay}" />
+                                    <Run Text="{x:Bind Subtitle, Mode=OneWay}" />
+                                </TextBlock>
+
+                                <icons:ActiveDot Grid.Column="3"
+                                                 Width="16"
+                                                 Height="16"
+                                                 Visibility="{x:Bind IsActiveConnection}" />
                             </Grid>
-
-                            <controls:CountryFlagControl Grid.Column="1"
-                                                         Height="16"
-                                                         EntryCountryCode="{x:Bind EntryCountry}"
-                                                         ExitCountryCode="{x:Bind ExitCountry}"
-                                                         IsCompact="{x:Bind IsSecureCore}"
-                                                         IsSecureCore="{x:Bind IsSecureCore}" />
-
-                            <TextBlock Grid.Column="2"
-                                       Foreground="{StaticResource TextWeakColorBrush}"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       TextTrimming="CharacterEllipsis"
-                                       TextWrapping="NoWrap">
-                                <Run Text="{x:Bind Title}"
-                                     Foreground="{StaticResource TextNormColorBrush}" />
-                                <Run Text="{x:Bind Subtitle}" />
-                            </TextBlock>
-
-                            <icons:ActiveDot Grid.Column="3"
-                                             Width="16"
-                                             Height="16"
-                                             Visibility="{x:Bind IsActiveConnection}" />
-                        </Grid>
-                    </controls:DualCommandsRowControl>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                        </controls:DualCommandsRowControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Expander>
 </UserControl>

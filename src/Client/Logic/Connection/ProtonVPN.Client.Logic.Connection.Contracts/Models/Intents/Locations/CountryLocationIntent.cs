@@ -19,15 +19,25 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public class CountryLocationIntent : ILocationIntent
+public class CountryLocationIntent : LocationIntentBase
 {
     public string? CountryCode { get; }
 
+    public bool IsFastest => string.IsNullOrEmpty(CountryCode);
+
     public CountryLocationIntent(string countryCode)
     {
-        CountryCode = countryCode?.ToUpperInvariant();
+        CountryCode = countryCode.ToUpperInvariant();
     }
 
     public CountryLocationIntent()
+        : this(string.Empty)
     { }
+
+    public override bool IsSameAs(ILocationIntent? intent)
+    {
+        return base.IsSameAs(intent)
+            && intent is CountryLocationIntent countryIntent
+            && CountryCode == countryIntent.CountryCode;
+    }
 }

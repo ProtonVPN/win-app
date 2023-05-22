@@ -27,4 +27,6 @@ public interface IConnectionIntent
     ILocationIntent? Location { get; }
 
     IFeatureIntent? Feature { get; }
+
+    bool IsSameAs(IConnectionIntent? intent);
 }

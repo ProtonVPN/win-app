@@ -28,6 +28,12 @@ public class RecentConnection : IRecentConnection
 
     public bool IsPinned { get; set; }
 
+    public DateTime? PinTime { get; set; }
+
+    public bool IsActiveConnection { get; set; }
+
+    public bool IsServerInMaintenance { get; set; }
+
     public RecentConnection(IConnectionIntent connectionIntent)
     {
         ConnectionIntent = connectionIntent;

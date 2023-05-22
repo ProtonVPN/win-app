@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI.Home.Recents;
 
@@ -33,17 +32,14 @@ public partial class RecentItemViewModel : ViewModelBase
 {
     private readonly IConnectionService _connectionService;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+
     private readonly IRecentConnection _recentConnection;
 
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
-    private bool _isActiveConnection;
-
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
-    private bool _isServerInMaintenance;
-
     public bool IsPinned => _recentConnection.IsPinned;
+
+    public bool IsActiveConnection => _recentConnection.IsActiveConnection;
+
+    public bool IsServerInMaintenance => _recentConnection.IsServerInMaintenance;
 
     public string? ExitCountry => (_recentConnection.ConnectionIntent?.Location as CountryLocationIntent)?.CountryCode;
 
@@ -55,9 +51,14 @@ public partial class RecentItemViewModel : ViewModelBase
 
     public string Subtitle => Localizer.GetConnectionIntentSubtitle(_recentConnection.ConnectionIntent).FormatIfNotEmpty("- {0}");
 
+    public string PrimaryCommandText => IsActiveConnection
+        ? Localizer.Get("Common_Actions_Disconnect")
+        : Localizer.Get("Common_Actions_Connect");
+
     public RecentItemViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, IRecentConnection recentConnection)
     {
         ArgumentNullException.ThrowIfNull(recentConnection, nameof(recentConnection));
+        ArgumentNullException.ThrowIfNull(recentConnection.ConnectionIntent, nameof(recentConnection.ConnectionIntent));
 
         _connectionService = connectionService;
         _recentConnectionsProvider = recentConnectionsProvider;
@@ -69,17 +70,24 @@ public partial class RecentItemViewModel : ViewModelBase
     {
         OnPropertyChanged(nameof(Title));
         OnPropertyChanged(nameof(Subtitle));
+        OnPropertyChanged(nameof(PrimaryCommandText));
     }
 
-    [RelayCommand(CanExecute = nameof(CanConnect))]
-    private async Task ConnectAsync()
+    [RelayCommand(CanExecute = nameof(CanToggleConnection))]
+    private async Task ToggleConnectionAsync()
     {
+        if (IsActiveConnection)
+        {
+            await _connectionService.DisconnectAsync();
+            return;
+        }
+
         await _connectionService.ConnectAsync(_recentConnection.ConnectionIntent);
     }
 
-    private bool CanConnect()
+    private bool CanToggleConnection()
     {
-        return !IsActiveConnection && !IsServerInMaintenance;
+        return !IsServerInMaintenance;
     }
 
     [RelayCommand(CanExecute = nameof(CanPin))]
@@ -109,5 +117,4 @@ public partial class RecentItemViewModel : ViewModelBase
     {
         _recentConnectionsProvider.Remove(_recentConnection);
     }
-
 }

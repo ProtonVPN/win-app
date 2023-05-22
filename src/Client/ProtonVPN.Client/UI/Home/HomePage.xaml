@@ -114,7 +114,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         MaxWidth="{StaticResource MaximumContentWidth}"/>
 
                 <recents:RecentsComponent Grid.Row="2"
-                                          Margin="0,8,0,0"
                                           MaxWidth="{StaticResource MaximumContentWidth}"/>
             </Grid>
         </SplitView>

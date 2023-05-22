@@ -24,8 +24,15 @@ public class FreeServerLocationIntent : CountryLocationIntent
     public int ServerNumber { get; set; }
 
     public FreeServerLocationIntent(string countryCode, int serverNumber)
-            : base(countryCode)
+        : base(countryCode)
     {
         ServerNumber = serverNumber;
+    }
+
+    public override bool IsSameAs(ILocationIntent? intent)
+    {
+        return base.IsSameAs(intent)
+            && intent is FreeServerLocationIntent freeServerIntent
+            && ServerNumber == freeServerIntent.ServerNumber;
     }
 }

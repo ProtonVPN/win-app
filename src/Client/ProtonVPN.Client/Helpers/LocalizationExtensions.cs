@@ -29,7 +29,7 @@ public static class LocalizationExtensions
 {
     public static string GetConnectionIntentTitle(this ILocalizationProvider localizer, IConnectionIntent connectionIntent)
     {
-        if (connectionIntent?.Location is not CountryLocationIntent countryIntent || countryIntent.CountryCode.IsNullOrEmpty())
+        if (connectionIntent?.Location is not CountryLocationIntent countryIntent || countryIntent.IsFastest)
         {
             return localizer.Get("Country_Fastest");
         }
@@ -39,7 +39,7 @@ public static class LocalizationExtensions
 
     public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent connectionIntent)
     {
-        if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent && !secureCoreIntent.EntryCountryCode.IsNullOrEmpty())
+        if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent && !secureCoreIntent.IsFastest)
         {
             return localizer.GetFormat("Connection_Via_SecureCore", localizer.Get($"Country_val_{secureCoreIntent.EntryCountryCode}"));
         }

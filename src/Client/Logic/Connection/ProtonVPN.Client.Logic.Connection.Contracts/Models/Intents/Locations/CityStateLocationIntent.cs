@@ -24,8 +24,15 @@ public class CityStateLocationIntent : CountryLocationIntent
     public string CityState { get; }
 
     public CityStateLocationIntent(string countryCode, string cityState)
-            : base(countryCode)
+        : base(countryCode)
     {
         CityState = cityState;
+    }
+
+    public override bool IsSameAs(ILocationIntent? intent)
+    {
+        return base.IsSameAs(intent)
+            && intent is CityStateLocationIntent cityStateIntent
+            && CityState == cityStateIntent.CityState;
     }
 }
