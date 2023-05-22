@@ -41,4 +41,16 @@ public class ConnectionIntent : IConnectionIntent
         Location = location;
         Feature = null;
     }
+
+    public bool IsSameAs(IConnectionIntent? intent)
+    {
+        if (intent == null)
+        {
+            return false;
+        }
+
+        // Check whether both location are null or identical. Same for feature
+        return ((Location == null && intent.Location == null) || Location?.IsSameAs(intent.Location) == true)
+            && ((Feature == null && intent.Feature == null) || Feature?.IsSameAs(intent.Feature) == true);
+    }
 }

@@ -19,6 +19,6 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
-public class TorFeatureIntent : IFeatureIntent
+public class TorFeatureIntent : FeatureIntentBase
 {
 }

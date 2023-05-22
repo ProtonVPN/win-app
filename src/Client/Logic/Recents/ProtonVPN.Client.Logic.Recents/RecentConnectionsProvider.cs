@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
@@ -30,11 +31,13 @@ namespace ProtonVPN.Client.Logic.Recents;
 
 public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsProvider, IRecipient<ConnectionStatusChanged>
 {
-    private const int MAXIMUM_RECENT_CONNECTIONS = 5;
+    private const int MAXIMUM_RECENT_CONNECTIONS = 6;
 
     private readonly IConnectionService _connectionService;
     private readonly object _lock = new();
     private List<IRecentConnection> _recentConnections;
+
+    private Queue<IRecentConnection> _recentConnectionsQueue;
 
     public RecentConnectionsProvider(IConnectionService connectionService)
     {
@@ -52,55 +55,22 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
 
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()
     {
-        return _recentConnections.OrderByDescending(c => c.IsPinned);
+        return _recentConnections.OrderByDescending(c => c.IsPinned)
+                                 .ThenBy(c => c.PinTime);
     }
 
     public IRecentConnection? GetMostRecentConnection()
     {
-        return _recentConnections.FirstOrDefault();
-    }
-
-    public void Receive(ConnectionStatusChanged message)
-    {
-        lock (_lock)
-        {
-            // Update the recent connections when a new connection is attempted
-
-            if (message?.Value is null || message.Value != ConnectionStatus.Connecting)
-            {
-                return;
-            }
-
-            ConnectionDetails? connectionDetails = _connectionService.GetConnectionDetails();
-
-            // TODO: Check if this intent is already in the recent connections.
-
-            if (connectionDetails?.OriginalConnectionIntent is null)
-            {
-                throw new InvalidOperationException("The connection details cannot be null if the connection status is not disconnected");
-            }
-
-            _recentConnections.Insert(0, new RecentConnection(connectionDetails.OriginalConnectionIntent));
-
-            while (_recentConnections.Count(c => !c.IsPinned) > MAXIMUM_RECENT_CONNECTIONS)
-            {
-                IRecentConnection lastRecentConnection = _recentConnections.Last(c => !c.IsPinned);
-                _recentConnections.Remove(lastRecentConnection);
-            }
-        }
-
-        BroadcastRecentConnectionsChanged();
+        return _recentConnections.FirstOrDefault(c => c.IsActiveConnection)
+            ?? _recentConnections.FirstOrDefault();
     }
 
     public void Pin(IRecentConnection recentConnection)
     {
         lock (_lock)
         {
-            _recentConnections.Remove(recentConnection);
-
             recentConnection.IsPinned = true;
-
-            _recentConnections.Insert(0, recentConnection);
+            recentConnection.PinTime = DateTime.UtcNow;
         }
 
         BroadcastRecentConnectionsChanged();
@@ -110,11 +80,10 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
     {
         lock (_lock)
         {
-            _recentConnections.Remove(recentConnection);
-
             recentConnection.IsPinned = false;
+            recentConnection.PinTime = null;
 
-            _recentConnections.Insert(0, recentConnection);
+            TrimRecentConnections();
         }
 
         BroadcastRecentConnectionsChanged();
@@ -128,6 +97,74 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
         }
 
         BroadcastRecentConnectionsChanged();
+    }
+
+    public void Receive(ConnectionStatusChanged message)
+    {
+        lock (_lock)
+        {
+            ConnectionDetails? connectionDetails = _connectionService.GetConnectionDetails();
+
+            try
+            {
+                if (message?.Value != ConnectionStatus.Connecting)
+                {
+                    return;
+                }
+
+                if (!TryInsertRecentConnection(connectionDetails?.OriginalConnectionIntent))
+                {
+                    return;
+                }
+
+                TrimRecentConnections();
+            }
+            finally
+            {
+                SetActiveConnection(connectionDetails?.OriginalConnectionIntent, _connectionService.ConnectionStatus);
+
+                BroadcastRecentConnectionsChanged();
+            }
+        }
+    }
+
+    private bool TryInsertRecentConnection(IConnectionIntent? recentIntent)
+    {
+        if (recentIntent == null)
+        {
+            return false;
+        }
+
+        IRecentConnection? duplicate = _recentConnections.SingleOrDefault(c => c.ConnectionIntent.IsSameAs(recentIntent));
+        if (duplicate != null)
+        {
+            // Remove duplicated intent so it can be inserted at the top of the list
+            _recentConnections.Remove(duplicate);
+        }
+
+        IRecentConnection recentConnection = duplicate ?? new RecentConnection(recentIntent);
+
+        _recentConnections.Insert(0, recentConnection);
+
+        return true;
+    }
+
+    private void TrimRecentConnections()
+    {
+        while (_recentConnections.Count(c => !c.IsPinned) > MAXIMUM_RECENT_CONNECTIONS)
+        {
+            _recentConnections.Remove(_recentConnections.Last(c => !c.IsPinned));
+        }
+    }
+
+    private void SetActiveConnection(IConnectionIntent? activeIntent, ConnectionStatus connectionStatus)
+    {
+        foreach (IRecentConnection connection in _recentConnections)
+        {
+            connection.IsActiveConnection = activeIntent != null
+                                         && connectionStatus == ConnectionStatus.Connected
+                                         && activeIntent.IsSameAs(connection.ConnectionIntent);
+        }
     }
 
     private void BroadcastRecentConnectionsChanged()

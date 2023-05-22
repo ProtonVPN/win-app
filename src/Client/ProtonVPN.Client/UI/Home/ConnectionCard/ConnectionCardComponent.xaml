@@ -23,9 +23,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
-             xmlns:help="using:ProtonVPN.Client.UI.Home.Help" 
              xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+             xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+             xmlns:help="using:ProtonVPN.Client.UI.Home.Help"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -142,8 +142,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Background="{StaticResource BackgroundNormColorBrush}"
-                Padding="16,16,16,0" 
+    <StackPanel Padding="16,16,16,0"
+                Background="{StaticResource BackgroundNormColorBrush}"
                 Orientation="Vertical"
                 Spacing="12">
 
@@ -181,21 +181,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <controls:CountryFlagControl Width="30"
                                                  Margin="4,0,0,0"
                                                  VerticalAlignment="Top"
+                                                 toolkit:DockPanel.Dock="Left"
                                                  EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
                                                  ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
-                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" 
-                                                 toolkit:DockPanel.Dock="Left"/>
-                    <StackPanel Orientation="Vertical"
-                                Spacing="4"
-                                Margin="12,0,0,0">
+                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" />
+                    <StackPanel Margin="12,0,0,0"
+                                Orientation="Vertical"
+                                Spacing="4">
                         <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
                                    Text="{x:Bind ViewModel.Title}"
-                                   TextWrapping="Wrap"/>
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="WrapWholeWords" />
                         <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Text="{x:Bind ViewModel.Subtitle}"
-                                   Visibility="{x:Bind ViewModel.HasSubtitle}"
-                                   TextWrapping="Wrap" />
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="WrapWholeWords"
+                                   Visibility="{x:Bind ViewModel.HasSubtitle}" />
                     </StackPanel>
                 </toolkit:DockPanel>
             </Button>

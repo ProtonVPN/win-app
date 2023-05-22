@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
-public class P2PFeatureIntent : IFeatureIntent
+public class P2PFeatureIntent : FeatureIntentBase
 {
 }

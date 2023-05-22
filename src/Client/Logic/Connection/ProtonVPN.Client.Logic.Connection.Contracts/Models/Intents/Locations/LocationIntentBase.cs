@@ -17,22 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public class CityStateLocationIntent : CountryLocationIntent
+public abstract class LocationIntentBase : ILocationIntent
 {
-    public string CityState { get; }
-
-    public CityStateLocationIntent(string countryCode, string cityState)
-        : base(countryCode)
+    public virtual bool IsSameAs(ILocationIntent? intent)
     {
-        CityState = cityState;
-    }
+        if (intent == null)
+        {
+            return false;
+        }
 
-    public override bool IsSameAs(ILocationIntent? intent)
-    {
-        return base.IsSameAs(intent)
-            && intent is CityStateLocationIntent cityStateIntent
-            && CityState == cityStateIntent.CityState;
+        return GetType() == intent.GetType();
     }
 }

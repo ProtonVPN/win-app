@@ -21,5 +21,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public interface ILocationIntent
 {
-
+    bool IsSameAs(ILocationIntent? intent);
 }

@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="GhostExpanderHeaderButtonStyle" BasedOn="{StaticResource DefaultToggleButtonStyle}" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
-
+        <Setter Property="Margin" Value="16,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">

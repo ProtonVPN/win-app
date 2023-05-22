@@ -154,7 +154,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTransitions="{TemplateBinding ContentTransitions}"
                                           Foreground="{TemplateBinding Foreground}"
-                                          TextWrapping="Wrap" />
+                                          TextWrapping="WrapWholeWords"  />
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
