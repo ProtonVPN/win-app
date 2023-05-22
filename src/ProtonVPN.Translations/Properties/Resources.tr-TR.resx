@@ -1957,7 +1957,7 @@
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>İki aşamalı doğrulama kodu</value>
+    <value>İki adımlı doğrulama kodu</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Kullanıcı adı</value>
@@ -1996,7 +1996,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>İki aşamalı doğrulama kodu geçersiz</value>
+    <value>İki adımlı doğrulama kodu geçersiz</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Oturum açma bilgileri yanlış. Lütfen yeniden deneyin.</value>

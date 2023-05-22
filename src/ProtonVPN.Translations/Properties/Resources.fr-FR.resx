@@ -1710,7 +1710,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Un problème est survenu lors du téléchargement d'une version plus récente. Mettez manuellement à jour votre application pour disposer de la dernière version.</value>
+    <value>Un problème est survenu pendant le téléchargement d'une version plus récente. Mettez manuellement à jour votre application pour disposer de la dernière version.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">

@@ -296,7 +296,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Keluar</value>
+    <value>Keluar Akun</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -388,7 +388,7 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Log-log error yang ada akan membantu kami untuk dapat menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log-log error tersebut, kami tidak akan dapat menganalisa masalah Anda secara maksimal.</value>
+    <value>Log error membantu kami dalam menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log error yang ada, kami mungkin tidak akan dapat menganalisa masalah Anda secara menyeluruh.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
     <value>Log merupakan berkas yang merekam berbagai aktivitas yang memicu terjadinya suatu error. Kami hanya akan menggunakan berkas log Anda untuk membantu para pakar kami dalam menumpas berbagai bug yang ada.</value>

@@ -2484,7 +2484,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>{0} sicherer Server</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} sicherer Server</value>
+    <value>{0} sichere Server</value>
   </data>
   <data name="ServerType_val_None">
     <value>Standard</value>
