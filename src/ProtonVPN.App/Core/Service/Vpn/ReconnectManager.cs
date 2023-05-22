@@ -18,10 +18,10 @@
  */
 
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
@@ -78,7 +78,7 @@ namespace ProtonVPN.Core.Service.Vpn
             {
                 if (!_timer.IsEnabled)
                 {
-                    _timer.Interval = _appSettings.MaintenanceCheckInterval;
+                    _timer.Interval = _appSettings.MaintenanceCheckInterval.RandomizedWithDeviation(0.2);
                     _timer.Start();
                 }
             }
