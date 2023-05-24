@@ -249,5 +249,7 @@ namespace ProtonVPN.Common.Configuration
         public string WintunDriverPath { get; set; }
         public string WintunAdapterName { get; set; }
         public string InstallActionsPath { get; set; }
+
+        public bool IsCertificateValidationDisabled { get; set; }
     }
 }

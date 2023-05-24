@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Configuration.Environments;
 using ProtonVPN.Common.Configuration.Source;
 using ProtonVPN.Common.Configuration.Storage;
 
@@ -44,10 +45,17 @@ namespace ProtonVPN.Common.Configuration
                     mode,
                     new DefaultConfig(),
                     new ValidatedConfigStorage(
-                        new SafeConfigStorage(
-                            new FileConfigStorage(
-                                new ConfigFile(
-                )))));
+                        new EnvironmentVariableConfigStorage(
+                            new DefaultConfig(),
+                            new SafeConfigStorage(
+                                new FileConfigStorage(
+                                    new ConfigFile()
+                                )
+                            )
+                        )
+                    )
+                );
+
 
             return config.Value();
         }

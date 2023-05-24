@@ -304,7 +304,7 @@ namespace ProtonVPN.Common.Configuration.Source
                         },
                         new()
                         {
-                            Name = "[InternalReleaseHost]", //this is replaced by CI script
+                            Name = "[InternalReleaseHost]", // This is replaced by a CI script
                             PublicKeyHashes = new HashSet<string>
                             {
                                 "C4SMuz+h4+fTsxOKLXRKqrR9rAzk9bknu+hlC4QYmh0=",
@@ -356,6 +356,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 WintunAdapterName = "ProtonVPN TUN",
 
                 InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
+
+                IsCertificateValidationDisabled = false
             };
         }
     }

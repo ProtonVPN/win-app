@@ -19,10 +19,10 @@
 
 using System.Net.Http;
 using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
-using ProtonVPN.Api.Handlers;
 using ProtonVPN.Common.OS.Net.Http;
 
 namespace ProtonVPN.Api

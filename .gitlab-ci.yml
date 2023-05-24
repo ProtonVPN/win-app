@@ -188,7 +188,7 @@ ui-test:
       - $SCREENSHOT_PATH
       - "results/*"
     expire_in: 1 weeks
-    
+
 connection-test:
   stage: ui-test
   tags:
@@ -213,7 +213,7 @@ connection-test:
       - $SCREENSHOT_PATH
       - "results/*"
     expire_in: 1 weeks
-    
+
 win-11-test:
   stage: ui-test
   when: manual

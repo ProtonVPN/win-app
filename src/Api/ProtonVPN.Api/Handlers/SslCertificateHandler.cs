@@ -20,20 +20,24 @@
 using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Api.Handlers
 {
     public class SslCertificateHandler : CertificateHandlerBase
     {
-        public SslCertificateHandler()
+        private readonly IConfiguration _config;
+
+        public SslCertificateHandler(IConfiguration config)
         {
             ServerCertificateCustomValidationCallback = CertificateCustomValidationCallback;
+            _config = config;
         }
 
         protected bool CertificateCustomValidationCallback(HttpRequestMessage request, X509Certificate certificate,
             X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            return sslPolicyErrors == SslPolicyErrors.None;
+            return _config.IsCertificateValidationDisabled || sslPolicyErrors == SslPolicyErrors.None;
         }
     }
 }

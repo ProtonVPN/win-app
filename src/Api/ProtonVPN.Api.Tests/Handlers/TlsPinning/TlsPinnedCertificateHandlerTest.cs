@@ -208,7 +208,7 @@ namespace ProtonVPN.Api.Tests.Handlers.TlsPinning
 
         private TestCertificateHandler CreateTestCertificateHandler(IConfiguration config)
         {
-            return new(new CertificateValidator(_reportClient, config));
+            return new(new CertificateValidator(_reportClient, config), config);
         }
     }
 
@@ -244,7 +244,8 @@ namespace ProtonVPN.Api.Tests.Handlers.TlsPinning
 
     internal class TestCertificateHandler : TlsPinnedCertificateHandler
     {
-        public TestCertificateHandler(ICertificateValidator certificateValidator) : base(certificateValidator)
+        public TestCertificateHandler(ICertificateValidator certificateValidator, IConfiguration config) 
+            : base(certificateValidator, config)
         {
         }
 
