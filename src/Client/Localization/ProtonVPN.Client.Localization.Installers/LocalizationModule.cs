@@ -17,15 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Xml;
 using Microsoft.Extensions.DependencyInjection;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization;
 
 namespace ProtonVPN.Client.Localization.Installers;
 
@@ -38,5 +31,5 @@ public static class LocalizationModule
         services.AddSingleton<ILocalizationProvider, LocalizationProvider>();
 
         return services;
-    }    
+    }
 }

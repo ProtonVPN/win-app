@@ -66,13 +66,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Grid.ColumnSpan="3"
                 Command="{x:Bind SecondaryCommand}"
                 Flyout="{x:Bind SecondaryCommandFlyout}"
-                Style="{StaticResource RowButtonStyle}" />
+                Style="{StaticResource RowButtonStyle}"
+                ToolTipService.ToolTip="{x:Bind SecondaryCommandToolTip}" />
 
         <Button x:Name="btnPrimary"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Command="{x:Bind PrimaryCommand}"
-                Style="{StaticResource RowButtonStyle}" />
+                Style="{StaticResource RowButtonStyle}"
+                ToolTipService.ToolTip="{x:Bind PrimaryCommandToolTip}" />
 
         <ContentPresenter Grid.Column="0"
                           Margin="{StaticResource RowContentMargin}"

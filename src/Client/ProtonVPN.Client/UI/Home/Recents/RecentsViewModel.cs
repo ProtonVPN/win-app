@@ -29,8 +29,6 @@ namespace ProtonVPN.Client.UI.Home.Recents;
 
 public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnectionsChanged>
 {
-    private const int MAXIMUM_RECENT_CONNECTIONS_DISPLAYED = 5;
-
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
     private readonly IConnectionService _connectionService;
 
@@ -62,8 +60,6 @@ public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnecti
 
         IRecentConnection? mostRecentConnection = _recentConnectionsProvider.GetMostRecentConnection();
 
-        int recentConnectionsCount = 0;
-
         foreach (IRecentConnection recentConnection in _recentConnectionsProvider.GetRecentConnections())
         {
             // Most recent connection will be displayed on the connection card instead (unless it is pinned)
@@ -72,18 +68,7 @@ public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnecti
                 continue;
             }
 
-            // Maximum recent connections exceeded
-            if (!recentConnection.IsPinned && recentConnectionsCount >= MAXIMUM_RECENT_CONNECTIONS_DISPLAYED)
-            {
-                continue;
-            }
-
             RecentConnections.Add(new RecentItemViewModel(_connectionService, _recentConnectionsProvider, recentConnection));
-
-            if (!recentConnection.IsPinned)
-            {
-                recentConnectionsCount++;
-            }
         }
 
         OnPropertyChanged(nameof(HasRecentConnections));

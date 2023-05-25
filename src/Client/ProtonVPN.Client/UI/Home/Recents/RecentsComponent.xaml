@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
              xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
              mc:Ignorable="d">
@@ -44,10 +45,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DataTemplate x:DataType="recents:RecentItemViewModel">
                         <controls:DualCommandsRowControl Padding="12,0"
                                                          PrimaryCommand="{x:Bind ToggleConnectionCommand}"
-                                                         PrimaryCommandText="{x:Bind PrimaryCommandText, Mode=OneWay}">
+                                                         PrimaryCommandText="{x:Bind PrimaryCommandText, Mode=OneWay}"
+                                                         SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip, Mode=OneWay}">
 
                             <controls:DualCommandsRowControl.SecondaryCommandIcon>
-                                <icons:ThreeDotsVertical Height="16" />
+                                <pathicons:ThreeDotsVertical />
                             </controls:DualCommandsRowControl.SecondaryCommandIcon>
 
                             <controls:DualCommandsRowControl.SecondaryCommandFlyout>
@@ -56,24 +58,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
                                                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
                                         <MenuFlyoutItem.Icon>
-                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                      Glyph="&#xE718;" />
+                                            <pathicons:PinFilled />
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
                                     <MenuFlyoutItem Command="{x:Bind UnpinCommand}"
                                                     Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
                                                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
                                         <MenuFlyoutItem.Icon>
-                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                      Glyph="&#xE77A;" />
+                                            <pathicons:PinSlashFilled />
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
                                     <MenuFlyoutItem Command="{x:Bind RemoveCommand}"
-                                                    Text="{x:Bind Localizer.Get('Common_Actions_Remove')}"
-                                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
+                                                    Text="{x:Bind Localizer.Get('Common_Actions_Remove')}">
                                         <MenuFlyoutItem.Icon>
-                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                      Glyph="&#xE74D;" />
+                                            <pathicons:TrashCross />
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
                                 </MenuFlyout>
@@ -86,19 +84,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Grid.Column="0">
-                                    <icons:Pin Height="16"
-                                               Foreground="{StaticResource TextHintColorBrush}"
-                                               Visibility="{x:Bind IsPinned}" />
-                                    <icons:ClockRotateLeft Height="16"
-                                                           Foreground="{StaticResource TextHintColorBrush}"
-                                                           Visibility="{x:Bind IsPinned, Converter={StaticResource NotBoolToVisibilityConverter}}" />
+                                    <pathicons:PinFilled Foreground="{StaticResource TextHintColorBrush}"
+                                                         Visibility="{x:Bind IsPinned}" />
+                                    <pathicons:ClockRotateLeft Foreground="{StaticResource TextHintColorBrush}"
+                                                               Visibility="{x:Bind IsPinned, Converter={StaticResource NotBoolToVisibilityConverter}}" />
                                 </Grid>
 
                                 <controls:CountryFlagControl Grid.Column="1"
-                                                             Height="16"
                                                              EntryCountryCode="{x:Bind EntryCountry}"
                                                              ExitCountryCode="{x:Bind ExitCountry}"
                                                              IsCompact="{x:Bind IsSecureCore}"
@@ -114,7 +111,45 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Run Text="{x:Bind Subtitle, Mode=OneWay}" />
                                 </TextBlock>
 
-                                <icons:ActiveDot Grid.Column="3"
+                                <StackPanel Grid.Column="3"
+                                            Orientation="Horizontal">
+                                    <TextBlock Margin="0,0,6,0"
+                                               VerticalAlignment="Center"
+                                               Foreground="{StaticResource TextWeakColorBrush}"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Text="•"
+                                               Visibility="{x:Bind HasFeature}" />
+
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="{x:Bind IsTor}">
+                                        <pathicons:BrandTor Foreground="{StaticResource TextWeakColorBrush}" />
+                                        <TextBlock Margin="4,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{StaticResource TextWeakColorBrush}"
+                                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Text="{x:Bind Localizer.Get('Server_Feature_Tor'), Mode=OneWay}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   TextWrapping="WrapWholeWords" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="{x:Bind IsP2P}">
+                                        <pathicons:ArrowRightArrowLeft Foreground="{StaticResource TextWeakColorBrush}" />
+                                        <TextBlock Margin="4,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{StaticResource TextWeakColorBrush}"
+                                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Text="{x:Bind Localizer.Get('Server_Feature_P2P'), Mode=OneWay}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   TextWrapping="WrapWholeWords" />
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <pathicons:Wrench Foreground="{StaticResource TextWeakColorBrush}" 
+                                                  Visibility="{x:Bind IsServerUnderMaintenance, Mode=OneWay}"
+                                                  Grid.Column="4"/>
+
+                                <icons:ActiveDot Grid.Column="5"
                                                  Width="16"
                                                  Height="16"
                                                  Visibility="{x:Bind IsActiveConnection}" />

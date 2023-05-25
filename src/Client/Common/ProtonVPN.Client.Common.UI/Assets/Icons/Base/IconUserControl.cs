@@ -25,12 +25,12 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 public class IconUserControl : UserControl
 {
+    public static readonly DependencyProperty StretchProperty =
+        DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(IconUserControl), new PropertyMetadata(default));
+
     public Stretch Stretch
     {
         get => (Stretch)GetValue(StretchProperty);
         set => SetValue(StretchProperty, value);
     }
-
-    public static readonly DependencyProperty StretchProperty =
-        DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(IconUserControl), new PropertyMetadata(default));
 }

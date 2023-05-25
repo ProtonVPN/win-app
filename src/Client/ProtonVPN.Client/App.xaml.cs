@@ -20,9 +20,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-
 using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Installers;
+using ProtonVPN.Client.Logic.Connection.Installers;
+using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Services;
 using ProtonVPN.Client.UI;
@@ -39,16 +42,21 @@ using ProtonVPN.Client.UI.Home.VpnStatusComponent;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
-using ProtonVPN.Client.Localization.Installers;
-using ProtonVPN.Client.Logic.Connection.Installers;
-using ProtonVPN.Client.Logic.Recents.Installers;
-using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client;
 
 public partial class App
 {
     public const string APPLICATION_NAME = "Proton VPN";
+
+    public static WindowEx MainWindow { get; } = new MainWindow();
+
+    // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
+    // https://docs.microsoft.com/dotnet/core/extensions/generic-host
+    // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
+    // https://docs.microsoft.com/dotnet/core/extensions/configuration
+    // https://docs.microsoft.com/dotnet/core/extensions/logging
+    public IHost Host { get; }
 
     public App()
     {
@@ -131,15 +139,6 @@ public partial class App
 
         UnhandledException += App_UnhandledException;
     }
-
-    public static WindowEx MainWindow { get; } = new MainWindow();
-
-    // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
-    // https://docs.microsoft.com/dotnet/core/extensions/generic-host
-    // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
-    // https://docs.microsoft.com/dotnet/core/extensions/configuration
-    // https://docs.microsoft.com/dotnet/core/extensions/logging
-    public IHost Host { get; }
 
     public static T GetService<T>()
         where T : class

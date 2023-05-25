@@ -43,6 +43,9 @@ public sealed partial class DualCommandsRowControl : UserControl
     public static readonly DependencyProperty PrimaryCommandTextProperty =
         DependencyProperty.Register(nameof(PrimaryCommandText), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty PrimaryCommandToolTipProperty =
+        DependencyProperty.Register(nameof(PrimaryCommandToolTip), typeof(object), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+
     public static readonly DependencyProperty SecondaryCommandProperty =
         DependencyProperty.Register(nameof(SecondaryCommand), typeof(ICommand), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
@@ -51,6 +54,9 @@ public sealed partial class DualCommandsRowControl : UserControl
 
     public static readonly DependencyProperty SecondaryCommandTextProperty =
         DependencyProperty.Register(nameof(SecondaryCommandText), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty SecondaryCommandToolTipProperty =
+        DependencyProperty.Register(nameof(SecondaryCommandToolTip), typeof(object), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
     public static readonly DependencyProperty SecondaryCommandIconProperty =
         DependencyProperty.Register(nameof(SecondaryCommandIcon), typeof(UIElement), typeof(DualCommandsRowControl), new PropertyMetadata(default));
@@ -82,6 +88,12 @@ public sealed partial class DualCommandsRowControl : UserControl
         set => SetValue(PrimaryCommandTextProperty, value);
     }
 
+    public object PrimaryCommandToolTip
+    {
+        get => GetValue(PrimaryCommandToolTipProperty);
+        set => SetValue(PrimaryCommandToolTipProperty, value);
+    }
+
     public ICommand SecondaryCommand
     {
         get => (ICommand)GetValue(SecondaryCommandProperty);
@@ -98,6 +110,12 @@ public sealed partial class DualCommandsRowControl : UserControl
     {
         get => (string)GetValue(SecondaryCommandTextProperty);
         set => SetValue(SecondaryCommandTextProperty, value);
+    }
+
+    public object SecondaryCommandToolTip
+    {
+        get => GetValue(SecondaryCommandToolTipProperty);
+        set => SetValue(SecondaryCommandToolTipProperty, value);
     }
 
     public UIElement SecondaryCommandIcon

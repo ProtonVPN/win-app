@@ -39,13 +39,19 @@ public partial class RecentItemViewModel : ViewModelBase
 
     public bool IsActiveConnection => _recentConnection.IsActiveConnection;
 
-    public bool IsServerInMaintenance => _recentConnection.IsServerInMaintenance;
+    public bool IsServerUnderMaintenance => _recentConnection.IsServerUnderMaintenance;
 
     public string? ExitCountry => (_recentConnection.ConnectionIntent?.Location as CountryLocationIntent)?.CountryCode;
 
     public string? EntryCountry => (_recentConnection.ConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode;
 
     public bool IsSecureCore => _recentConnection.ConnectionIntent?.Feature is SecureCoreFeatureIntent;
+
+    public bool IsTor => _recentConnection.ConnectionIntent?.Feature is TorFeatureIntent;
+
+    public bool IsP2P => _recentConnection.ConnectionIntent?.Feature is P2PFeatureIntent;
+
+    public bool HasFeature => IsTor || IsP2P;
 
     public string Title => Localizer.GetConnectionIntentTitle(_recentConnection.ConnectionIntent);
 
@@ -54,6 +60,10 @@ public partial class RecentItemViewModel : ViewModelBase
     public string PrimaryCommandText => IsActiveConnection
         ? Localizer.Get("Common_Actions_Disconnect")
         : Localizer.Get("Common_Actions_Connect");
+
+    public string SecondaryCommandToolTip => IsServerUnderMaintenance
+        ? Localizer.Get("Home_Recents_ServerUnderMaintenance")
+        : Localizer.Get("Home_Recents_SecondaryActions_ToolTip");
 
     public RecentItemViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, IRecentConnection recentConnection)
     {
@@ -71,6 +81,7 @@ public partial class RecentItemViewModel : ViewModelBase
         OnPropertyChanged(nameof(Title));
         OnPropertyChanged(nameof(Subtitle));
         OnPropertyChanged(nameof(PrimaryCommandText));
+        OnPropertyChanged(nameof(SecondaryCommandToolTip));
     }
 
     [RelayCommand(CanExecute = nameof(CanToggleConnection))]
@@ -87,7 +98,7 @@ public partial class RecentItemViewModel : ViewModelBase
 
     private bool CanToggleConnection()
     {
-        return !IsServerInMaintenance;
+        return !IsServerUnderMaintenance;
     }
 
     [RelayCommand(CanExecute = nameof(CanPin))]
@@ -112,9 +123,14 @@ public partial class RecentItemViewModel : ViewModelBase
         return IsPinned;
     }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanRemove))]
     private void Remove()
     {
         _recentConnectionsProvider.Remove(_recentConnection);
+    }
+
+    private bool CanRemove()
+    {
+        return !IsActiveConnection;
     }
 }

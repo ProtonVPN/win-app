@@ -23,6 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
       Loaded="OnLoaded">
 
@@ -69,18 +70,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         IsPaneToggleButtonVisible="True"
                         IsSettingsVisible="False"
                         MenuItemsSource="{x:Bind ViewModel.NavigationPages}"
-                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}"
-                        OpenPaneLength="160">
+                        OpenPaneLength="160"
+                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}">
 
             <NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
                     <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
-                                        Content="{x:Bind Title, Mode=OneWay}">
-                        <NavigationViewItem.Icon>
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                      Glyph="{x:Bind IconGlyphCode}" />
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
+                                        Content="{x:Bind Title, Mode=OneWay}"
+                                        Icon="{x:Bind Icon}" />
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
 
@@ -93,8 +90,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 BorderBrush="Transparent"
                                 Command="{x:Bind GoBackCommand}"
                                 Visibility="{x:Bind CanGoBack}">
-                            <FontIcon FontSize="14"
-                                      Glyph="&#xE72B;" />
+                            <pathicons:ArrowLeft />
                         </Button>
                         <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
                                    Text="{x:Bind Title, Mode=OneWay}" />
@@ -119,8 +115,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </StackPanel>
                         </Flyout>
                     </Button.Flyout>
-                    <FontIcon FontSize="16"
-                              Glyph="&#xE77B;" />
+                    <pathicons:UserCircle />
                 </Button>
             </NavigationView.PaneFooter>
 

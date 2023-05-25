@@ -20,17 +20,17 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
@@ -54,10 +54,16 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
     [NotifyPropertyChangedFor(nameof(ExitCountry))]
     [NotifyPropertyChangedFor(nameof(EntryCountry))]
     [NotifyPropertyChangedFor(nameof(IsSecureCore))]
+    [NotifyPropertyChangedFor(nameof(IsTor))]
+    [NotifyPropertyChangedFor(nameof(IsP2P))]
     [NotifyPropertyChangedFor(nameof(Title))]
     [NotifyPropertyChangedFor(nameof(Subtitle))]
     [NotifyPropertyChangedFor(nameof(HasSubtitle))]
+    [NotifyPropertyChangedFor(nameof(HasSubtitleAndFeature))]
     private IConnectionIntent? _currentConnectionIntent;
+
+    [ObservableProperty]
+    private bool _isServerUnderMaintenance;
 
     public string Header =>
         CurrentConnectionStatus switch
@@ -75,11 +81,17 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
 
     public bool IsSecureCore => CurrentConnectionIntent?.Feature is SecureCoreFeatureIntent;
 
+    public bool IsTor => CurrentConnectionIntent?.Feature is TorFeatureIntent;
+
+    public bool IsP2P => CurrentConnectionIntent?.Feature is P2PFeatureIntent;
+
     public string Title => Localizer.GetConnectionIntentTitle(CurrentConnectionIntent);
 
     public string Subtitle => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent);
 
     public bool HasSubtitle => !Subtitle.IsNullOrEmpty();
+
+    public bool HasSubtitleAndFeature => HasSubtitle && (IsTor || IsP2P);
 
     public ConnectionCardViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, HomeViewModel homeViewModel)
     {
@@ -119,7 +131,10 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
 
     private void InvalidateCurrentConnectionIntent()
     {
-        CurrentConnectionIntent = _recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent;
+        IRecentConnection? mostRecentConnection = _recentConnectionsProvider.GetMostRecentConnection();
+
+        CurrentConnectionIntent = mostRecentConnection?.ConnectionIntent;
+        IsServerUnderMaintenance = mostRecentConnection?.IsServerUnderMaintenance ?? false;
     }
 
     [RelayCommand(CanExecute = nameof(CanConnect))]
@@ -130,7 +145,8 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
 
     private bool CanConnect()
     {
-        return CurrentConnectionStatus == ConnectionStatus.Disconnected;
+        return CurrentConnectionStatus == ConnectionStatus.Disconnected
+            && !IsServerUnderMaintenance;
     }
 
     [RelayCommand(CanExecute = nameof(CanCancelConnection))]

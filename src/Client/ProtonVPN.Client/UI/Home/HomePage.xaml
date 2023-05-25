@@ -29,6 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
       xmlns:vpnStatusComponent="using:ProtonVPN.Client.UI.Home.VpnStatusComponent"
       xmlns:winui="using:CommunityToolkit.WinUI.UI"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -85,8 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 Command="{x:Bind ViewModel.CloseDetailsPaneCommand}">
-                            <FontIcon FontSize="14"
-                                      Glyph="&#xE8BB;" />
+                            <pathicons:Cross/>
                         </Button>
                     </Grid>
                 </Grid>
