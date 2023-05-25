@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
@@ -67,6 +68,11 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
 
     public void Pin(IRecentConnection recentConnection)
     {
+        if (recentConnection == null || recentConnection.IsPinned)
+        {
+            return;
+        }
+
         lock (_lock)
         {
             recentConnection.IsPinned = true;
@@ -78,6 +84,11 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
 
     public void Unpin(IRecentConnection recentConnection)
     {
+        if (recentConnection == null || !recentConnection.IsPinned)
+        {
+            return;
+        }
+
         lock (_lock)
         {
             recentConnection.IsPinned = false;
@@ -91,6 +102,20 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
 
     public void Remove(IRecentConnection recentConnection)
     {
+        if (recentConnection == null)
+        {
+            return;
+        }
+
+        ConnectionDetails? connectionDetails = _connectionService.GetConnectionDetails();
+
+        // The current connection cannot be removed, simply unpin it.
+        if (connectionDetails != null && recentConnection.ConnectionIntent.IsSameAs(connectionDetails.OriginalConnectionIntent))
+        {
+            Unpin(recentConnection);
+            return;
+        }
+
         lock (_lock)
         {
             _recentConnections.Remove(recentConnection);
@@ -143,6 +168,12 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
         }
 
         IRecentConnection recentConnection = duplicate ?? new RecentConnection(recentIntent);
+
+        // TODO: TEMPORARY - Simulate server under maintenance when connecting to GB (remove once properly implemented)
+        if (recentConnection.ConnectionIntent.Location is CountryLocationIntent countryIntent && countryIntent.CountryCode == "GB")
+        {
+            recentConnection.IsServerUnderMaintenance = true;
+        }
 
         _recentConnections.Insert(0, recentConnection);
 

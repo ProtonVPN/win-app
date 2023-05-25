@@ -19,6 +19,8 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 
@@ -31,7 +33,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase
 
     public override string? Title => Localizer.Get("Home_Page_Title");
 
-    public override string IconGlyphCode => "\uE80F";
+    public override IconElement Icon { get; } = new House();
 
     public override bool IsHeaderVisible => false;
 

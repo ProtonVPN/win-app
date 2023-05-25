@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Services;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
@@ -27,7 +28,7 @@ public abstract partial class NavigationPageViewModelBase : PageViewModelBase
         : base(navigationService)
     { }
 
-    public virtual string IconGlyphCode { get; }
+    public virtual IconElement Icon { get; }
 
     public override bool CanGoBack => false;
 

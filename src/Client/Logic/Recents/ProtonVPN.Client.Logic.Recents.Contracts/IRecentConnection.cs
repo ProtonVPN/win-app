@@ -31,5 +31,5 @@ public interface IRecentConnection
 
     bool IsActiveConnection { get; set; }
 
-    bool IsServerInMaintenance { get; set; }
+    bool IsServerUnderMaintenance { get; set; }
 }

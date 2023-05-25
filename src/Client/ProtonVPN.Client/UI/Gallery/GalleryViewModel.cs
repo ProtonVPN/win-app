@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 
@@ -31,6 +33,6 @@ namespace ProtonVPN.Client.UI.Gallery
 
         public override string? Title => "Gallery";
 
-        public override string IconGlyphCode => "\uEB3C";
+        public override IconElement Icon { get; } = new Grid2();
     }
 }

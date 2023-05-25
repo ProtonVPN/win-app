@@ -20,12 +20,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <UserControl x:Class="ProtonVPN.Client.UI.Home.ConnectionCard.ConnectionCardComponent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:help="using:ProtonVPN.Client.UI.Home.Help"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -71,67 +72,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   ContentTransitions="{TemplateBinding ContentTransitions}"
                                                   Foreground="{TemplateBinding Foreground}" />
 
-                                <FontIcon x:Name="ChevronRight"
-                                          Grid.Column="1"
-                                          FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                          Foreground="{StaticResource TextWeakColorBrush}"
-                                          Glyph="&#xE76C;"
-                                          Opacity="1" />
+                                <pathicons:ChevronRight x:Name="ChevronRight"
+                                                        Grid.Column="1"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="{StaticResource TextWeakColorBrush}"
+                                                        Opacity="1" />
                             </Grid>
 
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="1" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
+                                    <VisualState x:Name="Normal" />
                                     <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{StaticResource InteractionDefaultHoverColorBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{StaticResource TextNormColorBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="1" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultHoverColorBrush}" />
+                                            <Setter Target="ChevronRight.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                        </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{StaticResource InteractionDefaultActiveColorBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{StaticResource TextNormColorBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultActiveColorBrush}" />
+                                            <Setter Target="ChevronRight.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                        </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                           Storyboard.TargetProperty="Opacity">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="0" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
+                                        <VisualState.Setters>
+                                            <Setter Target="ChevronRight.Opacity" Value="0" />
+                                        </VisualState.Setters>
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
@@ -188,16 +154,58 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Margin="12,0,0,0"
                                 Orientation="Vertical"
                                 Spacing="4">
-                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Title}"
-                                   TextTrimming="CharacterEllipsis"
-                                   TextWrapping="WrapWholeWords" />
-                        <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Subtitle}"
-                                   TextTrimming="CharacterEllipsis"
-                                   TextWrapping="WrapWholeWords"
-                                   Visibility="{x:Bind ViewModel.HasSubtitle}" />
+
+                        <toolkit:DockPanel LastChildFill="False">
+                            <pathicons:Wrench Grid.Column="4"
+                                              Margin="8,4,0,0"
+                                              VerticalAlignment="top"
+                                              toolkit:DockPanel.Dock="Right"
+                                              Foreground="{StaticResource TextWeakColorBrush}"
+                                              ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Recents_ServerUnderMaintenance'), Mode=OneWay}"
+                                              Visibility="{x:Bind ViewModel.IsServerUnderMaintenance, Mode=OneWay}" />
+                            <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Title}"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="WrapWholeWords" />
+                        </toolkit:DockPanel>
+
+                        <toolkit:WrapPanel Orientation="Horizontal">
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Subtitle}"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="WrapWholeWords"
+                                       Visibility="{x:Bind ViewModel.HasSubtitle}" />
+
+                            <TextBlock Margin="6,0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="•"
+                                       Visibility="{x:Bind ViewModel.HasSubtitleAndFeature}" />
+
+                            <StackPanel Orientation="Horizontal"
+                                        Visibility="{x:Bind ViewModel.IsTor}">
+                                <pathicons:BrandTor Foreground="{StaticResource TextWeakColorBrush}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="{StaticResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_Tor')}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="WrapWholeWords" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Visibility="{x:Bind ViewModel.IsP2P}">
+                                <pathicons:ArrowRightArrowLeft Foreground="{StaticResource TextWeakColorBrush}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="{StaticResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_P2P')}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="WrapWholeWords" />
+                            </StackPanel>
+                        </toolkit:WrapPanel>
                     </StackPanel>
                 </toolkit:DockPanel>
             </Button>

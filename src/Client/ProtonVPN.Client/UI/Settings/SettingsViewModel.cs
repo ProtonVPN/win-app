@@ -21,12 +21,13 @@ using System.Collections.ObjectModel;
 using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
-
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
-using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models;
 using Windows.ApplicationModel;
 
 namespace ProtonVPN.Client.UI.Settings;
@@ -44,8 +45,22 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
 
     private string _versionDescription;
 
+    public ObservableCollection<ApplicationElementTheme> Themes { get; }
+
+    public ObservableCollection<string> Languages { get; }
+
+    public string VersionDescription
+    {
+        get => _versionDescription;
+        set => SetProperty(ref _versionDescription, value);
+    }
+
+    public override IconElement Icon { get; } = new CogWheel();
+
+    public override string? Title => Localizer.Get("Settings_Page_Title");
+
     public SettingsViewModel(IThemeSelectorService themeSelectorService, INavigationService navigationService, ILocalizationService localizationService)
-        : base(navigationService)
+                            : base(navigationService)
     {
         _themeSelectorService = themeSelectorService;
         _localizationService = localizationService;
@@ -64,15 +79,6 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
         Languages = new ObservableCollection<string>(localizationService.GetAvailableLanguages());
 
         _selectedLanguage = localizationService.GetCurrentLanguage();
-    }
-
-    public ObservableCollection<ApplicationElementTheme> Themes { get; }
-    public ObservableCollection<string> Languages { get; }
-
-    public string VersionDescription
-    {
-        get => _versionDescription;
-        set => SetProperty(ref _versionDescription, value);
     }
 
     private string GetVersionDescription()
@@ -97,13 +103,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
     {
         _themeSelectorService.SetThemeAsync(value?.Theme ?? ElementTheme.Default);
     }
+
     partial void OnSelectedLanguageChanged(string value)
     {
         _localizationService.SetLanguageAsync(value);
     }
-
-    public override string IconGlyphCode => "\uE713";
-
-    public override string? Title => Localizer.Get("Settings_Page_Title");
-
 }

@@ -1184,6 +1184,12 @@
   <data name="Home_Recents_Pin" xml:space="preserve">
     <value>Pin</value>
   </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
+    <value>Server is under maintenance</value>
+  </data>
   <data name="Home_Recents_Title" xml:space="preserve">
     <value>Recents</value>
   </data>
@@ -1198,6 +1204,12 @@
   </data>
   <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
     <value>Protected</value>
+  </data>
+  <data name="Server_Feature_P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_Tor" xml:space="preserve">
+    <value>Tor</value>
   </data>
   <data name="Settings_Connection" xml:space="preserve">
     <value>Connection</value>

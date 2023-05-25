@@ -23,6 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
       xmlns:models="using:ProtonVPN.Client.Models"
       x:Name="PageArea"
       mc:Ignorable="d">
@@ -40,13 +41,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <TextBox Header="Exit Country:"
                          MaxLength="2"
                          PlaceholderText="Country code"
-                         Text="{x:Bind ViewModel.ExitCountryCode}" />
+                         Text="{x:Bind ViewModel.ExitCountryCode, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Header="City/State:"
                          IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
                          PlaceholderText="City/State name"
                          Text="{x:Bind ViewModel.CityState}" />
                 <TextBox Header="Server:"
-                         IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.CityState), Mode=OneWay}"
+                         IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
                          PlaceholderText="Server number"
                          Text="{x:Bind ViewModel.ServerNumber}" />
 
@@ -64,10 +65,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              Text="{x:Bind ViewModel.EntryCountryCode}" />
                 </StackPanel>
 
-                <Button Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
-                        Content="Connect"
-                        Margin="0,8,0,0"
-                        Style="{StaticResource PrimaryButtonStyle}" />
+                <controls:DockPanel LastChildFill="False">
+                    <Button Margin="0,8,16,0"
+                            controls:DockPanel.Dock="Left"
+                            Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
+                            Content="Connect"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                    <Button Margin="0,8,16,0"
+                            controls:DockPanel.Dock="Left"
+                            Command="{x:Bind ViewModel.FreeConnectCommand, Mode=OneWay}"
+                            Content="Free Connect" />
+                    <Button Margin="16,8,0,0"
+                            controls:DockPanel.Dock="Right"
+                            Command="{x:Bind ViewModel.SimulateManyConnectionsCommand, Mode=OneWay}"
+                            Content="Auto" />
+                </controls:DockPanel>
             </StackPanel>
         </Border>
         <ItemsControl ItemsSource="{x:Bind ViewModel.Countries}">

@@ -32,7 +32,7 @@ public class RecentConnection : IRecentConnection
 
     public bool IsActiveConnection { get; set; }
 
-    public bool IsServerInMaintenance { get; set; }
+    public bool IsServerUnderMaintenance { get; set; }
 
     public RecentConnection(IConnectionIntent connectionIntent)
     {

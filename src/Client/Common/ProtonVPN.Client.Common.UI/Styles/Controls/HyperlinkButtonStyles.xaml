@@ -20,7 +20,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons">
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
 
     <Thickness x:Key="HyperlinkButtonPadding">5,3</Thickness>
 
@@ -65,8 +65,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   ContentTransitions="{TemplateBinding ContentTransitions}"
                                                   Foreground="{TemplateBinding Foreground}" />
                             </Border>
-                            <icons:Hyperlink x:Name="LinkGlyph"
-                                             Foreground="{TemplateBinding Foreground}" />
+                            <pathicons:ArrowOutSquare x:Name="LinkGlyph"
+                                                      Foreground="{TemplateBinding Foreground}" />
                         </StackPanel>
 
                         <VisualStateManager.VisualStateGroups>
