@@ -183,6 +183,7 @@ namespace ProtonVPN.Service.Firewall
                 if (firewallParams.DnsLeakOnly)
                 {
                     RemoveItems(GetFirewallGuidsByType(FirewallItemType.VariableFilter), _lastParams.SessionType);
+                    RemoveItems(GetFirewallGuidsByType(FirewallItemType.BlockOutsideOpenVpnFilter), _lastParams.SessionType);
                 }
                 else
                 {
