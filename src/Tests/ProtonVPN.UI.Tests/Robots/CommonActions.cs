@@ -17,25 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
+using System;
+using System.Threading;
 
-namespace ProtonVPN.UI.Tests.Tests
+namespace ProtonVPN.UI.Tests.Robots;
+
+public static class CommonActions
 {
-    [SetUpFixture]
-    public class SetUp : TestSession
+    public static T Wait<T>(this T robot, int delayInMilliseconds) where T : UIActions
     {
-        [OneTimeSetUp]
-        public void TestInitialize()
-        {
-            KillProtonVpnProcess();
-            TestsRecorder.StartVideoCapture();
-        }
+        Thread.Sleep(delayInMilliseconds);
 
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
-        {
-            TestsRecorder.StopRecording();
-        }
+        return robot;
+    }
+
+    public static T Wait<T>(this T robot, TimeSpan delay) where T : UIActions
+    {
+        return robot.Wait((int)delay.TotalMilliseconds);
     }
 }

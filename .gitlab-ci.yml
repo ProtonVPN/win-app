@@ -146,15 +146,16 @@ build-installer-for-debug:
     - master
     - /^release.*$/
     
-connection-test:
+ui-test:
   stage: ui-test
   tags:
-    - connection_tests
+    - ui_tests
   script:
     - ci\uninstall-app.ps1
     - ci\install-the-app.ps1
+    - dotnet clean src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
     - ci\uninstall-app.ps1
   after_script:
     - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1

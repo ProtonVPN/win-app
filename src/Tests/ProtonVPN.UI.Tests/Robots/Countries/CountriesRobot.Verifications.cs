@@ -17,25 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ProtonVPN.UI.Tests.Tests
+namespace ProtonVPN.UI.Tests.Robots.Countries;
+
+public partial class CountriesRobot
 {
-    [SetUpFixture]
-    public class SetUp : TestSession
+    public CountriesRobot VerifyConnectionFormExists()
     {
-        [OneTimeSetUp]
-        public void TestInitialize()
-        {
-            KillProtonVpnProcess();
-            TestsRecorder.StartVideoCapture();
-        }
+        Assert.IsNotNull(EntryCountryCodeTextBox);
+        Assert.IsNotNull(CityStateTextBox);
+        Assert.IsNotNull(ServerTextBox);
+        Assert.IsNotNull(CountriesConnectButton);
+        Assert.IsNotNull(CountriesFreeConnectButton);
+        Assert.IsNotNull(CountriesAutoConnectButton);
 
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
-        {
-            TestsRecorder.StopRecording();
-        }
+        return this;
     }
 }

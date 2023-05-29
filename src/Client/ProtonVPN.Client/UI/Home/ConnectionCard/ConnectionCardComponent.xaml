@@ -122,7 +122,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Grid.Column="0"
                        Foreground="{StaticResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Header}" />
+                       Text="{x:Bind ViewModel.Header}" 
+                       AutomationProperties.AutomationId="ConnectionCardHeaderLabel"/>
 
             <help:HelpComponent Grid.Column="1" />
         </Grid>
@@ -166,7 +167,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Title}"
                                        TextTrimming="CharacterEllipsis"
-                                       TextWrapping="WrapWholeWords" />
+                                       TextWrapping="WrapWholeWords" 
+                                       AutomationProperties.AutomationId="ConnectionCardTitleLabel"/>
                         </toolkit:DockPanel>
 
                         <toolkit:WrapPanel Orientation="Horizontal">
@@ -175,7 +177,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Text="{x:Bind ViewModel.Subtitle}"
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="WrapWholeWords"
-                                       Visibility="{x:Bind ViewModel.HasSubtitle}" />
+                                       Visibility="{x:Bind ViewModel.HasSubtitle}" 
+                                       AutomationProperties.AutomationId="ConnectionCardSubtitleLabel"/>
 
                             <TextBlock Margin="6,0"
                                        VerticalAlignment="Center"
@@ -192,7 +195,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Style="{StaticResource CaptionTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_Tor')}"
                                            TextTrimming="CharacterEllipsis"
-                                           TextWrapping="WrapWholeWords" />
+                                           TextWrapping="WrapWholeWords" 
+                                           AutomationProperties.AutomationId="ConnectionCardFeatureTorLabel"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal"
@@ -203,7 +207,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Style="{StaticResource CaptionTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_P2P')}"
                                            TextTrimming="CharacterEllipsis"
-                                           TextWrapping="WrapWholeWords" />
+                                           TextWrapping="WrapWholeWords" 
+                                           AutomationProperties.AutomationId="ConnectionCardFeatureP2PLabel"/>
                             </StackPanel>
                         </toolkit:WrapPanel>
                     </StackPanel>
@@ -214,13 +219,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button Command="{x:Bind ViewModel.ConnectCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}"
                         Style="{StaticResource PrimaryButtonStyle}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" 
+                        AutomationProperties.AutomationId="ConnectionCardConnectButton" />
                 <Button Command="{x:Bind ViewModel.CancelConnectionCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}"
+                        AutomationProperties.AutomationId="ConnectionCardCancelButton" />
                 <Button Command="{x:Bind ViewModel.DisconnectCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" 
+                        AutomationProperties.AutomationId="ConnectionCardDisconnectButton"/>
             </Grid>
         </Grid>
     </StackPanel>

@@ -41,15 +41,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <TextBox Header="Exit Country:"
                          MaxLength="2"
                          PlaceholderText="Country code"
-                         Text="{x:Bind ViewModel.ExitCountryCode, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{x:Bind ViewModel.ExitCountryCode, UpdateSourceTrigger=PropertyChanged}" 
+                         AutomationProperties.AutomationId="EntryCountryCodeTextBox"/>
                 <TextBox Header="City/State:"
                          IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
                          PlaceholderText="City/State name"
-                         Text="{x:Bind ViewModel.CityState}" />
+                         Text="{x:Bind ViewModel.CityState}"
+                         AutomationProperties.AutomationId="CityStateTextBox" />
                 <TextBox Header="Server:"
                          IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
                          PlaceholderText="Server number"
-                         Text="{x:Bind ViewModel.ServerNumber}" />
+                         Text="{x:Bind ViewModel.ServerNumber}"
+                         AutomationProperties.AutomationId="ServerNumberTextBox" />
 
                 <StackPanel Orientation="Horizontal"
                             Spacing="32">
@@ -70,15 +73,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             controls:DockPanel.Dock="Left"
                             Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
                             Content="Connect"
-                            Style="{StaticResource PrimaryButtonStyle}" />
+                            Style="{StaticResource PrimaryButtonStyle}" 
+                            AutomationProperties.AutomationId="CountriesConnectButton"/>
                     <Button Margin="0,8,16,0"
                             controls:DockPanel.Dock="Left"
                             Command="{x:Bind ViewModel.FreeConnectCommand, Mode=OneWay}"
-                            Content="Free Connect" />
+                            Content="Free Connect"
+                            AutomationProperties.AutomationId="CountriesFreeConnectButton" />
                     <Button Margin="16,8,0,0"
                             controls:DockPanel.Dock="Right"
                             Command="{x:Bind ViewModel.SimulateManyConnectionsCommand, Mode=OneWay}"
-                            Content="Auto" />
+                            Content="Auto" 
+                            AutomationProperties.AutomationId="CountriesAutoConnectButton"/>
                 </controls:DockPanel>
             </StackPanel>
         </Border>

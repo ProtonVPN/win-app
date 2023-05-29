@@ -17,25 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
+namespace ProtonVPN.UI.Tests.Robots.Home;
 
-namespace ProtonVPN.UI.Tests.Tests
+public partial class HomeRobot
 {
-    [SetUpFixture]
-    public class SetUp : TestSession
+    public HomeRobot DoConnect()
     {
-        [OneTimeSetUp]
-        public void TestInitialize()
-        {
-            KillProtonVpnProcess();
-            TestsRecorder.StartVideoCapture();
-        }
+        ConnectionCardConnectButton.Invoke();
+        return this;
+    }
 
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
-        {
-            TestsRecorder.StopRecording();
-        }
+    public HomeRobot DoCancelConnection()
+    {
+        ConnectionCardCancelButton.Click();
+        return this;
+    }
+
+    public HomeRobot DoDisconnect()
+    {
+        ConnectionCardDisconnectButton.Click();
+        return this;
     }
 }

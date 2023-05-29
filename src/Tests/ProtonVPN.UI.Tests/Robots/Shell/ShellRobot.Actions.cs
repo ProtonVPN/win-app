@@ -17,25 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
+namespace ProtonVPN.UI.Tests.Robots.Shell;
 
-namespace ProtonVPN.UI.Tests.Tests
+public partial class ShellRobot
 {
-    [SetUpFixture]
-    public class SetUp : TestSession
+    public ShellRobot DoNavigateToHomePage()
     {
-        [OneTimeSetUp]
-        public void TestInitialize()
-        {
-            KillProtonVpnProcess();
-            TestsRecorder.StartVideoCapture();
-        }
+        HomeNavigationViewItem.Click();
+        return this;
+    }
 
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
-        {
-            TestsRecorder.StopRecording();
-        }
+    public ShellRobot DoNavigateToCountriesPage()
+    {
+        CountriesNavigationViewItem.Click();
+        return this;
+    }
+
+    public ShellRobot DoNavigateToSettingsPage()
+    {
+        SettingsNavigationViewItem.Click();
+        return this;
+    }
+
+    public ShellRobot DoCollapseExpandSideBar()
+    {
+        NavigationHamburgerButton.Click();
+        return this;
     }
 }

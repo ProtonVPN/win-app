@@ -17,25 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
+using FlaUI.Core.AutomationElements;
 
-namespace ProtonVPN.UI.Tests.Tests
+namespace ProtonVPN.UI.Tests.Robots.Countries;
+
+public partial class CountriesRobot
 {
-    [SetUpFixture]
-    public class SetUp : TestSession
+    public CountriesRobot DoConnectTo(string entryCountryCode, string cityState = null, int? serverNumber = null)
     {
-        [OneTimeSetUp]
-        public void TestInitialize()
+        if (!string.IsNullOrEmpty(entryCountryCode))
         {
-            KillProtonVpnProcess();
-            TestsRecorder.StartVideoCapture();
+            EntryCountryCodeTextBox.Text = entryCountryCode;
         }
 
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
+        if (!string.IsNullOrEmpty(cityState))
         {
-            TestsRecorder.StopRecording();
+            CityStateTextBox.WaitUntilEnabled();
+            CityStateTextBox.Text = cityState;
         }
+
+        if (serverNumber != null)
+        {
+            ServerTextBox.WaitUntilEnabled();
+            ServerTextBox.Text = serverNumber.ToString();
+        }
+
+        CountriesConnectButton.Focus();
+        CountriesConnectButton.Click();
+
+        return this;
     }
 }

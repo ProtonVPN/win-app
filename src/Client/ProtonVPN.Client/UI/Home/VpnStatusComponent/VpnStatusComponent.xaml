@@ -68,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Margin="0,18,0,8"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                <Grid>
+                <Grid AutomationProperties.AutomationId="ProtectionIconContainer">
                     <icons:UnprotectedLock x:Name="VpnStatusIconDisconnected"
                                            Foreground="{StaticResource SignalDangerColorBrush}"
                                            Visibility="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
@@ -88,7 +88,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Margin="8,0,0,0"
                            Style="{StaticResource BodyLargeStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.Title, Mode=OneWay}"
-                           Visibility="{x:Bind ViewModel.IsTitleVisible, Mode=OneWay}" />
+                           Visibility="{x:Bind ViewModel.IsTitleVisible, Mode=OneWay}" 
+                           AutomationProperties.AutomationId="VpnStatusTitleLabel"/>
             </StackPanel>
 
             <Grid>
@@ -104,7 +105,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock x:Name="VpnStatusSubtitle"
                                HorizontalAlignment="Center"
                                Style="{StaticResource BodyStrongTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" />
+                               Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                               AutomationProperties.AutomationId="VpnStatusSubtitleLabel"/>
 
                     <Border x:Name="UserLocation"
                             Padding="8,4"
