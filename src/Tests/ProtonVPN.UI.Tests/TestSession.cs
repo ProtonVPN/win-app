@@ -110,10 +110,38 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void LaunchApp()
+        protected static void LaunchApp() 
         {
-            string[] path = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
-            App = Application.Launch(path.Last() + @"\ProtonVPN.Client.exe");
+            string pathToExe = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\ProtonVPN.exe";
+            string version = FileVersionInfo.GetVersionInfo(pathToExe).FileVersion;
+            version = "v" + version.Substring(0, version.Length -2);
+            string installedClientPath = Path.Combine(TestConstants.AppFolderPath, version, "ProtonVPN.Client.exe");
+
+            const int MAX_TRIES = 10;
+            int retriesCounter = 0;
+            while(!File.Exists(installedClientPath) && retriesCounter < MAX_TRIES)
+            {
+                Thread.Sleep(1000);
+                retriesCounter++;
+            }
+
+            if(retriesCounter >= MAX_TRIES)
+            {
+                Assert.Fail($"Path to '{installedClientPath}' cannot be found");
+                return;
+            }
+
+            App = Application.Launch(installedClientPath);
+        }
+
+        protected static void LaunchDevelopmentApp()
+        {
+            string executingAssemblyFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string applicationName = "ProtonVPN.Client.exe";
+
+            string applicationPath = Path.Combine(executingAssemblyFolderPath, applicationName);
+
+            App = Application.Launch(applicationPath);
         }
 
         protected static void KillProtonVpnProcess()

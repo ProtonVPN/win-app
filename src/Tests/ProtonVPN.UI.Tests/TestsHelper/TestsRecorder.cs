@@ -68,8 +68,11 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             string pathToScreenshot = Path.Combine(pathToScreenshotFolder, screenshotName);
             Directory.CreateDirectory(pathToScreenshotFolder);
             Capture.Screen().ToFile(pathToScreenshot);
-            File.Copy(TestConstants.AppLogsPath, pathToScreenshotFolder + @"\app-logs.txt", true);
-            File.Copy(TestConstants.ServiceLogsPath, pathToScreenshotFolder + @"\service-logs.txt", true);
+            if (File.Exists(TestConstants.AppLogsPath) && File.Exists(TestConstants.ServiceLogsPath))
+            {
+                File.Copy(TestConstants.AppLogsPath, pathToScreenshotFolder + @"\app-logs.txt", true);
+                File.Copy(TestConstants.ServiceLogsPath, pathToScreenshotFolder + @"\service-logs.txt", true);
+            }
         }
 
         private static void CreateTestFailureFolder()

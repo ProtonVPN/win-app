@@ -42,11 +42,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <TextBlock Margin="-4,0"
                    HorizontalAlignment="Center"
                    Style="{StaticResource BodyStrongTextBlockStyle}">
-            <Run x:Name="PART_ScrambledCountry" />
+            <Run x:Name="PART_ScrambledCountry"
+                 AutomationProperties.AutomationId="UserCountryLabel" />
             <Run Text="•" />
             <Run x:Name="PART_ScrambledIpAddress"
                  FontWeight="{StaticResource BodyFontWeight}"
-                 Foreground="{StaticResource TextWeakColorBrush}" />
+                 Foreground="{StaticResource TextWeakColorBrush}"
+                 AutomationProperties.AutomationId="UserIpAddressLabel"  />
         </TextBlock>
     </Grid>
 </UserControl>

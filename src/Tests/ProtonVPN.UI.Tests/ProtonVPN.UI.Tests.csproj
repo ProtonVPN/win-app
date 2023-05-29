@@ -14,10 +14,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ProtonVPN.App\ProtonVPN.App.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
-    <ProjectReference Include="..\TestTools.ApiClient\TestTools.ApiClient.csproj" />
+    <ProjectReference Include="..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver">
@@ -71,8 +68,5 @@
   </ItemGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Verification\" />
   </ItemGroup>
 </Project>

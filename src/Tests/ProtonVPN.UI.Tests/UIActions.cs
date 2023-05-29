@@ -140,63 +140,21 @@ namespace ProtonVPN.UI.Tests
             return this;
         }
 
-        protected dynamic CheckIfDisplayedByClassName(string className)
+        protected dynamic WaitUntilTextMatches(Func<Label> getLabelMethod, TimeSpan time, string text)
         {
-            RefreshWindow();
-            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByClassName(className)).IsOffscreen);
-            return this;
-        }
+            RetryResult<bool> retry = Retry.WhileException(
+                () => {
+                    Label label = getLabelMethod();
 
-        protected dynamic CheckIfDisplayedByName(string name)
-        {
-            RefreshWindow();
-            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen);
-            return this;
-        }
+                    Assert.IsNotNull(label);
+                    Assert.AreEqual(text, label.Text);
+                },
+                time, TestConstants.RetryInterval);
 
-        protected dynamic CheckIfDisplayedByElement(AutomationElement element)
-        {
-            RefreshWindow();
-            Assert.IsFalse(element.IsOffscreen);
-            return this;
-        }
-
-        protected dynamic CheckIfNotDisplayedByName(string name)
-        {
-            RefreshWindow();
-            Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen);
-            return this;
-        }
-
-        protected dynamic CheckIfNotDisplayedByElement(AutomationElement element)
-        {
-            RefreshWindow();
-            Assert.IsTrue(element.IsOffscreen);
-            return this;
-        }
-
-        protected dynamic CheckIfNotDisplayedByAutomationId(string automationId)
-        {
-            RefreshWindow();
-            Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
-            return this;
-        }
-
-        protected dynamic CheckIfDoesNotExistByAutomationId(string automationId)
-        {
-            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)));
-            return this;
-        }
-
-        protected dynamic CheckIfDoesNotExistByName(string name)
-        {
-            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName(name)));
-            return this;
-        }
-
-        protected dynamic CheckIfDoesNotExistByClassName(string className)
-        {
-            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByClassName(className)));
+            if (!retry.Success)
+            {
+                Assert.Fail($"Expected text: '{text}' does not match.");
+            }
             return this;
         }
 

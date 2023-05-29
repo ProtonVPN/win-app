@@ -17,65 +17,104 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Robots;
-using ProtonVPN.UI.Tests.Verification;
+using ProtonVPN.UI.Tests.Robots.Countries;
+using ProtonVPN.UI.Tests.Robots.Home;
+using ProtonVPN.UI.Tests.Robots.Shell;
 
 namespace ProtonVPN.UI.Tests.Tests
 {
     [TestFixture]
-    [Category("Connection")]
-
+    [Category("UI")]
     public class ConnectionTests : TestSession
     {
+        private ShellRobot _shellRobot = new ShellRobot();
         private HomeRobot _homeRobot = new HomeRobot();
-        private HomeVerify _homeVerify = new HomeVerify();
+        private CountriesRobot _countriesRobot = new CountriesRobot();
+
+        private const string PAGE = "Countries";
+        private const string COUNTRY = "Lithuania";
+        private const string CITY = "Vilnius";
+        private const string COUNTRY_CODE = "LT";
+        private const int SERVER_NUMBER = 10;
 
         [SetUp]
         public void TestInitialize()
         {
-            DeleteUserConfig();
             LaunchApp();
+
+            _homeRobot
+                .VerifyVpnStatusIsDisconnected()
+                .VerifyConnectionCardIsInInitalState();
         }
 
         [Test]
-        public void QuickConnect()
+        public void Connect()
         {
-            _homeRobot.QuickConnect();
-            _homeVerify.CheckIfConnectionStateIsShown();
-            _homeRobot.WaitUntilConnected()
-                .Disconnect();
-            _homeVerify.CheckIfDisconnected();
+            _homeRobot
+                .DoConnect()
+                .VerifyVpnStatusIsConnecting()
+                .VerifyConnectionCardIsConnecting()
+                .VerifyVpnStatusIsConnected()
+                .VerifyConnectionCardIsConnected();
         }
 
         [Test]
-        public void CancelConnection()
+        public void ConnectAndDisconnect()
         {
-            _homeRobot.QuickConnect();
-            _homeVerify.CheckIfConnectionStateIsShown();
-            _homeRobot.CancelConnection();
-            _homeVerify.CheckIfDisconnected();
+            _homeRobot
+                .DoConnect()
+                .VerifyVpnStatusIsConnecting()
+                .VerifyConnectionCardIsConnecting()
+                .VerifyVpnStatusIsConnected()
+                .VerifyConnectionCardIsConnected()
+                .DoDisconnect()
+                .VerifyVpnStatusIsDisconnected()
+                .VerifyConnectionCardIsDisconnected();
         }
 
         [Test]
-        public void RecentsAreAddedAfterConnection()
+        public void ConnectAndCancel()
         {
-            _homeRobot.QuickConnect()
-                .Disconnect()
-                .ExpandRecents();
-            //For some reason label has to contain whitespace at the end
-            _homeVerify.CheckIfRecentIsShown("Fastest country ");
+            _homeRobot
+                .DoConnect()
+                .VerifyVpnStatusIsConnecting()
+                .VerifyConnectionCardIsConnecting()
+                .DoCancelConnection()
+                .VerifyVpnStatusIsDisconnected()
+                .VerifyConnectionCardIsDisconnected();
         }
 
         [Test]
-        public void DeleteAllRecentConnections()
+        public void ConnectToSpecificCity()
         {
-            _homeRobot.QuickConnect()
-                .Disconnect()
-                .ExpandRecents()
-                .DeleteRecent();
-            _homeVerify.CheckIfRecentIsDeleted();
+            _shellRobot
+                .DoNavigateToCountriesPage()
+                .VerifyCurrentPageName(PAGE);
+
+            _countriesRobot
+                .VerifyConnectionFormExists()
+                .DoConnectTo(COUNTRY_CODE, CITY);
+
+            _homeRobot
+                .VerifyVpnStatusIsConnecting()
+                .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
+                .VerifyVpnStatusIsConnected()
+                .VerifyConnectionCardIsConnected(COUNTRY, CITY);
+
+            _shellRobot
+                .DoNavigateToCountriesPage()
+                .VerifyCurrentPageName(PAGE);
+
+            _countriesRobot
+                .VerifyConnectionFormExists()
+                .DoConnectTo(COUNTRY_CODE, CITY, SERVER_NUMBER);
+
+            _homeRobot
+                .VerifyVpnStatusIsConnecting()
+                .VerifyConnectionCardIsConnecting(COUNTRY, CITY, SERVER_NUMBER)
+                .VerifyVpnStatusIsConnected()
+                .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
         }
 
         [TearDown]

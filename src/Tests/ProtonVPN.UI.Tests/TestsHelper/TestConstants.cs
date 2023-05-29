@@ -24,6 +24,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
 {
     public static class TestConstants
     {
+        public static TimeSpan DefaultAnimationDelay => TimeSpan.FromMilliseconds(100);
         public static TimeSpan VeryShortTimeout => TimeSpan.FromSeconds(5);
         public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
         public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);

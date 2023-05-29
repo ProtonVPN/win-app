@@ -327,6 +327,7 @@ namespace ProtonVPN.Core.Wpf.Markdown
             // in other words [this] and [this[also]] and [this[also[too]]]
             // up to _nestDepth
             if (_nestedBracketsPattern is null)
+            {
                 _nestedBracketsPattern =
                     RepeatString(@"
                     (?>              # Atomic matching
@@ -337,6 +338,8 @@ namespace ProtonVPN.Core.Wpf.Markdown
                     @" \]
                     )*"
                     , _nestDepth);
+            }
+
             return _nestedBracketsPattern;
         }
 
@@ -351,6 +354,7 @@ namespace ProtonVPN.Core.Wpf.Markdown
             // in other words (this) and (this(also)) and (this(also(too)))
             // up to _nestDepth
             if (_nestedParensPattern is null)
+            {
                 _nestedParensPattern =
                     RepeatString(@"
                     (?>              # Atomic matching
@@ -361,6 +365,8 @@ namespace ProtonVPN.Core.Wpf.Markdown
                     @" \)
                     )*"
                     , _nestDepth);
+            }
+
             return _nestedParensPattern;
         }
 
@@ -375,6 +381,7 @@ namespace ProtonVPN.Core.Wpf.Markdown
             // in other words (this) and (this(also)) and (this(also(too)))
             // up to _nestDepth
             if (_nestedParensPatternWithWhiteSpace is null)
+            {
                 _nestedParensPatternWithWhiteSpace =
                     RepeatString(@"
                     (?>              # Atomic matching
@@ -385,6 +392,8 @@ namespace ProtonVPN.Core.Wpf.Markdown
                     @" \)
                     )*"
                     , _nestDepth);
+            }
+
             return _nestedParensPatternWithWhiteSpace;
         }
 
@@ -490,9 +499,11 @@ namespace ProtonVPN.Core.Wpf.Markdown
             // Bind size so document is updated when image is downloaded
             if (imgSource.IsDownloading)
             {
-                Binding binding = new Binding(nameof(BitmapImage.Width));
-                binding.Source = imgSource;
-                binding.Mode = BindingMode.OneWay;
+                Binding binding = new(nameof(BitmapImage.Width))
+                {
+                    Source = imgSource,
+                    Mode = BindingMode.OneWay
+                };
 
                 BindingExpressionBase bindingExpression = BindingOperations.SetBinding(image, Image.WidthProperty, binding);
 
@@ -756,9 +767,13 @@ namespace ProtonVPN.Core.Wpf.Markdown
             // We use a different prefix before nested lists than top-level lists.
             // See extended comment in _ProcessListItems().
             if (_listLevel > 0)
+            {
                 return Evaluate(text, _listNested, ListEvaluator, defaultHandler);
+            }
             else
+            {
                 return Evaluate(text, _listTopLevel, ListEvaluator, defaultHandler);
+            }
         }
 
         private Block ListEvaluator(Match match)
@@ -846,9 +861,11 @@ namespace ProtonVPN.Core.Wpf.Markdown
             string item = match.Groups[4].Value;
             string leadingLine = match.Groups[1].Value;
 
-            if (!String.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
+            if (!string.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
+            {
                 // we could correct any bad indentation here..
                 return Create<ListItem, Block>(RunBlockGamut(item));
+            }
             else
             {
                 // recursion for sub-lists
@@ -1165,7 +1182,10 @@ namespace ProtonVPN.Core.Wpf.Markdown
                 {
                     case '\n':
                         if (valid)
+                        {
                             output.Append(line);
+                        }
+
                         output.Append('\n');
                         line.Length = 0;
                         valid = false;
@@ -1174,7 +1194,10 @@ namespace ProtonVPN.Core.Wpf.Markdown
                         if ((i < text.Length - 1) && (text[i + 1] != '\n'))
                         {
                             if (valid)
+                            {
                                 output.Append(line);
+                            }
+
                             output.Append('\n');
                             line.Length = 0;
                             valid = false;
@@ -1183,20 +1206,29 @@ namespace ProtonVPN.Core.Wpf.Markdown
                     case '\t':
                         int width = (_tabWidth - line.Length % _tabWidth);
                         for (int k = 0; k < width; k++)
+                        {
                             line.Append(' ');
+                        }
+
                         break;
                     case '\x1A':
                         break;
                     default:
                         if (!valid && text[i] != ' ')
+                        {
                             valid = true;
+                        }
+
                         line.Append(text[i]);
                         break;
                 }
             }
 
             if (valid)
+            {
                 output.Append(line);
+            }
+
             output.Append('\n');
 
             // add two newlines to the end before return
@@ -1215,7 +1247,10 @@ namespace ProtonVPN.Core.Wpf.Markdown
 
             var sb = new StringBuilder(value.Length * count);
             for (int i = 0; i < count; i++)
+            {
                 sb.Append(value);
+            }
+
             return sb.ToString();
         }
 
@@ -1281,9 +1316,14 @@ namespace ProtonVPN.Core.Wpf.Markdown
             foreach (var line in lines)
             {
                 if (first)
+                {
                     first = false;
+                }
                 else
+                {
                     yield return new LineBreak();
+                }
+
                 var t = _eoln.Replace(line, " ");
                 yield return new Run(t);
             }

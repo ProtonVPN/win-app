@@ -213,7 +213,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Localizati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client", "src\Client\ProtonVPN.Client\ProtonVPN.Client.csproj", "{98D95B32-CB06-4C92-89D9-0143D9405AA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Connection.Tests", "src\Client\Logic\Connection\ProtonVPN.Client.Logic.Connection.Tests\ProtonVPN.Client.Logic.Connection.Tests.csproj", "{81B7EC1F-E1CF-4103-B1AC-3E2E7A8C4481}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Connection.Tests", "src\Client\Logic\Connection\ProtonVPN.Client.Logic.Connection.Tests\ProtonVPN.Client.Logic.Connection.Tests.csproj", "{81B7EC1F-E1CF-4103-B1AC-3E2E7A8C4481}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -356,6 +356,7 @@ Global
 		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Debug|x64.Build.0 = Debug|Any CPU
 		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24E940FF-C9F3-4D5C-8FCF-CA527F055318}.Release|x64.ActiveCfg = Release|Any CPU
@@ -459,6 +460,7 @@ Global
 		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Debug|x64.Build.0 = Debug|Any CPU
 		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F059E362-20A2-472B-82CA-E727D31AC0C7}.Release|x64.ActiveCfg = Release|Any CPU

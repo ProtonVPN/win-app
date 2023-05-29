@@ -21,9 +21,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <Page x:Class="ProtonVPN.Client.UI.ShellPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
-      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
       Loaded="OnLoaded">
 
@@ -50,15 +50,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Image Width="16"
                    Height="16"
                    HorizontalAlignment="Left"
+                   AutomationProperties.AutomationId="ApplicationIcon"
                    Source="/Assets/ProtonVPN.ico" />
             <TextBlock x:Name="AppTitleBarText"
                        Margin="28,0,0,0"
                        VerticalAlignment="Center"
+                       AutomationProperties.AutomationId="ApplicationTitleLabel"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        TextWrapping="NoWrap" />
         </Grid>
         <NavigationView x:Name="NavigationViewControl"
                         AlwaysShowHeader="{Binding Header.IsHeaderVisible, RelativeSource={RelativeSource Mode=Self}}"
+                        AutomationProperties.AutomationId="NavigationView"
                         Canvas.ZIndex="0"
                         CompactModeThresholdWidth="408"
                         CompactPaneLength="48"
@@ -77,14 +80,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
                     <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
                                         Content="{x:Bind Title, Mode=OneWay}"
-                                        Icon="{x:Bind Icon}" />
+                                        Icon="{x:Bind Icon}"
+                                        AutomationProperties.AutomationId="NavigationViewItem" />
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
 
             <NavigationView.HeaderTemplate>
                 <DataTemplate x:DataType="bases:PageViewModelBase">
                     <StackPanel Orientation="Horizontal">
-                        <Button Margin="0,4,16,0"
+                        <Button AutomationProperties.AutomationId="GoBackButton"
+                                Margin="0,4,16,0"
                                 Padding="4"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
@@ -92,7 +97,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Visibility="{x:Bind CanGoBack}">
                             <pathicons:ArrowLeft />
                         </Button>
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
+                        <TextBlock AutomationProperties.AutomationId="PageTitleLabel" 
+                                   Style="{ThemeResource TitleTextBlockStyle}"
                                    Text="{x:Bind Title, Mode=OneWay}" />
                     </StackPanel>
                 </DataTemplate>
@@ -101,6 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <NavigationView.PaneFooter>
                 <Button HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
+                        AutomationProperties.AutomationId="AccountButton"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Style="{StaticResource SidebarButtonStyle}">
