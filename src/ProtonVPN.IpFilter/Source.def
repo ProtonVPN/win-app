@@ -26,6 +26,7 @@ EXPORTS
 	IPFilterDestroySession
 	IPFilterDestroySublayer
 	IPFilterDestroySublayerFilters
+	IPFilterDestroySublayerFiltersByName
 	IPFilterGetSublayerFilterCount
 	IPFilterDoesCalloutExist
 	IPFilterDoesFilterExist

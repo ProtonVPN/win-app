@@ -33,6 +33,8 @@ namespace ProtonVPN.Service.Firewall
 {
     internal class Firewall : IFirewall, IStartable
     {
+        private const string PERMIT_APP_FILTER_NAME = "ProtonVPN permit app";
+
         private readonly ILogger _logger;
         private readonly IDriver _calloutDriver;
         private readonly IConfiguration _config;
@@ -74,6 +76,13 @@ namespace ProtonVPN.Service.Firewall
                     PermanentStateAfterReboot = true,
                 };
                 LeakProtectionEnabled = true;
+
+                _logger.Info<FirewallLog>("Detected permanent filters. Trying to recreate process permit filters.");
+
+                //In case the app was launched after update,
+                //we need to recreate permit from process filters since paths have changed due to version folder.
+                _ipFilter.PermanentSublayer.DestroyFiltersByName(PERMIT_APP_FILTER_NAME);
+                PermitFromProcesses(4, _lastParams);
             }
         }
 
@@ -88,7 +97,7 @@ namespace ProtonVPN.Service.Firewall
             _calloutDriver.Start();
             PermitServerAddress(firewallParams);
             ApplyFilters(firewallParams);
-            _lastParams = firewallParams;
+            SetLastParams(firewallParams);
         }
 
         public void DisableLeakProtection()
@@ -142,7 +151,7 @@ namespace ProtonVPN.Service.Firewall
             if (_lastParams.PermanentStateAfterReboot)
             {
                 HandlePermanentStateAfterReboot(firewallParams);
-                _lastParams = firewallParams;
+                SetLastParams(firewallParams);
                 return;
             }
 
@@ -183,8 +192,23 @@ namespace ProtonVPN.Service.Firewall
 
             PermitServerAddress(firewallParams);
             BlockOutsideOpenVpnTraffic(firewallParams);
+            SetLastParams(firewallParams);
+        }
+
+        private void SetLastParams(FirewallParams firewallParams)
+        {
+            //This is needed due to WireGuard, because we don't know the interface index in advance.
+            uint interfaceIndex = 0;
+            if (_lastParams.InterfaceIndex > 0 && firewallParams.InterfaceIndex == 0)
+            {
+                interfaceIndex = _lastParams.InterfaceIndex;
+            }
 
             _lastParams = firewallParams;
+            if (interfaceIndex > 0)
+            {
+                _lastParams.InterfaceIndex = interfaceIndex;
+            }
         }
 
         private void HandlePermanentStateAfterReboot(FirewallParams firewallParams)
@@ -237,7 +261,7 @@ namespace ProtonVPN.Service.Firewall
 
         private void BlockOutsideOpenVpnTraffic(FirewallParams firewallParams)
         {
-            if (firewallParams.ServerIp.IsNullOrEmpty())
+            if (firewallParams.ServerIp.IsNullOrEmpty() || firewallParams.DnsLeakOnly)
             {
                 return;
             }
@@ -587,7 +611,7 @@ namespace ProtonVPN.Service.Firewall
                 _ipLayer.ApplyToIpv4(layer =>
                 {
                     Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateAppFilter(
-                        new DisplayData("ProtonVPN permit app", "Permit ProtonVPN app to bypass VPN tunnel"),
+                        new DisplayData(PERMIT_APP_FILTER_NAME, "Permit ProtonVPN app to bypass VPN tunnel"),
                         Action.HardPermit,
                         layer,
                         weight,

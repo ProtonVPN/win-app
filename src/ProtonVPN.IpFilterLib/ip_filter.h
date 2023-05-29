@@ -114,6 +114,12 @@ unsigned int IPFilterDestroySublayerFilters(
     GUID * providerKey,
     GUID * sublayerKey);
 
+unsigned int IPFilterDestroySublayerFiltersByName(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const wchar_t* name);
+
 unsigned int IPFilterGetSublayerFilterCount(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,

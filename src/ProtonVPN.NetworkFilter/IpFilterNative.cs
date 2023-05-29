@@ -282,6 +282,18 @@ namespace ProtonVPN.NetworkFilter
                 ref sublayerId));
         }
 
+        public static void DestroySublayerFiltersByName(IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            string name)
+        {
+            AssertSuccess(() => PInvoke.DestroySublayerFiltersByName(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                name));
+        }
+
         public static uint GetSublayerFilterCount(IntPtr sessionHandle,
             Guid providerId,
             Guid sublayerId)

@@ -212,6 +212,16 @@ namespace ProtonVPN.NetworkFilter
 
         [DllImport(
             BINARY_NAME,
+            EntryPoint = "IPFilterDestroySublayerFiltersByName",
+            CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint DestroySublayerFiltersByName(
+            IntPtr sessionHandle,
+            [In] ref Guid providerId,
+            [In] ref Guid sublayerId,
+            [MarshalAs(UnmanagedType.LPWStr)]  string name);
+
+        [DllImport(
+            BINARY_NAME,
             EntryPoint = "IPFilterGetSublayerFilterCount",
             CallingConvention = CallingConvention.Cdecl)]
         public static extern uint GetSublayerFilterCount(
