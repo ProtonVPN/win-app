@@ -4,4 +4,4 @@ $installerPath = $projectDir + "\Setup\Installers\ProtonVPN_v" + $version + ".ex
 
 Write-Output ("Write event with installer path: " + $installerPath)
 
-Start-Process -FilePath $installerPath -ArgumentList "/silent" -PassThru
+Start-Process -FilePath $installerPath -ArgumentList "/verysilent" -PassThru -Wait
