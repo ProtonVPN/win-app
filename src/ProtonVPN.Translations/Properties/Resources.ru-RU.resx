@@ -1950,7 +1950,7 @@
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Недействительный токен обновления: пожалуйста, войдите снова.</value>
+    <value>Недействительный refresh-токен: пожалуйста, войдите снова.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -3171,7 +3171,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Включить Умеренный NAT</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
-    <value>Улучшите тариф до платного, чтобы разблокировать эту и многие другие функции.</value>
+    <value>Перейдите на платный тариф для разблокировки этой и многих других функции.</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Блокируйте рекламу и трекеры</value>
