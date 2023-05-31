@@ -46,8 +46,6 @@ namespace ProtonVPN.Api.Handlers
         private readonly ILogger _logger;
         private volatile Task<RefreshTokenStatus> _refreshTask = Task.FromResult(RefreshTokenStatus.Success);
 
-        public event EventHandler SessionExpired;
-
         public UnauthorizedResponseHandler(
             ITokenClient tokenClient,
             IAppSettings appSettings,
@@ -65,7 +63,7 @@ namespace ProtonVPN.Api.Handlers
         {
             if (request.AuthHeadersInvalid())
             {
-                SessionExpired?.Invoke(this, EventArgs.Empty);
+                _tokenClient.TriggerRefreshTokenExpiration();
                 return FailResponse.UnauthorizedResponse();
             }
 
@@ -103,7 +101,7 @@ namespace ProtonVPN.Api.Handlers
                     PrepareRequest(request);
                     return await base.SendAsync(request, cancellationToken);
                 case RefreshTokenStatus.Unauthorized:
-                    SessionExpired?.Invoke(this, EventArgs.Empty);
+                    _tokenClient.TriggerRefreshTokenExpiration();
                     return FailResponse.UnauthorizedResponse();
                 default:
                     return FailResponse.UnauthorizedResponse();

@@ -489,7 +489,7 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<UnauthorizedResponseHandler>().SessionExpired += (_, _) =>
+            Resolve<ITokenClient>().RefreshTokenExpired += (_, _) =>
             {
                 Resolve<ExpiredSessionHandler>().Execute();
             };
