@@ -371,6 +371,7 @@ namespace ProtonVPN.Login.ViewModels
                     error = Translation.Get("Login_msg_TwoFactorAuthFailed");
                     IsToShowTwoFactorAuth = false;
                     IsToShowUsernameAndPassword = true;
+                    ClearPasswordField();
                     break;
                 case AuthError.Unknown:
                     await _modals.ShowAsync<TroubleshootModalViewModel>();
@@ -379,7 +380,6 @@ namespace ProtonVPN.Login.ViewModels
             }
 
             LoginErrorViewModel.SetError(error);
-            ClearPasswordField();
             ShowLoginForm();
         }
 
