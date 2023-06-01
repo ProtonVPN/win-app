@@ -25,8 +25,8 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.Common.Tests.OS.Net.NetworkInterface

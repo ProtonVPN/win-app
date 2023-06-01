@@ -18,7 +18,7 @@
  */
 
 using ProtoBuf.Grpc.Server;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Common;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using static Grpc.Core.Server;

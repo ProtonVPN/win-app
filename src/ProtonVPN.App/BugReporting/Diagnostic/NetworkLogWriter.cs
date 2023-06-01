@@ -23,8 +23,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.BugReporting.Diagnostic
 {

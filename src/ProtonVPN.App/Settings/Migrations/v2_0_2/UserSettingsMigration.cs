@@ -21,8 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Core.Storage;
 
 namespace ProtonVPN.Settings.Migrations.v2_0_2

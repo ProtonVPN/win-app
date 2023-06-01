@@ -23,7 +23,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Common.OS.Processes
 {

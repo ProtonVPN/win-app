@@ -22,8 +22,6 @@ using Autofac;
 using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -33,6 +31,7 @@ using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Service.Installers;
 using ProtonVPN.Service.Config;
@@ -59,11 +58,6 @@ namespace ProtonVPN.Service.Start
 
             builder.Register(_ => new ConfigFactory().Config()).AsSelf().As<IConfiguration>().SingleInstance(); // REMOVE AS SELF
             builder.RegisterType<Bootstrapper>().SingleInstance();
-
-            builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<IConfiguration>().ServiceLogDefaultFullFilePath))
-                .As<ILogger>().SingleInstance();
-            builder.RegisterType<LogCleaner>().SingleInstance();
 
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 

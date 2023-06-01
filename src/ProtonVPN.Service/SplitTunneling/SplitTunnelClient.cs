@@ -20,8 +20,8 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.SplitTunneling

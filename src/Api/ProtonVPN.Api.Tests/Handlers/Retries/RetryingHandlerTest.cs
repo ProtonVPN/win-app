@@ -29,7 +29,7 @@ using Polly.Timeout;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Tests.Mocks;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.Api.Tests.Handlers.Retries
