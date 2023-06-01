@@ -1,4 +1,5 @@
 from glob import glob
+from datetime import datetime, timezone
 import requests
 from win32com.client import *
 import json
@@ -8,7 +9,7 @@ import shutil
 
 project_path = os.getenv('CI_PROJECT_DIR') + "\protonvpn-windows-alpha"
 git = f'git -C "{project_path}"'
-win_update_prod_endpoint = "https://protonvpn.com/download/win-update.json"
+win_update_prod_endpoint = "https://protonvpn.com/download/windows-releases.json"
 
 def delete_all_files_by_ending(dir_path, file_extenstion):
     for root, _, files in os.walk(dir_path):
@@ -36,7 +37,7 @@ def generate_file_json(version, installer_path):
     file_json['SHA1CheckSum'] = get_file_hash(installer_path, hashlib.sha1(), 1024)
     file_json['SHA256CheckSum'] = get_file_hash(installer_path, hashlib.sha256(), 4096)
     file_json['SHA512CheckSum'] = get_file_hash(installer_path, hashlib.sha512(), 4096)
-    file_json['Arguments'] = '/qb'
+    file_json['Arguments'] = '/silent'
     return file_json
 
 def configure_git(git_email, git_username):
@@ -48,7 +49,8 @@ def get_update_json(version, installer_path):
     update_json['Version'] = version
     update_json['File'] = generate_file_json(version, installer_path)
     update_json['ChangeLog'] = get_changelog()
-    update_json['DisableAutoUpdate'] = False
+    update_json['ReleaseDate'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    update_json['MinimumOsVersion'] = "10.0.17763"
     return update_json
 
 def get_changelog():
