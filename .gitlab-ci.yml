@@ -44,8 +44,7 @@ build-release:
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat
-    - cmd.exe /c BuildGoSrp.bat src\bin\win-x64\publish\Resources
+    - cmd.exe /c BuildDependencies.bat publish
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
@@ -72,8 +71,7 @@ build-debug:
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat
-    - cmd.exe /c BuildGoSrp.bat src\bin\win-x64\publish\Resources
+    - cmd.exe /c BuildDependencies.bat publish
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
     - python ci\main.py lint-languages
@@ -98,7 +96,7 @@ tests:
   tags:
     - windows-dot-net
   script:
-    - cmd.exe /c BuildGoSrp.bat src\bin\Resources
+    - cmd.exe /c BuildDependencies.bat bin gosrponly
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
     - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
