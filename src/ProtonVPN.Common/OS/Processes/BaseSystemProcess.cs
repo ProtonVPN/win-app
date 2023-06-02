@@ -21,8 +21,8 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ProcessLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ProcessLogs;
 
 namespace ProtonVPN.Common.OS.Processes
 {

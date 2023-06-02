@@ -32,7 +32,7 @@ namespace ProtonVPN.Api
         private readonly RetryingHandler _retryingHandler;
         private readonly DnsHandler _dnsHandler;
         private readonly LoggingHandlerBase _loggingHandlerBase;
-        private readonly CertificateHandler _certificateHandler;
+        private readonly TlsPinnedCertificateHandler _tlsPinnedCertificateHandler;
         private readonly IHttpClients _httpClients;
         private readonly IApiAppVersion _apiAppVersion;
 
@@ -40,25 +40,25 @@ namespace ProtonVPN.Api
             RetryingHandler retryingHandler,
             DnsHandler dnsHandler,
             LoggingHandlerBase loggingHandlerBase,
-            CertificateHandler certificateHandler,
+            TlsPinnedCertificateHandler tlsPinnedCertificateHandler,
             IHttpClients httpClients,
             IApiAppVersion apiAppVersion)
         {
             _retryingHandler = retryingHandler;
             _dnsHandler = dnsHandler;
             _loggingHandlerBase = loggingHandlerBase;
-            _certificateHandler = certificateHandler;
+            _tlsPinnedCertificateHandler = tlsPinnedCertificateHandler;
             _httpClients = httpClients;
             _apiAppVersion = apiAppVersion;
         }
 
-        public IHttpClient GetFileDownloadHttpClient()
+        public IHttpClient GetHttpClientWithTlsPinning()
         {
             HttpMessageHandler innerHandler = new HttpMessageHandlerStackBuilder()
                 .AddDelegatingHandler(_retryingHandler)
                 .AddDelegatingHandler(_dnsHandler)
                 .AddDelegatingHandler(_loggingHandlerBase)
-                .AddLastHandler(_certificateHandler)
+                .AddLastHandler(_tlsPinnedCertificateHandler)
                 .Build();
 
             return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent());

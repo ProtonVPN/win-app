@@ -30,9 +30,6 @@ private:
     std::string GetSha1(std::string str);
     std::string GetPathWithSize(std::string path_url);
     std::string GetHashForUserSettingsFolder(std::string application_path);
-    std::string GetLocalAppDataPath();
-    std::string GetTmpFolderPath();
-    std::string GetEnvVariable(std::string name);
     std::filesystem::path GetApplicationSettingsFolderPath(std::string application_path);
     std::filesystem::path GetTmpFolderPathForStorage();
     std::string GetApplicationSettingsFolderName(std::string application_path);

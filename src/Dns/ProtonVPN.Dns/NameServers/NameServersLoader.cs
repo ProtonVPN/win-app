@@ -23,8 +23,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using DnsClient;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.DnsLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 using ProtonVPN.Dns.Contracts.NameServers;
 
 namespace ProtonVPN.Dns.NameServers

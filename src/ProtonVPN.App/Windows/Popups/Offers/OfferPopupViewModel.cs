@@ -22,8 +22,8 @@ using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;
 

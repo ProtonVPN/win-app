@@ -20,8 +20,10 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
@@ -40,7 +42,7 @@ namespace ProtonVPN.Core.Service
             _vpnSystemService = vpnSystemService;
         }
 
-        protected async Task<T> Invoke<T>(Func<Controller, Task<T>> serviceCall,
+        protected async Task<Result<T>> Invoke<T>(Func<Controller, Task<T>> serviceCall,
             [CallerMemberName] string memberName = "")
         {
             int retryCount = 5;
@@ -56,7 +58,7 @@ namespace ProtonVPN.Core.Service
                         await task;
                     }
 
-                    return result;
+                    return Result.Ok(result);
                 }
                 catch (Exception e)
                 {
@@ -64,7 +66,7 @@ namespace ProtonVPN.Core.Service
                     if (retryCount <= 0)
                     {
                         LogError(e, memberName, isToRetry: false);
-                        throw;
+                        return Result.Fail<T>(e.CombinedMessage());
                     }
 
                     await _grpcClient.RecreateAsync();

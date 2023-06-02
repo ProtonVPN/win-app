@@ -246,7 +246,7 @@
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_SecureCoreVpn">
-    <value>VPN Secure Core</value>
+    <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_Other">
@@ -296,7 +296,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Keluar</value>
+    <value>Keluar Akun</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -316,7 +316,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
+    <value>Untuk merampungkan proses pembaruan, sambungan Proton VPN akan terputus untuk sementara dan seluruh kill switch permanen yang aktif akan dinonaktifkan. Apakah Anda ingin melanjutkan?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -379,7 +379,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Dengan menyertakan informasi berikut, tim kami akan dapat mengidentifikasi masalah Anda dan memberikan Anda solusi yang ampuh dalam waktu yang lebih singkat:
+    <value>Dengan menyertakan informasi berikut, tim kami akan dapat mengidentifikasi masalah Anda dan memberikan solusi kepada Anda secara lebih tepat dan lebih cepat:
 • Log instalasi driver
 • Daftar aplikasi yang terinstal
 • Log aplikasi Proton VPN dan layanan Proton VPN
@@ -388,10 +388,10 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Log-log error yang ada akan membantu kami untuk dapat menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log-log error tersebut, kami tidak akan dapat menganalisa masalah Anda secara maksimal.</value>
+    <value>Log error membantu kami dalam menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log error yang ada, kami mungkin tidak akan dapat menganalisa masalah Anda secara menyeluruh.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Log merupakan berkas yang merekam berbagai aktivitas yang memicu terjadinya suatu error. Kami hanya akan menggunakan berkas log Anda untuk membantu para pakar kami dalam menumpas berbagai bug yang ada.</value>
+    <value>Log merupakan berkas yang merekam berbagai tindakan yang memicu terjadinya suatu error. Kami hanya akan menggunakan berkas log Anda untuk membantu para teknisi kami dalam menumpas bug yang ada.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Perbarui Proton VPN</value>
@@ -442,7 +442,7 @@
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Silakan menunggu hingga proses pengiriman selesai</value>
+    <value>Mohon tunggu hingga proses pengiriman selesai</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -516,6 +516,9 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>sambungan gagal</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} negara</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1534,7 +1537,7 @@
     <value>Langkah ini akan memakan waktu beberapa menit. Setelahnya, Anda akan dapat masuk dan melindungi seluruh perangkat Anda.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Thanks for upgrading</value>
+    <value>Terima kasih karena telah meningkatkan paket Anda</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1558,18 +1561,6 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Akun VPN anda memiliki tagihan tertunda</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Periksa tagihan</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Akun Anda ditandai menunggak karena adanya tagihan yang belum dibayar. Anda akan tetap dapat menggunakan Proton VPN, namun seluruh fitur berbayar akan dinonaktifkan.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Baca lebih lanjut seputar tunggakan pembayaran.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Akun yang menunggak</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Aktifkan</value>
   </data>
@@ -1586,11 +1577,11 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Sebagian komponen Proton VPN tampaknya sedang diblokir atau dinonaktifkan, yang mencegah Anda untuk dapat terhubung ke dalam jaringan kami. Klik tombol Aktifkan untuk mengatasi masalah ini.&lt;LineBreak/&gt;Tindakan ini memerlukan hak akses Admin.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Nonaktifkan kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1602,7 +1593,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <value>Kill switch melindungi IP Anda dengan memblokir seluruh koneksi yang ada. Apabila Anda menemui suatu masalah, Anda dapat menonaktifkan Kill Switch.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1658,10 +1649,10 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Dengan keluar dari aplikasi, Anda akan terputus dari jaringan VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
+    <value>Kill switch memblokir seluruh koneksi yang ada untuk mencegah kebocoran data Anda. Dengan keluar dari aplikasi, kill switch akan dinonaktifkan.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>Kill switch permanen diaktifkan. Apabila Anda keluar dari aplikasi, seluruh sambungan internet yang ada akan dinonaktifkan hingga Anda kembali terhubung dengan Proton VPN.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Verifikasi manusia</value>
@@ -1670,10 +1661,10 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Tanggal dan waktu sistem Anda tidak sesuai dengan tanggal dan waktu saat ini, yang dapat mencegah Anda untuk terhubung ke jaringan kami. Silakan lihat &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;artikel ini&lt;/Hyperlink&gt; untuk informasi lebih lanjut.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>Dengan kill switch permanen, apabila VPN Anda tidak terhubung dengan alasan apapun, Anda tidak akan dapat mengakses Internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Enable Permanent kill switch?</value>
+    <value>Aktifkan kill switch permanen?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Mengerti</value>
@@ -1688,7 +1679,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1704,7 +1695,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Terdapat masalah pada saat mengunduh aplikasi versi terbaru. Silakan perbarui aplikasi secara manual untuk mendapatkan versi terbaru.</value>
+    <value>Terdapat kesalahan pada saat mengunduh versi aplikasi terbaru. Silakan perbarui aplikasi secara manual untuk mendapatkan versi terbaru.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
@@ -1720,7 +1711,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <value>Kill switch sedang aktif. Memperbarui atau menutup aplikasi akan menonaktifkan kill switch.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1747,7 +1738,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Mengerti</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
+    <value>Agar Split Tunneling dapat berfungsi sebagaimana mestinya, Anda harus menonaktifkan kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Ratusan server di 55 negara</value>
@@ -1903,6 +1894,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="KillSwitch">
     <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Lisensi</value>
@@ -1921,14 +1913,14 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Otentikasi</value>
+    <value>Autentikasi</value>
   </data>
   <data name="Login_btn_Login">
     <value>Masuk</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill switch is currently active</value>
+    <value>Kill switch sedang aktif</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -1951,7 +1943,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Kode otentikasi dua faktor</value>
+    <value>Kode autentikasi dua faktor</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Nama pengguna</value>
@@ -1990,7 +1982,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Kode otentikasi dua faktor tidak tepat</value>
+    <value>Kode autentikasi dua faktor tidak tepat</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Kredensial masuk salah. Silakan coba lagi.</value>
@@ -2121,6 +2113,10 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Paket langganan VPN Anda telah berakhir</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Nyalakan ulang</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Apa yang baru</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
@@ -2193,39 +2189,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Untuk dapat menggunakan Port Forwarding, mohon &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;hubungkan&lt;/Hyperlink&gt; diri Anda ke server yang mendukung P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN tidak dapat mengambil sertifikat otentikasi karena masalah jaringan.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Gagal</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Gagal menyinkronkan profil</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Menyinkronkan</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Menyinkronkan profil</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Ditolak</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Tersinkron</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Perubahan profil telah disinkronkan {0}{1} lalu</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Tidak ada perubahan profil untuk disinkronkan</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
+    <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Server tercepat yang tersedia</value>
@@ -2338,10 +2302,6 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Buat Profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sinkronkan</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Penyelesaian Masalah</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2361,10 +2321,6 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Profiles_col_Protocol">
     <value>Protokol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Server saat ini sedang offline untuk pemeliharaan.</value>
@@ -2419,10 +2375,12 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>Nonaktifkan kill switch</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>Aktifkan kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Pelajari lebih lanjut</value>
@@ -2437,7 +2395,8 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Blokir malware, iklan, &amp; pelacak</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanent kill switch</value>
+    <value>Kill switch permanen</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Port Forwarding Nonaktif</value>
@@ -2452,7 +2411,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Secure Core Aktif</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>TINGKATKAN AKUN</value>
+    <value>TINGKATKAN</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Menonaktifkan internet pada saat koneksi VPN terputus untuk mencegah kebocoran IP.</value>
@@ -2460,28 +2419,26 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Jelajahi internet tanpa iklan dan malware.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Iklan yang diblokir</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <value>Situs iklan menggunakan cookie dan pelacak untuk mengincar Anda.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Data disimpan</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <value>Perkiraan ukuran iklan, pelacak, dan malware yang telah diblokir oleh NetShield.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Pelacak yang dihentikan</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>Pelacak (tracker) merupakan situs web pihak ketiga yang memperoleh, menyimpan, dan menjual informasi penjelajahan internet Anda.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
@@ -2498,6 +2455,9 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} server aman</value>
   </data>
   <data name="ServerType_val_None">
     <value>Standar</value>
@@ -2571,11 +2531,11 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Servers_lbl_ViaCountry">
@@ -2583,7 +2543,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN tidak dapat memuat ulang sertifikat otentikasi klien.</value>
+    <value>Proton VPN tidak dapat memuat ulang sertifikat autentikasi klien.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
     <value>Server yang coba anda sambung saat ini sedang luring untuk pemeliharaaan. Silahkan pilih server atau profil yang lain.</value>
@@ -2703,7 +2663,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
+    <value>Kecualikan aplikasi atau alamat IP tertentu dari lalu lintas VPN atau sertakan hanya aplikasi tertentu. Fitur ini tidak dapat diaktifkan bersamaan dengan kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2734,7 +2694,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -2794,6 +2754,14 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Settings_Connection_ttl">
     <value>Koneksi</value>
     <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Pembaruan otomatis</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Memeriksa dan memasang pembaruan Proton VPN secara otomatis.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Hubungkan pada saat aplikasi dijalankan</value>
@@ -2865,7 +2833,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
-    <value>Hubungkan diri Anda ke server VPN untuk mendapatkan koneksi yang aman.</value>
+    <value>Hubungkan diri Anda ke server VPN untuk memperoleh koneksi yang aman.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown">
@@ -2877,11 +2845,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill switch activated!</value>
+    <value>Kill switch diaktifkan!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
+    <value>Kill switch sedang memblokir seluruh koneksi yang ada untuk menghindari kebocoran data.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -3082,8 +3050,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Akses lebih dari {0} di {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Apa itu NAT Moderat?</value>
@@ -3117,7 +3085,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3153,7 +3121,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Enkripsi berganda dengan Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Tingkatkan Akun</value>
+    <value>Tingkatkan</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

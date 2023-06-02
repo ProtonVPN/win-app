@@ -24,7 +24,7 @@ using NSubstitute;
 using NSubstitute.Core;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;

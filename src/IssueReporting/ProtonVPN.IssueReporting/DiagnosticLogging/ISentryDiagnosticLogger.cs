@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using Sentry.Extensibility;
 
 namespace ProtonVPN.IssueReporting.DiagnosticLogging

@@ -24,11 +24,12 @@ using Autofac;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.Logging.Installers;
 using ProtonVPN.Native.PInvoke;
 using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Settings;
@@ -63,8 +64,10 @@ namespace ProtonVPN.Service.Start
             new ConfigDirectories(config).Prepare();
 
             ContainerBuilder builder = new();
-            builder.RegisterModule<ServiceModule>()
+            builder.RegisterLoggerConfiguration(c => c.ServiceLogDefaultFullFilePath)
+                   .RegisterModule<ServiceModule>()
                    .RegisterModule<ApiModule>()
+                   .RegisterAssemblyModule<LoggingModule>()
                    .RegisterAssemblyModule<UpdateModule>();
             _container = builder.Build();
         }
@@ -81,7 +84,7 @@ namespace ProtonVPN.Service.Start
 
             RegisterEvents();
 
-            Resolve<LogCleaner>().Clean(config.ServiceLogFolder, 10);
+            Resolve<ILogCleaner>().Clean(config.ServiceLogFolder, 10);
             FixNetworkAdapters();
 
             VpnService vpnService = Resolve<VpnService>();

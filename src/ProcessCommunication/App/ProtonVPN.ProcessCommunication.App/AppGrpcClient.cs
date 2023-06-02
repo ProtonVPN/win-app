@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Common;
 using ProtonVPN.ProcessCommunication.Common.Channels;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -85,11 +85,24 @@ namespace ProtonVPN.ProcessCommunication.App
             int? appServerPort = _grpcServer?.Port;
             if (VpnController is not null && appServerPort is not null)
             {
-                Logger.Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort.Value} to service.");
+                await RegisterStateConsumerAsync(appServerPort.Value);
+            }
+        }
+
+        private async Task RegisterStateConsumerAsync(int appServerPort)
+        {
+            Logger.Info<ProcessCommunicationLog>($"Sending the app gRPC server port {appServerPort} to service.");
+            try
+            {
                 await VpnController.RegisterStateConsumer(new StateConsumerIpcEntity
                 {
-                    ServerPort = appServerPort.Value
+                    ServerPort = appServerPort
                 });
+            }
+            catch (Exception e)
+            {
+                Logger.Error<ProcessCommunicationErrorLog>($"An error occurred when " +
+                    $"sending the app gRPC server port {appServerPort} to service.", e);
             }
         }
 

@@ -22,8 +22,8 @@ using System.Runtime.CompilerServices;
 using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Notifications

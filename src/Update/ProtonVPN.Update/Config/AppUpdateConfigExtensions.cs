@@ -25,7 +25,8 @@ namespace ProtonVPN.Update.Config
     {
         public static void Validate(this IAppUpdateConfig config)
         {
-            Ensure.NotNull(config.HttpClient, nameof(config.HttpClient));
+            Ensure.NotNull(config.FeedHttpClient, nameof(config.FeedHttpClient));
+            Ensure.NotNull(config.FileHttpClient, nameof(config.FileHttpClient));
             Ensure.NotNull(config.FeedUriProvider, nameof(config.FeedUriProvider));
             Ensure.NotEmpty(config.UpdatesPath, nameof(config.UpdatesPath));
             Ensure.NotNull(config.CurrentVersion, nameof(config.CurrentVersion));

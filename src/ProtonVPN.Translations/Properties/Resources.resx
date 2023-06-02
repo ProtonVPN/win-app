@@ -289,22 +289,6 @@
     <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="ProfileSyncStatus_val_InProgress" xml:space="preserve">
-    <value>Syncing</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded" xml:space="preserve">
-    <value>Synced</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed" xml:space="preserve">
-    <value>Failed</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden" xml:space="preserve">
-    <value>Overridden</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
   <data name="Account_lbl_AccountType" xml:space="preserve">
     <value>Account Type:</value>
     <comment>The label for account type in Account window</comment>
@@ -537,10 +521,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Profiles_col_Profile" xml:space="preserve">
     <value>Profile</value>
     <comment>The title of profile name column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status" xml:space="preserve">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection" xml:space="preserve">
     <value>Connection</value>
@@ -781,26 +761,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="WireGuard_lbl" xml:space="preserve">
     <value>WireGuard</value>
     <comment>WireGuard client name (do not translate)</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData" xml:space="preserve">
-    <value>No profile changes to synchronize</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info" xml:space="preserve">
-    <value>Profile changes synchronized {0} {1} ago</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info" xml:space="preserve">
-    <value>Profile synchronization has failed</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info" xml:space="preserve">
-    <value>Synchronizing profiles</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="Profiles_btn_Sync" xml:space="preserve">
-    <value>Sync</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
   </data>
   <data name="Settings_lnk_Reconnect" xml:space="preserve">
     <value>Reconnect</value>
@@ -2402,10 +2362,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN connections</value>
     <comment>The text displayed in Account window</comment>
   </data>
-  <data name="Account_lbl_Countries_Other" xml:space="preserve">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
-    <comment>The text displayed in Account window</comment>
-  </data>
   <data name="Account_lbl_HighestSpeed" xml:space="preserve">
     <value>&lt;Bold&gt;Highest&lt;/Bold&gt; speed (up to 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
@@ -2584,17 +2540,25 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_btn_Upgrade" xml:space="preserve">
     <value>UPGRADE</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds" xml:space="preserve">
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other" xml:space="preserve">
     <value>Ads blocked</value>
-    <comment></comment>
+    <comment>The text displayed under the number of ads blocked in the NetShield popup.</comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One" xml:space="preserve">
+    <value>Ad blocked</value>
+    <comment>The text displayed under the number of ads blocked in the NetShield popup.</comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip" xml:space="preserve">
     <value>Advertisement websites use cookies and trackers to target you.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers" xml:space="preserve">
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other" xml:space="preserve">
     <value>Trackers stopped</value>
-    <comment></comment>
+    <comment>The text displayed under the number of trackers stopped in the NetShield popup.</comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One" xml:space="preserve">
+    <value>Tracker stopped</value>
+    <comment>The text displayed under the number of trackers stopped in the NetShield popup.</comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip" xml:space="preserve">
     <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
@@ -2679,18 +2643,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg" xml:space="preserve">
     <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
-  </data>
-  <data name="Dialogs_Delinquency_btn_Invoices" xml:space="preserve">
-    <value>Check invoices</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl" xml:space="preserve">
-    <value>Delinquent account</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg" xml:space="preserve">
-    <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use Proton VPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount" xml:space="preserve">
     <value>Locations ({0})</value>
@@ -3041,8 +2993,20 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title" xml:space="preserve">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Access over {0} in {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
+  </data>
+  <data name="Secure_Servers_lbl_One" xml:space="preserve">
+    <value>{0} secure server</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other" xml:space="preserve">
+    <value>{0} secure servers</value>
+  </data>
+  <data name="Countries_lbl_One" xml:space="preserve">
+    <value>{0} country</value>
+  </data>
+  <data name="Countries_lbl_Other" xml:space="preserve">
+    <value>{0} countries</value>
   </data>
   <data name="Upsell_Countries_BlockAds" xml:space="preserve">
     <value>Block ads and malware with NetShield</value>
@@ -3247,6 +3211,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Account_lbl_Countries_One" xml:space="preserve">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; country</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Countries_Other" xml:space="preserve">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One" xml:space="preserve">

@@ -24,9 +24,9 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.SettingsLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
+using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Storage;
 

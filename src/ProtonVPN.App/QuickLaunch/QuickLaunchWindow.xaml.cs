@@ -19,8 +19,8 @@
 
 using System;
 using System.Windows.Input;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Windows;
 
 namespace ProtonVPN.QuickLaunch

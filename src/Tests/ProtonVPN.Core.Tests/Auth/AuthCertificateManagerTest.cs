@@ -29,7 +29,7 @@ using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 

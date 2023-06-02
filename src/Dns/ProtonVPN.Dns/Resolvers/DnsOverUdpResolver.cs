@@ -27,29 +27,48 @@ using DnsClient;
 using DnsClient.Protocol;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.DnsLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.NameServers;
 using ProtonVPN.Dns.Contracts.Resolvers;
+using ProtonVPN.Dns.Resolvers.System;
 
 namespace ProtonVPN.Dns.Resolvers
 {
     public class DnsOverUdpResolver : DnsResolverBase, IDnsOverUdpResolver
     {
-        private readonly INameServersLoader _nameServersLoader;
+        public const int DEFAULT_DNS_TTL_IN_SECONDS = 3600;
 
-        public DnsOverUdpResolver(INameServersLoader nameServersLoader, IConfiguration configuration, ILogger logger)
+        private readonly INameServersLoader _nameServersLoader;
+        private readonly ISystemDnsResolver _systemDnsResolver;
+
+        public DnsOverUdpResolver(INameServersLoader nameServersLoader,
+            ISystemDnsResolver systemDnsResolver,
+            IConfiguration configuration,
+            ILogger logger)
             : base(configuration, logger)
         {
             _nameServersLoader = nameServersLoader;
+            _systemDnsResolver = systemDnsResolver;
         }
 
         protected override async Task<DnsResponse> StartTasksAndWaitAnySuccessAsync(string host,
             CancellationToken cancellationToken)
         {
-            IEnumerable<IPEndPoint> nameServersIpAddresses = _nameServersLoader.Get();
+            DnsResponse response = await ResolveManuallyAsync(host, cancellationToken);
 
+            if (response is not null && response.IpAddresses is not null && response.IpAddresses.Any())
+            {
+                return response;
+            }
+
+            return await ResolveWithSystemAsync(host, cancellationToken);
+        }
+
+        private async Task<DnsResponse> ResolveManuallyAsync(string host, CancellationToken cancellationToken)
+        {
+            IEnumerable<IPEndPoint> nameServersIpAddresses = _nameServersLoader.Get();
             List<Func<CancellationToken, Task<DnsResponse>>> resolveFuncs = new();
             foreach (IPEndPoint nameServerIpAddress in nameServersIpAddresses)
             {
@@ -128,6 +147,20 @@ namespace ProtonVPN.Dns.Resolvers
                 UseRandomNameServer = false,
                 ThrowDnsErrors = true,
             };
+        }
+
+        private async Task<DnsResponse> ResolveWithSystemAsync(string host, CancellationToken cancellationToken)
+        {
+            try
+            {
+                IList<IPAddress> ipAddresses = await _systemDnsResolver.ResolveWithSystemAsync(host, cancellationToken);
+                return CreateDnsResponseWithIpAddresses(host, DEFAULT_DNS_TTL_IN_SECONDS, ipAddresses);
+            }
+            catch (Exception e)
+            {
+                Logger.Error<DnsErrorLog>($"Failed to map host '{host}' through system.", e);
+                return null;
+            }
         }
 
         protected override bool IsNullOrEmpty(DnsResponse dnsResponse)

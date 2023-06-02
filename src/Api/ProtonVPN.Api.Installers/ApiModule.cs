@@ -41,7 +41,7 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<ApiHostProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CertificateValidator>().As<ICertificateValidator>().SingleInstance();
             builder.RegisterType<FileDownloadHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<NoDnsFileDownloadHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                     new CachingReportClient(
                         new ReportClient(c.Resolve<IReportClientUriProvider>())))
@@ -64,7 +64,8 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<DnsHandler>().InstancePerDependency();
             builder.RegisterType<OutdatedAppHandler>().InstancePerDependency();
             builder.RegisterType<UnauthorizedResponseHandler>().InstancePerDependency();
-            builder.RegisterType<CertificateHandler>().InstancePerDependency();
+            builder.RegisterType<TlsPinnedCertificateHandler>().InstancePerDependency();
+            builder.RegisterType<SslCertificateHandler>().InstancePerDependency();
         }
     }
 }

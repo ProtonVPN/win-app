@@ -38,6 +38,7 @@ using ProtonVPN.Onboarding;
 using ProtonVPN.PortForwarding;
 using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Settings;
+using ProtonVPN.Translations;
 using static ProtonVPN.Common.Extensions.ExponentialExtensions;
 
 namespace ProtonVPN.Sidebar.QuickSettings
@@ -52,6 +53,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private const int AVG_AD_SIZE_IN_BYTES = 200000;
         private const int AVG_TRACKER_SIZE_IN_BYTES = 50000;
         private const int AVG_MALWARE_SIZE_IN_BYTES = 750000;
+        private const string NETSHIELD_ADS_BLOCKED_TRANSLATION = "QuickSettings_lbl_NetShieldStatsAds";
+        private const string NETSHIELD_TRACKERS_STOPPED_TRANSLATION = "QuickSettings_lbl_NetShieldStatsTrackers";
 
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
@@ -61,6 +64,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         private readonly IPortForwardingManager _portForwardingManager;
 
         private bool _isConnected;
+        private NetShieldStatistic _lastStats;
 
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
         public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
@@ -147,11 +151,25 @@ namespace ProtonVPN.Sidebar.QuickSettings
             set => Set(ref _netShieldStatsNumOfAdvertisementUrlsBlocked, value);
         }
 
+        private string _netShieldStatsLabelOfAdvertisementUrlsBlocked;
+        public string NetShieldStatsLabelOfAdvertisementUrlsBlocked
+        {
+            get => _netShieldStatsLabelOfAdvertisementUrlsBlocked;
+            set => Set(ref _netShieldStatsLabelOfAdvertisementUrlsBlocked, value);
+        }
+
         private string _netShieldStatsNumOfTrackingUrlsBlocked = "0";
         public string NetShieldStatsNumOfTrackingUrlsBlocked
         {
             get => _netShieldStatsNumOfTrackingUrlsBlocked;
             set => Set(ref _netShieldStatsNumOfTrackingUrlsBlocked, value);
+        }
+        
+        private string _netShieldStatsLabelOfTrackingUrlsBlocked;
+        public string NetShieldStatsLabelOfTrackingUrlsBlocked
+        {
+            get => _netShieldStatsLabelOfTrackingUrlsBlocked;
+            set => Set(ref _netShieldStatsLabelOfTrackingUrlsBlocked, value);
         }
 
         private string _netShieldStatsDataSaved = "0";
@@ -325,6 +343,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 case nameof(IAppSettings.FeatureNetShieldStatsEnabled):
                     NotifyOfPropertyChange(nameof(HasNetShieldStats));
                     NotifyOfPropertyChange(nameof(HasNetShieldStatsContainer));
+                    break;
+                case nameof(IAppSettings.Language):
+                    SetNetShieldStatistic(_lastStats);
                     break;
             }
         }
@@ -573,11 +594,14 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private void SetNetShieldStatistic(NetShieldStatistic stats = null)
         {
+            _lastStats = stats;
             if (stats is null)
             {
                 NetShieldBadgeValue = "0";
                 NetShieldStatsNumOfAdvertisementUrlsBlocked = "0";
+                NetShieldStatsLabelOfAdvertisementUrlsBlocked = Translation.GetPlural(NETSHIELD_ADS_BLOCKED_TRANSLATION, 0);
                 NetShieldStatsNumOfTrackingUrlsBlocked = "0";
+                NetShieldStatsLabelOfTrackingUrlsBlocked = Translation.GetPlural(NETSHIELD_TRACKERS_STOPPED_TRANSLATION, 0);
                 NetShieldStatsDataSaved = "0 B";
             }
             else
@@ -586,7 +610,12 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 NetShieldBadgeValue = badgeSum > 99 ? "99+" : $"{badgeSum}";
 
                 NetShieldStatsNumOfAdvertisementUrlsBlocked = $"{stats.NumOfAdvertisementUrlsBlocked}";
+                NetShieldStatsLabelOfAdvertisementUrlsBlocked = Translation.GetPlural(
+                    NETSHIELD_ADS_BLOCKED_TRANSLATION, stats.NumOfAdvertisementUrlsBlocked);
+
                 NetShieldStatsNumOfTrackingUrlsBlocked = $"{stats.NumOfTrackingUrlsBlocked}";
+                NetShieldStatsLabelOfTrackingUrlsBlocked = Translation.GetPlural(
+                    NETSHIELD_TRACKERS_STOPPED_TRANSLATION, stats.NumOfTrackingUrlsBlocked);
 
                 long adDataSavedInBytes = stats.NumOfAdvertisementUrlsBlocked * AVG_AD_SIZE_IN_BYTES;
                 long trackerDataSavedInBytes = stats.NumOfTrackingUrlsBlocked * AVG_TRACKER_SIZE_IN_BYTES;

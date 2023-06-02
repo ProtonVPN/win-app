@@ -25,8 +25,8 @@ using Polly;
 using Polly.Retry;
 using ProtonVPN.Api.Extensions;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers.Retries
 {

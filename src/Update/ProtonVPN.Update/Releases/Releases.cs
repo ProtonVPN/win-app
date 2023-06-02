@@ -20,8 +20,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.Update.Responses;
 
 namespace ProtonVPN.Update.Releases

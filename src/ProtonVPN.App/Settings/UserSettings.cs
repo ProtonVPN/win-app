@@ -20,9 +20,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Storage;
 

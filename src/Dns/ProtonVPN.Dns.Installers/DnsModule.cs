@@ -23,6 +23,7 @@ using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.HttpClients;
 using ProtonVPN.Dns.NameServers;
 using ProtonVPN.Dns.Resolvers;
+using ProtonVPN.Dns.Resolvers.System;
 
 namespace ProtonVPN.Dns.Installers
 {
@@ -34,7 +35,9 @@ namespace ProtonVPN.Dns.Installers
 
             builder.RegisterType<NameServersResolver>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NameServersLoader>().AsImplementedInterfaces().SingleInstance();
-            
+
+            builder.RegisterType<SystemDnsResolver>().AsImplementedInterfaces().SingleInstance();
+
             builder.RegisterType<DnsOverUdpResolver>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<DnsOverHttpsResolver>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<DnsOverHttpsTxtRecordsResolver>().AsImplementedInterfaces().SingleInstance();

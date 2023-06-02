@@ -59,6 +59,17 @@ namespace ProtonVPN.Common.OS.Services
             }
         }
 
+        public void UpdatePathAndArgs(string cmd)
+        {
+            try
+            {
+                _origin.UpdatePathAndArgs(cmd);
+            }
+            catch (Win32Exception)
+            {
+            }
+        }
+
         public bool Running()
         {
             try

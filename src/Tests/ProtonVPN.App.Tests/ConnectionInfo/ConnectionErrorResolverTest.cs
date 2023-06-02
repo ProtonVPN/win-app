@@ -30,7 +30,7 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.VpnSessions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Abstract;

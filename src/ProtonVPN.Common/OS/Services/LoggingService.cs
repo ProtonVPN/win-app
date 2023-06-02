@@ -22,9 +22,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization;
-using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 
 namespace ProtonVPN.Common.OS.Services
 {
@@ -45,6 +44,15 @@ namespace ProtonVPN.Common.OS.Services
 
         public void Create(string pathAndArgs, bool unrestricted) => _origin.Create(pathAndArgs, unrestricted);
 
+        public void UpdatePathAndArgs(string cmd)
+        {
+            Logged<AppServiceLog, AppServiceLog>("Updating path", () =>
+            {
+                _origin.UpdatePathAndArgs(cmd);
+                return Task.FromResult(Result.Ok());
+            }).Wait();
+        }
+
         public bool Running() => _origin.Running();
 
         public bool IsStopped() => _origin.IsStopped();
@@ -60,16 +68,16 @@ namespace ProtonVPN.Common.OS.Services
             }).Wait();
         }
 
-        public Task<Result> StartAsync(CancellationToken cancellationToken)
+        public async Task<Result> StartAsync(CancellationToken cancellationToken)
         {
-            return Logged<AppServiceStartLog, AppServiceStartFailedLog>("Starting", 
-                () => _origin.StartAsync(cancellationToken));
+            return await Logged<AppServiceStartLog, AppServiceStartFailedLog>("Starting",
+                async () => await _origin.StartAsync(cancellationToken));
         }
 
-        public Task<Result> StopAsync(CancellationToken cancellationToken)
+        public async Task<Result> StopAsync(CancellationToken cancellationToken)
         {
-            return Logged<AppServiceStopLog, AppServiceStopFailedLog>("Stopping", 
-                () => _origin.StopAsync(cancellationToken));
+            return await Logged<AppServiceStopLog, AppServiceStopFailedLog>("Stopping",
+                async () => await _origin.StopAsync(cancellationToken));
         }
 
         private async Task<Result> Logged<TEventLog, TEventFailedLog>(string actionName, Func<Task<Result>> action) 

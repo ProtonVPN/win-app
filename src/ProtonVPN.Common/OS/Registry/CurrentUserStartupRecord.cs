@@ -21,8 +21,8 @@ using System;
 using Microsoft.Win32;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Common.OS.Registry
 {

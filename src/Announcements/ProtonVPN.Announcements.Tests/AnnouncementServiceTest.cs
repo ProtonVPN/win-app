@@ -27,7 +27,7 @@ using NSubstitute;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Settings;
 

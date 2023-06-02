@@ -59,23 +59,27 @@ namespace ProtonVPN.Common.Threading
         public void Run()
         {
             if (Interlocked.Exchange(ref _workRequested, 1) != 0)
+            {
                 return;
+            }
 
             Running = true;
 
-            var taskCompletion = new TaskCompletionSource<object>();
-            var newTask = taskCompletion.Task;
-            var cancellationToken = _cancellationHandle.Token;
+            TaskCompletionSource<object> taskCompletion = new TaskCompletionSource<object>();
+            Task<object> newTask = taskCompletion.Task;
+            CancellationToken cancellationToken = _cancellationHandle.Token;
 
             while (true)
             {
-                var expectedTask = _currentTask;
-                var previousTask = Interlocked.CompareExchange(ref _currentTask, newTask, expectedTask);
+                Task expectedTask = _currentTask;
+                Task previousTask = Interlocked.CompareExchange(ref _currentTask, newTask, expectedTask);
                 if (previousTask != expectedTask)
+                {
                     continue;
+                }
 
                 // ReSharper disable once PossibleNullReferenceException
-                var task = previousTask.IsCompleted 
+                Task task = previousTask.IsCompleted 
                     ? Task.Run(() => Run(cancellationToken), cancellationToken) 
                     : previousTask.ContinueWith(_ => Run(cancellationToken), cancellationToken, TaskContinuationOptions.LazyCancellation, TaskScheduler.Current).Unwrap();
 
@@ -95,7 +99,9 @@ namespace ProtonVPN.Common.Threading
         {
             Running = true;
             if (Interlocked.Exchange(ref _workRequested, 0) == 0)
+            {
                 return Task.CompletedTask;
+            }
 
             return _action(cancellationToken);
         }

@@ -41,7 +41,7 @@ namespace ProtonVPN.Api
             RetryingHandlerBase retryingHandlerBase,
             DnsHandler dnsHandler,
             LoggingHandlerBase loggingHandlerBase,
-            CertificateHandler certificateHandler)
+            TlsPinnedCertificateHandler certificateHandler)
         {
             _config = config;
 

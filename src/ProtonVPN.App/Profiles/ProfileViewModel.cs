@@ -29,8 +29,6 @@ namespace ProtonVPN.Profiles
 {
     public class ProfileViewModel : ViewModel
     {
-        private readonly ProfileSyncStatus _originSyncStatus;
-
         public ProfileViewModel(Profile profile)
         {
             Id = profile.Id;
@@ -45,9 +43,6 @@ namespace ProtonVPN.Profiles
             {
                 ConnectionInfoViewModel = new ConnectionInfoViewModel(profile.Server);
             }
-
-            _syncStatus = profile.SyncStatus;
-            _originSyncStatus = profile.SyncStatus;
         }
 
         public bool ShowBottomBorder { get; set; } = true;
@@ -69,19 +64,5 @@ namespace ProtonVPN.Profiles
         public string ConnectAutomationId => "Connect-" + Name;
         public string EditAutomationId => "Edit-" + Name;
         public string DeleteAutomationId => "Delete-" + Name;
-
-        private ProfileSyncStatus _syncStatus;
-        public ProfileSyncStatus SyncStatus
-        {
-            get => _syncStatus;
-            private set => Set(ref _syncStatus, value);
-        }
-
-        public void OnProfileSyncStatusChanged(ProfileSyncStatus status)
-        {
-            SyncStatus = status == ProfileSyncStatus.Failed && _originSyncStatus == ProfileSyncStatus.InProgress
-                ? ProfileSyncStatus.Failed
-                : _originSyncStatus;
-        }
     }
 }

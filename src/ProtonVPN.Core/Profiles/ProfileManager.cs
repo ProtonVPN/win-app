@@ -17,21 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Profiles.Comparers;
-using ProtonVPN.Core.Servers;
-using ProtonVPN.Core.Servers.Specs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Core.Profiles.Comparers;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Servers.Specs;
 
 namespace ProtonVPN.Core.Profiles
 {
     public class ProfileManager
     {
-        private static readonly ProfileByIdEqualityComparer ProfileByIdEqualityComparer =
-            new ProfileByIdEqualityComparer();
-        private static readonly ProfileByNameEqualityComparer ProfileByNameEqualityComparer =
-            new ProfileByNameEqualityComparer();
+        private static readonly ProfileByIdEqualityComparer ProfileByIdEqualityComparer = new();
+        private static readonly ProfileByNameEqualityComparer ProfileByNameEqualityComparer = new();
 
         private readonly ServerManager _serverManager;
         private readonly IProfileStorageAsync _profiles;
@@ -50,14 +49,14 @@ namespace ProtonVPN.Core.Profiles
 
         public async Task<Profile> GetProfileById(string id)
         {
-            var profiles = await GetProfiles();
+            IReadOnlyList<Profile> profiles = await GetProfiles();
             return profiles.FirstOrDefault(profile => profile.Id == id);
         }
 
         public async Task<IReadOnlyList<Profile>> GetProfiles()
         {
-            var profiles = await _profiles.GetAll();
-            foreach (var profile in profiles)
+            IReadOnlyList<Profile> profiles = await _profiles.GetAll();
+            foreach (Profile profile in profiles)
             {
                 profile.Server = _serverManager.GetServer(new ServerById(profile.ServerId));
                 profile.CountryCode = profile.CountryCode?.ToUpper() ?? profile.Server?.ExitCountry;
@@ -68,7 +67,7 @@ namespace ProtonVPN.Core.Profiles
 
         public async Task<Profile> GetFastestProfile()
         {
-            var profiles = await GetProfiles();
+            IReadOnlyList<Profile> profiles = await GetProfiles();
             return profiles.FirstOrDefault(p => p.IsPredefined && p.Id == "Fastest");
         }
 
@@ -85,22 +84,24 @@ namespace ProtonVPN.Core.Profiles
 
         public async Task<bool> ProfileWithNameExists(Profile profile)
         {
-            var profiles = await GetProfiles();
+            IReadOnlyList<Profile> profiles = await GetProfiles();
             return profiles.Any(p => ProfileByNameEqualityComparer.Equals(p, profile));
         }
 
         public async Task<bool> OtherProfileWithNameExists(Profile profile)
         {
-            var profiles = await GetProfiles();
+            IReadOnlyList<Profile> profiles = await GetProfiles();
             return profiles.Any(p => !ProfileByIdEqualityComparer.Equals(p, profile) && ProfileByNameEqualityComparer.Equals(p, profile));
         }
 
         private void AddCountryCode(Profile profile)
         {
             if (!string.IsNullOrEmpty(profile.CountryCode) || string.IsNullOrEmpty(profile.ServerId))
+            {
                 return;
+            }
 
-            var server = _serverManager.GetServer(new ServerById(profile.ServerId));
+            Server server = _serverManager.GetServer(new ServerById(profile.ServerId));
             profile.CountryCode = server?.ExitCountry;
         }
     }

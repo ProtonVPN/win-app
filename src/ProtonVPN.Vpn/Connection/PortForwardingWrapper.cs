@@ -20,8 +20,8 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.PortMapping;

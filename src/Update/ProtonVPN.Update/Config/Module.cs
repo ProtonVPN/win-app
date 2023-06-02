@@ -18,7 +18,7 @@
  */
 
 using Autofac;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Files.Launchable;
 using ProtonVPN.Update.Updates;

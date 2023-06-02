@@ -20,8 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Dns.Tests.Mocks
 {

@@ -99,6 +99,12 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         WireGuardAdapterInUseError,
 
         [EnumMember]
+        ServerValidationError,
+
+        [EnumMember]
+        NoServerValidationPublicKey,
+
+        [EnumMember]
         GuestSession = 86100,
 
         [EnumMember]

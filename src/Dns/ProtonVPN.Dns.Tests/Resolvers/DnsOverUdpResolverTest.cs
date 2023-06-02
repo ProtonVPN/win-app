@@ -18,7 +18,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,6 +30,7 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.NameServers;
 using ProtonVPN.Dns.Resolvers;
+using ProtonVPN.Dns.Resolvers.System;
 using ProtonVPN.Dns.Tests.Mocks;
 
 namespace ProtonVPN.Dns.Tests.Resolvers
@@ -45,6 +48,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers
         private IConfiguration _configuration;
         private MockOfNameServersLoader _mockOfNameServersLoader;
         private DnsOverUdpResolver _resolver;
+        private ISystemDnsResolver _mockOfSystemDnsResolver;
 
         [TestInitialize]
         public void TestInitialize()
@@ -52,9 +56,12 @@ namespace ProtonVPN.Dns.Tests.Resolvers
             _logger = new MockOfLogger();
             _cancellationTokenSource = new CancellationTokenSource();
             _stopwatch = new Stopwatch();
+
             _configuration = Substitute.For<IConfiguration>();
             _configuration.DnsResolveTimeout.Returns(DNS_RESOLVE_TIMEOUT);
             _configuration.DefaultDnsTimeToLive.Returns(DEFAULT_DNS_TTL);
+
+            _mockOfSystemDnsResolver = Substitute.For<ISystemDnsResolver>();
         }
 
         [TestCleanup]
@@ -66,6 +73,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers
             _configuration = null;
             _mockOfNameServersLoader = null;
             _resolver = null;
+            _mockOfSystemDnsResolver = null;
         }
 
         [TestMethod]
@@ -86,7 +94,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers
         {
             NameServersResolver nameServersResolver = new();
             NameServersLoader nameServersLoader = new(nameServersResolver, _logger);
-            _resolver = new(nameServersLoader, _configuration, _logger);
+            _resolver = new(nameServersLoader, _mockOfSystemDnsResolver, _configuration, _logger);
         }
 
         private async Task<DnsResponse> ExecuteAsync()
@@ -108,9 +116,43 @@ namespace ProtonVPN.Dns.Tests.Resolvers
         }
 
         [TestMethod]
-        public async Task TestResolveAsync_WithoutNameServers()
+        public async Task TestResolveAsync_WithoutNameServers_AndSystemResolverWorks()
         {
             InitializeWithMockOfNameServersLoader();
+            List<IPAddress> systemResult = new() { IPAddress.Parse("1.2.3.4"), IPAddress.Parse("5.6.7.8") };
+            AddSystemDnsResolverResult(HOST, systemResult);
+
+            DnsResponse response = await ExecuteAsync();
+
+            AssertValidSystemResponse(systemResult, response);
+            Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
+        }
+
+        private void AssertValidSystemResponse(List<IPAddress> expectedSystemResult, DnsResponse response)
+        {
+            Assert.IsNotNull(response);
+            Assert.AreEqual(expectedSystemResult.Count, response.IpAddresses.Count);
+            foreach (IPAddress ipAddress in expectedSystemResult)
+            {
+                Assert.IsNotNull(response.IpAddresses.Single(ip => ip.ToString() == ipAddress.ToString()));
+            }
+            Assert.AreEqual(TimeSpan.FromSeconds(DnsOverUdpResolver.DEFAULT_DNS_TTL_IN_SECONDS), response.TimeToLive);
+            Assert.IsTrue(response.ExpirationDateTimeUtc > DateTime.UtcNow);
+            Assert.IsTrue(response.ResponseDateTimeUtc <= DateTime.UtcNow);
+            Assert.AreEqual(response.TimeToLive, response.ExpirationDateTimeUtc - response.ResponseDateTimeUtc);
+        }
+
+        private void InitializeWithMockOfNameServersLoader()
+        {
+            _mockOfNameServersLoader = new MockOfNameServersLoader();
+            _resolver = new DnsOverUdpResolver(_mockOfNameServersLoader, _mockOfSystemDnsResolver, _configuration, _logger);
+        }
+
+        [TestMethod]
+        public async Task TestResolveAsync_WithoutNameServers_AndSystemResolverFails()
+        {
+            InitializeWithMockOfNameServersLoader();
+            AddSystemDnsResolverResult(HOST, new List<IPAddress>());
 
             DnsResponse response = await ExecuteAsync();
 
@@ -118,27 +160,36 @@ namespace ProtonVPN.Dns.Tests.Resolvers
             Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
         }
 
-        private void InitializeWithMockOfNameServersLoader()
-        {
-            _mockOfNameServersLoader = new MockOfNameServersLoader();
-            _resolver = new DnsOverUdpResolver(_mockOfNameServersLoader, _configuration, _logger);
-        }
-
         [TestMethod]
-        public async Task TestResolveAsync_WithNonWorkingNameServers()
+        public async Task TestResolveAsync_WithNonWorkingNameServers_AndSystemResolverWorks()
         {
             InitializeWithMockOfNameServersLoader();
             SetNonWorkingNameServers();
+            List<IPAddress> systemResult = new() { IPAddress.Parse("10.20.30.40"), IPAddress.Parse("50.60.70.80") };
+            AddSystemDnsResolverResult(HOST, systemResult);
 
             DnsResponse response = await ExecuteAsync();
 
-            Assert.AreEqual(null, response);
+            AssertValidSystemResponse(systemResult, response);
             Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
         }
 
         private void SetNonWorkingNameServers()
         {
             _mockOfNameServersLoader.Set(IPAddress.Loopback, IPAddress.Parse("192.168.153.153"));
+        }
+
+        [TestMethod]
+        public async Task TestResolveAsync_WithNonWorkingNameServers_AndSystemResolverFails()
+        {
+            InitializeWithMockOfNameServersLoader();
+            SetNonWorkingNameServers();
+            AddSystemDnsResolverResult(HOST, new List<IPAddress>());
+
+            DnsResponse response = await ExecuteAsync();
+
+            Assert.AreEqual(null, response);
+            Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
         }
 
         [TestMethod]
@@ -177,12 +228,19 @@ namespace ProtonVPN.Dns.Tests.Resolvers
         public async Task TestResolveAsync_WithNonExistentHost()
         {
             InitializeResolverWithRealNameServersLoader();
+            string host = "g5f16gfds1gdsf5g16dsfg15fs5gfds651d61s651g6516gf1s6fdgfs.vhbverhu";
+            AddSystemDnsResolverResult(host, new List<IPAddress>());
 
-            DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(
-                "g5f16gfds1gdsf5g16dsfg15fs5gfds651d61s651g6516gf1s6fdgfs.vhbverhu");
+            DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(host);
 
             Assert.AreEqual(null, response);
             Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
+        }
+
+        private void AddSystemDnsResolverResult(string host, List<IPAddress> ipAddresses)
+        {
+            _mockOfSystemDnsResolver.ResolveWithSystemAsync(host, Arg.Any<CancellationToken>())
+                                    .ReturnsForAnyArgs(ipAddresses);
         }
 
         private async Task<DnsResponse> ExecuteWithStopwatchAndCustomHostAsync(string host)

@@ -22,6 +22,8 @@ using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.KillSwitch;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.Service.Firewall;
 
 namespace ProtonVPN.Service.Settings
 {
@@ -30,12 +32,14 @@ namespace ProtonVPN.Service.Settings
         private readonly ISettingsFileStorage _storage;
 
         private MainSettingsIpcEntity _settings;
+        private IpFilter _ipFilter;
 
         public event EventHandler<MainSettingsIpcEntity> SettingsChanged;
 
-        public ServiceSettings(ISettingsFileStorage storage)
+        public ServiceSettings(ISettingsFileStorage storage, IpFilter ipFilter)
         {
             _storage = storage;
+            _ipFilter = ipFilter;
         }
 
         public KillSwitchMode KillSwitchMode
@@ -98,6 +102,10 @@ namespace ProtonVPN.Service.Settings
             if (_settings == null)
             {
                 _settings = _storage.Get() ?? new MainSettingsIpcEntity();
+                if (_ipFilter.PermanentSublayer.GetFilterCount() > 0)
+                {
+                    _settings.KillSwitchMode = KillSwitchModeIpcEntity.Hard;
+                }
             }
         }
 

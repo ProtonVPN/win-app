@@ -228,18 +228,6 @@ namespace ProtonVPN.Core.Tests.Profiles
         }
 
         [TestMethod]
-        public void WithSyncStatus_SyncStatus_ShouldBe_Value()
-        {
-            // Arrange
-            Profile profile = new Profile(null) { SyncStatus = ProfileSyncStatus.InProgress };
-            const ProfileSyncStatus value = ProfileSyncStatus.Succeeded;
-            // Act
-            profile = profile.WithSyncStatus(value);
-            // Assert
-            profile.SyncStatus.Should().Be(value);
-        }
-
-        [TestMethod]
         public void WithStatusMergedFrom_Status_ShouldBe_Another_Status_When_StatusIs_Updated()
         {
             // Arrange

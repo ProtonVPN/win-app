@@ -19,7 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Common.Channels;
 using ProtonVPN.ProcessCommunication.Common.Registration;
 using ProtonVPN.ProcessCommunication.Common.Tests;

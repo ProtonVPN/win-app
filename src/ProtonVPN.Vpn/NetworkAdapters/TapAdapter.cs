@@ -20,8 +20,8 @@
 using System.Runtime.InteropServices;
 using System;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.OperatingSystemLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Vpn.NetworkAdapters
 {

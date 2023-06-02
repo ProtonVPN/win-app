@@ -19,7 +19,7 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Tests.Storage;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Core.Servers.Contracts;

@@ -21,9 +21,11 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Text.Serialization;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Common.FileStoraging
 {
@@ -46,12 +48,30 @@ namespace ProtonVPN.Common.FileStoraging
         {
             try
             {
-                return _logger.Logged(ExecuteGet, $"Failed reading {NameOf(typeof(T))} from storage");
+                return Logged(ExecuteGet, $"Failed reading {NameOf(typeof(T))} from storage");
             }
             catch
             {
                 return default;
             }
+        }
+
+        public T Logged(Func<T> function, string message)
+        {
+            try
+            {
+                return function();
+            }
+            catch (Exception ex)
+            {
+                LogException(ex, message);
+                throw;
+            }
+        }
+
+        private void LogException(Exception exception, string message)
+        {
+            _logger.Error<AppLog>($"{message}: {exception.CombinedMessage()}");
         }
 
         private T ExecuteGet()
@@ -81,10 +101,23 @@ namespace ProtonVPN.Common.FileStoraging
         {
             try
             {
-                _logger.Logged(() => ExecuteSet(value), $"Failed writing {NameOf(typeof(T))} to storage");
+                Logged(() => ExecuteSet(value), $"Failed writing {NameOf(typeof(T))} to storage");
             }
             catch
             {
+            }
+        }
+
+        public void Logged(Action action, string message)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception ex)
+            {
+                LogException(ex, message);
+                throw;
             }
         }
 

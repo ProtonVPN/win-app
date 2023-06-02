@@ -18,8 +18,9 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
@@ -31,8 +32,8 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnServiceCaller : ServiceControllerCaller<IVpnController>
     {
-        public VpnServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) : base(
-            logger, grpcClient, vpnSystemService)
+        public VpnServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) 
+            : base(logger, grpcClient, vpnSystemService)
         {
         }
 
@@ -61,7 +62,7 @@ namespace ProtonVPN.Core.Service.Vpn
             return Invoke(c => c.RepeatState().Wrap());
         }
 
-        public Task<TrafficBytesIpcEntity> Total()
+        public Task<Result<TrafficBytesIpcEntity>> GetTrafficBytes()
         {
             return Invoke(c => c.GetTrafficBytes());
         }
@@ -70,7 +71,6 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             return Invoke(c => c.RequestNetShieldStats().Wrap());
         }
-
 
         public Task RegisterVpnClient(int port)
         {

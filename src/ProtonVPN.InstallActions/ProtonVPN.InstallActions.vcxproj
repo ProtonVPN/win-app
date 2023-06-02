@@ -136,7 +136,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
@@ -200,7 +200,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>

@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.DisconnectLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Modals;
@@ -151,10 +150,7 @@ namespace ProtonVPN.Modals
 
         private async Task CloseModalAsync()
         {
-            // If TryClose() is called before any await (that actually awaits), Caliburn will throw a
-            // NullReferenceException after OnViewReady() ends.
-            await Task.Delay(TimeSpan.FromMilliseconds(1));
-            TryClose(true);
+            await TryCloseAsync(true);
         }
 
         private async Task ReconnectWithoutLastServerAsync()

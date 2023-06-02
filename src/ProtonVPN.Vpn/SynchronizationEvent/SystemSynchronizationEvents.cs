@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using System;
 using System.IO;
 using System.Security.AccessControl;
 using System.Threading;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Vpn.SynchronizationEvent
 {

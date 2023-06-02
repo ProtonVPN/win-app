@@ -4945,15 +4945,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sync.
-        /// </summary>
-        public static string Profiles_btn_Sync {
-            get {
-                return ResourceManager.GetString("Profiles_btn_Sync", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Troubleshoot.
         /// </summary>
         public static string Profiles_btn_Troubleshoot {
@@ -4995,15 +4986,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Profiles_col_Protocol {
             get {
                 return ResourceManager.GetString("Profiles_col_Protocol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Status.
-        /// </summary>
-        public static string Profiles_col_Status {
-            get {
-                return ResourceManager.GetString("Profiles_col_Status", resourceCulture);
             }
         }
         
@@ -5292,78 +5274,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Profiles_ttl {
             get {
                 return ResourceManager.GetString("Profiles_ttl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed.
-        /// </summary>
-        public static string ProfileSyncStatus_val_Failed {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_Failed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Profile synchronization has failed.
-        /// </summary>
-        public static string ProfileSyncStatus_val_Failed_Info {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_Failed_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Syncing.
-        /// </summary>
-        public static string ProfileSyncStatus_val_InProgress {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_InProgress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Synchronizing profiles.
-        /// </summary>
-        public static string ProfileSyncStatus_val_InProgress_Info {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_InProgress_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Overridden.
-        /// </summary>
-        public static string ProfileSyncStatus_val_Overridden {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_Overridden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Synced.
-        /// </summary>
-        public static string ProfileSyncStatus_val_Succeeded {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_Succeeded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Profile changes synchronized {0} {1} ago.
-        /// </summary>
-        public static string ProfileSyncStatus_val_Succeeded_Info {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_Succeeded_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No profile changes to synchronize.
-        /// </summary>
-        public static string ProfileSyncStatus_val_Succeeded_Info_NoData {
-            get {
-                return ResourceManager.GetString("ProfileSyncStatus_val_Succeeded_Info_NoData", resourceCulture);
             }
         }
         

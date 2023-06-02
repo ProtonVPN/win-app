@@ -23,8 +23,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
@@ -84,7 +84,7 @@ namespace ProtonVPN.Update.Storage
         {
             try
             {
-                using IHttpResponseMessage response = await _config.HttpClient.GetAsync(feedUrl);
+                using IHttpResponseMessage response = await _config.FeedHttpClient.GetAsync(feedUrl);
                 if (!response.IsSuccessStatusCode)
                 {
                     _logger.Error<AppLog>($"Response status code of feed {feedUrl} is not success.");

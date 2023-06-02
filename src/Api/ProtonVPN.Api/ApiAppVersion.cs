@@ -33,7 +33,7 @@ namespace ProtonVPN.Api
 
         public string Value()
         {
-            return $"{_appConfig.ApiClientId}_{GetVersion()}";
+            return $"{_appConfig.ApiClientId}@{GetVersion()}";
         }
 
         public string UserAgent()

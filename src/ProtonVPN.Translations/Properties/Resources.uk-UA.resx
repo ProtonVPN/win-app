@@ -209,9 +209,6 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-з'єднань</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країні</value>
   </data>
@@ -219,6 +216,9 @@
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
   </data>
   <data name="Account_lbl_Countries_Many">
+    <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Sign out</value>
+    <value>Вийти</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -348,11 +348,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>Вихід із програми від'єднає активне VPN-з'єднання. Хочете продовжити?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
+    <value>Щоб завершити процес оновлення, Proton VPN тимчасово від'єднається і деактивує Постійний Kill Switch, якщо вони активні. Ви хочете продовжити?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -449,7 +449,7 @@
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Ваше ім’я користувача Proton, якщо ви вже маєте обліковий запис.</value>
+    <value>Ваше ім'я користувача Proton, якщо ви вже маєте обліковий запис.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
@@ -534,7 +534,7 @@
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
-    <value>з’єднання</value>
+    <value>з'єднання</value>
     <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1">
@@ -552,6 +552,18 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>з'єднання зазнало невдачі</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} країні</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} країнах</value>
+  </data>
+  <data name="Countries_lbl_Many">
+    <value>{0} країнах</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} країнах</value>
   </data>
   <data name="Country_val_AD">
     <value>Андорра</value>
@@ -1561,16 +1573,16 @@
     <value>Призначити VPN-з'єднання</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Sign in again</value>
+    <value>Увійти знову</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>Щоб почати свою подорож у Proton VPN, призначте з'єднання VPN для свого облікового запису або будь-якого іншого підлеглого облікового запису.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
+    <value>Цей крок займе всього кілька хвилин. Після цього ви зможете ввійти в систему і захистити всі свої пристрої.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Thanks for upgrading</value>
+    <value>Дякуємо за передплату</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1595,18 +1607,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>У вашому обліковому записі VPN є несплачені рахунки</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Перевірте рахунки-фактури</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Обліковий запис позначено протермінованим через несплачені рахунки. Ви можете продовжувати користуватися Proton VPN, але всі платні функції відтепер вимкнені.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Докладніше про протермінування.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Протермінований обліковий запис</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Увімкнути</value>
   </data>
@@ -1623,7 +1623,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Деякі компоненти Proton VPN можуть бути заблоковані або вимкнені, що заважає встановити з'єднання. Натисніть Увімкнути, щоб це виправити.&lt;LineBreak/&gt;Зверніть увагу, що ця операція вимагає повноважень адміністратора.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Вимкнути Kill Switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1639,7 +1639,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <value>Kill Switch захищає вашу IP-адресу, блокуючи всі з'єднання. У разі виникнення проблем ви можете вимкнути Kill Switch.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1695,10 +1695,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Вихід з програми приведе до від'єднання від VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
+    <value>Kill Switch блокує всі з'єднання, щоб уникнути витоку ваших даних. Вихід з програми вимкне Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>Увімкнено Постійний Kill Switch. Вихід з програми заблокує всі вихідні з'єднання, доки Proton VPN знову не встановить з'єднання.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Перевірка "Я не робот"</value>
@@ -1707,17 +1707,17 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Схоже, що ваш системний годинник не синхронізований, що може перешкоджати успішному з'єднанню з VPN. Для отримання докладнішої інформації &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;дивіться тут&lt;/Hyperlink&gt;.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>З увімкненою функцією "Постійний Kill Switch", за відсутності з'єднання з VPN з будь-якої причини, ви не зможете отримати доступ до інтернету.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Enable Permanent kill switch?</value>
+    <value>Увімкнути Постійний Kill Switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Зрозуміло</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Від’єднайте інший пристрій, щоб під'єднати цей.</value>
+    <value>Від'єднайте інший пристрій, щоб під'єднати цей.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1757,7 +1757,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <value>Зверніть увагу, що Kill Switch увімкнено. Оновлення або вихід з програми вимкне його.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1784,7 +1784,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Зрозуміло</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
+    <value>Для правильної роботи роздільного тунелювання необхідно вимкнути Kill Switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1">
     <value>Сотні серверів у 55 країнах</value>
@@ -1877,7 +1877,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Proton VPN не може під'єднатися, оскільки мережевий адаптер TUN вже використовується. Від'єднайте будь-які активні VPN і повторіть спробу. Або ж перемкніться на адаптер TAP (ви можете змінити адаптер назад на TUN у розширених налаштуваннях).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+    <value>Proton VPN не може під'єднатися, оскільки мережевий адаптер WireGuard зараз використовується. Від'єднайте будь-які активні VPN і повторіть спробу. Або ж ви можете змінити протокол у розширених налаштуваннях.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Скасувати</value>
@@ -1899,7 +1899,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>OK</value>
+    <value>Гаразд</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Із сервера:</value>
@@ -1939,18 +1939,19 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Будь ласка, відновіть установлення.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill switch</value>
+    <value>Kill Switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Ліцензія</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Your session has expired. Please sign in again.</value>
+    <value>Термін дії вашого сеансу завершився. Увійдіть знову.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Invalid refresh token, please sign in again.</value>
+    <value>Недійсний токен відновлення. Будь ласка, увійдіть знову.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1961,11 +1962,11 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Автентифікація</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>Увійти</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill switch is currently active</value>
+    <value>Kill Switch зараз активний</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -1973,7 +1974,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Безпечний інтернет всюди</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2095,7 +2096,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Не показувати знову</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Докладніше</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core пропонує найвищий рівень безпеки та приватності, але це може знизити швидкість роботи інтернету. Якщо вам потрібна додаткова швидкодія, ви можете вимкнути Secure Core.</value>
@@ -2157,6 +2158,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="Notifications_SubscriptionExpired_Title">
     <value>Ваша передплата тарифного плану VPN завершилась</value>
     <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Перезапустити</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Що нового</value>
@@ -2231,38 +2236,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Стався збій</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Помилка синхронізації профілю</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Синхронізація</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Синхронізація профілів</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Перевизначено</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Синхронізовано</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Зміни профілю синхронізовано {0} {1} тому</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Немає змін профілю для синхронізації</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Найшвидший доступний сервер</value>
@@ -2384,10 +2357,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Створити профіль</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Синхронізувати</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Усунення проблем</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2407,10 +2376,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="Profiles_col_Protocol">
     <value>Протокол</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Стан</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Зараз сервери знаходяться не в мережі через технічне обслуговування.</value>
@@ -2465,10 +2430,12 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>Kill Switch вимкнено</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>Kill Switch увімкнено</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Докладніше</value>
@@ -2483,7 +2450,8 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Блокувати зловмисні програми, рекламу і стеження</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanent kill switch</value>
+    <value>Постійний Kill Switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Переспрямування портів вимкнено</value>
@@ -2501,40 +2469,56 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>ОНОВИТИ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Вимикає інтернет, якщо втрачається VPN-з'єднання, щоб запобігти випадковому розкриттю IP-адреси.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Користуйтеся інтернетом без реклами та зловмисних програм.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
-    <value>Ads blocked</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Оголошень заблоковано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Оголошення заблоковано</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Оголошення заблоковані</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
+    <value>Оголошень заблоковано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <value>Рекламні вебсайти використовують куки та елементи стеження, щоб персоналізувати вас.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>Заощаджено даних</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <value>Орієнтовний розмір рекламних оголошень, елементів стеження та зловмисних програм, заблокованих NetShield.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
-    <value>Trackers stopped</value>
-    <comment></comment>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Елементів стеження зупинено</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Елемент стеження зупинено</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Елементів стеження зупинено</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
+    <value>Елементів стеження зупинено</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>Елементи стеження – це сторонні вебсайти, які збирають, зберігають і продають дані про вашу діяльність в інтернеті.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Якщо вебсайти не завантажуються, спробуйте вимкнути NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Пришвидшіть роботу з торентами та онлайн-іграми, дозволивши підтримуваним локальним застосункам бути доступними з інтернету.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Спрямовуйте свої найвразливіші дані через наші найзахищеніші сервери в країнах, що цінують приватність.</value>
@@ -2544,6 +2528,18 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} захищений сервер</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} захищені сервери</value>
+  </data>
+  <data name="Secure_Servers_lbl_Many">
+    <value>{0} захищених серверів</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} захищених серверів</value>
   </data>
   <data name="ServerType_val_None">
     <value>Стандартний</value>
@@ -2566,7 +2562,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>Сервер Plus</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2643,7 +2639,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Proton VPN не може з'єднатися, оскільки сервер RPC недоступний у вашій системі. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Переглянути можливі рішення&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>На жаль, цей сервер не підтримує WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Додати програму</value>
@@ -2749,7 +2745,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
+    <value>Виключення програми чи IP-адреси з трафіку VPN або включення тільки певних програм. Не можна використовувати разом із Kill Switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2841,6 +2837,14 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>З'єднання</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Автоматичні оновлення</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Автоматично перевіряти наявність і встановлювати оновлення Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Під'єднуватися до застосунку під час запуску</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2923,11 +2927,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill switch activated!</value>
+    <value>Kill Switch активовано!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
+    <value>Kill Switch блокує всі з'єднання, щоб запобігти витоку ваших даних.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -2943,16 +2947,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Розташування FREE ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Free servers</value>
+    <value>Безплатні сервери</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+    <value>Безплатні сервери не мають обмеження даних і швидкості мережі. Швидкість може обмежуватися лише через велику кількість під'єднаних користувачів.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>Інформація</value>
   </data>
   <data name="Sidebar_Countries_OurPartners">
-    <value>Our partners</value>
+    <value>Наші партнери</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Розташування PLUS ({0})</value>
@@ -2964,7 +2968,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Сервери BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>Сервери Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>ВНУТРІШНІ сервери</value>
@@ -3001,7 +3005,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>BASIC та PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Докладніше</value>
@@ -3034,7 +3038,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>Спрямовуйте свій інтернет-трафік через мережу Tor. Повільніше, але приватніше.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Створити профіль</value>
@@ -3155,8 +3159,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Доступ через {0} у {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Що таке помірне NAT?</value>

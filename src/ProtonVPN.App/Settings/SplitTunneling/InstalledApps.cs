@@ -19,7 +19,7 @@
 
 using Microsoft.Win32;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Core.Settings.Contracts;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text.RegularExpressions;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Settings.SplitTunneling
 {

@@ -1,6 +1,7 @@
 LIBRARY
 EXPORTS
 	BlockOutsideDns
+	BlockOutsideOpenVpn
 	IPFilterAbortTransaction
 	IPFilterCommitTransaction
 	IPFilterCreateAppFilter
@@ -25,6 +26,7 @@ EXPORTS
 	IPFilterDestroySession
 	IPFilterDestroySublayer
 	IPFilterDestroySublayerFilters
+	IPFilterDestroySublayerFiltersByName
 	IPFilterGetSublayerFilterCount
 	IPFilterDoesCalloutExist
 	IPFilterDoesFilterExist

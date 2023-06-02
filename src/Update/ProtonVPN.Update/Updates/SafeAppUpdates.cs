@@ -18,8 +18,8 @@
  */
 
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 
 namespace ProtonVPN.Update.Updates
 {

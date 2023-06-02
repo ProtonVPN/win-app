@@ -25,7 +25,7 @@ using NSubstitute;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.FileStoraging;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Tests.Common;
 

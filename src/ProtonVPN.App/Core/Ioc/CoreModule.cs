@@ -19,11 +19,8 @@
 
 using Autofac;
 using ProtonVPN.Api;
-using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Log4Net;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -49,6 +46,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.HumanVerification.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Vpn;
 using CoreDnsClient = ProtonVPN.Core.OS.Net.Dns.DnsClient;
@@ -80,10 +78,6 @@ namespace ProtonVPN.Core.Ioc
 
             builder.RegisterType<ActionableFailureApiResultEventHandler>().SingleInstance();
 
-            builder.RegisterType<Log4NetLoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ILoggerFactory>().Get(c.Resolve<IConfiguration>().AppLogDefaultFullFilePath))
-                .As<ILogger>().SingleInstance();
-            builder.RegisterType<LogCleaner>().SingleInstance();
             builder.RegisterType<SafeServiceAction>().As<ISafeServiceAction>().SingleInstance();
             builder.RegisterType<UserValidator>().SingleInstance();
             builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
@@ -100,7 +94,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<EventClient>().SingleInstance();
             builder.RegisterType<UserInfoHandler>().AsImplementedInterfaces().SingleInstance();
 
-            builder.RegisterType<VpnProfileHandler>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new EventTimer(
                     c.Resolve<EventClient>(),

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Text.Serialization;
 
 namespace ProtonVPN.Core.Servers.FileStoraging

@@ -107,63 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </MultiDataTrigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="ProfileSyncStatusIcon" TargetType="UserControl">
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Width" Value="16"/>
-        <Setter Property="Height" Value="16"/>
-    </Style>
-    <Style x:Key="ProfileSyncStatusSpinnerIcon" TargetType="UserControl" BasedOn="{StaticResource ProfileSyncStatusIcon}">
-        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
-        <Setter Property="RenderTransform">
-            <Setter.Value>
-                <RotateTransform/>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <EventTrigger RoutedEvent="Loaded">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <DoubleAnimation
-                            Storyboard.TargetProperty="(UserControl.RenderTransform).(RotateTransform.Angle)"
-                            From="0" To="360" Duration="0:0:1" RepeatBehavior="Forever" />
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>
-        </Style.Triggers>
-    </Style>
 
-    <DataTemplate x:Key="ProfileSyncStatusImage" DataType="{x:Type profiles:ProfileSyncStatus}">
-        <StackPanel x:Name="IconContainer" Width="16" Height="16">
-            <icons:ArrowsRotate x:Name="InProgressIcon" 
-                                Style="{StaticResource ProfileSyncStatusSpinnerIcon}" 
-                                Foreground="{StaticResource TextNormBrushColor}" />
-            <icons:CheckmarkCircleFilled x:Name="SucceededIcon" 
-                                         Style="{StaticResource ProfileSyncStatusIcon}" 
-                                         Foreground="{StaticResource PrimaryBrushColor}" />
-            <icons:ExclamationCircleFilled x:Name="FailedIcon" 
-                                           Style="{StaticResource ProfileSyncStatusIcon}" 
-                                           Foreground="{StaticResource NotificationErrorBrushColor}" />
-            <icons:InfoCircleFilled x:Name="OverriddenIcon" 
-                                    Style="{StaticResource ProfileSyncStatusIcon}" 
-                                    Foreground="{StaticResource NotificationWarningBrushColor}" />
-        </StackPanel>
-        <DataTemplate.Triggers>
-            <DataTrigger Binding="{Binding}" Value="{x:Static profiles:ProfileSyncStatus.InProgress}">
-                <Setter TargetName="InProgressIcon" Property="Visibility" Value="Visible"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding}" Value="{x:Static profiles:ProfileSyncStatus.Succeeded}">
-                <Setter TargetName="SucceededIcon" Property="Visibility" Value="Visible"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding}" Value="{x:Static profiles:ProfileSyncStatus.Failed}">
-                <Setter TargetName="FailedIcon" Property="Visibility" Value="Visible"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding}" Value="{x:Static profiles:ProfileSyncStatus.Overridden}">
-                <Setter TargetName="OverriddenIcon" Property="Visibility" Value="Visible"/>
-            </DataTrigger>
-        </DataTemplate.Triggers>
-    </DataTemplate>
     <Style x:Key="ProfileIconStyle" TargetType="UserControl">
         <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
         <Setter Property="Visibility" Value="Collapsed"/>

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Common;
@@ -31,8 +30,5 @@ namespace ProtonVPN.Api.Contracts.Events
 
         [JsonProperty("VPNSettings")]
         public VpnInfoWrapperResponse VpnSettings { get; set; }
-
-        [JsonProperty("VPNProfiles")]
-        public List<VpnProfilesResponse> VpnProfiles { get; set; }
     }
 }

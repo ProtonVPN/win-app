@@ -48,7 +48,9 @@ namespace ProtonVPN.Core.Profiles
         public static bool HasElapsed(this Profile profile, TimeSpan timeSpan)
         {
             if (profile == null)
+            {
                 return false;
+            }
 
             return DateTime.UtcNow - profile.ModifiedAt > timeSpan;
         }
@@ -56,14 +58,19 @@ namespace ProtonVPN.Core.Profiles
         public static bool ModifiedLaterThan(this Profile profile, Profile another)
         {
             if (profile == null || another == null)
+            {
                 return false;
+            }
 
             return profile.ModifiedAt > another.ModifiedAt;
         }
 
         public static Profile WithIdFrom(this Profile profile, Profile another)
         {
-            if (profile == null) return null;
+            if (profile == null)
+            {
+                return null;
+            }
 
             if (another != null)
             {
@@ -75,7 +82,10 @@ namespace ProtonVPN.Core.Profiles
 
         public static Profile WithExternalIdFrom(this Profile profile, Profile another)
         {
-            if (profile == null) return null;
+            if (profile == null)
+            {
+                return null;
+            }
 
             if (another != null)
             {
@@ -106,17 +116,12 @@ namespace ProtonVPN.Core.Profiles
             return p;
         }
 
-        public static Profile WithSyncStatus(this Profile profile, ProfileSyncStatus value)
-        {
-            profile.SyncStatus = value;
-
-            return profile;
-        }
-
         public static Profile WithStatusMergedFrom(this Profile profile, Profile another)
         {
             if (another != null && profile.Status == ProfileStatus.Updated)
+            {
                 profile.Status = another.Status;
+            }
 
             return profile;
         }

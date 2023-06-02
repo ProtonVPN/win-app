@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Files;
 using ProtonVPN.Update.Files.Downloadable;
@@ -66,7 +66,7 @@ namespace ProtonVPN.Update.Updates
 
             _downloadable = 
                 new SafeDownloadableFile( 
-                    new DownloadableFile(config.HttpClient));
+                    new DownloadableFile(config.FileHttpClient));
 
             _fileValidator =
                 new SafeFileValidator(

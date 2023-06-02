@@ -23,6 +23,6 @@ namespace ProtonVPN.Api.Contracts
 {
     public interface IFileDownloadHttpClientFactory
     {
-        IHttpClient GetFileDownloadHttpClient();
+        IHttpClient GetHttpClientWithTlsPinning();
     }
 }

@@ -19,7 +19,7 @@
 
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
@@ -28,8 +28,8 @@ namespace ProtonVPN.Core.Service.Update
 {
     public class UpdateServiceCaller : ServiceControllerCaller<IUpdateController>
     {
-        public UpdateServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) : base(
-            logger, grpcClient, vpnSystemService)
+        public UpdateServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) 
+            : base(logger, grpcClient, vpnSystemService)
         {
         }
 

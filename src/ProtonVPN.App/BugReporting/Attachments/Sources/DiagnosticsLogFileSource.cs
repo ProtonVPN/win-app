@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.BugReporting.Attachments.Sources
 {

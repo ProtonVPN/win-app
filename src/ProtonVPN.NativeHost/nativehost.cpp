@@ -4,6 +4,8 @@
 #include <assert.h>
 #include "inc/coreclr_delegates.h"
 #include <filesystem>
+#include <iostream>
+
 #include "inc/hostfxr.h"
 #include "inc/nethost.h"
 #include <string>
@@ -14,7 +16,7 @@ hostfxr_close_fn close_fptr;
 hostfxr_initialize_for_dotnet_command_line_fn command_line_fptr;
 hostfxr_run_app_fn run_app_fptr;
 hostfxr_set_runtime_property_value_fn hostfxr_set_runtime_property_value;
-bool load_hostfxr();
+bool load_hostfxr(get_hostfxr_parameters params);
 
 std::wstring GetVersionFolderPath()
 {
@@ -25,25 +27,31 @@ std::wstring GetVersionFolderPath()
 }
 
 int WinMain(HINSTANCE hInstance,
-                   HINSTANCE hPrevInstance,
-                   LPSTR lpCmdLine,
-                   int cmdShow)
+            HINSTANCE hPrevInstance,
+            LPSTR lpCmdLine,
+            int cmdShow)
 {
-    if (!load_hostfxr())
-    {
-        assert(false && "Failure: load_hostfxr()");
-        return EXIT_FAILURE;
-    }
-
     std::filesystem::path version_folder_path(GetVersionFolderPath());
+    std::filesystem::path dll_path = version_folder_path / std::filesystem::path("ProtonVPN.dll");
+    std::filesystem::path host_path = version_folder_path / std::filesystem::path("ProtonVPN.exe");
 
     WCHAR base_directory[MAX_PATH];
     lstrcpyW(base_directory, version_folder_path.parent_path().c_str());
 
     SetCurrentDirectoryW(base_directory);
 
+    get_hostfxr_parameters hostfxr_params;
+    hostfxr_params.size = sizeof hostfxr_params;
+    hostfxr_params.assembly_path = dll_path.c_str();
+    hostfxr_params.dotnet_root = nullptr;
+
+    if (!load_hostfxr(hostfxr_params))
+    {
+        assert(false && "Failure: load_hostfxr()");
+        return EXIT_FAILURE;
+    }
+
     int total_arguments = 0;
-    std::wstring dll_path = version_folder_path.wstring() + L"\\ProtonVPN.dll";
     LPWSTR* szArglist = CommandLineToArgvW(GetCommandLineW(), &total_arguments);
     const char_t** argv = static_cast<const char_t**>(calloc(total_arguments, sizeof(const char_t*)));
     argv[0] = dll_path.c_str();
@@ -53,11 +61,16 @@ int WinMain(HINSTANCE hInstance,
         argv[i] = szArglist[i];
     }
 
+    hostfxr_initialize_parameters params;
+    params.size = sizeof params;
+    params.host_path = host_path.c_str();
+    params.dotnet_root = version_folder_path.c_str();
+
     hostfxr_handle host_context_handle;
     command_line_fptr(
         total_arguments,
         argv,
-        nullptr,
+        &params,
         &host_context_handle);
 
     hostfxr_set_runtime_property_value(host_context_handle, L"APP_CONTEXT_BASE_DIRECTORY", base_directory);
@@ -83,12 +96,12 @@ void* get_export(void* h, const char* name)
     return address;
 }
 
-bool load_hostfxr()
+bool load_hostfxr(get_hostfxr_parameters params)
 {
     char_t buffer[MAX_PATH];
     size_t buffer_size = sizeof buffer / sizeof(char_t);
 
-    int rc = get_hostfxr_path(buffer, &buffer_size, nullptr);
+    int rc = get_hostfxr_path(buffer, &buffer_size, &params);
     if (rc != 0)
     {
         return false;
