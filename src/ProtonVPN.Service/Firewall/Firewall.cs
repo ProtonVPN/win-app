@@ -22,8 +22,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.FirewallLogs;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.FirewallLogs;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.Service.Driver;
 using Action = ProtonVPN.NetworkFilter.Action;
@@ -32,6 +33,8 @@ namespace ProtonVPN.Service.Firewall
 {
     internal class Firewall : IFirewall, IStartable
     {
+        private const string PERMIT_APP_FILTER_NAME = "ProtonVPN permit app";
+
         private readonly ILogger _logger;
         private readonly IDriver _calloutDriver;
         private readonly IConfiguration _config;
@@ -40,11 +43,11 @@ namespace ProtonVPN.Service.Firewall
         private FirewallParams _lastParams = FirewallParams.Empty;
         private bool _dnsCalloutFiltersAdded;
 
-        private readonly List<ValueTuple<string, List<Guid>>> _serverAddressFilters = new();
+        private readonly List<ServerAddressFilterCollection> _serverAddressFilterCollection = new();
         private readonly List<FirewallItem> _firewallItems = new();
 
-        private const int DnsUdpPort = 53;
-        private const int DhcpUdpPort = 67;
+        private const int DNS_UDP_PORT = 53;
+        private const int DHCP_UDP_PORT = 67;
 
         public Firewall(
             ILogger logger,
@@ -73,6 +76,13 @@ namespace ProtonVPN.Service.Firewall
                     PermanentStateAfterReboot = true,
                 };
                 LeakProtectionEnabled = true;
+
+                _logger.Info<FirewallLog>("Detected permanent filters. Trying to recreate process permit filters.");
+
+                //In case the app was launched after update,
+                //we need to recreate permit from process filters since paths have changed due to version folder.
+                _ipFilter.PermanentSublayer.DestroyFiltersByName(PERMIT_APP_FILTER_NAME);
+                PermitFromProcesses(4, _lastParams);
             }
         }
 
@@ -85,9 +95,9 @@ namespace ProtonVPN.Service.Firewall
             }
 
             _calloutDriver.Start();
-            PermitOpenVpnServerAddress(firewallParams);
+            PermitServerAddress(firewallParams);
             ApplyFilters(firewallParams);
-            _lastParams = firewallParams;
+            SetLastParams(firewallParams);
         }
 
         public void DisableLeakProtection()
@@ -98,7 +108,7 @@ namespace ProtonVPN.Service.Firewall
 
                 _ipFilter.DynamicSublayer.DestroyAllFilters();
                 _ipFilter.PermanentSublayer.DestroyAllFilters();
-                _serverAddressFilters.Clear();
+                _serverAddressFilterCollection.Clear();
                 _firewallItems.Clear();
                 LeakProtectionEnabled = false;
                 _dnsCalloutFiltersAdded = false;
@@ -141,7 +151,7 @@ namespace ProtonVPN.Service.Firewall
             if (_lastParams.PermanentStateAfterReboot)
             {
                 HandlePermanentStateAfterReboot(firewallParams);
-                _lastParams = firewallParams;
+                SetLastParams(firewallParams);
                 return;
             }
 
@@ -173,6 +183,7 @@ namespace ProtonVPN.Service.Firewall
                 if (firewallParams.DnsLeakOnly)
                 {
                     RemoveItems(GetFirewallGuidsByType(FirewallItemType.VariableFilter), _lastParams.SessionType);
+                    RemoveItems(GetFirewallGuidsByType(FirewallItemType.BlockOutsideOpenVpnFilter), _lastParams.SessionType);
                 }
                 else
                 {
@@ -180,8 +191,25 @@ namespace ProtonVPN.Service.Firewall
                 }
             }
 
-            PermitOpenVpnServerAddress(firewallParams);
+            PermitServerAddress(firewallParams);
+            BlockOutsideOpenVpnTraffic(firewallParams);
+            SetLastParams(firewallParams);
+        }
+
+        private void SetLastParams(FirewallParams firewallParams)
+        {
+            //This is needed due to WireGuard, because we don't know the interface index in advance.
+            uint interfaceIndex = 0;
+            if (_lastParams.InterfaceIndex > 0 && firewallParams.InterfaceIndex == 0)
+            {
+                interfaceIndex = _lastParams.InterfaceIndex;
+            }
+
             _lastParams = firewallParams;
+            if (interfaceIndex > 0)
+            {
+                _lastParams.InterfaceIndex = interfaceIndex;
+            }
         }
 
         private void HandlePermanentStateAfterReboot(FirewallParams firewallParams)
@@ -189,7 +217,7 @@ namespace ProtonVPN.Service.Firewall
             _calloutDriver.Start();
             CreateDnsCalloutFilter(4, firewallParams);
             PermitFromNetworkInterface(4, firewallParams);
-            PermitOpenVpnServerAddress(firewallParams);
+            PermitServerAddress(firewallParams);
         }
 
         private void RemoveItems(List<Guid> guids, SessionType sessionType)
@@ -229,6 +257,34 @@ namespace ProtonVPN.Service.Firewall
 
             BlockAllIpv4Network(1, firewallParams);
             BlockAllIpv6Network(1, firewallParams);
+            BlockOutsideOpenVpnTraffic(firewallParams);
+        }
+
+        private void BlockOutsideOpenVpnTraffic(FirewallParams firewallParams)
+        {
+            if (firewallParams.ServerIp.IsNullOrEmpty() || firewallParams.DnsLeakOnly)
+            {
+                return;
+            }
+
+            List<Guid> filters = GetFirewallGuidsByType(FirewallItemType.BlockOutsideOpenVpnFilter);
+            if (filters.Count > 0)
+            {
+                RemoveItems(filters, firewallParams.SessionType);
+            }
+
+            _ipLayer.ApplyToIpv4(layer =>
+            {
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).BlockOutsideOpenVpn(
+                    new DisplayData("ProtonVPN block outside OpenVPN traffic",
+                        "Blocks outgoing traffic to VPN server if when the process is not openvpn.exe"),
+                    layer,
+                    weight: 1,
+                    _config.OpenVpn.ExePath,
+                    firewallParams.ServerIp,
+                    firewallParams.Persistent);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.BlockOutsideOpenVpnFilter, guid));
+            });
         }
 
         private void BlockDns(uint weight, FirewallParams firewallParams)
@@ -240,7 +296,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.HardBlock,
                     layer,
                     weight,
-                    DnsUdpPort,
+                    DNS_UDP_PORT,
                     firewallParams.Persistent);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
@@ -252,7 +308,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.HardBlock,
                     layer,
                     weight,
-                    DnsUdpPort,
+                    DNS_UDP_PORT,
                     firewallParams.Persistent);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
@@ -264,7 +320,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.HardBlock,
                     layer,
                     weight,
-                    DnsUdpPort,
+                    DNS_UDP_PORT,
                     firewallParams.Persistent);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
@@ -276,7 +332,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.HardBlock,
                     layer,
                     weight,
-                    DnsUdpPort,
+                    DNS_UDP_PORT,
                     firewallParams.Persistent);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
@@ -304,7 +360,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.HardPermit,
                     layer,
                     weight,
-                    DnsUdpPort);
+                    DNS_UDP_PORT);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
             });
 
@@ -320,7 +376,7 @@ namespace ProtonVPN.Service.Firewall
                     Action.SoftPermit,
                     layer,
                     weight,
-                    DhcpUdpPort,
+                    DHCP_UDP_PORT,
                     firewallParams.Persistent);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });
@@ -360,7 +416,7 @@ namespace ProtonVPN.Service.Firewall
             });
         }
 
-        private void PermitOpenVpnServerAddress(FirewallParams firewallParams)
+        private void PermitServerAddress(FirewallParams firewallParams)
         {
             if (string.IsNullOrEmpty(firewallParams.ServerIp))
             {
@@ -369,7 +425,7 @@ namespace ProtonVPN.Service.Firewall
 
             ReorderServerPermitFilters(firewallParams.ServerIp);
 
-            var filterGuids = new List<Guid>();
+            List<Guid> filterGuids = new();
 
             _ipLayer.ApplyToIpv4(layer =>
             {
@@ -382,26 +438,31 @@ namespace ProtonVPN.Service.Firewall
                     persistent: false));
             });
 
-            _serverAddressFilters.Add((firewallParams.ServerIp, filterGuids));
+            _serverAddressFilterCollection.Add(new ServerAddressFilterCollection
+            {
+                ServerIp = firewallParams.ServerIp,
+                SessionType = firewallParams.SessionType,
+                Filters = filterGuids,
+            });
 
-            DeletePreviousServerPermitFilters();
+            DeleteServerPermitFilters(firewallParams);
         }
 
         private void ReorderServerPermitFilters(string serverIp)
         {
-            if (_serverAddressFilters.Count == 0)
+            if (_serverAddressFilterCollection.Count == 0)
             {
                 return;
             }
 
             int index = 0;
-            (string, List<Guid>)? item = null;
+            ServerAddressFilterCollection item = null;
 
-            foreach ((string, List<Guid>) filter in _serverAddressFilters)
+            foreach (ServerAddressFilterCollection collection in _serverAddressFilterCollection)
             {
-                if (filter.Item1 == serverIp)
+                if (collection.ServerIp == serverIp)
                 {
-                    item = filter;
+                    item = collection;
                     break;
                 }
 
@@ -410,25 +471,38 @@ namespace ProtonVPN.Service.Firewall
 
             if (item != null)
             {
-                _serverAddressFilters.RemoveAt(index);
-                _serverAddressFilters.Add(item.Value);
+                _serverAddressFilterCollection.RemoveAt(index);
+                _serverAddressFilterCollection.Add(item);
             }
         }
 
-        private void DeletePreviousServerPermitFilters()
+        private void DeleteServerPermitFilters(FirewallParams firewallParams)
         {
-            if (_serverAddressFilters.Count >= 3)
+            if (_serverAddressFilterCollection.Count >= 3)
             {
-                (string oldAddress, List<Guid> guids) = _serverAddressFilters.FirstOrDefault();
-                if (guids == null)
+                ServerAddressFilterCollection serverAddressFilterCollection = _serverAddressFilterCollection.FirstOrDefault();
+                if (serverAddressFilterCollection == null || serverAddressFilterCollection.Filters?.Count == 0)
                 {
                     return;
                 }
 
                 //Use permanent session here to be able to remove filters created
                 //on both dynamic and permanent sublayers.
-                DeleteIpFilters(guids, SessionType.Permanent);
-                _serverAddressFilters.RemoveAll(tuple => tuple.Item1 == oldAddress);
+                DeleteIpFilters(serverAddressFilterCollection.Filters, SessionType.Permanent);
+                _serverAddressFilterCollection.Remove(serverAddressFilterCollection);
+            }
+
+            //If session type changes, we need to remove previous permit filters from dynamic/persistent sublayer.
+            if (_lastParams.SessionType != firewallParams.SessionType)
+            {
+                foreach (ServerAddressFilterCollection serverAddressFilters in _serverAddressFilterCollection.ToList())
+                {
+                    if (serverAddressFilters.SessionType == _lastParams.SessionType)
+                    {
+                        DeleteIpFilters(serverAddressFilters.Filters, _lastParams.SessionType);
+                        _serverAddressFilterCollection.Remove(serverAddressFilters);
+                    }
+                }
             }
         }
 
@@ -538,7 +612,7 @@ namespace ProtonVPN.Service.Firewall
                 _ipLayer.ApplyToIpv4(layer =>
                 {
                     Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateAppFilter(
-                        new DisplayData("ProtonVPN permit app", "Permit ProtonVPN app to bypass VPN tunnel"),
+                        new DisplayData(PERMIT_APP_FILTER_NAME, "Permit ProtonVPN app to bypass VPN tunnel"),
                         Action.HardPermit,
                         layer,
                         weight,

@@ -31,6 +31,8 @@ namespace ProtonVPN.Common.OS.Services
 
         void Create(string pathAndArgs, bool unrestricted);
 
+        void UpdatePathAndArgs(string cmd);
+
         bool Running();
 
         bool IsStopped();

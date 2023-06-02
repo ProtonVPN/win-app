@@ -199,6 +199,12 @@ Source: "..\src\bin\ProtonVPN.ProcessCommunication.Service.dll"; DestDir: "{app}
 Source: "..\src\bin\ProtonVPN.ProcessCommunication.Service.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.ProcessCommunication.Service.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.ProcessCommunication.Service.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Logging.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Logging.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Logging.Contracts.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Logging.Contracts.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\src\bin\ProtonVPN.Logging.Installers.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\ProtonVPN.Logging.Installers.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Resource.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.Resource.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.Resource.deps.json"; DestDir: "{app}\{#VersionFolder}";
@@ -302,17 +308,17 @@ Source: "..\src\bin\Microsoft.WinUI.dll"; DestDir: "{app}\{#VersionFolder}"; Fla
 Source: "..\src\bin\WinUIEx.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\WinUI3Localizer.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
-Source: "..\src\bin\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win10-x64\native"; Flags: signonce;
-Source: "..\src\bin\runtimes\win-x64\native\grpc_csharp_ext.x64.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win-x64\native"; Flags: signonce;
-Source: "..\src\bin\runtimes\win-x64\native\WebView2Loader.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.Windows.Extensions.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.Drawing.Common.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
-Source: "..\src\bin\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win\lib\net6.0\*.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win\lib\net6.0"; Flags: signonce;
+Source: "..\src\bin\runtimes\win10-x64\native\*.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win10-x64\native"; Flags: signonce;
+Source: "..\src\bin\runtimes\win-x64\native\*.dll"; DestDir: "{app}\{#VersionFolder}\runtimes\win-x64\native"; Flags: signonce;
+
+Source: "..\src\bin\System.Diagnostics.EventLog.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\System.Windows.Extensions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\System.Drawing.Common.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\System.Security.Cryptography.Pkcs.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Microsoft.Win32.SystemEvents.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
 Source: "..\src\bin\en-US\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\en-US"; Flags: signonce;
 Source: "..\src\bin\cs-CZ\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\cs-CZ"; Flags: signonce;
@@ -391,11 +397,17 @@ external 'InitLogger@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 function InitLoggerUninstall(logger: Longword): Integer;
 external 'InitLogger@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
+function UpdateTaskbarIconTarget(launcherPath: String): Integer;
+external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
 function UninstallProduct(upgradeCode: String): Integer;
 external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
+
+function RemoveWfpObjects(): Integer;
+external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
 function SaveOldUserConfigFolder(): Integer;
 external 'SaveOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
@@ -409,6 +421,9 @@ external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl delayload'
 function IsProcessRunning(processName: String): Boolean;
 external 'IsProcessRunning@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
+function IsProcessRunningByPath(processPath: String): Boolean;
+external 'IsProcessRunningByPath@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
 function InstallCalloutDriver(name, displayName, path: String): Integer;
 external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
@@ -420,6 +435,9 @@ external 'lstrlenW@kernel32.dll stdcall';
 
 function lstrcpyW(lpStringDest: String; lpStringSrc: Cardinal): Integer;
 external 'lstrcpyW@kernel32.dll stdcall';
+
+type
+  TInt64Array = array of Int64;
 
 var
   IsToReboot, IsVerySilent: Boolean;
@@ -441,6 +459,46 @@ begin
   if length > 0 then begin
     lstrcpyW(line, ptr);
     Log(line);
+  end;
+end;
+
+procedure DeleteNonRunningVersions(const Directory: string);
+var
+  VersionFolder: TFindRec;
+  VersionFolderPath: String;
+  i: Integer;
+  Processes: array of String;
+  IsRunningProcessFound: Boolean;
+begin
+  Processes := ['ProtonVPN.exe', 'ProtonVPNService.exe', 'ProtonVPN.WireGuardService.exe'];
+  if FindFirst(ExpandConstant(Directory + '\v*'), VersionFolder) then
+  try
+    repeat
+      VersionFolderPath := AddBackslash(Directory) + AddBackslash(VersionFolder.Name)
+      IsRunningProcessFound := False;
+      for i := 0 to GetArrayLength(Processes) - 1 do
+      begin
+        if IsProcessRunningByPath(VersionFolderPath + Processes[i]) then
+        begin
+          Log('Running process detected: ' + VersionFolderPath + Processes[i]);
+          IsRunningProcessFound := True;
+          Break;
+        end;
+      end;
+
+      if IsRunningProcessFound then
+        Log('Skipping version ' + VersionFolder.Name + ' as running processes were found.')
+      else
+      begin
+        if DelTree(VersionFolderPath, True, True, True) then
+          Log('An old version ' + VersionFolder.Name + ' was removed.')
+        else
+          Log('Failed to remove an old version: ' + VersionFolder.Name + 'Error: ' + SysErrorMessage(DLLGetLastError));
+      end;
+    until
+      not FindNext(VersionFolder);
+  finally
+    FindClose(VersionFolder);
   end;
 end;
 
@@ -551,8 +609,11 @@ end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
+    DeleteNonRunningVersions(ExpandConstant('{app}'));
     Log('Trying to save user settings for the old ProtonVPN app if it is installed');
     SaveOldUserConfigFolder();
+    Log('Trying to update taskbar icon path if exists');
+    UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
     Log('Trying to uninstall an old version of ProtonVPN app');
     UninstallProduct('{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}');
     Log('Trying to uninstall an old version of ProtonVPN TUN adapter');
@@ -603,5 +664,7 @@ begin
     Log('Uninstalling TAP adapter driver');
     res := UninstallTapAdapter(ExpandConstant('{app}\{#VersionFolder}\Resources\tap'));
     Log('TAP uninstallation returned: ' + IntToStr(res));
+    res := RemoveWfpObjects();
+    Log('RemoveWfpObjects returned: ' + IntToStr(res));
   end;
 end;

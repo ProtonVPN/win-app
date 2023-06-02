@@ -20,9 +20,9 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.UserInterfaceLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.UserInterfaceLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;

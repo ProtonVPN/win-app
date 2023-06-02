@@ -91,7 +91,7 @@ tests:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
     - cmd.exe /c BuildDependencies.bat
-    - dotnet build ProtonVpn.sln -c Tests
+    - dotnet build ProtonVpn.sln -c Debug
     - coverlet src\bin --target "dotnet" --targetargs "test src\bin\*Tests.dll -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"

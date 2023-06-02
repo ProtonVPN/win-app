@@ -36,3 +36,9 @@ long Uninstall(LPCWSTR upgrade_code)
 
     return 0;
 }
+
+bool IsProductInstalled(LPCWSTR upgrade_code)
+{
+    TCHAR product_code[MSI_GUID_LEN + 1];
+    return MsiEnumRelatedProducts(upgrade_code, 0, 0, product_code) == ERROR_SUCCESS;
+}

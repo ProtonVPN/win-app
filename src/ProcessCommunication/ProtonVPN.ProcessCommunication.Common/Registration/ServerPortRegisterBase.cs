@@ -18,8 +18,8 @@
  */
 
 using Microsoft.Win32;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 
 namespace ProtonVPN.ProcessCommunication.Common.Registration
 {

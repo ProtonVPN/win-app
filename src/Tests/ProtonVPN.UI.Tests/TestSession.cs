@@ -21,17 +21,14 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.ServiceProcess;
 using System.Threading;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
 using FlaUI.UIA3;
-using NUnit.Framework.Interfaces;
 using NUnit.Framework;
-using ProtonVPN.Common.Extensions;
+using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.TestsHelper;
-using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -40,19 +37,6 @@ namespace ProtonVPN.UI.Tests
         protected static Application App;
         protected static Application Service;
         protected static Window Window;
-
-        public static void DeleteProfiles()
-        {
-            string args = $"{TestUserData.GetPlusUser().Username} {TestUserData.GetPlusUser().Password}";
-            Assembly asm = Assembly.GetExecutingAssembly();
-            string pathToProfileCleaner = Path.Combine(Path.GetDirectoryName(asm.Location), "TestTools.ProfileCleaner.exe");
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo(pathToProfileCleaner, args)
-            };
-            process.Start();
-            process.WaitForExit();
-        }
 
         protected static void DeleteUserConfig()
         {
@@ -146,8 +130,19 @@ namespace ProtonVPN.UI.Tests
 
         protected static void KillProtonVpnProcess()
         {
-            Process[] proc = Process.GetProcessesByName("ProtonVPN");
-            proc.ForEach(p => p.Kill());
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                WindowStyle = ProcessWindowStyle.Hidden,
+                FileName = "cmd.exe",
+                Arguments = "/C taskkill /F /im protonvpn.exe",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
+            process.StartInfo = startInfo;
+            process.Start();
+            process.Close();
             //Give some time to properly exit the app
             Thread.Sleep(2000);
         }

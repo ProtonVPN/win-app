@@ -120,6 +120,22 @@ namespace ProtonVPN.Common.OS.Services
             ServiceError dwErrorControl, string lpBinaryPathName, string lpLoadOrderGroup, IntPtr lpdwTagId,
             string lpDependencies, string lp, string lpPassword);
 
+        [DllImport("advapi32.dll", EntryPoint = "ChangeServiceConfigW", CharSet = CharSet.Unicode, SetLastError = true,
+            CallingConvention = CallingConvention.StdCall)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool ChangeServiceConfig(
+            IntPtr hService,
+            int dwServiceType,
+            int dwStartType,
+            int dwErrorControl,
+            string lpBinaryPathName,
+            string lpLoadOrderGroup,
+            IntPtr lpdwTagId,
+            string lpDependencies,
+            string lpServiceStartName,
+            string lpPassword,
+            string lpDisplayName);
+
         [DllImport("advapi32.dll", EntryPoint = "ChangeServiceConfig2", CharSet = CharSet.Unicode, SetLastError = true,
             CallingConvention = CallingConvention.StdCall)]
         [return: MarshalAs(UnmanagedType.Bool)]

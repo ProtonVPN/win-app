@@ -38,10 +38,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Margin="100,35,100,63">
             <vectorImages:DeviceLimit HorizontalAlignment="Center"
                                       Width="328"
-                                      Visibility="{Binding HasMaxTierPlan, Converter={StaticResource BoolToVis}}" />
+                                      Visibility="{Binding IsPayingUser, Converter={StaticResource BoolToVis}}" />
             <vectorImages:DeviceLimitExclamation HorizontalAlignment="Center"
                                                  Width="328"
-                                                 Visibility="{Binding NotHasMaxTierPlan, Converter={StaticResource BoolToVis}}" />
+                                                 Visibility="{Binding IsFreeUser, Converter={StaticResource BoolToVis}}" />
 
             <TextBlock Padding="15,25,15,0"
                        HorizontalAlignment="Center"
@@ -63,7 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Property="Text"
                                 Value="{translations:Loc Dialogs_MaximumDeviceLimit_Disconnect_Subtitle}" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasMaxTierPlan}" Value="False">
+                            <DataTrigger Binding="{Binding IsPayingUser}" Value="False">
                                 <Setter Property="Text"
                                         Value="{translations:Loc Dialogs_MaximumDeviceLimit_Upgrade_Subtitle}" />
                             </DataTrigger>
@@ -73,7 +73,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </TextBlock>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0"
-                        Visibility="{Binding NotHasMaxTierPlan, Converter={StaticResource BoolToVis}}">
+                        Visibility="{Binding IsFreeUser, Converter={StaticResource BoolToVis}}">
                 <Button Style="{StaticResource SecondaryModalButton}"
                         Content="{translations:Loc Dialogs_btn_NoThanks}"
                         Padding="20,0"
@@ -87,7 +87,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0"
-                        Visibility="{Binding HasMaxTierPlan, Converter={StaticResource BoolToVis}}">
+                        Visibility="{Binding IsPayingUser, Converter={StaticResource BoolToVis}}">
                 <Button Style="{StaticResource PrimaryModalButton}"
                         Padding="20,0"
                         FontWeight="Medium"

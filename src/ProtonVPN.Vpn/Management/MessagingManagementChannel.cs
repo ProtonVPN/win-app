@@ -18,9 +18,9 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.ProtocolLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
 
 namespace ProtonVPN.Vpn.Management
 {

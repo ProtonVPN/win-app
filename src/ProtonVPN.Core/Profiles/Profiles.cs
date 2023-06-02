@@ -28,8 +28,7 @@ namespace ProtonVPN.Core.Profiles
 {
     public class Profiles : IProfileStorageAsync
     {
-        private static readonly ProfileByIdEqualityComparer ProfileIdEqualityComparer =
-            new ProfileByIdEqualityComparer();
+        private static readonly ProfileByIdEqualityComparer ProfileIdEqualityComparer = new();
 
         private readonly IProfileSource _predefinedProfiles;
         private readonly CachedProfiles _cachedProfiles;
@@ -42,10 +41,10 @@ namespace ProtonVPN.Core.Profiles
 
         public Task<IReadOnlyList<Profile>> GetAll()
         {
-            var predefinedProfiles = _predefinedProfiles.GetAll();
-            using (var cached = _cachedProfiles.ProfileData())
+            IReadOnlyList<Profile> predefinedProfiles = _predefinedProfiles.GetAll();
+            using (CachedProfileData cached = _cachedProfiles.ProfileData())
             {
-                var cachedProfiles = cached.Local
+                IEnumerable<Profile> cachedProfiles = cached.Local
                     .Union(cached.Sync, ProfileIdEqualityComparer)
                     .Union(cached.External, ProfileIdEqualityComparer)
                     .Where(p => p.Status != ProfileStatus.Deleted);
@@ -75,9 +74,9 @@ namespace ProtonVPN.Core.Profiles
 
         private async Task AddOrReplaceLocal(Profile profile, ProfileStatus status)
         {
-            using (var cached = await _cachedProfiles.LockedProfileData())
+            using (CachedProfileData cached = await _cachedProfiles.LockedProfileData())
             {
-                var local = cached.Local.Get(profile);
+                Profile local = cached.Local.Get(profile);
 
                 if (local?.Status == ProfileStatus.Created && status == ProfileStatus.Deleted)
                 {
@@ -85,9 +84,8 @@ namespace ProtonVPN.Core.Profiles
                     return;
                 }
 
-                var mapped = Map(profile)
+                Profile mapped = Map(profile)
                     .WithStatus(status)
-                    .WithSyncStatus(ProfileSyncStatus.InProgress)
                     .WithModifiedAt(DateTime.UtcNow);
 
                 cached.Local.AddOrReplace(

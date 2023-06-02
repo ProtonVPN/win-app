@@ -26,8 +26,8 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
@@ -36,6 +36,8 @@ namespace ProtonVPN.Api
     {
         private const int REFRESH_TOKEN_LOG_LENGTH = 5;
         private readonly HttpClient _client;
+
+        public event EventHandler RefreshTokenExpired;
 
         public TokenClient(
             ILogger logger,
@@ -78,6 +80,11 @@ namespace ProtonVPN.Api
                 }
                 throw new HttpRequestException(e.Message);
             }
+        }
+
+        public void TriggerRefreshTokenExpiration()
+        {
+            RefreshTokenExpired?.Invoke(this, EventArgs.Empty);
         }
 
         private void LogRefreshToken()

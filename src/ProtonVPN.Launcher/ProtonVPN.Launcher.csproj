@@ -10,7 +10,7 @@
         <BaseOutputPath>..\bin</BaseOutputPath>
     </PropertyGroup>
     <ItemGroup>
-      <None Remove="protonvpn.ico" />
+        <None Remove="protonvpn.ico" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\GlobalAssemblyInfo.cs">
@@ -18,9 +18,9 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="protonvpn.ico" />
+        <Content Include="protonvpn.ico" />
     </ItemGroup>
     <ItemGroup>
-      <Resource Include="protonvpn.ico" />
+        <Resource Include="protonvpn.ico" />
     </ItemGroup>
 </Project>

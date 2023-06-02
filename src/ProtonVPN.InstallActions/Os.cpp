@@ -1,17 +1,21 @@
 #include <string>
-#include <fstream>
-#include <iostream>
 #include <windows.h>
 #include <cstdint>
 #include <string>
 #include <thread>
 #include <tlhelp32.h>
+#include <shobjidl_core.h>
+#include "shlguid.h"
+#include "psapi.h"
+#include <filesystem>
 
 #include "ProcessExecutionResult.h"
 #include "Os.h"
+#include "WinApiErrorException.h"
 
 using namespace std;
 using namespace Os;
+namespace fs = std::filesystem;
 
 ProcessExecutionResult Os::RunProcess(const wchar_t* application_path, wstring command_line_args)
 {
@@ -154,4 +158,115 @@ bool Os::IsProcessRunning(const wchar_t* process_name)
 
     CloseHandle(snapshot);
     return running;
+}
+
+bool Os::IsProcessRunningByPath(const std::wstring& process_path)
+{
+    PROCESSENTRY32 entry;
+    entry.dwSize = sizeof(PROCESSENTRY32);
+
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    if (Process32First(snapshot, &entry))
+    {
+        while (Process32Next(snapshot, &entry))
+        {
+            wchar_t path[MAX_PATH];
+            HANDLE process = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, entry.th32ProcessID);
+            if (process)
+            {
+                GetModuleFileNameEx(process, nullptr, path, MAX_PATH);
+                CloseHandle(process);
+                if (process_path == path)
+                {
+                    CloseHandle(snapshot);
+                    return true;
+                }
+            }
+        }
+    }
+
+    CloseHandle(snapshot);
+    return false;
+}
+
+string Os::GetEnvVariable(string name)
+{
+    char* value;
+    size_t len;
+    const errno_t err = _dupenv_s(&value, &len, name.c_str());
+    if (err != 0)
+    {
+        throw WinApiErrorException(L"Failed to get environment variable " + wstring(name.begin(), name.end()) + L".",
+            err);
+    }
+
+    string result = string(value);
+    free(value);
+
+    return result;
+}
+
+string Os::GetLocalAppDataPath()
+{
+    return GetEnvVariable("LOCALAPPDATA");
+}
+
+string Os::GetTmpFolderPath()
+{
+    return GetEnvVariable("TMP");
+}
+
+long Os::ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* target_path)
+{
+    HRESULT hr;
+    IShellLink* psl;
+    IPersistFile* ppf;
+
+    hr = CoInitialize(nullptr);
+    if (FAILED(hr)) {
+        return hr;
+    }
+
+    hr = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLink, reinterpret_cast<LPVOID*>(&psl));
+    if (FAILED(hr)) {
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = psl->QueryInterface(IID_IPersistFile, reinterpret_cast<LPVOID*>(&ppf));
+    if (FAILED(hr)) {
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = ppf->Load(shortcut_path, STGM_READWRITE);
+    if (FAILED(hr)) {
+        ppf->Release();
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = psl->SetPath(target_path);
+    if (FAILED(hr)) {
+        ppf->Release();
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    hr = ppf->Save(shortcut_path, TRUE);
+    if (FAILED(hr)) {
+        ppf->Release();
+        psl->Release();
+        CoUninitialize();
+        return hr;
+    }
+
+    ppf->Release();
+    psl->Release();
+    CoUninitialize();
+
+    return 0;
 }

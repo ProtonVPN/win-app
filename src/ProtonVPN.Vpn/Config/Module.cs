@@ -19,7 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
@@ -38,6 +38,7 @@ using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
+using ProtonVPN.Vpn.ServerValidation;
 using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
@@ -48,6 +49,8 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<Ed25519SignatureValidator>().As<IEd25519SignatureValidator>().SingleInstance();
+            builder.RegisterType<ServerValidator>().As<IServerValidator>().SingleInstance();
             builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
             builder.RegisterType<VpnEndpointScanner>().SingleInstance();
             builder.RegisterType<TcpPortScanner>().SingleInstance();
@@ -92,41 +95,44 @@ namespace ProtonVPN.Vpn.Config
             ILogger logger = c.Resolve<ILogger>();
             INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
             INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
-            OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
             ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
             TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
-            tcpPortScanner.Config(config.OpenVpnStaticKey);
+            tcpPortScanner.Config(c.Resolve<OpenVpnConfig>().OpenVpnStaticKey);
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
             IIssueReporter issueReporter = c.Resolve<IIssueReporter>();
             IPortMappingProtocolClient portMappingProtocolClient = c.Resolve<IPortMappingProtocolClient>();
+            IServerValidator serverValidator = c.Resolve<IServerValidator>();
 
             return new LoggingWrapper(
                 logger,
                     new ReconnectingWrapper(
                         logger,
                         candidates,
+                        serverValidator,
                         endpointScanner,
                         new HandlingRequestsWrapper(
                             logger,
                             taskQueue,
-                            new BestPortWrapper(
-                                logger,
-                                taskQueue,
-                                endpointScanner,
-                                new NetworkAdapterStatusWrapper(
+                            new ServerAuthenticatorWrapper(
+                                serverValidator,
+                                new BestPortWrapper(
                                     logger,
-                                    issueReporter,
-                                    networkAdapterManager,
-                                    networkInterfaceLoader,
-                                    c.Resolve<WintunAdapter>(),
-                                    c.Resolve<TapAdapter>(),
-                                    new QueueingEventsWrapper(
-                                        taskQueue,
-                                        new PortForwardingWrapper(
-                                            logger,
-                                            portMappingProtocolClient,
-                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c)))))))));
+                                    taskQueue,
+                                    endpointScanner,
+                                    new NetworkAdapterStatusWrapper(
+                                        logger,
+                                        issueReporter,
+                                        networkAdapterManager,
+                                        networkInterfaceLoader,
+                                        c.Resolve<WintunAdapter>(),
+                                        c.Resolve<TapAdapter>(),
+                                        new QueueingEventsWrapper(
+                                            taskQueue,
+                                            new PortForwardingWrapper(
+                                                logger,
+                                                portMappingProtocolClient,
+                                                new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))))));
         }
 
         private ISingleVpnConnection GetWireguardConnection(IComponentContext c)

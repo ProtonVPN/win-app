@@ -183,9 +183,6 @@ namespace ProtonVPN.Common.Configuration
         int MaxProfileNameLength { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        TimeSpan ForcedProfileSyncInterval { get; set; }
-
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         TimeSpan EventCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
@@ -251,5 +248,7 @@ namespace ProtonVPN.Common.Configuration
         public string WintunDriverPath { get; set; }
         public string WintunAdapterName { get; set; }
         public string InstallActionsPath { get; set; }
+
+        public bool IsCertificateValidationDisabled { get; set; }
     }
 }

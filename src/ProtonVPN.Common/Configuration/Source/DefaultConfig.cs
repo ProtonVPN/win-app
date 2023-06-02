@@ -105,7 +105,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxServiceLogsAttached = 3,
 
-                ApiClientId = "WindowsVPN",
+                ApiClientId = "windows-vpn",
 
                 ApiVersion = "3",
 
@@ -154,8 +154,6 @@ namespace ProtonVPN.Common.Configuration.Source
                 ReportBugMaxFileSize = 488 * 1024,
 
                 MaxProfileNameLength = 25,
-
-                ForcedProfileSyncInterval = TimeSpan.FromMinutes(3),
 
                 EventCheckInterval = TimeSpan.FromMinutes(5),
 
@@ -306,17 +304,13 @@ namespace ProtonVPN.Common.Configuration.Source
                         },
                         new()
                         {
-                            Name = "download.protonvpn.net",
-                            PublicKeyHashes = new HashSet<string>(),
-                            Enforce = false,
-                            SendReport = false,
-                        },
-                        new()
-                        {
-                            Name = "[InternalReleaseHost]", //this is replaced by CI script
-                            PublicKeyHashes = new HashSet<string>(),
-                            Enforce = false,
-                            SendReport = false,
+                            Name = "[InternalReleaseHost]", // This is replaced by a CI script
+                            PublicKeyHashes = new HashSet<string>
+                            {
+                                "C4SMuz+h4+fTsxOKLXRKqrR9rAzk9bknu+hlC4QYmh0=",
+                            },
+                            Enforce = true,
+                            SendReport = true,
                         },
                         new()
                         {
@@ -362,6 +356,8 @@ namespace ProtonVPN.Common.Configuration.Source
                 WintunAdapterName = "ProtonVPN TUN",
 
                 InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
+
+                IsCertificateValidationDisabled = false
             };
         }
     }

@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using DnsClient;
 using ProtonVPN.Common.Extensions;
 
@@ -32,7 +30,7 @@ namespace ProtonVPN.Core.OS.Net.Dns
         public IDnsClient DnsClient(IReadOnlyCollection<IPEndPoint> nameServers)
         {
             return nameServers.Any() 
-                ? new FixedDnsClient(new LookupClient(nameServers.ToArray()).WithDisabledSocketsReuse()) 
+                ? new FixedDnsClient(new LookupClient(nameServers.ToArray())) 
                 : NullDnsClient;
         }
 
@@ -44,24 +42,5 @@ namespace ProtonVPN.Core.OS.Net.Dns
         }
 
         public static IDnsClient NullDnsClient { get; } = new NullDnsClient();
-    }
-
-    internal static class LookupClientExtensions
-    {
-        public static LookupClient WithDisabledSocketsReuse(this LookupClient obj)
-        {
-            obj.UseTcpOnly = true;
-
-            Type lookupClientType = typeof(LookupClient);
-            Type udpHandlerType = lookupClientType.Assembly.GetType("DnsClient.DnsUdpMessageHandler");
-
-            FieldInfo field = lookupClientType.GetField("_messageHandler", BindingFlags.Instance | BindingFlags.NonPublic);
-            object udpHandler = field.GetValue(obj);
-
-            field = udpHandlerType.GetField("_enableClientQueue", BindingFlags.Instance | BindingFlags.NonPublic);
-            field.SetValue(udpHandler, false);
-
-            return obj;
-        }
     }
 }

@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
@@ -62,7 +62,8 @@ namespace ProtonVPN.Update.Tests.Updates
             _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
             _config = new DefaultAppUpdateConfig
             {
-                HttpClient = _httpClient,
+                FeedHttpClient = _httpClient,
+                FileHttpClient = _httpClient,
                 FeedUriProvider = _feedUrlProvider,
                 UpdatesPath = "Updates",
                 CurrentVersion = new Version(),

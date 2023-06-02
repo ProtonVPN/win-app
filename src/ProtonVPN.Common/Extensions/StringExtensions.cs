@@ -34,6 +34,11 @@ namespace ProtonVPN.Common.Extensions
             return string.IsNullOrEmpty(value);
         }
 
+        public static bool? ToBoolOrNull(this string value)
+        {
+            return bool.TryParse(value, out bool result) ? result : null;
+        }
+
         public static bool EqualsIgnoringCase(this string value, string other)
         {
             return value.Equals(other, StringComparison.OrdinalIgnoreCase);
@@ -131,6 +136,29 @@ namespace ProtonVPN.Common.Extensions
             }
 
             return string.Format(format, value);
+        }
+
+        public static IEnumerable<string> SplitToEnumerable(this string value, char separator)
+        {
+            return string.IsNullOrWhiteSpace(value)
+                ? null
+                : value.Split(separator).Select(e => e.Trim());
+        }
+
+        public static HashSet<string> SplitToHashSet(this string value, char separator)
+        {
+            return value.SplitToEnumerable(separator)?.ToHashSet();
+        }
+
+        public static List<string> SplitToList(this string value, char separator)
+        {
+            return value.SplitToEnumerable(separator)?.ToList();
+        }
+
+        public static bool IsHttpUri(this string uriString, out Uri uri)
+        {
+            return (Uri.TryCreate(uriString, UriKind.Absolute, out uri) && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp))
+                || Uri.TryCreate($"https://{uriString}", UriKind.Absolute, out uri);
         }
     }
 }

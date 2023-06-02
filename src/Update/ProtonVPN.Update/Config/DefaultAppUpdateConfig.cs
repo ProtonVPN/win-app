@@ -28,7 +28,8 @@ namespace ProtonVPN.Update.Config
     /// </summary>
     public class DefaultAppUpdateConfig : IAppUpdateConfig
     {
-        public IHttpClient HttpClient { get; set; }
+        public IHttpClient FeedHttpClient { get; set; }
+        public IHttpClient FileHttpClient { get; set; }
         public IFeedUrlProvider FeedUriProvider { get; set; }
         public Version CurrentVersion { get; set; }
         public string UpdatesPath { get; set; }

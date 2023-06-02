@@ -30,11 +30,12 @@ using ProtonVPN.Api;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
+using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
-using ProtonVPN.Common.Installers.Extensions;
+using ProtonVPN.Logging.Installers;
 using ProtonVPN.P2PDetection;
 using RichardSzalay.MockHttp;
 using File = System.IO.File;
@@ -77,19 +78,21 @@ namespace ProtonVPN.IntegrationTests
                 return httpClientFactory;
             }).As<IApiHttpClientFactory>().SingleInstance();
 
-            builder.RegisterModule<CoreModule>()
-                .RegisterModule<UiModule>()
-                .RegisterModule<AppModule>()
-                .RegisterModule<BugReportingModule>()
-                .RegisterModule<LoginModule>()
-                .RegisterModule<P2PDetectionModule>()
-                .RegisterModule<ProfilesModule>()
-                .RegisterAssemblyModule<HumanVerificationModule>();
+            builder.RegisterLoggerConfiguration(c => c.AppLogDefaultFullFilePath)
+                   .RegisterModule<CoreModule>()
+                   .RegisterModule<UiModule>()
+                   .RegisterModule<AppModule>()
+                   .RegisterModule<BugReportingModule>()
+                   .RegisterModule<LoginModule>()
+                   .RegisterModule<P2PDetectionModule>()
+                   .RegisterModule<ProfilesModule>()
+                   .RegisterAssemblyModule<LoggingModule>()
+                   .RegisterAssemblyModule<HumanVerificationModule>();
 
             builder.Register(_ =>
             {
                 IFileDownloadHttpClientFactory httpClients = Substitute.For<IFileDownloadHttpClientFactory>();
-                httpClients.GetFileDownloadHttpClient().Returns(new WrappedHttpClient(httpClient));
+                httpClients.GetHttpClientWithTlsPinning().Returns(new WrappedHttpClient(httpClient));
                 return httpClients;
             }).As<IFileDownloadHttpClientFactory>().SingleInstance();
             builder.RegisterAssemblyModule<AnnouncementsModule>();

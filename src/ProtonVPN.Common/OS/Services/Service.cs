@@ -33,6 +33,8 @@ namespace ProtonVPN.Common.OS.Services
 {
     public abstract class Service : IService
     {
+        private const int SERVICE_NO_CHANGE = -1;
+
         private readonly TimeSpan _waitForServiceStatusDuration = TimeSpan.FromSeconds(30);
         private readonly TimeSpan _waitForServiceEnableDuration = TimeSpan.FromSeconds(5);
 
@@ -88,6 +90,36 @@ namespace ProtonVPN.Common.OS.Services
                 {
                     throw new Win32Exception(Marshal.GetLastWin32Error());
                 }
+            }
+        }
+
+        public void UpdatePathAndArgs(string cmd)
+        {
+            IntPtr serviceManager = GetServiceManager();
+            if (serviceManager == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            IntPtr service = Win32.OpenService(serviceManager, Name, Win32.ServiceAccessRights.ChangeConfig);
+            if (service == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            if (!Win32.ChangeServiceConfig(service,
+                    SERVICE_NO_CHANGE,
+                    SERVICE_NO_CHANGE,
+                    SERVICE_NO_CHANGE,
+                    cmd,
+                    null,
+                    IntPtr.Zero,
+                    null,
+                    null,
+                    null,
+                    null))
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
             }
         }
 

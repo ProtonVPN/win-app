@@ -29,15 +29,14 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
-using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Settings;
 
@@ -158,33 +157,6 @@ namespace ProtonVPN.Api
         {
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/sessions");
             return await SendRequest<SessionsResponse>(request, "Get sessions");
-        }
-
-        public async Task<ApiResponseResult<ProfilesResponse>> GetProfiles()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/profiles");
-            return await SendRequest<ProfilesResponse>(request, "Get profiles");
-        }
-
-        public async Task<ApiResponseResult<ProfileWrapperResponse>> CreateProfile(BaseProfileResponse profile)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/profiles");
-            request.Content = GetJsonContent(profile);
-            return await SendRequest<ProfileWrapperResponse>(request, "Create profile");
-        }
-
-        public async Task<ApiResponseResult<ProfileWrapperResponse>> UpdateProfile(string id,
-            BaseProfileResponse profile)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Put, $"vpn/profiles/{id}");
-            request.Content = GetJsonContent(profile);
-            return await SendRequest<ProfileWrapperResponse>(request, "Update profile");
-        }
-
-        public async Task<ApiResponseResult<ProfileWrapperResponse>> DeleteProfile(string id)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, $"vpn/profiles/{id}");
-            return await SendRequest<ProfileWrapperResponse>(request, "Delete profile");
         }
 
         public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig()

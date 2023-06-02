@@ -20,8 +20,8 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.NetworkLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 
 namespace ProtonVPN.Core.OS
 {

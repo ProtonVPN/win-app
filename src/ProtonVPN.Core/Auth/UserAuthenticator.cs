@@ -24,8 +24,8 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.UserLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Srp;
 

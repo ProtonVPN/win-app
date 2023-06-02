@@ -26,7 +26,6 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
-using ProtonVPN.Api.Contracts.Profiles;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
@@ -49,10 +48,6 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();
-        Task<ApiResponseResult<ProfilesResponse>> GetProfiles();
-        Task<ApiResponseResult<ProfileWrapperResponse>> CreateProfile(BaseProfileResponse profile);
-        Task<ApiResponseResult<ProfileWrapperResponse>> UpdateProfile(string id, BaseProfileResponse profile);
-        Task<ApiResponseResult<ProfileWrapperResponse>> DeleteProfile(string id);
         Task<ApiResponseResult<VpnConfig.VpnConfigResponse>> GetVpnConfig();
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();

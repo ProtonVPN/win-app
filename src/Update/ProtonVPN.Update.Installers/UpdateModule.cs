@@ -21,7 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;
@@ -58,9 +58,12 @@ namespace ProtonVPN.Update.Installers
         // TO DO: Refactor the code in order to delete this custom registration
         private DefaultAppUpdateConfig CreateDefaultAppUpdateConfig(IComponentContext c)
         {
+            IUpdateHttpClientFactory updateHttpClientFactory = c.Resolve<IUpdateHttpClientFactory>();
+
             return new DefaultAppUpdateConfig
             {
-                HttpClient = c.Resolve<INoDnsFileDownloadHttpClientFactory>().GetHttpClient(),
+                FeedHttpClient = updateHttpClientFactory.GetFeedHttpClient(),
+                FileHttpClient = updateHttpClientFactory.GetUpdateDownloadHttpClient(),
                 FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
                 UpdatesPath = c.Resolve<IConfiguration>().UpdatesPath,
                 CurrentVersion = Version.Parse(c.Resolve<IConfiguration>().AppVersion),

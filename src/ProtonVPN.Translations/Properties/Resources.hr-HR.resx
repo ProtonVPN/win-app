@@ -206,13 +206,13 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN veza</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; country</value>
   </data>
   <data name="Account_lbl_Countries_Few">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
     <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; countries</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -540,6 +540,15 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>povezivanje nije uspjelo</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} country</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} countries</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} countries</value>
   </data>
   <data name="Country_val_AD">
     <value>Andora</value>
@@ -1582,18 +1591,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Vaš VPN račun ima neplaćene fakture</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Provjeri fakture</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>The account is flagged as delinquent due to unpaid invoices. You can continue to use Proton VPN, but any paid features are now disabled.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Read more about delinquency.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Delinkventni račun</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Omogući</value>
   </data>
@@ -1927,6 +1924,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="KillSwitch">
     <value>Kill switch</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
     <value>Licenca</value>
@@ -2145,6 +2143,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Vaš VPN pretplatnički plan je istekao</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Restart</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
   <data name="Notifications_Update_lnk_WhatsNew">
     <value>Što je novo</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
@@ -2218,38 +2220,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed">
-    <value>Neuspješno</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Failed_Info">
-    <value>Neuspješno sinkroniziranje profila</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress">
-    <value>Sinkronizacija</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_InProgress_Info">
-    <value>Sinkronizacija profila</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Overridden">
-    <value>Nadjačano</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded">
-    <value>Sinkronizirano</value>
-    <comment>The profile synchronization status displayed in the Profiles window</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info">
-    <value>Promjene profila su sinkronizirane prije {0} {1}</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window. The {0} is a placeholder for number of time units, {1} - time units.</comment>
-  </data>
-  <data name="ProfileSyncStatus_val_Succeeded_Info_NoData">
-    <value>Nema promjena profila za sinkronizaciju</value>
-    <comment>The detailed profile synchronization status displayed on the bottom of Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Najbrži slobodni poslužitelj</value>
@@ -2368,10 +2338,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Stvori profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
-  <data name="Profiles_btn_Sync">
-    <value>Sinkroniziraj</value>
-    <comment>The text on Sync button in Profiles window (synchronizes profiles with the cloud)</comment>
-  </data>
   <data name="Profiles_btn_Troubleshoot">
     <value>Rješavanje problema</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
@@ -2391,10 +2357,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Profiles_col_Protocol">
     <value>Protocol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
-  </data>
-  <data name="Profiles_col_Status">
-    <value>Status</value>
-    <comment>The title of profile synchronization status column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
     <value>Poslužitelji su trenutno izvan mreže zbog održavanja.</value>
@@ -2450,9 +2412,11 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
     <value>Kill switch Off</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
     <value>Kill switch On</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
     <value>Saznajte više</value>
@@ -2468,6 +2432,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Permanent kill switch</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
     <value>Port Forwarding je isključen</value>
@@ -2490,9 +2455,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Browse the internet without ads and malware.</value>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds">
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Ad blocked</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Ads blocked</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Advertisement websites use cookies and trackers to target you.</value>
@@ -2506,9 +2476,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
     <comment></comment>
   </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers">
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Trackers stopped</value>
-    <comment></comment>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Tracker stopped</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Trackers stopped</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
@@ -2528,6 +2503,15 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} secure server</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} secure servers</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} secure servers</value>
   </data>
   <data name="ServerType_val_None">
     <value>Standardno</value>
@@ -2825,6 +2809,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Veza</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Automatic updates</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Automatically check for and install updates to Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
     <value>Connect on app start</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
@@ -2985,7 +2977,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
-    <value>BASIC i PLUS</value>
+    <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
     <value>Learn more</value>
@@ -3130,8 +3122,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Access over {0} in {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>What is Moderate NAT?</value>
