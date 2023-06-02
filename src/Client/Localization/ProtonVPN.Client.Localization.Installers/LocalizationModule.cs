@@ -17,19 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.Extensions.DependencyInjection;
+using Autofac;
 using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Localization.Installers;
 
-public static class LocalizationModule
+public class LocalizationModule : Module
 {
-    public static IServiceCollection AddLocalizer(this IServiceCollection services)
+    protected override void Load(ContainerBuilder builder)
     {
-        services.AddSingleton<ILocalizationBuilder, LocalizationBuilder>();
-        services.AddSingleton<ILocalizationService, LocalizationService>();
-        services.AddSingleton<ILocalizationProvider, LocalizationProvider>();
-
-        return services;
+        builder.RegisterType<LocalizationBuilder>().As<ILocalizationBuilder>().SingleInstance();
+        builder.RegisterType<LocalizationService>().As<ILocalizationService>().SingleInstance();
+        builder.RegisterType<LocalizationProvider>().As<ILocalizationProvider>().SingleInstance();
     }
 }

@@ -17,17 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.Extensions.DependencyInjection;
+using Autofac;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 
 namespace ProtonVPN.Client.Logic.Recents.Installers;
 
-public static class RecentsModule
+public class RecentsLogicModule : Module
 {
-    public static IServiceCollection AddRecents(this IServiceCollection services)
+    protected override void Load(ContainerBuilder builder)
     {
-        services.AddSingleton<IRecentConnectionsProvider, RecentConnectionsProvider>();
-
-        return services;
+        builder.RegisterType<RecentConnectionsProvider>().As<IRecentConnectionsProvider>().SingleInstance();
     }
 }

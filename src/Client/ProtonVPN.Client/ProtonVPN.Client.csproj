@@ -37,6 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="7.0.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.17" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -83,6 +85,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Client.Common.UI\ProtonVPN.Client.Common.UI.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />

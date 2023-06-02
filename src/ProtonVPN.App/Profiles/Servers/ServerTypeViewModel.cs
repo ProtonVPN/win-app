@@ -28,7 +28,7 @@ namespace ProtonVPN.Profiles.Servers
 {
     public class ServerTypeViewModel : ViewModel
     {
-        private static readonly List<Features> AllTypes = new List<Features>
+        private static readonly List<Features> _allTypes = new()
         {
             Features.None,          // "Standard"
             Features.SecureCore,    
@@ -46,12 +46,12 @@ namespace ProtonVPN.Profiles.Servers
 
         public static IEnumerable<ServerTypeViewModel> AllServerTypes()
         {
-            return AllTypes.Select(f => new ServerTypeViewModel(f));
+            return _allTypes.Select(f => new ServerTypeViewModel(f));
         }
 
         public static string TypeName(Features features)
         {
-            foreach (var typeFeatures in AllTypes)
+            foreach (Features typeFeatures in _allTypes)
             {
                 if ((features & typeFeatures) != 0)
                 {
@@ -64,7 +64,7 @@ namespace ProtonVPN.Profiles.Servers
 
         private static string GetName(Features features)
         {
-            var enumName = Enum.GetName(typeof(Features), features);
+            string enumName = Enum.GetName(typeof(Features), features);
             return Translation.Get($"ServerType_val_{enumName}");
         }
     }

@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
-      <Version>4.9.4</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="FluentAssertions">
       <Version>6.11.0</Version>
