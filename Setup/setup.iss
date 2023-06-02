@@ -81,6 +81,7 @@ Source: "..\src\bin\7za.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce
 Source: "..\src\bin\Albireo.Base32.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ARSoft.Tools.Net.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Autofac.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\src\bin\Autofac.Extensions.DependencyInjection.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\BouncyCastle.Crypto.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ByteSize.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\CalcBinding.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;

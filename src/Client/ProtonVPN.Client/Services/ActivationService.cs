@@ -18,7 +18,6 @@
  */
 
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 
 using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.Contracts.Services;
@@ -31,13 +30,17 @@ public class ActivationService : IActivationService
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IThemeSelectorService _themeSelectorService;
-    private UIElement? _shell = null;
+    private readonly ShellViewModel _shellViewModel;
 
-    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService)
+    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
+        IEnumerable<IActivationHandler> activationHandlers,
+        IThemeSelectorService themeSelectorService,
+        ShellViewModel shellViewModel)
     {
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
         _themeSelectorService = themeSelectorService;
+        _shellViewModel = shellViewModel;
     }
 
     public async Task ActivateAsync(object activationArgs)
@@ -48,8 +51,7 @@ public class ActivationService : IActivationService
         // Set the MainWindow Content.
         if (App.MainWindow.Content == null)
         {
-            _shell = App.GetService<ShellPage>();
-            App.MainWindow.Content = _shell ?? new Frame();
+            App.MainWindow.Content = new ShellPage(_shellViewModel);
         }
 
         // Handle activation via ActivationHandlers.
