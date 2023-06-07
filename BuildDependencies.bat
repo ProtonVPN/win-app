@@ -1,23 +1,46 @@
-set outputDir=..\bin\Resources\
-set platformToolset=v143
-set GOARCH=amd64
+@echo off
 
-msbuild src\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj /p:PlatformToolset=%platformToolset% /p:Platform=x64 /p:Configuration=Release /p:OutDir=%outputDir%
-msbuild src\ProtonVPN.NetworkUtil\ProtonVPN.NetworkUtil.vcxproj /p:PlatformToolset=%platformToolset% /p:Platform=x64 /p:Configuration=Release /p:OutDir=%outputDir%
-msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj /p:PlatformToolset=%platformToolset% /p:Platform=Win32 /p:Configuration=Release
-msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj /p:PlatformToolset=%platformToolset% /p:Platform=x64 /p:Configuration=Release
+set currentDir=%~dp0
+set publishDir=%currentDir%src\bin\win-x64\publish\
+set binDir=%currentDir%src\bin\
+set resourcesDir=%binDir%Resources
 
-::GoSrp.dll
-pushd %~dp0\src\srp\windows\cshared
-set fn=GoSrp
-set gn=main.go
-set CGO_ENABLED=1
-go build -buildmode=c-shared -v -ldflags="-s -w" -o ..\..\..\bin\Resources\%fn%.dll %gn%
+if "%~1"=="publish" (
+    set resourcesDir=%publishDir%Resources
+)
 
-::LocalAgent.dll
-pushd %~dp0\src\ProtonVPN.LocalAgent\localAgentWin
-set GOOS=windows
-set GO111MODULE=off
-set CGO_CFLAGS=-O3 -Wall -Wno-unused-function -Wno-switch -std=gnu11 -DWINVER=0x0601
-set CC=x86_64-w64-mingw32-gcc
-go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o "..\..\bin\Resources\LocalAgent.dll" || exit /b 1
+set buildParams=/p:PlatformToolset=v143 /p:Configuration=Release /p:OutDir=%resourcesDir% /clp:ErrorsOnly
+set x86buildParams=%buildParams% /p:Platform=Win32
+set x64buildParams=%buildParams% /p:Platform=x64
+
+if "%~2" NEQ "gosrponly" (
+    echo compiling ProtonVPN.IPFilter.dll
+    msbuild src\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
+
+    echo compiling ProtonVPN.NetworkUtil.dll
+    msbuild src\ProtonVPN.NetworkUtil\ProtonVPN.NetworkUtil.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
+
+    echo compiling ProtonVPN.InstallActions.x86.dll
+    msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj %x86buildParams% || exit /b %ERRORLEVEL%
+
+    echo compiling ProtonVPN.InstallActions.dll
+    msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
+
+    echo compiling LocalAgent.dll
+    pushd %currentDir%src\ProtonVPN.LocalAgent\localAgentWin
+    set GO111MODULE=off
+    set CGO_CFLAGS=-O3 -Wall -Wno-unused-function -Wno-switch -std=gnu11 -DWINVER=0x0601
+
+    go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o %resourcesDir%\LocalAgent.dll
+    if %ERRORLEVEL% equ 0 (
+        echo file saved %resourcesDir%\LocalAgent.dll
+    )
+)
+
+echo compiling GoSrp.dll
+pushd %currentDir%src\srp\windows\cshared
+set GO111MODULE=on
+go build -buildmode=c-shared -v -ldflags="-s -w" -o %resourcesDir%\GoSrp.dll main.go
+if %ERRORLEVEL% equ 0 (
+    echo file saved %resourcesDir%\GoSrp.dll
+)

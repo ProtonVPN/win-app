@@ -11,16 +11,8 @@
     </PropertyGroup>
     <ItemGroup>
         <None Remove="protonvpn.ico" />
-    </ItemGroup>
-    <ItemGroup>
         <Compile Include="..\GlobalAssemblyInfo.cs">
             <Link>Properties\GlobalAssemblyInfo.cs</Link>
         </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="protonvpn.ico" />
-    </ItemGroup>
-    <ItemGroup>
-        <Resource Include="protonvpn.ico" />
     </ItemGroup>
 </Project>

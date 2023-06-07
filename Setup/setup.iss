@@ -1,4 +1,4 @@
-#define MyAppVersion "3.0.0"
+#define MyAppVersion "4.0.0"
 #define MyAppName "Proton VPN" 
 #define MyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
@@ -41,7 +41,7 @@ DisableFinishedPage=yes
 DisableStartupPrompt=yes
 VersionInfoProductTextVersion={#MyAppVersion}-{#hash}
 VersionInfoVersion={#MyAppVersion}
-AppCopyright=© 2022 {#MyPublisher}
+AppCopyright=© 2023 {#MyPublisher}
 SignTool=signtool sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /td SHA256 /fd SHA256 $f
 
 [Messages]
@@ -54,8 +54,6 @@ Source: "..\src\bin\ProtonVPN.Launcher.deps.json"; DestDir: "{app}";
 Source: "..\src\bin\ProtonVPN.Launcher.runtimeconfig.json"; DestDir: "{app}";
 Source: "..\src\ProtonVPN.NativeHost\bin\ProtonVPN.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.NativeHost\bin\nethost.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\src\bin\ProtonVPN.deps.json"; DestDir: "{app}\{#VersionFolder}";
@@ -77,7 +75,6 @@ Source: "..\src\bin\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Fl
 Source: "..\src\bin\ProtonVPNService.dll"; DestDir: "{app}\{#VersionFolder}"; AfterInstall: InstallService; Flags: signonce;
 Source: "..\src\bin\ProtonVPNService.deps.json"; DestDir: "{app}\{#VersionFolder}"; AfterInstall: InstallService;
 Source: "..\src\bin\ProtonVPNService.runtimeconfig.json"; DestDir: "{app}\{#VersionFolder}"; AfterInstall: InstallService;
-Source: "..\src\bin\7za.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Albireo.Base32.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ARSoft.Tools.Net.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\Autofac.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -341,15 +338,8 @@ Source: "..\src\bin\uk-UA\ProtonVPN.Translations.resources.dll"; DestDir: "{app}
 Source: "..\src\bin\tr-TR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\tr-TR"; Flags: signonce;
 Source: "..\src\bin\be-BY\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
 
-Source: "..\src\bin\Resources\GoSrp.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\ProtonVPN.IPFilter.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\ProtonVPN.NetworkUtil.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\LocalAgent.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\libcrypto-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\libpkcs11-helper-1.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\libssl-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\openvpn.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\Resources\vcruntime140.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\src\bin\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\src\bin\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\src\bin\Resources\config.ovpn"; DestDir: "{app}\{#VersionFolder}\Resources";
 Source: "..\src\ProtonVPN.Vpn\Resources\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\tunnel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -597,7 +587,7 @@ end;
 function InitializeUninstall: Boolean;
 begin
   Log('InitializeUninstall');
-  Result := FileCopy(ExpandConstant('{app}\{#VersionFolder}\ProtonVPN.InstallActions.x86.dll'), ExpandConstant('{%TEMP}\ProtonVPN.InstallActions.x86.dll'), False);
+  Result := FileCopy(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'), ExpandConstant('{%TEMP}\ProtonVPN.InstallActions.x86.dll'), False);
   InitLoggerUninstall(CreateCallback(@LogProc));
 end;
 
