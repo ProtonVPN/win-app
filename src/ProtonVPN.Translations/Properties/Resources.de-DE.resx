@@ -1706,7 +1706,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Downloading">
-    <value>Wird heruntergeldaen</value>
+    <value>Wird heruntergeladen</value>
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">

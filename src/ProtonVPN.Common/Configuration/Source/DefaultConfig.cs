@@ -355,7 +355,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 WintunAdapterName = "ProtonVPN TUN",
 
-                InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
+                InstallActionsPath = Path.Combine(resourcesFolder, "ProtonVPN.InstallActions.dll"),
 
                 IsCertificateValidationDisabled = false
             };

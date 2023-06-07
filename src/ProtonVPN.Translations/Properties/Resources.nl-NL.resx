@@ -2393,11 +2393,11 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill Switch Uit</value>
+    <value>IP-beveiliging Uit</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill Switch Aan</value>
+    <value>IP-beveiliging Aan</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2413,7 +2413,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Blokkeer malware, advertenties &amp; trackers</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanente Kill Switch</value>
+    <value>Permanente IP-beveiliging</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
@@ -2456,7 +2456,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Tracker gestopt</value>
+    <value>Trackers gestopt</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
     <value>Tracker gestopt</value>
@@ -2690,7 +2690,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Een applicatie of een IP-adres uit VPN-verkeer uitsluiten of alleen specifieke apps opnemen. Kan niet samen met de Kill Switch gebruikt worden.</value>
+    <value>Een applicatie of een IP-adres uit VPN-verkeer uitsluiten of alleen specifieke apps opnemen. Kan niet samen met de IP-beveiliging gebruikt worden.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2787,7 +2787,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate_Info">
-    <value>Automatisch controleren en installeren van nieuwe Proton VPN versies.</value>
+    <value>Automatisch controleren en installeren van nieuwe Proton VPN-versies.</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
@@ -2872,11 +2872,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill Switch geactiveerd!</value>
+    <value>IP-beveiliging geactiveerd!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill Switch blokkeert alle verbindingen om te voorkomen dat uw gegevens worden uitgelekt.</value>
+    <value>IP-beveiliging blokkeert alle verbindingen om te voorkomen dat uw gegevens worden uitgelekt.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">

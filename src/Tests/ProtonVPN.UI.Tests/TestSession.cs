@@ -29,6 +29,7 @@ using FlaUI.UIA3;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.TestsHelper;
+using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
