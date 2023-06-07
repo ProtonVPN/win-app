@@ -47,9 +47,9 @@ build-release:
     - cmd.exe /c BuildDependencies.bat publish
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
-    - python ci\main.py lint-languages
-    - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\main.py defaultConfig
+    - python ci\build-scripts\main.py lint-languages
+    - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py defaultConfig
     - echo "Publishing release..."
     - dotnet publish ProtonVpn.sln -c Release -r win-x64 --self-contained
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
@@ -74,9 +74,9 @@ build-debug:
     - cmd.exe /c BuildDependencies.bat publish
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
     - echo "Downloading translations from crowdin..."
-    - python ci\main.py lint-languages
-    - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\main.py defaultConfig
+    - python ci\build-scripts\main.py lint-languages
+    - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py defaultConfig
     - echo "Publishing debug..."
     - dotnet publish ProtonVpn.sln -c Debug -r win-x64 --self-contained
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
@@ -114,8 +114,8 @@ build-installer-for-release:
   tags:
     - windows
   script:
-    - python ci\main.py update-gh-list
-    - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py update-gh-list
+    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
       - Setup/Installers/
@@ -131,7 +131,7 @@ prepare-internal-beta-release:
   when: manual
   script:
     - python -m pip install -r ci\python-libs.txt
-    - python ci\prepare-internal-beta.py
+    - python ci\test-scripts\prepare-internal-beta.py
   only:
     - /^release.*$/
 
@@ -140,8 +140,8 @@ build-installer-for-debug:
   tags:
     - windows
   script:
-    - python ci\main.py update-gh-list
-    - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py update-gh-list
+    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
       - Setup/Installers/
@@ -164,16 +164,19 @@ testmo-setup:
     
 ui-test:
   stage: ui-test
+  dependencies:
+    - build-installer-for-debug
+    - build-installer-for-release
   tags:
-    - ino-setup
+    - e2e-tests
   script:
-    - ci\uninstall-app.ps1
-    - ci\install-the-app.ps1
+    - ci\test-scripts\uninstall-app.ps1
+    - ci\test-scripts\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
-    - ci\uninstall-app.ps1
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
+    - ci\test-scripts\uninstall-app.ps1
   after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
+    - powershell.exe ./ci/test-scripts/TestRun/converter-nunit-junit.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
@@ -189,16 +192,19 @@ ui-test:
 
 connection-test:
   stage: ui-test
+  dependencies:
+    - build-installer-for-debug
+    - build-installer-for-release
   tags:
-    - connection_tests
+    - e2e-tests
   script:
-    - ci\uninstall-app.ps1
-    - ci\install-the-app.ps1
+    - ci\test-scripts\uninstall-app.ps1
+    - ci\test-scripts\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
-    - ci\uninstall-app.ps1
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
+    - ci\test-scripts\uninstall-app.ps1
   after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
+    - powershell.exe ./ci/test-scripts/TestRun/converter-nunit-junit.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
@@ -214,18 +220,20 @@ connection-test:
 
 win-11-test:
   stage: ui-test
+  dependencies:
+    - build-installer-for-debug
+    - build-installer-for-release
   when: manual
   tags:
     - win11
   script:
-    - ci\uninstall-app.ps1
-    - ci\install-the-app.ps1
+    - ci\test-scripts\uninstall-app.ps1
+    - ci\test-scripts\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Smoke"
-    - ci\uninstall-app.ps1
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Smoke"
+    - ci\test-scripts\uninstall-app.ps1
   after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
+    - powershell.exe ./ci/test-scripts/TestRun/converter-nunit-junit.ps1
   except:
     - /^debug.*$/
     - release/9.9.9
@@ -257,7 +265,7 @@ mirror:
       - tags
       - master
   script:
-    - python ci\main.py prepare-ssh $env:SSH_PRIVATE_KEY
+    - python ci\build-scripts\main.py prepare-ssh $env:SSH_PRIVATE_KEY
     - ssh-keyscan -t rsa github.com | Set-Content "$env:userprofile\.ssh\known_hosts"
     - git clone "$CI_REPOSITORY_URL" --branch master _APP_CLONE;
     - cd _APP_CLONE
@@ -295,7 +303,7 @@ create-release:
       - develop
   script:
     - apt-get update && apt-get install -y python3 python3-pip git
-    - python3 ci/release.py
+    - python3 ci/build-scripts/release.py
 
 send-slack-notification:
   tags:
@@ -306,4 +314,4 @@ send-slack-notification:
   stage: publish-to-slack
   script:
     - python -m pip install -r ci\python-libs.txt
-    - python ci\main.py send-slack-notification
+    - python ci\build-scripts\main.py send-slack-notification

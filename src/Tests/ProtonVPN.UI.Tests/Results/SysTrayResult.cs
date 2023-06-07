@@ -19,8 +19,7 @@
 
 using System.Diagnostics;
 using System.ServiceProcess;
-using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Results

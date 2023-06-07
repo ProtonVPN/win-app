@@ -4,7 +4,6 @@ import os
 import argparse
 import win32api
 import config
-import signing
 import installer
 import ssh
 import guest_hole_server_loader
@@ -73,9 +72,6 @@ elif args.command == 'lint-languages':
         print('[ERROR][lint-languages] broken markup inside some files:')
         print("\n".join([str(file) for file in errors]))
     sys.exit(code)
-
-elif args.command == 'sign':
-    signing.sign()
 
 elif args.command == 'app-installer':
     v = win32api.GetFileVersionInfo('.\\src\\bin\\win-x64\\publish\\ProtonVPN.exe', '\\')
