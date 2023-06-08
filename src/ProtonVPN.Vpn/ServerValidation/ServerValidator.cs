@@ -101,8 +101,8 @@ namespace ProtonVPN.Vpn.ServerValidation
                 return VpnError.ServerValidationError;
             }
 
-            string base64publicKey = _config.ServerValidationPublicKey;
-            if (string.IsNullOrWhiteSpace(base64publicKey))
+            string base64ServerValidationPublicKey = _config.ServerValidationPublicKey;
+            if (string.IsNullOrWhiteSpace(base64ServerValidationPublicKey))
             {
                 _logger.Error<DisconnectTriggerLog>($"The {nameof(_config.ServerValidationPublicKey)} " +
                     $"configuration is empty and it is therefore impossible to validate servers.");
@@ -110,7 +110,7 @@ namespace ProtonVPN.Vpn.ServerValidation
             }
 
             string serverValidationData = GetServerValidationData(host);
-            if (!_ed25519SignatureValidator.IsValid(serverValidationData, host.Signature, base64publicKey))
+            if (!_ed25519SignatureValidator.IsValid(serverValidationData, host.Signature, base64ServerValidationPublicKey))
             {
                 _logger.Error<DisconnectTriggerLog>($"The server with name '{host.Name}' and IP '{host.Ip}' " +
                     $"has an incorrect signature '{host.Signature}'.");
