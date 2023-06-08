@@ -18,6 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Definitions;
 
 namespace ProtonVPN.UI.Tests.Robots.Shell;
 
@@ -41,5 +42,5 @@ public partial class ShellRobot : UIActions
 
     protected Button AccountButton => ElementByAutomationId("AccountButton").AsButton();
 
-    protected Label ActivePageTitleLabel => ElementByAutomationId("PageTitleLabel").AsLabel();
+    protected Label ActivePageTitleLabel => NavigationView.FindFirstChild(c => c.ByControlType(ControlType.Text)).AsLabel();
 }

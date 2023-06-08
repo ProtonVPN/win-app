@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -32,9 +33,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <ScrollViewer Margin="0,0,-12,0"
-                  Padding="0,0,12,0"
-                  VerticalScrollBarVisibility="Auto">
+    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
+                                 PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 
@@ -101,5 +102,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
         </StackPanel>
-    </ScrollViewer>
+    </controls:PageContentControl>
 </Page>

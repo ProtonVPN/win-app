@@ -60,7 +60,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
     public override string? Title => Localizer.Get("Settings_Page_Title");
 
     public SettingsViewModel(IThemeSelectorService themeSelectorService, INavigationService navigationService, ILocalizationService localizationService)
-                            : base(navigationService)
+        : base(navigationService)
     {
         _themeSelectorService = themeSelectorService;
         _localizationService = localizationService;

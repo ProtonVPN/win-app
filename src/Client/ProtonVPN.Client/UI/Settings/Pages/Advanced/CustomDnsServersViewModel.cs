@@ -30,4 +30,6 @@ public class CustomDnsServersViewModel : PageViewModelBase
     }
 
     public override string? Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
+
+    public override bool IsBackEnabled => true;
 }

@@ -23,85 +23,91 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:models="using:ProtonVPN.Client.Models"
       x:Name="PageArea"
       mc:Ignorable="d">
 
-    <StackPanel x:Name="ContentArea"
-                Orientation="Vertical">
-        <Border Margin="0,0,0,24"
-                Padding="24,16"
-                x:DefaultBindMode="TwoWay"
-                BorderBrush="{StaticResource BorderWeakColorBrush}"
-                BorderThickness="1">
+    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
+                                 PageHeader="{x:Bind ViewModel.Title}">
 
-            <StackPanel Orientation="Vertical"
-                        Spacing="12">
-                <TextBox Header="Exit Country:"
-                         MaxLength="2"
-                         PlaceholderText="Country code"
-                         Text="{x:Bind ViewModel.ExitCountryCode, UpdateSourceTrigger=PropertyChanged}" 
-                         AutomationProperties.AutomationId="EntryCountryCodeTextBox"/>
-                <TextBox Header="City/State:"
-                         IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
-                         PlaceholderText="City/State name"
-                         Text="{x:Bind ViewModel.CityState}"
-                         AutomationProperties.AutomationId="CityStateTextBox" />
-                <TextBox Header="Server:"
-                         IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
-                         PlaceholderText="Server number"
-                         Text="{x:Bind ViewModel.ServerNumber}"
-                         AutomationProperties.AutomationId="ServerNumberTextBox" />
+        <StackPanel x:Name="ContentArea"
+                    Orientation="Vertical">
+            <Border Margin="0,0,0,24"
+                    Padding="24,16"
+                    x:DefaultBindMode="TwoWay"
+                    BorderBrush="{StaticResource BorderWeakColorBrush}"
+                    BorderThickness="1">
 
-                <StackPanel Orientation="Horizontal"
-                            Spacing="32">
-                    <ComboBox Width="160"
-                              Header="Features:"
-                              ItemsSource="{x:Bind ViewModel.Features, Mode=OneTime}"
-                              SelectedItem="{x:Bind ViewModel.SelectedFeature}" />
-                    <TextBox Width="160"
-                             Header="Entry Country:"
-                             IsEnabled="{x:Bind ViewModel.IsSecureCore, Mode=OneWay}"
+                <StackPanel Orientation="Vertical"
+                            Spacing="12">
+                    <TextBox AutomationProperties.AutomationId="EntryCountryCodeTextBox"
+                             Header="Exit Country:"
                              MaxLength="2"
                              PlaceholderText="Country code"
-                             Text="{x:Bind ViewModel.EntryCountryCode}" />
-                </StackPanel>
+                             Text="{x:Bind ViewModel.ExitCountryCode, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox AutomationProperties.AutomationId="CityStateTextBox"
+                             Header="City/State:"
+                             IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
+                             PlaceholderText="City/State name"
+                             Text="{x:Bind ViewModel.CityState}" />
+                    <TextBox AutomationProperties.AutomationId="ServerNumberTextBox"
+                             Header="Server:"
+                             IsEnabled="{x:Bind ViewModel.IsNotEmpty(ViewModel.ExitCountryCode), Mode=OneWay}"
+                             PlaceholderText="Server number"
+                             Text="{x:Bind ViewModel.ServerNumber}" />
 
-                <controls:DockPanel LastChildFill="False">
-                    <Button Margin="0,8,16,0"
-                            controls:DockPanel.Dock="Left"
-                            Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
-                            Content="Connect"
-                            Style="{StaticResource PrimaryButtonStyle}" 
-                            AutomationProperties.AutomationId="CountriesConnectButton"/>
-                    <Button Margin="0,8,16,0"
-                            controls:DockPanel.Dock="Left"
-                            Command="{x:Bind ViewModel.FreeConnectCommand, Mode=OneWay}"
-                            Content="Free Connect"
-                            AutomationProperties.AutomationId="CountriesFreeConnectButton" />
-                    <Button Margin="16,8,0,0"
-                            controls:DockPanel.Dock="Right"
-                            Command="{x:Bind ViewModel.SimulateManyConnectionsCommand, Mode=OneWay}"
-                            Content="Auto" 
-                            AutomationProperties.AutomationId="CountriesAutoConnectButton"/>
-                </controls:DockPanel>
-            </StackPanel>
-        </Border>
-        <ItemsControl ItemsSource="{x:Bind ViewModel.Countries}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"
-                                Spacing="8" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate x:DataType="models:Country">
-                    <Button Command="{Binding ViewModel.NavigateToCountryCommand, ElementName=PageArea}"
-                            CommandParameter="{x:Bind}"
-                            Content="{x:Bind CountryName}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="32">
+                        <ComboBox Width="160"
+                                  Header="Features:"
+                                  ItemsSource="{x:Bind ViewModel.Features, Mode=OneTime}"
+                                  SelectedItem="{x:Bind ViewModel.SelectedFeature}" />
+                        <TextBox Width="160"
+                                 Header="Entry Country:"
+                                 IsEnabled="{x:Bind ViewModel.IsSecureCore, Mode=OneWay}"
+                                 MaxLength="2"
+                                 PlaceholderText="Country code"
+                                 Text="{x:Bind ViewModel.EntryCountryCode}" />
+                    </StackPanel>
+
+                    <toolkit:DockPanel LastChildFill="False">
+                        <Button Margin="0,8,16,0"
+                                toolkit:DockPanel.Dock="Left"
+                                AutomationProperties.AutomationId="CountriesConnectButton"
+                                Command="{x:Bind ViewModel.ConnectCommand, Mode=OneWay}"
+                                Content="Connect"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                        <Button Margin="0,8,16,0"
+                                toolkit:DockPanel.Dock="Left"
+                                AutomationProperties.AutomationId="CountriesFreeConnectButton"
+                                Command="{x:Bind ViewModel.FreeConnectCommand, Mode=OneWay}"
+                                Content="Free Connect" />
+                        <Button Margin="16,8,0,0"
+                                toolkit:DockPanel.Dock="Right"
+                                AutomationProperties.AutomationId="CountriesAutoConnectButton"
+                                Command="{x:Bind ViewModel.SimulateManyConnectionsCommand, Mode=OneWay}"
+                                Content="Auto" />
+                    </toolkit:DockPanel>
+                </StackPanel>
+            </Border>
+            <ItemsControl ItemsSource="{x:Bind ViewModel.Countries}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"
+                                    Spacing="8" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:Country">
+                        <Button Command="{Binding ViewModel.NavigateToCountryCommand, ElementName=PageArea}"
+                                CommandParameter="{x:Bind}"
+                                Content="{x:Bind CountryName}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </controls:PageContentControl>
 </Page>

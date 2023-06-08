@@ -29,13 +29,18 @@ namespace ProtonVPN.Client.UI.Home;
 public partial class HomeViewModel : NavigationPageViewModelBase
 {
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsDetailsPaneInline))]
     private bool _isDetailsPaneOpen;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsDetailsPaneInline))]
+    private SplitViewDisplayMode _detailsPaneDisplayMode;
+
+    public bool IsDetailsPaneInline => IsDetailsPaneOpen && (DetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
 
     public override string? Title => Localizer.Get("Home_Page_Title");
 
     public override IconElement Icon { get; } = new House();
-
-    public override bool IsHeaderVisible => false;
 
     public HomeViewModel(INavigationService navigationService)
         : base(navigationService)

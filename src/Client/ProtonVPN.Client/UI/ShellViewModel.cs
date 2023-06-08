@@ -29,6 +29,9 @@ using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Settings;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Messages;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ProtonVPN.Client.UI;
 
@@ -85,5 +88,10 @@ public partial class ShellViewModel : ViewModelBase
     private void AddDebugPages()
     {
         NavigationPages.Add(App.GetService<GalleryViewModel>());
+    }
+
+    public void OnNavigationDisplayModeChanged(NavigationViewDisplayMode displayMode)
+    {
+        Messenger.Send(new NavigationDisplayModeChangedMessage(displayMode));
     }
 }

@@ -30,4 +30,6 @@ public class VpnLogsViewModel : PageViewModelBase
     }
 
     public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
+
+    public override bool IsBackEnabled => true;
 }

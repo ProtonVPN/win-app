@@ -19,32 +19,41 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Messages;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class PageViewModelBase : ViewModelBase, INavigationAware
+public abstract partial class PageViewModelBase : ViewModelBase, INavigationAware, IRecipient<NavigationDisplayModeChangedMessage>
 {
+    [ObservableProperty]
+    private bool _isNavigationPaneCollapsed;
+
     public PageViewModelBase(INavigationService navigationService)
     {
         NavigationService = navigationService;
+        IsActive = true;
     }
 
     public Type PageType => GetType();
 
     public virtual string? Title { get; }
 
-    public virtual bool CanGoBack => true;
-
-    public virtual bool IsHeaderVisible => true;
+    public virtual bool IsBackEnabled => false;
 
     protected INavigationService NavigationService { get; }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanGoBack))]
     public void GoBack()
     {
         NavigationService.GoBack();
+    }
+
+    public bool CanGoBack()
+    {
+        return IsBackEnabled;
     }
 
     [RelayCommand]
@@ -54,14 +63,10 @@ public abstract partial class PageViewModelBase : ViewModelBase, INavigationAwar
     }
 
     public virtual void OnNavigatedFrom()
-    {
-        IsActive = false;
-    }
+    { }
 
     public virtual void OnNavigatedTo(object parameter)
-    {
-        IsActive = true;
-    }
+    { }
 
     public void InvalidateTitle()
     {
@@ -71,5 +76,10 @@ public abstract partial class PageViewModelBase : ViewModelBase, INavigationAwar
     protected override void OnLanguageChanged()
     {
         InvalidateTitle();
+    }
+
+    public void Receive(NavigationDisplayModeChangedMessage message)
+    {
+        IsNavigationPaneCollapsed = message.Value == NavigationViewDisplayMode.Minimal;
     }
 }

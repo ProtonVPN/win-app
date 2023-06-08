@@ -34,6 +34,9 @@ public sealed partial class DualCommandsRowControl : UserControl
     public static readonly DependencyProperty RowContentProperty =
         DependencyProperty.Register(nameof(RowContent), typeof(UIElement), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty IsRowContentDisabledProperty =
+        DependencyProperty.Register(nameof(IsRowContentDisabled), typeof(bool), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+
     public static readonly DependencyProperty PrimaryCommandProperty =
         DependencyProperty.Register(nameof(PrimaryCommand), typeof(ICommand), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
@@ -68,6 +71,12 @@ public sealed partial class DualCommandsRowControl : UserControl
     {
         get => (UIElement)GetValue(RowContentProperty);
         set => SetValue(RowContentProperty, value);
+    }
+
+    public bool IsRowContentDisabled
+    {
+        get => (bool)GetValue(IsRowContentDisabledProperty);
+        set => SetValue(IsRowContentDisabledProperty, value);
     }
 
     public ICommand PrimaryCommand

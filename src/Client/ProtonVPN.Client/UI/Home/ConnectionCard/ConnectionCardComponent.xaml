@@ -143,7 +143,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Button Grid.Column="0"
                     Command="{x:Bind ViewModel.ShowConnectionDetailsCommand}"
-                    Style="{StaticResource ConnectionDetailsButtonStyle}">
+                    Style="{StaticResource ConnectionDetailsButtonStyle}"
+                    x:Name="ConnectionDetailsButton">
                 <toolkit:DockPanel>
                     <controls:CountryFlagControl Width="30"
                                                  Margin="4,0,0,0"
@@ -231,5 +232,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         AutomationProperties.AutomationId="ConnectionCardDisconnectButton"/>
             </Grid>
         </Grid>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="MaintenanceStates">
+                <VisualState x:Name="UnderMaintenance">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsServerUnderMaintenance, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ConnectionDetailsButton.Opacity" Value="0.6"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Normal" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </StackPanel>
 </UserControl>

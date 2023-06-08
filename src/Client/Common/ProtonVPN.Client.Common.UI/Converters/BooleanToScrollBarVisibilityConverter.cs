@@ -18,20 +18,20 @@
  */
 
 using System;
-using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 
 namespace ProtonVPN.Client.Common.UI.Converters;
 
-public class NotBoolToVisibilityConverter : IValueConverter
+public class BooleanToScrollBarVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        if (value is bool boolValue)
-        {
-            return boolValue ? Visibility.Collapsed : Visibility.Visible;
-        }
-        return Visibility.Collapsed;
+        bool boolValue = System.Convert.ToBoolean(value);
+
+        return boolValue
+            ? ScrollBarVisibility.Auto
+            : ScrollBarVisibility.Disabled;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)

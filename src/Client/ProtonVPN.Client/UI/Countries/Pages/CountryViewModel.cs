@@ -37,6 +37,8 @@ public partial class CountryViewModel : PageViewModelBase
 
     public override string? Title => CurrentCountry?.CountryName;
 
+    public override bool IsBackEnabled => true;
+
     public override void OnNavigatedTo(object parameter)
     {
         base.OnNavigatedTo(parameter);
