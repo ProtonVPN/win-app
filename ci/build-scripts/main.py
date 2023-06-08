@@ -4,7 +4,6 @@ import os
 import argparse
 import win32api
 import config
-import signing
 import installer
 import ssh
 import guest_hole_server_loader
@@ -74,11 +73,8 @@ elif args.command == 'lint-languages':
         print("\n".join([str(file) for file in errors]))
     sys.exit(code)
 
-elif args.command == 'sign':
-    signing.sign()
-
 elif args.command == 'app-installer':
-    v = win32api.GetFileVersionInfo('.\\src\\bin\ProtonVPN.exe', '\\')
+    v = win32api.GetFileVersionInfo('.\\src\\bin\\ProtonVPN.exe', '\\')
     semVersion = "%d.%d.%d" % (v['FileVersionMS'] / 65536, v['FileVersionMS'] % 65536, v['FileVersionLS'] / 65536)
     print('Building app installer')
     err = installer.build(semVersion, args.hash, 'Setup/setup.iss')
@@ -104,7 +100,4 @@ elif args.command == 'update-gh-list':
 
 elif args.command == 'send-slack-notification':
     print('Sending installer file to slack')
-    channel = os.environ.get("SLACK_CHANNEL_ID")
-    if os.environ.get("CI_COMMIT_BRANCH") == 'redesign':
-        channel = os.environ.get("REDESIGN_SLACK_CHANNEL_ID")
-    slack.send(channel)
+    slack.send()
