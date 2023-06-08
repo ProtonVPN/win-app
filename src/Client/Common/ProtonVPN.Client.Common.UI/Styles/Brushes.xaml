@@ -22,7 +22,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--  Brushes  -->
-
+    
+    <!--  Transparent  -->
+    <SolidColorBrush x:Key="TransparentColorBrush"
+                     Color="Transparent" />
     <!--  Primary  -->
     <SolidColorBrush x:Key="PrimaryColorBrush"
                      Color="{ThemeResource PrimaryColor}" />
@@ -130,4 +133,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
     <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush"
                      Color="{ThemeResource BackgroundWeakActiveColor}" />
+
+    <!-- Acrylic Brushes -->
+    
+    <!--  Pane Overlay  -->
+    <AcrylicBrush x:Key="PaneOverlayBackgroundBrush"
+                  FallbackColor="{ThemeResource BackgroundNormColor}"
+                  TintColor="{ThemeResource BackgroundNormColor}"
+                  TintOpacity="0.6" />
+    
 </ResourceDictionary>

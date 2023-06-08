@@ -17,32 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Contracts.Services;
-using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.Models;
+using System;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
 
-namespace ProtonVPN.Client.UI.Countries.Pages;
+namespace ProtonVPN.Client.Common.UI.Converters;
 
-public partial class CountryViewModel : PageViewModelBase
+public class NotBooleanToVisibilityConverter : IValueConverter
 {
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Title))]
-    private Country? _currentCountry;
-
-    public CountryViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
+        if (value is bool boolValue)
+        {
+            return boolValue ? Visibility.Collapsed : Visibility.Visible;
+        }
+        return Visibility.Collapsed;
     }
 
-    public override string? Title => CurrentCountry?.CountryName;
-
-    public override bool IsBackEnabled => true;
-
-    public override void OnNavigatedTo(object parameter)
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        base.OnNavigatedTo(parameter);
-
-        CurrentCountry = parameter as Country;
+        throw new NotImplementedException();
     }
 }

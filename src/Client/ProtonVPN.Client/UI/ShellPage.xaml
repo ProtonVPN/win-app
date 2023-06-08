@@ -23,7 +23,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
-      xmlns:helpers="using:ProtonVPN.Client.Helpers"
+      xmlns:helpers="using:ProtonVPN.Client.Helpers" 
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
       Loaded="OnLoaded">
 
@@ -31,19 +32,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <helpers:IsHeaderVisibleToPaneContentMarginConverter x:Key="IsHeaderVisibleToPaneContentMarginConverter"
                                                              DefaultPaneContentMargin="16" />
 
+        <x:Double x:Key="TitleBarHeight">48.0</x:Double>
+        <Thickness x:Key="TitleBarMargin">48,0,128,0</Thickness>
+        
         <Thickness x:Key="NavigationViewHeaderMargin">16,16,16,0</Thickness>
         <Thickness x:Key="NavigationViewContentMargin">0,45,0,0</Thickness>
         <Thickness x:Key="NavigationViewItemContentPresenterMargin">4,-1,8,-1</Thickness>
         <Thickness x:Key="NavigationViewItemOnLeftIconBoxMargin">2,0,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
 
-        <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="BackgroundNormColorBrush" />
-        <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="BorderWeakColorBrush" />
+        <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="TransparentColorBrush" />
+        <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="TransparentColorBrush" />
+
+        <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="PaneOverlayBackgroundBrush" />
     </Page.Resources>
 
     <Grid x:Name="page">
         <Grid x:Name="AppTitleBar"
-              Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+              Height="{StaticResource TitleBarHeight}"
+              Margin="{StaticResource TitleBarMargin}"
               VerticalAlignment="Top"
               Canvas.ZIndex="1"
               IsHitTestVisible="True">
@@ -58,23 +65,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        AutomationProperties.AutomationId="ApplicationTitleLabel"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        TextWrapping="NoWrap" />
-        </Grid>
+        </Grid>       
+        
         <NavigationView x:Name="NavigationViewControl"
-                        AlwaysShowHeader="{Binding Header.IsHeaderVisible, RelativeSource={RelativeSource Mode=Self}}"
+                        AlwaysShowHeader="False"
                         AutomationProperties.AutomationId="NavigationView"
                         Canvas.ZIndex="0"
                         CompactModeThresholdWidth="408"
                         CompactPaneLength="48"
-                        DisplayModeChanged="OnNavigationViewControlDisplayModeChanged"
                         ExpandedModeThresholdWidth="520"
-                        Header="{x:Bind ViewModel.CurrentPage, Mode=OneWay}"
                         IsBackButtonVisible="Collapsed"
                         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                         IsPaneToggleButtonVisible="True"
                         IsSettingsVisible="False"
                         MenuItemsSource="{x:Bind ViewModel.NavigationPages}"
                         OpenPaneLength="160"
-                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}">
+                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}"
+                        DisplayModeChanged="OnNavigationViewDisplayModeChanged">
 
             <NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
@@ -84,25 +91,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         AutomationProperties.AutomationId="NavigationViewItem" />
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
-
-            <NavigationView.HeaderTemplate>
-                <DataTemplate x:DataType="bases:PageViewModelBase">
-                    <StackPanel Orientation="Horizontal">
-                        <Button AutomationProperties.AutomationId="GoBackButton"
-                                Margin="0,4,16,0"
-                                Padding="4"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                Command="{x:Bind GoBackCommand}"
-                                Visibility="{x:Bind CanGoBack}">
-                            <pathicons:ArrowLeft />
-                        </Button>
-                        <TextBlock AutomationProperties.AutomationId="PageTitleLabel" 
-                                   Style="{ThemeResource TitleTextBlockStyle}"
-                                   Text="{x:Bind Title, Mode=OneWay}" />
-                    </StackPanel>
-                </DataTemplate>
-            </NavigationView.HeaderTemplate>
 
             <NavigationView.PaneFooter>
                 <Button HorizontalContentAlignment="Center"
@@ -126,8 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Button>
             </NavigationView.PaneFooter>
 
-            <Frame x:Name="NavigationFrame"
-                   Margin="{Binding Header.IsHeaderVisible, ElementName=NavigationViewControl, Converter={StaticResource IsHeaderVisibleToPaneContentMarginConverter}}" />
+            <Frame x:Name="NavigationFrame"/>
         </NavigationView>
     </Grid>
 </Page>

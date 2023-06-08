@@ -25,30 +25,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
 
+    <!-- Warning: Having each run on a new line creates a space in the textblock -->
     <Grid>
-
         <!--  This text block is hidden and is only use to preserve the block size when the scrambling animation starts  -->
         <TextBlock Margin="4,0"
                    HorizontalAlignment="Center"
                    Opacity="0"
                    Style="{StaticResource BodyStrongTextBlockStyle}">
-            <Run Text="{x:Bind Country, Mode=OneWay}" />
-            <Run Text="•" />
-            <Run FontWeight="{StaticResource BodyFontWeight}"
-                 Foreground="{StaticResource TextWeakColorBrush}"
-                 Text="{x:Bind IpAddress, Mode=OneWay}" />
+            <Run Text="{x:Bind Country, Mode=OneWay}" /><Run x:Name="PART_HiddenSeparator" /><Run FontWeight="{StaticResource BodyFontWeight}"
+                                                                                                  Foreground="{StaticResource TextWeakColorBrush}"
+                                                                                                  Text="{x:Bind IpAddress, Mode=OneWay}" />
         </TextBlock>
 
         <TextBlock Margin="-4,0"
                    HorizontalAlignment="Center"
                    Style="{StaticResource BodyStrongTextBlockStyle}">
-            <Run x:Name="PART_ScrambledCountry"
-                 AutomationProperties.AutomationId="UserCountryLabel" />
-            <Run Text="•" />
-            <Run x:Name="PART_ScrambledIpAddress"
-                 FontWeight="{StaticResource BodyFontWeight}"
-                 Foreground="{StaticResource TextWeakColorBrush}"
-                 AutomationProperties.AutomationId="UserIpAddressLabel"  />
+            <Run x:Name="PART_ScrambledCountry" /><Run x:Name="PART_Separator" /><Run x:Name="PART_ScrambledIpAddress" 
+                                                                                      FontWeight="{StaticResource BodyFontWeight}"
+                                                                                      Foreground="{StaticResource TextWeakColorBrush}" />
         </TextBlock>
     </Grid>
 </UserControl>

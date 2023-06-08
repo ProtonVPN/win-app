@@ -44,9 +44,11 @@ public partial class VpnStatusViewModel : ViewModelBase, IRecipient<ConnectionSt
     private ConnectionStatus _currentConnectionStatus;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsUserLocationUnknown))]
     private string? _userCountry;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsUserLocationUnknown))]
     private string? _userIpAddress;
 
     [ObservableProperty]
@@ -65,6 +67,9 @@ public partial class VpnStatusViewModel : ViewModelBase, IRecipient<ConnectionSt
     public bool IsNetShieldStatVisible => IsConnected && IsNetShieldStatEnabled;
 
     public bool IsTitleVisible => !string.IsNullOrEmpty(Title);
+
+    public bool IsUserLocationUnknown => string.IsNullOrEmpty(UserCountry) && string.IsNullOrEmpty(UserIpAddress);
+
 
     public string Subtitle =>
         CurrentConnectionStatus switch

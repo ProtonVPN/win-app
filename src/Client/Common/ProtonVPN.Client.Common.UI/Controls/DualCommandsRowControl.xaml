@@ -76,7 +76,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Style="{StaticResource RowButtonStyle}"
                 ToolTipService.ToolTip="{x:Bind PrimaryCommandToolTip}" />
 
-        <ContentPresenter Grid.Column="0"
+        <ContentPresenter x:Name="RowContentContainer" 
+                          Grid.Column="0"
                           Margin="{StaticResource RowContentMargin}"
                           VerticalAlignment="Center"
                           Content="{x:Bind RowContent}"
@@ -154,6 +155,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NoneFocused" />
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="DisablingStates">
+                <VisualState x:Name="RowContentDisabled">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind IsRowContentDisabled}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RowContentContainer.Opacity" Value="0.6" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="RowContentEnabled" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

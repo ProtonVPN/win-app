@@ -371,7 +371,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
 
         private void OpenProtonRedesignAction()
         {
-            string applicationExe = "ProtonVPN.Gui.exe";
+            string applicationExe = "ProtonVPN.Client.exe";
             try
             {
                 Process.Start(applicationExe);

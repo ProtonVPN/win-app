@@ -23,8 +23,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:winui="using:CommunityToolkit.WinUI.UI"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:connectionCard="using:ProtonVPN.Client.UI.Home.ConnectionCard"
       xmlns:map="using:ProtonVPN.Client.UI.Home.Map"
@@ -34,13 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Page.Resources>
         <ResourceDictionary>
-            <AcrylicBrush x:Key="ConnectionDetailsBackgroundBrush"
-                          FallbackColor="{ThemeResource BackgroundNormColor}"
-                          TintColor="{ThemeResource BackgroundNormColor}"
-                          TintOpacity="0.6" />
-
-            <x:Double x:Key="MinimumDetailsPaneWidth">260</x:Double>
-            <x:Double x:Key="MaximumDetailsPaneWidth">460</x:Double>
+            <x:Double x:Key="DetailsPaneWidth">260</x:Double>
 
             <helpers:SliderValueToMarginConverter x:Key="SliderValueToMarginConverter"
                                                   MaximumValue="{StaticResource MaximumDetailsPaneWidth}"
@@ -57,22 +51,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    BorderThickness="0"
                    CornerRadius="4,0,0,4"
                    IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
-                   OpenPaneLength="{Binding Value, ElementName=MasterSlider, Mode=OneWay}"
-                   PaneBackground="{StaticResource ConnectionDetailsBackgroundBrush}"
+                   DisplayMode="{x:Bind ViewModel.DetailsPaneDisplayMode, Mode=TwoWay}"
+                   OpenPaneLength="{StaticResource DetailsPaneWidth}"
+                   PaneBackground="{StaticResource PaneOverlayBackgroundBrush}"
                    PanePlacement="Right">
             <SplitView.Pane>
                 <Grid Name="PaneGrid">
-                    <Slider Name="MasterSlider"
-                            Width="200"
-                            Margin="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource SliderValueToMarginConverter}}"
-                            VerticalAlignment="Stretch"
-                            winui:FrameworkElementExtensions.Cursor="SizeWestEast"
-                            IsDirectionReversed="True"
-                            Maximum="460"
-                            Minimum="{StaticResource MinimumDetailsPaneWidth}"
-                            Opacity="0"
-                            Value="360" />
-
                     <Grid Margin="10,0,0,0"
                           Padding="14,24,24,24"
                           Background="Transparent">
@@ -83,9 +67,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Button Padding="4"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
+                                AutomationProperties.AutomationId="CloseDetailsPaneButton"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
-                                AutomationProperties.AutomationId="CloseDetailsPaneButton" 
                                 Command="{x:Bind ViewModel.CloseDetailsPaneCommand}">
                             <pathicons:Cross />
                         </Button>
@@ -93,33 +77,65 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid>
             </SplitView.Pane>
 
-            <Grid Margin="0,0,0,16">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <controls:PageContentControl x:Name="PageContainer"
+                                         Padding="0,0,0,16"
+                                         CanContentScroll="False"
+                                         IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
+                    <Grid Grid.Row="0">
 
-                    <map:MapComponent AutomationProperties.AutomationId="MapComponent" />
+                        <map:MapComponent AutomationProperties.AutomationId="MapComponent" />
 
-                    <vpnStatusComponent:VpnStatusComponent Grid.Row="0"
-                                                           AutomationProperties.AutomationId="VpnStatusComponent" />
+                        <vpnStatusComponent:VpnStatusComponent Grid.Row="0"
+                                                               AutomationProperties.AutomationId="VpnStatusComponent" />
 
-                    <Border Height="{StaticResource MapOverlayGradientHeight}"
-                            VerticalAlignment="Bottom"
-                            Background="{StaticResource ReverseGradientFadingColorBrush}" />
+                        <Border Height="{StaticResource MapOverlayGradientHeight}"
+                                VerticalAlignment="Bottom"
+                                Background="{StaticResource ReverseGradientFadingColorBrush}" />
+                    </Grid>
+
+                    <connectionCard:ConnectionCardComponent Grid.Row="1"
+                                                            MaxWidth="{StaticResource MaximumContentWidth}"
+                                                            AutomationProperties.AutomationId="ConnectionCardComponent" />
+
+                    <recents:RecentsComponent Grid.Row="2"
+                                              MaxWidth="{StaticResource MaximumContentWidth}"
+                                              AutomationProperties.AutomationId="RecentsComponent" />
                 </Grid>
-
-                <connectionCard:ConnectionCardComponent Grid.Row="1"
-                                                        MaxWidth="{StaticResource MaximumContentWidth}"
-                                                        AutomationProperties.AutomationId="ConnectionCardComponent" />
-
-                <recents:RecentsComponent Grid.Row="2"
-                                          MaxWidth="{StaticResource MaximumContentWidth}"
-                                          AutomationProperties.AutomationId="RecentsComponent" />
-            </Grid>
+            </controls:PageContentControl>
         </SplitView>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="PaneDisplayModes">
+                <VisualState x:Name="Inline">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDetailsPaneInline, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplitViewArea.PaneBackground" Value="Transparent" />
+                        <Setter Target="SplitViewArea.CornerRadius" Value="0" />
+                        <Setter Target="PageContainer.CornerRadius" Value="8,8,0,0" />
+                        <Setter Target="PageContainer.BorderThickness" Value="1,1,1,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="NavigationDisplayModes">
+                <VisualState x:Name="Minimal">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplitViewArea.Margin" Value="0,45,0,0" />
+                        <Setter Target="PageContainer.Margin" Value="0,-45,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

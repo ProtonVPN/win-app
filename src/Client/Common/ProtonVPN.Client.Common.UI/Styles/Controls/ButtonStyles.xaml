@@ -245,21 +245,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <BrushTransition Duration="0:0:0.083" />
                         </Grid.BackgroundTransition>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
                         <Border x:Name="Indicator"
                                 Width="3"
                                 Height="16"
                                 VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
                                 Background="{StaticResource PrimaryColorBrush}"
                                 CornerRadius="1.5"
                                 Opacity="0" />
 
-                        <ContentPresenter Grid.Column="1"
-                                          Padding="{TemplateBinding Padding}"
+                        <ContentPresenter Padding="{TemplateBinding Padding}"
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                           AutomationProperties.AccessibilityView="Raw"

@@ -26,6 +26,8 @@ namespace ProtonVPN.Client.Common.UI.Controls;
 
 [TemplatePart(Name = "PART_ScrambledCountry", Type = typeof(Run))]
 [TemplatePart(Name = "PART_ScrambledIpAddress", Type = typeof(Run))]
+[TemplatePart(Name = "PART_Separator", Type = typeof(Run))]
+[TemplatePart(Name = "PART_HiddenSeparator", Type = typeof(Run))]
 public sealed partial class UserLocationControl
 {
     public static readonly DependencyProperty CountryProperty =
@@ -44,6 +46,7 @@ public sealed partial class UserLocationControl
         DependencyProperty.Register(nameof(IsScrambling), typeof(bool), typeof(UserLocationControl), new PropertyMetadata(default, OnIsScramblingPropertyChanged));
 
     private const char SCRAMBLING_CHAR = '*';
+    private const string SEPARATOR_STRING = " • ";
 
     private const int SCRAMBLING_TIMER_INTERVAL_IN_MS = 50;
     private readonly Random _random = new();
@@ -96,6 +99,7 @@ public sealed partial class UserLocationControl
         if (d is UserLocationControl ulc)
         {
             ulc.PART_ScrambledCountry.Text = ulc.Country ?? string.Empty;
+            ulc.InvalidateSeparator();
         }
     }
 
@@ -104,6 +108,7 @@ public sealed partial class UserLocationControl
         if (d is UserLocationControl ulc)
         {
             ulc.PART_ScrambledIpAddress.Text = ulc.IpAddress ?? string.Empty;
+            ulc.InvalidateSeparator();
         }
     }
 
@@ -186,5 +191,15 @@ public sealed partial class UserLocationControl
         {
             _scramblingTimer.Stop();
         }
+    }
+
+    private void InvalidateSeparator()
+    {
+        string separator = string.IsNullOrEmpty(Country) || string.IsNullOrEmpty(IpAddress)
+            ? string.Empty
+            : SEPARATOR_STRING;
+
+        PART_HiddenSeparator.Text = separator;
+        PART_Separator.Text = separator;
     }
 }

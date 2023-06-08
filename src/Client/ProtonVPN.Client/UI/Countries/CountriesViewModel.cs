@@ -45,13 +45,13 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     private string _exitCountryCode;
 
     [ObservableProperty]
-    private string _entryCountryCode;
+    private string? _entryCountryCode;
 
     [ObservableProperty]
-    private string _cityState;
+    private string? _cityState;
 
     [ObservableProperty]
-    private string _serverNumber;
+    private string? _serverNumber;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsSecureCore))]
@@ -72,6 +72,8 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     {
         _connectionService = connectionService;
         _recentConnectionsProvider = recentConnectionsProvider;
+
+        _exitCountryCode = string.Empty;
 
         Countries = new ObservableCollection<Country>()
         {

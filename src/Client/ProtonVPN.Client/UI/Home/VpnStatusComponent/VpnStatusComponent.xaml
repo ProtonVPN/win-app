@@ -112,7 +112,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Padding="8,4"
                             HorizontalAlignment="Center"
                             Background="{StaticResource VpnStatusDetailsBackgroundBrush}"
-                            CornerRadius="4">
+                            CornerRadius="4"
+                            Visibility="{x:Bind ViewModel.IsUserLocationUnknown, Converter={StaticResource NotBooleanToVisibilityConverter}, Mode=OneWay}">
                         <controls:UserLocationControl Country="{x:Bind ViewModel.UserCountry, Mode=OneWay}"
                                                       IpAddress="{x:Bind ViewModel.UserIpAddress, Mode=OneWay}"
                                                       IsLocationHidden="{x:Bind ViewModel.IsConnected, Mode=OneWay}"

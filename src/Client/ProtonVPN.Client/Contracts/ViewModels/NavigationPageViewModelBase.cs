@@ -28,9 +28,7 @@ public abstract partial class NavigationPageViewModelBase : PageViewModelBase
         : base(navigationService)
     { }
 
-    public virtual IconElement Icon { get; }
-
-    public override bool CanGoBack => false;
+    public abstract IconElement Icon { get; }
 
     public virtual bool IsHostFor(PageViewModelBase? page)
     {

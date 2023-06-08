@@ -17,19 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services;
-using ProtonVPN.Client.Contracts.ViewModels;
+using CommunityToolkit.Mvvm.Messaging.Messages;
+using Microsoft.UI.Xaml.Controls;
 
-namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
-
-public class CustomDnsServersViewModel : PageViewModelBase
+namespace ProtonVPN.Client.Messages
 {
-    public CustomDnsServersViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public class NavigationDisplayModeChangedMessage : ValueChangedMessage<NavigationViewDisplayMode>
     {
+        public NavigationDisplayModeChangedMessage(NavigationViewDisplayMode value) 
+            : base(value)
+        {
+        }
     }
-
-    public override string? Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
-
-    public override bool IsBackEnabled => true;
 }

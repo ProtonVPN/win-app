@@ -123,14 +123,9 @@ public partial class RecentItemViewModel : ViewModelBase
         return IsPinned;
     }
 
-    [RelayCommand(CanExecute = nameof(CanRemove))]
+    [RelayCommand]
     private void Remove()
     {
         _recentConnectionsProvider.Remove(_recentConnection);
-    }
-
-    private bool CanRemove()
-    {
-        return !IsActiveConnection;
     }
 }

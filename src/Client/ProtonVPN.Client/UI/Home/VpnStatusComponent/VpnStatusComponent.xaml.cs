@@ -19,27 +19,21 @@
 
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Input;
-using ProtonVPN.Api.Contracts.Geographical;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Core.Servers;
-using ProtonVPN.Core.Servers.Models;
-using ProtonVPN.Core.Users;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Client.UI.Home.VpnStatusComponent;
 
 public sealed partial class VpnStatusComponent
 {
+    public VpnStatusViewModel ViewModel { get; }
+
     public VpnStatusComponent()
     {
         ViewModel = App.GetService<VpnStatusViewModel>();
 
         InitializeComponent();
     }
-
-    public VpnStatusViewModel ViewModel { get; }
 
     #region Simulation
 
@@ -52,24 +46,33 @@ public sealed partial class VpnStatusComponent
     /// This code is only meant for testing purposes
     private void ShuffleUserLocation()
     {
-        List<string> countries = new()
-        {
-            "France",
-            "Italy",
-            "Lithuania",
-            "Poland",
-            "Portugal",
-            "Spain",
-            "Switzerland",
-            "Sweden",
-        };
-
         Random random = new();
 
+        List<string> countries = new()
+                {
+                    "France",
+                    "Italy",
+                    "Lithuania",
+                    "Poland",
+                    "Portugal",
+                    "Spain",
+                    "Switzerland",
+                    "Sweden",
+                };
+
+        // Generate random user location
         string ipAddress = $"{random.Next(255)}.{random.Next(255)}.{random.Next(255)}.{random.Next(255)}";
         string country = countries.ElementAt(random.Next(countries.Count));
 
-        WeakReferenceMessenger.Default.Send(new UserLocationChangedMessage(new UserLocation(ipAddress, string.Empty, country)));
+        // Simulate unknown user location
+        UserLocation userLocation = random.Next(10) switch
+        {
+            0 => new UserLocation(string.Empty, string.Empty, string.Empty),// Simulate unknown user location
+            1 => new UserLocation(ipAddress, string.Empty, string.Empty),// Simulate unknown country location but known ip
+            2 => new UserLocation(string.Empty, string.Empty, country),// Simulate unknown ip but known country location
+            _ => new UserLocation(ipAddress, string.Empty, country),
+        };
+        WeakReferenceMessenger.Default.Send(new UserLocationChangedMessage(userLocation));
     }
 
     #endregion Simulation
