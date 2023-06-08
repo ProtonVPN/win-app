@@ -26,15 +26,18 @@ using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
 using FlaUI.UIA3;
+using Microsoft.Win32;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.TestsHelper;
-using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
     public class TestSession
     {
+        private const int MAX_APP_START_TRIES = 10;
+        private const string CLIENT_NAME = "ProtonVPN.Client.exe";
+
         protected static Application App;
         protected static Application Service;
         protected static Window Window;
@@ -57,19 +60,8 @@ namespace ProtonVPN.UI.Tests
         {
             
             SaveScreenshotAndLogsIfFailed();
-            //VPNServiceHelper serviceHelper = new VPNServiceHelper();
-            //serviceHelper.Disconnect().GetAwaiter().GetResult();
             App.Close();
             App.Dispose();
-            /*try
-            {
-                ServiceController service = new ServiceController("ProtonVPN Service");
-                service.Stop();
-            }
-            catch (InvalidOperationException)
-            {
-                //Ignore because service might not be started.
-            }*/
         }
 
         protected static void RefreshWindow()
@@ -81,7 +73,7 @@ namespace ProtonVPN.UI.Tests
                     {
                         Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
                     }
-                    catch (System.TimeoutException)
+                    catch (TimeoutException)
                     {
                         //Ignore
                     }
@@ -95,38 +87,50 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void LaunchApp() 
+        protected static void LaunchApp()
         {
-            string pathToExe = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\ProtonVPN.exe";
-            string version = FileVersionInfo.GetVersionInfo(pathToExe).FileVersion;
-            version = "v" + version.Substring(0, version.Length -2);
-            string installedClientPath = Path.Combine(TestConstants.AppFolderPath, version, "ProtonVPN.Client.exe");
+            string versionFolder = $"v{GetAppVersion()}";
+            string installedClientPath = Path.Combine(TestConstants.AppFolderPath, versionFolder, CLIENT_NAME);
 
-            const int MAX_TRIES = 10;
             int retriesCounter = 0;
-            while(!File.Exists(installedClientPath) && retriesCounter < MAX_TRIES)
+            while (!File.Exists(installedClientPath) && retriesCounter < MAX_APP_START_TRIES)
             {
                 Thread.Sleep(1000);
                 retriesCounter++;
             }
 
-            if(retriesCounter >= MAX_TRIES)
+            if (retriesCounter >= MAX_APP_START_TRIES)
             {
                 Assert.Fail($"Path to '{installedClientPath}' cannot be found");
                 return;
             }
 
             App = Application.Launch(installedClientPath);
+            RefreshWindow();
+            Window.WaitUntilClickable();
+            Window.Focus();
+        }
+
+        private static string GetAppVersion()
+        {
+            string registryKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
+            RegistryKey localMachineRegistry = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            RegistryKey key = localMachineRegistry.OpenSubKey(registryKeyPath);
+
+            object displayVersionObject = key?.GetValue("DisplayVersion");
+            return displayVersionObject?.ToString();
         }
 
         protected static void LaunchDevelopmentApp()
         {
             string executingAssemblyFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string applicationName = "ProtonVPN.Client.exe";
 
-            string applicationPath = Path.Combine(executingAssemblyFolderPath, applicationName);
+            string applicationPath = Path.Combine(executingAssemblyFolderPath, CLIENT_NAME);
 
             App = Application.Launch(applicationPath);
+            RefreshWindow();
+            Window.WaitUntilClickable();
+            Window.Focus();
         }
 
         protected static void KillProtonVpnProcess()

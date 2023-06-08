@@ -17,8 +17,6 @@
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 
-#include "CodeDependencies.iss"
-
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -44,14 +42,13 @@ VersionInfoVersion={#MyAppVersion}
 AppCopyright=© 2023 {#MyPublisher}
 SignTool=signtool sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /td SHA256 /fd SHA256 $f
 
+#include "CodeDependencies.iss"
+
 [Messages]
 SetupWindowTitle={#MyAppName}
 
 [Files]
-Source: "..\src\bin\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
-Source: "..\src\bin\ProtonVPN.Launcher.dll"; DestDir: "{app}"; Flags: signonce;
-Source: "..\src\bin\ProtonVPN.Launcher.deps.json"; DestDir: "{app}";
-Source: "..\src\bin\ProtonVPN.Launcher.runtimeconfig.json"; DestDir: "{app}";
+Source: "..\src\bin\win-x64\publish\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
 Source: "..\src\ProtonVPN.NativeHost\bin\ProtonVPN.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.NativeHost\bin\nethost.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\bin\ProtonVPN.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
