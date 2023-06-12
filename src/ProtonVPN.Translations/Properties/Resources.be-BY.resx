@@ -324,7 +324,7 @@
     <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
   </data>
   <data name="App_mnu_Exit">
-    <value>Выйсці</value>
+    <value>Выйсці з праграмы</value>
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Выйсці</value>
+    <value>Выйсці з уліковага запісу</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -1684,7 +1684,7 @@
     <value>Скасаваць</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit">
-    <value>Выйсці</value>
+    <value>Выхад</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Вы сапраўды хочаце працягнуць?</value>
@@ -1977,7 +1977,7 @@
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
-    <value>Запускаць і падключацца пры загрузцы</value>
+    <value>Запускаць і падключацца пры загрузцы АС</value>
   </data>
   <data name="Login_lbl_StartWithWindows">
     <value>Запускаць разам з Windows</value>
@@ -2245,7 +2245,7 @@
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Профіль не можа быць захаваны:</value>
+    <value>Немагчыма захаваць профіль:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
@@ -2341,7 +2341,7 @@
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Стварыць профіль</value>
+    <value>Стварэнне профілю</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
@@ -2459,7 +2459,7 @@
     <value>Перанакіраванне партоў уключана</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core выключана</value>
+    <value>Secure Core выключаны</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
     <value>Secure Core уключаны</value>
@@ -2724,7 +2724,7 @@
     <value>Перанакіраванне партоў</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Спалучэнне клавіш для перанакіравання партоў</value>
+    <value>Спалучэнні клавіш для перанакіравання партоў</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
     <value>Доступ да налад перанакіравання партоў з хуткіх налад</value>
@@ -2873,7 +2873,7 @@
     <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartOnBoot">
-    <value>Запускаць пры загрузцы</value>
+    <value>Запускаць пры загрузцы АС</value>
     <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
@@ -3079,11 +3079,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>у вобласці апавяшчэнняў</value>
+    <value>ў вобласць апавяшчэнняў</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>на панэлі задач</value>
+    <value>на панэль задач</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
