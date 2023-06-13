@@ -43,7 +43,7 @@ namespace ProtonVPN.Launcher
 
             if (latestVersion > new Version(0, 0, 0))
             {
-                Process.Start($"v{latestVersion}\\ProtonVPN.exe", args);
+                Process.Start($"v{latestVersion}\\ProtonVPN.Client.exe", args);
             }
         }
     }

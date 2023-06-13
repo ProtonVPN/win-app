@@ -19,7 +19,6 @@
 
 using System;
 using System.IO;
-using System.ServiceModel;
 
 namespace ProtonVPN.Common.Extensions
 {
@@ -28,10 +27,6 @@ namespace ProtonVPN.Common.Extensions
         public static bool IsFileAccessException(this Exception ex) =>
             ex is IOException ||
             ex is UnauthorizedAccessException;
-
-        public static bool IsServiceCommunicationException(this Exception ex) =>
-            ex is CommunicationException ||
-            ex is ObjectDisposedException odex && odex.ObjectName == "System.ServiceModel.Channels.ServiceChannel";
 
         public static bool IsOrAnyInnerIsOfExceptionType<T>(this Exception e)
             where T : Exception

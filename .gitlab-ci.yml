@@ -36,20 +36,18 @@ build-release:
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat
+    - cmd.exe /c BuildDependencies.bat publish
     - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin\
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py lint-languages
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\build-scripts\main.py defaultConfig
     - echo "Publishing release..."
-    - dotnet build ProtonVpn.sln -c Release
-    - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
+    - cmd.exe /c Publish.bat Release
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin
-      - src/ProtonVPN.NativeHost/bin
+      - publish
   only:
     - master
     - /^release.*$/
@@ -63,21 +61,18 @@ build-debug:
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat
+    - cmd.exe /c BuildDependencies.bat publish
     - dotnet build src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py lint-languages
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\build-scripts\main.py defaultConfig
     - echo "Publishing debug..."
-    - dotnet build ProtonVpn.sln -c Debug
-    - dotnet publish src\ProtonVPN.Launcher\ProtonVPN.Launcher.csproj
-    - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
+    - cmd.exe /c Publish.bat Debug
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin
-      - src/ProtonVPN.NativeHost/bin
+      - publish
   except:
     - master
     - /^release.*$/

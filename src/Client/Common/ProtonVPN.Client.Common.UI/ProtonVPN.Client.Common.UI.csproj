@@ -832,11 +832,11 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
-      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+      <PackageReference Include="CommunityToolkit.Mvvm" />
+      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
+      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
   </ItemGroup>
 
   <ItemGroup>

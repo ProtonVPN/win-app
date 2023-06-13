@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="Autofac" Version="7.0.1" />
-      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+      <PackageReference Include="Autofac" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
   </ItemGroup>
 
   <ItemGroup>

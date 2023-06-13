@@ -19,11 +19,11 @@
 
 using System;
 using System.Security.Cryptography.X509Certificates;
-using Microsoft.Web.WebView2.Core;
 using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.HumanVerification.Contracts;
+using Microsoft.Web.WebView2.Core;
 
 namespace ProtonVPN.HumanVerification.Gui
 {
@@ -50,7 +50,7 @@ namespace ProtonVPN.HumanVerification.Gui
             {
                 if (_humanVerificationConfig.IsSupported())
                 {
-                    WebView2.CoreWebView2InitializationCompleted += OnCoreWebView2InitializationCompleted;
+                    WebView2.CoreWebView2Initialized += OnCoreWebView2InitializedAsync;
                 }
             }
             catch (Exception e)
@@ -59,20 +59,14 @@ namespace ProtonVPN.HumanVerification.Gui
             }
         }
 
-        private async void OnCoreWebView2InitializationCompleted(object sender,
-            CoreWebView2InitializationCompletedEventArgs e)
+        private async void OnCoreWebView2InitializedAsync(WebView2 webView2, CoreWebView2InitializedEventArgs args)
         {
             try
             {
-                if (e is not null && e.IsSuccess)
-                {
-                    await WebView2.CoreWebView2.ClearServerCertificateErrorActionsAsync();
-                    WebView2.CoreWebView2.ServerCertificateErrorDetected += OnServerCertificateErrorDetected;
-                }
-                else
-                {
-                    LogWebViewInitializationException(e?.InitializationException);
-                }
+        
+                await WebView2.CoreWebView2.ClearServerCertificateErrorActionsAsync();
+                WebView2.CoreWebView2.ServerCertificateErrorDetected += OnServerCertificateErrorDetected;
+                
             }
             catch (Exception ex)
             {
@@ -80,13 +74,7 @@ namespace ProtonVPN.HumanVerification.Gui
             }
         }
 
-        private void LogWebViewInitializationException(Exception e)
-        {
-            _logger.Error<AppLog>("Failed to initialize CoreWebView2.", e);
-        }
-
-        private void OnServerCertificateErrorDetected(object sender,
-            CoreWebView2ServerCertificateErrorDetectedEventArgs e)
+        private void OnServerCertificateErrorDetected(CoreWebView2 sender, CoreWebView2ServerCertificateErrorDetectedEventArgs e)
         {
             try
             {
@@ -98,6 +86,11 @@ namespace ProtonVPN.HumanVerification.Gui
             {
                 _logger.Error<AppLog>("Failed to validate server certificate in a WebView.", ex);
             }
+        }
+
+        private void LogWebViewInitializationException(Exception e)
+        {
+            _logger.Error<AppLog>("Failed to initialize CoreWebView2.", e);
         }
 
         private bool IsCertificateValid(CoreWebView2ServerCertificateErrorDetectedEventArgs e)
