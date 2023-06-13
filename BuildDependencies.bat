@@ -1,7 +1,7 @@
 @echo off
 
 set currentDir=%~dp0
-set publishDir=%currentDir%src\bin\win-x64\publish\
+set publishDir=%currentDir%publish\
 set binDir=%currentDir%src\bin\
 set resourcesDir=%binDir%Resources
 

@@ -18,27 +18,13 @@
     <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
-    <ProjectReference Include="..\..\HumanVerification\ProtonVPN.HumanVerification.Contracts\ProtonVPN.HumanVerification.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DnsClient">
-      <Version>1.7.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Polly">
-      <Version>7.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="Polly.Contrib.WaitAndRetry">
-      <Version>1.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Caliburn.Micro.Core" Version="4.0.212" />
+    <PackageReference Include="DnsClient" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Polly" />
+    <PackageReference Include="Polly.Contrib.WaitAndRetry" />
+    <PackageReference Include="System.Net.Http" />
+    <PackageReference Include="Caliburn.Micro.Core" />
   </ItemGroup>
 </Project>

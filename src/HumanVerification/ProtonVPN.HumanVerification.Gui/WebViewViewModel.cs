@@ -22,7 +22,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.Wpf;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Logging.Contracts;

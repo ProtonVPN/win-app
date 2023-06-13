@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-      <PackageReference Include="WinUI3Localizer" Version="1.0.1" />
+      <PackageReference Include="CommunityToolkit.Mvvm" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+      <PackageReference Include="WinUI3Localizer" />
   </ItemGroup>
 
   <ItemGroup>

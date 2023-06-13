@@ -16,15 +16,7 @@
     <ProjectReference Include="..\ProtonVPN.Update.Contracts\ProtonVPN.Update.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac">
-      <Version>7.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 </Project>

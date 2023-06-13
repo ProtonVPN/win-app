@@ -18,10 +18,10 @@
  */
 
 using System;
-using Microsoft.Web.WebView2.Core;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.HumanVerification.Contracts;
+using Microsoft.Web.WebView2.Core;
 
 namespace ProtonVPN.HumanVerification
 {

@@ -19,7 +19,6 @@
 
 using System;
 using System.IO;
-using System.ServiceModel;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Extensions;
@@ -44,48 +43,6 @@ namespace ProtonVPN.Common.Tests.Extensions
 
             // Assert
             result.Should().Be(expected);
-        }
-
-        [DataTestMethod]
-        [DataRow(true, typeof(CommunicationException))]
-        [DataRow(false, typeof(IOException))]
-        [DataRow(false, typeof(Exception))]
-        public void IsCommunicationException_ShouldBe(bool expected, Type exceptionType)
-        {
-            // Arrange
-            Exception exception = (Exception)Activator.CreateInstance(exceptionType);
-
-            // Act
-            bool result = exception.IsServiceCommunicationException();
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [TestMethod]
-        public void IsCommunicationException_ShouldBeFalse_When_ObjectDisposedException()
-        {
-            // Arrange
-            ObjectDisposedException exception = new("System.String");
-
-            // Act
-            bool result = exception.IsServiceCommunicationException();
-
-            // Assert
-            result.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void IsCommunicationException_ShouldBeTrue_WhenSpecific_ObjectDisposedException()
-        {
-            // Arrange
-            ObjectDisposedException exception = new("System.ServiceModel.Channels.ServiceChannel");
-
-            // Act
-            bool result = exception.IsServiceCommunicationException();
-
-            // Assert
-            result.Should().BeTrue();
         }
     }
 }

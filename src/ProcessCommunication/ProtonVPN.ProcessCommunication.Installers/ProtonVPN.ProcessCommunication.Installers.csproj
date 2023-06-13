@@ -14,7 +14,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="7.0.1" />
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="System.Private.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />

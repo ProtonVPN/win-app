@@ -15,10 +15,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
-    <PackageReference Include="NSubstitute" Version="5.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="MSTest.TestAdapter" />
+    <PackageReference Include="MSTest.TestFramework" />
+    <PackageReference Include="NSubstitute" />
+    <PackageReference Include="System.Private.ServiceModel" />
   </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Common.Tests\ProtonVPN.ProcessCommunication.Common.Tests.csproj" />
