@@ -50,6 +50,7 @@ namespace ProtonVPN.Vpn.OpenVpn
                 .AppendLine("register-dns")
                 .AppendLine("script-security 2")
                 .AppendLine("key-direction 1")
+                .AppendLine("disable-dco")
                 .AppendLine(GetTlsAuth())
                 .AppendLine(GetCertificate());
 
