@@ -2771,7 +2771,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Moderate NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Moderate NAT disables randomization of the local addresses mapping, which can reduce slightly your security, but allows techniques such as direct connections for applications like online games.</value>
+    <value>Moderate NAT disables randomization of the local addresses mapping, which can slightly reduce your security, but allows techniques such as direct connections for applications like online games.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Brzo povezivanje</value>
