@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Map;
 
 public class MapViewModel : ViewModelBase
 {
+    public MapViewModel(ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
+    {
+    }
 }

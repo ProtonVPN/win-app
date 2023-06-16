@@ -21,18 +21,20 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
-namespace ProtonVPN.Client.UI.Gallery
+namespace ProtonVPN.Client.UI.Gallery;
+
+public class GalleryViewModel : NavigationPageViewModelBase
 {
-    public class GalleryViewModel : NavigationPageViewModelBase
+    public override string? Title => "Gallery";
+
+    public override IconElement Icon { get; } = new Grid2();
+
+    public override bool IsBackEnabled => false;
+
+    public GalleryViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+                                : base(navigationService, localizationProvider)
     {
-        public GalleryViewModel(INavigationService navigationService) 
-            : base(navigationService)
-        {
-        }
-
-        public override string? Title => "Gallery";
-
-        public override IconElement Icon { get; } = new Grid2();
     }
 }

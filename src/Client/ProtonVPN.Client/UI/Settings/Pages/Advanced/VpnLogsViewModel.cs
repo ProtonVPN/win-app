@@ -19,17 +19,16 @@
 
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
 public class VpnLogsViewModel : PageViewModelBase
 {
-    public VpnLogsViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public VpnLogsViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
 
     public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
-
-    public override bool IsBackEnabled => true;
 }

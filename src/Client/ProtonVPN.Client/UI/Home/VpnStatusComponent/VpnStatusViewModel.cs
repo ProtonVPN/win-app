@@ -18,20 +18,23 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Messages;
 
 namespace ProtonVPN.Client.UI.Home.VpnStatusComponent;
 
-public partial class VpnStatusViewModel : ViewModelBase, IRecipient<ConnectionStatusChanged>, IRecipient<UserLocationChangedMessage>
+public partial class VpnStatusViewModel : ViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<UserLocationChangedMessage>
 {
-    private readonly IConnectionService _connectionService;
+    private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsDisconnected))]
@@ -89,11 +92,10 @@ public partial class VpnStatusViewModel : ViewModelBase, IRecipient<ConnectionSt
             _ => string.Empty
         };
 
-    public VpnStatusViewModel(IConnectionService connectionService)
+    public VpnStatusViewModel(IConnectionManager connectionManager, ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
     {
-        _connectionService = connectionService;
-
-        Messenger.RegisterAll(this);
+        _connectionManager = connectionManager;
 
         _userCountry = "Lithuania";
         _userIpAddress = "158.6.140.191";
@@ -104,12 +106,12 @@ public partial class VpnStatusViewModel : ViewModelBase, IRecipient<ConnectionSt
 
     public void Receive(ConnectionStatusChanged message)
     {
-        if (message?.Value is null)
+        if (message?.ConnectionStatus is null)
         {
             return;
         }
 
-        CurrentConnectionStatus = message.Value;
+        CurrentConnectionStatus = message.ConnectionStatus;
 
         if (CurrentConnectionStatus != ConnectionStatus.Connected)
         {
@@ -117,7 +119,7 @@ public partial class VpnStatusViewModel : ViewModelBase, IRecipient<ConnectionSt
             return;
         }
 
-        ConnectionDetails? connectionDetails = _connectionService.GetConnectionDetails();
+        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
 
         IsSecureCoreConnection = connectionDetails?.OriginalConnectionIntent?.Feature is SecureCoreFeatureIntent;
     }

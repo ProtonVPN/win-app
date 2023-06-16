@@ -24,6 +24,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
@@ -38,7 +39,7 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public partial class CountriesViewModel : NavigationPageViewModelBase
 {
-    private readonly IConnectionService _connectionService;
+    private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
 
     [ObservableProperty]
@@ -65,12 +66,17 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
 
     public override IconElement Icon { get; } = new Earth();
 
+    public override bool IsBackEnabled => false;
+
     public bool IsSecureCore => SelectedFeature == "Secure Core";
 
-    public CountriesViewModel(INavigationService navigationService, IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider)
-        : base(navigationService)
+    public CountriesViewModel(INavigationService navigationService,
+        IConnectionManager connectionManager,
+        IRecentConnectionsProvider recentConnectionsProvider,
+        ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
-        _connectionService = connectionService;
+        _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
 
         _exitCountryCode = string.Empty;
@@ -125,7 +131,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
             _ => null
         };
 
-        await _connectionService.ConnectAsync(featureIntent != null
+        await _connectionManager.ConnectAsync(featureIntent != null
             ? new ConnectionIntent(locationIntent, featureIntent)
             : new ConnectionIntent(locationIntent));
     }
@@ -147,7 +153,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
             _ => null
         };
 
-        await _connectionService.ConnectAsync(featureIntent != null
+        await _connectionManager.ConnectAsync(featureIntent != null
             ? new ConnectionIntent(locationIntent, featureIntent)
             : new ConnectionIntent(locationIntent));
     }
@@ -169,7 +175,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
 
         foreach (IConnectionIntent intent in intents)
         {
-            await Task.WhenAny(_connectionService.ConnectAsync(intent), Task.Delay(200));
+            await Task.WhenAny(_connectionManager.ConnectAsync(intent), Task.Delay(200));
         }
 
         IEnumerable<IRecentConnection> recentConnections = _recentConnectionsProvider.GetRecentConnections().Take(2);

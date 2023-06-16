@@ -92,14 +92,17 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
+    <ProjectReference Include="..\..\ProcessCommunication\App\ProtonVPN.ProcessCommunication.App.Installers\ProtonVPN.ProcessCommunication.App.Installers.csproj" />
     <ProjectReference Include="..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Client.Common.UI\ProtonVPN.Client.Common.UI.csproj" />
+    <ProjectReference Include="..\EventMessaging\ProtonVPN.Client.EventMessaging.Installers\ProtonVPN.Client.EventMessaging.Installers.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Installers\ProtonVPN.Client.Localization.Installers.csproj" />
     <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
     <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Installers\ProtonVPN.Client.Logic.Connection.Installers.csproj" />
     <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
     <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Installers\ProtonVPN.Client.Logic.Recents.Installers.csproj" />
+    <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
   </ItemGroup>
 </Project>

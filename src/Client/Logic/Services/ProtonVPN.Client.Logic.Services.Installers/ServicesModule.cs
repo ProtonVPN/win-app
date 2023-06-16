@@ -18,29 +18,18 @@
  */
 
 using Autofac;
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Activation;
-using ProtonVPN.Client.Localization.Installers;
-using ProtonVPN.Client.Logic.Connection.Installers;
-using ProtonVPN.Client.Logic.Recents.Installers;
+using ProtonVPN.Client.Logic.Services.Contracts;
 
-namespace ProtonVPN.Client.DependencyInjection
+namespace ProtonVPN.Client.Logic.Services.Installers
 {
-    public class ClientModule : Module
+    public class ServicesModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // Default Activation Handler
-            builder.RegisterType<DefaultActivationHandler>().As<ActivationHandler<LaunchActivatedEventArgs>>().InstancePerDependency();
-
-            // Other Activation Handlers
-
-            // Modules
-            builder.RegisterModule<ServicesModule>();
-            builder.RegisterModule<LocalizationModule>();
-            builder.RegisterModule<ViewModelsModule>();
-            builder.RegisterModule<RecentsLogicModule>();
-            builder.RegisterModule<ConnectionLogicModule>();
+            //builder.RegisterType<ProcessCommunicationStarter>().As<IProcessCommunicationStarter>().SingleInstance();
+            //builder.RegisterType<ServiceCaller>().As<IServiceCaller>().SingleInstance();
+            builder.RegisterType<ProcessCommunicationStarterMock>().As<IProcessCommunicationStarter>().SingleInstance();
+            builder.RegisterType<ServiceCallerMock>().As<IServiceCaller>().SingleInstance();
         }
     }
 }

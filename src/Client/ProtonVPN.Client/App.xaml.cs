@@ -23,8 +23,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Contracts.Services;
-using ProtonVPN.Client.DependencyInjection;
-using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Installers;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Models;
 
 namespace ProtonVPN.Client;
@@ -50,8 +50,8 @@ public partial class App
             .CreateDefaultBuilder()
             .UseContentRoot(AppContext.BaseDirectory)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-            .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new ClientModule()))
-            .ConfigureServices((context, services) => 
+            .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<MainModule>())
+            .ConfigureServices((context, services) =>
                 services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions))))
             .Build();
 
@@ -62,14 +62,16 @@ public partial class App
     {
         base.OnLaunched(args);
 
-        await App.GetService<ILocalizationBuilder>().BuildAsync();
-        await App.GetService<IActivationService>().ActivateAsync(args);
+        CancellationToken cancellationToken = new CancellationTokenSource().Token;
+
+        GetService<IProcessCommunicationStarter>().StartAsync(cancellationToken);
+        await GetService<IActivationService>().ActivateAsync(args);
     }
 
     public static T GetService<T>()
         where T : class
     {
-        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+        if ((App.Current as App)!.Host?.Services.GetService(typeof(T)) is not T service)
         {
             throw new ArgumentException($"{typeof(T)} needs to be registered within Autofac.");
         }

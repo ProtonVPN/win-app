@@ -19,19 +19,22 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class PageViewModelBase : ViewModelBase, INavigationAware, IRecipient<NavigationDisplayModeChangedMessage>
+public abstract partial class PageViewModelBase : ViewModelBase, INavigationAware,
+    IEventMessageReceiver<NavigationDisplayModeChangedMessage>
 {
     [ObservableProperty]
     private bool _isNavigationPaneCollapsed;
 
-    public PageViewModelBase(INavigationService navigationService)
+    public PageViewModelBase(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
     {
         NavigationService = navigationService;
         IsActive = true;
@@ -41,7 +44,7 @@ public abstract partial class PageViewModelBase : ViewModelBase, INavigationAwar
 
     public virtual string? Title { get; }
 
-    public virtual bool IsBackEnabled => false;
+    public virtual bool IsBackEnabled => true;
 
     protected INavigationService NavigationService { get; }
 

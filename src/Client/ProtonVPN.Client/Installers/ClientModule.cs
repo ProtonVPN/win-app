@@ -18,15 +18,20 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Dispatching;
 using ProtonVPN.Client.Services;
 
-namespace ProtonVPN.Client.DependencyInjection
+namespace ProtonVPN.Client.Installers
 {
-    public class ServicesModule : Module
+    public class ClientModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
+            // Dispatching
+            builder.RegisterType<UIThreadDispatcher>().As<IUIThreadDispatcher>().SingleInstance();
+
             // Services
             builder.RegisterType<LocalSettingsService>().As<ILocalSettingsService>().SingleInstance();
             builder.RegisterType<ThemeSelectorService>().As<IThemeSelectorService>().SingleInstance();
@@ -36,7 +41,6 @@ namespace ProtonVPN.Client.DependencyInjection
             builder.RegisterType<PageService>().As<IPageService>().SingleInstance();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
 
-            // Core Services
             builder.RegisterType<FileService>().As<IFileService>().SingleInstance();
         }
     }

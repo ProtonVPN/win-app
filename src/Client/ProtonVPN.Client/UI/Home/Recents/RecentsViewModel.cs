@@ -19,18 +19,19 @@
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Home.Recents;
 
-public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnectionsChanged>
+public partial class RecentsViewModel : ViewModelBase, IEventMessageReceiver<RecentConnectionsChanged>
 {
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
-    private readonly IConnectionService _connectionService;
+    private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
     private bool _isRecentsComponentOpened;
@@ -39,12 +40,13 @@ public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnecti
 
     public bool HasRecentConnections => RecentConnections.Any();
 
-    public RecentsViewModel(IRecentConnectionsProvider recentConnectionsProvider, IConnectionService connectionService)
+    public RecentsViewModel(IRecentConnectionsProvider recentConnectionsProvider,
+        IConnectionManager connectionManager,
+        ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
     {
-        Messenger.RegisterAll(this);
-
         _recentConnectionsProvider = recentConnectionsProvider;
-        _connectionService = connectionService;
+        _connectionManager = connectionManager;
 
         InvalidateRecentConnections();
     }
@@ -68,7 +70,7 @@ public partial class RecentsViewModel : ViewModelBase, IRecipient<RecentConnecti
                 continue;
             }
 
-            RecentConnections.Add(new RecentItemViewModel(_connectionService, _recentConnectionsProvider, recentConnection));
+            RecentConnections.Add(new RecentItemViewModel(_connectionManager, _recentConnectionsProvider, recentConnection, Localizer));
         }
 
         OnPropertyChanged(nameof(HasRecentConnections));

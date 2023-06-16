@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Localization.Installers;
@@ -26,7 +27,7 @@ public class LocalizationModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<LocalizationBuilder>().As<ILocalizationBuilder>().SingleInstance();
+        builder.RegisterType<LocalizerFactory>().As<ILocalizerFactory>().SingleInstance();
         builder.RegisterType<LocalizationService>().As<ILocalizationService>().SingleInstance();
         builder.RegisterType<LocalizationProvider>().As<ILocalizationProvider>().SingleInstance();
     }

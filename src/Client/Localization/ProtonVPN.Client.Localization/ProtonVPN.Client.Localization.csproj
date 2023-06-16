@@ -21,13 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" />
       <PackageReference Include="Microsoft.WindowsAppSDK" />
       <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
       <PackageReference Include="WinUI3Localizer" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
   </ItemGroup>
 </Project>

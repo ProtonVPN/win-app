@@ -18,6 +18,7 @@
  */
 
 using System;
+using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
 using WinUI3Localizer;
 
@@ -25,7 +26,12 @@ namespace ProtonVPN.Client.Localization;
 
 public class LocalizationProvider : ILocalizationProvider
 {
-    private readonly ILocalizer _localizer = Localizer.Get();
+    private readonly ILocalizer _localizer;
+
+    public LocalizationProvider(ILocalizerFactory localizerFactory)
+    {
+        _localizer = localizerFactory.GetOrCreate();
+    }
 
     public string Get(string resourceKey)
     {

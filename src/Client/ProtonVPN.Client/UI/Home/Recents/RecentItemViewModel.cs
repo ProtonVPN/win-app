@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -30,7 +31,7 @@ namespace ProtonVPN.Client.UI.Home.Recents;
 
 public partial class RecentItemViewModel : ViewModelBase
 {
-    private readonly IConnectionService _connectionService;
+    private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
 
     private readonly IRecentConnection _recentConnection;
@@ -65,12 +66,16 @@ public partial class RecentItemViewModel : ViewModelBase
         ? Localizer.Get("Home_Recents_ServerUnderMaintenance")
         : Localizer.Get("Home_Recents_SecondaryActions_ToolTip");
 
-    public RecentItemViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, IRecentConnection recentConnection)
+    public RecentItemViewModel(IConnectionManager connectionManager,
+        IRecentConnectionsProvider recentConnectionsProvider,
+        IRecentConnection recentConnection,
+        ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
     {
         ArgumentNullException.ThrowIfNull(recentConnection, nameof(recentConnection));
         ArgumentNullException.ThrowIfNull(recentConnection.ConnectionIntent, nameof(recentConnection.ConnectionIntent));
 
-        _connectionService = connectionService;
+        _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
 
         _recentConnection = recentConnection;
@@ -89,11 +94,11 @@ public partial class RecentItemViewModel : ViewModelBase
     {
         if (IsActiveConnection)
         {
-            await _connectionService.DisconnectAsync();
+            await _connectionManager.DisconnectAsync();
             return;
         }
 
-        await _connectionService.ConnectAsync(_recentConnection.ConnectionIntent);
+        await _connectionManager.ConnectAsync(_recentConnection.ConnectionIntent);
     }
 
     private bool CanToggleConnection()

@@ -37,17 +37,30 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
     private readonly IThemeSelectorService _themeSelectorService;
     private readonly ILocalizationService _localizationService;
 
+    private readonly Lazy<ObservableCollection<string>> _languages;
+
     [ObservableProperty]
     private ApplicationElementTheme _selectedTheme;
 
-    [ObservableProperty]
-    private string _selectedLanguage;
-
+    private string? _selectedLanguage = null;
     private string _versionDescription;
 
-    public ObservableCollection<ApplicationElementTheme> Themes { get; }
+    public string SelectedLanguage
+    {
+        get => _selectedLanguage ??= _localizationService.GetCurrentLanguage();
+        set
+        {
+            if (SetProperty(ref _selectedLanguage, value))
+            {
+                _localizationService.SetLanguageAsync(value);
+            }
+        }
+    }
 
-    public ObservableCollection<string> Languages { get; }
+    public override bool IsBackEnabled => false;
+
+    public ObservableCollection<ApplicationElementTheme> Themes { get; }
+    public ObservableCollection<string> Languages => _languages.Value;
 
     public string VersionDescription
     {
@@ -59,8 +72,11 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
 
     public override string? Title => Localizer.Get("Settings_Page_Title");
 
-    public SettingsViewModel(IThemeSelectorService themeSelectorService, INavigationService navigationService, ILocalizationService localizationService)
-        : base(navigationService)
+    public SettingsViewModel(IThemeSelectorService themeSelectorService,
+        INavigationService navigationService,
+        ILocalizationService localizationService,
+        ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
         _themeSelectorService = themeSelectorService;
         _localizationService = localizationService;
@@ -76,9 +92,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
 
         _selectedTheme = Themes.FirstOrDefault(t => t.Theme == _themeSelectorService.Theme) ?? Themes.Last();
 
-        Languages = new ObservableCollection<string>(localizationService.GetAvailableLanguages());
-
-        _selectedLanguage = localizationService.GetCurrentLanguage();
+        _languages = new Lazy<ObservableCollection<string>>(
+            () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
     }
 
     private string GetVersionDescription()
@@ -102,10 +117,5 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
     partial void OnSelectedThemeChanged(ApplicationElementTheme value)
     {
         _themeSelectorService.SetThemeAsync(value?.Theme ?? ElementTheme.Default);
-    }
-
-    partial void OnSelectedLanguageChanged(string value)
-    {
-        _localizationService.SetLanguageAsync(value);
     }
 }

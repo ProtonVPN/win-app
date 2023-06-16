@@ -18,7 +18,7 @@
  */
 
 using Autofac;
-using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Connection.Installers;
 
@@ -26,6 +26,7 @@ public class ConnectionLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<ConnectionService>().As<IConnectionService>().SingleInstance();
+        builder.RegisterType<ConnectionManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AppController>().As<IAppController>().SingleInstance();
     }
 }

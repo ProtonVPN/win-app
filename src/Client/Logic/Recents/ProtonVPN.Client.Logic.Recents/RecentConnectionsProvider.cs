@@ -17,8 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging;
-using ProtonVPN.Client.Common.Contracts;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -30,20 +29,21 @@ using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
 namespace ProtonVPN.Client.Logic.Recents;
 
-public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsProvider, IRecipient<ConnectionStatusChanged>
+public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessageReceiver<ConnectionStatusChanged>
 {
     private const int MAXIMUM_RECENT_CONNECTIONS = 6;
 
-    private readonly IConnectionService _connectionService;
+    private readonly IConnectionManager _connectionManager;
+    private readonly IEventMessageSender _eventMessageSender;
     private readonly object _lock = new();
+
     private List<IRecentConnection> _recentConnections;
 
-    private Queue<IRecentConnection> _recentConnectionsQueue;
-
-    public RecentConnectionsProvider(IConnectionService connectionService)
+    public RecentConnectionsProvider(IConnectionManager connectionManager,
+        IEventMessageSender eventMessageSender)
     {
-        _connectionService = connectionService;
-
+        _connectionManager = connectionManager;
+        _eventMessageSender = eventMessageSender;
         _recentConnections = new List<IRecentConnection>();
         //{
         //    new RecentConnection(new ConnectionIntent(new CityStateLocationIntent("AU", "Sydney"))) { IsPinned = true },
@@ -107,7 +107,7 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
             return;
         }
 
-        ConnectionDetails? connectionDetails = _connectionService.GetConnectionDetails();
+        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
 
         // The current connection cannot be removed, simply unpin it.
         if (connectionDetails != null && recentConnection.ConnectionIntent.IsSameAs(connectionDetails.OriginalConnectionIntent))
@@ -128,11 +128,11 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
     {
         lock (_lock)
         {
-            ConnectionDetails? connectionDetails = _connectionService.GetConnectionDetails();
+            ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
 
             try
             {
-                if (message?.Value != ConnectionStatus.Connecting)
+                if (message?.ConnectionStatus != ConnectionStatus.Connecting)
                 {
                     return;
                 }
@@ -146,7 +146,7 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
             }
             finally
             {
-                SetActiveConnection(connectionDetails?.OriginalConnectionIntent, _connectionService.ConnectionStatus);
+                SetActiveConnection(connectionDetails?.OriginalConnectionIntent, _connectionManager.ConnectionStatus);
 
                 BroadcastRecentConnectionsChanged();
             }
@@ -200,6 +200,6 @@ public class RecentConnectionsProvider : ServiceRecipient, IRecentConnectionsPro
 
     private void BroadcastRecentConnectionsChanged()
     {
-        Messenger.Send(new RecentConnectionsChanged());
+        _eventMessageSender.Send(new RecentConnectionsChanged());
     }
 }

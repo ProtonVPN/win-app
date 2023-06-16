@@ -58,7 +58,7 @@ namespace ProtonVPN.Update
             IAppSettings appSettings,
             IEntityMapper entityMapper,
             UpdateServiceCaller updateServiceCaller,
-            IAppController appController)
+            IOldAppController appController)
         {
             _scheduler = scheduler;
             _appConfig = appConfig;

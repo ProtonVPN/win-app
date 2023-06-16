@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models;
 
 namespace ProtonVPN.Client.UI.Countries.Pages;
@@ -30,14 +31,12 @@ public partial class CountryViewModel : PageViewModelBase
     [NotifyPropertyChangedFor(nameof(Title))]
     private Country? _currentCountry;
 
-    public CountryViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public CountryViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
 
     public override string? Title => CurrentCountry?.CountryName;
-
-    public override bool IsBackEnabled => true;
 
     public override void OnNavigatedTo(object parameter)
     {

@@ -24,7 +24,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
       xmlns:helpers="using:ProtonVPN.Client.Helpers" 
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
       Loaded="OnLoaded">
 

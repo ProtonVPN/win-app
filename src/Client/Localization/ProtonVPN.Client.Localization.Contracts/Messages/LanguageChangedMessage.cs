@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
-
 namespace ProtonVPN.Client.Localization.Contracts.Messages;
 
-public class LanguageChangedMessage : ValueChangedMessage<string>
+public class LanguageChangedMessage
 {
-    public LanguageChangedMessage(string value)
-        : base(value)
+    public string Language { get; }
+
+    public LanguageChangedMessage(string language)
     {
+        Language = language;
     }
 }

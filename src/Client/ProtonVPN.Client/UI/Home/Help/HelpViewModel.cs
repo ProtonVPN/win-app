@@ -18,9 +18,14 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Help;
 
 public class HelpViewModel : ViewModelBase
 {
+    public HelpViewModel(ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
+    {
+    }
 }

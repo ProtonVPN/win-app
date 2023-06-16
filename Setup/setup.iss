@@ -53,6 +53,8 @@ Source: "..\publish\*.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\publish\*.pri"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\publish\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
 
+Source: "..\publish\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce; AfterInstall: InstallService;
+
 Source: "..\publish\en-us\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\en-us";
 Source: "..\publish\fr-FR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\fr-FR";
 

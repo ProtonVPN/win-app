@@ -19,20 +19,22 @@
 
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class NavigationPageViewModelBase : PageViewModelBase
 {
-    public NavigationPageViewModelBase(INavigationService navigationService)
-        : base(navigationService)
-    { }
+    public NavigationPageViewModelBase(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
+    {
+    }
 
     public abstract IconElement Icon { get; }
 
     public virtual bool IsHostFor(PageViewModelBase? page)
     {
-        if(page == null)
+        if (page == null)
         {
             return false;
         }

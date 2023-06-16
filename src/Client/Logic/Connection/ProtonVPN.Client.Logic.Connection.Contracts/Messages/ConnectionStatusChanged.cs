@@ -17,14 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public class ConnectionStatusChanged : ValueChangedMessage<ConnectionStatus>
+public class ConnectionStatusChanged
 {
-    public ConnectionStatusChanged(ConnectionStatus value)
-        : base(value)
-    { }
+    public ConnectionStatus ConnectionStatus { get; }
+
+    public ConnectionStatusChanged(ConnectionStatus connectionStatus)
+    {
+        ConnectionStatus = connectionStatus;
+    }
 }

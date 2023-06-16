@@ -20,18 +20,19 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Settings;
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Messages;
-using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI;
 
@@ -43,7 +44,14 @@ public partial class ShellViewModel : ViewModelBase
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
 
-    public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
+    public ShellViewModel(INavigationService navigationService,
+        INavigationViewService navigationViewService,
+        ILocalizationProvider localizationProvider,
+        HomeViewModel homeViewModel,
+        CountriesViewModel countriesViewModel,
+        SettingsViewModel settingsViewModel,
+        Lazy<GalleryViewModel> galleryViewModel)
+        : base(localizationProvider)
     {
         NavigationService = navigationService;
         NavigationService.Navigated += OnNavigated;
@@ -51,12 +59,12 @@ public partial class ShellViewModel : ViewModelBase
 
         NavigationPages = new ObservableCollection<NavigationPageViewModelBase>
         {
-            App.GetService<HomeViewModel>(),
-            App.GetService<CountriesViewModel>(),
-            App.GetService<SettingsViewModel>(),
+            homeViewModel,
+            countriesViewModel,
+            settingsViewModel,
         };
 
-        AddDebugPages();
+        AddDebugPages(galleryViewModel);
 
         IsActive = true;
     }
@@ -85,9 +93,9 @@ public partial class ShellViewModel : ViewModelBase
     }
 
     [Conditional("DEBUG")]
-    private void AddDebugPages()
+    private void AddDebugPages(Lazy<GalleryViewModel> galleryViewModel)
     {
-        NavigationPages.Add(App.GetService<GalleryViewModel>());
+        NavigationPages.Add(galleryViewModel.Value);
     }
 
     public void OnNavigationDisplayModeChanged(NavigationViewDisplayMode displayMode)

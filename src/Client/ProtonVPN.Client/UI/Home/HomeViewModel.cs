@@ -23,6 +23,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Home;
 
@@ -40,10 +41,12 @@ public partial class HomeViewModel : NavigationPageViewModelBase
 
     public override string? Title => Localizer.Get("Home_Page_Title");
 
+    public override bool IsBackEnabled => false;
+
     public override IconElement Icon { get; } = new House();
 
-    public HomeViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public HomeViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
 
