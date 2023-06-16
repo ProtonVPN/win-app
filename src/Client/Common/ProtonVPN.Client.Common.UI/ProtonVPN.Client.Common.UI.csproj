@@ -832,7 +832,6 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
       <PackageReference Include="Microsoft.WindowsAppSDK" />

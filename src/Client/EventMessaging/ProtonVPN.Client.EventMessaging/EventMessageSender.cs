@@ -17,21 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Client.EventMessaging.Contracts;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts;
-
-public interface IConnectionService
+namespace ProtonVPN.Client.EventMessaging
 {
-    ConnectionStatus ConnectionStatus { get; }
+    public class EventMessageSender : IEventMessageSender
+    {
+        private readonly IMessenger _messenger = MessengerFactory.Get();
 
-    Task ConnectAsync(IConnectionIntent? connectionIntent);
-
-    Task CancelConnectionAsync();
-
-    Task DisconnectAsync();
-
-    ConnectionDetails? GetConnectionDetails();
+        public void Send<TMessage>(TMessage message)
+            where TMessage : class
+        {
+            _messenger.Send(message);
+        }
+    }
 }

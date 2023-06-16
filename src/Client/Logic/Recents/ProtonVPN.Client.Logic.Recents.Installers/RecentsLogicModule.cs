@@ -18,7 +18,6 @@
  */
 
 using Autofac;
-using ProtonVPN.Client.Logic.Recents.Contracts;
 
 namespace ProtonVPN.Client.Logic.Recents.Installers;
 
@@ -26,6 +25,6 @@ public class RecentsLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<RecentConnectionsProvider>().As<IRecentConnectionsProvider>().SingleInstance();
+        builder.RegisterType<RecentConnectionsProvider>().AsImplementedInterfaces().SingleInstance();
     }
 }

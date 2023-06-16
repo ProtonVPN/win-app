@@ -13,8 +13,4 @@
     <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" />
-  </ItemGroup>
-
 </Project>

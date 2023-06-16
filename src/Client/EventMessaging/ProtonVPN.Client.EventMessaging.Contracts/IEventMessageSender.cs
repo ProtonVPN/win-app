@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Localization.Contracts;
-
-public interface ILocalizationBuilder
+namespace ProtonVPN.Client.EventMessaging.Contracts
 {
-    Task BuildAsync();
+    public interface IEventMessageSender
+    {
+        void Send<TMessage>(TMessage message)
+            where TMessage : class;
+    }
 }

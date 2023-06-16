@@ -19,13 +19,14 @@
 
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class CensorshipViewModel : PageViewModelBase
 {
-    public CensorshipViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public CensorshipViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
     public override string? Title => Localizer.Get("Settings_Improve_Censorship");

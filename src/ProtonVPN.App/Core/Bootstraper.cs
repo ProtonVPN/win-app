@@ -419,7 +419,7 @@ namespace ProtonVPN.Core
                 }
             });
 
-            Resolve<IAppController>().OnOpenWindowInvoked += (_, _) =>
+            Resolve<IOldAppController>().OnOpenWindowInvoked += (_, _) =>
             {
                 IEnumerable<IOpenMainWindowAware> instances = Resolve<IEnumerable<IOpenMainWindowAware>>();
                 foreach (IOpenMainWindowAware instance in instances)

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+    <ProjectReference Include="..\ProtonVPN.Client.EventMessaging\ProtonVPN.Client.EventMessaging.csproj" />
+  </ItemGroup>
+
+</Project>

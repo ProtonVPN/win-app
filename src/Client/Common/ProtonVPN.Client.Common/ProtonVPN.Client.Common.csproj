@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
 

@@ -31,7 +31,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class AppController : IAppController
+    public class AppController : IOldAppController
     {
         private readonly ILogger _logger;
 

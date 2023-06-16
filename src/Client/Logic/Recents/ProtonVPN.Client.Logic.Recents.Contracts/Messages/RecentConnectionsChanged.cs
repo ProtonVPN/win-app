@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
-
 namespace ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
 public class RecentConnectionsChanged

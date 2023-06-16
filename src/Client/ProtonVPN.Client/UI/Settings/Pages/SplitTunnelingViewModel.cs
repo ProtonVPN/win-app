@@ -19,13 +19,14 @@
 
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class SplitTunnelingViewModel : PageViewModelBase
 {
-    public SplitTunnelingViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public SplitTunnelingViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
 

@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public interface ILanguageAware : IRecipient<LanguageChangedMessage>
+public interface ILanguageAware : IEventMessageReceiver<LanguageChangedMessage>
 {
     ILocalizationProvider Localizer { get; }
 }

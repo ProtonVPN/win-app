@@ -18,11 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
+    <ProjectReference Include="..\..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
     <ProjectReference Include="..\..\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
   </ItemGroup>

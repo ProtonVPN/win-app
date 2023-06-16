@@ -19,13 +19,14 @@
 
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class KillSwitchViewModel : PageViewModelBase
 {
-    public KillSwitchViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public KillSwitchViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
 

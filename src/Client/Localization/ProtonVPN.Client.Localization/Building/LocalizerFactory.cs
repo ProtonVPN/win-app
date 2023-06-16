@@ -17,22 +17,53 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
-using ProtonVPN.Client.Localization.Contracts;
 using WinUI3Localizer;
 
-namespace ProtonVPN.Client.Localization;
+namespace ProtonVPN.Client.Localization.Building;
 
-public class LocalizationBuilder : ILocalizationBuilder
+public class LocalizerFactory : ILocalizerFactory
 {
-    public async Task BuildAsync()
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private ILocalizer _localizer;
+
+    public ILocalizer GetOrCreate()
+    {
+        if (_localizer is not null)
+        {
+            return _localizer;
+        }
+
+        Task<ILocalizer> task = SafeBuildAsync();
+        task.Wait();
+        return task.Result;
+    }
+
+    private async Task<ILocalizer> SafeBuildAsync()
+    {
+        await _semaphore.WaitAsync();
+
+        try
+        {
+            _localizer ??= await BuildAsync();
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+
+        return _localizer;
+    }
+
+    private async Task<ILocalizer> BuildAsync()
     {
         LocalizerBuilder builder = new();
-
         string[] resourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
         foreach (string resourceName in resourceNames)
@@ -52,17 +83,14 @@ public class LocalizationBuilder : ILocalizationBuilder
             options.UseUidWhenLocalizedStringNotFound = true;
         });
 
-        await builder.Build();
+        return await builder.Build();
     }
 
     private string GetLanguageFolderName(string resourceName)
     {
-        if (string.IsNullOrEmpty(resourceName))
-        {
-            return string.Empty;
-        }
-
-        return resourceName.Split('.').SkipLast(2).Last().Replace("_", "-");
+        return string.IsNullOrEmpty(resourceName) 
+            ? string.Empty 
+            : resourceName.Split('.').SkipLast(2).Last().Replace("_", "-");
     }
 
     private LanguageDictionary BuildLanguageDictionary(string language, string resourceName)

@@ -19,17 +19,16 @@
 
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
 public class CustomDnsServersViewModel : PageViewModelBase
 {
-    public CustomDnsServersViewModel(INavigationService navigationService)
-        : base(navigationService)
+    public CustomDnsServersViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
+        : base(navigationService, localizationProvider)
     {
     }
 
     public override string? Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
-
-    public override bool IsBackEnabled => true;
 }

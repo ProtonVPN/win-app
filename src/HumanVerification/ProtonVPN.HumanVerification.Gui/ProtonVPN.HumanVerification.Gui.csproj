@@ -20,9 +20,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.Windows.Compatibility" />
-        <PackageReference Include="CommunityToolkit.Mvvm" />
         <PackageReference Include="Microsoft.UI.Xaml" />
-        <PackageReference Include="CommunityToolkit.Mvvm" />
         <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
 </Project>

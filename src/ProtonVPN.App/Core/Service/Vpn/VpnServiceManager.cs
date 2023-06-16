@@ -43,7 +43,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly VpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
         private readonly ILogger _logger;
-        private readonly IAppController _appController;
+        private readonly IOldAppController _appController;
         private readonly IEntityMapper _entityMapper;
         private Action<VpnStateChangedEventArgs> _vpnStateCallback;
         private Action<PortForwardingState> _portForwardingStateCallback;
@@ -54,7 +54,7 @@ namespace ProtonVPN.Core.Service.Vpn
             VpnServiceCaller vpnServiceCaller,
             MainSettingsProvider settingsContractProvider,
             ILogger logger,
-            IAppController appController,
+            IOldAppController appController,
             IEntityMapper entityMapper)
         {
             _vpnServiceCaller = vpnServiceCaller;

@@ -27,9 +27,9 @@ public abstract partial class ViewModelBase : ObservableRecipient, ILanguageAwar
 {
     public ILocalizationProvider Localizer { get; }
 
-    public ViewModelBase()
+    public ViewModelBase(ILocalizationProvider localizationProvider)
     {
-        Localizer = App.GetService<ILocalizationProvider>();
+        Localizer = localizationProvider;
     }
 
     public void Receive(LanguageChangedMessage message)

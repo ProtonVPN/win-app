@@ -19,9 +19,10 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -34,9 +35,11 @@ using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
-public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<ConnectionStatusChanged>, IRecipient<RecentConnectionsChanged>
+public partial class ConnectionCardViewModel : ViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<RecentConnectionsChanged>
 {
-    private readonly IConnectionService _connectionService;
+    private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
 
     private readonly HomeViewModel _homeViewModel;
@@ -93,14 +96,15 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
 
     public bool HasSubtitleAndFeature => HasSubtitle && (IsTor || IsP2P);
 
-    public ConnectionCardViewModel(IConnectionService connectionService, IRecentConnectionsProvider recentConnectionsProvider, HomeViewModel homeViewModel)
+    public ConnectionCardViewModel(IConnectionManager connectionManager,
+        IRecentConnectionsProvider recentConnectionsProvider,
+        ILocalizationProvider localizationProvider,
+        HomeViewModel homeViewModel)
+        : base(localizationProvider)
     {
-        _connectionService = connectionService;
+        _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
-
         _homeViewModel = homeViewModel;
-
-        Messenger.RegisterAll(this);
 
         InvalidateCurrentConnectionStatus();
         InvalidateCurrentConnectionIntent();
@@ -126,7 +130,7 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
 
     private void InvalidateCurrentConnectionStatus()
     {
-        CurrentConnectionStatus = _connectionService.ConnectionStatus;
+        CurrentConnectionStatus = _connectionManager.ConnectionStatus;
     }
 
     private void InvalidateCurrentConnectionIntent()
@@ -140,7 +144,7 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
     [RelayCommand(CanExecute = nameof(CanConnect))]
     private async Task ConnectAsync()
     {
-        await _connectionService.ConnectAsync(CurrentConnectionIntent);
+        await _connectionManager.ConnectAsync(CurrentConnectionIntent);
     }
 
     private bool CanConnect()
@@ -152,7 +156,7 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
     [RelayCommand(CanExecute = nameof(CanCancelConnection))]
     private async Task CancelConnectionAsync()
     {
-        await _connectionService.CancelConnectionAsync();
+        await _connectionManager.DisconnectAsync();
     }
 
     private bool CanCancelConnection()
@@ -163,7 +167,7 @@ public partial class ConnectionCardViewModel : ViewModelBase, IRecipient<Connect
     [RelayCommand(CanExecute = nameof(CanDisconnect))]
     private async Task DisconnectAsync()
     {
-        await _connectionService.DisconnectAsync();
+        await _connectionManager.DisconnectAsync();
     }
 
     private bool CanDisconnect()

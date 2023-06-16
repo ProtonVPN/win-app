@@ -46,7 +46,7 @@ public sealed partial class UserLocationControl
         DependencyProperty.Register(nameof(IsScrambling), typeof(bool), typeof(UserLocationControl), new PropertyMetadata(default, OnIsScramblingPropertyChanged));
 
     private const char SCRAMBLING_CHAR = '*';
-    private const string SEPARATOR_STRING = " • ";
+    private const string SEPARATOR_STRING = " \u2022 ";
 
     private const int SCRAMBLING_TIMER_INTERVAL_IN_MS = 50;
     private readonly Random _random = new();
