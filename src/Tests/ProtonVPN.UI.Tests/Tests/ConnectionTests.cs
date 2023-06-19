@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
@@ -79,8 +80,10 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeRobot
                 .DoConnect()
                 .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting()
-                .DoCancelConnection()
+                .VerifyConnectionCardIsConnecting();
+            //Allow some time to establish connection
+            Thread.Sleep(500);
+            _homeRobot.DoCancelConnection()
                 .VerifyVpnStatusIsDisconnected()
                 .VerifyConnectionCardIsDisconnected();
         }
