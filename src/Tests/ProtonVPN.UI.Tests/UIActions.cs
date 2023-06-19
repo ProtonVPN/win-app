@@ -145,8 +145,6 @@ namespace ProtonVPN.UI.Tests
             RetryResult<bool> retry = Retry.WhileException(
                 () => {
                     Label label = getLabelMethod();
-
-                    Assert.IsNotNull(label);
                     Assert.AreEqual(text, label.Text);
                 },
                 time, TestConstants.RetryInterval);

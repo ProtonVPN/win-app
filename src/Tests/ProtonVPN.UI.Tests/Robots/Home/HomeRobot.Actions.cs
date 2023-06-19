@@ -29,13 +29,13 @@ public partial class HomeRobot
 
     public HomeRobot DoCancelConnection()
     {
-        ConnectionCardCancelButton.Click();
+        ConnectionCardCancelButton.Invoke();
         return this;
     }
 
     public HomeRobot DoDisconnect()
     {
-        ConnectionCardDisconnectButton.Click();
+        ConnectionCardDisconnectButton.Invoke();
         return this;
     }
 
