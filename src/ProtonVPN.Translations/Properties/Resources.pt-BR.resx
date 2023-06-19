@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Para concluir o processo de atualização, Proton VPN irá desconectar temporariamente e desativar o Kill Switch Permanente se qualquer um destes estiver ativo. Deseja continuar?</value>
+    <value>Para concluir o processo de atualização, o Proton VPN desconectará temporariamente e desativará o Kill Switch permanente se qualquer um destes estiver ativo. Deseja continuar?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1784,7 +1784,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Atualize novamente</value>
+    <value>Fazer upgrade novamente</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
@@ -1916,7 +1916,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Sua sessão expirou. Entre novamente.</value>
+    <value>Sua sessão expirou. Inicie sessão novamente.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -1935,7 +1935,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>O Kill switch está atuamente ativo</value>
+    <value>O Kill switch está atualmente ativo.</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -2452,7 +2452,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Tamanho estimado de anúncios, rastreadores e malware que o NetShield bloqueou.</value>
+    <value>Quantidade estimada de anúncios, rastreadores e malware que o NetShield bloqueou.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
@@ -2690,7 +2690,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclua um programa, um endereço IP do tráfego VPN ou incluir apenas aplicativos específicos. Não pode ser ativado juntamente com o Kill Switch.</value>
+    <value>Exclua um aplicativo ou um endereço IP do tráfego da VPN, ou inclua apenas aplicativos específicos. Não pode ser ativado com o Kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
