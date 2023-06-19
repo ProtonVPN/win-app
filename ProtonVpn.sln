@@ -221,11 +221,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Serv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventMessaging", "EventMessaging", "{7261C006-A777-421C-A63D-76C7198B4AD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.EventMessaging", "src\Client\EventMessaging\ProtonVPN.Client.EventMessaging\ProtonVPN.Client.EventMessaging.csproj", "{A38DBD6D-D867-4966-9798-572C307DB399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.EventMessaging", "src\Client\EventMessaging\ProtonVPN.Client.EventMessaging\ProtonVPN.Client.EventMessaging.csproj", "{A38DBD6D-D867-4966-9798-572C307DB399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.EventMessaging.Contracts", "src\Client\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj", "{1CFD4315-F3CF-4A7D-A442-4A7FAE0B5CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.EventMessaging.Contracts", "src\Client\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj", "{1CFD4315-F3CF-4A7D-A442-4A7FAE0B5CE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.EventMessaging.Installers", "src\Client\EventMessaging\ProtonVPN.Client.EventMessaging.Installers\ProtonVPN.Client.EventMessaging.Installers.csproj", "{C3C82E4B-E552-4D3D-AE25-F4EF258A3AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.EventMessaging.Installers", "src\Client\EventMessaging\ProtonVPN.Client.EventMessaging.Installers\ProtonVPN.Client.EventMessaging.Installers.csproj", "{C3C82E4B-E552-4D3D-AE25-F4EF258A3AD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Common.Tests", "src\Tests\ProtonVPN.Client.Common.Tests\ProtonVPN.Client.Common.Tests.csproj", "{07E98B32-EB27-4F51-AC26-9BD5316A1B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -892,6 +894,14 @@ Global
 		{C3C82E4B-E552-4D3D-AE25-F4EF258A3AD7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3C82E4B-E552-4D3D-AE25-F4EF258A3AD7}.Release|x64.ActiveCfg = Release|Any CPU
 		{C3C82E4B-E552-4D3D-AE25-F4EF258A3AD7}.Release|x64.Build.0 = Release|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Debug|x64.Build.0 = Debug|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Release|x64.ActiveCfg = Release|Any CPU
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -974,6 +984,7 @@ Global
 		{A38DBD6D-D867-4966-9798-572C307DB399} = {7261C006-A777-421C-A63D-76C7198B4AD8}
 		{1CFD4315-F3CF-4A7D-A442-4A7FAE0B5CE9} = {7261C006-A777-421C-A63D-76C7198B4AD8}
 		{C3C82E4B-E552-4D3D-AE25-F4EF258A3AD7} = {7261C006-A777-421C-A63D-76C7198B4AD8}
+		{07E98B32-EB27-4F51-AC26-9BD5316A1B04} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

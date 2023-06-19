@@ -1151,6 +1151,102 @@
     <value>Unknown</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Format_Milliseconds" xml:space="preserve">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes" xml:space="preserve">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes" xml:space="preserve">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes" xml:space="preserve">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes" xml:space="preserve">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes" xml:space="preserve">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes" xml:space="preserve">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes" xml:space="preserve">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day" xml:space="preserve">
+    <value>{0} day</value>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DayHours" xml:space="preserve">
+    <value>{0} day {1} hr</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Days" xml:space="preserve">
+    <value>{0} days</value>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DaysHours" xml:space="preserve">
+    <value>{0} days {1} hr</value>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Hours" xml:space="preserve">
+    <value>{0} hr</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes" xml:space="preserve">
+    <value>{0} hr {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Minutes" xml:space="preserve">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds" xml:space="preserve">
+    <value>{0} min {1} sec</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds" xml:space="preserve">
+    <value>{0} sec</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
     <value>Browsing safely from</value>
   </data>
@@ -1162,6 +1258,51 @@
   </data>
   <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
     <value>Recommended</value>
+  </data>
+  <data name="Home_ConnectionDetails_City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
+    <value>Connected for</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
+    <value>Hide</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
+    <value>Latency</value>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
+    <value>My IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
+    <value>Server load</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
+    <value>Show</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Title" xml:space="preserve">
+    <value>Connection details</value>
+  </data>
+  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
+    <value>VPN IP</value>
   </data>
   <data name="Home_Help_Title" xml:space="preserve">
     <value>Help</value>

@@ -20,8 +20,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Helpers;
 
-namespace ProtonVPN.Client.UI.Home.NetShieldStats;
+namespace ProtonVPN.Client.UI.Home.Status;
 
 public partial class NetShieldStatsViewModel : ViewModelBase
 {
@@ -43,5 +44,10 @@ public partial class NetShieldStatsViewModel : ViewModelBase
         _dataSavedInBytes = 1500;
     }
 
-    public string DataSaved => $"{DataSavedInBytes} B";
+    public string DataSaved => Localizer.GetFormattedSize(DataSavedInBytes);
+
+    protected override void OnLanguageChanged()
+    {
+        OnPropertyChanged(nameof(DataSaved));
+    }
 }

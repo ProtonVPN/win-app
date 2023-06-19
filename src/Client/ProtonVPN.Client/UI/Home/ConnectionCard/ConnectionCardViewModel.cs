@@ -178,7 +178,7 @@ public partial class ConnectionCardViewModel : ViewModelBase,
     [RelayCommand(CanExecute = nameof(CanShowConnectionDetails))]
     private void ShowConnectionDetails()
     {
-        _homeViewModel.ShowConnectionDetails();
+        _homeViewModel.OpenDetailsPane();
     }
 
     private bool CanShowConnectionDetails()

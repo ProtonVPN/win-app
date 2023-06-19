@@ -28,7 +28,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Messages;
 
-namespace ProtonVPN.Client.UI.Home.VpnStatusComponent;
+namespace ProtonVPN.Client.UI.Home.Status;
 
 public partial class VpnStatusViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,

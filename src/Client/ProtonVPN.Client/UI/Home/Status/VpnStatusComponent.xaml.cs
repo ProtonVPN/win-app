@@ -22,7 +22,7 @@ using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Core.Users;
 
-namespace ProtonVPN.Client.UI.Home.VpnStatusComponent;
+namespace ProtonVPN.Client.UI.Home.Status;
 
 public sealed partial class VpnStatusComponent
 {

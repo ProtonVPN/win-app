@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models;
 
@@ -25,8 +26,44 @@ public class ConnectionDetails
 {
     public IConnectionIntent OriginalConnectionIntent { get; }
 
+    public DateTime EstablishedConnectionTime { get; }
+
+    public string? CountryCode { get; set; }
+
+    public string? CityState { get; set; }
+
+    public string? ServerName { get; set; }
+
+    public double? ServerLoad { get; set; }
+
+    public TimeSpan? ServerLatency { get; set; }
+
+    public string? Protocol { get; set; }
+
+    public IEnumerable<string> Features { get; }
+
     public ConnectionDetails(IConnectionIntent connectionIntent)
     {
+        EstablishedConnectionTime = DateTime.Now;
+
         OriginalConnectionIntent = connectionIntent;
+
+        Features = new List<string>();    
+
+        MockConnectionDetails();
+    }
+
+    private void MockConnectionDetails()
+    {
+        CountryCode = (OriginalConnectionIntent.Location as CountryLocationIntent)?.CountryCode;
+        CityState = (OriginalConnectionIntent.Location as CityStateLocationIntent)?.CityState;
+
+        int? serverNumber = (OriginalConnectionIntent.Location as ServerLocationIntent)?.ServerNumber ?? (OriginalConnectionIntent.Location as FreeServerLocationIntent)?.ServerNumber;
+        ServerName = !string.IsNullOrEmpty(CountryCode) && serverNumber != null
+            ? $"{CountryCode}#{serverNumber}" : null;
+        
+        ServerLoad = 0.4;
+        ServerLatency = TimeSpan.FromMilliseconds(46);
+        Protocol = "Wireguard";
     }
 }

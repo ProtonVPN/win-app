@@ -25,6 +25,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
@@ -43,16 +44,20 @@ public partial class ShellViewModel : ViewModelBase
 
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
+    private readonly IEventMessageSender _eventMessageSender;
 
     public ShellViewModel(INavigationService navigationService,
         INavigationViewService navigationViewService,
         ILocalizationProvider localizationProvider,
+        IEventMessageSender eventMessageSender,
         HomeViewModel homeViewModel,
         CountriesViewModel countriesViewModel,
         SettingsViewModel settingsViewModel,
         Lazy<GalleryViewModel> galleryViewModel)
         : base(localizationProvider)
     {
+        _eventMessageSender = eventMessageSender;
+
         NavigationService = navigationService;
         NavigationService.Navigated += OnNavigated;
         NavigationViewService = navigationViewService;
@@ -65,8 +70,6 @@ public partial class ShellViewModel : ViewModelBase
         };
 
         AddDebugPages(galleryViewModel);
-
-        IsActive = true;
     }
 
     public PageViewModelBase? CurrentPage
@@ -100,6 +103,6 @@ public partial class ShellViewModel : ViewModelBase
 
     public void OnNavigationDisplayModeChanged(NavigationViewDisplayMode displayMode)
     {
-        Messenger.Send(new NavigationDisplayModeChangedMessage(displayMode));
+        _eventMessageSender.Send(new NavigationDisplayModeChangedMessage(displayMode));
     }
 }

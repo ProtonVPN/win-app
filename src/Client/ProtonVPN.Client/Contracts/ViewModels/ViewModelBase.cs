@@ -23,7 +23,7 @@ using ProtonVPN.Client.Localization.Contracts.Messages;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class ViewModelBase : ObservableRecipient, ILanguageAware
+public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 {
     public ILocalizationProvider Localizer { get; }
 

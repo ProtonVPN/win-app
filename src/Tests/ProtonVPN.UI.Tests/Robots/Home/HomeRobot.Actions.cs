@@ -38,4 +38,16 @@ public partial class HomeRobot
         ConnectionCardDisconnectButton.Click();
         return this;
     }
+
+    public HomeRobot DoOpenConnectionDetails()
+    {
+        ConnectionCardShowConnectionDetailsButton.Click();
+        return this;
+    }
+
+    public HomeRobot DoCloseConnectionDetails()
+    {
+        ConnectionDetailsCloseButton.Click();
+        return this;
+    }
 }

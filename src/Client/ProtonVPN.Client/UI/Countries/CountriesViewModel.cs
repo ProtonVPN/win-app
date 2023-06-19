@@ -175,7 +175,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
 
         foreach (IConnectionIntent intent in intents)
         {
-            await Task.WhenAny(_connectionManager.ConnectAsync(intent), Task.Delay(200));
+            await _connectionManager.ConnectAsync(intent);
         }
 
         IEnumerable<IRecentConnection> recentConnections = _recentConnectionsProvider.GetRecentConnections().Take(2);
