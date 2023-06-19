@@ -17,37 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.Robots.Home;
+namespace ProtonVPN.Client.Common.Enums;
 
-public partial class HomeRobot
+public enum ByteMetrics
 {
-    public HomeRobot DoConnect()
-    {
-        ConnectionCardConnectButton.Invoke();
-        return this;
-    }
-
-    public HomeRobot DoCancelConnection()
-    {
-        ConnectionCardCancelButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoDisconnect()
-    {
-        ConnectionCardDisconnectButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoOpenConnectionDetails()
-    {
-        ConnectionCardShowConnectionDetailsButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoCloseConnectionDetails()
-    {
-        ConnectionDetailsCloseButton.Click();
-        return this;
-    }
+    Bytes = 0,
+    Kilobytes = 1,
+    Megabytes = 2,
+    Gigabytes = 3,
+    Terabytes = 4,
+    Petabytes = 5,
+    Exabytes = 6
 }

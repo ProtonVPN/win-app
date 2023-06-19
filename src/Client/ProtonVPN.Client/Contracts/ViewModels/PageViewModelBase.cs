@@ -27,7 +27,7 @@ using ProtonVPN.Client.Messages;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class PageViewModelBase : ViewModelBase, INavigationAware,
+public abstract partial class PageViewModelBase : ActivatableViewModelBase, INavigationAware,
     IEventMessageReceiver<NavigationDisplayModeChangedMessage>
 {
     [ObservableProperty]
@@ -37,7 +37,6 @@ public abstract partial class PageViewModelBase : ViewModelBase, INavigationAwar
         : base(localizationProvider)
     {
         NavigationService = navigationService;
-        IsActive = true;
     }
 
     public Type PageType => GetType();
@@ -66,10 +65,14 @@ public abstract partial class PageViewModelBase : ViewModelBase, INavigationAwar
     }
 
     public virtual void OnNavigatedFrom()
-    { }
+    {
+        IsActive = false;
+    }
 
     public virtual void OnNavigatedTo(object parameter)
-    { }
+    {
+        IsActive = true;
+    }
 
     public void InvalidateTitle()
     {

@@ -44,11 +44,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Margin="0,16"
                            Visibility="Collapsed">
             <Button Margin="0,4,16,0"
-                    Padding="4"
                     toolkit:DockPanel.Dock="Left"
                     AutomationProperties.AutomationId="GoBackButton"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
+                    Style="{StaticResource TertiaryButtonStyle}"
                     Command="{x:Bind BackCommand}"
                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                 <pathicons:ArrowLeft />

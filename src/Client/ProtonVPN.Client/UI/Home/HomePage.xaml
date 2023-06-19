@@ -23,13 +23,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:connectionCard="using:ProtonVPN.Client.UI.Home.ConnectionCard"
+      xmlns:details="using:ProtonVPN.Client.UI.Home.Details"
       xmlns:map="using:ProtonVPN.Client.UI.Home.Map"
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
-      xmlns:vpnStatusComponent="using:ProtonVPN.Client.UI.Home.VpnStatusComponent"
+      xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
+      x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -50,37 +53,38 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <SplitView x:Name="SplitViewArea"
                    BorderThickness="0"
                    CornerRadius="4,0,0,4"
-                   IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
                    DisplayMode="{x:Bind ViewModel.DetailsPaneDisplayMode, Mode=TwoWay}"
+                   IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
                    OpenPaneLength="{StaticResource DetailsPaneWidth}"
                    PaneBackground="{StaticResource PaneOverlayBackgroundBrush}"
                    PanePlacement="Right">
             <SplitView.Pane>
-                <Grid Name="PaneGrid">
-                    <Grid Margin="10,0,0,0"
-                          Padding="14,24,24,24"
-                          Background="Transparent">
-                        <TextBlock HorizontalAlignment="Left"
-                                   VerticalAlignment="Top"
-                                   Text="Connection Details" />
-
-                        <Button Padding="4"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                AutomationProperties.AutomationId="CloseDetailsPaneButton"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                Command="{x:Bind ViewModel.CloseDetailsPaneCommand}">
+                <Grid Margin="16,20"
+                      RowSpacing="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <toolkit:DockPanel Grid.Row="0">
+                        <Button Margin="-2"
+                                toolkit:DockPanel.Dock="Right"
+                                AutomationProperties.AutomationId="CloseConnectionDetailsButton"
+                                Command="{x:Bind ViewModel.CloseDetailsPaneCommand, Mode=OneTime}"
+                                Style="{StaticResource TertiaryButtonStyle}">
                             <pathicons:Cross />
                         </Button>
-                    </Grid>
+                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" 
+                                   AutomationProperties.AutomationId="ConnectionDetailsTitle"/>
+                    </toolkit:DockPanel>
+                    <details:ConnectionDetailsComponent Grid.Row="1" />
                 </Grid>
             </SplitView.Pane>
 
             <controls:PageContentControl x:Name="PageContainer"
                                          Padding="0,0,0,16"
                                          CanContentScroll="False"
-                                         IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
+                                         IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -92,8 +96,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <map:MapComponent AutomationProperties.AutomationId="MapComponent" />
 
-                        <vpnStatusComponent:VpnStatusComponent Grid.Row="0"
-                                                               AutomationProperties.AutomationId="VpnStatusComponent" />
+                        <status:VpnStatusComponent Grid.Row="0"
+                                                   AutomationProperties.AutomationId="VpnStatusComponent" />
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
                                 VerticalAlignment="Bottom"

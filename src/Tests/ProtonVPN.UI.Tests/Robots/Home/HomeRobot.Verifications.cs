@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FlaUI.Core.AutomationElements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -97,6 +98,18 @@ public partial class HomeRobot
         VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTED_HEADER, expectedTitle, expectedSubtitle);
 
         Assert.IsNotNull(ConnectionCardDisconnectButton);
+
+        return this;
+    }
+
+    public HomeRobot VerifyConnectionDetailsIsOpened()
+    {
+        Label connectionDetailsLabel = ConnectionDetailsTitleLabel;
+
+        Assert.IsNotNull(connectionDetailsLabel);
+        Assert.AreEqual("Connection details", connectionDetailsLabel.Text);
+
+        Assert.IsNotNull(ConnectionDetailsCloseButton);
 
         return this;
     }

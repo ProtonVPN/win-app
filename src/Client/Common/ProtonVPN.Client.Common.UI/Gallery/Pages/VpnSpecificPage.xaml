@@ -23,6 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:gallery="using:ProtonVPN.Client.Common.UI.Gallery.Controls"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -80,10 +81,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </gallery:SampleControl>
 
             <gallery:SampleControl Header="Country Flag">
-                <controls:CountryFlagControl ExitCountryCode="{Binding Text, ElementName=tbCountryCode, Mode=OneWay}"
+                <controls:CountryFlagControl EntryCountryCode="{Binding Text, ElementName=tbEntryCountryCode, Mode=OneWay}"
+                                             ExitCountryCode="{Binding Text, ElementName=tbCountryCode, Mode=OneWay}"
                                              IsCompact="{Binding IsChecked, ElementName=cbCompactFlag, Mode=OneWay}"
-                                             IsSecureCore="{Binding IsChecked, ElementName=cbSecureCore, Mode=OneWay}"
-                                             EntryCountryCode="{Binding Text, ElementName=tbEntryCountryCode, Mode=OneWay}" />
+                                             IsSecureCore="{Binding IsChecked, ElementName=cbSecureCore, Mode=OneWay}" />
                 <gallery:SampleControl.Options>
                     <StackPanel Orientation="Vertical"
                                 Spacing="4">
@@ -100,6 +101,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Margin="4,4,0,0"
                                   Content="Is Compact" />
                         <Border Height="40" />
+                    </StackPanel>
+                </gallery:SampleControl.Options>
+            </gallery:SampleControl>
+
+            <gallery:SampleControl Header="Server load">
+                <controls:ServerLoadControl FirstThreshold="{Binding RangeStart, ElementName=rsThresholds, Mode=OneWay}"
+                                            SecondThreshold="{Binding RangeEnd, ElementName=rsThresholds, Mode=OneWay}"
+                                            Value="{Binding Value, ElementName=slServerLoad, Mode=OneWay}" />
+                <gallery:SampleControl.Options>
+                    <StackPanel Orientation="Vertical"
+                                Spacing="4">
+                        <TextBlock Text="Thresholds" />
+                        <toolkit:RangeSelector x:Name="rsThresholds"
+                                               Maximum="1"
+                                               Minimum="0"
+                                               RangeEnd="0.9"
+                                               RangeStart="0.5"
+                                               StepFrequency="0.05" />
+                        <Slider x:Name="slServerLoad"
+                                Header="Server load"
+                                Maximum="1"
+                                Minimum="0"
+                                StepFrequency="0.01"
+                                Value="0.6" />
                     </StackPanel>
                 </gallery:SampleControl.Options>
             </gallery:SampleControl>

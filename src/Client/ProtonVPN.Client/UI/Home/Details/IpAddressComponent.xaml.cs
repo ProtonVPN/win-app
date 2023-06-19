@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,37 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.Robots.Home;
+namespace ProtonVPN.Client.UI.Home.Details;
 
-public partial class HomeRobot
+public sealed partial class IpAddressComponent
 {
-    public HomeRobot DoConnect()
-    {
-        ConnectionCardConnectButton.Invoke();
-        return this;
-    }
+    public IpAddressViewModel ViewModel { get; }
 
-    public HomeRobot DoCancelConnection()
+    public IpAddressComponent()
     {
-        ConnectionCardCancelButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoDisconnect()
-    {
-        ConnectionCardDisconnectButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoOpenConnectionDetails()
-    {
-        ConnectionCardShowConnectionDetailsButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoCloseConnectionDetails()
-    {
-        ConnectionDetailsCloseButton.Click();
-        return this;
+        ViewModel = App.GetService<IpAddressViewModel>();
+        InitializeComponent();
     }
 }

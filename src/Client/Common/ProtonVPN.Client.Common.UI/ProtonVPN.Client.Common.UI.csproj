@@ -803,6 +803,7 @@
     <None Remove="Controls\CountryFlagControl.xaml" />
     <None Remove="Controls\DualCommandsRowControl.xaml" />
     <None Remove="Controls\PageContentControl.xaml" />
+    <None Remove="Controls\ServerLoadControl.xaml" />
     <None Remove="Controls\UserLocationControl.xaml" />
     <None Remove="Assets\Icons\ActiveDot.xaml" />
     <None Remove="Gallery\Controls\ColorsControl.xaml" />
@@ -832,6 +833,7 @@
   </ItemGroup>
 
   <ItemGroup>
+      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Input" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
       <PackageReference Include="Microsoft.WindowsAppSDK" />
@@ -1768,5 +1770,13 @@
     <Page Update="Controls\DualCommandsRowControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Controls\ServerLoadControl.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Remove="Controls\ServerLoadControl.xaml" />
   </ItemGroup>
 </Project>

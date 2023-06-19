@@ -30,7 +30,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    MinHeight="480"
                    PersistenceId="MainWindow"
                    mc:Ignorable="d">
+
     <windowex:WindowEx.Backdrop>
-        <windowex:MicaSystemBackdrop />
+
+        <windowex:MicaSystemBackdrop DarkFallbackColor="#16141C"
+                                     DarkLuminosityOpacity="0.95"
+                                     DarkTintColor="#16141C"
+                                     DarkTintOpacity="0.9"
+                                     LightFallbackColor="#FFFFFF"
+                                     LightLuminosityOpacity="0.95"
+                                     LightTintColor="#FFFFFF"
+                                     LightTintOpacity="0.9" />
     </windowex:WindowEx.Backdrop>
 </windowex:WindowEx>

@@ -117,6 +117,20 @@ namespace ProtonVPN.UI.Tests.Tests
                 .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
         }
 
+        [Test]
+        public void OpenConnectionDetails()
+        {
+            _homeRobot
+                .DoConnect()
+                .VerifyVpnStatusIsConnecting()
+                .VerifyConnectionCardIsConnecting()
+                .VerifyVpnStatusIsConnected()
+                .VerifyConnectionCardIsConnected()
+                .DoOpenConnectionDetails()
+                .VerifyConnectionDetailsIsOpened()
+                .DoCloseConnectionDetails();
+        }
+
         [TearDown]
         public void TestCleanup()
         {

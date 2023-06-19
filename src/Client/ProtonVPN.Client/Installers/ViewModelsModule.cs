@@ -25,11 +25,11 @@ using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
+using ProtonVPN.Client.UI.Home.Details;
 using ProtonVPN.Client.UI.Home.Help;
 using ProtonVPN.Client.UI.Home.Map;
-using ProtonVPN.Client.UI.Home.NetShieldStats;
 using ProtonVPN.Client.UI.Home.Recents;
-using ProtonVPN.Client.UI.Home.VpnStatusComponent;
+using ProtonVPN.Client.UI.Home.Status;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
@@ -40,6 +40,9 @@ namespace ProtonVPN.Client.Installers
     {
         protected override void Load(ContainerBuilder builder)
         {
+            RegisterViewModel<VpnSpeedViewModel>(builder);
+            RegisterViewModel<IpAddressViewModel>(builder);
+            RegisterViewModel<ConnectionDetailsViewModel>(builder);
             RegisterViewModel<RecentsViewModel>(builder);
             RegisterViewModel<VpnStatusViewModel>(builder);
             RegisterViewModel<NetShieldStatsViewModel>(builder);

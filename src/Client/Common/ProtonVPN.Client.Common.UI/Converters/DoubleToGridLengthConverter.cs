@@ -17,37 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.Robots.Home;
+using System;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
+using Windows.Web.Syndication;
 
-public partial class HomeRobot
+namespace ProtonVPN.Client.Common.UI.Converters;
+
+public class DoubleToGridLengthConverter : IValueConverter
 {
-    public HomeRobot DoConnect()
+    public GridUnitType UnitType { get; set; } = GridUnitType.Star;
+
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        ConnectionCardConnectButton.Invoke();
-        return this;
+        return new GridLength(System.Convert.ToDouble(value), UnitType);
     }
 
-    public HomeRobot DoCancelConnection()
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        ConnectionCardCancelButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoDisconnect()
-    {
-        ConnectionCardDisconnectButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoOpenConnectionDetails()
-    {
-        ConnectionCardShowConnectionDetailsButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoCloseConnectionDetails()
-    {
-        ConnectionDetailsCloseButton.Click();
-        return this;
+        throw new NotImplementedException();
     }
 }

@@ -14,9 +14,8 @@
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageVersion Include="CommunityToolkit.WinUI" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
+    <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Input" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
     <PackageVersion Include="coverlet.collector" Version="3.2.0" />
     <PackageVersion Include="DeviceId.Windows.Wmi" Version="6.1.0" />

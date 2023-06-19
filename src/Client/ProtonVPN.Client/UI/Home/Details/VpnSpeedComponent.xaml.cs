@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Home.NetShieldStats;
+namespace ProtonVPN.Client.UI.Home.Details;
 
-public sealed partial class NetShieldStatsComponent
+public sealed partial class VpnSpeedComponent
 {
-    public NetShieldStatsComponent()
+    public VpnSpeedViewModel ViewModel { get; }
+
+    public VpnSpeedComponent()
     {
-        ViewModel = App.GetService<NetShieldStatsViewModel>();
+        ViewModel = App.GetService<VpnSpeedViewModel>();
         InitializeComponent();
     }
-
-    public NetShieldStatsViewModel ViewModel { get; }
 }
