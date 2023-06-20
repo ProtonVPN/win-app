@@ -2325,7 +2325,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to North Macedonia.
+        ///   Looks up a localized string similar to Macedonia.
         /// </summary>
         public static string Country_val_MK {
             get {
