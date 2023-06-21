@@ -814,18 +814,24 @@
     <None Remove="Gallery\GalleryStyles.xaml" />
     <None Remove="Gallery\Pages\InputsPage.xaml" />
     <None Remove="Gallery\Pages\MapPage.xaml" />
+    <None Remove="Gallery\Pages\OtherControlsPage.xaml" />
     <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
     <None Remove="Gallery\Pages\VpnSpecificPage.xaml" />
     <None Remove="Styles\Brushes.xaml" />
     <None Remove="Styles\Controls\ButtonStyles.xaml" />
     <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
     <None Remove="Styles\Controls\ExpanderStyles.xaml" />
+    <None Remove="Styles\Controls\FlyoutStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
+    <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
+    <None Remove="Styles\Controls\MenuFlyoutStyles.xaml" />
     <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
     <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
+    <None Remove="Styles\Controls\PivotStyles.xaml" />
     <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
     <None Remove="Styles\Controls\TextBoxStyles.xaml" />
     <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
+    <None Remove="Styles\Controls\TooltipStyles.xaml" />
     <None Remove="Styles\Converters.xaml" />
     <None Remove="Styles\Typography.xaml" />
     <None Remove="Themes\DarkTheme.xaml" />
@@ -850,6 +856,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\UserLocationControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Controls\HyperlinkStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Controls\PivotStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Controls\FlyoutStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Controls\MenuFlyoutStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -1749,6 +1771,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Gallery\Pages\OtherControlsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="Styles\Controls\PageContentControlStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1778,5 +1806,11 @@
 
   <ItemGroup>
     <Resource Remove="Controls\ServerLoadControl.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\TooltipStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

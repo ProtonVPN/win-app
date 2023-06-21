@@ -81,6 +81,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.OtherControlsPage"
+                               Header="Others"
+                               IsClickEnabled="True">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE700;" />
+                </labs:SettingsCard.HeaderIcon>
+            </labs:SettingsCard>
+
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="VPN Components" />
 

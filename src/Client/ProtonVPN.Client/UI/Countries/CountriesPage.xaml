@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -26,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:models="using:ProtonVPN.Client.Models"
+      xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       x:Name="PageArea"
       mc:Ignorable="d">
 
@@ -35,6 +37,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea"
                     Orientation="Vertical">
+
+            <NavigationView Style="{StaticResource TopNavigationViewStyle}">
+                <NavigationView.MenuItems>
+                    <NavigationViewItem Content="Cities" x:Name="CitiesPage">
+                    </NavigationViewItem>
+                    <NavigationViewItem Content="Secure Core" x:Name="SecureCorePage">
+                        <NavigationViewItem.Icon>
+                            <pathIcons:LockLayers />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem Content="P2P" x:Name="P2PPage">
+                        <NavigationViewItem.Icon>
+                            <pathIcons:ArrowRightArrowLeft />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem Content="Tor" x:Name="TorPage">
+                        <NavigationViewItem.Icon>
+                            <pathIcons:BrandTor />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </NavigationView.MenuItems>
+            </NavigationView>
+
             <Border Margin="0,0,0,24"
                     Padding="24,16"
                     x:DefaultBindMode="TwoWay"

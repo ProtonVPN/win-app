@@ -123,6 +123,7 @@ public class PageService : IPageService
         Configure<ColorsPage>();
         Configure<TypographyPage>();
         Configure<InputsPage>();
+        Configure<OtherControlsPage>();
         Configure<TextFieldsPage>();
         Configure<MapPage>();
         Configure<VpnSpecificPage>();
