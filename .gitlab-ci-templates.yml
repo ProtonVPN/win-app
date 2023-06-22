@@ -1,0 +1,42 @@
+.test_execution_script:
+  stage: ui-test
+  dependencies:
+    - build-installer
+  tags:
+    - e2e-tests
+  script:
+    - ci\test-scripts\uninstall-app.ps1
+    - ci\test-scripts\install-the-app.ps1
+    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
+    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=${CATEGORY}"
+    - ci\test-scripts\uninstall-app.ps1
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+  artifacts:
+    when: always
+    name: "result-ui"
+    paths:
+      - $SCREENSHOT_PATH
+    expire_in: 1 weeks
+    
+.build-script:
+  stage: build
+  tags:
+    - windows-dot-net
+  script:
+    - echo "Building native dependencies..."
+    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
+    - cmd.exe /c BuildDependencies.bat publish
+    - echo "Downloading translations from crowdin..."
+    - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py defaultConfig
+    - echo "Publishing ${TYPE}..."
+    - cmd.exe /c Publish.bat ${TYPE}
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - publish
+  variables:
+    GIT_SUBMODULE_STRATEGY: normal

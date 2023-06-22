@@ -6,6 +6,8 @@ include:
   - project: 'translations/generator'
     ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
+    
+  - local: '/.gitlab-ci-templates.yml'
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
@@ -30,54 +32,25 @@ stages:
   - mirror
 
 build-release:
-  stage: build
-  tags:
-    - windows-dot-net
-  script:
-    - echo "Building native dependencies..."
-    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat publish
-    - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin\
-    - echo "Downloading translations from crowdin..."
-    - python ci\build-scripts\main.py lint-languages
-    - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\build-scripts\main.py defaultConfig
-    - echo "Publishing release..."
-    - cmd.exe /c Publish.bat Release
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - publish
+  extends: .build-script
   only:
     - master
     - /^release.*$/
   variables:
-    GIT_SUBMODULE_STRATEGY: normal
-
+    TYPE: Release
+  
 build-debug:
-  stage: build
-  tags:
-    - windows-dot-net
-  script:
-    - echo "Building native dependencies..."
-    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat publish
-    - dotnet build src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release
-    - echo "Downloading translations from crowdin..."
-    - python ci\build-scripts\main.py lint-languages
-    - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\build-scripts\main.py defaultConfig
-    - echo "Publishing debug..."
-    - cmd.exe /c Publish.bat Debug
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - publish
+  extends: .build-script
   except:
     - master
     - /^release.*$/
   variables:
-    GIT_SUBMODULE_STRATEGY: normal
+    TYPE: Debug
+
+ui-test:
+  extends: .test_execution_script
+  variables:
+    CATEGORY: "UI"
 
 tests:
   stage: test
@@ -100,7 +73,7 @@ tests:
   variables:
     GIT_SUBMODULE_STRATEGY: normal
 
-build-installer-for-release:
+build-installer:
   stage: build-installer
   tags:
     - windows
@@ -111,9 +84,6 @@ build-installer-for-release:
     paths:
       - Setup/Installers/
     expire_in: 4 weeks
-  only:
-    - master
-    - /^release.*$/
 
 prepare-internal-beta-release:
   stage: internal-beta
@@ -125,50 +95,7 @@ prepare-internal-beta-release:
     - python ci\test-scripts\prepare-internal-beta.py
   only:
     - /^release.*$/
-
-build-installer-for-debug:
-  stage: build-installer
-  tags:
-    - windows
-  script:
-    - python ci\build-scripts\main.py update-gh-list
-    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
-  except:
-    - master
-    - /^release.*$/
     
-ui-test:
-  stage: ui-test
-  dependencies:
-    - build-installer-for-debug
-    - build-installer-for-release
-  tags:
-    - e2e-tests
-  script:
-    - ci\test-scripts\uninstall-app.ps1
-    - ci\test-scripts\install-the-app.ps1
-    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
-    - ci\test-scripts\uninstall-app.ps1
-  after_script:
-    - powershell.exe ./ci/test-scripts/TestRun/converter-nunit-junit.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-  artifacts:
-    when: always
-    name: "result-ui"
-    paths:
-      - $SCREENSHOT_PATH
-      - "results/*"
-    expire_in: 1 weeks
-
-
 mirror:
   stage: mirror
   tags:
