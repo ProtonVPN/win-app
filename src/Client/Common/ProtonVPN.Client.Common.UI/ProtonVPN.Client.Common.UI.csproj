@@ -255,6 +255,11 @@
     <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
     <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
     <Content Remove="Assets\Icons\IconUserControl.xaml.cs" />
+    <Content Remove="Assets\Icons\LatencyHigh.xaml" />
+    <Content Remove="Assets\Icons\LatencyHigh.xaml.cs" />
+    <Content Remove="Assets\Icons\LatencyLow.xaml" />
+    <Content Remove="Assets\Icons\LatencyMedium.xaml" />
+    <Content Remove="Assets\Icons\LatencyMedium.xaml.cs" />
     <Content Remove="Assets\Icons\PathIcons\Alias.cs" />
     <Content Remove="Assets\Icons\PathIcons\ArchiveBox.cs" />
     <Content Remove="Assets\Icons\PathIcons\ArrowDown.cs" />
@@ -553,6 +558,7 @@
     <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml.cs" />
     <Content Remove="Assets\Icons\UnprotectedLock.xaml" />
     <Content Remove="Assets\Icons\UnprotectedLock.xaml.cs" />
+    <Content Remove="Assets\Icons\UserControl1.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\Flags\AD.svg" />
@@ -796,6 +802,9 @@
     <None Remove="Assets\Flags\ZA.svg" />
     <None Remove="Assets\Flags\ZM.svg" />
     <None Remove="Assets\Flags\ZW.svg" />
+    <None Remove="Assets\Icons\LatencyHigh.xaml" />
+    <None Remove="Assets\Icons\LatencyLow.xaml" />
+    <None Remove="Assets\Icons\LatencyMedium.xaml" />
     <None Remove="Assets\Icons\ProtectedLock.xaml" />
     <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
     <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
@@ -820,6 +829,7 @@
     <None Remove="Styles\Brushes.xaml" />
     <None Remove="Styles\Controls\ButtonStyles.xaml" />
     <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
+    <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
     <None Remove="Styles\Controls\ExpanderStyles.xaml" />
     <None Remove="Styles\Controls\FlyoutStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
@@ -829,6 +839,7 @@
     <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
     <None Remove="Styles\Controls\PivotStyles.xaml" />
     <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
+    <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
     <None Remove="Styles\Controls\TextBoxStyles.xaml" />
     <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
     <None Remove="Styles\Controls\TooltipStyles.xaml" />
@@ -839,6 +850,7 @@
   </ItemGroup>
 
   <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Input" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
@@ -1806,6 +1818,38 @@
 
   <ItemGroup>
     <Resource Remove="Controls\ServerLoadControl.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Styles\Controls\ContentDialogStyles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\SettingsCardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\LatencyHigh.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\LatencyMedium.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Assets\Icons\LatencyLow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

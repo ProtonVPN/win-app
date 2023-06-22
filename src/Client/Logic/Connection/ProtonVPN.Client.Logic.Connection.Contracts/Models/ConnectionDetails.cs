@@ -44,7 +44,7 @@ public class ConnectionDetails
 
     public ConnectionDetails(IConnectionIntent connectionIntent)
     {
-        EstablishedConnectionTime = DateTime.Now;
+        EstablishedConnectionTime = DateTime.UtcNow;
 
         OriginalConnectionIntent = connectionIntent;
 

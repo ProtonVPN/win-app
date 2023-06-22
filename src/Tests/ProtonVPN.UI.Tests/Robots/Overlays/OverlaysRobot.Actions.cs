@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,19 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.UI.Dialogs;
-using ProtonVPN.Client.UI.Dialogs.Overlays;
+using FlaUI.Core.Input;
 
-namespace ProtonVPN.Client.UI.Home.Details;
+namespace ProtonVPN.UI.Tests.Robots.Overlays;
 
-public sealed partial class ConnectionDetailsComponent
+public partial class OverlaysRobot
 {
-    public ConnectionDetailsViewModel ViewModel { get; }
-
-    public ConnectionDetailsComponent()
+    public OverlaysRobot DoCloseOverlay()
     {
-        ViewModel = App.GetService<ConnectionDetailsViewModel>();
-        InitializeComponent();
+        CloseOverlayButton.Click();
+
+        // Closing overlay triggers an animation. If actions are chained too quickly, the main window is not yet clickable.
+        this.Wait(500);
+
+        return this;
     }
 }

@@ -17,19 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.UI.Dialogs;
-using ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
-namespace ProtonVPN.Client.UI.Home.Details;
-
-public sealed partial class ConnectionDetailsComponent
+public sealed partial class ProtocolOverlayDialog
 {
-    public ConnectionDetailsViewModel ViewModel { get; }
+    public ProtocolOverlayViewModel ViewModel { get; }
 
-    public ConnectionDetailsComponent()
+    public ProtocolOverlayDialog()
     {
-        ViewModel = App.GetService<ConnectionDetailsViewModel>();
+        ViewModel = App.GetService<ProtocolOverlayViewModel>();
         InitializeComponent();
     }
 }

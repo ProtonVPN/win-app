@@ -25,7 +25,7 @@ namespace ProtonVPN.UI.Tests.Robots.Home;
 
 public partial class HomeRobot
 {
-    private const string UNPROTECTED_STATUS_SUBTITLE = "You're unprotected";
+    private const string UNPROTECTED_STATUS_SUBTITLE = "You are unprotected";
     private const string CONNECTING_STATUS_SUBTITLE = "Protecting your digital identity";
     private const string PROTECTED_STATUS_TITLE = "Protected";
 
@@ -108,6 +108,10 @@ public partial class HomeRobot
 
         Assert.IsNotNull(connectionDetailsLabel);
         Assert.AreEqual("Connection details", connectionDetailsLabel.Text);
+
+        Assert.IsNotNull(ConnectionDetailServerLoadButton);
+        Assert.IsNotNull(ConnectionDetailLatencyButton);
+        Assert.IsNotNull(ConnectionDetailProtocolButton);
 
         Assert.IsNotNull(ConnectionDetailsCloseButton);
 

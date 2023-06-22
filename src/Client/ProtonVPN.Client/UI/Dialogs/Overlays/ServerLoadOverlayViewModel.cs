@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,19 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.UI.Dialogs;
-using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 
-namespace ProtonVPN.Client.UI.Home.Details;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
-public sealed partial class ConnectionDetailsComponent
+public class ServerLoadOverlayViewModel : OverlayViewModelBase
 {
-    public ConnectionDetailsViewModel ViewModel { get; }
+    public Uri LearnMoreUri { get; } = new Uri(@"https://protonvpn.com/support/server-load-percentages-and-colors-explained/");
 
-    public ConnectionDetailsComponent()
-    {
-        ViewModel = App.GetService<ConnectionDetailsViewModel>();
-        InitializeComponent();
-    }
+    public ServerLoadOverlayViewModel(ILocalizationProvider localizationProvider, IDialogService dialogService)
+        : base(localizationProvider, dialogService)
+    { }
 }

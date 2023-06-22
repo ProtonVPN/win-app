@@ -51,7 +51,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <SolidColorBrush x:Key="ButtonForegroundPressed"
                      Color="{ThemeResource TextNormColor}" />
     <SolidColorBrush x:Key="ButtonForegroundDisabled"
-                     Color="{ThemeResource TextDisabledColor}" />
+                     Color="{ThemeResource TextHintColor}" />
     <SolidColorBrush x:Key="ButtonBackgroundDisabled"
                      Color="{ThemeResource InteractionWeakColor}" />
 
@@ -71,7 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Color="{ThemeResource InteractionNormActiveColor}" />
 
     <SolidColorBrush x:Key="AccentButtonForegroundDisabled"
-                     Color="{ThemeResource TextDisabledColor}" />
+                     Color="{ThemeResource TextHintColor}" />
     <SolidColorBrush x:Key="AccentButtonBackgroundDisabled"
                      Color="{ThemeResource InteractionWeakColor}" />
 
@@ -169,7 +169,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
+                                                                    Value="{ThemeResource TextHintColorBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -400,6 +400,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TransparentButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Padding" Value="{StaticResource TertiaryButtonPadding}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ContentContainer"
+                            Padding="{TemplateBinding Padding}"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

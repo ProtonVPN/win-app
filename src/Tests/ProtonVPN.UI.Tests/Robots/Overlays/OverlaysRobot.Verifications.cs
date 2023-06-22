@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,19 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.UI.Dialogs;
-using ProtonVPN.Client.UI.Dialogs.Overlays;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ProtonVPN.Client.UI.Home.Details;
+namespace ProtonVPN.UI.Tests.Robots.Overlays;
 
-public sealed partial class ConnectionDetailsComponent
+public partial class OverlaysRobot
 {
-    public ConnectionDetailsViewModel ViewModel { get; }
-
-    public ConnectionDetailsComponent()
+    public OverlaysRobot VerifyOverlayIsOpened()
     {
-        ViewModel = App.GetService<ConnectionDetailsViewModel>();
-        InitializeComponent();
+        Assert.IsNotNull(CloseOverlayButton);
+
+        return this;
     }
 }

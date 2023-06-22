@@ -40,6 +40,7 @@ namespace ProtonVPN.Client.Installers
             builder.RegisterType<ActivationService>().As<IActivationService>().SingleInstance();
             builder.RegisterType<PageService>().As<IPageService>().SingleInstance();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
 
             builder.RegisterType<FileService>().As<IFileService>().SingleInstance();
         }

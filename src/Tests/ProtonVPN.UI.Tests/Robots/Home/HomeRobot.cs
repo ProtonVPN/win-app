@@ -38,4 +38,8 @@ public partial class HomeRobot : UIActions
     
     protected Button ConnectionDetailsCloseButton => ElementByAutomationId("CloseConnectionDetailsButton").AsButton();
     protected Label ConnectionDetailsTitleLabel => ElementByAutomationId("ConnectionDetailsTitle").AsLabel();
+
+    protected Button ConnectionDetailServerLoadButton => ElementByAutomationId("ShowServerLoadOverlayButton").AsButton();
+    protected Button ConnectionDetailLatencyButton => ElementByAutomationId("ShowLatencyOverlayButton").AsButton();
+    protected Button ConnectionDetailProtocolButton => ElementByAutomationId("ShowProtocolOverlayButton").AsButton();
 }

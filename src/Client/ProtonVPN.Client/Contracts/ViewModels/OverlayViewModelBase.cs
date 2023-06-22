@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,19 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.UI.Dialogs;
-using ProtonVPN.Client.UI.Dialogs.Overlays;
+using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Localization.Contracts;
 
-namespace ProtonVPN.Client.UI.Home.Details;
+namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public sealed partial class ConnectionDetailsComponent
+public abstract partial class OverlayViewModelBase : ViewModelBase
 {
-    public ConnectionDetailsViewModel ViewModel { get; }
+    protected readonly IDialogService DialogService;
 
-    public ConnectionDetailsComponent()
+    public OverlayViewModelBase(ILocalizationProvider localizationProvider, IDialogService dialogService)
+        : base(localizationProvider)
     {
-        ViewModel = App.GetService<ConnectionDetailsViewModel>();
-        InitializeComponent();
+        DialogService = dialogService;
+    }
+
+    [RelayCommand]
+    public void CloseOverlay()
+    {
+        DialogService.Close();
     }
 }
