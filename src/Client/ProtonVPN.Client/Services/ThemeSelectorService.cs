@@ -39,7 +39,6 @@ public class ThemeSelectorService : IThemeSelectorService
     public async Task InitializeAsync()
     {
         Theme = await LoadThemeFromSettingsAsync();
-        await Task.CompletedTask;
     }
 
     public async Task SetRequestedThemeAsync()

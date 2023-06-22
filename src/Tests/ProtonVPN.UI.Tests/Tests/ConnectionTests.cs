@@ -19,8 +19,10 @@
 
 using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
+using ProtonVPN.UI.Tests.Robots.Overlays;
 using ProtonVPN.UI.Tests.Robots.Shell;
 
 namespace ProtonVPN.UI.Tests.Tests
@@ -32,6 +34,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private ShellRobot _shellRobot = new ShellRobot();
         private HomeRobot _homeRobot = new HomeRobot();
         private CountriesRobot _countriesRobot = new CountriesRobot();
+        private OverlaysRobot _overlaysRobot = new OverlaysRobot();
 
         private const string PAGE = "Countries";
         private const string COUNTRY = "Lithuania";
@@ -80,10 +83,9 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeRobot
                 .DoConnect()
                 .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting();
-            //Allow some time to establish connection
-            Thread.Sleep(500);
-            _homeRobot.DoCancelConnection()
+                .VerifyConnectionCardIsConnecting()
+                .Wait(500)
+                .DoCancelConnection()
                 .VerifyVpnStatusIsDisconnected()
                 .VerifyConnectionCardIsDisconnected();
         }
@@ -130,7 +132,30 @@ namespace ProtonVPN.UI.Tests.Tests
                 .VerifyVpnStatusIsConnected()
                 .VerifyConnectionCardIsConnected()
                 .DoOpenConnectionDetails()
-                .VerifyConnectionDetailsIsOpened()
+                .VerifyConnectionDetailsIsOpened();
+
+            _homeRobot
+                .DoOpenLatencyOverlay();
+
+            _overlaysRobot
+                .VerifyOverlayIsOpened()
+                .DoCloseOverlay();
+
+            _homeRobot
+                .DoOpenServerLoadOverlay();
+
+            _overlaysRobot
+                .VerifyOverlayIsOpened()
+                .DoCloseOverlay();
+
+            _homeRobot
+                .DoOpenProtocolOverlay();
+
+            _overlaysRobot
+                .VerifyOverlayIsOpened()
+                .DoCloseOverlay();
+
+            _homeRobot
                 .DoCloseConnectionDetails();
         }
 

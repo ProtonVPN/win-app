@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<base:IconUserControl x:Class="ProtonVPN.Client.Common.UI.Assets.Icons.LatencyMedium"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
+                      mc:Ignorable="d">
+
+    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Stretch="Uniform">
+        <Canvas Width="24"
+                Height="24">
+            <Path Data="M19.875 20.6992C21.5087 18.8482 22.5 16.4168 22.5 13.7539C22.5 7.95492 17.799 3.25391 12 3.25391C6.20101 3.25391 1.5 7.95492 1.5 13.7539C1.5 16.4168 2.4913 18.8482 4.125 20.6992"
+                  Fill="#00000000"
+                  Stroke="{StaticResource SignalWarningColorBrush}"
+                  StrokeEndLineCap="round"
+                  StrokeLineJoin="bevel"
+                  StrokeStartLineCap="round"
+                  StrokeThickness="1.5" />
+            <Path Data="M12 13.7539L15.5 8.50391"
+                  Fill="#00000000"
+                  Stroke="{StaticResource SignalWarningColorBrush}"
+                  StrokeEndLineCap="round"
+                  StrokeLineJoin="bevel"
+                  StrokeStartLineCap="round"
+                  StrokeThickness="1.5" />
+            <Ellipse Canvas.Left="10.25"
+                     Canvas.Top="12.0039"
+                     Width="3.5"
+                     Height="3.5"
+                     Fill="{StaticResource SignalWarningColorBrush}" />
+        </Canvas>
+    </Viewbox>
+</base:IconUserControl>

@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using ProtonVPN.Client.UI.Dialogs;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 

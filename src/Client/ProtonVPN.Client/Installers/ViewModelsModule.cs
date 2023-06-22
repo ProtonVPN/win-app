@@ -22,6 +22,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Pages;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
@@ -40,6 +41,9 @@ namespace ProtonVPN.Client.Installers
     {
         protected override void Load(ContainerBuilder builder)
         {
+            RegisterViewModel<ProtocolOverlayViewModel>(builder);
+            RegisterViewModel<LatencyOverlayViewModel>(builder);
+            RegisterViewModel<ServerLoadOverlayViewModel>(builder);
             RegisterViewModel<VpnSpeedViewModel>(builder);
             RegisterViewModel<IpAddressViewModel>(builder);
             RegisterViewModel<ConnectionDetailsViewModel>(builder);

@@ -103,7 +103,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <toolkit:HeaderedContentControl.Header>
                         <toolkit:DockPanel>
                             <Button toolkit:DockPanel.Dock="Right"
-                                    Style="{StaticResource InfoButtonStyle}">
+                                    Style="{StaticResource InfoButtonStyle}"
+                                    Command="{x:Bind ViewModel.OpenOverlayCommand}"
+                                    CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ServerLoadOverlayViewModel"
+                                    AutomationProperties.AutomationId="ShowServerLoadOverlayButton">
                                 <pathicons:InfoCircle />
                             </Button>
                             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}" />
@@ -121,7 +124,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <toolkit:HeaderedContentControl.Header>
                         <toolkit:DockPanel>
                             <Button toolkit:DockPanel.Dock="Right"
-                                    Style="{StaticResource InfoButtonStyle}">
+                                    Style="{StaticResource InfoButtonStyle}"
+                                    Command="{x:Bind ViewModel.OpenOverlayCommand}"
+                                    CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.LatencyOverlayViewModel"
+                                    AutomationProperties.AutomationId="ShowLatencyOverlayButton">
                                 <pathicons:InfoCircle />
                             </Button>
                             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Latency')}" />
@@ -134,7 +140,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <toolkit:HeaderedContentControl.Header>
                         <toolkit:DockPanel>
                             <Button toolkit:DockPanel.Dock="Right"
-                                    Style="{StaticResource InfoButtonStyle}">
+                                    Style="{StaticResource InfoButtonStyle}"
+                                    Command="{x:Bind ViewModel.OpenOverlayCommand}"
+                                    CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ProtocolOverlayViewModel"
+                                    AutomationProperties.AutomationId="ShowProtocolOverlayButton">
                                 <pathicons:InfoCircle />
                             </Button>
                             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}" />

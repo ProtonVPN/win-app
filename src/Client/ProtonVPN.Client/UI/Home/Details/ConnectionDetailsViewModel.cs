@@ -19,7 +19,10 @@
 
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
@@ -27,6 +30,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.UI.Dialogs;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
@@ -35,6 +39,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
     private readonly IConnectionManager _connectionManager;
+    private readonly IDialogService _dialogService;
 
     private readonly VpnSpeedViewModel _vpnSpeedViewModel;
 
@@ -52,7 +57,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     public bool IsConnecting => _connectionManager.ConnectionStatus == ConnectionStatus.Connecting;
 
     public TimeSpan? SessionLength => CurrentConnectionDetails != null
-        ? DateTime.Now - CurrentConnectionDetails.EstablishedConnectionTime
+        ? DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTime
         : null;
 
     public string? FormattedSessionLength => SessionLength != null
@@ -71,10 +76,11 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
         ? Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails.ServerLatency.Value.TotalMilliseconds)
         : null;
 
-    public ConnectionDetailsViewModel(ILocalizationProvider localizationProvider, IConnectionManager connectionManager, VpnSpeedViewModel vpnSpeedViewModel)
+    public ConnectionDetailsViewModel(ILocalizationProvider localizationProvider, IConnectionManager connectionManager, IDialogService dialogService, VpnSpeedViewModel vpnSpeedViewModel)
         : base(localizationProvider)
     {
         _connectionManager = connectionManager;
+        _dialogService = dialogService;
 
         _vpnSpeedViewModel = vpnSpeedViewModel;
 
@@ -139,5 +145,11 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     private void OnRefreshTimerTick(object? sender, EventArgs e)
     {
         Refresh();
+    }
+
+    [RelayCommand]
+    public async Task OpenOverlayAsync(string dialogKey)
+    {
+        await _dialogService.ShowAsync(dialogKey);
     }
 }

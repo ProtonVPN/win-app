@@ -50,4 +50,20 @@ public partial class HomeRobot
         ConnectionDetailsCloseButton.Click();
         return this;
     }
+
+    public HomeRobot DoOpenServerLoadOverlay()
+    {
+        ConnectionDetailServerLoadButton.Click();
+        return this;
+    }
+    public HomeRobot DoOpenLatencyOverlay()
+    {
+        ConnectionDetailLatencyButton.Click();
+        return this;
+    }
+    public HomeRobot DoOpenProtocolOverlay()
+    {
+        ConnectionDetailProtocolButton.Click();
+        return this;
+    }
 }

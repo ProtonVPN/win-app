@@ -23,12 +23,16 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="UI\Dialogs\Infos\**" />
     <Compile Remove="UI\Home\VpnStatus\**" />
     <Compile Remove="Views\**" />
+    <EmbeddedResource Remove="UI\Dialogs\Infos\**" />
     <EmbeddedResource Remove="UI\Home\VpnStatus\**" />
     <EmbeddedResource Remove="Views\**" />
+    <None Remove="UI\Dialogs\Infos\**" />
     <None Remove="UI\Home\VpnStatus\**" />
     <None Remove="Views\**" />
+    <Page Remove="UI\Dialogs\Infos\**" />
     <Page Remove="UI\Home\VpnStatus\**" />
     <Page Remove="Views\**" />
   </ItemGroup>
@@ -62,6 +66,15 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Dialogs\ServerLoadInfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Home\Details\VpnSpeedComponent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,7 +90,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Illustrations\latency-desktop.svg" />
     <None Remove="Assets\protonvpn.ico" />
+    <None Remove="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml" />
+    <None Remove="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml" />
+    <None Remove="UI\Dialogs\ServerLoadInfoDialog.xaml" />
     <None Remove="UI\Gallery\GalleryPage.xaml" />
     <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
     <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
@@ -115,5 +132,15 @@
     <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
     <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Installers\ProtonVPN.Client.Logic.Recents.Installers.csproj" />
     <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PRIResource Remove="UI\Dialogs\Infos\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="Assets\Illustrations\latency-desktop.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

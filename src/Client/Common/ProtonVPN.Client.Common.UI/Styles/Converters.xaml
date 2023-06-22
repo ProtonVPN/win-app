@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
     <converters:NotNullToBooleanConverter x:Key="NotNullToBooleanConverter" />
     <converters:NotBooleanToBooleanConverter x:Key="NotBooleanToBooleanConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
     <converters:FocusStateToBooleanConverter x:Key="FocusStateToBooleanConverter" />
     <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter"/>
