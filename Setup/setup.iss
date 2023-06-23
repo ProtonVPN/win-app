@@ -83,6 +83,11 @@ Source: "SplitTunnel\ProtonVPN.CalloutDriver.sys"; DestDir: "{app}\{#VersionFold
 Source: "tun\wintun.dll"; DestDir: "{app}\{#VersionFolder}\Resources";
 Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 
+Source: "..\publish\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFolder}\Microsoft.UI.Xaml\Assets";
+
+Source: "..\publish\Assets\*.ico"; DestDir: "{app}\{#VersionFolder}\Assets";
+Source: "..\publish\Assets\Illustrations\*.svg"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
+
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
 Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
