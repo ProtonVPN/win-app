@@ -160,6 +160,8 @@ csharp_style_var_for_built_in_types=false:warning
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_var_when_type_is_apparent
 csharp_style_var_when_type_is_apparent=none
 
+csharp_style_namespace_declarations = file_scoped:warning
+
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_sort_system_directives_first
 dotnet_sort_system_directives_first=true
 
