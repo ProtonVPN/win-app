@@ -1181,9 +1181,6 @@
   <data name="Dialogs_Protocol_Description" xml:space="preserve">
     <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
   </data>
-  <data name="Dialogs_Protocol_LearnMore" xml:space="preserve">
-    <value>How protocol works</value>
-  </data>
   <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
     <value>Switch VPN Protocol</value>
   </data>
@@ -1310,6 +1307,12 @@
     <value>{0} sec</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
+  <data name="Home_Account_SignOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="Home_Account_Title" xml:space="preserve">
+    <value>My account</value>
+  </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
     <value>Browsing safely from</value>
   </data>
@@ -1335,9 +1338,15 @@
   <data name="Home_ConnectionDetails_Download" xml:space="preserve">
     <value>Download</value>
   </data>
+  <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
+    <value>Hide connection details</value>
+  </data>
   <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
     <value>Hide</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
+    <value>Hide user IP address</value>
   </data>
   <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
     <value>Latency</value>
@@ -1354,9 +1363,15 @@
   <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
     <value>Server load</value>
   </data>
+  <data name="Home_ConnectionDetails_Show" xml:space="preserve">
+    <value>Show connection details</value>
+  </data>
   <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
     <value>Show</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
+    <value>Show user IP address</value>
   </data>
   <data name="Home_ConnectionDetails_Title" xml:space="preserve">
     <value>Connection details</value>

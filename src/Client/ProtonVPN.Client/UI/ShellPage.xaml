@@ -97,15 +97,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         AutomationProperties.AutomationId="AccountButton"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Style="{StaticResource SidebarButtonStyle}">
+                        Style="{StaticResource SidebarButtonStyle}"
+                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}"
+                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}">
                     <Button.Flyout>
                         <Flyout>
                             <StackPanel Orientation="Vertical"
                                         Spacing="16">
-                                <HyperlinkButton Content="Manage subscription" />
+                                <HyperlinkButton Content="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}" />
                                 <Button Width="175"
                                         Height="32"
-                                        Content="Sign out" />
+                                        Content="{x:Bind ViewModel.Localizer.Get('Home_Account_SignOut')}" />
                             </StackPanel>
                         </Flyout>
                     </Button.Flyout>

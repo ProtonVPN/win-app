@@ -40,6 +40,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="FontSize" Value="{StaticResource CaptionFontSize}" />
             <Setter Property="FontWeight" Value="{StaticResource CaptionFontWeight}" />
+            <Setter Property="IsTabStop" Value="False" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="toolkit:HeaderedContentControl">
@@ -67,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
 
         <Style x:Key="InfoButtonStyle" BasedOn="{StaticResource TertiaryButtonStyle}" TargetType="Button">
-            <Setter Property="Margin" Value="4,-54,0,-54" />
+            <Setter Property="Margin" Value="0,-54" />
         </Style>
     </UserControl.Resources>
 
@@ -77,9 +78,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                   VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical"
                     Spacing="20">
-            <details:IpAddressComponent />
+            
+            <details:IpAddressComponent TabIndex="1"/>
 
-            <details:VpnSpeedComponent />
+            <details:VpnSpeedComponent TabIndex="2"/>
 
             <StackPanel Orientation="Vertical">
 
@@ -101,16 +103,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <toolkit:HeaderedContentControl Visibility="{x:Bind ViewModel.ServerLoad, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
-                        <toolkit:DockPanel>
+                        <StackPanel Orientation="Horizontal" 
+                                    Spacing="4">
+                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}" />
                             <Button toolkit:DockPanel.Dock="Right"
                                     Style="{StaticResource InfoButtonStyle}"
                                     Command="{x:Bind ViewModel.OpenOverlayCommand}"
                                     CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ServerLoadOverlayViewModel"
-                                    AutomationProperties.AutomationId="ShowServerLoadOverlayButton">
+                                    AutomationProperties.AutomationId="ShowServerLoadOverlayButton"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
+                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}">
                                 <pathicons:InfoCircle />
                             </Button>
-                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}" />
-                        </toolkit:DockPanel>
+                        </StackPanel>
                     </toolkit:HeaderedContentControl.Header>
                     <StackPanel Orientation="Horizontal"
                                 Spacing="8">
@@ -122,32 +127,38 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.ServerLatency}"
                                                 Visibility="{x:Bind ViewModel.ServerLatency, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
-                        <toolkit:DockPanel>
+                        <StackPanel Orientation="Horizontal" 
+                                    Spacing="4">
+                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Latency')}" />
                             <Button toolkit:DockPanel.Dock="Right"
                                     Style="{StaticResource InfoButtonStyle}"
                                     Command="{x:Bind ViewModel.OpenOverlayCommand}"
                                     CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.LatencyOverlayViewModel"
-                                    AutomationProperties.AutomationId="ShowLatencyOverlayButton">
+                                    AutomationProperties.AutomationId="ShowLatencyOverlayButton"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
+                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}">
                                 <pathicons:InfoCircle />
                             </Button>
-                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Latency')}" />
-                        </toolkit:DockPanel>
+                        </StackPanel>
                     </toolkit:HeaderedContentControl.Header>
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.CurrentConnectionDetails.Protocol}"
                                                 Visibility="{x:Bind ViewModel.CurrentConnectionDetails.Protocol, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
-                        <toolkit:DockPanel>
+                        <StackPanel Orientation="Horizontal" 
+                                    Spacing="4">
+                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}" />
                             <Button toolkit:DockPanel.Dock="Right"
                                     Style="{StaticResource InfoButtonStyle}"
                                     Command="{x:Bind ViewModel.OpenOverlayCommand}"
                                     CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ProtocolOverlayViewModel"
-                                    AutomationProperties.AutomationId="ShowProtocolOverlayButton">
+                                    AutomationProperties.AutomationId="ShowProtocolOverlayButton"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
+                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}">
                                 <pathicons:InfoCircle />
                             </Button>
-                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}" />
-                        </toolkit:DockPanel>
+                        </StackPanel>
                     </toolkit:HeaderedContentControl.Header>
                 </toolkit:HeaderedContentControl>
             </StackPanel>

@@ -17,15 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
 public sealed partial class ConnectionCardComponent
 {
+    public ConnectionCardViewModel ViewModel { get; }
+
     public ConnectionCardComponent()
     {
         ViewModel = App.GetService<ConnectionCardViewModel>();
         InitializeComponent();
     }
 
-    public ConnectionCardViewModel ViewModel { get; }
+    private void OnButtonIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        // This code makes sure the button receives to connect/cancel/disconnect receives focus automatically when enabled
+        if (sender is Button button && button.IsEnabled)
+        {            
+            button.Focus(FocusState.Programmatic);
+        }
+    }
 }

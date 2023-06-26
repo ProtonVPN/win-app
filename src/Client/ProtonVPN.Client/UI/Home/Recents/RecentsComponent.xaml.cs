@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+
 namespace ProtonVPN.Client.UI.Home.Recents;
 
 public sealed partial class RecentsComponent
 {
+    public RecentsViewModel ViewModel { get; }
+
     public RecentsComponent()
     {
         ViewModel = App.GetService<RecentsViewModel>();
@@ -28,5 +32,9 @@ public sealed partial class RecentsComponent
         InitializeComponent();
     }
 
-    public RecentsViewModel ViewModel { get; }
+    private void OnActionsMenuFlyoutClosing(object sender, object e)
+    {
+        // Because the list of Pinned/Recent item is rebuilt after unpin or remove, we need to reset focus on the recent components
+        Focus(FocusState.Programmatic);
+    }
 }

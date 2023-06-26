@@ -122,9 +122,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        AutomationProperties.AutomationId="ConnectionCardHeaderLabel"
                        Foreground="{StaticResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
+                       TabIndex="1"
                        Text="{x:Bind ViewModel.Header}" />
 
-            <help:HelpComponent Grid.Column="1" />
+            <help:HelpComponent Grid.Column="1"
+                                TabIndex="6" />
         </Grid>
 
         <Grid MinHeight="72"
@@ -143,8 +145,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button x:Name="ShowConnectionDetailsButton"
                     Grid.Column="0"
                     AutomationProperties.AutomationId="ShowConnectionDetailsButton"
+                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}"
                     Command="{x:Bind ViewModel.ShowConnectionDetailsCommand}"
-                    Style="{StaticResource ConnectionDetailsButtonStyle}">
+                    Style="{StaticResource ConnectionDetailsButtonStyle}"
+                    TabIndex="2"
+                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}">
                 <toolkit:DockPanel>
                     <controls:CountryFlagControl Width="30"
                                                  Margin="4,0,0,0"
@@ -162,6 +167,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Margin="8,4,0,0"
                                               VerticalAlignment="top"
                                               toolkit:DockPanel.Dock="Right"
+                                              AutomationProperties.AutomationId="MaintenanceIcon"
                                               Foreground="{StaticResource TextWeakColorBrush}"
                                               ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Recents_ServerUnderMaintenance'), Mode=OneWay}"
                                               Visibility="{x:Bind ViewModel.IsServerUnderMaintenance, Mode=OneWay}" />
@@ -220,15 +226,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button AutomationProperties.AutomationId="ConnectionCardConnectButton"
                         Command="{x:Bind ViewModel.ConnectCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}"
+                        IsEnabledChanged="OnButtonIsEnabledChanged"
                         Style="{StaticResource PrimaryButtonStyle}"
+                        TabIndex="3"
                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
                 <Button AutomationProperties.AutomationId="ConnectionCardCancelButton"
                         Command="{x:Bind ViewModel.CancelConnectionCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
+                        IsEnabledChanged="OnButtonIsEnabledChanged"
+                        TabIndex="4"
                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
                 <Button AutomationProperties.AutomationId="ConnectionCardDisconnectButton"
                         Command="{x:Bind ViewModel.DisconnectCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"
+                        IsEnabledChanged="OnButtonIsEnabledChanged"
+                        TabIndex="5"
                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
             </Grid>
         </Grid>

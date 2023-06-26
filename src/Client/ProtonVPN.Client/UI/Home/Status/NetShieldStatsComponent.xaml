@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style TargetType="controls:HeaderedContentControl">
             <Setter Property="Padding" Value="8,0" />
             <Setter Property="MinWidth" Value="94" />
+            <Setter Property="IsTabStop" Value="False" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="controls:HeaderedContentControl">

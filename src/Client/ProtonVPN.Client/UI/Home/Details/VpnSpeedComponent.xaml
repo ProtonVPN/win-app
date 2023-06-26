@@ -50,6 +50,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Download')}" />
             <pathicons:ArrowDownLine Foreground="{StaticResource SignalSuccessColorBrush}" />
         </StackPanel>
+        
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource BodyStrongTextBlockStyle}"
+                   Text="{x:Bind ViewModel.FormattedDownloadSpeed}" />
 
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
@@ -61,12 +67,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Upload')}" />
             <pathicons:ArrowUpLine Foreground="{StaticResource SignalDangerColorBrush}" />
         </StackPanel>
-
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   HorizontalAlignment="Center"
-                   Style="{StaticResource BodyStrongTextBlockStyle}"
-                   Text="{x:Bind ViewModel.FormattedDownloadSpeed}" />
 
         <TextBlock Grid.Row="1"
                    Grid.Column="1"

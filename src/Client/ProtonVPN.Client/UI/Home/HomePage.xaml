@@ -55,29 +55,47 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    CornerRadius="4,0,0,4"
                    DisplayMode="{x:Bind ViewModel.DetailsPaneDisplayMode, Mode=TwoWay}"
                    IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
+                   IsTabStop="False"
                    OpenPaneLength="{StaticResource DetailsPaneWidth}"
                    PaneBackground="{StaticResource PaneOverlayBackgroundBrush}"
                    PanePlacement="Right">
             <SplitView.Pane>
                 <Grid Margin="16,20"
-                      RowSpacing="16">
+                      RowSpacing="16"
+                      TabIndex="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <toolkit:DockPanel Grid.Row="0">
-                        <Button Margin="-2"
-                                toolkit:DockPanel.Dock="Right"
-                                AutomationProperties.AutomationId="CloseConnectionDetailsButton"
-                                Command="{x:Bind ViewModel.CloseDetailsPaneCommand, Mode=OneTime}"
-                                Style="{StaticResource TertiaryButtonStyle}">
-                            <pathicons:Cross />
-                        </Button>
-                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" 
-                                   AutomationProperties.AutomationId="ConnectionDetailsTitle"/>
-                    </toolkit:DockPanel>
-                    <details:ConnectionDetailsComponent Grid.Row="1" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0" 
+                               Grid.Column="0"
+                               AutomationProperties.AutomationId="ConnectionDetailsTitle"
+                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" 
+                               TabIndex="6"/>
+
+                    <Button Grid.Row="0" 
+                            Grid.Column="1" 
+                            Margin="-2"
+                            toolkit:DockPanel.Dock="Right"
+                            AutomationProperties.AutomationId="CloseConnectionDetailsButton"
+                            Command="{x:Bind ViewModel.CloseDetailsPaneCommand, Mode=OneTime}"
+                            Style="{StaticResource TertiaryButtonStyle}"
+                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
+                            AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
+                            TabIndex="7">
+                        <pathicons:Cross />
+                    </Button>
+
+                    <details:ConnectionDetailsComponent Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="2"
+                                                        TabIndex="8"/>
                 </Grid>
             </SplitView.Pane>
 
@@ -94,10 +112,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Grid Grid.Row="0">
 
-                        <map:MapComponent AutomationProperties.AutomationId="MapComponent" />
+                        <map:MapComponent AutomationProperties.AutomationId="MapComponent"
+                                          TabIndex="2" />
 
                         <status:VpnStatusComponent Grid.Row="0"
-                                                   AutomationProperties.AutomationId="VpnStatusComponent" />
+                                                   AutomationProperties.AutomationId="VpnStatusComponent"
+                                                   TabIndex="1"/>
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
                                 VerticalAlignment="Bottom"
@@ -106,11 +126,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <connectionCard:ConnectionCardComponent Grid.Row="1"
                                                             MaxWidth="{StaticResource MaximumContentWidth}"
-                                                            AutomationProperties.AutomationId="ConnectionCardComponent" />
+                                                            AutomationProperties.AutomationId="ConnectionCardComponent"
+                                                            TabIndex="3" />
 
                     <recents:RecentsComponent Grid.Row="2"
                                               MaxWidth="{StaticResource MaximumContentWidth}"
-                                              AutomationProperties.AutomationId="RecentsComponent" />
+                                              AutomationProperties.AutomationId="RecentsComponent"
+                                              TabIndex="4"/>
                 </Grid>
             </controls:PageContentControl>
         </SplitView>

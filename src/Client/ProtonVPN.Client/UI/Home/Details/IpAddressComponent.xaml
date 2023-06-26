@@ -55,17 +55,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button Command="{x:Bind ViewModel.ShowUserIPAddressCommand, Mode=OneTime}"
                         Style="{StaticResource TertiaryButtonStyle}"
                         ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP')}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}"
+                        AutomationProperties.AutomationId="ShowUserIpAddressButton"
+                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP_Description')}">
                     <pathicons:Eye />
                 </Button>
                 <Button Command="{x:Bind ViewModel.HideUserIPAddressCommand, Mode=OneTime}"
                         Style="{StaticResource TertiaryButtonStyle}"
                         ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP')}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}"
+                        AutomationProperties.AutomationId="HideUserIpAddressButton"
+                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP_Description')}">
                     <pathicons:EyeSlash />
                 </Button>
             </Grid>
         </StackPanel>
+        
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource CaptionStrongTextBlockStyle}"
+                   Text="{x:Bind ViewModel.UserIpAddress}" />
+
+        <pathicons:ArrowRight Grid.Row="0"
+                              Grid.RowSpan="2"
+                              Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Foreground="{StaticResource TextWeakColorBrush}" />
 
         <TextBlock Grid.Row="0"
                    Grid.Column="2"
@@ -75,21 +91,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnIp')}" />
 
         <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   HorizontalAlignment="Center"
-                   Style="{StaticResource CaptionStrongTextBlockStyle}"
-                   Text="{x:Bind ViewModel.UserIpAddress}" />
-
-        <TextBlock Grid.Row="1"
                    Grid.Column="2"
                    HorizontalAlignment="Center"
                    Style="{StaticResource CaptionStrongTextBlockStyle}"
                    Text="{x:Bind ViewModel.VpnIpAddress}" />
-
-        <pathicons:ArrowRight Grid.Row="0"
-                              Grid.RowSpan="2"
-                              Grid.Column="1"
-                              VerticalAlignment="Center"
-                              Foreground="{StaticResource TextWeakColorBrush}" />
     </Grid>
 </UserControl>

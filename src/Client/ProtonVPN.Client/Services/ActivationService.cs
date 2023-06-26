@@ -91,6 +91,5 @@ public class ActivationService : IActivationService
         await Task.Delay(200);
 
         await _themeSelectorService.SetRequestedThemeAsync();
-        await Task.CompletedTask;
     }
 }
