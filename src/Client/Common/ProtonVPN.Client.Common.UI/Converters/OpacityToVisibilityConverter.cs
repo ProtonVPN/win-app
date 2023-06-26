@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,24 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
 
-namespace ProtonVPN.Client.UI.Home.Recents;
+namespace ProtonVPN.Client.Common.UI.Converters;
 
-public sealed partial class RecentsComponent
+public class OpacityToVisibilityConverter : IValueConverter
 {
-    public RecentsViewModel ViewModel { get; }
-
-    public RecentsComponent()
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        ViewModel = App.GetService<RecentsViewModel>();
+        double opacity = System.Convert.ToDouble(value);
 
-        InitializeComponent();
+        return opacity == 0 
+            ? Visibility.Collapsed 
+            : Visibility.Visible;
     }
 
-    private void OnActionsMenuFlyoutClosing(object sender, object e)
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        // Because the list of Pinned/Recent item is rebuilt after unpin or remove, we need to reset focus on the recent components
-        Focus(FocusState.Programmatic);
+        throw new NotImplementedException();
     }
 }

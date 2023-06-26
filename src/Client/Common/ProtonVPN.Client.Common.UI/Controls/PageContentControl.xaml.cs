@@ -103,6 +103,8 @@ public sealed partial class PageContentControl : UserControl
     public PageContentControl()
     {
         InitializeComponent();
+
+        Loaded += OnPageContentControlLoaded;
     }
 
     private static void OnPageHeaderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -119,6 +121,12 @@ public sealed partial class PageContentControl : UserControl
         {
             control.InvalidateHeaderVisibility();
         }
+    }
+
+    private void OnPageContentControlLoaded(object sender, RoutedEventArgs e)
+    {
+        // Auto focus when page is loaded
+        Focus(FocusState.Programmatic);
     }
 
     private void InvalidateHeaderVisibility()

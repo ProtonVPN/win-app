@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </StackPanel>
 
         <HyperlinkButton HorizontalAlignment="Center"
-                         Content="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_LearnMore')}"
+                         Content="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
                          NavigateUri="{x:Bind ViewModel.LearnMoreUri, Mode=OneTime}" />
     </StackPanel>
 </ContentDialog>

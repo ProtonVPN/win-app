@@ -67,14 +67,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Command="{x:Bind SecondaryCommand}"
                 Flyout="{x:Bind SecondaryCommandFlyout}"
                 Style="{StaticResource RowButtonStyle}"
-                ToolTipService.ToolTip="{x:Bind SecondaryCommandToolTip}" />
+                ToolTipService.ToolTip="{x:Bind SecondaryCommandToolTip}" 
+                TabIndex="2"
+                AutomationProperties.FullDescription="{x:Bind SecondaryCommandText}"/>
 
         <Button x:Name="btnPrimary"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Command="{x:Bind PrimaryCommand}"
                 Style="{StaticResource RowButtonStyle}"
-                ToolTipService.ToolTip="{x:Bind PrimaryCommandToolTip}" />
+                ToolTipService.ToolTip="{x:Bind PrimaryCommandToolTip}"
+                TabIndex="1"
+                AutomationProperties.FullDescription="{x:Bind PrimaryCommandText}"/>
 
         <ContentPresenter x:Name="RowContentContainer" 
                           Grid.Column="0"
@@ -111,7 +115,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Opacity="0.65" />
         </StackPanel>
 
-        <VisualStateManager.VisualStateGroups>
+        <VisualStateManager.VisualStateGroups>            
             <VisualStateGroup x:Name="HoveringStates">
                 <VisualState x:Name="PrimaryActionHovered">
                     <VisualState.StateTriggers>

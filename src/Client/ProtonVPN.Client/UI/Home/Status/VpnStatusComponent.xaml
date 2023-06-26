@@ -86,17 +86,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid>
                 <TextBlock x:Name="VpnStatusTitle"
                            Margin="8,0,0,0"
+                           AutomationProperties.AutomationId="VpnStatusTitleLabel"
                            Style="{StaticResource BodyLargeStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.Title, Mode=OneWay}"
-                           Visibility="{x:Bind ViewModel.IsTitleVisible, Mode=OneWay}" 
-                           AutomationProperties.AutomationId="VpnStatusTitleLabel"/>
+                           Visibility="{x:Bind ViewModel.IsTitleVisible, Mode=OneWay}" />
             </StackPanel>
 
             <Grid>
                 <StackPanel x:Name="VpnStatusDetails"
                             Opacity="1"
                             Orientation="Vertical"
-                            Spacing="8">
+                            Spacing="8"
+                            Visibility="{Binding Opacity, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource OpacityToVisibilityConverter}}">
 
                     <UIElement.RenderTransform>
                         <TranslateTransform x:Name="VpnStatusDetailsTranslateTransform" />
@@ -104,9 +105,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <TextBlock x:Name="VpnStatusSubtitle"
                                HorizontalAlignment="Center"
+                               AutomationProperties.AutomationId="VpnStatusSubtitleLabel"
                                Style="{StaticResource BodyStrongTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                               AutomationProperties.AutomationId="VpnStatusSubtitleLabel"/>
+                               Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" />
 
                     <Border x:Name="UserLocation"
                             Padding="8,4"
@@ -127,7 +128,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         HorizontalAlignment="Center"
                         Background="{StaticResource VpnStatusDetailsBackgroundBrush}"
                         CornerRadius="12"
-                        Opacity="0">
+                        Opacity="0"
+                        Visibility="{Binding Opacity, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource OpacityToVisibilityConverter}}">
 
                     <UIElement.RenderTransform>
                         <TranslateTransform x:Name="NetShieldStatsTranslateTransform" />
