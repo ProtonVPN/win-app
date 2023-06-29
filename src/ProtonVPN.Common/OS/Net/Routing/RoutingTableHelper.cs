@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Common.OS.Net.Routing
 {

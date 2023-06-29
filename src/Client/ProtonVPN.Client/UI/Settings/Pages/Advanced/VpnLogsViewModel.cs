@@ -17,16 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
 public class VpnLogsViewModel : PageViewModelBase
 {
-    public VpnLogsViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
-        : base(navigationService, localizationProvider)
+    public VpnLogsViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+        : base(pageNavigator, localizationProvider)
     {
     }
 

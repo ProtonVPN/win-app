@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-
 namespace ProtonVPN.Core.Users
 {
     public class VpnPlanChangedEventArgs
@@ -31,7 +29,7 @@ namespace ProtonVPN.Core.Users
         {
             OldVpnPlan = oldVpnPlan;
             NewVpnPlan = newVpnPlan;
-            IsDowngrade = !oldVpnPlan.IsNullOrEmpty() &&
+            IsDowngrade = !string.IsNullOrEmpty(oldVpnPlan) &&
                           oldVpnPlan != newVpnPlan && (
                               (newVpnPlan == "free") ||
                               (newVpnPlan == "vpnbasic" && oldVpnPlan != "free"));

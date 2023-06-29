@@ -18,6 +18,7 @@
     <PackageReference Include="System.Private.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
     <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
   </ItemGroup>

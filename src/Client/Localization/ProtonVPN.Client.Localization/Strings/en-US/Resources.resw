@@ -1430,6 +1430,12 @@
   <data name="Server_Feature_Tor" xml:space="preserve">
     <value>Tor</value>
   </data>
+  <data name="Settings_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Settings_AppVersion" xml:space="preserve">
+    <value>App version</value>
+  </data>
   <data name="Settings_Connection" xml:space="preserve">
     <value>Connection</value>
   </data>
@@ -1487,8 +1493,62 @@
   <data name="Settings_Improve_Censorship" xml:space="preserve">
     <value>Help us fight censorship</value>
   </data>
+  <data name="Settings_OperatingSystemVersion" xml:space="preserve">
+    <value>Operating System</value>
+  </data>
   <data name="Settings_Page_Title" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Settings_Protocols_Explanation" xml:space="preserve">
+    <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
+    <value>Established, well-tested, and secure. OpenVPN is reliable in poor network conditions, but may not be as fast as other protocols.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
+    <value>Established, well-tested, and secure. OpenVPN is less battery-efficient than some other protocols.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended" xml:space="preserve">
+    <value>Recommended</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
+    <value>Auto-selects the best protocol for your connection.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
+    <value>Reliability (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
+    <value>Speed (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
+    <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_RestoreDefault" xml:space="preserve">
+    <value>Restore default settings</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp" xml:space="preserve">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart" xml:space="preserve">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
+    <value>WireGuard</value>
   </data>
   <data name="Settings_Support" xml:space="preserve">
     <value>Support</value>

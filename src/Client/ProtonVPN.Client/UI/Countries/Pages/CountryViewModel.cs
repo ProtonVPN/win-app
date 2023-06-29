@@ -18,10 +18,10 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Countries.Pages;
 
@@ -31,8 +31,8 @@ public partial class CountryViewModel : PageViewModelBase
     [NotifyPropertyChangedFor(nameof(Title))]
     private Country? _currentCountry;
 
-    public CountryViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
-        : base(navigationService, localizationProvider)
+    public CountryViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+        : base(pageNavigator, localizationProvider)
     {
     }
 

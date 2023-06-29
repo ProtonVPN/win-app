@@ -18,37 +18,37 @@
  */
 
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Registries.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
-namespace ProtonVPN.ProcessCommunication.Common.Registration
+namespace ProtonVPN.ProcessCommunication.Common.Registration;
+
+public class ServiceServerPortRegister : ServerPortRegisterBase, IServiceServerPortRegister
 {
-    public class ServiceServerPortRegister : ServerPortRegisterBase, IServiceServerPortRegister
+    private const string KEY = "ServiceServerPort";
+
+    private static readonly TimeSpan DELAY = TimeSpan.FromMilliseconds(100);
+
+    public ServiceServerPortRegister(IRegistryEditor registryEditor, ILogger logger)
+        : base(registryEditor, logger)
     {
-        private const string KEY = "ServiceServerPort";
+    }
 
-        private static readonly TimeSpan DELAY = TimeSpan.FromMilliseconds(100);
+    protected override string GetKey()
+    {
+        return KEY;
+    }
 
-        public ServiceServerPortRegister(ILogger logger) 
-            : base(logger)
+    public async Task<int> ReadAsync(CancellationToken cancellationToken)
+    {
+        while (true)
         {
-        }
-
-        protected override string GetKey()
-        {
-            return KEY;
-        }
-
-        public async Task<int> ReadAsync(CancellationToken cancellationToken)
-        {
-            while (true)
+            int? serverBoundPort = ReadOnce();
+            if (serverBoundPort.HasValue && serverBoundPort.Value > 0)
             {
-                int? serverBoundPort = ReadOnce();
-                if (serverBoundPort.HasValue && serverBoundPort.Value > 0)
-                {
-                    return serverBoundPort.Value;
-                }
-                await Task.Delay(DELAY, cancellationToken);
+                return serverBoundPort.Value;
             }
+            await Task.Delay(DELAY, cancellationToken);
         }
     }
 }

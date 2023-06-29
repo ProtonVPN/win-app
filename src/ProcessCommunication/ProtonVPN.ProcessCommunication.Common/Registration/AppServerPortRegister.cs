@@ -18,22 +18,22 @@
  */
 
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Registries.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Registration;
 
-namespace ProtonVPN.ProcessCommunication.Common.Registration
+namespace ProtonVPN.ProcessCommunication.Common.Registration;
+
+public class AppServerPortRegister : ServerPortRegisterBase, IAppServerPortRegister
 {
-    public class AppServerPortRegister : ServerPortRegisterBase, IAppServerPortRegister
+    private const string KEY = "AppServerPort";
+
+    public AppServerPortRegister(IRegistryEditor registryEditor, ILogger logger)
+        : base(registryEditor, logger)
     {
-        private const string KEY = "AppServerPort";
+    }
 
-        public AppServerPortRegister(ILogger logger)
-            : base(logger)
-        {
-        }
-
-        protected override string GetKey()
-        {
-            return KEY;
-        }
+    protected override string GetKey()
+    {
+        return KEY;
     }
 }

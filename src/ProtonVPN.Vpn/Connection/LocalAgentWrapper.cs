@@ -326,7 +326,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void HandleVpnConnectedState()
         {
-            if (_credentials.ClientCertPem.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(_credentials.ClientCertPem))
             {
                 InvokeStateChange(VpnStatus.Connected);
             }
@@ -340,7 +340,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private void HandleVpnDisconnectedState()
         {
-            if (_credentials.ClientCertPem.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(_credentials.ClientCertPem))
             {
                 return;
             }

@@ -18,24 +18,24 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class OverlayViewModelBase : ViewModelBase
 {
-    protected readonly IDialogService DialogService;
+    protected readonly IDialogActivator DialogActivator;
 
-    public OverlayViewModelBase(ILocalizationProvider localizationProvider, IDialogService dialogService)
+    public OverlayViewModelBase(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator)
         : base(localizationProvider)
     {
-        DialogService = dialogService;
+        DialogActivator = dialogActivator;
     }
 
     [RelayCommand]
     public void CloseOverlay()
     {
-        DialogService.Close();
+        DialogActivator.Close();
     }
 }

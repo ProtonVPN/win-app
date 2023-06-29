@@ -29,9 +29,9 @@ using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Core.Tests.Auth
 {
@@ -71,7 +71,7 @@ namespace ProtonVPN.Core.Tests.Auth
 
         private async Task<ApiResponseResult<CertificateResponse>> MockOfRequestAuthCertificateAsync(CertificateRequest arg)
         {
-            if (arg.ClientPublicKey.IsNullOrEmpty() || _usedClientPublicKeys.Contains(arg.ClientPublicKey))
+            if (string.IsNullOrEmpty(arg.ClientPublicKey) || _usedClientPublicKeys.Contains(arg.ClientPublicKey))
             {
                 return ApiResponseResult<CertificateResponse>.Fail(CreateClientPublicKeyConflictCertificateResponseData(),
                     new HttpResponseMessage(HttpStatusCode.BadRequest), string.Empty);

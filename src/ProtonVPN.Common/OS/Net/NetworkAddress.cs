@@ -1,8 +1,27 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Common.OS.Net
 {
@@ -21,14 +40,14 @@ namespace ProtonVPN.Common.OS.Net
         {
             get
             {
-                var ip = _address;
+                string ip = _address;
 
                 if (IsCidr())
                 {
-                    var parts = GetCidrParts();
-                    var mask = StrMaskToUint(parts[4]);
-                    var ipUint = GetIpUint(IPAddress.Parse(string.Join(".", parts.Take(4))));
-                    var ipNetworkOrder = (uint)IPAddress.HostToNetworkOrder((int)(ipUint & mask));
+                    string[] parts = GetCidrParts();
+                    uint mask = StrMaskToUint(parts[4]);
+                    uint ipUint = GetIpUint(IPAddress.Parse(string.Join(".", parts.Take(4))));
+                    uint ipNetworkOrder = (uint)IPAddress.HostToNetworkOrder((int)(ipUint & mask));
 
                     return new IPAddress(ipNetworkOrder).ToString();
                 }
@@ -46,13 +65,13 @@ namespace ProtonVPN.Common.OS.Net
                     return _defaultMask;
                 }
 
-                var parts = GetCidrParts();
+                string[] parts = GetCidrParts();
                 if (parts.Length < 5)
                 {
                     return string.Empty;
                 }
 
-                var mask = GetMask(parts[4]);
+                string mask = GetMask(parts[4]);
 
                 return IpValid(mask) ? mask : string.Empty;
             }
@@ -62,7 +81,7 @@ namespace ProtonVPN.Common.OS.Net
         {
             if (IsCidr())
             {
-                var parts = GetCidrParts();
+                string[] parts = GetCidrParts();
                 return Ip + "/" + parts[4];
             }
 
@@ -81,18 +100,18 @@ namespace ProtonVPN.Common.OS.Net
 
         public bool IsCidr()
         {
-            var m = Regex.Match(_address, "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))$");
+            Match m = Regex.Match(_address, "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))$");
             return m.Success;
         }
 
         private bool IpValid(string ip)
         {
-            return IPAddress.TryParse(ip, out var parsedIp) && ip.EqualsIgnoringCase(parsedIp.ToString());
+            return IPAddress.TryParse(ip, out IPAddress parsedIp) && ip.EqualsIgnoringCase(parsedIp.ToString());
         }
 
         private string GetMask(string bits)
         {
-            var mask = StrMaskToUint(bits);
+            uint mask = StrMaskToUint(bits);
             return new IPAddress((uint)IPAddress.HostToNetworkOrder((int)mask)).ToString();
         }
 
@@ -103,8 +122,8 @@ namespace ProtonVPN.Common.OS.Net
 
         private uint GetIpUint(IPAddress address)
         {
-            var bytes = address.GetAddressBytes();
-            var ip = (uint)bytes[3] << 0;
+            byte[] bytes = address.GetAddressBytes();
+            uint ip = (uint)bytes[3] << 0;
             ip += (uint)bytes[2] << 8;
             ip += (uint)bytes[1] << 16;
             ip += (uint)bytes[0] << 24;
@@ -114,7 +133,7 @@ namespace ProtonVPN.Common.OS.Net
 
         private uint StrMaskToUint(string strMask)
         {
-            var mask = 0xffffffff;
+            uint mask = 0xffffffff;
             mask <<= (32 - Convert.ToInt32(strMask));
 
             return mask;

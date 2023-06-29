@@ -27,15 +27,15 @@ namespace ProtonVPN.Core.Servers
     {
         public int Compare(string x, string y)
         {
-            if (x.IsNullOrEmpty() && y.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(x) && string.IsNullOrEmpty(y))
             {
                 return 0;
             }
-            if (x.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(x))
             {
                 return -1;
             }
-            if (y.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(y))
             {
                 return 1;
             }

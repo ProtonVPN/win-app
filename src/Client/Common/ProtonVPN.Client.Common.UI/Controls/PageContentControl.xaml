@@ -68,7 +68,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       VerticalScrollBarVisibility="{x:Bind CanContentScroll, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
 
             <ContentPresenter Content="{x:Bind PageContent}"
-                              ContentTemplate="{x:Bind PageContentTemplate}" />
+                              ContentTemplate="{x:Bind PageContentTemplate}"
+                              Margin="0,0,0,32"/>
         </ScrollViewer>
 
         <VisualStateManager.VisualStateGroups>

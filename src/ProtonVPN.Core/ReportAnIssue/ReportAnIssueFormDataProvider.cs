@@ -98,12 +98,12 @@ namespace ProtonVPN.Core.ReportAnIssue
         private bool IsDataValid(IList<IssueCategoryResponse> categories)
         {
             return categories.All(category =>
-                !category.Label.IsNullOrEmpty() &&
-                !category.SubmitLabel.IsNullOrEmpty() &&
+                !string.IsNullOrEmpty(category.Label) &&
+                !string.IsNullOrEmpty(category.SubmitLabel) &&
                 category.InputFields != null &&
                 !category.InputFields.Any(
-                    input => input.Label.IsNullOrEmpty() ||
-                             input.SubmitLabel.IsNullOrEmpty() ||
+                    input => string.IsNullOrEmpty(input.Label) ||
+                             string.IsNullOrEmpty(input.SubmitLabel) ||
                              !_validInputTypes.Contains(input.Type)));
         }
 

@@ -92,7 +92,7 @@ public partial class ConnectionCardViewModel : ViewModelBase,
 
     public string Subtitle => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent);
 
-    public bool HasSubtitle => !Subtitle.IsNullOrEmpty();
+    public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
     public bool HasSubtitleAndFeature => HasSubtitle && (IsTor || IsP2P);
 

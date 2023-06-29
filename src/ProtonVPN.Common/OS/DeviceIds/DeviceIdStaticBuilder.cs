@@ -19,6 +19,7 @@
 
 using System;
 using DeviceId;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;

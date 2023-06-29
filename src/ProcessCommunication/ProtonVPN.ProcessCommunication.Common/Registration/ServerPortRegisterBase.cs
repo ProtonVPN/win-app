@@ -17,130 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.Win32;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
+using ProtonVPN.OperatingSystems.Registries.Contracts;
 
-namespace ProtonVPN.ProcessCommunication.Common.Registration
+namespace ProtonVPN.ProcessCommunication.Common.Registration;
+
+public abstract class ServerPortRegisterBase
 {
-    public abstract class ServerPortRegisterBase
+    private const string PATH = "SOFTWARE\\Proton AG\\Proton VPN\\gRPC";
+
+    private readonly IRegistryEditor _registryEditor;
+    private readonly RegistryUri _registryUri;
+
+    protected ILogger Logger { get; private set; }
+
+    protected ServerPortRegisterBase(IRegistryEditor registryEditor, ILogger logger)
     {
-        private const string PATH = "SOFTWARE\\Proton AG\\Proton VPN\\gRPC";
+        _registryEditor = registryEditor;
+        _registryUri = new(PATH, GetKey());
+        Logger = logger;
+    }
 
-        protected ILogger Logger { get; private set; }
+    protected abstract string GetKey();
 
-        protected ServerPortRegisterBase(ILogger logger)
-        {
-            Logger = logger;
-        }
+    public void Write(int serverBoundPort)
+    {
+        _registryEditor.WriteInt(_registryUri, serverBoundPort);
+    }
 
-        public void Write(int serverBoundPort)
-        {
-            RegistryKey key = OpenBaseKey().CreateSubKey(PATH);
-            if (key == null)
-            {
-                string errorMessage = "Failed to open registry path before writing the gRPC server port.";
-                Logger.Error<ProcessCommunicationErrorLog>(errorMessage);
-                throw new Exception(errorMessage);
-            }
-            try
-            {
-                key.SetValue(GetKey(), serverBoundPort, RegistryValueKind.DWord);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error<ProcessCommunicationErrorLog>("Failed when writing the gRPC server port.", ex);
-            }
-            finally
-            {
-                key?.Close();
-            }
-        }
+    public void Delete()
+    {
+        _registryEditor.Delete(_registryUri);
+    }
 
-        private RegistryKey OpenBaseKey()
-        {
-            return RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-        }
-
-        protected abstract string GetKey();
-
-        public void Delete()
-        {
-            RegistryKey key = OpenBaseKey().OpenSubKey(PATH, RegistryKeyPermissionCheck.ReadWriteSubTree);
-            if (key != null)
-            {
-                try
-                {
-                    key.DeleteValue(GetKey());
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error<ProcessCommunicationErrorLog>("Failed when deleting the gRPC server port.", ex);
-                }
-                finally
-                {
-                    key?.Close();
-                }
-            }
-        }
-
-        public int? ReadOnce()
-        {
-            object rawRegistryValue = ReadRawRegistryValue();
-            return ParseRawRegistryValue(rawRegistryValue);
-        }
-
-        private object ReadRawRegistryValue()
-        {
-            RegistryKey key = null;
-            try
-            {
-                key = OpenBaseKey().OpenSubKey(PATH);
-                if (key == null)
-                {
-                    Logger.Error<ProcessCommunicationErrorLog>("Failed to open registry path before reading the gRPC server port.");
-                    return null;
-                }
-                object? serverBoundPortObject = key.GetValue(GetKey());
-                return serverBoundPortObject;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error<ProcessCommunicationErrorLog>("Failed to read gRPC server port from registry.", ex);
-                return null;
-            }
-            finally
-            {
-                key?.Close();
-            }
-        }
-
-        private int? ParseRawRegistryValue(object registryValue)
-        {
-            if (registryValue is not null)
-            {
-                int serverBoundPort;
-                try
-                {
-                    serverBoundPort = (int)registryValue;
-                    return serverBoundPort;
-                }
-                catch
-                {
-                }
-                try
-                {
-                    if (int.TryParse(registryValue.ToString(), out serverBoundPort))
-                    {
-                        return serverBoundPort;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error<ProcessCommunicationErrorLog>("Failed when parsing the gRPC server port.", ex);
-                }
-            }
-            return null;
-        }
+    public int? ReadOnce()
+    {
+        return _registryEditor.ReadInt(_registryUri);
     }
 }

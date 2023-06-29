@@ -20,15 +20,14 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
@@ -46,8 +45,8 @@ public partial class ShellViewModel : ViewModelBase
     private NavigationPageViewModelBase? _selectedNavigationPage;
     private readonly IEventMessageSender _eventMessageSender;
 
-    public ShellViewModel(INavigationService navigationService,
-        INavigationViewService navigationViewService,
+    public ShellViewModel(IPageNavigator pageNavigator,
+        IViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IEventMessageSender eventMessageSender,
         HomeViewModel homeViewModel,
@@ -58,9 +57,9 @@ public partial class ShellViewModel : ViewModelBase
     {
         _eventMessageSender = eventMessageSender;
 
-        NavigationService = navigationService;
-        NavigationService.Navigated += OnNavigated;
-        NavigationViewService = navigationViewService;
+        PageNavigator = pageNavigator;
+        PageNavigator.Navigated += OnNavigated;
+        ViewNavigator = viewNavigator;
 
         NavigationPages = new ObservableCollection<NavigationPageViewModelBase>
         {
@@ -73,11 +72,11 @@ public partial class ShellViewModel : ViewModelBase
     }
 
     public PageViewModelBase? CurrentPage
-        => NavigationService?.Frame?.GetPageViewModel() as PageViewModelBase;
+        => PageNavigator?.Frame?.GetPageViewModel() as PageViewModelBase;
 
-    public INavigationService NavigationService { get; }
+    public IPageNavigator PageNavigator { get; }
 
-    public INavigationViewService NavigationViewService { get; }
+    public IViewNavigator ViewNavigator { get; }
 
     public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
 
@@ -88,7 +87,7 @@ public partial class ShellViewModel : ViewModelBase
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
-        IsBackEnabled = NavigationService.CanGoBack;
+        IsBackEnabled = PageNavigator.CanGoBack;
 
         OnPropertyChanged(nameof(CurrentPage));
 

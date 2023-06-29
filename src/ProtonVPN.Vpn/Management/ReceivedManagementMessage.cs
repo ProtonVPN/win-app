@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 

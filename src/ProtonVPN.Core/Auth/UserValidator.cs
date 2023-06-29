@@ -20,7 +20,6 @@
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Auth
@@ -38,7 +37,7 @@ namespace ProtonVPN.Core.Auth
 
         public async Task<AuthResult> GetValidateResult()
         {
-            if (!_userStorage.GetUser().VpnPlan.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(_userStorage.GetUser().VpnPlan))
             {
                 return AuthResult.Ok();
             }

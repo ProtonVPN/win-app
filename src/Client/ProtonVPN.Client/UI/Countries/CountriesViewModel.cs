@@ -22,7 +22,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -31,9 +30,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -70,11 +69,11 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
 
     public bool IsSecureCore => SelectedFeature == "Secure Core";
 
-    public CountriesViewModel(INavigationService navigationService,
+    public CountriesViewModel(IPageNavigator pageNavigator,
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ILocalizationProvider localizationProvider)
-        : base(navigationService, localizationProvider)
+        : base(pageNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
@@ -104,18 +103,18 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public void NavigateToCountry(Country country)
     {
-        NavigationService.NavigateTo(typeof(CountryViewModel).FullName, country);
+        PageNavigator.NavigateTo(typeof(CountryViewModel).FullName, country);
     }
 
     public bool IsNotEmpty(string value)
     {
-        return !value.IsNullOrEmpty();
+        return !string.IsNullOrEmpty(value);
     }
 
     [RelayCommand]
     public async Task ConnectAsync()
     {
-        NavigationService.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
+        PageNavigator.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
 
         ILocationIntent locationIntent = IsNotEmpty(ExitCountryCode) && IsNotEmpty(CityState) && IsNotEmpty(ServerNumber)
             ? new ServerLocationIntent(ExitCountryCode, CityState, int.Parse(ServerNumber))
@@ -139,7 +138,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task FreeConnectAsync()
     {
-        NavigationService.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
+        PageNavigator.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
 
         ILocationIntent locationIntent = IsNotEmpty(ExitCountryCode) && IsNotEmpty(ServerNumber)
             ? new FreeServerLocationIntent(ExitCountryCode, int.Parse(ServerNumber))
@@ -161,7 +160,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task SimulateManyConnectionsAsync()
     {
-        NavigationService.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
+        PageNavigator.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
 
         List<IConnectionIntent> intents = new()
         {

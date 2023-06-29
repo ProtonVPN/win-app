@@ -18,31 +18,28 @@
  */
 
 using Microsoft.UI.Xaml;
-
-using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home;
 
 namespace ProtonVPN.Client.Activation;
 
 public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {
-    private readonly INavigationService _navigationService;
+    private readonly IPageNavigator _pageNavigator;
 
-    public DefaultActivationHandler(INavigationService navigationService)
+    public DefaultActivationHandler(IPageNavigator pageNavigator)
     {
-        _navigationService = navigationService;
+        _pageNavigator = pageNavigator;
     }
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
     {
         // None of the ActivationHandlers has handled the activation.
-        return _navigationService.Frame?.Content == null;
+        return _pageNavigator.Frame?.Content == null;
     }
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        _navigationService.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
-
-        await Task.CompletedTask;
+        _pageNavigator.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
     }
 }

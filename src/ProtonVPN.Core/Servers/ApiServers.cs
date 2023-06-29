@@ -22,10 +22,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
-using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Core.Servers
 {
@@ -67,7 +66,7 @@ namespace ProtonVPN.Core.Servers
         private async Task<string> GetLocationIPAsync()
         {
             string ip = _location.Ip();
-            if (ip.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(ip))
             {
                 await UpdateLocation();
             }

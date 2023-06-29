@@ -100,7 +100,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </SplitView.Pane>
 
             <controls:PageContentControl x:Name="PageContainer"
-                                         Padding="0,0,0,16"
+                                         Padding="0,0,0,-16"
                                          CanContentScroll="False"
                                          IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
                 <Grid>

@@ -20,15 +20,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using PhysicalServerResponse = ProtonVPN.Api.Contracts.Servers.PhysicalServerResponse;
 
 namespace ProtonVPN.Core.Servers
@@ -273,7 +273,7 @@ namespace ProtonVPN.Core.Servers
 
         private bool ContainsPublicKey(PhysicalServerResponse server)
         {
-            return !server.X25519PublicKey.IsNullOrEmpty();
+            return !string.IsNullOrEmpty(server.X25519PublicKey);
         }
 
         private void SaveCountries(IEnumerable<LogicalServerResponse> servers)
@@ -288,7 +288,7 @@ namespace ProtonVPN.Core.Servers
                 }
 
                 if (_appSettings.GetProtocol() == VpnProtocol.WireGuard &&
-                    server.Servers.Count(s => !s.X25519PublicKey.IsNullOrEmpty()) == 0)
+                    server.Servers.Count(s => !string.IsNullOrEmpty(s.X25519PublicKey)) == 0)
                 {
                     continue;
                 }

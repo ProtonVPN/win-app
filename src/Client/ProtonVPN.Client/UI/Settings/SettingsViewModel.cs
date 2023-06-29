@@ -20,83 +20,86 @@
 using System.Collections.ObjectModel;
 using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Xaml;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.OperatingSystems.Registries.Contracts;
 using Windows.ApplicationModel;
 
 namespace ProtonVPN.Client.UI.Settings;
 
-public partial class SettingsViewModel : NavigationPageViewModelBase
+public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMessageReceiver<ThemeChangedMessage>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
-    private readonly IThemeSelectorService _themeSelectorService;
+    private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
-
+    private readonly ISettings _settings;
+    private readonly ISettingsRestorer _settingsRestorer;
+    private readonly IRegistryEditor _registryEditor;
     private readonly Lazy<ObservableCollection<string>> _languages;
+    private readonly RegistryUri _osVersionRegistryUri = new(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
+
+    public ApplicationElementTheme SelectedTheme
+    {
+        get => _themeSelector.GetTheme();
+        set => _themeSelector.SetTheme(value);
+    }
 
     [ObservableProperty]
-    private ApplicationElementTheme _selectedTheme;
+    private string _clientVersionDescription;
 
-    private string? _selectedLanguage = null;
-    private string _versionDescription;
+    [ObservableProperty]
+    private string _operatingSystemVersionDescription;
 
     public string SelectedLanguage
     {
-        get => _selectedLanguage ??= _localizationService.GetCurrentLanguage();
-        set
-        {
-            if (SetProperty(ref _selectedLanguage, value))
-            {
-                _localizationService.SetLanguageAsync(value);
-            }
-        }
+        get => _settings.Language;
+        set => _settings.Language = value;
     }
 
-    public override bool IsBackEnabled => false;
+    public string SelectedProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
     public ObservableCollection<string> Languages => _languages.Value;
 
-    public string VersionDescription
-    {
-        get => _versionDescription;
-        set => SetProperty(ref _versionDescription, value);
-    }
-
+    public override bool IsBackEnabled => false;
     public override IconElement Icon { get; } = new CogWheel();
-
     public override string? Title => Localizer.Get("Settings_Page_Title");
 
-    public SettingsViewModel(IThemeSelectorService themeSelectorService,
-        INavigationService navigationService,
+    public SettingsViewModel(IThemeSelector themeSelector,
+        IPageNavigator pageNavigator,
         ILocalizationService localizationService,
-        ILocalizationProvider localizationProvider)
-        : base(navigationService, localizationProvider)
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        ISettingsRestorer settingsRestorer,
+        IRegistryEditor registryEditor)
+        : base(pageNavigator, localizationProvider)
     {
-        _themeSelectorService = themeSelectorService;
+        _themeSelector = themeSelector;
         _localizationService = localizationService;
+        _settings = settings;
+        _settingsRestorer = settingsRestorer;
+        _registryEditor = registryEditor;
 
-        _versionDescription = GetVersionDescription();
-
-        Themes = new ObservableCollection<ApplicationElementTheme>()
-        {
-            new ApplicationElementTheme(ElementTheme.Light),
-            new ApplicationElementTheme(ElementTheme.Dark),
-            new ApplicationElementTheme(ElementTheme.Default)
-        };
-
-        _selectedTheme = Themes.FirstOrDefault(t => t.Theme == _themeSelectorService.Theme) ?? Themes.Last();
+        _clientVersionDescription = GetClientVersionDescription();
+        _operatingSystemVersionDescription = GetOperatingSystemVersionDescription();
 
         _languages = new Lazy<ObservableCollection<string>>(
             () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
+
+        Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
     }
 
-    private string GetVersionDescription()
+    private string GetClientVersionDescription()
     {
         Version version;
 
@@ -111,11 +114,39 @@ public partial class SettingsViewModel : NavigationPageViewModelBase
             version = Assembly.GetExecutingAssembly().GetName().Version!;
         }
 
-        return $"{App.APPLICATION_NAME} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        return $"{App.APPLICATION_NAME} {version.Major}.{version.Minor}.{version.Build}";
     }
 
-    partial void OnSelectedThemeChanged(ApplicationElementTheme value)
+    private string GetOperatingSystemVersionDescription()
     {
-        _themeSelectorService.SetThemeAsync(value?.Theme ?? ElementTheme.Default);
+        string? productName = _registryEditor.ReadString(_osVersionRegistryUri);
+        return $"{productName} ({Environment.OSVersion.Version})";
+    }
+
+    public void Receive(ThemeChangedMessage message)
+    {
+        OnPropertyChanged(nameof(SelectedTheme));
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.VpnProtocol))
+        {
+            OnPropertyChanged(nameof(SelectedProtocol));
+        }
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+        OnPropertyChanged(nameof(SelectedLanguage));
+        OnPropertyChanged(nameof(SelectedTheme));
+        OnPropertyChanged(nameof(SelectedProtocol));
+    }
+
+    [RelayCommand]
+    public void RestoreDefaultSettings()
+    {
+        _settingsRestorer.Restore();
     }
 }

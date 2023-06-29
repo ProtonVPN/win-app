@@ -74,7 +74,7 @@ namespace ProtonVPN.Service.Vpn
                     }
 
                     string componentId = (string)adapterKey.GetValue("ComponentId");
-                    if (componentId.IsNullOrEmpty())
+                    if (string.IsNullOrEmpty(componentId))
                     {
                         Registry.SetValue($"HKEY_LOCAL_MACHINE\\{_regPath}\\{folder}", "ComponentId", matchingDeviceId);
                         _issueReporter.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
