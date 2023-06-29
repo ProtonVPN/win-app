@@ -29,9 +29,9 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
 {
@@ -73,11 +73,7 @@ namespace ProtonVPN.Api
             string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                T json = JsonConvert.DeserializeObject<T>(body);
-                if (json == null)
-                {
-                    throw new HttpRequestException(string.Empty);
-                }
+                T json = JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
 
                 ApiResponseResult<T> result = CreateApiResponseResult(json, response);
                 HandleResult(result, response);
@@ -154,7 +150,7 @@ namespace ProtonVPN.Api
         protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
         {
             HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
-            if (!ip.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(ip))
             {
                 request.Headers.Add("x-pm-netzone", ip);
             }
@@ -169,11 +165,7 @@ namespace ProtonVPN.Api
             using StreamReader streamReader = new(stream);
             using JsonTextReader jsonTextReader = new(streamReader);
 
-            T json = _jsonSerializer.Deserialize<T>(jsonTextReader);
-            if (json == null)
-            {
-                throw new HttpRequestException(string.Empty);
-            }
+            T json = _jsonSerializer.Deserialize<T>(jsonTextReader) ?? throw new HttpRequestException(string.Empty);
 
             if (json.Code != ResponseCodes.OkResponse)
             {
@@ -187,7 +179,7 @@ namespace ProtonVPN.Api
         {
             if (result.Failure)
             {
-                Logger.Error<ApiErrorLog>($"API: {(message.IsNullOrEmpty() ? "Request" : message)} failed: {result.Error}");
+                Logger.Error<ApiErrorLog>($"API: {(string.IsNullOrEmpty(message) ? "Request" : message)} failed: {result.Error}");
             }
 
             return result;

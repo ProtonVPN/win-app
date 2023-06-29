@@ -154,7 +154,7 @@ namespace ProtonVPN.Vpn.Connection
 
             string username = $"{_vpnCredentials.Username}+b:{endpoint.Server.Label}";
 
-            return _vpnCredentials.ClientCertPem.IsNullOrEmpty() || _vpnCredentials.ClientKeyPair == null
+            return string.IsNullOrEmpty(_vpnCredentials.ClientCertPem) || _vpnCredentials.ClientKeyPair == null
                 ? new VpnCredentials(username, _vpnCredentials.Password)
                 : new VpnCredentials(_vpnCredentials.ClientCertPem, _vpnCredentials.ClientKeyPair);
         }

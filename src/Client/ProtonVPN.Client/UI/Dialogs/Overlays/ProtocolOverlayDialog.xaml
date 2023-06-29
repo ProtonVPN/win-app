@@ -44,7 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_SwitchHeader')}" />
             <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
-                               Content="Smart"
+                               Content="{x:Bind ViewModel.CurrentProtocol}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">

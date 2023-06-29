@@ -18,6 +18,7 @@
  */
 
 using System.Net.Http;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.OS.Net.Http

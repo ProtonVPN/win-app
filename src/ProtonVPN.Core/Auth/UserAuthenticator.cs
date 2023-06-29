@@ -23,11 +23,10 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Common;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Srp;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.UserLogs;
 
 namespace ProtonVPN.Core.Auth
 {
@@ -93,7 +92,7 @@ namespace ProtonVPN.Core.Auth
                 return AuthResult.Fail(authInfoResponse);
             }
 
-            if (authInfoResponse.Value.Salt.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(authInfoResponse.Value.Salt))
             {
                 return AuthResult.Fail("Incorrect login credentials. Please try again");
             }

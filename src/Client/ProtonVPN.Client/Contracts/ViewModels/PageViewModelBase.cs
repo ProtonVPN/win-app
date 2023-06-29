@@ -20,10 +20,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -33,10 +33,10 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
     [ObservableProperty]
     private bool _isNavigationPaneCollapsed;
 
-    public PageViewModelBase(INavigationService navigationService, ILocalizationProvider localizationProvider)
+    public PageViewModelBase(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
         : base(localizationProvider)
     {
-        NavigationService = navigationService;
+        PageNavigator = pageNavigator;
     }
 
     public Type PageType => GetType();
@@ -45,12 +45,12 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
 
     public virtual bool IsBackEnabled => true;
 
-    protected INavigationService NavigationService { get; }
+    protected IPageNavigator PageNavigator { get; }
 
     [RelayCommand(CanExecute = nameof(CanGoBack))]
     public void GoBack()
     {
-        NavigationService.GoBack();
+        PageNavigator.GoBack();
     }
 
     public bool CanGoBack()
@@ -61,7 +61,7 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
     [RelayCommand]
     public void NavigateTo(string pageKey)
     {
-        NavigationService.NavigateTo(pageKey);
+        PageNavigator.NavigateTo(pageKey);
     }
 
     public virtual void OnNavigatedFrom()

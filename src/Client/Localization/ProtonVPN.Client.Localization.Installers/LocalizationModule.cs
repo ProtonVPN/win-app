@@ -28,7 +28,7 @@ public class LocalizationModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<LocalizerFactory>().As<ILocalizerFactory>().SingleInstance();
-        builder.RegisterType<LocalizationService>().As<ILocalizationService>().SingleInstance();
+        builder.RegisterType<LocalizationService>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocalizationProvider>().As<ILocalizationProvider>().SingleInstance();
     }
 }

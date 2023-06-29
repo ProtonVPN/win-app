@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Common.Tests.Extensions
 {

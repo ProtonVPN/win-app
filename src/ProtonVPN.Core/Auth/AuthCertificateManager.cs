@@ -25,11 +25,10 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Certificates;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Windows;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
 namespace ProtonVPN.Core.Auth
 {
@@ -217,7 +216,7 @@ namespace ProtonVPN.Core.Auth
         private string GetOrCreateClientPublicKeyPem()
         {
             string clientPublicKey = _authKeyManager.GetPublicKey()?.Pem;
-            if (clientPublicKey.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(clientPublicKey))
             {
                 _authKeyManager.RegenerateKeyPair();
                 clientPublicKey = _authKeyManager.GetPublicKey()?.Pem;

@@ -19,6 +19,7 @@
 
 using System;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Common.Extensions
 {

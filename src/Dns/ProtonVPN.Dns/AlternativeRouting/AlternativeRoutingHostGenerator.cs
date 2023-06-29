@@ -20,7 +20,6 @@ using System;
 using System.Text;
 using Albireo.Base32;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 
 namespace ProtonVPN.Dns.AlternativeRouting
@@ -50,7 +49,7 @@ namespace ProtonVPN.Dns.AlternativeRouting
 
         public string Generate(string uid)
         {
-            return uid.IsNullOrEmpty() ? _baseHost.Value : $"{uid}.{_baseHost.Value}";
+            return string.IsNullOrEmpty(uid) ? _baseHost.Value : $"{uid}.{_baseHost.Value}";
         }
     }
 }

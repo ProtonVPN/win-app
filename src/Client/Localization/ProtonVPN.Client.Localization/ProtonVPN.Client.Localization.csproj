@@ -14,6 +14,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Strings\en-US\Resources.resw" />
     <EmbeddedResource Include="Strings\fr-FR\Resources.resw" />
+    <EmbeddedResource Include="Strings\pt-PT\Resources.resw" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+    <ProjectReference Include="..\..\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
   </ItemGroup>
 </Project>

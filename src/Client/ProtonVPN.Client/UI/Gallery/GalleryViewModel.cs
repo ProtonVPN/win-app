@@ -19,9 +19,9 @@
 
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Gallery;
 
@@ -33,8 +33,8 @@ public class GalleryViewModel : NavigationPageViewModelBase
 
     public override bool IsBackEnabled => false;
 
-    public GalleryViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider)
-                                : base(navigationService, localizationProvider)
+    public GalleryViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+        : base(pageNavigator, localizationProvider)
     {
     }
 }

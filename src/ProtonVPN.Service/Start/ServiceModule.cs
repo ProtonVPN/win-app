@@ -32,6 +32,7 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Service.Installers;
 using ProtonVPN.Service.Config;
@@ -137,6 +138,7 @@ namespace ProtonVPN.Service.Start
         private void RegisterModules(ContainerBuilder builder)
         {
             builder.RegisterAssemblyModule<EntityMappingModule>()
+                   .RegisterAssemblyModule<RegistriesModule>()
                    .RegisterAssemblyModule<ProcessCommunicationModule>()
                    .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
                    .RegisterAssemblyModule<IssueReportingModule>();

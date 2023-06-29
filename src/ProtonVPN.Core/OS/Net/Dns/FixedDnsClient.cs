@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using DnsClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using DnsClient;
 using DnsClient.Protocol;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.Core.OS.Net.Dns

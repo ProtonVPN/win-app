@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.OpenVpn
                 .AppendLine(GetTlsAuth())
                 .AppendLine(GetCertificate());
 
-            if (!vpnCredentials.Username.IsNullOrEmpty() && !vpnCredentials.Password.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(vpnCredentials.Username) && !string.IsNullOrEmpty(vpnCredentials.Password))
             {
                 sb.AppendLine("auth-user-pass");
             }

@@ -22,13 +22,13 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home.Details;
-using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.UI.Home;
 
@@ -47,7 +47,8 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
     [NotifyPropertyChangedFor(nameof(IsDetailsPaneInline))]
     private SplitViewDisplayMode _detailsPaneDisplayMode;
 
-    public bool IsDetailsPaneInline => IsDetailsPaneOpen && (DetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
+    public bool IsDetailsPaneInline => IsDetailsPaneOpen &&
+        (DetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
 
     public override string? Title => Localizer.Get("Home_Page_Title");
 
@@ -55,11 +56,13 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
 
     public override IconElement Icon { get; } = new House();
 
-    public HomeViewModel(INavigationService navigationService, ILocalizationProvider localizationProvider, IConnectionManager connectionManager, ConnectionDetailsViewModel connectionDetailsViewModel)
-        : base(navigationService, localizationProvider)
+    public HomeViewModel(IPageNavigator pageNavigator,
+        ILocalizationProvider localizationProvider,
+        IConnectionManager connectionManager,
+        ConnectionDetailsViewModel connectionDetailsViewModel)
+        : base(pageNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
-
         _connectionDetailsViewModel = connectionDetailsViewModel;
     }
 

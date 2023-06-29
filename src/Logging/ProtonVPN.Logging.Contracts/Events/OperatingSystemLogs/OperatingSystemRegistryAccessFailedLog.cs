@@ -21,7 +21,7 @@ using ProtonVPN.Logging.Contracts.Categories;
 
 namespace ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs
 {
-    public class OperatingSystemRegistryAccessFailedLog : LogEventBase<OperativeSystemLogCategory>
+    public class OperatingSystemRegistryAccessFailedLog : LogEventBase<OperatingSystemLogCategory>
     {
         protected override string Event => "REGISTRY_ACCESS_FAILED";
     }

@@ -20,11 +20,11 @@
 using System;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 
 namespace ProtonVPN.Vpn.ServerValidation
 {

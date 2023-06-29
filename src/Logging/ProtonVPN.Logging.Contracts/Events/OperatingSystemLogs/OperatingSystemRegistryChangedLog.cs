@@ -21,7 +21,7 @@ using ProtonVPN.Logging.Contracts.Categories;
 
 namespace ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs
 {
-    public class OperatingSystemRegistryChangedLog : LogEventBase<OperativeSystemLogCategory>
+    public class OperatingSystemRegistryChangedLog : LogEventBase<OperatingSystemLogCategory>
     {
         protected override string Event => "REGISTRY_CHANGED";
     }

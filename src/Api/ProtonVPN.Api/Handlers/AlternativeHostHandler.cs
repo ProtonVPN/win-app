@@ -26,9 +26,8 @@ using System.Threading.Tasks;
 using Polly.Timeout;
 using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
@@ -37,6 +36,8 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 using ProtonVPN.Dns.Contracts.Exceptions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers
 {

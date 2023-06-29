@@ -26,11 +26,148 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ProtocolRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="GroupName" Value="ProtocolSetting" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
                                  PageHeader="{x:Bind ViewModel.Title}">
 
-        <StackPanel x:Name="ContentArea"/>
+        <StackPanel x:Name="ContentArea">
+            <Grid Background="{StaticResource BackgroundWeakColorBrush}"
+              BorderBrush="{StaticResource BorderWeakColorBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16"
+              ColumnSpacing="0" RowSpacing="16">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"  />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <RadioButton Grid.Column="0" Grid.Row="0"
+                             Style="{StaticResource ProtocolRadioButtonStyle}"
+                             Checked="{x:Bind ViewModel.OnCheckedEvent}"
+                             IsChecked="{x:Bind ViewModel.IsSmart}"
+                             Tag="Smart" />
+
+                <StackPanel Grid.Column="1" Grid.Row="0"
+                            Orientation="Vertical"
+                            Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{StaticResource TextNormColorBrush}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Title'), Mode=OneWay}" />
+                        <Border BorderBrush="{StaticResource BorderNormColorBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="4"
+                                Padding="4,1,4,0"
+                                Margin="8,0,0,0">
+                            <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
+                                       Foreground="{StaticResource TextNormColorBrush}"
+                                       Text="{x:Bind ViewModel.Recommended, Mode=OneWay}" />
+                        </Border>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{StaticResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Description'), Mode=OneWay}" />
+                </StackPanel>
+
+
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Foreground="{StaticResource TextNormColorBrush}"
+                           Margin="0,8,0,0"
+                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_UdpCategory'), Mode=OneWay}" />
+
+                <RadioButton Grid.Column="0" Grid.Row="2"
+                             Style="{StaticResource ProtocolRadioButtonStyle}"
+                             Checked="{x:Bind ViewModel.OnCheckedEvent}"
+                             IsChecked="{x:Bind ViewModel.IsWireGuardUdp}"
+                             Tag="WireGuardUdp" />
+
+                <StackPanel Grid.Column="1" Grid.Row="2"
+                            Orientation="Vertical"
+                            Margin="0,0,0,0">
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="{StaticResource TextNormColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Title'), Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{StaticResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Description'), Mode=OneWay}" />
+                </StackPanel>
+
+                <RadioButton Grid.Column="0" Grid.Row="3"
+                             Style="{StaticResource ProtocolRadioButtonStyle}"
+                             Checked="{x:Bind ViewModel.OnCheckedEvent}"
+                             IsChecked="{x:Bind ViewModel.IsOpenVpnUdp}"
+                             Tag="OpenVpnUdp" />
+
+                <StackPanel Grid.Column="1" Grid.Row="3"
+                            Orientation="Vertical"
+                            Margin="0,0,0,0">
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="{StaticResource TextNormColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Title'), Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{StaticResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Description'), Mode=OneWay}" />
+                </StackPanel>
+
+
+
+                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" 
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Foreground="{StaticResource TextNormColorBrush}"
+                           Margin="0,8,0,0"
+                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory'), Mode=OneWay}" />
+
+                <RadioButton Grid.Column="0" Grid.Row="5"
+                             Style="{StaticResource ProtocolRadioButtonStyle}"
+                             Checked="{x:Bind ViewModel.OnCheckedEvent}"
+                             IsChecked="{x:Bind ViewModel.IsOpenVpnTcp}"
+                             Tag="OpenVpnTcp" />
+
+                <StackPanel Grid.Column="1" Grid.Row="5"
+                            Orientation="Vertical"
+                            Margin="0,0,0,0">
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="{StaticResource TextNormColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Title'), Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{StaticResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description'), Mode=OneWay}" />
+                </StackPanel>
+
+            </Grid>
+
+            <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="0,8,0,4">
+                <Run Foreground="{StaticResource TextWeakColorBrush}"
+                     Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Explanation'), Mode=OneWay}"/>
+                
+                <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore'), Mode=OneWay}"/>
+                </Hyperlink>
+            </TextBlock>
+
+        </StackPanel>
 
     </controls:PageContentControl>
 </Page>

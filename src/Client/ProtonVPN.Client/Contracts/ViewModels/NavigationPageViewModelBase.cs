@@ -18,15 +18,15 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class NavigationPageViewModelBase : PageViewModelBase
 {
-    public NavigationPageViewModelBase(INavigationService navigationService, ILocalizationProvider localizationProvider)
-        : base(navigationService, localizationProvider)
+    public NavigationPageViewModelBase(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+        : base(pageNavigator, localizationProvider)
     {
     }
 

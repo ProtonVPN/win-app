@@ -25,7 +25,7 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.OS.Processes;
 

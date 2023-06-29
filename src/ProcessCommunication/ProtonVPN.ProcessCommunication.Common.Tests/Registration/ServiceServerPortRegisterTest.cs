@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Common.Registration;
+using ProtonVPN.ProcessCommunication.Common.Tests.Mocks;
 
 namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
 {
@@ -28,19 +29,22 @@ namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
     [TestClass]
     public class ServiceServerPortRegisterTest
     {
+        private MockOfRegistryEditor _registryEditor;
         private ILogger _logger;
         private ServiceServerPortRegister _serviceServerPortRegister;
 
         [TestInitialize]
         public void Initialize()
         {
+            _registryEditor = new MockOfRegistryEditor();
             _logger = Substitute.For<ILogger>();
-            _serviceServerPortRegister = new ServiceServerPortRegister(_logger);
+            _serviceServerPortRegister = new ServiceServerPortRegister(_registryEditor, _logger);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
+            _registryEditor = null;
             _logger = null;
             _serviceServerPortRegister = null;
         }
@@ -61,17 +65,14 @@ namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
             _serviceServerPortRegister.Write(timestamp);
 
             //ReadOnce
-            Initialize();
             int? result = _serviceServerPortRegister.ReadOnce();
             Assert.IsNotNull(result);
             Assert.AreEqual(result.Value, timestamp);
 
             //Delete
-            Initialize();
             _serviceServerPortRegister.Delete();
 
             //ReadOnce
-            Initialize();
             int? result2 = _serviceServerPortRegister.ReadOnce();
             Assert.IsNull(result2);
         }
@@ -92,16 +93,13 @@ namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
             //ReadAsync
             CancellationTokenSource cts = new();
             cts.Cancel();
-            Initialize();
             int result = await _serviceServerPortRegister.ReadAsync(cts.Token);
             Assert.AreEqual(result, timestamp);
 
             //Delete
-            Initialize();
             _serviceServerPortRegister.Delete();
 
             //ReadOnce
-            Initialize();
             int? result2 = _serviceServerPortRegister.ReadOnce();
             Assert.IsNull(result2);
         }
@@ -126,7 +124,6 @@ namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
 
             //Write
             int timestamp = GetCurrentDayMilliseconds();
-            Initialize();
             _serviceServerPortRegister.Write(timestamp);
 
             //ReadAsync await
@@ -134,11 +131,9 @@ namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
             Assert.AreEqual(result, timestamp);
 
             //Delete
-            Initialize();
             _serviceServerPortRegister.Delete();
 
             //ReadOnce
-            Initialize();
             int? result2 = _serviceServerPortRegister.ReadOnce();
             Assert.IsNull(result2);
         }
@@ -151,11 +146,9 @@ namespace ProtonVPN.ProcessCommunication.Common.Tests.Registration
             Assert.IsNull(result);
 
             //Delete
-            Initialize();
             _serviceServerPortRegister.Delete();
 
             //ReadOnce
-            Initialize();
             int? result2 = _serviceServerPortRegister.ReadOnce();
             Assert.IsNull(result2);
         }

@@ -18,22 +18,32 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
-public partial class ProtocolOverlayViewModel : OverlayViewModelBase
+public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMessageReceiver<SettingChangedMessage>
 {
-    private readonly INavigationService _navigationService;
+    private readonly IPageNavigator _pageNavigator;
+    private readonly ISettings _settings;
 
     public Uri LearnMoreUri { get; } = new Uri(@"https://protonvpn.com/support/how-to-change-vpn-protocols/");
 
-    public ProtocolOverlayViewModel(ILocalizationProvider localizationProvider, IDialogService dialogService, INavigationService navigationService)
-        : base(localizationProvider, dialogService)
+    public string CurrentProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
+
+    public ProtocolOverlayViewModel(ILocalizationProvider localizationProvider,
+        IDialogActivator dialogActivator,
+        IPageNavigator pageNavigator,
+        ISettings settings)
+        : base(localizationProvider, dialogActivator)
     {
-        _navigationService = navigationService;
+        _pageNavigator = pageNavigator;
+        _settings = settings;
     }
 
     [RelayCommand]
@@ -41,6 +51,20 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase
     {
         CloseOverlay();
 
-        _navigationService.NavigateTo(pageKey);
+        _pageNavigator.NavigateTo(pageKey);
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.VpnProtocol))
+        {
+            OnPropertyChanged(nameof(CurrentProtocol));
+        }
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+        OnPropertyChanged(nameof(CurrentProtocol));
     }
 }

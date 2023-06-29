@@ -20,10 +20,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-
-using ProtonVPN.Client.Contracts.Services;
-using ProtonVPN.Client.Helpers;
-
+using ProtonVPN.Client.Models.Navigation;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI;
@@ -35,8 +32,8 @@ public sealed partial class ShellPage
         ViewModel = viewModel;
         InitializeComponent();
 
-        ViewModel.NavigationService.Frame = NavigationFrame;
-        ViewModel.NavigationViewService.Initialize(NavigationViewControl);
+        ViewModel.PageNavigator.Frame = NavigationFrame;
+        ViewModel.ViewNavigator.Initialize(NavigationViewControl);
 
         // TODO: Set the title bar icon by updating /Assets/WindowIcon.ico.
         // A custom title bar is required for full window theme and Mica support.
@@ -64,9 +61,9 @@ public sealed partial class ShellPage
 
     private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        INavigationService navigationService = App.GetService<INavigationService>();
+        IPageNavigator pageNavigator = App.GetService<IPageNavigator>();
 
-        bool result = navigationService.GoBack();
+        bool result = pageNavigator.GoBack();
 
         args.Handled = result;
     }

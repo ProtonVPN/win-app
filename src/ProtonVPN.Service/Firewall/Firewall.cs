@@ -262,7 +262,7 @@ namespace ProtonVPN.Service.Firewall
 
         private void BlockOutsideOpenVpnTraffic(FirewallParams firewallParams)
         {
-            if (firewallParams.ServerIp.IsNullOrEmpty() || firewallParams.DnsLeakOnly)
+            if (string.IsNullOrEmpty(firewallParams.ServerIp) || firewallParams.DnsLeakOnly)
             {
                 return;
             }

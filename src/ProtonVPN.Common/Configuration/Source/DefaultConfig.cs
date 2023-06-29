@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Common.Configuration.Source

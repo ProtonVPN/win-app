@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
@@ -27,7 +27,7 @@ public class LatencyOverlayViewModel : OverlayViewModelBase
 {
     public Uri LearnMoreUri { get; } = new Uri(@"https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed/");
 
-    public LatencyOverlayViewModel(ILocalizationProvider localizationProvider, IDialogService dialogService)
-        : base(localizationProvider, dialogService)
+    public LatencyOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator)
+        : base(localizationProvider, dialogActivator)
     { }
 }

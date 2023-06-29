@@ -18,31 +18,31 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Contracts.Services;
 using ProtonVPN.Client.Dispatching;
-using ProtonVPN.Client.Services;
+using ProtonVPN.Client.Models.MainWindowActivation;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Client.Models.Urls;
 
-namespace ProtonVPN.Client.Installers
+namespace ProtonVPN.Client.Installers;
+
+public class ClientModule : Module
 {
-    public class ClientModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            // Dispatching
-            builder.RegisterType<UIThreadDispatcher>().As<IUIThreadDispatcher>().SingleInstance();
+        builder.RegisterType<Bootstrapper>().As<IBootstrapper>().SingleInstance();
 
-            // Services
-            builder.RegisterType<LocalSettingsService>().As<ILocalSettingsService>().SingleInstance();
-            builder.RegisterType<ThemeSelectorService>().As<IThemeSelectorService>().SingleInstance();
-            builder.RegisterType<NavigationViewService>().As<INavigationViewService>().InstancePerDependency();
+        builder.RegisterType<UIThreadDispatcher>().As<IUIThreadDispatcher>().SingleInstance();
 
-            builder.RegisterType<ActivationService>().As<IActivationService>().SingleInstance();
-            builder.RegisterType<PageService>().As<IPageService>().SingleInstance();
-            builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
-            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+        builder.RegisterType<ThemeSelector>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ViewNavigator>().As<IViewNavigator>().InstancePerDependency();
+        builder.RegisterType<MainWindowActivator>().As<IMainWindowActivator>().SingleInstance();
+        builder.RegisterType<PageMapper>().As<IPageMapper>().SingleInstance();
+        builder.RegisterType<PageNavigator>().As<IPageNavigator>().SingleInstance();
+        builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
 
-            builder.RegisterType<FileService>().As<IFileService>().SingleInstance();
-        }
+        builder.RegisterType<Urls>().As<IUrls>().SingleInstance();
     }
 }

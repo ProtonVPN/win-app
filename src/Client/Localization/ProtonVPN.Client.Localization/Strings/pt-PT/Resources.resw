@@ -1,0 +1,1558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Countries_Page_Title" xml:space="preserve">
+    <value>Países</value>
+  </data>
+  <data name="Home_Page_Title" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="Settings_Page_Title" xml:space="preserve">
+    <value>Definições</value>
+  </data>
+  <data name="Country_val_AD" xml:space="preserve">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE" xml:space="preserve">
+    <value>Emirados Árabes Unidos</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF" xml:space="preserve">
+    <value>Afeganistão</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG" xml:space="preserve">
+    <value>Antígua e Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI" xml:space="preserve">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL" xml:space="preserve">
+    <value>Albânia</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM" xml:space="preserve">
+    <value>Arménia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO" xml:space="preserve">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ" xml:space="preserve">
+    <value>Antárctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR" xml:space="preserve">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS" xml:space="preserve">
+    <value>Samoa Americana</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT" xml:space="preserve">
+    <value>Áustria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU" xml:space="preserve">
+    <value>Austrália</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW" xml:space="preserve">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX" xml:space="preserve">
+    <value>Ilhas Aland</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ" xml:space="preserve">
+    <value>Azerbaijão</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA" xml:space="preserve">
+    <value>Bósnia e Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB" xml:space="preserve">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD" xml:space="preserve">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE" xml:space="preserve">
+    <value>Bélgica</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF" xml:space="preserve">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG" xml:space="preserve">
+    <value>Bulgária</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH" xml:space="preserve">
+    <value>Barém</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI" xml:space="preserve">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ" xml:space="preserve">
+    <value>Benim</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL" xml:space="preserve">
+    <value>São Bartolomeu</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM" xml:space="preserve">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN" xml:space="preserve">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO" xml:space="preserve">
+    <value>Bolívia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ" xml:space="preserve">
+    <value>Bonaire, Santo Eustáquio e Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR" xml:space="preserve">
+    <value>Brasil</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS" xml:space="preserve">
+    <value>Baamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT" xml:space="preserve">
+    <value>Butão</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV" xml:space="preserve">
+    <value>Ilha Bouvet</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW" xml:space="preserve">
+    <value>Botsuana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY" xml:space="preserve">
+    <value>Bielorrússia</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ" xml:space="preserve">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA" xml:space="preserve">
+    <value>Canadá</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC" xml:space="preserve">
+    <value>Ilhas Cocos (Keeling)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD" xml:space="preserve">
+    <value>Congo (República Democrática do)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF" xml:space="preserve">
+    <value>República Central Africana</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG" xml:space="preserve">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH" xml:space="preserve">
+    <value>Suíça</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI" xml:space="preserve">
+    <value>Costa do Marfim</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK" xml:space="preserve">
+    <value>Ilhas Cook</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL" xml:space="preserve">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM" xml:space="preserve">
+    <value>Camarões</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN" xml:space="preserve">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO" xml:space="preserve">
+    <value>Colômbia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR" xml:space="preserve">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU" xml:space="preserve">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV" xml:space="preserve">
+    <value>Cabo Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW" xml:space="preserve">
+    <value>Curacao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX" xml:space="preserve">
+    <value>Ilha Natal</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY" xml:space="preserve">
+    <value>Chipre</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ" xml:space="preserve">
+    <value>Tchéquia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE" xml:space="preserve">
+    <value>Alemanha</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ" xml:space="preserve">
+    <value>Djibuti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK" xml:space="preserve">
+    <value>Dinamarca</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM" xml:space="preserve">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO" xml:space="preserve">
+    <value>República Dominicana</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ" xml:space="preserve">
+    <value>Algéria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC" xml:space="preserve">
+    <value>Equador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE" xml:space="preserve">
+    <value>Estónia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG" xml:space="preserve">
+    <value>Egipto</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH" xml:space="preserve">
+    <value>Saará Ocidental</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER" xml:space="preserve">
+    <value>Eritreia</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES" xml:space="preserve">
+    <value>Espanha</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET" xml:space="preserve">
+    <value>Etiópia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI" xml:space="preserve">
+    <value>Finlândia</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ" xml:space="preserve">
+    <value>Ilhas Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK" xml:space="preserve">
+    <value>Ilhas Falkland (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM" xml:space="preserve">
+    <value>Micronésia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO" xml:space="preserve">
+    <value>Ilhas Faroé</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR" xml:space="preserve">
+    <value>França</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA" xml:space="preserve">
+    <value>Gabão</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB" xml:space="preserve">
+    <value>Reino Unido</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD" xml:space="preserve">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE" xml:space="preserve">
+    <value>Geórgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF" xml:space="preserve">
+    <value>Guiana Francesa</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG" xml:space="preserve">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH" xml:space="preserve">
+    <value>Gana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI" xml:space="preserve">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL" xml:space="preserve">
+    <value>Gronelândia</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM" xml:space="preserve">
+    <value>Gâmbia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN" xml:space="preserve">
+    <value>Guiné</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP" xml:space="preserve">
+    <value>Guadalupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ" xml:space="preserve">
+    <value>Guiné Equatorial</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR" xml:space="preserve">
+    <value>Grécia</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS" xml:space="preserve">
+    <value>Geórgia do Sul e Ilhas Sandwich do Sul</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT" xml:space="preserve">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU" xml:space="preserve">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW" xml:space="preserve">
+    <value>Guiné-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY" xml:space="preserve">
+    <value>Guiana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK" xml:space="preserve">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM" xml:space="preserve">
+    <value>Ilha Heard e Ilhas McDonald</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN" xml:space="preserve">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR" xml:space="preserve">
+    <value>Croácia</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT" xml:space="preserve">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU" xml:space="preserve">
+    <value>Hungria</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID" xml:space="preserve">
+    <value>Indonésia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE" xml:space="preserve">
+    <value>Irlanda</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL" xml:space="preserve">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM" xml:space="preserve">
+    <value>Ilha de Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN" xml:space="preserve">
+    <value>Índia</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO" xml:space="preserve">
+    <value>Território Britânico no Oceano Índico</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ" xml:space="preserve">
+    <value>Iraque</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR" xml:space="preserve">
+    <value>Irão</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS" xml:space="preserve">
+    <value>Islândia</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT" xml:space="preserve">
+    <value>Itália</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE" xml:space="preserve">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM" xml:space="preserve">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO" xml:space="preserve">
+    <value>Jordânia</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP" xml:space="preserve">
+    <value>Japão</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE" xml:space="preserve">
+    <value>Quénia</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG" xml:space="preserve">
+    <value>Quirguistão</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH" xml:space="preserve">
+    <value>Cambodja</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI" xml:space="preserve">
+    <value>Quiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM" xml:space="preserve">
+    <value>Comores</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN" xml:space="preserve">
+    <value>Saint Kitts e Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP" xml:space="preserve">
+    <value>Coreia do Norte</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR" xml:space="preserve">
+    <value>Coreia do Sul</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW" xml:space="preserve">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY" xml:space="preserve">
+    <value>Ilhas Cayman</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ" xml:space="preserve">
+    <value>Cazaquistão</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA" xml:space="preserve">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB" xml:space="preserve">
+    <value>Líbano</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC" xml:space="preserve">
+    <value>Santa Lúcia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI" xml:space="preserve">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK" xml:space="preserve">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR" xml:space="preserve">
+    <value>Libéria</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS" xml:space="preserve">
+    <value>Lesoto</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT" xml:space="preserve">
+    <value>Lituânia</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU" xml:space="preserve">
+    <value>Luxemburgo</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV" xml:space="preserve">
+    <value>Látvia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY" xml:space="preserve">
+    <value>Líbia</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA" xml:space="preserve">
+    <value>Marrocos</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC" xml:space="preserve">
+    <value>Mónaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD" xml:space="preserve">
+    <value>Moldávia</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME" xml:space="preserve">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF" xml:space="preserve">
+    <value>Saint Martin (parte francesa)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG" xml:space="preserve">
+    <value>Madagáscar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH" xml:space="preserve">
+    <value>Ilhas Marshall</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK" xml:space="preserve">
+    <value>Macedónia do Norte</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML" xml:space="preserve">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM" xml:space="preserve">
+    <value>Mianmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN" xml:space="preserve">
+    <value>Mongólia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO" xml:space="preserve">
+    <value>Macau</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP" xml:space="preserve">
+    <value>Ilhas Marianas do Norte</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ" xml:space="preserve">
+    <value>Martinica</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR" xml:space="preserve">
+    <value>Mauritânia</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS" xml:space="preserve">
+    <value>Monserrate</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT" xml:space="preserve">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU" xml:space="preserve">
+    <value>Maurícia</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV" xml:space="preserve">
+    <value>Maldivas</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW" xml:space="preserve">
+    <value>Malauí</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX" xml:space="preserve">
+    <value>México</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY" xml:space="preserve">
+    <value>Malásia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ" xml:space="preserve">
+    <value>Moçambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA" xml:space="preserve">
+    <value>Namíbia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC" xml:space="preserve">
+    <value>Nova Caledónia</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE" xml:space="preserve">
+    <value>Níger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF" xml:space="preserve">
+    <value>Ilha Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG" xml:space="preserve">
+    <value>Nigéria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI" xml:space="preserve">
+    <value>Nicarágua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL" xml:space="preserve">
+    <value>Países-Baixos</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO" xml:space="preserve">
+    <value>Noruega</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP" xml:space="preserve">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR" xml:space="preserve">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU" xml:space="preserve">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ" xml:space="preserve">
+    <value>Nova Zelândia</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM" xml:space="preserve">
+    <value>Omã</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA" xml:space="preserve">
+    <value>Panamá</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE" xml:space="preserve">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF" xml:space="preserve">
+    <value>Polinésia Francesa</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG" xml:space="preserve">
+    <value>Papua Nova Guiné</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH" xml:space="preserve">
+    <value>Filipinas</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK" xml:space="preserve">
+    <value>Paquistão</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL" xml:space="preserve">
+    <value>Polónia</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM" xml:space="preserve">
+    <value>Saint Pierre e Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN" xml:space="preserve">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR" xml:space="preserve">
+    <value>Porto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS" xml:space="preserve">
+    <value>Palestina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT" xml:space="preserve">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW" xml:space="preserve">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY" xml:space="preserve">
+    <value>Paraguai</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA" xml:space="preserve">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE" xml:space="preserve">
+    <value>Reunião</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO" xml:space="preserve">
+    <value>Roménia</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS" xml:space="preserve">
+    <value>Sérvia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU" xml:space="preserve">
+    <value>Rússia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW" xml:space="preserve">
+    <value>Ruanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA" xml:space="preserve">
+    <value>Arábia Saudita</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB" xml:space="preserve">
+    <value>Ilhas Salomão</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC" xml:space="preserve">
+    <value>Seicheles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD" xml:space="preserve">
+    <value>Sudão</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE" xml:space="preserve">
+    <value>Suécia</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG" xml:space="preserve">
+    <value>Singapura</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH" xml:space="preserve">
+    <value>Santa Helena, Ascenção e Tristão da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI" xml:space="preserve">
+    <value>Eslovénia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ" xml:space="preserve">
+    <value>Svalbard e Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK" xml:space="preserve">
+    <value>Eslováquia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL" xml:space="preserve">
+    <value>Serra Leoa</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM" xml:space="preserve">
+    <value>São Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN" xml:space="preserve">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO" xml:space="preserve">
+    <value>Somália</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR" xml:space="preserve">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS" xml:space="preserve">
+    <value>Sudão Sul</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST" xml:space="preserve">
+    <value>São Tomé e Príncipe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV" xml:space="preserve">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX" xml:space="preserve">
+    <value>Sint Maarten (parte holandesa)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY" xml:space="preserve">
+    <value>Síria</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ" xml:space="preserve">
+    <value>Suazilândia</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC" xml:space="preserve">
+    <value>Ilhas Turcas e Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD" xml:space="preserve">
+    <value>Chade</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF" xml:space="preserve">
+    <value>Territórios franceses do Sul</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG" xml:space="preserve">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH" xml:space="preserve">
+    <value>Tailândia</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ" xml:space="preserve">
+    <value>Tajiquistão</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK" xml:space="preserve">
+    <value>Toquelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL" xml:space="preserve">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM" xml:space="preserve">
+    <value>Turquemenistão</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN" xml:space="preserve">
+    <value>Tunísia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO" xml:space="preserve">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR" xml:space="preserve">
+    <value>Turquia</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT" xml:space="preserve">
+    <value>Trinidad e Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV" xml:space="preserve">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW" xml:space="preserve">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ" xml:space="preserve">
+    <value>Tanzânia</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA" xml:space="preserve">
+    <value>Ucrânia</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG" xml:space="preserve">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK" xml:space="preserve">
+    <value>Reino Unido</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM" xml:space="preserve">
+    <value>Ilhas Menores Distantes dos Estados Unidos</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US" xml:space="preserve">
+    <value>Estados Unidos</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY" xml:space="preserve">
+    <value>Uruguai</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ" xml:space="preserve">
+    <value>Uzbequistão</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA" xml:space="preserve">
+    <value>Vaticano</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC" xml:space="preserve">
+    <value>Saint Vincent e Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE" xml:space="preserve">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG" xml:space="preserve">
+    <value>Ilhas Virgens, Inglesas</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI" xml:space="preserve">
+    <value>Ilhas Virgens, Americanas</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN" xml:space="preserve">
+    <value>Vietname</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU" xml:space="preserve">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF" xml:space="preserve">
+    <value>Wallis e Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS" xml:space="preserve">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE" xml:space="preserve">
+    <value>Iémen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT" xml:space="preserve">
+    <value>Maiote</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA" xml:space="preserve">
+    <value>África do Sul</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM" xml:space="preserve">
+    <value>Zâmbia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW" xml:space="preserve">
+    <value>Zimbabué</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ" xml:space="preserve">
+    <value>Desconhecido</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Common_Actions_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Common_Actions_Connect" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="Common_Actions_Disconnect" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="Common_Actions_Remove" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="Common_Links_LearnMore" xml:space="preserve">
+    <value>Saiba mais</value>
+  </data>
+  <data name="Connection_Intent_City_Server" xml:space="preserve">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the id of the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Free_Server" xml:space="preserve">
+    <value>Servidor #{0}</value>
+    <comment>Name of the server. {0} is a placeholder for the id of the server (eg. Server #30)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore" xml:space="preserve">
+    <value>via {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Country_Fastest" xml:space="preserve">
+    <value>O país mais rápido</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<data name="Dialogs_Latency_Description" xml:space="preserve">
+    <value>A latência mostra quanto tempo demora um servidor a responder a um pedido.\n\nUma latência elevada pode reduzir a velocidade da sua ligação.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
+    <value>A VPN pode ser mais lenta que o normal</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
+    <value>Alta (150ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
+    <value>Velocidades elevadas</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
+    <value>Baixa (1ms - 50ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
+    <value>É improvável de afectar a velocidade da VPN</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
+    <value>Média (50ms - 150ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title" xml:space="preserve">
+    <value>O que é a latência?</value>
+  </data>
+  <data name="Dialogs_Protocol_Description" xml:space="preserve">
+    <value>Um protocolo é um conjunto de instruções que o seu dispositivo segue para se conectar e comunicar com um servidor.</value>
+  </data>
+  <data name="Dialogs_Protocol_LearnMore" xml:space="preserve">
+    <value>Como funcionam os protocolos</value>
+  </data>
+  <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
+    <value>Mudar de Protocolo VPN</value>
+  </data>
+  <data name="Dialogs_Protocol_Title" xml:space="preserve">
+    <value>O que é um Protocolo VPN?</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
+    <value>A carga do servidor mostra o quão perto está esse servidor da sua capacidade máxima.\n\nUma carga elevada no servidor pode reduzir a velocidade da sua ligação.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
+    <value>A VPN pode ser mais lenta que o normal</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
+    <value>Alta (90-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
+    <value>Velocidades elevadas</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
+    <value>Baixa (1-49%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
+    <value>É improvável de afectar a velocidade da VPN</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
+    <value>Média (50-89%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
+    <value>O que é a carga do servidor?</value>
+  </data>
+  <data name="Format_Milliseconds" xml:space="preserve">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes" xml:space="preserve">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes" xml:space="preserve">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes" xml:space="preserve">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes" xml:space="preserve">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes" xml:space="preserve">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes" xml:space="preserve">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes" xml:space="preserve">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day" xml:space="preserve">
+    <value>{0} dia</value>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DayHours" xml:space="preserve">
+    <value>{0} dia {1} hr</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Days" xml:space="preserve">
+    <value>{0} dias</value>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DaysHours" xml:space="preserve">
+    <value>{0} dias {1} hr</value>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Hours" xml:space="preserve">
+    <value>{0} hr</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes" xml:space="preserve">
+    <value>{0} hr {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Minutes" xml:space="preserve">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds" xml:space="preserve">
+    <value>{0} min {1} seg</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds" xml:space="preserve">
+    <value>{0} seg</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
+    <value>A navegar com segurança de</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
+    <value>A conectar a...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
+    <value>Última conexão</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
+    <value>Recomendado</value>
+  </data>
+  <data name="Home_ConnectionDetails_City" xml:space="preserve">
+    <value>Cidade</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
+    <value>Conectado à</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
+    <value>Esconder</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
+    <value>Latência</value>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
+    <value>O meu IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
+    <value>Protocolo</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server" xml:space="preserve">
+    <value>Servidor</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
+    <value>Carga do servidor</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
+    <value>Mostrar</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Title" xml:space="preserve">
+    <value>Detalhes da ligação</value>
+  </data>
+  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
+    <value>IP da VPN</value>
+  </data>
+  <data name="Home_Help_Title" xml:space="preserve">
+    <value>Ajuda</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
+    <value>Publicidades\nbloqueadas</value>
+    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_DataSaved" xml:space="preserve">
+    <value>Dados\npoupados</value>
+    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
+    <value>Rastreadores\nparados</value>
+    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_Recents_Pin" xml:space="preserve">
+    <value>Fixar</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
+    <value>Acções</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
+    <value>O servidor está sob manutenção</value>
+  </data>
+  <data name="Home_Recents_Title" xml:space="preserve">
+    <value>Ligações recentes</value>
+  </data>
+  <data name="Home_Recents_Unpin" xml:space="preserve">
+    <value>Desafixar</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
+    <value>A proteger a sua identidade digital</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
+    <value>Está desprotegido</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
+    <value>Protegido</value>
+  </data>
+  <data name="Server_Feature_P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_Tor" xml:space="preserve">
+    <value>Tor</value>
+  </data>
+  <data name="Settings_About" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="Settings_AppVersion" xml:space="preserve">
+    <value>Versão da app</value>
+  </data>
+  <data name="Settings_Connection" xml:space="preserve">
+    <value>Conexão</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
+    <value>Definições avançadas</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
+    <value>Servidores DNS personalizados</value>
+  </data>
+  <data name="Settings_Connection_Protocol" xml:space="preserve">
+    <value>Protocolo</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_Features" xml:space="preserve">
+    <value>Funcionalidades</value>
+  </data>
+  <data name="Settings_Features_KillSwitch" xml:space="preserve">
+    <value>Kill Switch</value>
+  </data>
+  <data name="Settings_Features_NetShield" xml:space="preserve">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Features_PortForwarding" xml:space="preserve">
+    <value>Port Forwarding</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling" xml:space="preserve">
+    <value>Split Tunneling</value>
+  </data>
+  <data name="Settings_General" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="Settings_General_AutoStartup" xml:space="preserve">
+    <value>Arranque automático</value>
+  </data>
+  <data name="Settings_General_Language" xml:space="preserve">
+    <value>Linguagem</value>
+  </data>
+  <data name="Settings_General_Theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Settings_General_Theme_Dark" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="Settings_General_Theme_Default" xml:space="preserve">
+    <value>Predefinido</value>
+  </data>
+  <data name="Settings_General_Theme_Light" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="Settings_Improve" xml:space="preserve">
+    <value>Ajudar a Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship" xml:space="preserve">
+    <value>Ajude-nos a lutar contra a censura</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion" xml:space="preserve">
+    <value>Sistema Operativo</value>
+  </data>
+  <data name="Settings_Protocols_Explanation" xml:space="preserve">
+    <value>Os protocolos VPN determinam como os dados se movem entre o servidor VPN e o seu dispositivo.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
+    <value>Consolidado, bem testado, e seguro. O OpenVPN é resiliente em condições de rede fracas, mas pode não ser tão rápido como outros protocolos.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
+    <value>Consolidado, bem testado, e seguro. O OpenVPN é menos eficiente em termos de bateria que outros protocolos.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended" xml:space="preserve">
+    <value>Recomendado</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
+    <value>Selecciona automaticamente o melhor protocolo para sua ligação.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
+    <value>Inteligente</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
+    <value>Fiabilidade (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
+    <value>Velocidade (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
+    <value>Rápido, seguro, e eficiente. O WireGuard é mais eficiente em termos de bateria que outros protocolos.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_RestoreDefault" xml:space="preserve">
+    <value>Restaurar definições predefinidas</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp" xml:space="preserve">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart" xml:space="preserve">
+    <value>Inteligente</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Support" xml:space="preserve">
+    <value>Suporte</value>
+  </data>
+  <data name="Settings_Support_DebugLogs" xml:space="preserve">
+    <value>Registos da aplicação</value>
+  </data>
+  <data name="Settings_Support_ReportIssue" xml:space="preserve">
+    <value>Reportar um problema</value>
+  </data>
+</root>

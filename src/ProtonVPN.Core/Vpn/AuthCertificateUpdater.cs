@@ -19,7 +19,6 @@
 
 using System.ComponentModel;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
 
@@ -42,7 +41,7 @@ namespace ProtonVPN.Core.Vpn
         {
             if (e.PropertyName == nameof(IAppSettings.AuthenticationCertificatePem) &&
                 _vpnStatus == VpnStatus.Connected &&
-                !_appSettings.AuthenticationCertificatePem.IsNullOrEmpty())
+                !string.IsNullOrEmpty(_appSettings.AuthenticationCertificatePem))
             {
                 await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
             }

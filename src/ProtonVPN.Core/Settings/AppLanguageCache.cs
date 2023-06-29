@@ -25,23 +25,23 @@ namespace ProtonVPN.Core.Settings
     public class AppLanguageCache : IAppLanguageCache, ISettingsAware
     {
         private readonly IAppSettings _appSettings;
-        private readonly string _operativeSystemLanguageIetfTag;
+        private readonly string _operatingSystemLanguageIetfTag;
         private string _locale;
 
         public AppLanguageCache(IAppSettings appSettings)
         {
             _appSettings = appSettings;
-            _operativeSystemLanguageIetfTag = GetOperativeSystemLanguageIetfTag();
+            _operatingSystemLanguageIetfTag = GetOperatingSystemLanguageIetfTag();
         }
 
-        private string GetOperativeSystemLanguageIetfTag()
+        private string GetOperatingSystemLanguageIetfTag()
         {
             return CultureInfo.CurrentUICulture?.IetfLanguageTag ?? CultureInfo.CurrentCulture?.IetfLanguageTag;
         }
 
         public string GetCurrentSelectedLanguageIetfTag()
         {
-            return _locale ?? UpdateLocaleFromAppSettingsIfExists() ?? _operativeSystemLanguageIetfTag;
+            return _locale ?? UpdateLocaleFromAppSettingsIfExists() ?? _operatingSystemLanguageIetfTag;
         }
 
         private string UpdateLocaleFromAppSettingsIfExists()

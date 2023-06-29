@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using DnsClient;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Core.OS.Net.Dns
 {

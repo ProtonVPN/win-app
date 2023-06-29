@@ -21,45 +21,49 @@ using Autofac;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.EventMessaging.Installers;
-using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Localization.Installers;
 using ProtonVPN.Client.Logic.Connection.Installers;
 using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
+using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Logging;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
+using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 
-namespace ProtonVPN.Client.Installers
+namespace ProtonVPN.Client.Installers;
+
+public class MainModule : Module
 {
-    public class MainModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            // Default Activation Handler
-            builder.RegisterType<DefaultActivationHandler>().As<ActivationHandler<LaunchActivatedEventArgs>>().InstancePerDependency();
+        // Default Activation Handler
+        builder.RegisterType<DefaultActivationHandler>()
+               .As<ActivationHandler<LaunchActivatedEventArgs>>()
+               .InstancePerDependency();
 
-            // Other Activation Handlers
+        // Other Activation Handlers
 
-            // TODO
+        // TODO
 #warning This should come from IConfiguration.AppLogDefaultFullFilePath
-            builder.Register(c => new LoggerConfiguration("%temp%\\Proton VPN\\logs.txt"))
-                   .As<ILoggerConfiguration>()
-                    .SingleInstance();
+        builder.Register(c => new LoggerConfiguration("%temp%\\Proton VPN\\logs.txt"))
+               .As<ILoggerConfiguration>()
+               .SingleInstance();
 
-            // Modules
-            builder.RegisterModule<LoggingModule>()
-                   .RegisterModule<ClientModule>()
-                   .RegisterModule<ServicesModule>()
-                   .RegisterModule<ConnectionLogicModule>()
-                   .RegisterModule<AppProcessCommunicationModule>()
-                   .RegisterModule<ProcessCommunicationModule>()
-                   .RegisterModule<LocalizationModule>()
-                   .RegisterModule<EventMessagingModule>()
-                   .RegisterModule<ViewModelsModule>()
-                   .RegisterModule<RecentsLogicModule>();
-        }
+        // Modules
+        builder.RegisterModule<LoggingModule>()
+               .RegisterModule<RegistriesModule>()
+               .RegisterModule<ClientModule>()
+               .RegisterModule<ServicesModule>()
+               .RegisterModule<ConnectionLogicModule>()
+               .RegisterModule<AppProcessCommunicationModule>()
+               .RegisterModule<ProcessCommunicationModule>()
+               .RegisterModule<LocalizationModule>()
+               .RegisterModule<EventMessagingModule>()
+               .RegisterModule<ViewModelsModule>()
+               .RegisterModule<RecentsLogicModule>()
+               .RegisterModule<SettingsModule>();
     }
 }

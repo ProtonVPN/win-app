@@ -19,7 +19,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Helpers;
 
 namespace ProtonVPN.Common.Cli

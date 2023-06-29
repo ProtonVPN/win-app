@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Crypto;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Core.Auth
 {
@@ -68,13 +67,13 @@ namespace ProtonVPN.Core.Auth
         public SecretKey GetSecretKey()
         {
             string key = _appSettings.AuthenticationSecretKey;
-            return key.IsNullOrEmpty() ? null : new SecretKey(key, ALGORITHM);
+            return string.IsNullOrEmpty(key) ? null : new SecretKey(key, ALGORITHM);
         }
 
         public PublicKey GetPublicKey()
         {
             string key = _appSettings.AuthenticationPublicKey;
-            return key.IsNullOrEmpty() ? null : new PublicKey(key, ALGORITHM);
+            return string.IsNullOrEmpty(key) ? null : new PublicKey(key, ALGORITHM);
         }
     }
 }

@@ -18,25 +18,34 @@
  */
 
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using WinUI3Localizer;
 
 namespace ProtonVPN.Client.Localization;
 
-public class LocalizationService : ILocalizationService
+public class LocalizationService : ILocalizationService, IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly ILocalizer _localizer;
 
     public LocalizationService(IEventMessageSender eventMessageSender,
-        ILocalizerFactory localizerFactory)
+        ISettings settings, ILocalizerFactory localizerFactory)
     {
         _eventMessageSender = eventMessageSender;
+
         _localizer = localizerFactory.GetOrCreate();
+        _localizer.SetLanguage(settings.Language);
+    }
+
+    private void SetLanguage(string language)
+    {
+        _localizer.SetLanguage(language);
+        _eventMessageSender.Send(new LanguageChangedMessage(language));
     }
 
     public IEnumerable<string> GetAvailableLanguages()
@@ -44,15 +53,12 @@ public class LocalizationService : ILocalizationService
         return _localizer.GetAvailableLanguages();
     }
 
-    public string GetCurrentLanguage()
+    public void Receive(SettingChangedMessage message)
     {
-        return _localizer.GetCurrentLanguage();
-    }
-
-    public async Task SetLanguageAsync(string language)
-    {
-        await _localizer.SetLanguage(language);
-
-        _eventMessageSender.Send(new LanguageChangedMessage(language));
+        if (message.PropertyName == nameof(ISettings.Language) && message.NewValue is not null)
+        {
+            string language = (string)message.NewValue;
+            SetLanguage(language);
+        }
     }
 }

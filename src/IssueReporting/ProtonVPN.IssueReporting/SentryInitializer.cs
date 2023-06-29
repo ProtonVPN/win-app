@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.IssueReporting.DiagnosticLogging;
 using ProtonVPN.IssueReporting.HttpHandlers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using Sentry;
 
 namespace ProtonVPN.IssueReporting
@@ -96,7 +95,7 @@ namespace ProtonVPN.IssueReporting
                     break;
                 case SentryLevel.Error:
                     string message = e.Message?.Message;
-                    if (message.IsNullOrEmpty())
+                    if (string.IsNullOrEmpty(message))
                     {
                         message = "Exception handled by Sentry";
                     }

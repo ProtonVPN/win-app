@@ -21,7 +21,7 @@ using ProtonVPN.Logging.Contracts.Categories;
 
 namespace ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs
 {
-    public class OperatingSystemLog : LogEventBase<OperativeSystemLogCategory>
+    public class OperatingSystemLog : LogEventBase<OperatingSystemLogCategory>
     {
         protected override string Event => null;
     }

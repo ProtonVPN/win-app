@@ -54,7 +54,7 @@ namespace ProtonVPN.Dns.Resolvers
             {
                 Logger.Error<DnsErrorLog>($"DNS resolver called with cancelled token for host '{host}'.");
             }
-            else if (host.IsNullOrEmpty())
+            else if (string.IsNullOrEmpty(host))
             {
                 Logger.Error<DnsErrorLog>($"DNS resolver called for empty host '{host}'.");
             }

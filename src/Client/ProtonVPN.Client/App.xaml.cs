@@ -22,9 +22,8 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts.Services;
+using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Installers;
-using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Models;
 
 namespace ProtonVPN.Client;
@@ -61,11 +60,7 @@ public partial class App
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
-
-        CancellationToken cancellationToken = new CancellationTokenSource().Token;
-
-        GetService<IProcessCommunicationStarter>().StartAsync(cancellationToken);
-        await GetService<IActivationService>().ActivateAsync(args);
+        await GetService<IBootstrapper>().StartAsync(args);
     }
 
     public static T GetService<T>()

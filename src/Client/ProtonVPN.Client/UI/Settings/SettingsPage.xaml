@@ -93,6 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE8CE;" />
                 </labs:SettingsCard.HeaderIcon>
+                <TextBlock Foreground="{StaticResource TextWeakColorBrush}" Text="{x:Bind ViewModel.SelectedProtocol, Mode=OneWay}" />
             </labs:SettingsCard>
             <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.VpnAcceleratorViewModel"
@@ -160,19 +161,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <!--<TextBlock x:Uid="Settings_About"
-                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}" />
+            <Button Style="{StaticResource SecondaryButtonStyle}"
+                    Margin="0,16,0,0"
+                    Content="{x:Bind ViewModel.Localizer.Get('Settings_RestoreDefault'), Mode=OneWay}"
+                    Command="{x:Bind ViewModel.RestoreDefaultSettingsCommand}" />
 
-            <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+            <StackPanel Margin="0,16,0,0">
+                <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Foreground="{StaticResource TextWeakColorBrush}">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_AppVersion'), Mode=OneWay}" /><Run Text=":" />
+                    <Run Text="{x:Bind ViewModel.ClientVersionDescription, Mode=OneWay}" />
+                    <Hyperlink>
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_About'), Mode=OneWay}" />
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Foreground="{StaticResource TextWeakColorBrush}">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_OperatingSystemVersion'), Mode=OneWay}" /><Run Text=":" />
+                    <Run Text="{x:Bind ViewModel.OperatingSystemVersionDescription, Mode=OneWay}" />
+                </TextBlock>
+            </StackPanel>
 
-                <TextBlock x:Uid="Settings_AboutDescription"
-                           Margin="{StaticResource XSmallTopMargin}"
-                           Style="{ThemeResource BodyTextBlockStyle}" />
-                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink"
-                                 Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
-            </StackPanel>-->
         </StackPanel>
     </controls:PageContentControl>
 </Page>
