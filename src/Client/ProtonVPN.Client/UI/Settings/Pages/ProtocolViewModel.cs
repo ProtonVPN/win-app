@@ -17,8 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -35,61 +34,77 @@ public partial class ProtocolViewModel : PageViewModelBase, IEventMessageReceive
     private readonly ISettings _settings;
     private readonly IUrls _urls;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsOpenVpnUdpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsOpenVpnTcpProtocol))]
+    private VpnProtocol _selectedVpnProtocol;
+
     public override string? Title => Localizer.Get("Settings_Connection_Protocol");
+
     public string Recommended => Localizer.Get("Settings_Protocols_Recommended").ToUpperInvariant();
 
-    private Lazy<VpnProtocol> _selectedProtocol;
+    public bool IsSmartProtocol
+    {
+        get => IsProtocol(VpnProtocol.Smart);
+        set => SetProtocol(value, VpnProtocol.Smart);
+    }
 
-    public bool IsSmart => IsChecked(VpnProtocol.Smart);
-    public bool IsWireGuardUdp => IsChecked(VpnProtocol.WireGuardUdp);
-    public bool IsOpenVpnUdp => IsChecked(VpnProtocol.OpenVpnUdp);
-    public bool IsOpenVpnTcp => IsChecked(VpnProtocol.OpenVpnTcp);
+    public bool IsWireGuardUdpProtocol
+    {
+        get => IsProtocol(VpnProtocol.WireGuardUdp);
+        set => SetProtocol(value, VpnProtocol.WireGuardUdp);
+    }
+
+    public bool IsOpenVpnUdpProtocol
+    {
+        get => IsProtocol(VpnProtocol.OpenVpnUdp);
+        set => SetProtocol(value, VpnProtocol.OpenVpnUdp);
+    }
+
+    public bool IsOpenVpnTcpProtocol
+    {
+        get => IsProtocol(VpnProtocol.OpenVpnTcp);
+        set => SetProtocol(value, VpnProtocol.OpenVpnTcp);
+    }
+
     public string LearnMoreUrl => _urls.ProtocolsLearnMore;
 
-    public ProtocolViewModel(IPageNavigator pageNavigator,
-        ILocalizationProvider localizationProvider,
-        ISettings settings,
-        IUrls urls)
+    public ProtocolViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
         : base(pageNavigator, localizationProvider)
     {
         _settings = settings;
         _urls = urls;
-        _selectedProtocol = new Lazy<VpnProtocol>(() => _settings.VpnProtocol);
-    }
 
-    public bool IsChecked(VpnProtocol protocol)
-    {
-        return protocol == _selectedProtocol.Value;
-    }
-
-    public void OnCheckedEvent(object sender, RoutedEventArgs e)
-    {
-        if (sender is not null && sender is RadioButton radioButton)
-        {
-            string? newValue = radioButton.Tag?.ToString();
-            if (!string.IsNullOrWhiteSpace(newValue) &&
-                Enum.TryParse(newValue, out VpnProtocol vpnProtocol))
-            {
-                _settings.VpnProtocol = vpnProtocol;
-            }
-        }
+        SelectedVpnProtocol = _settings.VpnProtocol;
     }
 
     public void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.VpnProtocol) && message.NewValue is not null)
         {
-            _selectedProtocol = new Lazy<VpnProtocol>((VpnProtocol)message.NewValue);
-            OnPropertyChanged(nameof(IsSmart));
-            OnPropertyChanged(nameof(IsWireGuardUdp));
-            OnPropertyChanged(nameof(IsOpenVpnUdp));
-            OnPropertyChanged(nameof(IsOpenVpnTcp));
+            SelectedVpnProtocol = (VpnProtocol)message.NewValue;
         }
     }
 
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
+
         OnPropertyChanged(nameof(Recommended));
+    }
+
+    private bool IsProtocol(VpnProtocol protocol)
+    {
+        return SelectedVpnProtocol == protocol;
+    }
+
+    private void SetProtocol(bool value, VpnProtocol protocol)
+    {
+        if (value && SelectedVpnProtocol != protocol)
+        {
+            _settings.VpnProtocol = protocol;
+        }
     }
 }

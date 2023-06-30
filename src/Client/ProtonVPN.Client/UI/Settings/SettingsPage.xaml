@@ -34,7 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+                                 PageHeader="{x:Bind ViewModel.Title, Mode=OneWay}">
 
         <StackPanel x:Name="ContentArea">
 
