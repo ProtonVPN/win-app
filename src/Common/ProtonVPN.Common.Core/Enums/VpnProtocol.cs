@@ -17,13 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Core.Enums
+namespace ProtonVPN.Common.Core.Enums;
+
+public enum VpnProtocol
 {
-    public enum VpnProtocol
-    {
-        Smart,
-        WireGuardUdp,
-        OpenVpnUdp,
-        OpenVpnTcp
-    }
+    Smart,
+    WireGuardUdp,
+    OpenVpnUdp,
+    OpenVpnTcp
 }
