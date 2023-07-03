@@ -54,6 +54,10 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
 
     public override bool IsBackEnabled => false;
 
+    public bool IsConnecting => _connectionManager.ConnectionStatus == ConnectionStatus.Connecting;
+
+    public bool IsConnected => _connectionManager.ConnectionStatus == ConnectionStatus.Connected;
+
     public override IconElement Icon { get; } = new House();
 
     public HomeViewModel(IPageNavigator pageNavigator,
@@ -82,8 +86,12 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
 
     public void Receive(ConnectionStatusChanged message)
     {
+        OnPropertyChanged(nameof(IsConnecting));
+        OnPropertyChanged(nameof(IsConnected));
+
         switch (_connectionManager.ConnectionStatus)
         {
+            case ConnectionStatus.Connecting:
             case ConnectionStatus.Connected:
                 if (_openDetailsPaneAutomatically && !IsDetailsPaneOpen)
                 {

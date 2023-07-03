@@ -21,7 +21,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
 
-public sealed partial class VpnSpecificPage : Page
+public sealed partial class VpnSpecificPage
 {
     public VpnSpecificPage()
     {

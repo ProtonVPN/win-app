@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -25,7 +26,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Gallery;
 
-public class GalleryViewModel : NavigationPageViewModelBase
+public partial class GalleryViewModel : NavigationPageViewModelBase
 {
     public override string? Title => "Gallery";
 
@@ -36,5 +37,11 @@ public class GalleryViewModel : NavigationPageViewModelBase
     public GalleryViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
         : base(pageNavigator, localizationProvider)
     {
+    }
+
+    [RelayCommand]
+    public void NavigateToGallery(string galleryPageKey)
+    {
+        PageNavigator.NavigateTo("ProtonVPN.Client.UI.Gallery.GalleryItemViewModel", galleryPageKey);
     }
 }

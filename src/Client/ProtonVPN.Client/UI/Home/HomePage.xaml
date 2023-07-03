@@ -23,9 +23,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:connectionCard="using:ProtonVPN.Client.UI.Home.ConnectionCard"
       xmlns:details="using:ProtonVPN.Client.UI.Home.Details"
@@ -71,31 +71,48 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Row="0" 
+
+                    <TextBlock Grid.Row="0"
                                Grid.Column="0"
                                AutomationProperties.AutomationId="ConnectionDetailsTitle"
                                Style="{StaticResource BodyStrongTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" 
-                               TabIndex="6"/>
+                               TabIndex="6"
+                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" />
 
-                    <Button Grid.Row="0" 
-                            Grid.Column="1" 
-                            Margin="-2"
-                            toolkit:DockPanel.Dock="Right"
-                            AutomationProperties.AutomationId="CloseConnectionDetailsButton"
-                            Command="{x:Bind ViewModel.CloseDetailsPaneCommand, Mode=OneTime}"
-                            Style="{StaticResource TertiaryButtonStyle}"
-                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
-                            AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
-                            TabIndex="7">
-                        <pathicons:Cross />
-                    </Button>
+                    <custom:GhostButton Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="-2"
+                                        AutomationProperties.AutomationId="CloseConnectionDetailsButton"
+                                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
+                                        Command="{x:Bind ViewModel.CloseDetailsPaneCommand, Mode=OneTime}"
+                                        TabIndex="7"
+                                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}">
+                        <custom:GhostButton.LeftIcon>
+                            <pathicons:Cross />
+                        </custom:GhostButton.LeftIcon>
+                    </custom:GhostButton>
 
-                    <details:ConnectionDetailsComponent Grid.Row="1"
-                                                        Grid.Column="0"
-                                                        Grid.ColumnSpan="2"
-                                                        TabIndex="8"/>
+                    <Grid Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2">
+                        
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical"
+                                    Visibility="{x:Bind ViewModel.IsConnecting}"
+                                    Spacing="8">
+                            <ProgressRing Width="24"
+                                          Height="24"
+                                          HorizontalAlignment="Center"
+                                          Foreground="{StaticResource TextNormColorBrush}"
+                                          IsActive="{x:Bind ViewModel.IsConnecting}" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Common_Message_Loading')}" />
+                        </StackPanel>
+
+                        <details:ConnectionDetailsComponent TabIndex="8"
+                                                            Visibility="{x:Bind ViewModel.IsConnected}" />
+                    </Grid>
                 </Grid>
             </SplitView.Pane>
 
@@ -117,7 +134,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <status:VpnStatusComponent Grid.Row="0"
                                                    AutomationProperties.AutomationId="VpnStatusComponent"
-                                                   TabIndex="1"/>
+                                                   TabIndex="1" />
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
                                 VerticalAlignment="Bottom"
@@ -132,7 +149,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <recents:RecentsComponent Grid.Row="2"
                                               MaxWidth="{StaticResource MaximumContentWidth}"
                                               AutomationProperties.AutomationId="RecentsComponent"
-                                              TabIndex="4"/>
+                                              TabIndex="4" />
                 </Grid>
             </controls:PageContentControl>
         </SplitView>

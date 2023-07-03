@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -43,14 +44,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Grid.Row="0"
                            Margin="0,16"
                            Visibility="Collapsed">
-            <Button Margin="0,4,16,0"
-                    toolkit:DockPanel.Dock="Left"
-                    AutomationProperties.AutomationId="GoBackButton"
-                    Style="{StaticResource TertiaryButtonStyle}"
-                    Command="{x:Bind BackCommand}"
-                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
-                <pathicons:ArrowLeft />
-            </Button>
+            <custom:GhostButton Margin="0,4,16,0"
+                                toolkit:DockPanel.Dock="Left"
+                                AutomationProperties.AutomationId="GoBackButton"
+                                Command="{x:Bind BackCommand}"
+                                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:ArrowLeft />
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
             <ContentPresenter x:Name="PART_HeaderPresenter"
                               AutomationProperties.AutomationId="PageTitleLabel"
                               Content="{x:Bind PageHeader}"
@@ -76,7 +78,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <VisualStateGroup>
                 <VisualState x:Name="CompactMode">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind IsCompact}"/>
+                        <StateTrigger IsActive="{x:Bind IsCompact}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="PageContainer.CornerRadius" Value="0" />
@@ -84,7 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="PageContainer.Margin" Value="0,45,0,0" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="StandardMode"/>
+                <VisualState x:Name="StandardMode" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

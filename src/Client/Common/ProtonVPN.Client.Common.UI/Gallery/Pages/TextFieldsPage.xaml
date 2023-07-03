@@ -18,15 +18,15 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<Page x:Class="ProtonVPN.Client.Common.UI.Gallery.Pages.TextFieldsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Margin="16"
-      mc:Ignorable="d">
+<UserControl x:Class="ProtonVPN.Client.Common.UI.Gallery.Pages.TextFieldsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Margin="16"
+             mc:Ignorable="d">
 
-    <Page.Resources>
+    <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Gallery/GalleryStyles.xaml" />
@@ -38,151 +38,145 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <x:Double x:Key="TextBoxWidth">200.0</x:Double>
         </ResourceDictionary>
-    </Page.Resources>
+    </UserControl.Resources>
 
-    <ScrollViewer Margin="0,0,-12,-12"
-                  Padding="0,0,12,12"
-                  HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto">
-        <StackPanel x:Name="ContentArea"
-                    Margin="{StaticResource GalleryPageMargin}"
-                    Orientation="Vertical"
-                    Spacing="8">
+    <StackPanel x:Name="ContentArea"
+                Orientation="Vertical"
+                Spacing="8">
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="Text Box" />
-            <StackPanel Orientation="Horizontal"
-                        Spacing="24">
-                <TextBox Width="{StaticResource TextBoxWidth}"
-                         PlaceholderText="Placeholder" />
-                <TextBox Width="{StaticResource TextBoxWidth}"
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Text Box" />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <TextBox Width="{StaticResource TextBoxWidth}"
+                     PlaceholderText="Placeholder" />
+            <TextBox Width="{StaticResource TextBoxWidth}"
+                     IsEnabled="False"
+                     PlaceholderText="Placeholder" />
+            <TextBox Width="{StaticResource TextBoxWidth}"
+                     IsEnabled="False"
+                     PlaceholderText="Placeholder"
+                     Text="Input" />
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Password Box" />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <PasswordBox Width="{StaticResource TextBoxWidth}"
+                         PlaceholderText="Password" />
+            <PasswordBox Width="{StaticResource TextBoxWidth}"
                          IsEnabled="False"
-                         PlaceholderText="Placeholder" />
-                <TextBox Width="{StaticResource TextBoxWidth}"
+                         PlaceholderText="Password" />
+            <PasswordBox Width="{StaticResource TextBoxWidth}"
                          IsEnabled="False"
-                         PlaceholderText="Placeholder"
-                         Text="Input" />
-            </StackPanel>
+                         Password="password"
+                         PlaceholderText="Password" />
+        </StackPanel>
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="Password Box" />
-            <StackPanel Orientation="Horizontal"
-                        Spacing="24">
-                <PasswordBox Width="{StaticResource TextBoxWidth}"
-                             PlaceholderText="Password" />
-                <PasswordBox Width="{StaticResource TextBoxWidth}"
-                             IsEnabled="False"
-                             PlaceholderText="Password" />
-                <PasswordBox Width="{StaticResource TextBoxWidth}"
-                             IsEnabled="False"
-                             Password="password"
-                             PlaceholderText="Password" />
-            </StackPanel>
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Search Box" />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
+                            ItemsSource="{x:Bind Products}"
+                            PlaceholderText="Search"
+                            QueryIcon="Find" />
+            <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
+                            IsEnabled="False"
+                            ItemsSource="{x:Bind Products}"
+                            PlaceholderText="Search"
+                            QueryIcon="Find" />
+            <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
+                            IsEnabled="False"
+                            ItemsSource="{x:Bind Products}"
+                            PlaceholderText="Search"
+                            QueryIcon="Find"
+                            Text="Input" />
+        </StackPanel>
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="Search Box" />
-            <StackPanel Orientation="Horizontal"
-                        Spacing="24">
-                <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
-                                ItemsSource="{x:Bind Products}"
-                                PlaceholderText="Search"
-                                QueryIcon="Find" />
-                <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
-                                IsEnabled="False"
-                                ItemsSource="{x:Bind Products}"
-                                PlaceholderText="Search"
-                                QueryIcon="Find" />
-                <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
-                                IsEnabled="False"
-                                ItemsSource="{x:Bind Products}"
-                                PlaceholderText="Search"
-                                QueryIcon="Find"
-                                Text="Input" />
-            </StackPanel>
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Number Box" />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <NumberBox Width="{StaticResource TextBoxWidth}"
+                       LargeChange="10"
+                       Maximum="100"
+                       Minimum="0"
+                       PlaceholderText="Number"
+                       SmallChange="1"
+                       SpinButtonPlacementMode="Compact" />
+            <NumberBox Width="{StaticResource TextBoxWidth}"
+                       LargeChange="10"
+                       Maximum="100"
+                       Minimum="0"
+                       PlaceholderText="Number"
+                       SmallChange="1"
+                       SpinButtonPlacementMode="Inline" />
+            <NumberBox Width="{StaticResource TextBoxWidth}"
+                       IsEnabled="False"
+                       LargeChange="10"
+                       PlaceholderText="Number"
+                       SmallChange="1"
+                       SpinButtonPlacementMode="Compact" />
+            <NumberBox Width="{StaticResource TextBoxWidth}"
+                       IsEnabled="False"
+                       LargeChange="10"
+                       PlaceholderText="Number"
+                       SmallChange="1"
+                       SpinButtonPlacementMode="Compact"
+                       Text="23" />
+        </StackPanel>
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="Number Box" />
-            <StackPanel Orientation="Horizontal"
-                        Spacing="24">
-                <NumberBox Width="{StaticResource TextBoxWidth}"
-                           LargeChange="10"
-                           Maximum="100"
-                           Minimum="0"
-                           PlaceholderText="Number"
-                           SmallChange="1"
-                           SpinButtonPlacementMode="Compact" />
-                <NumberBox Width="{StaticResource TextBoxWidth}"
-                           LargeChange="10"
-                           Maximum="100"
-                           Minimum="0"
-                           PlaceholderText="Number"
-                           SmallChange="1"
-                           SpinButtonPlacementMode="Inline" />
-                <NumberBox Width="{StaticResource TextBoxWidth}"
-                           IsEnabled="False"
-                           LargeChange="10"
-                           PlaceholderText="Number"
-                           SmallChange="1"
-                           SpinButtonPlacementMode="Compact" />
-                <NumberBox Width="{StaticResource TextBoxWidth}"
-                           IsEnabled="False"
-                           LargeChange="10"
-                           PlaceholderText="Number"
-                           SmallChange="1"
-                           SpinButtonPlacementMode="Compact"
-                           Text="23" />
-            </StackPanel>
-
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="Rich Edit Box" />
-            <StackPanel Orientation="Horizontal"
-                        Spacing="24">
-                <RichEditBox Width="424"
-                             Height="80"
-                             PlaceholderText="Placeholder" />
-                <RichEditBox Width="424"
-                             Height="80"
-                             IsEnabled="False"
-                             PlaceholderText="Placeholder" />
-            </StackPanel>
-
-            <Border Width="872"
-                    Height="1"
-                    Margin="0,16,0,4"
-                    HorizontalAlignment="Left"
-                    Background="{StaticResource BackgroundStrongColorBrush}" />
-
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="With Headers..." />
-            <StackPanel Orientation="Horizontal"
-                        Spacing="24">
-                <TextBox Width="{StaticResource TextBoxWidth}"
-                         Header="Text Box"
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Rich Edit Box" />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <RichEditBox Width="424"
+                         Height="80"
                          PlaceholderText="Placeholder" />
-                <PasswordBox Width="{StaticResource TextBoxWidth}"
-                             Header="Password Box"
-                             PlaceholderText="Password" />
-                <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
-                                Header="Search Box"
-                                ItemsSource="{x:Bind Products}"
-                                PlaceholderText="Search"
-                                QueryIcon="Find" />
-                <NumberBox Width="{StaticResource TextBoxWidth}"
-                           Header="Number Box"
-                           LargeChange="10"
-                           Maximum="100"
-                           Minimum="0"
-                           PlaceholderText="Number"
-                           SmallChange="1"
-                           SpinButtonPlacementMode="Compact" />
-            </StackPanel>
-
-            <RichEditBox Width="872"
-                         Height="160"
-                         Margin="0,8,0,0"
-                         HorizontalAlignment="Left"
-                         Header="Rich Edit Box"
+            <RichEditBox Width="424"
+                         Height="80"
+                         IsEnabled="False"
                          PlaceholderText="Placeholder" />
         </StackPanel>
-    </ScrollViewer>
-</Page>
+
+        <Border Width="872"
+                Height="1"
+                Margin="0,16,0,4"
+                HorizontalAlignment="Left"
+                Background="{StaticResource BackgroundStrongColorBrush}" />
+
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="With Headers..." />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <TextBox Width="{StaticResource TextBoxWidth}"
+                     Header="Text Box"
+                     PlaceholderText="Placeholder" />
+            <PasswordBox Width="{StaticResource TextBoxWidth}"
+                         Header="Password Box"
+                         PlaceholderText="Password" />
+            <AutoSuggestBox Width="{StaticResource TextBoxWidth}"
+                            Header="Search Box"
+                            ItemsSource="{x:Bind Products}"
+                            PlaceholderText="Search"
+                            QueryIcon="Find" />
+            <NumberBox Width="{StaticResource TextBoxWidth}"
+                       Header="Number Box"
+                       LargeChange="10"
+                       Maximum="100"
+                       Minimum="0"
+                       PlaceholderText="Number"
+                       SmallChange="1"
+                       SpinButtonPlacementMode="Compact" />
+        </StackPanel>
+
+        <RichEditBox Width="872"
+                     Height="160"
+                     Margin="0,8,0,0"
+                     HorizontalAlignment="Left"
+                     Header="Rich Edit Box"
+                     PlaceholderText="Placeholder" />
+    </StackPanel>
+</UserControl>

@@ -132,6 +132,9 @@
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
+  <data name="Common_Message_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the id of the server (eg. Zurich #20)</comment>

@@ -24,19 +24,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              mc:Ignorable="d">
 
-    <Button Margin="-4,-8"
-            Style="{StaticResource TertiaryButtonStyle}"
-            AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_Help_Title'), Mode=OneWay}">
-        <StackPanel Orientation="Horizontal"
-                    Spacing="4">
-            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                       Style="{StaticResource CaptionStrongTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Home_Help_Title'), Mode=OneWay}" />
-
-            <pathicons:QuestionCircle VerticalAlignment="Bottom"
-                                      Foreground="{StaticResource TextWeakColorBrush}" />
-        </StackPanel>
-    </Button>
+    <custom:GhostButton Margin="-4,-8"
+                        Content="{x:Bind ViewModel.Localizer.Get('Home_Help_Title'), Mode=OneWay}">
+        <custom:GhostButton.RightIcon>
+            <pathicons:QuestionCircle />
+        </custom:GhostButton.RightIcon>
+    </custom:GhostButton>
 </UserControl>

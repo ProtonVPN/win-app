@@ -17,16 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Models.Parameters;
+namespace ProtonVPN.Client.Models.Parameters;
 
-namespace ProtonVPN.Client.Models.Navigation;
-
-public interface IDialogActivator
+public struct MessageDialogParameters
 {
-    void Close();
+    public string Title { get; set; }
 
-    Task ShowAsync(string dialogKey);
+    public string Message { get; set; }
 
-    Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters);
+    public string PrimaryButtonText { get; set; }
+
+    public string SecondaryButtonText { get; set; }
+
+    public string CloseButtonText { get; set; }
 }

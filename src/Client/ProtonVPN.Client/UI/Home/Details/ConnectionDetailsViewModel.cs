@@ -52,8 +52,6 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     [NotifyPropertyChangedFor(nameof(ServerLatency))]
     private ConnectionDetails? _currentConnectionDetails;
 
-    public bool IsConnecting => _connectionManager.ConnectionStatus == ConnectionStatus.Connecting;
-
     public TimeSpan? SessionLength => CurrentConnectionDetails != null
         ? DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTime
         : null;
@@ -91,17 +89,21 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
         _refreshTimer.Tick += OnRefreshTimerTick;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    [RelayCommand]
+    public async Task OpenOverlayAsync(string dialogKey)
     {
-        OnPropertyChanged(nameof(IsConnecting));
+        await _dialogActivator.ShowAsync(dialogKey);
     }
 
-    protected override void OnActivated()
+    public void Receive(ConnectionStatusChanged message)
     {
         CurrentConnectionDetails = _connectionManager.ConnectionStatus == ConnectionStatus.Connected
             ? _connectionManager.GetConnectionDetails()
             : null;
+    }
 
+    protected override void OnActivated()
+    {
         StartAutoRefresh();
     }
 
@@ -145,11 +147,5 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     private void OnRefreshTimerTick(object? sender, EventArgs e)
     {
         Refresh();
-    }
-
-    [RelayCommand]
-    public async Task OpenOverlayAsync(string dialogKey)
-    {
-        await _dialogActivator.ShowAsync(dialogKey);
     }
 }

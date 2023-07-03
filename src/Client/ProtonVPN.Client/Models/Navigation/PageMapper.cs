@@ -53,7 +53,6 @@ public class PageMapper : IPageMapper
         Configure<AutoConnectViewModel, AutoConnectPage>();
         Configure<CensorshipViewModel, CensorshipPage>();
         Configure<SettingsViewModel, SettingsPage>();
-        Configure<GalleryViewModel, GalleryPage>();
 
         ConfigureDebugPages();
     }
@@ -118,12 +117,7 @@ public class PageMapper : IPageMapper
     [Conditional("DEBUG")]
     private void ConfigureDebugPages()
     {
-        Configure<ColorsPage>();
-        Configure<TypographyPage>();
-        Configure<InputsPage>();
-        Configure<OtherControlsPage>();
-        Configure<TextFieldsPage>();
-        Configure<MapPage>();
-        Configure<VpnSpecificPage>();
+        Configure<GalleryViewModel, GalleryPage>();
+        Configure<GalleryItemViewModel, GalleryItemPage>();
     }
 }

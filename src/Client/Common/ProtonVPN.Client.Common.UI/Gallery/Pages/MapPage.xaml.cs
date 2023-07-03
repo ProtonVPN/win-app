@@ -26,7 +26,7 @@ using Windows.Foundation;
 
 namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
 
-public sealed partial class MapPage : Page
+public sealed partial class MapPage
 {
     public MapPage()
     {

@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Models.Parameters;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
@@ -28,16 +29,15 @@ namespace ProtonVPN.Client.Models.Navigation;
 public class DialogActivator : IDialogActivator
 {
     private readonly IThemeSelector _themeSelector;
-    private readonly ISettings _settings;
+
     private readonly Dictionary<string, Type> _dialogs = new();
     private ContentDialog? _dialog;
 
     private readonly SemaphoreSlim _dialogSemaphore = new(1);
 
-    public DialogActivator(IThemeSelector themeSelector, ISettings settings)
+    public DialogActivator(IThemeSelector themeSelector)
     {
         _themeSelector = themeSelector;
-        _settings = settings;
 
         Configure<LatencyOverlayViewModel, LatencyOverlayDialog>();
         Configure<ProtocolOverlayViewModel, ProtocolOverlayDialog>();
@@ -60,6 +60,34 @@ public class DialogActivator : IDialogActivator
 
                 await _dialog.ShowAsync();
             }
+        }
+        finally
+        {
+            _dialog = null;
+            _dialogSemaphore.Release();
+        }
+    }
+
+    public async Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters)
+    {
+        try
+        {
+            await _dialogSemaphore.WaitAsync();
+
+            _dialog = new ContentDialog
+            {
+                Title = parameters.Title,
+                Content = parameters.Message,
+                PrimaryButtonText = parameters.PrimaryButtonText,
+                SecondaryButtonText = parameters.SecondaryButtonText,
+                CloseButtonText = parameters.CloseButtonText,
+                XamlRoot = App.MainWindow.Content.XamlRoot,
+                RequestedTheme = _themeSelector.GetTheme().Theme,
+            };
+
+            ContentDialogResult result = await _dialog.ShowAsync();
+
+            return result;
         }
         finally
         {

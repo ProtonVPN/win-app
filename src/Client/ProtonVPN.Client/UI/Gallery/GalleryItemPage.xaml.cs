@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -18,15 +18,19 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Models.Parameters;
 
-namespace ProtonVPN.Client.Models.Navigation;
+namespace ProtonVPN.Client.UI.Gallery;
 
-public interface IDialogActivator
+/// <summary>
+/// An empty page that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class GalleryItemPage : Page
 {
-    void Close();
+    public GalleryItemViewModel ViewModel { get; }
 
-    Task ShowAsync(string dialogKey);
-
-    Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters);
+    public GalleryItemPage()
+    {
+        ViewModel = App.GetService<GalleryItemViewModel>();
+        InitializeComponent();
+    }
 }

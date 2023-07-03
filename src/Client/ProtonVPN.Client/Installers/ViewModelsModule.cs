@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using Autofac;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
@@ -35,47 +36,48 @@ using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
-namespace ProtonVPN.Client.Installers
-{
-    public class ViewModelsModule : Module
-    {
-        protected override void Load(ContainerBuilder builder)
-        {
-            RegisterViewModel<ProtocolOverlayViewModel>(builder);
-            RegisterViewModel<LatencyOverlayViewModel>(builder);
-            RegisterViewModel<ServerLoadOverlayViewModel>(builder);
-            RegisterViewModel<VpnSpeedViewModel>(builder);
-            RegisterViewModel<IpAddressViewModel>(builder);
-            RegisterViewModel<ConnectionDetailsViewModel>(builder);
-            RegisterViewModel<RecentsViewModel>(builder);
-            RegisterViewModel<VpnStatusViewModel>(builder);
-            RegisterViewModel<NetShieldStatsViewModel>(builder);
-            RegisterViewModel<ConnectionCardViewModel>(builder);
-            RegisterViewModel<MapViewModel>(builder);
-            RegisterViewModel<HelpViewModel>(builder);
-            RegisterViewModel<SettingsViewModel>(builder);
-            RegisterViewModel<CountriesViewModel>(builder);
-            RegisterViewModel<HomeViewModel>(builder);
-            RegisterViewModel<GalleryViewModel>(builder);
-            RegisterViewModel<ShellViewModel>(builder);
-            RegisterViewModel<CensorshipViewModel>(builder);
-            RegisterViewModel<AutoConnectViewModel>(builder);
-            RegisterViewModel<CustomDnsServersViewModel>(builder);
-            RegisterViewModel<VpnLogsViewModel>(builder);
-            RegisterViewModel<AdvancedSettingsViewModel>(builder);
-            RegisterViewModel<VpnAcceleratorViewModel>(builder);
-            RegisterViewModel<ProtocolViewModel>(builder);
-            RegisterViewModel<SplitTunnelingViewModel>(builder);
-            RegisterViewModel<PortForwardingViewModel>(builder);
-            RegisterViewModel<KillSwitchViewModel>(builder);
-            RegisterViewModel<NetShieldViewModel>(builder);
-            RegisterViewModel<CountryViewModel>(builder);
-        }
+namespace ProtonVPN.Client.Installers;
 
-        private void RegisterViewModel<TType>(ContainerBuilder builder)
-            where TType : notnull
-        {
-            builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
-        }
+public class ViewModelsModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        RegisterViewModel<ProtocolOverlayViewModel>(builder);
+        RegisterViewModel<LatencyOverlayViewModel>(builder);
+        RegisterViewModel<ServerLoadOverlayViewModel>(builder);
+        RegisterViewModel<VpnSpeedViewModel>(builder);
+        RegisterViewModel<IpAddressViewModel>(builder);
+        RegisterViewModel<ConnectionDetailsViewModel>(builder);
+        RegisterViewModel<RecentsViewModel>(builder);
+        RegisterViewModel<VpnStatusViewModel>(builder);
+        RegisterViewModel<NetShieldStatsViewModel>(builder);
+        RegisterViewModel<ConnectionCardViewModel>(builder);
+        RegisterViewModel<MapViewModel>(builder);
+        RegisterViewModel<HelpViewModel>(builder);
+        RegisterViewModel<SettingsViewModel>(builder);
+        RegisterViewModel<CountriesViewModel>(builder);
+        RegisterViewModel<HomeViewModel>(builder);
+        RegisterViewModel<ShellViewModel>(builder);
+        RegisterViewModel<CensorshipViewModel>(builder);
+        RegisterViewModel<AutoConnectViewModel>(builder);
+        RegisterViewModel<CustomDnsServersViewModel>(builder);
+        RegisterViewModel<VpnLogsViewModel>(builder);
+        RegisterViewModel<AdvancedSettingsViewModel>(builder);
+        RegisterViewModel<VpnAcceleratorViewModel>(builder);
+        RegisterViewModel<ProtocolViewModel>(builder);
+        RegisterViewModel<SplitTunnelingViewModel>(builder);
+        RegisterViewModel<PortForwardingViewModel>(builder);
+        RegisterViewModel<KillSwitchViewModel>(builder);
+        RegisterViewModel<NetShieldViewModel>(builder);
+        RegisterViewModel<CountryViewModel>(builder);
+
+        RegisterViewModel<GalleryViewModel>(builder);
+        RegisterViewModel<GalleryItemViewModel>(builder);
+    }
+
+    private void RegisterViewModel<TType>(ContainerBuilder builder)
+        where TType : notnull
+    {
+        builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
     }
 }
