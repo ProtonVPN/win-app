@@ -20,14 +20,12 @@
 using Autofac;
 using ProtonVPN.Client.EventMessaging.Contracts;
 
-namespace ProtonVPN.Client.EventMessaging.Installers
+namespace ProtonVPN.Client.EventMessaging.Installers;
+
+public class EventMessagingModule : Module
 {
-    public class EventMessagingModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<EventMessageSender>().As<IEventMessageSender>().SingleInstance();
-            builder.RegisterType<EventMessageActivator>().AutoActivate();
-        }
+        builder.RegisterType<EventMessageSender>().As<IEventMessageSender>().SingleInstance();
     }
 }
