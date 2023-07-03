@@ -21,7 +21,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
 
-public sealed partial class TypographyPage : Page
+public sealed partial class TypographyPage
 {
     public TypographyPage()
     {

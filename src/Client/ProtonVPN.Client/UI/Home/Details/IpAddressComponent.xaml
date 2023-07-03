@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -52,25 +53,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_MyIp')}" />
             <Grid Margin="-4">
-                <Button Command="{x:Bind ViewModel.ShowUserIPAddressCommand, Mode=OneTime}"
-                        Style="{StaticResource TertiaryButtonStyle}"
-                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP')}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}"
-                        AutomationProperties.AutomationId="ShowUserIpAddressButton"
-                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP_Description')}">
-                    <pathicons:Eye />
-                </Button>
-                <Button Command="{x:Bind ViewModel.HideUserIPAddressCommand, Mode=OneTime}"
-                        Style="{StaticResource TertiaryButtonStyle}"
-                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP')}"
-                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}"
-                        AutomationProperties.AutomationId="HideUserIpAddressButton"
-                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP_Description')}">
-                    <pathicons:EyeSlash />
-                </Button>
+                <custom:GhostButton AutomationProperties.AutomationId="ShowUserIpAddressButton"
+                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP_Description')}"
+                                    Command="{x:Bind ViewModel.ShowUserIPAddressCommand, Mode=OneTime}"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP')}"
+                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                    <custom:GhostButton.LeftIcon>
+                        <pathicons:Eye />
+                    </custom:GhostButton.LeftIcon>
+                </custom:GhostButton>
+                <custom:GhostButton AutomationProperties.AutomationId="HideUserIpAddressButton"
+                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP_Description')}"
+                                    Command="{x:Bind ViewModel.HideUserIPAddressCommand, Mode=OneTime}"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP')}"
+                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                    <custom:GhostButton.LeftIcon>
+                        <pathicons:EyeSlash />
+                    </custom:GhostButton.LeftIcon>
+                </custom:GhostButton>
             </Grid>
         </StackPanel>
-        
+
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Center"

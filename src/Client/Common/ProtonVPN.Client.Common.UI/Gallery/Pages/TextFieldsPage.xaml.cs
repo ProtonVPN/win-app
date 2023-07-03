@@ -22,7 +22,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
 
-public sealed partial class TextFieldsPage : Page
+public sealed partial class TextFieldsPage
 {
     public TextFieldsPage()
     {

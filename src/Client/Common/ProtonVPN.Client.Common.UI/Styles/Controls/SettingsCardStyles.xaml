@@ -54,8 +54,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <x:Double x:Key="SettingsCardActionIconMaxSize">16</x:Double>
     <Thickness x:Key="SettingsCardVerticalHeaderContentSpacing">0,8,0,0</Thickness>
 
-    <x:Double x:Key="SettingsCardWrapThreshold">280</x:Double>
-    <x:Double x:Key="SettingsCardWrapNoIconThreshold">180</x:Double>
+    <x:Double x:Key="SettingsCardWrapThreshold">260</x:Double>
+    <x:Double x:Key="SettingsCardWrapNoIconThreshold">160</x:Double>
 
     <Style x:Key="DefaultSettingsCardStyle" TargetType="labs:SettingsCard">
         <Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />

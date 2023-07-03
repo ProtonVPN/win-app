@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Margin" Value="0,24,0,16" />
         </Style>
     </Page.Resources>
-
+    
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
                                  PageHeader="{x:Bind ViewModel.Title}">
@@ -42,8 +42,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="General" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.ColorsPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Colors"
                                Header="Colors"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -52,8 +52,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.TypographyPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Typography"
                                Header="Typography"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -65,8 +65,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="Universal Components" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.InputsPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Inputs"
                                Header="Inputs"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -75,8 +75,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.TextFieldsPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Fields"
                                Header="Fields"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -85,10 +85,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.OtherControlsPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Others"
                                Header="Others"
-                               IsClickEnabled="True">
+                               IsClickEnabled="True"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE700;" />
                 </labs:SettingsCard.HeaderIcon>
@@ -97,8 +98,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="VPN Components" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.VpnSpecificPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Custom controls"
                                Header="Custom controls"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -107,8 +108,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.Common.UI.Gallery.Pages.MapPage"
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Map controls"
                                Header="Map controls"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">

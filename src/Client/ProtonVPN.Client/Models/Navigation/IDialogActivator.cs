@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Models.Parameters;
+
 namespace ProtonVPN.Client.Models.Navigation;
 
 public interface IDialogActivator
@@ -24,4 +27,6 @@ public interface IDialogActivator
     void Close();
 
     Task ShowAsync(string dialogKey);
+
+    Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters);
 }

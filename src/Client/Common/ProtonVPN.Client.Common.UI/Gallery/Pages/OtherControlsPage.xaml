@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -19,84 +18,76 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<Page x:Class="ProtonVPN.Client.Common.UI.Gallery.Pages.OtherControlsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      Margin="16"
-      mc:Ignorable="d">
+<UserControl x:Class="ProtonVPN.Client.Common.UI.Gallery.Pages.OtherControlsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             Margin="16"
+             mc:Ignorable="d">
 
-    <Page.Resources>
+    <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Gallery/GalleryStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style x:Key="SectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyLargeStrongTextBlockStyle}"
-                   TargetType="TextBlock">
+            <Style x:Key="SectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyLargeStrongTextBlockStyle}" TargetType="TextBlock">
                 <Setter Property="Margin" Value="0,8,0,0" />
             </Style>
         </ResourceDictionary>
-    </Page.Resources>
+    </UserControl.Resources>
 
-    <ScrollViewer Margin="0,0,-12,-12"
-                  Padding="0,0,12,12"
-                  HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto">
-        <StackPanel x:Name="ContentArea"
-                    Margin="{StaticResource GalleryPageMargin}"
-                    Orientation="Vertical"
-                    Spacing="8">
+    <StackPanel x:Name="ContentArea"
+                Orientation="Vertical"
+                Spacing="8">
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Text="Tabs" />
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Tabs" />
 
-            <NavigationView Style="{StaticResource TopNavigationViewStyle}">
-                <NavigationView.MenuItems>
-                    <NavigationViewItem x:Name="CitiesPage"
-                                        Content="Cities"
-                                        IsSelected="True" />
-                    <NavigationViewItem x:Name="SecureCorePage"
-                                        Content="Secure Core">
-                        <NavigationViewItem.Icon>
-                            <pathIcons:LockLayers />
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
-                    <NavigationViewItem x:Name="P2PPage"
-                                        Content="P2P">
-                        <NavigationViewItem.Icon>
-                            <pathIcons:ArrowRightArrowLeft />
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
-                    <NavigationViewItem x:Name="TorPage"
-                                        Content="Tor">
-                        <NavigationViewItem.Icon>
-                            <pathIcons:BrandTor />
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
-                </NavigationView.MenuItems>
-            </NavigationView>
+        <NavigationView Style="{StaticResource TopNavigationViewStyle}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="CitiesPage"
+                                    Content="Cities"
+                                    IsSelected="True" />
+                <NavigationViewItem x:Name="SecureCorePage"
+                                    Content="Secure Core">
+                    <NavigationViewItem.Icon>
+                        <pathIcons:LockLayers />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="P2PPage"
+                                    Content="P2P">
+                    <NavigationViewItem.Icon>
+                        <pathIcons:ArrowRightArrowLeft />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="TorPage"
+                                    Content="Tor">
+                    <NavigationViewItem.Icon>
+                        <pathIcons:BrandTor />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+        </NavigationView>
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Margin="0,10,0,0"
-                       Text="Hyperlink" />
+        <TextBlock Margin="0,10,0,0"
+                   Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Hyperlink" />
 
-            <TextBlock>
-                Some copy with the link inside of it
-                <Hyperlink>Test link</Hyperlink>
-            </TextBlock>
+        <TextBlock>
+            Some copy with the link inside of it<Hyperlink>Test link</Hyperlink>
+        </TextBlock>
 
-            <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
-                       Margin="0,10,0,0"
-                       Text="Tooltip" />
+        <TextBlock Margin="0,10,0,0"
+                   Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Tooltip" />
 
-            <StackPanel Orientation="Horizontal">
-                <pathIcons:InfoCircleFilled ToolTipService.ToolTip="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-                <TextBlock Margin="5,0,0,0" Text="Hover the mouse on info icon" />
-            </StackPanel>
-
+        <StackPanel Orientation="Horizontal">
+            <pathIcons:InfoCircleFilled ToolTipService.ToolTip="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+            <TextBlock Margin="5,0,0,0"
+                       Text="Hover the mouse on info icon" />
         </StackPanel>
-    </ScrollViewer>
-</Page>
+    </StackPanel>
+</UserControl>

@@ -24,8 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
-      NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -160,10 +160,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Margin="0,8,0,4"
                        Style="{StaticResource CaptionTextBlockStyle}">
                 <Run Foreground="{StaticResource TextWeakColorBrush}"
-                     Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Explanation')}"/>
-                
+                     Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Explanation')}" />
+
                 <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"/>
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                 </Hyperlink>
             </TextBlock>
         </StackPanel>

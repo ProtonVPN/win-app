@@ -20,7 +20,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
     <ResourceDictionary.ThemeDictionaries>
 
@@ -77,7 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Thickness x:Key="DefaultButtonPadding">16,5,16,6</Thickness>
     <Thickness x:Key="TertiaryButtonPadding">4</Thickness>
-    <Thickness x:Key="GhostButtonPadding">5,3</Thickness>
+    <Thickness x:Key="GhostButtonPadding">2,4</Thickness>
 
     <Style BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button" />
 
@@ -91,225 +91,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Padding" Value="{StaticResource DefaultButtonPadding}" />
         <Setter Property="FontSize" Value="{StaticResource BodyStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource BodyStrongFontWeight}" />
-    </Style>
-
-    <Style x:Key="TertiaryButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
-        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
-        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-        <Setter Property="Padding" Value="{StaticResource TertiaryButtonPadding}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="ContentContainer"
-                            Padding="{TemplateBinding Padding}"
-                            AutomationProperties.AccessibilityView="Raw"
-                            Background="{TemplateBinding Background}"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
-                        <Border.BackgroundTransition>
-                            <BrushTransition Duration="0:0:0.083" />
-                        </Border.BackgroundTransition>
-
-                        <ContentPresenter x:Name="ContentPresenter"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              Foreground="{TemplateBinding Foreground}" />
-                            
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-
-                                <VisualState x:Name="PointerOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextHintColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="GhostButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
-        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
-        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-        <Setter Property="Padding" Value="{StaticResource GhostButtonPadding}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="ContentContainer"
-                            Padding="{TemplateBinding Padding}"
-                            AutomationProperties.AccessibilityView="Raw"
-                            Background="{TemplateBinding Background}"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
-                        <Border.BackgroundTransition>
-                            <BrushTransition Duration="0:0:0.083" />
-                        </Border.BackgroundTransition>
-
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="4">
-
-                            <pathicons:ChevronRight x:Name="ChevronRight"
-                                                    Foreground="{TemplateBinding Foreground}" />
-
-                            <ContentPresenter x:Name="ContentPresenter"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              Foreground="{TemplateBinding Foreground}" />
-
-                            <pathicons:ChevronDown x:Name="ChevronDown"
-                                                   Foreground="{TemplateBinding Foreground}" />
-                        </StackPanel>
-
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-
-                                <VisualState x:Name="PointerOver">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronDown"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Pressed">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronDown"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextNormColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Disabled">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronRight"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChevronDown"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style x:Key="SidebarButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button">
@@ -337,8 +118,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Border x:Name="Indicator"
                                 Width="3"
                                 Height="16"
-                                VerticalAlignment="Center"
                                 HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
                                 Background="{StaticResource PrimaryColorBrush}"
                                 CornerRadius="1.5"
                                 Opacity="0" />
@@ -424,9 +205,105 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             BackgroundSizing="{TemplateBinding BackgroundSizing}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"/>
+                            CornerRadius="{TemplateBinding CornerRadius}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+
+
+    <Style BasedOn="{StaticResource DefaultGhostButtonStyle}" TargetType="custom:GhostButton" />
+
+    <Style x:Key="DefaultGhostButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="custom:GhostButton">
+        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Padding" Value="{StaticResource GhostButtonPadding}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:GhostButton">
+                    <Border x:Name="ContentContainer"
+                            Padding="{TemplateBinding Padding}"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </Border.BackgroundTransition>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <ContentPresenter x:Name="PART_LeftIconPresenter"
+                                              Margin="2,0"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding LeftIcon}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HighContrastAdjustment="None"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                            <ContentPresenter x:Name="PART_ContentPresenter"
+                                              Margin="2,0"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                            <ContentPresenter x:Name="PART_RightIconPresenter"
+                                              Margin="2,0"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding RightIcon}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HighContrastAdjustment="None"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultHoverColorBrush}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultActiveColorBrush}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultColorBrush}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{StaticResource TextDisabledColorBrush}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{StaticResource TextDisabledColorBrush}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{StaticResource TextDisabledColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 </ResourceDictionary>

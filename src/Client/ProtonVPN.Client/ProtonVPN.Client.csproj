@@ -66,6 +66,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Gallery\GalleryItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,6 +98,7 @@
     <None Remove="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml" />
     <None Remove="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml" />
     <None Remove="UI\Dialogs\ServerLoadInfoDialog.xaml" />
+    <None Remove="UI\Gallery\GalleryItemPage.xaml" />
     <None Remove="UI\Gallery\GalleryPage.xaml" />
     <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
     <None Remove="UI\Home\Details\IpAddressComponent.xaml" />

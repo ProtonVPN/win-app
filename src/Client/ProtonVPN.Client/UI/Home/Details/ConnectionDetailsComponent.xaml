@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:details="using:ProtonVPN.Client.UI.Home.Details"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
@@ -67,8 +68,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter>
         </Style>
 
-        <Style x:Key="InfoButtonStyle" BasedOn="{StaticResource TertiaryButtonStyle}" TargetType="Button">
+        <Style x:Key="InfoGhostButtonStyle" BasedOn="{StaticResource DefaultGhostButtonStyle}" TargetType="custom:GhostButton">
             <Setter Property="Margin" Value="0,-54" />
+            <Setter Property="ToolTipService.ToolTip" Value="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+            <Setter Property="AutomationProperties.FullDescription" Value="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
         </Style>
     </UserControl.Resources>
 
@@ -78,10 +81,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                   VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical"
                     Spacing="20">
-            
-            <details:IpAddressComponent TabIndex="1"/>
 
-            <details:VpnSpeedComponent TabIndex="2"/>
+            <details:IpAddressComponent TabIndex="1" />
+
+            <details:VpnSpeedComponent TabIndex="2" />
 
             <StackPanel Orientation="Vertical">
 
@@ -103,18 +106,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <toolkit:HeaderedContentControl Visibility="{x:Bind ViewModel.ServerLoad, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
-                        <StackPanel Orientation="Horizontal" 
+                        <StackPanel Orientation="Horizontal"
                                     Spacing="4">
                             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}" />
-                            <Button toolkit:DockPanel.Dock="Right"
-                                    Style="{StaticResource InfoButtonStyle}"
-                                    Command="{x:Bind ViewModel.OpenOverlayCommand}"
-                                    CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ServerLoadOverlayViewModel"
-                                    AutomationProperties.AutomationId="ShowServerLoadOverlayButton"
-                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
-                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}">
-                                <pathicons:InfoCircle />
-                            </Button>
+                            <custom:GhostButton AutomationProperties.AutomationId="ShowServerLoadOverlayButton"
+                                                Command="{x:Bind ViewModel.OpenOverlayCommand}"
+                                                CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ServerLoadOverlayViewModel"
+                                                Style="{StaticResource InfoGhostButtonStyle}">
+                                <custom:GhostButton.LeftIcon>
+                                    <pathicons:InfoCircle />
+                                </custom:GhostButton.LeftIcon>
+                            </custom:GhostButton>
                         </StackPanel>
                     </toolkit:HeaderedContentControl.Header>
                     <StackPanel Orientation="Horizontal"
@@ -127,18 +129,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.ServerLatency}"
                                                 Visibility="{x:Bind ViewModel.ServerLatency, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
-                        <StackPanel Orientation="Horizontal" 
+                        <StackPanel Orientation="Horizontal"
                                     Spacing="4">
                             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Latency')}" />
-                            <Button toolkit:DockPanel.Dock="Right"
-                                    Style="{StaticResource InfoButtonStyle}"
-                                    Command="{x:Bind ViewModel.OpenOverlayCommand}"
-                                    CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.LatencyOverlayViewModel"
-                                    AutomationProperties.AutomationId="ShowLatencyOverlayButton"
-                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
-                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}">
-                                <pathicons:InfoCircle />
-                            </Button>
+                            <custom:GhostButton AutomationProperties.AutomationId="ShowLatencyOverlayButton"
+                                                Command="{x:Bind ViewModel.OpenOverlayCommand}"
+                                                CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.LatencyOverlayViewModel"
+                                                Style="{StaticResource InfoGhostButtonStyle}">
+                                <custom:GhostButton.LeftIcon>
+                                    <pathicons:InfoCircle />
+                                </custom:GhostButton.LeftIcon>
+                            </custom:GhostButton>
                         </StackPanel>
                     </toolkit:HeaderedContentControl.Header>
                 </toolkit:HeaderedContentControl>
@@ -146,18 +147,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.CurrentConnectionDetails.Protocol}"
                                                 Visibility="{x:Bind ViewModel.CurrentConnectionDetails.Protocol, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
-                        <StackPanel Orientation="Horizontal" 
+                        <StackPanel Orientation="Horizontal"
                                     Spacing="4">
                             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}" />
-                            <Button toolkit:DockPanel.Dock="Right"
-                                    Style="{StaticResource InfoButtonStyle}"
-                                    Command="{x:Bind ViewModel.OpenOverlayCommand}"
-                                    CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ProtocolOverlayViewModel"
-                                    AutomationProperties.AutomationId="ShowProtocolOverlayButton"
-                                    ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
-                                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}">
-                                <pathicons:InfoCircle />
-                            </Button>
+                            <custom:GhostButton AutomationProperties.AutomationId="ShowProtocolOverlayButton"
+                                                Command="{x:Bind ViewModel.OpenOverlayCommand}"
+                                                CommandParameter="ProtonVPN.Client.UI.Dialogs.Overlays.ProtocolOverlayViewModel"
+                                                Style="{StaticResource InfoGhostButtonStyle}">
+                                <custom:GhostButton.LeftIcon>
+                                    <pathicons:InfoCircle />
+                                </custom:GhostButton.LeftIcon>
+                            </custom:GhostButton>
                         </StackPanel>
                     </toolkit:HeaderedContentControl.Header>
                 </toolkit:HeaderedContentControl>
