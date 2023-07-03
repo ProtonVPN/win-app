@@ -44,8 +44,6 @@ public class MainModule : Module
                .As<ActivationHandler<LaunchActivatedEventArgs>>()
                .InstancePerDependency();
 
-        // Other Activation Handlers
-
         // TODO
 #warning This should come from IConfiguration.AppLogDefaultFullFilePath
         builder.Register(c => new LoggerConfiguration("%temp%\\Proton VPN\\logs.txt"))
@@ -53,7 +51,8 @@ public class MainModule : Module
                .SingleInstance();
 
         // Modules
-        builder.RegisterModule<LoggingModule>()
+        builder.RegisterModule<EventMessageReceiverActivationModule>()
+               .RegisterModule<LoggingModule>()
                .RegisterModule<RegistriesModule>()
                .RegisterModule<ClientModule>()
                .RegisterModule<ServicesModule>()
