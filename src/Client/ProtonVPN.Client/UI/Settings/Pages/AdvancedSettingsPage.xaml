@@ -23,26 +23,62 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI" 
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
+    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                  PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs'), Mode=OneWay}"
-                               Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.VpnLogsViewModel"
-                               IsClickEnabled="True" />
+            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAlternativeRoutingEnabled, Mode=TwoWay}"
+                              OffContent="{x:Null}"
+                              OnContent="{x:Null}" />
+            </labs:SettingsCard>
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers'), Mode=OneWay}"
-                               Command="{x:Bind ViewModel.NavigateToCommand}"
+            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsLanConnectionsEnabled, Mode=TwoWay}"
+                              OffContent="{x:Null}"
+                              OnContent="{x:Null}" />
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NonStandardPorts_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NonStandardPorts')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNonStandardPortsEnabled, Mode=TwoWay}"
+                              OffContent="{x:Null}"
+                              OnContent="{x:Null}" />
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
-                               IsClickEnabled="True" />
+                               Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
+                               IsClickEnabled="True"
+                               Style="{StaticResource DefaultSettingsCardStyle}" >
+                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                           Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LeakProtection')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsLeakProtectionEnabled, Mode=TwoWay}"
+                              OffContent="{x:Null}"
+                              OnContent="{x:Null}" />
+            </labs:SettingsCard>
+
+            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}" />
         </StackPanel>
-        
     </controls:PageContentControl>
 </Page>

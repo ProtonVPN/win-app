@@ -48,17 +48,17 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     private readonly Lazy<ObservableCollection<string>> _languages;
     private readonly RegistryUri _osVersionRegistryUri = new(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
 
-    public ApplicationElementTheme SelectedTheme
-    {
-        get => _themeSelector.GetTheme();
-        set => _themeSelector.SetTheme(value);
-    }
-
     [ObservableProperty]
     private string _clientVersionDescription;
 
     [ObservableProperty]
     private string _operatingSystemVersionDescription;
+
+    public ApplicationElementTheme SelectedTheme
+    {
+        get => _themeSelector.GetTheme();
+        set => _themeSelector.SetTheme(value);
+    }
 
     public string SelectedLanguage
     {
@@ -67,6 +67,16 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     public string SelectedProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
+
+    public string NetShieldFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public string KillSwitchFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public string PortForwardingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public string SplitTunnelingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+
+    public string VpnAcceleratorSettingsState => Localizer.Get($"Common_States_Off"); // TODO
+    public bool IsNotificationEnabled { get; set; }  // TODO
+    public bool IsBetaAccessEnabled { get; set; }  // TODO
+    public bool IsHardwareAccelerationEnabled { get; set; }  // TODO
 
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
     public ObservableCollection<string> Languages => _languages.Value;
@@ -99,6 +109,45 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
     }
 
+    public void Receive(ThemeChangedMessage message)
+    {
+        OnPropertyChanged(nameof(SelectedTheme));
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.VpnProtocol))
+        {
+            OnPropertyChanged(nameof(SelectedProtocol));
+        }
+    }
+
+    [RelayCommand]
+    public void RestoreDefaultSettings()
+    {
+        _settingsRestorer.Restore();
+    }
+
+    [RelayCommand]
+    public void OpenSupport()
+    {
+        // TODO
+    }
+
+    [RelayCommand]
+    public void ReportIssue()
+    {
+        // TODO
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+        OnPropertyChanged(nameof(SelectedLanguage));
+        OnPropertyChanged(nameof(SelectedTheme));
+        OnPropertyChanged(nameof(SelectedProtocol));
+    }
+
     private string GetClientVersionDescription()
     {
         Version version;
@@ -121,32 +170,5 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     {
         string? productName = _registryEditor.ReadString(_osVersionRegistryUri);
         return $"{productName} ({Environment.OSVersion.Version})";
-    }
-
-    public void Receive(ThemeChangedMessage message)
-    {
-        OnPropertyChanged(nameof(SelectedTheme));
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == nameof(ISettings.VpnProtocol))
-        {
-            OnPropertyChanged(nameof(SelectedProtocol));
-        }
-    }
-
-    protected override void OnLanguageChanged()
-    {
-        base.OnLanguageChanged();
-        OnPropertyChanged(nameof(SelectedLanguage));
-        OnPropertyChanged(nameof(SelectedTheme));
-        OnPropertyChanged(nameof(SelectedProtocol));
-    }
-
-    [RelayCommand]
-    public void RestoreDefaultSettings()
-    {
-        _settingsRestorer.Restore();
     }
 }

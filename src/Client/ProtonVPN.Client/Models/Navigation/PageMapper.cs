@@ -21,7 +21,6 @@ using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.UI.Gallery.Pages;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Gallery;
@@ -48,9 +47,9 @@ public class PageMapper : IPageMapper
         Configure<ProtocolViewModel, ProtocolPage>();
         Configure<VpnAcceleratorViewModel, VpnAcceleratorPage>();
         Configure<AdvancedSettingsViewModel, AdvancedSettingsPage>();
-        Configure<VpnLogsViewModel, VpnLogsPage>();
+        Configure<DebugLogsViewModel, DebugLogsPage>();
         Configure<CustomDnsServersViewModel, CustomDnsServersPage>();
-        Configure<AutoConnectViewModel, AutoConnectPage>();
+        Configure<AutoStartupViewModel, AutoStartupPage>();
         Configure<CensorshipViewModel, CensorshipPage>();
         Configure<SettingsViewModel, SettingsPage>();
 
