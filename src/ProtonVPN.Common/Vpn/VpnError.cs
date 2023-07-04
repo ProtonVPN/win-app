@@ -46,6 +46,8 @@ namespace ProtonVPN.Common.Vpn
         AdapterTimeoutError,
         ClientKeyMismatch,
         WireGuardAdapterInUseError,
+        ServerValidationError,
+        NoServerValidationPublicKey,
 
         GuestSession = 86100,
         CertificateExpired = 86101,

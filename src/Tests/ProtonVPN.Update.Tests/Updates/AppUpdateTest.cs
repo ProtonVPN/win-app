@@ -62,7 +62,8 @@ namespace ProtonVPN.Update.Tests.Updates
             _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
             _config = new DefaultAppUpdateConfig
             {
-                HttpClient = _httpClient,
+                FeedHttpClient = _httpClient,
+                FileHttpClient = _httpClient,
                 FeedUriProvider = _feedUrlProvider,
                 UpdatesPath = "Updates",
                 CurrentVersion = new Version(),

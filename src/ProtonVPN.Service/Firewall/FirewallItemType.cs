@@ -26,5 +26,6 @@ namespace ProtonVPN.Service.Firewall
         PermitInterfaceFilter,
         PermitFilter,
         VariableFilter,
+        BlockOutsideOpenVpnFilter,
     }
 }

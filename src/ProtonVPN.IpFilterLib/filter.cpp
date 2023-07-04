@@ -263,6 +263,46 @@ unsigned int IPFilterCreateAppFilter(
         filterKey);
 }
 
+unsigned int BlockOutsideOpenVpn(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int weight,
+    const wchar_t* openVpnPath,
+    const char* serverIpAddress,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    auto appIdCondition = ipfilter::condition::applicationId(
+        ipfilter::matcher::notEqual(),
+        ipfilter::value::ApplicationId::fromFilePath(openVpnPath));
+
+    auto serverIpCondition = ipfilter::condition::remoteIpV4Address(
+        ipfilter::matcher::equal(),
+        ipfilter::ip::makeAddressV4(serverIpAddress));
+
+    std::vector<ipfilter::condition::Condition> conditions{};
+    conditions.push_back(serverIpCondition);
+    conditions.push_back(appIdCondition);
+
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        static_cast<unsigned int>(IPFilterAction::SoftBlock),
+        weight,
+        nullptr,
+        nullptr,
+        conditions,
+        persistent,
+        filterKey);
+}
+
+
 unsigned int IPFilterCreateRemoteTCPPortFilter(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,

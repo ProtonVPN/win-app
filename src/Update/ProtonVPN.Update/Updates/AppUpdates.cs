@@ -66,7 +66,7 @@ namespace ProtonVPN.Update.Updates
 
             _downloadable = 
                 new SafeDownloadableFile( 
-                    new DownloadableFile(config.HttpClient));
+                    new DownloadableFile(config.FileHttpClient));
 
             _fileValidator =
                 new SafeFileValidator(

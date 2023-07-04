@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Results;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -87,6 +88,8 @@ namespace ProtonVPN.UI.Tests.Tests
             NetworkUtils.DnsFlushResolverCache();
 
             _homeWindow.EnableNetshieldLevelTwo();
+            //Allow some time for Local agent to process the request
+            Thread.Sleep(1000);
             _homeResult.CheckIfDnsIsResolved(NETSHIELD_NO_BLOCK)
                 .CheckIfDnsIsNotResolved(NETSHIELD_LEVEL_ONE)
                 .CheckIfDnsIsNotResolved(NETSHIELD_LEVEL_TWO);

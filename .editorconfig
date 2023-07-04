@@ -285,3 +285,7 @@ resharper_arrange_this_qualifier_highlighting=hint
 
 # IDE1006: Naming Styles
 dotnet_diagnostic.ide1006.severity=warning
+
+# Ignore that our code is compatible only with Windows
+# CA1416: Validate platform compatibility
+dotnet_diagnostic.CA1416.severity = none

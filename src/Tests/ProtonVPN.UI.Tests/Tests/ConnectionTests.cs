@@ -114,18 +114,6 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        public void ConnectionIsRestoredToSameServerAfterAppKill()
-        {
-            _homeWindow.NavigateToSettings()
-                .DisableStartToTray()
-                .ClickOnConnectOnBoot()
-                .CloseSettings();
-            _homeWindow.PressQuickConnectButton()
-                .WaitUntilConnected();
-            _homeResult.KillClientAndCheckIfConnectionIsKept();
-        }
-
-        [Test]
         [Category("Smoke")]
         public void AutoConnectConnectsAutomatically()
         {

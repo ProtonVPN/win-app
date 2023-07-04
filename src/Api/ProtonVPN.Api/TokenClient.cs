@@ -37,6 +37,8 @@ namespace ProtonVPN.Api
         private const int REFRESH_TOKEN_LOG_LENGTH = 5;
         private readonly HttpClient _client;
 
+        public event EventHandler RefreshTokenExpired;
+
         public TokenClient(
             ILogger logger,
             ITokenHttpClientFactory tokenHttpClientFactory,
@@ -78,6 +80,11 @@ namespace ProtonVPN.Api
                 }
                 throw new HttpRequestException(e.Message);
             }
+        }
+
+        public void TriggerRefreshTokenExpiration()
+        {
+            RefreshTokenExpired?.Invoke(this, EventArgs.Empty);
         }
 
         private void LogRefreshToken()

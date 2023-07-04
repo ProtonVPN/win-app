@@ -30,6 +30,7 @@ using NUnit.Framework.Interfaces;
 using NUnit.Framework;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Tests.TestsHelper;
+using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -102,8 +103,19 @@ namespace ProtonVPN.UI.Tests
 
         protected static void KillProtonVpnProcess()
         {
-            Process[] proc = Process.GetProcessesByName("ProtonVPN");
-            proc.ForEach(p => p.Kill());
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                WindowStyle = ProcessWindowStyle.Hidden,
+                FileName = "cmd.exe",
+                Arguments = "/C taskkill /F /im protonvpn.exe",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
+            process.StartInfo = startInfo;
+            process.Start();
+            process.Close();
             //Give some time to properly exit the app
             Thread.Sleep(2000);
         }

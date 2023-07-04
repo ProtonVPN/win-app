@@ -296,7 +296,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Keluar</value>
+    <value>Keluar Akun</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -379,7 +379,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Dengan menyertakan informasi berikut, tim kami akan dapat mengidentifikasi masalah Anda dan memberikan Anda solusi yang ampuh dalam waktu yang lebih singkat:
+    <value>Dengan menyertakan informasi berikut, tim kami akan dapat mengidentifikasi masalah Anda dan memberikan solusi kepada Anda secara lebih tepat dan lebih cepat:
 • Log instalasi driver
 • Daftar aplikasi yang terinstal
 • Log aplikasi Proton VPN dan layanan Proton VPN
@@ -388,10 +388,10 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Log-log error yang ada akan membantu kami untuk dapat menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log-log error tersebut, kami tidak akan dapat menganalisa masalah Anda secara maksimal.</value>
+    <value>Log error membantu kami dalam menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log error yang ada, kami mungkin tidak akan dapat menganalisa masalah Anda secara menyeluruh.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Log merupakan berkas yang merekam berbagai aktivitas yang memicu terjadinya suatu error. Kami hanya akan menggunakan berkas log Anda untuk membantu para pakar kami dalam menumpas berbagai bug yang ada.</value>
+    <value>Log merupakan berkas yang merekam berbagai tindakan yang memicu terjadinya suatu error. Kami hanya akan menggunakan berkas log Anda untuk membantu para teknisi kami dalam menumpas bug yang ada.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Perbarui Proton VPN</value>
@@ -442,7 +442,7 @@
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Silakan menunggu hingga proses pengiriman selesai</value>
+    <value>Mohon tunggu hingga proses pengiriman selesai</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -516,6 +516,9 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>sambungan gagal</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} negara</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1558,18 +1561,6 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Akun VPN anda memiliki tagihan tertunda</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Periksa tagihan</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Akun Anda ditandai menunggak karena adanya tagihan yang belum dibayar. Anda akan tetap dapat menggunakan Proton VPN, namun seluruh fitur berbayar akan dinonaktifkan.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Baca lebih lanjut seputar tunggakan pembayaran.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Akun yang menunggak</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Aktifkan</value>
   </data>
@@ -1704,7 +1695,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Terdapat masalah pada saat mengunduh aplikasi versi terbaru. Silakan perbarui aplikasi secara manual untuk mendapatkan versi terbaru.</value>
+    <value>Terdapat kesalahan pada saat mengunduh versi aplikasi terbaru. Silakan perbarui aplikasi secara manual untuk mendapatkan versi terbaru.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
@@ -2465,6 +2456,9 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} server aman</value>
+  </data>
   <data name="ServerType_val_None">
     <value>Standar</value>
     <comment>The server type in Profile window</comment>
@@ -3056,8 +3050,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Akses lebih dari {0} di {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Apa itu NAT Moderat?</value>

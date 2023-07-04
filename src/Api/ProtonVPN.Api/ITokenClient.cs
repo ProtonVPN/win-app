@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
@@ -26,6 +27,10 @@ namespace ProtonVPN.Api
 {
     public interface ITokenClient : IClientBase
     {
+        event EventHandler RefreshTokenExpired;
+
         Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token);
+
+        void TriggerRefreshTokenExpiration();
     }
 }

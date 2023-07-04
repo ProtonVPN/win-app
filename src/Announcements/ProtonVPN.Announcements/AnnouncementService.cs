@@ -69,7 +69,7 @@ namespace ProtonVPN.Announcements
             _announcementCache = announcementCache;
             _apiClient = apiClient;
             _logger = logger;
-            _httpClient = fileDownloadHttpClientFactory.GetFileDownloadHttpClient();
+            _httpClient = fileDownloadHttpClientFactory.GetHttpClientWithTlsPinning();
             _config = config;
             _timer = scheduler.Timer();
             _timer.Interval = config.AnnouncementUpdateInterval.RandomizedWithDeviation(0.2);

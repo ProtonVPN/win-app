@@ -23,7 +23,6 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using FluentAssertions.Events;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -280,16 +279,13 @@ namespace ProtonVPN.Api.Tests.Handlers
             _innerHandler.Expect(HttpMethod.Get, LOGICALS_API_URL)
                 .Respond(HttpStatusCode.Unauthorized);
 
-            using (IMonitor<UnauthorizedResponseHandler> monitoredSubject = handler.Monitor())
-            {
-                // Act
-                HttpRequestMessage request = new(HttpMethod.Get, LOGICALS_ENDPOINT);
-                await client.SendAsync(request);
+            // Act
+            HttpRequestMessage request = new(HttpMethod.Get, LOGICALS_ENDPOINT);
+            await client.SendAsync(request);
 
-                // Assert
-                monitoredSubject.Should().Raise(nameof(UnauthorizedResponseHandler.SessionExpired));
-                _innerHandler.VerifyNoOutstandingExpectation();
-            }
+            // Assert
+            _tokenClient.Received(1).TriggerRefreshTokenExpiration();
+            _innerHandler.VerifyNoOutstandingExpectation();
         }
 
         // TODO: FIX THIS UNIT TEST
@@ -527,10 +523,16 @@ namespace ProtonVPN.Api.Tests.Handlers
 
             public event EventHandler<ActionableFailureApiResultEventArgs> OnActionableFailureResult;
 
+            public event EventHandler RefreshTokenExpired;
+
             public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
             {
                 await Breakpoint.Hit().WaitForContinue();
                 return await _origin.RefreshTokenAsync(token);
+            }
+
+            public void TriggerRefreshTokenExpiration()
+            {
             }
         }
 

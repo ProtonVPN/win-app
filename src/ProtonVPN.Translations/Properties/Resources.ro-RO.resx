@@ -206,14 +206,14 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; de conexiuni VPN</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>în &lt;Bold&gt;{0}&lt;/Bold&gt; de țări</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>într-o țară</value>
   </data>
   <data name="Account_lbl_Countries_Few">
     <value>în &lt;Bold&gt;{0}&lt;/Bold&gt; țări</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>în &lt;Bold&gt;{0}&lt;/Bold&gt; de țări</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
     <value>Plan actual</value>
@@ -540,6 +540,15 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>a eșuat</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} țară</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} țări</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} de țări</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1582,18 +1591,6 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Acest cont VPN are facturi în așteptare</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Verificare facturi</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Contul este marcat ca delincvent din cauza facturilor neplătite. Puteți continua să utilizați Proton VPN, dar toate funcțiile plătite sunt acum dezactivate. &lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt; Citiți mai mult despre delicvență.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Cont delicvent</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Activare</value>
   </data>
@@ -2507,6 +2504,15 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} server securizat</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} servere securizate</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} de servere securizate</value>
+  </data>
   <data name="ServerType_val_None">
     <value>Standard</value>
     <comment>The server type in Profile window</comment>
@@ -3116,8 +3122,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Accesați peste {0} în {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Ce este NAT moderat?</value>

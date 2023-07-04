@@ -38,7 +38,7 @@ namespace ProtonVPN.NetworkFilter
 
         public static IntPtr CreateDynamicSession()
         {
-            var handle = IntPtr.Zero;
+            IntPtr handle = IntPtr.Zero;
 
             AssertSuccess(
                 () => PInvoke.CreateDynamicSession(ref handle));
@@ -48,7 +48,7 @@ namespace ProtonVPN.NetworkFilter
 
         public static IntPtr CreateSession()
         {
-            var handle = IntPtr.Zero;
+            IntPtr handle = IntPtr.Zero;
 
             AssertSuccess(
                 () => PInvoke.CreateSession(ref handle));
@@ -80,7 +80,7 @@ namespace ProtonVPN.NetworkFilter
             IntPtr sessionHandle,
             DisplayData displayData,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateProvider(
                 sessionHandle,
@@ -120,9 +120,9 @@ namespace ProtonVPN.NetworkFilter
             DisplayData displayData,
             byte[] data,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
-            var dataPtr = IntPtr.Zero;
+            IntPtr dataPtr = IntPtr.Zero;
             int size = 0;
             if (data != null && (size = data.Length) != 0)
             {
@@ -166,7 +166,7 @@ namespace ProtonVPN.NetworkFilter
             Layer layer,
             bool persistent = false)
         {
-            var id = key;
+            Guid id = key;
 
             AssertSuccess(() => PInvoke.CreateCallout(
                 sessionHandle,
@@ -194,7 +194,7 @@ namespace ProtonVPN.NetworkFilter
             DisplayData displayData,
             uint weight,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateSublayer(
                 sessionHandle,
@@ -282,6 +282,18 @@ namespace ProtonVPN.NetworkFilter
                 ref sublayerId));
         }
 
+        public static void DestroySublayerFiltersByName(IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            string name)
+        {
+            AssertSuccess(() => PInvoke.DestroySublayerFiltersByName(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                name));
+        }
+
         public static uint GetSublayerFilterCount(IntPtr sessionHandle,
             Guid providerId,
             Guid sublayerId)
@@ -319,7 +331,7 @@ namespace ProtonVPN.NetworkFilter
             Guid calloutId,
             Guid providerContextId,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateLayerFilter(
                 sessionHandle,
@@ -349,7 +361,7 @@ namespace ProtonVPN.NetworkFilter
             Guid providerContextId,
             string ipAddress,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateRemoteIPv4Filter(
                 sessionHandle,
@@ -379,7 +391,7 @@ namespace ProtonVPN.NetworkFilter
             Guid providerContextId,
             string appPath,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateAppFilter(
                 sessionHandle,
@@ -408,7 +420,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             uint port,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateRemoteTCPPortFilter(
                 sessionHandle,
@@ -435,7 +447,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             uint port,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateRemoteUDPPortFilter(
                 sessionHandle,
@@ -464,7 +476,7 @@ namespace ProtonVPN.NetworkFilter
             Guid providerContextId,
             NetworkAddress address,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateRemoteNetworkIPv4Filter(
                 sessionHandle,
@@ -493,7 +505,7 @@ namespace ProtonVPN.NetworkFilter
             uint weight,
             uint index,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateNetInterfaceFilter(
                 sessionHandle,
@@ -519,7 +531,7 @@ namespace ProtonVPN.NetworkFilter
             Action action,
             uint weight,
             bool persistent = false,
-            Guid id = new Guid())
+            Guid id = new())
         {
             AssertSuccess(() => PInvoke.CreateLoopbackFilter(
                 sessionHandle,
@@ -559,6 +571,32 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 ref calloutId,
                 index,
+                persistent,
+                ref id));
+
+            return id;
+        }
+
+        public static Guid BlockOutsideOpenVpn(IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            uint weight,
+            string appPath,
+            string serverIpAddress,
+            uint persistent,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.BlockOutsideOpenVpn(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                weight,
+                appPath,
+                serverIpAddress,
                 persistent,
                 ref id));
 

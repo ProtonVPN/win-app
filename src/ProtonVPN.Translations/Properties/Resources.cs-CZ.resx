@@ -209,9 +209,6 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN připojení</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>v &lt;Bold&gt;{0}&lt;/Bold&gt; zemích</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>v &lt;Bold&gt;{0}&lt;/Bold&gt; zemi</value>
   </data>
@@ -219,6 +216,9 @@
     <value>ve &lt;Bold&gt;{0}&lt;/Bold&gt; zemích</value>
   </data>
   <data name="Account_lbl_Countries_Many">
+    <value>v &lt;Bold&gt;{0}&lt;/Bold&gt; zemích</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
     <value>v &lt;Bold&gt;{0}&lt;/Bold&gt; zemích</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -552,6 +552,18 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>připojení se nezdařilo</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} země</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} země</value>
+  </data>
+  <data name="Countries_lbl_Many">
+    <value>{0} zemí</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} zemí</value>
   </data>
   <data name="Country_val_AD">
     <value>Andora</value>
@@ -1594,18 +1606,6 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Váš VPN účet má nezaplacené faktury</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Zkontrolovat faktury</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Tento účet má faktury po splatnosti. Můžete pokračovat v používání Proton VPN, ale jakékoliv placené funkce jsou v současnosti vypnuty.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Přečtěte si více o tomto stavu.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Účet s fakturami po splatnosti</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Zapnout</value>
   </data>
@@ -2528,6 +2528,18 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} bezpečný server</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} bezpečné servery</value>
+  </data>
+  <data name="Secure_Servers_lbl_Many">
+    <value>{0} bezpečných serverů</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} bezpečných serverů</value>
+  </data>
   <data name="ServerType_val_None">
     <value>Standardní</value>
     <comment>The server type in Profile window</comment>
@@ -3146,8 +3158,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Přístup přes {0} v {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Co je Moderate NAT?</value>

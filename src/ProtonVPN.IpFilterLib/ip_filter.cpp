@@ -378,6 +378,66 @@ unsigned int IPFilterDestroySublayerFilters(
     return status;
 }
 
+unsigned int IPFilterDestroySublayerFiltersByName(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const wchar_t* name)
+{
+    HANDLE enumHandle = nullptr;
+
+    auto status = FwpmFilterCreateEnumHandle(sessionHandle,
+        nullptr,
+        &enumHandle);
+    if (status != ERROR_SUCCESS)
+    {
+        return status;
+    }
+
+    while (true)
+    {
+        FWPM_FILTER** filters{};
+        UINT32 filterCount{};
+
+        status = FwpmFilterEnum(sessionHandle, enumHandle, 1, &filters, &filterCount);
+        if (status != ERROR_SUCCESS || filterCount == 0)
+        {
+            break;
+        }
+
+        for (UINT32 i = 0; i < filterCount; i++)
+        {
+            FWPM_FILTER* filter = filters[i];
+            if (filter->providerKey == nullptr || *filter->providerKey != *providerKey)
+            {
+                continue;
+            }
+
+            if (filter->subLayerKey != *sublayerKey)
+            {
+                continue;
+            }
+
+            if (wcscmp(filter->displayData.name, name) != 0)
+            {
+                continue;
+            }
+
+            status = IPFilterDestroyFilter(sessionHandle, &filter->filterKey);
+            if (status != ERROR_SUCCESS)
+            {
+                break;
+            }
+        }
+
+        FwpmFreeMemory(reinterpret_cast<void**>(&filters));
+    }
+
+    FwpmFilterDestroyEnumHandle(sessionHandle, enumHandle);
+
+    return status;
+}
+
 unsigned int IPFilterDestroyCallouts(IPFilterSessionHandle sessionHandle, GUID* providerKey)
 {
     HANDLE enumHandle = nullptr;

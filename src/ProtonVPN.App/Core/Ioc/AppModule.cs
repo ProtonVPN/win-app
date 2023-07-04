@@ -61,7 +61,7 @@ using ProtonVPN.Modals.Welcome;
 using ProtonVPN.NetShield;
 using ProtonVPN.Notifications;
 using ProtonVPN.Partners;
-using ProtonVPN.PlanDowngrading;
+using ProtonVPN.AccountPlan;
 using ProtonVPN.PortForwarding;
 using ProtonVPN.Resource.Colors;
 using ProtonVPN.Servers;
@@ -271,7 +271,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SettingsBuilder>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnInfoUpdater>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<PlanDowngradeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<PlanChangeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
             builder.RegisterType<StreamingServicesFileStorage>().AsImplementedInterfaces().SingleInstance();

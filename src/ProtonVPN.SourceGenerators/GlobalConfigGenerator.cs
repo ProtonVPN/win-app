@@ -33,18 +33,47 @@ namespace ProtonVPN.SourceGenerators
 
         public void Execute(GeneratorExecutionContext context)
         {
-            string sentryDsn = Environment.GetEnvironmentVariable("SENTRY_DSN_V2");
-            string internalReleaseUrl = Environment.GetEnvironmentVariable("INTERNAL_RELEASE_URL");
+            string sentryDsn = GetEnvironmentVariableOrNull("SENTRY_DSN_V2");
+            string internalReleaseUrl = GetEnvironmentVariableOrNull("INTERNAL_RELEASE_URL");
+            string btiApiDomain = GetEnvironmentVariableOrNull("BTI_API_DOMAIN");
+            string btiApiTlsPinningPublicKeyHashes = GetEnvironmentVariableOrNull("BTI_API_TLS_PINNINGS");
+            string btiAlternativeRoutingTlsPinningPublicKeyHashes = GetEnvironmentVariableOrNull("BTI_ALT_ROUTE_TLS_PINNINGS");
+            string btiCertificateValidation = GetEnvironmentVariableOrNull("BTI_CERT_VALIDATION");
+            string btiDohUrls = GetEnvironmentVariableOrNull("BTI_DOH_URLS");
 
             context.AddSource("GlobalConfig.g.cs", SourceText.From($@"
+using System.Collections.Generic;
+
 namespace ProtonVPN.Common.Configuration
 {{
     public class GlobalConfig
     {{
         public const string SentryDsn = ""{sentryDsn}"";
         public const string InternalReleaseUpdateUrl = ""{internalReleaseUrl}"";
+        public const string BtiApiDomain = ""{btiApiDomain}"";
+        public const string BtiApiTlsPinningPublicKeyHashes = ""{btiApiTlsPinningPublicKeyHashes}"";
+        public const string BtiAlternativeRoutingTlsPinningPublicKeyHashes = ""{btiAlternativeRoutingTlsPinningPublicKeyHashes}"";
+        public const string BtiCertificateValidation = ""{btiCertificateValidation}"";
+        public const string BtiDohProviders = ""{btiDohUrls}"";
     }}
 }}", Encoding.UTF8));
+        }
+
+        public static string GetEnvironmentVariableOrNull(string variable)
+        {
+            string result;
+            try
+            {
+                result = Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.Process) ??
+                         Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User) ??
+                         Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.Machine);
+            }
+            catch
+            {
+                result = null;
+            }
+
+            return result;
         }
     }
 }

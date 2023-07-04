@@ -17,10 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Logging;
 using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
@@ -49,6 +52,11 @@ namespace ProtonVPN.Vpn.WireGuard
             _origin.Create(pathAndArgs, unrestricted);
         }
 
+        public void UpdatePathAndArgs(string cmd)
+        {
+            _origin.UpdatePathAndArgs(cmd);
+        }
+
         public bool Running() => _origin.Running();
 
         public bool IsStopped() => _origin.IsStopped();
@@ -62,8 +70,7 @@ namespace ProtonVPN.Vpn.WireGuard
             if (!_origin.Exists())
             {
                 _logger.Info<AppServiceLog>("WireGuard Service is missing. Installing.");
-                _origin.Create($"\"{_config.WireGuard.ServicePath}\" \"{_config.WireGuard.ConfigFilePath}\"",
-                    unrestricted: true);
+                _origin.Create(GetServiceCommandLine(), unrestricted: true);
             }
 
             if (!_origin.Enabled())
@@ -71,12 +78,54 @@ namespace ProtonVPN.Vpn.WireGuard
                 _origin.Enable();
             }
 
+            UpdateServicePath();
+
             return _origin.StartAsync(cancellationToken);
+        }
+
+        private void UpdateServicePath()
+        {
+            string servicePathToExecutable = GetServicePathToExecutable();
+            if (servicePathToExecutable.IsNullOrEmpty())
+            {
+                _logger.Error<AppServiceLog>(ServicePathError);
+                return;
+            }
+
+            if (servicePathToExecutable != GetServiceCommandLine())
+            {
+                _logger.Info<AppServiceLog>($"{Name} path {servicePathToExecutable} points to an old version. " +
+                                            $"Updating to the current one.");
+                _origin.UpdatePathAndArgs(GetServiceCommandLine());
+            }
         }
 
         public async Task<Result> StopAsync(CancellationToken cancellationToken)
         {
             return await _origin.StopAsync(cancellationToken);
         }
+
+        private string GetServiceCommandLine()
+        {
+            return $"\"{_config.WireGuard.ServicePath}\" \"{_config.WireGuard.ConfigFilePath}\"";
+        }
+
+        private string GetServicePathToExecutable()
+        {
+            try
+            {
+                ManagementObject wmiService = new($"Win32_Service.Name='{Name}'");
+                wmiService.Get();
+
+                return (string)wmiService["PathName"];
+            }
+            catch (Exception e)
+            {
+                _logger.Error<AppServiceLog>(ServicePathError, e);
+                return null;
+            }
+        }
+
+        private string ServicePathError => $"Failed to receive {Name} path.";
     }
 }

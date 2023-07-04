@@ -203,10 +203,10 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN bağlantısı</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
+  <data name="Account_lbl_Countries_One">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; ülkede</value>
   </data>
-  <data name="Account_lbl_Countries_One">
+  <data name="Account_lbl_Countries_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; ülkede</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -403,7 +403,7 @@
     <value>Hata günlükleri, sorununuzun temeline inmemize yardımcı olur. Bunları göndermezeniz, sorunu tam olarak araştıramayabiliriz.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Bir günlük, soruna neden olan olayları görmemizi sağlayan bir dosya türüdür. Bunları yalnızca mühendislerimizin hataları düzeltmesine yardımcı olmaları için kullanacağız.</value>
+    <value>Bir günlük, soruna neden olan olayları görmemizi sağlayan bir dosya türüdür. Bunları yalnızca mühendislerimizin hataları gidermesine yardımcı olmaları için kullanacağız.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Proton VPN uygulamasını güncelle</value>
@@ -528,6 +528,12 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>bağlantı kurulamadı</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} ülke</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} ülke</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1569,18 +1575,6 @@
     <value>VPN hesabınızda ödenmemiş faturalar var</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Faturaları kontrol et</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Hesap, ödenmemiş faturalar nedeniyle ödenmemiş olarak işaretlenmiş. Proton VPN kullanmayı sürdürebilirsiniz. Ancak tüm ücretli özellikler devre dışı bırakıldı.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Gecikmmiş ödemeler hakkında ayrıntılı bilgi alın.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Gecikmiş hesap</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Etkinleştir</value>
   </data>
@@ -1749,7 +1743,7 @@
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğin doğal sayıldığı internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Güncellenmiş Proton, birleşik koruma</value>
@@ -1929,7 +1923,7 @@
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
-    <value>Bilinmeyen hata</value>
+    <value>Bilinmeyen sorun</value>
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
@@ -1963,7 +1957,7 @@
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>İki aşamalı doğrulama kodu</value>
+    <value>İki adımlı doğrulama kodu</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Kullanıcı adı</value>
@@ -2002,7 +1996,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>İki aşamalı doğrulama kodu geçersiz</value>
+    <value>İki adımlı doğrulama kodu geçersiz</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Oturum açma bilgileri yanlış. Lütfen yeniden deneyin.</value>
@@ -2484,6 +2478,12 @@
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} güvenli sunucu</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} güvenli sunucu</value>
   </data>
   <data name="ServerType_val_None">
     <value>Standart</value>
@@ -2973,7 +2973,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Yayın akışı</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>Plus sunucuları, dünyanın her yerinden yayın akışlarını (Netflix, Disney + vb.) destekler.</value>
+    <value>Plus sunucuları, dünyanın her yerindeki yayın akışı hizmetlerini (Netflix, Disney + vb.) destekler.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Özellikler</value>
@@ -3085,8 +3085,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>{0} ile {1} erişim.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Ilımlı NAT nedir?</value>

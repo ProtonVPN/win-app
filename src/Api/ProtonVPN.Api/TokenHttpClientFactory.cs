@@ -37,7 +37,7 @@ namespace ProtonVPN.Api
             RetryingHandler retryingHandler,
             DnsHandler dnsHandler,
             LoggingHandlerBase loggingHandlerBase,
-            CertificateHandler certificateHandler)
+            TlsPinnedCertificateHandler tlsPinnedCertificateHandler)
         {
             _configuration = configuration;
 
@@ -46,7 +46,7 @@ namespace ProtonVPN.Api
                             .AddDelegatingHandler(retryingHandler)
                             .AddDelegatingHandler(dnsHandler)
                             .AddDelegatingHandler(loggingHandlerBase)
-                            .AddLastHandler(certificateHandler)
+                            .AddLastHandler(tlsPinnedCertificateHandler)
                             .Build();
         }
 

@@ -30,6 +30,7 @@ using ProtonVPN.Common.Logging.Categorization.Events.ServerSwitchLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.ServerValidation;
 
 namespace ProtonVPN.Vpn.Connection
 {
@@ -38,6 +39,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly CancellationHandle _cancellationHandle = new();
         private readonly ILogger _logger;
         private readonly IVpnEndpointCandidates _candidates;
+        private readonly IServerValidator _serverValidator;
         private readonly IEndpointScanner _endpointScanner;
         private readonly ISingleVpnConnection _origin;
 
@@ -52,11 +54,13 @@ namespace ProtonVPN.Vpn.Connection
         public ReconnectingWrapper(
             ILogger logger,
             IVpnEndpointCandidates candidates,
+            IServerValidator serverValidator,
             IEndpointScanner endpointScanner,
             ISingleVpnConnection origin)
         {
             _logger = logger;
             _candidates = candidates;
+            _serverValidator = serverValidator;
             _endpointScanner = endpointScanner;
             _origin = origin;
 
@@ -182,7 +186,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task PingAndConnectAsync()
         {
-            _logger.Info<ConnectLog>("A connect is pending. Starting connection after status changed to Disconnected.");
+            _logger.Info<ConnectLog>("A connect is pending and status is Disconnected. Pinging.");
             CancellationToken cancellationToken = _cancellationHandle.Token;
             bool isResponding = false;
 
@@ -200,7 +204,12 @@ namespace ProtonVPN.Vpn.Connection
                     _logger.Warn<ConnectLog>($"No more endpoints in the list after server {endpoint.Server.Ip} has failed to respond to the ping.");
                     break;
                 }
-
+                VpnError error = _serverValidator.Validate(endpoint.Server);
+                if (error != VpnError.None)
+                {
+                    _logger.Error<ConnectLog>($"The server validation failed for IP '{endpoint.Server.Ip}' and Label '{endpoint.Server.Label}'.");
+                    continue;
+                }
                 isResponding = await IsEndpointRespondingAsync(endpoint, cancellationToken);
                 if (isResponding)
                 {
@@ -273,7 +282,8 @@ namespace ProtonVPN.Vpn.Connection
 
         private bool IsServerError(VpnError error)
         {
-            return error == VpnError.NetshError ||
+            return error == VpnError.ServerValidationError ||
+                   error == VpnError.NetshError ||
                    error == VpnError.TlsError ||
                    error == VpnError.PingTimeoutError ||
                    error == VpnError.Unknown;

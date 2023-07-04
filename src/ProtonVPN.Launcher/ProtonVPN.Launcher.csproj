@@ -5,22 +5,18 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\bin\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <PublishSingleFile>true</PublishSingleFile>
+        <PublishTrimmed>true</PublishTrimmed>
+        <SelfContained>true</SelfContained>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <ApplicationIcon>protonvpn.ico</ApplicationIcon>
         <StartupObject>ProtonVPN.Launcher.Program</StartupObject>
         <BaseOutputPath>..\bin</BaseOutputPath>
     </PropertyGroup>
     <ItemGroup>
-      <None Remove="protonvpn.ico" />
-    </ItemGroup>
-    <ItemGroup>
+        <None Remove="protonvpn.ico" />
         <Compile Include="..\GlobalAssemblyInfo.cs">
             <Link>Properties\GlobalAssemblyInfo.cs</Link>
         </Compile>
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="protonvpn.ico" />
-    </ItemGroup>
-    <ItemGroup>
-      <Resource Include="protonvpn.ico" />
     </ItemGroup>
 </Project>

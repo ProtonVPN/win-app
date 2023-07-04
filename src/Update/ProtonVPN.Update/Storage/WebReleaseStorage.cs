@@ -84,7 +84,7 @@ namespace ProtonVPN.Update.Storage
         {
             try
             {
-                using IHttpResponseMessage response = await _config.HttpClient.GetAsync(feedUrl);
+                using IHttpResponseMessage response = await _config.FeedHttpClient.GetAsync(feedUrl);
                 if (!response.IsSuccessStatusCode)
                 {
                     _logger.Error<AppLog>($"Response status code of feed {feedUrl} is not success.");

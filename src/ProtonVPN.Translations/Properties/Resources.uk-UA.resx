@@ -209,9 +209,6 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-з'єднань</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країні</value>
   </data>
@@ -219,6 +216,9 @@
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
   </data>
   <data name="Account_lbl_Countries_Many">
+    <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; країнах</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -552,6 +552,18 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>з'єднання зазнало невдачі</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} країні</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} країнах</value>
+  </data>
+  <data name="Countries_lbl_Many">
+    <value>{0} країнах</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} країнах</value>
   </data>
   <data name="Country_val_AD">
     <value>Андорра</value>
@@ -1595,18 +1607,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>У вашому обліковому записі VPN є несплачені рахунки</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Перевірте рахунки-фактури</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Обліковий запис позначено протермінованим через несплачені рахунки. Ви можете продовжувати користуватися Proton VPN, але всі платні функції відтепер вимкнені.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Докладніше про протермінування.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Протермінований обліковий запис</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Увімкнути</value>
   </data>
@@ -2475,23 +2475,23 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Користуйтеся інтернетом без реклами та зловмисних програм.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>Ads blocked</value>
+    <value>Оголошень заблоковано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>Реклама заблокована</value>
+    <value>Оголошення заблоковано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
-    <value>Реклами заблоковано</value>
+    <value>Оголошення заблоковані</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
-    <value>Оголошення заблоковано</value>
+    <value>Оголошень заблоковано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Рекламні вебсайти використовують куки та елементи стеження, щоб персоналізувати вас.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Збережених даних</value>
+    <value>Заощаджено даних</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -2499,16 +2499,16 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Трекери зупинено</value>
+    <value>Елементів стеження зупинено</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Tracker stopped</value>
+    <value>Елемент стеження зупинено</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
-    <value>Trackers stopped</value>
+    <value>Елементів стеження зупинено</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
-    <value>Трекери зупинено</value>
+    <value>Елементів стеження зупинено</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Елементи стеження – це сторонні вебсайти, які збирають, зберігають і продають дані про вашу діяльність в інтернеті.</value>
@@ -2528,6 +2528,18 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} захищений сервер</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} захищені сервери</value>
+  </data>
+  <data name="Secure_Servers_lbl_Many">
+    <value>{0} захищених серверів</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} захищених серверів</value>
   </data>
   <data name="ServerType_val_None">
     <value>Стандартний</value>
@@ -3147,8 +3159,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Доступ через {0} у {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Що таке помірне NAT?</value>

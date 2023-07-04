@@ -209,9 +209,6 @@
   <data name="Account_lbl_Connection_Other">
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнні па VPN</value>
   </data>
-  <data name="Account_lbl_Countries_Other">
-    <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краінах</value>
-  </data>
   <data name="Account_lbl_Countries_One">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краіне</value>
   </data>
@@ -219,6 +216,9 @@
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краінах</value>
   </data>
   <data name="Account_lbl_Countries_Many">
+    <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краінах</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краінах</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
@@ -552,6 +552,18 @@
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
     <value>збой падключэння</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} краіна</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} краіны</value>
+  </data>
+  <data name="Countries_lbl_Many">
+    <value>{0} краін</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} краіны</value>
   </data>
   <data name="Country_val_AD">
     <value>Андора</value>
@@ -1594,18 +1606,6 @@
     <value>У вашым уліковым запісе ProtonVPN ёсць неаплачаныя рахункі</value>
     <comment>The title of the Delinquency window</comment>
   </data>
-  <data name="Dialogs_Delinquency_btn_Invoices">
-    <value>Праверыць рахункі</value>
-    <comment>The text on invoices button in the Delinquency window (opens web page for invoice payment)</comment>
-  </data>
-  <data name="Dialogs_Delinquency_msg">
-    <value>Гэты ўліковы запіс пазначаны як неаплачаны па прычыне пратэрмінаваных рахункаў. Вы можаце і далей карыстацца Proton VPN, але ўсе платныя функцыі цяпер будуць адключаны.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutDelinquencyCommand}"&gt;Даведацца больш пра запазычанасць.&lt;/Hyperlink&gt;</value>
-    <comment>The message displayed in the Delinquency window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about delinquency.").</comment>
-  </data>
-  <data name="Dialogs_Delinquency_ttl">
-    <value>Запазычаны ўліковы запіс</value>
-    <comment>The title of the Delinquency window</comment>
-  </data>
   <data name="Dialogs_DisabledService_btn_Enable">
     <value>Уключыць</value>
   </data>
@@ -1946,7 +1946,7 @@
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Час сеанса завяршыўся. Увайдзіце яшчэ раз.</value>
+    <value>Ваш сеанс пратэрмінаваны. Увайдзіце яшчэ раз.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -1984,7 +1984,7 @@
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Выконваецца падключэнне да Proton VPN...</value>
+    <value>Адбываецца падключэнне да Proton VPN...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
@@ -2462,7 +2462,7 @@
     <value>Secure Core выключана</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core уключана</value>
+    <value>Secure Core уключаны</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>ПАЛЕПШЫЦЬ</value>
@@ -2474,23 +2474,23 @@
     <value>Праглядайце старонкі ў інтэрнэце без рэкламы і шкодных праграм.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>Рэкламы заблакіраваны</value>
+    <value>рэкламы заблакіраваны</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>Рэклама заблакіравана</value>
+    <value>рэклама заблакіравана</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
-    <value>Рэкламы заблакіраваны</value>
+    <value>рэкламы заблакіраваны</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
-    <value>Рэклам заблакіраваны</value>
+    <value>рэклам заблакіраваны</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Рэкламныя вэб-сайты выкарыстоўваюць файлы cookie і праграмы сачэння, каб прааналізаваць вашы перавагі.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Даныя захаваны</value>
+    <value>даных захавана</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
@@ -2498,16 +2498,16 @@
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Праграмы сачэння спынены</value>
+    <value>праграмы сачэння спынены</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Праграма сачэння спынена</value>
+    <value>праграма сачэння спынена</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
-    <value>Праграмы сачэння спынены</value>
+    <value>праграмы сачэння спынены</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
-    <value>Праграм сачэння спынены</value>
+    <value>праграм сачэння спынены</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Праграмы сачэння (трэкеры) - гэта праграмнае забеспячэнне старонніх вэб-сайтаў, якія збіраюць, захоўваюць і прадаюць інфармацыю пра вашу дзейнасць у інтэрнэце.</value>
@@ -2527,6 +2527,18 @@
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} бяспечны сервер</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} бяспечныя серверы</value>
+  </data>
+  <data name="Secure_Servers_lbl_Many">
+    <value>{0} бяспечных сервераў</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} бяспечнага сервера</value>
   </data>
   <data name="ServerType_val_None">
     <value>Стандартны</value>
@@ -3146,8 +3158,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} secure servers in {1} countries</value>
-    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for the numbers of servers available (rounded down) and {1} is a placeholder for the number of countries available.</comment>
+    <value>Доступ праз {0} у {1}.</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_ModerateNat_About">
     <value>Што такое ўмераны NAT?</value>

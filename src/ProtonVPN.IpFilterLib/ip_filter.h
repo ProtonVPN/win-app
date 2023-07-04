@@ -114,6 +114,12 @@ unsigned int IPFilterDestroySublayerFilters(
     GUID * providerKey,
     GUID * sublayerKey);
 
+unsigned int IPFilterDestroySublayerFiltersByName(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const wchar_t* name);
+
 unsigned int IPFilterGetSublayerFilterCount(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,
@@ -266,3 +272,15 @@ unsigned int BlockOutsideDns(
     ULONG index,
     BOOL persistent,
     GUID * filterKey);
+
+unsigned int BlockOutsideOpenVpn(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int weight,
+    const wchar_t* openVpnPath,
+    const char* serverIpAddress,
+    BOOL persistent,
+    GUID* filterKey);

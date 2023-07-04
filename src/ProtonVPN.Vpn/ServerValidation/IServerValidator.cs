@@ -17,30 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Common.Helpers
+namespace ProtonVPN.Vpn.ServerValidation
 {
-    /// <summary>
-    /// Generates random alphanumeric strings.
-    /// </summary>
-    public class RandomStrings
+    public interface IServerValidator
     {
-        private readonly Random _random = new Random();
-
-        public string RandomString(int length)
-        {
-            Ensure.IsTrue(length >= 0);
-
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var randomChars = new char[length];
-
-            for (var i = 0; i < randomChars.Length; i++)
-            {
-                randomChars[i] = chars[_random.Next(chars.Length)];
-            }
-
-            return new string(randomChars);
-        }
+        VpnError Validate(VpnHost server);
     }
 }

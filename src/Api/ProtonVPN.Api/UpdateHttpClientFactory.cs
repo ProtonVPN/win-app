@@ -19,42 +19,56 @@
 
 using System.Net.Http;
 using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
-using ProtonVPN.Api.Handlers;
 using ProtonVPN.Common.OS.Net.Http;
 
 namespace ProtonVPN.Api
 {
-    public class NoDnsFileDownloadHttpClientFactory : INoDnsFileDownloadHttpClientFactory
+    public class UpdateHttpClientFactory : IUpdateHttpClientFactory
     {
         private readonly RetryingHandler _retryingHandler;
         private readonly LoggingHandlerBase _loggingHandlerBase;
-        private readonly CertificateHandler _certificateHandler;
+        private readonly TlsPinnedCertificateHandler _tlsPinnedCertificateHandler;
+        private readonly SslCertificateHandler _sslCertificateHandler;
         private readonly IHttpClients _httpClients;
         private readonly IApiAppVersion _apiAppVersion;
 
-        public NoDnsFileDownloadHttpClientFactory(
+        public UpdateHttpClientFactory(
             RetryingHandler retryingHandler,
             LoggingHandlerBase loggingHandlerBase,
-            CertificateHandler certificateHandler,
+            TlsPinnedCertificateHandler tlsPinnedCertificateHandler,
+            SslCertificateHandler sslCertificateHandler,
             IHttpClients httpClients,
             IApiAppVersion apiAppVersion)
         {
             _retryingHandler = retryingHandler;
             _loggingHandlerBase = loggingHandlerBase;
-            _certificateHandler = certificateHandler;
+            _tlsPinnedCertificateHandler = tlsPinnedCertificateHandler;
+            _sslCertificateHandler = sslCertificateHandler;
             _httpClients = httpClients;
             _apiAppVersion = apiAppVersion;
         }
 
-        public IHttpClient GetHttpClient()
+        public IHttpClient GetFeedHttpClient()
         {
             HttpMessageHandler innerHandler = new HttpMessageHandlerStackBuilder()
                 .AddDelegatingHandler(_retryingHandler)
                 .AddDelegatingHandler(_loggingHandlerBase)
-                .AddLastHandler(_certificateHandler)
+                .AddLastHandler(_tlsPinnedCertificateHandler)
+                .Build();
+
+            return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent());
+        }
+
+        public IHttpClient GetUpdateDownloadHttpClient()
+        {
+            HttpMessageHandler innerHandler = new HttpMessageHandlerStackBuilder()
+                .AddDelegatingHandler(_retryingHandler)
+                .AddDelegatingHandler(_loggingHandlerBase)
+                .AddLastHandler(_sslCertificateHandler)
                 .Build();
 
             return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent());

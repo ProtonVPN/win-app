@@ -29,10 +29,10 @@ using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
 
-namespace ProtonVPN.Api.Tests.Handlers
+namespace ProtonVPN.Api.Tests.Handlers.TlsPinning
 {
     [TestClass]
-    public class CertificateHandlerTest
+    public class TlsPinnedCertificateHandlerTest
     {
         private IReportClient _reportClient;
         private X509Certificate _apiCert;
@@ -208,7 +208,7 @@ namespace ProtonVPN.Api.Tests.Handlers
 
         private TestCertificateHandler CreateTestCertificateHandler(IConfiguration config)
         {
-            return new(new CertificateValidator(_reportClient, config));
+            return new(new CertificateValidator(_reportClient, config), config);
         }
     }
 
@@ -219,7 +219,7 @@ namespace ProtonVPN.Api.Tests.Handlers
 
         public PinConfigBuilder(bool enforce)
         {
-            _config = new TlsPinningConfig {PinnedDomains = new List<TlsPinnedDomain>(), Enforce = enforce};
+            _config = new TlsPinningConfig { PinnedDomains = new List<TlsPinnedDomain>(), Enforce = enforce };
         }
 
         public PinConfigBuilder AddDomain(string domain, bool enforce, List<string> pins)
@@ -242,16 +242,17 @@ namespace ProtonVPN.Api.Tests.Handlers
         }
     }
 
-    internal class TestCertificateHandler : CertificateHandler
+    internal class TestCertificateHandler : TlsPinnedCertificateHandler
     {
-        public TestCertificateHandler(ICertificateValidator certificateValidator) : base(certificateValidator)
+        public TestCertificateHandler(ICertificateValidator certificateValidator, IConfiguration config) 
+            : base(certificateValidator, config)
         {
         }
 
         public bool GetValidationResult(string host, X509Certificate cert, SslPolicyErrors sslPolicyErrors)
         {
             return CertificateCustomValidationCallback(
-                new HttpRequestMessage { Headers = { Host = host }, RequestUri = new UriBuilder(new Uri("https://host.com")).Uri},
+                new HttpRequestMessage { Headers = { Host = host }, RequestUri = new UriBuilder(new Uri("https://host.com")).Uri },
                 cert,
                 new X509Chain(),
                 sslPolicyErrors);
