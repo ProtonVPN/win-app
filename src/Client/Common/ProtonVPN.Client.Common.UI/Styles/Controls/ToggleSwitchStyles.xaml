@@ -58,18 +58,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="BackgroundWeakColorBrush" />
     <StaticResource x:Key="ToggleSwitchKnobFillOff" ResourceKey="TextWeakColorBrush" />
     <StaticResource x:Key="ToggleSwitchKnobFillOn" ResourceKey="ToggleSwitchKnobOnBackgroundBrush" />
-    <StaticResource x:Key="ToggleSwitchFillOn" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="ToggleSwitchStrokeOn" ResourceKey="InteractionNormColorBrush" />
+    <StaticResource x:Key="ToggleSwitchFillOn" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="ToggleSwitchStrokeOn" ResourceKey="LinkNormColorBrush" />
 
     <StaticResource x:Key="ToggleSwitchKnobFillOffPointerOver" ResourceKey="TextWeakColorBrush" />
     <StaticResource x:Key="ToggleSwitchKnobFillOnPointerOver" ResourceKey="ToggleSwitchKnobOnBackgroundBrush" />
-    <StaticResource x:Key="ToggleSwitchFillOnPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="ToggleSwitchStrokeOnPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
+    <StaticResource x:Key="ToggleSwitchFillOnPointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="ToggleSwitchStrokeOnPointerOver" ResourceKey="LinkHoverColorBrush" />
 
     <StaticResource x:Key="ToggleSwitchKnobFillOffPressed" ResourceKey="TextWeakColorBrush" />
     <StaticResource x:Key="ToggleSwitchKnobFillOnPressed" ResourceKey="ToggleSwitchKnobOnBackgroundBrush" />
-    <StaticResource x:Key="ToggleSwitchFillOnPressed" ResourceKey="InteractionNormActiveColorBrush" />
-    <StaticResource x:Key="ToggleSwitchStrokeOnPressed" ResourceKey="InteractionNormActiveColorBrush" />
+    <StaticResource x:Key="ToggleSwitchFillOnPressed" ResourceKey="LinkActiveColorBrush" />
+    <StaticResource x:Key="ToggleSwitchStrokeOnPressed" ResourceKey="LinkActiveColorBrush" />
 
     <StaticResource x:Key="ToggleSwitchHeaderForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
     <StaticResource x:Key="ToggleSwitchContentForegroundDisabled" ResourceKey="TextDisabledColorBrush" />

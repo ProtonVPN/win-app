@@ -76,7 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="FocusVisualMargin" Value="-3" />
-        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="Margin" Value="0,3" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="labs:SettingsCard">

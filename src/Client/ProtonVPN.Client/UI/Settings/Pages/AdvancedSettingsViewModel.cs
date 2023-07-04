@@ -31,4 +31,14 @@ public class AdvancedSettingsViewModel : PageViewModelBase
     }
 
     public override string? Title => Localizer.Get("Settings_Connection_AdvancedSettings");
+
+    public string CustomDnsServersSettingsState => Localizer.Get($"Common_States_Off"); // TODO
+
+    public bool IsAlternativeRoutingEnabled { get; set; }  // TODO
+
+    public bool IsLanConnectionsEnabled { get; set; }  // TODO
+
+    public bool IsNonStandardPortsEnabled { get; set; }  // TODO
+
+    public bool IsLeakProtectionEnabled { get; set; }  // TODO
 }

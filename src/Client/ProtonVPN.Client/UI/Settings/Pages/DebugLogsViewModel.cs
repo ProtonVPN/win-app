@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
-public sealed partial class VpnLogsPage
+namespace ProtonVPN.Client.UI.Settings.Pages;
+
+public class DebugLogsViewModel : PageViewModelBase
 {
-    public VpnLogsPage()
+    public DebugLogsViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+        : base(pageNavigator, localizationProvider)
     {
-        ViewModel = App.GetService<VpnLogsViewModel>();
-        InitializeComponent();
     }
 
-    public VpnLogsViewModel ViewModel { get; }
+    public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
 }

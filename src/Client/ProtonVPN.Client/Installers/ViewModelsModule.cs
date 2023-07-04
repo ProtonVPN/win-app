@@ -58,9 +58,9 @@ public class ViewModelsModule : Module
         RegisterViewModel<HomeViewModel>(builder);
         RegisterViewModel<ShellViewModel>(builder);
         RegisterViewModel<CensorshipViewModel>(builder);
-        RegisterViewModel<AutoConnectViewModel>(builder);
+        RegisterViewModel<AutoStartupViewModel>(builder);
         RegisterViewModel<CustomDnsServersViewModel>(builder);
-        RegisterViewModel<VpnLogsViewModel>(builder);
+        RegisterViewModel<DebugLogsViewModel>(builder);
         RegisterViewModel<AdvancedSettingsViewModel>(builder);
         RegisterViewModel<VpnAcceleratorViewModel>(builder);
         RegisterViewModel<ProtocolViewModel>(builder);
