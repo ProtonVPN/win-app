@@ -25,15 +25,12 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.OperatingSystems.Registries.Contracts;
-using Windows.ApplicationModel;
 
 namespace ProtonVPN.Client.UI.Settings;
 
@@ -44,9 +41,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     private readonly ILocalizationService _localizationService;
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
-    private readonly IRegistryEditor _registryEditor;
     private readonly Lazy<ObservableCollection<string>> _languages;
-    private readonly RegistryUri _osVersionRegistryUri = new(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
 
     [ObservableProperty]
     private string _clientVersionDescription;
@@ -72,8 +67,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     public string KillSwitchFeatureState => Localizer.Get($"Common_States_Off"); // TODO
     public string PortForwardingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
     public string SplitTunnelingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
-
     public string VpnAcceleratorSettingsState => Localizer.Get($"Common_States_Off"); // TODO
+
     public bool IsNotificationEnabled { get; set; }  // TODO
     public bool IsBetaAccessEnabled { get; set; }  // TODO
     public bool IsHardwareAccelerationEnabled { get; set; }  // TODO
@@ -90,23 +85,27 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         ILocalizationService localizationService,
         ILocalizationProvider localizationProvider,
         ISettings settings,
-        ISettingsRestorer settingsRestorer,
-        IRegistryEditor registryEditor)
+        ISettingsRestorer settingsRestorer)
         : base(pageNavigator, localizationProvider)
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;
         _settings = settings;
         _settingsRestorer = settingsRestorer;
-        _registryEditor = registryEditor;
 
         _clientVersionDescription = GetClientVersionDescription();
-        _operatingSystemVersionDescription = GetOperatingSystemVersionDescription();
+        _operatingSystemVersionDescription = Environment.OSVersion.Version.ToString();
 
         _languages = new Lazy<ObservableCollection<string>>(
             () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
 
         Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
+    }
+
+    private string GetClientVersionDescription()
+    {
+        Version version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0,0,0,0);
+        return $"{App.APPLICATION_NAME} {version.Major}.{version.Minor}.{version.Build}";
     }
 
     public void Receive(ThemeChangedMessage message)
@@ -146,29 +145,5 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(SelectedTheme));
         OnPropertyChanged(nameof(SelectedProtocol));
-    }
-
-    private string GetClientVersionDescription()
-    {
-        Version version;
-
-        if (RuntimeHelper.IsMSIX)
-        {
-            PackageVersion packageVersion = Package.Current.Id.Version;
-
-            version = new(packageVersion.Major, packageVersion.Minor, packageVersion.Build, packageVersion.Revision);
-        }
-        else
-        {
-            version = Assembly.GetExecutingAssembly().GetName().Version!;
-        }
-
-        return $"{App.APPLICATION_NAME} {version.Major}.{version.Minor}.{version.Build}";
-    }
-
-    private string GetOperatingSystemVersionDescription()
-    {
-        string? productName = _registryEditor.ReadString(_osVersionRegistryUri);
-        return $"{productName} ({Environment.OSVersion.Version})";
     }
 }

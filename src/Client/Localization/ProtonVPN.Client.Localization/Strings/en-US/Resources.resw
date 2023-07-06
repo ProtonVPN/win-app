@@ -1554,7 +1554,7 @@
     <value>Help us fight censorship</value>
   </data>
   <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Operating System</value>
+    <value>Operating System version</value>
   </data>
   <data name="Settings_Page_Title" xml:space="preserve">
     <value>Settings</value>

@@ -146,6 +146,11 @@ public class SettingsRepository : ISettingsRepository
         }
     }
 
+    private bool IsValueTypeOrString(Type? toType)
+    {
+        return toType is not null && (toType.IsValueType || toType == typeof(string));
+    }
+
     public void SetReferenceType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
         where T : class
     {
@@ -153,13 +158,11 @@ public class SettingsRepository : ISettingsRepository
         {
             T? oldValue = default;
             Type? toType = UnwrapNullable(typeof(T));
-            if (IsValueTypeOrString(toType))
+
+            oldValue = GetReferenceType<T>(propertyName, scope, encryption);
+            if (EqualityComparer<T>.Default.Equals(oldValue, newValue))
             {
-                oldValue = GetReferenceType<T>(propertyName, scope, encryption);
-                if (EqualityComparer<T>.Default.Equals(oldValue, newValue))
-                {
-                    return;
-                }
+                return;
             }
 
             Set(propertyName, oldValue, newValue, scope, encryption);
@@ -186,11 +189,6 @@ public class SettingsRepository : ISettingsRepository
     private Type? UnwrapNullable(Type type)
     {
         return IsNullableType(type) ? Nullable.GetUnderlyingType(type) : type;
-    }
-
-    private bool IsValueTypeOrString(Type? toType)
-    {
-        return toType is not null && (toType.IsValueType || toType == typeof(string));
     }
 
     private bool IsNullableType(Type type)

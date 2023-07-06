@@ -19,12 +19,16 @@
 
 using ProtonVPN.Common.Core.Enums;
 
-namespace ProtonVPN.Client.Settings.Contracts
+namespace ProtonVPN.Client.Settings.Contracts;
+
+public interface ISettings
 {
-    public interface ISettings
-    {
-        string Theme { get; set; }
-        string Language { get; set; }
-        VpnProtocol VpnProtocol { get; set; }
-    }
+    string Theme { get; set; }
+    string Language { get; set; }
+    VpnProtocol VpnProtocol { get; set; }
+    int? WindowWidth { get; set; }
+    int? WindowHeight { get; set; }
+    int? WindowXPosition { get; set; }
+    int? WindowYPosition { get; set; }
+    bool IsWindowMaximized { get; set; }
 }

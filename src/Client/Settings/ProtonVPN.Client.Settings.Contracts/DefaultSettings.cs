@@ -19,12 +19,12 @@
 
 using ProtonVPN.Common.Core.Enums;
 
-namespace ProtonVPN.Client.Settings.Contracts
+namespace ProtonVPN.Client.Settings.Contracts;
+
+public static class DefaultSettings
 {
-    public static class DefaultSettings
-    {
-        public static string Theme = "Default";
-        public static string Language = "en-US";
-        public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
-    }
+    public static string Theme = "Default";
+    public static string Language = "en-US";
+    public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
+    public static bool IsWindowMaximized = false;
 }
