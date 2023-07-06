@@ -26,6 +26,7 @@ public interface ISettings
     string Theme { get; set; }
     string Language { get; set; }
     VpnProtocol VpnProtocol { get; set; }
+    bool IsVpnAcceleratorEnabled { get; set; }
     int? WindowWidth { get; set; }
     int? WindowHeight { get; set; }
     int? WindowXPosition { get; set; }

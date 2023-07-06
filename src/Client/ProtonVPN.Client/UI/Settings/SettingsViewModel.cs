@@ -26,6 +26,7 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
@@ -61,13 +62,12 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         set => _settings.Language = value;
     }
 
-    public string SelectedProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
-
+    public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
     public string NetShieldFeatureState => Localizer.Get($"Common_States_Off"); // TODO
     public string KillSwitchFeatureState => Localizer.Get($"Common_States_Off"); // TODO
     public string PortForwardingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
     public string SplitTunnelingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
-    public string VpnAcceleratorSettingsState => Localizer.Get($"Common_States_Off"); // TODO
+    public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(_settings.IsVpnAcceleratorEnabled);
 
     public bool IsNotificationEnabled { get; set; }  // TODO
     public bool IsBetaAccessEnabled { get; set; }  // TODO
@@ -104,21 +104,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
 
     private string GetClientVersionDescription()
     {
-        Version version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0,0,0,0);
+        Version version = Assembly.GetExecutingAssembly().GetName().Version!;
         return $"{App.APPLICATION_NAME} {version.Major}.{version.Minor}.{version.Build}";
-    }
-
-    public void Receive(ThemeChangedMessage message)
-    {
-        OnPropertyChanged(nameof(SelectedTheme));
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == nameof(ISettings.VpnProtocol))
-        {
-            OnPropertyChanged(nameof(SelectedProtocol));
-        }
     }
 
     [RelayCommand]
@@ -139,11 +126,29 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         // TODO
     }
 
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.VpnProtocol))
+        {
+            OnPropertyChanged(nameof(ConnectionProtocolState));
+        }
+        else if (message.PropertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
+        {
+            OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
+        }
+    }
+
+    public void Receive(ThemeChangedMessage message)
+    {
+        OnPropertyChanged(nameof(SelectedTheme));
+    }
+
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
+        OnPropertyChanged(nameof(ConnectionProtocolState));
+        OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(SelectedTheme));
-        OnPropertyChanged(nameof(SelectedProtocol));
     }
 }

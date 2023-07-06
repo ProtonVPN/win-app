@@ -24,10 +24,17 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-namespace ProtonVPN.Client.Helpers;
+namespace ProtonVPN.Client.Localization.Extensions;
 
 public static class LocalizationExtensions
 {
+    public static string GetToggleValue(this ILocalizationProvider localizer, bool value)
+    {
+        return value
+           ? localizer.Get("Common_States_On")
+           : localizer.Get("Common_States_Off");
+    }
+
     public static string GetCountryName(this ILocalizationProvider localizer, string? countryCode)
     {
         return string.IsNullOrEmpty(countryCode)

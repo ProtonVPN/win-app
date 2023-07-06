@@ -26,5 +26,6 @@ public static class DefaultSettings
     public static string Theme = "Default";
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
+    public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
 }

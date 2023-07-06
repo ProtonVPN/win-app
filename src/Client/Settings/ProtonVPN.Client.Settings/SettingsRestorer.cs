@@ -19,22 +19,22 @@
 
 using ProtonVPN.Client.Settings.Contracts;
 
-namespace ProtonVPN.Client.Settings
+namespace ProtonVPN.Client.Settings;
+
+public class SettingsRestorer : ISettingsRestorer
 {
-    public class SettingsRestorer : ISettingsRestorer
+    private readonly ISettings _settings;
+
+    public SettingsRestorer(ISettings settings)
     {
-        private readonly ISettings _settings;
+        _settings = settings;
+    }
 
-        public SettingsRestorer(ISettings settings)
-        {
-            _settings = settings;
-        }
-
-        public void Restore()
-        {
-            _settings.Theme = DefaultSettings.Theme;
-            _settings.Language = DefaultSettings.Language;
-            _settings.VpnProtocol = DefaultSettings.VpnProtocol;
-        }
+    public void Restore()
+    {
+        _settings.Theme = DefaultSettings.Theme;
+        _settings.Language = DefaultSettings.Language;
+        _settings.VpnProtocol = DefaultSettings.VpnProtocol;
+        _settings.IsVpnAcceleratorEnabled = DefaultSettings.IsVpnAcceleratorEnabled;
     }
 }

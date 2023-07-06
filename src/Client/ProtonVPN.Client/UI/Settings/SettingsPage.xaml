@@ -105,7 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:Servers />
                 </labs:SettingsCard.HeaderIcon>
                 <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.SelectedProtocol}" />
+                           Text="{x:Bind ViewModel.ConnectionProtocolState}" />
             </labs:SettingsCard>
 
             <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"

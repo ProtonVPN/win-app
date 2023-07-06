@@ -43,6 +43,12 @@ public class Settings : SettingsBase, ISettings
         set => SetValueType<VpnProtocol>(value, SettingScope.User, SettingEncryption.Unencrypted);
     }
 
+    public bool IsVpnAcceleratorEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsVpnAcceleratorEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
     public int? WindowWidth
     {
         get => GetValueType<int>(SettingScope.Global, SettingEncryption.Unencrypted);

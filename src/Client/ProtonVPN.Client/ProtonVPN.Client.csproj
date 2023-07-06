@@ -131,6 +131,7 @@
     <ProjectReference Include="..\Common\ProtonVPN.Client.Common.UI\ProtonVPN.Client.Common.UI.csproj" />
     <ProjectReference Include="..\EventMessaging\ProtonVPN.Client.EventMessaging.Installers\ProtonVPN.Client.EventMessaging.Installers.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
+    <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Extensions\ProtonVPN.Client.Localization.Extensions.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Installers\ProtonVPN.Client.Localization.Installers.csproj" />
     <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
     <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Installers\ProtonVPN.Client.Logic.Connection.Installers.csproj" />

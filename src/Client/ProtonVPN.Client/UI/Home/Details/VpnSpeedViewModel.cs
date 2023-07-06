@@ -19,8 +19,8 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 

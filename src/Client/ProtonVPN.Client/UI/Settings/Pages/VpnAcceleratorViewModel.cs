@@ -18,17 +18,39 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class VpnAcceleratorViewModel : PageViewModelBase
+public class VpnAcceleratorViewModel : PageViewModelBase, IEventMessageReceiver<SettingChangedMessage>
 {
-    public VpnAcceleratorViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
-    {
-    }
+    private readonly ISettings _settings;
 
     public override string? Title => Localizer.Get("Settings_Connection_VpnAccelerator");
+
+    public bool IsVpnAcceleratorEnabled
+    {
+        get => _settings.IsVpnAcceleratorEnabled;
+        set => _settings.IsVpnAcceleratorEnabled = value;
+    }
+
+    public VpnAcceleratorViewModel(IPageNavigator pageNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings)
+        : base(pageNavigator, localizationProvider)
+    {
+        _settings = settings;
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
+        {
+            OnPropertyChanged(nameof(IsVpnAcceleratorEnabled));
+        }
+    }
 }

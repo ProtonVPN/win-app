@@ -1160,18 +1160,7 @@
   <data name="Country_Fastest" xml:space="preserve">
     <value>O país mais rápido</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-<data name="Dialogs_Latency_Description" xml:space="preserve">
+  <data name="Dialogs_Latency_Description" xml:space="preserve">
     <value>A latência mostra quanto tempo demora um servidor a responder a um pedido.\n\nUma latência elevada pode reduzir a velocidade da sua ligação.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
@@ -1197,9 +1186,6 @@
   </data>
   <data name="Dialogs_Protocol_Description" xml:space="preserve">
     <value>Um protocolo é um conjunto de instruções que o seu dispositivo segue para se conectar e comunicar com um servidor.</value>
-  </data>
-  <data name="Dialogs_Protocol_LearnMore" xml:space="preserve">
-    <value>Como funcionam os protocolos</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
     <value>Mudar de Protocolo VPN</value>
@@ -1554,5 +1540,89 @@
   </data>
   <data name="Settings_Support_ReportIssue" xml:space="preserve">
     <value>Reportar um problema</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
+    <value>Aumente em até 400% a velocidade da sua ligação através de tecnologias de aumento de desempenho.</value>
+  </data>
+  <data name="Common_States_Off" xml:space="preserve">
+    <value>Desligado</value>
+  </data>
+  <data name="Common_States_On" xml:space="preserve">
+    <value>Ligado</value>
+  </data>
+  <data name="Settings_Support_SupportCenter" xml:space="preserve">
+    <value>Centro de suporte</value>
+  </data>
+  <data name="Common_Message_Loading" xml:space="preserve">
+    <value>A processar...</value>
+  </data>
+  <data name="Home_Account_SignOut" xml:space="preserve">
+    <value>Terminar sessão</value>
+  </data>
+  <data name="Home_Account_Title" xml:space="preserve">
+    <value>A minha conta</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
+    <value>Esconder detalhes da conexão</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
+    <value>Esconder o endereço IP do utilizador</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show" xml:space="preserve">
+    <value>Mostrar detalhes da conexão</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
+    <value>Mostrar o endereço IP do utilizador</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
+    <value>Usar rotas alternativas</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
+    <value>Se os serviços da Proton estiverem bloqueados devido a restrições na rede usaremos uma rota alternativa para conectá-lo aos nossos sites.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
+    <value>Conexões locais (LAN)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
+    <value>Conecte-se à Proton VPN através do seu próprio servidor DNS (Domain Name System). Certifique-se de que utiliza apenas servidores DNS de confiança.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
+    <value>Permite-o conectar-se a impressoras, colunas, e outros dispositivos na mesma rede local.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LeakProtection" xml:space="preserve">
+    <value>Protecção contra fugas IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
+    <value>Tipo de NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
+    <value>Seleccione o tipo de NAT (Network Address Translation) da sua conexão.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NonStandardPorts" xml:space="preserve">
+    <value>Portos fora do padrão</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NonStandardPorts_Description" xml:space="preserve">
+    <value>Permita que a sua VPN comunique com portas personalizadas.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Descripton" xml:space="preserve">
+    <value>Arranque automático, conexão automática</value>
+  </data>
+  <data name="Settings_General_BetaAccess" xml:space="preserve">
+    <value>Acesso antecipado (Beta)</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
+    <value>Obtenha acesso antecipado e ajude-nos a testar novas versões da Proton VPN</value>
+  </data>
+  <data name="Settings_General_HardwareAcceleration" xml:space="preserve">
+    <value>Aceleração de hardware</value>
+  </data>
+  <data name="Settings_General_HardwareAcceleration_Description" xml:space="preserve">
+    <value>Melhore o desempenho da aplicação Proton VPN através da utilização da sua placa gráfica na renderização</value>
+  </data>
+  <data name="Settings_General_Notifications" xml:space="preserve">
+    <value>Notificações</value>
+  </data>
+  <data name="Settings_General_Notifications_Description" xml:space="preserve">
+    <value>Seja notificado de alterações de estado na aplicação Proton VPN</value>
   </data>
 </root>

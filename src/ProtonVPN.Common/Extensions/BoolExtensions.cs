@@ -25,5 +25,10 @@ namespace ProtonVPN.Common.Extensions
         {
             return value ? "yes" : "no";
         }
+
+        public static string ToOnOffString(this bool value)
+        {
+            return value ? "On" : "Off";
+        }
     }
 }

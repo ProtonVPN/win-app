@@ -30,7 +30,44 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
                                  PageHeader="{x:Bind ViewModel.Title}">
 
-        <StackPanel x:Name="ContentArea"/>
+        <StackPanel x:Name="ContentArea">
+
+            <Grid Padding="16"
+                  Background="{StaticResource BackgroundWeakColorBrush}"
+                  BorderBrush="{StaticResource BorderWeakColorBrush}"
+                  BorderThickness="1"
+                  CornerRadius="8"
+                  ColumnSpacing="16"
+                  RowSpacing="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                    <TextBlock Foreground="{StaticResource TextNormColorBrush}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}" />
+                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}" />
+                </StackPanel>
+                
+                <ToggleSwitch Grid.Row="0"
+                              Grid.Column="1"
+                              IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
+                              OffContent="{x:Null}"
+                              OnContent="{x:Null}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </Grid>
+
+        </StackPanel>
 
     </controls:PageContentControl>
 </Page>
