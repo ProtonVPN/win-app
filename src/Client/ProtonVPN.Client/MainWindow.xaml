@@ -23,12 +23,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:wex="using:WinUIEx"
-              Width="620"
-              Height="580"
-              MinWidth="360"
-              MinHeight="480"
+              Width="636"
+              Height="589"
+              MinWidth="376"
+              MinHeight="489"
               PersistenceId="MainWindow"
               mc:Ignorable="d">
+    
+    <!-- There's a consistent difference between the size defined here and the actual size -->
+    <!-- Adds 16px to the width and 9px to the height to compensate -->
     
     <wex:WindowEx.Backdrop>
         
