@@ -247,11 +247,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OperatingSystems", "Operati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Registries", "Registries", "{1E66A3AB-5BF0-4460-984A-0DD90F59B372}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.Registries", "src\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries\ProtonVPN.OperatingSystems.Registries.csproj", "{7F06FB23-15A3-4804-9415-BD93479B36F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.OperatingSystems.Registries", "src\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries\ProtonVPN.OperatingSystems.Registries.csproj", "{7F06FB23-15A3-4804-9415-BD93479B36F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.Registries.Contracts", "src\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj", "{CADB10C7-8410-46D3-A6D0-D22AFDCC7F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.OperatingSystems.Registries.Contracts", "src\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj", "{CADB10C7-8410-46D3-A6D0-D22AFDCC7F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.Registries.Installers", "src\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj", "{9D5192FF-CCF7-4D9B-8748-5EDC2C9DEE93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.OperatingSystems.Registries.Installers", "src\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj", "{9D5192FF-CCF7-4D9B-8748-5EDC2C9DEE93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Localization.Extensions", "src\Client\Localization\ProtonVPN.Client.Localization.Extensions\ProtonVPN.Client.Localization.Extensions.csproj", "{C6140A2D-C041-407D-873F-D2FCA6308C62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -982,6 +984,14 @@ Global
 		{9D5192FF-CCF7-4D9B-8748-5EDC2C9DEE93}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D5192FF-CCF7-4D9B-8748-5EDC2C9DEE93}.Release|x64.ActiveCfg = Release|Any CPU
 		{9D5192FF-CCF7-4D9B-8748-5EDC2C9DEE93}.Release|x64.Build.0 = Release|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Debug|x64.Build.0 = Debug|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Release|x64.ActiveCfg = Release|Any CPU
+		{C6140A2D-C041-407D-873F-D2FCA6308C62}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1075,6 +1085,7 @@ Global
 		{7F06FB23-15A3-4804-9415-BD93479B36F2} = {1E66A3AB-5BF0-4460-984A-0DD90F59B372}
 		{CADB10C7-8410-46D3-A6D0-D22AFDCC7F76} = {1E66A3AB-5BF0-4460-984A-0DD90F59B372}
 		{9D5192FF-CCF7-4D9B-8748-5EDC2C9DEE93} = {1E66A3AB-5BF0-4460-984A-0DD90F59B372}
+		{C6140A2D-C041-407D-873F-D2FCA6308C62} = {9E749180-43DB-4FCE-93CC-37334F3988E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}
