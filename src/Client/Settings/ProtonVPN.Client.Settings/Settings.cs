@@ -21,31 +21,60 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Enums;
 
-namespace ProtonVPN.Client.Settings
+namespace ProtonVPN.Client.Settings;
+
+public class Settings : SettingsBase, ISettings
 {
-    public class Settings : SettingsBase, ISettings
+    public string Theme
     {
-        public string Theme
-        {
-            get => GetReferenceType<string>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;
-            set => SetReferenceType<string>(value, SettingScope.Global, SettingEncryption.Unencrypted);
-        }
+        get => GetReferenceType<string>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;
+        set => SetReferenceType<string>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
 
-        public string Language
-        {
-            get => GetReferenceType<string>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
-            set => SetReferenceType<string>(value, SettingScope.Global, SettingEncryption.Unencrypted);
-        }
+    public string Language
+    {
+        get => GetReferenceType<string>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
+        set => SetReferenceType<string>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
 
-        public VpnProtocol VpnProtocol
-        {
-            get => GetValueType<VpnProtocol>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.VpnProtocol;
-            set => SetValueType<VpnProtocol>(value, SettingScope.User, SettingEncryption.Unencrypted);
-        }
+    public VpnProtocol VpnProtocol
+    {
+        get => GetValueType<VpnProtocol>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.VpnProtocol;
+        set => SetValueType<VpnProtocol>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
 
-        public Settings(ISettingsRepository settingsRepository)
-            : base(settingsRepository)
-        {
-        }
+    public int? WindowWidth
+    {
+        get => GetValueType<int>(SettingScope.Global, SettingEncryption.Unencrypted);
+        set => SetValueType<int>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
+
+    public int? WindowHeight
+    {
+        get => GetValueType<int>(SettingScope.Global, SettingEncryption.Unencrypted);
+        set => SetValueType<int>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
+
+    public int? WindowXPosition
+    {
+        get => GetValueType<int>(SettingScope.Global, SettingEncryption.Unencrypted);
+        set => SetValueType<int>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
+
+    public int? WindowYPosition
+    {
+        get => GetValueType<int>(SettingScope.Global, SettingEncryption.Unencrypted);
+        set => SetValueType<int>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsWindowMaximized
+    {
+        get => GetValueType<bool>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.IsWindowMaximized;
+        set => SetValueType<bool>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+    }
+
+    public Settings(ISettingsRepository settingsRepository)
+        : base(settingsRepository)
+    {
     }
 }

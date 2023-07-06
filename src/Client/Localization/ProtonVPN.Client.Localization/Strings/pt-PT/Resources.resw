@@ -1493,7 +1493,7 @@
     <value>Ajude-nos a lutar contra a censura</value>
   </data>
   <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Sistema Operativo</value>
+    <value>Versão do Sistema Operativo</value>
   </data>
   <data name="Settings_Protocols_Explanation" xml:space="preserve">
     <value>Os protocolos VPN determinam como os dados se movem entre o servidor VPN e o seu dispositivo.</value>

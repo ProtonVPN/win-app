@@ -17,18 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Enums;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Common.UI.Windowing.System;
 
-public interface ISettings
+[StructLayout(LayoutKind.Sequential)]
+public struct W32MonitorInfo
 {
-    string Theme { get; set; }
-    string Language { get; set; }
-    VpnProtocol VpnProtocol { get; set; }
-    int? WindowWidth { get; set; }
-    int? WindowHeight { get; set; }
-    int? WindowXPosition { get; set; }
-    int? WindowYPosition { get; set; }
-    bool IsWindowMaximized { get; set; }
+    public int Size;
+    public W32Rect Monitor;
+    public W32Rect WorkArea;
+    public uint Flags;
 }

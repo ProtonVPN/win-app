@@ -46,7 +46,11 @@ public class MainModule : Module
 
         // TODO
 #warning This should come from IConfiguration.AppLogDefaultFullFilePath
-        builder.Register(c => new LoggerConfiguration("%temp%\\Proton VPN\\logs.txt"))
+        const string LOGS_FOLDER_PATH = "Proton/Proton VPN/Logs";
+        const Environment.SpecialFolder ROOT_FOLDER = Environment.SpecialFolder.LocalApplicationData;
+        string logsFullFolderPath = Path.Combine(Environment.GetFolderPath(ROOT_FOLDER), LOGS_FOLDER_PATH);
+        string clientLogsFullFilePath = Path.Combine(logsFullFolderPath, "client-logs.txt");
+        builder.Register(c => new LoggerConfiguration(clientLogsFullFilePath))
                .As<ILoggerConfiguration>()
                .SingleInstance();
 

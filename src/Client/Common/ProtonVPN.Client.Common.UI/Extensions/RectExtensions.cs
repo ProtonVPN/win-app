@@ -17,18 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Enums;
+using Windows.Foundation;
 
-namespace ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Common.UI.Extensions;
 
-public interface ISettings
+public static class RectExtensions
 {
-    string Theme { get; set; }
-    string Language { get; set; }
-    VpnProtocol VpnProtocol { get; set; }
-    int? WindowWidth { get; set; }
-    int? WindowHeight { get; set; }
-    int? WindowXPosition { get; set; }
-    int? WindowYPosition { get; set; }
-    bool IsWindowMaximized { get; set; }
+    public static bool Contains(this Rect rect1, Rect rect2)
+    {
+        return rect1.Contains(new Point(rect2.Left, rect2.Top))
+            && rect1.Contains(new Point(rect2.Left, rect2.Bottom))
+            && rect1.Contains(new Point(rect2.Right, rect2.Bottom))
+            && rect1.Contains(new Point(rect2.Right, rect2.Top));
+    }
 }
