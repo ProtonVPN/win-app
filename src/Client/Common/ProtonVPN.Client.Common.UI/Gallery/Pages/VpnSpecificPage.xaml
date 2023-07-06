@@ -112,8 +112,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <toolkit:RangeSelector x:Name="rsThresholds"
                                            Maximum="1"
                                            Minimum="0"
-                                           RangeEnd="0.9"
-                                           RangeStart="0.5"
+                                           RangeEnd="0.901"
+                                           RangeStart="0.751"
                                            StepFrequency="0.05" />
                     <Slider x:Name="slServerLoad"
                             Header="Server load"

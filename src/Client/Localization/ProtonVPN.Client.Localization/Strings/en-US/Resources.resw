@@ -1203,19 +1203,19 @@
     <value>VPN may run slower than normal</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>High (90-100%)</value>
+    <value>High (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
     <value>Lightning fast speeds</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>Low (1-49%)</value>
+    <value>Low (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
     <value>Unlikely to affect VPN speed</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>Medium (50-89%)</value>
+    <value>Medium (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
     <value>What is server load?</value>

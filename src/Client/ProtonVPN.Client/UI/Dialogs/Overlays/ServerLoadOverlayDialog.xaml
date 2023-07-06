@@ -45,8 +45,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*" />
-                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="70*" />
+                <ColumnDefinition Width="20*" />
                 <ColumnDefinition Width="10*" />
             </Grid.ColumnDefinitions>
 
@@ -76,13 +76,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="0%" />
             <TextBlock Grid.Row="2"
-                       Grid.ColumnSpan="3"
-                       HorizontalAlignment="Center"
+                       Grid.Column="0"
+                       Margin="0,0,-12,0"
+                       HorizontalAlignment="Right"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="50%" />
+                       Text="75%" />
             <TextBlock Grid.Row="2"
                        Grid.Column="1"
-                       Margin="0,0,6,0"
+                       Margin="0,0,4,0"
                        HorizontalAlignment="Right"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="90%" />
@@ -95,7 +96,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <!--  Low Range  -->
-        <Grid ColumnSpacing="14"
+        <Grid Margin="6,6,6,0"
+              ColumnSpacing="14"
               RowSpacing="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -119,7 +121,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <!--  Medium Range  -->
-        <Grid ColumnSpacing="14"
+        <Grid Margin="6,6,6,0"
+              ColumnSpacing="14"
               RowSpacing="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -131,7 +134,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.RowDefinitions>
             <controls:ServerLoadControl Grid.Row="0"
                                         Grid.Column="0"
-                                        Value="0.65" />
+                                        Value="0.76" />
             <TextBlock Grid.Row="0"
                        Grid.Column="1"
                        Style="{StaticResource BodyStrongTextBlockStyle}"
@@ -143,7 +146,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <!--  High Range  -->
-        <Grid ColumnSpacing="14"
+        <Grid Margin="6,6,6,0"
+              ColumnSpacing="14"
               RowSpacing="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -155,7 +159,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.RowDefinitions>
             <controls:ServerLoadControl Grid.Row="0"
                                         Grid.Column="0"
-                                        Value="0.95" />
+                                        Value="0.91" />
             <TextBlock Grid.Row="0"
                        Grid.Column="1"
                        Style="{StaticResource BodyStrongTextBlockStyle}"

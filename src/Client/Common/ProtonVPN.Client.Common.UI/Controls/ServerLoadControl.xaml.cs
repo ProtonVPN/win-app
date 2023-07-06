@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.Common.UI.Controls;
 
 public sealed partial class ServerLoadControl : UserControl
 {
-    public const double MEDIUM_SERVER_LOAD_THRESHOLD = 0.5;
-    public const double HIGH_SERVER_LOAD_THRESHOLD = 0.9;
+    public const double MEDIUM_SERVER_LOAD_THRESHOLD = 0.75;
+    public const double HIGH_SERVER_LOAD_THRESHOLD = 0.90;
 
     public static readonly DependencyProperty ValueProperty =
         DependencyProperty.Register(nameof(Value), typeof(double), typeof(ServerLoadControl), new PropertyMetadata(default, OnValuePropertyChanged));
@@ -92,11 +92,11 @@ public sealed partial class ServerLoadControl : UserControl
     {
         switch (Value)
         {
-            case double when Value < FirstThreshold:
+            case double when Value <= FirstThreshold:
                 VisualStateManager.GoToState(this, "LowServerLoad", true);
                 break;
 
-            case double when Value < SecondThreshold:
+            case double when Value <= SecondThreshold:
                 VisualStateManager.GoToState(this, "MediumServerLoad", true);
                 break;
 

@@ -23,8 +23,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
-    <x:Double x:Key="ContentDialogMaxWidth">320.0</x:Double>
-
     <x:Double x:Key="ContentDialogWidth">352.0</x:Double>
     <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderNormColorBrush" />
     <Thickness x:Key="ContentDialogBorderWidth">1</Thickness>
@@ -37,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StaticResource x:Key="ContentDialogCommandSpaceBorderBrush" ResourceKey="BorderWeakColorBrush" />
     <Thickness x:Key="ContentDialogCommandSpaceBorderThickness">0,1,0,0</Thickness>
 
-    <Thickness x:Key="ContentDialogMargin">8,16</Thickness>
+    <Thickness x:Key="ContentDialogMargin">4,16</Thickness>
 
     <Thickness x:Key="ContentDialogTitleMargin">0,2,0,0</Thickness>
     <Thickness x:Key="ContentDialogContentMargin">0,-24,0,0</Thickness>
@@ -70,10 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Opacity="0.4" />
 
                             <Border x:Name="BackgroundElement"
-                                    MinWidth="{ThemeResource ContentDialogMinWidth}"
-                                    MinHeight="{ThemeResource ContentDialogMinHeight}"
-                                    MaxWidth="{ThemeResource ContentDialogMaxWidth}"
-                                    MaxHeight="{ThemeResource ContentDialogMaxHeight}"
+                                    Width="{StaticResource ContentDialogWidth}"
                                     Margin="{StaticResource ContentDialogMargin}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
@@ -401,10 +396,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Style="{StaticResource TransparentButtonStyle}" />
 
                             <Border x:Name="BackgroundElement"
-                                    MinWidth="{ThemeResource ContentDialogMinWidth}"
-                                    MinHeight="{ThemeResource ContentDialogMinHeight}"
-                                    MaxWidth="{ThemeResource ContentDialogMaxWidth}"
-                                    MaxHeight="{ThemeResource ContentDialogMaxHeight}"
+                                    Width="{StaticResource ContentDialogWidth}"
                                     Margin="{StaticResource ContentDialogMargin}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
