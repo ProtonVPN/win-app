@@ -319,7 +319,7 @@
     <Content Remove="Assets\Icons\PathIcons\BrandTwitter.cs" />
     <Content Remove="Assets\Icons\PathIcons\BrandVisa.cs" />
     <Content Remove="Assets\Icons\PathIcons\BrandWindows.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandWireguard.cs" />
+    <Content Remove="Assets\Icons\PathIcons\BrandWireGuard.cs" />
     <Content Remove="Assets\Icons\PathIcons\Briefcase.cs" />
     <Content Remove="Assets\Icons\PathIcons\Broom.cs" />
     <Content Remove="Assets\Icons\PathIcons\Bug.cs" />

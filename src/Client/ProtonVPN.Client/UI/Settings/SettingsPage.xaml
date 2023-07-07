@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Page.Resources>
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="Margin" Value="2,16,0,8" />
+            <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
         </Style>
     </Page.Resources>
 
@@ -45,7 +46,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Features')}" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="NetShieldSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.NetShieldViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield')}"
                                IsClickEnabled="True"
@@ -57,7 +59,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.NetShieldFeatureState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="KillSwitchSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.KillSwitchViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch')}"
                                IsClickEnabled="True"
@@ -69,7 +72,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.KillSwitchFeatureState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.PortForwardingViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
                                IsClickEnabled="True"
@@ -81,7 +85,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.PortForwardingFeatureState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.SplitTunnelingViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling')}"
                                IsClickEnabled="True"
@@ -96,7 +101,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
                                IsClickEnabled="True"
@@ -108,7 +114,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.ConnectionProtocolState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.VpnAcceleratorViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
                                IsClickEnabled="True"
@@ -120,7 +127,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AdvancedSettingsViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
                                IsClickEnabled="True"
@@ -133,7 +141,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_General')}" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="AutoStartupSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AutoStartupViewModel"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_Descripton')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup')}"
@@ -144,8 +153,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications_Description')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="NotificationsSettingsCard"
+                               Description="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:Bell />
@@ -155,7 +166,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               OnContent="{x:Null}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Language')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Language')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:Language />
@@ -165,7 +178,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Theme')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Theme')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:CircleHalfFilled />
@@ -176,8 +191,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess_Description')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="BetaAccessSettingsCard"
+                               Description="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:KeySkeleton />
@@ -187,8 +204,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               OnContent="{x:Null}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_General_HardwareAcceleration_Description')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="HardwareAccelerationSettingsCard"
+                               Description="{x:Bind ViewModel.Localizer.Get('Settings_General_HardwareAcceleration_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_HardwareAcceleration')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:Robot />
@@ -201,7 +220,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Support')}" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.OpenSupportCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="SupportCenterSettingsCard"
+                               Command="{x:Bind ViewModel.OpenSupportCommand, Mode=OneTime}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_SupportCenter')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -213,7 +233,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.ActionIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="ReportIssueSettingsCard"
+                               Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_ReportIssue')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -222,7 +243,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard.HeaderIcon>
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="DebugLogsSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DebugLogsViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs')}"
                                IsClickEnabled="True"
@@ -235,7 +257,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Improve')}" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+            <labs:SettingsCard AutomationProperties.AutomationId="CensorshipSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.CensorshipViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Improve_Censorship')}"
                                IsClickEnabled="True"
@@ -246,6 +269,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </labs:SettingsCard>
 
             <Button Margin="0,16,0,0"
+                    AutomationProperties.AutomationId="RestoreDefaultSettingsButton"
                     Command="{x:Bind ViewModel.RestoreDefaultSettingsCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Settings_RestoreDefault')}"
                     Style="{StaticResource SecondaryButtonStyle}" />
@@ -255,7 +279,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Style="{StaticResource CaptionTextBlockStyle}">
                     <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_AppVersion')}" /><Run Text=":" />
                     <Run Text="{x:Bind ViewModel.ClientVersionDescription}" />
-                    <Hyperlink>
+                    <Hyperlink AutomationProperties.AutomationId="AboutHyperlink">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_About')}" />
                     </Hyperlink>
                 </TextBlock>

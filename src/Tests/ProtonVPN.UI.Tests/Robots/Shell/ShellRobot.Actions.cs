@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.UI.Tests.TestsHelper;
+
 namespace ProtonVPN.UI.Tests.Robots.Shell;
 
 public partial class ShellRobot
@@ -24,24 +26,42 @@ public partial class ShellRobot
     public ShellRobot DoNavigateToHomePage()
     {
         HomeNavigationViewItem.Click();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
         return this;
     }
 
     public ShellRobot DoNavigateToCountriesPage()
     {
         CountriesNavigationViewItem.Click();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
         return this;
     }
 
     public ShellRobot DoNavigateToSettingsPage()
     {
         SettingsNavigationViewItem.Click();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
         return this;
     }
 
     public ShellRobot DoCollapseExpandSideBar()
     {
         NavigationHamburgerButton.Click();
+        return this;
+    }
+
+    public ShellRobot DoNavigateBackward()
+    {
+        GoBackButton.Click();
         return this;
     }
 }

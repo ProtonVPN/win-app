@@ -64,7 +64,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <RadioButton Grid.Row="0"
                              Grid.Column="0"
                              IsChecked="{x:Bind ViewModel.IsSmartProtocol, Mode=TwoWay}"
-                             Style="{StaticResource ProtocolRadioButtonStyle}" />
+                             Style="{StaticResource ProtocolRadioButtonStyle}" 
+                             AutomationProperties.AutomationId="SmartProtocolRadioButton"/>
 
                 <StackPanel Grid.Row="0"
                             Grid.Column="1"
@@ -100,7 +101,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <RadioButton Grid.Row="2"
                              Grid.Column="0"
                              IsChecked="{x:Bind ViewModel.IsWireGuardUdpProtocol, Mode=TwoWay}"
-                             Style="{StaticResource ProtocolRadioButtonStyle}" />
+                             Style="{StaticResource ProtocolRadioButtonStyle}"
+                             AutomationProperties.AutomationId="WireGuardProtocolRadioButton" />
 
                 <StackPanel Grid.Row="2"
                             Grid.Column="1"

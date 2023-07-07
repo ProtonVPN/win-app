@@ -42,7 +42,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Spacing="8">
             <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_SwitchHeader')}" />
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+            <labs:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
                                Content="{x:Bind ViewModel.CurrentProtocol}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
@@ -55,6 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </StackPanel>
 
         <HyperlinkButton HorizontalAlignment="Center"
+                         AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                          Content="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
                          NavigateUri="{x:Bind ViewModel.LearnMoreUri, Mode=OneTime}" />
     </StackPanel>

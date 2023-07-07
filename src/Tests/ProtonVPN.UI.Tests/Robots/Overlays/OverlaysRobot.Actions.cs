@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.Input;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Overlays;
 
@@ -28,7 +28,17 @@ public partial class OverlaysRobot
         CloseOverlayButton.Click();
 
         // Closing overlay triggers an animation. If actions are chained too quickly, the main window is not yet clickable.
-        this.Wait(500);
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public OverlaysRobot DoSwitchProtocol()
+    {
+        ProtocolSettingsCard.Click();
+
+        // Closing overlay triggers an animation. If actions are chained too quickly, the main window is not yet clickable.
+        this.Wait(TestConstants.DefaultAnimationDelay);
 
         return this;
     }

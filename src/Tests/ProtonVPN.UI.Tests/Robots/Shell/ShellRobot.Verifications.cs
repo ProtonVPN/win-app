@@ -59,9 +59,14 @@ public partial class ShellRobot
         return this;
     }
 
-    public ShellRobot VerifyCurrentPageName(string expectedPageName)
+    public ShellRobot VerifyCurrentPage(string expectedPageName, bool hasBackButton)
     {
         WaitUntilTextMatches(() => ActivePageTitleLabel, TestConstants.VeryShortTimeout, expectedPageName);
+
+        if(hasBackButton)
+        {
+            Assert.IsNotNull(GoBackButton);
+        }
 
         return this;
     }

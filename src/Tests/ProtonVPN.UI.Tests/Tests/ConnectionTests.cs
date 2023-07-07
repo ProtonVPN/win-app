@@ -17,152 +17,154 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Overlays;
 using ProtonVPN.UI.Tests.Robots.Shell;
+using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests
+namespace ProtonVPN.UI.Tests.Tests;
+
+[TestFixture]
+[Category("UI")]
+public class ConnectionTests : TestSession
 {
-    [TestFixture]
-    [Category("UI")]
-    public class ConnectionTests : TestSession
+    private const string COUNTRIES_PAGE_TITLE = "Countries";
+    private const string COUNTRY = "Lithuania";
+    private const string CITY = "Vilnius";
+    private const string COUNTRY_CODE = "LT";
+    private const int SERVER_NUMBER = 10;
+    private const string SERVER_LOAD_OVERLAY_TITLE = "What is server load?";
+    private const string LATENCY_OVERLAY_TITLE = "What is latency?";
+    private const string PROTOCOL_OVERLAY_TITLE = "What is a VPN protocol?";
+    private ShellRobot _shellRobot = new();
+    private HomeRobot _homeRobot = new();
+    private CountriesRobot _countriesRobot = new();
+    private OverlaysRobot _overlaysRobot = new();
+
+    [SetUp]
+    public void TestInitialize()
     {
-        private ShellRobot _shellRobot = new ShellRobot();
-        private HomeRobot _homeRobot = new HomeRobot();
-        private CountriesRobot _countriesRobot = new CountriesRobot();
-        private OverlaysRobot _overlaysRobot = new OverlaysRobot();
+        LaunchApp();
 
-        private const string PAGE = "Countries";
-        private const string COUNTRY = "Lithuania";
-        private const string CITY = "Vilnius";
-        private const string COUNTRY_CODE = "LT";
-        private const int SERVER_NUMBER = 10;
+        _homeRobot
+            .Wait(TestConstants.InitializationDelay)
+            .VerifyVpnStatusIsDisconnected()
+            .VerifyConnectionCardIsInInitalState();
+    }
 
-        [SetUp]
-        public void TestInitialize()
-        {
-            LaunchApp();
+    [Test]
+    public void Connect()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting()
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected();
+    }
 
-            _homeRobot
-                .VerifyVpnStatusIsDisconnected()
-                .VerifyConnectionCardIsInInitalState();
-        }
+    [Test]
+    public void ConnectAndDisconnect()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting()
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected()
+            .DoDisconnect()
+            .VerifyVpnStatusIsDisconnected()
+            .VerifyConnectionCardIsDisconnected();
+    }
 
-        [Test]
-        public void Connect()
-        {
-            _homeRobot
-                .DoConnect()
-                .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting()
-                .VerifyVpnStatusIsConnected()
-                .VerifyConnectionCardIsConnected();
-        }
+    [Test]
+    public void ConnectAndCancel()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting()
+            .Wait(500)
+            .DoCancelConnection()
+            .VerifyVpnStatusIsDisconnected()
+            .VerifyConnectionCardIsDisconnected();
+    }
 
-        [Test]
-        public void ConnectAndDisconnect()
-        {
-            _homeRobot
-                .DoConnect()
-                .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting()
-                .VerifyVpnStatusIsConnected()
-                .VerifyConnectionCardIsConnected()
-                .DoDisconnect()
-                .VerifyVpnStatusIsDisconnected()
-                .VerifyConnectionCardIsDisconnected();
-        }
+    [Test]
+    public void ConnectToSpecificCity()
+    {
+        _shellRobot
+            .DoNavigateToCountriesPage()
+            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
 
-        [Test]
-        public void ConnectAndCancel()
-        {
-            _homeRobot
-                .DoConnect()
-                .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting()
-                .Wait(500)
-                .DoCancelConnection()
-                .VerifyVpnStatusIsDisconnected()
-                .VerifyConnectionCardIsDisconnected();
-        }
+        _countriesRobot
+            .VerifyConnectionFormExists()
+            .DoConnectTo(COUNTRY_CODE, CITY);
 
-        [Test]
-        public void ConnectToSpecificCity()
-        {
-            _shellRobot
-                .DoNavigateToCountriesPage()
-                .VerifyCurrentPageName(PAGE);
+        _homeRobot
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY, CITY);
 
-            _countriesRobot
-                .VerifyConnectionFormExists()
-                .DoConnectTo(COUNTRY_CODE, CITY);
+        _shellRobot
+            .DoNavigateToCountriesPage()
+            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
 
-            _homeRobot
-                .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
-                .VerifyVpnStatusIsConnected()
-                .VerifyConnectionCardIsConnected(COUNTRY, CITY);
+        _countriesRobot
+            .VerifyConnectionFormExists()
+            .DoConnectTo(COUNTRY_CODE, CITY, SERVER_NUMBER);
 
-            _shellRobot
-                .DoNavigateToCountriesPage()
-                .VerifyCurrentPageName(PAGE);
+        _homeRobot
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY, CITY, SERVER_NUMBER)
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
+    }
 
-            _countriesRobot
-                .VerifyConnectionFormExists()
-                .DoConnectTo(COUNTRY_CODE, CITY, SERVER_NUMBER);
+    [Test]
+    public void OpenConnectionDetails()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting()
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected()
+            .DoOpenConnectionDetails()
+            .VerifyConnectionDetailsIsOpened();
 
-            _homeRobot
-                .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting(COUNTRY, CITY, SERVER_NUMBER)
-                .VerifyVpnStatusIsConnected()
-                .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
-        }
+        _homeRobot
+            .DoOpenLatencyOverlay();
 
-        [Test]
-        public void OpenConnectionDetails()
-        {
-            _homeRobot
-                .DoConnect()
-                .VerifyVpnStatusIsConnecting()
-                .VerifyConnectionCardIsConnecting()
-                .VerifyVpnStatusIsConnected()
-                .VerifyConnectionCardIsConnected()
-                .DoOpenConnectionDetails()
-                .VerifyConnectionDetailsIsOpened();
+        _overlaysRobot
+            .VerifyOverlayIsOpened(LATENCY_OVERLAY_TITLE, true)
+            .DoCloseOverlay();
 
-            _homeRobot
-                .DoOpenLatencyOverlay();
+        _homeRobot
+            .DoOpenServerLoadOverlay();
 
-            _overlaysRobot
-                .VerifyOverlayIsOpened()
-                .DoCloseOverlay();
+        _overlaysRobot
+            .VerifyOverlayIsOpened(SERVER_LOAD_OVERLAY_TITLE, true)
+            .DoCloseOverlay();
 
-            _homeRobot
-                .DoOpenServerLoadOverlay();
+        _homeRobot
+            .DoOpenProtocolOverlay();
 
-            _overlaysRobot
-                .VerifyOverlayIsOpened()
-                .DoCloseOverlay();
+        _overlaysRobot
+            .VerifyOverlayIsOpened(PROTOCOL_OVERLAY_TITLE, true)
+            .DoCloseOverlay();
 
-            _homeRobot
-                .DoOpenProtocolOverlay();
+        _homeRobot
+            .DoCloseConnectionDetails();
+    }
 
-            _overlaysRobot
-                .VerifyOverlayIsOpened()
-                .DoCloseOverlay();
-
-            _homeRobot
-                .DoCloseConnectionDetails();
-        }
-
-        [TearDown]
-        public void TestCleanup()
-        {
-            Cleanup();
-        }
+    [TearDown]
+    public void TestCleanup()
+    {
+        Cleanup();
     }
 }

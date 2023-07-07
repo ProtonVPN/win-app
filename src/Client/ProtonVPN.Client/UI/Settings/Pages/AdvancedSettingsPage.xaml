@@ -37,6 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAlternativeRoutingEnabled, Mode=TwoWay}"
                               OffContent="{x:Null}"
@@ -45,6 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsLanConnectionsEnabled, Mode=TwoWay}"
                               OffContent="{x:Null}"
@@ -53,6 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NonStandardPorts_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NonStandardPorts')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsNonStandardPortsEnabled, Mode=TwoWay}"
                               OffContent="{x:Null}"
@@ -64,12 +67,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
                                IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}" >
+                               Style="{StaticResource DefaultSettingsCardStyle}">
                 <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
             </labs:SettingsCard>
 
             <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LeakProtection')}"
+                               IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsLeakProtectionEnabled, Mode=TwoWay}"
                               OffContent="{x:Null}"

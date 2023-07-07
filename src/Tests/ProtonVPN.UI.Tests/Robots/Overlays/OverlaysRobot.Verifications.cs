@@ -18,14 +18,36 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FlaUI.Core.AutomationElements;
 
 namespace ProtonVPN.UI.Tests.Robots.Overlays;
 
 public partial class OverlaysRobot
 {
-    public OverlaysRobot VerifyOverlayIsOpened()
+    public OverlaysRobot VerifyOverlayIsOpened(string expectedTitle, bool hasHyperlink)
     {
         Assert.IsNotNull(CloseOverlayButton);
+
+        Window overlay = OverlayWindow;
+
+        Assert.IsNotNull(overlay);
+        Assert.AreEqual(expectedTitle, overlay.Name);
+
+        if(hasHyperlink)
+        {
+            Assert.IsNotNull(LearnMoreHyperlink);
+        }
+
+        return this;
+    }
+
+    public OverlaysRobot VerifyProtocolOverlaySettingsCard(string expectedProtocol)
+    {
+        Button settingsCard = ProtocolSettingsCard;
+
+        Assert.IsNotNull(settingsCard);
+
+        Assert.IsNotNull(settingsCard.FindFirstChild(cf => cf.ByText(expectedProtocol)));
 
         return this;
     }

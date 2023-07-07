@@ -64,6 +64,6 @@ public class ConnectionDetails
         
         ServerLoad = 0.4;
         ServerLatency = TimeSpan.FromMilliseconds(46);
-        Protocol = "Wireguard";
+        Protocol = "WireGuard";
     }
 }

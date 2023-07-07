@@ -40,22 +40,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       Margin="0,0,-8,0"
                       Padding="0,0,8,0"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{x:Bind ViewModel.RecentConnections}">
+            <ItemsControl IsTabStop="False"
+                          ItemsSource="{x:Bind ViewModel.RecentConnections}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="recents:RecentItemViewModel">
                         <controls:DualCommandsRowControl Padding="12,0"
+                                                         IsRowContentDisabled="{x:Bind IsServerUnderMaintenance, Mode=OneWay}"
                                                          PrimaryCommand="{x:Bind ToggleConnectionCommand}"
                                                          PrimaryCommandText="{x:Bind PrimaryCommandText, Mode=OneWay}"
-                                                         SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip, Mode=OneWay}"
-                                                         IsRowContentDisabled="{x:Bind IsServerUnderMaintenance,Mode=OneWay}">
+                                                         SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip, Mode=OneWay}">
 
                             <controls:DualCommandsRowControl.SecondaryCommandIcon>
                                 <pathicons:ThreeDotsVertical />
                             </controls:DualCommandsRowControl.SecondaryCommandIcon>
 
                             <controls:DualCommandsRowControl.SecondaryCommandFlyout>
-                                <MenuFlyout Placement="BottomEdgeAlignedRight" 
-                                            Closing="OnActionsMenuFlyoutClosing">
+                                <MenuFlyout Closing="OnActionsMenuFlyoutClosing"
+                                            Placement="BottomEdgeAlignedRight">
                                     <MenuFlyoutItem Command="{x:Bind PinCommand}"
                                                     Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
                                                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay}">
@@ -147,9 +148,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </StackPanel>
                                 </StackPanel>
 
-                                <pathicons:Wrench Foreground="{StaticResource TextWeakColorBrush}" 
-                                                  Visibility="{x:Bind IsServerUnderMaintenance, Mode=OneWay}"
-                                                  Grid.Column="4"/>
+                                <pathicons:Wrench Grid.Column="4"
+                                                  Foreground="{StaticResource TextWeakColorBrush}"
+                                                  Visibility="{x:Bind IsServerUnderMaintenance, Mode=OneWay}" />
 
                                 <icons:ActiveDot Grid.Column="5"
                                                  Width="16"

@@ -20,22 +20,21 @@
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests
-{
-    [SetUpFixture]
-    public class SetUp : TestSession
-    {
-        [OneTimeSetUp]
-        public void TestInitialize()
-        {
-            KillProtonVpnProcess();
-            TestsRecorder.StartVideoCapture();
-        }
+namespace ProtonVPN.UI.Tests.Tests;
 
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
-        {
-            TestsRecorder.StopRecording();
-        }
+[SetUpFixture]
+public class SetUp : TestSession
+{
+    [OneTimeSetUp]
+    public void TestInitialize()
+    {
+        KillProtonVpnProcess();
+        TestsRecorder.StartVideoCapture();
+    }
+
+    [OneTimeTearDown]
+    public void TestFinalTearDown()
+    {
+        TestsRecorder.StopRecording();
     }
 }

@@ -126,6 +126,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Border x:Name="NetShieldStats"
                         Padding="8"
                         HorizontalAlignment="Center"
+                        AutomationProperties.LandmarkType="Custom"
+                        AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_NetShield_Landmark')}"
                         Background="{StaticResource VpnStatusDetailsBackgroundBrush}"
                         CornerRadius="12"
                         Opacity="0"

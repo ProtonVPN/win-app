@@ -18,7 +18,9 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Shell;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests;
 
@@ -26,7 +28,10 @@ namespace ProtonVPN.UI.Tests.Tests;
 [Category("UI")]
 public class NavigationTests : TestSession
 {
-    private ShellRobot _shellRobot = new ShellRobot();
+    private const string COUNTRIES_PAGE_TITLE = "Countries";
+    private const string SETTINGS_PAGE_TITLE = "Settings";
+
+    private ShellRobot _shellRobot = new();
 
     [SetUp]
     public void TestInitialize()
@@ -34,6 +39,7 @@ public class NavigationTests : TestSession
         LaunchApp();
 
         _shellRobot
+            .Wait(TestConstants.InitializationDelay)
             .VerifyTitleBar()
             .VerifyNavigationView()
             .VerifyAccountButton()
@@ -55,9 +61,9 @@ public class NavigationTests : TestSession
     {
         _shellRobot
             .DoNavigateToCountriesPage()
-            .VerifyCurrentPageName("Countries")
+            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false)
             .DoNavigateToSettingsPage()
-            .VerifyCurrentPageName("Settings")
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false)
             .DoNavigateToHomePage();
     }
 
