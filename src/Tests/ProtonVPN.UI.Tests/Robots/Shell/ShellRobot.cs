@@ -42,5 +42,7 @@ public partial class ShellRobot : UIActions
 
     protected Button AccountButton => ElementByAutomationId("AccountButton").AsButton();
 
-    protected Label ActivePageTitleLabel => NavigationView.FindFirstChild(c => c.ByControlType(ControlType.Text)).AsLabel();
+    protected Label ActivePageTitleLabel => NavigationView.FindFirstChild(c => c.ByControlType(ControlType.Group)).FindFirstChild(c => c.ByControlType(ControlType.Text)).AsLabel();
+
+    protected Button GoBackButton => ElementByAutomationId("GoBackButton").AsButton();
 }

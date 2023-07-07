@@ -376,6 +376,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="OverlayContentDialogStyle" TargetType="ContentDialog" BasedOn="{StaticResource MessageContentDialogStyle}">
+        <Setter Property="AutomationProperties.LandmarkType" Value="Custom"/>
+        <Setter Property="AutomationProperties.LocalizedLandmarkType" Value="{Binding Title, RelativeSource={RelativeSource Mode=Self}}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentDialog">
@@ -439,6 +441,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         FontSize="{StaticResource SubtitleFontSize}"
                                                         FontWeight="{StaticResource SubtitleFontWeight}"
                                                         Foreground="{TemplateBinding Foreground}"
+                                                        AutomationProperties.HeadingLevel="Level1"
                                                         IsTabStop="False">
                                             <ContentControl.Template>
                                                 <ControlTemplate TargetType="ContentControl">

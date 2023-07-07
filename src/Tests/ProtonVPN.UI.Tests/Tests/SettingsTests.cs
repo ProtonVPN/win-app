@@ -1,0 +1,121 @@
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.Robots.Home;
+using ProtonVPN.UI.Tests.Robots.Overlays;
+using ProtonVPN.UI.Tests.Robots.Settings;
+using ProtonVPN.UI.Tests.Robots.Shell;
+using ProtonVPN.UI.Tests.TestsHelper;
+
+namespace ProtonVPN.UI.Tests.Tests;
+
+[TestFixture]
+[Category("UI")]
+public class SettingsTests : TestSession
+{
+    private const string SETTINGS_PAGE_TITLE = "Settings";
+    private const string PROTOCOL_PAGE_TITLE = "Protocol";
+
+    private const string SMART_PROTOCOL = "Smart";
+    private const string WIREGUARD_PROTOCOL = "WireGuard";
+
+    private const string PROTOCOL_OVERLAY_TITLE = "What is a VPN protocol?";
+
+    private ShellRobot _shellRobot = new();
+    private HomeRobot _homeRobot = new();
+    private OverlaysRobot _overlaysRobot = new();
+    private SettingsRobot _settingsRobot = new();
+
+    [SetUp]
+    public void TestInitialize()
+    {
+        LaunchApp();
+
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay)
+            .DoNavigateToSettingsPage()
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
+
+        _settingsRobot
+            .DoRestoreSettings();
+
+        _shellRobot
+            .DoNavigateToHomePage();
+    }
+
+    [Test]
+    public void ChangeProtocolSettings()
+    {
+        _shellRobot
+            .DoNavigateToSettingsPage()
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
+
+        _settingsRobot
+            .VerifyProtocolSettingsCard(SMART_PROTOCOL)
+            .DoNavigateToProtocolSettingsPage()
+            .VerifyProtocolSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true);
+
+        _settingsRobot
+            .VerifySmartProtocolIsChecked()
+            .DoSelectWireGuardProtocol()
+            .VerifyWireGuardProtocolIsChecked();
+
+        _shellRobot
+            .DoNavigateBackward()
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
+
+        _settingsRobot
+            .VerifyProtocolSettingsCard(WIREGUARD_PROTOCOL);
+    }
+
+    [Test]
+    public void NavigateToProtocolFromOverlay()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting()
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected()
+            .DoOpenConnectionDetails()
+            .VerifyConnectionDetailsIsOpened();
+
+        _homeRobot
+            .DoOpenProtocolOverlay();
+
+        _overlaysRobot
+            .VerifyOverlayIsOpened(PROTOCOL_OVERLAY_TITLE, true)
+            .VerifyProtocolOverlaySettingsCard(SMART_PROTOCOL)
+            .DoSwitchProtocol();
+
+        _shellRobot
+            .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true);
+    }
+
+    [TearDown]
+    public void TestCleanup()
+    {
+        Cleanup();
+    }
+}

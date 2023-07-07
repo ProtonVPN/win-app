@@ -61,6 +61,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    PanePlacement="Right">
             <SplitView.Pane>
                 <Grid Margin="16,20"
+                      AutomationProperties.LandmarkType="Custom"
+                      AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Landmark')}"
                       RowSpacing="16"
                       TabIndex="5">
                     <Grid.RowDefinitions>
@@ -95,12 +97,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Grid Grid.Row="1"
                           Grid.Column="0"
                           Grid.ColumnSpan="2">
-                        
+
                         <StackPanel HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Orientation="Vertical"
-                                    Visibility="{x:Bind ViewModel.IsConnecting}"
-                                    Spacing="8">
+                                    Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsConnecting}">
                             <ProgressRing Width="24"
                                           Height="24"
                                           HorizontalAlignment="Center"
@@ -130,10 +132,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Grid Grid.Row="0">
 
                         <map:MapComponent AutomationProperties.AutomationId="MapComponent"
+                                          AutomationProperties.LandmarkType="Custom"
+                                          AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Map_Landmark')}"
                                           TabIndex="2" />
 
                         <status:VpnStatusComponent Grid.Row="0"
                                                    AutomationProperties.AutomationId="VpnStatusComponent"
+                                                   AutomationProperties.LandmarkType="Custom"
+                                                   AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_VpnStatus_Landmark')}"
                                                    TabIndex="1" />
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
@@ -144,11 +150,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <connectionCard:ConnectionCardComponent Grid.Row="1"
                                                             MaxWidth="{StaticResource MaximumContentWidth}"
                                                             AutomationProperties.AutomationId="ConnectionCardComponent"
+                                                            AutomationProperties.LandmarkType="Custom"
+                                                            AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_Landmark')}"
                                                             TabIndex="3" />
 
                     <recents:RecentsComponent Grid.Row="2"
                                               MaxWidth="{StaticResource MaximumContentWidth}"
                                               AutomationProperties.AutomationId="RecentsComponent"
+                                              AutomationProperties.LandmarkType="Custom"
+                                              AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Recents_Landmark')}"
                                               TabIndex="4" />
                 </Grid>
             </controls:PageContentControl>

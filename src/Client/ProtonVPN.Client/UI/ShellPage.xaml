@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
-      xmlns:helpers="using:ProtonVPN.Client.Helpers" 
+      xmlns:helpers="using:ProtonVPN.Client.Helpers"
       DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
       Loaded="OnLoaded">
 
@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <x:Double x:Key="TitleBarHeight">48.0</x:Double>
         <Thickness x:Key="TitleBarMargin">48,0,128,0</Thickness>
-        
+
         <Thickness x:Key="NavigationViewHeaderMargin">16,16,16,0</Thickness>
         <Thickness x:Key="NavigationViewContentMargin">0,45,0,0</Thickness>
         <Thickness x:Key="NavigationViewItemContentPresenterMargin">4,-1,8,-1</Thickness>
@@ -64,14 +64,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        AutomationProperties.AutomationId="ApplicationTitleLabel"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        TextWrapping="NoWrap" />
-        </Grid>       
-        
+        </Grid>
+
         <NavigationView x:Name="NavigationViewControl"
                         AlwaysShowHeader="False"
                         AutomationProperties.AutomationId="NavigationView"
+                        AutomationProperties.LandmarkType="Navigation"
                         Canvas.ZIndex="0"
                         CompactModeThresholdWidth="408"
                         CompactPaneLength="48"
+                        DisplayModeChanged="OnNavigationViewDisplayModeChanged"
                         ExpandedModeThresholdWidth="520"
                         IsBackButtonVisible="Collapsed"
                         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
@@ -79,15 +81,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         IsSettingsVisible="False"
                         MenuItemsSource="{x:Bind ViewModel.NavigationPages}"
                         OpenPaneLength="160"
-                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}"
-                        DisplayModeChanged="OnNavigationViewDisplayModeChanged">
+                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}">
 
             <NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
                     <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
+                                        AutomationProperties.AutomationId="NavigationViewItem"
                                         Content="{x:Bind Title, Mode=OneWay}"
-                                        Icon="{x:Bind Icon}"
-                                        AutomationProperties.AutomationId="NavigationViewItem" />
+                                        Icon="{x:Bind Icon}" />
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
 
@@ -95,11 +96,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Button HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         AutomationProperties.AutomationId="AccountButton"
+                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Style="{StaticResource SidebarButtonStyle}"
-                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}"
-                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}">
+                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}">
                     <Button.Flyout>
                         <Flyout>
                             <StackPanel Orientation="Vertical"
@@ -115,7 +116,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Button>
             </NavigationView.PaneFooter>
 
-            <Frame x:Name="NavigationFrame"/>
+            <Frame x:Name="NavigationFrame" />
         </NavigationView>
     </Grid>
 </Page>

@@ -19,27 +19,29 @@
 
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Robots.Overlays;
+namespace ProtonVPN.UI.Tests.Robots.Settings;
 
-public partial class OverlaysRobot
+public partial class SettingsRobot
 {
-    public OverlaysRobot DoCloseOverlay()
+    public SettingsRobot DoNavigateToProtocolSettingsPage()
     {
-        CloseOverlayButton.Click();
+        ProtocolSettingsCard.Click();
 
-        // Closing overlay triggers an animation. If actions are chained too quickly, the main window is not yet clickable.
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
         this.Wait(TestConstants.DefaultAnimationDelay);
 
         return this;
     }
 
-    public OverlaysRobot DoSwitchProtocol()
+    public SettingsRobot DoSelectWireGuardProtocol()
     {
-        ProtocolSettingsCard.Click();
+        WireGuardProtocolRadioButton.Click();
+        return this;
+    }
 
-        // Closing overlay triggers an animation. If actions are chained too quickly, the main window is not yet clickable.
-        this.Wait(TestConstants.DefaultAnimationDelay);
-
+    public SettingsRobot DoRestoreSettings()
+    {
+        RestoreDefaultSettingsButton.Invoke();
         return this;
     }
 }

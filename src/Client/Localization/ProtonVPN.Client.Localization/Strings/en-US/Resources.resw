@@ -1334,6 +1334,10 @@
   <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
     <value>Recommended</value>
   </data>
+  <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
+    <value>Connection card</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
   <data name="Home_ConnectionDetails_City" xml:space="preserve">
     <value>City</value>
   </data>
@@ -1356,6 +1360,10 @@
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
     <value>Hide user IP address</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
+    <value>Connection details</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
     <value>Latency</value>
@@ -1394,6 +1402,10 @@
   <data name="Home_Help_Title" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="Home_Map_Landmark" xml:space="preserve">
+    <value>Map</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
   <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
     <value>Ads\nblocked</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
@@ -1402,12 +1414,20 @@
     <value>Data\nsaved</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
+  <data name="Home_NetShield_Landmark" xml:space="preserve">
+    <value>NetShield statistics</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
   <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
     <value>Trackers\nstopped</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Home_Recents_Landmark" xml:space="preserve">
+    <value>Recent connections</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin" xml:space="preserve">
     <value>Pin</value>
@@ -1423,6 +1443,10 @@
   </data>
   <data name="Home_Recents_Unpin" xml:space="preserve">
     <value>Unpin</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark" xml:space="preserve">
+    <value>VPN status</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
     <value>Protecting your digital identity</value>

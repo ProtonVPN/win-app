@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
+using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 
 namespace ProtonVPN.UI.Tests.Robots.Overlays;
@@ -24,4 +26,10 @@ namespace ProtonVPN.UI.Tests.Robots.Overlays;
 public partial class OverlaysRobot : UIActions
 {
     protected Button CloseOverlayButton => ElementByAutomationId("CloseContentDialogButton").AsButton();
+
+    protected Window OverlayWindow => Window.FindAllDescendants(cf => cf.ByClassName("Popup")).FirstOrDefault(e => e.Name != "Popup").AsWindow();
+
+    protected AutomationElement LearnMoreHyperlink => ElementByAutomationId("LearnMoreHyperlinkButton");
+
+    protected Button ProtocolSettingsCard => ElementByAutomationId("ProtocolSettingsCard").AsButton();
 }

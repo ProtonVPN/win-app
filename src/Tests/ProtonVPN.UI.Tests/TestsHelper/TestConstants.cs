@@ -20,21 +20,21 @@
 using System;
 using System.IO;
 
-namespace ProtonVPN.UI.Tests.TestsHelper
+namespace ProtonVPN.UI.Tests.TestsHelper;
+
+public static class TestConstants
 {
-    public static class TestConstants
-    {
-        public static TimeSpan DefaultAnimationDelay => TimeSpan.FromMilliseconds(100);
-        public static TimeSpan VeryShortTimeout => TimeSpan.FromSeconds(5);
-        public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
-        public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
-        public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
-        public static string ProfileName => "@AutomationProfile";
-        public static string AppFolderPath => @"C:\Program Files\Proton\VPN";
-        public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
-        public static string MapCountry => "CA";
-        public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
-        public static string AppLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs\app-logs.txt");
-        public static string ServiceLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"ProtonVPN\Logs\service-logs.txt");
-    }
+    public static TimeSpan InitializationDelay => TimeSpan.FromMilliseconds(500);
+    public static TimeSpan DefaultAnimationDelay => TimeSpan.FromMilliseconds(200);
+    public static TimeSpan VeryShortTimeout => TimeSpan.FromSeconds(5);
+    public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
+    public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
+    public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
+    public static string ProfileName => "@AutomationProfile";
+    public static string AppFolderPath => @"C:\Program Files\Proton\VPN";
+    public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
+    public static string MapCountry => "CA";
+    public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
+    public static string AppLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs\app-logs.txt");
+    public static string ServiceLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"ProtonVPN\Logs\service-logs.txt");
 }
