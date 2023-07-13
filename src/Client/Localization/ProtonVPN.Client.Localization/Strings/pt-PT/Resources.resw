@@ -1625,4 +1625,70 @@
   <data name="Settings_General_Notifications_Description" xml:space="preserve">
     <value>Seja notificado de alterações de estado na aplicação Proton VPN</value>
   </data>
+  <data name="Account_VpnPlan_Free" xml:space="preserve">
+    <value>Proton VPN Gratuito</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
+    <value>Cartão da conexão</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
+    <value>Detalhes da conexão</value>
+  </data>
+  <data name="Home_Map_Landmark" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="Home_NetShield_Landmark" xml:space="preserve">
+    <value>Estatísticas NetShield</value>
+  </data>
+  <data name="Home_Recents_Landmark" xml:space="preserve">
+    <value>Conexões recentes</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark" xml:space="preserve">
+    <value>Estado da VPN</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
+    <value>Código incorrecto. Por favor tente novamente.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
+    <value>Credenciais incorrectas. Por favor inicie a sessão novamente.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
+    <value>A autenticação de dois factores falhou. Por favor inicie a sessão novamente.</value>
+  </data>
+  <data name="Login_Form_CreateAccount" xml:space="preserve">
+    <value>Criar conta</value>
+  </data>
+  <data name="Login_Form_ForgotUsername" xml:space="preserve">
+    <value>Esqueci o nome de utilizador</value>
+  </data>
+  <data name="Login_Form_Help" xml:space="preserve">
+    <value>Ajuda</value>
+  </data>
+  <data name="Login_Form_Password" xml:space="preserve">
+    <value>Palavra-passe</value>
+  </data>
+  <data name="Login_Form_ReportAnIssue" xml:space="preserve">
+    <value>Reportar um problema</value>
+  </data>
+  <data name="Login_Form_ResetPassword" xml:space="preserve">
+    <value>Recuperar palavra-passe</value>
+  </data>
+  <data name="Login_Form_SignIn" xml:space="preserve">
+    <value>Iniciar sessão</value>
+  </data>
+  <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
+    <value>Problemas em iniciar a sessão</value>
+  </data>
+  <data name="Login_Form_Username" xml:space="preserve">
+    <value>Email ou nome de utilizador</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
+    <value>Autenticar</value>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
+    <value>Introduza o código da sua aplicação de autenticação</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title" xml:space="preserve">
+    <value>Autenticação de dois factores</value>
+  </data>
 </root>
