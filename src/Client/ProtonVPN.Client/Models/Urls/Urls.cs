@@ -22,4 +22,8 @@ namespace ProtonVPN.Client.Models.Urls;
 public class Urls : IUrls
 {
     public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol/";
+    public string CreateAccount => "https://account.protonvpn.com/signup";
+    public string ResetPassword => "https://account.protonvpn.com/reset-password";
+    public string ForgotUsername => "https://account.protonvpn.com/forgot-username";
+    public string TroubleSigningIn => "https://protonvpn.com/support/login-problems";
 }

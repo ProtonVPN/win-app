@@ -44,6 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Common.Installers\ProtonVPN.Common.Installers.csproj" />
+    <ProjectReference Include="..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
     <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
     <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
     <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />

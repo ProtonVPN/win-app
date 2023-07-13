@@ -25,11 +25,16 @@ namespace ProtonVPN.Api.Contracts.Auth
     public class AuthResponse : BaseResponse
     {
         public string AccessToken { get; set; }
+
         public string Scope { get; set; }
+
         [JsonProperty("UID")]
-        public string Uid { get; set; }
+        public string UniqueSessionId { get; set; }
+
         public string RefreshToken { get; set; }
+
         public string ServerProof { get; set; }
+
         [JsonProperty(PropertyName = "2FA")]
         public TwoFactorAuthResponse TwoFactor { get; set; }
     }

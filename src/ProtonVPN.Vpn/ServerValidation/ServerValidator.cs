@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 

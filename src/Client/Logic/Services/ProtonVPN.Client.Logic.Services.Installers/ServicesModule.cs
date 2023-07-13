@@ -20,16 +20,15 @@
 using Autofac;
 using ProtonVPN.Client.Logic.Services.Contracts;
 
-namespace ProtonVPN.Client.Logic.Services.Installers
+namespace ProtonVPN.Client.Logic.Services.Installers;
+
+public class ServicesModule : Module
 {
-    public class ServicesModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            //builder.RegisterType<ProcessCommunicationStarter>().As<IProcessCommunicationStarter>().SingleInstance();
-            //builder.RegisterType<ServiceCaller>().As<IServiceCaller>().SingleInstance();
-            builder.RegisterType<ProcessCommunicationStarterMock>().As<IProcessCommunicationStarter>().SingleInstance();
-            builder.RegisterType<ServiceCallerMock>().As<IServiceCaller>().SingleInstance();
-        }
+        // builder.RegisterType<ProcessCommunicationStarter>().As<IProcessCommunicationStarter>().SingleInstance();
+        // builder.RegisterType<ServiceCaller>().As<IServiceCaller>().SingleInstance();
+        builder.RegisterType<ProcessCommunicationStarterMock>().As<IProcessCommunicationStarter>().SingleInstance();
+        builder.RegisterType<ServiceCallerMock>().As<IServiceCaller>().SingleInstance();
     }
 }

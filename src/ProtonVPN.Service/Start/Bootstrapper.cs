@@ -26,6 +26,7 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Crypto.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
@@ -65,6 +66,7 @@ namespace ProtonVPN.Service.Start
 
             ContainerBuilder builder = new();
             builder.RegisterLoggerConfiguration(c => c.ServiceLogDefaultFullFilePath)
+                   .RegisterModule<CryptoModule>()
                    .RegisterModule<ServiceModule>()
                    .RegisterModule<ApiModule>()
                    .RegisterAssemblyModule<LoggingModule>()
@@ -78,7 +80,7 @@ namespace ProtonVPN.Service.Start
             ILogger logger = Resolve<ILogger>();
 
             logger.Info<AppServiceStartLog>(
-                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
+                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} =");
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 

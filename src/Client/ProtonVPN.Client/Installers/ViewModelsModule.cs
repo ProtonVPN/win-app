@@ -31,6 +31,8 @@ using ProtonVPN.Client.UI.Home.Help;
 using ProtonVPN.Client.UI.Home.Map;
 using ProtonVPN.Client.UI.Home.Recents;
 using ProtonVPN.Client.UI.Home.Status;
+using ProtonVPN.Client.UI.Login;
+using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
@@ -69,6 +71,9 @@ public class ViewModelsModule : Module
         RegisterViewModel<KillSwitchViewModel>(builder);
         RegisterViewModel<NetShieldViewModel>(builder);
         RegisterViewModel<CountryViewModel>(builder);
+        RegisterViewModel<LoginViewModel>(builder);
+        RegisterViewModel<LoginFormViewModel>(builder);
+        RegisterViewModel<TwoFactorFormViewModel>(builder);
 
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);

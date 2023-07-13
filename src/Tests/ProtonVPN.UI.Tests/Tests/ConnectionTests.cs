@@ -21,6 +21,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
+using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.Robots.Overlays;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -43,14 +44,19 @@ public class ConnectionTests : TestSession
     private HomeRobot _homeRobot = new();
     private CountriesRobot _countriesRobot = new();
     private OverlaysRobot _overlaysRobot = new();
+    private LoginRobot _loginRobot = new();
 
     [SetUp]
     public void TestInitialize()
     {
         LaunchApp();
 
-        _homeRobot
+        _loginRobot
             .Wait(TestConstants.InitializationDelay)
+            .DoLogin();
+
+        _homeRobot
+            .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
     }

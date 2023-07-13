@@ -34,7 +34,7 @@
     <PackageVersion Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.4" />
     <PackageVersion Include="Microsoft.Windows.Compatibility" Version="7.0.1" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />

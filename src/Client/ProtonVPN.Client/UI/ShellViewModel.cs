@@ -26,8 +26,10 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
@@ -36,14 +38,16 @@ using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI;
 
-public partial class ShellViewModel : ViewModelBase
+public partial class ShellViewModel : ViewModelBase, IEventMessageReceiver<LoginSuccessMessage>
 {
     [ObservableProperty]
     private bool _isBackEnabled;
 
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
+
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly ISettings _settings;
 
     public ShellViewModel(IPageNavigator pageNavigator,
         IViewNavigator viewNavigator,
@@ -52,10 +56,12 @@ public partial class ShellViewModel : ViewModelBase
         HomeViewModel homeViewModel,
         CountriesViewModel countriesViewModel,
         SettingsViewModel settingsViewModel,
+        ISettings settings,
         Lazy<GalleryViewModel> galleryViewModel)
         : base(localizationProvider)
     {
         _eventMessageSender = eventMessageSender;
+        _settings = settings;
 
         PageNavigator = pageNavigator;
         PageNavigator.Navigated += OnNavigated;
@@ -80,9 +86,22 @@ public partial class ShellViewModel : ViewModelBase
 
     public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
 
+    public string VpnPlan => string.IsNullOrEmpty(_settings.VpnPlanTitle)
+        ? Localizer.Get("Account_VpnPlan_Free")
+        : _settings.VpnPlanTitle;
+
+    public string Username => _settings.Username;
+
+    public void Receive(LoginSuccessMessage message)
+    {
+        OnPropertyChanged(nameof(Username));
+        OnPropertyChanged(nameof(VpnPlan));
+    }
+
     protected override void OnLanguageChanged()
     {
         NavigationPages.ForEach(p => p.InvalidateTitle());
+        OnPropertyChanged(nameof(VpnPlan));
     }
 
     private void OnNavigated(object sender, NavigationEventArgs e)

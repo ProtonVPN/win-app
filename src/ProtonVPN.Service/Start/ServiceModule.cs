@@ -19,7 +19,6 @@
 
 using System;
 using Autofac;
-using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.OS.Net;
@@ -35,7 +34,6 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Service.Installers;
-using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.ProcessCommunication;
@@ -127,9 +125,7 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<NetworkAdaptersLoader>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkAdapterManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpClients>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ApiAppVersion>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
 
             RegisterModules(builder);

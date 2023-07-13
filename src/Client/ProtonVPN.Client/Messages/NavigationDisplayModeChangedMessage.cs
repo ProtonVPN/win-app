@@ -20,13 +20,12 @@
 using CommunityToolkit.Mvvm.Messaging.Messages;
 using Microsoft.UI.Xaml.Controls;
 
-namespace ProtonVPN.Client.Messages
+namespace ProtonVPN.Client.Messages;
+
+public class NavigationDisplayModeChangedMessage : ValueChangedMessage<NavigationViewDisplayMode>
 {
-    public class NavigationDisplayModeChangedMessage : ValueChangedMessage<NavigationViewDisplayMode>
+    public NavigationDisplayModeChangedMessage(NavigationViewDisplayMode value) 
+        : base(value)
     {
-        public NavigationDisplayModeChangedMessage(NavigationViewDisplayMode value) 
-            : base(value)
-        {
-        }
     }
 }

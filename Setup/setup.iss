@@ -31,6 +31,8 @@ OutputBaseFilename=ProtonVPN_{#VersionFolder}
 WizardStyle=modern
 Compression=lzma2
 SolidCompression=yes
+LZMAUseSeparateProcess=yes
+LZMANumBlockThreads=6
 OutputDir=Installers
 ArchitecturesInstallIn64BitMode=x64
 SetupIconFile=Images\protonvpn.ico
@@ -87,6 +89,9 @@ Source: "..\publish\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFo
 
 Source: "..\publish\Assets\*.ico"; DestDir: "{app}\{#VersionFolder}\Assets";
 Source: "..\publish\Assets\Illustrations\*.svg"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
+
+Source: "..\publish\Assets\Illustrations\Dark\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Dark";
+Source: "..\publish\Assets\Illustrations\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Light";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"

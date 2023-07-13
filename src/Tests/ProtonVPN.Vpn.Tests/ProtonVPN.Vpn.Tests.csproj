@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
   </ItemGroup>
   <ItemGroup>

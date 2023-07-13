@@ -25,142 +25,138 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Api.Handlers
+namespace ProtonVPN.Api.Handlers;
+
+/// <summary>
+/// Transparently refreshes access token in case Http request is not authorized and
+/// retries Http request with new access token.
+/// </summary>
+public class UnauthorizedResponseHandler : DelegatingHandler
 {
-    /// <summary>
-    /// Transparently refreshes access token in case Http request is not authorized and
-    /// retries Http request with new access token.
-    /// </summary>
-    public class UnauthorizedResponseHandler : DelegatingHandler
+    private readonly ITokenClient _tokenClient;
+    private readonly ISettings _settings;
+    private readonly ILogger _logger;
+    private volatile Task<RefreshTokenStatus> _refreshTask = Task.FromResult(RefreshTokenStatus.Success);
+
+    public UnauthorizedResponseHandler(
+        ITokenClient tokenClient,
+        ISettings settings,
+        ILogger logger)
     {
-        private readonly ITokenClient _tokenClient;
-        private readonly IAppSettings _appSettings;
-        private readonly IUserStorage _userStorage;
+        _tokenClient = tokenClient;
+        _settings = settings;
+        _logger = logger;
+    }
 
-        private readonly ILogger _logger;
-        private volatile Task<RefreshTokenStatus> _refreshTask = Task.FromResult(RefreshTokenStatus.Success);
-
-        public UnauthorizedResponseHandler(
-            ITokenClient tokenClient,
-            IAppSettings appSettings,
-            IUserStorage userStorage,
-            ILogger logger)
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        if (request.AuthHeadersInvalid())
         {
-            _tokenClient = tokenClient;
-            _appSettings = appSettings;
-            _userStorage = userStorage;
-            _logger = logger;
+            _tokenClient.TriggerRefreshTokenExpiration();
+            return FailResponse.UnauthorizedResponse();
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
+        Task<RefreshTokenStatus> refreshTask = _refreshTask;
+        if (!refreshTask.IsCompleted)
         {
-            if (request.AuthHeadersInvalid())
-            {
-                _tokenClient.TriggerRefreshTokenExpiration();
-                return FailResponse.UnauthorizedResponse();
-            }
-
-            Task<RefreshTokenStatus> refreshTask = _refreshTask;
-            if (!refreshTask.IsCompleted)
-            {
-                RefreshTokenStatus refreshSucceeded = await refreshTask;
-                return await ResendAsync(request, cancellationToken, refreshSucceeded);
-            }
-
-            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-            if (response.StatusCode == HttpStatusCode.Unauthorized && !_userStorage.GetUser().Empty())
-            {
-                try
-                {
-                    RefreshTokenStatus refreshSucceeded = await Refresh(refreshTask, cancellationToken);
-                    return await ResendAsync(request, cancellationToken, refreshSucceeded);
-                }
-                finally
-                {
-                    response.Dispose();
-                }
-            }
-
-            return response;
+            RefreshTokenStatus refreshSucceeded = await refreshTask;
+            return await ResendAsync(request, cancellationToken, refreshSucceeded);
         }
 
-        private async Task<HttpResponseMessage> ResendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken,
-            RefreshTokenStatus refreshTokenStatus)
+        HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+        //TODO: add extra condition if user is not empty (is logged in)
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
         {
-            switch (refreshTokenStatus)
-            {
-                case RefreshTokenStatus.Success:
-                    PrepareRequest(request);
-                    return await base.SendAsync(request, cancellationToken);
-                case RefreshTokenStatus.Unauthorized:
-                    _tokenClient.TriggerRefreshTokenExpiration();
-                    return FailResponse.UnauthorizedResponse();
-                default:
-                    return FailResponse.UnauthorizedResponse();
-            }
-        }
-
-        private async Task<RefreshTokenStatus> Refresh(Task<RefreshTokenStatus> refreshTask,
-            CancellationToken cancellationToken)
-        {
-            TaskCompletionSource<RefreshTokenStatus> taskCompletion = new TaskCompletionSource<RefreshTokenStatus>();
-            Task<RefreshTokenStatus> newTask = taskCompletion.Task;
-
-            Task<RefreshTokenStatus> prevTask = Interlocked.CompareExchange(ref _refreshTask, newTask, refreshTask);
-
-            if (prevTask != refreshTask)
-            {
-                // ReSharper disable once PossibleNullReferenceException
-                return await prevTask;
-            }
-
-            await taskCompletion.Wrap(() => RefreshTokens(cancellationToken));
-            return await newTask;
-        }
-
-        private async Task<RefreshTokenStatus> RefreshTokens(CancellationToken cancellationToken)
-        {
-            if (string.IsNullOrEmpty(_appSettings.RefreshToken) || string.IsNullOrEmpty(_appSettings.Uid))
-            {
-                return RefreshTokenStatus.Unauthorized;
-            }
-
             try
             {
-                ApiResponseResult<RefreshTokenResponse> response =
-                    await _tokenClient.RefreshTokenAsync(cancellationToken);
-
-                if (response.Success)
-                {
-                    _appSettings.AccessToken = response.Value.AccessToken;
-                    _appSettings.RefreshToken = response.Value.RefreshToken;
-
-                    return RefreshTokenStatus.Success;
-                }
+                RefreshTokenStatus refreshSucceeded = await Refresh(refreshTask, cancellationToken);
+                return await ResendAsync(request, cancellationToken, refreshSucceeded);
             }
-            catch (ArgumentNullException e)
+            finally
             {
-                _logger.Error<UserLog>($"An error occurred when refreshing the auth token: {e.ParamName}");
+                response.Dispose();
             }
-            catch (Exception)
-            {
-                return RefreshTokenStatus.Fail;
-            }
+        }
 
+        return response;
+    }
+
+    private async Task<HttpResponseMessage> ResendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken,
+        RefreshTokenStatus refreshTokenStatus)
+    {
+        switch (refreshTokenStatus)
+        {
+            case RefreshTokenStatus.Success:
+                PrepareRequest(request);
+                return await base.SendAsync(request, cancellationToken);
+            case RefreshTokenStatus.Unauthorized:
+                _tokenClient.TriggerRefreshTokenExpiration();
+                return FailResponse.UnauthorizedResponse();
+            default:
+                return FailResponse.UnauthorizedResponse();
+        }
+    }
+
+    private async Task<RefreshTokenStatus> Refresh(Task<RefreshTokenStatus> refreshTask,
+        CancellationToken cancellationToken)
+    {
+        TaskCompletionSource<RefreshTokenStatus> taskCompletion = new TaskCompletionSource<RefreshTokenStatus>();
+        Task<RefreshTokenStatus> newTask = taskCompletion.Task;
+
+        Task<RefreshTokenStatus> prevTask = Interlocked.CompareExchange(ref _refreshTask, newTask, refreshTask);
+
+        if (prevTask != refreshTask)
+        {
+            // ReSharper disable once PossibleNullReferenceException
+            return await prevTask;
+        }
+
+        await taskCompletion.Wrap(() => RefreshTokens(cancellationToken));
+        return await newTask;
+    }
+
+    private async Task<RefreshTokenStatus> RefreshTokens(CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(_settings.RefreshToken) || string.IsNullOrEmpty(_settings.UniqueSessionId))
+        {
             return RefreshTokenStatus.Unauthorized;
         }
 
-        private void PrepareRequest(HttpRequestMessage request)
+        try
         {
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _appSettings.AccessToken);
+            ApiResponseResult<RefreshTokenResponse> response =
+                await _tokenClient.RefreshTokenAsync(cancellationToken);
+
+            if (response.Success)
+            {
+                _settings.AccessToken = response.Value.AccessToken;
+                _settings.RefreshToken = response.Value.RefreshToken;
+
+                return RefreshTokenStatus.Success;
+            }
         }
+        catch (ArgumentNullException e)
+        {
+            _logger.Error<UserLog>($"An error occurred when refreshing the auth token: {e.ParamName}");
+        }
+        catch (Exception)
+        {
+            return RefreshTokenStatus.Fail;
+        }
+
+        return RefreshTokenStatus.Unauthorized;
+    }
+
+    private void PrepareRequest(HttpRequestMessage request)
+    {
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _settings.AccessToken);
     }
 }

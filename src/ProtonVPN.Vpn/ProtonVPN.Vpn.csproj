@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
     <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj" />
   </ItemGroup>
   <ItemGroup>

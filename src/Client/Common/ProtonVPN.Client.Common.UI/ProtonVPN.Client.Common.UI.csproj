@@ -809,6 +809,10 @@
     <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
     <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
     <None Remove="Assets\Icons\UnprotectedLock.xaml" />
+    <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
+    <None Remove="Assets\Illustrations\Dark\welcome.jpg" />
+    <None Remove="Assets\Illustrations\Light\product-logo.svg" />
+    <None Remove="Assets\Illustrations\Light\welcome.jpg" />
     <None Remove="Controls\CountryFlagControl.xaml" />
     <None Remove="Controls\DualCommandsRowControl.xaml" />
     <None Remove="Controls\PageContentControl.xaml" />
@@ -834,6 +838,7 @@
     <None Remove="Styles\Controls\FlyoutStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
+    <None Remove="Styles\Controls\InfoBarStyles.xaml" />
     <None Remove="Styles\Controls\MenuFlyoutStyles.xaml" />
     <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
     <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
@@ -1829,6 +1834,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Assets\Illustrations\Dark\product-logo.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\Dark\welcome.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\Light\product-logo.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\Light\welcome.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="Styles\Controls\SettingsCardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1848,6 +1868,12 @@
 
   <ItemGroup>
     <Page Update="Assets\Icons\LatencyLow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\InfoBarStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -20,6 +20,8 @@
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Auth

@@ -78,6 +78,16 @@
     <Page Update="UI\Dialogs\ServerLoadInfoDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="UI\Login\TwoFactorForm.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Login\LoginForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Login\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Home\Details\VpnSpeedComponent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,6 +113,9 @@
     <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
     <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
     <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />
+    <None Remove="UI\Login\LoginForm.xaml" />
+    <None Remove="UI\Login\LoginPage.xaml" />
+    <None Remove="UI\Login\TwoFactorForm.xaml" />
   </ItemGroup>
   
   <ItemGroup>
@@ -113,6 +126,7 @@
     <Folder Include="UI\Home\ConnectionCard\" />
     <Folder Include="UI\Home\Map\" />
     <Folder Include="UI\Home\Help\" />
+    <Folder Include="UI\Login\Forms\" />
   </ItemGroup>
   
   <ItemGroup>
@@ -124,6 +138,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
+    <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
     <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
     <ProjectReference Include="..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
     <ProjectReference Include="..\..\ProcessCommunication\App\ProtonVPN.ProcessCommunication.App.Installers\ProtonVPN.ProcessCommunication.App.Installers.csproj" />
@@ -133,6 +149,7 @@
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Extensions\ProtonVPN.Client.Localization.Extensions.csproj" />
     <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Installers\ProtonVPN.Client.Localization.Installers.csproj" />
+    <ProjectReference Include="..\Logic\Auth\ProtonVPN.Client.Logic.Auth.Installers\ProtonVPN.Client.Logic.Auth.Installers.csproj" />
     <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
     <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Installers\ProtonVPN.Client.Logic.Connection.Installers.csproj" />
     <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />

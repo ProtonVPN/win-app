@@ -28,19 +28,91 @@ public class Settings : SettingsBase, ISettings
     public string Theme
     {
         get => GetReferenceType<string>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;
-        set => SetReferenceType<string>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+        set => SetReferenceType(value, SettingScope.Global, SettingEncryption.Unencrypted);
     }
 
     public string Language
     {
         get => GetReferenceType<string>(SettingScope.Global, SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
-        set => SetReferenceType<string>(value, SettingScope.Global, SettingEncryption.Unencrypted);
+        set => SetReferenceType(value, SettingScope.Global, SettingEncryption.Unencrypted);
     }
 
     public VpnProtocol VpnProtocol
     {
         get => GetValueType<VpnProtocol>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.VpnProtocol;
         set => SetValueType<VpnProtocol>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public string? Username
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? AccessToken
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? RefreshToken
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? UniqueSessionId
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? VpnPlanTitle
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Unencrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public string? AuthenticationPublicKey
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? AuthenticationSecretKey
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? AuthenticationCertificatePem
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public string? CertificationServerPublicKey
+    {
+        get => GetReferenceType<string>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetReferenceType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public DateTimeOffset? AuthenticationCertificateRequestUtcDate
+    {
+        get => GetValueType<DateTimeOffset>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetValueType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public DateTimeOffset? AuthenticationCertificateExpirationUtcDate
+    {
+        get => GetValueType<DateTimeOffset>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetValueType(value, SettingScope.User, SettingEncryption.Encrypted);
+    }
+
+    public DateTimeOffset? AuthenticationCertificateRefreshUtcDate
+    {
+        get => GetValueType<DateTimeOffset>(SettingScope.User, SettingEncryption.Encrypted);
+        set => SetValueType(value, SettingScope.User, SettingEncryption.Encrypted);
     }
 
     public bool IsVpnAcceleratorEnabled

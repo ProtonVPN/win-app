@@ -52,6 +52,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ContentDialogStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/SettingsCardStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/TooltipStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/InfoBarStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <SolidColorBrush x:Key="WindowCaptionBackground">Transparent</SolidColorBrush>
@@ -60,6 +61,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              Color="{ThemeResource TextNormColor}" />
             <SolidColorBrush x:Key="WindowCaptionForegroundDisabled"
                              Color="{ThemeResource TextNormColor}" />
+
+            <x:Double x:Key="TitleBarHeight">48.0</x:Double>
+            <Thickness x:Key="TitleBarMargin">48,0,128,0</Thickness>
+
+            <x:Double x:Key="LoginPageContentWidth">328</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

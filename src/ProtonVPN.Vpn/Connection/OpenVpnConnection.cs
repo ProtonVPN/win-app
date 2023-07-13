@@ -25,15 +25,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
-using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.OpenVpn;
@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly ManagementClient _managementClient;
 
         private readonly OpenVpnManagementPorts _managementPorts;
-        private readonly RandomStrings _randomStrings;
+        private readonly IRandomStringGenerator _randomStringGenerator;
         private readonly SingleAction _connectAction;
         private readonly SingleAction _disconnectAction;
 
@@ -67,19 +67,20 @@ namespace ProtonVPN.Vpn.Connection
             IConfiguration config,
             INetworkInterfaceLoader networkInterfaceLoader,
             OpenVpnProcess process,
+            IRandomStringGenerator randomStringGenerator,
             ManagementClient managementClient)
         {
             _logger = logger;
             _config = config;
             _networkInterfaceLoader = networkInterfaceLoader;
             _process = process;
+            _randomStringGenerator = randomStringGenerator;
             _managementClient = managementClient;
 
             _managementClient.VpnStateChanged += ManagementClient_StateChanged;
             _managementClient.TransportStatsChanged += ManagementClient_TransportStatsChanged;
 
             _managementPorts = new OpenVpnManagementPorts();
-            _randomStrings = new RandomStrings();
             _connectAction = new SingleAction(ConnectAction);
             _connectAction.Completed += ConnectAction_Completed;
             _disconnectAction = new SingleAction(DisconnectAction);
@@ -175,7 +176,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private string ManagementPassword()
         {
-            return _randomStrings.RandomString(MANAGEMENT_PASSWORD_LENGTH);
+            return _randomStringGenerator.Generate(MANAGEMENT_PASSWORD_LENGTH);
         }
 
         private async Task DisconnectAction()

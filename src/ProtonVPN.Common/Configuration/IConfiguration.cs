@@ -26,9 +26,6 @@ namespace ProtonVPN.Common.Configuration
 {
     public interface IConfiguration
     {
-        [Range(32, 64)]
-        int OsBits { get; set; }
-
         [Required]
         string AppName { get; set; }
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.UI.Login.Forms.LoginForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      x:DefaultBindMode="OneWay"
+      mc:Ignorable="d">
+
+    <StackPanel Margin="0,24,0,0"
+                Width="{StaticResource LoginPageContentWidth}">
+        <TextBox Style="{StaticResource DefaultTextBoxStyle}"
+                 AutomationProperties.AutomationId="UsernameTextBox"
+                 IsSpellCheckEnabled="False"
+                 IsTextPredictionEnabled="False"
+                 Header="{x:Bind ViewModel.Localizer.Get('Login_Form_Username')}"
+                 Text="{x:Bind ViewModel.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 KeyDown="OnFormBoxKeyDown" />
+
+        <PasswordBox Header="{x:Bind ViewModel.Localizer.Get('Login_Form_Password')}"
+                     Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+                     AutomationProperties.AutomationId="PasswordBox"
+                     Margin="0,18,0,0"
+                     KeyDown="OnFormBoxKeyDown" />
+
+        <Button x:Name="LoginButton"
+                Style="{StaticResource PrimaryButtonStyle}"
+                HorizontalAlignment="Stretch"
+                AutomationProperties.AutomationId="SignInButton"
+                HorizontalContentAlignment="Stretch"
+                Margin="0,24"
+                Command="{x:Bind ViewModel.LoginCommand}">
+            <Grid HorizontalAlignment="Stretch">
+                <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_Form_SignIn')}"
+                           HorizontalAlignment="Center" />
+                <ProgressRing Foreground="{StaticResource TextNormColorBrush}"
+                              HorizontalAlignment="Right"
+                              Width="16"
+                              Height="16"
+                              IsActive="{x:Bind ViewModel.IsLoggingIn}" />
+            </Grid>
+        </Button>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <HyperlinkButton Grid.Column="0"
+                             Content="{x:Bind ViewModel.Localizer.Get('Login_Form_CreateAccount')}"
+                             NavigateUri="{x:Bind ViewModel.CreateAccountUrl}" />
+            <custom:GhostButton Grid.Column="1"
+                                HorizontalAlignment="Right">
+                <custom:GhostButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Login_Form_ResetPassword')}"
+                                        Command="{x:Bind ViewModel.ResetPasswordCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <pathIcons:Key />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Login_Form_ForgotUsername')}"
+                                        Command="{x:Bind ViewModel.ForgotUsernameCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <pathIcons:User />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Login_Form_TroubleSigningIn')}"
+                                        Command="{x:Bind ViewModel.TroubleSigningInCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <pathIcons:ExclamationCircle />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Login_Form_ReportAnIssue')}"
+                                        Command="{x:Bind ViewModel.ReportAnIssueCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <pathIcons:Bug />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </custom:GhostButton.Flyout>
+                <custom:GhostButton.Content>
+                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Login_Form_Help')}" />
+                </custom:GhostButton.Content>
+                <custom:GhostButton.RightIcon>
+                    <pathIcons:QuestionCircle />
+                </custom:GhostButton.RightIcon>
+            </custom:GhostButton>
+        </Grid>
+    </StackPanel>
+</Page>

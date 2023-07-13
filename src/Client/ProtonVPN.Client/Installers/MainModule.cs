@@ -19,13 +19,16 @@
 
 using Autofac;
 using Microsoft.UI.Xaml;
+using ProtonVPN.Api.Installers;
 using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.EventMessaging.Installers;
 using ProtonVPN.Client.Localization.Installers;
+using ProtonVPN.Client.Logic.Auth.Installers;
 using ProtonVPN.Client.Logic.Connection.Installers;
 using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
 using ProtonVPN.Client.Settings.Installers;
+using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Logging;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
@@ -67,6 +70,9 @@ public class MainModule : Module
                .RegisterModule<EventMessagingModule>()
                .RegisterModule<ViewModelsModule>()
                .RegisterModule<RecentsLogicModule>()
-               .RegisterModule<SettingsModule>();
+               .RegisterModule<SettingsModule>()
+               .RegisterModule<AuthLogicModule>()
+               .RegisterModule<CryptoModule>()
+               .RegisterModule<ApiModule>();
     }
 }

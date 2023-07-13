@@ -19,13 +19,13 @@
 
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
@@ -49,7 +49,6 @@ namespace ProtonVPN.Vpn.Config
     {
         public void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Ed25519SignatureValidator>().As<IEd25519SignatureValidator>().SingleInstance();
             builder.RegisterType<ServerValidator>().As<IServerValidator>().SingleInstance();
             builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
             builder.RegisterType<VpnEndpointScanner>().SingleInstance();
@@ -141,6 +140,7 @@ namespace ProtonVPN.Vpn.Config
             IConfiguration config = c.Resolve<IConfiguration>();
             IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
             INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+            IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
 
             return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
                 gatewayCache,
@@ -150,7 +150,7 @@ namespace ProtonVPN.Vpn.Config
                             new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
                     new TrafficManager(config.WireGuard.ConfigFileName, logger),
                     new StatusManager(logger, config.WireGuard.LogFilePath),
-                    new X25519KeyGenerator()));
+                    x25519KeyGenerator));
         }
 
         private ISingleVpnConnection GetOpenVpnConnection(IComponentContext c)
@@ -167,6 +167,7 @@ namespace ProtonVPN.Vpn.Config
                     c.Resolve<IConfiguration>(),
                     c.Resolve<INetworkInterfaceLoader>(),
                     c.Resolve<OpenVpnProcess>(),
+                    c.Resolve<IRandomStringGenerator>(),
                     new ManagementClient(
                         logger,
                         gatewayCache,

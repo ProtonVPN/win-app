@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -31,9 +32,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <helpers:IsHeaderVisibleToPaneContentMarginConverter x:Key="IsHeaderVisibleToPaneContentMarginConverter"
                                                              DefaultPaneContentMargin="16" />
 
-        <x:Double x:Key="TitleBarHeight">48.0</x:Double>
-        <Thickness x:Key="TitleBarMargin">48,0,128,0</Thickness>
-
         <Thickness x:Key="NavigationViewHeaderMargin">16,16,16,0</Thickness>
         <Thickness x:Key="NavigationViewContentMargin">0,45,0,0</Thickness>
         <Thickness x:Key="NavigationViewItemContentPresenterMargin">4,-1,8,-1</Thickness>
@@ -49,17 +47,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid x:Name="page">
         <Grid x:Name="AppTitleBar"
               Height="{StaticResource TitleBarHeight}"
-              Margin="{StaticResource TitleBarMargin}"
               VerticalAlignment="Top"
               Canvas.ZIndex="1"
               IsHitTestVisible="True">
-            <Image Width="16"
+            <Image x:Name="ApplicationIcon"
+                   Width="16"
                    Height="16"
                    HorizontalAlignment="Left"
                    AutomationProperties.AutomationId="ApplicationIcon"
                    Source="/Assets/ProtonVPN.ico" />
             <TextBlock x:Name="AppTitleBarText"
-                       Margin="28,0,0,0"
                        VerticalAlignment="Center"
                        AutomationProperties.AutomationId="ApplicationTitleLabel"
                        Style="{StaticResource CaptionTextBlockStyle}"
@@ -98,17 +95,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         AutomationProperties.AutomationId="AccountButton"
                         AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}"
                         Background="Transparent"
-                        BorderBrush="Transparent"
                         Style="{StaticResource SidebarButtonStyle}"
                         ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}">
                     <Button.Flyout>
-                        <Flyout>
+                        <Flyout x:Name="AccountFlyout">
                             <StackPanel Orientation="Vertical"
                                         Spacing="16">
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
+                                               Text="{x:Bind ViewModel.Username, Mode=OneWay}" />
+                                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                                               Foreground="{StaticResource TextWeakColorBrush}"
+                                               Text="{x:Bind ViewModel.VpnPlan, Mode=OneWay}" />
+                                </StackPanel>
                                 <HyperlinkButton Content="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}" />
                                 <Button Width="175"
                                         Height="32"
-                                        Content="{x:Bind ViewModel.Localizer.Get('Home_Account_SignOut')}" />
+                                        Content="{x:Bind ViewModel.Localizer.Get('Home_Account_SignOut')}"
+                                        Click="Logout" />
                             </StackPanel>
                         </Flyout>
                     </Button.Flyout>

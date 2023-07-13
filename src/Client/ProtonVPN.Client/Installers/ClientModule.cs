@@ -25,6 +25,8 @@ using ProtonVPN.Client.Models.MainWindowActivation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Configuration.Source;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -43,6 +45,7 @@ public class ClientModule : Module
         builder.RegisterType<PageNavigator>().As<IPageNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
 
+        builder.Register(c => new DefaultConfig().Value()).As<IConfiguration>().SingleInstance();
         builder.RegisterType<Urls>().As<IUrls>().SingleInstance();
     }
 }

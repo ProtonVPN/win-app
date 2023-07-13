@@ -23,7 +23,7 @@ using NSubstitute;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Vpn.ServerValidation;
 
 namespace ProtonVPN.Vpn.Tests.ServerValidation

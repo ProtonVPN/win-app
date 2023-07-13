@@ -18,7 +18,7 @@
  */
 using ProtoBuf;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto
 {
