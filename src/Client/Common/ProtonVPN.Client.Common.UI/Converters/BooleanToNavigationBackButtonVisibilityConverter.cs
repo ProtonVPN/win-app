@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,37 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
+using System;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.UI.Login.Forms;
+using Microsoft.UI.Xaml.Data;
 
-namespace ProtonVPN.Client.UI.Login;
+namespace ProtonVPN.Client.Common.UI.Converters;
 
-public sealed partial class LoginPage
+public class BooleanToNavigationBackButtonVisibilityConverter : IValueConverter
 {
-    public LoginPage()
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        ViewModel = App.GetService<LoginViewModel>();
-        InitializeComponent();
-
-        ViewModel.Frame = LoginWindowContentFrame;
-
-        Loaded += OnPageLoaded;
-    }
-
-    public LoginViewModel ViewModel { get; }
-
-    private void OnPageLoaded(object sender, RoutedEventArgs e)
-    {
-        LoginWindowContentFrame.Navigate(typeof(LoginForm));
-    }
-
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-    {
-        if (LoginWindowContentFrame.CanGoBack)
+        if (value is bool boolValue)
         {
-            LoginWindowContentFrame.GoBack();
-            ViewModel.IsBackEnabled = false;
+            return boolValue ? NavigationViewBackButtonVisible.Visible : NavigationViewBackButtonVisible.Collapsed;
         }
+        return NavigationViewBackButtonVisible.Collapsed;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
     }
 }
