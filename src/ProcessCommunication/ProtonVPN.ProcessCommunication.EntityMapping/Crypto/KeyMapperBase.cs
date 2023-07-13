@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto

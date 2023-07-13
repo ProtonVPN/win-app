@@ -1463,6 +1463,12 @@
   <data name="Server_Feature_Tor" xml:space="preserve">
     <value>Tor</value>
   </data>
+  <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
+    <value>Incorrect code. Please try again.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
+    <value>Incorrect login credentials. Please try again.</value>
+  </data>
   <data name="Settings_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -1642,6 +1648,56 @@
   </data>
   <data name="Settings_Support_ReportIssue" xml:space="preserve">
     <value>Report an issue</value>
+  </data>
+  <data name="Login_Form_CreateAccount" xml:space="preserve">
+    <value>Create account</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login_Form_SignIn" xml:space="preserve">
+    <value>Sign in</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_Username" xml:space="preserve">
+    <value>Email or username</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
+    <value>Authenticate</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
+    <value>Enter the code from your authenticator app</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title" xml:space="preserve">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="Login_Form_ForgotUsername" xml:space="preserve">
+    <value>Forgot username</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Help" xml:space="preserve">
+    <value>Help</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_ReportAnIssue" xml:space="preserve">
+    <value>Report an issue</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_ResetPassword" xml:space="preserve">
+    <value>Reset password</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
+    <value>Trouble signing in</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Account_VpnPlan_Free" xml:space="preserve">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
+    <value>Two factor authentication failed. Please sign in again.</value>
   </data>
   <data name="Settings_Support_SupportCenter" xml:space="preserve">
     <value>Support center</value>

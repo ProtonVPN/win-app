@@ -83,4 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Color x:Key="BackgroundWeakHoverColor">#EBE9E8</Color>
     <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
     <Color x:Key="BackgroundWeakActiveColor">#E3E2E0</Color>
+
+    <BitmapImage x:Key="WelcomeIllustrationSource" UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/welcome.jpg"/>
+    <SvgImageSource x:Key="ProductLogoIllustrationSource" UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg"/>
 </ResourceDictionary>

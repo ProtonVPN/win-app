@@ -22,7 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
     <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
   </ItemGroup>
   <ItemGroup>

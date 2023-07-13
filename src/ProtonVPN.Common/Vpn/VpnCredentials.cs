@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 
 namespace ProtonVPN.Common.Vpn
 {

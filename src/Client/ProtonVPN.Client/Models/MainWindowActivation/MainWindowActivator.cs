@@ -19,7 +19,6 @@
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-
 using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.UI;

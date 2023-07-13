@@ -20,6 +20,7 @@
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
+using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.Robots.Overlays;
 using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
@@ -43,11 +44,18 @@ public class SettingsTests : TestSession
     private HomeRobot _homeRobot = new();
     private OverlaysRobot _overlaysRobot = new();
     private SettingsRobot _settingsRobot = new();
+    private LoginRobot _loginRobot = new();
 
     [SetUp]
     public void TestInitialize()
     {
         LaunchApp();
+
+        _loginRobot
+            .Wait(TestConstants.InitializationDelay)
+            .DoLogin();
+
+        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
 
         _shellRobot
             .Wait(TestConstants.InitializationDelay)

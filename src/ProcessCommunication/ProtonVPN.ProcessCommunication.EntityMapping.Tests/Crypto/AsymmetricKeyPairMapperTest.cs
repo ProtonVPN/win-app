@@ -19,7 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.EntityMapping.Crypto;

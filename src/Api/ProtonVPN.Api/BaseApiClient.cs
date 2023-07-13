@@ -27,45 +27,42 @@ using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Api;
+
+public class BaseApiClient : IClientBase
 {
-    public class BaseApiClient : IClientBase
+    protected ILogger Logger { get; }
+    protected ISettings Settings { get; }
+
+    private readonly JsonSerializer _jsonSerializer = new();
+    private readonly IApiAppVersion _appVersion;
+    private readonly string _apiVersion;
+
+    public event EventHandler<ActionableFailureApiResultEventArgs> OnActionableFailureResult;
+
+    public BaseApiClient(
+        ILogger logger,
+        IApiAppVersion appVersion,
+        ISettings settings,
+        IConfiguration config)
     {
-        protected ILogger Logger { get; }
-        protected IAppSettings AppSettings { get; }
+        Logger = logger;
+        _appVersion = appVersion;
+        _apiVersion = config.ApiVersion;
+        Settings = settings;
+    }
 
-        private readonly JsonSerializer _jsonSerializer = new();
-        private readonly IApiAppVersion _appVersion;
-        private readonly string _apiVersion;
-        private readonly IAppLanguageCache _appLanguageCache;
-
-        public event EventHandler<ActionableFailureApiResultEventArgs> OnActionableFailureResult;
-
-        public BaseApiClient(
-            ILogger logger,
-            IApiAppVersion appVersion,
-            IAppSettings appSettings,
-            IAppLanguageCache appLanguageCache,
-            IConfiguration config)
-        {
-            Logger = logger;
-            AppSettings = appSettings;
-            _appVersion = appVersion;
-            _apiVersion = config.ApiVersion;
-            _appLanguageCache = appLanguageCache;
-        }
-
-        protected StringContent GetJsonContent(object data)
-        {
-            string json = JsonConvert.SerializeObject(data);
-            return new(json, Encoding.UTF8, "application/json");
-        }
+    protected StringContent GetJsonContent(object data)
+    {
+        string json = JsonConvert.SerializeObject(data);
+        return new(json, Encoding.UTF8, "application/json");
+    }
 
         protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response)
             where T : BaseResponse
@@ -85,67 +82,67 @@ namespace ProtonVPN.Api
             }
         }
 
-        public string GetStatusCodeDescription(HttpStatusCode code)
+    public string GetStatusCodeDescription(HttpStatusCode code)
+    {
+        string description = ReasonPhrases.GetReasonPhrase((int)code);
+        return string.IsNullOrEmpty(description) ? $"HTTP error code: {code}." : description;
+    }
+
+    private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpResponseMessage responseMessage)
+        where T : BaseResponse
+    {
+        switch (response.Code)
         {
-            string description = ReasonPhrases.GetReasonPhrase((int)code);
-            return string.IsNullOrEmpty(description) ? $"HTTP error code: {code}." : description;
-        }
+            case ResponseCodes.OkResponse:
+                return ApiResponseResult<T>.Ok(responseMessage, response);
+            default:
 
-        private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpResponseMessage responseMessage)
-            where T : BaseResponse
+                return ApiResponseResult<T>.Fail(response, responseMessage, response.Error);
+        }
+    }
+
+    private void HandleResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
+        where T : BaseResponse
+    {
+        if (result.Failure && !result.Actions.IsNullOrEmpty())
         {
-            switch (response.Code)
-            {
-                case ResponseCodes.OkResponse:
-                    return ApiResponseResult<T>.Ok(responseMessage, response);
-                default:
-
-                    return ApiResponseResult<T>.Fail(response, responseMessage, response.Error);
-            }
+            HandleActionableFailureResult(result, responseMessage);
         }
+    }
 
-        private void HandleResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
-            where T : BaseResponse
-        {
-            if (result.Failure && !result.Actions.IsNullOrEmpty())
-            {
-                HandleActionableFailureResult(result, responseMessage);
-            }
-        }
+    private void HandleActionableFailureResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
+        where T : BaseResponse
+    {
+        ApiResponseResult<BaseResponse> baseResponseResult =
+            CreateApiResponseResult<BaseResponse>(result.Value, responseMessage);
+        ActionableFailureApiResultEventArgs eventArgs = new(baseResponseResult);
+        OnActionableFailureResult?.Invoke(this, eventArgs);
+    }
 
-        private void HandleActionableFailureResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
-            where T : BaseResponse
-        {
-            ApiResponseResult<BaseResponse> baseResponseResult =
-                CreateApiResponseResult<BaseResponse>(result.Value, responseMessage);
-            ActionableFailureApiResultEventArgs eventArgs = new(baseResponseResult);
-            OnActionableFailureResult?.Invoke(this, eventArgs);
-        }
+    protected HttpRequestMessage GetRequest(HttpMethod method, string requestUri)
+    {
+        HttpRequestMessage request = new(method, requestUri);
+        request.Headers.Add("x-pm-apiversion", _apiVersion);
+        request.Headers.Add("x-pm-appversion", _appVersion.Value());
+        request.Headers.Add("x-pm-locale", Settings.Language);
+        request.Headers.Add("User-Agent", _appVersion.UserAgent());
 
-        protected HttpRequestMessage GetRequest(HttpMethod method, string requestUri)
-        {
-            HttpRequestMessage request = new(method, requestUri);
-            request.Headers.Add("x-pm-apiversion", _apiVersion);
-            request.Headers.Add("x-pm-appversion", _appVersion.Value());
-            request.Headers.Add("x-pm-locale", _appLanguageCache.GetCurrentSelectedLanguageIetfTag());
-            request.Headers.Add("User-Agent", _appVersion.UserAgent());
+        return request;
+    }
 
-            return request;
-        }
+    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
+    {
+        return GetAuthorizedRequest(method, requestUri, Settings.AccessToken, Settings.UniqueSessionId);
+    }
 
-        protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
-        {
-            return GetAuthorizedRequest(method, requestUri, AppSettings.AccessToken, AppSettings.Uid);
-        }
+    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)
+    {
+        HttpRequestMessage request = GetRequest(method, requestUri);
+        request.Headers.Add("x-pm-uid", uniqueSessionId);
+        request.Headers.Add("Authorization", $"Bearer {accessToken}");
 
-        protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uid)
-        {
-            HttpRequestMessage request = GetRequest(method, requestUri);
-            request.Headers.Add("x-pm-uid", uid);
-            request.Headers.Add("Authorization", $"Bearer {accessToken}");
-
-            return request;
-        }
+        return request;
+    }
 
         protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
         {
@@ -155,15 +152,15 @@ namespace ProtonVPN.Api
                 request.Headers.Add("x-pm-netzone", ip);
             }
 
-            return request;
-        }
+        return request;
+    }
 
-        protected async Task<ApiResponseResult<T>> GetResponseStreamResult<T>(HttpResponseMessage response)
-            where T : BaseResponse
-        {
-            Stream stream = await response.Content.ReadAsStreamAsync();
-            using StreamReader streamReader = new(stream);
-            using JsonTextReader jsonTextReader = new(streamReader);
+    protected async Task<ApiResponseResult<T>> GetResponseStreamResult<T>(HttpResponseMessage response)
+        where T : BaseResponse
+    {
+        Stream stream = await response.Content.ReadAsStreamAsync();
+        using StreamReader streamReader = new(stream);
+        using JsonTextReader jsonTextReader = new(streamReader);
 
             T json = _jsonSerializer.Deserialize<T>(jsonTextReader) ?? throw new HttpRequestException(string.Empty);
 
@@ -182,7 +179,6 @@ namespace ProtonVPN.Api
                 Logger.Error<ApiErrorLog>($"API: {(string.IsNullOrEmpty(message) ? "Request" : message)} failed: {result.Error}");
             }
 
-            return result;
-        }
+        return result;
     }
 }

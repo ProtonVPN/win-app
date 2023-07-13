@@ -26,7 +26,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.WireGuard;

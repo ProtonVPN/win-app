@@ -28,7 +28,6 @@
     <ProjectReference Include="..\..\Api\ProtonVPN.Api\ProtonVPN.Api.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
     <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
     <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
   </ItemGroup>
 </Project>

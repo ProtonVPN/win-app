@@ -25,6 +25,7 @@ using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
+using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
@@ -52,6 +53,7 @@ public class PageMapper : IPageMapper
         Configure<AutoStartupViewModel, AutoStartupPage>();
         Configure<CensorshipViewModel, CensorshipPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<LoginViewModel, LoginPage>();
 
         ConfigureDebugPages();
     }

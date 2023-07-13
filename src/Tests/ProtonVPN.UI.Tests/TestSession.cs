@@ -46,15 +46,12 @@ public class TestSession
 
     protected static void DeleteUserConfig()
     {
-        string localAppDataFolder = Path.Combine(TestConstants.AppLogsPath, @"..\..\");
         try
         {
-            Directory.Delete(localAppDataFolder, true);
-            Directory.Delete(TestConstants.ServiceLogsPath);
+            Directory.Delete(TestConstants.UserStoragePath, true);
         }
-        catch (Exception)
+        catch
         {
-            //ignored
         }
     }
 
@@ -90,6 +87,8 @@ public class TestSession
 
     protected static void LaunchApp()
     {
+        DeleteUserConfig();
+
         if (_isDevelopmentModeEnabled)
         {
             LaunchDevelopmentApp();

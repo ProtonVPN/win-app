@@ -26,6 +26,18 @@ public interface ISettings
     string Theme { get; set; }
     string Language { get; set; }
     VpnProtocol VpnProtocol { get; set; }
+    string? Username { get; set; }
+    string? AccessToken { get; set; }
+    string? RefreshToken { get; set; }
+    string? UniqueSessionId { get; set; }
+    string? VpnPlanTitle { get; set; }
+    string? AuthenticationPublicKey { get; set; }
+    string? AuthenticationSecretKey { get; set; }
+    string? AuthenticationCertificatePem { get; set; }
+    string? CertificationServerPublicKey { get; set; }
+    DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
+    DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
+    DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
     int? WindowWidth { get; set; }
     int? WindowHeight { get; set; }

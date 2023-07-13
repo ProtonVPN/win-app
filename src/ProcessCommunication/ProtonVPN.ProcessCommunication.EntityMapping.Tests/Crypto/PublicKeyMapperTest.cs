@@ -18,7 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Crypto;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.EntityMapping.Crypto;

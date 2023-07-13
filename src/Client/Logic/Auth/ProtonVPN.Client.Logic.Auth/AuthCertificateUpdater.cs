@@ -1,0 +1,74 @@
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
+
+namespace ProtonVPN.Client.Logic.Auth;
+
+public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageReceiver<LoginSuccessMessage>,
+    IEventMessageReceiver<LogoutMessage>
+{
+    private readonly IConfiguration _appConfig;
+    private readonly IAuthCertificateManager _authCertificateManager;
+    private readonly ILogger _logger;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
+    private Timer _timer;
+
+    public AuthCertificateUpdater(IConfiguration appConfig,
+        IAuthCertificateManager authCertificateManager,
+        ILogger logger,
+        IUIThreadDispatcher uiThreadDispatcher)
+    {
+        _appConfig = appConfig;
+        _authCertificateManager = authCertificateManager;
+        _logger = logger;
+        _uiThreadDispatcher = uiThreadDispatcher;
+    }
+
+    private void Timer_OnTick(object? sender)
+    {
+        _uiThreadDispatcher.TryEnqueue(() => _authCertificateManager.RequestNewCertificateAsync());
+    }
+
+    //TODO: fetch new certificate on plan change
+    // public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+    // {
+    //     await _authCertificateManager.ForceRequestNewCertificateAsync();
+    // }
+
+    public void Receive(LoginSuccessMessage message)
+    {
+        TimeSpan interval = _appConfig.AuthCertificateUpdateInterval.RandomizedWithDeviation(0.2);
+        _timer = new(Timer_OnTick);
+        _timer.Change(interval, interval);
+        _logger.Info<UserCertificateScheduleRefreshLog>(
+            $"User certificate refresh scheduled for every '{interval}'.");
+    }
+
+    public void Receive(LogoutMessage message)
+    {
+        _timer.Dispose();
+    }
+}

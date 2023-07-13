@@ -37,4 +37,5 @@ public static class TestConstants
     public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
     public static string AppLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs\app-logs.txt");
     public static string ServiceLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"ProtonVPN\Logs\service-logs.txt");
+    public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Storage");
 }

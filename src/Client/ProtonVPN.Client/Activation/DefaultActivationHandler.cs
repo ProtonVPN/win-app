@@ -18,18 +18,25 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Home;
+using ProtonVPN.Client.UI.Login;
 
 namespace ProtonVPN.Client.Activation;
 
 public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {
+    private readonly ISettings _settings;
     private readonly IPageNavigator _pageNavigator;
+    private readonly IUserAuthenticator _userAuthenticator;
 
-    public DefaultActivationHandler(IPageNavigator pageNavigator)
+    public DefaultActivationHandler(ISettings settings, IPageNavigator pageNavigator, IUserAuthenticator userAuthenticator)
     {
+        _settings = settings;
         _pageNavigator = pageNavigator;
+        _userAuthenticator = userAuthenticator;
     }
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
@@ -40,6 +47,14 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        _pageNavigator.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
+        if (string.IsNullOrEmpty(_settings.Username))
+        {
+            _pageNavigator.NavigateTo(typeof(LoginViewModel).FullName!, args.Arguments);
+        }
+        else
+        {
+            _pageNavigator.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
+            await _userAuthenticator.InvokeAutoLoginEventAsync();
+        }
     }
 }

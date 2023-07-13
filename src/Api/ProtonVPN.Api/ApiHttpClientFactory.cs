@@ -25,49 +25,48 @@ using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Api;
+
+public class ApiHttpClientFactory : IApiHttpClientFactory
 {
-    public class ApiHttpClientFactory : IApiHttpClientFactory
+    private readonly IConfiguration _config;
+    private readonly HttpMessageHandler _innerHandler;
+
+    public ApiHttpClientFactory(IConfiguration config, 
+        //TODO: restore AlternativeHostHandler alternativeHostHandler,
+        CancellingHandlerBase cancellingHandlerBase,
+        UnauthorizedResponseHandler unauthorizedResponseHandler,
+        //TODO: restore HumanVerificationHandlerBase humanVerificationHandlerBase,
+        OutdatedAppHandler outdatedAppHandler,
+        RetryingHandlerBase retryingHandlerBase,
+        //TODO: restore DnsHandler dnsHandler,
+        LoggingHandlerBase loggingHandlerBase,
+        TlsPinnedCertificateHandler certificateHandler)
     {
-        private readonly IConfiguration _config;
-        private readonly HttpMessageHandler _innerHandler;
+        _config = config;
 
-        public ApiHttpClientFactory(IConfiguration config, 
-            AlternativeHostHandler alternativeHostHandler,
-            CancellingHandlerBase cancellingHandlerBase,
-            UnauthorizedResponseHandler unauthorizedResponseHandler,
-            HumanVerificationHandlerBase humanVerificationHandlerBase,
-            OutdatedAppHandler outdatedAppHandler,
-            RetryingHandlerBase retryingHandlerBase,
-            DnsHandler dnsHandler,
-            LoggingHandlerBase loggingHandlerBase,
-            TlsPinnedCertificateHandler certificateHandler)
-        {
-            _config = config;
+        _innerHandler = new HttpMessageHandlerStackBuilder()
+            //TODO: restore .AddDelegatingHandler(alternativeHostHandler)
+            .AddDelegatingHandler(cancellingHandlerBase)
+            .AddDelegatingHandler(unauthorizedResponseHandler)
+            //TODO: restore .AddDelegatingHandler(humanVerificationHandlerBase)
+            .AddDelegatingHandler(outdatedAppHandler)
+            .AddDelegatingHandler(retryingHandlerBase)
+            //TODO: restore .AddDelegatingHandler(dnsHandler)
+            .AddDelegatingHandler(loggingHandlerBase)
+            .AddLastHandler(certificateHandler)
+            .Build();
+    }
 
-            _innerHandler = new HttpMessageHandlerStackBuilder()
-                .AddDelegatingHandler(alternativeHostHandler)
-                .AddDelegatingHandler(cancellingHandlerBase)
-                .AddDelegatingHandler(unauthorizedResponseHandler)
-                .AddDelegatingHandler(humanVerificationHandlerBase)
-                .AddDelegatingHandler(outdatedAppHandler)
-                .AddDelegatingHandler(retryingHandlerBase)
-                .AddDelegatingHandler(dnsHandler)
-                .AddDelegatingHandler(loggingHandlerBase)
-                .AddLastHandler(certificateHandler)
-                .Build();
-        }
+    public HttpClient GetApiHttpClientWithoutCache()
+    {
+        HttpClient client = GetApiHttpClientWithCache();
+        client.DefaultRequestHeaders.ConnectionClose = true;
+        return client;
+    }
 
-        public HttpClient GetApiHttpClientWithoutCache()
-        {
-            HttpClient client = GetApiHttpClientWithCache();
-            client.DefaultRequestHeaders.ConnectionClose = true;
-            return client;
-        }
-
-        public HttpClient GetApiHttpClientWithCache()
-        {
-            return new(_innerHandler) { BaseAddress = new Uri(_config.Urls.ApiUrl) };
-        }
+    public HttpClient GetApiHttpClientWithCache()
+    {
+        return new(_innerHandler) { BaseAddress = new Uri(_config.Urls.ApiUrl) };
     }
 }

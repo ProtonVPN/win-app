@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Login;
 using Windows.System;
+using Microsoft.UI.Xaml;
 
 namespace ProtonVPN.Client.UI;
 
@@ -33,6 +34,7 @@ public sealed partial class ShellPage
         InitializeComponent();
 
         ViewModel.PageNavigator.Frame = NavigationFrame;
+        ViewModel.PageNavigator.Navigated += PageNavigator_Navigated;
         ViewModel.ViewNavigator.Initialize(NavigationViewControl);
 
         // TODO: Set the title bar icon by updating /Assets/WindowIcon.ico.
@@ -41,6 +43,11 @@ public sealed partial class ShellPage
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
         AppTitleBarText.Text = App.APPLICATION_NAME;
+    }
+
+    private void PageNavigator_Navigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+    {
+        ToggleNavigationViewElementVisibility();
     }
 
     public ShellViewModel ViewModel { get; }
@@ -72,10 +79,38 @@ public sealed partial class ShellPage
     {
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
+        ToggleNavigationViewElementVisibility();
+    }
+
+    private void ToggleNavigationViewElementVisibility()
+    {
+        bool isLoginPage = ViewModel.CurrentPage is LoginViewModel;
+        NavigationViewControl.IsPaneVisible = !isLoginPage;
+        NavigationViewControl.IsPaneToggleButtonVisible = !isLoginPage;
+        NavigationViewControl.PaneDisplayMode =
+            isLoginPage ? NavigationViewPaneDisplayMode.LeftMinimal : NavigationViewPaneDisplayMode.Left;
+        ApplicationIcon.Visibility = isLoginPage ? Visibility.Collapsed : Visibility.Visible;
+
+        AppTitleBar.Margin = isLoginPage ?
+            new Thickness(0, 0, 128, 0) :
+            new Thickness(48, 0, 128, 0);
+
+        AppTitleBarText.Margin = isLoginPage ?
+            new Thickness(16, 0, 0, 0) :
+            new Thickness(28, 0, 0, 0);
+
+        App.MainWindow.IsResizable = !isLoginPage;
+        App.MainWindow.IsMaximizable = !isLoginPage;
     }
 
     private void OnNavigationViewDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
     {
         ViewModel.OnNavigationDisplayModeChanged(args.DisplayMode);
+    }
+
+    private void Logout(object sender, RoutedEventArgs e)
+    {
+        AccountFlyout.Hide();
+        ViewModel.PageNavigator.NavigateTo(typeof(LoginViewModel).FullName!);
     }
 }

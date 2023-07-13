@@ -22,4 +22,8 @@ namespace ProtonVPN.Client.Models.Urls;
 public interface IUrls
 {
     string ProtocolsLearnMore { get; }
+    string CreateAccount { get; }
+    string ResetPassword { get; }
+    string ForgotUsername { get; }
+    string TroubleSigningIn { get; }
 }

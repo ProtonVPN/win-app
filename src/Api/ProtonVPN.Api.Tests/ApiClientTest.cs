@@ -25,62 +25,59 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Core.Settings;
 using RichardSzalay.MockHttp;
 
-namespace ProtonVPN.Api.Tests
+namespace ProtonVPN.Api.Tests;
+
+[TestClass]
+public class ApiClientTest
 {
-    [TestClass]
-    public class ApiClientTest
+    private ILogger _logger;
+    private ISettings _appSettings;
+    private IApiAppVersion _appVersion;
+    private IApiHttpClientFactory _apiHttpClientFactory;
+    private IApiClient _apiClient;
+    private readonly MockHttpMessageHandler _fakeHttpMessageHandler = new();
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private ILogger _logger;
-        private IAppSettings _appSettings;
-        private IApiAppVersion _appVersion;
-        private IApiHttpClientFactory _apiHttpClientFactory;
-        private IApiClient _apiClient;
-        private readonly MockHttpMessageHandler _fakeHttpMessageHandler = new();
-        private IAppLanguageCache _appLanguageCache;
+        _logger = Substitute.For<ILogger>();
 
-        [TestInitialize]
-        public void TestInitialize()
+        _appVersion = Substitute.For<IApiAppVersion>();
+        _appVersion.Value().Returns(string.Empty);
+        _appVersion.UserAgent().Returns("User agent");
+
+        _appSettings = Substitute.For<ISettings>();
+        _appSettings.AccessToken.Returns(string.Empty);
+        _appSettings.UniqueSessionId.Returns(string.Empty);
+
+        HttpClient httpClient = _fakeHttpMessageHandler.ToHttpClient();
+        httpClient.BaseAddress = new("http://127.0.0.1");
+
+        _apiHttpClientFactory = Substitute.For<IApiHttpClientFactory>();
+        _apiHttpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
+        _apiHttpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
+
+        IConfiguration config = new Config();
+
+        _apiClient = new ApiClient(_apiHttpClientFactory, _logger, _appVersion, _appSettings, config);
+    }
+
+    [TestMethod]
+    public async Task ServerListDownloadedAsync()
+    {
+        _fakeHttpMessageHandler.When("*").Respond(_ => new()
         {
-            _logger = Substitute.For<ILogger>();
-            _appLanguageCache = Substitute.For<IAppLanguageCache>();
+            StatusCode = HttpStatusCode.OK,
+            Content = new StringContent("{'Code' : '1000', 'Servers': []}")
+        });
 
-            _appVersion = Substitute.For<IApiAppVersion>();
-            _appVersion.Value().Returns(string.Empty);
-            _appVersion.UserAgent().Returns("User agent");
+        ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync("127.0.0.0");
 
-            _appSettings = Substitute.For<IAppSettings>();
-            _appSettings.AccessToken.Returns(string.Empty);
-            _appSettings.Uid.Returns(string.Empty);
-
-            HttpClient httpClient = _fakeHttpMessageHandler.ToHttpClient();
-            httpClient.BaseAddress = new("http://127.0.0.1");
-
-            _apiHttpClientFactory = Substitute.For<IApiHttpClientFactory>();
-            _apiHttpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
-            _apiHttpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
-
-            IConfiguration config = new Config();
-
-            _apiClient = new ApiClient(_apiHttpClientFactory, _logger, _appSettings, _appVersion, _appLanguageCache, config);
-        }
-
-        [TestMethod]
-        public async Task ServerListDownloaded()
-        {
-            _fakeHttpMessageHandler.When("*").Respond(req => new()
-            {
-                StatusCode = HttpStatusCode.OK,
-                Content = new StringContent("{'Code' : '1000', 'Servers': []}")
-            });
-
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync("127.0.0.0");
-
-            response.Success.Should().BeTrue();
-        }
+        response.Success.Should().BeTrue();
     }
 }

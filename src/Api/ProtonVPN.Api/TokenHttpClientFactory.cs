@@ -25,34 +25,33 @@ using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Api;
+
+public class TokenHttpClientFactory : ITokenHttpClientFactory
 {
-    public class TokenHttpClientFactory : ITokenHttpClientFactory
+    private readonly IConfiguration _configuration;
+    private readonly HttpMessageHandler _innerHandler;
+
+    public TokenHttpClientFactory(IConfiguration configuration,
+        //TODO: restore AlternativeHostHandler alternativeHostHandler,
+        RetryingHandler retryingHandler,
+        //TODO: restore DnsHandler dnsHandler,
+        LoggingHandlerBase loggingHandlerBase,
+        TlsPinnedCertificateHandler tlsPinnedCertificateHandler)
     {
-        private readonly IConfiguration _configuration;
-        private readonly HttpMessageHandler _innerHandler;
+        _configuration = configuration;
 
-        public TokenHttpClientFactory(IConfiguration configuration, 
-            AlternativeHostHandler alternativeHostHandler,
-            RetryingHandler retryingHandler,
-            DnsHandler dnsHandler,
-            LoggingHandlerBase loggingHandlerBase,
-            TlsPinnedCertificateHandler tlsPinnedCertificateHandler)
-        {
-            _configuration = configuration;
+        _innerHandler = new HttpMessageHandlerStackBuilder()
+            //TODO: restore .AddDelegatingHandler(alternativeHostHandler)
+            .AddDelegatingHandler(retryingHandler)
+            //TODO: restore .AddDelegatingHandler(dnsHandler)
+            .AddDelegatingHandler(loggingHandlerBase)
+            .AddLastHandler(tlsPinnedCertificateHandler)
+            .Build();
+    }
 
-            _innerHandler = new HttpMessageHandlerStackBuilder()
-                            .AddDelegatingHandler(alternativeHostHandler)
-                            .AddDelegatingHandler(retryingHandler)
-                            .AddDelegatingHandler(dnsHandler)
-                            .AddDelegatingHandler(loggingHandlerBase)
-                            .AddLastHandler(tlsPinnedCertificateHandler)
-                            .Build();
-        }
-
-        public HttpClient GetTokenHttpClient()
-        {
-            return new HttpClient(_innerHandler) { BaseAddress = new Uri(_configuration.Urls.ApiUrl) };
-        }
+    public HttpClient GetTokenHttpClient()
+    {
+        return new HttpClient(_innerHandler) { BaseAddress = new Uri(_configuration.Urls.ApiUrl) };
     }
 }

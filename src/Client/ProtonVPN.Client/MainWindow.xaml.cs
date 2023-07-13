@@ -25,7 +25,7 @@ using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client;
 
-public sealed partial class MainWindow : WindowEx
+public sealed partial class MainWindow
 {
     private readonly ISettings _settings;
 

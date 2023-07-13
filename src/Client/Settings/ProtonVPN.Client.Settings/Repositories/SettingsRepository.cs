@@ -21,7 +21,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Crypto.Extensions;
+using ProtonVPN.Crypto.Contracts.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Serialization.Json;

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputPath>..\..\..\..\bin</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
+  </ItemGroup>
+</Project>

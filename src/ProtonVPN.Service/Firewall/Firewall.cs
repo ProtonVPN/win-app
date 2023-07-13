@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.FirewallLogs;
 using ProtonVPN.NetworkFilter;
