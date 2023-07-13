@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.UI.Login.Forms;
 
 namespace ProtonVPN.Client.UI.Login;
@@ -34,10 +35,19 @@ public sealed partial class LoginPage
         Loaded += OnPageLoaded;
     }
 
+    public LoginViewModel ViewModel { get; }
+
     private void OnPageLoaded(object sender, RoutedEventArgs e)
     {
         LoginWindowContentFrame.Navigate(typeof(LoginForm));
     }
 
-    public LoginViewModel ViewModel { get; }
+    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+    {
+        if (LoginWindowContentFrame.CanGoBack)
+        {
+            LoginWindowContentFrame.GoBack();
+            ViewModel.IsBackEnabled = false;
+        }
+    }
 }

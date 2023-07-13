@@ -45,6 +45,9 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
     [ObservableProperty]
     private string _errorMessage;
 
+    [ObservableProperty]
+    private bool _isBackEnabled;
+
     public LoginViewModel(ILogger logger, ILocalizationProvider localizationProvider, IPageNavigator pageNavigator,
         IUserAuthenticator userAuthenticator) : base(pageNavigator, localizationProvider)
     {
@@ -67,6 +70,7 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
             case LoginState.TwoFactorRequired:
                 ClearErrorMessage();
                 Frame.Navigate(typeof(TwoFactorForm));
+                IsBackEnabled = true;
                 break;
             case LoginState.TwoFactorFailed:
                 switch (message.AuthError)
@@ -77,6 +81,7 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
                     case AuthError.TwoFactorAuthFailed:
                         ShowErrorMessage(Localizer.Get("Login_Error_TwoFactorFailed"));
                         Frame.Navigate(typeof(LoginForm));
+                        IsBackEnabled = false;
                         break;
                     case AuthError.Unknown:
                         ShowErrorMessage(message.ErrorMessage);
@@ -99,7 +104,7 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
     public override async void OnNavigatedTo(object parameter)
     {
         base.OnNavigatedTo(parameter);
-
+        IsBackEnabled = false;
         await _userAuthenticator.LogoutAsync();
     }
 

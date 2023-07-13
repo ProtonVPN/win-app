@@ -90,15 +90,7 @@ public sealed partial class ShellPage
         NavigationViewControl.PaneDisplayMode =
             isLoginPage ? NavigationViewPaneDisplayMode.LeftMinimal : NavigationViewPaneDisplayMode.Left;
         ApplicationIcon.Visibility = isLoginPage ? Visibility.Collapsed : Visibility.Visible;
-
-        AppTitleBar.Margin = isLoginPage ?
-            new Thickness(0, 0, 128, 0) :
-            new Thickness(48, 0, 128, 0);
-
-        AppTitleBarText.Margin = isLoginPage ?
-            new Thickness(16, 0, 0, 0) :
-            new Thickness(28, 0, 0, 0);
-
+        AppTitleBarText.Visibility = isLoginPage ? Visibility.Collapsed : Visibility.Visible;
         App.MainWindow.IsResizable = !isLoginPage;
         App.MainWindow.IsMaximizable = !isLoginPage;
     }

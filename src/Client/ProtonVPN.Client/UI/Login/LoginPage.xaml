@@ -43,17 +43,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </InfoBar>
 
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Image Source="{ThemeResource WelcomeIllustrationSource}" />
-            <Image Source="{ThemeResource ProductLogoIllustrationSource}"
-                   Width="173" />
-
-            <NavigationView IsSettingsVisible="False"
-                            IsBackEnabled="False"
+            <NavigationView IsSettingsVisible="false"
+                            BackRequested="OnBackRequested"
+                            IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                             HorizontalAlignment="Center"
-                            IsBackButtonVisible="Collapsed"
+                            PaneDisplayMode="LeftMinimal"
+                            IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled, Converter={StaticResource BooleanToNavigationBackButtonVisibilityConverter}, Mode=OneWay}"
                             IsPaneToggleButtonVisible="False">
-                <Frame x:Name="LoginWindowContentFrame"
-                       Background="{StaticResource BackgroundNormColorBrush}" />
+                <StackPanel>
+                    <Image Source="{ThemeResource WelcomeIllustrationSource}" />
+                    <Image Source="{ThemeResource ProductLogoIllustrationSource}"
+                           Width="173" />
+                    <Frame x:Name="LoginWindowContentFrame"
+                           Background="{StaticResource BackgroundNormColorBrush}" />
+                </StackPanel>
             </NavigationView>
         </StackPanel>
     </Grid>
