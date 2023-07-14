@@ -39,7 +39,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <StackPanel Margin="0,24,0,0" Width="{StaticResource LoginPageContentWidth}">
+    <StackPanel Margin="0,24,0,0"
+                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
+                Width="{StaticResource LoginPageContentWidth}">
         <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
                    HorizontalAlignment="Center"
                    Margin="0,0,0,8"
@@ -62,6 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="0"
+                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit1')}"
                      x:Name="FirstDigit"
                      Paste="OnPaste"
                      MaxLength="1"
@@ -71,6 +74,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Style="{StaticResource TwoFactorNumberBox}" />
 
             <TextBox Grid.Column="1"
+                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit2')}"
                      Paste="OnPaste"
                      MaxLength="1"
                      GotFocus="OnGotFocus"
@@ -79,6 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Style="{StaticResource TwoFactorNumberBox}" />
 
             <TextBox Grid.Column="2"
+                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit3')}"
                      Paste="OnPaste"
                      MaxLength="1"
                      GotFocus="OnGotFocus"
@@ -94,6 +99,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        FontSize="22" />
 
             <TextBox Grid.Column="4"
+                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit4')}"
                      Paste="OnPaste"
                      MaxLength="1"
                      GotFocus="OnGotFocus"
@@ -102,6 +108,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Style="{StaticResource TwoFactorNumberBox}" />
 
             <TextBox Grid.Column="5"
+                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit5')}"
                      Paste="OnPaste"
                      MaxLength="1"
                      GotFocus="OnGotFocus"
@@ -110,6 +117,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Style="{StaticResource TwoFactorNumberBox}" />
 
             <TextBox Grid.Column="6"
+                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit6')}"
                      x:Name="LastDigit"
                      Paste="OnPaste"
                      MaxLength="1"
@@ -120,6 +128,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <Button x:Name="AuthenticateButton"
+                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
                 Style="{StaticResource PrimaryButtonStyle}"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"

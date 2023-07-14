@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <StackPanel Margin="0,24,0,0"
+                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_Form')}"
                 Width="{StaticResource LoginPageContentWidth}">
         <TextBox Style="{StaticResource DefaultTextBoxStyle}"
                  AutomationProperties.AutomationId="UsernameTextBox"
@@ -46,6 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      KeyDown="OnFormBoxKeyDown" />
 
         <Button x:Name="LoginButton"
+                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_Form_SignIn')}"
                 Style="{StaticResource PrimaryButtonStyle}"
                 HorizontalAlignment="Stretch"
                 AutomationProperties.AutomationId="SignInButton"
