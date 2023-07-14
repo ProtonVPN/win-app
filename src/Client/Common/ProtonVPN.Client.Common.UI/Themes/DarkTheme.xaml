@@ -41,6 +41,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Color x:Key="InteractionDefaultColor">#005B576B</Color>
     <Color x:Key="InteractionDefaultHoverColor">#335B576B</Color>
     <Color x:Key="InteractionDefaultActiveColor">#665B576B</Color>
+    <!--  InteractionException  -->
+    <Color x:Key="InteractionExceptionColor">#4A4658</Color>
+    <Color x:Key="InteractionExceptionHoverColor">#5C5969</Color>
+    <Color x:Key="InteractionExceptionActiveColor">#6E6B79</Color>
     <!--  Text  -->
     <Color x:Key="TextNormColor">#FFFFFF</Color>
     <Color x:Key="TextWeakColor">#A7A4B5</Color>
@@ -78,6 +82,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Color x:Key="GradientConnectionLineEndColor">#27DDB1</Color>
 
     <!--  Composite Colors  -->
+
+    <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
+    <Color x:Key="BackgroundNormHoverColor">#24212B</Color>
+    <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
+    <Color x:Key="BackgroundNormActiveColor">#312F3C</Color>
 
     <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
     <Color x:Key="BackgroundWeakHoverColor">#33303E</Color>
