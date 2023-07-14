@@ -1705,4 +1705,25 @@
   <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
   </data>
+  <data name="Login_Form" xml:space="preserve">
+    <value>Sign in form</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1" xml:space="preserve">
+    <value>First digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2" xml:space="preserve">
+    <value>Second digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3" xml:space="preserve">
+    <value>Third digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4" xml:space="preserve">
+    <value>Fourth digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5" xml:space="preserve">
+    <value>Fifth digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6" xml:space="preserve">
+    <value>Sixth digit</value>
+  </data>
 </root>
