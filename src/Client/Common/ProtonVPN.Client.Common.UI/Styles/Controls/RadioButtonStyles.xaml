@@ -21,33 +21,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ResourceDictionary.ThemeDictionaries>
-
-        <ResourceDictionary x:Key="Light">
-
-            <StaticResource x:Key="RadioButtonOuterEllipseStrokePointerOver" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="RadioButtonOuterEllipseStrokePressed" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="RadioButtonOuterEllipseStrokeDisabled" ResourceKey="BorderWeakColor" />
-
-            <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled" ResourceKey="TextDisabledColor" />
-            <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillDisabled" ResourceKey="TextDisabledColor" />
-        </ResourceDictionary>
-
-        <ResourceDictionary x:Key="Dark">
-
-            <StaticResource x:Key="RadioButtonOuterEllipseStrokePointerOver" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="RadioButtonOuterEllipseStrokePressed" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="RadioButtonOuterEllipseStrokeDisabled" ResourceKey="BorderWeakColor" />
-
-            <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled" ResourceKey="TextDisabledColor" />
-            <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillDisabled" ResourceKey="TextDisabledColor" />
-        </ResourceDictionary>
-    </ResourceDictionary.ThemeDictionaries>
-
     <SolidColorBrush x:Key="RadioButtonCheckGlyphBackgroundBrush"
                      Color="White" />
     <SolidColorBrush x:Key="RadioButtonCheckGlyphBorderBrush"
                      Color="Transparent" />
+
+    <StaticResource x:Key="RadioButtonOuterEllipseStrokePointerOver" ResourceKey="BorderNormColor" />
+    <StaticResource x:Key="RadioButtonOuterEllipseStrokePressed" ResourceKey="BorderNormColor" />
+    <StaticResource x:Key="RadioButtonOuterEllipseStrokeDisabled" ResourceKey="BorderWeakColor" />
+
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled" ResourceKey="TextDisabledColor" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillDisabled" ResourceKey="TextDisabledColor" />
 
     <StaticResource x:Key="RadioButtonOuterEllipseStroke" ResourceKey="BorderNormColorBrush" />
     <StaticResource x:Key="RadioButtonOuterEllipseFill" ResourceKey="BackgroundWeakColorBrush" />

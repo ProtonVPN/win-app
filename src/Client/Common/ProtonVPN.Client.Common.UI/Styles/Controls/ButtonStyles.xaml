@@ -22,27 +22,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
-    <ResourceDictionary.ThemeDictionaries>
+    <SolidColorBrush x:Key="ButtonBackground"
+                     Color="{ThemeResource InteractionExceptionColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundPointerOver"
+                     Color="{ThemeResource InteractionExceptionHoverColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundPressed"
+                     Color="{ThemeResource InteractionExceptionActiveColor}" />
 
-        <ResourceDictionary x:Key="Light">
-
-            <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderNormColorBrush" />
-
-            <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderNormColorBrush" />
-
-            <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderNormColorBrush" />
-        </ResourceDictionary>
-
-        <ResourceDictionary x:Key="Dark">
-
-            <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionWeakColorBrush" />
-            <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionWeakHoverColorBrush" />
-            <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionWeakActiveColorBrush" />
-        </ResourceDictionary>
-    </ResourceDictionary.ThemeDictionaries>
+    <SolidColorBrush x:Key="ButtonBorderBrush"
+                     Color="{ThemeResource BorderNormColor}" />
+    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver"
+                     Color="{ThemeResource BorderNormColor}" />
+    <SolidColorBrush x:Key="ButtonBorderBrushPressed"
+                     Color="{ThemeResource BorderNormColor}" />
 
     <SolidColorBrush x:Key="ButtonForeground"
                      Color="{ThemeResource TextNormColor}" />

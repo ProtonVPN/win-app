@@ -31,18 +31,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
 
         <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light">
-                    <Color x:Key="VpnStatusDetailsBackgroundColor">#FFFFFF</Color>
-                </ResourceDictionary>
-                <ResourceDictionary x:Key="Dark">
-                    <Color x:Key="VpnStatusDetailsBackgroundColor">#16141C</Color>
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-
             <AcrylicBrush x:Key="VpnStatusDetailsBackgroundBrush"
-                          FallbackColor="{ThemeResource VpnStatusDetailsBackgroundColor}"
-                          TintColor="{ThemeResource VpnStatusDetailsBackgroundColor}"
+                          FallbackColor="{ThemeResource BackgroundNormColor}"
+                          TintColor="{ThemeResource BackgroundNormColor}"
                           TintOpacity="0.5" />
 
             <Duration x:Key="BackgroundAnimationDuration">0:0:0.5</Duration>

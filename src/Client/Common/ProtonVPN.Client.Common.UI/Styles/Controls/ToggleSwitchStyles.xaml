@@ -21,35 +21,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ResourceDictionary.ThemeDictionaries>
-
-        <ResourceDictionary x:Key="Light">
-
-            <StaticResource x:Key="ToggleSwitchStrokeOffPointerOver" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="BackgroundWeakHoverColor" />
-
-            <StaticResource x:Key="ToggleSwitchStrokeOffPressed" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="BackgroundWeakActiveColor" />
-
-            <StaticResource x:Key="ToggleSwitchStrokeOffDisabled" ResourceKey="BorderWeakColor" />
-            <StaticResource x:Key="ToggleSwitchFillOffDisabled" ResourceKey="BackgroundWeakColor" />
-        </ResourceDictionary>
-
-        <ResourceDictionary x:Key="Dark">
-
-            <StaticResource x:Key="ToggleSwitchStrokeOffPointerOver" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="BackgroundWeakHoverColor" />
-
-            <StaticResource x:Key="ToggleSwitchStrokeOffPressed" ResourceKey="BorderNormColor" />
-            <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="BackgroundWeakActiveColor" />
-
-            <StaticResource x:Key="ToggleSwitchStrokeOffDisabled" ResourceKey="BorderWeakColor" />
-            <StaticResource x:Key="ToggleSwitchFillOffDisabled" ResourceKey="BackgroundWeakColor" />
-        </ResourceDictionary>
-    </ResourceDictionary.ThemeDictionaries>
-
     <SolidColorBrush x:Key="ToggleSwitchKnobOnBackgroundBrush"
                      Color="White" />
+
+    <StaticResource x:Key="ToggleSwitchStrokeOffPointerOver" ResourceKey="BorderNormColor" />
+    <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="BackgroundWeakHoverColor" />
+
+    <StaticResource x:Key="ToggleSwitchStrokeOffPressed" ResourceKey="BorderNormColor" />
+    <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="BackgroundWeakActiveColor" />
+
+    <StaticResource x:Key="ToggleSwitchStrokeOffDisabled" ResourceKey="BorderWeakColor" />
+    <StaticResource x:Key="ToggleSwitchFillOffDisabled" ResourceKey="BackgroundWeakColor" />
 
     <StaticResource x:Key="ToggleSwitchHeaderForeground" ResourceKey="TextNormColorBrush" />
     <StaticResource x:Key="ToggleSwitchContentForeground" ResourceKey="TextNormColorBrush" />

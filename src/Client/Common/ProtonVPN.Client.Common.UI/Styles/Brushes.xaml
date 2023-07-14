@@ -57,6 +57,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Color="{ThemeResource InteractionDefaultHoverColor}" />
     <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush"
                      Color="{ThemeResource InteractionDefaultActiveColor}" />
+    <!--  InteractionException  -->
+    <SolidColorBrush x:Key="InteractionExceptionColorBrush"
+                     Color="{ThemeResource InteractionExceptionColor}" />
+    <SolidColorBrush x:Key="InteractionExceptionHoverColorBrush"
+                     Color="{ThemeResource InteractionExceptionHoverColor}" />
+    <SolidColorBrush x:Key="InteractionExceptionActiveColorBrush"
+                     Color="{ThemeResource InteractionExceptionActiveColor}" />
     <!--  Text  -->
     <SolidColorBrush x:Key="TextNormColorBrush"
                      Color="{ThemeResource TextNormColor}" />
@@ -126,6 +133,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </LinearGradientBrush>
 
     <!--  Composite Brushes  -->
+    
+    <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
+    <SolidColorBrush x:Key="BackgroundNormHoverColorBrush"
+                     Color="{ThemeResource BackgroundNormHoverColor}" />
+    <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
+    <SolidColorBrush x:Key="BackgroundNormActiveColorBrush"
+                     Color="{ThemeResource BackgroundNormActiveColor}" />
 
     <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
     <SolidColorBrush x:Key="BackgroundWeakHoverColorBrush"

@@ -22,9 +22,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <FontFamily x:Key="DefaultFontFamily">XamlAutoFontFamily</FontFamily>
+    <SolidColorBrush x:Key="DefaultForeground"
+                     Color="{ThemeResource TextNormColor}"/>
 
     <Style x:Key="DefaultTextBlockStyle" BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource TextNormColorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
     </Style>
 
