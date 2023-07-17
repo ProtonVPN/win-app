@@ -150,7 +150,7 @@
     <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
   </data>
   <data name="About_lbl_CurrentVersion">
-    <value>Versión Actual:</value>
+    <value>Versión actual:</value>
     <comment>The label for current app version number in About window</comment>
   </data>
   <data name="About_lbl_CurrentVersion_EarlyAccess">
@@ -1596,7 +1596,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Mejorar</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1608,7 +1608,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch está protegiendo tu IP bloqueando todas las conexiones. En caso de problemas puedes desactivar Kill Switch.</value>
+    <value>Kill Switch está protegiendo tu IP al bloquear todas las conexiones. En caso de problemas puedes desactivar Kill Switch.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1694,7 +1694,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Actualizar</value>
+    <value>Mejorar</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
@@ -1784,7 +1784,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Actualizar de nuevo</value>
+    <value>Mejorar de nuevo</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
@@ -2744,7 +2744,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>NAT moderada</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>La NAT moderada desactiva la randomización del mapeo de las direcciones locales, lo que puede reducir ligeramente su seguridad, pero permite técnicas como las conexiones directas para aplicaciones como los juegos en línea.</value>
+    <value>La NAT moderada desactiva la randomización del mapeo de las direcciones locales, lo que puede reducir ligeramente tu seguridad, pero permite técnicas como las conexiones directas para aplicaciones como los juegos en línea.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Conexión rápida</value>
@@ -3082,7 +3082,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Conecta hasta 10 dispositivos a la vez</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Cuando se actualiza a Plus</value>
+    <value>Cuando mejoras a Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
@@ -3099,7 +3099,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Habilitar NAT moderada</value>
   </data>
   <data name="Upsell_ModerateNat_Unlock">
-    <value>Actualiza a un plan de pago para desbloquear esta y muchas otras funciones.</value>
+    <value>Mejora a un plan de pago para desbloquear esta y muchas otras funciones.</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Bloquear anuncios y rastreadores</value>
@@ -3111,7 +3111,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Proteja su dispositivo contra el malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Cuando se actualiza a Plus</value>
+    <value>Cuando mejoras a Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>Disfruta de una navegación sin anuncios con NetShield</value>
@@ -3151,7 +3151,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Enrutamiento a través de servidores ultra seguros en Suiza, Suecia e Islandia</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Cuando se actualiza a Plus</value>
+    <value>Cuando mejoras a Plus</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Doble encriptación con Secure Core</value>

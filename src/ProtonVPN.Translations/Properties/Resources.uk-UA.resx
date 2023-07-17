@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Не вдалося перевірити оновлення</value>
+    <value>Не вдалося перевірити наявність оновлень</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Checking">
-    <value>Перевірка оновлень</value>
+    <value>Перевірка наявності оновлень</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_DownloadFailed">
@@ -289,7 +289,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; сервера</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Підтримка сервісів трансляції</value>
+    <value>Підтримка стримінгових сервісів</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
@@ -1138,7 +1138,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Північна Македонія</value>
+    <value>Македонія</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1600,7 +1600,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Ви зможете знову отримати доступ до преміум функцій після оплати.</value>
+    <value>Ви зможете знову отримати доступ до преміумфункцій після оплати.</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
@@ -2570,7 +2570,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The name of Secure Core server feature</comment>
   </data>
   <data name="Servers_Feature_val_Streaming">
-    <value>Потокове передавання</value>
+    <value>Стримінг</value>
   </data>
   <data name="Servers_Feature_val_Tor">
     <value>Сервер Tor</value>
@@ -2799,7 +2799,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Помірне NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Помірне NAT вимикає рандомізацію показу локальних адрес, що може трохи знизити вашу безпеку, але дозволяє використовувати такі методи, як пряме під'єднання до застосунків, наприклад онлайн-ігор.</value>
+    <value>Помірний NAT вимикає показ випадкових локальних адрес, що може дещо знизити рівень безпеки, але дозволяє використовувати такі методи, як прямі з'єднання для таких застосунків, як онлайн-ігри.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Швидке з'єднання</value>
@@ -3026,10 +3026,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ця технологія дає змогу Proton VPN забезпечити вищу швидкість та безпеку в країнах з ускладненим обслуговуванням.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
-    <value>Потокове передавання</value>
+    <value>Стримінг</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>PLUS сервери підтримують потокове передавання (Netflix, Disney+ тощо) звідусіль у світі.</value>
+    <value>PLUS сервери підтримують стримінг (Netflix, Disney+ тощо) звідусіль у світі.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Функції</value>
@@ -3061,13 +3061,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Трансляція - {0}</value>
+    <value>Стримінг - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
     <value>Функції</value>
   </data>
   <data name="Sidebar_Streaming_Info">
-    <value>З'єднайтеся з сервером Plus в цій країні для потокового передавання.</value>
+    <value>З'єднайтеся з сервером Plus в цій країні, щоб розпочати стримінг.</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
     <value>Примітка: Скористайтеся новою вкладкою браузера і/або зітріть кеш, щоб упевнитися в появі нового вмісту.</value>
@@ -3146,7 +3146,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Користуйтеся інтернетом із найвищою швидкістю (10 Гбіт/с)</value>
   </data>
   <data name="Upsell_Countries_GlobalStreamingServices">
-    <value>Отримайте доступ до глобальних сервісів трансляції</value>
+    <value>Отримайте доступ до глобальних стримінгових сервісів</value>
   </data>
   <data name="Upsell_Countries_MoreFeatures">
     <value>Та багато інших преміумфункцій</value>

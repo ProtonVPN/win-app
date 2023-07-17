@@ -1108,7 +1108,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Kuzey Makedonya</value>
+    <value>Makedonya</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -2168,7 +2168,7 @@
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>En uygun hız ve gizlilik koruması için Proton VPN özellikleriyle VPN bağlantınızı çevrimiçi etkinliğinize göre uyarlayın.</value>
+    <value>En uygun hız ve gizlilik koruması için Proton VPN özellikleriyle VPN bağlantınızı çevrim içi etkinliğinize göre uyarlayın.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
@@ -2340,11 +2340,11 @@
     <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
-    <value>Sunucular bakım nedeniyle çevrimdışı.</value>
+    <value>Sunucular bakım nedeniyle çevrim dışı.</value>
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>Bu ülkedeki sunucular şu anda bakım nedeniyle çevrimdışı. Lütfen başka bir ülke seçin.</value>
+    <value>Bu ülkedeki sunucular şu anda bakım nedeniyle çevrim dışı. Lütfen başka bir ülke seçin.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
@@ -2468,7 +2468,7 @@
     <value>Siteler yüklenmiyorsa, NetShield özelliğini devre dışı bırakmayı deneyin</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrimiçi oyun kullanımınızı hızlandırın.</value>
+    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>En hassas verilerinizi gizliliğe saygı gösteren ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
@@ -2572,7 +2572,7 @@
     <value>Proton VPN, istemci kimlik doğrulama sertifikasını yenileyemedi.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Bağlanmaya çalıştığınız sunucu şu anda bakım yapıldığından çevrimdışı. Lütfen başka bir sunucu ya da profil seçin.</value>
+    <value>Bağlanmaya çalıştığınız sunucu şu anda bakım yapıldığından çevrim dışı. Lütfen başka bir sunucu ya da profil seçin.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
@@ -2681,7 +2681,7 @@
     <value>Yönlendirilen bağlantı noktası değiştirildiğinde bildirim alın</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilmesini sağlayarak, torrent ve çevrimiçi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Desteklenen yerel uygulamalara internet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
@@ -2743,7 +2743,7 @@
     <value>Ilımlı NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Ilımlı NAT, güvenliğinizi biraz azaltabilir. Ancak çevrimiçi oyunlar gibi uygulamaların doğrudan bağlantı kurması gibi tekniklere izin veren yerel adres eşlemelerini rastgeleleştirme özelliğini devre dışı bırakır.</value>
+    <value>Ilımlı NAT, güvenliğinizi biraz azaltabilir. Ancak çevrim içi oyunlar gibi uygulamaların doğrudan bağlantı kurması gibi tekniklere izin veren yerel adres eşlemelerini rastgeleleştirme özelliğini devre dışı bırakır.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Hızlı bağlan</value>
@@ -3092,7 +3092,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ilımlı NAT nedir?</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Ilımlı NAT, 2. tür Nat olarak da bilinir ve çeşitli uygulamalar ve çevrimiçi video oyunlarıyla ilgili çevrimiçi deneyiminizi iyileştirebilir.</value>
+    <value>Ilımlı NAT, 2. tür Nat olarak da bilinir ve çeşitli uygulamalar ve çevrim içi video oyunlarıyla ilgili çevrim içi deneyiminizi iyileştirebilir.</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
     <value>Ilımlı NAT kullanılsın</value>
@@ -3135,7 +3135,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Bağlantı noktası yönlendirmesi nedir?</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Bağlantı noktası yönlendirme ile daha hızlı P2P indirmeleri ve daha iyi çevrimiçi oyun deneyimi elde edin. &lt;LineBreak/&gt;&lt;LineBreak/&gt;VPN Plus tarifesine geçerek bu ve pek çok diğer özelliği edinebilirsiniz.</value>
+    <value>Bağlantı noktası yönlendirme ile daha hızlı P2P indirmeleri ve daha iyi çevrim içi oyun deneyimi elde edin. &lt;LineBreak/&gt;&lt;LineBreak/&gt;VPN Plus tarifesine geçerek bu ve pek çok diğer özelliği edinebilirsiniz.</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>Bağlantı noktası yönlendirmesi kullanılsın</value>

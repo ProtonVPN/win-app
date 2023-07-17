@@ -178,7 +178,7 @@
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
-    <value>Кіраванне падпіскай</value>
+    <value>Кіраваць падпіскай</value>
     <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
@@ -1138,7 +1138,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Паўночная Македонія</value>
+    <value>Македонія</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1760,7 +1760,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Падключэнне было разарвана па прычыне таго, што сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
+    <value>Падключэнне было разарвана, бо сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1770,7 +1770,7 @@
     <value>Уключыць перанакіраванне партоў?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігурыраваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша падключэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
+    <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігураваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша падключэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1873,10 +1873,10 @@
     <value>Пераключыцца на TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN не змог падключыцца таму, што сеткавы адаптар TUN ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Таксама можна пераключыцца на адаптар TAP. Вы заўсёды можаце вярнуцца на TUN у пашыраных наладах праграмы.</value>
+    <value>Proton VPN не змог падключыцца, бо сеткавы адаптар TUN ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Таксама можна пераключыцца на адаптар TAP. Вы заўсёды можаце вярнуцца на TUN у пашыраных наладах праграмы.</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN не можа падключыцца па прычыне таго, што сеткавы адаптар WireGuard ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць выбраць іншы пратакол у пашыраных наладах праграмы.</value>
+    <value>Proton VPN не можа падключыцца, бо сеткавы адаптар WireGuard ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць выбраць іншы пратакол у пашыраных наладах праграмы.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Скасаваць</value>
@@ -2635,7 +2635,7 @@
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN не можа падключыцца таму, што сервер RPC недаступны ў вашай сістэме. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Паглядзець магчымыя рашэнні&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN не можа падключыцца, бо сервер RPC недаступны ў вашай сістэме. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Паглядзець магчымыя рашэнні&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
     <value>Нам вельмі шкада, але дадзены сервер не падтрымлівае WireGuard.</value>

@@ -2235,10 +2235,10 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>La longitud máxima del nombre de perfil es de {0} caracter. Elija un nombre de perfil más corto.</value>
+    <value>El número máximo de caracteres del nombre de perfil es de {0} caracter. Elija un nombre de perfil más corto.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>La longitud máxima del nombre de perfil es de {0} caracteres. Elija un nombre de perfil más corto.</value>
+    <value>El número máximo de caracteres del nombre de perfil es de {0} caracteres. Elija un nombre de perfil más corto.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
     <value>Seleccione un servidor</value>
@@ -2429,7 +2429,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Secure Core activado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>ACTUALIZAR</value>
+    <value>MEJORAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Deshabilite internet si la conexión VPN cae para prevenir una filtración accidental de IP.</value>
@@ -2526,7 +2526,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
-    <value>Auto asignado</value>
+    <value>Asignado automáticamente</value>
     <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_Load">
@@ -3121,7 +3121,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Mejorar</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3157,7 +3157,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Duplique el cifrado con Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Mejorar</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

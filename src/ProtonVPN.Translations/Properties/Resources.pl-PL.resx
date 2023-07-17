@@ -2446,7 +2446,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Zablokuj złośliwe oprogramowanie</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Zablokuj złośliwe oprogramowanie, reklamy i skrypty śledzące</value>
+    <value>Zablokuj złośliwe oprogramowanie, reklamy i elementy śledzące</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Stały Kill Switch</value>
@@ -2494,23 +2494,23 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Szacowany rozmiar reklam, skryptów śledzących i złośliwego oprogramowania zablokowanego przez funkcję NetShield.</value>
+    <value>Szacowany rozmiar reklam, elementów śledzących i złośliwego oprogramowania zablokowanego przez funkcję NetShield.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>skryptów śledzących zatrzymanych</value>
+    <value>elementów śledzących zatrzymanych</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>skrypt śledzący zatrzymany</value>
+    <value>element śledzący zatrzymany</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
-    <value>skrypty śledzące zatrzymane</value>
+    <value>elementy śledzące zatrzymane</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
-    <value>skryptów śledzących zatrzymanych</value>
+    <value>elementów śledzących zatrzymanych</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Skrypty śledzące to strony trzecie, które zbierają, przechowują i sprzedają informacje o Twojej aktywności w sieci.</value>
+    <value>Elementy śledzące to strony trzecie, które zbierają, przechowują i sprzedają informacje o Twojej aktywności w sieci.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
@@ -3174,7 +3174,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ulepsz do płatnego planu, aby odblokować dodatkowe funkcje.</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Zablokuj reklamy i skrypty śledzące</value>
+    <value>Zablokuj reklamy i elementy śledzące</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
     <value>Przeglądaj Internet z najwyższą prędkością</value>

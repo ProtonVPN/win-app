@@ -1138,7 +1138,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Северная Македония</value>
+    <value>Македония</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -2798,7 +2798,7 @@
     <value>Умеренный NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Умеренный NAT выключает рандомизацию переназначений локальных адресов, что может слегка уменьшить безопасность, но позволит работать таким функциям, как прямое подключение для приложений, например, для сетевых игр.</value>
+    <value>Умеренный NAT отключает случайный выбор сопоставлений локальных адресов, что может несколько снизить уровень безопасности, но позволяет использовать такие методы, как прямое соединение для таких приложений, как онлайн-игры.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Быстрое подключение</value>

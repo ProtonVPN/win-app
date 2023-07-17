@@ -1093,7 +1093,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Makedonia Utara</value>
+    <value>Makedonia</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -2717,7 +2717,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>NAT Moderat</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Pengaturan NAT moderat akan menonaktifkan pengacakan alamat IP lokal, yang dapat membuat Anda lebih rentan namun memungkinkan Anda untuk dapat terhubung langsung dengan para pengguna lainnya pada berbagai aplikasi dan game online.</value>
+    <value>Pengaturan NAT moderat menonaktifkan pengacakan alamat IP lokal, yang dapat membuat Anda sedikit lebih rentan namun memungkinkan hubungan langsung antar aplikasi untuk berbagai program seperti game online.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Quick Connect</value>
