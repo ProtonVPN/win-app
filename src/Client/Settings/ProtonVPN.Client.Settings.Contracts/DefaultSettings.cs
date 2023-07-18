@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 
@@ -26,6 +27,15 @@ public static class DefaultSettings
     public static string Theme = "Default";
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
+    public static NatType NatType = NatType.Strict;
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
+    public static bool IsNotificationEnabled = true; // TODO: Default value still marked as TBD on the spec
+    public static bool IsBetaAccessEnabled = false;
+    public static bool IsHardwareAccelerationEnabled = false;
+    public static bool IsShareStatisticsEnabled = true; 
+    public static bool IsShareCrashReportsEnabled = true;
+    public static bool IsAlternativeRoutingEnabled = true;
+    public static bool IsCustomDnsServersEnabled = false;
+    public static List<CustomDnsServer> CustomDnsServersList = new();
 }

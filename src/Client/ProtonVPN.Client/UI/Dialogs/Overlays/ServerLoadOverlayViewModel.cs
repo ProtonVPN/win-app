@@ -20,14 +20,19 @@
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 
 namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
 public class ServerLoadOverlayViewModel : OverlayViewModelBase
 {
-    public Uri LearnMoreUri { get; } = new Uri(@"https://protonvpn.com/support/server-load-percentages-and-colors-explained/");
+    private readonly IUrls _urls;
 
-    public ServerLoadOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator)
+    public string LearnMoreUrl => _urls.ServerLoadLearnMore;
+
+    public ServerLoadOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IUrls urls)
         : base(localizationProvider, dialogActivator)
-    { }
+    {
+        _urls = urls;
+    }
 }

@@ -17,21 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+namespace ProtonVPN.Common.Core.Models;
 
-public interface IUrls
+public struct CustomDnsServer
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
+    public CustomDnsServer(string ipAddress, bool isActive)
+    {
+        IpAddress = ipAddress;
+        IsActive = isActive;
+    }
 
-    void NavigateTo(string url);
+    public string IpAddress { get; set; }
+
+    public bool IsActive { get; set; }
 }

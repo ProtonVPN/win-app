@@ -20,14 +20,19 @@
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 
 namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
 public class LatencyOverlayViewModel : OverlayViewModelBase
 {
-    public Uri LearnMoreUri { get; } = new Uri(@"https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed/");
+    private readonly IUrls _urls;
 
-    public LatencyOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator)
+    public string LearnMoreUrl => _urls.InternetSpeedLearnMore;
+
+    public LatencyOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IUrls urls)
         : base(localizationProvider, dialogActivator)
-    { }
+    {
+        _urls = urls;
+    }
 }

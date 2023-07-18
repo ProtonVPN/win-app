@@ -283,4 +283,145 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="labs:SettingsCard" />
+
+    <Style x:Key="VerticalSettingsCardStyle" TargetType="labs:SettingsCard" BasedOn="{StaticResource DefaultSettingsCardStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="labs:SettingsCard">
+                    <Grid x:Name="PART_RootGrid"
+                          MinWidth="{TemplateBinding MinWidth}"
+                          MinHeight="{TemplateBinding MinHeight}"
+                          MaxWidth="{TemplateBinding MaxWidth}"
+                          Padding="{TemplateBinding Padding}"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                          Background="{TemplateBinding Background}"
+                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </Grid.BackgroundTransition>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" x:Name="HeaderRowDefinition"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              MinWidth="{ThemeResource SettingsCardLeftIndention}" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Viewbox x:Name="PART_HeaderIconPresenterHolder"
+                                 MaxWidth="{ThemeResource SettingsCardHeaderIconMaxSize}"
+                                 MaxHeight="{ThemeResource SettingsCardHeaderIconMaxSize}"
+                                 Margin="{ThemeResource SettingsCardHeaderIconMargin}">
+                            <ContentPresenter x:Name="PART_HeaderIconPresenter"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding HeaderIcon}"
+                                              HighContrastAdjustment="None" />
+                        </Viewbox>
+
+                        <StackPanel x:Name="HeaderPanel"
+                                    Grid.Column="1"
+                                    Margin="0,0,24,0"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+
+                            <ContentPresenter x:Name="PART_HeaderPresenter"
+                                              HorizontalAlignment="Left"
+                                              Content="{TemplateBinding Header}"
+                                              FontSize="{StaticResource BodyFontSize}"
+                                              FontWeight="{StaticResource BodyFontWeight}"
+                                              HighContrastAdjustment="None"
+                                              TextWrapping="Wrap" />
+
+                            <ContentPresenter x:Name="PART_DescriptionPresenter"
+                                              Content="{TemplateBinding Description}"
+                                              FontSize="{ThemeResource SettingsCardDescriptionFontSize}"
+                                              Foreground="{ThemeResource SettingsCardDescriptionForeground}"
+                                              TextWrapping="Wrap"
+                                              Visibility="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <Viewbox x:Name="PART_ActionIconPresenterHolder"
+                                 Grid.Column="2"
+                                 MaxWidth="{ThemeResource SettingsCardActionIconMaxSize}"
+                                 MaxHeight="{ThemeResource SettingsCardActionIconMaxSize}"
+                                 Margin="{ThemeResource SettingsCardActionIconMargin}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HighContrastAdjustment="None"
+                                 Visibility="{Binding IsClickEnabled, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <ContentPresenter x:Name="PART_ActionIconPresenter"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding ActionIcon}"
+                                              FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                              Foreground="{StaticResource SettingsCardContentForeground}"
+                                              HighContrastAdjustment="None"
+                                              ToolTipService.ToolTip="{TemplateBinding ActionIconToolTip}" />
+                        </Viewbox>
+
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Grid.Row="1"
+                                          Grid.Column="0" 
+                                          Grid.ColumnSpan="3"
+                                          Margin="0,16,0,8"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          Foreground="{StaticResource SettingsCardContentForeground}" />
+                        
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource SettingsCardBackgroundPointerOver}" />
+                                        <Setter Target="PART_RootGrid.BorderBrush" Value="{ThemeResource SettingsCardBorderBrushPointerOver}" />
+                                        <Setter Target="PART_HeaderPresenter.Foreground" Value="{StaticResource SettingsCardForegroundPointerOver}" />
+                                        <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{StaticResource SettingsCardForegroundPointerOver}" />
+                                        <Setter Target="PART_ActionIconPresenter.Foreground" Value="{StaticResource SettingsCardForegroundPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_RootGrid.Background" Value="{StaticResource BackgroundWeakActiveColorBrush}" />
+                                        <Setter Target="PART_RootGrid.BorderBrush" Value="{StaticResource SettingsCardBorderBrushPressed}" />
+                                        <Setter Target="PART_HeaderPresenter.Foreground" Value="{StaticResource SettingsCardForegroundPressed}" />
+                                        <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{StaticResource SettingsCardForegroundPressed}" />
+                                        <Setter Target="PART_ActionIconPresenter.Foreground" Value="{StaticResource SettingsCardForegroundPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_RootGrid.Background" Value="{StaticResource SettingsCardBackgroundDisabled}" />
+                                        <Setter Target="PART_RootGrid.BorderBrush" Value="{StaticResource SettingsCardBorderBrushDisabled}" />
+                                        <Setter Target="PART_ActionIconPresenter.Foreground" Value="{StaticResource SettingsCardForegroundDisabled}" />
+                                        <Setter Target="PART_DescriptionPresenter.Foreground" Value="{StaticResource SettingsCardForegroundDisabled}" />
+                                        <Setter Target="PART_HeaderPresenter.Foreground" Value="{StaticResource SettingsCardForegroundDisabled}" />
+                                        <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{StaticResource SettingsCardForegroundDisabled}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="ContentVisibilityStates">
+                                <VisualState x:Name="Visible" />
+                                <VisualState x:Name="Collapsed">
+                                    <VisualState.StateTriggers>
+                                        <tk:IsNullOrEmptyStateTrigger Value="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_ContentPresenter.Visibility" Value="Collapsed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

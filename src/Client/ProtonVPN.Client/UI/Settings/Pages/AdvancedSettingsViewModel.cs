@@ -18,27 +18,89 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class AdvancedSettingsViewModel : PageViewModelBase
+public class AdvancedSettingsViewModel : PageViewModelBase, IEventMessageReceiver<SettingChangedMessage>
 {
-    public AdvancedSettingsViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
-    {
-    }
+    private readonly ISettings _settings;
+    private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Connection_AdvancedSettings");
 
-    public string CustomDnsServersSettingsState => Localizer.Get($"Common_States_Off"); // TODO
+    public string CustomDnsServersSettingsState => Localizer.GetToggleValue(_settings.IsCustomDnsServersEnabled);
 
-    public bool IsAlternativeRoutingEnabled { get; set; }  // TODO
+    public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
 
-    public bool IsLanConnectionsEnabled { get; set; }  // TODO
+    public bool IsAlternativeRoutingEnabled
+    {
+        get => _settings.IsAlternativeRoutingEnabled;
+        set => _settings.IsAlternativeRoutingEnabled = value;
+    }
 
-    public bool IsNonStandardPortsEnabled { get; set; }  // TODO
+    public bool IsStrictNatType
+    {
+        get => IsNatType(NatType.Strict);
+        set => SetNatType(value, NatType.Strict);
+    }
 
-    public bool IsLeakProtectionEnabled { get; set; }  // TODO
+    public bool IsModerateNatType
+    {
+        get => IsNatType(NatType.Moderate);
+        set => SetNatType(value, NatType.Moderate);
+    }
+
+    public AdvancedSettingsViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
+        : base(pageNavigator, localizationProvider)
+    {
+        _settings = settings;
+        _urls = urls;
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        switch (message.PropertyName)
+        {
+            case nameof(ISettings.IsAlternativeRoutingEnabled):
+                OnPropertyChanged(nameof(IsAlternativeRoutingEnabled));
+                break;
+
+            case nameof(ISettings.NatType):
+                OnPropertyChanged(nameof(IsStrictNatType));
+                OnPropertyChanged(nameof(IsModerateNatType));
+                break;
+
+            case nameof(ISettings.IsCustomDnsServersEnabled):
+                OnPropertyChanged(nameof(CustomDnsServersSettingsState));
+                break;
+        }
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(CustomDnsServersSettingsState));
+    }
+
+    private bool IsNatType(NatType natType)
+    {
+        return _settings.NatType == natType;
+    }
+
+    private void SetNatType(bool value, NatType natType)
+    {
+        if (value)
+        {
+            _settings.NatType = natType;
+        }
+    }
 }

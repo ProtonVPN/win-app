@@ -87,6 +87,21 @@ public class SettingsRepository : ISettingsRepository
         }
     }
 
+    public List<T> GetListValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+        where T : struct
+    {
+        try
+        {
+            string? json = GetJson(propertyName, scope, encryption);
+            return Deserialize<List<T>>(json ?? string.Empty) ?? new();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
+            return new();
+        }
+    }
+
     private T? Deserialize<T>(string json)
     {
         Type type = typeof(T);
@@ -161,6 +176,27 @@ public class SettingsRepository : ISettingsRepository
 
             oldValue = GetReferenceType<T>(propertyName, scope, encryption);
             if (EqualityComparer<T>.Default.Equals(oldValue, newValue))
+            {
+                return;
+            }
+
+            Set(propertyName, oldValue, newValue, scope, encryption);
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
+        }
+    }
+
+
+    public void SetListValueType<T>(string propertyName, List<T> newValue, SettingScope scope, SettingEncryption encryption)
+        where T : struct
+    {
+        try
+        {
+            List<T> oldValue = GetListValueType<T>(propertyName, scope, encryption);
+
+            if (oldValue.SequenceEqual(newValue))
             {
                 return;
             }

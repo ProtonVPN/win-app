@@ -31,14 +31,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StaticResource x:Key="CheckBoxCheckBackgroundStrokeUncheckedPressed" ResourceKey="BorderNormColorBrush" />
     <StaticResource x:Key="CheckBoxCheckBackgroundStrokeUncheckedDisabled" ResourceKey="BorderWeakColorBrush" />
 
-    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeChecked" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeCheckedPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeCheckedPressed" ResourceKey="InteractionNormActiveColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeChecked" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeCheckedPointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeCheckedPressed" ResourceKey="LinkActiveColorBrush" />
     <StaticResource x:Key="CheckBoxCheckBackgroundStrokeCheckedDisabled" ResourceKey="TextDisabledColorBrush" />
 
-    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminate" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminatePointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminatePressed" ResourceKey="InteractionNormActiveColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminate" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminatePointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminatePressed" ResourceKey="LinkActiveColorBrush" />
     <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminateDisabled" ResourceKey="TextDisabledColorBrush" />
 
     <!--  Checkbox fill brushes  -->
@@ -48,14 +48,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StaticResource x:Key="CheckBoxCheckBackgroundFillUncheckedPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
     <StaticResource x:Key="CheckBoxCheckBackgroundFillUncheckedDisabled" ResourceKey="BackgroundWeakColorBrush" />
 
-    <StaticResource x:Key="CheckBoxCheckBackgroundFillChecked" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedPressed" ResourceKey="InteractionNormActiveColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundFillChecked" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedPressed" ResourceKey="LinkActiveColorBrush" />
     <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedDisabled" ResourceKey="TextDisabledColorBrush" />
 
-    <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminate" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminatePointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminatePressed" ResourceKey="InteractionNormActiveColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminate" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminatePointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminatePressed" ResourceKey="LinkActiveColorBrush" />
     <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminateDisabled" ResourceKey="TextDisabledColorBrush" />
 
     <!--  Checkbox glyph brushes  -->

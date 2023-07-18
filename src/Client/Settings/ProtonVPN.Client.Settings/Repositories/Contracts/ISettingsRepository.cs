@@ -17,20 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Repositories.Contracts
+namespace ProtonVPN.Client.Settings.Repositories.Contracts;
+
+public interface ISettingsRepository
 {
-    public interface ISettingsRepository
-    {
-        T? GetValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
-            where T : struct;
+    T? GetValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+        where T : struct;
 
-        void SetValueType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
-            where T : struct;
+    void SetValueType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
+        where T : struct;
 
-        T? GetReferenceType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
-            where T : class;
+    T? GetReferenceType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+        where T : class;
 
-        void SetReferenceType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
-            where T : class;
-    }
+    void SetReferenceType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
+        where T : class;
+
+    List<T> GetListValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+        where T : struct;
+
+    void SetListValueType<T>(string propertyName, List<T> newValue, SettingScope scope, SettingEncryption encryption)
+        where T : struct;
 }
