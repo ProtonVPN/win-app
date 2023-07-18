@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Common_Actions_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="Common_Actions_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -1475,6 +1478,21 @@
   <data name="Settings_AppVersion" xml:space="preserve">
     <value>App version</value>
   </data>
+  <data name="Settings_Censorship_Footer" xml:space="preserve">
+    <value>These statistics do not contain your IP address, and they cannot be used to identify you. We'll never share them with third parties.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
+    <value>Share anonymous crash reports</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
+    <value>Crash reports help us fix bugs, detect firewalls, and avoid VPN blocks.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
+    <value>Share anonymous usage statistics</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
+    <value>Usage data helps us overcome VPN blocks and improve app performance.</value>
+  </data>
   <data name="Settings_Connection" xml:space="preserve">
     <value>Connection</value>
   </data>
@@ -1493,14 +1511,19 @@
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
     <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
   </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
+    <value>DNS servers ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
+    <value>Add IPv4 address</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
   <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
     <value>LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
     <value>Allows you to connect to printers, speakers, and other devices in your device's local network.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_LeakProtection" xml:space="preserve">
-    <value>IPv6 leak protection</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
     <value>NAT type</value>
@@ -1508,11 +1531,17 @@
   <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
     <value>Select a network address translation type for your connection.</value>
   </data>
-  <data name="Settings_Connection_Advanced_NonStandardPorts" xml:space="preserve">
-    <value>Non-standard ports</value>
+  <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
+    <value>Moderate (type 2)</value>
   </data>
-  <data name="Settings_Connection_Advanced_NonStandardPorts_Description" xml:space="preserve">
-    <value>Allow your VPN network to connect to non-standard ports.</value>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
+    <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
+    <value>Strict (type 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
+    <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
   </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
     <value>Protocol</value>

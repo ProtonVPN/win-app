@@ -32,9 +32,16 @@ public class SettingsRestorer : ISettingsRestorer
 
     public void Restore()
     {
-        _settings.Theme = DefaultSettings.Theme;
-        _settings.Language = DefaultSettings.Language;
+        // Note: Some settings should not be restored, such as Language, Theme, Share statistics...
+
         _settings.VpnProtocol = DefaultSettings.VpnProtocol;
+        _settings.NatType = DefaultSettings.NatType;
         _settings.IsVpnAcceleratorEnabled = DefaultSettings.IsVpnAcceleratorEnabled;
+        _settings.IsNotificationEnabled = DefaultSettings.IsNotificationEnabled;
+        _settings.IsBetaAccessEnabled = DefaultSettings.IsBetaAccessEnabled;
+        _settings.IsHardwareAccelerationEnabled = DefaultSettings.IsHardwareAccelerationEnabled;
+        _settings.IsAlternativeRoutingEnabled = DefaultSettings.IsAlternativeRoutingEnabled;
+        _settings.IsCustomDnsServersEnabled = DefaultSettings.IsCustomDnsServersEnabled;
+        _settings.CustomDnsServersList = DefaultSettings.CustomDnsServersList;
     }
 }

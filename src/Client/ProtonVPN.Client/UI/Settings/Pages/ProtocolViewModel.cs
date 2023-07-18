@@ -34,13 +34,6 @@ public partial class ProtocolViewModel : PageViewModelBase, IEventMessageReceive
     private readonly ISettings _settings;
     private readonly IUrls _urls;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsOpenVpnUdpProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsOpenVpnTcpProtocol))]
-    private VpnProtocol _selectedVpnProtocol;
-
     public override string? Title => Localizer.Get("Settings_Connection_Protocol");
 
     public string Recommended => Localizer.Get("Settings_Protocols_Recommended").ToUpperInvariant();
@@ -76,15 +69,18 @@ public partial class ProtocolViewModel : PageViewModelBase, IEventMessageReceive
     {
         _settings = settings;
         _urls = urls;
-
-        SelectedVpnProtocol = _settings.VpnProtocol;
     }
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.VpnProtocol) && message.NewValue is not null)
+        switch (message.PropertyName)
         {
-            SelectedVpnProtocol = (VpnProtocol)message.NewValue;
+            case nameof(ISettings.VpnProtocol):
+                OnPropertyChanged(nameof(IsSmartProtocol));
+                OnPropertyChanged(nameof(IsWireGuardUdpProtocol));
+                OnPropertyChanged(nameof(IsOpenVpnUdpProtocol));
+                OnPropertyChanged(nameof(IsOpenVpnTcpProtocol));
+                break;
         }
     }
 
@@ -97,12 +93,12 @@ public partial class ProtocolViewModel : PageViewModelBase, IEventMessageReceive
 
     private bool IsProtocol(VpnProtocol protocol)
     {
-        return SelectedVpnProtocol == protocol;
+        return _settings.VpnProtocol == protocol;
     }
 
     private void SetProtocol(bool value, VpnProtocol protocol)
     {
-        if (value && SelectedVpnProtocol != protocol)
+        if (value)
         {
             _settings.VpnProtocol = protocol;
         }

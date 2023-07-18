@@ -18,16 +18,54 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class CensorshipViewModel : PageViewModelBase
+public class CensorshipViewModel : PageViewModelBase, IEventMessageReceiver<SettingChangedMessage>
 {
-    public CensorshipViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+    private readonly ISettings _settings;
+    private readonly IUrls _urls;
+
+    public override string? Title => Localizer.Get("Settings_Improve_Censorship");
+
+    public bool IsShareStatisticsEnabled
+    {
+        get => _settings.IsShareStatisticsEnabled;
+        set => _settings.IsShareStatisticsEnabled = value;
+    }
+
+    public bool IsShareCrashReportsEnabled
+    {
+        get => _settings.IsShareCrashReportsEnabled;
+        set => _settings.IsShareCrashReportsEnabled = value;
+    }
+
+    public string LearnMoreUrl => _urls.UsageStatisticsLearnMore;
+
+    public CensorshipViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
         : base(pageNavigator, localizationProvider)
     {
+        _settings = settings;
+        _urls = urls;
     }
-    public override string? Title => Localizer.Get("Settings_Improve_Censorship");
+
+    public void Receive(SettingChangedMessage message)
+    {
+        switch (message.PropertyName)
+        {
+            case nameof(IsShareStatisticsEnabled):
+                OnPropertyChanged(nameof(IsShareStatisticsEnabled));
+                break;
+
+            case nameof(IsShareCrashReportsEnabled):
+                OnPropertyChanged(nameof(IsShareCrashReportsEnabled));
+                break;
+        }
+    }
 }

@@ -39,12 +39,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StaticResource x:Key="RadioButtonOuterEllipseFillPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
     <StaticResource x:Key="RadioButtonOuterEllipseFillDisabled" ResourceKey="BackgroundWeakColorBrush" />
 
-    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStroke" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePressed" ResourceKey="InteractionNormActiveColorBrush" />
-    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFill" ResourceKey="InteractionNormColorBrush" />
-    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
-    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillPressed" ResourceKey="InteractionNormActiveColorBrush" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStroke" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePressed" ResourceKey="LinkActiveColorBrush" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFill" ResourceKey="LinkNormColorBrush" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillPointerOver" ResourceKey="LinkHoverColorBrush" />
+    <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillPressed" ResourceKey="LinkActiveColorBrush" />
 
     <StaticResource x:Key="RadioButtonCheckGlyphFill" ResourceKey="RadioButtonCheckGlyphBackgroundBrush" />
     <StaticResource x:Key="RadioButtonCheckGlyphFillPointerOver" ResourceKey="RadioButtonCheckGlyphBackgroundBrush" />

@@ -20,43 +20,56 @@
 using System.Runtime.CompilerServices;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 
-namespace ProtonVPN.Client.Settings
+namespace ProtonVPN.Client.Settings;
+
+public abstract class SettingsBase
 {
-    public abstract class SettingsBase
+    private readonly ISettingsRepository _settingsRepository;
+
+    protected SettingsBase(ISettingsRepository settingsRepository)
     {
-        private readonly ISettingsRepository _settingsRepository;
+        _settingsRepository = settingsRepository;
+    }
 
-        protected SettingsBase(ISettingsRepository settingsRepository)
-        {
-            _settingsRepository = settingsRepository;
-        }
+    protected T? GetValueType<T>(SettingScope scope, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
+        where T : struct
+    {
+        return _settingsRepository.GetValueType<T>(propertyName, scope, encryption);
+    }
 
-        protected T? GetValueType<T>(SettingScope scope, SettingEncryption encryption,
-            [CallerMemberName] string propertyName = "")
-            where T : struct
-        {
-            return _settingsRepository.GetValueType<T>(propertyName, scope, encryption);
-        }
+    protected void SetValueType<T>(T? value, SettingScope scope, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
+        where T : struct
+    {
+        _settingsRepository.SetValueType<T>(propertyName, value, scope, encryption);
+    }
 
-        protected void SetValueType<T>(T? value, SettingScope scope, SettingEncryption encryption,
-            [CallerMemberName] string propertyName = "")
-            where T : struct
-        {
-            _settingsRepository.SetValueType<T>(propertyName, value, scope, encryption);
-        }
+    protected T? GetReferenceType<T>(SettingScope scope, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
+        where T : class
+    {
+        return _settingsRepository.GetReferenceType<T>(propertyName, scope, encryption);
+    }
 
-        protected T? GetReferenceType<T>(SettingScope scope, SettingEncryption encryption,
-            [CallerMemberName] string propertyName = "")
-            where T : class
-        {
-            return _settingsRepository.GetReferenceType<T>(propertyName, scope, encryption);
-        }
+    protected void SetReferenceType<T>(T? value, SettingScope scope, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
+        where T : class
+    {
+        _settingsRepository.SetReferenceType<T>(propertyName, value, scope, encryption);
+    }
 
-        protected void SetReferenceType<T>(T? value, SettingScope scope, SettingEncryption encryption,
-            [CallerMemberName] string propertyName = "")
-            where T : class
-        {
-            _settingsRepository.SetReferenceType<T>(propertyName, value, scope, encryption);
-        }
+    protected List<T> GetListValueType<T>(SettingScope scope, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
+        where T : struct
+    {
+        return _settingsRepository.GetListValueType<T>(propertyName, scope, encryption);
+    }
+
+    protected void SetListValueType<T>(List<T> value, SettingScope scope, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
+        where T : struct
+    {
+        _settingsRepository.SetListValueType<T>(propertyName, value, scope, encryption);
     }
 }

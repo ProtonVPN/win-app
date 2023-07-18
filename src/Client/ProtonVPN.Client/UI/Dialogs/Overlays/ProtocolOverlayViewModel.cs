@@ -22,6 +22,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 
@@ -31,19 +32,22 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
 {
     private readonly IPageNavigator _pageNavigator;
     private readonly ISettings _settings;
+    private readonly IUrls _urls;
 
-    public Uri LearnMoreUri { get; } = new Uri(@"https://protonvpn.com/support/how-to-change-vpn-protocols/");
+    public string LearnMoreUrl => _urls.ProtocolChangeLearnMore;
 
     public string CurrentProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
     public ProtocolOverlayViewModel(ILocalizationProvider localizationProvider,
         IDialogActivator dialogActivator,
         IPageNavigator pageNavigator,
-        ISettings settings)
+        ISettings settings,
+        IUrls urls)
         : base(localizationProvider, dialogActivator)
     {
         _pageNavigator = pageNavigator;
         _settings = settings;
+        _urls = urls;
     }
 
     [RelayCommand]

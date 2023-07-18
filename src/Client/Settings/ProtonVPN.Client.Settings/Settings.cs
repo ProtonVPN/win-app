@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.Settings;
 
@@ -115,6 +116,12 @@ public class Settings : SettingsBase, ISettings
         set => SetValueType(value, SettingScope.User, SettingEncryption.Encrypted);
     }
 
+    public NatType NatType
+    {
+        get => GetValueType<NatType>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.NatType;
+        set => SetValueType<NatType>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
     public bool IsVpnAcceleratorEnabled
     {
         get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsVpnAcceleratorEnabled;
@@ -151,8 +158,55 @@ public class Settings : SettingsBase, ISettings
         set => SetValueType<bool>(value, SettingScope.Global, SettingEncryption.Unencrypted);
     }
 
+    public bool IsNotificationEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsNotificationEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsBetaAccessEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsBetaAccessEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsHardwareAccelerationEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsHardwareAccelerationEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsShareStatisticsEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareStatisticsEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsShareCrashReportsEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareCrashReportsEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsAlternativeRoutingEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsAlternativeRoutingEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsCustomDnsServersEnabled
+    {
+        get => GetValueType<bool>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.IsCustomDnsServersEnabled;
+        set => SetValueType<bool>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
+    public List<CustomDnsServer> CustomDnsServersList
+    {
+        get => GetListValueType<CustomDnsServer>(SettingScope.User, SettingEncryption.Unencrypted) ?? DefaultSettings.CustomDnsServersList;
+        set => SetListValueType<CustomDnsServer>(value, SettingScope.User, SettingEncryption.Unencrypted);
+    }
+
     public Settings(ISettingsRepository settingsRepository)
         : base(settingsRepository)
-    {
-    }
+    { }
 }

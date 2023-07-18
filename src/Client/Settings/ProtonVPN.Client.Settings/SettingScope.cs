@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings
+namespace ProtonVPN.Client.Settings;
+
+public enum SettingScope
 {
-    public enum SettingScope
-    {
-        Global = 0,
-        User = 1
-    }
+    Global = 0,
+    User = 1
 }

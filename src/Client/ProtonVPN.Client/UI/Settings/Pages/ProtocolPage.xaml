@@ -23,6 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
@@ -30,8 +31,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Page.Resources>
         <Style x:Key="ProtocolRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
-            <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="GroupName" Value="ProtocolSetting" />
+        </Style>
+        <Style x:Key="ProtocolTypeTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,8,0,0" />
         </Style>
     </Page.Resources>
 
@@ -39,128 +42,87 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                  PageHeader="{x:Bind ViewModel.Title}">
 
-        <StackPanel x:Name="ContentArea">
-            <Grid Padding="16"
-                  Background="{StaticResource BackgroundWeakColorBrush}"
-                  BorderBrush="{StaticResource BorderWeakColorBrush}"
-                  BorderThickness="1"
-                  ColumnSpacing="0"
-                  CornerRadius="8"
-                  RowSpacing="16">
+        <StackPanel x:Name="ContentArea"
+                    Spacing="8">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <labs:SettingsCard IsTabStop="False"
+                               Style="{StaticResource VerticalSettingsCardStyle}">
 
-                <RadioButton Grid.Row="0"
-                             Grid.Column="0"
-                             IsChecked="{x:Bind ViewModel.IsSmartProtocol, Mode=TwoWay}"
-                             Style="{StaticResource ProtocolRadioButtonStyle}" 
-                             AutomationProperties.AutomationId="SmartProtocolRadioButton"/>
+                <StackPanel Spacing="16"
+                            Margin="0,-8,0,0">
+                    <RadioButton AutomationProperties.AutomationId="SmartProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsSmartProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="8">
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Title')}" />
+                                <Border Padding="4,1"
+                                        BorderBrush="{StaticResource BorderNormColorBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="4">
+                                    <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
+                                               Text="{x:Bind ViewModel.Recommended}" />
+                                </Border>
+                            </StackPanel>
 
-                <StackPanel Grid.Row="0"
-                            Grid.Column="1"
-                            Margin="0,0,0,0"
-                            Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="{StaticResource TextNormColorBrush}"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Title')}" />
-                        <Border Margin="8,0,0,0"
-                                Padding="4,1,4,0"
-                                BorderBrush="{StaticResource BorderNormColorBrush}"
-                                BorderThickness="1"
-                                CornerRadius="4">
-                            <TextBlock Foreground="{StaticResource TextNormColorBrush}"
-                                       Style="{StaticResource CaptionStrongTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Recommended}" />
-                        </Border>
-                    </StackPanel>
-                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Description')}" />
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_UdpCategory')}" />
+
+                    <RadioButton AutomationProperties.AutomationId="WireGuardProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsWireGuardUdpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Title')}" />
+
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton IsChecked="{x:Bind ViewModel.IsOpenVpnUdpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Title')}" />
+
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory')}" />
+
+                    <RadioButton IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Title')}" />
+
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
                 </StackPanel>
+            </labs:SettingsCard>
 
-                <TextBlock Grid.Row="1"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Margin="0,8,0,0"
-                           Foreground="{StaticResource TextNormColorBrush}"
-                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_UdpCategory')}" />
-
-                <RadioButton Grid.Row="2"
-                             Grid.Column="0"
-                             IsChecked="{x:Bind ViewModel.IsWireGuardUdpProtocol, Mode=TwoWay}"
-                             Style="{StaticResource ProtocolRadioButtonStyle}"
-                             AutomationProperties.AutomationId="WireGuardProtocolRadioButton" />
-
-                <StackPanel Grid.Row="2"
-                            Grid.Column="1"
-                            Margin="0,0,0,0"
-                            Orientation="Vertical">
-                    <TextBlock Foreground="{StaticResource TextNormColorBrush}"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Title')}" />
-                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Description')}" />
-                </StackPanel>
-
-                <RadioButton Grid.Row="3"
-                             Grid.Column="0"
-                             IsChecked="{x:Bind ViewModel.IsOpenVpnUdpProtocol, Mode=TwoWay}"
-                             Style="{StaticResource ProtocolRadioButtonStyle}" />
-
-                <StackPanel Grid.Row="3"
-                            Grid.Column="1"
-                            Margin="0,0,0,0"
-                            Orientation="Vertical">
-                    <TextBlock Foreground="{StaticResource TextNormColorBrush}"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Title')}" />
-                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Description')}" />
-                </StackPanel>
-
-                <TextBlock Grid.Row="4"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Margin="0,8,0,0"
-                           Foreground="{StaticResource TextNormColorBrush}"
-                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory')}" />
-
-                <RadioButton Grid.Row="5"
-                             Grid.Column="0"
-                             IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
-                             Style="{StaticResource ProtocolRadioButtonStyle}" />
-
-                <StackPanel Grid.Row="5"
-                            Grid.Column="1"
-                            Margin="0,0,0,0"
-                            Orientation="Vertical">
-                    <TextBlock Foreground="{StaticResource TextNormColorBrush}"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Title')}" />
-                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description')}" />
-                </StackPanel>
-            </Grid>
-
-            <TextBlock Margin="0,8,0,4"
-                       Style="{StaticResource CaptionTextBlockStyle}">
+            <TextBlock Style="{StaticResource CaptionTextBlockStyle}">
                 <Run Foreground="{StaticResource TextWeakColorBrush}"
                      Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Explanation')}" />
 

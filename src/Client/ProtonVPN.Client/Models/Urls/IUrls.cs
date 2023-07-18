@@ -26,4 +26,12 @@ public interface IUrls
     string ResetPassword { get; }
     string ForgotUsername { get; }
     string TroubleSigningIn { get; }
+    string ProtocolChangeLearnMore { get; }
+    string ServerLoadLearnMore { get; }
+    string InternetSpeedLearnMore { get; }
+    string NatTypeLearnMore { get; }
+    string SupportCenter { get; }
+    string UsageStatisticsLearnMore { get; }
+
+    void NavigateTo(string url);
 }

@@ -29,6 +29,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="NatTypeRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
+            <Setter Property="GroupName" Value="NatTypeSetting" />
+        </Style>
+    </Page.Resources>
+
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                  PageHeader="{x:Bind ViewModel.Title}">
@@ -44,24 +50,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               OnContent="{x:Null}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsLanConnectionsEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
-            </labs:SettingsCard>
-
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NonStandardPorts_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NonStandardPorts')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNonStandardPortsEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
-            </labs:SettingsCard>
-
             <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
@@ -72,17 +60,44 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LeakProtection')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsLeakProtectionEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
+                               Style="{StaticResource VerticalSettingsCardStyle}"
+                               IsTabStop="False">
+                <labs:SettingsCard.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </labs:SettingsCard.Description>
+                <StackPanel Spacing="16">
+                    <RadioButton AutomationProperties.AutomationId="StrictNatTypeRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsStrictNatType, Mode=TwoWay}"
+                                 Style="{StaticResource NatTypeRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Strict')}" />
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Strict_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton AutomationProperties.AutomationId="ModerateNatTypeRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsModerateNatType, Mode=TwoWay}"
+                                 Style="{StaticResource NatTypeRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Moderate')}" />
+                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Moderate_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
             </labs:SettingsCard>
-
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
-                               Style="{StaticResource DefaultSettingsCardStyle}" />
         </StackPanel>
     </controls:PageContentControl>
 </Page>

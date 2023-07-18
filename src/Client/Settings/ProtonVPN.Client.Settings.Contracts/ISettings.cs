@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 
@@ -38,10 +40,19 @@ public interface ISettings
     DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
     DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
     DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
+    NatType NatType { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
     int? WindowWidth { get; set; }
     int? WindowHeight { get; set; }
     int? WindowXPosition { get; set; }
     int? WindowYPosition { get; set; }
     bool IsWindowMaximized { get; set; }
+    bool IsNotificationEnabled { get; set; }
+    bool IsBetaAccessEnabled { get; set; }
+    bool IsHardwareAccelerationEnabled { get; set; }
+    bool IsShareStatisticsEnabled { get; set; }
+    bool IsShareCrashReportsEnabled { get; set; }
+    bool IsAlternativeRoutingEnabled { get; set; }
+    bool IsCustomDnsServersEnabled { get; set; }
+    List<CustomDnsServer> CustomDnsServersList { get; set; }
 }
