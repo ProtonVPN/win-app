@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+namespace ProtonVPN.Api.Contracts.HumanVerification;
 
-namespace ProtonVPN.HumanVerification.Contracts
+public class HumanVerificationTypes
 {
-    public interface IWebViewViewModel
-    {
-        event EventHandler<string> OnHumanVerificationTokenReceived;
-        void SetRequestToken(string token);
-    }
+    public const string Captcha = "captcha";
 }

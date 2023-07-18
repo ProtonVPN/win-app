@@ -17,25 +17,108 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts.HumanVerification;
 using ProtonVPN.Api.Deserializers;
 
-namespace ProtonVPN.Api.Handlers
-{
-    //TODO: restore human verification logic on WinUI3
-    public class HumanVerificationHandler : HumanVerificationHandlerBase
-    {
-        public HumanVerificationHandler(IBaseResponseMessageDeserializer baseResponseDeserializer)
-        {
-        }
+namespace ProtonVPN.Api.Handlers;
 
-        protected override async Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request,
-            CancellationToken cancellationToken)
+public class HumanVerificationHandler : HumanVerificationHandlerBase
+{
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private readonly IBaseResponseMessageDeserializer _baseResponseDeserializer;
+    private readonly IHumanVerifier _humanVerifier;
+    private readonly bool _isEnabled;
+    private string _error = string.Empty;
+
+    public HumanVerificationHandler(IBaseResponseMessageDeserializer baseResponseDeserializer,
+        IHumanVerifier humanVerifier,
+        IHumanVerificationConfig humanVerificationConfig)
+    {
+        _baseResponseDeserializer = baseResponseDeserializer;
+        _humanVerifier = humanVerifier;
+        _isEnabled = humanVerificationConfig.IsSupported();
+    }
+
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        if (!_isEnabled)
         {
             return await base.SendAsync(request, cancellationToken);
+        }
+
+        if (IsHumanVerificationInProgress())
+        {
+            return FailResponse.HumanVerificationFailureResponse(_error);
+        }
+
+        HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+        BaseResponse baseResponse = await _baseResponseDeserializer.DeserializeAsync(response);
+        if (baseResponse == null)
+        {
+            return response;
+        }
+
+        if (IsVerificationRequired(baseResponse))
+        {
+            _error = baseResponse.Error;
+
+            HttpResponseMessage result = await HandleHumanVerificationAsync(request, cancellationToken,
+                baseResponse.Details.HumanVerificationToken);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        return response;
+    }
+
+    private bool IsVerificationRequired(BaseResponse response)
+    {
+        return response.Code == ResponseCodes.HumanVerificationRequired &&
+               IsHumanVerificationSupported(response.Details.HumanVerificationMethods);
+    }
+
+    private bool IsHumanVerificationInProgress()
+    {
+        return _semaphore.CurrentCount == 0;
+    }
+
+    private bool IsHumanVerificationSupported(IReadOnlyList<string> humanVerificationMethods)
+    {
+        return humanVerificationMethods.Contains(HumanVerificationTypes.Captcha);
+    }
+
+    private async Task<HttpResponseMessage> HandleHumanVerificationAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken, string hvToken)
+    {
+        try
+        {
+            await _semaphore.WaitAsync();
+
+            string resolvedToken = await _humanVerifier.VerifyAsync(hvToken);
+            if (!string.IsNullOrEmpty(resolvedToken))
+            {
+                request.Headers.Add("x-pm-human-verification-token-type", "captcha");
+                request.Headers.Add("x-pm-human-verification-token", resolvedToken);
+
+                return await base.SendAsync(request, cancellationToken);
+            }
+
+            return null;
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 }

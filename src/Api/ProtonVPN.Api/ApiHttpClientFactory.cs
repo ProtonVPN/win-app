@@ -36,7 +36,7 @@ public class ApiHttpClientFactory : IApiHttpClientFactory
         //TODO: restore AlternativeHostHandler alternativeHostHandler,
         CancellingHandlerBase cancellingHandlerBase,
         UnauthorizedResponseHandler unauthorizedResponseHandler,
-        //TODO: restore HumanVerificationHandlerBase humanVerificationHandlerBase,
+        HumanVerificationHandlerBase humanVerificationHandlerBase,
         OutdatedAppHandler outdatedAppHandler,
         RetryingHandlerBase retryingHandlerBase,
         //TODO: restore DnsHandler dnsHandler,
@@ -49,7 +49,7 @@ public class ApiHttpClientFactory : IApiHttpClientFactory
             //TODO: restore .AddDelegatingHandler(alternativeHostHandler)
             .AddDelegatingHandler(cancellingHandlerBase)
             .AddDelegatingHandler(unauthorizedResponseHandler)
-            //TODO: restore .AddDelegatingHandler(humanVerificationHandlerBase)
+            .AddDelegatingHandler(humanVerificationHandlerBase)
             .AddDelegatingHandler(outdatedAppHandler)
             .AddDelegatingHandler(retryingHandlerBase)
             //TODO: restore .AddDelegatingHandler(dnsHandler)

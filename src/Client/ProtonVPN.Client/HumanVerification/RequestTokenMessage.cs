@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.HumanVerification.Contracts
+namespace ProtonVPN.Client.HumanVerification;
+
+public class RequestTokenMessage : TokenMessageBase
 {
-    public class CaptchaMessageTypes
+    public RequestTokenMessage(string token) : base(token)
     {
-        public const string Height = "pm_height";
-        public const string TokenResponse = "pm_captcha";
     }
 }

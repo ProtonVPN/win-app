@@ -17,12 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.HumanVerification.Contracts
+namespace ProtonVPN.Api.Contracts.HumanVerification;
+
+public class CaptchaMessageTypes
 {
-    public class CaptchaMessage
-    {
-        public string Type { get; set; }
-        public string Token { get; set; }
-        public int Height { get; set; }
-    }
+    public const string Height = "pm_height";
+    public const string TokenResponse = "pm_captcha";
 }
