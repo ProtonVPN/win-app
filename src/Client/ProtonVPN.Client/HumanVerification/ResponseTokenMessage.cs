@@ -17,13 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
+namespace ProtonVPN.Client.HumanVerification;
 
-namespace ProtonVPN.HumanVerification.Contracts
+public class ResponseTokenMessage : TokenMessageBase
 {
-    public interface IHumanVerifier
+    public ResponseTokenMessage(string token) : base(token)
     {
-        Task<bool?> VerifyAsync(string token);
-        string GetResolvedToken();
     }
 }

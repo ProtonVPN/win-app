@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using Autofac.Builder;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Countries;
@@ -31,6 +32,7 @@ using ProtonVPN.Client.UI.Home.Help;
 using ProtonVPN.Client.UI.Home.Map;
 using ProtonVPN.Client.UI.Home.Recents;
 using ProtonVPN.Client.UI.Home.Status;
+using ProtonVPN.Client.UI.HumanVerification;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Settings;
@@ -77,11 +79,12 @@ public class ViewModelsModule : Module
 
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
+        RegisterViewModel<HumanVerificationViewModel>(builder).AutoActivate();
     }
 
-    private void RegisterViewModel<TType>(ContainerBuilder builder)
-        where TType : notnull
+    private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle>
+        RegisterViewModel<TType>(ContainerBuilder builder) where TType : notnull
     {
-        builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
+        return builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
     }
 }

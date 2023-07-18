@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.HumanVerification.Contracts
+namespace ProtonVPN.Client.HumanVerification;
+
+public  class TokenMessageBase
 {
-    public interface IHumanVerificationConfig
+    public TokenMessageBase(string token)
     {
-        bool IsSupported();
+        Token = token;
     }
+
+    public string Token { get; }
 }

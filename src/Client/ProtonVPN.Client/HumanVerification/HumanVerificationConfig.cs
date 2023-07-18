@@ -17,23 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.HumanVerification.Contracts;
+using Microsoft.Web.WebView2.Core;
+using ProtonVPN.Api.Contracts.HumanVerification;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
-namespace ProtonVPN.HumanVerification
+namespace ProtonVPN.Client.HumanVerification;
+
+public class HumanVerificationConfig : IHumanVerificationConfig
 {
-    public class CaptchaUrlProvider : ICaptchaUrlProvider
+    private readonly ILogger _logger;
+
+    public HumanVerificationConfig(ILogger logger)
     {
-        private readonly IApiHostProvider _apiHostProvider;
-
-        public CaptchaUrlProvider(IApiHostProvider apiHostProvider)
+        _logger = logger;
+    }
+        
+    public bool IsSupported()
+    {
+        try
         {
-            _apiHostProvider = apiHostProvider;
+            return !string.IsNullOrEmpty(CoreWebView2Environment.GetAvailableBrowserVersionString());
         }
-
-        public string GetCaptchaUrl(string token)
+        catch (Exception e)
         {
-            return $"https://{_apiHostProvider.GetHost()}/core/v4/captcha?Token={token}";
+            _logger.Error<AppLog>("Unexpected exception when checking for WebView support.", e);
+            
+            return false;
         }
     }
 }

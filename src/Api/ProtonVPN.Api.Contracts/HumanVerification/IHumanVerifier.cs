@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.HumanVerification.Contracts
+using System.Threading.Tasks;
+
+namespace ProtonVPN.Api.Contracts.HumanVerification;
+
+public interface IHumanVerifier
 {
-    public class HumanVerificationTypes
-    {
-        public const string Captcha = "captcha";
-    }
+    Task<string> VerifyAsync(string token);
 }

@@ -21,6 +21,7 @@ using Autofac;
 using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Dispatching;
+using ProtonVPN.Client.HumanVerification;
 using ProtonVPN.Client.Models.MainWindowActivation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
@@ -44,6 +45,8 @@ public class ClientModule : Module
         builder.RegisterType<PageMapper>().As<IPageMapper>().SingleInstance();
         builder.RegisterType<PageNavigator>().As<IPageNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
+        builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
 
         builder.Register(c => new DefaultConfig().Value()).As<IConfiguration>().SingleInstance();
         builder.RegisterType<Urls>().As<IUrls>().SingleInstance();

@@ -21,8 +21,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Models.Parameters;
 using ProtonVPN.Client.Models.Themes;
-using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Client.UI.HumanVerification;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -42,6 +42,7 @@ public class DialogActivator : IDialogActivator
         Configure<LatencyOverlayViewModel, LatencyOverlayDialog>();
         Configure<ProtocolOverlayViewModel, ProtocolOverlayDialog>();
         Configure<ServerLoadOverlayViewModel, ServerLoadOverlayDialog>();
+        Configure<HumanVerificationViewModel, HumanVerificationDialog>();
     }
 
     public async Task ShowAsync(string dialogKey)

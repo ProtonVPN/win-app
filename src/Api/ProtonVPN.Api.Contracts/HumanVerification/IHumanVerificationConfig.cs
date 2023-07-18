@@ -17,20 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
-using ProtonVPN.HumanVerification.Contracts;
-using ProtonVPN.HumanVerification.Gui;
+namespace ProtonVPN.Api.Contracts.HumanVerification;
 
-namespace ProtonVPN.HumanVerification.Installers
+public interface IHumanVerificationConfig
 {
-    public class HumanVerificationModule : Module
-    {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<HumanVerificationConfig>().As<IHumanVerificationConfig>().SingleInstance();
-            builder.RegisterType<WebViewViewModel>().As<IWebViewViewModel>().SingleInstance();
-            builder.RegisterType<CaptchaUrlProvider>().As<ICaptchaUrlProvider>().SingleInstance();
-            builder.RegisterType<WebView>().SingleInstance();
-        }
-    }
+    bool IsSupported();
 }
