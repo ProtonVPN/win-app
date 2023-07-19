@@ -36,8 +36,8 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
     private readonly ISettings _settings;
     private readonly IAuthKeyManager _authKeyManager;
 
-    public ServiceCaller(ILogger logger, IAppGrpcClient grpcClient, ISettings settings, IAuthKeyManager authKeyManager)
-        : base(logger, grpcClient)
+    public ServiceCaller(ILogger logger, IAppGrpcClient grpcClient, ISettings settings, IAuthKeyManager authKeyManager, IServiceManager serviceManager)
+        : base(logger, grpcClient, serviceManager)
     {
         _settings = settings;
         _authKeyManager = authKeyManager;

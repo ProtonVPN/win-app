@@ -147,7 +147,9 @@
     <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
     <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
     <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
+    <ProjectReference Include="..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Installers\ProtonVPN.OperatingSystems.Processes.Installers.csproj" />
     <ProjectReference Include="..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
+    <ProjectReference Include="..\..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Installers\ProtonVPN.OperatingSystems.Services.Installers.csproj" />
     <ProjectReference Include="..\..\ProcessCommunication\App\ProtonVPN.ProcessCommunication.App.Installers\ProtonVPN.ProcessCommunication.App.Installers.csproj" />
     <ProjectReference Include="..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
     <ProjectReference Include="..\Common\ProtonVPN.Client.Common.UI\ProtonVPN.Client.Common.UI.csproj" />

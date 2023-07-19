@@ -21,6 +21,7 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.UI.Windowing;
 using ProtonVPN.Client.Common.UI.Windowing.System;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client;
@@ -28,6 +29,7 @@ namespace ProtonVPN.Client;
 public sealed partial class MainWindow
 {
     private readonly ISettings _settings;
+    private readonly IServiceManager _serviceManager;
 
     public MainWindow()
     {
@@ -38,6 +40,7 @@ public sealed partial class MainWindow
         Title = App.APPLICATION_NAME;
 
         _settings = App.GetService<ISettings>();
+        _serviceManager = App.GetService<IServiceManager>();
         SetInitialSizeAndPosition();
 
         Closed += OnWindowClosed;
@@ -83,6 +86,7 @@ public sealed partial class MainWindow
     private void OnWindowClosed(object sender, WindowEventArgs args)
     {
         SaveWindowState((MainWindow)sender);
+        _serviceManager.Stop();
     }
 
     private void OnVisibilityChanged(object sender, WindowVisibilityChangedEventArgs args)
