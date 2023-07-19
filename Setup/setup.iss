@@ -17,6 +17,8 @@
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 
+#include "CodeDependencies.iss"
+
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -322,6 +324,7 @@ begin
   end;
 
   InitLogger(CreateCallback(@LogProc));
+  Dependency_AddWebView2;
   Result := true;
 end;
 
