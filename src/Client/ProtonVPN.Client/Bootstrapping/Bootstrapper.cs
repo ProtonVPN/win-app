@@ -30,20 +30,24 @@ public class Bootstrapper : IBootstrapper
     private readonly IProcessCommunicationStarter _processCommunicationStarter;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ISettingsRestorer _settingsRestorer;
+    private readonly IServiceManager _serviceManager;
 
     public Bootstrapper(IProcessCommunicationStarter processCommunicationStarter, 
         IMainWindowActivator mainWindowActivator,
-        ISettingsRestorer settingsRestorer)
+        ISettingsRestorer settingsRestorer,
+        IServiceManager serviceManager)
     {
         _processCommunicationStarter = processCommunicationStarter;
         _mainWindowActivator = mainWindowActivator;
         _settingsRestorer = settingsRestorer;
+        _serviceManager = serviceManager;
     }
 
     public async Task StartAsync(LaunchActivatedEventArgs args)
     {
         ParseAndRunCommandLineArguments();
         CancellationToken cancellationToken = new CancellationTokenSource().Token;
+        _serviceManager.Start();
         _processCommunicationStarter.StartAsync(cancellationToken);
         await _mainWindowActivator.ActivateAsync(args);
     }

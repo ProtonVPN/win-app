@@ -18,6 +18,7 @@
  */
 
 using System.Runtime.CompilerServices;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
@@ -25,66 +26,69 @@ using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-namespace ProtonVPN.Client.Logic.Services
+namespace ProtonVPN.Client.Logic.Services;
+
+public abstract class ServiceCallerBase
 {
-    public abstract class ServiceCallerBase
+    private readonly IAppGrpcClient _grpcClient;
+    private readonly IServiceManager _serviceManager;
+
+    protected ILogger Logger { get; }
+
+    protected ServiceCallerBase(ILogger logger,
+        IAppGrpcClient grpcClient,
+        IServiceManager serviceManager)
     {
-        private readonly IAppGrpcClient _grpcClient;
+        Logger = logger;
+        _grpcClient = grpcClient;
+        _serviceManager = serviceManager;
+    }
 
-        protected ILogger Logger { get; }
-
-        protected ServiceCallerBase(ILogger logger, IAppGrpcClient grpcClient)
+    protected async Task<Result<T>> InvokeAsync<T>(Func<IVpnController, Task<T>> serviceCall,
+        [CallerMemberName] string memberName = "")
+    {
+        int retryCount = 5;
+        while (true)
         {
-            Logger = logger;
-            _grpcClient = grpcClient;
-        }
-
-        protected async Task<Result<T>> InvokeAsync<T>(Func<IVpnController, Task<T>> serviceCall,
-            [CallerMemberName] string memberName = "")
-        {
-            int retryCount = 5;
-            while (true)
+            try
             {
-                try
+                IVpnController serviceController =
+                    await _grpcClient.GetServiceControllerOrThrowAsync<IVpnController>(TimeSpan.FromSeconds(1));
+                T result = await serviceCall(serviceController);
+                if (result is Task task)
                 {
-                    IVpnController serviceController =
-                        await _grpcClient.GetServiceControllerOrThrowAsync<IVpnController>(TimeSpan.FromSeconds(1));
-                    T result = await serviceCall(serviceController);
-                    if (result is Task task)
-                    {
-                        await task;
-                    }
-
-                    return Result.Ok(result);
-                }
-                catch (Exception e)
-                {
-                    await StartServiceIfStoppedAsync();
-                    if (retryCount <= 0)
-                    {
-                        LogError(e, memberName, isToRetry: false);
-                        return Result.Fail<T>(e.CombinedMessage());
-                    }
-
-                    await _grpcClient.RecreateAsync();
-                    LogError(e, memberName, isToRetry: true);
+                    await task;
                 }
 
-                retryCount--;
+                return Result.Ok(result);
             }
-        }
+            catch (Exception e)
+            {
+                await StartServiceIfStoppedAsync();
+                if (retryCount <= 0)
+                {
+                    LogError(e, memberName, isToRetry: false);
+                    return Result.Fail<T>(e.CombinedMessage());
+                }
 
-        private async Task StartServiceIfStoppedAsync()
-        {
-            //await _vpnSystemService.StartIfStoppedAsync();
-        }
+                await _grpcClient.RecreateAsync();
+                LogError(e, memberName, isToRetry: true);
+            }
 
-        private void LogError(Exception exception, string callerMemberName, bool isToRetry)
-        {
-            Logger.Error<AppServiceCommunicationFailedLog>(
-                $"The invocation of '{callerMemberName}' on VPN Service channel returned an exception and will " +
-                (isToRetry ? string.Empty : "not ") +
-                $"be retried. Exception message: {exception.Message}");
+            retryCount--;
         }
+    }
+
+    private async Task StartServiceIfStoppedAsync()
+    {
+        _serviceManager.Start();
+    }
+
+    private void LogError(Exception exception, string callerMemberName, bool isToRetry)
+    {
+        Logger.Error<AppServiceCommunicationFailedLog>(
+            $"The invocation of '{callerMemberName}' on VPN Service channel returned an exception and will " +
+            (isToRetry ? string.Empty : "not ") +
+            $"be retried. Exception message: {exception.Message}");
     }
 }

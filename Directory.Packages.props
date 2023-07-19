@@ -73,7 +73,7 @@
     <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
     <PackageVersion Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
     <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="7.0.1" />
-    <PackageVersion Include="System.ServiceProcess.ServiceController" Version="7.0.0" />
+    <PackageVersion Include="System.ServiceProcess.ServiceController" Version="7.0.1" />
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="7.0.0" />
     <PackageVersion Include="System.Text.Json" Version="7.0.2" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />

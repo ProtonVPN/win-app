@@ -32,7 +32,9 @@ using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Logging;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
+using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
+using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 
@@ -61,8 +63,10 @@ public class MainModule : Module
         builder.RegisterModule<EventMessageReceiverActivationModule>()
                .RegisterModule<LoggingModule>()
                .RegisterModule<RegistriesModule>()
-               .RegisterModule<ClientModule>()
+               .RegisterModule<ProcessesModule>()
                .RegisterModule<ServicesModule>()
+               .RegisterModule<ClientModule>()
+               .RegisterModule<ServicesLogicModule>()
                .RegisterModule<ConnectionLogicModule>()
                .RegisterModule<AppProcessCommunicationModule>()
                .RegisterModule<ProcessCommunicationModule>()
