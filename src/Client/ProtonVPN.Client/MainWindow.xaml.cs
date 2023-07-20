@@ -54,15 +54,15 @@ public sealed partial class MainWindow
 
     private void SetInitialSizeAndPosition()
     {
-        double? windowWidth = _settings.WindowWidth;
-        double? windowHeight = _settings.WindowHeight;
+        double windowWidth = _settings.WindowWidth ?? Width;
+        double windowHeight = _settings.WindowHeight ?? Height;
         double? windowXPosition = _settings.WindowXPosition;
         double? windowYPosition = _settings.WindowYPosition;
         bool isWindowMaximized = _settings.IsWindowMaximized;
 
         if (windowXPosition is null || windowYPosition is null)
         {
-            W32Point? point = CursorWindowCalculator.CalculateWindowCenteredInCursorMonitor(Width, Height);
+            W32Point? point = MonitorCalculator.CalculateWindowCenteredInCursorMonitor(Width, Height);
             if (point is not null)
             {
                 windowXPosition = point.Value.X;
@@ -72,8 +72,14 @@ public sealed partial class MainWindow
 
         if (windowXPosition is not null && windowYPosition is not null)
         {
-            this.MoveAndResize(x: windowXPosition.Value, y: windowYPosition.Value,
-                width: windowWidth ?? Width, height: windowHeight ?? Height);
+            W32Rect windowRectangle = new(new W32Point((int)windowXPosition, (int)windowYPosition),
+                width: (int)windowWidth, height: (int)windowHeight);
+            W32Rect? validWindowRectangle = MonitorCalculator.GetValidWindowSizeAndPosition(windowRectangle);
+            if (validWindowRectangle is not null)
+            {
+                this.MoveAndResize(x: validWindowRectangle.Value.Left, y: validWindowRectangle.Value.Top,
+                    width: validWindowRectangle.Value.GetWidth(), height: validWindowRectangle.Value.GetHeight());
+            }
         }
 
         if (isWindowMaximized)

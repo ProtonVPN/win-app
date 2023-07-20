@@ -24,8 +24,30 @@ namespace ProtonVPN.Client.Common.UI.Windowing.System;
 [StructLayout(LayoutKind.Sequential)]
 public struct W32Rect
 {
-    public int Left;
-    public int Top;
-    public int Right;
-    public int Bottom;
+    public int Left = 0;
+    public int Top = 0;
+    public int Right = 0;
+    public int Bottom = 0;
+
+    public W32Rect()
+    {
+    }
+
+    public W32Rect(W32Point topLeftCorner, int width, int height)
+    {
+        Left = topLeftCorner.X;
+        Top = topLeftCorner.Y;
+        Right = topLeftCorner.X + width;
+        Bottom = topLeftCorner.Y + height;
+    }
+
+    public readonly int GetWidth()
+    {
+        return Right - Left;
+    }
+
+    public readonly int GetHeight()
+    {
+        return Bottom - Top;
+    }
 }
