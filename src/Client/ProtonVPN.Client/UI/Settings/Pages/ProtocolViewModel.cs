@@ -64,8 +64,8 @@ public partial class ProtocolViewModel : PageViewModelBase, IEventMessageReceive
 
     public string LearnMoreUrl => _urls.ProtocolsLearnMore;
 
-    public ProtocolViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
-        : base(pageNavigator, localizationProvider)
+    public ProtocolViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
+        : base(viewNavigator, localizationProvider)
     {
         _settings = settings;
         _urls = urls;

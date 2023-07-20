@@ -58,8 +58,8 @@ public class AdvancedSettingsViewModel : PageViewModelBase, IEventMessageReceive
         set => SetNatType(value, NatType.Moderate);
     }
 
-    public AdvancedSettingsViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
-        : base(pageNavigator, localizationProvider)
+    public AdvancedSettingsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
+        : base(viewNavigator, localizationProvider)
     {
         _settings = settings;
         _urls = urls;

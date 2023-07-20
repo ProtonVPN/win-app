@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class NetShieldViewModel : PageViewModelBase
 {
-    public NetShieldViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public NetShieldViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

@@ -20,15 +20,24 @@
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Client.UI.Home;
 
-namespace ProtonVPN.Client.UI.Settings.Pages;
+namespace ProtonVPN.Client.UI.Dialogs.Windows;
 
-public class DebugLogsViewModel : PageViewModelBase
+public partial class ReportIssueShellViewModel : ShellViewModelBase
 {
-    public DebugLogsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+    public ReportIssueShellViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider) 
         : base(viewNavigator, localizationProvider)
     {
     }
 
-    public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
+    public override string Title => Localizer.Get("Dialogs_ReportIssue_Title");
+
+    public void Initialize()
+    {
+        ViewNavigator.NavigateTo<HomeViewModel>();
+
+        ViewNavigator.ShowOverlayAsync<ProtocolOverlayViewModel>();
+    }
 }

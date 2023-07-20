@@ -69,11 +69,11 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
 
     public bool IsSecureCore => SelectedFeature == "Secure Core";
 
-    public CountriesViewModel(IPageNavigator pageNavigator,
+    public CountriesViewModel(IMainViewNavigator viewNavigator,
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
@@ -103,7 +103,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public void NavigateToCountry(Country country)
     {
-        PageNavigator.NavigateTo(typeof(CountryViewModel).FullName, country);
+        ViewNavigator.NavigateTo<CountryViewModel>(country);
     }
 
     public bool IsNotEmpty(string value)
@@ -114,7 +114,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task ConnectAsync()
     {
-        PageNavigator.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
+        ViewNavigator.NavigateTo<HomeViewModel>();
 
         ILocationIntent locationIntent = IsNotEmpty(ExitCountryCode) && IsNotEmpty(CityState) && IsNotEmpty(ServerNumber)
             ? new ServerLocationIntent(ExitCountryCode, CityState, int.Parse(ServerNumber))
@@ -138,7 +138,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task FreeConnectAsync()
     {
-        PageNavigator.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
+        ViewNavigator.NavigateTo<HomeViewModel>();
 
         ILocationIntent locationIntent = IsNotEmpty(ExitCountryCode) && IsNotEmpty(ServerNumber)
             ? new FreeServerLocationIntent(ExitCountryCode, int.Parse(ServerNumber))
@@ -160,7 +160,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task SimulateManyConnectionsAsync()
     {
-        PageNavigator.NavigateTo(typeof(HomeViewModel).FullName ?? string.Empty);
+        ViewNavigator.NavigateTo<HomeViewModel>();
 
         List<IConnectionIntent> intents = new()
         {

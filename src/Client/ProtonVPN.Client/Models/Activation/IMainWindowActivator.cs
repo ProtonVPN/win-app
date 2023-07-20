@@ -17,21 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using Microsoft.UI.Xaml;
 
-public interface IUrls
+namespace ProtonVPN.Client.Models.Activation;
+
+public interface IMainWindowActivator
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
-
-    Task NavigateToAsync(string url);
+    Task ActivateAsync(LaunchActivatedEventArgs activationArgs);
 }

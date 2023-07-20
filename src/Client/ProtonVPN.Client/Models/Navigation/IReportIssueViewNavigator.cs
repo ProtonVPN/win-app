@@ -17,21 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+namespace ProtonVPN.Client.Models.Navigation;
 
-public interface IUrls
-{
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
-
-    Task NavigateToAsync(string url);
-}
+public interface IReportIssueViewNavigator : IViewNavigator
+{ }

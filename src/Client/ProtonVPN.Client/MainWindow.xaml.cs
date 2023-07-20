@@ -21,6 +21,8 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.UI.Windowing;
 using ProtonVPN.Client.Common.UI.Windowing.System;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 
@@ -29,6 +31,7 @@ namespace ProtonVPN.Client;
 public sealed partial class MainWindow
 {
     private readonly ISettings _settings;
+    private readonly IEventMessageSender _eventMessageSender;
     private readonly IServiceManager _serviceManager;
 
     public MainWindow()
@@ -38,6 +41,8 @@ public sealed partial class MainWindow
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
         Content = null;
         Title = App.APPLICATION_NAME;
+
+        _eventMessageSender = App.GetService<IEventMessageSender>();
 
         _settings = App.GetService<ISettings>();
         _serviceManager = App.GetService<IServiceManager>();
@@ -85,6 +90,8 @@ public sealed partial class MainWindow
 
     private void OnWindowClosed(object sender, WindowEventArgs args)
     {
+        _eventMessageSender.Send(new MainWindowClosedMessage());
+
         SaveWindowState((MainWindow)sender);
         _serviceManager.Stop();
     }

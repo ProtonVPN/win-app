@@ -30,8 +30,8 @@ public class ServerLoadOverlayViewModel : OverlayViewModelBase
 
     public string LearnMoreUrl => _urls.ServerLoadLearnMore;
 
-    public ServerLoadOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IUrls urls)
-        : base(localizationProvider, dialogActivator)
+    public ServerLoadOverlayViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IUrls urls)
+        : base(localizationProvider, viewNavigator)
     {
         _urls = urls;
     }

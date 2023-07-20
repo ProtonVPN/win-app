@@ -34,14 +34,14 @@ public partial class GalleryViewModel : NavigationPageViewModelBase
 
     public override bool IsBackEnabled => false;
 
-    public GalleryViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public GalleryViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 
     [RelayCommand]
     public void NavigateToGallery(string galleryPageKey)
     {
-        PageNavigator.NavigateTo("ProtonVPN.Client.UI.Gallery.GalleryItemViewModel", galleryPageKey);
+        ViewNavigator.NavigateTo<GalleryItemViewModel>(galleryPageKey);
     }
 }

@@ -17,19 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Models.Parameters;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 public interface IViewNavigator
 {
-    IList<object>? MenuItems { get; }
+    event NavigatedEventHandler Navigated;
 
-    object? SettingsItem { get; }
+    bool CanGoBack { get; }
 
-    NavigationViewItem? GetSelectedItem(Type pageType);
+    Window? Window { get; set; }
 
-    void Initialize(NavigationView navigationView);
+    Frame? Frame { get; set; }
 
-    void UnregisterEvents();
+    bool GoBack();
+
+    bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false);
+
+    bool NavigateTo<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
+        where TPageViewModel : PageViewModelBase;
+
+    Task ShowOverlayAsync<TOverlayViewModel>()
+        where TOverlayViewModel : OverlayViewModelBase;
+
+    Task ShowOverlayAsync(string overlayKey);
+
+    Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters);
+
+    void CloseOverlay();
 }

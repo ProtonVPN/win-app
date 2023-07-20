@@ -28,15 +28,13 @@ namespace ProtonVPN.Client.UI.HumanVerification;
 
 public partial class HumanVerificationViewModel : OverlayViewModelBase, IEventMessageReceiver<RequestTokenMessage>
 {
-    private readonly IDialogActivator _dialogActivator;
     private readonly IEventMessageSender _eventMessageSender;
-    private string _token;
+
+    private string _token = string.Empty;
     
-    public HumanVerificationViewModel(ILocalizationProvider localizationProvider,
-        IDialogActivator dialogActivator,
-        IEventMessageSender eventMessageSender) : base(localizationProvider, dialogActivator)
+    public HumanVerificationViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IEventMessageSender eventMessageSender) 
+        : base(localizationProvider, viewNavigator)
     {
-        _dialogActivator = dialogActivator;
         _eventMessageSender = eventMessageSender;
     }
 
@@ -47,7 +45,7 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase, IEventMe
     public void TriggerVerificationTokenMessage(string token)
     {
         _eventMessageSender.Send(new ResponseTokenMessage(token));
-        _dialogActivator.Close();
+        ViewNavigator.CloseOverlay();
     }
 
     public void Receive(RequestTokenMessage message)

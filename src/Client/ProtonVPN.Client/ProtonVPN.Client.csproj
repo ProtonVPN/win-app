@@ -71,6 +71,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="UI\Account\AccountComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Dialogs\Windows\ReportIssueShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Dialogs\Windows\ReportIssueWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Gallery\GalleryItemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,9 +119,12 @@
   <ItemGroup>
     <None Remove="Assets\Illustrations\latency-desktop.svg" />
     <None Remove="Assets\protonvpn.ico" />
+    <None Remove="UI\Account\AccountComponent.xaml" />
     <None Remove="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml" />
     <None Remove="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml" />
     <None Remove="UI\Dialogs\ServerLoadInfoDialog.xaml" />
+    <None Remove="UI\Dialogs\Windows\ReportIssueShellPage.xaml" />
+    <None Remove="UI\Dialogs\Windows\ReportIssueWindow.xaml" />
     <None Remove="UI\Gallery\GalleryItemPage.xaml" />
     <None Remove="UI\Gallery\GalleryPage.xaml" />
     <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />

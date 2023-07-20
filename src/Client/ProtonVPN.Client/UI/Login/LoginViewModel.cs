@@ -48,8 +48,8 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
     [ObservableProperty]
     private bool _isBackEnabled;
 
-    public LoginViewModel(ILogger logger, ILocalizationProvider localizationProvider, IPageNavigator pageNavigator,
-        IUserAuthenticator userAuthenticator) : base(pageNavigator, localizationProvider)
+    public LoginViewModel(ILogger logger, ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator,
+        IUserAuthenticator userAuthenticator) : base(viewNavigator, localizationProvider)
     {
         _logger = logger;
         _userAuthenticator = userAuthenticator;
@@ -65,7 +65,7 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
         {
             case LoginState.Success:
                 ClearErrorMessage();
-                PageNavigator.NavigateTo(typeof(HomeViewModel).FullName!);
+                ViewNavigator.NavigateTo<HomeViewModel>();
                 break;
             case LoginState.TwoFactorRequired:
                 ClearErrorMessage();

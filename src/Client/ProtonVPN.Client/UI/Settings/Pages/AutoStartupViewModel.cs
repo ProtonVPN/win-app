@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class AutoStartupViewModel : PageViewModelBase
 {
-    public AutoStartupViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public AutoStartupViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

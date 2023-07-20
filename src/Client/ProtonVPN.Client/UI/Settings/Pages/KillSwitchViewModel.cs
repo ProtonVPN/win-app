@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class KillSwitchViewModel : PageViewModelBase
 {
-    public KillSwitchViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public KillSwitchViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

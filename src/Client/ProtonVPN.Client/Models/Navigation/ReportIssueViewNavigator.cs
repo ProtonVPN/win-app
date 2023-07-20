@@ -17,21 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Logging.Contracts;
 
-public interface IUrls
+namespace ProtonVPN.Client.Models.Navigation;
+
+public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavigator
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
-
-    Task NavigateToAsync(string url);
+    public ReportIssueViewNavigator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
+        : base(logger, viewMapper, themeSelector)
+    { }
 }

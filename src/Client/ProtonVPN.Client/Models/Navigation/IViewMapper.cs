@@ -17,21 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Contracts.ViewModels;
 
-public interface IUrls
+namespace ProtonVPN.Client.Models.Navigation;
+
+public interface IViewMapper
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
+    Type GetPageType<TPageViewModel>() 
+        where TPageViewModel : PageViewModelBase;
 
-    Task NavigateToAsync(string url);
+    Type GetOverlayType<TOverlayViewModel>() 
+        where TOverlayViewModel : OverlayViewModelBase;
+
+    Type GetDialogType<TShellViewModel>() 
+        where TShellViewModel : ShellViewModelBase;
+
+    Type GetPageType(string key);
+
+    Type GetOverlayType(string key);
+
+    Type GetDialogType(string key);
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,21 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Contracts;
 
-public interface IUrls
+namespace ProtonVPN.Client.UI.Dialogs.Windows;
+
+public sealed partial class ReportIssueShellPage : IShellPage
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
+    public ReportIssueShellViewModel ViewModel { get; }
 
-    Task NavigateToAsync(string url);
+    public ReportIssueShellPage()
+    {
+        ViewModel = App.GetService<ReportIssueShellViewModel>();
+        InitializeComponent();
+    }
+
+    public void Initialize(Window window)
+    {
+        // Set Title bar
+        window.ExtendsContentIntoTitleBar = true;
+        window.SetTitleBar(WindowTitleBar);
+        WindowTitleBarText.Text = ViewModel.Title;
+
+        // Set Frame
+        ViewModel.InitializeViewNavigator(window, NavigationFrame);
+    }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,21 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using Microsoft.UI.Xaml;
 
-public interface IUrls
+namespace ProtonVPN.Client.UI.Account;
+
+public sealed partial class AccountComponent
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
+    public AccountViewModel ViewModel { get; }
 
-    Task NavigateToAsync(string url);
+    public AccountComponent()
+    {
+        ViewModel = App.GetService<AccountViewModel>();
+        InitializeComponent();
+    }
+
+    private void OnSignOutButtonClick(object sender, RoutedEventArgs e)
+    {
+        AccountFlyout.Hide();
+    }
 }

@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <custom:GhostButton Margin="-4,-8"
@@ -32,5 +33,48 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:GhostButton.RightIcon>
             <pathicons:QuestionCircle />
         </custom:GhostButton.RightIcon>
+        <custom:GhostButton.Flyout>
+            <MenuFlyout Placement="TopEdgeAlignedRight">
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Header')}"
+                                Margin="-28,8,0,0"
+                                IsEnabled="False"/>
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_BrowsingSpeed')}"
+                                Command="{x:Bind ViewModel.OpenReportIssueDialogCommand, Mode=OneTime}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:Bolt/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ConnectingToVpn')}"
+                                Command="{x:Bind ViewModel.OpenReportIssueDialogCommand, Mode=OneTime}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:PowerOff/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_WeakConnection')}"
+                                Command="{x:Bind ViewModel.OpenReportIssueDialogCommand, Mode=OneTime}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:ExclamationCircle/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_UsingApp')}"
+                                Command="{x:Bind ViewModel.OpenReportIssueDialogCommand, Mode=OneTime}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:BrandProtonVpn/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Streaming')}"
+                                Command="{x:Bind ViewModel.OpenReportIssueDialogCommand, Mode=OneTime}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:Play/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Other')}"
+                                Command="{x:Bind ViewModel.OpenReportIssueDialogCommand, Mode=OneTime}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:ThreeDotsHorizontal/>
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+        </custom:GhostButton.Flyout>
     </custom:GhostButton>
 </UserControl>

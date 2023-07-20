@@ -19,7 +19,5 @@
 
 namespace ProtonVPN.Client.Models.Navigation;
 
-public interface IPageMapper
-{
-    Type GetPageType(string key);
-}
+public interface IMainViewNavigator : IViewNavigator
+{ }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<wex:WindowEx x:Class="ProtonVPN.Client.UI.Dialogs.Windows.ReportIssueWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:wex="using:WinUIEx"
+              Width="472"
+              Height="605"
+              MinWidth="472"
+              MinHeight="605"
+              PersistenceId="ReportIssueWindow"
+              mc:Ignorable="d">
+    
+    <!--  There's a consistent difference between the size defined here and the actual size  -->
+    <!--  Adds 16px to the width and 9px to the height to compensate  -->
+
+    <wex:WindowEx.Backdrop>
+
+        <wex:MicaSystemBackdrop DarkFallbackColor="#16141C"
+                                DarkLuminosityOpacity="0.95"
+                                DarkTintColor="#16141C"
+                                DarkTintOpacity="0.9"
+                                LightFallbackColor="#FFFFFF"
+                                LightLuminosityOpacity="0.95"
+                                LightTintColor="#FFFFFF"
+                                LightTintOpacity="0.9" />
+    </wex:WindowEx.Backdrop>
+</wex:WindowEx>

@@ -60,11 +60,11 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
 
     public override IconElement Icon { get; } = new House();
 
-    public HomeViewModel(IPageNavigator pageNavigator,
+    public HomeViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         ConnectionDetailsViewModel connectionDetailsViewModel)
-        : base(pageNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
         _connectionDetailsViewModel = connectionDetailsViewModel;

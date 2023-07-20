@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class SplitTunnelingViewModel : PageViewModelBase
 {
-    public SplitTunnelingViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public SplitTunnelingViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

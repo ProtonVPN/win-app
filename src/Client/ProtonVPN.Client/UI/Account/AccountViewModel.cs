@@ -21,51 +21,46 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.UI.Login;
 
-namespace ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Account;
 
-public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMessageReceiver<SettingChangedMessage>
+public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<LoginSuccessMessage>
 {
     private readonly ISettings _settings;
-    private readonly IUrls _urls;
+    private readonly IMainViewNavigator _viewNavigator;
 
-    public string LearnMoreUrl => _urls.ProtocolChangeLearnMore;
+    public string? Username => _settings.Username;
 
-    public string CurrentProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
+    public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlanTitle);
 
-    public ProtocolOverlayViewModel(ILocalizationProvider localizationProvider,
-        IMainViewNavigator viewNavigator,
-        ISettings settings,
-        IUrls urls)
-        : base(localizationProvider, viewNavigator)
+    public AccountViewModel(ILocalizationProvider localizationProvider, ISettings settings, IMainViewNavigator viewNavigator)
+        : base(localizationProvider)
     {
         _settings = settings;
-        _urls = urls;
+        _viewNavigator = viewNavigator;
+    }
+
+    public void Receive(LoginSuccessMessage message)
+    {
+        OnPropertyChanged(nameof(Username));
+        OnPropertyChanged(nameof(VpnPlan));
     }
 
     [RelayCommand]
-    public void NavigateTo(string pageKey)
+    public void SignOut()
     {
-        CloseOverlay();
-
-        ViewNavigator.NavigateTo(pageKey);
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == nameof(ISettings.VpnProtocol))
-        {
-            OnPropertyChanged(nameof(CurrentProtocol));
-        }
+        _viewNavigator.NavigateTo<LoginViewModel>();
     }
 
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
-        OnPropertyChanged(nameof(CurrentProtocol));
+
+        OnPropertyChanged(nameof(VpnPlan));
     }
 }

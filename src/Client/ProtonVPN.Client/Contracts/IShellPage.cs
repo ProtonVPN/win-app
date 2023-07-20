@@ -17,20 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml;
 
-namespace ProtonVPN.Client.Models.Navigation;
+namespace ProtonVPN.Client.Contracts;
 
-public interface IPageNavigator
+public interface IShellPage
 {
-    event NavigatedEventHandler Navigated;
-
-    bool CanGoBack { get; }
-
-    Frame? Frame { get; set; }
-
-    bool GoBack();
-
-    bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false);
+    void Initialize(Window window);
 }

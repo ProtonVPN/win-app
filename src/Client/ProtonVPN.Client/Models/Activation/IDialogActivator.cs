@@ -17,21 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Contracts.ViewModels;
 
-public interface IUrls
+namespace ProtonVPN.Client.Models.Activation;
+
+public interface IDialogActivator
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
+    void ShowDialog<TShellViewModel>()
+        where TShellViewModel : ShellViewModelBase;
 
-    Task NavigateToAsync(string url);
+    void ShowDialog(string shellKey);
 }
