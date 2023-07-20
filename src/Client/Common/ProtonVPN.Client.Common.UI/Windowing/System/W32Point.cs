@@ -24,6 +24,16 @@ namespace ProtonVPN.Client.Common.UI.Windowing.System;
 [StructLayout(LayoutKind.Sequential)]
 public struct W32Point
 {
-    public int X;
-    public int Y;
+    public int X = 0;
+    public int Y = 0;
+
+    public W32Point()
+    {
+    }
+
+    public W32Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
 }

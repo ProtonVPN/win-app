@@ -25,8 +25,11 @@ using Windows.Foundation;
 
 namespace ProtonVPN.Client.Common.UI.Windowing;
 
-public class CursorWindowCalculator
+public class MonitorCalculator
 {
+    private const int DEFAULT_WINDOW_WIDTH = 636;
+    private const int DEFAULT_WINDOW_HEIGHT = 589;
+
     /// <summary>Return the nearest monitor if the point is not contained by any monitor</summary>
     private const uint MONITOR_DEFAULTTONEAREST = 0x00000002;
     /// <summary>The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
@@ -43,6 +46,9 @@ public class CursorWindowCalculator
 
     [DllImport("user32.dll")]
     private static extern IntPtr MonitorFromPoint(W32Point pt, uint dwFlags);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr MonitorFromRect(W32Rect lprc, uint dwFlags);
 
     [DllImport("Shcore.dll")]
     private static extern uint GetDpiForMonitor(IntPtr hMonitor, uint dpiType, ref uint dpiX, ref uint dpiY);
@@ -93,6 +99,11 @@ public class CursorWindowCalculator
     private static Monitor GetCursorMonitor(W32Point cursorPosition)
     {
         IntPtr monitorHandle = MonitorFromPoint(cursorPosition, MONITOR_DEFAULTTONEAREST);
+        return GetMonitorByHandle(monitorHandle);
+    }
+
+    private static Monitor GetMonitorByHandle(IntPtr monitorHandle)
+    {
         W32MonitorInfo monitorInfo = new()
         {
             Size = Marshal.SizeOf(typeof(W32MonitorInfo))
@@ -179,5 +190,49 @@ public class CursorWindowCalculator
         {
             return null;
         }
+    }
+
+    public static W32Rect? GetValidWindowSizeAndPosition(W32Rect windowRectangle)
+    {
+        try
+        {
+            Monitor monitor = GetWindowMonitor(windowRectangle);
+            if (monitor is null)
+            {
+                return null; // Error when obtaining monitor information
+            }
+
+            int windowWidth = windowRectangle.Right - windowRectangle.Left;
+            int windowHeight = windowRectangle.Bottom - windowRectangle.Top;
+            bool isToCenterWindowInMonitor = 
+                windowRectangle.Top < monitor.WorkArea.Top ||
+                windowRectangle.Bottom > monitor.WorkArea.Bottom ||
+                windowRectangle.Left < monitor.WorkArea.Left ||
+                windowRectangle.Right > monitor.WorkArea.Right;
+            if (windowWidth > monitor.WorkArea.Width || windowHeight > monitor.WorkArea.Height)
+            {
+                windowWidth = Math.Min(DEFAULT_WINDOW_WIDTH, (int)monitor.WorkArea.Width);
+                windowHeight = Math.Min(DEFAULT_WINDOW_HEIGHT, (int)monitor.WorkArea.Height);
+                isToCenterWindowInMonitor = true;
+            }
+
+            if (isToCenterWindowInMonitor)
+            {
+                W32Point screenCenterPoint = CalculateScreenCenterPoint(monitor);
+                W32Point windowTopLeftCornerPoint = CalculateWindowCenteredInPoint(screenCenterPoint, monitor, windowWidth, windowHeight);
+                return new W32Rect(windowTopLeftCornerPoint, windowWidth, windowHeight);
+            }
+            return windowRectangle;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static Monitor GetWindowMonitor(W32Rect windowRectangle)
+    {
+        IntPtr monitorHandle = MonitorFromRect(windowRectangle, MONITOR_DEFAULTTONEAREST);
+        return GetMonitorByHandle(monitorHandle);
     }
 }
