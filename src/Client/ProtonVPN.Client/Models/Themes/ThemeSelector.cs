@@ -52,8 +52,8 @@ public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChange
         ApplicationElementTheme currentTheme = GetTheme();
 
         // Force a new theme rendering, because if the theme being set already exists, it is going to be ignored and not fix the TitleBar bug.
-        SetWindowTheme(new(ElementTheme.Light));
-        SetWindowTheme(new(ElementTheme.Dark));
+        //SetWindowTheme(new(ElementTheme.Light));
+        //SetWindowTheme(new(ElementTheme.Dark));
 
         SetWindowTheme(currentTheme);
     }

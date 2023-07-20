@@ -34,8 +34,8 @@ public partial class GalleryItemViewModel : PageViewModelBase
     [ObservableProperty]
     private UIElement? _pageContent;
 
-    public GalleryItemViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-            : base(pageNavigator, localizationProvider)
+    public GalleryItemViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+            : base(viewNavigator, localizationProvider)
     { }
 
     public override string? Title => PageName;

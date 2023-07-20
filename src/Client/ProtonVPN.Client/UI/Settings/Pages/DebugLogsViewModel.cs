@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public class DebugLogsViewModel : PageViewModelBase
 {
-    public DebugLogsViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public DebugLogsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

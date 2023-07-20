@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class NavigationPageViewModelBase : PageViewModelBase
 {
-    public NavigationPageViewModelBase(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public NavigationPageViewModelBase(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

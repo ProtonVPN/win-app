@@ -30,8 +30,8 @@ public class LatencyOverlayViewModel : OverlayViewModelBase
 
     public string LearnMoreUrl => _urls.InternetSpeedLearnMore;
 
-    public LatencyOverlayViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IUrls urls)
-        : base(localizationProvider, dialogActivator)
+    public LatencyOverlayViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IUrls urls)
+        : base(localizationProvider, viewNavigator)
     {
         _urls = urls;
     }

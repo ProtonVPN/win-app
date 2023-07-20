@@ -118,19 +118,19 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     [RelayCommand]
     public async Task ResetPasswordAsync()
     {
-        await Launcher.LaunchUriAsync(new Uri(_urls.ResetPassword));
+        await _urls.NavigateToAsync(_urls.ResetPassword);
     }
 
     [RelayCommand]
     public async Task ForgotUsernameAsync()
     {
-        await Launcher.LaunchUriAsync(new Uri(_urls.ForgotUsername));
+        await _urls.NavigateToAsync(_urls.ForgotUsername);
     }
 
     [RelayCommand]
     public async Task TroubleSigningInAsync()
     {
-        await Launcher.LaunchUriAsync(new Uri(_urls.TroubleSigningIn));
+        await _urls.NavigateToAsync(_urls.TroubleSigningIn);
     }
 
     [RelayCommand]

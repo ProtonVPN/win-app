@@ -33,10 +33,10 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
     [ObservableProperty]
     private bool _isNavigationPaneCollapsed;
 
-    public PageViewModelBase(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
+    public PageViewModelBase(IViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(localizationProvider)
     {
-        PageNavigator = pageNavigator;
+        ViewNavigator = viewNavigator;
     }
 
     public Type PageType => GetType();
@@ -45,12 +45,12 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
 
     public virtual bool IsBackEnabled => true;
 
-    protected IPageNavigator PageNavigator { get; }
+    protected IViewNavigator ViewNavigator { get; }
 
     [RelayCommand(CanExecute = nameof(CanGoBack))]
     public void GoBack()
     {
-        PageNavigator.GoBack();
+        ViewNavigator.GoBack();
     }
 
     public bool CanGoBack()
@@ -61,7 +61,7 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
     [RelayCommand]
     public void NavigateTo(string pageKey)
     {
-        PageNavigator.NavigateTo(pageKey);
+        ViewNavigator.NavigateTo(pageKey);
     }
 
     public virtual void OnNavigatedFrom()

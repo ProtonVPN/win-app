@@ -17,15 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Dialogs.Windows;
 
 namespace ProtonVPN.Client.UI.Home.Help;
 
-public class HelpViewModel : ViewModelBase
+public partial class HelpViewModel : ViewModelBase
 {
-    public HelpViewModel(ILocalizationProvider localizationProvider)
+    private readonly IDialogActivator _dialogActivator;
+    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+
+    public HelpViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IReportIssueViewNavigator reportIssueViewNavigator)
         : base(localizationProvider)
     {
+        _dialogActivator = dialogActivator;
+        _reportIssueViewNavigator = reportIssueViewNavigator;
+    }
+
+    [RelayCommand]
+    public void OpenReportIssueDialog()
+    {
+        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
     }
 }

@@ -37,7 +37,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
     private readonly IConnectionManager _connectionManager;
-    private readonly IDialogActivator _dialogActivator;
+    private readonly IMainViewNavigator _viewNavigator;
 
     private readonly VpnSpeedViewModel _vpnSpeedViewModel;
 
@@ -74,12 +74,12 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
 
     public ConnectionDetailsViewModel(ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
-        IDialogActivator dialogActivator,
+        IMainViewNavigator viewNavigator,
         VpnSpeedViewModel vpnSpeedViewModel)
         : base(localizationProvider)
     {
         _connectionManager = connectionManager;
-        _dialogActivator = dialogActivator;
+        _viewNavigator = viewNavigator;
         _vpnSpeedViewModel = vpnSpeedViewModel;
 
         _refreshTimer = new()
@@ -92,7 +92,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     [RelayCommand]
     public async Task OpenOverlayAsync(string dialogKey)
     {
-        await _dialogActivator.ShowAsync(dialogKey);
+        await _viewNavigator.ShowOverlayAsync(dialogKey);
     }
 
     public void Receive(ConnectionStatusChanged message)

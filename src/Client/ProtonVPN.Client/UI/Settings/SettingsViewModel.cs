@@ -97,13 +97,13 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     public override string? Title => Localizer.Get("Settings_Page_Title");
 
     public SettingsViewModel(IThemeSelector themeSelector,
-        IPageNavigator pageNavigator,
+        IMainViewNavigator viewNavigator,
         ILocalizationService localizationService,
         ILocalizationProvider localizationProvider,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
         IUrls urls)
-        : base(pageNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;
@@ -127,9 +127,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     [RelayCommand]
-    public void OpenSupport()
+    public async Task OpenSupportAsync()
     {
-        _urls.NavigateTo(_urls.SupportCenter);
+        await _urls.NavigateToAsync(_urls.SupportCenter);
     }
 
     [RelayCommand]

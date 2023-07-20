@@ -26,21 +26,21 @@ namespace ProtonVPN.Client.HumanVerification;
 
 public class HumanVerifier : IHumanVerifier, IEventMessageReceiver<ResponseTokenMessage>
 {
-    private readonly IDialogActivator _dialogActivator;
+    private readonly IMainViewNavigator _viewNavigator;
     private readonly IEventMessageSender _eventMessageSender;
 
-    private string _resolvedToken;
+    private string _resolvedToken = string.Empty;
 
-    public HumanVerifier(IDialogActivator dialogActivator, IEventMessageSender eventMessageSender)
+    public HumanVerifier(IMainViewNavigator viewNavigator, IEventMessageSender eventMessageSender)
     {
-        _dialogActivator = dialogActivator;
+        _viewNavigator = viewNavigator;
         _eventMessageSender = eventMessageSender;
     }
 
     public async Task<string> VerifyAsync(string token)
     {
         _eventMessageSender.Send(new RequestTokenMessage(token));
-        await _dialogActivator.ShowAsync(typeof(HumanVerificationViewModel).FullName!);
+        await _viewNavigator.ShowOverlayAsync<HumanVerificationViewModel>();
         return _resolvedToken;
     }
 

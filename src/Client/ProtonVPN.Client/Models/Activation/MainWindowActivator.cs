@@ -19,13 +19,17 @@
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Activation;
+using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.UI;
 
-namespace ProtonVPN.Client.Models.MainWindowActivation;
+namespace ProtonVPN.Client.Models.Activation;
 
-public class MainWindowActivator : IMainWindowActivator
+public class MainWindowActivator : IMainWindowActivator, IEventMessageReceiver<LoginSuccessMessage>, IEventMessageReceiver<LogoutMessage>
 {
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
@@ -48,7 +52,14 @@ public class MainWindowActivator : IMainWindowActivator
         // Set the MainWindow Content.
         if (App.MainWindow.Content == null)
         {
-            App.MainWindow.Content = new ShellPage(_shellViewModel);
+            Page page = new ShellPage(_shellViewModel);
+
+            App.MainWindow.Content = page;
+
+            if (page is IShellPage shellPage)
+            {
+                shellPage.Initialize(App.MainWindow);
+            }
         }
 
         // Handle activation via ActivationHandlers.
@@ -60,6 +71,18 @@ public class MainWindowActivator : IMainWindowActivator
 
         // Set the theme again once all priority events are done such as UI rendering, in order to fix the TitleBar bug.
         App.MainWindow.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () => _themeSelector.Initialize());
+    }
+
+    public void Receive(LoginSuccessMessage message)
+    {
+        App.MainWindow.IsMaximizable = true;
+        App.MainWindow.IsResizable = true;
+    }
+
+    public void Receive(LogoutMessage message)
+    {
+        App.MainWindow.IsMaximizable = false;
+        App.MainWindow.IsResizable = false;
     }
 
     private async Task HandleActivationAsync(LaunchActivatedEventArgs activationArgs)

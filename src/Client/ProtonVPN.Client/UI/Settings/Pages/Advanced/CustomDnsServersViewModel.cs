@@ -49,8 +49,8 @@ public partial class CustomDnsServersViewModel : PageViewModelBase
 
     public int CustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
 
-    public CustomDnsServersViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings)
-        : base(pageNavigator, localizationProvider)
+    public CustomDnsServersViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings)
+        : base(viewNavigator, localizationProvider)
     {
         _settings = settings;
         _currentIpAddress = string.Empty;

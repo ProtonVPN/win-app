@@ -33,5 +33,5 @@ public interface IUrls
     string SupportCenter { get; }
     string UsageStatisticsLearnMore { get; }
 
-    void NavigateTo(string url);
+    Task NavigateToAsync(string url);
 }

@@ -21,9 +21,11 @@ using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
+using ProtonVPN.Client.UI.Account;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Client.UI.Dialogs.Windows;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
@@ -45,6 +47,7 @@ public class ViewModelsModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        RegisterViewModel<ReportIssueShellViewModel>(builder);
         RegisterViewModel<ProtocolOverlayViewModel>(builder);
         RegisterViewModel<LatencyOverlayViewModel>(builder);
         RegisterViewModel<ServerLoadOverlayViewModel>(builder);
@@ -73,6 +76,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<KillSwitchViewModel>(builder);
         RegisterViewModel<NetShieldViewModel>(builder);
         RegisterViewModel<CountryViewModel>(builder);
+        RegisterViewModel<AccountViewModel>(builder);
         RegisterViewModel<LoginViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);

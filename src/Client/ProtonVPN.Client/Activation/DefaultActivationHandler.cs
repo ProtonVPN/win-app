@@ -29,31 +29,31 @@ namespace ProtonVPN.Client.Activation;
 public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {
     private readonly ISettings _settings;
-    private readonly IPageNavigator _pageNavigator;
+    private readonly IMainViewNavigator _viewNavigator;
     private readonly IUserAuthenticator _userAuthenticator;
 
-    public DefaultActivationHandler(ISettings settings, IPageNavigator pageNavigator, IUserAuthenticator userAuthenticator)
+    public DefaultActivationHandler(ISettings settings, IMainViewNavigator viewNavigator, IUserAuthenticator userAuthenticator)
     {
         _settings = settings;
-        _pageNavigator = pageNavigator;
+        _viewNavigator = viewNavigator;
         _userAuthenticator = userAuthenticator;
     }
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
     {
         // None of the ActivationHandlers has handled the activation.
-        return _pageNavigator.Frame?.Content == null;
+        return _viewNavigator.Frame?.Content == null;
     }
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
         if (string.IsNullOrEmpty(_settings.Username))
         {
-            _pageNavigator.NavigateTo(typeof(LoginViewModel).FullName!, args.Arguments);
+            _viewNavigator.NavigateTo<LoginViewModel>(args.Arguments);
         }
         else
         {
-            _pageNavigator.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
+            _viewNavigator.NavigateTo<HomeViewModel>(args.Arguments);
             await _userAuthenticator.InvokeAutoLoginEventAsync();
         }
     }

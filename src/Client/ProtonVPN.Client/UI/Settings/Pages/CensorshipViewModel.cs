@@ -48,8 +48,8 @@ public class CensorshipViewModel : PageViewModelBase, IEventMessageReceiver<Sett
 
     public string LearnMoreUrl => _urls.UsageStatisticsLearnMore;
 
-    public CensorshipViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
-        : base(pageNavigator, localizationProvider)
+    public CensorshipViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
+        : base(viewNavigator, localizationProvider)
     {
         _settings = settings;
         _urls = urls;

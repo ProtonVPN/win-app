@@ -22,7 +22,7 @@ using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Dispatching;
 using ProtonVPN.Client.HumanVerification;
-using ProtonVPN.Client.Models.MainWindowActivation;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
@@ -40,10 +40,10 @@ public class ClientModule : Module
         builder.RegisterType<UIThreadDispatcher>().As<IUIThreadDispatcher>().SingleInstance();
 
         builder.RegisterType<ThemeSelector>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ViewNavigator>().As<IViewNavigator>().InstancePerDependency();
         builder.RegisterType<MainWindowActivator>().As<IMainWindowActivator>().SingleInstance();
-        builder.RegisterType<PageMapper>().As<IPageMapper>().SingleInstance();
-        builder.RegisterType<PageNavigator>().As<IPageNavigator>().SingleInstance();
+        builder.RegisterType<ViewMapper>().As<IViewMapper>().SingleInstance();
+        builder.RegisterType<MainViewNavigator>().As<IMainViewNavigator>().SingleInstance();
+        builder.RegisterType<ReportIssueViewNavigator>().As<IReportIssueViewNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();

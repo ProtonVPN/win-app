@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
+namespace ProtonVPN.Client.UI.Dialogs.Windows;
 
-namespace ProtonVPN.Client.Models.MainWindowActivation;
-
-public interface IMainWindowActivator
+public sealed partial class ReportIssueWindow
 {
-    Task ActivateAsync(LaunchActivatedEventArgs activationArgs);
+    public ReportIssueWindow()
+    {
+        InitializeComponent();
+    }
 }

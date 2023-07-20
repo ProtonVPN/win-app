@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
+      xmlns:account="using:ProtonVPN.Client.UI.Account"
       DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
       Loaded="OnLoaded">
 
@@ -73,6 +74,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         CompactModeThresholdWidth="408"
                         CompactPaneLength="48"
                         DisplayModeChanged="OnNavigationViewDisplayModeChanged"
+                        ItemInvoked="OnNavigationViewItemInvoked"
                         ExpandedModeThresholdWidth="520"
                         IsBackButtonVisible="Collapsed"
                         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
@@ -92,37 +94,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </NavigationView.MenuItemTemplate>
 
             <NavigationView.PaneFooter>
-                <Button HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        AutomationProperties.AutomationId="AccountButton"
-                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}"
-                        Background="Transparent"
-                        Style="{StaticResource SidebarButtonStyle}"
-                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}">
-                    <Button.Flyout>
-                        <Flyout x:Name="AccountFlyout">
-                            <StackPanel Orientation="Vertical"
-                                        Spacing="16">
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
-                                               Text="{x:Bind ViewModel.Username, Mode=OneWay}" />
-                                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
-                                               Foreground="{StaticResource TextWeakColorBrush}"
-                                               Text="{x:Bind ViewModel.VpnPlan, Mode=OneWay}" />
-                                </StackPanel>
-                                <HyperlinkButton Content="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}" />
-                                <Button Width="175"
-                                        Height="32"
-                                        Content="{x:Bind ViewModel.Localizer.Get('Home_Account_SignOut')}"
-                                        Click="Logout" />
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                    <pathicons:UserCircle />
-                </Button>
+                <account:AccountComponent />
             </NavigationView.PaneFooter>
 
             <Frame x:Name="NavigationFrame" />
         </NavigationView>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="LoggedOutState">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsLoginPage, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="NavigationViewControl.IsPaneVisible" Value="False" />
+                        <Setter Target="NavigationViewControl.IsPaneToggleButtonVisible" Value="False" />
+                        <Setter Target="NavigationViewControl.PaneDisplayMode" Value="LeftMinimal" />
+                        <Setter Target="NavigationViewControl.Margin" Value="-1,-2,0,0" />
+                        <Setter Target="ApplicationIcon.Visibility" Value="Collapsed" />
+                        <Setter Target="AppTitleBarText.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="LoggedInState">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="True" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="NavigationViewControl.IsPaneVisible" Value="True" />
+                        <Setter Target="NavigationViewControl.IsPaneToggleButtonVisible" Value="True" />
+                        <Setter Target="NavigationViewControl.PaneDisplayMode" Value="Left" />
+                        <Setter Target="NavigationViewControl.Margin" Value="0" />
+                        <Setter Target="ApplicationIcon.Visibility" Value="Visible" />
+                        <Setter Target="AppTitleBarText.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
     </Grid>
 </Page>

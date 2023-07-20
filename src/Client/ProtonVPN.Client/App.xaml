@@ -65,6 +65,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <x:Double x:Key="TitleBarHeight">48.0</x:Double>
             <Thickness x:Key="TitleBarMargin">48,0,128,0</Thickness>
 
+            <x:Double x:Key="CompactTitleBarHeight">32.0</x:Double>
+            <Thickness x:Key="CompactTitleBarMargin">16,0,128,0</Thickness>
+
             <x:Double x:Key="LoginPageContentWidth">328</x:Double>
         </ResourceDictionary>
     </Application.Resources>

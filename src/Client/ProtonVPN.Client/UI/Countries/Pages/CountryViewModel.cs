@@ -31,8 +31,8 @@ public partial class CountryViewModel : PageViewModelBase
     [NotifyPropertyChangedFor(nameof(Title))]
     private Country? _currentCountry;
 
-    public CountryViewModel(IPageNavigator pageNavigator, ILocalizationProvider localizationProvider)
-        : base(pageNavigator, localizationProvider)
+    public CountryViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
     }
 

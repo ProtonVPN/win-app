@@ -17,40 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Login;
+using ProtonVPN.Client.UI.Settings;
 using Windows.System;
-using Microsoft.UI.Xaml;
 
 namespace ProtonVPN.Client.UI;
 
-public sealed partial class ShellPage
+public sealed partial class ShellPage : IShellPage
 {
+    public ShellViewModel ViewModel { get; }
+
     public ShellPage(ShellViewModel viewModel)
     {
         ViewModel = viewModel;
         InitializeComponent();
-
-        ViewModel.PageNavigator.Frame = NavigationFrame;
-        ViewModel.PageNavigator.Navigated += PageNavigator_Navigated;
-        ViewModel.ViewNavigator.Initialize(NavigationViewControl);
-
-        // TODO: Set the title bar icon by updating /Assets/WindowIcon.ico.
-        // A custom title bar is required for full window theme and Mica support.
-        // https://docs.microsoft.com/windows/apps/develop/title-bar?tabs=winui3#full-customization
-        App.MainWindow.ExtendsContentIntoTitleBar = true;
-        App.MainWindow.SetTitleBar(AppTitleBar);
-        AppTitleBarText.Text = App.APPLICATION_NAME;
     }
-
-    private void PageNavigator_Navigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
-    {
-        ToggleNavigationViewElementVisibility();
-    }
-
-    public ShellViewModel ViewModel { get; }
 
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
     {
@@ -68,9 +55,9 @@ public sealed partial class ShellPage
 
     private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        IPageNavigator pageNavigator = App.GetService<IPageNavigator>();
+        IMainViewNavigator viewNavigator = App.GetService<IMainViewNavigator>();
 
-        bool result = pageNavigator.GoBack();
+        bool result = viewNavigator.GoBack();
 
         args.Handled = result;
     }
@@ -79,20 +66,9 @@ public sealed partial class ShellPage
     {
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
-        ToggleNavigationViewElementVisibility();
-    }
 
-    private void ToggleNavigationViewElementVisibility()
-    {
-        bool isLoginPage = ViewModel.CurrentPage is LoginViewModel;
-        NavigationViewControl.IsPaneVisible = !isLoginPage;
-        NavigationViewControl.IsPaneToggleButtonVisible = !isLoginPage;
-        NavigationViewControl.PaneDisplayMode =
-            isLoginPage ? NavigationViewPaneDisplayMode.LeftMinimal : NavigationViewPaneDisplayMode.Left;
-        ApplicationIcon.Visibility = isLoginPage ? Visibility.Collapsed : Visibility.Visible;
-        AppTitleBarText.Visibility = isLoginPage ? Visibility.Collapsed : Visibility.Visible;
-        App.MainWindow.IsResizable = !isLoginPage;
-        App.MainWindow.IsMaximizable = !isLoginPage;
+        App.MainWindow.IsResizable = !ViewModel.IsLoginPage;
+        App.MainWindow.IsMaximizable = !ViewModel.IsLoginPage;
     }
 
     private void OnNavigationViewDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
@@ -100,9 +76,31 @@ public sealed partial class ShellPage
         ViewModel.OnNavigationDisplayModeChanged(args.DisplayMode);
     }
 
-    private void Logout(object sender, RoutedEventArgs e)
+    private void OnNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
-        AccountFlyout.Hide();
-        ViewModel.PageNavigator.NavigateTo(typeof(LoginViewModel).FullName!);
+        if (args.IsSettingsInvoked)
+        {
+            ViewModel.NavigateTo(typeof(SettingsViewModel).FullName!);
+        }
+        else
+        {
+            NavigationViewItem? selectedItem = args.InvokedItemContainer as NavigationViewItem;
+
+            if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
+            {
+                ViewModel.NavigateTo(pageKey);
+            }
+        }
+    }
+
+    public void Initialize(Window window)
+    {
+        // Set title bar
+        window.ExtendsContentIntoTitleBar = true;
+        window.SetTitleBar(AppTitleBar);
+        AppTitleBarText.Text = ViewModel.Title;
+
+        // Set navigation frame
+        ViewModel.InitializeViewNavigator(window, NavigationFrame);
     }
 }

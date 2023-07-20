@@ -19,7 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Client.Models.MainWindowActivation;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 

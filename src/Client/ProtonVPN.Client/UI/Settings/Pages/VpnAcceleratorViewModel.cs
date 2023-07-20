@@ -38,10 +38,10 @@ public class VpnAcceleratorViewModel : PageViewModelBase, IEventMessageReceiver<
         set => _settings.IsVpnAcceleratorEnabled = value;
     }
 
-    public VpnAcceleratorViewModel(IPageNavigator pageNavigator,
+    public VpnAcceleratorViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings)
-        : base(pageNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
         _settings = settings;
     }

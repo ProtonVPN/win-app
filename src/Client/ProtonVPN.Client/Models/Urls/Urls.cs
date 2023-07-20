@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
+using Windows.System;
 
 namespace ProtonVPN.Client.Models.Urls;
 
@@ -41,8 +41,8 @@ public class Urls : IUrls
 
     public string UsageStatisticsLearnMore => "https://protonvpn.com/support/share-usage-statistics/";
 
-    public void NavigateTo(string url)
+    public async Task NavigateToAsync(string url)
     {
-        Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        await Launcher.LaunchUriAsync(new Uri(url));
     }
 }

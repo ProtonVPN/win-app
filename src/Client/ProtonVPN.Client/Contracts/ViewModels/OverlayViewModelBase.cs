@@ -25,17 +25,17 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class OverlayViewModelBase : ViewModelBase
 {
-    protected readonly IDialogActivator DialogActivator;
+    protected readonly IViewNavigator ViewNavigator;
 
-    public OverlayViewModelBase(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator)
+    public OverlayViewModelBase(ILocalizationProvider localizationProvider, IViewNavigator viewNavigator)
         : base(localizationProvider)
     {
-        DialogActivator = dialogActivator;
+        ViewNavigator = viewNavigator;
     }
 
     [RelayCommand]
     public void CloseOverlay()
     {
-        DialogActivator.Close();
+        ViewNavigator.CloseOverlay();
     }
 }

@@ -122,4 +122,10 @@ public static class LocalizationExtensions
             _ => string.Empty,
         };
     }
+    public static string GetVpnPlanName(this ILocalizationProvider localizer, string vpnPlan)
+    {
+        return string.IsNullOrEmpty(vpnPlan)
+            ? localizer.Get("Account_VpnPlan_Free")
+            : vpnPlan;
+    }
 }
