@@ -17,18 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
 
 public partial class LoginRobot
 {
-    public LoginRobot DoLogin()
+    public LoginRobot DoLogin(TestUserData user)
     {
-        string[] credentials = Environment.GetEnvironmentVariable("FREE_USER").Split(':');
-        UsernameTextBox.Enter(credentials[0]);
-        PasswordBox.Enter(credentials[1]);
+        UsernameTextBox.Enter(user.Username);
+        PasswordBox.Enter(user.Password);
         SignInButton.Invoke();
+        return this;
+    }
+
+
+    public LoginRobot DoEnterTwoFactorCode(string code)
+    {
+        TwoFactorInputField("First").Enter(code[0].ToString());
+        TwoFactorInputField("Second").Enter(code[1].ToString());
+        TwoFactorInputField("Third").Enter(code[2].ToString());
+        TwoFactorInputField("Fourth").Enter(code[3].ToString());
+        TwoFactorInputField("Fifth").Enter(code[4].ToString());
+        TwoFactorInputField("Sixth").Enter(code[5].ToString());
+        AuthenticateButton.WaitUntilEnabled();
+        AuthenticateButton.Click();
         return this;
     }
 }

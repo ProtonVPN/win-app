@@ -20,82 +20,51 @@
 using System;
 using OtpNet;
 
-namespace ProtonVPN.UI.Tests.TestsHelper
+namespace ProtonVPN.UI.Tests.TestsHelper;
+
+public class TestUserData
 {
-    public class TestUserData
+    public string Username { get; set; }
+    public string Password { get; set; }
+
+    private TestUserData(string username, string password)
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        Username = username;
+        Password = password;
+    }
 
-        private TestUserData(string username, string password)
+    public static TestUserData FreeUser => GetUser("FREE_USER");
+    public static TestUserData PlusUser => GetUser("PLUS_USER");
+    public static TestUserData VisionaryUser => GetUser("VISIONARY_USER");
+
+    public static TestUserData SpecialCharsUser => GetUser("SPECIAL_CHARS_USER");
+    public static TestUserData TwoPassUser => GetUser("TWO_PASS_USER");
+    public static TestUserData ZeroAssignedConnectionsUser => GetUser("ZERO_CONNECTIONS_USER");
+    public static TestUserData TwoFactorUser => GetUser("TWO_FACTOR_AUTH_USER");
+    public static TestUserData IncorrectUser => new TestUserData("IncorrectUsername", "IncorrectPass");
+
+    public static string GetTwoFactorCode()
+    {
+        string key = Environment.GetEnvironmentVariable("TWO_FA_KEY");
+        Totp totp = new Totp(Base32Encoding.ToBytes(key));
+        return totp.ComputeTotp();
+    }
+
+    private static TestUserData GetUser(string envVarUser)
+    {
+        (string username, string password) = GetUsernameAndPassword(envVarUser);
+        return new TestUserData(username, password);
+    }
+
+    private static (string, string) GetUsernameAndPassword(string userType)
+    {
+        string str = Environment.GetEnvironmentVariable(userType);
+        if (string.IsNullOrEmpty(str))
         {
-            Username = username;
-            Password = password;
+            throw new Exception($"Missing environment variable: {userType}");
         }
 
-        public static TestUserData GetFreeUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("FREE_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static TestUserData GetUserWithSpecialChars()
-        {
-            (string username, string password) = GetUsernameAndPassword("SPECIAL_CHARS_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static TestUserData GetPlusUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("PLUS_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static TestUserData GetVisionaryUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("VISIONARY_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static TestUserData GetTwoPassUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("TWO_PASS_USER");
-            return new TestUserData(username, password);
-        }
-        public static TestUserData GetZeroAssignedConnectionUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("ZERO_CONNECTIONS_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static TestUserData GetIncorrectCredentialsUser()
-        {
-            return new TestUserData("IncorrectUsername", "IncorrectPass");
-        }
-
-        public static TestUserData GetTwoFactorUser()
-        {
-            (string username, string password) = GetUsernameAndPassword("TWO_FACTOR_AUTH_USER");
-            return new TestUserData(username, password);
-        }
-
-        public static string GetTwoFactorCode()
-        {
-            string key = Environment.GetEnvironmentVariable("TWO_FA_KEY");
-            Totp totp = new Totp(Base32Encoding.ToBytes(key));
-            return totp.ComputeTotp();
-        }
-
-        private static (string, string) GetUsernameAndPassword(string userType)
-        {
-            string str = Environment.GetEnvironmentVariable(userType);
-            if (string.IsNullOrEmpty(str))
-            {
-                throw new Exception($"Missing environment variable: {userType}");
-            }
-
-            string[] split = str.Split(':');
-            return (split[0], split[1]);
-        }
+        string[] split = str.Split(':');
+        return (split[0], split[1]);
     }
 }

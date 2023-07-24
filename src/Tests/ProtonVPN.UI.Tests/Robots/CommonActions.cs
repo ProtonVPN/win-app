@@ -19,6 +19,9 @@
 
 using System;
 using System.Threading;
+using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -34,5 +37,17 @@ public static class CommonActions
     public static T Wait<T>(this T robot, TimeSpan delay) where T : UIActions
     {
         return robot.Wait((int)delay.TotalMilliseconds);
+    }
+
+    public static T WaitUntilDisplayed<T>(this T robot, TimeSpan time) where T : AutomationElement
+    {
+        RetryResult<bool> retry = Retry.WhileTrue(
+            () => {
+                TestSession.RefreshWindow();
+                return robot.IsOffscreen;
+            },
+            time, TestConstants.RetryInterval);
+
+        return robot;
     }
 }
