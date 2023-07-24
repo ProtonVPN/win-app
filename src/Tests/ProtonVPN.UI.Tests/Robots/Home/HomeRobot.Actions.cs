@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Home;
@@ -72,7 +71,19 @@ public partial class HomeRobot
 
     public HomeRobot DoWaitForVpnStatusSubtitleLabel()
     {
-        WaitUntilElementExistsByAutomationId(VpnStatusSubtitleLabel.AutomationId, TestConstants.ShortTimeout);
+        VpnStatusSubtitleLabel.WaitUntilDisplayed(TestConstants.VeryShortTimeout);
+        return this;
+    }
+
+    public HomeRobot DoOpenAccount()
+    {
+        AccountButton.Click();
+        return this;
+    }
+
+    public HomeRobot DoSignOut()
+    {
+        SignOutButton.Click();
         return this;
     }
 }

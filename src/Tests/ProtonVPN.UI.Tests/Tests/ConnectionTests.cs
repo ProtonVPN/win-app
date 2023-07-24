@@ -40,6 +40,7 @@ public class ConnectionTests : TestSession
     private const string SERVER_LOAD_OVERLAY_TITLE = "What is server load?";
     private const string LATENCY_OVERLAY_TITLE = "What is latency?";
     private const string PROTOCOL_OVERLAY_TITLE = "What is a VPN protocol?";
+
     private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
     private CountriesRobot _countriesRobot = new();
@@ -53,7 +54,7 @@ public class ConnectionTests : TestSession
 
         _loginRobot
             .Wait(TestConstants.InitializationDelay)
-            .DoLogin();
+            .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
             .DoWaitForVpnStatusSubtitleLabel()

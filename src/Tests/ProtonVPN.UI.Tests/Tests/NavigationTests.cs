@@ -44,7 +44,7 @@ public class NavigationTests : TestSession
 
         _loginRobot
             .Wait(TestConstants.InitializationDelay)
-            .DoLogin();
+            .DoLogin(TestUserData.PlusUser);
 
         _homeRobot.DoWaitForVpnStatusSubtitleLabel();
 

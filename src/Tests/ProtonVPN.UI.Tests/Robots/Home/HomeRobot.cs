@@ -18,13 +18,14 @@
  */
 
 using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Home;
 
 public partial class HomeRobot : UIActions
 {
     protected Label VpnStatusTitleLabel => ElementByAutomationId("VpnStatusTitleLabel").AsLabel();
-    protected Label VpnStatusSubtitleLabel => ElementByAutomationId("VpnStatusSubtitleLabel").AsLabel();
+    protected Label VpnStatusSubtitleLabel => ElementByAutomationId("VpnStatusSubtitleLabel", TestConstants.ShortTimeout).AsLabel();
 
     protected Label ConnectionCardHeaderLabel => ElementByAutomationId("ConnectionCardHeaderLabel").AsLabel();
     protected Label ConnectionCardTitleLabel => ElementByAutomationId("ConnectionCardTitleLabel").AsLabel();
@@ -42,4 +43,6 @@ public partial class HomeRobot : UIActions
     protected Button ConnectionDetailServerLoadButton => ElementByAutomationId("ShowServerLoadOverlayButton").AsButton();
     protected Button ConnectionDetailLatencyButton => ElementByAutomationId("ShowLatencyOverlayButton").AsButton();
     protected Button ConnectionDetailProtocolButton => ElementByAutomationId("ShowProtocolOverlayButton").AsButton();
+    protected Button AccountButton => ElementByAutomationId("AccountButton").AsButton();
+    protected Button SignOutButton => ElementByName("Sign out").AsButton();
 }

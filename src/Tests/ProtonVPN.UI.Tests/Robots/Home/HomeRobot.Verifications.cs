@@ -118,6 +118,14 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot VerifyUserIsLoggedIn(TestUserData user, string planName)
+    {
+        Assert.IsNotNull(ElementByName(user.Username));
+        Assert.IsNotNull(ElementByName(planName));
+        Assert.IsNotNull(SignOutButton);
+        return this;
+    }
+
     private void VerifyVpnStatusLabels(string expectedTitle = null, string expectedSubtitle = null)
     {
         if (!string.IsNullOrEmpty(expectedTitle))

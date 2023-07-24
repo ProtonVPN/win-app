@@ -17,16 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.AutomationElements;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
-
-public partial class LoginRobot : UIActions
+public partial class LoginRobot
 {
-    protected TextBox UsernameTextBox => ElementByAutomationId("UsernameTextBox").AsTextBox();
-    protected TextBox PasswordBox => ElementByAutomationId("PasswordBox").AsTextBox();
-    protected Button SignInButton => ElementByAutomationId("SignInButton").AsButton();
-    protected TextBox ErrorMesaggeTextBox => ElementByAutomationId("Message").AsTextBox();
-    protected TextBox AuthenticateButton => ElementByAutomationId("AuthenticateButton").AsTextBox();
-    protected TextBox TwoFactorInputField(string position) => ElementByName($"{position} digit").AsTextBox();
+    public LoginRobot VerifyLoginErrorIsDisplayed(string message)
+    {
+        Assert.AreEqual(ErrorMesaggeTextBox.Text, message);
+        return this;
+    }
+
+    public LoginRobot VerifyIsInLoginWindow()
+    {
+        Assert.IsNotNull(UsernameTextBox);
+        Assert.IsNotNull(PasswordBox);
+        Assert.IsNotNull(SignInButton);
+        return this;
+    }
+
 }

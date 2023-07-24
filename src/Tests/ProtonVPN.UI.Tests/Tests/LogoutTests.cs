@@ -17,37 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading;
-using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Tools;
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots.Home;
+using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Robots;
+namespace ProtonVPN.UI.Tests.Tests;
 
-public static class CommonActions
+[TestFixture]
+[Category("UI")]
+public class LogoutTests : TestSession
 {
-    public static T Wait<T>(this T robot, int delayInMilliseconds) where T : UIActions
-    {
-        Thread.Sleep(delayInMilliseconds);
+    private const string FREE_PLAN_NAME = "Proton VPN Free";
 
-        return robot;
+    private LoginTests _loginTests = new();
+    private LoginRobot _loginRobot = new();
+    private HomeRobot _homeRobot = new();
+
+    [SetUp]
+    public void TestInitialize()
+    {
+        LaunchApp();
     }
 
-    public static T Wait<T>(this T robot, TimeSpan delay) where T : UIActions
+    [Test]
+    public void LogoutFreeUser()
     {
-        return robot.Wait((int)delay.TotalMilliseconds);
+        _loginTests.PerformLoginTest(TestUserData.FreeUser, FREE_PLAN_NAME);
+        _homeRobot.DoSignOut();
+        _loginRobot.VerifyIsInLoginWindow();
     }
 
-    public static T WaitUntilDisplayed<T>(this T robot, TimeSpan time) where T : AutomationElement
+    [TearDown]
+    public void TestCleanup()
     {
-        RetryResult<bool> retry = Retry.WhileTrue(
-            () => {
-                TestSession.RefreshWindow();
-                return robot.IsOffscreen;
-            },
-            time, TestConstants.RetryInterval);
-
-        return robot;
+        Cleanup();
     }
 }

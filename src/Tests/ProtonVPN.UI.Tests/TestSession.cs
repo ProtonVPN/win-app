@@ -44,25 +44,7 @@ public class TestSession
 
     private static readonly bool _isDevelopmentModeEnabled = false;
 
-    protected static void DeleteUserConfig()
-    {
-        try
-        {
-            Directory.Delete(TestConstants.UserStoragePath, true);
-        }
-        catch
-        {
-        }
-    }
-
-    protected static void Cleanup()
-    {
-        SaveScreenshotAndLogsIfFailed();
-        App.Close();
-        App.Dispose();
-    }
-
-    protected static void RefreshWindow()
+    public static void RefreshWindow()
     {
         Window = null;
         RetryResult<Window> retry = Retry.WhileNull(() =>
@@ -83,6 +65,24 @@ public class TestSession
         {
             Assert.Fail($"Failed to refresh window in {TestConstants.MediumTimeout.Seconds} seconds.");
         }
+    }
+
+    protected static void DeleteUserConfig()
+    {
+        try
+        {
+            Directory.Delete(TestConstants.UserStoragePath, true);
+        }
+        catch
+        {
+        }
+    }
+
+    protected static void Cleanup()
+    {
+        SaveScreenshotAndLogsIfFailed();
+        App.Close();
+        App.Dispose();
     }
 
     protected static void LaunchApp()
@@ -113,7 +113,7 @@ public class TestSession
 
         App = Application.Launch(installedClientPath);
         RefreshWindow();
-        Window.WaitUntilClickable();
+        Window.WaitUntilClickable(TimeSpan.FromSeconds(10));
         Window.Focus();
     }
 
