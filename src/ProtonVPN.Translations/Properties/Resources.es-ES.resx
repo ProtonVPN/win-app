@@ -281,7 +281,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Su solicitud ha fallado. Por favor, inténtelo de nuevo.</value>
+    <value>No se ha completado tu solicitud. Inténtalo de nuevo.</value>
   </data>
   <data name="App_mnu_About">
     <value>Acerca de</value>
@@ -432,7 +432,7 @@
     <value>¿Cuál es el problema?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>¿Qué salió mal?</value>
+    <value>¿Cual fue el problema?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
@@ -522,11 +522,11 @@
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>ha fallado</value>
+    <value>no ha funcionado</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>la conexión ha fallado</value>
+    <value>no ha funcionado</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
@@ -1673,7 +1673,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Verificación humana</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>El reloj de su sistema parece estar desincronizado, lo que podría impedir que la VPN se conecte. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
+    <value>El reloj del sistema parece estar desincronizado, lo que podría impedir que la VPN se conecte. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
     <value>Con Kill Switch permanente, si la VPN no está conectada por algún motivo, no podrás acceder a internet.</value>
@@ -1768,15 +1768,15 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Actualiza de nuevo para disfrutar de todas las características:</value>
+    <value>Mejora tu plan de nuevo para disfrutar de todas las funciones:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Tu suscripción ha sido degradada, por lo que estamos volviendo a conectar al servidor más rápido disponible.</value>
+    <value>Tu suscripción ha pasado a un nivel inferior, por lo que estamos volviendo a conectar al servidor más rápido disponible.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Tu suscripción ha sido degradada.</value>
+    <value>Tu suscripción ha pasado a un nivel inferior.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
@@ -1812,11 +1812,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
+    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba utilizando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
+    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba utilizando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
@@ -2117,11 +2117,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Tu suscripción ha sido degradada. Actualiza de nuevo para disfrutar de todas las características.</value>
+    <value>Tu suscripción ha pasado a un nivel inferior. Mejora tu plan de nuevo para disfrutar de todas las características.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Tu suscripción ha sido degradada, así que estamos volviendo a conectar al servidor más rápido disponible. Actualiza de nuevo para disfrutar de todas las características.</value>
+    <value>Tu suscripción ha pasado a un nivel inferior, así que estamos volviendo a conectar al servidor más rápido disponible. Mejora tu plan de nuevo para disfrutar de todas las funciones.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
@@ -2370,7 +2370,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>El cupón se ha aplicado.</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
-    <value>Usar cupón</value>
+    <value>Utilizar un cupón</value>
   </data>
   <data name="QuickLaunch_btn_Connect">
     <value>Conexión rápida</value>
@@ -2444,7 +2444,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Anuncio bloqueado</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Los sitios web de publicidad usan cookies y rastreadores para dirigirse a ti.</value>
+    <value>Los sitios web de publicidad utilizan cookies y rastreadores para dirigirse a ti.</value>
     <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
@@ -2635,7 +2635,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Proporciona un mayor rendimiento del sistema y una experiencia más fluida al utilizar la GPU para el renderizado de gráficos. Se desactiva en caso de fallos en la pantalla.</value>
+    <value>Proporciona un mayor rendimiento del sistema y una experiencia más fluida al utilizar la GPU para el renderizado de gráficos. Se desactiva en caso de problemas con la pantalla.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
@@ -2737,7 +2737,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Habilita Smart Protocol para usar automáticamente el protocolo y puerto que ofrecen la mejor conectividad.</value>
+    <value>Habilita Smart Protocol para utilizar automáticamente el protocolo y puerto que ofrecen la mejor conectividad.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
@@ -3200,7 +3200,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Take a Tour button in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Thanks">
-    <value>Gracias por usar Proton VPN. Echa un vistazo a las principales características de la aplicación.</value>
+    <value>Gracias por utilizar Proton VPN. Echa un vistazo a las principales características de la aplicación.</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">

@@ -2441,10 +2441,10 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Redirecționare port pornită</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>„Secure Core” oprit</value>
+    <value>Secure Core oprit</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>„Secure Core” pornit</value>
+    <value>Secure Core pornit</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>MODIFICARE</value>
@@ -2499,7 +2499,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Direcționați-vă cele mai importante date prin serverele noastre sigure din țările care respectă intimitatea.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
-    <value>„Secure Core” are putea reduce viteza prin VPN</value>
+    <value>Secure Core are putea reduce viteza prin VPN</value>
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
