@@ -30,7 +30,7 @@ using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
-public partial class CustomDnsServersViewModel : PageViewModelBase
+public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavigator>
 {
     private readonly ISettings _settings;
 

@@ -75,8 +75,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StaticResource x:Key="CheckBoxCheckGlyphForegroundIndeterminatePressed" ResourceKey="CheckBoxCheckGlyphForegroundBrush" />
     <StaticResource x:Key="CheckBoxCheckGlyphForegroundIndeterminateDisabled" ResourceKey="CheckBoxCheckGlyphForegroundBrush" />
 
-    <x:Double x:Key="CheckBoxMinWidth">0</x:Double>
-    <x:Double x:Key="CheckBoxMinHeight">0</x:Double>
+    <x:Double x:Key="CheckBoxMinWidth">20</x:Double>
+    <x:Double x:Key="CheckBoxMinHeight">20</x:Double>
     <Thickness x:Key="CheckBoxPadding">8,0,0,0</Thickness>
     <Thickness x:Key="CheckBoxFocusVisualMargin">-8</Thickness>
 
@@ -90,6 +90,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Padding" Value="{StaticResource CheckBoxPadding}" />
         <Setter Property="MinWidth" Value="{StaticResource CheckBoxMinWidth}" />
         <Setter Property="MinHeight" Value="{StaticResource CheckBoxMinHeight}" />
-        <Setter Property="CornerRadius" Value="1" />
+        <Setter Property="CornerRadius" Value="3" />
     </Style>
 </ResourceDictionary>

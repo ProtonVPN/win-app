@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
+
+    <Style BasedOn="{StaticResource DefaultStepContentControlStyle}" TargetType="custom:StepContentControl" />
+
+    <Style x:Key="DefaultStepContentControlStyle" TargetType="custom:StepContentControl">
+        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Padding" Value="0,32,0,0" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:StepContentControl">
+                    <Grid x:Name="ContentContainer"
+                          AutomationProperties.AccessibilityView="Raw"
+                          Background="{TemplateBinding Background}"
+                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          RowSpacing="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" MinHeight="26" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="26" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="26" />
+                        </Grid.ColumnDefinitions>
+
+                        <custom:GhostButton Grid.Row="0"
+                                            Grid.Column="0"
+                                            Command="{Binding MoveBackwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            AutomationProperties.AutomationId="MoveBackwardButton">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:ArrowLeft />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="1"
+                                   Foreground="{StaticResource TextWeakColorBrush}"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Text="{TemplateBinding Header}" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   AutomationProperties.AutomationId="StepsControlHeader"/>
+
+                        <custom:GhostButton Grid.Row="0"
+                                            Grid.Column="2"
+                                            Command="{Binding MoveForwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            AutomationProperties.AutomationId="MoveForwardButton">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:ArrowRight />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+
+                        <ProgressBar Value="{Binding CurrentStep, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                     Maximum="{Binding TotalSteps, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                     Minimum="0"
+                                     Grid.Row="1"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3" 
+                                     AutomationProperties.AutomationId="StepsControlProgressBar"/>
+
+                        <ContentPresenter Grid.Row="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="3"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

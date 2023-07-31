@@ -58,11 +58,13 @@ public partial class HomeRobot
         ConnectionDetailServerLoadButton.Click();
         return this;
     }
+
     public HomeRobot DoOpenLatencyOverlay()
     {
         ConnectionDetailLatencyButton.Click();
         return this;
     }
+
     public HomeRobot DoOpenProtocolOverlay()
     {
         ConnectionDetailProtocolButton.Click();
@@ -84,6 +86,13 @@ public partial class HomeRobot
     public HomeRobot DoSignOut()
     {
         SignOutButton.Click();
+        return this;
+    }
+
+    public HomeRobot DoReportBrowsingSpeedIssue()
+    {
+        HelpButton.FocusAndClick();
+        IssueCategoryMenuItem.Click();
         return this;
     }
 }

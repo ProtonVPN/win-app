@@ -64,7 +64,7 @@ public class UIActions : TestSession
     protected dynamic WaitUntilTextMatches(Func<Label> getLabelMethod, TimeSpan time, string text)
     {
         RetryResult<bool> retry = Retry.WhileFalse(() => {
-            return getLabelMethod().Text.Equals(text);
+            return getLabelMethod()?.Text.Equals(text) ?? false;
         }, time, TestConstants.RetryInterval);
 
 

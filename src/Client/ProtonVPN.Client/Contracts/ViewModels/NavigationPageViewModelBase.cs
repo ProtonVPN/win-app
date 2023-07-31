@@ -23,7 +23,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class NavigationPageViewModelBase : PageViewModelBase
+public abstract partial class NavigationPageViewModelBase : PageViewModelBase<IMainViewNavigator>
 {
     public NavigationPageViewModelBase(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)

@@ -18,6 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
@@ -32,7 +33,6 @@ public partial class LoginRobot
         return this;
     }
 
-
     public LoginRobot DoEnterTwoFactorCode(string code)
     {
         TwoFactorInputField("First").Enter(code[0].ToString());
@@ -43,6 +43,20 @@ public partial class LoginRobot
         TwoFactorInputField("Sixth").Enter(code[5].ToString());
         AuthenticateButton.WaitUntilEnabled();
         AuthenticateButton.Click();
+        return this;
+    }
+
+    public LoginRobot DoReportAnIssue()
+    {
+        HelpButton.Click();
+
+        // Cannot find ReportIssueMenuItem element in button flyout. Using mouse action as workaround.
+        //ReportIssueMenuItem.Click();
+
+        CommonActions.Wait(TestConstants.DefaultAnimationDelay);
+        Mouse.MoveBy(0, -40);
+        Mouse.DoubleClick();
+
         return this;
     }
 }

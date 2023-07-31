@@ -23,7 +23,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class KillSwitchViewModel : PageViewModelBase
+public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>
 {
     public KillSwitchViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)

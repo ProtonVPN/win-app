@@ -27,7 +27,11 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.UI.ReportIssue.Steps;
+using ProtonVPN.Client.UI.ReportIssue;
 using Windows.System;
+using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
@@ -36,7 +40,8 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IUrls _urls;
-
+    private readonly IDialogActivator _dialogActivator;
+    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     private bool _isLoggingIn;
@@ -50,11 +55,14 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     private string _password = string.Empty;
 
     public LoginFormViewModel(ILocalizationProvider localizationProvider, IEventMessageSender eventMessageSender,
-        IUserAuthenticator userAuthenticator, IUrls urls) : base(localizationProvider)
+        IUserAuthenticator userAuthenticator, IUrls urls,
+        IDialogActivator dialogActivator, IReportIssueViewNavigator reportIssueViewNavigator) : base(localizationProvider)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
         _urls = urls;
+        _dialogActivator = dialogActivator;
+        _reportIssueViewNavigator = reportIssueViewNavigator;
     }
 
     public string CreateAccountUrl => _urls.CreateAccount;
@@ -116,27 +124,29 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     }
 
     [RelayCommand]
-    public async Task ResetPasswordAsync()
+    public void ResetPassword()
     {
-        await _urls.NavigateToAsync(_urls.ResetPassword);
+        _urls.NavigateTo(_urls.ResetPassword);
     }
 
     [RelayCommand]
-    public async Task ForgotUsernameAsync()
+    public void ForgotUsername()
     {
-        await _urls.NavigateToAsync(_urls.ForgotUsername);
+        _urls.NavigateTo(_urls.ForgotUsername);
     }
 
     [RelayCommand]
-    public async Task TroubleSigningInAsync()
+    public void TroubleSigningIn()
     {
-        await _urls.NavigateToAsync(_urls.TroubleSigningIn);
+        _urls.NavigateTo(_urls.TroubleSigningIn);
     }
 
     [RelayCommand]
-    public async Task ReportAnIssueAsync()
+    public void ReportAnIssue()
     {
-        //TODO: add report a bug feature
+        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
+
+        _reportIssueViewNavigator.NavigateTo<CategorySelectionViewModel>();
     }
 
     private void ClearInputs()

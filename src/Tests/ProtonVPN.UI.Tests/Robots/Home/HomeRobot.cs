@@ -45,4 +45,7 @@ public partial class HomeRobot : UIActions
     protected Button ConnectionDetailProtocolButton => ElementByAutomationId("ShowProtocolOverlayButton").AsButton();
     protected Button AccountButton => ElementByAutomationId("AccountButton").AsButton();
     protected Button SignOutButton => ElementByName("Sign out").AsButton();
+
+    protected Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
+    protected MenuItem IssueCategoryMenuItem => ElementByAutomationId("IssueCategoryMenuItem").AsMenuItem();
 }

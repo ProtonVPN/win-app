@@ -82,7 +82,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontWeight" Value="{StaticResource BodyFontWeight}" />
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
         <Setter Property="MinWidth" Value="0" />
-        <Setter Property="CornerRadius" Value="1" />
+        <Setter Property="CornerRadius" Value="3" />
         <Setter Property="FocusVisualMargin" Value="-8" />
         <Setter Property="Template">
             <Setter.Value>

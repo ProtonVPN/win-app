@@ -1199,26 +1199,8 @@
   <data name="Dialogs_Protocol_Title" xml:space="preserve">
     <value>What is a VPN protocol?</value>
   </data>
-  <data name="Dialogs_ReportIssue_BrowsingSpeed" xml:space="preserve">
-    <value>Browsing speed</value>
-  </data>
-  <data name="Dialogs_ReportIssue_ConnectingToVpn" xml:space="preserve">
-    <value>Connecting to VPN</value>
-  </data>
   <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
     <value>What's the issue?</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Other" xml:space="preserve">
-    <value>Something else</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Streaming" xml:space="preserve">
-    <value>Streaming</value>
-  </data>
-  <data name="Dialogs_ReportIssue_UsingApp" xml:space="preserve">
-    <value>Using the app</value>
-  </data>
-  <data name="Dialogs_ReportIssue_WeakConnection" xml:space="preserve">
-    <value>Weak or unstable connection</value>
   </data>
   <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
     <value>Server load shows how close a server is to its maximum capacity.\n\nA high server load can slow down your connection.</value>
@@ -1778,5 +1760,58 @@
   </data>
   <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
     <value>Report an issue</value>
+  </data>
+  <data name="Common_Actions_ContactUs" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
+    <value>Quick fixes</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
+    <value>Didn't work?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
+    <value>These tips could help to solve your issue faster.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
+    <value>Step {0} of {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
+    <value>Send error logs</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
+    <value>Error logs show us what went wrong, and which actions led to your issue. We’ll only ever use them to help our engineers fix bugs.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
+    <value>Send report</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
+    <value>We couldn’t send your report. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
+    <value>Report sent</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
+    <value>Thanks for your feedback. We’ll get back to you as soon as we can.</value>
   </data>
 </root>

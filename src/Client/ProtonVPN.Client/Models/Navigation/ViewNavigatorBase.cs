@@ -20,6 +20,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -51,6 +52,8 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
 
+    public bool CanNavigate { get; set; } = true;
+
     public Window? Window
     {
         get => _window;
@@ -78,6 +81,8 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         _logger = logger;
         _viewMapper = viewMapper;
         _themeSelector = themeSelector;
+
+        NavigationTransition = new DrillInNavigationTransitionInfo();
     }
 
     public event NavigatedEventHandler? Navigated;
@@ -181,8 +186,16 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         }
     }
 
+    protected NavigationTransitionInfo NavigationTransition { get; set; } 
+
+
     private bool NavigateToPage(Type pageType, object? parameter, bool clearNavigation)
     {
+        if (!CanNavigate)
+        {
+            return false;
+        }
+
         if (Frame == null)
         {
             throw new InvalidOperationException("Frame has not been initialized for this view navigator");
@@ -192,7 +205,7 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         {
             Frame.Tag = clearNavigation;
             object? vmBeforeNavigation = Frame.GetPageViewModel();
-            bool navigated = Frame.Navigate(pageType, parameter);
+            bool navigated = Frame.Navigate(pageType, parameter, NavigationTransition);
             if (navigated)
             {
                 _lastParameterUsed = parameter;

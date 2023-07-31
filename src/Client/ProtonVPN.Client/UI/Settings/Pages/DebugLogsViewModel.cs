@@ -23,7 +23,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class DebugLogsViewModel : PageViewModelBase
+public class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
 {
     public DebugLogsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)

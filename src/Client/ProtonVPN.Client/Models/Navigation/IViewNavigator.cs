@@ -31,6 +31,8 @@ public interface IViewNavigator
 
     bool CanGoBack { get; }
 
+    bool CanNavigate { get; set; }
+
     Window? Window { get; set; }
 
     Frame? Frame { get; set; }

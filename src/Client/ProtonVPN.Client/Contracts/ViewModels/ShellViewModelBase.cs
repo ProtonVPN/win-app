@@ -26,14 +26,15 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class ShellViewModelBase : PageViewModelBase
+public abstract partial class ShellViewModelBase<TViewNavigator> : PageViewModelBase<TViewNavigator>
+    where TViewNavigator : IViewNavigator
 {
     public override bool IsBackEnabled => ViewNavigator.CanGoBack;
 
     public PageViewModelBase? CurrentPage => ViewNavigator?.Frame?.GetPageViewModel() as PageViewModelBase;
 
-    protected ShellViewModelBase(IViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-                : base(viewNavigator, localizationProvider)
+    protected ShellViewModelBase(TViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(viewNavigator, localizationProvider)
     {
         ViewNavigator.Navigated += OnNavigated;
     }

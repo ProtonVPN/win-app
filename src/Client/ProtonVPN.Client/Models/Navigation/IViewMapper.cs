@@ -30,8 +30,8 @@ public interface IViewMapper
     Type GetOverlayType<TOverlayViewModel>() 
         where TOverlayViewModel : OverlayViewModelBase;
 
-    Type GetDialogType<TShellViewModel>() 
-        where TShellViewModel : ShellViewModelBase;
+    Type GetDialogType<TPageViewModel>() 
+        where TPageViewModel : PageViewModelBase;
 
     Type GetPageType(string key);
 

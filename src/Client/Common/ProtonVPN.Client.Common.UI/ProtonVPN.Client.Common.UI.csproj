@@ -813,6 +813,8 @@
     <None Remove="Assets\Illustrations\Dark\welcome.jpg" />
     <None Remove="Assets\Illustrations\Light\product-logo.svg" />
     <None Remove="Assets\Illustrations\Light\welcome.jpg" />
+    <None Remove="Assets\Illustrations\report-error.png" />
+    <None Remove="Assets\Illustrations\report-success.png" />
     <None Remove="Controls\CountryFlagControl.xaml" />
     <None Remove="Controls\DualCommandsRowControl.xaml" />
     <None Remove="Controls\PageContentControl.xaml" />
@@ -843,12 +845,15 @@
     <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
     <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
     <None Remove="Styles\Controls\PivotStyles.xaml" />
+    <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
     <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
     <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
+    <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
     <None Remove="Styles\Controls\TextBoxStyles.xaml" />
     <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
     <None Remove="Styles\Controls\TooltipStyles.xaml" />
     <None Remove="Styles\Converters.xaml" />
+    <None Remove="Styles\Illustrations.xaml" />
     <None Remove="Styles\Typography.xaml" />
     <None Remove="Themes\DarkTheme.xaml" />
     <None Remove="Themes\LightTheme.xaml" />
@@ -1846,6 +1851,30 @@
     <Content Update="Assets\Illustrations\Light\welcome.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Illustrations\report-error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\report-success.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Illustrations.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\ProgressBarStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\StepContentControlStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

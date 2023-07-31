@@ -216,5 +216,48 @@ namespace ProtonVPN.Common.Tests.Extensions
 
             Assert.IsFalse(isUri);
         }
+
+        [DataTestMethod]
+        [DataRow("email@domain.com")]
+        [DataRow("joe.smith@domain.com")]
+        [DataRow("email@subdomain.domain.com")]
+        [DataRow("joe+smith@domain.com")]
+        [DataRow("joe-smith@domain.com")]
+        [DataRow("email@123.123.123.123")]
+        [DataRow("email@[123.123.123.123]")]
+        [DataRow("\"email\"@domain.com")]
+        [DataRow("1234567890@domain.com")]
+        [DataRow("email@domain-a.com")]
+        [DataRow("_@domain.com")]
+        public void TestIsValidEmailAddress(string email)
+        {
+            bool isValid = StringExtensions.IsValidEmailAddress(email);
+
+            Assert.IsTrue(isValid);
+        }
+
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(".")]
+        [DataRow("@")]
+        [DataRow("@.")]
+        [DataRow("email")]
+        [DataRow("^%#$@#$#@%@#.com")]
+        [DataRow("@domain.com")]
+        [DataRow("email@.com")]
+        [DataRow("email@domain.")]
+        [DataRow("Joe Smith <email@domain.com>")]
+        [DataRow("email.domain.com")]
+        [DataRow("email@domain@domain.com")]
+        [DataRow("joe..smith@domain.com ")]
+        [DataRow("email@domain.com (Joe Smith)")]
+        public void TestIsValidEmailAddress_ReturnsFalse(string email)
+        {
+            bool isValid = StringExtensions.IsValidEmailAddress(email);
+
+            Assert.IsFalse(isValid);
+        }
     }
 }

@@ -26,7 +26,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Gallery;
 
-public partial class GalleryItemViewModel : PageViewModelBase
+public partial class GalleryItemViewModel : PageViewModelBase<IMainViewNavigator>
 {
     [ObservableProperty]
     private string? _pageName;

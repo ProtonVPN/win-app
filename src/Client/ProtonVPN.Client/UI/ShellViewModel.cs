@@ -36,7 +36,7 @@ using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.UI;
 
-public partial class ShellViewModel : ShellViewModelBase
+public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
 {
     private readonly IEventMessageSender _eventMessageSender;
 

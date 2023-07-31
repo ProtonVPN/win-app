@@ -23,7 +23,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class PortForwardingViewModel : PageViewModelBase
+public class PortForwardingViewModel : PageViewModelBase<IMainViewNavigator>
 {
     public PortForwardingViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)

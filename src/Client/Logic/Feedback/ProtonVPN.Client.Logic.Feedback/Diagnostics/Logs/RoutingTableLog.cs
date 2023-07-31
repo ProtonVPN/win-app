@@ -17,27 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Dialogs.Overlays;
-using ProtonVPN.Client.UI.Home;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.Processes;
 
-namespace ProtonVPN.Client.UI.Dialogs.Windows;
+namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
-public partial class ReportIssueShellViewModel : ShellViewModelBase
+public class RoutingTableLog : LogBase
 {
-    public ReportIssueShellViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider) 
-        : base(viewNavigator, localizationProvider)
+    private readonly IOsProcesses _osProcesses;
+
+    private string Content
     {
+        get
+        {
+            using IOsProcess process = _osProcesses.CommandLineProcess("/c route print");
+            process.Start();
+            return process.StandardOutput.ReadToEnd();
+        }
     }
 
-    public override string Title => Localizer.Get("Dialogs_ReportIssue_Title");
-
-    public void Initialize()
+    public RoutingTableLog(IOsProcesses osProcesses, IConfiguration config)
+                : base(config.DiagnosticsLogFolder, "RoutingTable.txt")
     {
-        ViewNavigator.NavigateTo<HomeViewModel>();
+        _osProcesses = osProcesses;
+    }
 
-        ViewNavigator.ShowOverlayAsync<ProtocolOverlayViewModel>();
+    public override void Write()
+    {
+        File.WriteAllText(Path, Content);
     }
 }
