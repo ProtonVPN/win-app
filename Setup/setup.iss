@@ -47,6 +47,11 @@ SignTool=signtool sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /t
 [Messages]
 SetupWindowTitle={#MyAppName}
 
+[Registry]
+Root: HKCR; Subkey: "ProtonVPN"; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "ProtonVPN"; ValueType: string; ValueName: "URL Protocol"; ValueData: "";
+Root: HKCR; Subkey: "ProtonVPN\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#VersionFolder}\{#MyAppExeName}"" ""%1""";
+
 [Files]
 Source: "..\src\ProtonVPN.NativeHost\bin\ProtonVPN.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.NativeHost\bin\nethost.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
