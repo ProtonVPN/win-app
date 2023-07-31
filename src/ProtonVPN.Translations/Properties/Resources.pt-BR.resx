@@ -126,7 +126,7 @@
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Falha ao baixar a atualização</value>
+    <value>Erro ao baixar a atualização</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Downloading">
@@ -190,7 +190,7 @@
     <comment>The label for account plan name in Account window</comment>
   </data>
   <data name="Account_lbl_AccountType">
-    <value>Tipo de conta:</value>
+    <value>Categoria de conta:</value>
     <comment>The label for account type in Account window</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures">
@@ -281,7 +281,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Falha na sua solicitação. Tente novamente.</value>
+    <value>Erro na sua solicitação. Tente novamente.</value>
   </data>
   <data name="App_mnu_About">
     <value>Sobre</value>
@@ -443,7 +443,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Email inválido</value>
+    <value>O e-mail não é válido.</value>
   </data>
   <data name="BugReport_msg_Sending">
     <value>Enviando relatório...</value>
@@ -526,7 +526,7 @@ Informações sobre a tabela de roteamento</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>conexão falhou</value>
+    <value>a conexão não funcionou</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
@@ -1920,7 +1920,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token de atualização inválido. Inicie sessão novamente.</value>
+    <value>O token de atualização não é válido. Inicie sessão novamente.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -2000,7 +2000,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Código de autenticação de dois fatores incorreto</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Credenciais de acesso inválidas. Tente novamente.</value>
+    <value>As credenciais de acesso não são válidas. Tente novamente.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
@@ -2204,7 +2204,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Para usar essa funcionalidade, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conecte&lt;/Hyperlink&gt; no servidor que suporte P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>O Proton VPN falhou ao buscar o certificado de autenticação devido a um problema de rede.</value>
+    <value>Não foi possível para Proton VPN buscar o certificado de autenticação devido a um problema de rede.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Servidor mais rápido disponível</value>
@@ -2611,7 +2611,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
-    <value>IP inválido</value>
+    <value>O IP não é válido.</value>
     <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
@@ -2635,7 +2635,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Fornece desempenho aprimorado do sistema e uma experiência mais suave usando a GPU para renderização de gráficos. Desligue em caso de falhas na tela.</value>
+    <value>Fornece desempenho aprimorado do sistema e uma experiência mais suave usando a GPU para renderização de gráficos. Desligue em caso de problemas na tela.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
@@ -2729,7 +2729,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Digite um servidor DNS privado (como o DNS do AdGuard) para processar suas solicitações DNS. O uso de um servidor DNS personalizado irá desativar o NetShield. Os servidores DNS são responsáveis por direcionar você para o site correto, então use apenas servidores confiáveis.</value>
+    <value>Digite um servidor DNS privado (como o DNS do AdGuard) para processar suas solicitações DNS. O uso de um servidor DNS personalizado irá desativar o NetShield. Os servidores DNS são responsáveis por direcionar você para o site correto, então use apenas servidores de confiança.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">

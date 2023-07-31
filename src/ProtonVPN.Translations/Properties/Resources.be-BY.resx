@@ -253,7 +253,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Блакіроўка рэкламы (NetShield)</value>
+    <value>Блакіроўшчык рэкламы (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
