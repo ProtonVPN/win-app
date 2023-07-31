@@ -29,7 +29,7 @@ using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class ProtocolViewModel : PageViewModelBase, IEventMessageReceiver<SettingChangedMessage>
+public partial class ProtocolViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IUrls _urls;

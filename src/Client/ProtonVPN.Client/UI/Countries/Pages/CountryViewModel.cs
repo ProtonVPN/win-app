@@ -25,7 +25,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Countries.Pages;
 
-public partial class CountryViewModel : PageViewModelBase
+public partial class CountryViewModel : PageViewModelBase<IMainViewNavigator>
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Title))]

@@ -45,12 +45,12 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         _themeSelector = themeSelector;
     }
 
-    public void ShowDialog<TShellViewModel>()
-        where TShellViewModel : ShellViewModelBase
+    public void ShowDialog<TPageViewModel>()
+        where TPageViewModel : PageViewModelBase
     {
-        Type dialogType = _viewMapper.GetDialogType<TShellViewModel>();
+        Type dialogType = _viewMapper.GetDialogType<TPageViewModel>();
 
-        Type pageType = _viewMapper.GetPageType<TShellViewModel>();
+        Type pageType = _viewMapper.GetPageType<TPageViewModel>();
 
         ShowDialog(dialogType, pageType);
     }
@@ -62,6 +62,21 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         Type pageType = _viewMapper.GetPageType(shellKey);
 
         ShowDialog(dialogType, pageType);
+    }
+
+    public void CloseDialog<TPageViewModel>()
+        where TPageViewModel : PageViewModelBase
+    {
+        Type dialogType = _viewMapper.GetDialogType<TPageViewModel>();
+
+        CloseDialog(dialogType);
+    }
+
+    public void CloseDialog(string shellKey)
+    {
+        Type dialogType = _viewMapper.GetDialogType(shellKey);
+
+        CloseDialog(dialogType);
     }
 
     public void Receive(ThemeChangedMessage message)
@@ -116,6 +131,26 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         catch (Exception e)
         {
             _logger.Error<AppLog>($"Error when trying to show dialog '{dialogType}' and page '{pageType}'", e);
+            throw;
+        }
+    }
+
+    private void CloseDialog(Type dialogType)
+    {
+        try
+        {
+            Window? dialog = _activeDialogs.FirstOrDefault(d => d.GetType() == dialogType);
+            if (dialog == null)
+            {
+                _logger.Info<AppLog>($"Dialog '{dialogType}' is not currently active");
+                return;
+            }
+
+            dialog.Close();
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>($"Error when trying to close dialog '{dialogType}'", e);
             throw;
         }
     }

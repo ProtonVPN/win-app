@@ -28,6 +28,11 @@ using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Configuration.Source;
+using ProtonVPN.Common.OS.DeviceIds;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.OS.Systems;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -50,5 +55,12 @@ public class ClientModule : Module
 
         builder.Register(c => new DefaultConfig().Value()).As<IConfiguration>().SingleInstance();
         builder.RegisterType<Urls>().As<IUrls>().SingleInstance();
+
+        builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
+        builder.Register(c =>
+            new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
+            .As<INetworkInterfaces>().SingleInstance();
     }
 }

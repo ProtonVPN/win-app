@@ -23,8 +23,13 @@ namespace ProtonVPN.Client.Models.Activation;
 
 public interface IDialogActivator
 {
-    void ShowDialog<TShellViewModel>()
-        where TShellViewModel : ShellViewModelBase;
+    void ShowDialog<TPageViewModel>()
+        where TPageViewModel : PageViewModelBase;
 
     void ShowDialog(string shellKey);
+
+    void CloseDialog<TPageViewModel>()
+    where TPageViewModel : PageViewModelBase;
+
+    void CloseDialog(string shellKey);
 }

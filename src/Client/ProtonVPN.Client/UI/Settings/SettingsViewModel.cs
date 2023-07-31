@@ -18,21 +18,24 @@
  */
 
 using System.Collections.ObjectModel;
-using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Client.UI.ReportIssue.Steps;
 
 namespace ProtonVPN.Client.UI.Settings;
 
@@ -43,14 +46,13 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IUrls _urls;
-
+    private readonly IDialogActivator _dialogActivator;
+    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
     private readonly Lazy<ObservableCollection<string>> _languages;
 
-    [ObservableProperty]
-    private string _clientVersionDescription;
+    public string ClientVersionDescription => $"{App.APPLICATION_NAME} {EnvironmentHelper.GetClientVersionDescription()}";
 
-    [ObservableProperty]
-    private string _operatingSystemVersionDescription;
+    public string OperatingSystemVersionDescription => EnvironmentHelper.GetOSVersionDescription();
 
     public ApplicationElementTheme SelectedTheme
     {
@@ -65,10 +67,15 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
+
     public string NetShieldFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+
     public string KillSwitchFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+
     public string PortForwardingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+
     public string SplitTunnelingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+
     public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(_settings.IsVpnAcceleratorEnabled);
 
     public bool IsNotificationEnabled
@@ -90,10 +97,13 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
+
     public ObservableCollection<string> Languages => _languages.Value;
 
     public override bool IsBackEnabled => false;
+
     public override IconElement Icon { get; } = new CogWheel();
+
     public override string? Title => Localizer.Get("Settings_Page_Title");
 
     public SettingsViewModel(IThemeSelector themeSelector,
@@ -102,7 +112,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         ILocalizationProvider localizationProvider,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
-        IUrls urls)
+        IUrls urls,
+        IDialogActivator dialogActivator,
+        IReportIssueViewNavigator reportIssueViewNavigator)
         : base(viewNavigator, localizationProvider)
     {
         _themeSelector = themeSelector;
@@ -110,9 +122,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         _settings = settings;
         _settingsRestorer = settingsRestorer;
         _urls = urls;
-
-        _clientVersionDescription = GetClientVersionDescription();
-        _operatingSystemVersionDescription = Environment.OSVersion.Version.ToString();
+        _dialogActivator = dialogActivator;
+        _reportIssueViewNavigator = reportIssueViewNavigator;
 
         _languages = new Lazy<ObservableCollection<string>>(
             () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
@@ -127,15 +138,17 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     [RelayCommand]
-    public async Task OpenSupportAsync()
+    public void OpenSupport()
     {
-        await _urls.NavigateToAsync(_urls.SupportCenter);
+        _urls.NavigateTo(_urls.SupportCenter);
     }
 
     [RelayCommand]
     public void ReportIssue()
     {
-        // TODO
+        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
+
+        _reportIssueViewNavigator.NavigateTo<CategorySelectionViewModel>();
     }
 
     public void Receive(SettingChangedMessage message)
@@ -181,11 +194,5 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(SelectedTheme));
-    }
-
-    private string GetClientVersionDescription()
-    {
-        Version version = Assembly.GetExecutingAssembly().GetName().Version!;
-        return $"{App.APPLICATION_NAME} {version.Major}.{version.Minor}.{version.Build}";
     }
 }

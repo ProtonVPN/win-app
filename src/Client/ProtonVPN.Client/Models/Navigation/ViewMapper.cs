@@ -18,14 +18,13 @@
  */
 
 using System.Diagnostics;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
-using ProtonVPN.Client.UI.Dialogs.Windows;
+using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.HumanVerification;
@@ -33,6 +32,8 @@ using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
+using ProtonVPN.Client.UI.ReportIssue.Steps;
+using ProtonVPN.Client.UI.ReportIssue.Results;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -59,9 +60,9 @@ public class ViewMapper : IViewMapper
         return GetOverlayType(typeof(TOverlayViewModel).FullName!);
     }
 
-    public Type GetDialogType<TShellViewModel>() where TShellViewModel : ShellViewModelBase
+    public Type GetDialogType<TPageViewModel>() where TPageViewModel : PageViewModelBase
     {
-        return GetDialogType(typeof(TShellViewModel).FullName!);
+        return GetDialogType(typeof(TPageViewModel).FullName!);
     }
 
     public Type GetPageType(string key)
@@ -125,6 +126,10 @@ public class ViewMapper : IViewMapper
         ConfigurePage<SettingsViewModel, SettingsPage>();
         ConfigurePage<LoginViewModel, LoginPage>();
         ConfigurePage<ReportIssueShellViewModel, ReportIssueShellPage>();
+        ConfigurePage<CategorySelectionViewModel, CategorySelectionPage>();
+        ConfigurePage<QuickFixesViewModel, QuickFixesPage>();
+        ConfigurePage<ContactFormViewModel, ContactFormPage>();
+        ConfigurePage<ReportIssueResultViewModel, ReportIssueResultPage>();
 
         ConfigureDebugPages();
     }
@@ -150,7 +155,7 @@ public class ViewMapper : IViewMapper
     }
 
     private void ConfigurePage<VM, V>()
-            where VM : ObservableObject
+        where VM : PageViewModelBase
         where V : Page
     {
         lock (_pages)
@@ -172,7 +177,7 @@ public class ViewMapper : IViewMapper
     }
 
     private void ConfigureOverlay<VM, V>()
-        where VM : ObservableObject
+        where VM : OverlayViewModelBase
         where V : ContentDialog
     {
         lock (_overlays)
@@ -194,7 +199,7 @@ public class ViewMapper : IViewMapper
     }
 
     private void ConfigureDialog<VM, V>()
-        where VM : ObservableObject
+        where VM : PageViewModelBase
         where V : Window
     {
         lock (_dialogs)

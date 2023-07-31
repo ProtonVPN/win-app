@@ -21,16 +21,26 @@ using System;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public static class CommonActions
 {
-    public static T Wait<T>(this T robot, int delayInMilliseconds) where T : UIActions
+    public static void Wait(int delayInMilliseconds)
     {
         Thread.Sleep(delayInMilliseconds);
+    }
 
+    public static void Wait(TimeSpan delay)
+    {
+        Wait((int)delay.TotalMilliseconds);
+    }
+
+    public static T Wait<T>(this T robot, int delayInMilliseconds) where T : UIActions
+    {
+        Wait(delayInMilliseconds);
         return robot;
     }
 
@@ -42,12 +52,63 @@ public static class CommonActions
     public static T WaitUntilDisplayed<T>(this T robot, TimeSpan time) where T : AutomationElement
     {
         RetryResult<bool> retry = Retry.WhileTrue(
-            () => {
+            () =>
+            {
                 TestSession.RefreshWindow();
                 return robot.IsOffscreen;
             },
             time, TestConstants.RetryInterval);
 
         return robot;
+    }
+
+    public static void ScrollIntoView(this AutomationElement element)
+    {
+        if (element == null)
+        {
+            return;
+        }
+
+        if (element.IsOffscreen && element.Patterns?.ScrollItem?.Pattern != null)
+        {
+            element.Patterns.ScrollItem.Pattern.ScrollIntoView();
+
+            // Wait until scroll animation has completed.
+            // (Focusing or clicking an element during scroll could fail)
+            Wait(TestConstants.DefaultAnimationDelay);
+        }
+    }
+
+    public static void FocusAndClick(this AutomationElement element)
+    {
+        if (element == null)
+        {
+            return;
+        }
+
+        element.ScrollIntoView();
+        element.Focus();
+        element.Click();
+    }
+
+    public static void WaitUntilElementExistsByAutomationId(this Window window, string automationId, TimeSpan time)
+    {
+        RetryResult<AutomationElement> retry = Retry.WhileNull(
+            () =>
+            {
+                return window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+            },
+            time, TestConstants.RetryInterval);
+
+        if (!retry.Success)
+        {
+            Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
+        }
+    }
+
+    public static AutomationElement ElementByAutomationId(this Window window, string automationId, TimeSpan? timeout = null)
+    {
+        window.WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
+        return window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
     }
 }

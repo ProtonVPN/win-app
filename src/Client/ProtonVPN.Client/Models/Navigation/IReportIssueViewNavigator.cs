@@ -17,7 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.UI.ReportIssue.Models;
+
 namespace ProtonVPN.Client.Models.Navigation;
 
 public interface IReportIssueViewNavigator : IViewNavigator
-{ }
+{
+    void NavigateToCategory(IssueCategory category);
+
+    void NavigateToResult(bool isReportSent);
+}

@@ -23,7 +23,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class NetShieldViewModel : PageViewModelBase
+public class NetShieldViewModel : PageViewModelBase<IMainViewNavigator>
 {
     public NetShieldViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)

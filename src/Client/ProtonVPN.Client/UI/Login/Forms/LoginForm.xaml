@@ -74,9 +74,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              Content="{x:Bind ViewModel.Localizer.Get('Login_Form_CreateAccount')}"
                              NavigateUri="{x:Bind ViewModel.CreateAccountUrl}" />
             <custom:GhostButton Grid.Column="1"
-                                HorizontalAlignment="Right">
+                                HorizontalAlignment="Right"
+                                Content="{x:Bind ViewModel.Localizer.Get('Login_Form_Help'), Mode=OneWay}"
+                                AutomationProperties.AutomationId="HelpButton">
                 <custom:GhostButton.Flyout>
-                    <MenuFlyout>
+                    <MenuFlyout AutomationProperties.AutomationId="HelpFlyoutMenu">
                         <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Login_Form_ResetPassword')}"
                                         Command="{x:Bind ViewModel.ResetPasswordCommand}">
                             <MenuFlyoutItem.Icon>
@@ -96,17 +98,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Text="{x:Bind ViewModel.Localizer.Get('Login_Form_ReportAnIssue')}"
-                                        Command="{x:Bind ViewModel.ReportAnIssueCommand}">
+                                        Command="{x:Bind ViewModel.ReportAnIssueCommand}"
+                                        AutomationProperties.AutomationId="ReportIssueMenuItem">
                             <MenuFlyoutItem.Icon>
                                 <pathIcons:Bug />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                     </MenuFlyout>
                 </custom:GhostButton.Flyout>
-                <custom:GhostButton.Content>
-                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Login_Form_Help')}" />
-                </custom:GhostButton.Content>
                 <custom:GhostButton.RightIcon>
                     <pathIcons:QuestionCircle />
                 </custom:GhostButton.RightIcon>

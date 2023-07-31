@@ -17,12 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Feedback.Contracts;
+using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Dialogs.Windows;
+using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Client.UI.ReportIssue.Models;
 
 namespace ProtonVPN.Client.UI.Home.Help;
 
@@ -30,17 +36,46 @@ public partial class HelpViewModel : ViewModelBase
 {
     private readonly IDialogActivator _dialogActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IReportIssueDataProvider _dataProvider;
 
-    public HelpViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IReportIssueViewNavigator reportIssueViewNavigator)
+    public bool HasCategories => Categories.Any();
+
+    public ObservableCollection<IssueCategory> Categories { get; } = new();
+
+    public HelpViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IReportIssueViewNavigator reportIssueViewNavigator, IReportIssueDataProvider dataProvider)
         : base(localizationProvider)
     {
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
+        _dataProvider = dataProvider;
+
+        Categories = new();
+        Categories.CollectionChanged += OnCategoriesCollectionChanged;
     }
 
     [RelayCommand]
-    public void OpenReportIssueDialog()
+    public async Task ShowCategoriesAsync()
+    {
+        Categories.Clear();
+
+        List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
+
+        foreach (IssueCategoryResponse category in categories)
+        {
+            Categories.Add(ReportIssueMapper.Map(category));
+        }
+    }
+
+    [RelayCommand]
+    public void OpenReportIssueDialog(IssueCategory category)
     {
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
+
+        _reportIssueViewNavigator.NavigateToCategory(category);
+    }
+
+    private void OnCategoriesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(HasCategories));
     }
 }

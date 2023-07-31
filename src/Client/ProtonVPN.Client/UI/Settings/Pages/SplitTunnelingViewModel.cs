@@ -23,7 +23,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class SplitTunnelingViewModel : PageViewModelBase
+public class SplitTunnelingViewModel : PageViewModelBase<IMainViewNavigator>
 {
     public SplitTunnelingViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)

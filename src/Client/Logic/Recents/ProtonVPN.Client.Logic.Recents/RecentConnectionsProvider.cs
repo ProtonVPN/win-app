@@ -45,13 +45,6 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessa
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
         _recentConnections = new List<IRecentConnection>();
-        //{
-        //    new RecentConnection(new ConnectionIntent(new CityStateLocationIntent("AU", "Sydney"))) { IsPinned = true },
-        //    new RecentConnection(new ConnectionIntent(new ServerLocationIntent("CH", "Zurich", 30))),
-        //    new RecentConnection(new ConnectionIntent(new CountryLocationIntent("LT"), new SecureCoreFeatureIntent("SE"))),
-        //    new RecentConnection(new ConnectionIntent(new CountryLocationIntent("CA")))  { IsPinned = true },
-        //    new RecentConnection(new ConnectionIntent(new CityStateLocationIntent("US", "Los Angeles"))) ,
-        //};
     }
 
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()

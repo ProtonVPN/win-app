@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,12 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Dialogs.Windows;
+namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
-public sealed partial class ReportIssueWindow
+public interface ILog
 {
-    public ReportIssueWindow()
-    {
-        InitializeComponent();
-    }
+    string Path { get; }
+
+    string Filename { get; }
+
+    void Write();
 }

@@ -26,7 +26,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class VpnAcceleratorViewModel : PageViewModelBase, IEventMessageReceiver<SettingChangedMessage>
+public class VpnAcceleratorViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;
 

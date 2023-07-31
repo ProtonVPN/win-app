@@ -27,7 +27,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class CensorshipViewModel : PageViewModelBase, IEventMessageReceiver<SettingChangedMessage>
+public class CensorshipViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IUrls _urls;

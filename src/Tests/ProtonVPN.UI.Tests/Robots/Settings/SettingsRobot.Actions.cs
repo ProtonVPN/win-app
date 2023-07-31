@@ -44,4 +44,10 @@ public partial class SettingsRobot
         RestoreDefaultSettingsButton.Invoke();
         return this;
     }
+
+    public SettingsRobot DoReportAnIssue()
+    {
+        ReportIssueSettingsCard.FocusAndClick();
+        return this;
+    }
 }

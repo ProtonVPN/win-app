@@ -17,16 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Windows.System;
+using System.Diagnostics;
 
 namespace ProtonVPN.Client.Models.Urls;
 
 public class Urls : IUrls
 {
     public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol/";
+
     public string CreateAccount => "https://account.protonvpn.com/signup";
+
     public string ResetPassword => "https://account.protonvpn.com/reset-password";
+
     public string ForgotUsername => "https://account.protonvpn.com/forgot-username";
+
     public string TroubleSigningIn => "https://protonvpn.com/support/login-problems";
 
     public string ProtocolChangeLearnMore => "https://protonvpn.com/support/how-to-change-vpn-protocols/";
@@ -41,8 +45,8 @@ public class Urls : IUrls
 
     public string UsageStatisticsLearnMore => "https://protonvpn.com/support/share-usage-statistics/";
 
-    public async Task NavigateToAsync(string url)
+    public void NavigateTo(string url)
     {
-        await Launcher.LaunchUriAsync(new Uri(url));
+        Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
     }
 }

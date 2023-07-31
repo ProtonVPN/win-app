@@ -25,7 +25,7 @@ using ProtonVPN.Client.UI.Account;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Pages;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
-using ProtonVPN.Client.UI.Dialogs.Windows;
+using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
@@ -40,6 +40,8 @@ using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
+using ProtonVPN.Client.UI.ReportIssue.Steps;
+using ProtonVPN.Client.UI.ReportIssue.Results;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -48,6 +50,10 @@ public class ViewModelsModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         RegisterViewModel<ReportIssueShellViewModel>(builder);
+        RegisterViewModel<CategorySelectionViewModel>(builder);
+        RegisterViewModel<QuickFixesViewModel>(builder);
+        RegisterViewModel<ContactFormViewModel>(builder);
+        RegisterViewModel<ReportIssueResultViewModel>(builder);
         RegisterViewModel<ProtocolOverlayViewModel>(builder);
         RegisterViewModel<LatencyOverlayViewModel>(builder);
         RegisterViewModel<ServerLoadOverlayViewModel>(builder);

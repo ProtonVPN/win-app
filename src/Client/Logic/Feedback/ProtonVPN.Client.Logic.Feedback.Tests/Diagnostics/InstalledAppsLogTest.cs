@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,29 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts;
+using FluentAssertions;
+using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
-namespace ProtonVPN.Client.UI.Dialogs.Windows;
+namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
 
-public sealed partial class ReportIssueShellPage : IShellPage
+[TestClass]
+public class InstalledAppsLogTest : LogBaseTest
 {
-    public ReportIssueShellViewModel ViewModel { get; }
-
-    public ReportIssueShellPage()
+    [TestMethod]
+    public void ItShouldCreateLogFile()
     {
-        ViewModel = App.GetService<ReportIssueShellViewModel>();
-        InitializeComponent();
-    }
+        // Act
+        new InstalledAppsLog(Config).Write();
 
-    public void Initialize(Window window)
-    {
-        // Set Title bar
-        window.ExtendsContentIntoTitleBar = true;
-        window.SetTitleBar(WindowTitleBar);
-        WindowTitleBarText.Text = ViewModel.Title;
-
-        // Set Frame
-        ViewModel.InitializeViewNavigator(window, NavigationFrame);
+        // Assert
+        File.Exists(Path.Combine(TmpPath, "Apps.txt")).Should().BeTrue();
     }
 }

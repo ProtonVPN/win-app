@@ -27,25 +27,46 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class PageViewModelBase : ActivatableViewModelBase, INavigationAware,
-    IEventMessageReceiver<NavigationDisplayModeChangedMessage>
+public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEventMessageReceiver<NavigationDisplayModeChangedMessage>
 {
     [ObservableProperty]
     private bool _isNavigationPaneCollapsed;
-
-    public PageViewModelBase(IViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
-    {
-        ViewNavigator = viewNavigator;
-    }
 
     public Type PageType => GetType();
 
     public virtual string? Title { get; }
 
-    public virtual bool IsBackEnabled => true;
+    public PageViewModelBase(ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
+    { }
 
-    protected IViewNavigator ViewNavigator { get; }
+    public void InvalidateTitle()
+    {
+        OnPropertyChanged(nameof(Title));
+    }
+
+    public void Receive(NavigationDisplayModeChangedMessage message)
+    {
+        IsNavigationPaneCollapsed = message.Value == NavigationViewDisplayMode.Minimal;
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        InvalidateTitle();
+    }
+}
+
+public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelBase, INavigationAware
+    where TViewNavigator : IViewNavigator
+{
+    public virtual bool IsBackEnabled => true;
+    protected TViewNavigator ViewNavigator { get; }
+
+    public PageViewModelBase(TViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+        : base(localizationProvider)
+    {
+        ViewNavigator = viewNavigator;
+    }
 
     [RelayCommand(CanExecute = nameof(CanGoBack))]
     public void GoBack()
@@ -72,20 +93,5 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, INav
     public virtual void OnNavigatedTo(object parameter)
     {
         IsActive = true;
-    }
-
-    public void InvalidateTitle()
-    {
-        OnPropertyChanged(nameof(Title));
-    }
-
-    protected override void OnLanguageChanged()
-    {
-        InvalidateTitle();
-    }
-
-    public void Receive(NavigationDisplayModeChangedMessage message)
-    {
-        IsNavigationPaneCollapsed = message.Value == NavigationViewDisplayMode.Minimal;
     }
 }
