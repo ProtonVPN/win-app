@@ -17,9 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Repositories.Contracts
+namespace ProtonVPN.Client.Settings.Repositories.Contracts;
+
+public interface IUserSettingsRepository : ISettingsRepository
 {
-    public interface IUserSettingsRepository : IScopedSettingsRepository
-    {
-    }
 }

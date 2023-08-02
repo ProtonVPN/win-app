@@ -21,21 +21,20 @@ using Autofac;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Repositories;
-using ProtonVPN.Client.Settings.Repositories.Contracts;
 
-namespace ProtonVPN.Client.Settings.Installers
+namespace ProtonVPN.Client.Settings.Installers;
+
+public class SettingsModule : Module
 {
-    public class SettingsModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<Settings>().As<ISettings>().SingleInstance();
-            builder.RegisterType<SettingsFileManager>().As<ISettingsFileManager>().SingleInstance();
-            builder.RegisterType<GlobalSettingsRepository>().As<IGlobalSettingsRepository>().SingleInstance();
-            builder.RegisterType<UserSettingsRepository>().As<IUserSettingsRepository>().SingleInstance();
-            builder.RegisterType<SettingsRepository>().As<ISettingsRepository>().SingleInstance();
+        builder.RegisterType<Settings>().As<ISettings>().SingleInstance();
+        builder.RegisterType<GlobalSettings>().As<IGlobalSettings>().SingleInstance();
 
-            builder.RegisterType<SettingsRestorer>().As<ISettingsRestorer>().SingleInstance();
-        }
+        builder.RegisterType<SettingsFileManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GlobalSettingsRepository>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UserSettingsRepository>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<SettingsRestorer>().AsImplementedInterfaces().SingleInstance();
     }
 }

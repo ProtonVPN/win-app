@@ -6,6 +6,7 @@
     <OutputPath>..\..\bin</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <IsPublishable>false</IsPublishable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
     <ItemGroup>
     <PackageReference Include="FluentAssertions" />

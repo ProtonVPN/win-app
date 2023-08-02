@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Repositories.Contracts
+namespace ProtonVPN.Crypto.Contracts;
+
+public interface ISha1Calculator
 {
-    public interface IScopedSettingsRepository
-    {
-        string? Get(string propertyName);
-        void Set(string propertyName, string? value);
-    }
+    string Hash(string input);
 }

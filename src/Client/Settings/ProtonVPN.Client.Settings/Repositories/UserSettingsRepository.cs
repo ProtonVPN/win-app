@@ -18,38 +18,101 @@
  */
 
 using System.Collections.Concurrent;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
+using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
-namespace ProtonVPN.Client.Settings.Repositories
+namespace ProtonVPN.Client.Settings.Repositories;
+
+public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepository, IEventMessageReceiver<SettingChangedMessage>
 {
-    public class UserSettingsRepository : IUserSettingsRepository
+    private const string FILE_NAME = "UserSettings.{0}.json";
+
+    private readonly ISettingsFileManager _settingsFileManager;
+    private readonly IGlobalSettings _globalSettings;
+    private readonly ISha1Calculator _sha1Calculator;
+    private readonly object _lock = new();
+    private Lazy<string?> _fileName;
+    private Lazy<ConcurrentDictionary<string, string?>> _cache;
+
+    public UserSettingsRepository(ILogger logger,
+        IEventMessageSender eventMessageSender,
+        ISettingsFileManager settingsFileManager,
+        IGlobalSettings globalSettings,
+        ISha1Calculator sha1Calculator)
+        : base(logger, eventMessageSender)
     {
-        private const string FILE_NAME = "UserSettings.json";
+        _settingsFileManager = settingsFileManager;
+        _globalSettings = globalSettings;
+        _sha1Calculator = sha1Calculator;
 
-        private readonly object _lock = new();
-        private readonly ISettingsFileManager _settingsFileManager;
-        private readonly Lazy<ConcurrentDictionary<string, string?>> _cache;
+        _fileName = new(() => GenerateFileName());
+        _cache = new(new ConcurrentDictionary<string, string?>());
+        GenerateNewCache(_fileName);
+    }
 
-        public UserSettingsRepository(ISettingsFileManager settingsFileManager)
+    private string? GenerateFileName()
+    {
+        string? username = _globalSettings.Username;
+        string? fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
+        return fileName;
+    }
+
+    private void GenerateNewCache(Lazy<string?> fileName)
+    {
+        Lazy<ConcurrentDictionary<string, string?>>? oldCache = _cache;
+        _cache = new Lazy<ConcurrentDictionary<string, string?>>(() => ReadFileOrEmpty(fileName.Value));
+        oldCache?.Value.Clear();
+    }
+
+    private ConcurrentDictionary<string, string?> ReadFileOrEmpty(string? fileName)
+    {
+        if (fileName is null)
         {
-            _settingsFileManager = settingsFileManager;
-            _cache = new Lazy<ConcurrentDictionary<string, string?>>(() => new(_settingsFileManager.Read(FILE_NAME)));
+            Logger.Warn<SettingsChangeLog>("Cannot read user settings file because the file name is null.");
+            return new();
         }
+        return new(_settingsFileManager.Read(fileName));
+    }
 
-        public string? Get(string propertyName)
+    protected override string? Get(string propertyName)
+    {
+        string? result;
+        result = _cache.Value.TryGetValue(propertyName, out string? value) ? value : null;
+        return result;
+    }
+
+    protected override void Set(string propertyName, string? value)
+    {
+        lock (_lock)
         {
-            string? result;
-            result = _cache.Value.TryGetValue(propertyName, out string? value) ? value : null;
-            return result;
+            string? fileName = _fileName.Value;
+            if (fileName is null)
+            {
+                Logger.Warn<SettingsChangeLog>($"Cannot write user setting '{propertyName}' to file because the file name is null.");
+            }
+            else
+            {
+                _cache.Value.AddOrUpdate(propertyName, value, (_, _) => value);
+                _settingsFileManager.Save(fileName, _cache.Value);
+            }
         }
+    }
 
-        public void Set(string propertyName, string? value)
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.Username))
         {
-            _cache.Value.AddOrUpdate(propertyName, value, (_, _) => value);
             lock (_lock)
             {
-                _settingsFileManager.Save(FILE_NAME, _cache.Value);
+                Lazy<string?> fileName = new(() => GenerateFileName());
+                _fileName = fileName;
+                GenerateNewCache(fileName);
             }
         }
     }
