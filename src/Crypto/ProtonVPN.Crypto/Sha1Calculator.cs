@@ -17,20 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-using Autofac;
+using System.Security.Cryptography;
+using System.Text;
 using ProtonVPN.Crypto.Contracts;
 
-namespace ProtonVPN.Crypto.Installers;
+namespace ProtonVPN.Crypto;
 
-public class CryptoModule : Module
+public class Sha1Calculator : ISha1Calculator
 {
-    protected override void Load(ContainerBuilder builder)
+    private const string LOWERCASE_HEXADECIMAL_FORMAT = "x2";
+
+    private readonly SHA1 _sha1 = SHA1.Create();
+
+    public string Hash(string input)
     {
-        builder.RegisterType<Ed25519SignatureValidator>().As<IEd25519SignatureValidator>().SingleInstance();
-        builder.RegisterType<Ed25519Asn1KeyGenerator>().As<IEd25519Asn1KeyGenerator>().SingleInstance();
-        builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();
-        builder.RegisterType<RandomStringGenerator>().As<IRandomStringGenerator>().SingleInstance();
-        builder.RegisterType<Sha1Calculator>().As<ISha1Calculator>().SingleInstance();
+        byte[] bytes = _sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+        StringBuilder builder = new(bytes.Length * 2);
+        foreach (byte b in bytes)
+        {
+            builder.Append(b.ToString(LOWERCASE_HEXADECIMAL_FORMAT));
+        }
+        return builder.ToString();
     }
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.CompilerServices;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
@@ -28,76 +29,70 @@ using ProtonVPN.Serialization.Json;
 
 namespace ProtonVPN.Client.Settings.Repositories;
 
-public class SettingsRepository : ISettingsRepository
+public abstract class SettingsRepositoryBase : ISettingsRepository
 {
-    private readonly IGlobalSettingsRepository _globalSettingsRepository;
-    private readonly IUserSettingsRepository _userSettingsRepository;
-    private readonly IEventMessageSender _eventMessageSender;
-    private readonly ILogger _logger;
+    protected ILogger Logger { get; }
 
-    public SettingsRepository(
-        IGlobalSettingsRepository globalSettingsRepository,
-        IUserSettingsRepository userSettingsRepository,
-        IEventMessageSender eventMessageSender,
-        ILogger logger)
+    private readonly IEventMessageSender _eventMessageSender;
+
+    public SettingsRepositoryBase(ILogger logger,
+        IEventMessageSender eventMessageSender)
     {
-        _globalSettingsRepository = globalSettingsRepository;
-        _userSettingsRepository = userSettingsRepository;
+        Logger = logger;
         _eventMessageSender = eventMessageSender;
-        _logger = logger;
     }
 
-    public T? GetValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+    public T? GetValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
         {
-            string? json = GetJson(propertyName, scope, encryption);
+            string? json = GetJson(propertyName, encryption);
             return json is null ? null : Deserialize<T>(json);
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
+            Logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
             return null;
         }
     }
 
-    private string? GetJson(string propertyName, SettingScope scope, SettingEncryption encryption)
+    private string? GetJson(string propertyName, SettingEncryption encryption)
     {
         return encryption switch
         {
-            SettingEncryption.Unencrypted => GetUnencrypted(scope, propertyName),
-            SettingEncryption.Encrypted => GetEncrypted(scope, propertyName),
+            SettingEncryption.Unencrypted => GetUnencrypted(propertyName),
+            SettingEncryption.Encrypted => GetEncrypted(propertyName),
             _ => throw new NotImplementedException($"The encryption {encryption} is not implemented."),
         };
     }
 
-    public T? GetReferenceType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+    public T? GetReferenceType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : class
     {
         try
         {
-            string? json = GetJson(propertyName, scope, encryption);
+            string? json = GetJson(propertyName, encryption);
             return json is null ? null : Deserialize<T>(json);
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
+            Logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
             return null;
         }
     }
 
-    public List<T> GetListValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+    public List<T> GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
         {
-            string? json = GetJson(propertyName, scope, encryption);
+            string? json = GetJson(propertyName, encryption);
             return Deserialize<List<T>>(json ?? string.Empty) ?? new();
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
+            Logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
             return new();
         }
     }
@@ -116,28 +111,19 @@ public class SettingsRepository : ISettingsRepository
         return JsonSerializer.Deserialize<T>(json);
     }
 
-    private string? GetUnencrypted(SettingScope scope, string propertyName)
+    private string? GetUnencrypted(string propertyName)
     {
-        return scope switch
-        {
-            SettingScope.Global => _globalSettingsRepository.Get(propertyName),
-            SettingScope.User => _userSettingsRepository.Get(propertyName),
-            _ => throw new NotImplementedException($"The scope {scope} is not implemented."),
-        };
+        return Get(propertyName);
     }
 
-    private string? GetEncrypted(SettingScope scope, string propertyName)
+    protected abstract string? Get(string propertyName);
+
+    private string? GetEncrypted(string propertyName)
     {
-        string? encryptedJson = scope switch
-        {
-            SettingScope.Global => _globalSettingsRepository.Get(propertyName),
-            SettingScope.User => _userSettingsRepository.Get(propertyName),
-            _ => throw new NotImplementedException($"The scope {scope} is not implemented."),
-        };
-        return encryptedJson?.Decrypt();
+        return GetUnencrypted(propertyName)?.Decrypt();
     }
 
-    public void SetValueType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
+    public void SetValueType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
@@ -146,18 +132,18 @@ public class SettingsRepository : ISettingsRepository
             Type? toType = UnwrapNullable(typeof(T));
             if (IsValueTypeOrString(toType))
             {
-                oldValue = GetValueType<T>(propertyName, scope, encryption);
+                oldValue = GetValueType<T>(encryption, propertyName);
                 if (Equals(oldValue, newValue))
                 {
                     return;
                 }
             }
 
-            Set(propertyName, oldValue, newValue, scope, encryption);
+            Set(propertyName, oldValue, newValue, encryption);
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
+            Logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
         }
     }
 
@@ -166,7 +152,7 @@ public class SettingsRepository : ISettingsRepository
         return toType is not null && (toType.IsValueType || toType == typeof(string));
     }
 
-    public void SetReferenceType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
+    public void SetReferenceType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : class
     {
         try
@@ -174,53 +160,55 @@ public class SettingsRepository : ISettingsRepository
             T? oldValue = default;
             Type? toType = UnwrapNullable(typeof(T));
 
-            oldValue = GetReferenceType<T>(propertyName, scope, encryption);
+            oldValue = GetReferenceType<T>(encryption, propertyName);
             if (EqualityComparer<T>.Default.Equals(oldValue, newValue))
             {
                 return;
             }
 
-            Set(propertyName, oldValue, newValue, scope, encryption);
+            Set(propertyName, oldValue, newValue, encryption);
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
+            Logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
         }
     }
 
 
-    public void SetListValueType<T>(string propertyName, List<T> newValue, SettingScope scope, SettingEncryption encryption)
+    public void SetListValueType<T>(List<T> newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
         {
-            List<T> oldValue = GetListValueType<T>(propertyName, scope, encryption);
+            List<T> oldValue = GetListValueType<T>(encryption, propertyName);
 
             if (oldValue.SequenceEqual(newValue))
             {
                 return;
             }
 
-            Set(propertyName, oldValue, newValue, scope, encryption);
+            Set(propertyName, oldValue, newValue, encryption);
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
+            Logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
         }
     }
 
-    private void Set<T>(string propertyName, T? oldValue, T? newValue, SettingScope scope, SettingEncryption encryption)
+    private void Set<T>(string propertyName, T? oldValue, T? newValue, SettingEncryption encryption)
     {
         string? json = newValue is null ? null : Serialize(newValue);
         if (encryption is SettingEncryption.Encrypted)
         {
             json = json?.Encrypt();
         }
-        SetScoped(propertyName, json, scope);
+        Set(propertyName, json);
 
         OnPropertyChanged(oldValue, newValue, propertyName);
         LogChange(propertyName, oldValue, newValue);
     }
+
+    protected abstract void Set(string propertyName, string? json);
 
     private Type? UnwrapNullable(Type type)
     {
@@ -245,21 +233,6 @@ public class SettingsRepository : ISettingsRepository
         return JsonSerializer.Serialize(newValue);
     }
 
-    private void SetScoped(string propertyName, string? json, SettingScope scope)
-    {
-        switch (scope)
-        {
-            case SettingScope.Global:
-                _globalSettingsRepository.Set(propertyName, json);
-                break;
-            case SettingScope.User:
-                _userSettingsRepository.Set(propertyName, json);
-                break;
-            default:
-                throw new NotImplementedException($"The scope {scope} is not implemented.");
-        };
-    }
-
     private void OnPropertyChanged<T>(T? oldValue, T? newValue, string propertyName)
     {
         _eventMessageSender.Send(new SettingChangedMessage(propertyName, typeof(T), oldValue, newValue));
@@ -269,7 +242,7 @@ public class SettingsRepository : ISettingsRepository
     {
         string oldValueJson = JsonSerializer.Serialize(oldValue).GetLastChars(64);
         string newValueJson = JsonSerializer.Serialize(newValue).GetLastChars(64);
-        _logger.Info<SettingsChangeLog>($"Setting '{propertyName}' " +
+        Logger.Info<SettingsChangeLog>($"Setting '{propertyName}' " +
             $"changed from '{oldValueJson}' to '{newValueJson}'.");
     }
 }

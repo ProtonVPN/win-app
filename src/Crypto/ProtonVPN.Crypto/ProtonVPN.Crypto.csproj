@@ -6,6 +6,7 @@
     <OutputPath>..\..\bin</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">

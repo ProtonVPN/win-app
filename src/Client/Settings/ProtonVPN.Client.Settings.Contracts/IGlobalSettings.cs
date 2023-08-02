@@ -17,20 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Models;
 
-using Autofac;
-using ProtonVPN.Crypto.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts;
 
-namespace ProtonVPN.Crypto.Installers;
-
-public class CryptoModule : Module
+public interface IGlobalSettings
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<Ed25519SignatureValidator>().As<IEd25519SignatureValidator>().SingleInstance();
-        builder.RegisterType<Ed25519Asn1KeyGenerator>().As<IEd25519Asn1KeyGenerator>().SingleInstance();
-        builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();
-        builder.RegisterType<RandomStringGenerator>().As<IRandomStringGenerator>().SingleInstance();
-        builder.RegisterType<Sha1Calculator>().As<ISha1Calculator>().SingleInstance();
-    }
+    string Theme { get; set; }
+    string Language { get; set; }
+    string? Username { get; set; }
+    int? WindowWidth { get; set; }
+    int? WindowHeight { get; set; }
+    int? WindowXPosition { get; set; }
+    int? WindowYPosition { get; set; }
+    bool IsWindowMaximized { get; set; }
+    List<CustomDnsServer> CustomDnsServersList { get; set; }
+    bool IsHardwareAccelerationEnabled { get; set; }
 }

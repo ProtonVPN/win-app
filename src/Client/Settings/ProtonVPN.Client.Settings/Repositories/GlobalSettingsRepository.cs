@@ -18,39 +18,43 @@
  */
 
 using System.Collections.Concurrent;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
+using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.Settings.Repositories
+namespace ProtonVPN.Client.Settings.Repositories;
+
+public class GlobalSettingsRepository : SettingsRepositoryBase, IGlobalSettingsRepository
 {
-    public class GlobalSettingsRepository : IGlobalSettingsRepository
+    private const string FILE_NAME = "GlobalSettings.json";
+
+    private readonly object _lock = new();
+    private readonly ISettingsFileManager _settingsFileManager;
+    private readonly Lazy<ConcurrentDictionary<string, string?>> _cache;
+
+    public GlobalSettingsRepository(ILogger logger,
+        IEventMessageSender eventMessageSender,
+        ISettingsFileManager settingsFileManager)
+        : base(logger, eventMessageSender)
     {
-        private const string FILE_NAME = "GlobalSettings.json";
+        _settingsFileManager = settingsFileManager;
+        _cache = new Lazy<ConcurrentDictionary<string, string?>>(() => new(_settingsFileManager.Read(FILE_NAME)));
+    }
 
-        private readonly object _lock = new();
-        private readonly ISettingsFileManager _settingsFileManager;
-        private readonly Lazy<ConcurrentDictionary<string, string?>> _cache;
+    protected override string? Get(string propertyName)
+    {
+        string? result;
+        result = _cache.Value.TryGetValue(propertyName, out string? value) ? value : null;
+        return result;
+    }
 
-        public GlobalSettingsRepository(ISettingsFileManager settingsFileManager)
-        {
-            _settingsFileManager = settingsFileManager;
-            _cache = new Lazy<ConcurrentDictionary<string, string?>>(() => new(_settingsFileManager.Read(FILE_NAME)));
-        }
-
-        public string? Get(string propertyName)
-        {
-            string? result;
-            result = _cache.Value.TryGetValue(propertyName, out string? value) ? value : null;
-            return result;
-        }
-
-        public void Set(string propertyName, string? value)
+    protected override void Set(string propertyName, string? value)
+    {
+        lock (_lock)
         {
             _cache.Value.AddOrUpdate(propertyName, value, (_, _) => value);
-            lock(_lock)
-            {
-                _settingsFileManager.Save(FILE_NAME, _cache.Value);
-            }
+            _settingsFileManager.Save(FILE_NAME, _cache.Value);
         }
     }
 }

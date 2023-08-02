@@ -1,0 +1,46 @@
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Common.Core.Enums;
+
+namespace ProtonVPN.Client.Settings.Contracts;
+
+public interface IUserSettings
+{
+    VpnProtocol VpnProtocol { get; set; }
+    string? AccessToken { get; set; }
+    string? RefreshToken { get; set; }
+    string? UniqueSessionId { get; set; }
+    string? VpnPlanTitle { get; set; }
+    string? AuthenticationPublicKey { get; set; }
+    string? AuthenticationSecretKey { get; set; }
+    string? AuthenticationCertificatePem { get; set; }
+    string? CertificationServerPublicKey { get; set; }
+    DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
+    DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
+    DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
+    NatType NatType { get; set; }
+    bool IsVpnAcceleratorEnabled { get; set; }
+    bool IsNotificationEnabled { get; set; }
+    bool IsBetaAccessEnabled { get; set; }
+    bool IsShareStatisticsEnabled { get; set; }
+    bool IsShareCrashReportsEnabled { get; set; }
+    bool IsAlternativeRoutingEnabled { get; set; }
+    bool IsCustomDnsServersEnabled { get; set; }
+}

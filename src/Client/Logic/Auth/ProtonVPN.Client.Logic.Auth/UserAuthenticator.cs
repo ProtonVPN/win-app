@@ -180,11 +180,14 @@ public class UserAuthenticator : IUserAuthenticator
 
     private void ClearUserData()
     {
-        _settings.Username = null;
         _settings.UniqueSessionId = null;
         _settings.AccessToken = null;
         _settings.RefreshToken = null;
         _settings.VpnPlanTitle = null;
+        
+        // The username must be the last setting to clear.
+        // After it, we no longer have a reference to a user settings file to delete or set user settings.
+        _settings.Username = null;
     }
 
     public async Task InvokeAutoLoginEventAsync()

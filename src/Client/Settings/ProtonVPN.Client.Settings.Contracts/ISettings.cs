@@ -17,42 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Common.Core.Enums;
-using ProtonVPN.Common.Core.Models;
-
 namespace ProtonVPN.Client.Settings.Contracts;
 
-public interface ISettings
+public interface ISettings : IGlobalSettings, IUserSettings
 {
-    string Theme { get; set; }
-    string Language { get; set; }
-    VpnProtocol VpnProtocol { get; set; }
-    string? Username { get; set; }
-    string? AccessToken { get; set; }
-    string? RefreshToken { get; set; }
-    string? UniqueSessionId { get; set; }
-    string? VpnPlanTitle { get; set; }
-    string? AuthenticationPublicKey { get; set; }
-    string? AuthenticationSecretKey { get; set; }
-    string? AuthenticationCertificatePem { get; set; }
-    string? CertificationServerPublicKey { get; set; }
-    DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
-    DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
-    DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
-    NatType NatType { get; set; }
-    bool IsVpnAcceleratorEnabled { get; set; }
-    int? WindowWidth { get; set; }
-    int? WindowHeight { get; set; }
-    int? WindowXPosition { get; set; }
-    int? WindowYPosition { get; set; }
-    bool IsWindowMaximized { get; set; }
-    bool IsNotificationEnabled { get; set; }
-    bool IsBetaAccessEnabled { get; set; }
-    bool IsHardwareAccelerationEnabled { get; set; }
-    bool IsShareStatisticsEnabled { get; set; }
-    bool IsShareCrashReportsEnabled { get; set; }
-    bool IsAlternativeRoutingEnabled { get; set; }
-    bool IsCustomDnsServersEnabled { get; set; }
-    List<CustomDnsServer> CustomDnsServersList { get; set; }
 }

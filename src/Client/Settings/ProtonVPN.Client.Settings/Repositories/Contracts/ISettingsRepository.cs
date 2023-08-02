@@ -17,25 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.CompilerServices;
+
 namespace ProtonVPN.Client.Settings.Repositories.Contracts;
 
 public interface ISettingsRepository
 {
-    T? GetValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+    T? GetValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
 
-    void SetValueType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
+    void SetValueType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
 
-    T? GetReferenceType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+    T? GetReferenceType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : class;
 
-    void SetReferenceType<T>(string propertyName, T? newValue, SettingScope scope, SettingEncryption encryption)
+    void SetReferenceType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : class;
 
-    List<T> GetListValueType<T>(string propertyName, SettingScope scope, SettingEncryption encryption)
+    List<T> GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
 
-    void SetListValueType<T>(string propertyName, List<T> newValue, SettingScope scope, SettingEncryption encryption)
+    void SetListValueType<T>(List<T> newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
 }
