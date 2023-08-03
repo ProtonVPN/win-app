@@ -1814,4 +1814,46 @@
   <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
     <value>Thanks for your feedback. We’ll get back to you as soon as we can.</value>
   </data>
+  <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
+    <value>Auto connect</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
+    <value>You will be connected to a server as soon as Proton VPN opens</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
+    <value>Fastest connection</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
+    <value>Last connected</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
+    <value>Auto launch</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
+    <value>Proton VPN will automatically open when you sign in to your device</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
+    <value>Open on desktop</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
+    <value>Minimize to System Tray</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
+    <value>Minimize to Taskbar</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
+    <value>Application logs</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
+    <value>Service logs</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
+    <value>This will reset your Proton VPN settings to their original state.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
+    <value>Restore default settings?</value>
+  </data>
 </root>

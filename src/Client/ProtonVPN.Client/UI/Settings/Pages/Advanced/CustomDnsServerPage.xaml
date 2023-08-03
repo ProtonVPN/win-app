@@ -42,8 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomDnsServersEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
             <StackPanel Spacing="8"

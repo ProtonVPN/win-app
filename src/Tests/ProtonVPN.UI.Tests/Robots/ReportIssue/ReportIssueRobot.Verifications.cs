@@ -43,9 +43,14 @@ public partial class ReportIssueRobot
 
     public ReportIssueRobot VerifyReportIssueStep(int expectedStep, int expectedTotalSteps = 3)
     {
-        string expectedHeader = $"Step {expectedStep} of {expectedTotalSteps}";
+        VerifyPageContent(expectedStep);
 
-        WaitUntilTextMatches(() => StepsControlHeader, TestConstants.VeryShortTimeout, expectedHeader);
+        string expectedStepHeader = $"Step {expectedStep} of {expectedTotalSteps}";
+
+        Label stepsControlHeader = StepsControlHeader;
+
+        Assert.IsNotNull(stepsControlHeader);
+        Assert.AreEqual(expectedStepHeader, stepsControlHeader.Text);
 
         ProgressBar stepsControlProgressBar = StepsControlProgressBar;
 
@@ -53,25 +58,25 @@ public partial class ReportIssueRobot
         Assert.AreEqual(expectedStep, stepsControlProgressBar.Value);
         Assert.AreEqual(expectedTotalSteps, stepsControlProgressBar.Maximum);
 
-        VerifyPageHeader(expectedStep);
-
         return this;
     }
 
-    private void VerifyPageHeader(int step)
+    private void VerifyPageContent(int step)
     {
         switch (step)
         {
             case 1:
-                Assert.AreEqual(STEP_1_PAGE_HEADER, ReportIssuePageHeader.Text);
+                Assert.AreEqual(STEP_1_PAGE_HEADER, CategorySelectionPageHeader.Text);
                 break;
 
             case 2:
-                Assert.AreEqual(STEP_2_PAGE_HEADER, ReportIssuePageHeader.Text);
-                Assert.AreEqual(STEP_2_PAGE_DESCRIPTION, ReportIssuePageDescription.Text);
+                Assert.AreEqual(STEP_2_PAGE_HEADER, QuickFixesPageHeader.Text);
+                Assert.AreEqual(STEP_2_PAGE_DESCRIPTION, QuickFixesPageDescription.Text);
+                Assert.IsNotNull(ContactUsButton);
                 break;
 
             case 3:
+                Assert.IsNotNull(SendReportButton);
                 break;
 
             default:

@@ -162,8 +162,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:Bell />
                 </labs:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
             <labs:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
@@ -200,8 +199,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:KeySkeleton />
                 </labs:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsBetaAccessEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
             <labs:SettingsCard AutomationProperties.AutomationId="HardwareAccelerationSettingsCard"
@@ -213,8 +211,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:Robot />
                 </labs:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsHardwareAccelerationEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"

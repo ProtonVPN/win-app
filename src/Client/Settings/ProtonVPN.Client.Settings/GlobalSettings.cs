@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Models;
 
@@ -29,12 +30,6 @@ public class GlobalSettings : IGlobalSettings
     public GlobalSettings(IGlobalSettingsRepository globalSettingsRepository)
     {
         _globalRepository = globalSettingsRepository;
-    }
-
-    public string Theme
-    {
-        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;
-        set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
     public string Language
@@ -79,15 +74,15 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsHardwareAccelerationEnabled
+    public bool IsAutoLaunchEnabled
     {
-        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsHardwareAccelerationEnabled;
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public List<CustomDnsServer> CustomDnsServersList
+    public AutoLaunchMode AutoLaunchMode
     {
-        get => _globalRepository.GetListValueType<CustomDnsServer>(SettingEncryption.Unencrypted) ?? DefaultSettings.CustomDnsServersList;
-        set => _globalRepository.SetListValueType<CustomDnsServer>(value, SettingEncryption.Unencrypted);
+        get => _globalRepository.GetValueType<AutoLaunchMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.AutoLaunchMode;
+        set => _globalRepository.SetValueType<AutoLaunchMode>(value, SettingEncryption.Unencrypted);
     }
 }

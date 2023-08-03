@@ -84,6 +84,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="MinWidth" Value="0" />
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="FocusVisualMargin" Value="-8" />
+        <Setter Property="OnContent" Value="{x:Null}" />
+        <Setter Property="OffContent" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleSwitch">

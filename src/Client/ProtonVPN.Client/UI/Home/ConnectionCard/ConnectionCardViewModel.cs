@@ -19,10 +19,12 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -31,16 +33,18 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
 public partial class ConnectionCardViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<RecentConnectionsChanged>
+    IEventMessageReceiver<RecentConnectionsChanged>,
+    IEventMessageReceiver<LoginSuccessMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
-
+    private readonly ISettings _settings;
     private readonly HomeViewModel _homeViewModel;
 
     [ObservableProperty]
@@ -98,11 +102,13 @@ public partial class ConnectionCardViewModel : ViewModelBase,
     public ConnectionCardViewModel(IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ILocalizationProvider localizationProvider,
+        ISettings settings,
         HomeViewModel homeViewModel)
         : base(localizationProvider)
     {
         _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
+        _settings = settings;
         _homeViewModel = homeViewModel;
 
         InvalidateCurrentConnectionStatus();
@@ -183,5 +189,23 @@ public partial class ConnectionCardViewModel : ViewModelBase,
     private bool CanShowConnectionDetails()
     {
         return CurrentConnectionStatus == ConnectionStatus.Connected;
+    }
+
+    public async void Receive(LoginSuccessMessage message)
+    {
+        if (_settings.IsAutoConnectEnabled)
+        {
+            switch (_settings.AutoConnectMode)
+            {
+                case AutoConnectMode.LatestConnection:
+                    await _connectionManager.ConnectAsync(CurrentConnectionIntent ?? ConnectionIntent.Default);
+                    break;
+                case AutoConnectMode.FastestConnection:
+                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

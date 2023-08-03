@@ -23,8 +23,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls" 
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
@@ -39,25 +39,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics')}"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareStatisticsEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
             <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports')}"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareCrashReportsEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
-            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       Margin="0,8,0,0">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_Footer')}" />
-                    <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl,Mode=OneTime}">
-                        <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
-                    </Hyperlink>
+            <TextBlock Margin="0,8,0,0"
+                       Foreground="{StaticResource TextWeakColorBrush}"
+                       Style="{StaticResource CaptionTextBlockStyle}">
+                <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_Footer')}" />
+                <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                           ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                </Hyperlink>
             </TextBlock>
         </StackPanel>
     </controls:PageContentControl>

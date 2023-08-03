@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface IGlobalSettings
 {
-    string Theme { get; set; }
     string Language { get; set; }
     string? Username { get; set; }
     int? WindowWidth { get; set; }
@@ -31,6 +31,6 @@ public interface IGlobalSettings
     int? WindowXPosition { get; set; }
     int? WindowYPosition { get; set; }
     bool IsWindowMaximized { get; set; }
-    List<CustomDnsServer> CustomDnsServersList { get; set; }
-    bool IsHardwareAccelerationEnabled { get; set; }
+    bool IsAutoLaunchEnabled { get; set; }
+    AutoLaunchMode AutoLaunchMode { get; set; }
 }

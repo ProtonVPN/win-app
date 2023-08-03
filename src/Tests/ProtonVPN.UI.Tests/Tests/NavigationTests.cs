@@ -46,7 +46,8 @@ public class NavigationTests : TestSession
             .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.PlusUser);
 
-        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
+        _homeRobot
+            .DoWaitForVpnStatusSubtitleLabel();
 
         _shellRobot
             .VerifyTitleBar()

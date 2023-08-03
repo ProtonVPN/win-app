@@ -20,6 +20,7 @@
 using System.Linq;
 using FlaUI.Core.AutomationElements;
 using FlaUI.UIA3;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.ReportIssue;
 
@@ -29,16 +30,21 @@ public partial class ReportIssueRobot : UIActions
 
     protected AutomationElement ReportIssueWindowTitle => ReportIssueWindow.ElementByAutomationId("WindowTitleLabel").AsLabel();
     protected Label StepsControlHeader => ReportIssueWindow.ElementByAutomationId("StepsControlHeader").AsLabel();
-    protected ProgressBar StepsControlProgressBar => ReportIssueWindow.ElementByAutomationId("StepsControlProgressBar").AsProgressBar();
-    protected Label ReportIssuePageHeader => ReportIssueWindow.ElementByAutomationId("ReportIssuePageHeader").AsLabel();
-    protected Label ReportIssuePageDescription => ReportIssueWindow.ElementByAutomationId("ReportIssuePageDescription").AsLabel();
+    protected ProgressBar StepsControlProgressBar => ReportIssueWindow.ElementByAutomationId("StepsControlProgressBar").AsProgressBar();    
+    protected Label CategorySelectionPageHeader => ReportIssueWindow.ElementByAutomationId("CategorySelectionPageHeader").AsLabel();
+    protected Label QuickFixesPageHeader => ReportIssueWindow.ElementByAutomationId("QuickFixesPageHeader").AsLabel();
+    protected Label QuickFixesPageDescription => ReportIssueWindow.ElementByAutomationId("QuickFixesPageDescription").AsLabel();
     protected Button IssueCategorySettingsCard => ReportIssueWindow.ElementByAutomationId("IssueCategorySettingsCard").AsButton();
-    protected Button ContactUsButton => ReportIssueWindow.ElementByAutomationId("ContactUsButton").AsButton();
+    protected Button ContactUsButton => ReportIssueWindow.ElementByAutomationId("ContactUsButton").AsButton();    
+    protected Button SendReportButton => ReportIssueWindow.ElementByAutomationId("SendReportButton").AsButton();
     protected Button MoveBackwardButton => ReportIssueWindow.ElementByAutomationId("MoveBackwardButton").AsButton();
 
     public ReportIssueRobot RefreshReportIssueWindow()
     {
+        this.Wait(TestConstants.InitializationDelay);
+
         ReportIssueWindow = App.GetAllTopLevelWindows(new UIA3Automation()).FirstOrDefault(w => Window != w);
+
         return this;
     }
 }

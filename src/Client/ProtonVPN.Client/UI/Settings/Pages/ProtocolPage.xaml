@@ -126,7 +126,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Run Foreground="{StaticResource TextWeakColorBrush}"
                      Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Explanation')}" />
 
-                <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                           ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                     <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                 </Hyperlink>
             </TextBlock>

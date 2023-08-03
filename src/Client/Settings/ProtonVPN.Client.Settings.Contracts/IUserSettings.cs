@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface IUserSettings
 {
+    string Theme { get; set; }
     VpnProtocol VpnProtocol { get; set; }
     string? AccessToken { get; set; }
     string? RefreshToken { get; set; }
@@ -42,5 +45,9 @@ public interface IUserSettings
     bool IsShareStatisticsEnabled { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
     bool IsAlternativeRoutingEnabled { get; set; }
+    bool IsHardwareAccelerationEnabled { get; set; }
     bool IsCustomDnsServersEnabled { get; set; }
+    List<CustomDnsServer> CustomDnsServersList { get; set; }
+    bool IsAutoConnectEnabled { get; set; }
+    AutoConnectMode AutoConnectMode { get; set; }
 }

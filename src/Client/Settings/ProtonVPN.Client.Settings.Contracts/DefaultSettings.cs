@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Common.Core.Enums;
 using ProtonVPN.Common.Core.Models;
 
@@ -24,7 +25,7 @@ namespace ProtonVPN.Client.Settings.Contracts;
 
 public static class DefaultSettings
 {
-    public static string Theme = "Default";
+    public static string Theme = "Dark";
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
@@ -38,4 +39,8 @@ public static class DefaultSettings
     public static bool IsAlternativeRoutingEnabled = true;
     public static bool IsCustomDnsServersEnabled = false;
     public static List<CustomDnsServer> CustomDnsServersList = new();
+    public static bool IsAutoLaunchEnabled = true;
+    public static AutoLaunchMode AutoLaunchMode = AutoLaunchMode.MinimizeToSystemTray;
+    public static bool IsAutoConnectEnabled = false;
+    public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;
 }
