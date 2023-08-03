@@ -17,25 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.Robots.ReportIssue;
+namespace ProtonVPN.Client.Common.Enums;
 
-public partial class ReportIssueRobot
+public enum AutoLaunchMode
 {
-    public ReportIssueRobot DoSelectBrowsingSpeedCategory()
-    {
-        IssueCategorySettingsCard.FocusAndClick();
-        return this;
-    }
-
-    public ReportIssueRobot DoGoToContactForm()
-    {
-        ContactUsButton.FocusAndClick();
-        return this;
-    }
-
-    public ReportIssueRobot DoGoBack()
-    {
-        MoveBackwardButton.Click();
-        return this;
-    }
+    OpenOnDesktop,
+    MinimizeToSystemTray,
+    MinimizeToTaskbar
 }

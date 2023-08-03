@@ -72,7 +72,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
             <HyperlinkButton Grid.Column="0"
                              Content="{x:Bind ViewModel.Localizer.Get('Login_Form_CreateAccount')}"
-                             NavigateUri="{x:Bind ViewModel.CreateAccountUrl}" />
+                             NavigateUri="{x:Bind ViewModel.CreateAccountUrl}"
+                             ToolTipService.ToolTip="{x:Bind ViewModel.CreateAccountUrl}" />
             <custom:GhostButton Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 Content="{x:Bind ViewModel.Localizer.Get('Login_Form_Help'), Mode=OneWay}"

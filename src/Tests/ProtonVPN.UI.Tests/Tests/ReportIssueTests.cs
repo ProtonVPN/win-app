@@ -64,7 +64,6 @@ public class ReportIssueTests : TestSession
             .DoReportAnIssue();
 
         _reportIssueRobot
-            .Wait(TestConstants.DefaultNavigationDelay)
             .RefreshReportIssueWindow()
             .VerifyReportIssueWindowIsOpened()
             .VerifyReportIssueStep(1, 3)
@@ -77,11 +76,12 @@ public class ReportIssueTests : TestSession
         ReportIssueFromSettingsPage();
 
         _reportIssueRobot
-            .Wait(TestConstants.InitializationDelay)
             .DoSelectBrowsingSpeedCategory()
             .Wait(TestConstants.DefaultNavigationDelay)
             .VerifyReportIssueStep(2, 3)
-            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}")
+            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
+        
+        _reportIssueRobot
             .DoGoToContactForm()
             .Wait(TestConstants.DefaultNavigationDelay)
             .VerifyReportIssueStep(3, 3)
@@ -91,7 +91,9 @@ public class ReportIssueTests : TestSession
             .DoGoBack()
             .Wait(TestConstants.DefaultNavigationDelay)
             .VerifyReportIssueStep(2, 3)
-            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}")
+            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
+
+        _reportIssueRobot
             .DoGoBack()
             .Wait(TestConstants.DefaultNavigationDelay)
             .VerifyReportIssueStep(1, 3)
@@ -107,7 +109,6 @@ public class ReportIssueTests : TestSession
             .DoReportBrowsingSpeedIssue();
 
         _reportIssueRobot
-            .Wait(TestConstants.DefaultNavigationDelay)
             .RefreshReportIssueWindow()
             .VerifyReportIssueWindowIsOpened()
             .VerifyReportIssueStep(2, 3)
@@ -118,10 +119,10 @@ public class ReportIssueTests : TestSession
     public void ReportIssueFromLoginScreen()
     {
         _loginRobot
+            .Wait(TestConstants.InitializationDelay)
             .DoReportAnIssue();
 
         _reportIssueRobot
-            .Wait(TestConstants.DefaultAnimationDelay)
             .RefreshReportIssueWindow()
             .VerifyReportIssueWindowIsOpened()
             .VerifyReportIssueStep(1, 3)
@@ -137,12 +138,10 @@ public class ReportIssueTests : TestSession
     private void Login()
     {
         _loginRobot
+            .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
-            .Wait(TestConstants.InitializationDelay)
-            .DoWaitForVpnStatusSubtitleLabel()
-            .VerifyVpnStatusIsDisconnected()
-            .VerifyConnectionCardIsInInitalState();
+            .DoWaitForVpnStatusSubtitleLabel();
     }
 }

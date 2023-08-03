@@ -58,6 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <HyperlinkButton HorizontalAlignment="Center"
                          AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                          Content="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
-                         NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" />
+                         NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" 
+                         ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" />
     </StackPanel>
 </ContentDialog>

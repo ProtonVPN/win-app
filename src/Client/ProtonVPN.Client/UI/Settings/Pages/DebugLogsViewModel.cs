@@ -17,18 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
+public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
 {
-    public DebugLogsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(viewNavigator, localizationProvider)
-    {
-    }
+    private readonly IConfiguration _configuration;
+    private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
+
+    public DebugLogsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IConfiguration configuration, IUrls urls)
+            : base(viewNavigator, localizationProvider)
+    {
+        _configuration = configuration;
+        _urls = urls;
+    }
+
+    [RelayCommand]
+    public void OpenApplicationLogs()
+    {
+        _urls.NavigateTo(_configuration.AppLogFolder);
+    }
+
+    [RelayCommand]
+    public void OpenServiceLogs()
+    {
+        _urls.NavigateTo(_configuration.ServiceLogFolder);
+    }
 }

@@ -55,18 +55,8 @@ public class SettingsTests : TestSession
             .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.PlusUser);
 
-        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
-
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay)
-            .DoNavigateToSettingsPage()
-            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
-
-        _settingsRobot
-            .DoRestoreSettings();
-
-        _shellRobot
-            .DoNavigateToHomePage();
+        _homeRobot
+            .DoWaitForVpnStatusSubtitleLabel();
     }
 
     [Test]

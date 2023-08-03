@@ -30,6 +30,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Parameters;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -132,9 +133,21 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     [RelayCommand]
-    public void RestoreDefaultSettings()
+    public async Task RestoreDefaultSettingsAsync()
     {
-        _settingsRestorer.Restore();
+        ContentDialogResult result = await ViewNavigator.ShowMessageAsync(
+            new MessageDialogParameters
+            {
+                Title = Localizer.Get("Settings_RestoreDefault_Confirmation_Title"),
+                Message = Localizer.Get("Settings_RestoreDefault_Confirmation_Message"),
+                PrimaryButtonText = Localizer.Get("Settings_RestoreDefault_Confirmation_Action"),
+                CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+            });
+
+        if (result == ContentDialogResult.Primary)
+        {
+            _settingsRestorer.Restore();
+        }
     }
 
     [RelayCommand]

@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.Settings;
 
@@ -31,6 +33,12 @@ public class Settings : GlobalSettings, ISettings
         : base(globalSettingsRepository)
     {
         _userRepository = userSettingsRepository;
+    }
+
+    public string Theme
+    {
+        get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;
+        set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
     public VpnProtocol VpnProtocol
@@ -147,9 +155,33 @@ public class Settings : GlobalSettings, ISettings
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsHardwareAccelerationEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsHardwareAccelerationEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsCustomDnsServersEnabled
     {
         get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsCustomDnsServersEnabled;
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<CustomDnsServer> CustomDnsServersList
+    {
+        get => _userRepository.GetListValueType<CustomDnsServer>(SettingEncryption.Unencrypted) ?? DefaultSettings.CustomDnsServersList;
+        set => _userRepository.SetListValueType<CustomDnsServer>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsAutoConnectEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoConnectEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public AutoConnectMode AutoConnectMode
+    {
+        get => _userRepository.GetValueType<AutoConnectMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.AutoConnectMode;
+        set => _userRepository.SetValueType<AutoConnectMode>(value, SettingEncryption.Unencrypted);
     }
 }

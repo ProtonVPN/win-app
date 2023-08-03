@@ -46,8 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAlternativeRoutingEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}" />
+                              Style="{StaticResource ToggleSwitchStyle}"/>
             </labs:SettingsCard>
 
             <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
@@ -61,12 +60,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </labs:SettingsCard>
 
             <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
-                               Style="{StaticResource VerticalSettingsCardStyle}"
-                               IsTabStop="False">
+                               IsTabStop="False"
+                               Style="{StaticResource VerticalSettingsCardStyle}">
                 <labs:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}" />
-                        <Hyperlink NavigateUri="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
                     </TextBlock>

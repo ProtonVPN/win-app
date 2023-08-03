@@ -45,7 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <TextBlock Grid.Row="0"
                        HorizontalAlignment="Center"
-                       AutomationProperties.AutomationId="ReportIssuePageHeader"
+                       AutomationProperties.AutomationId="CategorySelectionPageHeader"
                        AutomationProperties.HeadingLevel="Level1"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Header')}"

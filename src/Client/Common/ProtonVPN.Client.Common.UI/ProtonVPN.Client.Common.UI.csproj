@@ -848,6 +848,7 @@
     <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
     <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
     <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
+    <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
     <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
     <None Remove="Styles\Controls\TextBoxStyles.xaml" />
     <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
@@ -1857,6 +1858,12 @@
     <Content Update="Assets\Illustrations\report-success.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\SettingsExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

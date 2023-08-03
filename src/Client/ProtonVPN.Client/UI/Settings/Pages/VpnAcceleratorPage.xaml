@@ -23,7 +23,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls" xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
@@ -32,40 +33,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <Grid Padding="16"
-                  Background="{StaticResource BackgroundWeakColorBrush}"
-                  BorderBrush="{StaticResource BorderWeakColorBrush}"
-                  BorderThickness="1"
-                  CornerRadius="8"
-                  ColumnSpacing="16"
-                  RowSpacing="0">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0"
-                            Grid.Column="0"
-                            Orientation="Vertical">
-                    <TextBlock Foreground="{StaticResource TextNormColorBrush}"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}" />
-                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
-                               Style="{StaticResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}" />
-                </StackPanel>
-                
-                <ToggleSwitch Grid.Row="0"
-                              Grid.Column="1"
-                              IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
-                              OffContent="{x:Null}"
-                              OnContent="{x:Null}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
-            </Grid>
+            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
+                               IsTabStop="False"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}"/>
+            </labs:SettingsCard>
 
         </StackPanel>
 
