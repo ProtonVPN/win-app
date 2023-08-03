@@ -212,6 +212,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
                     RpcServerProblemUrl = "https://protonvpn.com/support/rpc-server-unavailable",
+                    DedicatedIpsUrl = "https://protonvpn.com/support/dedicated-ips",
                 },
 
                 OpenVpn =

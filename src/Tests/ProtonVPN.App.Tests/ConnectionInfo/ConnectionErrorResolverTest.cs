@@ -203,7 +203,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         private Server GetOnlineServer()
         {
             return new Server("", "", "", "", "", "", 1, ServerTiers.Basic, 0, 0, 0, new LocationResponse(),
-                new List<PhysicalServer>(), "");
+                new List<PhysicalServer>(), "", null);
         }
     }
 }

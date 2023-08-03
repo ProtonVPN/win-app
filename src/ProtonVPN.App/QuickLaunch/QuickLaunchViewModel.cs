@@ -28,6 +28,7 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
@@ -104,6 +105,20 @@ namespace ProtonVPN.QuickLaunch
             get => _showQuickConnectPopup;
             set => Set(ref _showQuickConnectPopup, value);
         }
+
+        private IName _connectionName;
+        public IName ConnectionName
+        {
+            get => _connectionName;
+            set => Set(ref _connectionName, value);
+        }
+
+        private bool _isB2B;
+        public bool IsB2B
+        {
+            get => _isB2B;
+            set => Set(ref _isB2B, value);
+        }
         
         private IReadOnlyList<ProfileViewModel> _profiles;
         public IReadOnlyList<ProfileViewModel> Profiles
@@ -150,6 +165,7 @@ namespace ProtonVPN.QuickLaunch
             switch (e.State.Status)
             {
                 case VpnStatus.Connected:
+                    SetConnectionName(server);
                     ServerName = server.Name;
                     CountryCode = server.EntryCountry;
                     SetIp(server.ExitIp);
@@ -160,6 +176,7 @@ namespace ProtonVPN.QuickLaunch
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
+                    SetConnectionName(server);
                     ServerName = server.Name;
                     CountryCode = server.EntryCountry;
                     SetUserIp();
@@ -169,6 +186,7 @@ namespace ProtonVPN.QuickLaunch
                     break;
                 case VpnStatus.Disconnected:
                 case VpnStatus.Disconnecting:
+                    SetConnectionName(null);
                     ServerName = "";
                     CountryCode = "";
                     SetUserIp();
@@ -179,6 +197,38 @@ namespace ProtonVPN.QuickLaunch
             }
 
             return Task.CompletedTask;
+        }
+
+        private void SetConnectionName(Server server)
+        {
+            if (server is null)
+            {
+                ConnectionName = null;
+                IsB2B = false;
+                return;
+            }
+
+            if (server.IsSecureCore())
+            {
+                ConnectionName = server.GetServerName();
+            }
+            else if (server.IsB2B())
+            {
+                ConnectionName = new B2BServerName
+                {
+                    GatewayName = server.GatewayName,
+                    Name = server.Name
+                };
+            }
+            else
+            {
+                ConnectionName = new StandardServerName
+                {
+                    EntryCountryCode = server.EntryCountry,
+                    Name = server.Name
+                };
+            }
+            IsB2B = server.IsB2B();
         }
 
         public async Task OnConnectionDetailsChanged(ConnectionDetails connectionDetails)

@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -167,23 +167,27 @@
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty" xml:space="preserve">
     <value>Please select a server</value>
-    <comment>The error message displayed in Profile window when server is not selected</comment>
+    <comment>The error message displayed in the Profile window when a server is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_GatewayEmpty" xml:space="preserve">
+    <value>Please select a gateway</value>
+    <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty" xml:space="preserve">
     <value>Please select a country</value>
-    <comment>The error message displayed in Profile window when country is not selected</comment>
+    <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty" xml:space="preserve">
     <value>Please select a color</value>
-    <comment>The error message displayed in Profile window when color is not selected</comment>
+    <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists" xml:space="preserve">
     <value>Profile name already exists</value>
-    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+    <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty" xml:space="preserve">
     <value>Please select a profile name</value>
-    <comment>The error message displayed in Profile window when profile name is empty</comment>
+    <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Fastest" xml:space="preserve">
     <value>Fastest</value>
@@ -485,6 +489,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Profiles_Profile_Error_lbl_NotValid" xml:space="preserve">
     <value>Profile can not be saved:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Gateway" xml:space="preserve">
+    <value>Gateway:</value>
+    <comment>The label for Gateway combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Gateway_Watermark" xml:space="preserve">
+    <value>Select Gateway</value>
+    <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_ExitCountry" xml:space="preserve">
     <value>Exit Country:</value>
@@ -1010,9 +1022,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
   </data>
+  <data name="ServerType_val_B2B" xml:space="preserve">
+    <value>Gateways</value>
+    <comment>The server type in Profile window</comment>
+  </data>
   <data name="Sidebar_Separator_Others" xml:space="preserve">
-    <value>OTHERS</value>
-    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
+    <value>Others</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
@@ -2103,7 +2119,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2" xml:space="preserve">
-    <value/>
+    <value />
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore" xml:space="preserve">
@@ -2550,7 +2566,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip" xml:space="preserve">
     <value>Advertisement websites use cookies and trackers to target you.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other" xml:space="preserve">
     <value>Trackers stopped</value>
@@ -2562,15 +2577,12 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip" xml:space="preserve">
     <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved" xml:space="preserve">
     <value>Data saved</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip" xml:space="preserve">
     <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
-    <comment></comment>
   </data>
   <data name="PortForwarding" xml:space="preserve">
     <value>Port Forwarding</value>
@@ -2724,6 +2736,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc" xml:space="preserve">
     <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+  </data>
+  <data name="Sidebar_B2BPopup_Title" xml:space="preserve">
+    <value>What's a gateway?</value>
+    <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_B2BPopup_Desc" xml:space="preserve">
+    <value>A VPN gateway is a secure connection that provides controlled access to your company's data and services through dedicated servers.</value>
+    <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl" xml:space="preserve">
     <value>Smart Protocol is currently disabled</value>
@@ -3254,5 +3274,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_General_lbl_AutoUpdate_Info" xml:space="preserve">
     <value>Automatically check for and install updates to Proton VPN.</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Upsell_Plan_Business_Info" xml:space="preserve">
+    <value>Available with VPN Business.</value>
+    <comment>The tooltip text of the business plan badge</comment>
   </data>
 </root>

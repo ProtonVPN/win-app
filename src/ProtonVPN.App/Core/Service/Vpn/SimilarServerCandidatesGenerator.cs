@@ -109,11 +109,21 @@ namespace ProtonVPN.Core.Service.Vpn
             IList<Server> servers = new List<Server>();
             servers.AddIfNotNull(GetOriginalServerIfRequired(isToIncludeOriginalServer, originalServer));
 
-            if ((baseProfile.Features & Features.SecureCore) > 0)
+            if (ServerFeatures.IsSecureCore((int)baseProfile.Features))
             {
                 servers.AddIfNotNull(GetBestServerForSameExitCountryAndDifferentEntryCountry(originalServer, servers, baseProfile));
                 servers.AddIfNotNull(GetBestServerForSameEntryCountryAndDifferentExitCountry(originalServer, servers, baseProfile));
                 servers.AddIfNotNull(GetBestServerForDifferentEntryAndExitCountries(originalServer, servers, baseProfile));
+            }
+            else if (ServerFeatures.IsB2B((int)baseProfile.Features))
+            {
+                baseProfile.City = null;
+                baseProfile.CountryCode = null;
+                baseProfile.EntryCountryCode = null;
+                baseProfile.ExactTier = null;
+                IEnumerable<Server> sortedB2BServers = GetSortedCandidateServers(baseProfile)
+                    .Where(s => ServerFeatures.IsB2B(s.Features)).Except(servers);
+                servers.AddRange(sortedB2BServers);
             }
             else
             {

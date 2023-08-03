@@ -27,11 +27,11 @@ namespace ProtonVPN.Core.Tests.Models
     public class UserTest
     {
         [DataTestMethod]
-        [DataRow(0, "ProtonMail Account")]
-        [DataRow(1, "ProtonMail Account")]
-        [DataRow(2, "ProtonMail Account")]
-        [DataRow(3, "ProtonMail Account")]
-        [DataRow(4, "ProtonVPN Account")]
+        [DataRow(0, "Proton Mail Account")]
+        [DataRow(1, "Proton Mail Account")]
+        [DataRow(2, "Proton Mail Account")]
+        [DataRow(3, "Proton Mail Account")]
+        [DataRow(4, "Proton VPN Account")]
         public void GetAccountPlan_ShouldBe_MappedFormServices(int services, string expected)
         {
             // Arrange

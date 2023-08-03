@@ -23,8 +23,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Modals;
@@ -35,13 +33,15 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows.Popups;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Modals.Protocols;
 using ProtonVPN.Notifications;
-using ProtonVPN.Sidebar;
 using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Windows.Popups.Delinquency;
 using ProtonVPN.Windows.Popups.SubscriptionExpiration;
+using ConnectionStatusViewModel = ProtonVPN.Sidebar.ConnectionStatusViewModel;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
@@ -280,10 +280,13 @@ namespace ProtonVPN.Core.Service.Vpn
         private async Task ConnectToSimilarServerOrQuickConnectAsync(bool isToTryLastServer, VpnProtocol vpnProtocol)
         {
             IList<Server> serverCandidates = _similarServerCandidatesGenerator.Generate(isToTryLastServer, _targetServer, _targetProfile);
-            IEnumerable<Server> quickConnectServers = (await _vpnConnector.GetSortedAndValidQuickConnectServersAsync(
-                _config.MaxQuickConnectServersOnReconnection)).Except(serverCandidates);
+            if (!ServerFeatures.IsB2B((int)_targetProfile.Features))
+            {
+                IEnumerable<Server> quickConnectServers = (await _vpnConnector.GetSortedAndValidQuickConnectServersAsync(
+                    _config.MaxQuickConnectServersOnReconnection)).Except(serverCandidates);
+                serverCandidates.AddRange(quickConnectServers);
+            }
 
-            serverCandidates.AddRange(quickConnectServers);
             if (_config.MaxQuickConnectServersOnReconnection.HasValue)
             {
                 serverCandidates = serverCandidates.Take(_config.MaxQuickConnectServersOnReconnection.Value).ToList();

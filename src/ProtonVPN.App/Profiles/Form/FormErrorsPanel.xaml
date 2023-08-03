@@ -49,6 +49,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyColor}">
                                 <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_ColorEmpty}"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyGateway}">
+                                <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_GatewayEmpty}"/>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding Form.Error}" Value="{x:Static form:Error.EmptyCountry}">
                                 <Setter Property="Text" Value="{translations:Loc Profiles_Profile_Error_msg_CountryEmpty}"/>
                             </DataTrigger>

@@ -180,6 +180,13 @@ namespace ProtonVPN.Sidebar
             set => Set(ref _connectionName, value);
         }
 
+        private bool _isB2B;
+        public bool IsB2B
+        {
+            get => _isB2B;
+            set => Set(ref _isB2B, value);
+        }
+
         private double _currentDownloadSpeed;
         public double CurrentDownloadSpeed
         {
@@ -444,6 +451,14 @@ namespace ProtonVPN.Sidebar
             {
                 ConnectionName = server.GetServerName();
             }
+            else if (server.IsB2B())
+            {
+                ConnectionName = new B2BServerName
+                {
+                    GatewayName = server.GatewayName,
+                    Name = server.Name
+                };
+            }
             else
             {
                 ConnectionName = new StandardServerName
@@ -452,6 +467,7 @@ namespace ProtonVPN.Sidebar
                     Name = server.Name
                 };
             }
+            IsB2B = server.IsB2B();
         }
 
         private void DisableKillSwitch()

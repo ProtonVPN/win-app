@@ -133,5 +133,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string RpcServerProblemUrl { get; set; }
+
+        [Required]
+        public string DedicatedIpsUrl { get; set; }
     }
 }

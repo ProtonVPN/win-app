@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace ProtonVPN.Sidebar
         private readonly IScheduler _scheduler;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
-
+        private readonly GatewayConnector _gatewayConnector;
         private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
         public CountriesViewModel(
@@ -60,6 +61,7 @@ namespace ProtonVPN.Sidebar
             IScheduler scheduler,
             ServerConnector serverConnector,
             CountryConnector countryConnector,
+            GatewayConnector gatewayConnector,
             QuickSettingsViewModel quickSettingsViewModel)
         {
             _appSettings = appSettings;
@@ -67,10 +69,11 @@ namespace ProtonVPN.Sidebar
             _scheduler = scheduler;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
+            _gatewayConnector = gatewayConnector;
             QuickSettingsViewModel = quickSettingsViewModel;
 
             Connect = new RelayCommand<ServerItemViewModel>(ConnectAction);
-            ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryAction);
+            ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryActionAsync);
             Expand = new RelayCommand<IServerCollection>(ExpandAction);
             ClearSearchCommand = new RelayCommand(ClearSearchAction);
         }
@@ -211,7 +214,7 @@ namespace ProtonVPN.Sidebar
                 }
                 else
                 {
-                    ExpandCountry(server.EntryCountry);
+                    ExpandCountry(server);
                     UpdateVpnState(e.State);
                 }
             }
@@ -281,17 +284,17 @@ namespace ProtonVPN.Sidebar
 
             foreach (IServerListItem item in Items.ToList())
             {
-                if (item is ServersByCountryViewModel or ServersByExitNodeViewModel or CountrySeparatorViewModel)
+                if (item is ServersByCountryViewModel or ServersByExitNodeViewModel or CountrySeparatorViewModel or CountryB2BSeparatorViewModel)
                 {
                     item.OnVpnStateChanged(state);
                 }
             }
         }
 
-        private void ExpandCountry(string countryCode)
+        private void ExpandCountry(Server server)
         {
             ServersByCountryViewModel countryRow = Items.OfType<ServersByCountryViewModel>()
-                .FirstOrDefault(c => c.CountryCode.Equals(countryCode));
+                .FirstOrDefault(c => c.CountryCode.Equals(server.EntryCountry) && c.IsB2B == server.IsB2B());
             if (countryRow != null)
             {
                 ExpandCollection(countryRow);
@@ -331,10 +334,36 @@ namespace ProtonVPN.Sidebar
             await _serverConnector.Connect(serverItemViewModel.Server);
         }
 
-        private async void ConnectCountryAction(IServerCollection serverCollection)
+        private async void ConnectCountryActionAsync(IServerCollection serverCollection)
+        {
+            if (serverCollection is ServersByGatewayViewModel serversByGatewayViewModel)
+            {
+                await ConnectToGatewayAsync(serversByGatewayViewModel);
+            }
+            else
+            {
+                await ConnectToCountryAsync(serverCollection);
+            }
+        }
+
+        private async Task ConnectToGatewayAsync(ServersByGatewayViewModel serversByGatewayViewModel)
         {
             Server currentServer = State.Server;
+            if (State.Status.Equals(VpnStatus.Connected) &&
+                serversByGatewayViewModel.Servers.Any(s => s.Id == currentServer.Id))
+            {
+                await _gatewayConnector.Disconnect();
+            }
+            else
+            {
+                await _gatewayConnector.ConnectAsync(serversByGatewayViewModel.Name);
+            }
+            
+        }
 
+        private async Task ConnectToCountryAsync(IServerCollection serverCollection)
+        {
+            Server currentServer = State.Server;
             if (State.Status.Equals(VpnStatus.Connected) &&
                 serverCollection.CountryCode.Equals(currentServer?.ExitCountry))
             {
@@ -342,7 +371,7 @@ namespace ProtonVPN.Sidebar
             }
             else
             {
-                await _countryConnector.Connect(serverCollection.CountryCode);
+                await _countryConnector.ConnectAsync(serverCollection.CountryCode);
             }
         }
 

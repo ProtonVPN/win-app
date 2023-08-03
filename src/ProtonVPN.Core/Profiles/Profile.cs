@@ -51,6 +51,8 @@ namespace ProtonVPN.Core.Profiles
         /// </summary>
         public VpnProtocol VpnProtocol { get; set; } = VpnProtocol.Smart;
 
+        public string GatewayName { get; set; }
+
         public string CountryCode { get; set; }
 
         public string EntryCountryCode { get; set; }

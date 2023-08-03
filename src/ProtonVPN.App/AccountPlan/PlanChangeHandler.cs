@@ -81,6 +81,10 @@ namespace ProtonVPN.AccountPlan
                 _appSettings.NetShieldMode = 2;
                 _appSettings.NetShieldEnabled = true;
             }
+            if (!user.HasNetShield())
+            {
+                _appSettings.NetShieldEnabled = false;
+            }
         }
 
         private async Task DowngradeUserAsync(User user)

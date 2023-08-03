@@ -17,23 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.MVVM;
-using ProtonVPN.Core.Servers;
-using ProtonVPN.Translations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Core.MVVM;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Profiles.Servers
 {
     public class ServerTypeViewModel : ViewModel
     {
-        private static readonly List<Features> AllTypes = new List<Features>
+        private static readonly List<Features> AllTypes = new()
         {
+            Features.B2B,
             Features.None,          // "Standard"
-            Features.SecureCore,    
-            Features.P2P,           
-            Features.Tor           
+            Features.SecureCore,
+            Features.P2P,
+            Features.Tor
         };
 
         public string Name => GetName(Features);
@@ -51,7 +52,7 @@ namespace ProtonVPN.Profiles.Servers
 
         public static string TypeName(Features features)
         {
-            foreach (var typeFeatures in AllTypes)
+            foreach (Features typeFeatures in AllTypes)
             {
                 if ((features & typeFeatures) != 0)
                 {
@@ -64,7 +65,7 @@ namespace ProtonVPN.Profiles.Servers
 
         private static string GetName(Features features)
         {
-            var enumName = Enum.GetName(typeof(Features), features);
+            string enumName = Enum.GetName(typeof(Features), features);
             return Translation.Get($"ServerType_val_{enumName}");
         }
     }

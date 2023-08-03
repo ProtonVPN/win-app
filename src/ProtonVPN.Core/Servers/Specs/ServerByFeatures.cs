@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
 
@@ -39,8 +38,8 @@ namespace ProtonVPN.Core.Servers.Specs
 
         private static Specification<LogicalServerResponse> SpecByFeatures(Features features)
         {
-            Specification<LogicalServerResponse> spec = 
-                (features.IsSecureCore() ? new SecureCoreServer() : new StandardServer()) &
+            Specification<LogicalServerResponse> spec =
+                (features.IsSecureCore() ? new SecureCoreServer() : features.IsB2B() ? new B2BServer() : new StandardServer()) &
                 (features.SupportsTor() ? new TorServer() : !new TorServer());
 
             if (features.SupportsP2P())

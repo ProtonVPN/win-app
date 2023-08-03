@@ -178,6 +178,11 @@ namespace ProtonVPN.Vpn.Connectors
 
             Specification<LogicalServerResponse> spec = new ServerByFeatures(ServerFeatures(profile));
 
+            if (!string.IsNullOrEmpty(profile.GatewayName))
+            {
+                spec &= new ServerByGateway(profile.GatewayName);
+            }
+
             if (!string.IsNullOrEmpty(profile.CountryCode))
             {
                 spec &= new ExitCountryServer(profile.CountryCode);

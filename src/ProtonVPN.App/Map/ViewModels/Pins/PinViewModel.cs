@@ -71,7 +71,7 @@ namespace ProtonVPN.Map.ViewModels.Pins
                 return;
             }
 
-            await _countryConnector.Connect(CountryCode);
+            await _countryConnector.ConnectAsync(CountryCode);
         }
     }
 }

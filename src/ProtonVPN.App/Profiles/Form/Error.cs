@@ -28,5 +28,6 @@ namespace ProtonVPN.Profiles.Form
         EmptyColor,
         EmptyServer,
         EmptyCountry,
+        EmptyGateway,
     }
 }

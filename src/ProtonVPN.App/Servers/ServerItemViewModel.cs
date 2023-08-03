@@ -73,6 +73,7 @@ namespace ProtonVPN.Servers
 
         public Server Server { get; set; }
 
+        public string Id => Server.Id;
         public string Name => Server.Name;
 
         public IName ConnectionName { get; set; }

@@ -17,18 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using PhysicalServerResponse = ProtonVPN.Api.Contracts.Servers.PhysicalServerResponse;
 
 namespace ProtonVPN.Core.Servers
@@ -40,6 +41,7 @@ namespace ProtonVPN.Core.Servers
         private readonly ILogger _logger;
         private readonly ServerNameComparer _serverNameComparer;
 
+        private bool _hasB2BServers;
         private List<LogicalServerResponse> _servers = new();
         private List<string> _countries = new();
 
@@ -269,6 +271,8 @@ namespace ProtonVPN.Core.Servers
             {
                 _servers = servers.Where(s => s != null).ToList();
             }
+
+            _hasB2BServers = _servers.Any(s => ServerFeatures.IsB2B(s.Features));
         }
 
         private bool ContainsPublicKey(PhysicalServerResponse server)
@@ -339,7 +343,8 @@ namespace ProtonVPN.Core.Servers
                 item.Score,
                 item.LocationResponse,
                 physicalServers,
-                ExitIp(physicalServers)
+                ExitIp(physicalServers),
+                item.GatewayName
             );
         }
 
@@ -365,6 +370,23 @@ namespace ProtonVPN.Core.Servers
                 (string)null,
                 (ip, p) => ip == null || ip == p.ExitIp ? p.ExitIp : "",
                 ip => !string.IsNullOrEmpty(ip) ? ip : null);
+        }
+
+        public bool HasB2BServers()
+        {
+            return _hasB2BServers;
+        }
+
+        public bool? GatewayHasAvailableServers(string gateway, sbyte userTier)
+        {
+            IReadOnlyCollection<Server> servers = GetServers(new ServerByGateway(gateway) && new B2BServer());
+            return servers.FirstOrDefault(s => userTier >= s.Tier) != null;
+        }
+
+        public bool GatewayUnderMaintenance(string gateway)
+        {
+            IReadOnlyCollection<Server> servers = GetServers(new OnlineServer() && new ServerByGateway(gateway) && new B2BServer());
+            return servers.Count == 0;
         }
     }
 }

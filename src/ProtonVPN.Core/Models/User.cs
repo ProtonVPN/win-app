@@ -37,12 +37,22 @@ namespace ProtonVPN.Core.Models
 
         public string GetAccountPlan()
         {
-            return (Services & 1) == 0 && (Services & 4) != 0 ? "ProtonVPN Account" : "ProtonMail Account";
+            return (Services & 1) == 0 && (Services & 4) != 0 ? "Proton VPN Account" : "Proton Mail Account";
         }
 
         public bool Paid()
         {
             return VpnPlan != null && !VpnPlan.Equals("free");
+        }
+
+        public bool HasNetShield()
+        {
+            return VpnPlan != null && !VpnPlan.Equals("free") && !VpnPlan.Equals("vpnpro2023");
+        }
+
+        public bool IsBusiness()
+        {
+            return VpnPlan != null && (VpnPlan.Equals("vpnpro2023") || VpnPlan.Equals("vpnbiz2023"));
         }
 
         public bool IsPlusPlan()

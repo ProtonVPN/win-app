@@ -25,6 +25,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:Name="ServerNameControl">
 
     <UserControl.Resources>
+        
+        <DataTemplate DataType="{x:Type name:B2BServerName}">
+            <Grid>
+                <TextBlock x:Name="GatewayNameAndServer"
+                           Style="{StaticResource ServerName}"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="{Binding FontSize, ElementName=ServerNameControl}"
+                           FontWeight="{Binding FontWeight, ElementName=ServerNameControl}">
+                    <Run Text="{Binding GatewayName, Mode=OneWay}"/>
+                    <Run Text="-"/>
+                    <Run Text="{Binding Name, Mode=OneWay}" ToolTip="{Binding Name, Mode=OneWay}"/>
+                </TextBlock>
+                <TextBlock x:Name="GatewayServerOnly" Style="{StaticResource ServerName}"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="{Binding FontSize, ElementName=ServerNameControl}"
+                           FontWeight="{Binding FontWeight, ElementName=ServerNameControl}">
+                    <Run Text="{Binding Name, Mode=OneWay}"/>
+                </TextBlock>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{c:Binding 'GatewayName != null'}" Value="True">
+                    <Setter TargetName="GatewayNameAndServer" Property="Visibility" Value="Visible"/>
+                    <Setter TargetName="GatewayServerOnly" Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{c:Binding 'GatewayName == null'}" Value="True">
+                    <Setter TargetName="GatewayNameAndServer" Property="Visibility" Value="Collapsed"/>
+                    <Setter TargetName="GatewayServerOnly" Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WrapElements, ElementName=ServerNameControl}" Value="True">
+                    <Setter TargetName="GatewayNameAndServer" Property="TextWrapping" Value="Wrap"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AlignCenter, ElementName=ServerNameControl}" Value="True">
+                    <Setter TargetName="GatewayNameAndServer" Property="TextAlignment" Value="Center"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type name:StandardServerName}">
             <Grid>

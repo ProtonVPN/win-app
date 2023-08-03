@@ -55,6 +55,7 @@ namespace ProtonVPN.Account
 
         public PromoCodeViewModel PromoCodeViewModel { get; }
 
+        public bool IsToShowVpnPlans => !_userStorage.GetUser().IsBusiness();
         public bool IsToShowUseCoupon => _appSettings.FeaturePromoCodeEnabled && _userStorage.GetUser().CanUsePromoCode();
 
         public AccountModalViewModel(
@@ -158,6 +159,7 @@ namespace ProtonVPN.Account
         public void OnUserDataChanged()
         {
             SetUserDetails();
+            NotifyOfPropertyChange(nameof(IsToShowVpnPlans));
             NotifyOfPropertyChange(nameof(IsToShowUseCoupon));
             NotifyOfPropertyChange(nameof(IsFreePlan));
             NotifyOfPropertyChange(nameof(IsPlusPlan));

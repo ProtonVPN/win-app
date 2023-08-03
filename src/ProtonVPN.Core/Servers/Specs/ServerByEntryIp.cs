@@ -18,7 +18,6 @@
  */
 
 using System.Linq;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
 

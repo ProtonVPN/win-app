@@ -227,6 +227,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ServerConnector>().SingleInstance();
             builder.RegisterType<ProfileConnector>().SingleInstance();
             builder.RegisterType<CountryConnector>().SingleInstance();
+            builder.RegisterType<GatewayConnector>().SingleInstance();
             builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<GuestHoleState>().SingleInstance();
             builder.RegisterType<DisconnectError>().AsImplementedInterfaces().AsSelf().SingleInstance();

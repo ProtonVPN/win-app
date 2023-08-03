@@ -32,6 +32,7 @@ namespace ProtonVPN.Servers
         }
 
         public CountryFeaturesPopupViewModel CountryFeaturesPopupViewModel { get; }
+        public string Id => null;
         public string Name { get; set; }
         public bool Maintenance { get; } = false;
         public bool Connected { get; } = false;

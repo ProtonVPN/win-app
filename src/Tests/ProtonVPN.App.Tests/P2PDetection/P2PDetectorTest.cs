@@ -212,6 +212,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
                 0,
                 new LocationResponse(),
                 new List<PhysicalServer>(),
+                null,
                 null
             );
         }
@@ -232,6 +233,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
                 0,
                 new LocationResponse(),
                 new List<PhysicalServer>(),
+                null,
                 null
             );
         }

@@ -412,10 +412,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:CountryB2BSeparatorViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
+                                        <Setter TargetName="Border" Property="MinHeight" Value="12" />
+                                        <Setter TargetName="Border" Property="Cursor" Value="Arrow" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
                                                  Value="{x:Type servers:CountrySeparatorViewModel}">
                                         <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
                                         <Setter TargetName="Border" Property="MinHeight" Value="12" />
                                         <Setter TargetName="Border" Property="Cursor" Value="Arrow" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:ServersByGatewayViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
                                                  Value="{x:Type servers:ServersByCountryViewModel}">
@@ -461,6 +471,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Style>
             </wpf:CustomListView.ItemContainerStyle>
             <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type servers:CountryB2BSeparatorViewModel}">
+                    <Border x:Name="Border" Height="48">
+                        <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">
+                            <TextBlock x:Name="CountryLabel"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource CountrySeparator}"
+                                       TextTrimming="CharacterEllipsis" />
+                            <DockPanel Margin="27,0" HorizontalAlignment="Right">
+                                <countryFeatures:CountryB2BPopupView
+                                    DataContext="{Binding CountryB2BPopupViewModel}" />
+                            </DockPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type servers:CountrySeparatorViewModel}">
                     <Border x:Name="Border" Height="48">
                         <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">
@@ -511,7 +535,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Image HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
-                                   Width="21" Height="15" />
+                                   Width="21" Height="15"
+                                   Visibility="{Binding IsB2B, Converter={StaticResource InvertedBoolToVis}}" />
+                            <icons:Servers HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Width="21" Height="20"
+                                           Foreground="{StaticResource TextNormBrushColor}"
+                                           Visibility="{Binding IsB2B, Converter={StaticResource BoolToVis}}"/>
                             <Grid Width="220">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />

@@ -93,6 +93,7 @@ namespace ProtonVPN.Core.Tests.Servers
                 0.0F,
                 new LocationResponse { Lat = 0f, Long = 0f },
                 new List<PhysicalServer>(0),
+                null,
                 null);
         }
     }

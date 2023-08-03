@@ -40,7 +40,7 @@ namespace ProtonVPN.Vpn.Connectors
             _profileFactory = profileFactory;
         }
 
-        public async Task Connect(string countryCode)
+        public async Task ConnectAsync(string countryCode)
         {
             Profile profile = CreateProfile(countryCode); 
             await VpnManager.ConnectAsync(profile);

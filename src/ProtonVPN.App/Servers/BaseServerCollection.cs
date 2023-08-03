@@ -80,7 +80,8 @@ namespace ProtonVPN.Servers
             set => Set(ref _upgradeRequired, value);
         }
 
-        public string Name => Countries.GetName(CountryCode);
+        public string Id => null;
+        public virtual string Name => Countries.GetName(CountryCode);
 
         public bool IsMarkedForRemoval { get; set; } = false;
 

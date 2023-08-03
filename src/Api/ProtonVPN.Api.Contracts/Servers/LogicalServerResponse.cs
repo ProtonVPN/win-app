@@ -39,6 +39,7 @@ namespace ProtonVPN.Api.Contracts.Servers
         public sbyte Load { get; set; }
         public float Score { get; set; }
         public string HostCountry { get; set; }
+        public string GatewayName { get; set; }
         public List<PhysicalServerResponse> Servers { get; set; }
 
         public static LogicalServerResponse Empty => new()

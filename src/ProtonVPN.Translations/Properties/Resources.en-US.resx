@@ -2998,7 +2998,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>OTHERS</value>
+    <value>Others</value>
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
