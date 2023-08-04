@@ -26,99 +26,109 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:aprop="using:ProtonVPN.Client.Common.UI.AttachedProperties"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:models="using:ProtonVPN.Client.UI.ReportIssue.Models"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
-        <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-        <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-        <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
-        <Thickness x:Key="SettingsCardBorderThickness">0</Thickness>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+
+                <ResourceDictionary x:Key="Light">
+
+                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Dark">
+
+                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <Thickness x:Key="SettingsCardBorderThickness">0</Thickness>
+        </ResourceDictionary>
     </Page.Resources>
 
-    <custom:StepContentControl CurrentStep="{x:Bind ViewModel.CurrentStep}"
-                               Header="{x:Bind ViewModel.StepsHeader}"
-                               MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
-                               MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
-                               TotalSteps="{x:Bind ViewModel.TotalSteps}">
+    <Grid RowSpacing="16">
 
-        <Grid RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   AutomationProperties.AutomationId="QuickFixesPageHeader"
+                   AutomationProperties.HeadingLevel="Level1"
+                   Style="{StaticResource SubtitleTextBlockStyle}"
+                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_QuickFixes')}"
+                   TextWrapping="Wrap" />
 
-            <TextBlock Grid.Row="0"
-                       HorizontalAlignment="Center"
-                       AutomationProperties.AutomationId="QuickFixesPageHeader"
-                       AutomationProperties.HeadingLevel="Level1"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_QuickFixes')}"
-                       TextWrapping="Wrap" />
+        <TextBlock Grid.Row="1"
+                   Margin="0,-8,0,0"
+                   HorizontalAlignment="Center"
+                   AutomationProperties.AutomationId="QuickFixesPageDescription"
+                   AutomationProperties.HeadingLevel="Level2"
+                   Style="{StaticResource CaptionTextBlockStyle}"
+                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_QuickFixes_Header')}"
+                   TextWrapping="Wrap" />
 
-            <TextBlock Grid.Row="1"
-                       Margin="0,-8,0,0"
-                       HorizontalAlignment="Center"
-                       AutomationProperties.AutomationId="QuickFixesPageDescription"
-                       AutomationProperties.HeadingLevel="Level2"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_QuickFixes_Header')}"
-                       TextWrapping="Wrap" />
+        <ScrollViewer Grid.Row="2"
+                      Margin="0,12,-24,12"
+                      Padding="0,0,24,0"
+                      IsTabStop="False"
+                      VerticalScrollBarVisibility="Auto">
 
-            <ScrollViewer Grid.Row="2"
-                          Margin="0,12,-24,12"
-                          Padding="0,0,24,0"
-                          IsTabStop="False"
-                          VerticalScrollBarVisibility="Auto">
+            <ItemsRepeater DataContext="{x:Bind ViewModel}"
+                           ItemsSource="{x:Bind ViewModel.Suggestions}">
+                <ItemsRepeater.ItemTemplate>
+                    <DataTemplate x:DataType="models:IssueSuggestion">
+                        <Grid>
+                            <Border x:Name="proxy"
+                                    aprop:AncestorSource.AncestorType="ItemsRepeater" />
+                            <labs:SettingsCard AutomationProperties.AutomationId="IssueSuggestionSettingsCard"
+                                               Command="{Binding DataContext.DataContext.BrowseLinkCommand, ElementName=proxy}"
+                                               CommandParameter="{x:Bind Link}"
+                                               Header="{x:Bind Name}"
+                                               IsClickEnabled="{x:Bind HasLink}"
+                                               IsTabStop="{x:Bind HasLink}"
+                                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                <labs:SettingsCard.HeaderIcon>
+                                    <pathicons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
+                                </labs:SettingsCard.HeaderIcon>
+                                <labs:SettingsCard.ActionIcon>
+                                    <pathicons:ArrowOutSquare />
+                                </labs:SettingsCard.ActionIcon>
+                            </labs:SettingsCard>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
+        </ScrollViewer>
 
-                <ItemsRepeater DataContext="{x:Bind ViewModel}"
-                               ItemsSource="{x:Bind ViewModel.Suggestions}">
-                    <ItemsRepeater.ItemTemplate>
-                        <DataTemplate x:DataType="models:IssueSuggestion">
-                            <Grid>
-                                <Border x:Name="proxy"
-                                        aprop:AncestorSource.AncestorType="ItemsRepeater" />
-                                <labs:SettingsCard AutomationProperties.AutomationId="IssueSuggestionSettingsCard"
-                                                   Command="{Binding DataContext.DataContext.BrowseLinkCommand, ElementName=proxy}"
-                                                   CommandParameter="{x:Bind Link}"
-                                                   Header="{x:Bind Name}"
-                                                   IsClickEnabled="{x:Bind HasLink}"
-                                                   IsTabStop="{x:Bind HasLink}"
-                                                   Style="{StaticResource DefaultSettingsCardStyle}">
-                                    <labs:SettingsCard.HeaderIcon>
-                                        <pathicons:Lightbulb Foreground="{StaticResource SignalWarningColorBrush}" />
-                                    </labs:SettingsCard.HeaderIcon>
-                                    <labs:SettingsCard.ActionIcon>
-                                        <pathicons:ArrowOutSquare />
-                                    </labs:SettingsCard.ActionIcon>
-                                </labs:SettingsCard>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsRepeater.ItemTemplate>
-                </ItemsRepeater>
-            </ScrollViewer>
+        <TextBlock Grid.Row="3"
+                   HorizontalAlignment="Center"
+                   AutomationProperties.AutomationId="ReportIssuePageFooter"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
+                   Style="{StaticResource CaptionTextBlockStyle}"
+                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_QuickFixes_Footer')}"
+                   TextWrapping="Wrap" />
 
-            <TextBlock Grid.Row="3"
-                       HorizontalAlignment="Center"
-                       AutomationProperties.AutomationId="ReportIssuePageFooter"
-                       Foreground="{StaticResource TextWeakColorBrush}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_QuickFixes_Footer')}"
-                       TextWrapping="Wrap" />
-
-            <Button Grid.Row="4"
-                    HorizontalAlignment="Center"
-                    AutomationProperties.AutomationId="ContactUsButton"
-                    Command="{x:Bind ViewModel.GoToContactFormCommand, Mode=OneTime}"
-                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_ContactUs')}"
-                    Style="{StaticResource PrimaryButtonStyle}" />
-        </Grid>
-    </custom:StepContentControl>
+        <Button Grid.Row="4"
+                HorizontalAlignment="Center"
+                AutomationProperties.AutomationId="ContactUsButton"
+                Command="{x:Bind ViewModel.GoToContactFormCommand, Mode=OneTime}"
+                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_ContactUs')}"
+                Style="{StaticResource PrimaryButtonStyle}" />
+    </Grid>
 </Page>

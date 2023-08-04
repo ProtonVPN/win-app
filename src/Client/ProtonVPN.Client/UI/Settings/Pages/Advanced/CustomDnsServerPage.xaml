@@ -48,7 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Spacing="8"
                         Visibility="{x:Bind ViewModel.IsCustomDnsServersEnabled}">
 
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}"
                            Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_Advanced_CustomDnsServers_Header', ViewModel.CustomDnsServersCount)}" />
 

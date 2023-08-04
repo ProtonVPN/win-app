@@ -20,6 +20,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
@@ -28,15 +29,18 @@ using ProtonVPN.Client.UI.ReportIssue.Models;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
-public partial class CategorySelectionViewModel : ReportIssuePageViewModelBase
+public partial class CategorySelectionViewModel : PageViewModelBase<IReportIssueViewNavigator>
 {
+    private readonly IReportIssueDataProvider _dataProvider;
+
+    private SemaphoreSlim _semaphore = new(1);
+
     public ObservableCollection<IssueCategory> Categories { get; }
 
     public CategorySelectionViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider)
-        : base(viewNavigator, localizationProvider, dataProvider)
+        : base(viewNavigator, localizationProvider)
     {
-        CurrentStep = 1;
-        TotalSteps = 3;
+        _dataProvider = dataProvider;
 
         Categories = new();
     }
@@ -63,13 +67,22 @@ public partial class CategorySelectionViewModel : ReportIssuePageViewModelBase
 
     private async Task InvalidateCategoriesAsync()
     {
-        Categories.Clear();
+        await _semaphore.WaitAsync();
 
-        List<IssueCategoryResponse> categories = await DataProvider.GetCategoriesAsync();
-
-        foreach (IssueCategoryResponse category in categories)
+        try
         {
-            Categories.Add(ReportIssueMapper.Map(category));
+            List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
+
+            Categories.Clear();
+
+            foreach (IssueCategoryResponse category in categories)
+            {
+                Categories.Add(ReportIssueMapper.Map(category));
+            }
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 }

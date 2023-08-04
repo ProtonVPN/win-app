@@ -20,34 +20,57 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+
+            <StaticResource x:Key="ExpanderContentBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="TransparentColorBrush" />
+
+            <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+
+            <StaticResource x:Key="ExpanderHeaderForeground" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
+
+            <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+
+            <StaticResource x:Key="ExpanderContentBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="TransparentColorBrush" />
+
+            <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+
+            <StaticResource x:Key="ExpanderHeaderForeground" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
+
+            <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 
     <Thickness x:Key="ExpanderHeaderPadding">20,4</Thickness>
     <Thickness x:Key="ExpanderContentDownBorderThickness">1</Thickness>
     <Thickness x:Key="ExpanderContentPadding">0,0,0,0</Thickness>
     <x:Double x:Key="ExpanderMinHeight">24</x:Double>
 
-    <SolidColorBrush x:Key="ExpanderContentBackground"
-                     Color="Transparent" />
-    <SolidColorBrush x:Key="ExpanderContentBorderBrush"
-                     Color="Transparent" />
-
     <Thickness x:Key="ExpanderHeaderBorderThickness">0</Thickness>
-
-    <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderForeground" ResourceKey="TextWeakColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
-
-    <StaticResource x:Key="ExpanderHeaderBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderForegroundPointerOver" ResourceKey="TextNormColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-
-    <StaticResource x:Key="ExpanderHeaderBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderForegroundPressed" ResourceKey="TextNormColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-
-    <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
-    <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
     <Thickness x:Key="ToggleButtonBorderThemeThickness">0</Thickness>
     <x:Double x:Key="ExpanderHeaderSpacing">8</x:Double>
@@ -101,73 +124,73 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackground}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrush}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForeground}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackground}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackgroundPointerOver}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrushPointerOver}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForegroundPointerOver}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPointerOver}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPointerOver}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackgroundPressed}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrushPressed}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForegroundPressed}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPressed}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPressed}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackgroundDisabled}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrushDisabled}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForegroundDisabled}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundDisabled}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushDisabled}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Checked">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackground}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrush}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForeground}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackground}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
                                         <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="CheckedPointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackgroundPointerOver}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrushPointerOver}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForegroundPointerOver}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPointerOver}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPointerOver}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
                                         <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="CheckedPressed">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackgroundPressed}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrushPressed}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForegroundPressed}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPressed}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPressed}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
                                         <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="CheckedDisabled">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource ExpanderHeaderBackgroundDisabled}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{StaticResource ExpanderHeaderBorderBrushDisabled}" />
-                                        <Setter Target="ContentPresenter.Foreground" Value="{StaticResource ExpanderHeaderForegroundDisabled}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{StaticResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundDisabled}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushDisabled}" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
                                         <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
                                     </VisualState.Setters>
                                 </VisualState>

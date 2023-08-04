@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Parameters;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Common.Configuration;
 
@@ -41,14 +42,30 @@ public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
     }
 
     [RelayCommand]
-    public void OpenApplicationLogs()
+    public async Task OpenApplicationLogsAsync()
     {
-        _urls.NavigateTo(_configuration.AppLogFolder);
+        await OpenLogsFolderAsync(_configuration.AppLogFolder);
     }
 
     [RelayCommand]
-    public void OpenServiceLogs()
+    public async Task OpenServiceLogsAsync()
     {
-        _urls.NavigateTo(_configuration.ServiceLogFolder);
+        await OpenLogsFolderAsync(_configuration.ServiceLogFolder);
+    }
+
+    private async Task OpenLogsFolderAsync(string logFolder)
+    {
+        if (!Directory.Exists(logFolder))
+        {
+            await ViewNavigator.ShowMessageAsync(new MessageDialogParameters
+            {
+                Title = Localizer.Get("Settings_Support_DebugLogs"),
+                Message = $"{Localizer.Get("Settings_Support_DebugLogs_ErrorMessage")}\n({logFolder})",
+                CloseButtonText = Localizer.Get("Common_Actions_Close")
+            });
+            return;
+        }
+
+        _urls.NavigateTo(logFolder);
     }
 }

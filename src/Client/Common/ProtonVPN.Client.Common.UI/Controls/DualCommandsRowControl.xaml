@@ -106,7 +106,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Spacing="{StaticResource SecondaryCommandContentSpacing}">
             <TextBlock x:Name="tbSecondary"
                        VerticalAlignment="Center"
-                       Foreground="{StaticResource TextWeakColorBrush}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        Text="{x:Bind SecondaryCommandText}"
                        Visibility="{x:Bind SecondaryCommandText, Converter={StaticResource NotNullToVisibilityConverter}}" />
@@ -132,7 +132,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{Binding IsPointerOver, ElementName=btnSecondary}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="tbSecondary.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                        <Setter Target="tbSecondary.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                         <Setter Target="iconSecondary.Opacity" Value="1" />
                         <Setter Target="containerSecondary.Opacity" Value="1" />
                     </VisualState.Setters>
@@ -154,7 +154,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{Binding FocusState, ElementName=btnSecondary, Converter={StaticResource FocusStateToBooleanConverter}}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="tbSecondary.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                        <Setter Target="tbSecondary.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                         <Setter Target="iconSecondary.Opacity" Value="1" />
                         <Setter Target="containerSecondary.Opacity" Value="1" />
                     </VisualState.Setters>

@@ -17,16 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.Windows.ApplicationModel.Resources;
+using System;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
 
-namespace ProtonVPN.Client.Helpers;
+namespace ProtonVPN.Client.Common.UI.Converters;
 
-public static class ResourceExtensions
+public class BooleanToNavigationPaneDisplayModeConverter : IValueConverter
 {
-    private static readonly ResourceLoader _resourceLoader = new();
-
-    public static string GetLocalized(this string resourceKey)
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        return _resourceLoader.GetString(resourceKey);
+        if (value is bool boolValue)
+        {
+            return boolValue ? NavigationViewPaneDisplayMode.Auto : NavigationViewPaneDisplayMode.LeftMinimal;
+        }
+        return NavigationViewPaneDisplayMode.Auto;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
     }
 }

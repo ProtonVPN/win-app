@@ -18,11 +18,8 @@
  */
 
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Logging.Contracts;
@@ -30,19 +27,16 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Models.Activation;
 
-public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChangedMessage>, IEventMessageReceiver<MainWindowClosedMessage>
+public class DialogActivator : WindowActivatorBase, IDialogActivator
 {
-    private readonly ILogger _logger;
     private readonly IViewMapper _viewMapper;
-    private readonly IThemeSelector _themeSelector;
 
     private List<Window> _activeDialogs = new();
 
     public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
+        : base(logger, themeSelector)
     {
-        _logger = logger;
         _viewMapper = viewMapper;
-        _themeSelector = themeSelector;
     }
 
     public void ShowDialog<TPageViewModel>()
@@ -50,18 +44,14 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
     {
         Type dialogType = _viewMapper.GetDialogType<TPageViewModel>();
 
-        Type pageType = _viewMapper.GetPageType<TPageViewModel>();
-
-        ShowDialog(dialogType, pageType);
+        ShowDialog(dialogType);
     }
 
     public void ShowDialog(string shellKey)
     {
         Type dialogType = _viewMapper.GetDialogType(shellKey);
 
-        Type pageType = _viewMapper.GetPageType(shellKey);
-
-        ShowDialog(dialogType, pageType);
+        ShowDialog(dialogType);
     }
 
     public void CloseDialog<TPageViewModel>()
@@ -79,20 +69,7 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         CloseDialog(dialogType);
     }
 
-    public void Receive(ThemeChangedMessage message)
-    {
-        ElementTheme theme = _themeSelector.GetTheme().Theme;
-
-        foreach (Window dialog in _activeDialogs.ToList())
-        {
-            if (dialog.Content is FrameworkElement element)
-            {
-                element.RequestedTheme = theme;
-            }
-        }
-    }
-
-    public void Receive(MainWindowClosedMessage message)
+    public void CloseAll()
     {
         foreach (Window dialog in _activeDialogs.ToList())
         {
@@ -100,7 +77,15 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         }
     }
 
-    private void ShowDialog(Type dialogType, Type pageType)
+    protected override void OnThemeChanged(ElementTheme theme)
+    {
+        foreach (Window dialog in _activeDialogs.ToList())
+        {
+            dialog.ApplyTheme(theme);
+        }
+    }
+
+    private void ShowDialog(Type dialogType)
     {
         try
         {
@@ -111,17 +96,9 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
                     ?? throw new InvalidCastException($"Type {dialogType} is not recognized as a Window.");
 
                 dialog.Closed += OnDialogClosed;
-                dialog.Activated += OnDialogActivated;
 
-                Page page = Activator.CreateInstance(pageType) as Page
-                        ?? throw new InvalidCastException($"Type {pageType} is not recognized as a Page.");
-
-                dialog.Content = page;
-
-                if (page is IShellPage shellPage)
-                {
-                    shellPage.Initialize(dialog);
-                }
+                dialog.ApplyTheme(ThemeSelector.GetTheme().Theme);
+                dialog.CenterOnScreen();
 
                 _activeDialogs.Add(dialog);
             }
@@ -130,7 +107,7 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         }
         catch (Exception e)
         {
-            _logger.Error<AppLog>($"Error when trying to show dialog '{dialogType}' and page '{pageType}'", e);
+            Logger.Error<AppLog>($"Error when trying to show dialog '{dialogType}'", e);
             throw;
         }
     }
@@ -142,7 +119,7 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
             Window? dialog = _activeDialogs.FirstOrDefault(d => d.GetType() == dialogType);
             if (dialog == null)
             {
-                _logger.Info<AppLog>($"Dialog '{dialogType}' is not currently active");
+                Logger.Info<AppLog>($"Dialog '{dialogType}' is not currently active");
                 return;
             }
 
@@ -150,21 +127,8 @@ public class DialogActivator : IDialogActivator, IEventMessageReceiver<ThemeChan
         }
         catch (Exception e)
         {
-            _logger.Error<AppLog>($"Error when trying to close dialog '{dialogType}'", e);
+            Logger.Error<AppLog>($"Error when trying to close dialog '{dialogType}'", e);
             throw;
-        }
-    }
-
-    private void OnDialogActivated(object sender, WindowActivatedEventArgs args)
-    {
-        if (sender is Window dialog)
-        {
-            dialog.Activated -= OnDialogActivated;
-
-            if (dialog.Content is FrameworkElement element)
-            {
-                element.RequestedTheme = _themeSelector.GetTheme().Theme;
-            }
         }
     }
 

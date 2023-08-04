@@ -46,7 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               CornerRadius="{ThemeResource ControlCornerRadius}">
             <Grid.Resources>
                 <Style BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="{StaticResource TextHintColorBrush}" />
+                    <Setter Property="Foreground" Value="{ThemeResource TextHintColorBrush}" />
                 </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>

@@ -59,7 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Title')}" />
                                 <Border Padding="4,1"
-                                        BorderBrush="{StaticResource BorderNormColorBrush}"
+                                        BorderBrush="{ThemeResource BorderNormColorBrush}"
                                         BorderThickness="1"
                                         CornerRadius="4">
                                     <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Border>
                             </StackPanel>
 
-                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Description')}"
                                        TextWrapping="Wrap" />
@@ -84,7 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Title')}" />
 
-                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardUdp_Description')}"
                                        TextWrapping="Wrap" />
@@ -97,7 +97,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Title')}" />
 
-                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnUdp_Description')}"
                                        TextWrapping="Wrap" />
@@ -113,7 +113,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Title')}" />
 
-                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description')}"
                                        TextWrapping="Wrap" />
@@ -123,7 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </labs:SettingsCard>
 
             <TextBlock Style="{StaticResource CaptionTextBlockStyle}">
-                <Run Foreground="{StaticResource TextWeakColorBrush}"
+                <Run Foreground="{ThemeResource TextWeakColorBrush}"
                      Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Explanation')}" />
 
                 <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"

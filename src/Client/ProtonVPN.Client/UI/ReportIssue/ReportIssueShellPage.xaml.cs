@@ -34,14 +34,11 @@ public sealed partial class ReportIssueShellPage : IShellPage
 
     public void Initialize(Window window)
     {
-        // Set Title bar
-        window.ExtendsContentIntoTitleBar = true;
-        window.SetTitleBar(WindowTitleBar);
-
-        // Set Window title
-        window.Title = ViewModel.WindowTitle;
-
-        // Set Frame
         ViewModel.InitializeViewNavigator(window, NavigationFrame);
+    }
+
+    public void Reset()
+    {
+        ViewModel.ResetViewNavigator();
     }
 }

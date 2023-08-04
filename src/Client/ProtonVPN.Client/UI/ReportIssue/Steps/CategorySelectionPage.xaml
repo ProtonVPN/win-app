@@ -25,55 +25,48 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:aprop="using:ProtonVPN.Client.Common.UI.AttachedProperties"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:models="using:ProtonVPN.Client.UI.ReportIssue.Models"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:StepContentControl CurrentStep="{x:Bind ViewModel.CurrentStep}"
-                               Header="{x:Bind ViewModel.StepsHeader}"
-                               MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
-                               MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
-                               TotalSteps="{x:Bind ViewModel.TotalSteps}">
+    <Grid RowSpacing="16">
 
-        <Grid RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   AutomationProperties.AutomationId="CategorySelectionPageHeader"
+                   AutomationProperties.HeadingLevel="Level1"
+                   Style="{StaticResource SubtitleTextBlockStyle}"
+                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Header')}"
+                   TextWrapping="Wrap" />
 
-            <TextBlock Grid.Row="0"
-                       HorizontalAlignment="Center"
-                       AutomationProperties.AutomationId="CategorySelectionPageHeader"
-                       AutomationProperties.HeadingLevel="Level1"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Header')}"
-                       TextWrapping="Wrap" />
-
-            <ScrollViewer Grid.Row="1"
-                          Margin="0,0,-24,0"
-                          Padding="0,0,24,0"
-                          VerticalScrollBarVisibility="Auto">
-                <ItemsRepeater DataContext="{x:Bind ViewModel}"
-                               ItemsSource="{x:Bind ViewModel.Categories}">
-                    <ItemsRepeater.ItemTemplate>
-                        <DataTemplate x:DataType="models:IssueCategory">
-                            <Grid>
-                                <Border x:Name="proxy"
-                                        aprop:AncestorSource.AncestorType="ItemsRepeater" />
-                                <labs:SettingsCard AutomationProperties.AutomationId="IssueCategorySettingsCard"
-                                                   Command="{Binding DataContext.DataContext.SelectCategoryCommand, ElementName=proxy}"
-                                                   CommandParameter="{x:Bind}"
-                                                   Header="{x:Bind Name}"
-                                                   HeaderIcon="{x:Bind Icon}"
-                                                   IsClickEnabled="True"
-                                                   Style="{StaticResource DefaultSettingsCardStyle}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsRepeater.ItemTemplate>
-                </ItemsRepeater>
-            </ScrollViewer>
-        </Grid>
-    </custom:StepContentControl>
+        <ScrollViewer Grid.Row="1"
+                      Margin="0,0,-24,0"
+                      Padding="0,0,24,0"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsRepeater DataContext="{x:Bind ViewModel}"
+                           ItemsSource="{x:Bind ViewModel.Categories, Mode=OneTime}">
+                <ItemsRepeater.ItemTemplate>
+                    <DataTemplate x:DataType="models:IssueCategory">
+                        <Grid>
+                            <Border x:Name="proxy"
+                                    aprop:AncestorSource.AncestorType="ItemsRepeater" />
+                            <labs:SettingsCard AutomationProperties.AutomationId="IssueCategorySettingsCard"
+                                               Command="{Binding DataContext.DataContext.SelectCategoryCommand, ElementName=proxy}"
+                                               CommandParameter="{x:Bind}"
+                                               Header="{x:Bind Name}"
+                                               HeaderIcon="{x:Bind Icon}"
+                                               IsClickEnabled="True"
+                                               Style="{StaticResource DefaultSettingsCardStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
+        </ScrollViewer>
+    </Grid>
 </Page>

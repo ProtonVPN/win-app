@@ -23,25 +23,43 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
+    <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+
+            <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ContentDialogForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ContentDialogBackground" ResourceKey="BackgroundNormColorBrush" />
+
+            <StaticResource x:Key="ContentDialogCommandSpaceBackground" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="ContentDialogCommandSpaceBorderBrush" ResourceKey="BorderWeakColorBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+
+            <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ContentDialogForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ContentDialogBackground" ResourceKey="BackgroundNormColorBrush" />
+
+            <StaticResource x:Key="ContentDialogCommandSpaceBackground" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="ContentDialogCommandSpaceBorderBrush" ResourceKey="BorderWeakColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <!--  ContentDialog creates another popup behind to prevent interacting with the main window. Override this brush to make it transparent  -->
+    <StaticResource x:Key="SystemControlPageBackgroundMediumAltMediumBrush" ResourceKey="TransparentColorBrush" />
+
     <x:Double x:Key="ContentDialogWidth">352.0</x:Double>
-    <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderNormColorBrush" />
     <Thickness x:Key="ContentDialogBorderWidth">1</Thickness>
     <CornerRadius x:Key="ContentDialogCornerRadius">8</CornerRadius>
-    <StaticResource x:Key="ContentDialogForeground" ResourceKey="TextNormColorBrush" />
-    <StaticResource x:Key="ContentDialogBackground" ResourceKey="BackgroundNormColorBrush" />
     <Thickness x:Key="ContentDialogPadding">24</Thickness>
 
-    <StaticResource x:Key="ContentDialogCommandSpaceBackground" ResourceKey="BackgroundWeakColorBrush" />
-    <StaticResource x:Key="ContentDialogCommandSpaceBorderBrush" ResourceKey="BorderWeakColorBrush" />
     <Thickness x:Key="ContentDialogCommandSpaceBorderThickness">0,1,0,0</Thickness>
 
     <Thickness x:Key="ContentDialogMargin">4,16</Thickness>
 
     <Thickness x:Key="ContentDialogTitleMargin">0,2,0,0</Thickness>
     <Thickness x:Key="ContentDialogContentMargin">0,-24,0,0</Thickness>
-
-    <!--  ContentDialog creates another popup behind to prevent interacting with the main window. Override this brush to make it transparent  -->
-    <StaticResource x:Key="SystemControlPageBackgroundMediumAltMediumBrush" ResourceKey="TransparentColorBrush" />
 
     <Style BasedOn="{StaticResource MessageContentDialogStyle}" TargetType="ContentDialog" />
 
@@ -64,7 +82,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Visibility="Collapsed">
 
                             <!--  Shade effect on background  -->
-                            <Rectangle Fill="{StaticResource BackgroundNormColorBrush}"
+                            <Rectangle Fill="{ThemeResource BackgroundNormColorBrush}"
                                        Opacity="0.4" />
 
                             <Border x:Name="BackgroundElement"
@@ -146,8 +164,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Padding="{TemplateBinding Padding}"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Bottom"
-                                          Background="{StaticResource ContentDialogCommandSpaceBackground}"
-                                          BorderBrush="{StaticResource ContentDialogCommandSpaceBorderBrush}"
+                                          Background="{ThemeResource ContentDialogCommandSpaceBackground}"
+                                          BorderBrush="{ThemeResource ContentDialogCommandSpaceBorderBrush}"
                                           BorderThickness="{StaticResource ContentDialogCommandSpaceBorderThickness}"
                                           XYFocusKeyboardNavigation="Enabled">
                                         <Grid.ColumnDefinitions>
@@ -375,9 +393,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
-    <Style x:Key="OverlayContentDialogStyle" TargetType="ContentDialog" BasedOn="{StaticResource MessageContentDialogStyle}">
-        <Setter Property="AutomationProperties.LandmarkType" Value="Custom"/>
-        <Setter Property="AutomationProperties.LocalizedLandmarkType" Value="{Binding Title, RelativeSource={RelativeSource Mode=Self}}"/>
+    <Style x:Key="OverlayContentDialogStyle" BasedOn="{StaticResource MessageContentDialogStyle}" TargetType="ContentDialog">
+        <Setter Property="AutomationProperties.LandmarkType" Value="Custom" />
+        <Setter Property="AutomationProperties.LocalizedLandmarkType" Value="{Binding Title, RelativeSource={RelativeSource Mode=Self}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentDialog">
@@ -386,7 +404,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Visibility="Collapsed">
 
                             <!--  Shade effect on background  -->
-                            <Rectangle Fill="{StaticResource BackgroundNormColorBrush}"
+                            <Rectangle Fill="{ThemeResource BackgroundNormColorBrush}"
                                        Opacity="0.4" />
 
                             <!--  Close dialog when clicking outside of it  -->
@@ -435,13 +453,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Grid.Column="0"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Top"
+                                                        AutomationProperties.HeadingLevel="Level1"
                                                         Content="{TemplateBinding Title}"
                                                         ContentTemplate="{TemplateBinding TitleTemplate}"
                                                         FontFamily="{StaticResource ContentControlThemeFontFamily}"
                                                         FontSize="{StaticResource SubtitleFontSize}"
                                                         FontWeight="{StaticResource SubtitleFontWeight}"
                                                         Foreground="{TemplateBinding Foreground}"
-                                                        AutomationProperties.HeadingLevel="Level1"
                                                         IsTabStop="False">
                                             <ContentControl.Template>
                                                 <ControlTemplate TargetType="ContentControl">
@@ -497,8 +515,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Padding="{TemplateBinding Padding}"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Bottom"
-                                          Background="{StaticResource ContentDialogCommandSpaceBackground}"
-                                          BorderBrush="{StaticResource ContentDialogCommandSpaceBorderBrush}"
+                                          Background="{ThemeResource ContentDialogCommandSpaceBackground}"
+                                          BorderBrush="{ThemeResource ContentDialogCommandSpaceBorderBrush}"
                                           BorderThickness="{StaticResource ContentDialogCommandSpaceBorderThickness}"
                                           XYFocusKeyboardNavigation="Enabled">
                                         <Grid.ColumnDefinitions>

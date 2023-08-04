@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE705;" />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.NetShieldFeatureState}" />
             </labs:SettingsCard>
 
@@ -68,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xEF1F;" />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.KillSwitchFeatureState}" />
             </labs:SettingsCard>
 
@@ -81,7 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xF591;" />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.PortForwardingFeatureState}" />
             </labs:SettingsCard>
 
@@ -94,7 +94,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xEDA3;" />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.SplitTunnelingFeatureState}" />
             </labs:SettingsCard>
 
@@ -110,7 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:Servers />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.ConnectionProtocolState}" />
             </labs:SettingsCard>
 
@@ -123,7 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <labs:SettingsCard.HeaderIcon>
                     <pathicons:Rocket />
                 </labs:SettingsCard.HeaderIcon>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}" />
             </labs:SettingsCard>
 
@@ -272,7 +272,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Style="{StaticResource SecondaryButtonStyle}" />
 
             <StackPanel Margin="0,16,0,0">
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}">
                     <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_AppVersion')}" /><Run Text=":" />
                     <Run Text="{x:Bind ViewModel.ClientVersionDescription}" />
@@ -280,7 +280,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_About')}" />
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}">
                     <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_OperatingSystemVersion')}" /><Run Text=":" />
                     <Run Text="{x:Bind ViewModel.OperatingSystemVersionDescription}" />

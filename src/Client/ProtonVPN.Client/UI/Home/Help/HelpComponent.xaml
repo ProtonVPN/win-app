@@ -42,13 +42,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:GhostButton.Flyout>
             <Flyout Placement="TopEdgeAlignedRight">
                 <StackPanel>
-                    <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                Style="{StaticResource CaptionTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Header')}" />
                     <ProgressRing Width="24"
                                   Height="24"
                                   Margin="0,16,0,0"
-                                  Foreground="{StaticResource TextNormColorBrush}"
+                                  Foreground="{ThemeResource TextNormColorBrush}"
                                   IsActive="{x:Bind ViewModel.HasCategories, Converter={StaticResource NotBooleanToBooleanConverter}}"
                                   Visibility="{x:Bind ViewModel.HasCategories, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                     <ItemsRepeater Margin="-16,8,-16,-15"

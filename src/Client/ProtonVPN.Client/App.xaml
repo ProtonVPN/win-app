@@ -23,22 +23,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light"
-                                    Source="ms-appx:///ProtonVPN.Client.Common.UI/Themes/LightTheme.xaml" />
-                <ResourceDictionary x:Key="Dark"
-                                    Source="ms-appx:///ProtonVPN.Client.Common.UI/Themes/DarkTheme.xaml" />
-            </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
+
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 
-                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Converters.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Colors.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Brushes.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Converters.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Typography.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Illustrations.xaml" />
 
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/TextBoxStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ButtonStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/GhostButtonStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/HyperlinkStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/HyperlinkButtonStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ToggleSwitchStyles.xaml" />
@@ -46,7 +43,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/RadioButtonStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/NavigationViewStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ExpanderStyles.xaml" />
-                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/MenuFlyoutStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/FlyoutStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/PivotStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/PageContentControlStyles.xaml" />
@@ -66,11 +62,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="WindowCaptionForegroundDisabled"
                              Color="{ThemeResource TextNormColor}" />
 
-            <x:Double x:Key="TitleBarHeight">48.0</x:Double>
-            <Thickness x:Key="TitleBarMargin">48,0,128,0</Thickness>
+            <GridLength x:Key="TitleBarButtonsTotalLength">140.0</GridLength>
+
+            <x:Double x:Key="TitleBarHeight">42.0</x:Double>
+            <Thickness x:Key="TitleBarMargin">48,2,1,2</Thickness>
 
             <x:Double x:Key="CompactTitleBarHeight">32.0</x:Double>
-            <Thickness x:Key="CompactTitleBarMargin">16,0,128,0</Thickness>
+            <Thickness x:Key="CompactTitleBarMargin">1,2</Thickness>
 
             <x:Double x:Key="LoginPageContentWidth">328</x:Double>
         </ResourceDictionary>

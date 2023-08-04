@@ -27,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:NotBooleanToBooleanConverter x:Key="NotBooleanToBooleanConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:BooleanToNavigationBackButtonVisibilityConverter x:Key="BooleanToNavigationBackButtonVisibilityConverter" />
+    <converters:BooleanToNavigationPaneDisplayModeConverter x:Key="BooleanToNavigationPaneDisplayModeConverter" />
     <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
     <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter"/>
     <converters:DoubleToGridLengthConverter x:Key="DoubleToStarGridLengthConverter"

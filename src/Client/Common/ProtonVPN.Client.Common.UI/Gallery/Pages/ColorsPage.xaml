@@ -34,7 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="ColorGroupTextBlockStyle" BasedOn="{StaticResource SubtitleTextBlockStyle}" TargetType="TextBlock">
-                <Setter Property="Foreground" Value="{StaticResource TextNormColorBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
                 <Setter Property="Margin" Value="4,12,24,0" />
             </Style>
         </ResourceDictionary>
@@ -70,7 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource PrimaryColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource PrimaryColorBrush}"
                                    Header="primary"
                                    ResourceName="PrimaryColorBrush" />
         </StackPanel>
@@ -83,13 +83,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource LinkNormColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource LinkNormColorBrush}"
                                    Header="link-norm"
                                    ResourceName="LinkNormColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource LinkHoverColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource LinkHoverColorBrush}"
                                    Header="link-hover"
                                    ResourceName="LinkHoverColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource LinkActiveColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource LinkActiveColorBrush}"
                                    Header="link-active"
                                    ResourceName="LinkActiveColorBrush" />
         </StackPanel>
@@ -102,13 +102,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionNormColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionNormColorBrush}"
                                    Header="interaction-norm"
                                    ResourceName="InteractionNormColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionNormHoverColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionNormHoverColorBrush}"
                                    Header="interaction-norm-hover"
                                    ResourceName="InteractionNormHoverColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionNormActiveColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionNormActiveColorBrush}"
                                    Header="interaction-norm-active"
                                    ResourceName="InteractionNormActiveColorBrush" />
         </StackPanel>
@@ -121,13 +121,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionWeakColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionWeakColorBrush}"
                                    Header="interaction-weak"
                                    ResourceName="InteractionWeakColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionWeakHoverColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionWeakHoverColorBrush}"
                                    Header="interaction-weak-hover"
                                    ResourceName="InteractionWeakHoverColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionWeakActiveColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionWeakActiveColorBrush}"
                                    Header="interaction-weak-active"
                                    ResourceName="InteractionWeakActiveColorBrush" />
         </StackPanel>
@@ -140,13 +140,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionDefaultColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionDefaultColorBrush}"
                                    Header="interaction-default"
                                    ResourceName="InteractionDefaultColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionDefaultHoverColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionDefaultHoverColorBrush}"
                                    Header="interaction-default-hover"
                                    ResourceName="InteractionDefaultHoverColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource InteractionDefaultActiveColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionDefaultActiveColorBrush}"
                                    Header="interaction-default-active"
                                    ResourceName="InteractionDefaultActiveColorBrush" />
         </StackPanel>
@@ -159,19 +159,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource TextNormColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource TextNormColorBrush}"
                                    Header="text-norm"
                                    ResourceName="TextNormColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource TextWeakColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource TextWeakColorBrush}"
                                    Header="text-weak"
                                    ResourceName="TextWeakColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource TextHintColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource TextHintColorBrush}"
                                    Header="text-hint"
                                    ResourceName="TextHintColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource TextDisabledColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource TextDisabledColorBrush}"
                                    Header="text-disabled"
                                    ResourceName="TextDisabledColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource TextInvertColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource TextInvertColorBrush}"
                                    Header="text-invert"
                                    ResourceName="TextInvertColorBrush" />
         </StackPanel>
@@ -184,16 +184,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource BackgroundNormColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BackgroundNormColorBrush}"
                                    Header="background-norm"
                                    ResourceName="BackgroundNormColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource BackgroundWeakColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BackgroundWeakColorBrush}"
                                    Header="background-weak"
                                    ResourceName="BackgroundWeakColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource BackgroundStrongColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BackgroundStrongColorBrush}"
                                    Header="background-strong"
                                    ResourceName="BackgroundStrongColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource BackgroundInvertColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BackgroundInvertColorBrush}"
                                    Header="background-invert"
                                    ResourceName="BackgroundInvertColorBrush" />
         </StackPanel>
@@ -206,16 +206,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource BorderNormColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BorderNormColorBrush}"
                                    Header="border-norm"
                                    ResourceName="BorderNormColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource BorderWeakColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BorderWeakColorBrush}"
                                    Header="border-weak"
                                    ResourceName="BorderWeakColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource BorderFocusColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BorderFocusColorBrush}"
                                    Header="border-focus"
                                    ResourceName="BorderFocusColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource BorderFocusRingColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BorderFocusRingColorBrush}"
                                    Header="border-focus-ring"
                                    ResourceName="BorderFocusRingColorBrush" />
         </StackPanel>
@@ -228,13 +228,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource SignalDangerColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource SignalDangerColorBrush}"
                                    Header="signal-danger"
                                    ResourceName="SignalDangerColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource SignalWarningColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource SignalWarningColorBrush}"
                                    Header="signal-warning"
                                    ResourceName="SignalWarningColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource SignalSuccessColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource SignalSuccessColorBrush}"
                                    Header="signal-success"
                                    ResourceName="SignalSuccessColorBrush" />
         </StackPanel>
@@ -247,7 +247,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource BackdropNormColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource BackdropNormColorBrush}"
                                    Header="backdrop-norm"
                                    ResourceName="BackdropNormColorBrush" />
         </StackPanel>
@@ -260,7 +260,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource VpnGreenColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource VpnGreenColorBrush}"
                                    Header="proton-vpn-green"
                                    ResourceName="VpnGreenColorBrush" />
         </StackPanel>
@@ -273,19 +273,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{StaticResource GradientFadingColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource GradientFadingColorBrush}"
                                    Header="gradient-fading"
                                    ResourceName="GradientFadingColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource GradientUnprotectedColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource GradientUnprotectedColorBrush}"
                                    Header="gradient-unprotected"
                                    ResourceName="GradientUnprotectedColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource GradientConnectingColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource GradientConnectingColorBrush}"
                                    Header="gradient-connecting"
                                    ResourceName="GradientConnectingColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource GradientProtectedColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource GradientProtectedColorBrush}"
                                    Header="gradient-protected"
                                    ResourceName="GradientProtectedColorBrush" />
-            <gallery:ColorsControl ColorBrush="{StaticResource GradientConnectionLineColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource GradientConnectionLineColorBrush}"
                                    Header="gradient-connection-line"
                                    ResourceName="GradientConnectionLineColorBrush" />
         </StackPanel>

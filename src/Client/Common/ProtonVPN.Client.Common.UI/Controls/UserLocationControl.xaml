@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Opacity="0"
                    Style="{StaticResource BodyStrongTextBlockStyle}">
             <Run Text="{x:Bind Country, Mode=OneWay}" /><Run x:Name="PART_HiddenSeparator" /><Run FontWeight="{StaticResource BodyFontWeight}"
-                                                                                                  Foreground="{StaticResource TextWeakColorBrush}"
+                                                                                                  Foreground="{ThemeResource TextWeakColorBrush}"
                                                                                                   Text="{x:Bind IpAddress, Mode=OneWay}" />
         </TextBlock>
 
@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Style="{StaticResource BodyStrongTextBlockStyle}">
             <Run x:Name="PART_ScrambledCountry" /><Run x:Name="PART_Separator" /><Run x:Name="PART_ScrambledIpAddress" 
                                                                                       FontWeight="{StaticResource BodyFontWeight}"
-                                                                                      Foreground="{StaticResource TextWeakColorBrush}" />
+                                                                                      Foreground="{ThemeResource TextWeakColorBrush}" />
         </TextBlock>
     </Grid>
 </UserControl>

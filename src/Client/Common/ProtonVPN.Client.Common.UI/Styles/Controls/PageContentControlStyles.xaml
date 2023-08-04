@@ -26,8 +26,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style TargetType="controls:PageContentControl">
         <Setter Property="Padding" Value="{StaticResource DefaultPageContentPadding}" />
-        <Setter Property="Background" Value="{StaticResource BackgroundNormColorBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderWeakColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource BackgroundNormColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource BorderWeakColorBrush}" />
         <Setter Property="BorderThickness" Value="1,1,0,0" />
         <Setter Property="CornerRadius" Value="8,0,0,0" />
     </Style>

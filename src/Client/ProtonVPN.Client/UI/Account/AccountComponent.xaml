@@ -41,7 +41,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel>
                         <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
                                    Text="{x:Bind ViewModel.Username, Mode=OneWay}" />
-                        <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                        <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Text="{x:Bind ViewModel.VpnPlan, Mode=OneWay}" />
                     </StackPanel>

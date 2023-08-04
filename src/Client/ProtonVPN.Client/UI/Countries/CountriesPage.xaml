@@ -63,7 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Border Margin="0,0,0,24"
                     Padding="24,16"
                     x:DefaultBindMode="TwoWay"
-                    BorderBrush="{StaticResource BorderWeakColorBrush}"
+                    BorderBrush="{ThemeResource BorderWeakColorBrush}"
                     BorderThickness="1">
 
                 <StackPanel Orientation="Vertical"

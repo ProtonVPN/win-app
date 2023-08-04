@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
@@ -29,8 +30,9 @@ using ProtonVPN.Client.UI.ReportIssue.Models;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
-public partial class QuickFixesViewModel : ReportIssuePageViewModelBase
+public partial class QuickFixesViewModel : PageViewModelBase<IReportIssueViewNavigator>
 {
+    private readonly IReportIssueDataProvider _dataProvider;
     private readonly IUrls _urls;
 
     [ObservableProperty]
@@ -43,12 +45,10 @@ public partial class QuickFixesViewModel : ReportIssuePageViewModelBase
     public override string? Title => Category?.Name;
 
     public QuickFixesViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider, IUrls urls)
-        : base(viewNavigator, localizationProvider, dataProvider)
+        : base(viewNavigator, localizationProvider)
     {
+        _dataProvider = dataProvider;
         _urls = urls;
-
-        CurrentStep = 2;
-        TotalSteps = 3;
     }
 
     public override void OnNavigatedTo(object parameter)
@@ -73,16 +73,6 @@ public partial class QuickFixesViewModel : ReportIssuePageViewModelBase
         }
     }
 
-    public override void NavigateBackward()
-    {
-        ViewNavigator.NavigateTo<CategorySelectionViewModel>();
-    }
-
-    public override bool CanNavigateBackward()
-    {
-        return true;
-    }
-
     protected override async void OnLanguageChanged()
     {
         base.OnLanguageChanged();
@@ -97,7 +87,7 @@ public partial class QuickFixesViewModel : ReportIssuePageViewModelBase
             return;
         }
 
-        List<IssueCategoryResponse> categories = await DataProvider.GetCategoriesAsync();
+        List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
 
         Category = ReportIssueMapper.Map(categories.First(c => c.SubmitLabel == Category.Key));
     }

@@ -17,72 +17,80 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Activation;
-using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Models.Themes;
-using ProtonVPN.Client.UI;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Activation;
 
-public class MainWindowActivator : IMainWindowActivator, IEventMessageReceiver<LoginSuccessMessage>, IEventMessageReceiver<LogoutMessage>
+public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IEventMessageReceiver<LoginSuccessMessage>, IEventMessageReceiver<LogoutMessage>
 {
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
-    private readonly IThemeSelector _themeSelector;
-    private readonly ShellViewModel _shellViewModel;
+    private readonly IDialogActivator _dialogActivator;
 
     public MainWindowActivator(ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
         IEnumerable<IActivationHandler> activationHandlers,
+        ILogger logger,
         IThemeSelector themeSelector,
-        ShellViewModel shellViewModel)
+        IDialogActivator dialogActivator)
+        : base(logger, themeSelector)
     {
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
-        _themeSelector = themeSelector;
-        _shellViewModel = shellViewModel;
+        _dialogActivator = dialogActivator;
+
+        // By default app can't be resized, minimized, maximized until user logged in
+        App.MainWindow.IsMinimizable = false;
+        App.MainWindow.IsMaximizable = false;
+        App.MainWindow.IsResizable = false;
     }
 
     public async Task ActivateAsync(LaunchActivatedEventArgs activationArgs)
     {
-        // Set the MainWindow Content.
-        if (App.MainWindow.Content == null)
-        {
-            Page page = new ShellPage(_shellViewModel);
+        App.MainWindow.Closed += OnMainWindowClosed;
 
-            App.MainWindow.Content = page;
-
-            if (page is IShellPage shellPage)
-            {
-                shellPage.Initialize(App.MainWindow);
-            }
-        }
+        App.MainWindow.ApplyTheme(ThemeSelector.GetTheme().Theme);
 
         // Handle activation via ActivationHandlers.
         await HandleActivationAsync(activationArgs);
 
         // Activate the MainWindow.
         App.MainWindow.Activate();
-        _themeSelector.Initialize();
-
-        // Set the theme again once all priority events are done such as UI rendering, in order to fix the TitleBar bug.
-        App.MainWindow.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () => _themeSelector.Initialize());
     }
 
     public void Receive(LoginSuccessMessage message)
     {
+        App.MainWindow.IsMinimizable = true;
         App.MainWindow.IsMaximizable = true;
         App.MainWindow.IsResizable = true;
     }
 
     public void Receive(LogoutMessage message)
     {
+        App.MainWindow.IsMinimizable = false;
         App.MainWindow.IsMaximizable = false;
         App.MainWindow.IsResizable = false;
+
+        // Force dark theme when logged out.
+        // Theme is saved in user settings which cannot be retrieved until user logged in
+        App.MainWindow.ApplyTheme(ElementTheme.Dark);
+    }
+
+    protected override void OnThemeChanged(ElementTheme theme)
+    {
+        App.MainWindow.ApplyTheme(theme);
+    }
+
+    private void OnMainWindowClosed(object sender, WindowEventArgs args)
+    {
+        App.MainWindow.Closed -= OnMainWindowClosed;
+
+        _dialogActivator.CloseAll();
     }
 
     private async Task HandleActivationAsync(LaunchActivatedEventArgs activationArgs)

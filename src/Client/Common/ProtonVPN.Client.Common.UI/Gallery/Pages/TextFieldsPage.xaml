@@ -145,7 +145,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Height="1"
                 Margin="0,16,0,4"
                 HorizontalAlignment="Left"
-                Background="{StaticResource BackgroundStrongColorBrush}" />
+                Background="{ThemeResource BackgroundStrongColorBrush}" />
 
         <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
                    Text="With Headers..." />

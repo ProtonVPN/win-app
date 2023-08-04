@@ -47,9 +47,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Height="{StaticResource GradientHeight}"
               VerticalAlignment="Top">
             <Border x:Name="OverlayGradient"
-                    Background="{StaticResource GradientFadingColorBrush}" />
+                    Background="{ThemeResource GradientFadingColorBrush}" />
             <Border x:Name="StatusGradient"
-                    Background="{StaticResource GradientUnprotectedColorBrush}" />
+                    Background="{ThemeResource GradientUnprotectedColorBrush}" />
         </Grid>
 
         <StackPanel x:Name="RootContainer"
@@ -61,18 +61,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Orientation="Horizontal">
                 <Grid AutomationProperties.AutomationId="ProtectionIconContainer">
                     <icons:UnprotectedLock x:Name="VpnStatusIconDisconnected"
-                                           Foreground="{StaticResource SignalDangerColorBrush}"
+                                           Foreground="{ThemeResource SignalDangerColorBrush}"
                                            Visibility="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
                     <ProgressRing x:Name="VpnStatusIconConnecting"
                                   Width="24"
                                   Height="24"
-                                  Foreground="{StaticResource TextNormColorBrush}"
+                                  Foreground="{ThemeResource TextNormColorBrush}"
                                   IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
                     <Grid Visibility="{x:Bind ViewModel.IsConnected, Mode=OneWay}">
                         <icons:ProtectedLock x:Name="VpnStatusIconConnected"
-                                             Foreground="{StaticResource VpnGreenColorBrush}" />
+                                             Foreground="{ThemeResource VpnGreenColorBrush}" />
                         <icons:SecureCoreProtectedLock x:Name="VpnStatusSecureCoreIconConnected"
-                                                       Foreground="{StaticResource VpnGreenColorBrush}" />
+                                                       Foreground="{ThemeResource VpnGreenColorBrush}" />
                     </Grid>
                 </Grid>
                 <TextBlock x:Name="VpnStatusTitle"
@@ -154,7 +154,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Duration="{StaticResource BackgroundAnimationDuration}" />
                     </Storyboard>
                     <VisualState.Setters>
-                        <Setter Target="VpnStatusTitle.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                        <Setter Target="VpnStatusTitle.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Connected">
@@ -175,7 +175,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Duration="{StaticResource BackgroundAnimationDuration}" />
                     </Storyboard>
                     <VisualState.Setters>
-                        <Setter Target="VpnStatusTitle.Foreground" Value="{StaticResource VpnGreenColorBrush}" />
+                        <Setter Target="VpnStatusTitle.Foreground" Value="{ThemeResource VpnGreenColorBrush}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Disconnected">
@@ -197,7 +197,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Duration="{StaticResource BackgroundAnimationDuration}" />
                     </Storyboard>
                     <VisualState.Setters>
-                        <Setter Target="VpnStatusTitle.Foreground" Value="{StaticResource SignalDangerColorBrush}" />
+                        <Setter Target="VpnStatusTitle.Foreground" Value="{ThemeResource SignalDangerColorBrush}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

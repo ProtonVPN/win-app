@@ -79,6 +79,6 @@
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
     <PackageVersion Include="WinUI3Localizer" Version="1.0.1" />
-    <PackageVersion Include="WinUIEx" Version="2.1" />
+    <PackageVersion Include="WinUIEx" Version="2.2.0" />
   </ItemGroup>
 </Project>

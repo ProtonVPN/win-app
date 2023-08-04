@@ -22,8 +22,9 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.UI.Windowing;
 using ProtonVPN.Client.Common.UI.Windowing.System;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client;
@@ -39,8 +40,10 @@ public sealed partial class MainWindow
         InitializeComponent();
 
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
-        Content = null;
-        Title = App.APPLICATION_NAME;
+        AppWindow.Title = Shell.ViewModel.Title;
+        AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+
+        Shell.Initialize(this);
 
         _eventMessageSender = App.GetService<IEventMessageSender>();
 
@@ -50,6 +53,11 @@ public sealed partial class MainWindow
 
         Closed += OnWindowClosed;
         VisibilityChanged += OnVisibilityChanged;
+    }
+
+    private void OnActivated(object sender, WindowActivatedEventArgs args)
+    {
+        AppTitleBar.Opacity = args.WindowActivationState != WindowActivationState.Deactivated ? 1.0 : 0.5;
     }
 
     private void SetInitialSizeAndPosition()
@@ -136,5 +144,10 @@ public sealed partial class MainWindow
         return mainWindow.Presenter is not null and OverlappedPresenter overlappedPresenter
                ? overlappedPresenter.State
                : null;
+    }
+
+    private void OnAppTitleBarSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        this.SetDragAreaFromTitleBar(AppTitleBar);
     }
 }

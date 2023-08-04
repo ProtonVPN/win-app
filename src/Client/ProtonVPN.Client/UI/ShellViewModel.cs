@@ -43,9 +43,10 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
 
-    public override string? Title => App.APPLICATION_NAME;
+    [ObservableProperty]
+    private bool _isLoggedIn;
 
-    public bool IsLoginPage => CurrentPage is LoginViewModel;
+    public override string? Title => App.APPLICATION_NAME;
 
     public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
 
@@ -86,7 +87,7 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
     {
         base.OnNavigated(sender, e);
 
-        OnPropertyChanged(nameof(IsLoginPage));
+        IsLoggedIn = CurrentPage is not LoginViewModel;
 
         SelectedNavigationPage = CurrentPage as NavigationPageViewModelBase
                               ?? NavigationPages.FirstOrDefault(p => p.IsHostFor(CurrentPage));

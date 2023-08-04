@@ -22,6 +22,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
@@ -32,8 +33,9 @@ using ProtonVPN.Common.Abstract;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
-public partial class ContactFormViewModel : ReportIssuePageViewModelBase
+public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNavigator>
 {
+    private readonly IReportIssueDataProvider _dataProvider;
     private readonly IReportIssueSender _reportIssueSender;
 
     [ObservableProperty]
@@ -53,12 +55,10 @@ public partial class ContactFormViewModel : ReportIssuePageViewModelBase
     public NotifyErrorObservableCollection<IssueInputField> InputFields { get; }
 
     public ContactFormViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider, IReportIssueSender reportIssueSender)
-        : base(viewNavigator, localizationProvider, dataProvider)
+        : base(viewNavigator, localizationProvider)
     {
+        _dataProvider = dataProvider;
         _reportIssueSender = reportIssueSender;
-
-        CurrentStep = 3;
-        TotalSteps = 3;
 
         InputFields = new();
         InputFields.ItemErrorsChanged += OnInputFieldsItemErrorsChanged;
@@ -69,23 +69,6 @@ public partial class ContactFormViewModel : ReportIssuePageViewModelBase
         base.OnNavigatedTo(parameter);
 
         Category = parameter as IssueCategory;
-    }
-
-    public override void NavigateBackward()
-    {
-        if (ViewNavigator.CanGoBack)
-        {
-            ViewNavigator.GoBack();
-        }
-        else
-        {
-            ViewNavigator.NavigateTo<CategorySelectionViewModel>();
-        }
-    }
-
-    public override bool CanNavigateBackward()
-    {
-        return true;
     }
 
     [RelayCommand(CanExecute = nameof(CanSendReport))]
@@ -143,7 +126,7 @@ public partial class ContactFormViewModel : ReportIssuePageViewModelBase
             return;
         }
 
-        List<IssueCategoryResponse> categories = await DataProvider.GetCategoriesAsync();
+        List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
 
         Category = ReportIssueMapper.Map(categories.First(c => c.SubmitLabel == Category.Key));
     }

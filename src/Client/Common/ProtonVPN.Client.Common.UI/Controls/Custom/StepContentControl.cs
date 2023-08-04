@@ -40,6 +40,9 @@ public class StepContentControl : ContentControl
     public static readonly DependencyProperty MoveForwardCommandProperty =
         DependencyProperty.Register(nameof(MoveForwardCommand), typeof(ICommand), typeof(StepContentControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty IsHeaderVisibleProperty =
+        DependencyProperty.Register(nameof(IsHeaderVisible), typeof(bool), typeof(StepContentControl), new PropertyMetadata(true));
+
     public string Header
     {
         get => (string)GetValue(HeaderProperty);
@@ -68,6 +71,12 @@ public class StepContentControl : ContentControl
     {
         get => (ICommand)GetValue(MoveForwardCommandProperty);
         set => SetValue(MoveForwardCommandProperty, value);
+    }
+
+    public bool IsHeaderVisible
+    {
+        get => (bool)GetValue(IsHeaderVisibleProperty);
+        set => SetValue(IsHeaderVisibleProperty, value);
     }
 
     public StepContentControl()

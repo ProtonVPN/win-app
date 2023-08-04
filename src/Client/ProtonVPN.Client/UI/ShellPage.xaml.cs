@@ -23,7 +23,6 @@ using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Settings;
 using Windows.System;
 
@@ -33,10 +32,20 @@ public sealed partial class ShellPage : IShellPage
 {
     public ShellViewModel ViewModel { get; }
 
-    public ShellPage(ShellViewModel viewModel)
+    public ShellPage()
     {
-        ViewModel = viewModel;
+        ViewModel = App.GetService<ShellViewModel>();
         InitializeComponent();
+    }
+
+    public void Initialize(Window window)
+    {
+        ViewModel.InitializeViewNavigator(window, NavigationFrame);
+    }
+
+    public void Reset()
+    {
+        ViewModel.ResetViewNavigator();
     }
 
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
@@ -66,9 +75,6 @@ public sealed partial class ShellPage : IShellPage
     {
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
-
-        App.MainWindow.IsResizable = !ViewModel.IsLoginPage;
-        App.MainWindow.IsMaximizable = !ViewModel.IsLoginPage;
     }
 
     private void OnNavigationViewDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
@@ -91,16 +97,5 @@ public sealed partial class ShellPage : IShellPage
                 ViewModel.NavigateTo(pageKey);
             }
         }
-    }
-
-    public void Initialize(Window window)
-    {
-        // Set title bar
-        window.ExtendsContentIntoTitleBar = true;
-        window.SetTitleBar(AppTitleBar);
-        AppTitleBarText.Text = ViewModel.Title;
-
-        // Set navigation frame
-        ViewModel.InitializeViewNavigator(window, NavigationFrame);
     }
 }

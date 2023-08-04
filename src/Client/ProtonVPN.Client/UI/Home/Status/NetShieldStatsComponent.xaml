@@ -46,7 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        TextAlignment="Center" />
                             <TextBlock Margin="10,0"
                                        HorizontalAlignment="Center"
-                                       Foreground="{StaticResource TextWeakColorBrush}"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                        TextAlignment="Center" />

@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </labs:SettingsCard>
 
             <TextBlock Margin="0,8,0,0"
-                       Foreground="{StaticResource TextWeakColorBrush}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}">
                 <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_Footer')}" />
                 <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"

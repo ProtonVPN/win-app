@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              Width="32"
              Height="4"
              x:DefaultBindMode="OneWay"
-             Background="{StaticResource BackgroundStrongColorBrush}"
+             Background="{ThemeResource BackgroundStrongColorBrush}"
              CornerRadius="2"
              mc:Ignorable="d">
 
@@ -41,7 +41,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Border x:Name="PART_ServerLoadIndicator"
                 Grid.Column="0"
-                Background="{StaticResource TextNormColorBrush}"
+                Background="{ThemeResource TextNormColorBrush}"
                 CornerRadius="{x:Bind CornerRadius}">
             <Border.BackgroundTransition>
                 <BrushTransition Duration="0:0:0.5" />
@@ -52,17 +52,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <VisualStateGroup x:Name="ServerLoadStates">
                 <VisualState x:Name="LowServerLoad">
                     <VisualState.Setters>
-                        <Setter Target="PART_ServerLoadIndicator.Background" Value="{StaticResource SignalSuccessColorBrush}" />
+                        <Setter Target="PART_ServerLoadIndicator.Background" Value="{ThemeResource SignalSuccessColorBrush}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="MediumServerLoad">
                     <VisualState.Setters>
-                        <Setter Target="PART_ServerLoadIndicator.Background" Value="{StaticResource SignalWarningColorBrush}" />
+                        <Setter Target="PART_ServerLoadIndicator.Background" Value="{ThemeResource SignalWarningColorBrush}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="HighServerLoad">
                     <VisualState.Setters>
-                        <Setter Target="PART_ServerLoadIndicator.Background" Value="{StaticResource SignalDangerColorBrush}" />
+                        <Setter Target="PART_ServerLoadIndicator.Background" Value="{ThemeResource SignalDangerColorBrush}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

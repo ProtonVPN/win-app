@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="{StaticResource BackgroundNormColorBrush}"
+    <Grid Background="{ThemeResource BackgroundNormColorBrush}"
           VerticalAlignment="Stretch">
 
         <InfoBar Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  Canvas.ZIndex="1"
                  Severity="Error"
                  Margin="0,32,0,0"
-                 BorderBrush="{StaticResource SignalDangerColorBrush}"
+                 BorderBrush="{ThemeResource SignalDangerColorBrush}"
                  CornerRadius="8"
                  IsOpen="{x:Bind ViewModel.IsToShowError, Mode=TwoWay}"
                  IsIconVisible="True"
@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Image Source="{ThemeResource ProductLogoIllustrationSource}"
                            Width="173" />
                     <Frame x:Name="LoginWindowContentFrame"
-                           Background="{StaticResource BackgroundNormColorBrush}" />
+                           Background="{ThemeResource BackgroundNormColorBrush}" />
                 </StackPanel>
             </NavigationView>
         </StackPanel>

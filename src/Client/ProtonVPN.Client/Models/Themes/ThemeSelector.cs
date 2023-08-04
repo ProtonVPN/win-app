@@ -29,6 +29,7 @@ public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChange
 {
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
+
     private readonly IList<ApplicationElementTheme> _themes = new List<ApplicationElementTheme>()
     {
         new(ElementTheme.Light),
@@ -47,20 +48,25 @@ public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChange
         return _themes;
     }
 
-    public void Initialize()
-    {
-        ApplicationElementTheme currentTheme = GetTheme();
-
-        // Force a new theme rendering, because if the theme being set already exists, it is going to be ignored and not fix the TitleBar bug.
-        //SetWindowTheme(new(ElementTheme.Light));
-        //SetWindowTheme(new(ElementTheme.Dark));
-
-        SetWindowTheme(currentTheme);
-    }
-
     public ApplicationElementTheme GetTheme()
     {
         return ConvertStringToApplicationElementTheme(_settings.Theme);
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.Theme) && message.NewValue is not null)
+        {
+            string themeString = (string)message.NewValue;
+            ApplicationElementTheme theme = ConvertStringToApplicationElementTheme(themeString);
+
+            _eventMessageSender.Send(new ThemeChangedMessage(theme));
+        }
+    }
+
+    public void SetTheme(ApplicationElementTheme theme)
+    {
+        _settings.Theme = theme.Theme.ToString();
     }
 
     private ApplicationElementTheme ConvertStringToApplicationElementTheme(string? theme)
@@ -76,29 +82,5 @@ public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChange
         }
 
         return ElementTheme.Default;
-    }
-
-    private void SetWindowTheme(ApplicationElementTheme theme)
-    {
-        if (App.MainWindow.Content is FrameworkElement rootElement)
-        {
-            rootElement.RequestedTheme = theme.Theme;
-        }
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == nameof(ISettings.Theme) && message.NewValue is not null)
-        {
-            string themeString = (string)message.NewValue;
-            ApplicationElementTheme theme = ConvertStringToApplicationElementTheme(themeString);
-            SetWindowTheme(theme);
-            _eventMessageSender.Send(new ThemeChangedMessage(theme));
-        }
-    }
-
-    public void SetTheme(ApplicationElementTheme theme)
-    {
-        _settings.Theme = theme.Theme.ToString();
     }
 }

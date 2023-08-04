@@ -29,7 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <Grid Padding="4,8"
-          BorderBrush="{StaticResource BorderWeakColorBrush}"
+          BorderBrush="{ThemeResource BorderWeakColorBrush}"
           BorderThickness="1"
           ColumnSpacing="8"
           CornerRadius="8"
@@ -49,7 +49,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
                     Spacing="6">
-            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_MyIp')}" />
             <Grid Margin="-4">
@@ -84,12 +84,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Grid.RowSpan="2"
                               Grid.Column="1"
                               VerticalAlignment="Center"
-                              Foreground="{StaticResource TextWeakColorBrush}" />
+                              Foreground="{ThemeResource TextWeakColorBrush}" />
 
         <TextBlock Grid.Row="0"
                    Grid.Column="2"
                    HorizontalAlignment="Center"
-                   Foreground="{StaticResource TextWeakColorBrush}"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
                    Style="{StaticResource CaptionTextBlockStyle}"
                    Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnIp')}" />
 

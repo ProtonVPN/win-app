@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Height="8"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
-                     Fill="{StaticResource VpnGreenColorBrush}"
+                     Fill="{ThemeResource VpnGreenColorBrush}"
                      Opacity="0.2"
                      RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
@@ -77,7 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Height="6"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
-                     Fill="{StaticResource VpnGreenColorBrush}" />
+                     Fill="{ThemeResource VpnGreenColorBrush}" />
         </Grid>
     </Viewbox>
 </base:IconUserControl>
