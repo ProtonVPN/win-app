@@ -38,6 +38,7 @@ public partial class ShellRobot
 
         Assert.IsNotNull(ApplicationIcon);
 
+        Assert.IsNotNull(ApplicationTitleBar);
         Assert.IsNotNull(MinimizeButton);
         Assert.IsNotNull(MaximizeButton);
         Assert.IsNotNull(CloseButton);

@@ -29,12 +29,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel Spacing="4">
 
         <TextBlock Margin="8,0,0,0"
-                   Foreground="{StaticResource TextWeakColorBrush}"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
                    Style="{StaticResource CaptionStrongTextBlockStyle}"
                    Text="{x:Bind Header, Mode=OneWay}" />
 
-        <Grid Background="{StaticResource BackgroundNormColorBrush}"
-              BorderBrush="{StaticResource BorderWeakColorBrush}"
+        <Grid Background="{ThemeResource BackgroundNormColorBrush}"
+              BorderBrush="{ThemeResource BorderWeakColorBrush}"
               BorderThickness="1"
               CornerRadius="8">
 
@@ -70,8 +70,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Padding="16,12"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
-                              Background="{StaticResource BackgroundWeakColorBrush}"
-                              BorderBrush="{StaticResource BorderWeakColorBrush}"
+                              Background="{ThemeResource BackgroundWeakColorBrush}"
+                              BorderBrush="{ThemeResource BorderWeakColorBrush}"
                               BorderThickness="1,0,0,0"
                               Content="{x:Bind Options, Mode=OneWay}" />
         </Grid>

@@ -57,7 +57,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Grid HorizontalAlignment="Stretch">
                 <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_Form_SignIn')}"
                            HorizontalAlignment="Center" />
-                <ProgressRing Foreground="{StaticResource TextNormColorBrush}"
+                <ProgressRing Foreground="{ThemeResource TextNormColorBrush}"
                               HorizontalAlignment="Right"
                               Width="16"
                               Height="16"

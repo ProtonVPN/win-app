@@ -43,62 +43,68 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BackgroundSizing="{TemplateBinding BackgroundSizing}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          RowSpacing="8">
+                          CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" MinHeight="26" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="26" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="26" />
-                        </Grid.ColumnDefinitions>
 
-                        <custom:GhostButton Grid.Row="0"
-                                            Grid.Column="0"
-                                            Command="{Binding MoveBackwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                            AutomationProperties.AutomationId="MoveBackwardButton">
-                            <custom:GhostButton.LeftIcon>
-                                <pathicons:ArrowLeft />
-                            </custom:GhostButton.LeftIcon>
-                        </custom:GhostButton>
+                        <Grid x:Name="HeaderContainer"
+                              RowSpacing="8"
+                              Visibility="{Binding IsHeaderVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"
+                                               MinHeight="26" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="26" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="26" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0"
-                                   Grid.Column="1"
-                                   Foreground="{StaticResource TextWeakColorBrush}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Text="{TemplateBinding Header}" 
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   AutomationProperties.AutomationId="StepsControlHeader"/>
+                            <custom:GhostButton Grid.Row="0"
+                                                Grid.Column="0"
+                                                AutomationProperties.AutomationId="MoveBackwardButton"
+                                                Command="{Binding MoveBackwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <custom:GhostButton.LeftIcon>
+                                    <pathicons:ArrowLeft />
+                                </custom:GhostButton.LeftIcon>
+                            </custom:GhostButton>
 
-                        <custom:GhostButton Grid.Row="0"
-                                            Grid.Column="2"
-                                            Command="{Binding MoveForwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                            AutomationProperties.AutomationId="MoveForwardButton">
-                            <custom:GhostButton.LeftIcon>
-                                <pathicons:ArrowRight />
-                            </custom:GhostButton.LeftIcon>
-                        </custom:GhostButton>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       AutomationProperties.AutomationId="StepsControlHeader"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{TemplateBinding Header}" />
 
-                        <ProgressBar Value="{Binding CurrentStep, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                     Maximum="{Binding TotalSteps, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                     Minimum="0"
-                                     Grid.Row="1"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="3" 
-                                     AutomationProperties.AutomationId="StepsControlProgressBar"/>
+                            <custom:GhostButton Grid.Row="0"
+                                                Grid.Column="2"
+                                                AutomationProperties.AutomationId="MoveForwardButton"
+                                                Command="{Binding MoveForwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <custom:GhostButton.LeftIcon>
+                                    <pathicons:ArrowRight />
+                                </custom:GhostButton.LeftIcon>
+                            </custom:GhostButton>
 
-                        <ContentPresenter Grid.Row="2"
-                                          Grid.Column="0"
-                                          Grid.ColumnSpan="3"
+                            <ProgressBar Grid.Row="1"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="3"
+                                         AutomationProperties.AutomationId="StepsControlProgressBar"
+                                         Maximum="{Binding TotalSteps, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                         Minimum="0"
+                                         Value="{Binding CurrentStep, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Grid>
+
+                        <ContentPresenter Grid.Row="1"
+                                          Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}"/>
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

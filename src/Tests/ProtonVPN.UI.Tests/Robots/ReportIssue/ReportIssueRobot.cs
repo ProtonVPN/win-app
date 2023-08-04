@@ -29,6 +29,10 @@ public partial class ReportIssueRobot : UIActions
     protected Window ReportIssueWindow { get; private set; }
 
     protected AutomationElement ReportIssueWindowTitle => ReportIssueWindow.ElementByAutomationId("WindowTitleLabel").AsLabel();
+    protected TitleBar ReportIssueTitleBar => ReportIssueWindow.ElementByAutomationId("TitleBar").AsTitleBar();
+    protected Button MinimizeButton => ReportIssueTitleBar.FindFirstDescendant(c => c.ByName("Minimize")).AsButton();
+    protected Button CloseButton => ReportIssueTitleBar.FindFirstDescendant(c => c.ByName("Close")).AsButton();
+
     protected Label StepsControlHeader => ReportIssueWindow.ElementByAutomationId("StepsControlHeader").AsLabel();
     protected ProgressBar StepsControlProgressBar => ReportIssueWindow.ElementByAutomationId("StepsControlProgressBar").AsProgressBar();    
     protected Label CategorySelectionPageHeader => ReportIssueWindow.ElementByAutomationId("CategorySelectionPageHeader").AsLabel();

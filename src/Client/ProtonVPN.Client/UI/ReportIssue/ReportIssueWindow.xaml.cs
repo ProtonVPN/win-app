@@ -17,15 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+
 namespace ProtonVPN.Client.UI.ReportIssue;
 
 public sealed partial class ReportIssueWindow
 {
-
     public ReportIssueWindow()
     {
         InitializeComponent();
 
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
+        AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+
+        Shell.Initialize(this);
+    }
+
+    private void OnActivated(object sender, WindowActivatedEventArgs args)
+    {
+        WindowTitleBar.Opacity = args.WindowActivationState != WindowActivationState.Deactivated ? 1.0 : 0.5;
     }
 }

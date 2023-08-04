@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -22,11 +21,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <Page x:Class="ProtonVPN.Client.UI.ShellPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:account="using:ProtonVPN.Client.UI.Account"
-      DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
+      x:DefaultBindMode="OneWay"
       Loaded="OnLoaded">
 
     <Page.Resources>
@@ -38,98 +36,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Thickness x:Key="NavigationViewItemContentPresenterMargin">4,-1,8,-1</Thickness>
         <Thickness x:Key="NavigationViewItemOnLeftIconBoxMargin">2,0,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
-
-        <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="TransparentColorBrush" />
-        <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="TransparentColorBrush" />
-
-        <StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="PaneOverlayBackgroundBrush" />
     </Page.Resources>
 
-    <Grid x:Name="page">
-        <Grid x:Name="AppTitleBar"
-              Margin="{StaticResource TitleBarMargin}"
-              Height="{StaticResource TitleBarHeight}"
-              VerticalAlignment="Top"
-              Canvas.ZIndex="1"
-              IsHitTestVisible="True">
-            <Image x:Name="ApplicationIcon"
-                   Width="16"
-                   Height="16"
-                   HorizontalAlignment="Left"
-                   AutomationProperties.AutomationId="ApplicationIcon"
-                   Source="/Assets/ProtonVPN.ico" />
-            <TextBlock x:Name="AppTitleBarText"
-                       Margin="28,0,0,0"
-                       VerticalAlignment="Center"
-                       AutomationProperties.AutomationId="ApplicationTitleLabel"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       TextWrapping="NoWrap" />
-        </Grid>
+    <NavigationView x:Name="NavigationViewControl"
+                    Margin="0,-1,-1,0"
+                    AlwaysShowHeader="False"
+                    AutomationProperties.AutomationId="NavigationView"
+                    AutomationProperties.LandmarkType="Navigation"
+                    Canvas.ZIndex="0"
+                    CompactModeThresholdWidth="408"
+                    CompactPaneLength="48"
+                    DisplayModeChanged="OnNavigationViewDisplayModeChanged"
+                    ExpandedModeThresholdWidth="520"
+                    IsBackButtonVisible="Collapsed"
+                    IsBackEnabled="{x:Bind ViewModel.IsBackEnabled}"
+                    IsPaneToggleButtonVisible="True"
+                    IsPaneVisible="{x:Bind ViewModel.IsLoggedIn}"
+                    IsSettingsVisible="False"
+                    ItemInvoked="OnNavigationViewItemInvoked"
+                    MenuItemsSource="{x:Bind ViewModel.NavigationPages, Mode=OneTime}"
+                    OpenPaneLength="160"
+                    PaneDisplayMode="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanToNavigationPaneDisplayModeConverter}}"
+                    SelectedItem="{x:Bind ViewModel.SelectedNavigationPage}">
 
-        <NavigationView x:Name="NavigationViewControl"
-                        AlwaysShowHeader="False"
-                        AutomationProperties.AutomationId="NavigationView"
-                        AutomationProperties.LandmarkType="Navigation"
-                        Canvas.ZIndex="0"
-                        CompactModeThresholdWidth="408"
-                        CompactPaneLength="48"
-                        DisplayModeChanged="OnNavigationViewDisplayModeChanged"
-                        ItemInvoked="OnNavigationViewItemInvoked"
-                        ExpandedModeThresholdWidth="520"
-                        IsBackButtonVisible="Collapsed"
-                        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-                        IsPaneToggleButtonVisible="True"
-                        IsSettingsVisible="False"
-                        MenuItemsSource="{x:Bind ViewModel.NavigationPages}"
-                        OpenPaneLength="160"
-                        SelectedItem="{x:Bind ViewModel.SelectedNavigationPage, Mode=OneWay}">
+        <NavigationView.MenuItemTemplate>
+            <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
+                <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
+                                    AutomationProperties.AutomationId="NavigationViewItem"
+                                    Content="{x:Bind Title}"
+                                    Icon="{x:Bind Icon, Mode=OneTime}" />
+            </DataTemplate>
+        </NavigationView.MenuItemTemplate>
 
-            <NavigationView.MenuItemTemplate>
-                <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
-                    <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
-                                        AutomationProperties.AutomationId="NavigationViewItem"
-                                        Content="{x:Bind Title, Mode=OneWay}"
-                                        Icon="{x:Bind Icon}" />
-                </DataTemplate>
-            </NavigationView.MenuItemTemplate>
+        <NavigationView.PaneFooter>
+            <account:AccountComponent />
+        </NavigationView.PaneFooter>
 
-            <NavigationView.PaneFooter>
-                <account:AccountComponent />
-            </NavigationView.PaneFooter>
-
-            <Frame x:Name="NavigationFrame" />
-        </NavigationView>
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="LoggedOutState">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsLoginPage, Mode=OneWay}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="NavigationViewControl.IsPaneVisible" Value="False" />
-                        <Setter Target="NavigationViewControl.IsPaneToggleButtonVisible" Value="False" />
-                        <Setter Target="NavigationViewControl.PaneDisplayMode" Value="LeftMinimal" />
-                        <Setter Target="NavigationViewControl.Margin" Value="-1,-2,0,0" />
-                        <Setter Target="ApplicationIcon.Visibility" Value="Collapsed" />
-                        <Setter Target="AppTitleBarText.Visibility" Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="LoggedInState">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="True" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="NavigationViewControl.IsPaneVisible" Value="True" />
-                        <Setter Target="NavigationViewControl.IsPaneToggleButtonVisible" Value="True" />
-                        <Setter Target="NavigationViewControl.PaneDisplayMode" Value="Left" />
-                        <Setter Target="NavigationViewControl.Margin" Value="0" />
-                        <Setter Target="ApplicationIcon.Visibility" Value="Visible" />
-                        <Setter Target="AppTitleBarText.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        
-    </Grid>
+        <Frame x:Name="NavigationFrame" />
+    </NavigationView>
 </Page>

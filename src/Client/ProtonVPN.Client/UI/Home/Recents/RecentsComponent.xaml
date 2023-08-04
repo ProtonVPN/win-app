@@ -92,9 +92,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Grid.Column="0">
-                                    <pathicons:PinFilled Foreground="{StaticResource TextHintColorBrush}"
+                                    <pathicons:PinFilled Foreground="{ThemeResource TextHintColorBrush}"
                                                          Visibility="{x:Bind IsPinned}" />
-                                    <pathicons:ClockRotateLeft Foreground="{StaticResource TextHintColorBrush}"
+                                    <pathicons:ClockRotateLeft Foreground="{ThemeResource TextHintColorBrush}"
                                                                Visibility="{x:Bind IsPinned, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                                 </Grid>
 
@@ -105,11 +105,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                              IsSecureCore="{x:Bind IsSecureCore}" />
 
                                 <TextBlock Grid.Column="2"
-                                           Foreground="{StaticResource TextWeakColorBrush}"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource BodyTextBlockStyle}"
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="NoWrap">
-                                    <Run Foreground="{StaticResource TextNormColorBrush}"
+                                    <Run Foreground="{ThemeResource TextNormColorBrush}"
                                          Text="{x:Bind Title, Mode=OneWay}" />
                                     <Run Text="{x:Bind Subtitle, Mode=OneWay}" />
                                 </TextBlock>
@@ -118,17 +118,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             Orientation="Horizontal">
                                     <TextBlock Margin="0,0,6,0"
                                                VerticalAlignment="Center"
-                                               Foreground="{StaticResource TextWeakColorBrush}"
+                                               Foreground="{ThemeResource TextWeakColorBrush}"
                                                Style="{StaticResource CaptionTextBlockStyle}"
                                                Text="•"
                                                Visibility="{x:Bind HasFeature}" />
 
                                     <StackPanel Orientation="Horizontal"
                                                 Visibility="{x:Bind IsTor}">
-                                        <pathicons:BrandTor Foreground="{StaticResource TextWeakColorBrush}" />
+                                        <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
                                         <TextBlock Margin="4,0,0,0"
                                                    VerticalAlignment="Center"
-                                                   Foreground="{StaticResource TextWeakColorBrush}"
+                                                   Foreground="{ThemeResource TextWeakColorBrush}"
                                                    Style="{StaticResource CaptionTextBlockStyle}"
                                                    Text="{x:Bind Localizer.Get('Server_Feature_Tor'), Mode=OneWay}"
                                                    TextTrimming="CharacterEllipsis"
@@ -137,10 +137,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                     <StackPanel Orientation="Horizontal"
                                                 Visibility="{x:Bind IsP2P}">
-                                        <pathicons:ArrowRightArrowLeft Foreground="{StaticResource TextWeakColorBrush}" />
+                                        <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
                                         <TextBlock Margin="4,0,0,0"
                                                    VerticalAlignment="Center"
-                                                   Foreground="{StaticResource TextWeakColorBrush}"
+                                                   Foreground="{ThemeResource TextWeakColorBrush}"
                                                    Style="{StaticResource CaptionTextBlockStyle}"
                                                    Text="{x:Bind Localizer.Get('Server_Feature_P2P'), Mode=OneWay}"
                                                    TextTrimming="CharacterEllipsis"
@@ -149,7 +149,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </StackPanel>
 
                                 <pathicons:Wrench Grid.Column="4"
-                                                  Foreground="{StaticResource TextWeakColorBrush}"
+                                                  Foreground="{ThemeResource TextWeakColorBrush}"
                                                   Visibility="{x:Bind IsServerUnderMaintenance, Mode=OneWay}" />
 
                                 <icons:ActiveDot Grid.Column="5"

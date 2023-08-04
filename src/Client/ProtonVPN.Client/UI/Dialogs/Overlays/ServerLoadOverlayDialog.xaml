@@ -53,21 +53,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="3"
                        HorizontalAlignment="Center"
-                       Foreground="{StaticResource TextWeakColorBrush}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionStrongTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}" />
 
             <Border Grid.Row="1"
                     Grid.Column="0"
-                    Background="{StaticResource SignalSuccessColorBrush}"
+                    Background="{ThemeResource SignalSuccessColorBrush}"
                     CornerRadius="4,0,0,4" />
             <Border Grid.Row="1"
                     Grid.Column="1"
-                    Background="{StaticResource SignalWarningColorBrush}"
+                    Background="{ThemeResource SignalWarningColorBrush}"
                     CornerRadius="0" />
             <Border Grid.Row="1"
                     Grid.Column="2"
-                    Background="{StaticResource SignalDangerColorBrush}"
+                    Background="{ThemeResource SignalDangerColorBrush}"
                     CornerRadius="0,4,4,0" />
 
             <TextBlock Grid.Row="2"

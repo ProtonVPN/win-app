@@ -45,11 +45,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               HorizontalAlignment="Left">
             <Border HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Background="{StaticResource BackgroundNormColorBrush}"
+                    Background="{ThemeResource BackgroundNormColorBrush}"
                     BorderThickness="0"
                     CornerRadius="4">
                 <Border Background="{x:Bind ColorBrush}"
-                        BorderBrush="{StaticResource BorderWeakColorBrush}"
+                        BorderBrush="{ThemeResource BorderWeakColorBrush}"
                         BorderThickness="1"
                         CornerRadius="4" />
             </Border>
@@ -64,15 +64,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Visibility="Collapsed" />
         </Grid>
         <TextBlock Margin="0,4,0,0"
-                   Foreground="{StaticResource TextNormColorBrush}"
+                   Foreground="{ThemeResource TextNormColorBrush}"
                    Style="{StaticResource BodyStrongTextBlockStyle}"
                    Text="{x:Bind Header}" />
         <TextBlock Margin="0,4,0,0"
-                   Foreground="{StaticResource TextWeakColorBrush}"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
                    Style="{StaticResource CaptionTextBlockStyle}"
                    Text="{x:Bind ResourceName}" />
         <TextBlock Margin="0,4,0,0"
-                   Foreground="{StaticResource TextWeakColorBrush}"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
                    Style="{StaticResource CaptionTextBlockStyle}"
                    Text="{x:Bind ColorCode}" />
     </StackPanel>

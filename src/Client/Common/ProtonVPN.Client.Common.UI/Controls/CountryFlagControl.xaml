@@ -76,7 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Height="{StaticResource LargeShadowHeight}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        Background="{StaticResource ShadowColorBrush}"
+                        Background="{ThemeResource ShadowColorBrush}"
                         CornerRadius="{StaticResource LargeShadowCornerRadius}" />
             </Grid>
 
@@ -90,7 +90,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <!--  Secure Core outline  -->
             <icons:SecureCoreFlagOutline x:Name="PART_SecureCoreOutline"
-                                         Foreground="{StaticResource SecureCoreOutlineColorBrush}"
+                                         Foreground="{ThemeResource SecureCoreOutlineColorBrush}"
                                          Margin="-5,5,5,-5"
                                          Visibility="Collapsed" />
         </Grid>

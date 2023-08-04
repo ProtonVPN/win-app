@@ -21,139 +21,212 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--  Brushes  -->
-    
-    <!--  Transparent  -->
-    <SolidColorBrush x:Key="TransparentColorBrush"
-                     Color="Transparent" />
-    <!--  Primary  -->
-    <SolidColorBrush x:Key="PrimaryColorBrush"
-                     Color="{ThemeResource PrimaryColor}" />
-    <!--  Link  -->
-    <SolidColorBrush x:Key="LinkNormColorBrush"
-                     Color="{ThemeResource LinkNormColor}" />
-    <SolidColorBrush x:Key="LinkHoverColorBrush"
-                     Color="{ThemeResource LinkHoverColor}" />
-    <SolidColorBrush x:Key="LinkActiveColorBrush"
-                     Color="{ThemeResource LinkActiveColor}" />
-    <!--  InteractionNorm  -->
-    <SolidColorBrush x:Key="InteractionNormColorBrush"
-                     Color="{ThemeResource InteractionNormColor}" />
-    <SolidColorBrush x:Key="InteractionNormHoverColorBrush"
-                     Color="{ThemeResource InteractionNormHoverColor}" />
-    <SolidColorBrush x:Key="InteractionNormActiveColorBrush"
-                     Color="{ThemeResource InteractionNormActiveColor}" />
-    <!--  InteractionWeak  -->
-    <SolidColorBrush x:Key="InteractionWeakColorBrush"
-                     Color="{ThemeResource InteractionWeakColor}" />
-    <SolidColorBrush x:Key="InteractionWeakHoverColorBrush"
-                     Color="{ThemeResource InteractionWeakHoverColor}" />
-    <SolidColorBrush x:Key="InteractionWeakActiveColorBrush"
-                     Color="{ThemeResource InteractionWeakActiveColor}" />
-    <!--  InteractionDefault  -->
-    <SolidColorBrush x:Key="InteractionDefaultColorBrush"
-                     Color="{ThemeResource InteractionDefaultColor}" />
-    <SolidColorBrush x:Key="InteractionDefaultHoverColorBrush"
-                     Color="{ThemeResource InteractionDefaultHoverColor}" />
-    <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush"
-                     Color="{ThemeResource InteractionDefaultActiveColor}" />
-    <!--  InteractionException  -->
-    <SolidColorBrush x:Key="InteractionExceptionColorBrush"
-                     Color="{ThemeResource InteractionExceptionColor}" />
-    <SolidColorBrush x:Key="InteractionExceptionHoverColorBrush"
-                     Color="{ThemeResource InteractionExceptionHoverColor}" />
-    <SolidColorBrush x:Key="InteractionExceptionActiveColorBrush"
-                     Color="{ThemeResource InteractionExceptionActiveColor}" />
-    <!--  Text  -->
-    <SolidColorBrush x:Key="TextNormColorBrush"
-                     Color="{ThemeResource TextNormColor}" />
-    <SolidColorBrush x:Key="TextWeakColorBrush"
-                     Color="{ThemeResource TextWeakColor}" />
-    <SolidColorBrush x:Key="TextHintColorBrush"
-                     Color="{ThemeResource TextHintColor}" />
-    <SolidColorBrush x:Key="TextDisabledColorBrush"
-                     Color="{ThemeResource TextDisabledColor}" />
-    <SolidColorBrush x:Key="TextInvertColorBrush"
-                     Color="{ThemeResource TextInvertColor}" />
-    <!--  Background  -->
-    <SolidColorBrush x:Key="BackgroundNormColorBrush"
-                     Color="{ThemeResource BackgroundNormColor}" />
-    <SolidColorBrush x:Key="BackgroundWeakColorBrush"
-                     Color="{ThemeResource BackgroundWeakColor}" />
-    <SolidColorBrush x:Key="BackgroundStrongColorBrush"
-                     Color="{ThemeResource BackgroundStrongColor}" />
-    <SolidColorBrush x:Key="BackgroundInvertColorBrush"
-                     Color="{ThemeResource BackgroundInvertColor}" />
-    <!--  Border  -->
-    <SolidColorBrush x:Key="BorderNormColorBrush"
-                     Color="{ThemeResource BorderNormColor}" />
-    <SolidColorBrush x:Key="BorderWeakColorBrush"
-                     Color="{ThemeResource BorderWeakColor}" />
-    <SolidColorBrush x:Key="BorderFocusColorBrush"
-                     Color="{ThemeResource BorderFocusColor}" />
-    <SolidColorBrush x:Key="BorderFocusRingColorBrush"
-                     Color="{ThemeResource BorderFocusRingColor}" />
-    <!--  Signal  -->
-    <SolidColorBrush x:Key="SignalDangerColorBrush"
-                     Color="{ThemeResource SignalDangerColor}" />
-    <SolidColorBrush x:Key="SignalWarningColorBrush"
-                     Color="{ThemeResource SignalWarningColor}" />
-    <SolidColorBrush x:Key="SignalSuccessColorBrush"
-                     Color="{ThemeResource SignalSuccessColor}" />
-    <!--  Backdrop  -->
-    <SolidColorBrush x:Key="BackdropNormColorBrush"
-                     Color="{ThemeResource BackdropNormColor}" />
-    <!--  VPN  -->
-    <SolidColorBrush x:Key="VpnGreenColorBrush"
-                     Color="{ThemeResource VpnGreenColor}" />
-    <!--  Gradient  -->
-    <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="{ThemeResource GradientFadingStartColor}" />
-        <GradientStop Offset="1" Color="{ThemeResource GradientFadingEndColor}" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ReverseGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
-        <GradientStop Offset="0" Color="{ThemeResource GradientFadingStartColor}" />
-        <GradientStop Offset="1" Color="{ThemeResource GradientFadingEndColor}" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="{ThemeResource GradientUnprotectedStartColor}" />
-        <GradientStop Offset="1" Color="{ThemeResource GradientUnprotectedEndColor}" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="GradientConnectingColorBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="{ThemeResource GradientConnectingStartColor}" />
-        <GradientStop Offset="1" Color="{ThemeResource GradientConnectingEndColor}" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="GradientProtectedColorBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="{ThemeResource GradientProtectedStartColor}" />
-        <GradientStop Offset="1" Color="{ThemeResource GradientProtectedEndColor}" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="GradientConnectionLineColorBrush" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Offset="0" Color="{ThemeResource GradientConnectionLineStartColor}" />
-        <GradientStop Offset="1" Color="{ThemeResource GradientConnectionLineEndColor}" />
-    </LinearGradientBrush>
+    <ResourceDictionary.ThemeDictionaries>
 
-    <!--  Composite Brushes  -->
-    
-    <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
-    <SolidColorBrush x:Key="BackgroundNormHoverColorBrush"
-                     Color="{ThemeResource BackgroundNormHoverColor}" />
-    <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
-    <SolidColorBrush x:Key="BackgroundNormActiveColorBrush"
-                     Color="{ThemeResource BackgroundNormActiveColor}" />
+        <ResourceDictionary x:Key="Light">
+            
+            <!--  Brushes  -->
 
-    <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
-    <SolidColorBrush x:Key="BackgroundWeakHoverColorBrush"
-                     Color="{ThemeResource BackgroundWeakHoverColor}" />
-    <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
-    <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush"
-                     Color="{ThemeResource BackgroundWeakActiveColor}" />
+            <!--  Transparent  -->
+            <SolidColorBrush x:Key="TransparentColorBrush" Color="Transparent" />
+            <!--  Primary  -->
+            <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
+            <!--  Link  -->
+            <SolidColorBrush x:Key="LinkNormColorBrush" Color="{StaticResource LinkNormColor}" />
+            <SolidColorBrush x:Key="LinkHoverColorBrush" Color="{StaticResource LinkHoverColor}" />
+            <SolidColorBrush x:Key="LinkActiveColorBrush" Color="{StaticResource LinkActiveColor}" />
+            <!--  InteractionNorm  -->
+            <SolidColorBrush x:Key="InteractionNormColorBrush" Color="{StaticResource InteractionNormColor}" />
+            <SolidColorBrush x:Key="InteractionNormHoverColorBrush" Color="{StaticResource InteractionNormHoverColor}" />
+            <SolidColorBrush x:Key="InteractionNormActiveColorBrush" Color="{StaticResource InteractionNormActiveColor}" />
+            <!--  InteractionWeak  -->
+            <SolidColorBrush x:Key="InteractionWeakColorBrush" Color="{StaticResource InteractionWeakColor}" />
+            <SolidColorBrush x:Key="InteractionWeakHoverColorBrush" Color="{StaticResource InteractionWeakHoverColor}" />
+            <SolidColorBrush x:Key="InteractionWeakActiveColorBrush" Color="{StaticResource InteractionWeakActiveColor}" />
+            <!--  InteractionDefault  -->
+            <SolidColorBrush x:Key="InteractionDefaultColorBrush" Color="{StaticResource InteractionDefaultColor}" />
+            <SolidColorBrush x:Key="InteractionDefaultHoverColorBrush" Color="{StaticResource InteractionDefaultHoverColor}" />
+            <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush" Color="{StaticResource InteractionDefaultActiveColor}" />
+            <!--  InteractionException  -->
+            <SolidColorBrush x:Key="InteractionExceptionColorBrush" Color="{StaticResource InteractionExceptionColor}" />
+            <SolidColorBrush x:Key="InteractionExceptionHoverColorBrush" Color="{StaticResource InteractionExceptionHoverColor}" />
+            <SolidColorBrush x:Key="InteractionExceptionActiveColorBrush" Color="{StaticResource InteractionExceptionActiveColor}" />
+            <!--  Text  -->
+            <SolidColorBrush x:Key="TextNormColorBrush" Color="{StaticResource TextNormColor}" />
+            <SolidColorBrush x:Key="TextWeakColorBrush" Color="{StaticResource TextWeakColor}" />
+            <SolidColorBrush x:Key="TextHintColorBrush" Color="{StaticResource TextHintColor}" />
+            <SolidColorBrush x:Key="TextDisabledColorBrush" Color="{StaticResource TextDisabledColor}" />
+            <SolidColorBrush x:Key="TextInvertColorBrush" Color="{StaticResource TextInvertColor}" />
+            <SolidColorBrush x:Key="TextOnPrimaryColorBrush" Color="{StaticResource TextOnPrimaryColor}" />
+            <!--  Background  -->
+            <SolidColorBrush x:Key="BackgroundNormColorBrush" Color="{StaticResource BackgroundNormColor}" />
+            <SolidColorBrush x:Key="BackgroundWeakColorBrush" Color="{StaticResource BackgroundWeakColor}" />
+            <SolidColorBrush x:Key="BackgroundStrongColorBrush" Color="{StaticResource BackgroundStrongColor}" />
+            <SolidColorBrush x:Key="BackgroundInvertColorBrush" Color="{StaticResource BackgroundInvertColor}" />
+            <!--  Border  -->
+            <SolidColorBrush x:Key="BorderNormColorBrush" Color="{StaticResource BorderNormColor}" />
+            <SolidColorBrush x:Key="BorderWeakColorBrush" Color="{StaticResource BorderWeakColor}" />
+            <SolidColorBrush x:Key="BorderFocusColorBrush" Color="{StaticResource BorderFocusColor}" />
+            <SolidColorBrush x:Key="BorderFocusRingColorBrush" Color="{StaticResource BorderFocusRingColor}" />
+            <!--  Signal  -->
+            <SolidColorBrush x:Key="SignalDangerColorBrush" Color="{StaticResource SignalDangerColor}" />
+            <SolidColorBrush x:Key="SignalWarningColorBrush" Color="{StaticResource SignalWarningColor}" />
+            <SolidColorBrush x:Key="SignalSuccessColorBrush" Color="{StaticResource SignalSuccessColor}" />
+            <!--  Backdrop  -->
+            <SolidColorBrush x:Key="BackdropNormColorBrush" Color="{StaticResource BackdropNormColor}" />
+            <!--  VPN  -->
+            <SolidColorBrush x:Key="VpnGreenColorBrush" Color="{StaticResource VpnGreenColor}" />
+            <!--  Gradient  -->
+            <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ReverseGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientUnprotectedStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientUnprotectedEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientConnectingColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientConnectingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientConnectingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientProtectedColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientProtectedStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientProtectedEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientConnectionLineColorBrush" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Offset="0" Color="{StaticResource GradientConnectionLineStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientConnectionLineEndColor}" />
+            </LinearGradientBrush>
 
-    <!-- Acrylic Brushes -->
-    
-    <!--  Pane Overlay  -->
-    <AcrylicBrush x:Key="PaneOverlayBackgroundBrush"
-                  FallbackColor="{ThemeResource BackgroundNormColor}"
-                  TintColor="{ThemeResource BackgroundNormColor}"
-                  TintOpacity="0.6" />
-    
+            <!--  Composite Brushes  -->
+
+            <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
+            <SolidColorBrush x:Key="BackgroundNormHoverColorBrush" Color="{StaticResource BackgroundNormHoverColor}" />
+            <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
+            <SolidColorBrush x:Key="BackgroundNormActiveColorBrush" Color="{StaticResource BackgroundNormActiveColor}" />
+
+            <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
+            <SolidColorBrush x:Key="BackgroundWeakHoverColorBrush" Color="{StaticResource BackgroundWeakHoverColor}" />
+            <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
+            <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush" Color="{StaticResource BackgroundWeakActiveColor}" />
+
+            <!--  Acrylic/Mica Brushes  -->
+
+            <!--  Window Background (mixed with Mica effect)  -->
+            <SolidColorBrush x:Key="WindowBackgroundColorBrush" Opacity="0.9" Color="{StaticResource BackgroundNormColor}" />
+
+            <!--  Pane Overlay  -->
+            <AcrylicBrush x:Key="PaneOverlayBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            
+            <!--  Brushes  -->
+
+            <!--  Transparent  -->
+            <SolidColorBrush x:Key="TransparentColorBrush" Color="Transparent" />
+            <!--  Primary  -->
+            <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
+            <!--  Link  -->
+            <SolidColorBrush x:Key="LinkNormColorBrush" Color="{StaticResource LinkNormColor}" />
+            <SolidColorBrush x:Key="LinkHoverColorBrush" Color="{StaticResource LinkHoverColor}" />
+            <SolidColorBrush x:Key="LinkActiveColorBrush" Color="{StaticResource LinkActiveColor}" />
+            <!--  InteractionNorm  -->
+            <SolidColorBrush x:Key="InteractionNormColorBrush" Color="{StaticResource InteractionNormColor}" />
+            <SolidColorBrush x:Key="InteractionNormHoverColorBrush" Color="{StaticResource InteractionNormHoverColor}" />
+            <SolidColorBrush x:Key="InteractionNormActiveColorBrush" Color="{StaticResource InteractionNormActiveColor}" />
+            <!--  InteractionWeak  -->
+            <SolidColorBrush x:Key="InteractionWeakColorBrush" Color="{StaticResource InteractionWeakColor}" />
+            <SolidColorBrush x:Key="InteractionWeakHoverColorBrush" Color="{StaticResource InteractionWeakHoverColor}" />
+            <SolidColorBrush x:Key="InteractionWeakActiveColorBrush" Color="{StaticResource InteractionWeakActiveColor}" />
+            <!--  InteractionDefault  -->
+            <SolidColorBrush x:Key="InteractionDefaultColorBrush" Color="{StaticResource InteractionDefaultColor}" />
+            <SolidColorBrush x:Key="InteractionDefaultHoverColorBrush" Color="{StaticResource InteractionDefaultHoverColor}" />
+            <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush" Color="{StaticResource InteractionDefaultActiveColor}" />
+            <!--  InteractionException  -->
+            <SolidColorBrush x:Key="InteractionExceptionColorBrush" Color="{StaticResource InteractionExceptionColor}" />
+            <SolidColorBrush x:Key="InteractionExceptionHoverColorBrush" Color="{StaticResource InteractionExceptionHoverColor}" />
+            <SolidColorBrush x:Key="InteractionExceptionActiveColorBrush" Color="{StaticResource InteractionExceptionActiveColor}" />
+            <!--  Text  -->
+            <SolidColorBrush x:Key="TextNormColorBrush" Color="{StaticResource TextNormColor}" />
+            <SolidColorBrush x:Key="TextWeakColorBrush" Color="{StaticResource TextWeakColor}" />
+            <SolidColorBrush x:Key="TextHintColorBrush" Color="{StaticResource TextHintColor}" />
+            <SolidColorBrush x:Key="TextDisabledColorBrush" Color="{StaticResource TextDisabledColor}" />
+            <SolidColorBrush x:Key="TextInvertColorBrush" Color="{StaticResource TextInvertColor}" />
+            <SolidColorBrush x:Key="TextOnPrimaryColorBrush" Color="{StaticResource TextOnPrimaryColor}" />
+            <!--  Background  -->
+            <SolidColorBrush x:Key="BackgroundNormColorBrush" Color="{StaticResource BackgroundNormColor}" />
+            <SolidColorBrush x:Key="BackgroundWeakColorBrush" Color="{StaticResource BackgroundWeakColor}" />
+            <SolidColorBrush x:Key="BackgroundStrongColorBrush" Color="{StaticResource BackgroundStrongColor}" />
+            <SolidColorBrush x:Key="BackgroundInvertColorBrush" Color="{StaticResource BackgroundInvertColor}" />
+            <!--  Border  -->
+            <SolidColorBrush x:Key="BorderNormColorBrush" Color="{StaticResource BorderNormColor}" />
+            <SolidColorBrush x:Key="BorderWeakColorBrush" Color="{StaticResource BorderWeakColor}" />
+            <SolidColorBrush x:Key="BorderFocusColorBrush" Color="{StaticResource BorderFocusColor}" />
+            <SolidColorBrush x:Key="BorderFocusRingColorBrush" Color="{StaticResource BorderFocusRingColor}" />
+            <!--  Signal  -->
+            <SolidColorBrush x:Key="SignalDangerColorBrush" Color="{StaticResource SignalDangerColor}" />
+            <SolidColorBrush x:Key="SignalWarningColorBrush" Color="{StaticResource SignalWarningColor}" />
+            <SolidColorBrush x:Key="SignalSuccessColorBrush" Color="{StaticResource SignalSuccessColor}" />
+            <!--  Backdrop  -->
+            <SolidColorBrush x:Key="BackdropNormColorBrush" Color="{StaticResource BackdropNormColor}" />
+            <!--  VPN  -->
+            <SolidColorBrush x:Key="VpnGreenColorBrush" Color="{StaticResource VpnGreenColor}" />
+            <!--  Gradient  -->
+            <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ReverseGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientUnprotectedStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientUnprotectedEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientConnectingColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientConnectingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientConnectingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientProtectedColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientProtectedStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientProtectedEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientConnectionLineColorBrush" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Offset="0" Color="{StaticResource GradientConnectionLineStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientConnectionLineEndColor}" />
+            </LinearGradientBrush>
+
+            <!--  Composite Brushes  -->
+
+            <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
+            <SolidColorBrush x:Key="BackgroundNormHoverColorBrush" Color="{StaticResource BackgroundNormHoverColor}" />
+            <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
+            <SolidColorBrush x:Key="BackgroundNormActiveColorBrush" Color="{StaticResource BackgroundNormActiveColor}" />
+
+            <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
+            <SolidColorBrush x:Key="BackgroundWeakHoverColorBrush" Color="{StaticResource BackgroundWeakHoverColor}" />
+            <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
+            <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush" Color="{StaticResource BackgroundWeakActiveColor}" />
+
+            <!--  Acrylic/Mica Brushes  -->
+
+            <!--  Window Background (mixed with Mica effect)  -->
+            <SolidColorBrush x:Key="WindowBackgroundColorBrush" Opacity="0.9" Color="{StaticResource BackgroundNormColor}" />
+
+            <!--  Pane Overlay  -->
+            <AcrylicBrush x:Key="PaneOverlayBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

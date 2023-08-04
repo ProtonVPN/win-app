@@ -32,7 +32,7 @@ public partial class App
 {
     public const string APPLICATION_NAME = "Proton VPN";
 
-    public static WindowEx MainWindow { get; } = new MainWindow();
+    public static MainWindow MainWindow { get; } = new MainWindow();
 
     // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
     // https://docs.microsoft.com/dotnet/core/extensions/generic-host
@@ -57,12 +57,6 @@ public partial class App
         UnhandledException += App_UnhandledException;
     }
 
-    protected override async void OnLaunched(LaunchActivatedEventArgs args)
-    {
-        base.OnLaunched(args);
-        await GetService<IBootstrapper>().StartAsync(args);
-    }
-
     public static T GetService<T>()
         where T : class
     {
@@ -72,6 +66,12 @@ public partial class App
         }
 
         return service;
+    }
+
+    protected override async void OnLaunched(LaunchActivatedEventArgs args)
+    {
+        base.OnLaunched(args);
+        await GetService<IBootstrapper>().StartAsync(args);
     }
 
     private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)

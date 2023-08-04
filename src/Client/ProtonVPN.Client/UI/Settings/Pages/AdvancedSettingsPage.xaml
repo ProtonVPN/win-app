@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
             </labs:SettingsCard>
 
@@ -78,7 +78,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StackPanel>
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Strict')}" />
-                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Strict_Description')}"
                                        TextWrapping="Wrap" />
@@ -90,7 +90,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StackPanel>
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Moderate')}" />
-                            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Moderate_Description')}"
                                        TextWrapping="Wrap" />

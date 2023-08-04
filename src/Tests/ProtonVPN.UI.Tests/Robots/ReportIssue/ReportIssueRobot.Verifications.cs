@@ -32,6 +32,9 @@ public partial class ReportIssueRobot
     public ReportIssueRobot VerifyReportIssueWindowIsOpened()
     {
         Assert.IsNotNull(ReportIssueWindow);
+        Assert.IsNotNull(ReportIssueTitleBar);
+        Assert.IsNotNull(MinimizeButton);
+        Assert.IsNotNull(CloseButton);
         return this;
     }
 

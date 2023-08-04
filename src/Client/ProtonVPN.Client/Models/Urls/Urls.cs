@@ -18,11 +18,20 @@
  */
 
 using System.Diagnostics;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Models.Urls;
 
 public class Urls : IUrls
 {
+    private readonly ILogger _logger;
+
+    public Urls(ILogger logger)
+    {
+        _logger = logger;
+    }
+
     public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol/";
 
     public string CreateAccount => "https://account.protonvpn.com/signup";
@@ -47,6 +56,13 @@ public class Urls : IUrls
 
     public void NavigateTo(string url)
     {
-        Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppFileAccessFailedLog>($"Could not navigate to the requested url: {url}", e);
+        }
     }
 }

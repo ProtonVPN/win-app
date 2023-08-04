@@ -35,7 +35,7 @@ public partial class ReportIssueRobot
 
     public ReportIssueRobot DoGoBack()
     {
-        MoveBackwardButton.Click();
+        MoveBackwardButton.FocusAndClick();
         return this;
     }
 }

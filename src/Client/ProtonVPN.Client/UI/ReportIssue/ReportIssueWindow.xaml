@@ -23,28 +23,50 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:reportissue="using:ProtonVPN.Client.UI.ReportIssue"
               xmlns:wex="using:WinUIEx"
               Width="472"
               Height="605"
               MinWidth="472"
               MinHeight="605"
-              IsResizable="False"
+              Activated="OnActivated"
               IsMaximizable="False"
+              IsResizable="False"
               PersistenceId="ReportIssueWindow"
               mc:Ignorable="d">
-    
+
     <!--  There's a consistent difference between the size defined here and the actual size  -->
     <!--  Adds 16px to the width and 9px to the height to compensate  -->
 
-    <wex:WindowEx.Backdrop>
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="BaseAlt" />
+    </Window.SystemBackdrop>
 
-        <wex:MicaSystemBackdrop DarkFallbackColor="#16141C"
-                                DarkLuminosityOpacity="0.95"
-                                DarkTintColor="#16141C"
-                                DarkTintOpacity="0.9"
-                                LightFallbackColor="#FFFFFF"
-                                LightLuminosityOpacity="0.95"
-                                LightTintColor="#FFFFFF"
-                                LightTintOpacity="0.9" />
-    </wex:WindowEx.Backdrop>
+    <Grid Background="{ThemeResource WindowBackgroundColorBrush}">
+
+        <Grid x:Name="WindowTitleBar"
+              Height="{StaticResource CompactTitleBarHeight}"
+              Margin="{StaticResource CompactTitleBarMargin}"
+              Padding="12,4,4,4"
+              VerticalAlignment="Top"
+              Canvas.ZIndex="1"
+              ColumnSpacing="12">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource TitleBarButtonsTotalLength}" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="WindowTitleBarText"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       AutomationProperties.AutomationId="WindowTitleLabel"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Text="{Binding ViewModel.Title, ElementName=Shell}"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap" />
+        </Grid>
+
+        <reportissue:ReportIssueShellPage x:Name="Shell" />
+    </Grid>
 </wex:WindowEx>

@@ -833,15 +833,16 @@
     <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
     <None Remove="Gallery\Pages\VpnSpecificPage.xaml" />
     <None Remove="Styles\Brushes.xaml" />
+    <None Remove="Styles\Colors.xaml" />
     <None Remove="Styles\Controls\ButtonStyles.xaml" />
     <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
     <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
     <None Remove="Styles\Controls\ExpanderStyles.xaml" />
     <None Remove="Styles\Controls\FlyoutStyles.xaml" />
+    <None Remove="Styles\Controls\GhostButtonStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
     <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
     <None Remove="Styles\Controls\InfoBarStyles.xaml" />
-    <None Remove="Styles\Controls\MenuFlyoutStyles.xaml" />
     <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
     <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
     <None Remove="Styles\Controls\PivotStyles.xaml" />
@@ -856,8 +857,6 @@
     <None Remove="Styles\Converters.xaml" />
     <None Remove="Styles\Illustrations.xaml" />
     <None Remove="Styles\Typography.xaml" />
-    <None Remove="Themes\DarkTheme.xaml" />
-    <None Remove="Themes\LightTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -867,6 +866,18 @@
       <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
       <PackageReference Include="Microsoft.WindowsAppSDK" />
       <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -891,10 +902,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Controls\FlyoutStyles.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Controls\MenuFlyoutStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -965,24 +972,6 @@
 
   <ItemGroup>
     <Page Update="Styles\Converters.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Brushes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Themes\DarkTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -1858,6 +1847,12 @@
     <Content Update="Assets\Illustrations\report-success.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\GhostButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

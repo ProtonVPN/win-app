@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <Style x:Key="ConnectionDetailsButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
-            <Setter Property="Background" Value="{StaticResource InteractionDefaultColorBrush}" />
+            <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Padding" Value="8" />
@@ -75,7 +75,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <pathicons:ChevronRight x:Name="ChevronRight"
                                                         Grid.Column="1"
                                                         VerticalAlignment="Center"
-                                                        Foreground="{StaticResource TextWeakColorBrush}"
+                                                        Foreground="{ThemeResource TextWeakColorBrush}"
                                                         Opacity="1" />
                             </Grid>
 
@@ -84,14 +84,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <VisualState x:Name="Normal" />
                                     <VisualState x:Name="PointerOver">
                                         <VisualState.Setters>
-                                            <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultHoverColorBrush}" />
-                                            <Setter Target="ChevronRight.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                            <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
+                                            <Setter Target="ChevronRight.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                         </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="Pressed">
                                         <VisualState.Setters>
-                                            <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultActiveColorBrush}" />
-                                            <Setter Target="ChevronRight.Foreground" Value="{StaticResource TextNormColorBrush}" />
+                                            <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
+                                            <Setter Target="ChevronRight.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                         </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
@@ -109,7 +109,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <StackPanel Padding="16,16,16,0"
-                Background="{StaticResource BackgroundNormColorBrush}"
+                Background="{ThemeResource BackgroundNormColorBrush}"
                 Orientation="Vertical"
                 Spacing="12">
         <Grid ColumnSpacing="12">
@@ -120,7 +120,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <TextBlock Grid.Column="0"
                        AutomationProperties.AutomationId="ConnectionCardHeaderLabel"
-                       Foreground="{StaticResource TextWeakColorBrush}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        TabIndex="1"
                        Text="{x:Bind ViewModel.Header}" />
@@ -131,8 +131,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Grid MinHeight="72"
               Padding="8,8,16,8"
-              Background="{StaticResource BackgroundWeakColorBrush}"
-              BorderBrush="{StaticResource BorderNormColorBrush}"
+              Background="{ThemeResource BackgroundWeakColorBrush}"
+              BorderBrush="{ThemeResource BorderNormColorBrush}"
               BorderThickness="1"
               ColumnSpacing="8"
               CornerRadius="8">
@@ -168,7 +168,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               VerticalAlignment="top"
                                               toolkit:DockPanel.Dock="Right"
                                               AutomationProperties.AutomationId="MaintenanceIcon"
-                                              Foreground="{StaticResource TextWeakColorBrush}"
+                                              Foreground="{ThemeResource TextWeakColorBrush}"
                                               ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Recents_ServerUnderMaintenance'), Mode=OneWay}"
                                               Visibility="{x:Bind ViewModel.IsServerUnderMaintenance, Mode=OneWay}" />
                             <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
@@ -180,7 +180,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <toolkit:WrapPanel Orientation="Horizontal">
                             <TextBlock AutomationProperties.AutomationId="ConnectionCardSubtitleLabel"
-                                       Foreground="{StaticResource TextWeakColorBrush}"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Subtitle}"
                                        TextTrimming="CharacterEllipsis"
@@ -189,17 +189,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <TextBlock Margin="6,0"
                                        VerticalAlignment="Center"
-                                       Foreground="{StaticResource TextWeakColorBrush}"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="•"
                                        Visibility="{x:Bind ViewModel.HasSubtitleAndFeature}" />
 
                             <StackPanel Orientation="Horizontal"
                                         Visibility="{x:Bind ViewModel.IsTor}">
-                                <pathicons:BrandTor Foreground="{StaticResource TextWeakColorBrush}" />
+                                <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
                                 <TextBlock Margin="4,0,0,0"
                                            AutomationProperties.AutomationId="ConnectionCardFeatureTorLabel"
-                                           Foreground="{StaticResource TextWeakColorBrush}"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_Tor')}"
                                            TextTrimming="CharacterEllipsis"
@@ -208,10 +208,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <StackPanel Orientation="Horizontal"
                                         Visibility="{x:Bind ViewModel.IsP2P}">
-                                <pathicons:ArrowRightArrowLeft Foreground="{StaticResource TextWeakColorBrush}" />
+                                <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
                                 <TextBlock Margin="4,0,0,0"
                                            AutomationProperties.AutomationId="ConnectionCardFeatureP2PLabel"
-                                           Foreground="{StaticResource TextWeakColorBrush}"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_P2P')}"
                                            TextTrimming="CharacterEllipsis"

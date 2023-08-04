@@ -15,33 +15,68 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
 
 <wex:WindowEx x:Class="ProtonVPN.Client.MainWindow"
               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:ui="using:ProtonVPN.Client.UI"
               xmlns:wex="using:WinUIEx"
               Width="636"
               Height="589"
               MinWidth="376"
               MinHeight="489"
+              Activated="OnActivated"
               PersistenceId="MainWindow"
               mc:Ignorable="d">
-    
-    <!-- There's a consistent difference between the size defined here and the actual size -->
-    <!-- Adds 16px to the width and 9px to the height to compensate -->
-    
-    <wex:WindowEx.Backdrop>
-        
-        <wex:MicaSystemBackdrop DarkFallbackColor="#16141C"
-                                DarkLuminosityOpacity="0.95"
-                                DarkTintColor="#16141C"
-                                DarkTintOpacity="0.9"
-                                LightFallbackColor="#FFFFFF"
-                                LightLuminosityOpacity="0.95"
-                                LightTintColor="#FFFFFF"
-                                LightTintOpacity="0.9" />
-    </wex:WindowEx.Backdrop>
+
+    <!--  There's a consistent difference between the size defined here and the actual size  -->
+    <!--  Adds 16px to the width and 9px to the height to compensate  -->
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="BaseAlt" />
+    </Window.SystemBackdrop>
+
+    <Grid Background="{ThemeResource WindowBackgroundColorBrush}">
+
+        <Grid x:Name="AppTitleBar"
+              Height="{StaticResource TitleBarHeight}"
+              Margin="{StaticResource TitleBarMargin}"
+              Padding="4"
+              VerticalAlignment="Top"
+              Canvas.ZIndex="1"
+              ColumnSpacing="12"
+              SizeChanged="OnAppTitleBarSizeChanged">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource TitleBarButtonsTotalLength}" />
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="ApplicationIcon"
+                   Grid.Column="0"
+                   Width="16"
+                   Height="16"
+                   VerticalAlignment="Center"
+                   AutomationProperties.AutomationId="ApplicationIcon"
+                   Source="/Assets/ProtonVPN.ico"
+                   Visibility="{Binding ViewModel.IsLoggedIn, ElementName=Shell, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <TextBlock x:Name="AppTitleBarText"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       AutomationProperties.AutomationId="ApplicationTitleLabel"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Text="{Binding ViewModel.Title, ElementName=Shell}"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap"
+                       Visibility="{Binding ViewModel.IsLoggedIn, ElementName=Shell, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </Grid>
+
+        <ui:ShellPage x:Name="Shell" />
+    </Grid>
 </wex:WindowEx>

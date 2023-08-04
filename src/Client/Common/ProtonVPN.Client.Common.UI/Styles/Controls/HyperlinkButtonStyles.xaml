@@ -22,6 +22,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
 
+    <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+
+            <StaticResource x:Key="HyperlinkButtonForeground" ResourceKey="LinkNormColorBrush" />
+            <StaticResource x:Key="HyperlinkButtonForegroundPointerOver" ResourceKey="LinkHoverColorBrush" />
+            <StaticResource x:Key="HyperlinkButtonForegroundPressed" ResourceKey="LinkActiveColorBrush" />
+            <StaticResource x:Key="HyperlinkButtonForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+
+            <StaticResource x:Key="HyperlinkButtonForeground" ResourceKey="LinkNormColorBrush" />
+            <StaticResource x:Key="HyperlinkButtonForegroundPointerOver" ResourceKey="LinkHoverColorBrush" />
+            <StaticResource x:Key="HyperlinkButtonForegroundPressed" ResourceKey="LinkActiveColorBrush" />
+            <StaticResource x:Key="HyperlinkButtonForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
     <Thickness x:Key="HyperlinkButtonPadding">5,3</Thickness>
 
     <Style BasedOn="{StaticResource HyperlinkButtonStyle}" TargetType="HyperlinkButton" />
@@ -74,66 +93,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <VisualState x:Name="Normal" />
 
                                 <VisualState x:Name="PointerOver">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource LinkHoverColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LinkGlyph"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource LinkHoverColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UnderlineBorder"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource LinkHoverColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundPointerOver}" />
+                                        <Setter Target="LinkGlyph.Foreground" Value="{ThemeResource HyperlinkButtonForegroundPointerOver}" />
+                                        <Setter Target="UnderlineBorder.BorderBrush" Value="{ThemeResource HyperlinkButtonForegroundPointerOver}" />
+                                    </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Pressed">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource LinkActiveColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LinkGlyph"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource LinkActiveColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UnderlineBorder"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource LinkActiveColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundPressed}" />
+                                        <Setter Target="LinkGlyph.Foreground" Value="{ThemeResource HyperlinkButtonForegroundPressed}" />
+                                        <Setter Target="UnderlineBorder.BorderBrush" Value="{ThemeResource HyperlinkButtonForegroundPressed}" />
+                                    </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Disabled">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LinkGlyph"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UnderlineBorder"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource TextDisabledColorBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                        <Setter Target="LinkGlyph.Foreground" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                        <Setter Target="UnderlineBorder.BorderBrush" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                    </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>

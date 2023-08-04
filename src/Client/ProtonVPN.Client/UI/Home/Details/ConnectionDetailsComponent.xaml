@@ -36,7 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Padding" Value="0,8" />
             <Setter Property="Margin" Value="0,0,0,0" />
             <Setter Property="Orientation" Value="Horizontal" />
-            <Setter Property="BorderBrush" Value="{StaticResource BorderWeakColorBrush}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource BorderWeakColorBrush}" />
             <Setter Property="BorderThickness" Value="0,0,0,1" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="FontSize" Value="{StaticResource CaptionFontSize}" />
@@ -58,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter Grid.Column="0"
                                               Content="{TemplateBinding Header}"
-                                              Foreground="{StaticResource TextWeakColorBrush}" />
+                                              Foreground="{ThemeResource TextWeakColorBrush}" />
                             <ContentPresenter Grid.Column="1"
                                               HorizontalAlignment="Right"
                                               Content="{TemplateBinding Content}" />

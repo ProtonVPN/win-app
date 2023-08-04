@@ -45,10 +45,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
                     Spacing="6">
-            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Download')}" />
-            <pathicons:ArrowDownLine Foreground="{StaticResource SignalSuccessColorBrush}" />
+            <pathicons:ArrowDownLine Foreground="{ThemeResource SignalSuccessColorBrush}" />
         </StackPanel>
         
         <TextBlock Grid.Row="1"
@@ -62,10 +62,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
                     Spacing="6">
-            <TextBlock Foreground="{StaticResource TextWeakColorBrush}"
+            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Upload')}" />
-            <pathicons:ArrowUpLine Foreground="{StaticResource SignalDangerColorBrush}" />
+            <pathicons:ArrowUpLine Foreground="{ThemeResource SignalDangerColorBrush}" />
         </StackPanel>
 
         <TextBlock Grid.Row="1"
@@ -78,8 +78,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Border Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Background="{StaticResource InteractionDefaultHoverColorBrush}"
-                BorderBrush="{StaticResource BorderWeakColorBrush}"
+                Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                BorderBrush="{ThemeResource BorderWeakColorBrush}"
                 BorderThickness="1"
                 Opacity="0.6" />
     </Grid>

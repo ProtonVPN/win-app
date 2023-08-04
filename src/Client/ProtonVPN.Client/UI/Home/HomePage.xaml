@@ -57,7 +57,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
                    IsTabStop="False"
                    OpenPaneLength="{StaticResource DetailsPaneWidth}"
-                   PaneBackground="{StaticResource PaneOverlayBackgroundBrush}"
+                   PaneBackground="{ThemeResource PaneOverlayBackgroundColorBrush}"
                    PanePlacement="Right">
             <SplitView.Pane>
                 <Grid Margin="16,20"
@@ -106,7 +106,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ProgressRing Width="24"
                                           Height="24"
                                           HorizontalAlignment="Center"
-                                          Foreground="{StaticResource TextNormColorBrush}"
+                                          Foreground="{ThemeResource TextNormColorBrush}"
                                           IsActive="{x:Bind ViewModel.IsConnecting}" />
                             <TextBlock HorizontalAlignment="Center"
                                        Text="{x:Bind ViewModel.Localizer.Get('Common_Message_Loading')}" />
@@ -144,7 +144,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
                                 VerticalAlignment="Bottom"
-                                Background="{StaticResource ReverseGradientFadingColorBrush}" />
+                                Background="{ThemeResource ReverseGradientFadingColorBrush}" />
                     </Grid>
 
                     <connectionCard:ConnectionCardComponent Grid.Row="1"

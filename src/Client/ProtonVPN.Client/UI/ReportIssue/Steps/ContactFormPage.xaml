@@ -25,10 +25,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:attached="using:ProtonVPN.Client.Common.UI.AttachedProperties"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:fields="using:ProtonVPN.Client.UI.ReportIssue.Models.Fields"
       xmlns:selectors="using:ProtonVPN.Client.UI.ReportIssue.Selectors"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -75,7 +75,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Orientation="Horizontal"
                                 Spacing="8">
                         <TextBlock Text="{x:Bind Name, Mode=OneTime}" />
-                        <pathicons:InfoCircle Foreground="{StaticResource TextWeakColorBrush}"
+                        <pathicons:InfoCircle Foreground="{ThemeResource TextWeakColorBrush}"
                                               ToolTipService.ToolTip="{x:Bind Placeholder}"
                                               Visibility="{x:Bind HasPlaceholder, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </StackPanel>
@@ -90,71 +90,63 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                        SingleLineTextInputFieldTemplate="{StaticResource SingleLineTextInputFieldTemplate}" />
     </Page.Resources>
 
-    <custom:StepContentControl CurrentStep="{x:Bind ViewModel.CurrentStep}"
-                               Header="{x:Bind ViewModel.StepsHeader}"
-                               IsEnabled="{x:Bind ViewModel.IsSendingReport, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                               MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
-                               MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
-                               TotalSteps="{x:Bind ViewModel.TotalSteps}">
+    <Grid RowSpacing="20">
 
-        <Grid RowSpacing="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0"
+                      Margin="0,0,-24,0"
+                      Padding="0,0,24,0"
+                      IsTabStop="False"
+                      VerticalScrollBarVisibility="Auto">
 
-            <ScrollViewer Grid.Row="0"
-                          Margin="0,0,-24,0"
-                          Padding="0,0,24,0"
-                          IsTabStop="False"
-                          VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="16">
 
-                <StackPanel Spacing="16">
+                <ItemsControl ItemTemplateSelector="{StaticResource IssueInputFieldDataTemplateSelector}"
+                              ItemsSource="{x:Bind ViewModel.InputFields}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="16" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
-                    <ItemsControl ItemTemplateSelector="{StaticResource IssueInputFieldDataTemplateSelector}"
-                                  ItemsSource="{x:Bind ViewModel.InputFields}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Spacing="16" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                <CheckBox Margin="0,0,0,8"
+                          AutomationProperties.AutomationId="IncludeLogsCheckbox"
+                          AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs_Description')}"
+                          AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs')}"
+                          IsChecked="{x:Bind ViewModel.IncludeLogs, Mode=TwoWay}">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="8">
+                            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs')}" />
+                            <pathicons:InfoCircle Foreground="{ThemeResource TextWeakColorBrush}"
+                                                  ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs_Description')}" />
+                        </StackPanel>
+                    </CheckBox.Content>
+                </CheckBox>
+            </StackPanel>
+        </ScrollViewer>
 
-                    <CheckBox Margin="0,0,0,8"
-                              AutomationProperties.AutomationId="IncludeLogsCheckbox"
-                              IsChecked="{x:Bind ViewModel.IncludeLogs, Mode=TwoWay}"
-                              AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs')}"
-                              AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs_Description')}">
-                        <CheckBox.Content>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="8">
-                                <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs')}" />
-                                <pathicons:InfoCircle Foreground="{StaticResource TextWeakColorBrush}"
-                                                      ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_ContactForm_IncludeLogs_Description')}" />
-                            </StackPanel>
-                        </CheckBox.Content>
-                    </CheckBox>
-                </StackPanel>
-            </ScrollViewer>
-
-            <Button Grid.Row="2"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch"
-                    AutomationProperties.AutomationId="SendReportButton"
-                    AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_SendReport')}"
-                    Command="{x:Bind ViewModel.SendReportCommand, Mode=OneTime}"
-                    Style="{StaticResource PrimaryButtonStyle}">
-                <Grid HorizontalAlignment="Stretch">
-                    <TextBlock HorizontalAlignment="Center"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_SendReport')}" />
-                    <ProgressRing Width="16"
-                                  Height="16"
-                                  HorizontalAlignment="Right"
-                                  Foreground="{StaticResource TextNormColorBrush}"
-                                  IsActive="{x:Bind ViewModel.IsSendingReport}" />
-                </Grid>
-            </Button>
-        </Grid>
-    </custom:StepContentControl>
+        <Button Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                AutomationProperties.AutomationId="SendReportButton"
+                AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_SendReport')}"
+                Command="{x:Bind ViewModel.SendReportCommand, Mode=OneTime}"
+                Style="{StaticResource PrimaryButtonStyle}">
+            <Grid HorizontalAlignment="Stretch">
+                <TextBlock HorizontalAlignment="Center"
+                           Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_SendReport')}" />
+                <ProgressRing Width="16"
+                              Height="16"
+                              HorizontalAlignment="Right"
+                              Foreground="{ThemeResource TextNormColorBrush}"
+                              IsActive="{x:Bind ViewModel.IsSendingReport}" />
+            </Grid>
+        </Button>
+    </Grid>
 </Page>

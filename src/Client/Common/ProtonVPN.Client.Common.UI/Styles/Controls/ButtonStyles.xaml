@@ -19,57 +19,86 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="ButtonBackground"
-                     Color="{ThemeResource InteractionExceptionColor}" />
-    <SolidColorBrush x:Key="ButtonBackgroundPointerOver"
-                     Color="{ThemeResource InteractionExceptionHoverColor}" />
-    <SolidColorBrush x:Key="ButtonBackgroundPressed"
-                     Color="{ThemeResource InteractionExceptionActiveColor}" />
+    <ResourceDictionary.ThemeDictionaries>
 
-    <SolidColorBrush x:Key="ButtonBorderBrush"
-                     Color="{ThemeResource BorderNormColor}" />
-    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver"
-                     Color="{ThemeResource BorderNormColor}" />
-    <SolidColorBrush x:Key="ButtonBorderBrushPressed"
-                     Color="{ThemeResource BorderNormColor}" />
+        <ResourceDictionary x:Key="Light">
 
-    <SolidColorBrush x:Key="ButtonForeground"
-                     Color="{ThemeResource TextNormColor}" />
-    <SolidColorBrush x:Key="ButtonForegroundPointerOver"
-                     Color="{ThemeResource TextNormColor}" />
-    <SolidColorBrush x:Key="ButtonForegroundPressed"
-                     Color="{ThemeResource TextNormColor}" />
-    <SolidColorBrush x:Key="ButtonForegroundDisabled"
-                     Color="{ThemeResource TextHintColor}" />
-    <SolidColorBrush x:Key="ButtonBackgroundDisabled"
-                     Color="{ThemeResource InteractionWeakColor}" />
+            <!--  Primary Button Brushes  -->
 
-    <SolidColorBrush x:Key="AccentButtonForeground"
-                     Color="White" />
-    <SolidColorBrush x:Key="AccentButtonBackground"
-                     Color="{ThemeResource InteractionNormColor}" />
+            <StaticResource x:Key="AccentButtonBackground" ResourceKey="InteractionNormColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundPressed" ResourceKey="InteractionNormActiveColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
 
-    <SolidColorBrush x:Key="AccentButtonForegroundPointerOver"
-                     Color="White" />
-    <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver"
-                     Color="{ThemeResource InteractionNormHoverColor}" />
+            <StaticResource x:Key="AccentButtonForeground" ResourceKey="TextOnPrimaryColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="TextOnPrimaryColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="TextOnPrimaryColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
 
-    <SolidColorBrush x:Key="AccentButtonForegroundPressed"
-                     Color="White" />
-    <SolidColorBrush x:Key="AccentButtonBackgroundPressed"
-                     Color="{ThemeResource InteractionNormActiveColor}" />
+            <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="InteractionNormColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushPressed" ResourceKey="InteractionNormActiveColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
 
-    <SolidColorBrush x:Key="AccentButtonForegroundDisabled"
-                     Color="{ThemeResource TextHintColor}" />
-    <SolidColorBrush x:Key="AccentButtonBackgroundDisabled"
-                     Color="{ThemeResource InteractionWeakColor}" />
+            <!--  Secondary Button Brushes  -->
+
+            <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionExceptionColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionExceptionHoverColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionExceptionActiveColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+
+            <StaticResource x:Key="ButtonForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+
+            <!--  Primary Button Brushes  -->
+
+            <StaticResource x:Key="AccentButtonBackground" ResourceKey="InteractionNormColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundPressed" ResourceKey="InteractionNormActiveColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+
+            <StaticResource x:Key="AccentButtonForeground" ResourceKey="TextOnPrimaryColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="TextOnPrimaryColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="TextOnPrimaryColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="InteractionNormColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushPressed" ResourceKey="InteractionNormActiveColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+
+            <!--  Secondary Button Brushes  -->
+
+            <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionExceptionColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionExceptionHoverColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionExceptionActiveColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+
+            <StaticResource x:Key="ButtonForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 
     <Thickness x:Key="DefaultButtonPadding">16,5,16,6</Thickness>
-    <Thickness x:Key="TertiaryButtonPadding">4</Thickness>
-    <Thickness x:Key="GhostButtonPadding">2,4</Thickness>
 
     <Style BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button" />
 
@@ -112,7 +141,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Height="16"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Background="{StaticResource PrimaryColorBrush}"
+                                Background="{ThemeResource PrimaryColorBrush}"
                                 CornerRadius="1.5"
                                 Opacity="0" />
 
@@ -186,7 +215,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-        <Setter Property="Padding" Value="{StaticResource TertiaryButtonPadding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -202,100 +230,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-
-
-
-    <Style BasedOn="{StaticResource DefaultGhostButtonStyle}" TargetType="custom:GhostButton" />
-
-    <Style x:Key="DefaultGhostButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="custom:GhostButton">
-        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
-        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
-        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
-        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-        <Setter Property="Padding" Value="{StaticResource GhostButtonPadding}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="custom:GhostButton">
-                    <Border x:Name="ContentContainer"
-                            Padding="{TemplateBinding Padding}"
-                            AutomationProperties.AccessibilityView="Raw"
-                            Background="{TemplateBinding Background}"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
-                        <Border.BackgroundTransition>
-                            <BrushTransition Duration="0:0:0.083" />
-                        </Border.BackgroundTransition>
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <ContentPresenter x:Name="PART_LeftIconPresenter"
-                                              Margin="2,0"
-                                              AutomationProperties.AccessibilityView="Raw"
-                                              Content="{TemplateBinding LeftIcon}"
-                                              Foreground="{TemplateBinding Foreground}"
-                                              HighContrastAdjustment="None"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
-
-                            <ContentPresenter x:Name="PART_ContentPresenter"
-                                              Margin="2,0"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              Foreground="{TemplateBinding Foreground}"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
-
-                            <ContentPresenter x:Name="PART_RightIconPresenter"
-                                              Margin="2,0"
-                                              AutomationProperties.AccessibilityView="Raw"
-                                              Content="{TemplateBinding RightIcon}"
-                                              Foreground="{TemplateBinding Foreground}"
-                                              HighContrastAdjustment="None"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
-                        </StackPanel>
-
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-
-                                <VisualState x:Name="PointerOver">
-                                    <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultHoverColorBrush}" />
-                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
-                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
-                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <VisualState x:Name="Pressed">
-                                    <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultActiveColorBrush}" />
-                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
-                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
-                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{StaticResource TextNormColorBrush}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <VisualState x:Name="Disabled">
-                                    <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{StaticResource InteractionDefaultColorBrush}" />
-                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{StaticResource TextDisabledColorBrush}" />
-                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{StaticResource TextDisabledColorBrush}" />
-                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{StaticResource TextDisabledColorBrush}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
 </ResourceDictionary>

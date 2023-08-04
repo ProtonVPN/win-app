@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -18,27 +18,31 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.UI.ReportIssue;
+namespace ProtonVPN.Client.Models.Activation;
 
-public sealed partial class ReportIssueShellPage : IShellPage
+public abstract class WindowActivatorBase : IEventMessageReceiver<ThemeChangedMessage>
 {
-    public ReportIssueShellViewModel ViewModel { get; }
+    protected ILogger Logger { get; }
 
-    public ReportIssueShellPage()
+    protected IThemeSelector ThemeSelector { get; }
+
+    protected WindowActivatorBase(ILogger logger, IThemeSelector themeSelector)
     {
-        ViewModel = App.GetService<ReportIssueShellViewModel>();
-        InitializeComponent();
+        Logger = logger;
+        ThemeSelector = themeSelector;
     }
 
-    public void Initialize(Window window)
+    public void Receive(ThemeChangedMessage message)
     {
-        ViewModel.InitializeViewNavigator(window, NavigationFrame);
+        ElementTheme theme = ThemeSelector.GetTheme().Theme;
+
+        OnThemeChanged(theme);
     }
 
-    public void Reset()
-    {
-        ViewModel.ResetViewNavigator();
-    }
+    protected abstract void OnThemeChanged(ElementTheme theme);
 }

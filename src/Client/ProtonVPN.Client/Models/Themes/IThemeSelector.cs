@@ -21,8 +21,9 @@ namespace ProtonVPN.Client.Models.Themes;
 
 public interface IThemeSelector
 {
-    void Initialize();
     IList<ApplicationElementTheme> GetAvailableThemes();
+
     ApplicationElementTheme GetTheme();
+
     void SetTheme(ApplicationElementTheme theme);
 }

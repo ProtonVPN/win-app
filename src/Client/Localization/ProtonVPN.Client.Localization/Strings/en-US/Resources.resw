@@ -1856,4 +1856,10 @@
   <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
     <value>Restore default settings?</value>
   </data>
+  <data name="Common_Actions_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
+    <value>The logs folder could not be found.</value>
+  </data>
 </root>

@@ -23,28 +23,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Grid>
-        <Grid x:Name="WindowTitleBar"
-              Height="{StaticResource CompactTitleBarHeight}"
-              Margin="{StaticResource CompactTitleBarMargin}"
-              VerticalAlignment="Top"
-              Canvas.ZIndex="1"
-              IsHitTestVisible="True">
-            <TextBlock x:Name="WindowTitleBarText"
-                       VerticalAlignment="Center"
-                       AutomationProperties.AutomationId="WindowTitleLabel"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Title, Mode=OneWay}"
-                       TextWrapping="NoWrap" />
-        </Grid>
-
+    <custom:StepContentControl Grid.Row="0"
+                               Width="328"
+                               Margin="0,64"
+                               CurrentStep="{x:Bind ViewModel.CurrentStep}"
+                               Header="{x:Bind ViewModel.StepsHeader}"
+                               IsHeaderVisible="{x:Bind ViewModel.IsHeaderVisible}"
+                               MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
+                               MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
+                               TotalSteps="{x:Bind ViewModel.TotalSteps}">
         <Frame x:Name="NavigationFrame"
-               Width="328"
-               Margin="0,64"
+               Grid.Row="1"
                HorizontalAlignment="Center"
-               VerticalAlignment="Stretch"/>
-    </Grid>
+               VerticalAlignment="Stretch" />
+    </custom:StepContentControl>
 </Page>

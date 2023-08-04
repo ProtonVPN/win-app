@@ -27,9 +27,10 @@ public partial class ShellRobot : UIActions
     protected Label ApplicationTitleLabel => ElementByAutomationId("ApplicationTitleLabel").AsLabel();
     protected AutomationElement ApplicationIcon => ElementByAutomationId("ApplicationIcon");
 
-    protected Button MinimizeButton => ElementByAutomationId("_MinimizeButton").AsButton();
-    protected Button MaximizeButton => ElementByAutomationId("_MaximizeButton").AsButton();
-    protected Button CloseButton => ElementByAutomationId("_CloseButton").AsButton();
+    protected TitleBar ApplicationTitleBar => ElementByAutomationId("TitleBar").AsTitleBar();
+    protected Button MinimizeButton => ApplicationTitleBar.FindFirstDescendant(c => c.ByName("Minimize")).AsButton();
+    protected Button MaximizeButton => ApplicationTitleBar.FindFirstDescendant(c => c.ByName("Maximize")).AsButton();
+    protected Button CloseButton => ApplicationTitleBar.FindFirstDescendant(c => c.ByName("Close")).AsButton();
 
     protected AutomationElement NavigationView => ElementByAutomationId("NavigationView");
 

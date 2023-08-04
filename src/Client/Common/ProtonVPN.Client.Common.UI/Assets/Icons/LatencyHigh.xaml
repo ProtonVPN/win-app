@@ -33,14 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Height="24">
             <Path Data="M19.875 20.6992C21.5087 18.8482 22.5 16.4168 22.5 13.7539C22.5 7.95492 17.799 3.25391 12 3.25391C6.20101 3.25391 1.5 7.95492 1.5 13.7539C1.5 16.4168 2.4913 18.8482 4.125 20.6992"
                   Fill="#00000000"
-                  Stroke="{StaticResource SignalDangerColorBrush}"
+                  Stroke="{ThemeResource SignalDangerColorBrush}"
                   StrokeEndLineCap="round"
                   StrokeLineJoin="bevel"
                   StrokeStartLineCap="round"
                   StrokeThickness="1.5" />
             <Path Data="M11.3103 13.2941L17.25 17.2539"
                   Fill="#00000000"
-                  Stroke="{StaticResource SignalDangerColorBrush}"
+                  Stroke="{ThemeResource SignalDangerColorBrush}"
                   StrokeEndLineCap="round"
                   StrokeLineJoin="bevel"
                   StrokeStartLineCap="round"
@@ -49,7 +49,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Canvas.Top="12.0039"
                      Width="3.5"
                      Height="3.5"
-                     Fill="{StaticResource SignalDangerColorBrush}" />
+                     Fill="{ThemeResource SignalDangerColorBrush}" />
         </Canvas>
     </Viewbox>
 </base:IconUserControl>

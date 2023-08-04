@@ -26,10 +26,12 @@ public interface IDialogActivator
     void ShowDialog<TPageViewModel>()
         where TPageViewModel : PageViewModelBase;
 
-    void ShowDialog(string shellKey);
+    void ShowDialog(string pageKey);
 
     void CloseDialog<TPageViewModel>()
-    where TPageViewModel : PageViewModelBase;
+        where TPageViewModel : PageViewModelBase;
 
-    void CloseDialog(string shellKey);
+    void CloseDialog(string pageKey);
+
+    void CloseAll();
 }
