@@ -29,6 +29,8 @@ using FlaUI.UIA3;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Windows.Automation;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -95,6 +97,13 @@ namespace ProtonVPN.UI.Tests
         {
             string[] path = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
             App = Application.Launch(path[0] + @"\ProtonVPN.exe");
+            RetryResult<bool> result = WaitUntilAppIsRunning();
+
+            if (!result.Success)
+            {
+                //Sometimes app fails to launch on first try due to CI issues.
+                App = Application.Launch(path + @"\ProtonVPN.exe");
+            }
         }
 
         protected static void KillProtonVpnProcess()
@@ -151,6 +160,18 @@ namespace ProtonVPN.UI.Tests
                     TestsRecorder.SaveScreenshotAndLogs(testName);
                 }
             }
+        }
+
+        private static RetryResult<bool> WaitUntilAppIsRunning()
+        {
+            RetryResult<bool> retry = Retry.WhileFalse(
+                () => {
+                    Process[] pname = Process.GetProcessesByName("ProtonVPN");
+                    return pname.Length > 0;
+                },
+                TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
+
+            return retry;
         }
     }
 }

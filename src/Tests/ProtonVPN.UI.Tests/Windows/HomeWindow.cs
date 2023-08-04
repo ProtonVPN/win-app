@@ -48,7 +48,7 @@ namespace ProtonVPN.UI.Tests.Windows
         private AutomationElement ModalCloseButton => ElementByAutomationId("ModalCloseButton");
         private AutomationElement SidebarModeButton => ElementByAutomationId("SidebarModeButton");
         private Button CancelButton => ElementByAutomationId("CancelButton").AsButton();
-        private Button ClientCloseButton => ElementByAutomationId("CloseButton").AsButton();
+        private Button ClientCloseButton => ElementByAutomationId("CloseButton", TestConstants.ShortTimeout).AsButton();
         private AutomationElement NetshieldToggle => ElementByAutomationId("NetShieldToggle");
         private AutomationElement NetshieldOff => ElementByClassName("Shield");
         private AutomationElement NetshieldLevelOne => ElementByClassName("ShieldHalfFilled");
@@ -105,7 +105,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public HomeWindow ConnectViaCountry(string countryName)
         {
-            SearchInput.Enter(countryName);
+            SearchInput.Text = countryName;
             MoveMouseToElement(Country(countryName));
             ConnectButton.Click();
             return this;
@@ -186,6 +186,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public HomeWindow CancelConnection()
         {
+            CancelButton.WaitUntilClickable();
             CancelButton.Invoke();
             return this;
         }

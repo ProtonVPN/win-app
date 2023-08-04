@@ -193,9 +193,9 @@ namespace ProtonVPN.UI.Tests
             return this;
         }
 
-        protected AutomationElement ElementByAutomationId(string automationId)
+        protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
         {
-            WaitUntilElementExistsByAutomationId(automationId, TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
         }
 

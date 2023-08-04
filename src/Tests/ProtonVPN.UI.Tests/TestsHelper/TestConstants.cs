@@ -30,7 +30,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
         public static string ProfileName => "@AutomationProfile";
         public static string AppFolderPath => @"C:\Program Files\Proton\VPN";
-        public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
+        public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(1000);
         public static string MapCountry => "CA";
         public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
         public static string AppLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs\app-logs.txt");
