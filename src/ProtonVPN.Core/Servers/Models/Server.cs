@@ -158,6 +158,27 @@ namespace ProtonVPN.Core.Servers.Models
             return ServerFeatures.IsB2B(Features);
         }
 
+        public IName CreateConnectionName()
+        {
+            if (this.IsSecureCore())
+            {
+                return GetServerName();
+            }
+            else if (IsB2B())
+            {
+                return new B2BServerName
+                {
+                    GatewayName = GatewayName,
+                    Name = Name
+                };
+            }
+            return new StandardServerName
+            {
+                EntryCountryCode = EntryCountry,
+                Name = Name
+            };
+        }
+
         public static Server Empty() =>
             new Server(
                 "",

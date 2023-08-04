@@ -119,8 +119,8 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public int TotalButtons => 2 + (IsNetShieldVisible ? 1 : 0) + (IsPortForwardingVisible ? 1 : 0);
 
-        public bool IsToShowBusinessBadge => IsNetShieldDisabled && _userStorage.GetUser().IsBusiness();
-        public bool IsToShowPlusBadge => IsNetShieldDisabled && !_userStorage.GetUser().IsBusiness();
+        public bool IsToShowBusinessBadge => IsNetShieldDisabled && _userStorage.GetUser().IsB2B();
+        public bool IsToShowPlusBadge => IsNetShieldDisabled && !_userStorage.GetUser().IsB2B();
         public bool IsNetShieldDisabled => !_userStorage.GetUser().HasNetShield();
         public bool IsFreeUser => !_userStorage.GetUser().Paid();
         public bool IsUserTierPlusOrHigher => _userStorage.GetUser().IsTierPlusOrHigher();

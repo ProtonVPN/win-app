@@ -55,7 +55,7 @@ namespace ProtonVPN.Account
 
         public PromoCodeViewModel PromoCodeViewModel { get; }
 
-        public bool IsToShowVpnPlans => !_userStorage.GetUser().IsBusiness();
+        public bool IsToShowVpnPlans => !_userStorage.GetUser().IsB2B();
         public bool IsToShowUseCoupon => _appSettings.FeaturePromoCodeEnabled && _userStorage.GetUser().CanUsePromoCode();
 
         public AccountModalViewModel(

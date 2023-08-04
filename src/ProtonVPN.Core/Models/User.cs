@@ -50,7 +50,7 @@ namespace ProtonVPN.Core.Models
             return VpnPlan != null && !VpnPlan.Equals("free") && !VpnPlan.Equals("vpnpro2023");
         }
 
-        public bool IsBusiness()
+        public bool IsB2B()
         {
             return VpnPlan != null && (VpnPlan.Equals("vpnpro2023") || VpnPlan.Equals("vpnbiz2023"));
         }
