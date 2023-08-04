@@ -145,7 +145,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 VpnInfoCheckInterval = TimeSpan.FromMinutes(3),
 
-                ClientConfigUpdateInterval = TimeSpan.FromHours(3),
+                ClientConfigUpdateInterval = TimeSpan.FromHours(12),
+
+                ClientConfigMinimumUpdateInterval = TimeSpan.FromHours(2),
 
                 DefaultCurrency = "USD",
 

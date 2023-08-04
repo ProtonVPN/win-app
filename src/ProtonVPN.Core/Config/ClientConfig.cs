@@ -20,7 +20,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Common.Configuration;
@@ -28,30 +30,40 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Core.Config
 {
-    public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware
+    public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware, IHandle<WindowStateMessage>
     {
+        private readonly IAppSettings _appSettings;
         private readonly IApiClient _apiClient;
+        private readonly IConfiguration _config;
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
-        private readonly IAppSettings _appSettings;
 
         private readonly List<int> _unsupportedWireGuardPorts = new() { 53 };
+
+        private DateTime _lastUpdateCallTime = DateTime.MinValue;
+        private DateTime _lastSuccessfulUpdateTime = DateTime.MinValue;
 
         public ClientConfig(
             IAppSettings appSettings,
             IScheduler scheduler,
             IApiClient apiClient,
-            IConfiguration config)
+            IConfiguration config,
+            IEventAggregator eventAggregator)
         {
             _appSettings = appSettings;
             _apiClient = apiClient;
+            _config = config;
+
             _timer = scheduler.Timer();
             _timer.Interval = config.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += Timer_OnTick;
             _updateAction = new SingleAction(UpdateAction);
+
+            eventAggregator.Subscribe(this);
         }
 
         public async Task Update()
@@ -78,9 +90,11 @@ namespace ProtonVPN.Core.Config
         {
             try
             {
+                _lastUpdateCallTime = DateTime.UtcNow;
                 ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
                 if (response.Success)
                 {
+                    _lastSuccessfulUpdateTime = DateTime.UtcNow;
                     _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
                     _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
                     _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
@@ -128,6 +142,18 @@ namespace ProtonVPN.Core.Config
         private bool IsWireGuardPortSupported(int port)
         {
             return !_unsupportedWireGuardPorts.Contains(port);
+        }
+
+        public async Task HandleAsync(WindowStateMessage message, CancellationToken cancellationToken)
+        {
+            DateTime currentDate = DateTime.UtcNow;
+            if (message.IsActive
+                && _lastUpdateCallTime + TimeSpan.FromMinutes(1) <= currentDate
+                && _lastSuccessfulUpdateTime + _config.ClientConfigMinimumUpdateInterval <= currentDate)
+            {
+                _lastUpdateCallTime = DateTime.UtcNow;
+                _updateAction.Run();
+            }
         }
     }
 }
