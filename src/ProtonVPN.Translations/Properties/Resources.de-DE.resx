@@ -2220,19 +2220,23 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
     <value>Bitte wähle eine Farbe</value>
-    <comment>The error message displayed in Profile window when color is not selected</comment>
+    <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
     <value>Bitte wähle ein Land</value>
-    <comment>The error message displayed in Profile window when country is not selected</comment>
+    <comment>The error message displayed in the Profile window when a country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_GatewayEmpty">
+    <value>Bitte wähle ein Gateway</value>
+    <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
     <value>Bitte wähle einen Profilnamen</value>
-    <comment>The error message displayed in Profile window when profile name is empty</comment>
+    <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
     <value>Profilname existiert bereits</value>
-    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+    <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
     <value>Die maximale Länge des Profilnamens beträgt {0} Zeichen. Bitte wähle einen kürzeren Profilnamen.</value>
@@ -2242,11 +2246,15 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
     <value>Bitte wähle einen Server</value>
-    <comment>The error message displayed in Profile window when server is not selected</comment>
+    <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
     <value>Ausgangsland wählen</value>
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Gateway_Watermark">
+    <value>Gateway auswählen</value>
+    <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
     <value>Profilname eingeben</value>
@@ -2283,6 +2291,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Profiles_Profile_lbl_ExitCountry">
     <value>Ausgangsland:</value>
     <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Gateway">
+    <value>Gateway:</value>
+    <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
     <value>Name:</value>
@@ -2445,15 +2457,12 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Werbe-Websites verwenden Cookies und Tracker, um dich anzusprechen.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
     <value>Daten gespart</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Geschätzte Größe der Werbung, Tracker und Malware, die NetShield blockiert hat.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Tracker gestoppt</value>
@@ -2463,7 +2472,6 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Tracker sind Websites von Drittanbietern, die Informationen über deine Webaktivitäten sammeln, speichern und verkaufen.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Wenn Websites nicht geladen werden, versuche NetShield zu deaktivieren</value>
@@ -2485,6 +2493,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="Secure_Servers_lbl_Other">
     <value>{0} sichere Server</value>
+  </data>
+  <data name="ServerType_val_B2B">
+    <value>Gateways</value>
+    <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
     <value>Standard</value>
@@ -2847,6 +2859,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Empfohlen</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
+  <data name="Sidebar_B2BPopup_Desc">
+    <value>Ein VPN-Gateway ist eine sichere Verbindung, die über dedizierte Server kontrollierten Zugang zu den Daten und Diensten deines Unternehmens bietet.</value>
+    <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_B2BPopup_Title">
+    <value>Was ist ein Gateway?</value>
+    <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Schnellverbinden</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
@@ -2999,7 +3019,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Separator_Others">
     <value>Weitere</value>
-    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
     <value>Plus‐Server</value>
@@ -3131,6 +3151,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Upsell_NonStandardPorts_ttl">
     <value>Datenverkehr zu nicht standardisierten Ports zulassen</value>
     <comment>The title in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_Plan_Business_Info">
+    <value>Verfügbar mit VPN Business.</value>
+    <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_About">
     <value>Was ist Port-Weiterleitung?</value>

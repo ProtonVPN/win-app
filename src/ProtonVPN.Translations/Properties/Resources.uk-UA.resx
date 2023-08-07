@@ -2251,19 +2251,23 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
     <value>Виберіть колір</value>
-    <comment>The error message displayed in Profile window when color is not selected</comment>
+    <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
     <value>Виберіть країну</value>
-    <comment>The error message displayed in Profile window when country is not selected</comment>
+    <comment>The error message displayed in the Profile window when a country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_GatewayEmpty">
+    <value>Будь ласка, оберіть шлюз</value>
+    <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
     <value>Виберіть назву профілю</value>
-    <comment>The error message displayed in Profile window when profile name is empty</comment>
+    <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
     <value>Така назва профілю вже існує</value>
-    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+    <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
     <value>Довжина назви профілю не може перевищувати {0} символ. Виберіть коротшу назву.</value>
@@ -2279,11 +2283,15 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
     <value>Виберіть сервер</value>
-    <comment>The error message displayed in Profile window when server is not selected</comment>
+    <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
     <value>Виберіть країну виходу</value>
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Gateway_Watermark">
+    <value>Вибрати шлюз</value>
+    <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
     <value>Введіть назву профілю</value>
@@ -2320,6 +2328,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="Profiles_Profile_lbl_ExitCountry">
     <value>Країна виходу:</value>
     <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Gateway">
+    <value>Шлюз:</value>
+    <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
     <value>Назва:</value>
@@ -2488,15 +2500,12 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Рекламні вебсайти використовують куки та елементи стеження, щоб персоналізувати вас.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
     <value>Заощаджено даних</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Орієнтовний розмір рекламних оголошень, елементів стеження та зловмисних програм, заблокованих NetShield.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Елементів стеження зупинено</value>
@@ -2512,7 +2521,6 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Елементи стеження – це сторонні вебсайти, які збирають, зберігають і продають дані про вашу діяльність в інтернеті.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Якщо вебсайти не завантажуються, спробуйте вимкнути NetShield</value>
@@ -2540,6 +2548,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   </data>
   <data name="Secure_Servers_lbl_Other">
     <value>{0} захищених серверів</value>
+  </data>
+  <data name="ServerType_val_B2B">
+    <value>Шлюзи</value>
+    <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
     <value>Стандартний</value>
@@ -2902,6 +2914,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Рекомендовано</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
+  <data name="Sidebar_B2BPopup_Desc">
+    <value>VPN-шлюз — це захищене з'єднання, яке забезпечує контрольований доступ до даних і сервісів вашої компанії через виділені сервери.</value>
+    <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_B2BPopup_Title">
+    <value>Що таке шлюз?</value>
+    <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Швидке з'єднання</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
@@ -3053,8 +3073,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>ІНШІ</value>
-    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
+    <value>Інше</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
     <value>Сервер Plus</value>
@@ -3204,6 +3224,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Upsell_NonStandardPorts_ttl">
     <value>Дозволити трафік до нестандартних портів</value>
     <comment>The title in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_Plan_Business_Info">
+    <value>Доступно для VPN Business.</value>
+    <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_About">
     <value>Що таке переспрямування портів?</value>
