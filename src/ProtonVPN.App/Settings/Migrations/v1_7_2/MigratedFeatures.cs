@@ -25,7 +25,7 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
 {
     internal class MigratedFeatures
     {
-        private static readonly Dictionary<ServerTypeV1, Features> Map = new Dictionary<ServerTypeV1, Features>
+        private static readonly Dictionary<ServerTypeV1, Features> _map = new()
         {
             { ServerTypeV1.Standard, Features.None },
             { ServerTypeV1.SecureCore, Features.SecureCore },
@@ -49,16 +49,24 @@ namespace ProtonVPN.Settings.Migrations.v1_7_2
         {
             if (_server != null)
             {
-                var features = new ServerFeatures(_server.Features);
+                ServerFeatures features = new(_server.Features);
                 if (features.IsSecureCore())
+                {
                     return Features.SecureCore;
+                }
+
                 if (features.SupportsTor())
+                {
                     return Features.Tor;
+                }
+
                 if (features.SupportsP2P())
+                {
                     return Features.P2P;
+                }
             }
 
-            return Map[_serverType];
+            return _map[_serverType];
         }
     }
 }

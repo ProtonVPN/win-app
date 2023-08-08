@@ -84,7 +84,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 profile = _profileFactory.Create();
                 profile.VpnProtocol = VpnProtocol.Smart;
                 profile.ProfileType = ProfileType.Fastest;
-                profile.Features = (Features)(originalServer?.Features ?? (sbyte)Features.None);
+                profile.Features = (Features)(originalServer?.Features ?? (ulong)Features.None);
                 profile.EntryCountryCode = originalServer?.EntryCountry;
                 profile.CountryCode = originalServer?.ExitCountry;
                 profile.City = originalServer?.City;
@@ -109,13 +109,13 @@ namespace ProtonVPN.Core.Service.Vpn
             IList<Server> servers = new List<Server>();
             servers.AddIfNotNull(GetOriginalServerIfRequired(isToIncludeOriginalServer, originalServer));
 
-            if (ServerFeatures.IsSecureCore((int)baseProfile.Features))
+            if (ServerFeatures.IsSecureCore((ulong)baseProfile.Features))
             {
                 servers.AddIfNotNull(GetBestServerForSameExitCountryAndDifferentEntryCountry(originalServer, servers, baseProfile));
                 servers.AddIfNotNull(GetBestServerForSameEntryCountryAndDifferentExitCountry(originalServer, servers, baseProfile));
                 servers.AddIfNotNull(GetBestServerForDifferentEntryAndExitCountries(originalServer, servers, baseProfile));
             }
-            else if (ServerFeatures.IsB2B((int)baseProfile.Features))
+            else if (ServerFeatures.IsB2B((ulong)baseProfile.Features))
             {
                 baseProfile.City = null;
                 baseProfile.CountryCode = null;

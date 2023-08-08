@@ -280,7 +280,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private async Task ConnectToSimilarServerOrQuickConnectAsync(bool isToTryLastServer, VpnProtocol vpnProtocol)
         {
             IList<Server> serverCandidates = _similarServerCandidatesGenerator.Generate(isToTryLastServer, _targetServer, _targetProfile);
-            if (!ServerFeatures.IsB2B((int)_targetProfile.Features))
+            if (!ServerFeatures.IsB2B((ulong)_targetProfile.Features))
             {
                 IEnumerable<Server> quickConnectServers = (await _vpnConnector.GetSortedAndValidQuickConnectServersAsync(
                     _config.MaxQuickConnectServersOnReconnection)).Except(serverCandidates);
