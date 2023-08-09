@@ -21,22 +21,22 @@ using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.DnsLogs;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Dns.Caching
 {
     public class DnsCacheManager : IDnsCacheManager
     {
-        private readonly IAppSettings _appSettings;
+        private readonly ISettings _settings;
         private readonly ILogger _logger;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-        public DnsCacheManager(IAppSettings appSettings, ILogger logger)
+        public DnsCacheManager(ISettings settings, ILogger logger)
         {
-            _appSettings = appSettings;
+            _settings = settings;
             _logger = logger;
         }
         
@@ -66,7 +66,7 @@ namespace ProtonVPN.Dns.Caching
 
         private DnsResponse AddOrReplace(string host, DnsResponse dnsResponse)
         {
-            ConcurrentDictionary<string, DnsResponse> dnsCache = _appSettings.DnsCache;
+            ConcurrentDictionary<string, DnsResponse> dnsCache = _settings.DnsCache;
             DnsResponse cachedValue;
             if (dnsCache is null)
             {
@@ -77,7 +77,7 @@ namespace ProtonVPN.Dns.Caching
             {
                 cachedValue = dnsCache.AddOrUpdate(host, dnsResponse, (_, _) => dnsResponse);
             }
-            _appSettings.DnsCache = dnsCache;
+            _settings.DnsCache = dnsCache;
             return cachedValue;
         }
 
@@ -104,7 +104,7 @@ namespace ProtonVPN.Dns.Caching
 
         private DnsResponse Update(string host, Func<DnsResponse, DnsResponse> dnsResponseUpdateFactory)
         {
-            ConcurrentDictionary<string, DnsResponse> dnsCache = _appSettings.DnsCache;
+            ConcurrentDictionary<string, DnsResponse> dnsCache = _settings.DnsCache;
             DnsResponse dnsResponse = null;
             if (dnsCache is null)
             {
@@ -117,7 +117,7 @@ namespace ProtonVPN.Dns.Caching
                     DnsResponse newDnsResponse = dnsResponseUpdateFactory(oldDnsResponse);
                     if (dnsCache.TryUpdate(host, newDnsResponse, oldDnsResponse))
                     {
-                        _appSettings.DnsCache = dnsCache;
+                        _settings.DnsCache = dnsCache;
                         dnsResponse = newDnsResponse;
                     }
                     else

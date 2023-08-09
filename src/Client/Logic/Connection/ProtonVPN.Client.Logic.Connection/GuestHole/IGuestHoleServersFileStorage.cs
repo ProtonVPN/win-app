@@ -16,11 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
-namespace ProtonVPN.Common.Tests.Text.Serialization
+
+using ProtonVPN.Common.FileStoraging;
+
+namespace ProtonVPN.Client.Logic.Connection.GuestHole;
+
+public interface IGuestHoleServersFileStorage : IFileStorageBase<IEnumerable<GuestHoleServerContract>>
 {
-    public class SampleContract
-    {
-        public int Number { get; set; }
-        public string Name { get; set; }
-    }
 }

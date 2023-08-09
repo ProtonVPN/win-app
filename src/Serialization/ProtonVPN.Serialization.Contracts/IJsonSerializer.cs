@@ -17,25 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
-using Newtonsoft.Json;
+namespace ProtonVPN.Serialization.Contracts;
 
-namespace ProtonVPN.Common.Text.Serialization
+public interface IJsonSerializer
 {
-    public class JsonSerializer<T> : ITextSerializer<T>
-    {
-        private readonly JsonSerializer _serializer = new();
-
-        public T Deserialize(TextReader source)
-        {
-            using JsonTextReader jsonReader = new(source);
-            return _serializer.Deserialize<T>(jsonReader);
-        }
-
-        public void Serialize(T value, TextWriter writer)
-        {
-            using JsonTextWriter jsonWriter = new(writer);
-            _serializer.Serialize(jsonWriter, value);
-        }
-    }
+    string Serialize(object? value);
+    string SerializePretty(object? value);
+    T? Deserialize<T>(string value);
+    T? Deserialize<T>(TextReader source);
+    void Serialize<T>(T value, TextWriter writer);
 }

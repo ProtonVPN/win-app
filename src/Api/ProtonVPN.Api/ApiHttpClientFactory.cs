@@ -33,26 +33,26 @@ public class ApiHttpClientFactory : IApiHttpClientFactory
     private readonly HttpMessageHandler _innerHandler;
 
     public ApiHttpClientFactory(IConfiguration config, 
-        //TODO: restore AlternativeHostHandler alternativeHostHandler,
+        AlternativeHostHandler alternativeHostHandler,
         CancellingHandlerBase cancellingHandlerBase,
         UnauthorizedResponseHandler unauthorizedResponseHandler,
         HumanVerificationHandlerBase humanVerificationHandlerBase,
         OutdatedAppHandler outdatedAppHandler,
         RetryingHandlerBase retryingHandlerBase,
-        //TODO: restore DnsHandler dnsHandler,
+        DnsHandler dnsHandler,
         LoggingHandlerBase loggingHandlerBase,
         TlsPinnedCertificateHandler certificateHandler)
     {
         _config = config;
 
         _innerHandler = new HttpMessageHandlerStackBuilder()
-            //TODO: restore .AddDelegatingHandler(alternativeHostHandler)
+            .AddDelegatingHandler(alternativeHostHandler)
             .AddDelegatingHandler(cancellingHandlerBase)
             .AddDelegatingHandler(unauthorizedResponseHandler)
             .AddDelegatingHandler(humanVerificationHandlerBase)
             .AddDelegatingHandler(outdatedAppHandler)
             .AddDelegatingHandler(retryingHandlerBase)
-            //TODO: restore .AddDelegatingHandler(dnsHandler)
+            .AddDelegatingHandler(dnsHandler)
             .AddDelegatingHandler(loggingHandlerBase)
             .AddLastHandler(certificateHandler)
             .Build();

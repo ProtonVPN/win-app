@@ -23,25 +23,25 @@ using System.IO;
 using System.Linq;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Common.FileStoraging
 {
     public abstract class FileStorageBase<T> : IFileStorageBase<T>
     {
-        private readonly ITextSerializer<T> _serializer;
+        private readonly IJsonSerializer _jsonSerializer;
         private readonly ILogger _logger;
         private readonly string _fileName;
 
-        protected FileStorageBase(ILogger logger, ITextSerializerFactory serializerFactory, string fileName)
+        protected FileStorageBase(ILogger logger, IJsonSerializer jsonSerializer, string fileName)
         {
             Ensure.NotEmpty(fileName, nameof(fileName));
             
             _logger = logger;
             _fileName = fileName;
-            _serializer = serializerFactory.Serializer<T>();
+            _jsonSerializer = jsonSerializer;
         }
 
         public T Get()
@@ -78,7 +78,7 @@ namespace ProtonVPN.Common.FileStoraging
         {
             using (StreamReader reader = new(_fileName))
             {
-                return _serializer.Deserialize(reader);
+                return _jsonSerializer.Deserialize<T>(reader);
             }
         }
 
@@ -125,7 +125,7 @@ namespace ProtonVPN.Common.FileStoraging
         {
             using (StreamWriter writer = new(_fileName))
             {
-                _serializer.Serialize(value, writer);
+                _jsonSerializer.Serialize(value, writer);
             }
         }
     }

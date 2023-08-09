@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Concurrent;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
-using ProtonVPN.Common.Core.Models;
+using ProtonVPN.Dns.Contracts;
 
-namespace ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Settings;
 
 public class GlobalSettings : IGlobalSettings
 {
@@ -84,5 +86,29 @@ public class GlobalSettings : IGlobalSettings
     {
         get => _globalRepository.GetValueType<AutoLaunchMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.AutoLaunchMode;
         set => _globalRepository.SetValueType<AutoLaunchMode>(value, SettingEncryption.Unencrypted);
+    }
+
+    public int[] OpenVpnTcpPorts
+    {
+        get => _globalRepository.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.OpenVpnTcpPorts;
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public int[] OpenVpnUdpPorts
+    {
+        get => _globalRepository.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.OpenVpnUdpPorts;
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public ConcurrentDictionary<string, DnsResponse>? DnsCache
+    {
+        get => _globalRepository.GetReferenceType<ConcurrentDictionary<string, DnsResponse>>(SettingEncryption.Unencrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool DoHEnabled
+    {
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsDoHEnabled;
+        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 }

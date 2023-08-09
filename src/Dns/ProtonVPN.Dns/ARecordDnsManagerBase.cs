@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;
 
@@ -41,18 +41,18 @@ namespace ProtonVPN.Dns
         protected ILogger Logger { get; }
         protected IDnsCacheManager DnsCacheManager { get; }
 
-        private readonly IAppSettings _appSettings;
+        private readonly ISettings _settings;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
         private readonly ConcurrentDictionary<string, DateTime> _failedRequestsCache = new();
 
-        protected ARecordDnsManagerBase(IAppSettings appSettings, IConfiguration configuration,
+        protected ARecordDnsManagerBase(ISettings settings, IConfiguration configuration,
             ILogger logger, IDnsCacheManager dnsCacheManager)
         {
             FailedDnsRequestTimeout = configuration.FailedDnsRequestTimeout;
             NewCacheTimeToLiveOnResolveError = configuration.NewCacheTimeToLiveOnResolveError;
             Logger = logger;
             DnsCacheManager = dnsCacheManager;
-            _appSettings = appSettings;
+            _settings = settings;
         }
 
         public async Task<IList<IpAddress>> GetAsync(string host, CancellationToken cancellationToken)
@@ -116,7 +116,7 @@ namespace ProtonVPN.Dns
             IList<IpAddress> ipAddresses = new List<IpAddress>();
             DateTime currentDateTimeUtc = DateTime.UtcNow;
 
-            if (_appSettings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse) &&
+            if (_settings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse) &&
                 dnsResponse.ExpirationDateTimeUtc > currentDateTimeUtc)
             {
                 ipAddresses = dnsResponse.IpAddresses;
@@ -129,7 +129,7 @@ namespace ProtonVPN.Dns
         {
             IList<IpAddress> ipAddresses = new List<IpAddress>();
 
-            if (_appSettings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse))
+            if (_settings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse))
             {
                 ipAddresses = dnsResponse.IpAddresses;
             }
@@ -200,7 +200,7 @@ namespace ProtonVPN.Dns
 
         public IList<IpAddress> GetFromCache(string host)
         {
-            ConcurrentDictionary<string, DnsResponse> dnsCache = _appSettings.DnsCache;
+            ConcurrentDictionary<string, DnsResponse> dnsCache = _settings.DnsCache;
             IList<IpAddress> ipAddresses = new List<IpAddress>();
 
             if (dnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse))

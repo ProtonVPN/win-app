@@ -57,6 +57,7 @@
     <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
     <ProjectReference Include="..\ProtonVPN.NetworkFilter\ProtonVPN.NetworkFilter.csproj" />
     <ProjectReference Include="..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
+    <ProjectReference Include="..\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj" />
     <ProjectReference Include="..\Update\ProtonVPN.Update.Installers\ProtonVPN.Update.Installers.csproj" />
   </ItemGroup>
   <ItemGroup>

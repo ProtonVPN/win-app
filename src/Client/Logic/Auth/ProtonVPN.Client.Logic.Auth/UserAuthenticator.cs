@@ -23,7 +23,9 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
 
@@ -36,26 +38,43 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IAuthCertificateManager _authCertificateManager;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
 
     private AuthResponse _authResponse;
     private string _username;
 
     public UserAuthenticator(ILogger logger, IApiClient apiClient, IAuthCertificateManager authCertificateManager,
-        ISettings settings, IEventMessageSender eventMessageSender)
+        ISettings settings, IEventMessageSender eventMessageSender, IGuestHoleActionExecutor guestHoleActionExecutor)
     {
         _logger = logger;
         _apiClient = apiClient;
         _authCertificateManager = authCertificateManager;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
+        _guestHoleActionExecutor = guestHoleActionExecutor;
     }
 
     public bool IsLoggedIn { get; private set; }
 
     public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
     {
-        AuthResult authResult = await AuthAsync(username, password);
-        return authResult.Failure ? authResult : await RefreshVpnInfoAndInvokeLoginAsync();
+        try
+        {
+            AuthResult result = await AuthAsync(username, password);
+            return result.Failure ? result : await RefreshVpnInfoAndInvokeLoginAsync();
+        }
+        catch
+        {
+            AuthResult? authResult = null;
+            Result guestHoleResult = await _guestHoleActionExecutor.ExecuteAsync(async () =>
+            {
+                authResult = await AuthAsync(username, password);
+            });
+
+            return guestHoleResult.Success && authResult != null
+                ? await RefreshVpnInfoAndInvokeLoginAsync()
+                : AuthResult.Fail(AuthError.GuestHoleFailed);
+        }
     }
 
     private async Task<AuthResult> RefreshVpnInfoAndInvokeLoginAsync()
@@ -125,7 +144,8 @@ public class UserAuthenticator : IUserAuthenticator
     {
         TwoFactorRequest request = new() { TwoFactorCode = code };
         ApiResponseResult<BaseResponse> response =
-            await _apiClient.GetTwoFactorAuthResponse(request, _authResponse.AccessToken, _authResponse.UniqueSessionId);
+            await _apiClient.GetTwoFactorAuthResponse(request, _authResponse.AccessToken,
+                _authResponse.UniqueSessionId);
 
         if (response.Failure)
         {

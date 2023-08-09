@@ -5,7 +5,7 @@ from urllib.request import urlopen
 def load():
     # Constants
 
-    server_list_api_url: str = 'https://api.protonvpn.ch/vpn/logicals?SignServer=Server.EntryIP,Server.Label'
+    server_list_api_url: str = 'https://vpn-api.proton.me/vpn/logicals?SignServer=Server.EntryIP,Server.Label'
     num_guest_hole_servers: int = 10
     secure_core_flag: int = 1
 

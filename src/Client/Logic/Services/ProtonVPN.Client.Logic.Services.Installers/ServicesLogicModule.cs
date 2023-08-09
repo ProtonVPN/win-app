@@ -26,10 +26,10 @@ public class ServicesLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        //builder.RegisterType<ProcessCommunicationStarter>().As<IProcessCommunicationStarter>().SingleInstance();
-        //builder.RegisterType<ServiceCaller>().As<IServiceCaller>().SingleInstance();
-        builder.RegisterType<ProcessCommunicationStarterMock>().As<IProcessCommunicationStarter>().SingleInstance();
-        builder.RegisterType<ServiceCallerMock>().As<IServiceCaller>().SingleInstance();
+        builder.RegisterType<ProcessCommunicationStarter>().As<IProcessCommunicationStarter>().SingleInstance();
+        builder.RegisterType<ServiceCaller>().As<IServiceCaller>().SingleInstance();
         builder.RegisterType<ServiceManager>().As<IServiceManager>().SingleInstance();
+        // builder.RegisterType<ProcessCommunicationStarterMock>().As<IProcessCommunicationStarter>().SingleInstance();
+        // builder.RegisterType<ServiceCallerMock>().As<IServiceCaller>().SingleInstance();
     }
 }

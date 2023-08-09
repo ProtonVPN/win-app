@@ -39,6 +39,9 @@ public static class DefaultSettings
     public static bool IsAlternativeRoutingEnabled = true;
     public static bool IsCustomDnsServersEnabled = false;
     public static List<CustomDnsServer> CustomDnsServersList = new();
+    public static bool IsDoHEnabled = true;
+    public static int[] OpenVpnTcpPorts = { 443, 1194, 4569, 5060, 80 };
+    public static int[] OpenVpnUdpPorts = { 443, 3389, 8080, 8443 };
     public static bool IsAutoLaunchEnabled = true;
     public static AutoLaunchMode AutoLaunchMode = AutoLaunchMode.MinimizeToSystemTray;
     public static bool IsAutoConnectEnabled = false;

@@ -22,21 +22,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.DnsLogs;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Resolvers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 
 namespace ProtonVPN.Dns
 {
     public class AlternativeHostsManager : IAlternativeHostsManager
     {
         private readonly IDnsOverHttpsTxtRecordsResolver _dnsOverHttpsTxtRecordsResolver;
-        private readonly IAppSettings _appSettings;
+        private readonly ISettings _settings;
         private readonly ILogger _logger;
         private readonly IDnsCacheManager _dnsCacheManager;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
@@ -45,10 +45,10 @@ namespace ProtonVPN.Dns
         private readonly TimeSpan _newCacheTimeToLiveOnResolveError;
 
         public AlternativeHostsManager(IDnsOverHttpsTxtRecordsResolver dnsOverHttpsTxtRecordsResolver, 
-            IAppSettings appSettings, IConfiguration configuration, ILogger logger, IDnsCacheManager dnsCacheManager)
+            ISettings settings, IConfiguration configuration, ILogger logger, IDnsCacheManager dnsCacheManager)
         {
             _dnsOverHttpsTxtRecordsResolver = dnsOverHttpsTxtRecordsResolver;
-            _appSettings = appSettings;
+            _settings = settings;
             _logger = logger;
             _dnsCacheManager = dnsCacheManager;
             _failedDnsRequestTimeout = configuration.FailedDnsRequestTimeout;
@@ -119,7 +119,7 @@ namespace ProtonVPN.Dns
             IList<string> alternativeHosts = new List<string>();
             DateTime currentDateTimeUtc = DateTime.UtcNow;
 
-            if (_appSettings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse) &&
+            if (_settings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse) &&
                 dnsResponse.ExpirationDateTimeUtc > currentDateTimeUtc)
             {
                 alternativeHosts = dnsResponse.AlternativeHosts;
@@ -132,7 +132,7 @@ namespace ProtonVPN.Dns
         {
             IList<string> alternativeHosts = new List<string>();
 
-            if (_appSettings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse))
+            if (_settings.DnsCache.TryGetValueIfDictionaryIsNotNull(host, out DnsResponse dnsResponse))
             {
                 alternativeHosts = dnsResponse.AlternativeHosts;
             }

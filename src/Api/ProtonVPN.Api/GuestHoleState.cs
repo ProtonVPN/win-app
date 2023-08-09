@@ -18,19 +18,20 @@
  */
 
 using System;
+using ProtonVPN.Api.Contracts;
 
 namespace ProtonVPN.Api
 {
-    public class GuestHoleState
+    public class GuestHoleState : IGuestHoleState
     {
         public event EventHandler<bool> GuestHoleStateChanged;
 
-        public void SetState(bool active)
+        public void SetState(bool isActive)
         {
-            Active = active;
-            GuestHoleStateChanged?.Invoke(this, active);
+            IsActive = isActive;
+            GuestHoleStateChanged?.Invoke(this, isActive);
         }
 
-        public bool Active { get; private set; }
+        public bool IsActive { get; private set; }
     }
 }

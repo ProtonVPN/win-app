@@ -24,14 +24,15 @@ using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 using Polly.Timeout;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Exceptions;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
@@ -51,8 +52,8 @@ namespace ProtonVPN.Api.Handlers
         private readonly IDnsManager _dnsManager;
         private readonly IAlternativeRoutingHostGenerator _alternativeRoutingHostGenerator;
         private readonly IAlternativeHostsManager _alternativeHostsManager;
-        private readonly IAppSettings _appSettings;
-        private readonly GuestHoleState _guestHoleState;
+        private readonly ISettings _settings;
+        private readonly IGuestHoleState _guestHoleState;
         private readonly string _defaultApiHost;
         private readonly TimeSpan _alternativeRoutingCheckInterval;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
@@ -67,15 +68,15 @@ namespace ProtonVPN.Api.Handlers
             IDnsManager dnsManager,
             IAlternativeRoutingHostGenerator alternativeRoutingHostGenerator,
             IAlternativeHostsManager alternativeHostsManager,
-            IAppSettings appSettings,
-            GuestHoleState guestHoleState,
+            ISettings settings,
+            IGuestHoleState guestHoleState,
             IConfiguration configuration)
         {
             _logger = logger;
             _dnsManager = dnsManager;
             _alternativeRoutingHostGenerator = alternativeRoutingHostGenerator;
             _alternativeHostsManager = alternativeHostsManager;
-            _appSettings = appSettings;
+            _settings = settings;
             _guestHoleState = guestHoleState;
             _defaultApiHost = new Uri(configuration.Urls.ApiUrl).Host;
             _alternativeRoutingCheckInterval = configuration.AlternativeRoutingCheckInterval;
@@ -169,12 +170,12 @@ namespace ProtonVPN.Api.Handlers
 
         private bool IsAlternativeRoutingAllowed()
         {
-            return _isDisconnected && !_guestHoleState.Active && IsAlternativeRoutingSettingEnabled();
+            return _isDisconnected && !_guestHoleState.IsActive && IsAlternativeRoutingSettingEnabled();
         }
 
         private bool IsAlternativeRoutingSettingEnabled()
         {
-            return _appSettings.DoHEnabled;
+            return _settings.DoHEnabled;
         }
 
         private async Task<HttpResponseMessage> TrySendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -217,7 +218,7 @@ namespace ProtonVPN.Api.Handlers
         public bool IsPotentialBlockingException(Exception ex)
         {
             return ex is TimeoutException or TimeoutRejectedException or DnsException
-                || ex.GetBaseException() is AuthenticationException;
+                   || ex.GetBaseException() is AuthenticationException;
         }
 
         private bool IsLastAlternativeRoutingCheckDateNullOrTooOld()
@@ -324,7 +325,7 @@ namespace ProtonVPN.Api.Handlers
         private async Task<HttpResponseMessage> SendRequestWithAlternativeRoutingAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            string alternativeRoutingHost = _alternativeRoutingHostGenerator.Generate(_isUserLoggedIn ? _appSettings.Uid : null);
+            string alternativeRoutingHost = _alternativeRoutingHostGenerator.Generate(_isUserLoggedIn ? _settings.UniqueSessionId : null);
             IList<string> alternativeHosts = await _alternativeHostsManager.GetAsync(alternativeRoutingHost, cancellationToken);
             ThrowIfNoAlternativeHostsExist(alternativeHosts);
 

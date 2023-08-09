@@ -30,6 +30,8 @@ using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Crypto.Installers;
+using ProtonVPN.Dns.Installers;
+using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.Logging;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
@@ -38,6 +40,7 @@ using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
+using ProtonVPN.Serialization.Installers;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -70,6 +73,7 @@ public class MainModule : Module
                .RegisterModule<ServicesLogicModule>()
                .RegisterModule<ConnectionLogicModule>()
                .RegisterModule<AppProcessCommunicationModule>()
+               .RegisterModule<EntityMappingModule>()
                .RegisterModule<ProcessCommunicationModule>()
                .RegisterModule<LocalizationModule>()
                .RegisterModule<EventMessagingModule>()
@@ -78,7 +82,9 @@ public class MainModule : Module
                .RegisterModule<SettingsModule>()
                .RegisterModule<AuthLogicModule>()
                .RegisterModule<CryptoModule>()
-               .RegisterModule<ApiModule>()
-               .RegisterModule<FeedbackLogicModule>();
+               .RegisterModule<FeedbackLogicModule>()
+               .RegisterModule<DnsModule>()
+               .RegisterModule<SerializationModule>()
+               .RegisterModule<ApiModule>();
     }
 }

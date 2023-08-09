@@ -20,7 +20,7 @@
 using System.Text;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
-using ProtonVPN.Serialization.Json;
+using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Client.Settings.Files;
 
@@ -31,10 +31,12 @@ public class SettingsFileManager : ISettingsFileManager
     private static readonly string _fullFolderPath = Path.Combine(Environment.GetFolderPath(ROOT_FOLDER), FOLDER_PATH);
 
     private readonly ILogger _logger;
+    private readonly IJsonSerializer _jsonSerializer;
 
-    public SettingsFileManager(ILogger logger)
+    public SettingsFileManager(ILogger logger, IJsonSerializer jsonSerializer)
     {
         _logger = logger;
+        _jsonSerializer = jsonSerializer;
     }
 
     public IDictionary<string, string?> Read(string fileName)
@@ -45,7 +47,7 @@ public class SettingsFileManager : ISettingsFileManager
             if (File.Exists(fullFilePath))
             {
                 string json = File.ReadAllText(fullFilePath);
-                return JsonSerializer.Deserialize<Dictionary<string, string?>>(json) ?? new();
+                return _jsonSerializer.Deserialize<Dictionary<string, string?>>(json) ?? new();
             }
         }
         catch (Exception ex)
@@ -69,7 +71,7 @@ public class SettingsFileManager : ISettingsFileManager
                 Directory.CreateDirectory(_fullFolderPath);
             }
             string fullFilePath = GetFullFilePath(fileName);
-            string fileContent = JsonSerializer.SerializePretty(dictionary);
+            string fileContent = _jsonSerializer.SerializePretty(dictionary);
             File.WriteAllText(fullFilePath, fileContent, Encoding.UTF8);
             return true;
         }

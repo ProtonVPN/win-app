@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
 namespace ProtonVPN.Client.Logic.Services.Contracts
 {
     public interface IServiceCaller
     {
         Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
+
+        Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
 
 #warning THIS METHOD SHOULD BE COMPLETED OR DELETED
         Task ConnectAsync();

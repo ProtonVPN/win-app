@@ -48,10 +48,14 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
         return InvokeAsync(c => c.RegisterStateConsumer(new StateConsumerIpcEntity { ServerPort = appServerPort }).Wrap());
     }
 
+    public Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest)
+    {
+        return InvokeAsync(c => c.Connect(connectionRequest).Wrap());
+    }
+
 #warning THIS METHOD SHOULD BE COMPLETED OR DELETED
     public Task ConnectAsync()
     {
-
         PublicKey publicKey = _authKeyManager.GetPublicKey();
         SecretKey secretKey = _authKeyManager.GetSecretKey();
 
@@ -71,7 +75,12 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
             Protocol = VpnProtocolIpcEntity.Smart,
             Config = new VpnConfigIpcEntity
             {
-                Ports = new Dictionary<VpnProtocolIpcEntity, int[]> { { VpnProtocolIpcEntity.WireGuard, new int[] { 443, 88, 1224, 51820, 500, 4500 } } },
+                Ports = new Dictionary<VpnProtocolIpcEntity, int[]>
+                {
+                    { VpnProtocolIpcEntity.WireGuard, new int[] { 443, 88, 1224, 51820, 500, 4500 } },
+                    { VpnProtocolIpcEntity.OpenVpnTcp, new int[] { 443, 1194, 4569, 5060, 80 } },
+                    { VpnProtocolIpcEntity.OpenVpnUdp, new int[] { 443, 3389, 8080, 8443 } },
+                },
                 SplitTunnelMode = SplitTunnelModeIpcEntity.Disabled,
                 NetShieldMode = 0,
                 VpnProtocol = VpnProtocolIpcEntity.Smart,
@@ -79,7 +88,7 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
                 ModerateNat = false,
                 SplitTcp = true,
                 AllowNonStandardPorts = true,
-                PortForwarding = false
+                PortForwarding = false,
             },
             Credentials = new VpnCredentialsIpcEntity
             {
