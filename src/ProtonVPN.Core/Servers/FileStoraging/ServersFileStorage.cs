@@ -22,7 +22,7 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Common.Text.Serialization;
+using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Core.Servers.FileStoraging
 {
@@ -30,8 +30,8 @@ namespace ProtonVPN.Core.Servers.FileStoraging
         IServersFileStorage
     {
         public ServersFileStorage(ILogger logger,
-            ITextSerializerFactory serializerFactory, IConfiguration config)
-            : base(logger, serializerFactory, config.ServersJsonCacheFilePath)
+            IJsonSerializer jsonSerializer, IConfiguration config)
+            : base(logger, jsonSerializer, config.ServersJsonCacheFilePath)
         {
         }
     }

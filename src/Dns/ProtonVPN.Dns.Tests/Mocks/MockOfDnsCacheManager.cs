@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using ProtonVPN.Core.Settings;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;
 
@@ -28,9 +28,9 @@ namespace ProtonVPN.Dns.Tests.Mocks
 {
     public class MockOfDnsCacheManager : IDnsCacheManager
     {
-        private readonly IAppSettings _appSettings;
+        private readonly ISettings _appSettings;
 
-        public MockOfDnsCacheManager(IAppSettings appSettings)
+        public MockOfDnsCacheManager(ISettings appSettings)
         {
             _appSettings = appSettings;
         }

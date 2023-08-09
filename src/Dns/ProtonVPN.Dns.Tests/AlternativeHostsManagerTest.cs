@@ -26,6 +26,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.Core;
 using NSubstitute.ExceptionExtensions;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Dns.Caching;
@@ -46,7 +47,7 @@ namespace ProtonVPN.Dns.Tests
         private MockOfLogger _logger;
         private CancellationTokenSource _cancellationTokenSource;
         private IDnsOverHttpsTxtRecordsResolver _dnsOverHttpsTxtRecordsResolver;
-        private IAppSettings _appSettings;
+        private ISettings _settings;
         private IConfiguration _configuration;
         private IDnsCacheManager _dnsCacheManager;
         private AlternativeHostsManager _alternativeHostsManager;
@@ -57,13 +58,13 @@ namespace ProtonVPN.Dns.Tests
             _logger = new MockOfLogger();
             _cancellationTokenSource = new CancellationTokenSource();
             _dnsOverHttpsTxtRecordsResolver = Substitute.For<IDnsOverHttpsTxtRecordsResolver>();
-            _appSettings = Substitute.For<IAppSettings>();
+            _settings = Substitute.For<ISettings>();
             _configuration = Substitute.For<IConfiguration>();
             _configuration.FailedDnsRequestTimeout.Returns(FAILED_DNS_REQUEST_TIMEOUT);
             _configuration.NewCacheTimeToLiveOnResolveError.Returns(NEW_TTL_ON_RESOLVE_ERROR);
-            _dnsCacheManager = new MockOfDnsCacheManager(_appSettings);
+            _dnsCacheManager = new MockOfDnsCacheManager(_settings);
             _alternativeHostsManager = new AlternativeHostsManager(_dnsOverHttpsTxtRecordsResolver,
-                _appSettings, _configuration, _logger, _dnsCacheManager);
+                _settings, _configuration, _logger, _dnsCacheManager);
         }
 
         [TestCleanup]
@@ -72,7 +73,7 @@ namespace ProtonVPN.Dns.Tests
             _logger = null;
             _cancellationTokenSource = null;
             _dnsOverHttpsTxtRecordsResolver = null;
-            _appSettings = null;
+            _settings = null;
             _configuration = null;
             _dnsCacheManager = null;
             _alternativeHostsManager = null;
@@ -89,7 +90,7 @@ namespace ProtonVPN.Dns.Tests
         [TestMethod]
         public async Task TestGetAsync_WhenSpecificHostIsNotCachedAndAllFails()
         {
-            _appSettings.DnsCache = CreateDnsCache(CreateDnsResponse(DIFFERENT_HOST));
+            _settings.DnsCache = CreateDnsCache(CreateDnsResponse(DIFFERENT_HOST));
 
             IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
@@ -125,7 +126,7 @@ namespace ProtonVPN.Dns.Tests
         public async Task TestGetAsync_WhenHasFreshCache()
         {
             InitializeDnsOverHttpsTxtRecordsResolver();
-            _appSettings.DnsCache = CreateDnsCache(CreateDnsResponse(HOST));
+            _settings.DnsCache = CreateDnsCache(CreateDnsResponse(HOST));
 
             IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
@@ -136,10 +137,10 @@ namespace ProtonVPN.Dns.Tests
 
         private void AssertResultEqualsCache(IList<string> result)
         {
-            Assert.AreEqual(_appSettings.DnsCache[HOST].AlternativeHosts.Count, result.Count);
+            Assert.AreEqual(_settings.DnsCache[HOST].AlternativeHosts.Count, result.Count);
             foreach (string resultAlternativeHost in result)
             {
-                Assert.IsTrue(_appSettings.DnsCache[HOST].AlternativeHosts.Contains(resultAlternativeHost));
+                Assert.IsTrue(_settings.DnsCache[HOST].AlternativeHosts.Contains(resultAlternativeHost));
             }
         }
 
@@ -182,10 +183,10 @@ namespace ProtonVPN.Dns.Tests
         private void AssertCacheAfterSuccessfulResolve(IList<string> result, DateTime testStartDateTimeUtc)
         {
             AssertResultEqualsCache(result);
-            Assert.AreEqual(TimeSpan.FromMinutes(12), _appSettings.DnsCache[HOST].TimeToLive);
-            Assert.IsTrue(_appSettings.DnsCache[HOST].ExpirationDateTimeUtc > DateTime.UtcNow);
-            Assert.IsTrue(_appSettings.DnsCache[HOST].ResponseDateTimeUtc >= testStartDateTimeUtc);
-            Assert.IsTrue(_appSettings.DnsCache[HOST].ResponseDateTimeUtc <= DateTime.UtcNow);
+            Assert.AreEqual(TimeSpan.FromMinutes(12), _settings.DnsCache[HOST].TimeToLive);
+            Assert.IsTrue(_settings.DnsCache[HOST].ExpirationDateTimeUtc > DateTime.UtcNow);
+            Assert.IsTrue(_settings.DnsCache[HOST].ResponseDateTimeUtc >= testStartDateTimeUtc);
+            Assert.IsTrue(_settings.DnsCache[HOST].ResponseDateTimeUtc <= DateTime.UtcNow);
         }
 
         [TestMethod]
@@ -193,7 +194,7 @@ namespace ProtonVPN.Dns.Tests
         {
             DateTime testStartDateTimeUtc = DateTime.UtcNow;
             InitializeDnsOverHttpsTxtRecordsResolver();
-            _appSettings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
+            _settings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
             AssertCacheBeforeExecution();
 
             IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
@@ -220,16 +221,16 @@ namespace ProtonVPN.Dns.Tests
         private void AssertCacheBeforeExecution()
         {
             AssertCacheAlternativeHosts();
-            Assert.AreEqual(TimeSpan.FromMinutes(15), _appSettings.DnsCache[HOST].TimeToLive);
+            Assert.AreEqual(TimeSpan.FromMinutes(15), _settings.DnsCache[HOST].TimeToLive);
         }
 
         private void AssertCacheAlternativeHosts()
         {
             IList<string> wrongAlternativeHosts = GetWrongAlternativeHosts();
-            Assert.AreEqual(wrongAlternativeHosts.Count, _appSettings.DnsCache[HOST].AlternativeHosts.Count);
+            Assert.AreEqual(wrongAlternativeHosts.Count, _settings.DnsCache[HOST].AlternativeHosts.Count);
             foreach (string wrongAlternativeHost in wrongAlternativeHosts)
             {
-                Assert.IsTrue(_appSettings.DnsCache[HOST].AlternativeHosts.Contains(wrongAlternativeHost));
+                Assert.IsTrue(_settings.DnsCache[HOST].AlternativeHosts.Contains(wrongAlternativeHost));
             }
         }
 
@@ -237,7 +238,7 @@ namespace ProtonVPN.Dns.Tests
         public async Task TestGetAsync_WhenHasExpiredCacheAndResolvesFail()
         {
             DateTime testStartDateTimeUtc = DateTime.UtcNow;
-            _appSettings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
+            _settings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
             AssertCacheBeforeExecution();
 
             IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
@@ -250,10 +251,10 @@ namespace ProtonVPN.Dns.Tests
         private void AssertCacheAfterFailedResolve(DateTime testStartDateTimeUtc)
         {
             AssertCacheAlternativeHosts();
-            Assert.AreEqual(NEW_TTL_ON_RESOLVE_ERROR, _appSettings.DnsCache[HOST].TimeToLive);
-            Assert.IsTrue(_appSettings.DnsCache[HOST].ExpirationDateTimeUtc > DateTime.UtcNow);
-            Assert.IsTrue(_appSettings.DnsCache[HOST].ResponseDateTimeUtc >= testStartDateTimeUtc);
-            Assert.IsTrue(_appSettings.DnsCache[HOST].ResponseDateTimeUtc <= DateTime.UtcNow);
+            Assert.AreEqual(NEW_TTL_ON_RESOLVE_ERROR, _settings.DnsCache[HOST].TimeToLive);
+            Assert.IsTrue(_settings.DnsCache[HOST].ExpirationDateTimeUtc > DateTime.UtcNow);
+            Assert.IsTrue(_settings.DnsCache[HOST].ResponseDateTimeUtc >= testStartDateTimeUtc);
+            Assert.IsTrue(_settings.DnsCache[HOST].ResponseDateTimeUtc <= DateTime.UtcNow);
         }
 
         [TestMethod]
@@ -262,7 +263,7 @@ namespace ProtonVPN.Dns.Tests
             DateTime testStartDateTimeUtc = DateTime.UtcNow;
             _dnsOverHttpsTxtRecordsResolver.ResolveAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                 .ThrowsForAnyArgs(new Exception("Injected error for testing."));
-            _appSettings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
+            _settings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
             AssertCacheBeforeExecution();
 
             IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
@@ -306,7 +307,7 @@ namespace ProtonVPN.Dns.Tests
         {
             DateTime testStartDateTimeUtc = DateTime.UtcNow;
             InitializeDnsOverHttpsTxtRecordsResolver();
-            _appSettings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
+            _settings.DnsCache = CreateDnsCache(CreateExpiredDnsResponse(HOST));
             AssertCacheBeforeExecution();
 
             IList<string> result1 = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);

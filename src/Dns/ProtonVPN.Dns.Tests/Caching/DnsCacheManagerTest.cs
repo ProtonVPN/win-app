@@ -24,8 +24,8 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Tests.Mocks;
@@ -37,22 +37,22 @@ namespace ProtonVPN.Dns.Tests.Caching
     {
         public const int NUM_OF_PARALLEL_OPERATIONS = 100;
 
-        private IAppSettings _appSettings;
+        private ISettings _settings;
         private MockOfLogger _logger;
         private DnsCacheManager _dnsCacheManager;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _appSettings = Substitute.For<IAppSettings>();
+            _settings = Substitute.For<ISettings>();
             _logger = new MockOfLogger();
-            _dnsCacheManager = new DnsCacheManager(_appSettings, _logger);
+            _dnsCacheManager = new DnsCacheManager(_settings, _logger);
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            _appSettings = null;
+            _settings = null;
             _logger = null;
             _dnsCacheManager = null;
         }
@@ -63,13 +63,13 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse dnsResponse = new("host",
                 TimeSpan.FromSeconds(12),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.12.12")) });
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
 
             await _dnsCacheManager.AddOrReplaceAsync(dnsResponse.Host, dnsResponse);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
-            Assert.AreEqual(dnsResponse, _appSettings.DnsCache[dnsResponse.Host]);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
+            Assert.AreEqual(dnsResponse, _settings.DnsCache[dnsResponse.Host]);
         }
 
         [TestMethod]
@@ -82,13 +82,13 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.13.13")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
 
             await _dnsCacheManager.AddOrReplaceAsync(dnsResponse.Host, dnsResponse);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
-            Assert.AreEqual(dnsResponse, _appSettings.DnsCache[dnsResponse.Host]);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
+            Assert.AreEqual(dnsResponse, _settings.DnsCache[dnsResponse.Host]);
         }
 
         [TestMethod]
@@ -101,25 +101,25 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host13",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.13.13")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
 
             await _dnsCacheManager.AddOrReplaceAsync(dnsResponse.Host, dnsResponse);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
-            Assert.AreEqual(dnsResponse, _appSettings.DnsCache[dnsResponse.Host]);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(cachedDnsResponse.Host));
-            Assert.AreEqual(cachedDnsResponse, _appSettings.DnsCache[cachedDnsResponse.Host]);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
+            Assert.AreEqual(dnsResponse, _settings.DnsCache[dnsResponse.Host]);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(cachedDnsResponse.Host));
+            Assert.AreEqual(cachedDnsResponse, _settings.DnsCache[cachedDnsResponse.Host]);
         }
 
         [TestMethod]
         public async Task TestAddOrReplaceAsync_WhenArgumentsAndCacheAreNull()
         {
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
 
             await _dnsCacheManager.AddOrReplaceAsync(null, null);
 
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
         }
 
         [TestMethod]
@@ -128,13 +128,13 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host13",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.13.13")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
 
             await _dnsCacheManager.AddOrReplaceAsync(null, null);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(cachedDnsResponse.Host));
-            Assert.AreEqual(cachedDnsResponse, _appSettings.DnsCache[cachedDnsResponse.Host]);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(cachedDnsResponse.Host));
+            Assert.AreEqual(cachedDnsResponse, _settings.DnsCache[cachedDnsResponse.Host]);
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace ProtonVPN.Dns.Tests.Caching
                     TimeSpan.FromSeconds(100 + i),
                     new List<IpAddress> { new IpAddress(IPAddress.Parse($"192.168.{i}.{i}")) }));
             }
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
             
             IList<Task<bool>> tasks = new List<Task<bool>>();
             foreach (DnsResponse dnsResponse in dnsResponses)
@@ -157,12 +157,12 @@ namespace ProtonVPN.Dns.Tests.Caching
 
             Task.WaitAll(tasks.ToArray());
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _appSettings.DnsCache.Count);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache.Count);
             foreach (DnsResponse dnsResponse in dnsResponses)
             {
-                Assert.IsTrue(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
-                Assert.AreEqual(dnsResponse, _appSettings.DnsCache[dnsResponse.Host]);
+                Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
+                Assert.AreEqual(dnsResponse, _settings.DnsCache[dnsResponse.Host]);
             }
         }
 
@@ -176,7 +176,7 @@ namespace ProtonVPN.Dns.Tests.Caching
                     TimeSpan.FromSeconds(100 + i),
                     new List<IpAddress> { new IpAddress(IPAddress.Parse($"192.168.{i}.{i}")) }));
             }
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
             
             IList<Task<bool>> tasks = new List<Task<bool>>();
             foreach (DnsResponse dnsResponse in dnsResponses)
@@ -186,11 +186,11 @@ namespace ProtonVPN.Dns.Tests.Caching
 
             Task.WaitAll(tasks.ToArray());
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.AreEqual(1, _appSettings.DnsCache.Count);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey("host"));
-            Assert.AreEqual("host", _appSettings.DnsCache["host"].Host);
-            Assert.IsTrue(_appSettings.DnsCache.Values.Single().IpAddresses.Single().ToString().StartsWith("192.168."));
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.AreEqual(1, _settings.DnsCache.Count);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey("host"));
+            Assert.AreEqual("host", _settings.DnsCache["host"].Host);
+            Assert.IsTrue(_settings.DnsCache.Values.Single().IpAddresses.Single().ToString().StartsWith("192.168."));
         }
 
         [TestMethod]
@@ -199,11 +199,11 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse dnsResponse = new("host",
                 TimeSpan.FromSeconds(12),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.12.12")) });
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
 
             await _dnsCacheManager.UpdateAsync(dnsResponse.Host, _ => dnsResponse);
 
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
         }
 
         [TestMethod]
@@ -216,14 +216,14 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host13",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.13.13")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
             
             await _dnsCacheManager.UpdateAsync(dnsResponse.Host, _ => dnsResponse);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(cachedDnsResponse.Host));
-            Assert.AreEqual(cachedDnsResponse, _appSettings.DnsCache[cachedDnsResponse.Host]);
-            Assert.IsFalse(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(cachedDnsResponse.Host));
+            Assert.AreEqual(cachedDnsResponse, _settings.DnsCache[cachedDnsResponse.Host]);
+            Assert.IsFalse(_settings.DnsCache.ContainsKey(dnsResponse.Host));
         }
 
         [TestMethod]
@@ -236,23 +236,23 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.13.13")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
             
             await _dnsCacheManager.UpdateAsync(dnsResponse.Host, _ => dnsResponse);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
-            Assert.AreEqual(dnsResponse, _appSettings.DnsCache[dnsResponse.Host]);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
+            Assert.AreEqual(dnsResponse, _settings.DnsCache[dnsResponse.Host]);
         }
 
         [TestMethod]
         public async Task TestUpdateAsync_WhenArgumentsAndCacheAreNull()
         {
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
 
             await _dnsCacheManager.UpdateAsync(null, null);
 
-            Assert.IsNull(_appSettings.DnsCache);
+            Assert.IsNull(_settings.DnsCache);
         }
 
         [TestMethod]
@@ -261,34 +261,34 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host13",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("192.168.13.13")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
 
             await _dnsCacheManager.UpdateAsync(null, null);
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey(cachedDnsResponse.Host));
-            Assert.AreEqual(cachedDnsResponse, _appSettings.DnsCache[cachedDnsResponse.Host]);
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey(cachedDnsResponse.Host));
+            Assert.AreEqual(cachedDnsResponse, _settings.DnsCache[cachedDnsResponse.Host]);
         }
 
         [TestMethod]
         public void TestUpdateAsync_ParallelWithDifferentHosts()
         {
-            _appSettings.DnsCache = new();
+            _settings.DnsCache = new();
             IList<DnsResponse> dnsResponses = new List<DnsResponse>();
             for (int i = 0; i < NUM_OF_PARALLEL_OPERATIONS; i++)
             {
                 DnsResponse cachedDnsResponse = new($"host{i}",
                     TimeSpan.FromSeconds(1000 + i),
                     new List<IpAddress> { new IpAddress(IPAddress.Parse($"172.16.{i}.{i}")) });
-                _appSettings.DnsCache.TryAdd(cachedDnsResponse.Host, cachedDnsResponse);
+                _settings.DnsCache.TryAdd(cachedDnsResponse.Host, cachedDnsResponse);
                 
                 DnsResponse dnsResponse = new(cachedDnsResponse.Host,
                     TimeSpan.FromSeconds(100 + i),
                     new List<IpAddress> { new IpAddress(IPAddress.Parse($"192.168.{i}.{i}")) });
                 dnsResponses.Add(dnsResponse);
             }
-            Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _appSettings.DnsCache.Count);
-            foreach (DnsResponse cachedDnsResponse in _appSettings.DnsCache.Values)
+            Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache.Count);
+            foreach (DnsResponse cachedDnsResponse in _settings.DnsCache.Values)
             {
                 DnsResponse newDnsResponse = dnsResponses.Single(dr => dr.Host == cachedDnsResponse.Host);
                 Assert.AreNotEqual(cachedDnsResponse, newDnsResponse);
@@ -304,11 +304,11 @@ namespace ProtonVPN.Dns.Tests.Caching
 
             Task.WaitAll(tasks.ToArray());
 
-            Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _appSettings.DnsCache.Count);
+            Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache.Count);
             foreach (DnsResponse dnsResponse in dnsResponses)
             {
-                Assert.IsTrue(_appSettings.DnsCache.ContainsKey(dnsResponse.Host));
-                Assert.AreEqual(dnsResponse, _appSettings.DnsCache[dnsResponse.Host]);
+                Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
+                Assert.AreEqual(dnsResponse, _settings.DnsCache[dnsResponse.Host]);
             }
         }
 
@@ -318,7 +318,7 @@ namespace ProtonVPN.Dns.Tests.Caching
             DnsResponse cachedDnsResponse = new("host",
                 TimeSpan.FromSeconds(13),
                 new List<IpAddress> { new IpAddress(IPAddress.Parse("172.16.1.1")) });
-            _appSettings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
+            _settings.DnsCache = new() { [cachedDnsResponse.Host] = cachedDnsResponse };
             
             IList<DnsResponse> dnsResponses = new List<DnsResponse>();
             for (int i = 0; i < NUM_OF_PARALLEL_OPERATIONS; i++)
@@ -327,9 +327,9 @@ namespace ProtonVPN.Dns.Tests.Caching
                     TimeSpan.FromSeconds(100 + i),
                     new List<IpAddress> { new IpAddress(IPAddress.Parse($"192.168.{i}.{i}")) }));
             }
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.AreEqual(1, _appSettings.DnsCache.Count);
-            Assert.AreEqual(cachedDnsResponse, _appSettings.DnsCache.Values.Single());
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.AreEqual(1, _settings.DnsCache.Count);
+            Assert.AreEqual(cachedDnsResponse, _settings.DnsCache.Values.Single());
             
             IList<Task<DnsResponse>> tasks = new List<Task<DnsResponse>>();
             foreach (DnsResponse dnsResponse in dnsResponses)
@@ -339,11 +339,11 @@ namespace ProtonVPN.Dns.Tests.Caching
 
             Task.WaitAll(tasks.ToArray());
 
-            Assert.IsNotNull(_appSettings.DnsCache);
-            Assert.AreEqual(1, _appSettings.DnsCache.Count);
-            Assert.IsTrue(_appSettings.DnsCache.ContainsKey("host"));
-            Assert.AreEqual("host", _appSettings.DnsCache["host"].Host);
-            Assert.IsTrue(_appSettings.DnsCache.Values.Single().IpAddresses.Single().ToString().StartsWith("192.168."));
+            Assert.IsNotNull(_settings.DnsCache);
+            Assert.AreEqual(1, _settings.DnsCache.Count);
+            Assert.IsTrue(_settings.DnsCache.ContainsKey("host"));
+            Assert.AreEqual("host", _settings.DnsCache["host"].Host);
+            Assert.IsTrue(_settings.DnsCache.Values.Single().IpAddresses.Single().ToString().StartsWith("192.168."));
         }
     }
 }

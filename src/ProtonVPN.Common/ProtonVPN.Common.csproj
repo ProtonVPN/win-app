@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Crypto\ProtonVPN.Crypto.Contracts\ProtonVPN.Crypto.Contracts.csproj" />
     <ProjectReference Include="..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DeviceId.Windows.Wmi" />

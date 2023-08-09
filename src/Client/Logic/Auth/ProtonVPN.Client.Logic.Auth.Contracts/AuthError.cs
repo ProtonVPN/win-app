@@ -28,6 +28,7 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts
         TwoFactorRequired,
         IncorrectTwoFactorCode,
         TwoFactorAuthFailed,
+        GuestHoleFailed,
         Unknown,
     }
 }

@@ -20,10 +20,12 @@
 using System.Security;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Urls;
@@ -37,11 +39,14 @@ namespace ProtonVPN.Client.UI.Login.Forms;
 
 public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<LoginSuccessMessage>
 {
+    private readonly IUrls _urls;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IUrls _urls;
     private readonly IDialogActivator _dialogActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
+    private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
+
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     private bool _isLoggingIn;
@@ -54,13 +59,24 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     private string _password = string.Empty;
 
-    public LoginFormViewModel(ILocalizationProvider localizationProvider, IEventMessageSender eventMessageSender,
-        IUserAuthenticator userAuthenticator, IUrls urls,
-        IDialogActivator dialogActivator, IReportIssueViewNavigator reportIssueViewNavigator) : base(localizationProvider)
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
+    private bool _isToShowCreateAccountSpinner;
+
+    public LoginFormViewModel(IUrls urls,
+        ILocalizationProvider localizationProvider,
+        IEventMessageSender eventMessageSender,
+        IUserAuthenticator userAuthenticator,
+        IApiAvailabilityVerifier apiAvailabilityVerifier,
+        IGuestHoleActionExecutor guestHoleActionExecutor,
+        IDialogActivator dialogActivator,
+        IReportIssueViewNavigator reportIssueViewNavigator) : base(localizationProvider)
     {
+        _urls = urls;
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
-        _urls = urls;
+        _apiAvailabilityVerifier = apiAvailabilityVerifier;
+        _guestHoleActionExecutor = guestHoleActionExecutor;
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
     }
@@ -74,33 +90,14 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
         {
             IsLoggingIn = true;
 
-            SecureString secureString = new();
-            foreach (char c in Password)
-            {
-                secureString.AppendChar(c);
-            }
-
-            secureString.MakeReadOnly();
-
-            AuthResult result = await _userAuthenticator.LoginUserAsync(Username, secureString);
+            AuthResult result = await _userAuthenticator.LoginUserAsync(Username, GetSecurePassword());
             if (result.Success)
             {
-                Password = string.Empty;
-                _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
-                _eventMessageSender.Send(new LoginSuccessMessage());
+                await HandleSuccessAsync();
             }
             else
             {
-                if (result.Value == AuthError.TwoFactorRequired)
-                {
-                    Password = string.Empty;
-                    _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorRequired));
-                }
-                else
-                {
-                    _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Error, result.Value,
-                        result.Error));
-                }
+                HandleError(result);
             }
         }
         catch (Exception e)
@@ -113,10 +110,52 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
         }
     }
 
+    private void HandleError(AuthResult result)
+    {
+        if (result.Value == AuthError.TwoFactorRequired)
+        {
+            Password = string.Empty;
+            _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorRequired));
+        }
+        else
+        {
+            _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Error, result.Value,
+                result.Error));
+        }
+    }
+
+    private async Task HandleSuccessAsync()
+    {
+        Password = string.Empty;
+
+        if (_guestHoleActionExecutor.IsActive())
+        {
+            await _guestHoleActionExecutor.DisconnectAsync();
+        }
+
+        _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
+        _eventMessageSender.Send(new LoginSuccessMessage());
+    }
+
+    private SecureString GetSecurePassword()
+    {
+        SecureString secureString = new();
+        foreach (char c in Password)
+        {
+            secureString.AppendChar(c);
+        }
+
+        secureString.MakeReadOnly();
+
+        return secureString;
+    }
+
     private bool CanLogIn()
     {
         return Username.Length > 0 && Password.Length > 0 && !IsLoggingIn;
     }
+
+    private bool CanCreateAccount => !IsToShowCreateAccountSpinner;
 
     public void Receive(LoginSuccessMessage message)
     {
@@ -147,6 +186,33 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
         _reportIssueViewNavigator.NavigateTo<CategorySelectionViewModel>();
+    }
+
+    [RelayCommand(CanExecute = nameof(CanCreateAccount))]
+    public async Task CreateAccountAsync()
+    {
+        try
+        {
+            IsToShowCreateAccountSpinner = true;
+            bool isSignUpPageAccessible = await _apiAvailabilityVerifier.IsSignUpPageAccessibleAsync();
+            if (isSignUpPageAccessible)
+            {
+                await OpenCreateAccountPageAsync();
+            }
+            else
+            {
+                await _guestHoleActionExecutor.ExecuteAsync(OpenCreateAccountPageAsync);
+            }
+        }
+        finally
+        {
+            IsToShowCreateAccountSpinner = false;
+        }
+    }
+
+    private async Task OpenCreateAccountPageAsync()
+    {
+        await Launcher.LaunchUriAsync(new Uri(_urls.CreateAccount));
     }
 
     private void ClearInputs()

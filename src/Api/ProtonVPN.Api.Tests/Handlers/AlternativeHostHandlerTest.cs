@@ -29,17 +29,18 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Polly.Timeout;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Api.Handlers;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 using ProtonVPN.Dns.Contracts.Exceptions;
+using ProtonVPN.Logging.Contracts;
 using RichardSzalay.MockHttp;
 
 namespace ProtonVPN.Api.Tests.Handlers
@@ -68,7 +69,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         private const string ALTERNATIVE_HOST_2 = "def.protonvpn.com";
         private const string ALTERNATIVE_HOST_3 = "ghi.protonvpn.com";
         
-        private const string USER_ID = "userId12";
+        private const string UNIQUE_SESSION_ID = "SessionID";
 
         private readonly static TimeSpan ALTERNATIVE_ROUTING_CHECK_INTERVAL = TimeSpan.FromMinutes(30);
 
@@ -76,8 +77,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         private IDnsManager _dnsManager;
         private IAlternativeRoutingHostGenerator _alternativeRoutingHostGenerator;
         private IAlternativeHostsManager _alternativeHostsManager;
-        private IAppSettings _appSettings;
-        private GuestHoleState _guestHoleState;
+        private ISettings _settings;
+        private IGuestHoleState _guestHoleState;
         private IConfiguration _configuration;
         private MockHttpMessageHandler _mockHttpMessageHandler;
         private AlternativeHostHandler _alternativeHostHandler;
@@ -91,17 +92,17 @@ namespace ProtonVPN.Api.Tests.Handlers
             _dnsManager = Substitute.For<IDnsManager>();
             _alternativeRoutingHostGenerator = Substitute.For<IAlternativeRoutingHostGenerator>();
             _alternativeHostsManager = Substitute.For<IAlternativeHostsManager>();
-            _appSettings = Substitute.For<IAppSettings>();
-            _appSettings.Uid.Returns(USER_ID);
-            _guestHoleState = new GuestHoleState();
-            _configuration = new Config()
+            _settings = Substitute.For<ISettings>();
+            _settings.UniqueSessionId.Returns(UNIQUE_SESSION_ID);
+            _guestHoleState = Substitute.For<IGuestHoleState>();
+            _configuration = new Config
             {
                 Urls = { ApiUrl = CONFIG_API_BASE_URL },
                 AlternativeRoutingCheckInterval = ALTERNATIVE_ROUTING_CHECK_INTERVAL
             };
             _mockHttpMessageHandler = new MockHttpMessageHandler();
             _alternativeHostHandler = new(_logger, _dnsManager, _alternativeRoutingHostGenerator,
-                _alternativeHostsManager, _appSettings, _guestHoleState, _configuration)
+                _alternativeHostsManager, _settings, _guestHoleState, _configuration)
             { InnerHandler = _mockHttpMessageHandler };
             _httpClient = new(_alternativeHostHandler);
             _originalRequestCount = 0;
@@ -114,7 +115,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             _dnsManager = null;
             _alternativeRoutingHostGenerator = null;
             _alternativeHostsManager = null;
-            _appSettings = null;
+            _settings = null;
             _guestHoleState = null;
             _configuration = null;
             _mockHttpMessageHandler = null;
@@ -188,8 +189,8 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(vpnStatus);
-            _guestHoleState.SetState(isGuestHoleActive);
-            _appSettings.DoHEnabled = isDoHEnabled;
+            _guestHoleState.IsActive.Returns(isGuestHoleActive);
+            _settings.DoHEnabled = isDoHEnabled;
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequest = _mockHttpMessageHandler
                                           .When(REQUEST_URL)
@@ -214,7 +215,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequest = _mockHttpMessageHandler
                                           .When(REQUEST_URL)
@@ -255,7 +256,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -297,7 +298,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -358,7 +359,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             _dnsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
@@ -409,7 +410,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             _dnsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
@@ -460,7 +461,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetFromCache(CONFIG_API_HOST)
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -505,7 +506,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetFromCache(CONFIG_API_HOST)
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -542,7 +543,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -606,7 +607,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -674,7 +675,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         {
             // Arrange
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.ResolveWithoutCacheAsync(CONFIG_API_HOST, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -707,7 +708,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             // Arrange
             SetActiveAlternativeHost();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.ResolveWithoutCacheAsync(CONFIG_API_HOST, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -747,7 +748,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             // Arrange
             SetActiveAlternativeHost();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetFromCache(CONFIG_API_HOST)
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -782,7 +783,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetOldLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetFromCache(CONFIG_API_HOST)
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -844,7 +845,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetOldLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
 
@@ -883,7 +884,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetOldLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.ResolveWithoutCacheAsync(CONFIG_API_HOST, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
             _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
@@ -934,7 +935,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetOldLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -977,7 +978,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetOldLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                                   .When(REQUEST_URL)
@@ -1006,7 +1007,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetFreshLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -1050,7 +1051,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetFreshLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                        .Returns(CreateIpAddressList());
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -1091,7 +1092,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             SetActiveAlternativeHost();
             SetFreshLastAlternativeRoutingCheckDateUtc();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                                   .When(REQUEST_URL)
@@ -1127,7 +1128,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             // Arrange
             SetActiveAlternativeHost();
             await SetVpnStatusAsync(vpnStatus);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                                   .When(REQUEST_URL)
@@ -1155,7 +1156,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             // Arrange
             SetActiveAlternativeHost();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = false;
+            _settings.DoHEnabled = false;
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                                   .When(REQUEST_URL)
@@ -1170,8 +1171,8 @@ namespace ProtonVPN.Api.Tests.Handlers
             // Arrange
             SetActiveAlternativeHost();
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
-            _guestHoleState.SetState(true);
+            _settings.DoHEnabled = true;
+            _guestHoleState.IsActive.Returns(true);
             HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
             MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                                   .When(REQUEST_URL)
@@ -1249,7 +1250,7 @@ namespace ProtonVPN.Api.Tests.Handlers
         private async Task TestOnUserLoggedInOrOut_LastIpAddressOfLastAlternativeHostWorks(Type exceptionType)
         {
             await SetVpnStatusAsync(VpnStatus.Disconnected);
-            _appSettings.DoHEnabled = true;
+            _settings.DoHEnabled = true;
             _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                     .Returns(CreateAlternativeHostsList());
             _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -1305,7 +1306,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             await TestOnUserLoggedInOrOut_LastIpAddressOfLastAlternativeHostWorks(exceptionType);
             
             // Assert
-            _alternativeRoutingHostGenerator.Received(1).Generate(USER_ID);
+            _alternativeRoutingHostGenerator.Received(1).Generate(UNIQUE_SESSION_ID);
         }
     }
 }

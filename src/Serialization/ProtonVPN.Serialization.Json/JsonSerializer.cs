@@ -18,42 +18,61 @@
  */
 
 using Newtonsoft.Json;
+using ProtonVPN.Serialization.Contracts;
 
-namespace ProtonVPN.Serialization.Json
+namespace ProtonVPN.Serialization.Json;
+
+public class JsonSerializer : IJsonSerializer
 {
-    public static class JsonSerializer
+    private readonly Newtonsoft.Json.JsonSerializer _serializer = new();
+    private readonly JsonSerializerSettings _serializationSettings;
+    private readonly JsonSerializerSettings _prettySerializationSettings;
+
+    public JsonSerializer()
     {
-        private static readonly JsonSerializerSettings _serializationSettings = CreateSerializationSettings();
-        private static readonly JsonSerializerSettings _prettySerializationSettings = CreatePrettySerializationSettings();
+        _serializationSettings = CreateSerializationSettings();
+        _prettySerializationSettings = CreatePrettySerializationSettings();
+    }
 
-        private static JsonSerializerSettings CreateSerializationSettings()
+    private JsonSerializerSettings CreateSerializationSettings()
+    {
+        return new JsonSerializerSettings
         {
-            return new JsonSerializerSettings()
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-        }
+            NullValueHandling = NullValueHandling.Ignore
+        };
+    }
 
-        private static JsonSerializerSettings CreatePrettySerializationSettings()
-        {
-            JsonSerializerSettings settings = CreateSerializationSettings();
-            settings.Formatting = Formatting.Indented;
-            return settings;
-        }
+    private JsonSerializerSettings CreatePrettySerializationSettings()
+    {
+        JsonSerializerSettings settings = CreateSerializationSettings();
+        settings.Formatting = Formatting.Indented;
+        return settings;
+    }
 
-        public static string Serialize(object? value)
-        {
-            return JsonConvert.SerializeObject(value, _serializationSettings);
-        }
+    public string Serialize(object? value)
+    {
+        return JsonConvert.SerializeObject(value, _serializationSettings);
+    }
 
-        public static string SerializePretty(object? value)
-        {
-            return JsonConvert.SerializeObject(value, _prettySerializationSettings);
-        }
+    public string SerializePretty(object? value)
+    {
+        return JsonConvert.SerializeObject(value, _prettySerializationSettings);
+    }
 
-        public static T? Deserialize<T>(string value)
-        {
-            return JsonConvert.DeserializeObject<T>(value);
-        }
+    public T? Deserialize<T>(string value)
+    {
+        return JsonConvert.DeserializeObject<T>(value);
+    }
+
+    public T? Deserialize<T>(TextReader source)
+    {
+        using JsonTextReader jsonReader = new(source);
+        return _serializer.Deserialize<T>(jsonReader);
+    }
+
+    public void Serialize<T>(T value, TextWriter writer)
+    {
+        using JsonTextWriter jsonWriter = new(writer);
+        _serializer.Serialize(jsonWriter, value);
     }
 }

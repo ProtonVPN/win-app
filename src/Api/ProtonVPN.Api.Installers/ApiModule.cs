@@ -23,6 +23,7 @@ using ProtonVPN.Api.Deserializers;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.OS.Net.Http;
 
 namespace ProtonVPN.Api.Installers
 {
@@ -45,6 +46,9 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<ApiAppVersion>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<TokenClient>().As<ITokenClient>().SingleInstance();
             builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<GuestHoleState>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ApiAvailabilityVerifier>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
             builder.Register(c =>
                     new CachingReportClient(
                         new ReportClient(c.Resolve<IReportClientUriProvider>())))

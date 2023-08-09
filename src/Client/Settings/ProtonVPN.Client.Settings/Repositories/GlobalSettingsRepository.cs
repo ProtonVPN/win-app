@@ -22,6 +22,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Client.Settings.Repositories;
 
@@ -34,9 +35,10 @@ public class GlobalSettingsRepository : SettingsRepositoryBase, IGlobalSettingsR
     private readonly Lazy<ConcurrentDictionary<string, string?>> _cache;
 
     public GlobalSettingsRepository(ILogger logger,
+        IJsonSerializer jsonSerializer,
         IEventMessageSender eventMessageSender,
         ISettingsFileManager settingsFileManager)
-        : base(logger, eventMessageSender)
+        : base(logger, jsonSerializer, eventMessageSender)
     {
         _settingsFileManager = settingsFileManager;
         _cache = new Lazy<ConcurrentDictionary<string, string?>>(() => new(_settingsFileManager.Read(FILE_NAME)));

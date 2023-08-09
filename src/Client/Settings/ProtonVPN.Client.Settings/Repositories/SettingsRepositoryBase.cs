@@ -25,7 +25,7 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Crypto.Contracts.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
-using ProtonVPN.Serialization.Json;
+using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Client.Settings.Repositories;
 
@@ -33,12 +33,15 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
 {
     protected ILogger Logger { get; }
 
+    private readonly IJsonSerializer _jsonSerializer;
     private readonly IEventMessageSender _eventMessageSender;
 
     public SettingsRepositoryBase(ILogger logger,
+        IJsonSerializer jsonSerializer,
         IEventMessageSender eventMessageSender)
     {
         Logger = logger;
+        _jsonSerializer = jsonSerializer;
         _eventMessageSender = eventMessageSender;
     }
 
@@ -108,7 +111,7 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
         {
             return result;
         }
-        return JsonSerializer.Deserialize<T>(json);
+        return _jsonSerializer.Deserialize<T>(json);
     }
 
     private string? GetUnencrypted(string propertyName)
@@ -230,7 +233,7 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
         {
             return enumValue.ToString();
         }
-        return JsonSerializer.Serialize(newValue);
+        return _jsonSerializer.Serialize(newValue);
     }
 
     private void OnPropertyChanged<T>(T? oldValue, T? newValue, string propertyName)
@@ -240,8 +243,8 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
 
     private void LogChange<T>(string propertyName, T oldValue, T newValue)
     {
-        string oldValueJson = JsonSerializer.Serialize(oldValue).GetLastChars(64);
-        string newValueJson = JsonSerializer.Serialize(newValue).GetLastChars(64);
+        string oldValueJson = _jsonSerializer.Serialize(oldValue).GetLastChars(64);
+        string newValueJson = _jsonSerializer.Serialize(newValue).GetLastChars(64);
         Logger.Info<SettingsChangeLog>($"Setting '{propertyName}' " +
             $"changed from '{oldValueJson}' to '{newValueJson}'.");
     }

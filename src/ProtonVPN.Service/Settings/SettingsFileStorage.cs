@@ -20,16 +20,16 @@
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Common.Text.Serialization;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Service.Settings
 {
     public class SettingsFileStorage : FileStorageBase<MainSettingsIpcEntity>, ISettingsFileStorage
     {
         public SettingsFileStorage(ILogger logger,
-            ITextSerializerFactory serializerFactory, IConfiguration config)
-            : base(logger, serializerFactory, config.ServiceSettingsFilePath)
+            IJsonSerializer jsonSerializer, IConfiguration config)
+            : base(logger, jsonSerializer, config.ServiceSettingsFilePath)
         {
         }
     }

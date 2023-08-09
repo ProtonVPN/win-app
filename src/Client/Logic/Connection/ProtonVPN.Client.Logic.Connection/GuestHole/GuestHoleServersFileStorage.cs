@@ -17,10 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Text.Serialization
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.FileStoraging;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Serialization.Contracts;
+
+namespace ProtonVPN.Client.Logic.Connection.GuestHole;
+
+public class GuestHoleServersFileStorage : FileStorageBase<IEnumerable<GuestHoleServerContract>>,
+    IGuestHoleServersFileStorage
 {
-    public interface ITextSerializerFactory
+    public GuestHoleServersFileStorage(ILogger logger,
+        IJsonSerializer jsonSerializer, IConfiguration config)
+        : base(logger, jsonSerializer, config.GuestHoleServersJsonFilePath)
     {
-        ITextSerializer<T> Serializer<T>();
     }
 }

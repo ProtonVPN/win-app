@@ -32,6 +32,11 @@ public class ServiceCallerMock : IServiceCaller
         _eventMessageSender = eventMessageSender;
     }
 
+    public async Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest)
+    {
+        await ConnectAsync();
+    }
+
     public async Task ConnectAsync()
     {
         _isCancelRequested = false;

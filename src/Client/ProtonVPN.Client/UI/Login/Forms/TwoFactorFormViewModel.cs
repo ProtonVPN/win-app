@@ -23,6 +23,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 
@@ -32,6 +33,7 @@ public partial class TwoFactorFormViewModel : ViewModelBase
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AuthenticateCommand))]
@@ -40,10 +42,11 @@ public partial class TwoFactorFormViewModel : ViewModelBase
     public IRelayCommand<string> AuthenticateCommand { get; }
 
     public TwoFactorFormViewModel(ILocalizationProvider localizationProvider, IEventMessageSender eventMessageSender,
-        IUserAuthenticator userAuthenticator) : base(localizationProvider)
+        IUserAuthenticator userAuthenticator, IGuestHoleActionExecutor guestHoleActionExecutor) : base(localizationProvider)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
+        _guestHoleActionExecutor = guestHoleActionExecutor;
 
         AuthenticateCommand = new RelayCommand<string>(twoFactorCode => AuthenticateAsync(twoFactorCode), CanAuthenticate);
     }
@@ -57,6 +60,11 @@ public partial class TwoFactorFormViewModel : ViewModelBase
             AuthResult result = await _userAuthenticator.SendTwoFactorCodeAsync(twoFactorCode);
             if (result.Success)
             {
+                if (_guestHoleActionExecutor.IsActive())
+                {
+                    await _guestHoleActionExecutor.DisconnectAsync();
+                }
+
                 _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
                 _eventMessageSender.Send(new LoginSuccessMessage());
             }

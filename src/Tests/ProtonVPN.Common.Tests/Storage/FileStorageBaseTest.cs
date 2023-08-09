@@ -26,7 +26,7 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.FileStoraging;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Common.Text.Serialization;
+using ProtonVPN.Serialization.Contracts;
 using ProtonVPN.Tests.Common;
 
 namespace ProtonVPN.Common.Tests.Storage
@@ -37,44 +37,30 @@ namespace ProtonVPN.Common.Tests.Storage
     {
         private ILogger _logger;
         private IConfiguration _appConfig;
-        private ITextSerializer<int> _serializer;
-        private ITextSerializerFactory _serializerFactory;
+        private IJsonSerializer _jsonSerializer;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _logger = Substitute.For<ILogger>();
             _appConfig = Substitute.For<IConfiguration>();
-            _serializer = Substitute.For<ITextSerializer<int>>();
-            _serializer
-                .Deserialize(Arg.Any<TextReader>())
+            _jsonSerializer = Substitute.For<IJsonSerializer>();
+            _jsonSerializer
+                .Deserialize<int>(Arg.Any<TextReader>())
                 .Returns(args => int.Parse(args.Arg<TextReader>().ReadToEnd()));
-            _serializer
+            _jsonSerializer
                 .When(x => x.Serialize(Arg.Any<int>(), Arg.Any<TextWriter>()))
                 .Do(args => args.Arg<TextWriter>().Write(args.Arg<int>().ToString()));
-
-            _serializerFactory = Substitute.For<ITextSerializerFactory>();
-            _serializerFactory.Serializer<int>().Returns(_serializer);
         }
 
-        [TestMethod]
-        public void FileStorage_ShouldThrow_WhenSerializerFactory_IsNull()
-        {
-            // Act
-            Action action = () => Construct(_logger, null, _appConfig, "FileName");
-
-            // Assert
-            action.Should().Throw<ArgumentNullException>();
-        }
-
-        protected abstract TFileStorage Construct(ILogger logger, ITextSerializerFactory serializerFactory,
+        protected abstract TFileStorage Construct(ILogger logger, IJsonSerializer jsonSerializer,
             IConfiguration appConfig, string fileName);
 
         [TestMethod]
         public void FileStorage_ShouldThrow_WhenFilename_IsNull()
         {
             // Act
-            Action action = () => Construct(_logger, _serializerFactory, _appConfig, null);
+            Action action = () => Construct(_logger, _jsonSerializer, _appConfig, null);
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -84,21 +70,7 @@ namespace ProtonVPN.Common.Tests.Storage
         public void FileStorage_ShouldThrow_WhenFilename_IsEmpty()
         {
             // Act
-            Action action = () => Construct(_logger, _serializerFactory, _appConfig, "");
-
-            // Assert
-            action.Should().Throw<ArgumentException>();
-        }
-
-        [TestMethod]
-        public void FileStorage_ShouldThrow_WhenSerializerFactory_Serializer_DoesNotImplement_IThrowsExpectedExceptions()
-        {
-            // Arrange
-            ITextSerializer<int> serializer = Substitute.For<ITextSerializer<int>>();
-            _serializerFactory.Serializer<int>().Returns(serializer);
-
-            // Act
-            Action action = () => Construct(_logger, _serializerFactory, _appConfig, "ABC");
+            Action action = () => Construct(_logger, _jsonSerializer, _appConfig, "");
 
             // Assert
             action.Should().Throw<ArgumentException>();
@@ -109,7 +81,7 @@ namespace ProtonVPN.Common.Tests.Storage
         {
             // Arrange
             string fileName = GetFolderPath("Test.json");
-            TFileStorage storage = Construct(_logger, _serializerFactory, _appConfig, fileName);
+            TFileStorage storage = Construct(_logger, _jsonSerializer, _appConfig, fileName);
 
             // Act
             TEntity result = storage.Get();
@@ -127,7 +99,7 @@ namespace ProtonVPN.Common.Tests.Storage
         public void Get_ShouldThrow_FileAccessException_WhenFileDoesNotExist()
         {
             // Arrange
-            TFileStorage storage = Construct(_logger, _serializerFactory, _appConfig, "Does-not-exist.json");
+            TFileStorage storage = Construct(_logger, _jsonSerializer, _appConfig, "Does-not-exist.json");
 
             // Act
             Action action = () => storage.Get();
@@ -140,7 +112,7 @@ namespace ProtonVPN.Common.Tests.Storage
         public void Get_ShouldThrow_FileAccessException_WhenFolderDoesNotExist()
         {
             // Arrange
-            TFileStorage storage = Construct(_logger, _serializerFactory, _appConfig, "Does-not-exist\\Test.json");
+            TFileStorage storage = Construct(_logger, _jsonSerializer, _appConfig, "Does-not-exist\\Test.json");
 
             // Act
             Action action = () => storage.Get();
@@ -155,7 +127,7 @@ namespace ProtonVPN.Common.Tests.Storage
             // Arrange
             string fileName = GetFolderPath("Saved-data.json");
             File.Delete(fileName);
-            TFileStorage storage = Construct(_logger, _serializerFactory, _appConfig, fileName);
+            TFileStorage storage = Construct(_logger, _jsonSerializer, _appConfig, fileName);
 
             // Act
             storage.Set(CreateEntity());
@@ -170,7 +142,7 @@ namespace ProtonVPN.Common.Tests.Storage
         public void Set_ShouldThrow_FileAccessException_WhenFolderDoesNotExist()
         {
             // Arrange
-            TFileStorage storage = Construct(_logger, _serializerFactory, _appConfig, "Does-not-exist\\Saved.json");
+            TFileStorage storage = Construct(_logger, _jsonSerializer, _appConfig, "Does-not-exist\\Saved.json");
 
             // Act
             Action action = () => storage.Set(CreateEntity());

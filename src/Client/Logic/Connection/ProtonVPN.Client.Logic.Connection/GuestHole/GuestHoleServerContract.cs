@@ -17,14 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
+using Newtonsoft.Json;
 
-namespace ProtonVPN.Common.Text.Serialization
+namespace ProtonVPN.Client.Logic.Connection.GuestHole;
+
+public class GuestHoleServerContract
 {
-    public interface ITextSerializer<T>
-    {
-        T Deserialize(TextReader reader);
+    [JsonProperty("host")]
+    public string Host { get; set; }
 
-        void Serialize(T value, TextWriter writer);
-    }
+    [JsonProperty("ip")]
+    public string Ip { get; set; }
+
+    [JsonProperty("label")]
+    public string Label { get; set; }
+
+    [JsonProperty("signature")]
+    public string Signature { get; set; }
 }

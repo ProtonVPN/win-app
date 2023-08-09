@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Text.Serialization
+using ProtonVPN.Common.Abstract;
+
+namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+
+public interface IGuestHoleActionExecutor
 {
-    public class JsonSerializerFactory : ITextSerializerFactory
-    {
-        public ITextSerializer<T> Serializer<T>()
-        {
-            return new JsonSerializer<T>();
-        }
-    }
+    public Task<Result> ExecuteAsync(Func<Task> onConnectedFunc);
+
+    public bool IsActive();
+
+    public Task DisconnectAsync();
 }

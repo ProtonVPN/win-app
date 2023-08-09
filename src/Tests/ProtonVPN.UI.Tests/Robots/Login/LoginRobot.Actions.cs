@@ -27,8 +27,8 @@ public partial class LoginRobot
 {
     public LoginRobot DoLogin(TestUserData user)
     {
-        UsernameTextBox.Enter(user.Username);
-        PasswordBox.Enter(user.Password);
+        UsernameTextBox.Text = user.Username;
+        PasswordBox.Text = user.Password;
         SignInButton.Invoke();
         return this;
     }

@@ -22,12 +22,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 using ProtonVPN.Common.Networking;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Resolvers;
@@ -40,8 +40,8 @@ namespace ProtonVPN.Dns
         private readonly IDnsOverHttpsResolver _dnsOverHttpsResolver;
 
         public DnsManager(IDnsOverUdpResolver dnsOverUdpResolver, IDnsOverHttpsResolver dnsOverHttpsResolver,
-            IAppSettings appSettings, IConfiguration configuration, ILogger logger, IDnsCacheManager dnsCacheManager)
-            : base(appSettings, configuration, logger, dnsCacheManager)
+            ISettings settings, IConfiguration configuration, ILogger logger, IDnsCacheManager dnsCacheManager)
+            : base(settings, configuration, logger, dnsCacheManager)
         {
             _dnsOverUdpResolver = dnsOverUdpResolver;
             _dnsOverHttpsResolver = dnsOverHttpsResolver;

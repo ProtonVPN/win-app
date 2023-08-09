@@ -28,6 +28,7 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -42,18 +43,20 @@ public class UserAuthenticatorTest
 
     private IApiClient _apiClient;
     private ILogger _logger;
-    private ISettings _appSettings;
+    private ISettings _settings;
     private IAuthCertificateManager _authCertificateManager;
     private IEventMessageSender _eventMessageSender;
+    private IGuestHoleActionExecutor _guestHoleActionExecutor;
 
     [TestInitialize]
     public void Initialize()
     {
         _apiClient = Substitute.For<IApiClient>();
         _logger = Substitute.For<ILogger>();
-        _appSettings = Substitute.For<ISettings>();
+        _settings = Substitute.For<ISettings>();
         _authCertificateManager = Substitute.For<IAuthCertificateManager>();
         _eventMessageSender = Substitute.For<IEventMessageSender>();
+        _guestHoleActionExecutor = Substitute.For<IGuestHoleActionExecutor>();
     }
 
     [TestCleanup]
@@ -61,9 +64,10 @@ public class UserAuthenticatorTest
     {
         _apiClient = null;
         _logger = null;
-        _appSettings = null;
+        _settings = null;
         _authCertificateManager = null;
         _eventMessageSender = null;
+        _guestHoleActionExecutor = null;
     }
 
     [TestMethod]
@@ -123,6 +127,6 @@ public class UserAuthenticatorTest
 
     private UserAuthenticator GetUserAuthenticator()
     {
-        return new(_logger, _apiClient, _authCertificateManager, _appSettings, _eventMessageSender);
+        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender, _guestHoleActionExecutor);
     }
 }

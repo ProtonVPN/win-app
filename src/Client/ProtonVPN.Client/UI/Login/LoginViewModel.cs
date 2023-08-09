@@ -31,6 +31,7 @@ using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 
 namespace ProtonVPN.Client.UI.Login;
 
@@ -90,12 +91,25 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
 
                 break;
             case LoginState.Error:
-                if (message.AuthError == AuthError.MissingGoSrpDll)
-                {
-                    _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
-                    //TODO: add modal about missing file
-                    App.MainWindow.Close();
-                }
+                HandleAuthError(message);
+                break;
+        }
+    }
+
+    private void HandleAuthError(LoginStateChangedMessage message)
+    {
+        switch (message.AuthError)
+        {
+            case AuthError.MissingGoSrpDll:
+                _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
+                //TODO: add modal about missing file
+                App.MainWindow.Close();
+                break;
+            case AuthError.GuestHoleFailed:
+                //TODO: show troubleshooting dialog
+                _logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
+                break;
+            default:
                 ShowErrorMessage(message.ErrorMessage);
                 break;
         }
