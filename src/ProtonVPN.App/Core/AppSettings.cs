@@ -255,12 +255,6 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
-        public string LastEventId
-        {
-            get => GetPerUser<string>();
-            set => SetPerUser(value);
-        }
-
         public int AppStartCounter
         {
             get => Get<int>();

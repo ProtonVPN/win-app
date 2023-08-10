@@ -183,9 +183,6 @@ namespace ProtonVPN.Common.Configuration
         int MaxProfileNameLength { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        TimeSpan EventCheckInterval { get; set; }
-
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         TimeSpan ServiceCheckInterval { get; set; }
 
         [Required]

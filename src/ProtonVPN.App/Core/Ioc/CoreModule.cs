@@ -20,7 +20,6 @@
 using Autofac;
 using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -32,7 +31,6 @@ using ProtonVPN.Config;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
-using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.OS.Net.Dns;
@@ -91,16 +89,7 @@ namespace ProtonVPN.Core.Ioc
                             c.Resolve<INetworkInterfaces>())))
                 .As<IDnsClient>().SingleInstance();
 
-            builder.RegisterType<EventClient>().SingleInstance();
-            builder.RegisterType<UserInfoHandler>().AsImplementedInterfaces().SingleInstance();
-
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
-            builder.Register(c => new EventTimer(
-                    c.Resolve<EventClient>(),
-                    c.Resolve<IConfiguration>().EventCheckInterval.RandomizedWithDeviation(0.2))) // REMOVE THIS CUSTOM REGISTRATION
-                .AsSelf()
-                .AsImplementedInterfaces()
-                .SingleInstance();
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
                 .SingleInstance();

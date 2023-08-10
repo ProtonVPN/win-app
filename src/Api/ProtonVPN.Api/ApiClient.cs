@@ -26,7 +26,6 @@ using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
-using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
@@ -35,10 +34,10 @@ using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api
 {
@@ -93,13 +92,6 @@ namespace ProtonVPN.Api
         {
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, "auth");
             return await SendRequest<BaseResponse>(request, "Logout");
-        }
-
-        public async Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId)
-        {
-            string id = string.IsNullOrEmpty(lastId) ? "latest" : lastId;
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "events/" + id);
-            return await SendRequest<EventResponse>(request, "Get events");
         }
 
         public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)

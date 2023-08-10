@@ -155,8 +155,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxProfileNameLength = 25,
 
-                EventCheckInterval = TimeSpan.FromMinutes(5),
-
                 ServiceCheckInterval = TimeSpan.FromSeconds(30),
 
                 DefaultOpenVpnUdpPorts = new[] { 443, 1194, 4569, 5060, 80 },

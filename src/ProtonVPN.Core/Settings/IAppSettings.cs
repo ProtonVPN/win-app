@@ -48,7 +48,6 @@ namespace ProtonVPN.Core.Settings
         WindowPlacement SidebarWindowPlacement { get; set; }
         double Width { get; set; }
         string QuickConnect { get; set; }
-        string LastEventId { get; set; }
         bool StartOnBoot { get; set; }
         StartMinimizedMode StartMinimized { get; set; }
         bool EarlyAccess { get; set; }

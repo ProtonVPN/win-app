@@ -23,7 +23,6 @@ using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
-using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
@@ -41,7 +40,6 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId);
         Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse();
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
-        Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
         Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip);
         Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
         Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip);
