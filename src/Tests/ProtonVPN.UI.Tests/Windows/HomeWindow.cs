@@ -233,16 +233,22 @@ namespace ProtonVPN.UI.Tests.Windows
             return this;
         }
 
-        public HomeWindow WaitUntilDisconnected() => WaitUntilTextMatchesByAutomationId(
+        public HomeWindow WaitUntilDisconnected()
+        {
+            return WaitUntilTextMatchesByAutomationId(
             "SidebarQuickConnectButton",
             TestConstants.MediumTimeout,
             "Quick Connect",
             "Failed to disconnect in " + TestConstants.MediumTimeout.Seconds + " s");
+        }
 
-        public HomeWindow WaitUntilConnected() => WaitUntilTextMatchesByAutomationId(
+        public HomeWindow WaitUntilConnected()
+        {
+            return WaitUntilTextMatchesByAutomationId(
             "SidebarQuickConnectButton",
             TestConstants.MediumTimeout,
             "Disconnect",
             "Failed to connect");
+        }
     } 
 }

@@ -64,5 +64,11 @@ namespace ProtonVPN.UI.Tests.Windows
             ReportAnIssueButton.Invoke();
             return new BugReportWindow();
         }
+
+        public HomeWindow WaitUntilLoggedIn()
+        {
+            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            return new HomeWindow();
+        }
     }
 }

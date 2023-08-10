@@ -157,7 +157,8 @@ namespace ProtonVPN.UI.Tests
                 string testName = TestContext.CurrentContext.Test.MethodName;
                 if (status == TestStatus.Failed)
                 {
-                    TestsRecorder.SaveScreenshotAndLogs(testName);
+                    TestsRecorder.SaveLogs(testName);
+                    TestsRecorder.SaveScreenshot(testName);
                 }
             }
         }

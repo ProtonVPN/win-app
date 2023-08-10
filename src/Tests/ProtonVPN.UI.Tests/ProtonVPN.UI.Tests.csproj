@@ -45,6 +45,7 @@
     <PackageReference Include="MSTest.TestFramework">
         <Version>3.0.4</Version>
     </PackageReference>
+    <PackageReference Include="Prometheus.Client.MetricPusher" Version="3.1.0" />
     <PackageReference Include="System.ServiceProcess.ServiceController" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
