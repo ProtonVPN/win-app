@@ -73,8 +73,14 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             string artifactsDir = CreateTestArtifactFolder();
             string pathToTestArtifact = Path.Combine(artifactsDir, testName);
             Directory.CreateDirectory(pathToTestArtifact);
-            File.Copy(TestConstants.AppLogsPath, pathToTestArtifact + @"\app-logs.txt", true);
-            File.Copy(TestConstants.ServiceLogsPath, pathToTestArtifact + @"\service-logs.txt", true);
+            if (File.Exists(TestConstants.AppLogsPath))
+            {
+                File.Copy(TestConstants.AppLogsPath, pathToTestArtifact + @"\app-logs.txt", true);
+            }
+            if (File.Exists(TestConstants.ServiceLogsPath))
+            {
+                File.Copy(TestConstants.ServiceLogsPath, pathToTestArtifact + @"\service-logs.txt", true);
+            }
         }
 
         private static string CreateTestArtifactFolder()

@@ -56,7 +56,15 @@ namespace ProtonVPN.UI.Tests
 
         protected static void Cleanup()
         {
-            SaveScreenshotAndLogsIfFailed();
+            try
+            {
+                SaveScreenshotAndLogsIfFailed();
+            }
+            catch
+            {
+                //Do nothing, since artifact collection shouldn't block cleanup.
+            }
+            
             App.Kill();
             App.Dispose();
             try
@@ -70,14 +78,15 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void RefreshWindow()
+        protected static void RefreshWindow(TimeSpan? timeout = null)
         {
             Window = null;
+            TimeSpan refreshTimeout = timeout ?? TestConstants.MediumTimeout;
             RetryResult<Window> retry = Retry.WhileNull(
                 () => {
                     try
                     {
-                        Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
+                        Window = App.GetMainWindow(new UIA3Automation(), refreshTimeout);
                     }
                     catch (System.TimeoutException)
                     {
@@ -85,11 +94,11 @@ namespace ProtonVPN.UI.Tests
                     }
                     return Window;
                 },
-                TestConstants.MediumTimeout, TestConstants.RetryInterval);
+                refreshTimeout, TestConstants.RetryInterval);
 
             if (!retry.Success)
             {
-                Assert.Fail($"Failed to refresh window in {TestConstants.MediumTimeout.Seconds} seconds.");
+                Assert.Fail($"Failed to refresh window in {refreshTimeout.Seconds} seconds.");
             }
         }
 
@@ -104,6 +113,7 @@ namespace ProtonVPN.UI.Tests
                 //Sometimes app fails to launch on first try due to CI issues.
                 App = Application.Launch(path + @"\ProtonVPN.exe");
             }
+            RefreshWindow(TestConstants.LongTimeout);
         }
 
         protected static void KillProtonVpnProcess()
