@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using FlaUI.Core.AutomationElements;
 
 namespace ProtonVPN.UI.Tests.Robots.Countries;
@@ -42,6 +43,8 @@ public partial class CountriesRobot
             ServerTextBox.Text = serverNumber.ToString();
         }
 
+        //Give some time for the app to process configured values.
+        this.Wait(1000);
         CountriesConnectButton.Focus();
         CountriesConnectButton.Click();
 

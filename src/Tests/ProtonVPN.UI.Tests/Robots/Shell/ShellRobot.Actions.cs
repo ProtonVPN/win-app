@@ -35,7 +35,7 @@ public partial class ShellRobot
 
     public ShellRobot DoNavigateToCountriesPage()
     {
-        CountriesNavigationViewItem.Click();
+        CountriesNavigationViewItem.FocusAndClick();
 
         // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
         this.Wait(TestConstants.DefaultAnimationDelay);
