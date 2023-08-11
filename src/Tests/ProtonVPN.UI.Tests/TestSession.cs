@@ -44,14 +44,15 @@ public class TestSession
 
     private static readonly bool _isDevelopmentModeEnabled = false;
 
-    public static void RefreshWindow()
+    public static void RefreshWindow(TimeSpan? timeout = null)
     {
         Window = null;
+        TimeSpan refreshTimeout = timeout ?? TestConstants.MediumTimeout;
         RetryResult<Window> retry = Retry.WhileNull(() =>
         {
             try
             {
-                Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
+                Window = App.GetMainWindow(new UIA3Automation(), refreshTimeout);
             }
             catch (TimeoutException)
             {
@@ -59,15 +60,15 @@ public class TestSession
             }
             return Window;
         },
-        TestConstants.MediumTimeout, TestConstants.RetryInterval);
+        refreshTimeout, TestConstants.RetryInterval);
 
         if (!retry.Success)
         {
-            Assert.Fail($"Failed to refresh window in {TestConstants.MediumTimeout.Seconds} seconds.");
+            Assert.Fail($"Failed to refresh window in {refreshTimeout.Seconds} seconds.");
         }
     }
 
-    protected static void DeleteUserConfig()
+    protected static void DeleteProtonData()
     {
         try
         {
@@ -80,14 +81,21 @@ public class TestSession
 
     protected static void Cleanup()
     {
-        SaveScreenshotAndLogsIfFailed();
+        try
+        {
+            SaveScreenshotAndLogsIfFailed();
+        }
+        catch
+        {
+            //Do nothing, since artifact collection shouldn't block cleanup.
+        }
         App.Close();
         App.Dispose();
     }
 
     protected static void LaunchApp()
     {
-        DeleteUserConfig();
+        DeleteProtonData();
 
         if (_isDevelopmentModeEnabled)
         {
@@ -112,7 +120,7 @@ public class TestSession
         }
 
         App = Application.Launch(installedClientPath);
-        RefreshWindow();
+        RefreshWindow(TestConstants.LongTimeout);
         Window.WaitUntilClickable(TimeSpan.FromSeconds(10));
         Window.Focus();
     }

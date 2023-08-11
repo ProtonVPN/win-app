@@ -116,7 +116,11 @@ public class ConnectionTests : TestSession
             .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
             .VerifyVpnStatusIsConnected()
             .VerifyConnectionCardIsConnected(COUNTRY, CITY);
+    }
 
+    [Test]
+    public void ConnectToSpecificServer()
+    {
         _shellRobot
             .DoNavigateToCountriesPage()
             .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
