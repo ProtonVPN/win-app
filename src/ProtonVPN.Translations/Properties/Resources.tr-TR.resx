@@ -300,7 +300,7 @@
     <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
   </data>
   <data name="App_mnu_Exit">
-    <value>Çıkış</value>
+    <value>Çık</value>
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
@@ -1653,7 +1653,7 @@
     <value>İptal</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit">
-    <value>Çıkış</value>
+    <value>Çık</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>İlerlemek istiyor musunuz?</value>
@@ -1701,7 +1701,7 @@
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
-    <value>Çıkış</value>
+    <value>Çık</value>
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Downloading">
@@ -2859,7 +2859,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>Bir VPN ağ geçidi, şirketinizin verilerine ve hizmetlerine özel sunucular üzerinden denetimli erişim sağlayan güvenli bir bağlantıdır.</value>
+    <value>Bir VPN ağ geçidi, şirketinizin verilerine ve hizmetlerine size ayrılmış sunucular üzerinden denetimli erişim sağlayan güvenli bir bağlantıdır.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
@@ -3044,11 +3044,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>Sistem tepsisine</value>
+    <value>Sistem tepsisinde</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>Görev çubuğuna</value>
+    <value>Görev çubuğunda</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">

@@ -3092,7 +3092,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Нататка: скарыстайцеся новай укладкай браўзера і/або ачысціце кэш, каб пераканацца, што з'явілася новае змесціва.</value>
   </data>
   <data name="Sidebar_Streaming_More">
-    <value>і іншае</value>
+    <value>і іншыя</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
     <value>Адключана</value>

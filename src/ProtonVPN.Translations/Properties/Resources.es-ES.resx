@@ -1997,7 +1997,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Código de autenticación de dos factores incorrecto</value>
+    <value>Código de autenticación de doble factor incorrecto</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Credenciales de acceso incorrectas. Por favor, inténtelo de nuevo.</value>

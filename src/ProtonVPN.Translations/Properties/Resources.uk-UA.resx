@@ -2508,16 +2508,16 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Орієнтовний розмір рекламних оголошень, елементів стеження та зловмисних програм, заблокованих NetShield.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Елементів стеження зупинено</value>
+    <value>Зупинених вистежувачів</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Елемент стеження зупинено</value>
+    <value>Зупинений вистежувач</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
-    <value>Елементів стеження зупинено</value>
+    <value>Зупинені вистежувачі</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
-    <value>Елементів стеження зупинено</value>
+    <value>Зупинених вистежувачів</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Елементи стеження – це сторонні вебсайти, які збирають, зберігають і продають дані про вашу діяльність в інтернеті.</value>
@@ -2811,7 +2811,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Помірне NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Помірний NAT вимикає показ випадкових локальних адрес, що може дещо знизити рівень безпеки, але дозволяє використовувати такі методи, як прямі з'єднання для таких застосунків, як онлайн-ігри.</value>
+    <value>Помірний NAT вимикає показ випадкових локальних адрес, що може дещо знизити рівень безпеки, але дозволяє використовувати методи, як-от прямі з'єднання для таких програм, як онлайн-ігри.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Швидке з'єднання</value>
@@ -2915,7 +2915,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>VPN-шлюз — це захищене з'єднання, яке забезпечує контрольований доступ до даних і сервісів вашої компанії через виділені сервери.</value>
+    <value>VPN-шлюз – це захищене з'єднання, що забезпечує контрольований доступ до даних і сервісів вашої компанії через спеціалізовані сервери.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
@@ -3073,7 +3073,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>Інше</value>
+    <value>Інші</value>
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">

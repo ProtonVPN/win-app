@@ -2257,7 +2257,7 @@
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Please select a gateway</value>
+    <value>Пожалуйста, выберите шлюз</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
@@ -2329,7 +2329,7 @@
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Gateway:</value>
+    <value>Шлюз:</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
@@ -2549,7 +2549,7 @@
     <value>{0} защищённого сервера</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Gateways</value>
+    <value>Шлюзы</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
@@ -2914,11 +2914,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>A VPN gateway is a secure connection that provides controlled access to your company's data and services through dedicated servers.</value>
+    <value>VPN-шлюз – это безопасное соединение, предоставляющее контролируемый доступ к данным и сервисам вашей компании через выделенные серверы.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
-    <value>What's a gateway?</value>
+    <value>Что такое шлюз?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
@@ -3225,7 +3225,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Available with VPN Business.</value>
+    <value>Доступно с VPN для бизнеса.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_About">
