@@ -49,7 +49,10 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
+    [NotifyPropertyChangedFor(nameof(IsLoginFormEnabled))]
     private bool _isLoggingIn;
+
+    public bool IsLoginFormEnabled => !IsLoggingIn;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
@@ -89,8 +92,10 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
         try
         {
             IsLoggingIn = true;
+            SecureString securePassword = GetSecurePassword();
+            Password = string.Empty;
 
-            AuthResult result = await _userAuthenticator.LoginUserAsync(Username, GetSecurePassword());
+            AuthResult result = await _userAuthenticator.LoginUserAsync(Username, securePassword);
             if (result.Success)
             {
                 await HandleSuccessAsync();
@@ -114,7 +119,6 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     {
         if (result.Value == AuthError.TwoFactorRequired)
         {
-            Password = string.Empty;
             _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorRequired));
         }
         else
@@ -126,8 +130,6 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
 
     private async Task HandleSuccessAsync()
     {
-        Password = string.Empty;
-
         if (_guestHoleActionExecutor.IsActive())
         {
             await _guestHoleActionExecutor.DisconnectAsync();
