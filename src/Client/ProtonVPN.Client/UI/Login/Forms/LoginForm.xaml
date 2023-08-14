@@ -38,13 +38,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  IsTextPredictionEnabled="False"
                  Header="{x:Bind ViewModel.Localizer.Get('Login_Form_Username')}"
                  Text="{x:Bind ViewModel.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 KeyDown="OnFormBoxKeyDown" />
+                 KeyDown="OnFormBoxKeyDown"
+                 IsEnabled="{x:Bind ViewModel.IsLoginFormEnabled}" />
 
         <PasswordBox Header="{x:Bind ViewModel.Localizer.Get('Login_Form_Password')}"
                      Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
                      AutomationProperties.AutomationId="PasswordBox"
                      Margin="0,18,0,0"
-                     KeyDown="OnFormBoxKeyDown" />
+                     KeyDown="OnFormBoxKeyDown"
+                     IsEnabled="{x:Bind ViewModel.IsLoginFormEnabled}" />
 
         <Button x:Name="LoginButton"
                 AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_Form_SignIn')}"
