@@ -20,8 +20,8 @@ using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 
 namespace ProtonVPN.Core.Service

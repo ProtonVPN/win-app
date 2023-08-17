@@ -25,8 +25,8 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
@@ -177,6 +177,11 @@ namespace ProtonVPN.Vpn.Connectors
             }
 
             Specification<LogicalServerResponse> spec = new ServerByFeatures(ServerFeatures(profile));
+
+            if (!string.IsNullOrEmpty(profile.GatewayName))
+            {
+                spec &= new ServerByGateway(profile.GatewayName);
+            }
 
             if (!string.IsNullOrEmpty(profile.CountryCode))
             {

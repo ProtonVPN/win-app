@@ -48,21 +48,22 @@ namespace ProtonVPN.Common.Configuration.Environments
 
         public IConfiguration Value()
         {
-            IConfiguration value = _origin.Value();
+            IConfiguration config = _origin.Value();
 
 #if DEBUG
-            if (value is null)
+            if (config is null)
             {
-                value = _default.Value();
-                Uri btiApiUri = SetApiUrl(value);
-                SetApiTlsPinningPublicKeyHashes(value, btiApiUri);
-                SetAlternativeRoutingTlsPinningPublicKeyHashes(value);
-                SetCertificateValidation(value);
-                SetDohProviders(value);
+                config = _default.Value();
+                Uri btiApiUri = SetApiUrl(config);
+                SetApiTlsPinningPublicKeyHashes(config, btiApiUri);
+                SetAlternativeRoutingTlsPinningPublicKeyHashes(config);
+                SetCertificateValidation(config);
+                SetDohProviders(config);
+                SetServerSignaturePublicKey(config);
             }
 #endif
 
-            return value;
+            return config;
         }
 
         private Uri SetApiUrl(IConfiguration config)
@@ -247,6 +248,28 @@ namespace ProtonVPN.Common.Configuration.Environments
             {
                 config.DoHProviders = uris.Select(u => u.AbsoluteUri).ToList();
             }
+        }
+
+        private void SetServerSignaturePublicKey(IConfiguration config)
+        {
+            string serverSignaturePublicKey = EnvironmentVariableLoader.GetOrNull("BTI_SERVER_SIGNATURE_PUBLIC_KEY");
+            if (string.IsNullOrWhiteSpace(serverSignaturePublicKey))
+            {
+                serverSignaturePublicKey = GlobalConfig.BtiServerSignaturePublicKey;
+                if (!string.IsNullOrWhiteSpace(serverSignaturePublicKey))
+                {
+                    SetServerSignaturePublicKey(config, serverSignaturePublicKey);
+                }
+            }
+            else
+            {
+                SetServerSignaturePublicKey(config, serverSignaturePublicKey);
+            }
+        }
+
+        private void SetServerSignaturePublicKey(IConfiguration config, string serverSignaturePublicKey)
+        {
+            config.ServerValidationPublicKey = serverSignaturePublicKey;
         }
     }
 }

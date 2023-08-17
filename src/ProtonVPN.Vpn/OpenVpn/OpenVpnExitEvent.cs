@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ConnectionLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Vpn.SynchronizationEvent;
 
 namespace ProtonVPN.Vpn.OpenVpn

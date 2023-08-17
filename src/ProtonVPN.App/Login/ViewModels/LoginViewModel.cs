@@ -28,8 +28,8 @@ using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Auth;
@@ -371,6 +371,7 @@ namespace ProtonVPN.Login.ViewModels
                     error = Translation.Get("Login_msg_TwoFactorAuthFailed");
                     IsToShowTwoFactorAuth = false;
                     IsToShowUsernameAndPassword = true;
+                    ClearPasswordField();
                     break;
                 case AuthError.Unknown:
                     await _modals.ShowAsync<TroubleshootModalViewModel>();
@@ -379,7 +380,6 @@ namespace ProtonVPN.Login.ViewModels
             }
 
             LoginErrorViewModel.SetError(error);
-            ClearPasswordField();
             ShowLoginForm();
         }
 

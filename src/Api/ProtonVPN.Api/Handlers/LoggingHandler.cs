@@ -22,8 +22,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers
 {

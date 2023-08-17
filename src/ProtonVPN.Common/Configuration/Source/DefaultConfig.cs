@@ -180,7 +180,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
                     UpdateUrl = "https://protonvpn.com/download/windows-releases.json",
                     DownloadUrl = "https://protonvpn.com/download",
-                    ApiUrl = "https://api.protonvpn.ch",
+                    ApiUrl = "https://vpn-api.proton.me",
                     TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
                     HelpUrl = "https://protonvpn.com/support/",
                     AccountUrl = "https://account.protonvpn.com/dashboard",
@@ -212,6 +212,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
                     RpcServerProblemUrl = "https://protonvpn.com/support/rpc-server-unavailable",
+                    DedicatedIpsUrl = "https://protonvpn.com/support/dedicated-ips",
                 },
 
                 OpenVpn =
@@ -278,13 +279,12 @@ namespace ProtonVPN.Common.Configuration.Source
                     {
                         new()
                         {
-                            Name = "api.protonvpn.ch",
+                            Name = "vpn-api.proton.me",
                             PublicKeyHashes = new HashSet<string>
                             {
-                                "IEwk65VSaxv3s1/88vF/rM8PauJoIun3rzVCX5mLS3M=",
-                                "drtmcR2kFkM8qJClsuWgUzxgBkePfRCkRpqUesyDmeE=",
-                                "YRGlaY0jyJ4Jw2/4M8FIftwbDIQfh8Sdro96CeEel54=",
-                                "AfMENBVvOS8MnISprtvyPsjKlPooqh8nMB/pvCrpJpw=",
+                                "CT56BhOTmj5ZIPgb/xD5mH8rY3BLo/MlhP7oPyJUEDo=", // Current
+                                "35Dx28/uzN3LeltkCBQ8RHK0tlNSa2kCpCRGNp34Gxc=", // Hot backup
+                                "qYIukVc63DEITct8sFT7ebIq5qsWmuscaIKeJx+5J5A=", // Cold backup
                             },
                             Enforce = true,
                             SendReport = true,
@@ -355,7 +355,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 WintunAdapterName = "ProtonVPN TUN",
 
-                InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
+                InstallActionsPath = Path.Combine(resourcesFolder, "ProtonVPN.InstallActions.dll"),
 
                 IsCertificateValidationDisabled = false
             };

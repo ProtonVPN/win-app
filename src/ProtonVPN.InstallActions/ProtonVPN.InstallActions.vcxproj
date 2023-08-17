@@ -104,7 +104,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -112,9 +112,6 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;..\..\src\bin\x86\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
     <PreLinkEvent>
       <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=Debug /property:Platform=x86 -target:Clean;Build</Command>
     </PreLinkEvent>
@@ -130,7 +127,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\src\bin\x64;..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\src\bin\x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,9 +135,6 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
     <PreLinkEvent>
       <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=x64 -target:Clean;Build</Command>
     </PreLinkEvent>
@@ -157,7 +151,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -168,9 +162,6 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;..\..\src\bin\x86\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -191,7 +182,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;..\..\CppLibraries\Bit7z\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ProtonVPN.IpFilterLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -202,9 +193,6 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "..\..\CppLibraries\7-Zip\7za.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
     <PreBuildEvent>
       <Command>
       </Command>

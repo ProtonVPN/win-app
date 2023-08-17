@@ -21,7 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;

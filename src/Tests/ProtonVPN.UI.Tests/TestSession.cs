@@ -28,9 +28,7 @@ using FlaUI.Core.Tools;
 using FlaUI.UIA3;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.UI.Tests.TestsHelper;
-using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -57,8 +55,6 @@ namespace ProtonVPN.UI.Tests
         protected static void Cleanup()
         {
             SaveScreenshotAndLogsIfFailed();
-            VPNServiceHelper serviceHelper = new VPNServiceHelper();
-            serviceHelper.Disconnect().GetAwaiter().GetResult();
             App.Kill();
             App.Dispose();
             try

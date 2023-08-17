@@ -18,7 +18,7 @@
  */
 
 using System.Diagnostics;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Common.OS.Processes
 {

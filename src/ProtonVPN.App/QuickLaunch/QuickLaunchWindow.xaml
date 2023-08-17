@@ -31,6 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
         xmlns:sidebar="clr-namespace:ProtonVPN.Sidebar"
         xmlns:graphics="clr-namespace:ProtonVPN.Resource.Graphics;assembly=ProtonVPN.Resource"
+        xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
         WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="CanMinimize"
@@ -220,21 +221,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Width="21" 
                                    Height="15"
                                    Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
-                                   AutomationProperties.AutomationId="{StaticResource QuickLaunchFlag}" />
-                            <TextBlock Width="280"
-                                       FontSize="16" 
-                                       FontWeight="Bold"
-                                       Padding="10,0,0,0" 
-                                       VerticalAlignment="Center"
-                                       Margin="0,0,0,1"
-                                       TextTrimming="CharacterEllipsis"
-                                       Foreground="{StaticResource TextNormBrushColor}">
-                                <Run Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}" />
-                                <Run Text="-"/>
-                                <Run Text="{Binding ServerName, Mode=OneWay}"/>
-                            </TextBlock>
+                                   AutomationProperties.AutomationId="{StaticResource QuickLaunchFlag}"
+                                   Visibility="{Binding IsB2B, Converter={StaticResource InvertedBoolToVis}}"/>
+                            <icons:Servers HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Width="21" Height="20"
+                                           Foreground="{StaticResource TextNormBrushColor}"
+                                           Visibility="{Binding IsB2B, Converter={StaticResource BoolToVis}}"/>
+                            <controls:ServerName Width="280"
+                                                 FontSize="16" 
+                                                 FontWeight="Bold"
+                                                 Padding="10,0,0,0" 
+                                                 VerticalAlignment="Center"
+                                                 Margin="0,0,0,1"
+                                                 ConnectionName="{Binding ConnectionName}" />
                         </StackPanel>
-                        
                         <StackPanel Orientation="Horizontal" Margin="0,8" FlowDirection="LeftToRight" HorizontalAlignment="Left">
                             <Label Foreground="{StaticResource TextNormBrushColor}"
                                    Padding="0"
@@ -269,19 +270,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Image VerticalAlignment="Center" 
                                    Width="21" 
                                    Height="15"
-                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}" />
-                            <TextBlock Width="280"
-                                       FontSize="16" 
-                                       FontWeight="Bold"
-                                       Padding="10,0,0,0" 
-                                       VerticalAlignment="Center"
-                                       Margin="0,0,0,1"
-                                       TextTrimming="CharacterEllipsis"
-                                       Foreground="{StaticResource TextNormBrushColor}">
-                                <Run Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}, Mode=OneWay}" />
-                                <Run Text="-"/>
-                                <Run Text="{Binding ServerName, Mode=OneWay}"/>
-                            </TextBlock>
+                                   Source="{Binding CountryCode, Converter={StaticResource CountryToFlagConverter}}"
+                                   Visibility="{Binding IsB2B, Converter={StaticResource InvertedBoolToVis}}"/>
+                            <icons:Servers HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Width="21" Height="20"
+                                           Foreground="{StaticResource TextNormBrushColor}"
+                                           Visibility="{Binding IsB2B, Converter={StaticResource BoolToVis}}"/>
+                            <controls:ServerName Width="280"
+                                                 FontSize="16" 
+                                                 FontWeight="Bold"
+                                                 Padding="10,0,0,0" 
+                                                 VerticalAlignment="Center"
+                                                 Margin="0,0,0,1"
+                                                 ConnectionName="{Binding ConnectionName}" />
                         </StackPanel>
                     </StackPanel>
 

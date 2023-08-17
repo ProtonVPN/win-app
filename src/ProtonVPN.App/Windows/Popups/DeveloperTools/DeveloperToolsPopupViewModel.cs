@@ -238,9 +238,9 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             if (popupWindow is IReconnectionDataPopupViewModel reconnectionDataPopupViewModel)
             {
                 Server previousServer = new(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
-                    "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
+                    "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124", null);
                 Server currentServer = new(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
-                    "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
+                    "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125", null);
                 reconnectionDataPopupViewModel.SetReconnectionData(previousServer, currentServer);
             }
         }
@@ -276,9 +276,9 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         {
             await Task.Delay(TimeSpan.FromSeconds(5));
             Server previousServer = new(Guid.NewGuid().ToString(), "CH-PT#20", "Porto",
-                "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124");
+                "CH", "PT", "protonvpn.com", 0, 2, 1, 50, 1, null, null, "192.168.123.124", null);
             Server currentServer = new(Guid.NewGuid().ToString(), "SE-PT#23", "Porto",
-                "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125");
+                "SE", "PT", "protonvpn.com", 1, 2, 1, 30, 1, null, null, "192.168.123.125", null);
             _connectionStatusViewModel.ShowVpnAcceleratorReconnectionPopup(previousServer: previousServer, currentServer: currentServer);
         }
 

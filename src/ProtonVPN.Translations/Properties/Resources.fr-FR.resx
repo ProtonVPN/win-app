@@ -432,7 +432,7 @@
     <value>Quel est le problème ?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>Qu'est-ce qui s'est mal passé ?</value>
+    <value>Quel était le problème ?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
@@ -1108,7 +1108,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Macédoine du Nord</value>
+    <value>Macédoine</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1772,11 +1772,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Votre abonnement a été rétrogradé, nous vous reconnectons au serveur le plus rapide qui est disponible.</value>
+    <value>Votre abonnement contient moins de fonctionnalités. Nous vous reconnectons au serveur le plus rapide qui est disponible.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Votre abonnement a été rétrogradé.</value>
+    <value>Votre abonnement contient moins de fonctionnalités.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
@@ -2117,11 +2117,11 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Votre abonnement a été rétrogradé. Repassez à la version supérieure pour profiter de toutes les fonctionnalités.</value>
+    <value>Votre abonnement contient moins de fonctionnalités. Repassez à la version supérieure pour profiter de toutes les fonctionnalités.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Votre abonnement ayant été rétrogradé, nous nous reconnectons au serveur le plus rapide qui est disponible. Repassez à la version supérieure pour profiter de toutes les fonctionnalités.</value>
+    <value>Votre abonnement est passé à un niveau inférieur. Nous nous reconnectons au serveur le plus rapide qui est disponible. Repassez à la version supérieure pour profiter à nouveau de toutes les fonctionnalités.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">

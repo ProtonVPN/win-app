@@ -17,6 +17,8 @@
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 
+#include "CodeDependencies.iss"
+
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -45,10 +47,12 @@ SignTool=signtool sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /t
 [Messages]
 SetupWindowTitle={#MyAppName}
 
-[Files]
-Source: "..\src\bin\win-x64\publish\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+[Registry]
+Root: HKCR; Subkey: "ProtonVPN"; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "ProtonVPN"; ValueType: string; ValueName: "URL Protocol"; ValueData: "";
+Root: HKCR; Subkey: "ProtonVPN\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#VersionFolder}\{#MyAppExeName}"" ""%1""";
 
+[Files]
 Source: "..\src\ProtonVPN.NativeHost\bin\ProtonVPN.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.NativeHost\bin\nethost.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
@@ -102,7 +106,10 @@ Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
-Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
+Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl"
@@ -322,13 +329,14 @@ begin
   end;
 
   InitLogger(CreateCallback(@LogProc));
+  Dependency_AddWebView2;
   Result := true;
 end;
 
 function InitializeUninstall: Boolean;
 begin
   Log('InitializeUninstall');
-  Result := FileCopy(ExpandConstant('{app}\{#VersionFolder}\ProtonVPN.InstallActions.x86.dll'), ExpandConstant('{%TEMP}\ProtonVPN.InstallActions.x86.dll'), False);
+  Result := FileCopy(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'), ExpandConstant('{%TEMP}\ProtonVPN.InstallActions.x86.dll'), False);
   InitLoggerUninstall(CreateCallback(@LogProc));
 end;
 

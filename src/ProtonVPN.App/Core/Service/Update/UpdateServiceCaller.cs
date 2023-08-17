@@ -19,7 +19,7 @@
 
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;

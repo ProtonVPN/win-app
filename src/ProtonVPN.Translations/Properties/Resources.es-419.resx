@@ -281,7 +281,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Su solicitud ha fallado. Intente otra vez.</value>
+    <value>Error con la solicitud. Intente de nuevo.</value>
   </data>
   <data name="App_mnu_About">
     <value>Acerca de</value>
@@ -432,7 +432,7 @@
     <value>¿Cuál es el problema?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>¿Qué salió mal?</value>
+    <value>¿Cuál fue el problema?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
@@ -522,11 +522,11 @@
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>ha fallado</value>
+    <value>no funcionó</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>ha fallado</value>
+    <value>la conexión no funcionó</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
@@ -1108,7 +1108,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Macedonia del Norte</value>
+    <value>Macedonia</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1768,15 +1768,15 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Actualice de nuevo para disfrutar de todas las funciones:</value>
+    <value>Mejore su plan de nuevo para disfrutar de todas las funciones:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Su suscripción ha sido degradada, volveremos a reconectar al servidor más rápido disponible.</value>
+    <value>Su suscripción ha pasado a un nivel inferior, volveremos a reconectar al servidor más rápido disponible.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Su suscripción ha sido degradada.</value>
+    <value>Su suscripción ha pasado a un nivel inferior.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
@@ -2117,11 +2117,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Su suscripción ha sido degradada. Actualice de nuevo para disfrutar de todas las funciones.</value>
+    <value>Su suscripción ha pasado a un nivel inferior. Mejore su plan de nuevo para disfrutar de todas las funciones.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Su suscripción ha sido degradada, así que estamos volviendo a conectar al servidor más rápido disponible. Actualice de nuevo para disfrutar de todas las funciones.</value>
+    <value>Su suscripción ha pasado a un nivel inferior, así que estamos volviendo a conectar al servidor más rápido disponible. Mejore su plan de nuevo para disfrutar de todas las funciones.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
@@ -2235,10 +2235,10 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>La longitud máxima del nombre de perfil es de {0} caracter. Elija un nombre de perfil más corto.</value>
+    <value>El número máximo de caracteres del nombre de perfil es de {0} caracter. Elija un nombre de perfil más corto.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>La longitud máxima del nombre de perfil es de {0} caracteres. Elija un nombre de perfil más corto.</value>
+    <value>El número máximo de caracteres del nombre de perfil es de {0} caracteres. Elija un nombre de perfil más corto.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
     <value>Seleccione un servidor</value>
@@ -2429,7 +2429,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Secure Core activado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>ACTUALIZAR</value>
+    <value>MEJORAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Deshabilite internet si la conexión VPN cae para prevenir una filtración accidental de IP.</value>
@@ -2526,7 +2526,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
-    <value>Auto asignado</value>
+    <value>Asignado automáticamente</value>
     <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_Load">
@@ -2635,7 +2635,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Proporciona un rendimiento mejorado del sistema y una experiencia más fluida al usar la GPU para la representación de gráficos. Desactívelo en caso de fallas en la pantalla.</value>
+    <value>Proporciona un rendimiento mejorado del sistema y una experiencia más fluida al usar la GPU para la representación de gráficos. Desactívelo en caso de problemas con la pantalla.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
@@ -3121,7 +3121,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Mejorar</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3157,7 +3157,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Duplique el cifrado con Secure Core</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Mejorar</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

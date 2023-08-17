@@ -67,6 +67,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <form:BaseProfileForm DataContext="{Binding Form}"/>
             <ContentPresenter Content="{Binding Form}" Margin="0,10,0,0">
                 <ContentPresenter.Resources>
+                    <DataTemplate DataType="{x:Type form:B2BProfileFormViewModel}">
+                        <form:B2BProfileFormView/>
+                    </DataTemplate>
                     <DataTemplate DataType="{x:Type form:StandardProfileFormViewModel}">
                         <form:StandardProfileFormView/>
                     </DataTemplate>

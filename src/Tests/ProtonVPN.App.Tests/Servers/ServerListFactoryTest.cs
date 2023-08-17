@@ -23,7 +23,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
@@ -249,7 +249,7 @@ namespace ProtonVPN.App.Tests.Servers
 
             AssertCountrySeparator(result[0], "P2P");
             AssertCountries(result.Skip(1).Take(p2pCountries.Count), p2pCountries);
-            AssertCountrySeparator(result[p2pCountries.Count + 1], "OTHERS");
+            AssertCountrySeparator(result[p2pCountries.Count + 1], "Others");
             AssertCountries(result.Skip(p2pCountries.Count + 2).Take(nonP2Pcountries.Count), nonP2Pcountries);
         }
 

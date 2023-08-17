@@ -32,7 +32,7 @@ using Polly.Timeout;
 using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;

@@ -25,6 +25,8 @@ namespace ProtonVPN.Servers
     {
         void OnVpnStateChanged(VpnState state);
 
+        string Id { get; }
+
         string Name { get; }
 
         bool Maintenance { get; }

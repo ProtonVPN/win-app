@@ -21,7 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.BugReporting.Attachments.Sources;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.App.Tests.BugReporting.Attachments.Source
 {

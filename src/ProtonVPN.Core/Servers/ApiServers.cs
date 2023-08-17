@@ -19,18 +19,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
 using ProtonVPN.Core.Users;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Core.Servers
 {
     public class ApiServers : IApiServers
     {
+        public string GATEWAY_DEFAULT_NAME = "Gateway";
+
         private readonly ILogger _logger;
         private readonly IApiClient _apiClient;
         private readonly TruncatedLocation _location;
@@ -54,6 +57,7 @@ namespace ProtonVPN.Core.Servers
             {
                 string ip = await GetLocationIPAsync();
                 ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(ip);
+                NameUnnamedGateways(response);
                 return response.Success ? response.Value.Servers : Array.Empty<LogicalServerResponse>();
             }
             catch (Exception ex)
@@ -62,6 +66,16 @@ namespace ProtonVPN.Core.Servers
             }
 
             return Array.Empty<LogicalServerResponse>();
+        }
+
+        private void NameUnnamedGateways(ApiResponseResult<ServersResponse> response)
+        {
+            IEnumerable<LogicalServerResponse> b2bServersWithoutGatewayName = response.Value.Servers
+                .Where(s => ServerFeatures.IsB2B(s.Features) && string.IsNullOrWhiteSpace(s.GatewayName));
+            foreach (LogicalServerResponse server in b2bServersWithoutGatewayName)
+            {
+                server.GatewayName = GATEWAY_DEFAULT_NAME;
+            }
         }
 
         private async Task<string> GetLocationIPAsync()

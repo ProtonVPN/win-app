@@ -22,8 +22,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.DnsLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 using AddressFamily = System.Net.Sockets.AddressFamily;
 using SystemDns = System.Net.Dns;
 

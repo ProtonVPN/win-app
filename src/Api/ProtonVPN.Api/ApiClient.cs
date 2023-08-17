@@ -35,8 +35,8 @@ using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Core.Settings;
 

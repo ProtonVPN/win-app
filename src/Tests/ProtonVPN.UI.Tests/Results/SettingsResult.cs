@@ -18,7 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Results

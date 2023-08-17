@@ -26,7 +26,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -212,6 +212,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
                 0,
                 new LocationResponse(),
                 new List<PhysicalServer>(),
+                null,
                 null
             );
         }
@@ -232,6 +233,7 @@ namespace ProtonVPN.App.Tests.P2PDetection
                 0,
                 new LocationResponse(),
                 new List<PhysicalServer>(),
+                null,
                 null
             );
         }

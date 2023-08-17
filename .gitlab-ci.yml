@@ -1,8 +1,4 @@
 include:
-  - project: 'tpe/testmo-reporter'
-    ref: master
-    file: '/scenarios/testmo-multiple.yml'
-
   - project: 'translations/generator'
     ref: master
     file: '/jobs/commit-locales.gitlab-ci.yml'
@@ -10,6 +6,8 @@ include:
   - project: 'translations/generator'
     ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
+    
+  - local: '/.gitlab-ci-templates.yml'
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
@@ -38,67 +36,45 @@ stages:
   - mirror
 
 build-release:
-  stage: build
-  tags:
-    - windows-dot-net
-  script:
-    - echo "Building native dependencies..."
-    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat
-    - cmd.exe /c BuildGoSrp.bat src\bin\win-x64\publish\Resources
-    - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
-    - echo "Downloading translations from crowdin..."
-    - python ci\main.py lint-languages
-    - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\main.py defaultConfig
-    - echo "Publishing release..."
-    - dotnet publish ProtonVpn.sln -c Release -r win-x64 --self-contained
-    - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - src/bin/win-x64/publish
-      - src/ProtonVPN.NativeHost/bin
+  extends: .build-script
   only:
     - master
     - /^release.*$/
   variables:
-    GIT_SUBMODULE_STRATEGY: normal
-
+    TYPE: Release
+  
 build-debug:
-  stage: build
-  tags:
-    - windows-dot-net
-  script:
-    - echo "Building native dependencies..."
-    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat
-    - cmd.exe /c BuildGoSrp.bat src\bin\win-x64\publish\Resources
-    - dotnet publish src\ProtonVPN.MarkupValidator\ProtonVPN.MarkupValidator.csproj --arch x64 -c Release --no-self-contained -o src\bin
-    - echo "Downloading translations from crowdin..."
-    - python ci\main.py lint-languages
-    - python ci\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\main.py defaultConfig
-    - echo "Publishing debug..."
-    - dotnet publish ProtonVpn.sln -c Debug -r win-x64 --self-contained
-    - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - src/bin/win-x64/publish
-      - src/ProtonVPN.NativeHost/bin
+  extends: .build-script
   except:
     - master
     - /^release.*$/
   variables:
-    GIT_SUBMODULE_STRATEGY: normal
+    TYPE: Debug
+
+ui-test:
+  extends: .test_execution_script
+  variables:
+    CATEGORY: "UI"
+    
+connection-test:
+  extends: .test_execution_script
+  variables:
+    CATEGORY: "Connection"
+    
+win-11-test:
+  extends: .test_execution_script
+  when: manual
+  tags:
+    - win11
+  variables:
+    CATEGORY: "Smoke"
 
 tests:
   stage: test
   tags:
     - windows-dot-net
   script:
-    - cmd.exe /c BuildGoSrp.bat src\bin\Resources
+    - cmd.exe /c BuildDependencies.bat bin gosrponly
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
     - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
@@ -111,20 +87,17 @@ tests:
         path: cobertura.xml
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
-build-installer-for-release:
+build-installer:
   stage: build-installer
   tags:
     - windows
   script:
-    - python ci\main.py update-gh-list
-    - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py update-gh-list
+    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
       - Setup/Installers/
     expire_in: 4 weeks
-  only:
-    - master
-    - /^release.*$/
 
 prepare-internal-beta-release:
   stage: internal-beta
@@ -133,123 +106,10 @@ prepare-internal-beta-release:
   when: manual
   script:
     - python -m pip install -r ci\python-libs.txt
-    - python ci\prepare-internal-beta.py
+    - python ci\test-scripts\prepare-internal-beta.py
   only:
     - /^release.*$/
-
-build-installer-for-debug:
-  stage: build-installer
-  tags:
-    - windows
-  script:
-    - python ci\main.py update-gh-list
-    - python ci\main.py app-installer $env:CI_COMMIT_SHORT_SHA
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
-  except:
-    - master
-    - /^release.*$/
-
-testmo-setup:
-  allow_failure: true
-  stage: test-setup
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-  variables:
-    SOURCE: "Windows"
-    NAME: "$CI_JOB_STARTED_AT UTC"
-    TAGS: "$CI_COMMIT_REF_SLUG"
     
-ui-test:
-  stage: ui-test
-  tags:
-    - ino-setup
-  script:
-    - ci\uninstall-app.ps1
-    - ci\install-the-app.ps1
-    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=UI"
-    - ci\uninstall-app.ps1
-  after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-    - feature/inno-setup-net6
-  artifacts:
-    when: always
-    name: "result-ui"
-    paths:
-      - $SCREENSHOT_PATH
-      - "results/*"
-    expire_in: 1 weeks
-
-connection-test:
-  stage: ui-test
-  tags:
-    - connection_tests
-  script:
-    - ci\uninstall-app.ps1
-    - ci\install-the-app.ps1
-    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Connection"
-    - ci\uninstall-app.ps1
-  after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-    - feature/inno-setup-net6
-  artifacts:
-    when: always
-    name: "result-ui"
-    paths:
-      - $SCREENSHOT_PATH
-      - "results/*"
-    expire_in: 1 weeks
-
-win-11-test:
-  stage: ui-test
-  when: manual
-  tags:
-    - win11
-  script:
-    - ci\uninstall-app.ps1
-    - ci\install-the-app.ps1
-    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
-    - dotnet publish src\Tests\TestTools.ProfileCleaner\TestTools.ProfileCleaner.csproj --arch x64 -c Release --self-contained --verbosity q -o src\bin
-    - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/TestRun/test-run-settings.xml /TestCaseFilter:"Category=Smoke"
-    - ci\uninstall-app.ps1
-  after_script:
-    - powershell.exe ./ci/TestRun/converter-nunit-junit.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-  artifacts:
-    when: always
-    name: "result-ui"
-    paths:
-      - $SCREENSHOT_PATH
-      - "results/*"
-    expire_in: 1 weeks
-    
-testmo-upload:
-  allow_failure: true
-  stage: test-upload
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-  variables:
-    RESULT_FOLDER: "results/*.xml"
-
 mirror:
   stage: mirror
   tags:
@@ -259,7 +119,7 @@ mirror:
       - tags
       - master
   script:
-    - python ci\main.py prepare-ssh $env:SSH_PRIVATE_KEY
+    - python ci\build-scripts\main.py prepare-ssh $env:SSH_PRIVATE_KEY
     - ssh-keyscan -t rsa github.com | Set-Content "$env:userprofile\.ssh\known_hosts"
     - git clone "$CI_REPOSITORY_URL" --branch master _APP_CLONE;
     - cd _APP_CLONE
@@ -298,7 +158,7 @@ create-release:
       - develop-v2
   script:
     - apt-get update && apt-get install -y python3 python3-pip git
-    - python3 ci/release.py
+    - python3 ci/build-scripts/release.py
 
 send-slack-notification:
   tags:
@@ -309,4 +169,4 @@ send-slack-notification:
   stage: publish-to-slack
   script:
     - python -m pip install -r ci\python-libs.txt
-    - python ci\main.py send-slack-notification
+    - python ci\build-scripts\main.py send-slack-notification

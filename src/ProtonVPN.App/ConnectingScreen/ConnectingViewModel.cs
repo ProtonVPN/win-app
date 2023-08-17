@@ -227,7 +227,11 @@ namespace ProtonVPN.ConnectingScreen
 
         private IName GetConnectionName(Server server)
         {
-            return server.IsSecureCore() ? server.GetServerName() : server.GetNameWithCountry();
+            return server.IsB2B() 
+                ? server.GetNameWithGateway() 
+                : server.IsSecureCore() 
+                    ? server.GetServerName() 
+                    : server.GetNameWithCountry();
         }
 
         private async void DisconnectAction()

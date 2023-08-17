@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:activePorts="clr-namespace:ProtonVPN.PortForwarding.ActivePorts"
              xmlns:settings="clr-namespace:ProtonVPN.Settings"
              xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
+             xmlns:plans="clr-namespace:ProtonVPN.Resource.Graphics.Plans;assembly=ProtonVPN.Resource"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance quickSettings:QuickSettingsViewModel}">
     <UserControl.Resources>
@@ -305,7 +306,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Setter TargetName="Icon" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
                                 <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
                                 <Setter TargetName="Title" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
-                                <Setter TargetName="Plus" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="Plus" Property="Visibility" Value="{Binding IsToShowPlusBadge, Converter={StaticResource BoolToVis}}" />
                                 <Setter TargetName="Plus" Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}" />
                                 <Setter TargetName="PlusLabel" Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                             </Trigger>
@@ -520,8 +521,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border Style="{StaticResource PopupBorder}">
                                 <ScrollViewer Style="{StaticResource PopupScroll}">
                                     <StackPanel>
-                                        <TextBlock Style="{StaticResource FeatureTitleText}"
-                                                   Text="{translations:Loc NetShield}" />
+                                        <Grid Margin="0,0,0,12">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            
+                                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                                       Style="{StaticResource FeatureTitleText}"
+                                                       Text="{translations:Loc NetShield}"
+                                                       HorizontalAlignment="Left"
+                                                       Margin="0,1,0,0" />
+                                        
+                                            <plans:BusinessBadge Grid.Row="0" Grid.Column="1" 
+                                                                 Width="88" Height="24"
+                                                                 HorizontalAlignment="Right"
+                                                                 Visibility="{Binding IsToShowBusinessBadge, Converter={StaticResource BoolToVis}}"
+                                                                 ToolTip="{translations:Loc Upsell_Plan_Business_Info}"/>
+                                        </Grid>
                                         <Border Style="{StaticResource NetShieldStatsExternalBorder}"
                                                 Padding="8"
                                                 HorizontalAlignment="Center"
@@ -560,7 +580,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                      Command="{Binding NetShieldOnFirstCommand}"
                                                                      Active="{Binding IsNetShieldFirstButtonOn}"
                                                                      IsTurnOnButton="True"
-                                                                     Disabled="{Binding IsFreeUser}"
+                                                                     Disabled="{Binding IsNetShieldDisabled}"
                                                                      Title="{translations:Loc QuickSettings_btn_NetshieldOnFirst}">
                                             <quickSettings:SettingButton.Icon>
                                                 <icons:ShieldHalfFilled Style="{StaticResource Icon}" />
@@ -570,7 +590,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                      Command="{Binding NetShieldOnSecondCommand}"
                                                                      Active="{Binding IsNetShieldSecondButtonOn}"
                                                                      IsTurnOnButton="True"
-                                                                     Disabled="{Binding IsFreeUser}"
+                                                                     Disabled="{Binding IsNetShieldDisabled}"
                                                                      Title="{translations:Loc QuickSettings_btn_NetshieldOnSecond}">
                                             <quickSettings:SettingButton.Icon>
                                                 <icons:ShieldFilled Style="{StaticResource Icon}" />

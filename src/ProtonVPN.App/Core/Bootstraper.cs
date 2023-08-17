@@ -27,6 +27,7 @@ using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.Account;
+using ProtonVPN.AccountPlan;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Announcements.Installers;
 using ProtonVPN.Api;
@@ -40,10 +41,6 @@ using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Installers.Extensions;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.AppServiceLogs;
-using ProtonVPN.Common.Logging.Categorization.Events.ProcessCommunicationLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
@@ -56,7 +53,6 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.NetShield;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.PortForwarding;
-using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.FileStoraging;
@@ -72,6 +68,11 @@ using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.ErrorHandling;
 using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
+using ProtonVPN.Logging.Installers;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
 using ProtonVPN.Login.Views;
@@ -83,7 +84,6 @@ using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.Partners;
-using ProtonVPN.AccountPlan;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -117,21 +117,23 @@ namespace ProtonVPN.Core
         protected override void Configure()
         {
             ContainerBuilder builder = new();
-            builder.RegisterModule<CoreModule>()
-                .RegisterModule<UiModule>()
-                .RegisterModule<AppModule>()
-                .RegisterModule<BugReportingModule>()
-                .RegisterModule<LoginModule>()
-                .RegisterModule<P2PDetectionModule>()
-                .RegisterModule<ProfilesModule>()
-                .RegisterAssemblyModule<HumanVerificationModule>()
-                .RegisterAssemblyModule<ApiModule>()
-                .RegisterAssemblyModule<IssueReportingModule>()
-                .RegisterAssemblyModule<AnnouncementsModule>()
-                .RegisterAssemblyModule<DnsModule>()
-                .RegisterAssemblyModule<EntityMappingModule>()
-                .RegisterAssemblyModule<ProcessCommunicationModule>()
-                .RegisterAssemblyModule<AppProcessCommunicationModule>();
+            builder.RegisterLoggerConfiguration(c => c.AppLogDefaultFullFilePath)
+                   .RegisterModule<CoreModule>()
+                   .RegisterModule<UiModule>()
+                   .RegisterModule<AppModule>()
+                   .RegisterModule<BugReportingModule>()
+                   .RegisterModule<LoginModule>()
+                   .RegisterModule<P2PDetectionModule>()
+                   .RegisterModule<ProfilesModule>()
+                   .RegisterAssemblyModule<LoggingModule>()
+                   .RegisterAssemblyModule<HumanVerificationModule>()
+                   .RegisterAssemblyModule<ApiModule>()
+                   .RegisterAssemblyModule<IssueReportingModule>()
+                   .RegisterAssemblyModule<AnnouncementsModule>()
+                   .RegisterAssemblyModule<DnsModule>()
+                   .RegisterAssemblyModule<EntityMappingModule>()
+                   .RegisterAssemblyModule<ProcessCommunicationModule>()
+                   .RegisterAssemblyModule<AppProcessCommunicationModule>();
 
             _container = builder.Build();
         }
@@ -144,7 +146,7 @@ namespace ProtonVPN.Core
 
             Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
 
-            Resolve<LogCleaner>().Clean(appConfig.AppLogFolder, 10);
+            Resolve<ILogCleaner>().Clean(appConfig.AppLogFolder, 10);
 
             RegisterMigrations(Resolve<AppSettingsStorage>(), Resolve<IEnumerable<IAppSettingsMigration>>());
             RegisterMigrations(Resolve<UserSettings>(), Resolve<IEnumerable<IUserSettingsMigration>>());

@@ -21,7 +21,7 @@ using System;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests
@@ -117,7 +117,7 @@ namespace ProtonVPN.UI.Tests
 
         protected dynamic WaitUntilTextMatchesByAutomationId(string automationId, TimeSpan time, string text, string timeoutMessage)
         {
-            AutomationElement element = null;
+            AutomationElement element;
             string elementText = null;
             RetryResult<bool> retry = Retry.WhileFalse(
                 () => {
@@ -222,7 +222,7 @@ namespace ProtonVPN.UI.Tests
                     element = connectButton;
                     break;
                 }
-            };
+            }
             return element;
         }
     }

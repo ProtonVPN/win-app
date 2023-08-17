@@ -21,8 +21,8 @@ using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.DnsLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Dns.Contracts;
 

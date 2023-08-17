@@ -30,7 +30,7 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.VpnSessions;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Abstract;
@@ -203,7 +203,7 @@ namespace ProtonVPN.App.Tests.ConnectionInfo
         private Server GetOnlineServer()
         {
             return new Server("", "", "", "", "", "", 1, ServerTiers.Basic, 0, 0, 0, new LocationResponse(),
-                new List<PhysicalServer>(), "");
+                new List<PhysicalServer>(), "", null);
         }
     }
 }

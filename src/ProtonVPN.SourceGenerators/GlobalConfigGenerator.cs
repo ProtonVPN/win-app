@@ -40,6 +40,7 @@ namespace ProtonVPN.SourceGenerators
             string btiAlternativeRoutingTlsPinningPublicKeyHashes = GetEnvironmentVariableOrNull("BTI_ALT_ROUTE_TLS_PINNINGS");
             string btiCertificateValidation = GetEnvironmentVariableOrNull("BTI_CERT_VALIDATION");
             string btiDohUrls = GetEnvironmentVariableOrNull("BTI_DOH_URLS");
+            string btiServerSignaturePublicKey = GetEnvironmentVariableOrNull("BTI_SERVER_SIGNATURE_PUBLIC_KEY");
 
             context.AddSource("GlobalConfig.g.cs", SourceText.From($@"
 using System.Collections.Generic;
@@ -55,6 +56,7 @@ namespace ProtonVPN.Common.Configuration
         public const string BtiAlternativeRoutingTlsPinningPublicKeyHashes = ""{btiAlternativeRoutingTlsPinningPublicKeyHashes}"";
         public const string BtiCertificateValidation = ""{btiCertificateValidation}"";
         public const string BtiDohProviders = ""{btiDohUrls}"";
+        public const string BtiServerSignaturePublicKey = ""{btiServerSignaturePublicKey}"";
     }}
 }}", Encoding.UTF8));
         }

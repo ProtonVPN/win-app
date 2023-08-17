@@ -19,7 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;

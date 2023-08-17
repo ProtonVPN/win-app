@@ -22,7 +22,6 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using FlaUI.Core.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {

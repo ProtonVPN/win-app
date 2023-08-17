@@ -40,6 +40,7 @@ namespace ProtonVPN.Core.Servers.Models
         public float Score { get; }
         public LocationResponse LocationResponse { get; }
         public string ExitIp { get; set; }
+        public string GatewayName { get; set; }
         public IReadOnlyList<PhysicalServer> Servers { get; }
 
         public Server(
@@ -56,7 +57,8 @@ namespace ProtonVPN.Core.Servers.Models
             float score,
             LocationResponse locationResponse,
             IReadOnlyList<PhysicalServer> physicalServers,
-            string exitIp)
+            string exitIp,
+            string gatewayName)
         {
             Id = id;
             Name = name;
@@ -72,6 +74,7 @@ namespace ProtonVPN.Core.Servers.Models
             LocationResponse = locationResponse;
             Servers = physicalServers;
             ExitIp = exitIp;
+            GatewayName = gatewayName;
         }
 
         public IName GetServerName()
@@ -94,6 +97,15 @@ namespace ProtonVPN.Core.Servers.Models
             {
                 Name = Name,
                 EntryCountryCode = EntryCountry
+            };
+        }
+
+        public IName GetNameWithGateway()
+        {
+            return new B2BServerName
+            {
+                Name = Name,
+                GatewayName = GatewayName
             };
         }
 
@@ -141,6 +153,11 @@ namespace ProtonVPN.Core.Servers.Models
             }
         }
 
+        public bool IsB2B()
+        {
+            return ServerFeatures.IsB2B(Features);
+        }
+
         public static Server Empty() =>
             new Server(
                 "",
@@ -156,6 +173,7 @@ namespace ProtonVPN.Core.Servers.Models
                 0,
                 new LocationResponse { Lat = 0f, Long = 0f },
                 new List<PhysicalServer>(0),
+                null,
                 null);
 
         #region Equatable

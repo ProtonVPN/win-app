@@ -102,7 +102,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
         public bool IsNetShieldOn => _appSettings.NetShieldEnabled;
         public bool IsNetShieldVisible => _appSettings.FeatureNetShieldEnabled;
         public bool HasNetShieldStats => _appSettings.IsNetShieldEnabled() && _appSettings.NetShieldMode == 2 && _isConnected && HasNetShieldStatsContainer;
-        public bool HasNetShieldStatsContainer => _userStorage.GetUser().Paid() && _appSettings.FeatureNetShieldStatsEnabled;
+        public bool HasNetShieldStatsContainer => _userStorage.GetUser().HasNetShield() && _appSettings.FeatureNetShieldStatsEnabled;
 
         public bool IsSoftKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Soft;
         public bool IsHardKillSwitchEnabled => _appSettings.KillSwitchMode == Common.KillSwitch.KillSwitchMode.Hard;
@@ -119,6 +119,9 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public int TotalButtons => 2 + (IsNetShieldVisible ? 1 : 0) + (IsPortForwardingVisible ? 1 : 0);
 
+        public bool IsToShowBusinessBadge => IsNetShieldDisabled && _userStorage.GetUser().IsBusiness();
+        public bool IsToShowPlusBadge => IsNetShieldDisabled && !_userStorage.GetUser().IsBusiness();
+        public bool IsNetShieldDisabled => !_userStorage.GetUser().HasNetShield();
         public bool IsFreeUser => !_userStorage.GetUser().Paid();
         public bool IsUserTierPlusOrHigher => _userStorage.GetUser().IsTierPlusOrHigher();
         public bool IsPaidUser => _userStorage.GetUser().Paid();
@@ -261,11 +264,14 @@ namespace ProtonVPN.Sidebar.QuickSettings
                 DisablePortForwarding();
             }
 
-            if (IsFreeUser && _appSettings.NetShieldEnabled)
+            if (IsNetShieldDisabled && _appSettings.NetShieldEnabled)
             {
                 DisableNetShield();
             }
 
+            NotifyOfPropertyChange(nameof(IsToShowBusinessBadge));
+            NotifyOfPropertyChange(nameof(IsToShowPlusBadge));
+            NotifyOfPropertyChange(nameof(IsNetShieldDisabled));
             NotifyOfPropertyChange(nameof(IsFreeUser));
             NotifyOfPropertyChange(nameof(IsPaidUser));
             NotifyOfPropertyChange(nameof(IsUserTierPlusOrHigher));
@@ -519,7 +525,7 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private async Task EnableNetShieldMode(int mode)
         {
-            if (IsFreeUser)
+            if (IsNetShieldDisabled)
             {
                 ShowNetshieldUpsellModalAction();
             }
@@ -562,7 +568,10 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         private async void ShowNetshieldUpsellModalAction()
         {
-            await _modals.ShowAsync<NetshieldUpsellModalViewModel>();
+            if (IsFreeUser)
+            {
+                await _modals.ShowAsync<NetshieldUpsellModalViewModel>();
+            }
         }
 
         private async void ShowPortForwardingUpsellModalAction()

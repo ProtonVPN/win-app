@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
 
@@ -27,7 +26,7 @@ namespace ProtonVPN.Core.Servers.Specs
     {
         public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
-            return !ServerFeatures.IsSecureCore(item.Features);
+            return !ServerFeatures.IsSecureCore(item.Features) && !ServerFeatures.IsB2B(item.Features);
         }
     }
 }

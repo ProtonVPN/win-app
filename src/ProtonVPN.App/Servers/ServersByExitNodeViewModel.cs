@@ -18,12 +18,13 @@
  */
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Vpn;
-using System.Collections.ObjectModel;
 using ProtonVPN.Partners;
 
 namespace ProtonVPN.Servers
@@ -60,7 +61,7 @@ namespace ProtonVPN.Servers
             Connected = state.Status.Equals(VpnStatus.Connected)
                         && state.Server is Server server
                         && server.IsSecureCore()
-                        && server.ExitCountry.Equals(CountryCode);
+                        && Servers.Any(s => s.Id is not null && s.Id == server.Id);
 
             foreach (IServerListItem s in Servers)
             {

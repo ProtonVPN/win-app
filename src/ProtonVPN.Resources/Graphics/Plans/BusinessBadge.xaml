@@ -1,0 +1,162 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.
+-->
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Plans.BusinessBadge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Name="UserControl"
+             mc:Ignorable="d">
+    <Viewbox Stretch="Uniform">
+        <Canvas Width="88" Height="24">
+            <Canvas.RenderTransform>
+                <TranslateTransform X="0" Y="0" />
+            </Canvas.RenderTransform>
+            <Canvas.Resources>
+                <LinearGradientBrush x:Key="paint0" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint1" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint2" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint3" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint4" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint5" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint6" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="paint7" MappingMode="Absolute" StartPoint="22,8" EndPoint="47,50">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#ffffff" />
+                            <GradientStop Color="#00ffffff" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+                <RadialGradientBrush x:Key="paint8" MappingMode="Absolute" Center="0,0" RadiusX="1" RadiusY="1">
+                    <RadialGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#6E4BFF" />
+                            <GradientStop Color="#547AEC" Offset="0.355428" />
+                            <GradientStop Color="#2FCCCF" Offset="1" />
+                        </GradientStopCollection>
+                    </RadialGradientBrush.GradientStops>
+                    <RadialGradientBrush.Transform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="69.184" ScaleY="37.6416" />
+                            <RotateTransform Angle="4.47665" />
+                            <TranslateTransform X="19.027" Y="9.00001" />
+                        </TransformGroup>
+                    </RadialGradientBrush.Transform>
+                </RadialGradientBrush>
+            </Canvas.Resources>
+            <Rectangle Canvas.Left="0.499999" Canvas.Top="0.499999" Width="87" Height="23" RadiusX="7.49999" RadiusY="7.49999" Name="rect2" Fill="#FF292733" />
+            <Path Name="path4" Fill="#ffffff">
+                <Path.Data>
+                    <PathGeometry Figures="M7.20925 7.882C6.57045 6.74045 7.49705 5.3564 8.79588 5.51204L19.5927 6.80586C20.7634 6.94615 21.3854 8.26135 20.7511 9.25523L15.2943 17.806C14.6842 18.762 13.2747 18.7213 12.7209 17.7316L7.20925 7.882ZM8.6769 6.50494C8.18983 6.44657 7.84236 6.96559 8.08191 7.39367L8.35531 7.88224L16.9702 9.03984C17.5231 9.11413 17.8092 9.7398 17.5038 10.2066L13.2739 16.672L13.5935 17.2432C13.7782 17.5731 14.248 17.5867 14.4514 17.268L19.9082 8.71728C20.146 8.34457 19.9128 7.85137 19.4738 7.79876L8.6769 6.50494Z" FillRule="EvenOdd" />
+                </Path.Data>
+            </Path>
+            <Path Name="path6" Fill="{StaticResource paint0}">
+                <Path.Data>
+                    <PathGeometry Figures="M25 16.3594V7.64062H27.9312C28.8568 7.64062 29.5768 7.83665 30.091 8.22869C30.6138 8.61222 30.8752 9.20028 30.8752 9.9929C30.8752 10.4446 30.7124 10.8452 30.3867 11.1946C30.061 11.544 29.7139 11.7528 29.3454 11.821V11.8466C29.911 11.9148 30.391 12.1364 30.7853 12.5114C31.1795 12.8778 31.3766 13.3381 31.3766 13.892C31.3766 14.6932 31.0895 15.3068 30.5153 15.733C29.941 16.1506 29.2125 16.3594 28.3297 16.3594H25ZM26.7484 14.7486H28.1883C28.6254 14.7486 28.9683 14.6634 29.2168 14.4929C29.4739 14.3139 29.6025 14.0497 29.6025 13.7003C29.6025 13.027 29.1311 12.6903 28.1883 12.6903H26.7484V14.7486ZM26.7484 11.1051H27.9826C28.3254 11.1051 28.5954 11.0241 28.7926 10.8622C28.9983 10.6918 29.1011 10.4616 29.1011 10.1719C29.1011 9.89915 29.0025 9.67756 28.8054 9.5071C28.6083 9.33665 28.3426 9.25142 28.0083 9.25142H26.7484V11.1051Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path8" Fill="{StaticResource paint1}">
+                <Path.Data>
+                    <PathGeometry Figures="M38.8755 15.5028C38.207 16.1676 37.337 16.5 36.2657 16.5C35.1944 16.5 34.3201 16.1676 33.6431 15.5028C32.9745 14.8295 32.6403 13.8793 32.6403 12.652V7.64062H34.4401V12.6136C34.4401 13.3551 34.603 13.9091 34.9287 14.2756C35.2544 14.6335 35.7 14.8125 36.2657 14.8125C36.8314 14.8125 37.2771 14.6335 37.6027 14.2756C37.9284 13.9091 38.0913 13.3551 38.0913 12.6136V7.64062H39.8911V12.652C39.8911 13.8793 39.5526 14.8295 38.8755 15.5028Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path10" Fill="{StaticResource paint2}">
+                <Path.Data>
+                    <PathGeometry Figures="M44.4592 16.5C43.885 16.5 43.375 16.4063 42.9293 16.2188C42.4836 16.0313 42.1322 15.7884 41.8751 15.4901C41.618 15.1918 41.4209 14.8807 41.2837 14.5568C41.1552 14.233 41.0866 13.9091 41.078 13.5852H42.9293C42.9722 13.9688 43.1264 14.2884 43.3921 14.544C43.6578 14.7912 44.0135 14.9148 44.4592 14.9148C44.7935 14.9148 45.0849 14.8253 45.3334 14.6463C45.582 14.4673 45.7062 14.2457 45.7062 13.9815C45.7062 13.7173 45.5948 13.4957 45.372 13.3168C45.1491 13.1293 44.8706 12.9929 44.5363 12.9077C44.2106 12.8224 43.855 12.7116 43.4693 12.5753C43.0836 12.4304 42.7236 12.277 42.3894 12.1151C42.0637 11.9531 41.7894 11.6974 41.5666 11.348C41.3437 10.9901 41.2323 10.5597 41.2323 10.0568C41.2323 9.34091 41.5023 8.7358 42.0422 8.24148C42.5908 7.74716 43.3236 7.5 44.2406 7.5C45.2091 7.5 45.9634 7.77699 46.5033 8.33097C47.0433 8.87642 47.3261 9.51136 47.3518 10.2358H45.5005C45.4834 9.92045 45.3634 9.65199 45.1406 9.4304C44.9177 9.20028 44.6178 9.08523 44.2406 9.08523C43.8721 9.08523 43.5764 9.17898 43.3536 9.36648C43.1307 9.54545 43.0193 9.77557 43.0193 10.0568C43.0193 10.304 43.1307 10.5128 43.3536 10.6832C43.5764 10.8452 43.8507 10.9687 44.1764 11.054C44.5106 11.1307 44.8706 11.2372 45.2563 11.3736C45.642 11.5099 45.9976 11.6634 46.3233 11.8338C46.6576 12.0043 46.9361 12.277 47.159 12.652C47.3818 13.0185 47.4932 13.4616 47.4932 13.9815C47.4932 14.706 47.1847 15.3068 46.5676 15.7841C45.9505 16.2614 45.2477 16.5 44.4592 16.5Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path12" Fill="{StaticResource paint3}">
+                <Path.Data>
+                    <PathGeometry Figures="M48.7196 16.3594V7.64062H50.5195V16.3594H48.7196Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path14" Fill="{StaticResource paint4}">
+                <Path.Data>
+                    <PathGeometry Figures="M52.2915 16.3594V7.64062H53.7314L57.7297 12.6903C57.8754 12.8608 58.0125 13.0696 58.1411 13.3168H58.1539C58.1368 13.1548 58.1282 12.8864 58.1282 12.5114V7.64062H59.9281V16.3594H58.4882L54.4899 11.3097C54.3442 11.1392 54.2071 10.9304 54.0785 10.6832H54.0657C54.0828 10.8452 54.0914 11.1136 54.0914 11.4886V16.3594H52.2915Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path16" Fill="{StaticResource paint5}">
+                <Path.Data>
+                    <PathGeometry Figures="M61.6034 16.3594V7.64062H67.4787V9.30256H63.3518V11.1435H66.913V12.7798H63.3518V14.6974H67.4787V16.3594H61.6034Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path18" Fill="{StaticResource paint6}">
+                <Path.Data>
+                    <PathGeometry Figures="M71.8386 16.5C71.2644 16.5 70.7544 16.4063 70.3087 16.2188C69.8631 16.0313 69.5117 15.7884 69.2545 15.4901C68.9974 15.1918 68.8003 14.8807 68.6632 14.5568C68.5346 14.233 68.466 13.9091 68.4575 13.5852H70.3087C70.3516 13.9688 70.5059 14.2884 70.7716 14.544C71.0373 14.7912 71.3929 14.9148 71.8386 14.9148C72.1729 14.9148 72.4643 14.8253 72.7128 14.6463C72.9614 14.4673 73.0857 14.2457 73.0857 13.9815C73.0857 13.7173 72.9742 13.4957 72.7514 13.3168C72.5286 13.1293 72.25 12.9929 71.9158 12.9077C71.5901 12.8224 71.2344 12.7116 70.8487 12.5753C70.463 12.4304 70.103 12.277 69.7688 12.1151C69.4431 11.9531 69.1688 11.6974 68.946 11.348C68.7232 10.9901 68.6117 10.5597 68.6117 10.0568C68.6117 9.34091 68.8817 8.7358 69.4217 8.24148C69.9702 7.74716 70.703 7.5 71.6201 7.5C72.5886 7.5 73.3428 7.77699 73.8827 8.33097C74.4227 8.87642 74.7055 9.51136 74.7312 10.2358H72.88C72.8628 9.92045 72.7428 9.65199 72.52 9.4304C72.2972 9.20028 71.9972 9.08523 71.6201 9.08523C71.2515 9.08523 70.9558 9.17898 70.733 9.36648C70.5102 9.54545 70.3987 9.77557 70.3987 10.0568C70.3987 10.304 70.5102 10.5128 70.733 10.6832C70.9558 10.8452 71.2301 10.9687 71.5558 11.054C71.89 11.1307 72.25 11.2372 72.6357 11.3736C73.0214 11.5099 73.3771 11.6634 73.7028 11.8338C74.037 12.0043 74.3156 12.277 74.5384 12.652C74.7612 13.0185 74.8727 13.4616 74.8727 13.9815C74.8727 14.706 74.5641 15.3068 73.947 15.7841C73.3299 16.2614 72.6271 16.5 71.8386 16.5Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Name="path20" Fill="{StaticResource paint7}">
+                <Path.Data>
+                    <PathGeometry Figures="M78.966 16.5C78.3917 16.5 77.8818 16.4063 77.4361 16.2188C76.9904 16.0313 76.639 15.7884 76.3819 15.4901C76.1248 15.1918 75.9276 14.8807 75.7905 14.5568C75.6619 14.233 75.5934 13.9091 75.5848 13.5852H77.4361C77.4789 13.9688 77.6332 14.2884 77.8989 14.544C78.1646 14.7912 78.5203 14.9148 78.966 14.9148C79.3002 14.9148 79.5916 14.8253 79.8402 14.6463C80.0887 14.4673 80.213 14.2457 80.213 13.9815C80.213 13.7173 80.1016 13.4957 79.8787 13.3168C79.6559 13.1293 79.3774 12.9929 79.0431 12.9077C78.7174 12.8224 78.3617 12.7116 77.976 12.5753C77.5904 12.4304 77.2304 12.277 76.8961 12.1151C76.5704 11.9531 76.2962 11.6974 76.0733 11.348C75.8505 10.9901 75.7391 10.5597 75.7391 10.0568C75.7391 9.34091 76.0091 8.7358 76.549 8.24148C77.0975 7.74716 77.8303 7.5 78.7474 7.5C79.7159 7.5 80.4701 7.77699 81.0101 8.33097C81.55 8.87642 81.8329 9.51136 81.8586 10.2358H80.0073C79.9902 9.92045 79.8702 9.65199 79.6473 9.4304C79.4245 9.20028 79.1245 9.08523 78.7474 9.08523C78.3789 9.08523 78.0832 9.17898 77.8603 9.36648C77.6375 9.54545 77.5261 9.77557 77.5261 10.0568C77.5261 10.304 77.6375 10.5128 77.8603 10.6832C78.0832 10.8452 78.3574 10.9687 78.6831 11.054C79.0174 11.1307 79.3774 11.2372 79.763 11.3736C80.1487 11.5099 80.5044 11.6634 80.8301 11.8338C81.1644 12.0043 81.4429 12.277 81.6657 12.652C81.8886 13.0185 82 13.4616 82 13.9815C82 14.706 81.6915 15.3068 81.0744 15.7841C80.4573 16.2614 79.7545 16.5 78.966 16.5Z" FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Rectangle Canvas.Left="0.499999" Canvas.Top="0.499999" Width="87" Height="23" RadiusX="7.49999" RadiusY="7.49999" Name="rect22" StrokeThickness="0.999998" Stroke="{StaticResource paint8}" />
+        </Canvas>
+    </Viewbox>
+</UserControl>

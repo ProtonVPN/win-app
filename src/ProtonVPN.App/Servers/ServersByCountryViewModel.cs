@@ -35,28 +35,31 @@ namespace ProtonVPN.Servers
 {
     public class ServersByCountryViewModel : BaseServerCollection
     {
-        private readonly sbyte _userTier;
-        private readonly ServerManager _serverManager;
+        protected readonly ServerManager ServerManager;
+        protected readonly sbyte UserTier;
+
         private readonly VpnState _vpnConnectionStatus;
         private readonly IStreamingServices _streamingServices;
         private readonly IPartnersService _partnersService;
 
         private bool _tor;
-        private bool _p2P;
-
         public bool Tor
         {
             get => _tor;
             set => Set(ref _tor, value);
         }
 
+        private bool _p2P;
         public bool P2P
         {
             get => _p2P;
             set => Set(ref _p2P, value);
         }
 
-        public bool IsVirtual => _serverManager.IsCountryVirtual(CountryCode);
+        public bool IsVirtual => ServerManager.IsCountryVirtual(CountryCode);
+
+        private bool _isB2B;
+        public bool IsB2B => _isB2B;
 
         public ServersByCountryViewModel(
             string countryCode,
@@ -65,11 +68,23 @@ namespace ProtonVPN.Servers
             VpnState vpnConnectionStatus,
             IStreamingServices streamingServices,
             IPartnersService partnersService)
+            : this(isB2B: false, countryCode, userTier, serverManager, vpnConnectionStatus, streamingServices, partnersService)
         {
+        }
+
+        protected ServersByCountryViewModel(bool isB2B,
+            string countryCode,
+            sbyte userTier,
+            ServerManager serverManager,
+            VpnState vpnConnectionStatus,
+            IStreamingServices streamingServices,
+            IPartnersService partnersService)
+        {
+            _isB2B = isB2B;
             CountryCode = countryCode;
-            _serverManager = serverManager;
+            ServerManager = serverManager;
             _vpnConnectionStatus = vpnConnectionStatus;
-            _userTier = userTier;
+            UserTier = userTier;
             _streamingServices = streamingServices;
             _partnersService = partnersService;
         }
@@ -80,7 +95,7 @@ namespace ProtonVPN.Servers
 
             foreach (sbyte tier in GetTierOrderByUserTier())
             {
-                IReadOnlyCollection<Server> servers = GetServersByTierAndSearchQuery(tier, searchQuery, orderBy);
+                IReadOnlyCollection<Server> servers = GetServersByTierAndSearchQuery(tier, searchQuery, orderBy).ToList();
                 if (servers.Count == 0)
                 {
                     continue;
@@ -88,11 +103,15 @@ namespace ProtonVPN.Servers
 
                 SetFeatureFlags(servers);
                 List<PartnerType> partnerTypes = tier == ServerTiers.Free ? GetPartnerTypes(servers) : new();
-                serverListItems.Add(GetServerTierSeparator(tier, servers.Count, partnerTypes));
+
+                if (!IsB2B)
+                {
+                    serverListItems.Add(GetServerTierSeparator(tier, servers.Count, partnerTypes));
+                }
 
                 foreach (Server server in servers)
                 {
-                    ServerItemViewModel item = new(server, partnerTypes, _userTier, GetStreamingInfoPopup(tier));
+                    ServerItemViewModel item = new(server, partnerTypes, UserTier, GetStreamingInfoPopup(tier));
                     item.OnVpnStateChanged(_vpnConnectionStatus);
                     serverListItems.Add(item);
                 }
@@ -144,7 +163,7 @@ namespace ProtonVPN.Servers
         private IReadOnlyCollection<Server> GetServersByTierAndSearchQuery(sbyte tier, string searchQuery,
             Features orderBy)
         {
-            IReadOnlyCollection<Server> list = _serverManager.GetServers(GetServerSpec(tier), orderBy);
+            IReadOnlyCollection<Server> list = ServerManager.GetServers(GetServerSpec(tier), orderBy);
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 list = list.Where(s => s.MatchesSearchCriteria(searchQuery)).ToList();
@@ -186,7 +205,7 @@ namespace ProtonVPN.Servers
                 : new InfoPopupViewModel(streamingInfoPopupViewModel, Translation.Get("Sidebar_Streaming_Features"));
         }
 
-        private StreamingInfoPopupViewModel GetStreamingInfoPopupViewModel(sbyte tier)
+        protected virtual StreamingInfoPopupViewModel GetStreamingInfoPopupViewModel(sbyte tier)
         {
             IReadOnlyList<StreamingService> services = _streamingServices.GetServices(CountryCode, tier);
             IReadOnlyList<StreamingServiceViewModel> list = services
@@ -195,7 +214,7 @@ namespace ProtonVPN.Servers
             return new StreamingInfoPopupViewModel(CountryCode, list);
         }
 
-        private Specification<LogicalServerResponse> GetServerSpec(sbyte tier)
+        protected virtual Specification<LogicalServerResponse> GetServerSpec(sbyte tier)
         {
             return new EntryCountryServer(CountryCode) && new StandardServer() && new ExactTierServer(tier);
         }
@@ -204,7 +223,7 @@ namespace ProtonVPN.Servers
         {
             Connected = state.Status.Equals(VpnStatus.Connected)
                         && state.Server is Server server
-                        && server.EntryCountry.Equals(CountryCode);
+                        && Servers.Any(s => s.Id is not null && s.Id == server.Id);
 
             foreach (IServerListItem s in Servers)
             {
@@ -216,7 +235,7 @@ namespace ProtonVPN.Servers
         {
             if (!ServersAvailable.HasValue)
             {
-                ServersAvailable = _serverManager.CountryHasAvailableServers(CountryCode, _userTier);
+                ServersAvailable = ServerManager.CountryHasAvailableServers(CountryCode, UserTier);
             }
 
             return ServersAvailable.Value;
@@ -224,12 +243,12 @@ namespace ProtonVPN.Servers
 
         private sbyte[] GetTierOrderByUserTier()
         {
-            return new[] { _userTier }.Concat(new[]
+            return new[] { UserTier }.Concat(new[]
             {
                 ServerTiers.Internal, ServerTiers.Plus, ServerTiers.Basic, ServerTiers.Free
-            }.Except(new[] { _userTier })).ToArray();
+            }.Except(new[] { UserTier })).ToArray();
         }
 
-        public override bool Maintenance => _serverManager.CountryUnderMaintenance(CountryCode);
+        public override bool Maintenance => ServerManager.CountryUnderMaintenance(CountryCode);
     }
 }

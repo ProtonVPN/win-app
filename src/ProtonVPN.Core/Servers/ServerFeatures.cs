@@ -29,6 +29,7 @@ namespace ProtonVPN.Core.Servers
         public const int P2P = 4;
         public const int STREAMING = 8;
         public const int IPV6 = 16;
+        public const int B2B = 32;
         public const int PARTNER = 64;
 
         private readonly int _value;
@@ -43,12 +44,14 @@ namespace ProtonVPN.Core.Servers
         public bool IsSecureCore() => IsSecureCore(_value);
         public bool SupportsTor() => SupportsTor(_value);
         public bool SupportsP2P() => SupportsP2P(_value);
+        public bool IsB2B() => IsB2B(_value);
 
         public static bool IsSecureCore(int value) => (value & SECURE_CORE) != 0;
         public static bool SupportsTor(int value) => (value & TOR) != 0;
         public static bool SupportsP2P(int value) => (value & P2P) != 0;
         public static bool SupportsStreaming(int value) => (value & STREAMING) != 0;
         public static bool SupportsIpV6(int value) => (value & IPV6) != 0;
+        public static bool IsB2B(int value) => (value & B2B) != 0;
         public static bool IsPartner(int value) => (value & PARTNER) != 0;
     }
 
@@ -59,6 +62,7 @@ namespace ProtonVPN.Core.Servers
         SecureCore = 1,
         Tor = 2,
         P2P = 4,
+        B2B = 32,
     }
 
     public static class FeaturesExtensions
@@ -66,5 +70,6 @@ namespace ProtonVPN.Core.Servers
         public static bool IsSecureCore(this Features value) => (value & Features.SecureCore) != 0;
         public static bool SupportsTor(this Features value) => (value & Features.Tor) != 0;
         public static bool SupportsP2P(this Features value) => (value & Features.P2P) != 0;
+        public static bool IsB2B(this Features value) => (value & Features.B2B) != 0;
     }
 }

@@ -2325,7 +2325,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to North Macedonia.
+        ///   Looks up a localized string similar to Macedonia.
         /// </summary>
         public static string Country_val_MK {
             get {
@@ -6133,7 +6133,7 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Moderate NAT disables randomization of the local addresses mapping, which can reduce slightly your security, but allows techniques such as direct connections for applications like online games..
+        ///   Looks up a localized string similar to Moderate NAT disables randomization of the local addresses mapping, which can slightly reduce your security, but allows techniques such as direct connections for applications like online games..
         /// </summary>
         public static string Settings_Connection_lbl_ModerateNat_Info {
             get {

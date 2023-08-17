@@ -21,14 +21,15 @@ using System;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
-using ProtonVPN.Windows;
 
 namespace ProtonVPN.UI.Tests.Windows
 {
     internal class SysTrayWindow : DesktopActions
     {
+        private const string TRAY_ICON_NAME = "ProtonVPN Tray";
+
         private Button NotificationChevronButton => ElementByName("Notification Chevron").AsButton();
-        private Button TrayLogo => ElementByName(TrayIcon.TRAY_ICON_NAME).AsButton();
+        private Button TrayLogo => ElementByName(TRAY_ICON_NAME).AsButton();
         private Button QuickConnectElement => ElementByAutomationId("QuickConnect").AsButton();
         private Button OpenProtonVpnButton => ElementByName("Open Proton VPN").AsButton();
         private AutomationElement ExitOption => ElementByName("Exit");

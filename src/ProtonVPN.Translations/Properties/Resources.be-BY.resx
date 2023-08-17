@@ -178,7 +178,7 @@
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
-    <value>Кіраванне падпіскай</value>
+    <value>Кіраваць падпіскай</value>
     <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
@@ -253,7 +253,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Блакіроўка рэкламы (NetShield)</value>
+    <value>Блакіроўшчык рэкламы (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
@@ -324,7 +324,7 @@
     <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
   </data>
   <data name="App_mnu_Exit">
-    <value>Выйсці</value>
+    <value>Выйсці з праграмы</value>
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
@@ -332,7 +332,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Выйсці</value>
+    <value>Выйсці з уліковага запісу</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -1138,7 +1138,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Паўночная Македонія</value>
+    <value>Македонія</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1684,7 +1684,7 @@
     <value>Скасаваць</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit">
-    <value>Выйсці</value>
+    <value>Выхад</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
     <value>Вы сапраўды хочаце працягнуць?</value>
@@ -1760,7 +1760,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Падключэнне было разарвана па прычыне таго, што сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
+    <value>Падключэнне было разарвана, бо сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1770,7 +1770,7 @@
     <value>Уключыць перанакіраванне партоў?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігурыраваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша падключэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
+    <value>Proton VPN выявіў, што ў вашай лакальнай сетцы сканфігураваны проксі-сервер. Праграма не зможа абараніць трафік, які будзе праходзіць праз яго. Гэта азначае, што ваша падключэнне не будзе цалкам абаронена, як вы гэта чакалі.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1873,10 +1873,10 @@
     <value>Пераключыцца на TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN не змог падключыцца таму, што сеткавы адаптар TUN ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Таксама можна пераключыцца на адаптар TAP. Вы заўсёды можаце вярнуцца на TUN у пашыраных наладах праграмы.</value>
+    <value>Proton VPN не змог падключыцца, бо сеткавы адаптар TUN ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Таксама можна пераключыцца на адаптар TAP. Вы заўсёды можаце вярнуцца на TUN у пашыраных наладах праграмы.</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN не можа падключыцца па прычыне таго, што сеткавы адаптар WireGuard ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць выбраць іншы пратакол у пашыраных наладах праграмы.</value>
+    <value>Proton VPN не можа падключыцца, бо сеткавы адаптар WireGuard ужо выкарыстоўваецца. Адключыце ўсе актыўныя падключэнні па VPN і паспрабуйце яшчэ раз. Вы таксама можаце паспрабаваць выбраць іншы пратакол у пашыраных наладах праграмы.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Скасаваць</value>
@@ -1977,7 +1977,7 @@
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
-    <value>Запускаць і падключацца пры загрузцы</value>
+    <value>Запускаць і падключацца пры загрузцы АС</value>
   </data>
   <data name="Login_lbl_StartWithWindows">
     <value>Запускаць разам з Windows</value>
@@ -2245,7 +2245,7 @@
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Профіль не можа быць захаваны:</value>
+    <value>Немагчыма захаваць профіль:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
@@ -2341,7 +2341,7 @@
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Стварыць профіль</value>
+    <value>Стварэнне профілю</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
@@ -2459,7 +2459,7 @@
     <value>Перанакіраванне партоў уключана</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core выключана</value>
+    <value>Secure Core выключаны</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
     <value>Secure Core уключаны</value>
@@ -2635,7 +2635,7 @@
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN не можа падключыцца таму, што сервер RPC недаступны ў вашай сістэме. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Паглядзець магчымыя рашэнні&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN не можа падключыцца, бо сервер RPC недаступны ў вашай сістэме. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Паглядзець магчымыя рашэнні&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
     <value>Нам вельмі шкада, але дадзены сервер не падтрымлівае WireGuard.</value>
@@ -2724,7 +2724,7 @@
     <value>Перанакіраванне партоў</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Спалучэнне клавіш для перанакіравання партоў</value>
+    <value>Спалучэнні клавіш для перанакіравання партоў</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
     <value>Доступ да налад перанакіравання партоў з хуткіх налад</value>
@@ -2873,7 +2873,7 @@
     <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartOnBoot">
-    <value>Запускаць пры загрузцы</value>
+    <value>Запускаць пры загрузцы АС</value>
     <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
@@ -3079,11 +3079,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>у вобласці апавяшчэнняў</value>
+    <value>ў вобласць апавяшчэнняў</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>на панэлі задач</value>
+    <value>на панэль задач</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">

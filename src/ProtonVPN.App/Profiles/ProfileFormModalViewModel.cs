@@ -20,8 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Core.Profiles;
@@ -34,22 +34,27 @@ namespace ProtonVPN.Profiles
 {
     public class ProfileFormModalViewModel : BaseModalViewModel
     {
+        private readonly B2BProfileFormViewModel _b2bProfileFormViewModel;
         private readonly StandardProfileFormViewModel _standardProfileFormViewModel;
         private readonly SecureCoreProfileFormViewModel _secureCoreProfileFormViewModel;
         private readonly TorProfileFormViewModel _torProfileFormViewModel;
         private readonly P2PProfileFormViewModel _p2PProfileFormViewModel;
+        private readonly ServerManager _serverManager;
 
         public ProfileFormModalViewModel(
+            B2BProfileFormViewModel b2bProfileFormViewModel,
             StandardProfileFormViewModel standardProfileFormViewModel,
             SecureCoreProfileFormViewModel secureCoreProfileFormViewModel,
             TorProfileFormViewModel torProfileFormViewModel,
-            P2PProfileFormViewModel p2ProfileFormViewModel)
+            P2PProfileFormViewModel p2ProfileFormViewModel,
+            ServerManager serverManager)
         {
-            _p2PProfileFormViewModel = p2ProfileFormViewModel;
+            _b2bProfileFormViewModel = b2bProfileFormViewModel;
             _standardProfileFormViewModel = standardProfileFormViewModel;
             _secureCoreProfileFormViewModel = secureCoreProfileFormViewModel;
             _torProfileFormViewModel = torProfileFormViewModel;
             _p2PProfileFormViewModel = p2ProfileFormViewModel;
+            _serverManager = serverManager;
             _form = _standardProfileFormViewModel;
 
             SelectServerTypeCommand = new RelayCommand<ServerTypeViewModel>(SelectServerTypeAction);
@@ -79,10 +84,6 @@ namespace ProtonVPN.Profiles
 
         public string PopupPlacement { get; set; } = "Bottom";
 
-        private IReadOnlyList<ServerTypeViewModel> _serverTypes;
-        public IReadOnlyList<ServerTypeViewModel> ServerTypes =>
-            _serverTypes ??= ServerTypeViewModel.AllServerTypes().ToList();
-
         private ServerTypeViewModel _serverType;
         public ServerTypeViewModel ServerType
         {
@@ -91,11 +92,19 @@ namespace ProtonVPN.Profiles
         }
 
         private AbstractForm _form;
+
         public AbstractForm Form
         {
             get => _form;
             private set => Set(ref _form, value);
         }
+
+        private IReadOnlyList<ServerTypeViewModel> _serverTypesCache;
+        public IReadOnlyList<ServerTypeViewModel> ServerTypesCache =>
+            _serverTypesCache ??= ServerTypeViewModel.AllServerTypes().ToList();
+
+        public IReadOnlyList<ServerTypeViewModel> ServerTypes => ServerTypesCache
+            .Where(s => !s.Features.IsB2B() || _serverManager.HasB2BServers()).ToList();
 
         public override void BeforeOpenModal(dynamic options)
         {
@@ -130,7 +139,7 @@ namespace ProtonVPN.Profiles
                 return;
             }
 
-            SetServerType(Features.None);
+            SetServerType(_serverManager.HasB2BServers() ? Features.B2B : Features.None);
             Form.Load();
         }
 
@@ -144,7 +153,19 @@ namespace ProtonVPN.Profiles
 
         protected void SetServerType(Features features)
         {
-            if (features.IsSecureCore())
+            if (features.IsB2B())
+            {
+                ServerTypeViewModel b2bServerTypeViewModel = ServerTypes.FirstOrDefault(t => t.Features.IsB2B());
+                if (b2bServerTypeViewModel is null)
+                {
+                    SetServerType(GetStandardServerType());
+                }
+                else
+                {
+                    SetServerType(b2bServerTypeViewModel);
+                }
+            }
+            else if (features.IsSecureCore())
             {
                 SetServerType(ServerTypes.First(t => t.Features.IsSecureCore()));
             }
@@ -158,10 +179,16 @@ namespace ProtonVPN.Profiles
             }
             else
             {
-                SetServerType(ServerTypes.First(t => !t.Features.IsSecureCore() 
-                                                  && !t.Features.SupportsTor() 
-                                                  && !t.Features.SupportsP2P()));
+                SetServerType(GetStandardServerType());
             }
+        }
+
+        private ServerTypeViewModel GetStandardServerType()
+        {
+            return ServerTypes.First(t => !t.Features.IsSecureCore()
+                                       && !t.Features.SupportsTor()
+                                       && !t.Features.SupportsP2P()
+                                       && !t.Features.IsB2B());
         }
 
         private void SetServerType(ServerTypeViewModel value)
@@ -173,7 +200,11 @@ namespace ProtonVPN.Profiles
             }
 
             Features features = value.Features;
-            if (features.IsSecureCore())
+            if (features.IsB2B())
+            {
+                Form = _b2bProfileFormViewModel;
+            }
+            else if (features.IsSecureCore())
             {
                 Form = _secureCoreProfileFormViewModel;
             }
@@ -250,6 +281,7 @@ namespace ProtonVPN.Profiles
 
         private void ClearForms()
         {
+            _b2bProfileFormViewModel.Clear();
             _standardProfileFormViewModel.Clear();
             _secureCoreProfileFormViewModel.Clear();
             _p2PProfileFormViewModel.Clear();

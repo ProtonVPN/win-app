@@ -21,13 +21,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Profiles.Servers;
 using ProtonVPN.Translations;
 
@@ -85,6 +85,14 @@ namespace ProtonVPN.Profiles
                         Server = null
                     };
                 }
+                else if (profile.Features.IsB2B())
+                {
+                    viewModel.ConnectionName = new B2BProfileName
+                    {
+                        GatewayName = profile.GatewayName,
+                        Server = server?.Name
+                    };
+                }
                 else
                 {
                     viewModel.ConnectionName = new StandardProfileName
@@ -104,6 +112,14 @@ namespace ProtonVPN.Profiles
                     {
                         EntryCountry = null,
                         ExitCountry = !string.IsNullOrEmpty(profile.CountryCode) ? profile.CountryCode : null,
+                        Server = ServerNameAsProfile(profile.ProfileType)
+                    };
+                }
+                else if (profile.Features.IsB2B())
+                {
+                    viewModel.ConnectionName = new B2BProfileName
+                    {
+                        GatewayName = profile.GatewayName,
                         Server = ServerNameAsProfile(profile.ProfileType)
                     };
                 }

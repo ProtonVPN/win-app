@@ -23,8 +23,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppUpdateLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Update.Contracts;
 

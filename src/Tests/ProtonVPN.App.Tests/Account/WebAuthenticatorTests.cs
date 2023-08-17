@@ -28,7 +28,7 @@ using ProtonVPN.Account;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Logging;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.App.Tests.Account
 {

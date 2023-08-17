@@ -1108,7 +1108,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>مقدونیه شمالی</value>
+    <value>Macedonia</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -2743,7 +2743,7 @@
     <value>تنظیم NAT متوسط</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Moderate NAT تصادفی سازی نقشه برداری آدرس های محلی را غیر فعال میکند، که میتواند باعث کاهش جزئی امینت شما شود، اما باعث اجازه به تکنیک هایی مانند اتصال مستقیم برای نرم افزارهایی مانند بازی های آنلاین می شود.</value>
+    <value>Moderate NAT disables randomization of the local addresses mapping, which can slightly reduce your security, but allows techniques such as direct connections for applications like online games.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>اتصال سریع</value>

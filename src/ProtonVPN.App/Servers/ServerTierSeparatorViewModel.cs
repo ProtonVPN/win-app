@@ -26,6 +26,7 @@ namespace ProtonVPN.Servers
     {
         public InfoPopupViewModel InfoPopupViewModel { get; }
 
+        public string Id => null;
         public string Name { get; set; }
 
         private bool _showPopup;

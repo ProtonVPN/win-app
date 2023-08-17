@@ -69,6 +69,7 @@ namespace ProtonVPN.Config.Url
         public IActiveUrl LoginProblemsUrl                        => Url(_config.LoginProblemsUrl);
         public IActiveUrl RebrandingUrl                           => Url(_config.RebrandingUrl);
         public IActiveUrl RpcServerProblemUrl                     => Url(_config.RpcServerProblemUrl);
+        public IActiveUrl DedicatedIpsUrl                         => Url(_config.DedicatedIpsUrl);
 
         private ActiveUrl Url(string url)
         {

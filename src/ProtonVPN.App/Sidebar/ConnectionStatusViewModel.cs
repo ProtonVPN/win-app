@@ -24,8 +24,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.Logging;
-using ProtonVPN.Common.Logging.Categorization.Events.AppLogs;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
@@ -178,6 +178,13 @@ namespace ProtonVPN.Sidebar
         {
             get => _connectionName;
             set => Set(ref _connectionName, value);
+        }
+
+        private bool _isB2B;
+        public bool IsB2B
+        {
+            get => _isB2B;
+            set => Set(ref _isB2B, value);
         }
 
         private double _currentDownloadSpeed;
@@ -444,6 +451,14 @@ namespace ProtonVPN.Sidebar
             {
                 ConnectionName = server.GetServerName();
             }
+            else if (server.IsB2B())
+            {
+                ConnectionName = new B2BServerName
+                {
+                    GatewayName = server.GatewayName,
+                    Name = server.Name
+                };
+            }
             else
             {
                 ConnectionName = new StandardServerName
@@ -452,6 +467,7 @@ namespace ProtonVPN.Sidebar
                     Name = server.Name
                 };
             }
+            IsB2B = server.IsB2B();
         }
 
         private void DisableKillSwitch()

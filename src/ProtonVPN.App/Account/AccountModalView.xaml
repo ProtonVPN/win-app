@@ -143,6 +143,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid>
         </Grid>
         <ScrollViewer Template="{StaticResource DarkScrollViewerControlTemplate}"
+                      Visibility="{Binding IsToShowVpnPlans, Converter={StaticResource BoolToVis}}"
                       Grid.Row="1"
                       Margin="48,0,18,40">
             <Grid>
