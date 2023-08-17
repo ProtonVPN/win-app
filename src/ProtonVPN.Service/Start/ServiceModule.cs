@@ -22,6 +22,7 @@ using Autofac;
 using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
+using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
@@ -130,6 +131,8 @@ namespace ProtonVPN.Service.Start
             builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
+
+            builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
 
             RegisterModules(builder);
         }

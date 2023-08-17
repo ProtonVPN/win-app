@@ -251,5 +251,7 @@ namespace ProtonVPN.Common.Configuration
         public string InstallActionsPath { get; set; }
 
         public bool IsCertificateValidationDisabled { get; set; }
+
+        public decimal? DeviceRolloutPercentage { get; set; }
     }
 }

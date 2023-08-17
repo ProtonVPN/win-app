@@ -29,8 +29,10 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
@@ -45,6 +47,8 @@ namespace ProtonVPN.Update.Tests.Updates
     [TestClass]
     public class AppUpdateTest
     {
+        private IConfiguration _configuration;
+        private IDeviceIdCache _deviceIdCache;
         private ILogger _logger;
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
@@ -55,6 +59,8 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestInitialize]
         public void TestInitialize()
         {
+            _configuration = Substitute.For<IConfiguration>();
+            _deviceIdCache = Substitute.For<IDeviceIdCache>();
             _logger = Substitute.For<ILogger>();
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
@@ -93,7 +99,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
         private IAppUpdate AppUpdate()
         {
-            return new AppUpdate(new AppUpdates(_config, _launchableFile, _logger));
+            return new AppUpdate(new AppUpdates(_config, _launchableFile, _logger, _deviceIdCache, _configuration));
         }
 
         [TestMethod]

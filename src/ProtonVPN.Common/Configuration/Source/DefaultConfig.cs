@@ -357,7 +357,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 InstallActionsPath = Path.Combine(resourcesFolder, "ProtonVPN.InstallActions.dll"),
 
-                IsCertificateValidationDisabled = false
+                IsCertificateValidationDisabled = false,
+
+                DeviceRolloutPercentage = null
             };
         }
     }
