@@ -18,15 +18,15 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
@@ -151,7 +151,7 @@ namespace ProtonVPN.Update.Tests.Updates
         #region Test: Cleanup
 
         [TestMethod]
-        public void Cleanup_ShouldDelete_Subdirectories_FromDownloadsDirectory()
+        public async Task Cleanup_ShouldDelete_Subdirectories_FromDownloadsDirectory()
         {
             string updatesPath = TestConfig.GetFolderPath();
             Directory.CreateDirectory(Path.Combine(updatesPath, "2.2.2"));
@@ -162,13 +162,14 @@ namespace ProtonVPN.Update.Tests.Updates
             IAppUpdates updater = AppUpdates(new Version(1, 2, 0), updatesPath);
             updater.Cleanup();
 
+            await Task.Delay(TimeSpan.FromSeconds(1));
             string[] directories = Directory.GetDirectories(updatesPath);
             Directory.Delete(updatesPath, true);
             directories.Should().BeEmpty();
         }
 
         [TestMethod]
-        public void Cleanup_ShouldDelete_AllNotExeFiles_FromDownloadsDirectory()
+        public async Task Cleanup_ShouldDelete_AllNotExeFiles_FromDownloadsDirectory()
         {
             string updatesPath = TestConfig.GetFolderPath();
             CopyFile("Empty file.txt", updatesPath);
@@ -179,13 +180,14 @@ namespace ProtonVPN.Update.Tests.Updates
             IAppUpdates updater = AppUpdates(new Version(1, 2, 0), updatesPath);
             updater.Cleanup();
 
+            await Task.Delay(TimeSpan.FromSeconds(1));
             string[] files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
             Directory.Delete(updatesPath, true);
             files.Should().BeEmpty();
         }
 
         [TestMethod]
-        public void Cleanup_ShouldDelete_OutdatedExeFiles_FromDownloadsDirectory()
+        public async Task Cleanup_ShouldDelete_OutdatedExeFiles_FromDownloadsDirectory()
         {
             string updatesPath = TestConfig.GetFolderPath();
             CopyFile("Empty file.txt", updatesPath, "Unknown.exe");
@@ -197,6 +199,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
             updater.Cleanup();
 
+            await Task.Delay(TimeSpan.FromSeconds(1));
             string[] files = Directory.GetFiles(updatesPath, "*", SearchOption.AllDirectories);
             Directory.Delete(updatesPath, true);
 

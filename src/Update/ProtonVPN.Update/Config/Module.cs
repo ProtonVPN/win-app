@@ -36,11 +36,10 @@ namespace ProtonVPN.Update.Config
             builder.RegisterType<LaunchableFile>().As<ILaunchableFile>().SingleInstance();
 
             builder.Register(c =>
-                new CleanableOnceAppUpdates(
                     new AsyncAppUpdates(
                         new SafeAppUpdates(c.Resolve<ILogger>(),
                             c.Resolve<AppUpdates>())
-                    ))).As<IAppUpdates>().SingleInstance();
+                    )).As<IAppUpdates>().SingleInstance();
 
             builder.Register(c =>
                 new SafeAppUpdate(c.Resolve<ILogger>(),
