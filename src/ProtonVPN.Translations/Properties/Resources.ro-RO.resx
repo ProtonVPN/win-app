@@ -2440,7 +2440,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Blocare doar malware</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Blocare malware, reclame și urmăritori</value>
+    <value>Blocare malware, reclame și instrumente de urmărire</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Blocare permanentă conexiune</value>
@@ -2634,11 +2634,11 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Excludere aplicații/IP-uri de a utiliza VPN-ul</value>
+    <value>Aplicații / adrese IP excluse din rețeaua VPN</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Doar aplicațiile incluse/IP-urile vor trece prin tunelul VPN</value>
+    <value>Doar aceste aplicații / adrese IP vor trece prin VPN</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
