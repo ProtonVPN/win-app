@@ -75,6 +75,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </StackPanel>
 
         <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
+                   Text="Combo Box" />
+        <StackPanel Orientation="Horizontal"
+                    Spacing="24">
+            <ComboBox Width="{StaticResource TextBoxWidth}"
+                      ItemsSource="{x:Bind Products}"
+                      PlaceholderText="Select a product" />
+            <ComboBox Width="{StaticResource TextBoxWidth}"
+                      ItemsSource="{x:Bind Products}"
+                      IsEnabled="False"
+                      PlaceholderText="Select a product" />
+            <ComboBox Width="{StaticResource TextBoxWidth}"
+                      ItemsSource="{x:Bind Products}"
+                      IsEnabled="False"
+                      SelectedIndex="0"/>
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource SectionHeaderTextBlockStyle}"
                    Text="Search Box" />
         <StackPanel Orientation="Horizontal"
                     Spacing="24">
