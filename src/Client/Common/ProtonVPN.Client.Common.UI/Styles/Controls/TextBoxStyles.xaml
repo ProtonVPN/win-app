@@ -46,29 +46,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </LinearGradientBrush>
 
             <StaticResource x:Key="TextControlBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="TextControlBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="TextControlBackgroundPointerOver" ResourceKey="BackgroundNormHoverColorBrush" />
             <StaticResource x:Key="TextControlBackgroundFocused" ResourceKey="BackgroundNormColorBrush" />
             <StaticResource x:Key="TextControlBackgroundDisabled" ResourceKey="BackgroundWeakColorBrush" />
+            
             <StaticResource x:Key="TextControlBorderBrush" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="TextControlBorderBrushPointerOver" ResourceKey="TextControlElevationBorderBrush" />
             <StaticResource x:Key="TextControlBorderBrushFocused" ResourceKey="TextControlElevationBorderFocusedBrush" />
             <StaticResource x:Key="TextControlBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
+            
             <StaticResource x:Key="TextControlForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlForegroundFocused" ResourceKey="TextNormColorBrush" />
-
             <StaticResource x:Key="TextControlForegroundDisabled" ResourceKey="TextWeakColorBrush" />
+            
             <StaticResource x:Key="TextControlPlaceholderForeground" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="TextControlPlaceholderForegroundPointerOver" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="TextControlPlaceholderForegroundFocused" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="TextControlPlaceholderForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            
             <StaticResource x:Key="TextControlSelectionHighlightColor" ResourceKey="BorderFocusRingColorBrush" />
 
             <StaticResource x:Key="TextControlButtonBackgroundPointerOver" ResourceKey="BackgroundWeakHoverColorBrush" />
             <StaticResource x:Key="TextControlButtonBackgroundPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
-            <StaticResource x:Key="TextControlButtonBorderBrush" ResourceKey="ControlFillColorTransparent" />
+            
+            <StaticResource x:Key="TextControlButtonBorderBrush" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="TextControlButtonBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="TextControlButtonBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
+            
             <StaticResource x:Key="TextControlButtonForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
@@ -96,29 +101,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </LinearGradientBrush>
 
             <StaticResource x:Key="TextControlBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="TextControlBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="TextControlBackgroundPointerOver" ResourceKey="BackgroundNormHoverColorBrush" />
             <StaticResource x:Key="TextControlBackgroundFocused" ResourceKey="BackgroundNormColorBrush" />
             <StaticResource x:Key="TextControlBackgroundDisabled" ResourceKey="BackgroundWeakColorBrush" />
+
             <StaticResource x:Key="TextControlBorderBrush" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="TextControlBorderBrushPointerOver" ResourceKey="TextControlElevationBorderBrush" />
             <StaticResource x:Key="TextControlBorderBrushFocused" ResourceKey="TextControlElevationBorderFocusedBrush" />
             <StaticResource x:Key="TextControlBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
+
             <StaticResource x:Key="TextControlForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlForegroundFocused" ResourceKey="TextNormColorBrush" />
-
             <StaticResource x:Key="TextControlForegroundDisabled" ResourceKey="TextWeakColorBrush" />
+
             <StaticResource x:Key="TextControlPlaceholderForeground" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="TextControlPlaceholderForegroundPointerOver" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="TextControlPlaceholderForegroundFocused" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="TextControlPlaceholderForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
             <StaticResource x:Key="TextControlSelectionHighlightColor" ResourceKey="BorderFocusRingColorBrush" />
 
             <StaticResource x:Key="TextControlButtonBackgroundPointerOver" ResourceKey="BackgroundWeakHoverColorBrush" />
             <StaticResource x:Key="TextControlButtonBackgroundPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
-            <StaticResource x:Key="TextControlButtonBorderBrush" ResourceKey="ControlFillColorTransparent" />
+
+            <StaticResource x:Key="TextControlButtonBorderBrush" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="TextControlButtonBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="TextControlButtonBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
+
             <StaticResource x:Key="TextControlButtonForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="TextControlButtonForegroundPressed" ResourceKey="TextNormColorBrush" />

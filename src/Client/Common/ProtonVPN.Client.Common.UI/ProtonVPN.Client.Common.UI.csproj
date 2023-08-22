@@ -836,6 +836,7 @@
     <None Remove="Styles\Colors.xaml" />
     <None Remove="Styles\Controls\ButtonStyles.xaml" />
     <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
+    <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
     <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
     <None Remove="Styles\Controls\ExpanderStyles.xaml" />
     <None Remove="Styles\Controls\FlyoutStyles.xaml" />
@@ -1847,6 +1848,12 @@
     <Content Update="Assets\Illustrations\report-success.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Controls\ComboBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
