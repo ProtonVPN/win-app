@@ -33,6 +33,8 @@ namespace ProtonVPN.HumanVerification.Gui
 {
     public class WebViewViewModel : ViewModelBase, IWebViewViewModel
     {
+        private const int WEBVIEW_ADDED_HEIGHT = 124;
+
         private readonly ILogger _logger;
         private readonly ICaptchaUrlProvider _captchaUrlProvider;
 
@@ -75,7 +77,7 @@ namespace ProtonVPN.HumanVerification.Gui
                 switch (message.Type)
                 {
                     case CaptchaMessageTypes.Height:
-                        Height = message.Height;
+                        Height = message.Height + WEBVIEW_ADDED_HEIGHT;
                         break;
                     case CaptchaMessageTypes.TokenResponse:
                         OnHumanVerificationTokenReceived?.Invoke(this, message.Token);

@@ -8,10 +8,11 @@
              xmlns:gui="clr-namespace:ProtonVPN.HumanVerification.Gui"
              d:DataContext="{d:DesignInstance gui:WebViewViewModel}"
              mc:Ignorable="d">
-    <wpf:WebView2 DefaultBackgroundColor="Black"
-                  MinHeight="100"
+    <wpf:WebView2 MinHeight="100"
+                  Width="370"
                   Name="WebView2"
-                  Height="{Binding Height}">
+                  Height="{Binding Height}"
+                  DefaultBackgroundColor="#1C1B23">
         <wpf:WebView2.CreationProperties>
             <Binding RelativeSource="{RelativeSource Self}" Path="DataContext.WebView2CreationProperties" />
         </wpf:WebView2.CreationProperties>
