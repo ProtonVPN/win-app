@@ -22,6 +22,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:labs="using:CommunityToolkit.Labs.WinUI">
 
+    <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+
+            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="SettingsExpanderForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColorBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+
+            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="SettingsExpanderForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
     <Thickness x:Key="SettingsExpanderHeaderPadding">16,16,4,16</Thickness>
     <Thickness x:Key="SettingsExpanderItemPadding">58,8,44,8</Thickness>
     <Thickness x:Key="SettingsExpanderItemBorderThickness">1,0,1,1</Thickness>
@@ -33,76 +50,69 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource SettingsExpanderStyle}" TargetType="labs:SettingsExpander" />
 
     <Style x:Key="SettingsExpanderStyle" TargetType="labs:SettingsExpander">
-        <Style.Setters>
-            <Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />
-            <Setter Property="Foreground" Value="{ThemeResource SettingsCardForeground}" />
-            <Setter Property="BorderBrush" Value="{ThemeResource SettingsCardBorderBrush}" />
-            <Setter Property="BorderThickness" Value="{ThemeResource SettingsCardBorderThickness}" />
-            <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-            <Setter Property="MinHeight" Value="{ThemeResource SettingsCardMinHeight}" />
-            <Setter Property="MinWidth" Value="{ThemeResource SettingsCardMinWidth}" />
-            <Setter Property="IsTabStop" Value="False" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
-            <Setter Property="Padding" Value="{ThemeResource SettingsExpanderHeaderPadding}" />
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
-            <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
-            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
-            <Setter Property="FocusVisualMargin" Value="-3" />
-            <Setter Property="Margin" Value="0,3" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="labs:SettingsExpander">
-                        <Expander MinWidth="{TemplateBinding MinWidth}"
-                                  MinHeight="{TemplateBinding MinHeight}"
-                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                  Style="{StaticResource SettingsExpanderExpanderStyle}">
-                            <Expander.Header>
-                                <labs:SettingsCard Content="{TemplateBinding Content}"
-                                                   Description="{TemplateBinding Description}"
-                                                   Header="{TemplateBinding Header}"
-                                                   HeaderIcon="{TemplateBinding HeaderIcon}"
-                                                   IsClickEnabled="False"
-                                                   Style="{StaticResource DefaultSettingsCardStyle}" 
-                                                   IsTabStop="{TemplateBinding IsTabStop}"/>
-                            </Expander.Header>
-                            <Expander.Content>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <ContentPresenter Content="{TemplateBinding ItemsHeader}" />
-                                    <ItemsRepeater x:Name="PART_ItemsRepeater"
-                                                   Grid.Row="1"
-                                                   ItemTemplate="{Binding ItemTemplate, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   TabFocusNavigation="Local">
-                                        <ItemsRepeater.Layout>
-                                            <StackLayout Orientation="Vertical" />
-                                        </ItemsRepeater.Layout>
-                                    </ItemsRepeater>
-                                    <ContentPresenter Grid.Row="2"
-                                                      Content="{TemplateBinding ItemsFooter}" />
-                                </Grid>
-                            </Expander.Content>
-                        </Expander>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style.Setters>
+        <Setter Property="MinHeight" Value="{StaticResource SettingsCardMinHeight}" />
+        <Setter Property="MinWidth" Value="{StaticResource SettingsCardMinWidth}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+        <Setter Property="Padding" Value="{StaticResource SettingsExpanderHeaderPadding}" />
+        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
+        <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+        <Setter Property="FocusVisualMargin" Value="-3" />
+        <Setter Property="Margin" Value="0,3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="labs:SettingsExpander">
+                    <Expander MinWidth="{TemplateBinding MinWidth}"
+                              MinHeight="{TemplateBinding MinHeight}"
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              Style="{StaticResource SettingsExpanderExpanderStyle}">
+                        <Expander.Header>
+                            <labs:SettingsCard Content="{TemplateBinding Content}"
+                                               Description="{TemplateBinding Description}"
+                                               Header="{TemplateBinding Header}"
+                                               HeaderIcon="{TemplateBinding HeaderIcon}"
+                                               IsClickEnabled="False"
+                                               IsTabStop="{TemplateBinding IsTabStop}"
+                                               Style="{StaticResource DefaultSettingsCardStyle}" />
+                        </Expander.Header>
+                        <Expander.Content>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter Content="{TemplateBinding ItemsHeader}" />
+                                <ItemsRepeater x:Name="PART_ItemsRepeater"
+                                               Grid.Row="1"
+                                               ItemTemplate="{TemplateBinding ItemTemplate}"
+                                               TabFocusNavigation="Local">
+                                    <ItemsRepeater.Layout>
+                                        <StackLayout Orientation="Vertical" />
+                                    </ItemsRepeater.Layout>
+                                </ItemsRepeater>
+                                <ContentPresenter Grid.Row="2"
+                                                  Content="{TemplateBinding ItemsFooter}" />
+                            </Grid>
+                        </Expander.Content>
+                    </Expander>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="SettingsExpanderExpanderStyle" TargetType="Expander">
-        <Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />
-        <Setter Property="Foreground" Value="{ThemeResource SettingsCardForeground}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource SettingsCardBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{ThemeResource SettingsExpanderItemBorderThickness}" />
+        <Setter Property="Background" Value="{ThemeResource SettingsExpanderBackground}" />
+        <Setter Property="Foreground" Value="{ThemeResource SettingsExpanderForeground}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource SettingsExpanderBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource SettingsExpanderItemBorderThickness}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
         <Setter Property="MinWidth" Value="{ThemeResource FlyoutThemeMinWidth}" />
         <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
@@ -133,7 +143,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Grid.Row="1"
                                 Margin="0,-8,0,0">
                             <Border x:Name="ExpanderContent"
-                                    MinHeight="{ThemeResource SettingsExpanderContentMinHeight}"
+                                    MinHeight="{StaticResource SettingsExpanderContentMinHeight}"
                                     Padding="{TemplateBinding Padding}"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
@@ -141,8 +151,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     BackgroundSizing="{TemplateBinding BackgroundSizing}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}"
-                                    Visibility="Collapsed">
+                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}">
                                 <ContentPresenter Margin="0,-2,0,0"
                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -157,9 +166,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ExpandStates">
                                 <VisualState x:Name="ExpandUp">
-                                    <VisualState.Setters>
-                                        <Setter Target="ExpanderHeader.CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}" />
-                                    </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent"
@@ -198,9 +204,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </VisualState.Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="ExpandDown">
-                                    <VisualState.Setters>
-                                        <Setter Target="ExpanderHeader.CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TopCornerRadiusFilterConverter}}" />
-                                    </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent"

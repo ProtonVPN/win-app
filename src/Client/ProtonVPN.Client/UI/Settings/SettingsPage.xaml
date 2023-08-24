@@ -26,77 +26,79 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
-            <Setter Property="Margin" Value="2,16,0,8" />
+            <Setter Property="Margin" Value="2,21,0,11" />
             <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
         </Style>
     </Page.Resources>
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+    <controls:PageContentControl x:Name="PageContentHost"
+                                 BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                  IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                  PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 
-            <TextBlock Margin="2,0,0,8"
+            <TextBlock Margin="2,7,0,11"
                        Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Features')}" />
 
-            <labs:SettingsCard AutomationProperties.AutomationId="NetShieldSettingsCard"
-                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.NetShieldViewModel"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield')}"
-                               IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE705;" />
-                </labs:SettingsCard.HeaderIcon>
+            <custom:FeatureSettingsCard AutomationProperties.AutomationId="NetShieldSettingsCard"
+                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.NetShieldViewModel"
+                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield')}"
+                                        IsClickEnabled="True"
+                                        Style="{StaticResource FeatureSettingsCardStyle}">
+                <custom:FeatureSettingsCard.FeatureIcon>
+                    <Image Source="{x:Bind ViewModel.NetShieldFeatureIconSource}" />
+                </custom:FeatureSettingsCard.FeatureIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.NetShieldFeatureState}" />
-            </labs:SettingsCard>
+            </custom:FeatureSettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="KillSwitchSettingsCard"
-                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.KillSwitchViewModel"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch')}"
-                               IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xEF1F;" />
-                </labs:SettingsCard.HeaderIcon>
+            <custom:FeatureSettingsCard AutomationProperties.AutomationId="KillSwitchSettingsCard"
+                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.KillSwitchViewModel"
+                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch')}"
+                                        IsClickEnabled="True"
+                                        Style="{StaticResource FeatureSettingsCardStyle}">
+                <custom:FeatureSettingsCard.FeatureIcon>
+                    <Image Source="{x:Bind ViewModel.KillSwitchFeatureIconSource}" />
+                </custom:FeatureSettingsCard.FeatureIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.KillSwitchFeatureState}" />
-            </labs:SettingsCard>
+            </custom:FeatureSettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
-                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.PortForwardingViewModel"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
-                               IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xF591;" />
-                </labs:SettingsCard.HeaderIcon>
+            <custom:FeatureSettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
+                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.PortForwardingViewModel"
+                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
+                                        IsClickEnabled="True"
+                                        Style="{StaticResource FeatureSettingsCardStyle}">
+                <custom:FeatureSettingsCard.FeatureIcon>
+                    <Image Source="{x:Bind ViewModel.PortForwardingFeatureIconSource}" />
+                </custom:FeatureSettingsCard.FeatureIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.PortForwardingFeatureState}" />
-            </labs:SettingsCard>
+            </custom:FeatureSettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
-                               Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.SplitTunnelingViewModel"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling')}"
-                               IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xEDA3;" />
-                </labs:SettingsCard.HeaderIcon>
+            <custom:FeatureSettingsCard AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
+                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.SplitTunnelingViewModel"
+                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling')}"
+                                        IsClickEnabled="True"
+                                        Style="{StaticResource FeatureSettingsCardStyle}">
+                <custom:FeatureSettingsCard.FeatureIcon>
+                    <Image Source="{x:Bind ViewModel.SplitTunnelingFeatureIconSource}" />
+                </custom:FeatureSettingsCard.FeatureIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.SplitTunnelingFeatureState}" />
-            </labs:SettingsCard>
+            </custom:FeatureSettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
@@ -162,7 +164,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:Bell />
                 </labs:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
             <labs:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
@@ -199,7 +201,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:KeySkeleton />
                 </labs:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsBetaAccessEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
             <labs:SettingsCard AutomationProperties.AutomationId="HardwareAccelerationSettingsCard"
@@ -211,7 +213,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:Robot />
                 </labs:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsHardwareAccelerationEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"

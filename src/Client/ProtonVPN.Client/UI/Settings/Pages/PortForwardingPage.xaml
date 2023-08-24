@@ -23,15 +23,84 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
 
-        <StackPanel x:Name="ContentArea"/>
+        <controls:PageContentControl.PageHeader>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="16">
+                <Image Width="32"
+                       Height="32"
+                       Source="{x:Bind ViewModel.PortForwardingFeatureIconSource}" />
+                <TextBlock Text="{x:Bind ViewModel.Title}" />
+            </StackPanel>
+        </controls:PageContentControl.PageHeader>
 
+        <StackPanel x:Name="ContentArea">
+
+            <labs:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
+                                   IsExpanded="{x:Bind ViewModel.IsPortForwardingEnabled}"
+                                   IsTabStop="False"
+                                   Style="{StaticResource SettingsExpanderStyle}">
+
+                <labs:SettingsExpander.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </labs:SettingsExpander.Description>
+
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsPortForwardingEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+
+                <labs:SettingsExpander.Items>
+                    <StackPanel Margin="0,-8"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource CaptionStrongTextBlockStyle}">
+                            <Run FontWeight="{StaticResource CaptionFontWeight}"
+                                 Foreground="{ThemeResource TextWeakColorBrush}"
+                                 Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_ActivePort')}" />
+                            <Run Text="{x:Bind ViewModel.ActivePortNumber}" />
+                        </TextBlock>
+                        <custom:GhostButton VerticalAlignment="Center"
+                                            AutomationProperties.AutomationId="CopyPortNumberButton"
+                                            AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_ActivePort_Copy')}"
+                                            Command="{x:Bind ViewModel.CopyPortNumberCommand, Mode=OneTime}"
+                                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_ActivePort_Copy')}">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Squares />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                    </StackPanel>
+                </labs:SettingsExpander.Items>
+            </labs:SettingsExpander>
+
+            <TextBlock Margin="0,8,0,16"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Footer')}" />
+
+            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Notifications_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Notifications')}"
+                               IsTabStop="False"
+                               Style="{StaticResource DefaultSettingsCardStyle}"
+                               Visibility="{x:Bind ViewModel.IsPortForwardingEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsPortForwardingNotificationEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </labs:SettingsCard>
+        </StackPanel>
     </controls:PageContentControl>
 </Page>

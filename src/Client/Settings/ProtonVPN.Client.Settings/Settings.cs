@@ -184,4 +184,46 @@ public class Settings : GlobalSettings, ISettings
         get => _userRepository.GetValueType<AutoConnectMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.AutoConnectMode;
         set => _userRepository.SetValueType<AutoConnectMode>(value, SettingEncryption.Unencrypted);
     }
+
+    public bool IsNetShieldEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNetShieldEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsPortForwardingEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsPortForwardingEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsPortForwardingNotificationEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsPortForwardingNotificationEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsSplitTunnelingEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSplitTunnelingEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public SplitTunnelingMode SplitTunnelingMode
+    {
+        get => _userRepository.GetValueType<SplitTunnelingMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingMode;
+        set => _userRepository.SetValueType<SplitTunnelingMode>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList
+    {
+        get => _userRepository.GetListValueType<SplitTunnelingIpAddress>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingIpAddressesList;
+        set => _userRepository.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<SplitTunnelingApp> SplitTunnelingAppsList
+    {
+        get => _userRepository.GetListValueType<SplitTunnelingApp>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingAppsList();
+        set => _userRepository.SetListValueType<SplitTunnelingApp>(value, SettingEncryption.Unencrypted);
+    }
 }

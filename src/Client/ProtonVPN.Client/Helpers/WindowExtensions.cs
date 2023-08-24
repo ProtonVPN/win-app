@@ -19,9 +19,11 @@
 
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Common.Interop;
 using Windows.Foundation;
 using Windows.Graphics;
-using Windows.UI;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 
 namespace ProtonVPN.Client.Helpers;
 
@@ -64,5 +66,27 @@ public static class WindowExtensions
 
         RectInt32[] gripArray = new[] { dragRect };
         window.AppWindow.TitleBar.SetDragRectangles(gripArray);
+    }
+
+    public static async Task<string> PickSingleFileAsync(this Window window, string filterName, string[] filterFileExtensions)
+    {
+        try
+        {
+            FileOpenPicker picker = window.CreateOpenFilePicker();
+            // Note: Filter name (eg. Image Files) is not supported by the FileOpenPicker
+            foreach (string fileExtension in filterFileExtensions)
+            {
+                picker.FileTypeFilter.Add(fileExtension);
+            }
+
+            StorageFile file = await picker.PickSingleFileAsync();
+
+            return file?.Path ?? string.Empty;
+        }
+        catch (Exception)
+        {
+            // The method above fails when the app run in elevated mode. Use Win32 API instead.
+            return RuntimeHelper.PickSingleFile(window, filterName, filterFileExtensions);
+        }
     }
 }

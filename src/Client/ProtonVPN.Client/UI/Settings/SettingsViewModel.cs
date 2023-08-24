@@ -18,9 +18,9 @@
  */
 
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -37,6 +37,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
+using ProtonVPN.Client.UI.Settings.Pages;
 
 namespace ProtonVPN.Client.UI.Settings;
 
@@ -69,13 +70,21 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
 
     public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
-    public string NetShieldFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public ImageSource NetShieldFeatureIconSource => NetShieldViewModel.GetFeatureIconSource(_settings.IsNetShieldEnabled);
 
-    public string KillSwitchFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public string NetShieldFeatureState => Localizer.GetToggleValue(_settings.IsNetShieldEnabled);
 
-    public string PortForwardingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public ImageSource KillSwitchFeatureIconSource => KillSwitchViewModel.GetFeatureIconSource(_settings.IsKillSwitchEnabled, _settings.KillSwitchMode);
 
-    public string SplitTunnelingFeatureState => Localizer.Get($"Common_States_Off"); // TODO
+    public string KillSwitchFeatureState => Localizer.GetToggleValue(_settings.IsKillSwitchEnabled);
+
+    public ImageSource PortForwardingFeatureIconSource => PortForwardingViewModel.GetFeatureIconSource(_settings.IsPortForwardingEnabled);
+
+    public string PortForwardingFeatureState => Localizer.GetToggleValue(_settings.IsPortForwardingEnabled);
+
+    public ImageSource SplitTunnelingFeatureIconSource => SplitTunnelingViewModel.GetFeatureIconSource(_settings.IsSplitTunnelingEnabled);
+
+    public string SplitTunnelingFeatureState => Localizer.GetToggleValue(_settings.IsSplitTunnelingEnabled);
 
     public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(_settings.IsVpnAcceleratorEnabled);
 
@@ -168,6 +177,30 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     {
         switch (message.PropertyName)
         {
+            case nameof(ISettings.IsNetShieldEnabled):
+                OnPropertyChanged(nameof(NetShieldFeatureState));
+                OnPropertyChanged(nameof(NetShieldFeatureIconSource));
+                break;
+
+            case nameof(ISettings.IsKillSwitchEnabled):
+                OnPropertyChanged(nameof(KillSwitchFeatureState));
+                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
+                break;
+
+            case nameof(ISettings.KillSwitchMode):
+                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
+                break;
+
+            case nameof(ISettings.IsPortForwardingEnabled):
+                OnPropertyChanged(nameof(PortForwardingFeatureState));
+                OnPropertyChanged(nameof(PortForwardingFeatureIconSource));
+                break;
+
+            case nameof(ISettings.IsSplitTunnelingEnabled):
+                OnPropertyChanged(nameof(SplitTunnelingFeatureState));
+                OnPropertyChanged(nameof(SplitTunnelingFeatureIconSource));
+                break;
+
             case nameof(ISettings.VpnProtocol):
                 OnPropertyChanged(nameof(ConnectionProtocolState));
                 break;

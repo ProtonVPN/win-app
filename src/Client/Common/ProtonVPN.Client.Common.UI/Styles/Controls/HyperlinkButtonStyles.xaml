@@ -162,7 +162,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       Foreground="{TemplateBinding Foreground}" />
 
                             <ProgressRing IsActive="{TemplateBinding IsProgressActive }"
-                                          Foreground="{StaticResource TextNormColorBrush}"
+                                          Foreground="{ThemeResource TextNormColorBrush}"
                                           HorizontalAlignment="Right"
                                           Width="16"
                                           Height="16" />

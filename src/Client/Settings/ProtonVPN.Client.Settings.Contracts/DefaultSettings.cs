@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Settings.Contracts.Helpers;
 using ProtonVPN.Common.Core.Enums;
 using ProtonVPN.Common.Core.Models;
 
@@ -34,7 +35,7 @@ public static class DefaultSettings
     public static bool IsNotificationEnabled = true; // TODO: Default value still marked as TBD on the spec
     public static bool IsBetaAccessEnabled = false;
     public static bool IsHardwareAccelerationEnabled = false;
-    public static bool IsShareStatisticsEnabled = true; 
+    public static bool IsShareStatisticsEnabled = true;
     public static bool IsShareCrashReportsEnabled = true;
     public static bool IsAlternativeRoutingEnabled = true;
     public static bool IsCustomDnsServersEnabled = false;
@@ -46,4 +47,17 @@ public static class DefaultSettings
     public static AutoLaunchMode AutoLaunchMode = AutoLaunchMode.MinimizeToSystemTray;
     public static bool IsAutoConnectEnabled = false;
     public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;
+    public static bool IsNetShieldEnabled = false;
+    public static bool IsKillSwitchEnabled = false;
+    public static KillSwitchMode KillSwitchMode = KillSwitchMode.Standard;
+    public static bool IsPortForwardingEnabled = false;
+    public static bool IsPortForwardingNotificationEnabled = true;
+    public static bool IsSplitTunnelingEnabled = false;
+    public static SplitTunnelingMode SplitTunnelingMode = SplitTunnelingMode.Standard;
+    public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = new();
+
+    public static List<SplitTunnelingApp> SplitTunnelingAppsList()
+    {
+        return DefaultAppsHelper.GetBrowserApps().ToList();
+    }
 }

@@ -23,6 +23,7 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Dispatching;
 using ProtonVPN.Client.HumanVerification;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Edition;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
@@ -55,6 +56,7 @@ public class ClientModule : Module
 
         builder.Register(c => new DefaultConfig().Value()).As<IConfiguration>().SingleInstance();
         builder.RegisterType<Urls>().As<IUrls>().SingleInstance();
+        builder.RegisterType<ClipboardEditor>().As<IClipboardEditor>().SingleInstance();
 
         builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();

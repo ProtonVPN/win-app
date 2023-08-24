@@ -21,6 +21,7 @@ using System.Collections.Concurrent;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
+using ProtonVPN.Common.Core.Enums;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings;
@@ -110,5 +111,17 @@ public class GlobalSettings : IGlobalSettings
     {
         get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsDoHEnabled;
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsKillSwitchEnabled
+    {
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsKillSwitchEnabled;
+        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public KillSwitchMode KillSwitchMode
+    {
+        get => _globalRepository.GetValueType<KillSwitchMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.KillSwitchMode;
+        set => _globalRepository.SetValueType<KillSwitchMode>(value, SettingEncryption.Unencrypted);
     }
 }

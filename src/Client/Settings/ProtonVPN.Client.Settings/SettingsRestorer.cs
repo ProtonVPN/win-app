@@ -34,6 +34,15 @@ public class SettingsRestorer : ISettingsRestorer
     {
         // Note: Some settings should not be restored, such as Language, Theme, Share statistics...
 
+        _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled;
+        _settings.IsKillSwitchEnabled = DefaultSettings.IsKillSwitchEnabled;
+        _settings.KillSwitchMode = DefaultSettings.KillSwitchMode;
+        _settings.IsPortForwardingEnabled = DefaultSettings.IsPortForwardingEnabled;
+        _settings.IsPortForwardingNotificationEnabled = DefaultSettings.IsPortForwardingNotificationEnabled;
+        _settings.IsSplitTunnelingEnabled = DefaultSettings.IsSplitTunnelingEnabled;
+        _settings.SplitTunnelingMode = DefaultSettings.SplitTunnelingMode;
+        _settings.SplitTunnelingIpAddressesList = DefaultSettings.SplitTunnelingIpAddressesList;
+        _settings.SplitTunnelingAppsList = DefaultSettings.SplitTunnelingAppsList();
         _settings.VpnProtocol = DefaultSettings.VpnProtocol;
         _settings.NatType = DefaultSettings.NatType;
         _settings.IsVpnAcceleratorEnabled = DefaultSettings.IsVpnAcceleratorEnabled;

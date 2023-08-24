@@ -47,7 +47,7 @@ public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavi
 
     public bool HasCustomDnsServers => CustomDnsServers.Any();
 
-    public int CustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
+    public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
 
     public CustomDnsServersViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings)
         : base(viewNavigator, localizationProvider)
@@ -89,7 +89,7 @@ public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavi
 
     public void InvalidateCustomDnsServersCount()
     {
-        OnPropertyChanged(nameof(CustomDnsServersCount));
+        OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
     }
 
     public override void OnNavigatedFrom()
@@ -116,6 +116,7 @@ public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavi
     private void OnCustomDnsServersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         OnPropertyChanged(nameof(HasCustomDnsServers));
+
         InvalidateCustomDnsServersCount();
     }
 }

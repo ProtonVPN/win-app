@@ -17,17 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace ProtonVPN.Common.Core.Models;
 
-public struct CustomDnsServer
+public struct CustomDnsServer : IEquatable<CustomDnsServer>
 {
+    public string IpAddress { get; set; }
+
+    public bool IsActive { get; set; }
+
     public CustomDnsServer(string ipAddress, bool isActive)
     {
         IpAddress = ipAddress;
         IsActive = isActive;
     }
 
-    public string IpAddress { get; set; }
+    public bool Equals(CustomDnsServer other)
+    {
+        return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase);
+    }
 
-    public bool IsActive { get; set; }
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj?.GetType() != GetType())
+        {
+            return false;
+        }
+        return Equals((CustomDnsServer)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(IpAddress?.ToUpperInvariant());
+    }
 }

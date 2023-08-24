@@ -17,18 +17,103 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>
+public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
 {
-    public KillSwitchViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(viewNavigator, localizationProvider)
-    {
-    }
+    private readonly ISettings _settings;
+    private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Features_KillSwitch");
+
+    public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(_settings.IsKillSwitchEnabled, _settings.KillSwitchMode);
+
+    public string LearnMoreUrl => _urls.KillSwitchLearnMore;
+
+    public bool IsKillSwitchEnabled
+    {
+        get => _settings.IsKillSwitchEnabled;
+        set => _settings.IsKillSwitchEnabled = value;
+    }
+
+    public bool IsStandardKillSwitch
+    {
+        get => IsKillSwitchMode(KillSwitchMode.Standard);
+        set => SetKillSwitchMode(value, KillSwitchMode.Standard);
+    }
+
+    public bool IsAdvancedKillSwitch
+    {
+        get => IsKillSwitchMode(KillSwitchMode.Advanced);
+        set => SetKillSwitchMode(value, KillSwitchMode.Advanced);
+    }
+
+    public KillSwitchViewModel(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        IUrls urls)
+        : base(viewNavigator, localizationProvider)
+    {
+        _settings = settings;
+        _urls = urls;
+    }
+
+    public static ImageSource GetFeatureIconSource(bool isEnabled, KillSwitchMode mode)
+    {
+        if (!isEnabled)
+        {
+            return ResourceHelper.GetIllustration("KillSwitchOffIllustrationSource");
+        }
+
+        return mode switch
+        {
+            KillSwitchMode.Standard => ResourceHelper.GetIllustration("KillSwitchStandardIllustrationSource"),
+            KillSwitchMode.Advanced => ResourceHelper.GetIllustration("KillSwitchAdvancedIllustrationSource"),
+            _ => throw new ArgumentOutOfRangeException(nameof(mode)),
+        };
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        switch (message.PropertyName)
+        {
+            case nameof(ISettings.IsKillSwitchEnabled):
+                OnPropertyChanged(nameof(IsKillSwitchEnabled));
+                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
+                break;
+
+            case nameof(ISettings.KillSwitchMode):
+                OnPropertyChanged(nameof(IsStandardKillSwitch));
+                OnPropertyChanged(nameof(IsAdvancedKillSwitch));
+                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private bool IsKillSwitchMode(KillSwitchMode killSwitchMode)
+    {
+        return _settings.KillSwitchMode == killSwitchMode;
+    }
+
+    private void SetKillSwitchMode(bool value, KillSwitchMode killSwitchMode)
+    {
+        if (value)
+        {
+            _settings.KillSwitchMode = killSwitchMode;
+        }
+    }
 }

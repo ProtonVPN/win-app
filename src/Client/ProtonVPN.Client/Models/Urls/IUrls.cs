@@ -32,6 +32,10 @@ public interface IUrls
     string NatTypeLearnMore { get; }
     string SupportCenter { get; }
     string UsageStatisticsLearnMore { get; }
+    string NetShieldLearnMore { get; }
+    string KillSwitchLearnMore { get; }
+    string PortForwardingLearnMore { get; }
+    string SplitTunnelingLearnMore { get; }
 
     void NavigateTo(string url);
 }

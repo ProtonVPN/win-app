@@ -291,13 +291,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Feed
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Feedback.Installers", "src\Client\Logic\Feedback\ProtonVPN.Client.Logic.Feedback.Installers\ProtonVPN.Client.Logic.Feedback.Installers.csproj", "{7E92B37F-856C-44D3-8D1F-62E665C839CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Feedback.Tests", "src\Client\Logic\Feedback\ProtonVPN.Client.Logic.Feedback.Tests\ProtonVPN.Client.Logic.Feedback.Tests.csproj", "{A8DFE9EC-72B0-4C1A-8963-C36FC078D599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Feedback.Tests", "src\Client\Logic\Feedback\ProtonVPN.Client.Logic.Feedback.Tests\ProtonVPN.Client.Logic.Feedback.Tests.csproj", "{A8DFE9EC-72B0-4C1A-8963-C36FC078D599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Serialization.Contracts", "src\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj", "{F347CC80-4E88-43BA-B619-D54FB4AF0403}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Serialization.Contracts", "src\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj", "{F347CC80-4E88-43BA-B619-D54FB4AF0403}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Serialization.Installers", "src\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj", "{BA33C343-DCC1-4073-A584-D8C9FD8FF008}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Serialization.Installers", "src\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj", "{BA33C343-DCC1-4073-A584-D8C9FD8FF008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Serialization.Tests", "src\Serialization\ProtonVPN.Serialization.Tests\ProtonVPN.Serialization.Tests.csproj", "{D3A8848E-8FA3-43DD-90A2-9522AA40BF0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Serialization.Tests", "src\Serialization\ProtonVPN.Serialization.Tests\ProtonVPN.Serialization.Tests.csproj", "{D3A8848E-8FA3-43DD-90A2-9522AA40BF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Common.Interop", "src\Client\Common\ProtonVPN.Client.Common.Interop\ProtonVPN.Client.Common.Interop.csproj", "{B0578FD8-BA2F-4C9A-8C16-90B419E42254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1195,6 +1197,14 @@ Global
 		{D3A8848E-8FA3-43DD-90A2-9522AA40BF0E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3A8848E-8FA3-43DD-90A2-9522AA40BF0E}.Release|x64.ActiveCfg = Release|Any CPU
 		{D3A8848E-8FA3-43DD-90A2-9522AA40BF0E}.Release|x64.Build.0 = Release|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Debug|x64.Build.0 = Debug|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Release|x64.ActiveCfg = Release|Any CPU
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1311,6 +1321,7 @@ Global
 		{F347CC80-4E88-43BA-B619-D54FB4AF0403} = {EA2ADBEB-E726-4114-8804-A23D86A5CBC6}
 		{BA33C343-DCC1-4073-A584-D8C9FD8FF008} = {EA2ADBEB-E726-4114-8804-A23D86A5CBC6}
 		{D3A8848E-8FA3-43DD-90A2-9522AA40BF0E} = {EA2ADBEB-E726-4114-8804-A23D86A5CBC6}
+		{B0578FD8-BA2F-4C9A-8C16-90B419E42254} = {7E03F2A7-4D54-41AA-9C6B-66DBC017F65E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

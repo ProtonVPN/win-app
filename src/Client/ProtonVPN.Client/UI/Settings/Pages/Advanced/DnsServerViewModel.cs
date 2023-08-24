@@ -29,10 +29,9 @@ public partial class DnsServerViewModel : ViewModelBase
     private readonly CustomDnsServersViewModel _parentViewModel;
 
     [ObservableProperty]
-    private string _ipAddress;
-
-    [ObservableProperty]
     private bool _isActive;
+
+    public string IpAddress { get; }
 
     public DnsServerViewModel(ILocalizationProvider localizationProvider, CustomDnsServersViewModel parentViewModel, string ipAddress)
         : this(localizationProvider, parentViewModel, ipAddress, true)
@@ -43,8 +42,8 @@ public partial class DnsServerViewModel : ViewModelBase
     {
         _parentViewModel = parentViewModel;
 
-        _ipAddress = ipAddress;
         _isActive = isActive;
+        IpAddress = ipAddress;
     }
 
     [RelayCommand]
