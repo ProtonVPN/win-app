@@ -17,25 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+namespace ProtonVPN.Common.Core.Enums;
 
-public interface IUrls
+public enum KillSwitchMode
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
-    string NetShieldLearnMore { get; }
-    string KillSwitchLearnMore { get; }
-    string PortForwardingLearnMore { get; }
-    string SplitTunnelingLearnMore { get; }
-
-    void NavigateTo(string url);
+    Standard,
+    Advanced
 }

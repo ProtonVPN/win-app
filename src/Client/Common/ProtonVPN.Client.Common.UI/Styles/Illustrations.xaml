@@ -44,4 +44,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/report-success.png" />
     <BitmapImage x:Key="ReportErrorIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/report-error.png" />
+
+    <BitmapImage x:Key="KillSwitchOffIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/kill-switch-off.png" />
+    <BitmapImage x:Key="KillSwitchStandardIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/kill-switch-on-level-1.png" />
+    <BitmapImage x:Key="KillSwitchAdvancedIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/kill-switch-on-level-2.png" />
+    <BitmapImage x:Key="NetShieldOffIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/netshield-off.png" />
+    <BitmapImage x:Key="NetShieldOnIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/netshield-on.png" />
+    <BitmapImage x:Key="PortForwardingOffIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/port-forwarding-off.png" />
+    <BitmapImage x:Key="PortForwardingOnIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/port-forwarding-on.png" />
+    <BitmapImage x:Key="SplitTunnelingOffIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/split-tunneling-off.png" />
+    <BitmapImage x:Key="SplitTunnelingOnIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/split-tunneling-on.png" />
+
 </ResourceDictionary>

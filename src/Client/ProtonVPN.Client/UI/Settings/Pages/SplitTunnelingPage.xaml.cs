@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Windows.Storage;
+using Windows.Storage.Pickers;
+
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public sealed partial class SplitTunnelingPage
 {
+    public SplitTunnelingViewModel ViewModel { get; }
+
     public SplitTunnelingPage()
     {
         ViewModel = App.GetService<SplitTunnelingViewModel>();
         InitializeComponent();
     }
-
-    public SplitTunnelingViewModel ViewModel { get; }
 }

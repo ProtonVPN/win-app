@@ -17,25 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Urls;
+using CommunityToolkit.Labs.WinUI;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
-public interface IUrls
+namespace ProtonVPN.Client.Common.UI.Controls.Custom;
+
+public class FeatureSettingsCard : SettingsCard
 {
-    string ProtocolsLearnMore { get; }
-    string CreateAccount { get; }
-    string ResetPassword { get; }
-    string ForgotUsername { get; }
-    string TroubleSigningIn { get; }
-    string ProtocolChangeLearnMore { get; }
-    string ServerLoadLearnMore { get; }
-    string InternetSpeedLearnMore { get; }
-    string NatTypeLearnMore { get; }
-    string SupportCenter { get; }
-    string UsageStatisticsLearnMore { get; }
-    string NetShieldLearnMore { get; }
-    string KillSwitchLearnMore { get; }
-    string PortForwardingLearnMore { get; }
-    string SplitTunnelingLearnMore { get; }
+    public object FeatureIcon
+    {
+        get => (object)GetValue(FeatureIconProperty);
+        set => SetValue(FeatureIconProperty, value);
+    }
 
-    void NavigateTo(string url);
+    public static readonly DependencyProperty FeatureIconProperty =
+        DependencyProperty.Register(nameof(FeatureIcon), typeof(object), typeof(FeatureSettingsCard), new PropertyMetadata(default));
+
+    public FeatureSettingsCard()
+    {
+        // Set the header icon just so the container is not made invisible
+        HeaderIcon = new FontIcon();
+    }
 }

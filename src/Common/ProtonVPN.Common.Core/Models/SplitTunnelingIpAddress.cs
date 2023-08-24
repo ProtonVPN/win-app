@@ -21,19 +21,19 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ProtonVPN.Common.Core.Models;
 
-public struct CustomDnsServer : IEquatable<CustomDnsServer>
+public struct SplitTunnelingIpAddress : IEquatable<SplitTunnelingIpAddress>
 {
     public string IpAddress { get; set; }
 
     public bool IsActive { get; set; }
 
-    public CustomDnsServer(string ipAddress, bool isActive)
+    public SplitTunnelingIpAddress(string ipAddress, bool isActive)
     {
         IpAddress = ipAddress;
         IsActive = isActive;
     }
 
-    public bool Equals(CustomDnsServer other)
+    public bool Equals(SplitTunnelingIpAddress other)
     {
         return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase);
     }
@@ -44,7 +44,7 @@ public struct CustomDnsServer : IEquatable<CustomDnsServer>
         {
             return false;
         }
-        return Equals((CustomDnsServer)obj);
+        return Equals((SplitTunnelingIpAddress)obj);
     }
 
     public override int GetHashCode()

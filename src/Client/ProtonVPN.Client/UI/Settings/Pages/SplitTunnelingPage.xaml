@@ -23,15 +23,214 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:st="using:ProtonVPN.Client.UI.Settings.Pages.SplitTunneling"
+      x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="SplitTunnelingRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
+            <Setter Property="GroupName" Value="SplitTunnelingMode" />
+        </Style>
+    </Page.Resources>
+
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
 
-        <StackPanel x:Name="ContentArea"/>
+        <controls:PageContentControl.PageHeader>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="16">
+                <Image Width="32"
+                       Height="32"
+                       Source="{x:Bind ViewModel.SplitTunnelingFeatureIconSource}" />
+                <TextBlock Text="{x:Bind ViewModel.Title}" />
+            </StackPanel>
+        </controls:PageContentControl.PageHeader>
 
+        <StackPanel x:Name="ContentArea"
+                    Spacing="16">
+
+            <labs:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling')}"
+                                   IsExpanded="{x:Bind ViewModel.IsSplitTunnelingEnabled}"
+                                   IsTabStop="False">
+                <labs:SettingsExpander.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </labs:SettingsExpander.Description>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsSplitTunnelingEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+                <labs:SettingsExpander.Items>
+                    <StackPanel Spacing="16">
+                        <RadioButton IsChecked="{x:Bind ViewModel.IsStandardSplitTunneling, Mode=TwoWay}"
+                                     Style="{StaticResource SplitTunnelingRadioButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Standard')}" />
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Standard_Description')}"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton IsChecked="{x:Bind ViewModel.IsInverseSplitTunneling, Mode=TwoWay}"
+                                     Style="{StaticResource SplitTunnelingRadioButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Inverse')}" />
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Inverse_Description')}"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </labs:SettingsExpander.Items>
+            </labs:SettingsExpander>
+
+            <StackPanel Spacing="8"
+                        Visibility="{x:Bind ViewModel.IsSplitTunnelingEnabled}">
+
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Features_SplitTunneling_Apps_Header', ViewModel.ActiveAppsCount)}" />
+
+                <labs:SettingsCard IsTabStop="False"
+                                   Style="{StaticResource VerticalSettingsCardStyle}">
+                    <Grid Margin="0,-8,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ItemsRepeater Grid.Row="0"
+                                       Margin="0,0,0,16"
+                                       ItemsSource="{x:Bind ViewModel.Apps}"
+                                       Visibility="{x:Bind ViewModel.HasApps, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="8" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate x:DataType="st:SplitTunnelingAppViewModel">
+                                    <Grid ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0"
+                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}">
+                                            <Grid ColumnSpacing="8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0"
+                                                       Width="20"
+                                                       Height="20"
+                                                       Source="{x:Bind AppIcon}" />
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{x:Bind AppName}"
+                                                           TextTrimming="CharacterEllipsis" />
+                                            </Grid>
+                                        </CheckBox>
+                                        <custom:GhostButton Grid.Column="1"
+                                                            AutomationProperties.AutomationId="RemoveAppButton"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}"
+                                                            Command="{x:Bind RemoveAppCommand, Mode=OneTime}"
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}">
+                                            <custom:GhostButton.LeftIcon>
+                                                <pathicons:Trash />
+                                            </custom:GhostButton.LeftIcon>
+                                        </custom:GhostButton>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+
+                        <Button Grid.Row="1"
+                                HorizontalAlignment="Left"
+                                AutomationProperties.AutomationId="AddAppButton"
+                                Command="{x:Bind ViewModel.AddAppCommand, Mode=OneTime}"
+                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Apps_Add')}" />
+                    </Grid>
+                </labs:SettingsCard>
+            </StackPanel>
+
+            <StackPanel Spacing="8"
+                        Visibility="{x:Bind ViewModel.IsSplitTunnelingEnabled}">
+
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Features_SplitTunneling_IpAddresses_Header', ViewModel.ActiveIpAddressesCount)}" />
+
+                <labs:SettingsCard IsTabStop="False"
+                                   Style="{StaticResource VerticalSettingsCardStyle}">
+                    <Grid Margin="0,-8,0,0"
+                          ColumnSpacing="8">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBox Grid.Row="0"
+                                 Grid.Column="0"
+                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Watermark')}"
+                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <Button Grid.Row="0"
+                                Grid.Column="1"
+                                AutomationProperties.AutomationId="AddIpAddressButton"
+                                Command="{x:Bind ViewModel.AddIpAddressCommand, Mode=OneTime}"
+                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Add')}" />
+
+                        <ItemsRepeater Grid.Row="1"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0,16,0,0"
+                                       ItemsSource="{x:Bind ViewModel.IpAddresses}"
+                                       Visibility="{x:Bind ViewModel.HasIpAddresses, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="8" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate x:DataType="st:SplitTunnelingIpAddressViewModel">
+                                    <Grid ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0"
+                                                  Content="{x:Bind IpAddress}"
+                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}" />
+                                        <custom:GhostButton Grid.Column="1"
+                                                            AutomationProperties.AutomationId="RemoveIpAddressButton"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}"
+                                                            Command="{x:Bind RemoveIpAddressCommand, Mode=OneTime}"
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}">
+                                            <custom:GhostButton.LeftIcon>
+                                                <pathicons:Trash />
+                                            </custom:GhostButton.LeftIcon>
+                                        </custom:GhostButton>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+                    </Grid>
+                </labs:SettingsCard>
+            </StackPanel>
+        </StackPanel>
     </controls:PageContentControl>
 </Page>

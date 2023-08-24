@@ -19,6 +19,7 @@
 
 using System.Collections.Concurrent;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Common.Core.Enums;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings.Contracts;
@@ -38,4 +39,6 @@ public interface IGlobalSettings
     int[] OpenVpnUdpPorts { get; set; }
     ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; }
     bool DoHEnabled { get; set; }
+    bool IsKillSwitchEnabled { get; set; }
+    KillSwitchMode KillSwitchMode { get; set; }
 }

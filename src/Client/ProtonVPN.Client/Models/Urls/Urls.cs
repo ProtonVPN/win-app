@@ -32,7 +32,7 @@ public class Urls : IUrls
         _logger = logger;
     }
 
-    public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol/";
+    public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol";
 
     public string CreateAccount => "https://account.protonvpn.com/signup";
 
@@ -42,17 +42,25 @@ public class Urls : IUrls
 
     public string TroubleSigningIn => "https://protonvpn.com/support/login-problems";
 
-    public string ProtocolChangeLearnMore => "https://protonvpn.com/support/how-to-change-vpn-protocols/";
+    public string ProtocolChangeLearnMore => "https://protonvpn.com/support/how-to-change-vpn-protocols";
 
-    public string ServerLoadLearnMore => "https://protonvpn.com/support/server-load-percentages-and-colors-explained/";
+    public string ServerLoadLearnMore => "https://protonvpn.com/support/server-load-percentages-and-colors-explained";
 
-    public string InternetSpeedLearnMore => "https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed/";
+    public string InternetSpeedLearnMore => "https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed";
 
-    public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat/";
+    public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat";
 
-    public string SupportCenter => "https://protonvpn.com/support/";
+    public string SupportCenter => "https://protonvpn.com/support";
 
-    public string UsageStatisticsLearnMore => "https://protonvpn.com/support/share-usage-statistics/";
+    public string UsageStatisticsLearnMore => "https://protonvpn.com/support/share-usage-statistics";
+
+    public string NetShieldLearnMore => "https://protonvpn.com/support/netshield";
+
+    public string KillSwitchLearnMore => "https://protonvpn.com/support/what-is-kill-switch";
+
+    public string PortForwardingLearnMore => "https://protonvpn.com/support/port-forwarding";
+
+    public string SplitTunnelingLearnMore => "https://protonvpn.com/support/protonvpn-split-tunneling";
 
     public void NavigateTo(string url)
     {

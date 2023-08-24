@@ -50,4 +50,11 @@ public interface IUserSettings
     List<CustomDnsServer> CustomDnsServersList { get; set; }
     bool IsAutoConnectEnabled { get; set; }
     AutoConnectMode AutoConnectMode { get; set; }
-}
+    bool IsNetShieldEnabled { get; set; }
+    bool IsPortForwardingEnabled { get; set; }
+    bool IsPortForwardingNotificationEnabled { get; set; }
+    bool IsSplitTunnelingEnabled { get; set; }
+    SplitTunnelingMode SplitTunnelingMode { get; set; }
+    List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList { get; set; }
+    List<SplitTunnelingApp> SplitTunnelingAppsList { get; set; }
+}   

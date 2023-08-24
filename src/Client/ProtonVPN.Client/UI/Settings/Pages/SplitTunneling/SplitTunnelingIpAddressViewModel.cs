@@ -22,22 +22,22 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 
-namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
+namespace ProtonVPN.Client.UI.Settings.Pages.SplitTunneling;
 
-public partial class DnsServerViewModel : ViewModelBase
+public partial class SplitTunnelingIpAddressViewModel : ViewModelBase, IEquatable<SplitTunnelingIpAddressViewModel>
 {
-    private readonly CustomDnsServersViewModel _parentViewModel;
+    private readonly SplitTunnelingViewModel _parentViewModel;
 
     [ObservableProperty]
     private bool _isActive;
 
     public string IpAddress { get; }
 
-    public DnsServerViewModel(ILocalizationProvider localizationProvider, CustomDnsServersViewModel parentViewModel, string ipAddress)
+    public SplitTunnelingIpAddressViewModel(ILocalizationProvider localizationProvider, SplitTunnelingViewModel parentViewModel, string ipAddress)
         : this(localizationProvider, parentViewModel, ipAddress, true)
     { }
 
-    public DnsServerViewModel(ILocalizationProvider localizationProvider, CustomDnsServersViewModel parentViewModel, string ipAddress, bool isActive)
+    public SplitTunnelingIpAddressViewModel(ILocalizationProvider localizationProvider, SplitTunnelingViewModel parentViewModel, string ipAddress, bool isActive)
         : base(localizationProvider)
     {
         _parentViewModel = parentViewModel;
@@ -47,13 +47,19 @@ public partial class DnsServerViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public void RemoveDnsServer()
+    public void RemoveIpAddress()
     {
-        _parentViewModel.RemoveDnsServer(this);
+        _parentViewModel.RemoveIpAddress(this);
+    }
+
+    public bool Equals(SplitTunnelingIpAddressViewModel? other)
+    {
+        return other != null
+            && string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase);
     }
 
     partial void OnIsActiveChanged(bool value)
     {
-        _parentViewModel.InvalidateCustomDnsServersCount();
+        _parentViewModel.InvalidateIpAddressesCount();
     }
 }

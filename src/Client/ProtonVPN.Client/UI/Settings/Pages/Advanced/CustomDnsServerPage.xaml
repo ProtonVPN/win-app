@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_Advanced_CustomDnsServers_Header', ViewModel.CustomDnsServersCount)}" />
+                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_Advanced_CustomDnsServers_Header', ViewModel.ActiveCustomDnsServersCount)}" />
 
                 <labs:SettingsCard IsTabStop="False"
                                    Style="{StaticResource VerticalSettingsCardStyle}">

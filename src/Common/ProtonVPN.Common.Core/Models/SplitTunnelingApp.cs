@@ -21,21 +21,24 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ProtonVPN.Common.Core.Models;
 
-public struct CustomDnsServer : IEquatable<CustomDnsServer>
+public struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
 {
-    public string IpAddress { get; set; }
+    public string AppFilePath { get; set; }
+
+    public List<string> AlternateAppFilePaths { get; set; }
 
     public bool IsActive { get; set; }
 
-    public CustomDnsServer(string ipAddress, bool isActive)
+    public SplitTunnelingApp(string appFilePath, bool isActive)
     {
-        IpAddress = ipAddress;
+        AppFilePath = appFilePath;
         IsActive = isActive;
+        AlternateAppFilePaths = new List<string>();
     }
 
-    public bool Equals(CustomDnsServer other)
+    public bool Equals(SplitTunnelingApp other)
     {
-        return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase);
+        return string.Equals(AppFilePath, other.AppFilePath, StringComparison.OrdinalIgnoreCase);
     }
 
     public override bool Equals([NotNullWhen(true)] object? obj)
@@ -44,11 +47,11 @@ public struct CustomDnsServer : IEquatable<CustomDnsServer>
         {
             return false;
         }
-        return Equals((CustomDnsServer)obj);
+        return Equals((SplitTunnelingApp)obj);
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(IpAddress?.ToUpperInvariant());
+        return HashCode.Combine(AppFilePath?.ToUpperInvariant());
     }
 }

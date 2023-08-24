@@ -23,15 +23,79 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="KillSwitchRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
+            <Setter Property="GroupName" Value="KillSwitchMode" />
+        </Style>
+    </Page.Resources>
+
     <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
 
-        <StackPanel x:Name="ContentArea"/>
+        <controls:PageContentControl.PageHeader>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="16">
+                <Image Width="32"
+                       Height="32"
+                       Source="{x:Bind ViewModel.KillSwitchFeatureIconSource}" />
+                <TextBlock Text="{x:Bind ViewModel.Title}" />
+            </StackPanel>
+        </controls:PageContentControl.PageHeader>
 
+        <StackPanel x:Name="ContentArea">
+
+            <labs:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch')}"
+                                   IsExpanded="{x:Bind ViewModel.IsKillSwitchEnabled}"
+                                   IsTabStop="False">
+                <labs:SettingsExpander.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </labs:SettingsExpander.Description>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsKillSwitchEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+                <labs:SettingsExpander.Items>
+                    <StackPanel Spacing="16">
+                        <RadioButton IsChecked="{x:Bind ViewModel.IsStandardKillSwitch, Mode=TwoWay}"
+                                     Style="{StaticResource KillSwitchRadioButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Standard')}" />
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Standard_Description')}"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton IsChecked="{x:Bind ViewModel.IsAdvancedKillSwitch, Mode=TwoWay}"
+                                     Style="{StaticResource KillSwitchRadioButtonStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Advanced')}" />
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Advanced_Description')}"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </labs:SettingsExpander.Items>
+            </labs:SettingsExpander>
+
+            <TextBlock Margin="0,8,0,0"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Footer')}" />
+        </StackPanel>
     </controls:PageContentControl>
 </Page>

@@ -811,10 +811,19 @@
     <None Remove="Assets\Icons\UnprotectedLock.xaml" />
     <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
     <None Remove="Assets\Illustrations\Dark\welcome.jpg" />
+    <None Remove="Assets\Illustrations\kill-switch-off.png" />
+    <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
+    <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
     <None Remove="Assets\Illustrations\Light\product-logo.svg" />
     <None Remove="Assets\Illustrations\Light\welcome.jpg" />
+    <None Remove="Assets\Illustrations\netshield-off.png" />
+    <None Remove="Assets\Illustrations\netshield-on.png" />
+    <None Remove="Assets\Illustrations\port-forwarding-off.png" />
+    <None Remove="Assets\Illustrations\port-forwarding-on.png" />
     <None Remove="Assets\Illustrations\report-error.png" />
     <None Remove="Assets\Illustrations\report-success.png" />
+    <None Remove="Assets\Illustrations\split-tunneling-off.png" />
+    <None Remove="Assets\Illustrations\split-tunneling-on.png" />
     <None Remove="Controls\CountryFlagControl.xaml" />
     <None Remove="Controls\DualCommandsRowControl.xaml" />
     <None Remove="Controls\PageContentControl.xaml" />
@@ -1836,16 +1845,43 @@
     <Content Update="Assets\Illustrations\Dark\welcome.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Illustrations\kill-switch-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\kill-switch-on-level-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\kill-switch-on-level-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Illustrations\Light\product-logo.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Illustrations\Light\welcome.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Illustrations\netshield-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\netshield-on.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\port-forwarding-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\port-forwarding-on.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Illustrations\report-error.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Illustrations\report-success.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\split-tunneling-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Illustrations\split-tunneling-on.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

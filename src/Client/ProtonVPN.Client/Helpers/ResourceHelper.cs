@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
 namespace ProtonVPN.Client.Helpers;
@@ -43,5 +44,18 @@ public static class ResourceHelper
         }
 
         return (Color)themeDictionary[resourceKey];
+    }
+
+    public static ImageSource GetIllustration(string resourceKey)
+    {
+        ResourceDictionary? illustrationsDictionary = Application.Current.Resources
+            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Illustrations.xaml"));
+
+        if (illustrationsDictionary == null || !illustrationsDictionary.ContainsKey(resourceKey))
+        {
+            return default;
+        }
+
+        return (ImageSource)illustrationsDictionary[resourceKey];
     }
 }

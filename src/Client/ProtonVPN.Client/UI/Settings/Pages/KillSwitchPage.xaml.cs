@@ -21,11 +21,11 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public sealed partial class KillSwitchPage
 {
+    public KillSwitchViewModel ViewModel { get; }
+
     public KillSwitchPage()
     {
         ViewModel = App.GetService<KillSwitchViewModel>();
         InitializeComponent();
     }
-
-    public KillSwitchViewModel ViewModel { get; }
 }
