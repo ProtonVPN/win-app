@@ -25,6 +25,13 @@ public class ApplicationElementTheme
 {
     public ElementTheme Theme { get; }
 
+    public ApplicationTheme ApplicationTheme => Theme switch
+    {
+        ElementTheme.Light => ApplicationTheme.Light,
+        ElementTheme.Dark => ApplicationTheme.Dark,
+        _ => Application.Current.RequestedTheme,
+    };
+
     public ApplicationElementTheme(ElementTheme theme)
     {
         Theme = theme;

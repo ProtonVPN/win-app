@@ -28,6 +28,8 @@ namespace ProtonVPN.Client.UI.HumanVerification;
 
 public sealed partial class HumanVerificationDialog
 {
+    private const int WEBVIEW_ADDED_HEIGHT = 124;
+
     private readonly ILogger _logger;
     private readonly IHumanVerificationConfig _humanVerificationConfig;
 
@@ -86,7 +88,7 @@ public sealed partial class HumanVerificationDialog
             switch (message?.Type)
             {
                 case CaptchaMessageTypes.Height:
-                    WebView2.Height = message.Height;
+                    WebView2.Height = message.Height + WEBVIEW_ADDED_HEIGHT;
                     break;
                 case CaptchaMessageTypes.TokenResponse:
                     ViewModel.TriggerVerificationTokenMessageCommand.Execute(message.Token);
