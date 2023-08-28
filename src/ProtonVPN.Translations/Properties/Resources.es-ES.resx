@@ -432,7 +432,7 @@
     <value>¿Cuál es el problema?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>¿Cual fue el problema?</value>
+    <value>¿Qué ha fallado?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">

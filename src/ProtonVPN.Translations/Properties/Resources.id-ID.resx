@@ -2849,7 +2849,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected">
-    <value>Anda tidak terlindungi!</value>
+    <value>Anda tidak terlindung!</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
