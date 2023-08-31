@@ -76,6 +76,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                     <Setter Property="Background" Value="{StaticResource SignalDangerHoverBrushColor}" />
                 </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsToShowChangeServerButton}" Value="True" />
+                        <Condition Binding="{Binding Connected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Margin" Value="0,0,0,115" />
+                </MultiDataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="DisconnectedPanel" TargetType="Grid">
@@ -144,7 +151,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <Grid Height="230" Width="336" x:Name="ConnectionStatusContainer">
+    <Grid Width="336" x:Name="ConnectionStatusContainer">
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Height" Value="230" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsToShowFreeRescopeUI}" Value="True">
+                        <Setter Property="Height" Value="270" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Button Style="{StaticResource SidebarModeButton}"/>
         <Image VerticalAlignment="Top"
                Source="{Binding ServerExitCountry, Converter={StaticResource ConnectionStatusFlagConverter}}" />
@@ -299,6 +316,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          HorizontalAlignment="Right" />
         <Button Style="{StaticResource QuickConnectButton}"
                 AutomationProperties.AutomationId="{StaticResource SidebarQuickConnectButton}" />
+        <controls:ChangeServerButton Visibility="{Binding IsToShowChangeServerButton, Converter={StaticResource BoolToVis}}"
+                                     Margin="32,0,32,68"
+                                     VerticalAlignment="Bottom"
+                                     TimeLeft="{Binding ChangeServerTimeLeft, UpdateSourceTrigger=PropertyChanged}"
+                                     Command="{Binding ChangeServerCommand}"
+                                     AutomationProperties.AutomationId="{StaticResource SidebarChangeServerButton}" />
         <onboarding:Step Number="1"
                          HorizontalAlignment="Right"
                          Margin="0,40,-20,0"

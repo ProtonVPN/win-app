@@ -89,8 +89,20 @@ namespace ProtonVPN.Core.Service.Vpn
             await ConnectToBestProfileAsync(profile, maxServers: maxServers);
         }
 
+        public async Task ConnectToDifferentRandomFreeServerAsync()
+        {
+            Profile profile = await _profileManager.GetRandomProfileAsync();
+            VpnManagerProfileCandidates profileCandidates = GetProfileCandidates(profile, true);
+            await ConnectToProfileCandidatesAsync(profileCandidates);
+        }
+
         private async Task<Profile> GetQuickConnectProfileAsync()
         {
+            if (_appSettings.FeatureFreeRescopeEnabled && !_userStorage.GetUser().Paid())
+            {
+                return await _profileManager.GetFastestProfile();
+            }
+
             return await _profileManager.GetProfileById(_appSettings.QuickConnect) ??
                    await _profileManager.GetFastestProfile();
         }
@@ -140,12 +152,18 @@ namespace ProtonVPN.Core.Service.Vpn
             return bestProfileCandidates;
         }
 
-        private VpnManagerProfileCandidates GetProfileCandidates(Profile profile)
+        private VpnManagerProfileCandidates GetProfileCandidates(Profile profile, bool excludeLastServer = false)
         {
+            IReadOnlyCollection<Server> candidates = _profileConnector.ServerCandidates(profile);
+            if (excludeLastServer)
+            {
+                candidates = candidates.Except(new List<Server> { LastServer }).ToList();
+            }
+
             VpnManagerProfileCandidates profileCandidates = new()
             {
                 Profile = profile,
-                Candidates = _profileConnector.ServerCandidates(profile)
+                Candidates = candidates,
             };
             profileCandidates.CanConnect = _profileConnector.CanConnect(profileCandidates.Candidates);
 

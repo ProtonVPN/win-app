@@ -29,8 +29,6 @@ namespace ProtonVPN.Map.ViewModels.Pins
         private readonly CountryConnector _countryConnector;
         private readonly PinFactory _pinFactory;
 
-        public bool UpgradeRequired { get;set; }
-
         public PinViewModel(
             string countryCode,
             CountryConnector countryConnector,
@@ -45,6 +43,7 @@ namespace ProtonVPN.Map.ViewModels.Pins
             Connected = e.State.Server is Server server
                         && e.State.Status == VpnStatus.Connected
                         && server.EntryCountry == CountryCode;
+            Highlighted = Connected || IsHighlightedOnDisconnect;
         }
 
         protected override bool BeforeShowTooltip()

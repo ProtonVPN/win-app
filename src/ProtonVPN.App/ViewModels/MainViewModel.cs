@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,6 +34,8 @@ using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service.Vpn;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.FlashNotifications;
@@ -45,7 +48,7 @@ using ProtonVPN.Windows.Popups.DeveloperTools;
 
 namespace ProtonVPN.ViewModels
 {
-    internal class MainViewModel : LanguageAwareViewModel, IVpnStateAware, IOnboardingStepAware
+    internal class MainViewModel : LanguageAwareViewModel, IVpnStateAware, IOnboardingStepAware, IUserDataAware
     {
         private readonly IUserAuthenticator _userAuthenticator;
         private readonly IVpnManager _vpnManager;
@@ -55,6 +58,8 @@ namespace ProtonVPN.ViewModels
         private readonly IModals _modals;
         private readonly IDialogs _dialogs;
         private readonly IPopupWindows _popups;
+        private readonly IAppSettings _appSettings;
+        private readonly IUserStorage _userStorage;
 
         private bool _connecting;
 
@@ -71,7 +76,9 @@ namespace ProtonVPN.ViewModels
             ConnectingViewModel connectingViewModel,
             OnboardingViewModel onboardingViewModel,
             FlashNotificationViewModel flashNotificationViewModel,
-            TrayNotificationViewModel trayNotificationViewModel)
+            TrayNotificationViewModel trayNotificationViewModel,
+            IAppSettings appSettings,
+            IUserStorage userStorage)
         {
             _eventAggregator = eventAggregator;
             _vpnManager = vpnManager;
@@ -81,6 +88,8 @@ namespace ProtonVPN.ViewModels
             _modals = modals;
             _dialogs = dialogs;
             _popups = popups;
+            _appSettings = appSettings;
+            _userStorage = userStorage;
 
             Map = mapViewModel;
             Connection = connectingViewModel;
@@ -126,6 +135,8 @@ namespace ProtonVPN.ViewModels
         public ICommand ExitCommand { get; }
 
         public bool IsToShowDeveloperTools { get; private set; }
+
+        public bool IsToShowProfilesMenuItem => !_appSettings.FeatureFreeRescopeEnabled || _userStorage.GetUser().Paid();
 
         public bool Connecting
         {
@@ -181,9 +192,24 @@ namespace ProtonVPN.ViewModels
             return Task.CompletedTask;
         }
 
+        public override void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            base.OnAppSettingsChanged(e);
+
+            if (e.PropertyName == nameof(IAppSettings.FeatureFreeRescopeEnabled))
+            {
+                NotifyOfPropertyChange(nameof(IsToShowProfilesMenuItem));
+            }
+        }
+
         public void OnStepChanged(int step)
         {
             ShowOnboarding = step > 0;
+        }
+
+        public void OnUserDataChanged()
+        {
+            NotifyOfPropertyChange(nameof(IsToShowProfilesMenuItem));
         }
 
         private async void AboutAction()

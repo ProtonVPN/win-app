@@ -51,6 +51,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="MinHeight" Value="40" />
             <Setter Property="Margin" Value="20,0,35,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Opacity" Value="1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
+                    <Setter Property="Opacity" Value="0.5" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="ProfileName" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16" />
@@ -95,6 +101,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             OpacityMask="{StaticResource ConnectButtonOpacityMask}" />
                                     <Button Margin="20,0,0,0"
                                             Style="{StaticResource SidebarConnectButton}"
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ConnectCommand}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Style="{StaticResource UpgradeButton}"
                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ConnectCommand}"
                                             CommandParameter="{Binding}" />
                                 </Grid>
@@ -143,6 +152,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Run Text="{Binding NumOfProfilesText}" />
                     </TextBlock>
                     <Button Grid.Column="1"
+                            Visibility="{Binding IsToShowManageProfilesButton, Converter={StaticResource BoolToVis}}"
                             Style="{StaticResource ManageProfilesButton}"
                             Content="{translations:Loc Sidebar_Profiles_lnk_Manage}" />
                 </Grid>
@@ -183,10 +193,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                             <Setter.Value>
                                                                 <DataTemplate>
                                                                     <controls:LoadBubble Width="32"
-                                                                        Height="32"
-                                                                        Margin="3,0,0,0"
-                                                                        HorizontalAlignment="Left"
-                                                                        DataContext="{Binding ElementName=ProfileIcon, Path=DataContext.ConnectionInfoViewModel}" />
+                                                                                         Height="32"
+                                                                                         Margin="3,0,0,0"
+                                                                                         HorizontalAlignment="Left"
+                                                                                         DataContext="{Binding ElementName=ProfileIcon, Path=DataContext.ConnectionInfoViewModel}" />
                                                                 </DataTemplate>
                                                             </Setter.Value>
                                                         </Setter>

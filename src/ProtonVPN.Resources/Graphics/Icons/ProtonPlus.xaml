@@ -1,0 +1,89 @@
+﻿<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Icons.ProtonPlus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox Stretch="Uniform">
+        <Canvas Width="39" Height="24">
+            <Canvas.Resources>
+                <LinearGradientBrush x:Key="Paint0Linear474399223" MappingMode="Absolute" StartPoint="-22,3"
+                                     EndPoint="39,11">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#6E4BFF" />
+                            <GradientStop Color="#547AEC" Offset="0.355428" />
+                            <GradientStop Color="#2FCCCF" Offset="1" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Resources>
+            <Rectangle Canvas.Left="0.75" Canvas.Top="0.5" Width="37.75" Height="23" RadiusX="7.5" RadiusY="7.5"
+                       Fill="#FF292733" />
+            <Rectangle Canvas.Left="0.75" Canvas.Top="0.5" Width="37.75" Height="23" RadiusX="7.5" RadiusY="7.5"
+                       Name="Rectangle"
+                       Stroke="{StaticResource Paint0Linear474399223}">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Fill" Value="Transparent" />
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <x:Null />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Canvas}}" Value="True">
+                                <Setter Property="Fill" Value="#5C5969" />
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="8" Color="#30CAD0" Opacity="0.4"  ShadowDepth="0" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <Path Fill="#ffffff">
+                <Path.Data>
+                    <PathGeometry
+                        Figures="M7.4592 7.88151C6.82041 6.73995 7.747 5.35591 9.04583 5.51155L19.8427 6.80537C21.0133 6.94565 21.6353 8.26086 21.0011 9.25474L15.5443 17.8055C14.9342 18.7615 13.5247 18.7208 12.9708 17.731L7.4592 7.88151ZM8.92685 6.50445C8.43979 6.44608 8.09232 6.9651 8.33186 7.39318L8.60526 7.88175L17.2202 9.03934C17.773 9.11363 18.0592 9.73931 17.7538 10.2061L13.5238 16.6714L13.8435 17.2427C14.0281 17.5726 14.4979 17.5862 14.7013 17.2675L20.1581 8.71678C20.3959 8.34408 20.1627 7.85088 19.7237 7.79827L8.92685 6.50445Z"
+                        FillRule="EvenOdd" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#ffffff">
+                <Path.Data>
+                    <PathGeometry
+                        Figures="M24.25 12.375C24.25 12.0298 24.5298 11.75 24.875 11.75H32.375C32.7202 11.75 33 12.0298 33 12.375C33 12.7202 32.7202 13 32.375 13H24.875C24.5298 13 24.25 12.7202 24.25 12.375Z"
+                        FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#ffffff">
+                <Path.Data>
+                    <PathGeometry
+                        Figures="M28.625 8C28.9702 8 29.25 8.27982 29.25 8.625L29.25 16.125C29.25 16.4702 28.9702 16.75 28.625 16.75C28.2798 16.75 28 16.4702 28 16.125L28 8.625C28 8.27982 28.2798 8 28.625 8Z"
+                        FillRule="NonZero" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Viewbox>
+</UserControl>

@@ -22,8 +22,8 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Specs;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Partners;
 using ProtonVPN.Streaming;
 
 namespace ProtonVPN.Servers
@@ -36,11 +36,11 @@ namespace ProtonVPN.Servers
 
         public ServersByGatewayViewModel(string gatewayName,
             sbyte userTier,
+            IAppSettings appSettings,
             ServerManager serverManager,
             VpnState vpnConnectionStatus,
-            IStreamingServices streamingServices,
-            IPartnersService partnersService)
-            : base(isB2B: true, gatewayName, userTier, serverManager, vpnConnectionStatus, streamingServices, partnersService)
+            IStreamingServices streamingServices)
+            : base(isB2B: true, gatewayName, userTier, appSettings, serverManager, vpnConnectionStatus, streamingServices)
         {
             _gatewayName = gatewayName;
         }

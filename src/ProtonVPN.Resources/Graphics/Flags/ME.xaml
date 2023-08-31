@@ -1,0 +1,43 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Flags.ME"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox>
+        <Canvas Height="16" Width="24">
+            <Canvas>
+                <Canvas.Clip>
+                    <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,24,16" />
+                </Canvas.Clip>
+                <Path Data="M24 -0.00250244H0V15.995H24V-0.00250244Z" Fill="#FFDA44" />
+                <Path Data="M24 1.39252H0V14.6075H24V1.39252Z" Fill="#A2001D" />
+                <Path
+                    Data="M10.2601 5.91502H13.7401V4.52002L13.0426 4.87252L12.0001 3.83002L10.9576 4.87252L10.2601 4.52002V5.91502V5.91502ZM15.1276 8.00002H13.3951C13.4641 7.87738 13.5001 7.73885 13.4993 7.59809C13.4986 7.45734 13.4611 7.31921 13.3907 7.19732C13.3203 7.07544 13.2194 6.974 13.0978 6.90302C12.9763 6.83203 12.8383 6.79395 12.6976 6.79252C12.5503 6.79668 12.4071 6.84166 12.284 6.92244C12.1608 7.00322 12.0625 7.11663 12.0001 7.25002C11.9601 7.14271 11.8977 7.04519 11.817 6.96401C11.7362 6.88283 11.639 6.81987 11.532 6.77935C11.4249 6.73883 11.3103 6.7217 11.1961 6.7291C11.0818 6.7365 10.9705 6.76826 10.8695 6.82225C10.7686 6.87624 10.6803 6.95121 10.6107 7.04213C10.5411 7.13305 10.4918 7.2378 10.466 7.34936C10.4403 7.46092 10.4387 7.5767 10.4614 7.68893C10.4841 7.80115 10.5305 7.90722 10.5976 8.00002H8.87256C8.87846 8.25798 8.9856 8.50326 9.17084 8.68288C9.35608 8.86251 9.60454 8.96206 9.86256 8.96002C9.85759 9.16145 9.91662 9.35926 10.0312 9.52502C10.1457 9.69078 10.3099 9.81594 10.5001 9.88252L9.75006 10.6325L10.5001 11.3825L11.5501 10.3325L11.6701 10.37L11.0401 11.8025C11.6712 12.0523 12.3739 12.0523 13.0051 11.8025L12.3751 10.37L12.5026 10.3325L13.5001 11.405L14.2501 10.655L13.5001 9.90502C13.7 9.84769 13.8757 9.72648 14.0003 9.5599C14.1249 9.39332 14.1916 9.19053 14.1901 8.98252C14.4428 8.97093 14.6812 8.86233 14.8559 8.67931C15.0305 8.4963 15.1278 8.25298 15.1276 8.00002V8.00002Z"
+                    Fill="#FFDA44" />
+                <Path
+                    Data="M11.9997 8.52502L10.8672 9.04252V10.085L11.9997 10.7825L13.1322 10.085V9.04252L11.9997 8.52502Z"
+                    Fill="#6DA544" />
+                <Path Data="M13.1247 8H10.8672V9.395H13.1247V8Z" Fill="#0052B4" />
+            </Canvas>
+        </Canvas>
+    </Viewbox>
+</UserControl>

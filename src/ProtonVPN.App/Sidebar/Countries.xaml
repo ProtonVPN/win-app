@@ -61,29 +61,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Margin" Value="0,0,12,0" />
             <Setter Property="Width" Value="21" />
         </Style>
-        <Style x:Key="UpgradeRequiredLabel" TargetType="Label">
-            <Setter Property="Margin" Value="5,0,0,0" />
-            <Setter Property="Visibility" Value="Hidden" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Foreground" Value="{StaticResource TextHintBrushColor}" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="Padding" Value="0,5" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
-                <DataTrigger
-                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
-                    Value="True">
-                    <Setter Property="Visibility" Value="Hidden" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Server.Status}" Value="0">
-                    <Setter Property="Visibility" Value="Hidden" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
         <Style x:Key="ServerRowStackPanel" TargetType="StackPanel">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Orientation" Value="Horizontal" />
@@ -424,6 +401,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter TargetName="Border" Property="Cursor" Value="Arrow" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:FreeConnectionSeparatorViewModel}">
+                                        <Setter TargetName="Border" Property="Cursor" Value="Arrow" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
+                                                 Value="{x:Type servers:ServersByGatewayViewModel}">
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource DataTypeConverter}}"
                                                  Value="{x:Type servers:ServersByGatewayViewModel}">
                                         <Setter TargetName="Border" Property="BorderThickness" Value="0,1,0,0" />
                                     </DataTrigger>
@@ -471,6 +456,43 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Style>
             </wpf:CustomListView.ItemContainerStyle>
             <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type servers:FastestServerViewModel}">
+                    <Border x:Name="Border" Height="48">
+                        <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">
+                            <DockPanel Background="Transparent">
+                                <icons:Bolt Foreground="{StaticResource TextNormBrushColor}"
+                                            Margin="0,0,8,0"
+                                            Width="20"
+                                            Height="20" />
+                                <TextBlock x:Name="CountryLabel"
+                                           Text="{Binding Name}"
+                                           Style="{StaticResource CountrySeparator}"
+                                           TextTrimming="CharacterEllipsis" />
+                            </DockPanel>
+                            <Button Style="{StaticResource SidebarCountryConnectButton}"
+                                    Margin="0,0,30,0"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ConnectFastest}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type servers:UpsellBannerViewModel}">
+                    <controls:UpsellBanner Margin="-14,0,0,12"
+                                           Width="282"
+                                           Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Upgrade}">
+                        <controls:UpsellBanner.Style>
+                            <Style TargetType="controls:UpsellBanner">
+                                <Setter Property="Title" Value="{translations:Loc Servers_UpsellBanner}" />
+                                <Setter Property="ImagePath" Value="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/worldwide-coverage-small.png" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsToShowNotTheCountryYouWanted}" Value="True">
+                                        <Setter Property="Title" Value="{translations:Loc Servers_UpsellBanner_NotTheCountryYouWanted}" />
+                                        <Setter Property="ImagePath" Value="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/wrong-country.png" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </controls:UpsellBanner.Style>
+                    </controls:UpsellBanner>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type servers:CountryB2BSeparatorViewModel}">
                     <Border x:Name="Border" Height="48">
                         <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">
@@ -496,6 +518,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <countryFeatures:CountryFeaturesPopupView
                                     DataContext="{Binding CountryFeaturesPopupViewModel}" />
                             </DockPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type servers:FreeConnectionSeparatorViewModel}">
+                    <Border x:Name="Border" Height="48">
+                        <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">
+                            <TextBlock x:Name="CountryLabel"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource CountrySeparator}"
+                                       TextTrimming="CharacterEllipsis" />
+                            <Button Style="{StaticResource ClearStyleButton}"
+                                    HorizontalAlignment="Right"
+                                    Margin="0,0,30,0"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ShowFreeConnectionsModalCommand}"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <icons:InfoCircleFilled Style="{StaticResource GrayInfoIcon}" />
+                            </Button>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -680,8 +720,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    FontSize="14"
                                    FontWeight="Normal"
                                    Content="{Binding Server.City}" />
-                            <Label Style="{StaticResource UpgradeRequiredLabel}"
-                                   Content="{translations:Loc Servers_lbl_Upgrade}" />
+                            <Button Style="{StaticResource UpgradeButton}"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.Upgrade}"
+                                    CommandParameter="{Binding}" />
                             <Button Margin="38,0,0,0"
                                     Style="{StaticResource SidebarServerConnectButton}"
                                     Command="{Binding DataContext.Connect, RelativeSource={RelativeSource AncestorType=ListView}}"
@@ -738,8 +779,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         CommandParameter="{Binding}" />
                             </Grid>
                             <icons:Wrench Style="{StaticResource MaintenanceIcon}" />
-                            <Label Style="{StaticResource UpgradeRequiredLabel}"
-                                   Content="{translations:Loc Servers_lbl_Upgrade}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>

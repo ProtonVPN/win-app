@@ -70,6 +70,7 @@ namespace ProtonVPN.Map.ViewModels.Pins
             Connected = e.State.Server is Server server
                         && e.State.Status == VpnStatus.Connected
                         && server.ExitCountry.EqualsIgnoringCase(CountryCode);
+            Highlighted = Connected || IsHighlightedOnDisconnect;
 
             foreach (var s in Servers)
             {

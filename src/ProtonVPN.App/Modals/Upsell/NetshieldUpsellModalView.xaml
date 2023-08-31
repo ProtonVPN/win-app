@@ -34,14 +34,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Height="Auto"
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:NetshieldUpsellModalViewModel}">
-    <resource:BaseModalWindow.Resources>
-        <Style x:Key="Icon" TargetType="UserControl">
-            <Setter Property="Width" Value="20" />
-            <Setter Property="Foreground" Value="{StaticResource PrimaryBrushColor}" />
-        </Style>
-    </resource:BaseModalWindow.Resources>
     <Grid>
-        <StackPanel Margin="80,64">
+        <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/gradient-top-green.png"
+               VerticalAlignment="Top" />
+        <StackPanel Width="367"
+                    VerticalAlignment="Top"
+                    Margin="0,64"
+                    HorizontalAlignment="Center">
             <vectorImages:Netshield />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
@@ -52,40 +51,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{translations:Loc Upsell_Netshield_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource TextNormBrushColor}"
-                       Padding="0,8,0,32"
+                       Foreground="{StaticResource TextWeakBrushColor}"
+                       Padding="0,8,0,0"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_Netshield_Subtitle}" />
-            <StackPanel Margin="60,0,0,0">
-                <DockPanel Margin="0,0,0,14">
-                    <icons:CircleSlash Style="{StaticResource Icon}" />
-                    <TextBlock Text="{translations:Loc Upsell_Netshield_BlockAds}"
-                               Padding="10,0,0,0"
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextNormBrushColor}"
-                               FontSize="14" />
-                </DockPanel>
-                <DockPanel Margin="0,0,0,14">
-                    <icons:Shield Style="{StaticResource Icon}" />
-                    <TextBlock Text="{translations:Loc Upsell_Netshield_ProtectFromMalware}"
-                               Padding="10,0,0,0"
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextNormBrushColor}"
-                               FontSize="14" />
-                </DockPanel>
-                <DockPanel Margin="0,0,0,14">
-                    <icons:Rocket Style="{StaticResource Icon}" />
-                    <TextBlock Text="{translations:Loc Upsell_Netshield_BrowseFast}"
-                               Padding="10,0,0,0"
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextNormBrushColor}"
-                               FontSize="14" />
-                </DockPanel>
-            </StackPanel>
+            <Border Style="{StaticResource BulletPanelBorder}">
+                <StackPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:CircleSlash Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_Netshield_BlockAds}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:Shield Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_Netshield_ProtectFromMalware}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:Rocket Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_Netshield_BrowseFast}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                </StackPanel>
+            </Border>
             <Button Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
-                    Margin="0,25,0,0"
                     Content="{translations:Loc Upsell_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
         </StackPanel>

@@ -59,6 +59,7 @@ namespace ProtonVPN.Core.Settings
         bool CustomDnsEnabled { get; set; }
         bool SidebarMode { get; set; }
         bool WelcomeModalShown { get; set; }
+        bool IsFreeRescopeModalDisplayed { get; set; }
         bool ModerateNat { get; set; }
         int OnboardingStep { get; set; }
         int AppStartCounter { get; set; }
@@ -101,6 +102,7 @@ namespace ProtonVPN.Core.Settings
         bool FeatureVpnAcceleratorEnabled { get; set; }
         bool FeatureStreamingServicesLogosEnabled { get; set; }
         bool FeaturePromoCodeEnabled { get; set; }
+        bool FeatureFreeRescopeEnabled { get; set; }
         bool ConnectOnAppStart { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
         bool ShowNonStandardPortsToFreeUsers { get; set; }
@@ -121,6 +123,11 @@ namespace ProtonVPN.Core.Settings
         bool IsToShowRebrandingPopup { get; set; }
         ConcurrentDictionary<string, DnsResponse> DnsCache { get; set; }
         bool FeatureNetShieldStatsEnabled { get; set; }
+        int ChangeServerAttempts { get; set; }
+        DateTime NextChangeServerTimeUtc { get; set; }
+        int ChangeServerAttemptLimit { get; set; }
+        int ChangeServerShortDelayInSeconds { get; set; }
+        int ChangeServerLongDelayInSeconds { get; set; }
 
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();

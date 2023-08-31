@@ -20,6 +20,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Caliburn.Micro;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts.Servers;
@@ -28,7 +30,6 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Partners;
 using ProtonVPN.Servers;
 using ProtonVPN.Streaming;
 
@@ -38,13 +39,13 @@ namespace ProtonVPN.App.Tests.Servers
     public class ServerListFactoryTest
     {
         private IStreamingServices _streamingServices;
-        private IPartnersService _partnersService;
         private IUserStorage _userStorage;
         private IAppSettings _appSettings;
         private ILogger _logger;
         private ServerManager _serverManager;
         private ServerListFactory _serverListFactory;
         private IActiveUrls _urls;
+        private IEventAggregator _eventAggregator;
 
         private User _user;
         private List<string> _countries;
@@ -82,11 +83,11 @@ namespace ProtonVPN.App.Tests.Servers
             _serverManager = Substitute.For<ServerManager>(_userStorage, _appSettings, _logger);
             _serverManager.Load(servers);
             _urls = Substitute.For<IActiveUrls>();
-            _partnersService = Substitute.For<IPartnersService>();
-            _partnersService.GetPartnerTypes().Returns(new List<PartnerType>());
+            _eventAggregator = Substitute.For<IEventAggregator>();
 
             InitializeSortedCountries();
-            _serverListFactory = new ServerListFactory(_serverManager, _userStorage, _streamingServices, _partnersService, _urls);
+            _serverListFactory = new ServerListFactory(_appSettings, _serverManager, _userStorage, _streamingServices,
+                new UpsellBannerViewModel(_eventAggregator), _urls);
         }
 
         private void InitializeUserStorage()
@@ -131,7 +132,6 @@ namespace ProtonVPN.App.Tests.Servers
         public void TestCleanup()
         {
             _streamingServices = null;
-            _partnersService = null;
             _userStorage = null;
             _appSettings = null;
             _logger = null;
@@ -147,7 +147,7 @@ namespace ProtonVPN.App.Tests.Servers
         public void BuildServerList_ItShouldDisplayFreeCountriesForFreeUserFirst()
         {
             // Arrange
-            _userStorage.GetUser().Returns(new User {MaxTier = ServerTiers.Free});
+            _userStorage.GetUser().Returns(new User { MaxTier = ServerTiers.Free });
 
             // Act
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList();
@@ -190,7 +190,7 @@ namespace ProtonVPN.App.Tests.Servers
             Assert.AreEqual(2, result.Count);
             ServersByCountryViewModel countryViewModel = (ServersByCountryViewModel)result[1];
             Assert.AreEqual(2, countryViewModel.Servers.Count);
-            ServerItemViewModel serverItemViewModel = (ServerItemViewModel) countryViewModel.Servers[1];
+            ServerItemViewModel serverItemViewModel = (ServerItemViewModel)countryViewModel.Servers[1];
             Assert.AreEqual("Houston", serverItemViewModel.Server.City);
         }
 
@@ -251,6 +251,20 @@ namespace ProtonVPN.App.Tests.Servers
             AssertCountries(result.Skip(1).Take(p2pCountries.Count), p2pCountries);
             AssertCountrySeparator(result[p2pCountries.Count + 1], "Others");
             AssertCountries(result.Skip(p2pCountries.Count + 2).Take(nonP2Pcountries.Count), nonP2Pcountries);
+        }
+
+        [TestMethod]
+        public void BuildServerList_FreeUsers()
+        {
+            // Act
+            _userStorage.GetUser().Returns(new User { MaxTier = ServerTiers.Free, VpnPlan = "free"});
+            _appSettings.FeatureFreeRescopeEnabled.Returns(true);
+            ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList();
+
+            // Assert
+            result[0].Name.Should().StartWith("Free connections");
+            result[1].Name.Should().Be("Fastest");
+            result[2].Name.Should().StartWith("Plus locations (");
         }
 
         private void AssertCountrySeparator(IServerListItem serverListItem, string expectedName)

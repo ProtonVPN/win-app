@@ -22,7 +22,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
@@ -40,22 +42,25 @@ namespace ProtonVPN.Map
         ILogoutAware, 
         IServersAware
     {
+        private readonly IAppSettings _appSettings;
         private readonly MapLineManager _mapLineManager;
         private readonly IUserStorage _userStorage;
-        private Dictionary<string, AbstractPinViewModel> _pins = new Dictionary<string, AbstractPinViewModel>();
-        private List<AbstractPinViewModel> _secureCorePins = new List<AbstractPinViewModel>();
+        private Dictionary<string, AbstractPinViewModel> _pins = new();
+        private List<AbstractPinViewModel> _secureCorePins = new();
         private VpnStateChangedEventArgs _vpnState;
         private readonly ServerManager _serverManager;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
 
         public PinFactory(
+            IAppSettings appSettings,
             MapLineManager mapLineManager,
             IUserStorage userStorage,
             ServerManager serverManager,
             ServerConnector serverConnector,
             CountryConnector countryConnector)
         {
+            _appSettings = appSettings;
             _serverManager = serverManager;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
@@ -90,8 +95,8 @@ namespace ProtonVPN.Map
 
         public void HideTooltips()
         {
-            var pins = GetPins();
-            foreach (var pin in pins)
+            Dictionary<string, AbstractPinViewModel> pins = GetPins();
+            foreach (KeyValuePair<string, AbstractPinViewModel> pin in pins)
             {
                 pin.Value.ShowTooltip = false;
             }
@@ -99,8 +104,8 @@ namespace ProtonVPN.Map
 
         public void HideSecureCorePins()
         {
-            var pins = GetSecureCorePins().OfType<SecureCorePinViewModel>();
-            foreach (var pin in pins)
+            IEnumerable<SecureCorePinViewModel> pins = GetSecureCorePins().OfType<SecureCorePinViewModel>();
+            foreach (SecureCorePinViewModel pin in pins)
             {
                 pin.ShowTooltip = false;
             }
@@ -108,8 +113,8 @@ namespace ProtonVPN.Map
 
         public void HideExitPins()
         {
-            var pins = GetSecureCorePins().OfType<ExitNodePinViewModel>();
-            foreach (var pin in pins)
+            IEnumerable<ExitNodePinViewModel> pins = GetSecureCorePins().OfType<ExitNodePinViewModel>();
+            foreach (ExitNodePinViewModel pin in pins)
             {
                 pin.ShowTooltip = false;
             }
@@ -117,8 +122,8 @@ namespace ProtonVPN.Map
 
         public void SetSecureCorePinStates(PinStates state)
         {
-            var pins = GetSecureCorePins();
-            foreach (var pin in pins)
+            List<AbstractPinViewModel> pins = GetSecureCorePins();
+            foreach (AbstractPinViewModel pin in pins)
             {
                 pin.State = state;
             }
@@ -126,8 +131,8 @@ namespace ProtonVPN.Map
 
         public void SetPinStates(PinStates state)
         {
-            var pins = GetPins();
-            foreach (var pin in pins)
+            Dictionary<string, AbstractPinViewModel> pins = GetPins();
+            foreach (KeyValuePair<string, AbstractPinViewModel> pin in pins)
             {
                 pin.Value.State = state;
             }
@@ -135,9 +140,9 @@ namespace ProtonVPN.Map
 
         public void HideExitNodeTooltip(AbstractPinViewModel entryNodePin)
         {
-            var pins = GetSecureCorePins();
-            var list = pins.Where(c => !c.CountryCode.Equals(entryNodePin.CountryCode));
-            foreach (var pin in list)
+            List<AbstractPinViewModel> pins = GetSecureCorePins();
+            IEnumerable<AbstractPinViewModel> list = pins.Where(c => !c.CountryCode.Equals(entryNodePin.CountryCode));
+            foreach (AbstractPinViewModel pin in list)
             {
                 pin.ShowTooltip = false;
             }
@@ -145,8 +150,8 @@ namespace ProtonVPN.Map
 
         public void ShowSecureCoreTooltipByExitNode(string countryCode)
         {
-            var servers = _serverManager.GetServers(new SecureCoreServer());
-            foreach (var server in servers)
+            IReadOnlyCollection<Server> servers = _serverManager.GetServers(new SecureCoreServer());
+            foreach (Server server in servers)
             {
                 if (server.ExitCountry.Equals(countryCode))
                 {
@@ -159,14 +164,14 @@ namespace ProtonVPN.Map
         {
             _vpnState = e;
 
-            var pins = GetPins();
-            foreach (var pin in pins)
+            Dictionary<string, AbstractPinViewModel> pins = GetPins();
+            foreach (KeyValuePair<string, AbstractPinViewModel> pin in pins)
             {
                 pin.Value.OnVpnStateChanged(e);
             }
 
-            var secureCorePins = GetSecureCorePins();
-            foreach (var pin in secureCorePins)
+            List<AbstractPinViewModel> secureCorePins = GetSecureCorePins();
+            foreach (AbstractPinViewModel pin in secureCorePins)
             {
                 pin.OnVpnStateChanged(e);
             }
@@ -192,7 +197,9 @@ namespace ProtonVPN.Map
             PinsChanged?.Invoke(this, EventArgs.Empty);
 
             if (_vpnState != null)
+            {
                 OnVpnStateChanged(_vpnState);
+            }
         }
 
         private void SetLines()
@@ -204,8 +211,8 @@ namespace ProtonVPN.Map
 
         private void BuildStandardPins()
         {
-            var user = _userStorage.GetUser();
-            var countries = _serverManager.GetCountries();
+            User user = _userStorage.GetUser();
+            IReadOnlyCollection<string> countries = _serverManager.GetCountries();
 
             _pins = countries
                 .Select(c => new { CountryCode = c, Pin = GetPin(c, user.MaxTier) })
@@ -217,21 +224,24 @@ namespace ProtonVPN.Map
 
         private void BuildSecureCorePins()
         {
-            var secureCorePins = new List<AbstractPinViewModel>();
-            var servers = _serverManager.GetServers(new SecureCoreServer());
+            List<AbstractPinViewModel> secureCorePins = new();
+            IReadOnlyCollection<Server> servers = _serverManager.GetServers(new SecureCoreServer());
 
             foreach (string secureCoreCountryCode in SecureCoreCountry.CountryCodes)
             {
-                var pin = GetSecureCorePin(secureCoreCountryCode);
+                SecureCorePinViewModel pin = GetSecureCorePin(secureCoreCountryCode);
                 secureCorePins.Add(pin);
             }
 
-            foreach (var server in servers)
+            bool isHighlighted = _userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled;
+            foreach (Server server in servers)
             {
-                var pin = GetExitNodePin(server.ExitCountry);
+                ExitNodePinViewModel pin = GetExitNodePin(server.ExitCountry);
                 if (secureCorePins.FirstOrDefault(c => c.CountryCode.Equals(server.ExitCountry)) == null)
                 {
-                    pin.Highlighted = _userStorage.GetUser().MaxTier >= ServerTiers.Plus;
+                    pin.Highlighted = isHighlighted;
+                    pin.IsHighlightedOnDisconnect = isHighlighted;
+                    pin.UpgradeRequired = !_userStorage.GetUser().Paid();
                     secureCorePins.Add(pin);
                 }
             }
@@ -247,17 +257,23 @@ namespace ProtonVPN.Map
 
         private AbstractPinViewModel GetPin(string countryCode, sbyte userTier)
         {
-            var location = new CountryLocation(countryCode);
+            CountryLocation location = new(countryCode);
             if (location.Coordinates().X.Equals(0) && location.Coordinates().Y.Equals(0))
+            {
                 return null;
+            }
 
-            var pin = new PinViewModel(countryCode, _countryConnector, this)
+            bool countryHasAvailableServers = _serverManager.CountryHasAvailableServers(countryCode, userTier);
+            bool isHighlighted = countryHasAvailableServers && (!_appSettings.FeatureFreeRescopeEnabled || _userStorage.GetUser().Paid());
+            PinViewModel pin = new(countryCode, _countryConnector, this)
             {
                 ConnectionName = new StandardServerName
                 {
                     Name = Countries.GetName(countryCode)
                 },
-                Highlighted = _serverManager.CountryHasAvailableServers(countryCode, userTier)
+                Highlighted = isHighlighted,
+                IsHighlightedOnDisconnect = isHighlighted,
+                UpgradeRequired = _appSettings.FeatureFreeRescopeEnabled && !_userStorage.GetUser().Paid(),
             };
 
             return pin;

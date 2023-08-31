@@ -30,7 +30,6 @@ namespace ProtonVPN.Core.Servers
         public const ulong STREAMING = 8;
         public const ulong IPV6 = 16;
         public const ulong B2B = 32;
-        public const ulong PARTNER = 64;
 
         private readonly ulong _value;
 
@@ -52,7 +51,6 @@ namespace ProtonVPN.Core.Servers
         public static bool SupportsStreaming(ulong value) => (value & STREAMING) != 0;
         public static bool SupportsIpV6(ulong value) => (value & IPV6) != 0;
         public static bool IsB2B(ulong value) => (value & B2B) != 0;
-        public static bool IsPartner(ulong value) => (value & PARTNER) != 0;
     }
 
     [Flags]

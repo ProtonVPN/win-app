@@ -22,6 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
+                    xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                     mc:Ignorable="d">
 
     <Style x:Key="SidebarModeButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
@@ -60,5 +61,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="ServerFeature" TargetType="Border">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style x:Key="UpgradeIcon" TargetType="icons:ProtonPlus">
+        <Setter Property="Margin" Value="5,0,0,0" />
+        <Setter Property="Width" Value="38" />
+        <Setter Property="Visibility" Value="Hidden" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="ToolTip" Value="{translations:Loc Servers_lbl_UpgradeToPlus}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Server.Status}" Value="0">
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="UpgradeButton" TargetType="Button" BasedOn="{StaticResource ClearStyleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <icons:ProtonPlus Style="{StaticResource UpgradeIcon}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

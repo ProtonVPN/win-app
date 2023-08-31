@@ -112,7 +112,10 @@ namespace ProtonVPN.Sidebar.QuickSettings
 
         public bool IsPortForwardingOnButtonOn => _appSettings.PortForwardingEnabled;
         public bool IsPortForwardingOffButtonOn => !_appSettings.PortForwardingEnabled;
-        public bool IsPortForwardingVisible => _appSettings.PortForwardingInQuickSettings && _appSettings.FeaturePortForwardingEnabled;
+
+        public bool IsPortForwardingVisible => _appSettings.PortForwardingInQuickSettings &&
+                                               _appSettings.FeaturePortForwardingEnabled &&
+                                               (_userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled);
 
         public int KillSwitchButtonNumber => _appSettings.FeatureNetShieldEnabled ? 2 : 1;
         public int PortForwardingButtonNumber => KillSwitchButtonNumber + 1;

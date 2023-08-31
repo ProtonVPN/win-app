@@ -29,16 +29,20 @@ using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Users;
+using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Profiles;
 
 namespace ProtonVPN.Sidebar
 {
-    internal class SidebarProfilesViewModel : Screen, ISettingsAware, IServersAware
+    internal class SidebarProfilesViewModel : Screen, ISettingsAware, IServersAware, IUserDataAware
     {
+        private readonly IModals _modals;
+        private readonly IAppSettings _appSettings;
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
         private readonly IVpnManager _vpnManager;
-        private readonly IModals _modals;
+        private readonly IUserStorage _userStorage;
 
         public ICommand ConnectCommand { get; set; }
         public ICommand CreateProfileCommand { get; set; }
@@ -66,20 +70,26 @@ namespace ProtonVPN.Sidebar
         }
 
         public SidebarProfilesViewModel(
+            IModals modals,
+            IAppSettings appSettings,
             ProfileManager profileManager,
             ProfileViewModelFactory profileHelper,
             IVpnManager vpnManager,
-            IModals modals)
+            IUserStorage userStorage)
         {
             _modals = modals;
+            _appSettings = appSettings;
             _profileManager = profileManager;
             _profileHelper = profileHelper;
             _vpnManager = vpnManager;
+            _userStorage = userStorage;
 
             CreateProfileCommand = new RelayCommand(CreateProfileAction);
             ManageProfilesCommand = new RelayCommand(ManageProfilesAction);
-            ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectAction);
+            ConnectCommand = new RelayCommand<ProfileViewModel>(ConnectActionAsync);
         }
+
+        public bool IsToShowManageProfilesButton => !_appSettings.FeatureFreeRescopeEnabled || _userStorage.GetUser().Paid();
 
         public async void Load()
         {
@@ -88,11 +98,17 @@ namespace ProtonVPN.Sidebar
 
         public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(IAppSettings.Profiles)) ||
-                e.PropertyName.Equals(nameof(IAppSettings.SecureCore)) ||
-                e.PropertyName.Equals(nameof(IAppSettings.Language)))
+            switch (e.PropertyName)
             {
-                await LoadProfiles();
+                case nameof(IAppSettings.Profiles):
+                case nameof(IAppSettings.SecureCore):
+                case nameof(IAppSettings.Language):
+                    await LoadProfiles();
+                    break;
+                case nameof(IAppSettings.FeatureFreeRescopeEnabled):
+                    NotifyOfPropertyChange(nameof(IsToShowManageProfilesButton));
+                    await LoadProfiles();
+                    break;
             }
         }
 
@@ -101,10 +117,16 @@ namespace ProtonVPN.Sidebar
             Load();
         }
 
-        private async void ConnectAction(ProfileViewModel viewModel)
+        private async void ConnectActionAsync(ProfileViewModel viewModel)
         {
             if (viewModel == null)
             {
+                return;
+            }
+
+            if (viewModel.UpgradeRequired)
+            {
+                await _modals.ShowAsync<ProfileUpsellModalViewModel>();
                 return;
             }
 
@@ -147,12 +169,24 @@ namespace ProtonVPN.Sidebar
 
         private async void CreateProfileAction()
         {
-            await _modals.ShowAsync<ProfileFormModalViewModel>();
+            if (IsToShowManageProfilesButton)
+            {
+                await _modals.ShowAsync<ProfileFormModalViewModel>();
+            }
+            else
+            {
+                await _modals.ShowAsync<ProfileUpsellModalViewModel>();
+            }
         }
 
         private async void ManageProfilesAction()
         {
             await _modals.ShowAsync<ProfileListModalViewModel>();
+        }
+
+        public void OnUserDataChanged()
+        {
+            NotifyOfPropertyChange(nameof(IsToShowManageProfilesButton));
         }
     }
 }

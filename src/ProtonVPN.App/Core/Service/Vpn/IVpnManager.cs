@@ -38,6 +38,11 @@ namespace ProtonVPN.Core.Service.Vpn
             [CallerMemberName] string sourceMemberName = "", 
             [CallerLineNumber] int sourceLineNumber = 0);
 
+        Task ReconnectToFreeRandomServerAsync(
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0);
+
         Task ReconnectAsync(VpnReconnectionSettings settings = null,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "", 

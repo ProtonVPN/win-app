@@ -57,12 +57,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="FontWeight" Value="Normal"/>
-                <Setter Property="Height" Value="48"/>
+                <Setter Property="Height" Value="40"/>
                 <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Connect}"/>
                 <Setter Property="Padding" Value="10,0,10,1"/>
                 <Setter Property="Width" Value="250"/>
                 <Setter Property="Command" Value="{Binding QuickConnectCommand}"/>
                 <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsToShowProfileSelection}" Value="False">
+                        <Setter Property="Width" Value="310" />
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding Disconnected}" Value="False">
                         <Setter Property="Content" Value="{translations:Loc QuickLaunch_btn_Disconnect}"/>
                     </DataTrigger>
@@ -107,8 +110,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Height" Value="48"/>
-                <Setter Property="Width" Value="48"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="40"/>
                 <Setter Property="Margin" Value="10,0,0,0"/>
                 <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}"/>
                 <Setter Property="BorderThickness" Value="2"/>
@@ -295,13 +298,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </StackPanel>
             </Grid>
 
-            <Grid Margin="20,0,20,25">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Name="QuickConnect" Style="{StaticResource QuickConnectButton}"/>
-                    <ToggleButton Style="{StaticResource QuickToggleButton}" x:Name="TogglePopupButton">
+            <Grid Margin="20,0,20,0">
+                <DockPanel HorizontalAlignment="Stretch">
+                    <Button Name="QuickConnect" Style="{StaticResource QuickConnectButton}" />
+                    <ToggleButton Style="{StaticResource QuickToggleButton}"
+                                  Visibility="{Binding IsToShowProfileSelection, Converter={StaticResource BoolToVis}}"
+                                  x:Name="TogglePopupButton">
                         <icons:ChevronUp Style="{StaticResource QuickConnectChevron}" />
                     </ToggleButton>
-                </StackPanel>
+                </DockPanel>
 
                 <Popup Name="Popup" Style="{StaticResource QuickConnectPopup}">
                     <Border Style="{StaticResource QuickConnectDropdown}">
@@ -358,7 +363,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Popup>
             </Grid>
 
-            <StackPanel Height="42" Background="{StaticResource BackgroundWeakBrushColor}">
+            <controls:ChangeServerButton Visibility="{Binding IsToShowChangeServerButton, Converter={StaticResource BoolToVis}}"
+                                         Width="310"
+                                         Margin="0,8,0,0"
+                                         TimeLeft="{Binding ChangeServerTimeLeft, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding ChangeServerCommand}"
+                                         AutomationProperties.AutomationId="{StaticResource SidebarChangeServerButton}" />
+
+            <StackPanel Height="42"
+                        Margin="0,24,0,0"
+                        Background="{StaticResource BackgroundWeakBrushColor}">
                 <Button Command="{Binding ShowAppCommand}" Style="{StaticResource OpenAppButton}" Content="{translations:Loc QuickLaunch_btn_OpenApp}"/>
             </StackPanel>
         </StackPanel>

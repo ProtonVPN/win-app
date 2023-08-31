@@ -168,6 +168,13 @@ namespace ProtonVPN.UI.Tests
             return this;
         }
 
+        protected dynamic CheckIfDisplayedByAutomationId(string automationId)
+        {
+            RefreshWindow();
+            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
+            return this;
+        }
+
         protected dynamic CheckIfDoesNotExistByAutomationId(string automationId)
         {
             Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)));

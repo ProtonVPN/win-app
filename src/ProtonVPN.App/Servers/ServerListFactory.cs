@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
@@ -30,7 +29,6 @@ using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Partners;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 
@@ -38,57 +36,61 @@ namespace ProtonVPN.Servers
 {
     public class ServerListFactory : IVpnStateAware
     {
+        private readonly IAppSettings _appSettings;
         private readonly ServerManager _serverManager;
         private readonly IUserStorage _userStorage;
         private readonly IStreamingServices _streamingServices;
-        private readonly IPartnersService _partnersService;
+        private readonly UpsellBannerViewModel _upsellBannerViewModel;
         private readonly IActiveUrls _urls;
         private VpnState _vpnState = new(VpnStatus.Disconnected);
 
         public ServerListFactory(
+            IAppSettings appSettings,
             ServerManager serverManager,
             IUserStorage userStorage,
             IStreamingServices streamingServices,
-            IPartnersService partnerService,
+            UpsellBannerViewModel upsellBannerViewModel,
             IActiveUrls urls)
         {
+            _appSettings = appSettings;
             _serverManager = serverManager;
             _userStorage = userStorage;
             _streamingServices = streamingServices;
-            _partnersService = partnerService;
+            _upsellBannerViewModel = upsellBannerViewModel;
             _urls = urls;
         }
 
         public ObservableCollection<IServerListItem> BuildServerList(string searchQuery = null)
         {
-            switch (_userStorage.GetUser().MaxTier)
-            {
-                case ServerTiers.Internal:
-                case ServerTiers.Plus:
-                case ServerTiers.Basic:
-                    return GetPlusUserLocations(searchQuery);
-                case ServerTiers.Free:
-                    return GetFreeUserLocations(searchQuery);
-                default:
-                    return new ObservableCollection<IServerListItem>();
-            }
+            return _userStorage.GetUser().Paid()
+                ? GetPaidUserLocations(searchQuery)
+                : GetFreeUserLocations(searchQuery);
         }
 
         private ObservableCollection<IServerListItem> GetFreeUserLocations(string searchQuery)
         {
             List<IServerListItem> serverListItems = new();
-            AddB2BServers(serverListItems, searchQuery);
+            if (_appSettings.FeatureFreeRescopeEnabled)
+            {
+                serverListItems.Add(new FreeConnectionSeparatorViewModel { Name = Translation.Get("Servers_FreeConnections") });
+                serverListItems.Add(new FastestServerViewModel());
+                serverListItems.AddRange(GetPaidUserLocations(searchQuery));
+            }
+            else
+            {
+                AddB2BServers(serverListItems, searchQuery);
 
-            IList<string> freeCountries = GetCountriesByTiers(ServerTiers.Free);
-            IList<string> plusCountries = GetCountriesByTiers(ServerTiers.Plus).Except(freeCountries).ToList();
+                IList<string> freeCountries = GetCountriesByTiers(ServerTiers.Free);
+                IList<string> plusCountries = GetCountriesByTiers(ServerTiers.Plus).Except(freeCountries).ToList();
 
-            IList<IServerListItem> freeLocationViewModels = CreateServersByCountryViewModels(freeCountries, searchQuery).ToList();
-            serverListItems.AddRange(GetServerGroupViewModels(freeLocationViewModels,
-                Translation.Format("Sidebar_Countries_FreeLocationCount", freeLocationViewModels.Count)));
+                IList<IServerListItem> freeLocationViewModels = CreateServersByCountryViewModels(freeCountries, searchQuery).ToList();
+                serverListItems.AddRange(GetServerGroupViewModels(freeLocationViewModels,
+                    Translation.Format("Sidebar_Countries_FreeLocationCount", freeLocationViewModels.Count)));
 
-            IList<IServerListItem> plusLocationsViewModels = CreateServersByCountryViewModels(plusCountries, searchQuery).ToList();
-            serverListItems.AddRange(GetServerGroupViewModels(plusLocationsViewModels,
-                Translation.Format("Sidebar_Countries_PlusLocationCount", plusLocationsViewModels.Count)));
+                IList<IServerListItem> plusLocationsViewModels = CreateServersByCountryViewModels(plusCountries, searchQuery).ToList();
+                serverListItems.AddRange(GetServerGroupViewModels(plusLocationsViewModels,
+                    Translation.Format("Sidebar_Countries_PlusLocationCount", plusLocationsViewModels.Count)));
+            }
 
             return new ObservableCollection<IServerListItem>(serverListItems);
         }
@@ -104,7 +106,7 @@ namespace ProtonVPN.Servers
             }
         }
 
-        private ObservableCollection<IServerListItem> GetPlusUserLocations(string searchQuery)
+        private ObservableCollection<IServerListItem> GetPaidUserLocations(string searchQuery)
         {
             List<IServerListItem> serverListItems = new();
             AddB2BServers(serverListItems, searchQuery);
@@ -112,11 +114,14 @@ namespace ProtonVPN.Servers
             IList<string> countries = _serverManager.GetEntryCountriesBySpec(new StandardServer())
                 .OrderBy(Countries.GetName)
                 .ToList();
-            IList<IServerListItem> plusLocationViewModels =
-                CreateServersByCountryViewModels(countries, searchQuery).ToList();
+            IList<IServerListItem> plusLocationViewModels = CreateServersByCountryViewModels(countries, searchQuery).ToList();
             if (plusLocationViewModels.Count > 0)
             {
                 serverListItems.Add(CreateCountryListSeparator(Translation.Format("Sidebar_Countries_AllLocationCount", plusLocationViewModels.Count)));
+                if (!_userStorage.GetUser().Paid())
+                {
+                    serverListItems.Add(_upsellBannerViewModel);
+                }
                 serverListItems.AddRange(plusLocationViewModels);
             }
 
@@ -135,7 +140,7 @@ namespace ProtonVPN.Servers
             foreach (string gateway in gateways)
             {
                 ServersByGatewayViewModel countryViewModel = new(gateway, _userStorage.GetUser().MaxTier,
-                    _serverManager, _vpnState, _streamingServices, _partnersService);
+                    _appSettings, _serverManager, _vpnState, _streamingServices);
                 if (string.IsNullOrEmpty(searchQuery) || gateway.ToLower().Contains(searchQuery))
                 {
                     countryViewModel.LoadServers(orderBy: orderBy);
@@ -179,7 +184,7 @@ namespace ProtonVPN.Servers
                 if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {
                     ServersByExitNodeViewModel row =
-                        new ServersByExitNodeViewModel(countryCode, user.MaxTier, _serverManager, _partnersService);
+                        new ServersByExitNodeViewModel(countryCode, user.MaxTier, _serverManager);
                     row.LoadServers();
                     serverListItems.Add(row);
                 }
@@ -219,7 +224,7 @@ namespace ProtonVPN.Servers
             foreach (string countryCode in countries)
             {
                 ServersByCountryViewModel countryViewModel = new(countryCode, _userStorage.GetUser().MaxTier,
-                    _serverManager, _vpnState, _streamingServices, _partnersService);
+                    _appSettings, _serverManager, _vpnState, _streamingServices);
                 if (string.IsNullOrEmpty(searchQuery) || Countries.MatchesSearch(countryCode, searchQuery))
                 {
                     countryViewModel.LoadServers(orderBy: orderBy);

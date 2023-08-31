@@ -30,6 +30,7 @@ namespace ProtonVPN.Map.ViewModels.Pins
         public double OrigWidth => 34;
         public double OrigHeight => 55;
         public string CountryCode { get; set; }
+        public bool UpgradeRequired { get; set; }
 
         private double _width;
         private double _height;
@@ -80,7 +81,20 @@ namespace ProtonVPN.Map.ViewModels.Pins
             set => Set(ref _connected, value);
         }
 
-        public bool Highlighted { get; set; }
+        private bool _highlighted;
+
+        public bool Highlighted
+        {
+            get => _highlighted;
+            set => Set(ref _highlighted, value);
+        }
+
+        private bool _isHighlightedOnDisconnect;
+        public bool IsHighlightedOnDisconnect
+        {
+            get => _isHighlightedOnDisconnect;
+            set => Set(ref _isHighlightedOnDisconnect, value);
+        }
 
         private bool _showTooltip;
         public bool ShowTooltip

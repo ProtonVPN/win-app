@@ -190,7 +190,7 @@ namespace ProtonVPN.Map.Views
             UpdateLayout();
             Canvas.SetLeft(PinPath, (PinCanvas.ActualWidth - PinPath.ActualWidth) / 2);
             Canvas.SetLeft(CountryButton, (PinCanvas.ActualWidth - CountryButton.ActualWidth) / 2);
-            Canvas.SetBottom(CountryButton, 18);
+            Canvas.SetBottom(CountryButton, (PinCanvas.ActualHeight - CountryButton.ActualHeight) / 2);
             Canvas.SetBottom(PinPath, 0);
         }
 

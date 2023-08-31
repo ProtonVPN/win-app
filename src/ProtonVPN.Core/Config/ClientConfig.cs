@@ -132,6 +132,24 @@ namespace ProtonVPN.Core.Config
                     _appSettings.ShowNonStandardPortsToFreeUsers = response.Value.FeatureFlags.SafeMode ?? false;
                     _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                     _appSettings.FeaturePromoCodeEnabled = response.Value.FeatureFlags.PromoCode ?? false;
+                    _appSettings.FeatureFreeRescopeEnabled = response.Value.FeatureFlags.ShowNewFreePlan ?? false;
+
+                    if (response.Value.ChangeServerAttemptLimit.HasValue)
+                    {
+                        _appSettings.ChangeServerAttemptLimit = response.Value.ChangeServerAttemptLimit.Value;
+                    }
+
+                    if (response.Value.ChangeServerShortDelayInSeconds.HasValue)
+                    {
+                        _appSettings.ChangeServerShortDelayInSeconds =
+                            response.Value.ChangeServerShortDelayInSeconds.Value;
+                    }
+
+                    if (response.Value.ChangeServerLongDelayInSeconds.HasValue)
+                    {
+                        _appSettings.ChangeServerLongDelayInSeconds =
+                            response.Value.ChangeServerLongDelayInSeconds.Value;
+                    }
                 }
             }
             catch
