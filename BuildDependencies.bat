@@ -2,11 +2,16 @@
 
 set currentDir=%~dp0
 set publishDir=%currentDir%src\bin\win-x64\publish\
+set publishDirBTI=%currentDir%src\bin\win-x64\BTI\publish\
 set binDir=%currentDir%src\bin\
 set resourcesDir=%binDir%Resources
 
 if "%~1"=="publish" (
     set resourcesDir=%publishDir%Resources
+)
+
+if "%~1"=="publish-BTI" (
+	set resourcesDir=%publishDirBTI%Resources
 )
 
 set buildParams=/p:PlatformToolset=v143 /p:Configuration=Release /p:OutDir=%resourcesDir% /clp:ErrorsOnly
