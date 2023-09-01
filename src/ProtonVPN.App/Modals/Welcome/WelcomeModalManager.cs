@@ -27,7 +27,6 @@ using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Modals.Upsell;
-using ProtonVPN.Windows.Popups.FreeRescope;
 using ProtonVPN.Windows.Popups.Offers;
 using ProtonVPN.Windows.Popups.Rebranding;
 
@@ -75,7 +74,7 @@ namespace ProtonVPN.Modals.Welcome
             }
             else if (IsToShowFreeRescopePopup)
             {
-                ShowFreeRescopePopup();
+                ShowFreeRescopeModal();
             }
             else if (!user.Paid() && !_userStorage.GetUser().IsDelinquent())
             {
@@ -83,11 +82,11 @@ namespace ProtonVPN.Modals.Welcome
             }
         }
 
-        private void ShowFreeRescopePopup()
+        private async void ShowFreeRescopeModal()
         {
             if (_appSettings.WelcomeModalShown)
             {
-                _popupWindows.Show<FreeRescopePopupViewModel>();
+                await _modals.ShowAsync<FreeRescopeModalViewModel>();
                 _appSettings.IsFreeRescopeModalDisplayed = true;
             }
         }
@@ -157,7 +156,7 @@ namespace ProtonVPN.Modals.Welcome
         {
             if (e.PropertyName == nameof(IAppSettings.FeatureFreeRescopeEnabled) && IsToShowFreeRescopePopup)
             {
-                ShowFreeRescopePopup();
+                ShowFreeRescopeModal();
             }
         }
     }

@@ -466,7 +466,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             Height="20" />
                                 <TextBlock x:Name="CountryLabel"
                                            Text="{Binding Name}"
+                                           FontSize="16"
                                            Style="{StaticResource CountrySeparator}"
+                                           Foreground="{StaticResource TextNormBrushColor}"
                                            TextTrimming="CharacterEllipsis" />
                             </DockPanel>
                             <Button Style="{StaticResource SidebarCountryConnectButton}"

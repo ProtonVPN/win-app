@@ -42,6 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0"
                        Width="48"
+                       VerticalAlignment="Top"
                        Source="{Binding ImagePath, ElementName=UserControl, TargetNullValue={x:Null}}" />
                 <TextBlock Grid.Column="1"
                            Text="{Binding Title, ElementName=UserControl}"

@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Windows.Popups.FreeRescope
+namespace ProtonVPN.Modals
 {
-    public partial class FreeRescopePopupView
+    public partial class FreeRescopeModalView
     {
-        public FreeRescopePopupView()
+        public FreeRescopeModalView()
         {
             InitializeComponent();
         }

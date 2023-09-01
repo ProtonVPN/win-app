@@ -17,12 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Windows.Popups.FreeRescope
+namespace ProtonVPN.Modals
 {
-    public class FreeRescopePopupViewModel : BasePopupViewModel
+    public class FreeRescopeModalViewModel : BaseModalViewModel
     {
-        public FreeRescopePopupViewModel(AppWindow appWindow) : base(appWindow)
-        {
-        }
     }
 }
