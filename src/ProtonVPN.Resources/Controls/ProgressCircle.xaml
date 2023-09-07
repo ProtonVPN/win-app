@@ -36,18 +36,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Path Canvas.Top="50"
                       Canvas.Left="50"
                       Name="Path"
-                      StrokeThickness="10">
-                    <Path.Style>
-                        <Style TargetType="Path">
-                            <Setter Property="Stroke" Value="#6D4AFF" />
+                      Stroke="#6D4AFF"
+                      StrokeThickness="10"/>
+                <Ellipse Stroke="#1EA885"
+                         StrokeThickness="10"
+                         Width="100"
+                         Height="100">
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Progress, ElementName=UserControl}" Value="100">
-                                    <Setter Property="Stroke" Value="#1EA885" />
+                                <DataTrigger Binding="{Binding Progress, ElementName=UserControl}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Path.Style>
-                </Path>
+                    </Ellipse.Style>
+                </Ellipse>
             </Canvas>
         </Viewbox>
     </Grid>

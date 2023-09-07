@@ -58,7 +58,7 @@ namespace ProtonVPN.Core.Service.Settings
                 },
                 ModerateNat = !_userStorage.GetUser().Empty() && _appSettings.ModerateNat,
                 NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
-                SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
+                SplitTcp = _appSettings.IsVpnAcceleratorEnabled() && (_userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled),
                 AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(_appSettings.GetProtocol()),

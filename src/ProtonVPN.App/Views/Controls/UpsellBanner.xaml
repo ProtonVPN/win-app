@@ -33,6 +33,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             Background="{StaticResource BackgroundStrongBrushColor}"
             Padding="12">
         <Button Style="{StaticResource ClearStyleButton}"
+                HorizontalContentAlignment="Stretch"
+                Background="Transparent"
                 Command="{Binding ElementName=UserControl, Path=Command}">
             <Grid>
                 <Grid.ColumnDefinitions>

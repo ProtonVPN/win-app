@@ -45,6 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Text="{translations:Loc Sidebar_Connection_btn_ChangeServer}"
                                        FontSize="16" />
                             <DockPanel Visibility="{TemplateBinding TimeLeft, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}, ConverterParameter={x:Static Visibility.Collapsed}}"
+                                       x:Name="TimeLeftPanel"
                                        Margin="0,1,0,0"
                                        HorizontalAlignment="Right">
                                 <icons:HourGlass Margin="6,0"
@@ -63,6 +64,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Setter TargetName="Button" Property="Background" Value="{StaticResource InteractionDefaultHoverBrushColor}" />
                             <Setter TargetName="Button" Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding ElementName=TimeLeftPanel, Path=Visibility}" Value="{x:Static Visibility.Visible}">
+                            <Setter TargetName="ButtonLabel" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

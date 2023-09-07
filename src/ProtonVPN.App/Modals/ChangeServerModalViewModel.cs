@@ -113,7 +113,7 @@ namespace ProtonVPN.Modals
         public async Task HandleAsync(ChangeServerTimeLeftMessage message, CancellationToken cancellationToken)
         {
             TimeLeft = message.TimeLeftFormatted;
-            Progress = message.Progress;
+            Progress = 100 - message.Progress;
             IsToShowChangeServerButton = message.TimeLeftInSeconds <= 0;
             IsToShowUpgradeButton = message.TimeLeftInSeconds > 0;
             IsToShowTitle = message.IsLongDelay && message.TimeLeftInSeconds > 0;

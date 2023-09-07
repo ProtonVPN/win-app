@@ -271,7 +271,7 @@ namespace ProtonVPN.Settings
         {
             get
             {
-                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && IsPaidUser;
+                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
             }
         }
 
@@ -279,7 +279,7 @@ namespace ProtonVPN.Settings
         {
             get
             {
-                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && ShowNotifications && IsPaidUser;
+                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && ShowNotifications && (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
             }
         }
 
@@ -287,7 +287,7 @@ namespace ProtonVPN.Settings
         {
             get
             {
-                return _appSettings.SmartReconnectEnabled && IsPaidUser;
+                return _appSettings.SmartReconnectEnabled && (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
             }
         }
 
