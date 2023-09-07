@@ -17,29 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.OperatingSystems.Services.Contracts;
+using System.Runtime.CompilerServices;
 
-namespace ProtonVPN.Client.Logic.Services;
+namespace ProtonVPN.Configurations.Repositories;
 
-public class ServiceManager : IServiceManager
+public interface IConfigurationRepository
 {
-    private readonly IService _service;
+    T? GetValueType<T>([CallerMemberName] string propertyName = "")
+        where T : struct;
 
-    public ServiceManager(IServiceFactory serviceFactory,
-        IConfiguration configuration)
-    {
-        _service = serviceFactory.Get(configuration.ServiceName);
-    }
+    T? GetReferenceType<T>([CallerMemberName] string propertyName = "")
+        where T : class;
 
-    public void Start()
-    {
-        _service.Start();
-    }
-
-    public void Stop()
-    {
-        _service.Stop();
-    }
+    List<T> GetListValueType<T>([CallerMemberName] string propertyName = "")
+        where T : struct;
 }

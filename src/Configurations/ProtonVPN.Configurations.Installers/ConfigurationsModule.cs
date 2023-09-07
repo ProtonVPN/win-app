@@ -17,29 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Services.Contracts;
+using Autofac;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.OperatingSystems.Services.Contracts;
+using ProtonVPN.Configurations.Files;
+using ProtonVPN.Configurations.Repositories;
 
-namespace ProtonVPN.Client.Logic.Services;
+namespace ProtonVPN.Configurations.Installers;
 
-public class ServiceManager : IServiceManager
+public class ConfigurationsModule : Module
 {
-    private readonly IService _service;
-
-    public ServiceManager(IServiceFactory serviceFactory,
-        IConfiguration configuration)
+    protected override void Load(ContainerBuilder builder)
     {
-        _service = serviceFactory.Get(configuration.ServiceName);
-    }
+        builder.RegisterType<Configuration>().As<IConfiguration>().SingleInstance();
+        builder.RegisterType<ConfigurationRepository>().AsImplementedInterfaces().SingleInstance();
 
-    public void Start()
-    {
-        _service.Start();
-    }
-
-    public void Stop()
-    {
-        _service.Stop();
+#if DEBUG
+        builder.RegisterType<DebugConfigurationFileManager>().AsImplementedInterfaces().SingleInstance();
+#else
+        builder.RegisterType<ReleaseConfigurationFileManager>().AsImplementedInterfaces().SingleInstance();
+#endif
     }
 }

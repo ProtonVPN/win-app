@@ -17,29 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.OperatingSystems.Services.Contracts;
+namespace ProtonVPN.Configurations.Files;
 
-namespace ProtonVPN.Client.Logic.Services;
-
-public class ServiceManager : IServiceManager
+public interface IConfigurationFileManager
 {
-    private readonly IService _service;
-
-    public ServiceManager(IServiceFactory serviceFactory,
-        IConfiguration configuration)
-    {
-        _service = serviceFactory.Get(configuration.ServiceName);
-    }
-
-    public void Start()
-    {
-        _service.Start();
-    }
-
-    public void Stop()
-    {
-        _service.Stop();
-    }
+    IDictionary<string, string?> Read();
 }
