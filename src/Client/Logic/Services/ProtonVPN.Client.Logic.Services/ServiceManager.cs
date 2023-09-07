@@ -18,21 +18,19 @@
  */
 
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 
 namespace ProtonVPN.Client.Logic.Services;
 
 public class ServiceManager : IServiceManager
 {
-#warning This should be a configuration
-    // TODO This should be a configuration
-    private const string SERVICE_NAME = "ProtonVPN Service";
-
     private readonly IService _service;
 
-    public ServiceManager(IServiceFactory serviceFactory)
+    public ServiceManager(IServiceFactory serviceFactory,
+        IConfiguration configuration)
     {
-        _service = serviceFactory.Get(SERVICE_NAME);
+        _service = serviceFactory.Get(configuration.ServiceName);
     }
 
     public void Start()

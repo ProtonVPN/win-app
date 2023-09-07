@@ -173,6 +173,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
+    <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Installers\ProtonVPN.Configurations.Installers.csproj" />
     <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
     <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj" />
     <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
