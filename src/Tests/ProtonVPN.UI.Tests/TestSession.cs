@@ -29,6 +29,8 @@ using FlaUI.UIA3;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Windows.Automation;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -54,7 +56,15 @@ namespace ProtonVPN.UI.Tests
 
         protected static void Cleanup()
         {
-            SaveScreenshotAndLogsIfFailed();
+            try
+            {
+                SaveScreenshotAndLogsIfFailed();
+            }
+            catch
+            {
+                //Do nothing, since artifact collection shouldn't block cleanup.
+            }
+            
             App.Kill();
             App.Dispose();
             try
@@ -68,14 +78,15 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void RefreshWindow()
+        protected static void RefreshWindow(TimeSpan? timeout = null)
         {
             Window = null;
+            TimeSpan refreshTimeout = timeout ?? TestConstants.MediumTimeout;
             RetryResult<Window> retry = Retry.WhileNull(
                 () => {
                     try
                     {
-                        Window = App.GetMainWindow(new UIA3Automation(), TestConstants.MediumTimeout);
+                        Window = App.GetMainWindow(new UIA3Automation(), refreshTimeout);
                     }
                     catch (System.TimeoutException)
                     {
@@ -83,11 +94,11 @@ namespace ProtonVPN.UI.Tests
                     }
                     return Window;
                 },
-                TestConstants.MediumTimeout, TestConstants.RetryInterval);
+                refreshTimeout, TestConstants.RetryInterval);
 
             if (!retry.Success)
             {
-                Assert.Fail($"Failed to refresh window in {TestConstants.MediumTimeout.Seconds} seconds.");
+                Assert.Fail($"Failed to refresh window in {refreshTimeout.Seconds} seconds.");
             }
         }
 
@@ -95,6 +106,14 @@ namespace ProtonVPN.UI.Tests
         {
             string[] path = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
             App = Application.Launch(path[0] + @"\ProtonVPN.exe");
+            RetryResult<bool> result = WaitUntilAppIsRunning();
+
+            if (!result.Success)
+            {
+                //Sometimes app fails to launch on first try due to CI issues.
+                App = Application.Launch(path + @"\ProtonVPN.exe");
+            }
+            RefreshWindow(TestConstants.LongTimeout);
         }
 
         protected static void KillProtonVpnProcess()
@@ -148,9 +167,22 @@ namespace ProtonVPN.UI.Tests
                 string testName = TestContext.CurrentContext.Test.MethodName;
                 if (status == TestStatus.Failed)
                 {
-                    TestsRecorder.SaveScreenshotAndLogs(testName);
+                    TestsRecorder.SaveLogs(testName);
+                    TestsRecorder.SaveScreenshot(testName);
                 }
             }
+        }
+
+        private static RetryResult<bool> WaitUntilAppIsRunning()
+        {
+            RetryResult<bool> retry = Retry.WhileFalse(
+                () => {
+                    Process[] pname = Process.GetProcessesByName("ProtonVPN");
+                    return pname.Length > 0;
+                },
+                TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
+
+            return retry;
         }
     }
 }

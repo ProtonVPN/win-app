@@ -27,8 +27,10 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
@@ -40,17 +42,21 @@ namespace ProtonVPN.Update.Tests.Storage
     [TestClass]
     public class WebReleaseStorageTest
     {
+        private IConfiguration _configuration;
+        private IDeviceIdCache _deviceIdCache;
         private ILogger _logger;
         private IHttpClient _httpClient;
         private IFeedUrlProvider _feedUrlProvider;
         private DefaultAppUpdateConfig _config;
-        private Uri _feedUrl = new Uri("http://127.0.0.1/windows-releases.json");
+        private Uri _feedUrl = new("http://127.0.0.1/windows-releases.json");
 
         #region Initialization
 
         [TestInitialize]
         public void TestInitialize()
         {
+            _configuration = Substitute.For<IConfiguration>();
+            _deviceIdCache = Substitute.For<IDeviceIdCache>();
             _logger = Substitute.For<ILogger>();
             _httpClient = Substitute.For<IHttpClient>();
             _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
@@ -80,7 +86,7 @@ namespace ProtonVPN.Update.Tests.Storage
 
         private IReleaseStorage WebReleaseStorage()
         {
-            return new WebReleaseStorage(_config, _logger);
+            return new WebReleaseStorage(_config, _logger, _deviceIdCache, _configuration);
         }
 
         #endregion
@@ -88,7 +94,7 @@ namespace ProtonVPN.Update.Tests.Storage
         [TestMethod]
         public async Task Releases_ShouldGet_FromFeedUri()
         {
-            Uri feedUri = new Uri("http://127.0.0.1/windows-releases.json");
+            Uri feedUri = new("http://127.0.0.1/windows-releases.json");
             _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
             IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
 

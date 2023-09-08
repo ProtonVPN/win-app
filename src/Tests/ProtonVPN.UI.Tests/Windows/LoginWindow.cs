@@ -36,7 +36,7 @@ namespace ProtonVPN.UI.Tests.Windows
         {
             EnterCredentials(user);
             WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
-            SkipButton.Invoke();
+            SkipButton.Click();
             return new HomeWindow();
         }
 
@@ -63,6 +63,12 @@ namespace ProtonVPN.UI.Tests.Windows
             HelpButton.Invoke();
             ReportAnIssueButton.Invoke();
             return new BugReportWindow();
+        }
+
+        public HomeWindow WaitUntilLoggedIn()
+        {
+            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            return new HomeWindow();
         }
     }
 }

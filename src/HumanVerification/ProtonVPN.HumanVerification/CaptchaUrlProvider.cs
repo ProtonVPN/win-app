@@ -33,7 +33,7 @@ namespace ProtonVPN.HumanVerification
 
         public string GetCaptchaUrl(string token)
         {
-            return $"https://{_apiHostProvider.GetHost()}/core/v4/captcha?Token={token}";
+            return $"https://{_apiHostProvider.GetHost()}/core/v4/captcha?Token={token}&Dark=1";
         }
     }
 }

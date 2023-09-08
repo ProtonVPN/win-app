@@ -166,6 +166,9 @@ namespace ProtonVPN.Common.Configuration
         public TimeSpan ClientConfigUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan ClientConfigMinimumUpdateInterval { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan P2PCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
@@ -182,9 +185,6 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(1, 255)]
         public int MaxProfileNameLength { get; set; }
-
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan EventCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan ServiceCheckInterval { get; set; }
@@ -251,5 +251,7 @@ namespace ProtonVPN.Common.Configuration
         public string InstallActionsPath { get; set; }
 
         public bool IsCertificateValidationDisabled { get; set; }
+
+        public decimal? DeviceRolloutPercentage { get; set; }
     }
 }

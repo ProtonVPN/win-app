@@ -11,7 +11,7 @@ include:
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
-  SCREENSHOT_PATH: src/bin/TestFailureData/
+  TEST_ARTIFACT_PATH: src/bin/TestArtifactData/
   TEST_REPORT_PATH: results/
   PROJECT_ID: "13"
   MILESTONE: "Windows"
@@ -77,7 +77,7 @@ tests:
     - cmd.exe /c BuildDependencies.bat bin gosrponly
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
-    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
+    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
   artifacts:

@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Style="{StaticResource BaseWindowStyle}"
                           x:Name="UserControl"
                           mc:Ignorable="d">
-    <Grid Width="320">
+    <Grid Margin="52,47,52,0">
         <ContentPresenter Content="{Binding WebView}" />
     </Grid>
 </resource:BaseModalWindow>

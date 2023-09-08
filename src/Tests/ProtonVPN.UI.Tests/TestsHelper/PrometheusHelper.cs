@@ -17,13 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading.Tasks;
-using ProtonVPN.Api.Contracts.Events;
+using Prometheus.Client;
+using Prometheus.Client.MetricPusher;
 
-namespace ProtonVPN.Core.Events
+namespace ProtonVPN.UI.Tests.TestsHelper
 {
-    public interface IApiDataChangeAware
+    public class PrometheusHelper
     {
-        Task OnApiDataChanged(EventResponse eventResponse);
+        private readonly string _endpoint = Environment.GetEnvironmentVariable("PROMETHEUS_HOST");
+
+        public async Task PushMetricAsync(string metricName, string description, double duration)
+        {
+            IGauge loginDurationGauge = Metrics.DefaultFactory.CreateGauge(metricName, description);
+            MetricPusher pusher = new MetricPusher(new MetricPusherOptions { Endpoint = _endpoint, Job = "vpn-client-performance-metrics" });
+            loginDurationGauge.Inc(duration);
+            await pusher.PushAsync();
+        }
     }
 }

@@ -2250,19 +2250,23 @@
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
     <value>Выберыце колер</value>
-    <comment>The error message displayed in Profile window when color is not selected</comment>
+    <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
     <value>Выберыце краіну</value>
-    <comment>The error message displayed in Profile window when country is not selected</comment>
+    <comment>The error message displayed in the Profile window when a country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_GatewayEmpty">
+    <value>Выберыце шлюз</value>
+    <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
     <value>Выберыце назву профілю</value>
-    <comment>The error message displayed in Profile window when profile name is empty</comment>
+    <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
     <value>Профіль з такой назвай ужо існуе</value>
-    <comment>The error message displayed in Profile window when profile name is already used by another profile</comment>
+    <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
     <value>Максімальная даўжыня назвы не можа быць больш за {0} сімвал. Выберыце больш кароткую назву.</value>
@@ -2278,11 +2282,15 @@
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
     <value>Выберыце сервер</value>
-    <comment>The error message displayed in Profile window when server is not selected</comment>
+    <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
     <value>Выберыце краіну выхаду</value>
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Gateway_Watermark">
+    <value>Выберыце шлюз</value>
+    <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
     <value>Увядзіце назву профілю</value>
@@ -2319,6 +2327,10 @@
   <data name="Profiles_Profile_lbl_ExitCountry">
     <value>Краіна выхаду:</value>
     <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Gateway">
+    <value>Шлюз:</value>
+    <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
     <value>Назва:</value>
@@ -2486,16 +2498,13 @@
     <value>рэклам заблакіраваны</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Рэкламныя вэб-сайты выкарыстоўваюць файлы cookie і праграмы сачэння, каб прааналізаваць вашы перавагі.</value>
-    <comment></comment>
+    <value>Рэкламныя вэб-сайты выкарыстоўваюць файлы cookie і праграмы сачэння, каб паказваць вам персаналізаваную рэкламу.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
     <value>даных захавана</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Прыблізны памер рэкламы, праграм сачэння і шкодных праграм, якія заблакіраваў NetShield.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>праграмы сачэння спынены</value>
@@ -2511,7 +2520,6 @@
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Праграмы сачэння (трэкеры) - гэта праграмнае забеспячэнне старонніх вэб-сайтаў, якія збіраюць, захоўваюць і прадаюць інфармацыю пра вашу дзейнасць у інтэрнэце.</value>
-    <comment></comment>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Паспрабуйце адключыць NetShield, калі вэб-сайты не загружаюцца</value>
@@ -2539,6 +2547,10 @@
   </data>
   <data name="Secure_Servers_lbl_Other">
     <value>{0} бяспечнага сервера</value>
+  </data>
+  <data name="ServerType_val_B2B">
+    <value>Шлюзы</value>
+    <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
     <value>Стандартны</value>
@@ -2677,7 +2689,7 @@
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
-    <value>Дазваляць альтэрнатыўную маршрутызацыю</value>
+    <value>Дазволіць альтэрнатыўную маршрутызацыю</value>
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
@@ -2901,6 +2913,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Рэкамендавана</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
+  <data name="Sidebar_B2BPopup_Desc">
+    <value>Шлюз VPN - гэта бяспечнае падключэнне, якое забяспечвае кантралюемы доступ да даных і паслуг вашай кампаніі праз вылучаныя серверы.</value>
+    <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_B2BPopup_Title">
+    <value>Што такое шлюз?</value>
+    <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Хуткае падключэнне</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
@@ -3052,8 +3072,8 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>ІНШЫЯ</value>
-    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the OTHERS.</comment>
+    <value>Іншыя</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
     <value>Сервер Plus</value>
@@ -3072,7 +3092,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Нататка: скарыстайцеся новай укладкай браўзера і/або ачысціце кэш, каб пераканацца, што з'явілася новае змесціва.</value>
   </data>
   <data name="Sidebar_Streaming_More">
-    <value>і іншае</value>
+    <value>і іншыя</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
     <value>Адключана</value>
@@ -3203,6 +3223,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Upsell_NonStandardPorts_ttl">
     <value>Дазваляць трафік на нестандартныя парты</value>
     <comment>The title in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_Plan_Business_Info">
+    <value>Даступна з VPN Business.</value>
+    <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_About">
     <value>Што такое перанакіраванне партоў?</value>

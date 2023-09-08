@@ -128,11 +128,11 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
             };
 
             _standardServer = new Server(id: "Standard-S", name: "Standard", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "standard.protonvpn.s", status: 1, tier: ServerTiers.Basic,
-                features: (sbyte)Features.None, load: 0, score: 1, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _standardPhysicalServers, exitIp: "192.168.2.1", null);
+                features: (ulong)Features.None, load: 0, score: 1, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _standardPhysicalServers, exitIp: "192.168.2.1", null);
             _p2pServer = new Server(id: "P2P-S", name: "P2P", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "p2p.protonvpn.s", status: 1, tier: ServerTiers.Plus,
-                features: (sbyte)Features.P2P, load: 100, score: 999, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _p2pPhysicalServers, exitIp: "192.168.2.2", null);
+                features: (ulong)Features.P2P, load: 100, score: 999, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _p2pPhysicalServers, exitIp: "192.168.2.2", null);
             _torServer = new Server(id: "Tor-S", name: "Tor", city: "City", entryCountry: "CH", exitCountry: "CH", domain: "tor.protonvpn.s", status: 1, tier: ServerTiers.Plus,
-                features: (sbyte)Features.Tor, load: 0, score: 0, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _torPhysicalServers, exitIp: "192.168.2.3", null);
+                features: (ulong)Features.Tor, load: 0, score: 0, locationResponse: Substitute.For<LocationResponse>(), physicalServers: _torPhysicalServers, exitIp: "192.168.2.3", null);
             _servers = new List<Server>
             {
                 _standardServer,

@@ -35,7 +35,7 @@ namespace ProtonVPN.Core.Servers.Models
         public string Domain { get; }
         public sbyte Status { get; }
         public int Tier { get; }
-        public sbyte Features { get; }
+        public ulong Features { get; }
         public int Load { get; }
         public float Score { get; }
         public LocationResponse LocationResponse { get; }
@@ -52,7 +52,7 @@ namespace ProtonVPN.Core.Servers.Models
             string domain,
             sbyte status,
             int tier,
-            sbyte features,
+            ulong features,
             sbyte load,
             float score,
             LocationResponse locationResponse,
@@ -156,6 +156,27 @@ namespace ProtonVPN.Core.Servers.Models
         public bool IsB2B()
         {
             return ServerFeatures.IsB2B(Features);
+        }
+
+        public IName CreateConnectionName()
+        {
+            if (this.IsSecureCore())
+            {
+                return GetServerName();
+            }
+            else if (IsB2B())
+            {
+                return new B2BServerName
+                {
+                    GatewayName = GatewayName,
+                    Name = Name
+                };
+            }
+            return new StandardServerName
+            {
+                EntryCountryCode = EntryCountry,
+                Name = Name
+            };
         }
 
         public static Server Empty() =>

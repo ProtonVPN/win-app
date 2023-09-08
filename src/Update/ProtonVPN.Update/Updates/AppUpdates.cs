@@ -20,7 +20,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Files;
@@ -46,7 +48,11 @@ namespace ProtonVPN.Update.Updates
         private readonly IFileValidator _fileValidator;
         private readonly ILaunchableFile _launchable;
 
-        public AppUpdates(IAppUpdateConfig config, ILaunchableFile launchableFile, ILogger logger)
+        public AppUpdates(IAppUpdateConfig config,
+            ILaunchableFile launchableFile,
+            ILogger logger,
+            IDeviceIdCache deviceIdCache,
+            IConfiguration configuration)
         {
             Ensure.NotNull(config, nameof(config));
 
@@ -55,17 +61,17 @@ namespace ProtonVPN.Update.Updates
             _releaseStorage =
                 new OrderedReleaseStorage(
                     new SafeReleaseStorage(
-                        new WebReleaseStorage(config, logger)));
+                        new WebReleaseStorage(config, logger, deviceIdCache, configuration)));
 
-            _updatesDirectory = 
+            _updatesDirectory =
                 new SafeUpdatesDirectory(
                     new UpdatesDirectory(config.UpdatesPath, config.CurrentVersion)
                 );
 
             _fileLocation = new FileLocation(_updatesDirectory.Path);
 
-            _downloadable = 
-                new SafeDownloadableFile( 
+            _downloadable =
+                new SafeDownloadableFile(
                     new DownloadableFile(config.FileHttpClient));
 
             _fileValidator =

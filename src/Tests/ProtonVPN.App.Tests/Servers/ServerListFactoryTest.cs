@@ -104,7 +104,7 @@ namespace ProtonVPN.App.Tests.Servers
                 Name = name,
                 EntryCountry = entryCountryCode ?? exitCountryCode,
                 ExitCountry = exitCountryCode,
-                Features = (sbyte)features,
+                Features = (ulong)features,
                 Tier = tier,
                 City = city,
                 Servers = new List<PhysicalServerResponse>()

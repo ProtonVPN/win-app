@@ -25,13 +25,10 @@ namespace ProtonVPN.Update.Responses
     public class ReleaseResponse
     {
         public string Version;
-
         public FileResponse File;
-
         public IReadOnlyList<string> ChangeLog;
-
         public DateTimeOffset? ReleaseDate;
-
         public string MinimumOsVersion;
+        public decimal? RolloutPercentage;
     }
 }

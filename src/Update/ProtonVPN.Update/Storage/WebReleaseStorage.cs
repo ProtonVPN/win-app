@@ -23,9 +23,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.DeviceIds;
+using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Crypto;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Responses;
@@ -37,15 +41,43 @@ namespace ProtonVPN.Update.Storage
     /// </summary>
     public class WebReleaseStorage : IReleaseStorage
     {
-        private static readonly JsonSerializer JsonSerializer = new();
+        private static readonly JsonSerializer _jsonSerializer = new();
 
         private readonly IAppUpdateConfig _config;
         private readonly ILogger _logger;
+        private readonly IDeviceIdCache _deviceIdCache;
+        private readonly IConfiguration _configuration;
+        private readonly Lazy<decimal> _deviceRolloutPercentage;
 
-        public WebReleaseStorage(IAppUpdateConfig config, ILogger logger)
+        public WebReleaseStorage(IAppUpdateConfig config,
+            ILogger logger,
+            IDeviceIdCache deviceIdCache,
+            IConfiguration configuration)
         {
             _config = config;
             _logger = logger;
+            _deviceIdCache = deviceIdCache;
+            _configuration = configuration;
+            _deviceRolloutPercentage = new(() => CreateDeviceRolloutPercentage());
+        }
+
+        private decimal CreateDeviceRolloutPercentage()
+        {
+            decimal deviceRolloutPercentage;
+            if (_configuration.DeviceRolloutPercentage.HasValue)
+            {
+                deviceRolloutPercentage = _configuration.DeviceRolloutPercentage.Value;
+                _logger.Info<AppUpdateCheckLog>($"Using device rollout percentage {deviceRolloutPercentage} " +
+                    $"from configuration.");
+            }
+            else
+            {
+                deviceRolloutPercentage =
+                    HashGenerator.HashToPercentage(_deviceIdCache.GetDeviceId() + _config.CurrentVersion) * 100M;
+                _logger.Info<AppUpdateCheckLog>($"Generated device rollout percentage {deviceRolloutPercentage} " +
+                    $"for device Id '{_deviceIdCache.GetDeviceId()}' and version '{_config.CurrentVersion}'.");
+            }
+            return deviceRolloutPercentage;
         }
 
         public async Task<IEnumerable<Release>> Releases()
@@ -65,7 +97,7 @@ namespace ProtonVPN.Update.Storage
         private async Task<CategoriesResponse> GetFilteredAsync(Uri feedUrl)
         {
             CategoriesResponse response = await GetAsync(feedUrl);
-            foreach(CategoryResponse category in response.Categories)
+            foreach (CategoryResponse category in response.Categories)
             {
                 category.Releases = category.Releases.Where(ReleaseFilter).ToList();
             }
@@ -77,7 +109,28 @@ namespace ProtonVPN.Update.Storage
             return (r.ReleaseDate is null || r.ReleaseDate.Value <= DateTimeOffset.UtcNow) &&
                    (r.MinimumOsVersion is null ||
                     !Version.TryParse(r.MinimumOsVersion, out Version minimumOsVersion) ||
-                    Environment.OSVersion.Version >= minimumOsVersion);
+                    Environment.OSVersion.Version >= minimumOsVersion) &&
+                   IsCoveredByRollout(r.RolloutPercentage);
+        }
+
+        private bool IsCoveredByRollout(decimal? rolloutPercentage)
+        {
+            if (rolloutPercentage is null || rolloutPercentage.Value >= 100M)
+            {
+                return true;
+            }
+            if (rolloutPercentage.Value <= 0M)
+            {
+                return false;
+            }
+            try
+            {   // deviceRolloutPercentage <= rolloutPercentage
+                return decimal.Compare(_deviceRolloutPercentage.Value, rolloutPercentage.Value) <= 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private async Task<CategoriesResponse> GetAsync(Uri feedUrl)
@@ -105,13 +158,8 @@ namespace ProtonVPN.Update.Storage
         {
             using StreamReader streamReader = new(stream);
             using JsonTextReader jsonTextReader = new(streamReader);
-            T result = JsonSerializer.Deserialize<T>(jsonTextReader);
-            if (result == null)
-            {
-                throw new JsonException();
-            }
-
-            return result;
+            T result = _jsonSerializer.Deserialize<T>(jsonTextReader);
+            return result == null ? throw new JsonException() : result;
         }
     }
 }

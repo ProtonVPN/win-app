@@ -21,13 +21,14 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
-using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Update;
+using ProtonVPN.Update;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;
 
@@ -36,6 +37,7 @@ namespace ProtonVPN.Service
     public class UpdateController : IUpdateController
     {
         private readonly INotifyingAppUpdate _notifyingAppUpdate;
+        private readonly IAppUpdates _appUpdates;
         private readonly IFeedUrlProvider _feedUrlProvider;
         private readonly IAppControllerCaller _appControllerCaller;
         private readonly IEntityMapper _entityMapper;
@@ -47,6 +49,7 @@ namespace ProtonVPN.Service
 
         public UpdateController(
             INotifyingAppUpdate notifyingAppUpdate,
+            IAppUpdates appUpdates,
             IFeedUrlProvider feedUrlProvider,
             IAppControllerCaller appControllerCaller,
             IEntityMapper entityMapper,
@@ -54,6 +57,7 @@ namespace ProtonVPN.Service
             ILogger logger)
         {
             _notifyingAppUpdate = notifyingAppUpdate;
+            _appUpdates = appUpdates;
             _feedUrlProvider = feedUrlProvider;
             _appControllerCaller = appControllerCaller;
             _entityMapper = entityMapper;
@@ -66,6 +70,7 @@ namespace ProtonVPN.Service
         public async Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity)
         {
             CacheUpdateSettings(updateSettingsIpcEntity);
+            _appUpdates.Cleanup();
             _notifyingAppUpdate.StartCheckingForUpdate(updateSettingsIpcEntity.IsEarlyAccess);
         }
 

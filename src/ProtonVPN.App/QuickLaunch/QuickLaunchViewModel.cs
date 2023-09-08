@@ -208,26 +208,7 @@ namespace ProtonVPN.QuickLaunch
                 return;
             }
 
-            if (server.IsSecureCore())
-            {
-                ConnectionName = server.GetServerName();
-            }
-            else if (server.IsB2B())
-            {
-                ConnectionName = new B2BServerName
-                {
-                    GatewayName = server.GatewayName,
-                    Name = server.Name
-                };
-            }
-            else
-            {
-                ConnectionName = new StandardServerName
-                {
-                    EntryCountryCode = server.EntryCountry,
-                    Name = server.Name
-                };
-            }
+            ConnectionName = server.CreateConnectionName();
             IsB2B = server.IsB2B();
         }
 

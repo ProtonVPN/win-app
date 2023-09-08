@@ -28,7 +28,6 @@ namespace ProtonVPN.UI.Tests.TestsHelper
     public class TestsRecorder
     {
         private static VideoRecorder Recorder;
-        private static string ScreenshotDir { get; set; }
 
         public static void StartVideoCapture()
         {
@@ -37,8 +36,8 @@ namespace ProtonVPN.UI.Tests.TestsHelper
                 return;
             }
 
-            CreateTestFailureFolder();
-            string pathToVideo = Path.Combine(ScreenshotDir, "TestRun.mp4");
+            string screenshotDir = CreateTestArtifactFolder();
+            string pathToVideo = Path.Combine(screenshotDir, "TestRun.mp4");
             Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 26, ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
             {
                 string testName = TestContext.CurrentContext.Test.MethodName;
@@ -60,26 +59,39 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             Recorder.Stop();
         }
 
-        public static void SaveScreenshotAndLogs(string testName)
+        public static void SaveScreenshot(string testName)
         {
-            CreateTestFailureFolder();
+            string artifactsDir = CreateTestArtifactFolder();
             string screenshotName = $"{testName} {DateTime.Now}.png".Replace("/", "-").Replace(":", "-");
-            string pathToScreenshotFolder = Path.Combine(ScreenshotDir, testName);
-            string pathToScreenshot = Path.Combine(pathToScreenshotFolder, screenshotName);
-            Directory.CreateDirectory(pathToScreenshotFolder);
+            string pathToTestArtifact = Path.Combine(artifactsDir, testName);
+            string pathToScreenshot = Path.Combine(pathToTestArtifact, screenshotName);
             Capture.Screen().ToFile(pathToScreenshot);
-            File.Copy(TestConstants.AppLogsPath, pathToScreenshotFolder + @"\app-logs.txt", true);
-            File.Copy(TestConstants.ServiceLogsPath, pathToScreenshotFolder + @"\service-logs.txt", true);
         }
 
-        private static void CreateTestFailureFolder()
+        public static void SaveLogs(string testName)
+        {
+            string artifactsDir = CreateTestArtifactFolder();
+            string pathToTestArtifact = Path.Combine(artifactsDir, testName);
+            Directory.CreateDirectory(pathToTestArtifact);
+            if (File.Exists(TestConstants.AppLogsPath))
+            {
+                File.Copy(TestConstants.AppLogsPath, pathToTestArtifact + @"\app-logs.txt", true);
+            }
+            if (File.Exists(TestConstants.ServiceLogsPath))
+            {
+                File.Copy(TestConstants.ServiceLogsPath, pathToTestArtifact + @"\service-logs.txt", true);
+            }
+        }
+
+        private static string CreateTestArtifactFolder()
         {
             Assembly asm = Assembly.GetExecutingAssembly();
-            ScreenshotDir = Path.Combine(Path.GetDirectoryName(asm.Location), "TestFailureData");
-            if(!Directory.Exists(ScreenshotDir))
+            string testArtifactFolderPath = Path.Combine(Path.GetDirectoryName(asm.Location), "TestArtifactData");
+            if(!Directory.Exists(testArtifactFolderPath))
             {
-                Directory.CreateDirectory(ScreenshotDir);
+                Directory.CreateDirectory(testArtifactFolderPath);
             }
+            return testArtifactFolderPath;
         }
     }
 }

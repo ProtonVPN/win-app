@@ -145,7 +145,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 VpnInfoCheckInterval = TimeSpan.FromMinutes(3),
 
-                ClientConfigUpdateInterval = TimeSpan.FromHours(3),
+                ClientConfigUpdateInterval = TimeSpan.FromHours(12),
+
+                ClientConfigMinimumUpdateInterval = TimeSpan.FromHours(2),
 
                 DefaultCurrency = "USD",
 
@@ -154,8 +156,6 @@ namespace ProtonVPN.Common.Configuration.Source
                 ReportBugMaxFileSize = 488 * 1024,
 
                 MaxProfileNameLength = 25,
-
-                EventCheckInterval = TimeSpan.FromMinutes(5),
 
                 ServiceCheckInterval = TimeSpan.FromSeconds(30),
 
@@ -357,7 +357,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 InstallActionsPath = Path.Combine(resourcesFolder, "ProtonVPN.InstallActions.dll"),
 
-                IsCertificateValidationDisabled = false
+                IsCertificateValidationDisabled = false,
+
+                DeviceRolloutPercentage = null
             };
         }
     }

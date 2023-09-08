@@ -482,15 +482,6 @@ namespace ProtonVPN.Core
                 }
             };
 
-            Resolve<EventClient>().ApiDataChanged += async (_, e) =>
-            {
-                IEnumerable<IApiDataChangeAware> instances = Resolve<IEnumerable<IApiDataChangeAware>>();
-                foreach (IApiDataChangeAware instance in instances)
-                {
-                    await instance.OnApiDataChanged(e);
-                }
-            };
-
             Resolve<ITokenClient>().RefreshTokenExpired += (_, _) =>
             {
                 Resolve<ExpiredSessionHandler>().Execute();
@@ -574,8 +565,6 @@ namespace ProtonVPN.Core
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().LoadAsync(autoLogin);
             Resolve<INetworkClient>().CheckForInsecureWiFi();
-            await Resolve<EventClient>().StoreLatestEvent();
-            Resolve<EventTimer>().Start();
         }
 
         private void LoadViewModels()
