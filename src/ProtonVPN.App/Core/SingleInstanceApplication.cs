@@ -28,13 +28,13 @@ namespace ProtonVPN.Core
         private static Mutex _singleInstanceMutex;
         private static IAppExitInvoker _appExitInvoker = new AppExitInvoker();
 
-        public static async Task<bool> InitializeAsFirstInstance(string uniqueName)
+        public static async Task<bool> InitializeAsFirstInstance(string uniqueName, string args)
         {
             _singleInstanceMutex = new Mutex(true, uniqueName, out bool firstInstance);
 
             if (!firstInstance)
             {
-                await FirstAppInstanceCallerInitializer.OpenMainWindowAsync();
+                await FirstAppInstanceCallerInitializer.OpenMainWindowAsync(args);
                 _appExitInvoker.Exit();
             }
 

@@ -26,23 +26,23 @@ namespace ProtonVPN.ProcessCommunication.App
 {
     public static class FirstAppInstanceCaller
     {
-        public static async Task OpenMainWindowAsync()
+        public static async Task OpenMainWindowAsync(string args)
         {
             AppServerPortRegister appServerPortRegister = new(new NullLogger());
             int? appServerPort = appServerPortRegister.ReadOnce();
             if (appServerPort.HasValue && GrpcChannelWrapperFactory.IsPortValid(appServerPort.Value))
             {
-                await CreateGrpcChannelAndSendOpenWindowCommandAsync(appServerPort.Value);
+                await CreateGrpcChannelAndSendOpenWindowCommandAsync(appServerPort.Value, args);
             }
         }
 
-        private static async Task CreateGrpcChannelAndSendOpenWindowCommandAsync(int appServerPort)
+        private static async Task CreateGrpcChannelAndSendOpenWindowCommandAsync(int appServerPort, string args)
         {
             try
             {
                 GrpcChannelWrapper grpcChannelWrapper = new(appServerPort);
                 IAppController appController = grpcChannelWrapper.CreateService<IAppController>();
-                await SendOpenWindowCommandAsync(appController);
+                await SendOpenWindowCommandAsync(appController, args);
                 await grpcChannelWrapper.ShutdownAsync();
             }
             catch
@@ -50,11 +50,11 @@ namespace ProtonVPN.ProcessCommunication.App
             }
         }
 
-        private static async Task SendOpenWindowCommandAsync(IAppController appController)
+        private static async Task SendOpenWindowCommandAsync(IAppController appController, string args)
         {
             try
             {
-                await appController.OpenWindow();
+                await appController.OpenWindow(args);
             }
             catch
             {

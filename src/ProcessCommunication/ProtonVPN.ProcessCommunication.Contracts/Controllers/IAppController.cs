@@ -41,6 +41,6 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
         Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic);
         Task UpdateStateChange(UpdateStateIpcEntity updateState);
         
-        Task OpenWindow();
+        Task OpenWindow(string args);
     }
 }
