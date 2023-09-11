@@ -2064,10 +2064,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Get unlimited changes with VPN Plus</value>
+    <value>Krijg ongelimiteerde aanpassingen met VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>You’ve reached the maximum number of Free server changes for now.</value>
+    <value>U heeft het maximale aantal Gratis server aanpassingen voorlopig bereikt.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Secure Core activeren</value>
@@ -2091,10 +2091,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Er zijn nu Gratis servers in Polen en Roemenië</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Changes to server selection</value>
+    <value>Veranderingen aan server selectie</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+    <value>Om drukke servers te voorkomen en ervoor te zorgen dat iedereen toegang heeft tot snel en veilig browsen, hebben we de handmatige landselectie verwijderd en grote verbeteringen aangebracht aan de automatische serverselectie.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Nieuw</value>
@@ -2598,10 +2598,10 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Get worldwide coverage with VPN Plus</value>
+    <value>Krijg wereldwijde dekking met VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Not the country you wanted? Upgrade to choose any server</value>
+    <value>Niet het land dat u wenste? Upgrade om eender welke server te kiezen</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Verbinden</value>
@@ -2739,7 +2739,7 @@ Volg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Versnel uw torrents en online gaming door ondersteunde lokale apps toe te staan bereikbaar te zijn vanaf het internet.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
@@ -2951,7 +2951,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Plus locations ({0})</value>
+    <value>Plus-locaties ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>BASIC &amp; PLUS locaties ({0})</value>
@@ -3135,16 +3135,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Access faster, less crowded servers.</value>
+    <value>Toegang tot snellere, minder bevolkte servers</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
     <value>Verhoog verbindingssnelheid met tot wel 400% met &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Improved speed and stability when connected to distant servers.</value>
+    <value>Verbeterde snelheid en stabiliteit wanneer u verbonden bent met afgelegen servers.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+    <value>Browse aan nog hogere snelheden (tot 10 Gbps)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
     <value>Toegang tot geoblocked inhoud</value>
@@ -3216,13 +3216,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Verbeter de prestaties van online gaming en videocalls</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (matig) optimaliseert snelheid en stabiliteit door directe verbindingen tussen apparaten in te schakelen</value>
+    <value>NAT-type 2 (matig) optimaliseert snelheid en stabiliteit door directe verbindingen tussen apparaten in te schakelen</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Ontgrendel &lt;Bold&gt;NAT type 2&lt;/Bold&gt; met VPN Plus</value>
+    <value>Ontgrendel &lt;Bold&gt;NAT-type 2&lt;/Bold&gt; met VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Verbeter je game-ervaring</value>
+    <value>Verbeter uw game-ervaring</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blokkeer advertenties en trackers</value>
@@ -3260,7 +3260,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Verbeter je peer-to-peer download snelheid</value>
+    <value>Verbeter uw peer-to-peer downloadsnelheid</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
     <value>Verbind met online gaming servers en host multiplayer games</value>

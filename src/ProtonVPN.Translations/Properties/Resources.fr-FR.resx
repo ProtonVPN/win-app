@@ -2094,7 +2094,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Changements dans la sélection des serveurs</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Pour éviter l'encombrement des serveurs et garantir à tous l'accès à une navigation rapide et sécurisée, nous avons supprimé la sélection manuelle des pays et apporté des améliorations importantes à la sélection automatique des serveurs.</value>
+    <value>Pour éviter l'encombrement des serveurs et garantir à tous l'accès à une navigation rapide et sécurisée, nous avons supprimé la sélection manuelle des pays et apporté des améliorations majeures à la sélection automatique des serveurs.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Nouveautés</value>
@@ -2598,7 +2598,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Profitez d'une couverture mondiale avec VPN Plus</value>
+    <value>Profitez d'une couverture mondiale en passant à VPN Plus.</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Ce n'est pas le pays que vous vouliez ? Changez d'abonnement pour choisir n'importe quel serveur.</value>
@@ -3147,39 +3147,39 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Naviguez à des vitesses encore plus élevées (jusqu'à 10 Gbit/s)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Accédez à des contenus bloqués géographiquement</value>
+    <value>Accédez à des contenus bloqués géographiquement.</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Choisissez n'importe quel emplacement</value>
+    <value>Choisissez n'importe quel emplacement.</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
     <value>Vitesse VPN encore plus élevée</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Regardez vos films préférés en streaming</value>
+    <value>Regardez vos films préférés en streaming.</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>En passant à l'abonnement Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Accédez à plus de {0} dans {1}</value>
+    <value>Accédez à plus de {0} dans {1}.</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
-    <value>Connectez-vous à {0} pays</value>
+    <value>Connectez-vous à {0} pays.</value>
   </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connectez-vous à {0} pays</value>
+    <value>Connectez-vous à {0} pays.</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Vitesses plus élevées (10 Gbit/s)</value>
+    <value>Profitez de vitesses plus élevées (10 Gbit/s).</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Regardez vos films préférés en streaming</value>
+    <value>Regardez vos films préférés en streaming.</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Protégez jusqu’à 10 appareils</value>
+    <value>Protégez jusqu’à 10 appareils.</value>
   </data>
   <data name="Upsell_Country_Bullet5">
     <value>Garantie satisfait ou remboursé pendant 30 jours</value>
@@ -3219,7 +3219,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Le NAT de type 2 (modéré) optimise la vitesse et la stabilité en permettant des connexions directes entre les appareils.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Utilisez le &lt;Bold&gt;NAT de type 2&lt;/Bold&gt; en passant à VPN Plus.</value>
+    <value>Disposez du &lt;Bold&gt;NAT de type 2&lt;/Bold&gt; en passant à VPN Plus.</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
     <value>Améliorez votre expérience de jeu</value>
@@ -3308,10 +3308,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Répartissez votre trafic entre ce qui doit passer par le VPN et ce qui ne le doit pas.</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Laissez les applications et les adresses IP de confiance contourner le VPN pour des vitesses plus rapides.</value>
+    <value>Laissez les applications et les adresses IP de confiance contourner le VPN pour profiter de vitesses plus élevées.</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Accéder à la fois au contenu de votre pays et au contenu local quand vous naviguez depuis l'étranger.</value>
+    <value>Depuis l'étranger, accédez à la fois au contenu de votre pays et au contenu local quand vous naviguez.</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
     <value>Utilisez le &lt;Bold&gt;Split tunneling&lt;/Bold&gt; en passant à VPN Plus.</value>

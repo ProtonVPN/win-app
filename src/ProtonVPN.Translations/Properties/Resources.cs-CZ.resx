@@ -3278,35 +3278,35 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+    <value>Uložení často používaných připojení pomocí &lt;Bold&gt;profilů&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+    <value>Získejte rychlejší přístup ke svým profilům pomocí &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Unlock advanced VPN customization</value>
+    <value>Odemknutí pokročilého přizpůsobení VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Free server locations ({0})</value>
+    <value>Volná umístění serveru ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+    <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému serveru. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Free connections</value>
+    <value>Bezplatné připojení</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Improve online gaming and video call performance</value>
+    <value>Zlepšení výkonu online her a videohovorů</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
+    <value>NAT typu 2 (mírný) optimalizuje rychlost a stabilitu tím, že umožňuje přímé připojení mezi zařízeními.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>Odblokování &lt;Bold&gt;NAT typu 2&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>Zvyšte úroveň svých herních zážitků</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blokování reklam a sledovačů</value>
@@ -3344,34 +3344,34 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>Zlepšení rychlosti stahování peer-to-peer</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>Připojení k online herním serverům a hostování her pro více hráčů</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>Nastavení vzdáleného přístupu k zařízením v místní síti</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>Odblokování &lt;Bold&gt;přesměrování portů&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>Supercharge your P2P connections</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Save your preferred server, city, or country.</value>
+    <value>Uložit preferovaný server, město nebo zemi.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Set custom protocols and premium VPN features.</value>
+    <value>Nastavení vlastních protokolů a prémiových funkcí VPN.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Set up auto-connect for even faster access.</value>
+    <value>Nastavte automatické připojení pro ještě rychlejší přístup.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+    <value>Odblokování &lt;Bold&gt;profilů&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Get quick access to your frequent connections</value>
+    <value>Získejte rychlý přístup ke svým častým spojením</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>Přidejte další úroveň šifrování vašemu VPN připojení</value>
@@ -3389,19 +3389,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Dvojnásobné šifrování pomocí Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Split your traffic into VPN and non-VPN tunnels</value>
+    <value>Rozdělení provozu na tunely VPN a tunely bez VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+    <value>Umožnit důvěryhodným aplikacím a IP adresám obejít VPN a dosáhnout vyšší rychlosti</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Access both home and local content when browsing from abroad</value>
+    <value>Přístup k domácímu i místnímu obsahu při procházení ze zahraničí</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+    <value>Odemknutí &lt;Bold&gt;rozděleného tunelování&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Get the best of both worlds</value>
+    <value>Získejte to nejlepší z obou světů</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Navýšit</value>

@@ -2127,10 +2127,10 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Serwery planu Free są dostępne w Polsce i Rumunii.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Zmiany w wyborze serwera</value>
+    <value>Zmiany w wyborze serwerów</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Aby zapobiec zatłoczeniu serwerów i zapewnić wszystkim dostęp do szybkiego i bezpiecznego przeglądania, usunęliśmy ręczny wybór kraju i wprowadziliśmy znaczne ulepszenia w automatycznym wyborze serwerów.</value>
+    <value>Usunęliśmy ręczny wybór kraju, aby uniknąć obciążonych serwerów i zapewnić dostęp do szybkiego oraz bezpiecznego przeglądania Internetu. Ponadto ulepszyliśmy automatyczny wybór serwerów.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Co nowego</value>
@@ -2560,7 +2560,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Jeśli strony internetowe się nie ładują, spróbuj wyłączyć funkcję NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Przyśpiesz torrenty i gry online poprzez umożliwienie dostępu z internetu do wspieranych aplikacji lokalnych.</value>
+    <value>Przyśpiesz torrenty i gry online poprzez umożliwienie dostępu do obsługiwanych aplikacji lokalnych z Internetu.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>Przekieruj swoje najbardziej poufne dane przez nasze najbezpieczniejsze serwery ulokowane w krajach szanujących prywatność.</value>
@@ -2658,10 +2658,10 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>VPN Plus zapewnia zasięg na całym świecie</value>
+    <value>Plan VPN Plus zapewnia zasięg na całym świecie</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Nie ma kraju, który chcesz? Ulepsz, aby wybrać dowolny serwer.</value>
+    <value>Chcesz wybrać inny kraj? Ulepsz plan, aby wybrać inny serwer</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Połącz</value>
@@ -2795,11 +2795,11 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Otrzymaj powiadomienie, kiedy zmienią się ustawienia przekierowania portów</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Przyśpiesz torrenty i gry online poprzez umożliwienie dostępu z Internetu do wspieranych aplikacji lokalnych. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Dowiedz się więcej&lt;/Hyperlink&gt;</value>
+    <value>Przyśpiesz torrenty i gry online poprzez umożliwienie dostępu do obsługiwanych aplikacji lokalnych z Internetu. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Dowiedz się więcej&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Przyspiesz torrentowanie i granie online, umożliwiając dostęp do obsługiwanych aplikacji lokalnych z Internetu.</value>
+    <value>Przyśpiesz torrenty i gry online poprzez umożliwienie dostępu do obsługiwanych aplikacji lokalnych z Internetu.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
@@ -3219,7 +3219,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Zwiększ prędkość połączenia nawet o 400% dzięki funkcji &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Zwiększona szybkość i stabilność połączenia z odległymi serwerami.</value>
+    <value>Zwiększona prędkość i stabilność połączenia z odległymi serwerami.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
     <value>Przeglądaj Internet z najwyższą prędkością (10 Gb/s)</value>
@@ -3272,13 +3272,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Odblokuj &lt;Bold&gt;wybór krajów&lt;/Bold&gt; w planie VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Chcesz wybrać konkretny kraj?</value>
+    <value>Czy chcesz wybrać konkretny kraj?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+    <value>Połącz się z VPN za pomocą &lt;Bold&gt;niestandardowego serwera DNS&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+    <value>Zapisz często używane połączenia za pomocą &lt;Bold&gt;profili&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
     <value>Uzyskaj szybki dostęp do profili dzięki &lt;Bold&gt;szybkiemu połączeniowi&lt;/Bold&gt;</value>
@@ -3291,22 +3291,22 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
+    <value>Plan Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
     <value>Bezpłatne połączenia</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Improve online gaming and video call performance</value>
+    <value>Lepsza wydajność gier online i połączeń wideo</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
+    <value>NAT typ 2 (umiarkowany) optymalizuje prędkość i stabilność połączenia, umożliwiając bezpośrednie połączenia między urządzeniami</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>Odblokuj &lt;Bold&gt;NAT typ 2&lt;/Bold&gt; w planie VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>Podnieś poziom swoich wrażeń z gry</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Zablokuj reklamy i elementy śledzące</value>
@@ -3344,19 +3344,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>Zwiększ prędkość pobierania P2P</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>Połącz się z serwerami gier online i hostuj gry wieloosobowe</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>Skonfiguruj zdalny dostęp do urządzeń w sieci lokalnej</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>Odblokuj &lt;Bold&gt;przekierowanie portów&lt;/Bold&gt; w planie VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>Ulepsz połączenia P2P</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
     <value>Zapisz ulubiony serwer, miasto lub kraj.</value>
@@ -3392,13 +3392,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Podziel ruch na tunele VPN i tunele bez VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Pozwól zaufanym aplikacjom i adresom IP ominąć VPN, aby uzyskać szybsze prędkości.</value>
+    <value>Zezwalaj zaufanym aplikacjom i adresom IP na omijanie połączenia VPN, aby uzyskać większą prędkość</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
     <value>Dostęp do treści krajowych i lokalnych podczas przeglądania z zagranicy</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Odblokuj &lt;Bold&gt;dzielone tunelowanie&lt;/Bold&gt; z VPN Plus</value>
+    <value>Odblokuj funkcję &lt;Bold&gt;Split Tunneling&lt;/Bold&gt; w planie VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>Uzyskaj to, co najlepsze z obu krajów</value>

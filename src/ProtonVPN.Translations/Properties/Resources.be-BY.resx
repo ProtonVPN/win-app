@@ -3300,10 +3300,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Палепшыце прадукцыйнасць сеткавых гульняў і відэазванкоў</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT другога тыпу (умераны) аптымізуе хуткасць і стабільнасць з дапамогай прамога падключэння паміж прыладамі</value>
+    <value>NAT Type 2 (умераны) аптымізуе хуткасць і стабільнасць з дапамогай прамога падключэння паміж прыладамі</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Атрымайце доступ да &lt;Bold&gt;NAT другога тыпу&lt;/Bold&gt; з VPN Plus</value>
+    <value>Атрымайце доступ да &lt;Bold&gt;NAT Type 2&lt;/Bold&gt; з VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
     <value>Перайдзіце на новы гульнявы ўзровень</value>
@@ -3356,7 +3356,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Атрымайце доступ да &lt;Bold&gt;перанакіравання партоў&lt;/Bold&gt; з VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Паляпшайце падключэнне P2P</value>
+    <value>Паляпшыце падключэнне P2P</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
     <value>Захоўвайце свой пажаданы сервер, горад або краіну.</value>
