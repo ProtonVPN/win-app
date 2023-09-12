@@ -39,8 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  CornerRadius="8"
                  IsOpen="{x:Bind ViewModel.IsToShowError, Mode=TwoWay}"
                  IsIconVisible="True"
-                 IsClosable="True">
-        </InfoBar>
+                 IsClosable="True"/>
 
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
             <NavigationView IsSettingsVisible="false"

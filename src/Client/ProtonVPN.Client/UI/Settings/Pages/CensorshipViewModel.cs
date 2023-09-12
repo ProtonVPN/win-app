@@ -18,46 +18,45 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class CensorshipViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public class CensorshipViewModel : SettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
     private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Improve_Censorship");
 
     public bool IsShareStatisticsEnabled
     {
-        get => _settings.IsShareStatisticsEnabled;
-        set => _settings.IsShareStatisticsEnabled = value;
+        get => Settings.IsShareStatisticsEnabled;
+        set => Settings.IsShareStatisticsEnabled = value;
     }
 
     public bool IsShareCrashReportsEnabled
     {
-        get => _settings.IsShareCrashReportsEnabled;
-        set => _settings.IsShareCrashReportsEnabled = value;
+        get => Settings.IsShareCrashReportsEnabled;
+        set => Settings.IsShareCrashReportsEnabled = value;
     }
 
     public string LearnMoreUrl => _urls.UsageStatisticsLearnMore;
 
-    public CensorshipViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
-        : base(viewNavigator, localizationProvider)
+    public CensorshipViewModel(IMainViewNavigator viewNavigator, 
+        ILocalizationProvider localizationProvider, 
+        ISettings settings, 
+        IUrls urls)
+        : base(viewNavigator, localizationProvider, settings)
     {
-        _settings = settings;
         _urls = urls;
     }
 
-    public void Receive(SettingChangedMessage message)
+    protected override void OnSettingsChanged(string propertyName)
     {
-        switch (message.PropertyName)
+        switch (propertyName)
         {
             case nameof(IsShareStatisticsEnabled):
                 OnPropertyChanged(nameof(IsShareStatisticsEnabled));

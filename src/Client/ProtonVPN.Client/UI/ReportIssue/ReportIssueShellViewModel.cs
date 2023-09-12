@@ -53,15 +53,15 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     { }
 
     [RelayCommand(CanExecute = nameof(CanNavigateBackward))]
-    public void NavigateBackward()
+    public async Task NavigateBackwardAsync()
     {
         if (ViewNavigator.CanGoBack)
         {
-            ViewNavigator.GoBack();
+            await ViewNavigator.GoBackAsync();
         }
         else
         {
-            ViewNavigator.NavigateTo<CategorySelectionViewModel>();
+            await ViewNavigator.NavigateToAsync<CategorySelectionViewModel>();
         }
     }
 

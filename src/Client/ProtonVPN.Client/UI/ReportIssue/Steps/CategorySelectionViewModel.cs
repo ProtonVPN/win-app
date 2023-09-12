@@ -53,9 +53,9 @@ public partial class CategorySelectionViewModel : PageViewModelBase<IReportIssue
     }
 
     [RelayCommand]
-    public void SelectCategory(IssueCategory category)
+    public async Task SelectCategoryAsync(IssueCategory category)
     {
-        ViewNavigator.NavigateToCategory(category);
+        await ViewNavigator.NavigateToCategoryAsync(category);
     }
 
     protected override async void OnLanguageChanged()

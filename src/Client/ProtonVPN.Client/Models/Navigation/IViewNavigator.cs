@@ -37,11 +37,11 @@ public interface IViewNavigator
 
     Frame? Frame { get; set; }
 
-    bool GoBack();
+    Task<bool> GoBackAsync();
 
-    bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false);
+    Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false);
 
-    bool NavigateTo<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
+    Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
         where TPageViewModel : PageViewModelBase;
 
     Task ShowOverlayAsync<TOverlayViewModel>()

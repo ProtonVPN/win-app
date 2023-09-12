@@ -30,4 +30,6 @@ public struct MessageDialogParameters
     public string SecondaryButtonText { get; set; }
 
     public string CloseButtonText { get; set; }
+
+    public bool UseVerticalLayoutForButtons { get; set; }
 }

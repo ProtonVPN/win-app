@@ -68,9 +68,9 @@ public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssue
     }
 
     [RelayCommand(CanExecute = nameof(CanRetry))]
-    public void Retry()
+    public async Task RetryAsync()
     {
-        ViewNavigator.GoBack();
+        await ViewNavigator.GoBackAsync();
     }
 
     public bool CanRetry()

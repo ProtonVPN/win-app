@@ -18,32 +18,29 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class AdvancedSettingsViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public class AdvancedSettingsViewModel : SettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
     private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Connection_AdvancedSettings");
 
-    public string CustomDnsServersSettingsState => Localizer.GetToggleValue(_settings.IsCustomDnsServersEnabled);
+    public string CustomDnsServersSettingsState => Localizer.GetToggleValue(Settings.IsCustomDnsServersEnabled);
 
     public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
 
     public bool IsAlternativeRoutingEnabled
     {
-        get => _settings.IsAlternativeRoutingEnabled;
-        set => _settings.IsAlternativeRoutingEnabled = value;
+        get => Settings.IsAlternativeRoutingEnabled;
+        set => Settings.IsAlternativeRoutingEnabled = value;
     }
 
     public bool IsStrictNatType
@@ -58,16 +55,18 @@ public class AdvancedSettingsViewModel : PageViewModelBase<IMainViewNavigator>, 
         set => SetNatType(value, NatType.Moderate);
     }
 
-    public AdvancedSettingsViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
-        : base(viewNavigator, localizationProvider)
+    public AdvancedSettingsViewModel(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        IUrls urls)
+        : base(viewNavigator, localizationProvider, settings)
     {
-        _settings = settings;
         _urls = urls;
     }
 
-    public void Receive(SettingChangedMessage message)
+    protected override void OnSettingsChanged(string propertyName)
     {
-        switch (message.PropertyName)
+        switch (propertyName)
         {
             case nameof(ISettings.IsAlternativeRoutingEnabled):
                 OnPropertyChanged(nameof(IsAlternativeRoutingEnabled));
@@ -93,14 +92,14 @@ public class AdvancedSettingsViewModel : PageViewModelBase<IMainViewNavigator>, 
 
     private bool IsNatType(NatType natType)
     {
-        return _settings.NatType == natType;
+        return Settings.NatType == natType;
     }
 
     private void SetNatType(bool value, NatType natType)
     {
         if (value)
         {
-            _settings.NatType = natType;
+            Settings.NatType = natType;
         }
     }
 }

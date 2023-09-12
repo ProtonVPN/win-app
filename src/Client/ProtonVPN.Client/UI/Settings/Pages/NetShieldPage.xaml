@@ -24,15 +24,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
+    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
 
-        <controls:PageContentControl.PageHeader>
+        <custom:PageContentControl.PageHeader>
             <StackPanel Orientation="Horizontal"
                         Spacing="16">
                 <Image Width="32"
@@ -40,7 +43,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Source="{x:Bind ViewModel.NetShieldFeatureIconSource}" />
                 <TextBlock Text="{x:Bind ViewModel.Title}" />
             </StackPanel>
-        </controls:PageContentControl.PageHeader>
+        </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
 
@@ -65,5 +68,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield_Footer')}" />
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

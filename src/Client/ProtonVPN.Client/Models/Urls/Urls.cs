@@ -62,6 +62,8 @@ public class Urls : IUrls
 
     public string SplitTunnelingLearnMore => "https://protonvpn.com/support/protonvpn-split-tunneling";
 
+    public string VpnAcceleratorLearnMore => "https://protonvpn.com/support/how-to-use-vpn-accelerator";
+
     public void NavigateTo(string url)
     {
         try

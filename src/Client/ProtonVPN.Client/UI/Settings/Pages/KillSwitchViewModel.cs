@@ -19,32 +19,29 @@
 
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public class KillSwitchViewModel : SettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
     private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Features_KillSwitch");
 
-    public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(_settings.IsKillSwitchEnabled, _settings.KillSwitchMode);
+    public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(Settings.IsKillSwitchEnabled, Settings.KillSwitchMode);
 
     public string LearnMoreUrl => _urls.KillSwitchLearnMore;
 
     public bool IsKillSwitchEnabled
     {
-        get => _settings.IsKillSwitchEnabled;
-        set => _settings.IsKillSwitchEnabled = value;
+        get => Settings.IsKillSwitchEnabled;
+        set => Settings.IsKillSwitchEnabled = value;
     }
 
     public bool IsStandardKillSwitch
@@ -63,9 +60,8 @@ public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>, IEvent
         ILocalizationProvider localizationProvider,
         ISettings settings,
         IUrls urls)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider, settings)
     {
-        _settings = settings;
         _urls = urls;
     }
 
@@ -84,9 +80,9 @@ public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>, IEvent
         };
     }
 
-    public void Receive(SettingChangedMessage message)
+    protected override void OnSettingsChanged(string propertyName)
     {
-        switch (message.PropertyName)
+        switch (propertyName)
         {
             case nameof(ISettings.IsKillSwitchEnabled):
                 OnPropertyChanged(nameof(IsKillSwitchEnabled));
@@ -106,14 +102,14 @@ public class KillSwitchViewModel : PageViewModelBase<IMainViewNavigator>, IEvent
 
     private bool IsKillSwitchMode(KillSwitchMode killSwitchMode)
     {
-        return _settings.KillSwitchMode == killSwitchMode;
+        return Settings.KillSwitchMode == killSwitchMode;
     }
 
     private void SetKillSwitchMode(bool value, KillSwitchMode killSwitchMode)
     {
         if (value)
         {
-            _settings.KillSwitchMode = killSwitchMode;
+            Settings.KillSwitchMode = killSwitchMode;
         }
     }
 }

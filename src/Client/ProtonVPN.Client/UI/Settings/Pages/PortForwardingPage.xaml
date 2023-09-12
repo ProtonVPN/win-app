@@ -25,16 +25,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
 
-        <controls:PageContentControl.PageHeader>
+        <custom:PageContentControl.PageHeader>
             <StackPanel Orientation="Horizontal"
                         Spacing="16">
                 <Image Width="32"
@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Source="{x:Bind ViewModel.PortForwardingFeatureIconSource}" />
                 <TextBlock Text="{x:Bind ViewModel.Title}" />
             </StackPanel>
-        </controls:PageContentControl.PageHeader>
+        </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
 
@@ -102,5 +102,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:PageContentControl>
 </Page>

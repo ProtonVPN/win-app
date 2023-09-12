@@ -96,7 +96,7 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
         finally
         {
             IsSendingReport = false;
-            ViewNavigator.NavigateToResult(isReportSent);
+            await ViewNavigator.NavigateToResultAsync(isReportSent);
         }
     }
 

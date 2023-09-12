@@ -23,25 +23,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls" xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
+            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
+                <labs:SettingsCard.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </labs:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
-
         </StackPanel>
-
-    </controls:PageContentControl>
+    </custom:PageContentControl>
 </Page>

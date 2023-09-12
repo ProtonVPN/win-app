@@ -29,6 +29,8 @@ public interface IConnectionManager
 
     Task ConnectAsync(IConnectionIntent? connectionIntent);
 
+    Task ReconnectAsync();
+
     Task DisconnectAsync();
 
     ConnectionDetails? GetConnectionDetails();

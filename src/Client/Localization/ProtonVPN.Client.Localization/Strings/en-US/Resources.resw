@@ -1946,4 +1946,16 @@
     <value>App files</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
+  <data name="Common_Actions_Reconnect" xml:space="preserve">
+    <value>Reconnect</value>
+  </data>
+  <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
+    <value>Apply and reconnect</value>
+  </data>
+  <data name="Settings_Common_Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="Settings_Common_Discard_Title" xml:space="preserve">
+    <value>Discard settings changes?</value>
+  </data>
 </root>

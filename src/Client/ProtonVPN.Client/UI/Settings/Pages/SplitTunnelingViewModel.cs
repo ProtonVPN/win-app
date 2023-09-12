@@ -25,6 +25,7 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -35,11 +36,10 @@ using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class SplitTunnelingViewModel : PageViewModelBase<IMainViewNavigator>
+public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBase
 {
     private const string EXE_FILE_EXTENSION = ".exe";
 
-    private readonly ISettings _settings;
     private readonly IUrls _urls;
 
     [ObservableProperty]
@@ -88,10 +88,10 @@ public partial class SplitTunnelingViewModel : PageViewModelBase<IMainViewNaviga
     public SplitTunnelingViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        IConnectionManager connectionManager,
         IUrls urls)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider, settings, connectionManager)
     {
-        _settings = settings;
         _urls = urls;
 
         Apps = new();
@@ -170,33 +170,35 @@ public partial class SplitTunnelingViewModel : PageViewModelBase<IMainViewNaviga
         OnPropertyChanged(nameof(ActiveIpAddressesCount));
     }
 
-    public override void OnNavigatedFrom()
+    protected override bool HasConfigurationChanged()
     {
-        base.OnNavigatedFrom();
-
-        // TODO: Prompt for reconnection. Only update settings if user approves
-
-        _settings.IsSplitTunnelingEnabled = IsSplitTunnelingEnabled;
-        _settings.SplitTunnelingMode = CurrentSplitTunnelingMode;
-        _settings.SplitTunnelingAppsList = Apps.Select(app => new SplitTunnelingApp(app.AppFilePath, app.IsActive)).ToList();
-        _settings.SplitTunnelingIpAddressesList = IpAddresses.Select(ip => new SplitTunnelingIpAddress(ip.IpAddress, ip.IsActive)).ToList();
+        return Settings.IsSplitTunnelingEnabled != IsSplitTunnelingEnabled
+            || Settings.SplitTunnelingMode != CurrentSplitTunnelingMode
+            || !Settings.SplitTunnelingAppsList.SequenceEqual(GetSplitTunnelingAppsList())
+            || !Settings.SplitTunnelingIpAddressesList.SequenceEqual(GetSplitTunnelingIpAddressesList());
     }
 
-    public override async void OnNavigatedTo(object parameter)
+    protected override void SaveSettings()
     {
-        base.OnNavigatedTo(parameter);
+        Settings.IsSplitTunnelingEnabled = IsSplitTunnelingEnabled;
+        Settings.SplitTunnelingMode = CurrentSplitTunnelingMode;
+        Settings.SplitTunnelingAppsList = GetSplitTunnelingAppsList();
+        Settings.SplitTunnelingIpAddressesList = GetSplitTunnelingIpAddressesList();
+    }
 
-        IsSplitTunnelingEnabled = _settings.IsSplitTunnelingEnabled;
-        CurrentSplitTunnelingMode = _settings.SplitTunnelingMode;
+    protected override async void RetrieveSettings()
+    {
+        IsSplitTunnelingEnabled = Settings.IsSplitTunnelingEnabled;
+        CurrentSplitTunnelingMode = Settings.SplitTunnelingMode;
 
         Apps.Clear();
-        foreach (SplitTunnelingApp app in _settings.SplitTunnelingAppsList)
+        foreach (SplitTunnelingApp app in Settings.SplitTunnelingAppsList)
         {
             Apps.Add(await CreateAppFromPathAsync(app.AppFilePath, app.IsActive, app.AlternateAppFilePaths));
         }
 
         IpAddresses.Clear();
-        foreach (SplitTunnelingIpAddress ip in _settings.SplitTunnelingIpAddressesList)
+        foreach (SplitTunnelingIpAddress ip in Settings.SplitTunnelingIpAddressesList)
         {
             IpAddresses.Add(new(Localizer, this, ip.IpAddress, ip.IsActive));
         }
@@ -254,5 +256,15 @@ public partial class SplitTunnelingViewModel : PageViewModelBase<IMainViewNaviga
         OnPropertyChanged(nameof(HasIpAddresses));
 
         InvalidateIpAddressesCount();
+    }
+
+    private List<SplitTunnelingApp> GetSplitTunnelingAppsList()
+    {
+        return Apps.Select(app => new SplitTunnelingApp(app.AppFilePath, app.IsActive)).ToList();
+    }
+
+    private List<SplitTunnelingIpAddress> GetSplitTunnelingIpAddressesList()
+    {
+        return IpAddresses.Select(ip => new SplitTunnelingIpAddress(ip.IpAddress, ip.IsActive)).ToList();
     }
 }

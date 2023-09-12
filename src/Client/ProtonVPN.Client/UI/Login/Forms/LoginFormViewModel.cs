@@ -183,11 +183,11 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     }
 
     [RelayCommand]
-    public void ReportAnIssue()
+    public async Task ReportAnIssueAsync()
     {
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
-        _reportIssueViewNavigator.NavigateTo<CategorySelectionViewModel>();
+        await _reportIssueViewNavigator.NavigateToAsync<CategorySelectionViewModel>();
     }
 
     [RelayCommand(CanExecute = nameof(CanCreateAccount))]

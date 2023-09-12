@@ -35,7 +35,8 @@ public struct SplitTunnelingIpAddress : IEquatable<SplitTunnelingIpAddress>
 
     public bool Equals(SplitTunnelingIpAddress other)
     {
-        return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase);
+        return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase)
+            && IsActive == other.IsActive;
     }
 
     public override bool Equals([NotNullWhen(true)] object? obj)
@@ -49,6 +50,6 @@ public struct SplitTunnelingIpAddress : IEquatable<SplitTunnelingIpAddress>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(IpAddress?.ToUpperInvariant());
+        return HashCode.Combine(IpAddress?.ToUpperInvariant(), IsActive);
     }
 }

@@ -17,14 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Linq;
+using FlaUI.Core.AutomationElements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
 public partial class LoginRobot
 {
-    public LoginRobot VerifyLoginErrorIsDisplayed(string message)
+    public LoginRobot VerifyLoginErrorIsDisplayed(List<string> expectedMessages)
     {
-        Assert.AreEqual(ErrorMesaggeTextBox.Text, message);
+        TextBox errorMessageTextBox = ErrorMessageTextBox;
+
+        Assert.IsNotNull(errorMessageTextBox?.Text);
+        Assert.IsTrue(expectedMessages.Any(m => errorMessageTextBox.Text.Contains(m)));
+
         return this;
     }
 

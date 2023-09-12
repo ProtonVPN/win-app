@@ -60,13 +60,13 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
 
     public override IconElement Icon { get; } = new User();
 
-    public void Receive(LoginStateChangedMessage message)
+    public async void Receive(LoginStateChangedMessage message)
     {
         switch (message.Value)
         {
             case LoginState.Success:
                 ClearErrorMessage();
-                ViewNavigator.NavigateTo<HomeViewModel>();
+                await ViewNavigator.NavigateToAsync<HomeViewModel>();
                 break;
             case LoginState.TwoFactorRequired:
                 ClearErrorMessage();

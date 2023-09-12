@@ -21,7 +21,21 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public interface INavigationAware
 {
+    /// <summary>
+    /// Called when parent frame navigates from this page BEFORE the navigation happened.
+    /// </summary>
+    /// <returns>Returns true to proceed with navigation, false to cancel it</returns>
+    Task<bool> OnNavigatingFromAsync();
+
+    /// <summary>
+    /// Called when parent frame navigates from this page.
+    /// Navigation has already happened, page is no longer visible.
+    /// </summary>
     void OnNavigatedFrom();
 
+    /// <summary>
+    /// Called when parent frame navigates to this page.
+    /// </summary>
+    /// <param name="parameter">Can be used to pass any type of argument</param>
     void OnNavigatedTo(object parameter);
 }

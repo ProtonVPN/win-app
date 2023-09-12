@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
@@ -31,8 +32,16 @@ public class LoginTests : TestSession
 {
     public const string FREE_PLAN_NAME = "Proton VPN Free";
 
-    private const string INCORRECT_CREDENTIALS_MESSAGE = "Incorrect login credentials. " +
-        "Please try again";
+    private static readonly List<string> INCORRECT_CREDENTIALS_MESSAGES = new()
+    {
+        "Incorrect login credentials.",
+        "This address has been disabled by the account owner.",
+        "This username does not exist.",
+        "Are you sure this is the correct domain?",
+        "Did you mean proton.me instead?",
+        "This email address does not exist.",
+        "The password is not correct.",
+    };
 
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
@@ -81,7 +90,7 @@ public class LoginTests : TestSession
         _loginRobot
             .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.IncorrectUser)
-            .VerifyLoginErrorIsDisplayed(INCORRECT_CREDENTIALS_MESSAGE);
+            .VerifyLoginErrorIsDisplayed(INCORRECT_CREDENTIALS_MESSAGES);
     }
 
     public void LoginWithUser(TestUserData user, string planName)

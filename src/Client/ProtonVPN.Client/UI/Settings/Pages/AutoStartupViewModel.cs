@@ -19,22 +19,18 @@
 
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class AutoStartupViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public class AutoStartupViewModel : SettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
-
     public bool IsAutoLaunchEnabled
     {
-        get => _settings.IsAutoLaunchEnabled;
-        set => _settings.IsAutoLaunchEnabled = value;
+        get => Settings.IsAutoLaunchEnabled;
+        set => Settings.IsAutoLaunchEnabled = value;
     }
 
     public bool IsAutoLaunchOpenOnDesktop
@@ -57,8 +53,8 @@ public class AutoStartupViewModel : PageViewModelBase<IMainViewNavigator>, IEven
 
     public bool IsAutoConnectEnabled
     {
-        get => _settings.IsAutoConnectEnabled;
-        set => _settings.IsAutoConnectEnabled = value;
+        get => Settings.IsAutoConnectEnabled;
+        set => Settings.IsAutoConnectEnabled = value;
     }
 
     public bool IsAutoConnectFastestConnection
@@ -75,15 +71,15 @@ public class AutoStartupViewModel : PageViewModelBase<IMainViewNavigator>, IEven
 
     public override string? Title => Localizer.Get("Settings_General_AutoStartup");
 
-    public AutoStartupViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings)
-        : base(viewNavigator, localizationProvider)
-    {
-        _settings = settings;
-    }
+    public AutoStartupViewModel(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings)
+        : base(viewNavigator, localizationProvider, settings)
+    { }
 
-    public void Receive(SettingChangedMessage message)
+    protected override void OnSettingsChanged(string propertyName)
     {
-        switch (message.PropertyName)
+        switch (propertyName)
         {
             case nameof(ISettings.IsAutoLaunchEnabled):
                 OnPropertyChanged(nameof(IsAutoLaunchEnabled));
@@ -108,27 +104,27 @@ public class AutoStartupViewModel : PageViewModelBase<IMainViewNavigator>, IEven
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)
     {
-        return _settings.AutoLaunchMode == autoLaunchMode;
+        return Settings.AutoLaunchMode == autoLaunchMode;
     }
 
     private void SetAutoLaunchMode(bool value, AutoLaunchMode autoLaunchMode)
     {
         if (value)
         {
-            _settings.AutoLaunchMode = autoLaunchMode;
+            Settings.AutoLaunchMode = autoLaunchMode;
         }
     }
 
     private bool IsAutoConnectMode(AutoConnectMode autoConnectMode)
     {
-        return _settings.AutoConnectMode == autoConnectMode;
+        return Settings.AutoConnectMode == autoConnectMode;
     }
 
     private void SetAutoConnectMode(bool value, AutoConnectMode autoConnectMode)
     {
         if (value)
         {
-            _settings.AutoConnectMode = autoConnectMode;
+            Settings.AutoConnectMode = autoConnectMode;
         }
     }
 }

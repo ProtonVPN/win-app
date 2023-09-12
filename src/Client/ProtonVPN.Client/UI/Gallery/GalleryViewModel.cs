@@ -40,8 +40,8 @@ public partial class GalleryViewModel : NavigationPageViewModelBase
     }
 
     [RelayCommand]
-    public void NavigateToGallery(string galleryPageKey)
+    public async Task NavigateToGalleryAsync(string galleryPageKey)
     {
-        ViewNavigator.NavigateTo<GalleryItemViewModel>(galleryPageKey);
+        await ViewNavigator.NavigateToAsync<GalleryItemViewModel>(galleryPageKey);
     }
 }

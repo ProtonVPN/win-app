@@ -48,11 +48,11 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
     }
 
     [RelayCommand]
-    public void NavigateTo(string pageKey)
+    public async Task NavigateToAsync(string pageKey)
     {
         CloseOverlay();
 
-        ViewNavigator.NavigateTo(pageKey);
+        await ViewNavigator.NavigateToAsync(pageKey);
     }
 
     public void Receive(SettingChangedMessage message)

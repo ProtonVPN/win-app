@@ -26,7 +26,7 @@ public partial class LoginRobot : UIActions
     protected TextBox UsernameTextBox => ElementByAutomationId("UsernameTextBox").AsTextBox();
     protected TextBox PasswordBox => ElementByAutomationId("PasswordBox").AsTextBox();
     protected Button SignInButton => ElementByAutomationId("SignInButton").AsButton();
-    protected TextBox ErrorMesaggeTextBox => ElementByAutomationId("Message").AsTextBox();
+    protected TextBox ErrorMessageTextBox => ElementByAutomationId("Message").AsTextBox();
     protected TextBox AuthenticateButton => ElementByAutomationId("AuthenticateButton").AsTextBox();
     protected TextBox TwoFactorInputField(string position) => ElementByName($"{position} digit").AsTextBox();
 

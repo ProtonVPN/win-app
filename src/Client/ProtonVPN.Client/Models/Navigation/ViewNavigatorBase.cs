@@ -76,6 +76,8 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         }
     }
 
+    protected NavigationTransitionInfo NavigationTransition { get; set; }
+
     public ViewNavigatorBase(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
     {
         _logger = logger;
@@ -87,16 +89,24 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     public event NavigatedEventHandler? Navigated;
 
-    public bool GoBack()
+    public async Task<bool> GoBackAsync()
     {
         if (CanGoBack)
         {
-            object? vmBeforeNavigation = _frame.GetPageViewModel();
-            Frame.GoBack();
-            if (vmBeforeNavigation is INavigationAware navigationAware)
+            INavigationAware? vmBeforeNavigation = Frame.GetPageViewModel() as INavigationAware;
+
+            if (vmBeforeNavigation != null)
             {
-                navigationAware.OnNavigatedFrom();
+                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync();
+                if (!continueNavigation)
+                {
+                    return false;
+                }
             }
+
+            Frame.GoBack();
+
+            vmBeforeNavigation?.OnNavigatedFrom();
 
             return true;
         }
@@ -104,19 +114,19 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         return false;
     }
 
-    public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false)
+    public Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false)
     {
         Type pageType = _viewMapper.GetPageType(pageKey);
 
-        return NavigateToPage(pageType, parameter, clearNavigation);
+        return NavigateToPageAsync(pageType, parameter, clearNavigation);
     }
 
-    public bool NavigateTo<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
+    public Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
         where TPageViewModel : PageViewModelBase
     {
         Type pageType = _viewMapper.GetPageType<TPageViewModel>();
 
-        return NavigateToPage(pageType, parameter, clearNavigation);
+        return NavigateToPageAsync(pageType, parameter, clearNavigation);
     }
 
     public Task ShowOverlayAsync(string overlayKey)
@@ -160,6 +170,9 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
                 CloseButtonText = parameters.CloseButtonText,
                 XamlRoot = Frame.XamlRoot,
                 RequestedTheme = _themeSelector.GetTheme().Theme,
+                Style = parameters.UseVerticalLayoutForButtons
+                    ? ResourceHelper.GetContentDialogStyle("VerticalMessageContentDialogStyle")
+                    : ResourceHelper.GetContentDialogStyle("MessageContentDialogStyle")
             };
 
             ContentDialogResult result = await _activeOverlay.ShowAsync();
@@ -186,10 +199,7 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         }
     }
 
-    protected NavigationTransitionInfo NavigationTransition { get; set; } 
-
-
-    private bool NavigateToPage(Type pageType, object? parameter, bool clearNavigation)
+    private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation)
     {
         if (!CanNavigate)
         {
@@ -204,15 +214,24 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
         {
             Frame.Tag = clearNavigation;
-            object? vmBeforeNavigation = Frame.GetPageViewModel();
+
+            INavigationAware? vmBeforeNavigation = Frame.GetPageViewModel() as INavigationAware;
+
+            if (vmBeforeNavigation != null)
+            {
+                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync();
+                if (!continueNavigation)
+                {
+                    return false;
+                }
+            }
+
             bool navigated = Frame.Navigate(pageType, parameter, NavigationTransition);
+
             if (navigated)
             {
                 _lastParameterUsed = parameter;
-                if (vmBeforeNavigation is INavigationAware navigationAware)
-                {
-                    navigationAware.OnNavigatedFrom();
-                }
+                vmBeforeNavigation?.OnNavigatedFrom();
             }
 
             return navigated;

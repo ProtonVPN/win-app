@@ -32,7 +32,7 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
     {
     }
 
-    public void NavigateToCategory(IssueCategory category)
+    public async Task NavigateToCategoryAsync(IssueCategory category)
     {
         if (category == null)
         {
@@ -41,11 +41,11 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
 
         if (category.Suggestions.Any())
         {
-            NavigateTo<QuickFixesViewModel>(category);
+            await NavigateToAsync<QuickFixesViewModel>(category);
         }
         else
         {
-            NavigateTo<ContactFormViewModel>(category);
+            await NavigateToAsync<ContactFormViewModel>(category);
         }
 
         // This method can be called by the help component to jump from one category to another. 
@@ -53,8 +53,8 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
         Frame?.BackStack.Clear();
     }
     
-    public void NavigateToResult(bool isReportSent)
+    public async Task NavigateToResultAsync(bool isReportSent)
     {
-        NavigateTo<ReportIssueResultViewModel>(isReportSent);
+        await NavigateToAsync<ReportIssueResultViewModel>(isReportSent);
     }
 }

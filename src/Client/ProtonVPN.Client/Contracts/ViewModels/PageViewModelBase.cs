@@ -60,6 +60,7 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
     where TViewNavigator : IViewNavigator
 {
     public virtual bool IsBackEnabled => true;
+
     protected TViewNavigator ViewNavigator { get; }
 
     public PageViewModelBase(TViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
@@ -69,9 +70,9 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
     }
 
     [RelayCommand(CanExecute = nameof(CanGoBack))]
-    public void GoBack()
+    public async Task GoBackAsync()
     {
-        ViewNavigator.GoBack();
+        await ViewNavigator.GoBackAsync();
     }
 
     public bool CanGoBack()
@@ -80,9 +81,14 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
     }
 
     [RelayCommand]
-    public void NavigateTo(string pageKey)
+    public async Task<bool> NavigateToAsync(string pageKey)
     {
-        ViewNavigator.NavigateTo(pageKey);
+        return await ViewNavigator.NavigateToAsync(pageKey);
+    }
+
+    public virtual Task<bool> OnNavigatingFromAsync()
+    {
+        return Task.FromResult(true);
     }
 
     public virtual void OnNavigatedFrom()

@@ -24,14 +24,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 
@@ -39,14 +40,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics')}"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareStatisticsEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
             <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports')}"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareCrashReportsEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
             <TextBlock Margin="0,8,0,0"
@@ -59,5 +60,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:PageContentControl>
 </Page>

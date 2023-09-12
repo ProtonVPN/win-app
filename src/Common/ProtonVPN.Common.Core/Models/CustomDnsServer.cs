@@ -35,7 +35,8 @@ public struct CustomDnsServer : IEquatable<CustomDnsServer>
 
     public bool Equals(CustomDnsServer other)
     {
-        return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase);
+        return string.Equals(IpAddress, other.IpAddress, StringComparison.OrdinalIgnoreCase)
+            && IsActive == other.IsActive;
     }
 
     public override bool Equals([NotNullWhen(true)] object? obj)
@@ -49,6 +50,6 @@ public struct CustomDnsServer : IEquatable<CustomDnsServer>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(IpAddress?.ToUpperInvariant());
+        return HashCode.Combine(IpAddress?.ToUpperInvariant(), IsActive);
     }
 }

@@ -23,6 +23,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
@@ -30,10 +31,8 @@ using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
-public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavigator>
+public partial class CustomDnsServersViewModel : ConnectionSettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
-
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddDnsServerCommand))]
     private string _currentIpAddress;
@@ -49,10 +48,12 @@ public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavi
 
     public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
 
-    public CustomDnsServersViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings)
-        : base(viewNavigator, localizationProvider)
+    public CustomDnsServersViewModel(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, connectionManager)
     {
-        _settings = settings;
         _currentIpAddress = string.Empty;
 
         CustomDnsServers = new();
@@ -92,22 +93,24 @@ public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavi
         OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
     }
 
-    public override void OnNavigatedFrom()
+    protected override bool HasConfigurationChanged()
     {
-        base.OnNavigatedFrom();
-
-        _settings.IsCustomDnsServersEnabled = IsCustomDnsServersEnabled;
-        _settings.CustomDnsServersList = CustomDnsServers.Select(s => new CustomDnsServer(s.IpAddress, s.IsActive)).ToList();
+        return Settings.IsCustomDnsServersEnabled != IsCustomDnsServersEnabled
+            || !Settings.CustomDnsServersList.SequenceEqual(GetCustomDnsServersList());
     }
 
-    public override void OnNavigatedTo(object parameter)
+    protected override void SaveSettings()
     {
-        base.OnNavigatedTo(parameter);
+        Settings.IsCustomDnsServersEnabled = IsCustomDnsServersEnabled;
+        Settings.CustomDnsServersList = GetCustomDnsServersList();
+    }
 
-        IsCustomDnsServersEnabled = _settings.IsCustomDnsServersEnabled;
+    protected override void RetrieveSettings()
+    {
+        IsCustomDnsServersEnabled = Settings.IsCustomDnsServersEnabled;
 
         CustomDnsServers.Clear();
-        foreach (CustomDnsServer server in _settings.CustomDnsServersList)
+        foreach (CustomDnsServer server in Settings.CustomDnsServersList)
         {
             CustomDnsServers.Add(new(Localizer, this, server.IpAddress, server.IsActive));
         }
@@ -118,5 +121,10 @@ public partial class CustomDnsServersViewModel : PageViewModelBase<IMainViewNavi
         OnPropertyChanged(nameof(HasCustomDnsServers));
 
         InvalidateCustomDnsServersCount();
+    }
+
+    private List<CustomDnsServer> GetCustomDnsServersList()
+    {
+        return CustomDnsServers.Select(s => new CustomDnsServer(s.IpAddress, s.IsActive)).ToList();
     }
 }

@@ -67,11 +67,11 @@ public partial class HelpViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public void OpenReportIssueDialog(IssueCategory category)
+    public async Task OpenReportIssueDialogAsync(IssueCategory category)
     {
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
-        _reportIssueViewNavigator.NavigateToCategory(category);
+        await _reportIssueViewNavigator.NavigateToCategoryAsync(category);
     }
 
     private void OnCategoriesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

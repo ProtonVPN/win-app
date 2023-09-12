@@ -18,37 +18,39 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class VpnAcceleratorViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public class VpnAcceleratorViewModel : SettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
+    private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Connection_VpnAccelerator");
 
+    public string LearnMoreUrl => _urls.VpnAcceleratorLearnMore;
+
     public bool IsVpnAcceleratorEnabled
     {
-        get => _settings.IsVpnAcceleratorEnabled;
-        set => _settings.IsVpnAcceleratorEnabled = value;
+        get => Settings.IsVpnAcceleratorEnabled;
+        set => Settings.IsVpnAcceleratorEnabled = value;
     }
 
     public VpnAcceleratorViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        ISettings settings)
-        : base(viewNavigator, localizationProvider)
+        ISettings settings,
+        IUrls urls)
+        : base(viewNavigator, localizationProvider, settings)
     {
-        _settings = settings;
+        _urls = urls;
     }
 
-    public void Receive(SettingChangedMessage message)
+    protected override void OnSettingsChanged(string propertyName)
     {
-        if (message.PropertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
+        if (propertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
         {
             OnPropertyChanged(nameof(IsVpnAcceleratorEnabled));
         }
