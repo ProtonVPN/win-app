@@ -36,6 +36,7 @@ public interface IUrls
     string KillSwitchLearnMore { get; }
     string PortForwardingLearnMore { get; }
     string SplitTunnelingLearnMore { get; }
+    string VpnAcceleratorLearnMore { get; }
 
     void NavigateTo(string url);
 }

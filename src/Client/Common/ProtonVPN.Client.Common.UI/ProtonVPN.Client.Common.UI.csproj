@@ -826,7 +826,6 @@
     <None Remove="Assets\Illustrations\split-tunneling-on.png" />
     <None Remove="Controls\CountryFlagControl.xaml" />
     <None Remove="Controls\DualCommandsRowControl.xaml" />
-    <None Remove="Controls\PageContentControl.xaml" />
     <None Remove="Controls\ServerLoadControl.xaml" />
     <None Remove="Controls\UserLocationControl.xaml" />
     <None Remove="Assets\Icons\ActiveDot.xaml" />
@@ -1800,12 +1799,6 @@
 
   <ItemGroup>
     <Page Update="Styles\Controls\PageContentControlStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Controls\PageContentControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -38,9 +38,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       PageHeader="{x:Bind ViewModel.Title}"
+                                       ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
 
         <StackPanel x:Name="ContentArea"
                     Spacing="8">
@@ -48,8 +51,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <labs:SettingsCard IsTabStop="False"
                                Style="{StaticResource VerticalSettingsCardStyle}">
 
-                <StackPanel Spacing="16"
-                            Margin="0,-8,0,0">
+                <StackPanel Margin="0,-8,0,0"
+                            Spacing="16">
                     <RadioButton AutomationProperties.AutomationId="SmartProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsSmartProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
@@ -132,5 +135,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

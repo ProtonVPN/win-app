@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
@@ -38,9 +38,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 
@@ -49,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}"
                                    IsTabStop="False">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
                 <labs:SettingsExpander.Items>
                     <StackPanel Spacing="16">
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"
@@ -70,7 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    IsExpanded="{x:Bind ViewModel.IsAutoConnectEnabled}"
                                    IsTabStop="False">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoConnectEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
                 <labs:SettingsExpander.Items>
                     <StackPanel Spacing="16">
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Latest')}"
@@ -83,5 +84,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsExpander.Items>
             </labs:SettingsExpander>
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:PageContentControl>
 </Page>

@@ -19,8 +19,8 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -29,10 +29,16 @@ using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class ProtocolViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public partial class ProtocolViewModel : ConnectionSettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
     private readonly IUrls _urls;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsOpenVpnUdpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsOpenVpnTcpProtocol))]
+    private VpnProtocol _currentVpnProtocol;
 
     public override string? Title => Localizer.Get("Settings_Connection_Protocol");
 
@@ -64,10 +70,13 @@ public partial class ProtocolViewModel : PageViewModelBase<IMainViewNavigator>, 
 
     public string LearnMoreUrl => _urls.ProtocolsLearnMore;
 
-    public ProtocolViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IUrls urls)
-        : base(viewNavigator, localizationProvider)
+    public ProtocolViewModel(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        IConnectionManager connectionManager,
+        IUrls urls)
+        : base(viewNavigator, localizationProvider, settings, connectionManager)
     {
-        _settings = settings;
         _urls = urls;
     }
 
@@ -91,16 +100,31 @@ public partial class ProtocolViewModel : PageViewModelBase<IMainViewNavigator>, 
         OnPropertyChanged(nameof(Recommended));
     }
 
+    protected override bool HasConfigurationChanged()
+    {
+        return Settings.VpnProtocol != CurrentVpnProtocol;
+    }
+
+    protected override void SaveSettings()
+    {
+        Settings.VpnProtocol = CurrentVpnProtocol;
+    }
+
+    protected override void RetrieveSettings()
+    {
+        CurrentVpnProtocol = Settings.VpnProtocol;
+    }
+
     private bool IsProtocol(VpnProtocol protocol)
     {
-        return _settings.VpnProtocol == protocol;
+        return CurrentVpnProtocol == protocol;
     }
 
     private void SetProtocol(bool value, VpnProtocol protocol)
     {
         if (value)
         {
-            _settings.VpnProtocol = protocol;
+            CurrentVpnProtocol = protocol;
         }
     }
 }

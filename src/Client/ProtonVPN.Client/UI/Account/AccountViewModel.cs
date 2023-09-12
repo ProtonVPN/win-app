@@ -52,9 +52,9 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     }
 
     [RelayCommand]
-    public void SignOut()
+    public async Task SignOutAsync()
     {
-        _viewNavigator.NavigateTo<LoginViewModel>();
+        await _viewNavigator.NavigateToAsync<LoginViewModel>();
     }
 
     protected override void OnLanguageChanged()

@@ -17,42 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class NetShieldViewModel : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public partial class NetShieldViewModel : ConnectionSettingsPageViewModelBase
 {
-    private readonly ISettings _settings;
     private readonly IUrls _urls;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(NetShieldFeatureIconSource))]
+    private bool _isNetShieldEnabled;
 
     public override string? Title => Localizer.Get("Settings_Features_NetShield");
 
-    public ImageSource NetShieldFeatureIconSource => GetFeatureIconSource(_settings.IsNetShieldEnabled);
+    public ImageSource NetShieldFeatureIconSource => GetFeatureIconSource(IsNetShieldEnabled);
 
     public string LearnMoreUrl => _urls.NetShieldLearnMore;
-
-    public bool IsNetShieldEnabled
-    {
-        get => _settings.IsNetShieldEnabled;
-        set => _settings.IsNetShieldEnabled = value;
-    }
 
     public NetShieldViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        IConnectionManager connectionManager,
         IUrls urls)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider, settings, connectionManager)
     {
-        _settings = settings;
         _urls = urls;
     }
 
@@ -63,17 +60,18 @@ public class NetShieldViewModel : PageViewModelBase<IMainViewNavigator>, IEventM
             : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource");
     }
 
-    public void Receive(SettingChangedMessage message)
+    protected override bool HasConfigurationChanged()
     {
-        switch (message.PropertyName)
-        {
-            case nameof(ISettings.IsNetShieldEnabled):
-                OnPropertyChanged(nameof(IsNetShieldEnabled));
-                OnPropertyChanged(nameof(NetShieldFeatureIconSource));
-                break;
+        return Settings.IsNetShieldEnabled != IsNetShieldEnabled;
+    }
 
-            default:
-                break;
-        }
+    protected override void SaveSettings()
+    {
+        Settings.IsNetShieldEnabled = IsNetShieldEnabled;
+    }
+
+    protected override void RetrieveSettings()
+    {
+        IsNetShieldEnabled = Settings.IsNetShieldEnabled;
     }
 }

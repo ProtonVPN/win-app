@@ -50,6 +50,10 @@ public class ConnectionManager : IConnectionManager, IEventMessageReceiver<VpnSt
         SetConnectionStatus(ConnectionStatus.Connecting);
         await _serviceCaller.ConnectAsync();
     }
+    public async Task ReconnectAsync()
+    {
+        await ConnectAsync(_connectionDetails?.OriginalConnectionIntent);
+    }
 
     public async Task DisconnectAsync()
     {

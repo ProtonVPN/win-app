@@ -24,7 +24,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:connectionCard="using:ProtonVPN.Client.UI.Home.ConnectionCard"
@@ -118,10 +117,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid>
             </SplitView.Pane>
 
-            <controls:PageContentControl x:Name="PageContainer"
-                                         Padding="0,0,0,-16"
-                                         CanContentScroll="False"
-                                         IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
+            <custom:PageContentControl x:Name="PageContainer"
+                                       Padding="0,0,0,-16"
+                                       CanContentScroll="False"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       IsBackButtonVisible="False">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -161,7 +161,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Recents_Landmark')}"
                                               TabIndex="4" />
                 </Grid>
-            </controls:PageContentControl>
+            </custom:PageContentControl>
         </SplitView>
 
         <VisualStateManager.VisualStateGroups>

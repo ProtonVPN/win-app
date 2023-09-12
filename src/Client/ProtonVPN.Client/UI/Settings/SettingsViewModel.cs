@@ -166,11 +166,11 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     }
 
     [RelayCommand]
-    public void ReportIssue()
+    public async Task ReportIssueAsync()
     {
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
-        _reportIssueViewNavigator.NavigateTo<CategorySelectionViewModel>();
+        await _reportIssueViewNavigator.NavigateToAsync<CategorySelectionViewModel>();
     }
 
     public void Receive(SettingChangedMessage message)

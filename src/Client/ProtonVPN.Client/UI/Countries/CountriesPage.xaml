@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -25,34 +24,38 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
-      xmlns:models="using:ProtonVPN.Client.Models"
       xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:models="using:ProtonVPN.Client.Models"
       x:Name="PageArea"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea"
                     Orientation="Vertical">
 
             <NavigationView Style="{StaticResource TopNavigationViewStyle}">
                 <NavigationView.MenuItems>
-                    <NavigationViewItem Content="Cities" x:Name="CitiesPage">
-                    </NavigationViewItem>
-                    <NavigationViewItem Content="Secure Core" x:Name="SecureCorePage">
+                    <NavigationViewItem x:Name="CitiesPage"
+                                        Content="Cities" />
+                    <NavigationViewItem x:Name="SecureCorePage"
+                                        Content="Secure Core">
                         <NavigationViewItem.Icon>
                             <pathIcons:LockLayers />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
-                    <NavigationViewItem Content="P2P" x:Name="P2PPage">
+                    <NavigationViewItem x:Name="P2PPage"
+                                        Content="P2P">
                         <NavigationViewItem.Icon>
                             <pathIcons:ArrowRightArrowLeft />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
-                    <NavigationViewItem Content="Tor" x:Name="TorPage">
+                    <NavigationViewItem x:Name="TorPage"
+                                        Content="Tor">
                         <NavigationViewItem.Icon>
                             <pathIcons:BrandTor />
                         </NavigationViewItem.Icon>
@@ -134,5 +137,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:PageContentControl>
 </Page>

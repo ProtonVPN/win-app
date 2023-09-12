@@ -101,9 +101,9 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     }
 
     [RelayCommand]
-    public void NavigateToCountry(Country country)
+    public async Task NavigateToCountryAsync(Country country)
     {
-        ViewNavigator.NavigateTo<CountryViewModel>(country);
+        await ViewNavigator.NavigateToAsync<CountryViewModel>(country);
     }
 
     public bool IsNotEmpty(string value)
@@ -114,7 +114,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task ConnectAsync()
     {
-        ViewNavigator.NavigateTo<HomeViewModel>();
+        await ViewNavigator.NavigateToAsync<HomeViewModel>();
 
         ILocationIntent locationIntent = IsNotEmpty(ExitCountryCode) && IsNotEmpty(CityState) && IsNotEmpty(ServerNumber)
             ? new ServerLocationIntent(ExitCountryCode, CityState, int.Parse(ServerNumber))
@@ -138,7 +138,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task FreeConnectAsync()
     {
-        ViewNavigator.NavigateTo<HomeViewModel>();
+        await ViewNavigator.NavigateToAsync<HomeViewModel>();
 
         ILocationIntent locationIntent = IsNotEmpty(ExitCountryCode) && IsNotEmpty(ServerNumber)
             ? new FreeServerLocationIntent(ExitCountryCode, int.Parse(ServerNumber))
@@ -160,7 +160,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     [RelayCommand]
     public async Task SimulateManyConnectionsAsync()
     {
-        ViewNavigator.NavigateTo<HomeViewModel>();
+        await ViewNavigator.NavigateToAsync<HomeViewModel>();
 
         List<IConnectionIntent> intents = new()
         {

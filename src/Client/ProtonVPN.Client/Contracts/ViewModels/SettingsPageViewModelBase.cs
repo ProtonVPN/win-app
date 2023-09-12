@@ -17,31 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 
-namespace ProtonVPN.Client.UI.Gallery;
+namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public partial class GalleryViewModel : NavigationPageViewModelBase
+public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
 {
-    public override string? Title => "Gallery";
+    protected readonly ISettings Settings;
 
-    public override IconElement Icon { get; } = new Grid2();
-
-    public override bool IsBackEnabled => false;
-
-    public GalleryViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
+    public SettingsPageViewModelBase(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings)
         : base(viewNavigator, localizationProvider)
     {
+        Settings = settings;
     }
 
-    [RelayCommand]
-    public async Task NavigateToGalleryAsync(string galleryPageKey)
+    public void Receive(SettingChangedMessage message)
     {
-        await ViewNavigator.NavigateToAsync<GalleryItemViewModel>(galleryPageKey);
+        OnSettingsChanged(message.PropertyName);
     }
+
+    protected virtual void OnSettingsChanged(string propertyName)
+    { }
 }

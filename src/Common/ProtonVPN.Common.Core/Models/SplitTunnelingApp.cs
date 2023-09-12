@@ -38,7 +38,8 @@ public struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
 
     public bool Equals(SplitTunnelingApp other)
     {
-        return string.Equals(AppFilePath, other.AppFilePath, StringComparison.OrdinalIgnoreCase);
+        return string.Equals(AppFilePath, other.AppFilePath, StringComparison.OrdinalIgnoreCase)
+            && IsActive == other.IsActive;
     }
 
     public override bool Equals([NotNullWhen(true)] object? obj)
@@ -52,6 +53,6 @@ public struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(AppFilePath?.ToUpperInvariant());
+        return HashCode.Combine(AppFilePath?.ToUpperInvariant(), IsActive);
     }
 }

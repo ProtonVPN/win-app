@@ -25,15 +25,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:local="using:ProtonVPN.Client.UI.Settings.Pages.Advanced"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                 PageHeader="{x:Bind ViewModel.Title}">
+    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       PageHeader="{x:Bind ViewModel.Title}"
+                                       ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
 
         <StackPanel x:Name="ContentArea"
                     Spacing="16">
@@ -42,7 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomDnsServersEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"/>
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
             <StackPanel Spacing="8"
@@ -56,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Style="{StaticResource VerticalSettingsCardStyle}">
                     <Grid Margin="0,-8,0,0"
                           ColumnSpacing="8">
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -65,17 +67,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        
+
                         <TextBox Grid.Row="0"
                                  Grid.Column="0"
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Watermark')}"
                                  Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        
+
                         <Button Grid.Row="0"
                                 Grid.Column="1"
                                 Command="{x:Bind ViewModel.AddDnsServerCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}" />
-                        
+
                         <ItemsRepeater Grid.Row="1"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2"
@@ -109,5 +111,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsCard>
             </StackPanel>
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

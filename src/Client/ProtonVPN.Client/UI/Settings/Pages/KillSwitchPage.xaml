@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:labs="using:CommunityToolkit.Labs.WinUI"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
@@ -35,10 +35,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <controls:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                                 IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
 
-        <controls:PageContentControl.PageHeader>
+        <custom:PageContentControl.PageHeader>
             <StackPanel Orientation="Horizontal"
                         Spacing="16">
                 <Image Width="32"
@@ -46,7 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Source="{x:Bind ViewModel.KillSwitchFeatureIconSource}" />
                 <TextBlock Text="{x:Bind ViewModel.Title}" />
             </StackPanel>
-        </controls:PageContentControl.PageHeader>
+        </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
 
@@ -97,5 +98,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Footer')}" />
         </StackPanel>
-    </controls:PageContentControl>
+    </custom:PageContentControl>
 </Page>

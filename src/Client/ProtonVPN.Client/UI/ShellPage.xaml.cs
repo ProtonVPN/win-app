@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Settings;
@@ -62,11 +63,11 @@ public sealed partial class ShellPage : IShellPage
         return keyboardAccelerator;
     }
 
-    private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private static async void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         IMainViewNavigator viewNavigator = App.GetService<IMainViewNavigator>();
 
-        bool result = viewNavigator.GoBack();
+        bool result = await viewNavigator.GoBackAsync();
 
         args.Handled = result;
     }
@@ -82,11 +83,13 @@ public sealed partial class ShellPage : IShellPage
         ViewModel.OnNavigationDisplayModeChanged(args.DisplayMode);
     }
 
-    private void OnNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    private async void OnNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
+        bool isNavigationCompleted = false;
+
         if (args.IsSettingsInvoked)
         {
-            ViewModel.NavigateTo(typeof(SettingsViewModel).FullName!);
+            isNavigationCompleted = await ViewModel.NavigateToAsync(typeof(SettingsViewModel).FullName!);
         }
         else
         {
@@ -94,8 +97,15 @@ public sealed partial class ShellPage : IShellPage
 
             if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
             {
-                ViewModel.NavigateTo(pageKey);
+                isNavigationCompleted = await ViewModel.NavigateToAsync(pageKey);
             }
+        }
+
+        if (!isNavigationCompleted)
+        {
+            // Even though the navigation was canceled, the NavigationView still keep the clicked NavigationViewItem selected.
+            // Force selecting the proper item on the side bar, so it matches the actual page.
+            NavigationViewControl.SelectedItem = ViewModel.SelectedNavigationPage;
         }
     }
 }

@@ -49,11 +49,11 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
     {
         if (string.IsNullOrEmpty(_settings.Username))
         {
-            _viewNavigator.NavigateTo<LoginViewModel>(args.Arguments);
+            await _viewNavigator.NavigateToAsync<LoginViewModel>(args.Arguments);
         }
         else
         {
-            _viewNavigator.NavigateTo<HomeViewModel>(args.Arguments);
+            await _viewNavigator.NavigateToAsync<HomeViewModel>(args.Arguments);
             await _userAuthenticator.InvokeAutoLoginEventAsync();
         }
     }
