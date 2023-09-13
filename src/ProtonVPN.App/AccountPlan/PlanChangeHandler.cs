@@ -131,10 +131,13 @@ namespace ProtonVPN.AccountPlan
                 _appSettings.PortForwardingEnabled = false;
                 _appSettings.NetShieldEnabled = false;
                 _appSettings.AllowNonStandardPorts = false;
-                _appSettings.CustomDnsEnabled = false;
-                _appSettings.VpnAcceleratorEnabled = false;
-                _appSettings.SplitTunnelingEnabled = false;
                 _appSettings.ModerateNat = false;
+                if (_appSettings.FeatureFreeRescopeEnabled)
+                {
+                    _appSettings.CustomDnsEnabled = false;
+                    _appSettings.VpnAcceleratorEnabled = false;
+                    _appSettings.SplitTunnelingEnabled = false;
+                }
             }
         }
 
