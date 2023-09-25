@@ -324,7 +324,7 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Uscendo dall'applicazione, tutte le connessioni VPN attive verranno chiuse. Continuare?</value>
+    <value>Disconnettendo l'applicazione, tutte le connessioni VPN attive verranno terminate. Vuoi continuare?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
@@ -357,7 +357,7 @@
     <value>Completato</value>
   </data>
   <data name="BugReport_btn_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
   </data>
   <data name="BugReport_btn_Retry">
     <value>Riprova</value>
@@ -1580,7 +1580,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Abilita</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
   </data>
   <data name="Dialogs_DisabledService_btn_ShowLess">
     <value>Mostra meno</value>
@@ -1628,7 +1628,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>C'è un problema di convalida del certificato del server VPN, il che potrebbe indicare che la connessione di rete è stata manomessa o che il server a cui si sta cercando di connettersi ha un problema di configurazione. Chiedi aiuto al nostro servizio di assistenza clienti inviando un &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>C'è un problema di convalida del certificato del server VPN, il che potrebbe indicare che la connessione di rete è stata manomessa o che il server a cui si sta cercando di connettersi ha un problema di configurazione. Chiedi aiuto al nostro servizio di assistenza clienti inviando una &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Segnalazione di errore"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -1643,7 +1643,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe bypassare queste limitazioni.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Per saperne di più su Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe aggirare queste limitazioni.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Scopri di più a riguardo di Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -1798,7 +1798,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The button displayed in Troubleshoot modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
@@ -2126,7 +2126,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
@@ -2442,7 +2442,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOff">
     <value>Non bloccare</value>
@@ -2735,7 +2735,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Ricevi una notifica quando il numero di Port Forwarding cambia</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Velocizza i tuoi torrent e giochi online consentendo alle app locali supportate di essere raggiungibili da Internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt; Per saperne di più&lt;/Hyperlink&gt;</value>
+    <value>Velocizza i tuoi torrent e i giochi online consentendo alle app locali supportate di essere raggiungibili da Internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
@@ -2750,7 +2750,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
   </data>
   <data name="Settings_Advanced_ttl">
     <value>Avanzate</value>
@@ -3021,7 +3021,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
     <value>P2P/BitTorrent</value>
@@ -3182,7 +3182,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Proteggi fino a 10 dispositivi</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>Rimborso garantito entro 30 giorni</value>
+    <value>Garanzia di rimborso entro 30 giorni</value>
   </data>
   <data name="Upsell_Country_Subtitle">
     <value>Sblocca la &lt;Bold&gt;selezione del paese&lt;/Bold&gt; con VPN Plus</value>
@@ -3240,7 +3240,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Goditi la navigazione senza pubblicità con NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
-    <value>Per saperne di più</value>
+    <value>Scopri di più</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">

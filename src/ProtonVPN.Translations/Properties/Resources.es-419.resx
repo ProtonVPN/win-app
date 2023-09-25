@@ -2703,7 +2703,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Controlador de red OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Los controladores de red pueden afectar a su conexión y velocidad. El adaptador TUN nuevo proporciona una mayor velocidad, respaldo en el adaptador TAP si encuentra algún problema de conectividad.</value>
+    <value>Los controladores de red pueden afectar su conexión y velocidad. El nuevo adaptador TUN proporciona mayor velocidad, recurriendo al adaptador TAP si se produce algún problema de conectividad.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Puertos no estándar</value>
@@ -3216,13 +3216,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Mejore el rendimiento de los juegos en línea y las videollamadas</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT tipo 2 (moderada) optimiza la velocidad y estabilidad al habilitar conexiones directas entre los dispositivos</value>
+    <value>NAT Tipo 2 (moderada) optimiza la velocidad y estabilidad al habilitar conexiones directas entre los dispositivos</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Desbloquee &lt;Bold&gt;NAT tipo 2&lt;/Bold&gt; con VPN Plus</value>
+    <value>Desbloquee &lt;Bold&gt;NAT Tipo 2&lt;/Bold&gt; con VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Suba su nivel de experiencia en juegos</value>
+    <value>Mejore su experiencia de juego</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Bloquear anuncios y rastreadores</value>
@@ -3263,7 +3263,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Mejore sus velocidades de descarga peer-to-peer</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Conéctese a servidores de juegos en línea y hospede juegos multijugador</value>
+    <value>Conéctese a servidores de juegos en línea y aloje juegos multijugador</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
     <value>Configure el acceso remoto a dispositivos en su red local</value>
@@ -3281,7 +3281,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Establezca protocolos personalizados y funciones VPN premium.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Configure auto conectar para acceso más rápido.</value>
+    <value>Configure la conexión automática para un acceso más rápido.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
     <value>Desbloquee los &lt;Bold&gt;perfiles&lt;/Bold&gt; con VPN Plus</value>
