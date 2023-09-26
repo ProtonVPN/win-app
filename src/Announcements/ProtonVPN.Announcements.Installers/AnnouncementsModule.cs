@@ -19,14 +19,13 @@
 
 using Autofac;
 
-namespace ProtonVPN.Announcements.Installers
+namespace ProtonVPN.Announcements.Installers;
+
+public class AnnouncementsModule : Module
 {
-    public class AnnouncementsModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<AnnouncementService>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<AnnouncementCache>().AsImplementedInterfaces().SingleInstance();
-        }
+        builder.RegisterType<AnnouncementService>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AnnouncementCache>().AsImplementedInterfaces().SingleInstance();
     }
 }

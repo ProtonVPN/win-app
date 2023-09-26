@@ -18,7 +18,6 @@
  */
 
 using Autofac;
-using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 
 namespace ProtonVPN.Client.Logic.Auth.Installers;
 
@@ -30,6 +29,5 @@ public class AuthLogicModule : Module
         builder.RegisterType<AuthCertificateManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AuthKeyManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AuthCertificateUpdater>().AsImplementedInterfaces().AutoActivate().SingleInstance();
-        builder.RegisterType<GuestHoleActionExecutor>().AsImplementedInterfaces().SingleInstance();
     }
 }

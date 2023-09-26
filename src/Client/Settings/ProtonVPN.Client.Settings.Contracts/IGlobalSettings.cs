@@ -18,8 +18,7 @@
  */
 
 using System.Collections.Concurrent;
-using ProtonVPN.Client.Common.Enums;
-using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings.Contracts;
@@ -35,10 +34,11 @@ public interface IGlobalSettings
     bool IsWindowMaximized { get; set; }
     bool IsAutoLaunchEnabled { get; set; }
     AutoLaunchMode AutoLaunchMode { get; set; }
+    int[] WireGuardPorts { get; set; }
     int[] OpenVpnTcpPorts { get; set; }
     int[] OpenVpnUdpPorts { get; set; }
     ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; }
-    bool DoHEnabled { get; set; }
+    bool IsDoHEnabled { get; set; }
     bool IsKillSwitchEnabled { get; set; }
     KillSwitchMode KillSwitchMode { get; set; }
 }

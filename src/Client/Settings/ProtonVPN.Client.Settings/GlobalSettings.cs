@@ -18,10 +18,9 @@
  */
 
 using System.Collections.Concurrent;
-using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
-using ProtonVPN.Common.Core.Enums;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings;
@@ -29,11 +28,6 @@ namespace ProtonVPN.Client.Settings;
 public class GlobalSettings : IGlobalSettings
 {
     private readonly IGlobalSettingsRepository _globalRepository;
-
-    public GlobalSettings(IGlobalSettingsRepository globalSettingsRepository)
-    {
-        _globalRepository = globalSettingsRepository;
-    }
 
     public string Language
     {
@@ -89,6 +83,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetValueType<AutoLaunchMode>(value, SettingEncryption.Unencrypted);
     }
 
+    public int[] WireGuardPorts
+    {
+        get => _globalRepository.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardPorts;
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
     public int[] OpenVpnTcpPorts
     {
         get => _globalRepository.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.OpenVpnTcpPorts;
@@ -107,7 +107,7 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
-    public bool DoHEnabled
+    public bool IsDoHEnabled
     {
         get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsDoHEnabled;
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
@@ -123,5 +123,10 @@ public class GlobalSettings : IGlobalSettings
     {
         get => _globalRepository.GetValueType<KillSwitchMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.KillSwitchMode;
         set => _globalRepository.SetValueType<KillSwitchMode>(value, SettingEncryption.Unencrypted);
+    }
+
+    public GlobalSettings(IGlobalSettingsRepository globalSettingsRepository)
+    {
+        _globalRepository = globalSettingsRepository;
     }
 }

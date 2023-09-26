@@ -17,9 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Enums;
-using ProtonVPN.Common.Core.Enums;
-using ProtonVPN.Common.Core.Models;
+using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 
@@ -57,4 +56,4 @@ public interface IUserSettings
     SplitTunnelingMode SplitTunnelingMode { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList { get; set; }
     List<SplitTunnelingApp> SplitTunnelingAppsList { get; set; }
-}   
+}

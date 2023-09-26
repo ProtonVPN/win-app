@@ -23,7 +23,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Core.Enums;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 

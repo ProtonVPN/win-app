@@ -17,8 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Settings.Contracts.Enums;
+
 namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface ISettings : IGlobalSettings, IUserSettings
 {
+    bool IsIpv6LeakProtectionEnabled { get; }
+
+    bool AllowNonStandardPorts { get; }
+
+    OpenVpnAdapter OpenVpnAdapter { get; }
 }

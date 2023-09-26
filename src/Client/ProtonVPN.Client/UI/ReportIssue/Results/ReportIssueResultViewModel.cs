@@ -53,6 +53,8 @@ public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssue
 
     public override void OnNavigatedTo(object parameter)
     {
+        base.OnNavigatedTo(parameter);
+
         IsReportSent = Convert.ToBoolean(parameter);
     }
 

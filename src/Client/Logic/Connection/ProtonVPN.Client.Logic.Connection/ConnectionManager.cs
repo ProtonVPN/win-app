@@ -23,7 +23,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection;
@@ -32,23 +34,38 @@ public class ConnectionManager : IConnectionManager, IEventMessageReceiver<VpnSt
 {
     private readonly IServiceCaller _serviceCaller;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IEntityMapper _entityMapper;
+    private readonly IConnectionRequestWrapper _connectionRequestWrapper;
+    private readonly IDisconnectionRequestWrapper _disconnectionRequestWrapper;
 
     private ConnectionDetails? _connectionDetails;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
 
-    public ConnectionManager(IServiceCaller serviceCaller,
-        IEventMessageSender eventMessageSender)
+    public ConnectionManager(
+        IServiceCaller serviceCaller,
+        IEventMessageSender eventMessageSender,
+        IEntityMapper entityMapper,
+        IConnectionRequestWrapper connectionRequestWrapper,
+        IDisconnectionRequestWrapper disconnectionRequestWrapper)
     {
         _serviceCaller = serviceCaller;
         _eventMessageSender = eventMessageSender;
+        _entityMapper = entityMapper;
+        _connectionRequestWrapper = connectionRequestWrapper;
+        _disconnectionRequestWrapper = disconnectionRequestWrapper;
     }
 
     public async Task ConnectAsync(IConnectionIntent? connectionIntent)
     {
-        _connectionDetails = new ConnectionDetails(connectionIntent ?? ConnectionIntent.Default);
+        connectionIntent ??= ConnectionIntent.Default;
+
+        _connectionDetails = new ConnectionDetails(connectionIntent);
         SetConnectionStatus(ConnectionStatus.Connecting);
-        await _serviceCaller.ConnectAsync();
+
+        ConnectionRequestIpcEntity request = _connectionRequestWrapper.Wrap(connectionIntent);
+
+        await _serviceCaller.ConnectAsync(request);
     }
     public async Task ReconnectAsync()
     {
@@ -58,12 +75,22 @@ public class ConnectionManager : IConnectionManager, IEventMessageReceiver<VpnSt
     public async Task DisconnectAsync()
     {
         _connectionDetails = null;
-        await _serviceCaller.DisconnectAsync();
+
+        DisconnectionRequestIpcEntity request = _disconnectionRequestWrapper.Wrap();
+
+        await _serviceCaller.DisconnectAsync(request);
     }
 
     public ConnectionDetails? GetConnectionDetails()
     {
         return _connectionDetails;
+    }
+
+    public void Receive(VpnStateIpcEntity message)
+    {
+        ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
+
+        SetConnectionStatus(connectionStatus);
     }
 
     private void SetConnectionStatus(ConnectionStatus connectionStatus)
@@ -75,17 +102,5 @@ public class ConnectionManager : IConnectionManager, IEventMessageReceiver<VpnSt
 
         ConnectionStatus = connectionStatus;
         _eventMessageSender.Send(new ConnectionStatusChanged(ConnectionStatus));
-    }
-
-    public void Receive(VpnStateIpcEntity message)
-    {
-        ConnectionStatus connectionStatus =
-            message.Status == VpnStatusIpcEntity.Disconnected || message.Status == VpnStatusIpcEntity.Disconnecting
-                ? ConnectionStatus.Disconnected
-                : message.Status == VpnStatusIpcEntity.Connected
-                    ? ConnectionStatus.Connected
-                    : ConnectionStatus.Connecting;
-
-        SetConnectionStatus(connectionStatus);
     }
 }

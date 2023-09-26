@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
 using ProtonVPN.Logging.Contracts;

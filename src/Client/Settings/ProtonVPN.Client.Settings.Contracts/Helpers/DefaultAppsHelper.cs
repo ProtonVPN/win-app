@@ -19,7 +19,7 @@
 
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
-using ProtonVPN.Common.Core.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts.Helpers;
 

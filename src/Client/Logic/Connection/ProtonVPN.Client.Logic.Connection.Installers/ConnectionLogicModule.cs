@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
+using ProtonVPN.Client.Logic.Connection.Wrappers;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Connection.Installers;
@@ -27,9 +28,13 @@ public class ConnectionLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<ConnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GuestHoleConnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<DisconnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AppController>().As<IAppController>().SingleInstance();
         builder.RegisterType<GuestHoleServersFileStorage>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GuestHoleActionExecutor>().AsImplementedInterfaces().SingleInstance();
     }
 }

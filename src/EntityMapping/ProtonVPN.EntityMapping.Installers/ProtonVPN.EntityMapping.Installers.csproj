@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProtonVPN.EntityMapping.Mappers\ProtonVPN.EntityMapping.Mappers.csproj" />
     <ProjectReference Include="..\ProtonVPN.EntityMapping\ProtonVPN.EntityMapping.csproj" />
   </ItemGroup>
 

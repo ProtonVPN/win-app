@@ -21,7 +21,7 @@ using Autofac;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Common.Channels;
 using ProtonVPN.ProcessCommunication.Common.Registration;
-using ProtonVPN.ProcessCommunication.EntityMapping.Crypto;
+using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.Installers
 {
@@ -34,7 +34,7 @@ namespace ProtonVPN.ProcessCommunication.Installers
             builder.RegisterType<ServiceServerPortRegister>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AppServerPortRegister>().AsImplementedInterfaces().SingleInstance();
 
-            builder.RegisterAssemblyTypes(typeof(AsymmetricKeyPairMapper).Assembly)
+            builder.RegisterAssemblyTypes(typeof(VpnStatusMapper).Assembly)
                 .Where(t => typeof(IMapper).IsAssignableFrom(t))
                 .AsImplementedInterfaces()
                 .SingleInstance();

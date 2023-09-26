@@ -29,10 +29,10 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Settings.Pages.SplitTunneling;
-using ProtonVPN.Common.Core.Enums;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Core.Models;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 

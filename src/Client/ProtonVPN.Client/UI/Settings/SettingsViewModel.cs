@@ -27,6 +27,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -41,7 +42,7 @@ using ProtonVPN.Client.UI.Settings.Pages;
 
 namespace ProtonVPN.Client.UI.Settings;
 
-public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMessageReceiver<ThemeChangedMessage>, IEventMessageReceiver<SettingChangedMessage>
+public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMessageReceiver<ThemeChangedMessage>, IEventMessageReceiver<SettingChangedMessage>, IEventMessageReceiver<LoginSuccessMessage>
 {
     private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
@@ -226,6 +227,11 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     public void Receive(ThemeChangedMessage message)
     {
         OnPropertyChanged(nameof(SelectedTheme));
+    }
+
+    public void Receive(LoginSuccessMessage message)
+    {
+        InvalidateAllProperties();
     }
 
     protected override void OnLanguageChanged()

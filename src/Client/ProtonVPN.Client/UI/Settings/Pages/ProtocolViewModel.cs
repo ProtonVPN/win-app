@@ -24,8 +24,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Common.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
