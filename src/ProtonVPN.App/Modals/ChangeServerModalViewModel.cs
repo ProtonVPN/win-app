@@ -27,11 +27,14 @@ using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Sidebar.ChangeServer;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals
 {
     public class ChangeServerModalViewModel : UpsellModalViewModel, IHandle<ChangeServerTimeLeftMessage>
     {
+        protected override ModalSources ModalSource { get; } = ModalSources.ChangeServer;
+
         private readonly ServerChangeManager _serverChangeManager;
 
         public ChangeServerModalViewModel(
@@ -39,7 +42,11 @@ namespace ProtonVPN.Modals
             ServerChangeManager serverChangeManager,
             ISubscriptionManager subscriptionManager,
             ServerManager serverManager,
-            IActiveUrls urls) : base(subscriptionManager, serverManager, urls)
+            IActiveUrls urls,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender, 
+                  upsellDisplayStatisticalEventSender)
         {
             eventAggregator.Subscribe(this);
 

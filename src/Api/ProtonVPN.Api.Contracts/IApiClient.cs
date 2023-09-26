@@ -26,8 +26,11 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Api.Contracts.Settings;
 using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnSessions;
+using ProtonVPN.Common.StatisticalEvents;
 
 namespace ProtonVPN.Api.Contracts
 {
@@ -52,5 +55,8 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request);
         Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
         Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
+        Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync();
+        Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
+        Task<ApiResponseResult<UsersResponse>> GetUserAsync();
     }
 }

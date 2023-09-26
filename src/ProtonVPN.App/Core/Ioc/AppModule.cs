@@ -272,6 +272,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SettingsBuilder>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnInfoUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UserSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UserCreationDateUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PlanChangeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();

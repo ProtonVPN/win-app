@@ -247,5 +247,11 @@ namespace ProtonVPN.Common.Configuration
         public bool IsCertificateValidationDisabled { get; set; }
 
         public decimal? DeviceRolloutPercentage { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        public TimeSpan StatisticalEventSendTriggerInterval { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
+        public TimeSpan StatisticalEventMinimumWaitInterval { get; set; }
     }
 }

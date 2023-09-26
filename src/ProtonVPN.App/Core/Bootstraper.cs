@@ -46,7 +46,6 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
-using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
@@ -132,7 +131,8 @@ namespace ProtonVPN.Core
                    .RegisterAssemblyModule<DnsModule>()
                    .RegisterAssemblyModule<EntityMappingModule>()
                    .RegisterAssemblyModule<ProcessCommunicationModule>()
-                   .RegisterAssemblyModule<AppProcessCommunicationModule>();
+                   .RegisterAssemblyModule<AppProcessCommunicationModule>()
+                   .RegisterAssemblyModule<StatisticalEventsModule>();
 
             _container = builder.Build();
         }
@@ -545,6 +545,7 @@ namespace ProtonVPN.Core
             LoadViewModels();
             Resolve<IP2PDetector>();
             Resolve<IVpnInfoUpdater>();
+            Resolve<IUserSettingsUpdater>();
 
             AppWindow appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();

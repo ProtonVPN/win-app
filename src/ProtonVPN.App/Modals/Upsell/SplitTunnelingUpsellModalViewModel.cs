@@ -20,13 +20,19 @@
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class SplitTunnelingUpsellModalViewModel : UpsellModalViewModel
     {
+        protected override ModalSources ModalSource { get; } = ModalSources.SplitTunneling;
+
         public SplitTunnelingUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager,
-            IActiveUrls urls) : base(subscriptionManager, serverManager, urls)
+            IActiveUrls urls, IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+                  upsellDisplayStatisticalEventSender)
         {
         }
     }

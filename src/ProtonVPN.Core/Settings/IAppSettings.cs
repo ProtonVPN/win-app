@@ -128,6 +128,8 @@ namespace ProtonVPN.Core.Settings
         int ChangeServerAttemptLimit { get; set; }
         int ChangeServerShortDelayInSeconds { get; set; }
         int ChangeServerLongDelayInSeconds { get; set; }
+        bool IsTelemetryGloballyEnabled { get; set; }
+        string StatisticalEvents { get; set; }
 
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();

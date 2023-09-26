@@ -908,18 +908,6 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("01/01/1970 00:00:00")]
-        public global::System.DateTime LastPrimaryApiFailDateUtc {
-            get {
-                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
-            }
-            set {
-                this["LastPrimaryApiFailDateUtc"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AlternativeApiBaseUrls {
             get {
@@ -1683,6 +1671,54 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["ChangeServerLongDelayInSeconds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsTelemetryGloballyEnabled {
+            get {
+                return ((bool)(this["IsTelemetryGloballyEnabled"]));
+            }
+            set {
+                this["IsTelemetryGloballyEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1970-01-01")]
+        public global::System.DateTime LastPrimaryApiFailDateUtc {
+            get {
+                return ((global::System.DateTime)(this["LastPrimaryApiFailDateUtc"]));
+            }
+            set {
+                this["LastPrimaryApiFailDateUtc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserCreationDateUtc {
+            get {
+                return ((string)(this["UserCreationDateUtc"]));
+            }
+            set {
+                this["UserCreationDateUtc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserStatisticalEvents {
+            get {
+                return ((string)(this["UserStatisticalEvents"]));
+            }
+            set {
+                this["UserStatisticalEvents"] = value;
             }
         }
     }
