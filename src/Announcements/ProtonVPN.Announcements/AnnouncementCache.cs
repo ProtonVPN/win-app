@@ -22,35 +22,34 @@ using System.Linq;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.Announcements
+namespace ProtonVPN.Announcements;
+
+public class AnnouncementCache : IAnnouncementCache
 {
-    public class AnnouncementCache : IAnnouncementCache
+    private readonly IAppSettings _appSettings;
+
+    public AnnouncementCache(IAppSettings appSettings)
     {
-        private readonly IAppSettings _appSettings;
+        _appSettings = appSettings;
+    }
 
-        public AnnouncementCache(IAppSettings appSettings)
+    public IReadOnlyList<Announcement> Get()
+    {
+        return _appSettings.Announcements;
+    }
+
+    public void Store(IReadOnlyList<Announcement> announcements)
+    {
+        foreach (Announcement announcement in announcements)
         {
-            _appSettings = appSettings;
+            announcement.Seen = Seen(announcement.Id);
         }
 
-        public IReadOnlyList<Announcement> Get()
-        {
-            return _appSettings.Announcements;
-        }
+        _appSettings.Announcements = announcements;
+    }
 
-        public void Store(IReadOnlyList<Announcement> announcements)
-        {
-            foreach (Announcement announcement in announcements)
-            {
-                announcement.Seen = Seen(announcement.Id);
-            }
-
-            _appSettings.Announcements = announcements;
-        }
-
-        private bool Seen(string id)
-        {
-            return _appSettings.Announcements.Any(announcement => announcement.Id == id && announcement.Seen);
-        }
+    private bool Seen(string id)
+    {
+        return _appSettings.Announcements.Any(announcement => announcement.Id == id && announcement.Seen);
     }
 }

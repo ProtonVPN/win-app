@@ -18,15 +18,11 @@
  */
 
 using System.Collections;
-using System.Collections.Specialized;
-using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Core.Models;
-using ProtonVPN.Common.Extensions;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
@@ -60,7 +56,7 @@ public class UserSettingsLog : LogBase
             .AppendLine("Settings")
             .AppendLine();
 
-        foreach(KeyValuePair<string, dynamic?> property in GetProperties())
+        foreach (KeyValuePair<string, dynamic?> property in GetProperties())
         {
             stringBuilder.AppendLine($"{property.Key}: {Serialize(property.Value)}");
         }
@@ -107,8 +103,8 @@ public class UserSettingsLog : LogBase
             value = JsonConvert.SerializeObject(value);
         }
 
-        return value is string result 
-            ? result 
+        return value is string result
+            ? result
             : value?.ToString() ?? string.Empty;
     }
 }

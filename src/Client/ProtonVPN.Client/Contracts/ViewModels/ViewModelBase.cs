@@ -42,4 +42,9 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
     {
         // Override this method to invalidate any localized strings set up in your viewmodel
     }
+
+    protected void InvalidateAllProperties()
+    {
+        OnPropertyChanged(string.Empty);
+    }
 }

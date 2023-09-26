@@ -81,12 +81,12 @@ public class MainModule : Module
                .RegisterModule<ViewModelsModule>()
                .RegisterModule<RecentsLogicModule>()
                .RegisterModule<ConfigurationsModule>()
+               .RegisterModule<ApiModule>()
                .RegisterModule<SettingsModule>()
                .RegisterModule<AuthLogicModule>()
                .RegisterModule<CryptoModule>()
                .RegisterModule<FeedbackLogicModule>()
                .RegisterModule<DnsModule>()
-               .RegisterModule<SerializationModule>()
-               .RegisterModule<ApiModule>();
+               .RegisterModule<SerializationModule>();
     }
 }

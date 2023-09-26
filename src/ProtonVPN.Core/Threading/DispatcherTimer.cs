@@ -62,7 +62,9 @@ namespace ProtonVPN.Core.Threading
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (_timer.IsEnabled)
+            {
                 Tick?.Invoke(sender, e);
+            }
         }
     }
 }

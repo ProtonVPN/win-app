@@ -36,5 +36,7 @@ public class SettingsModule : Module
         builder.RegisterType<UserSettingsRepository>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SettingsRestorer>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<ClientConfigObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
     }
 }

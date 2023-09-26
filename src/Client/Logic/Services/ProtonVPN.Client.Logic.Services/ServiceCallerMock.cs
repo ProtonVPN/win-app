@@ -34,11 +34,6 @@ public class ServiceCallerMock : IServiceCaller
 
     public async Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest)
     {
-        await ConnectAsync();
-    }
-
-    public async Task ConnectAsync()
-    {
         _isCancelRequested = false;
 
         await Task.Delay(2000);
@@ -60,7 +55,7 @@ public class ServiceCallerMock : IServiceCaller
         });
     }
 
-    public Task DisconnectAsync()
+    public Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest)
     {
         _isCancelRequested = true;
 

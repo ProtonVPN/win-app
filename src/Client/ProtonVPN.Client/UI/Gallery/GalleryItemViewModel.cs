@@ -42,6 +42,8 @@ public partial class GalleryItemViewModel : PageViewModelBase<IMainViewNavigator
 
     public override void OnNavigatedTo(object parameter)
     {
+        base.OnNavigatedTo(parameter);
+
         PageName = parameter?.ToString();
 
         PageContent = PageName switch

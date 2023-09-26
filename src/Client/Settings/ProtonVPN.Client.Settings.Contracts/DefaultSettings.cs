@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Helpers;
-using ProtonVPN.Common.Core.Enums;
-using ProtonVPN.Common.Core.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 
@@ -41,6 +40,7 @@ public static class DefaultSettings
     public static bool IsCustomDnsServersEnabled = false;
     public static List<CustomDnsServer> CustomDnsServersList = new();
     public static bool IsDoHEnabled = true;
+    public static int[] WireGuardPorts = { 443, 88, 1224, 51820, 500, 4500 };
     public static int[] OpenVpnTcpPorts = { 443, 1194, 4569, 5060, 80 };
     public static int[] OpenVpnUdpPorts = { 443, 3389, 8080, 8443 };
     public static bool IsAutoLaunchEnabled = true;
@@ -55,6 +55,9 @@ public static class DefaultSettings
     public static bool IsSplitTunnelingEnabled = false;
     public static SplitTunnelingMode SplitTunnelingMode = SplitTunnelingMode.Standard;
     public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = new();
+    public static bool IsIpv6LeakProtectionEnabled = false;
+    public static bool AllowNonStandardPorts = false;
+    public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
 
     public static List<SplitTunnelingApp> SplitTunnelingAppsList()
     {

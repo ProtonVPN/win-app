@@ -19,7 +19,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -34,6 +33,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
@@ -125,6 +125,27 @@ public partial class ConnectionCardViewModel : ViewModelBase,
         InvalidateCurrentConnectionIntent();
     }
 
+    public async void Receive(LoginSuccessMessage message)
+    {
+        // TODO: Auto connect logic should not be part of the viewmodel
+        if (_settings.IsAutoConnectEnabled)
+        {
+            switch (_settings.AutoConnectMode)
+            {
+                case AutoConnectMode.LatestConnection:
+                    await _connectionManager.ConnectAsync(CurrentConnectionIntent ?? ConnectionIntent.Default);
+                    break;
+
+                case AutoConnectMode.FastestConnection:
+                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
     protected override void OnLanguageChanged()
     {
         OnPropertyChanged(nameof(Header));
@@ -189,23 +210,5 @@ public partial class ConnectionCardViewModel : ViewModelBase,
     private bool CanShowConnectionDetails()
     {
         return CurrentConnectionStatus == ConnectionStatus.Connected;
-    }
-
-    public async void Receive(LoginSuccessMessage message)
-    {
-        if (_settings.IsAutoConnectEnabled)
-        {
-            switch (_settings.AutoConnectMode)
-            {
-                case AutoConnectMode.LatestConnection:
-                    await _connectionManager.ConnectAsync(CurrentConnectionIntent ?? ConnectionIntent.Default);
-                    break;
-                case AutoConnectMode.FastestConnection:
-                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 }

@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.EntityMapping.Contracts
-{
-    public interface IMapper<TLeft, TRight> : IMapper
-    {
-        TRight Map(TLeft leftEntity);
-        TLeft Map(TRight rightEntity);
-    }
+namespace ProtonVPN.EntityMapping.Contracts;
 
-    public interface IMapper
-    {
-    }
+public interface IMapper<TLeft, TRight> : IMapper
+{
+    TRight Map(TLeft leftEntity);
+
+    TLeft Map(TRight rightEntity);
+}
+
+public interface IMapper
+{
 }

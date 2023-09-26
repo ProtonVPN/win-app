@@ -175,7 +175,7 @@ namespace ProtonVPN.Api.Handlers
 
         private bool IsAlternativeRoutingSettingEnabled()
         {
-            return _settings.DoHEnabled;
+            return _settings.IsDoHEnabled;
         }
 
         private async Task<HttpResponseMessage> TrySendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)

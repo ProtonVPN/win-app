@@ -99,5 +99,7 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
     public virtual void OnNavigatedTo(object parameter)
     {
         IsActive = true;
+
+        InvalidateAllProperties();
     }
 }

@@ -18,14 +18,20 @@
  */
 
 using Autofac;
+using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.EntityMapping.Mappers.Vpn;
 
-namespace ProtonVPN.EntityMapping.Installers
+namespace ProtonVPN.EntityMapping.Installers;
+
+public class EntityMappingModule : Module
 {
-    public class EntityMappingModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<EntityMapper>().AsImplementedInterfaces().SingleInstance();
-        }
+        builder.RegisterType<EntityMapper>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterAssemblyTypes(typeof(ConnectionStatusMapper).Assembly)
+            .Where(t => typeof(IMapper).IsAssignableFrom(t))
+            .AsImplementedInterfaces()
+            .SingleInstance();
     }
 }

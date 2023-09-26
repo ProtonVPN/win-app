@@ -27,10 +27,6 @@ namespace ProtonVPN.Client.Logic.Services.Contracts
 
         Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
 
-#warning THIS METHOD SHOULD BE COMPLETED OR DELETED
-        Task ConnectAsync();
-
-#warning MAYBE DOESN'T NEED ARGUMENTS OR MAYBE IT NEEDS ERROR TYPE
-        Task DisconnectAsync();
+        Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
     }
 }
