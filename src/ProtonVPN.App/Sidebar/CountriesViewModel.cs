@@ -152,18 +152,16 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            _scheduler.Schedule(() =>
-            {
-                serverCollection.Expanded = true;
-                int index = _items.IndexOf(serverCollection) + 1;
+            serverCollection.Expanded = true;
 
-                ObservableCollection<IServerListItem> collection = 
-                    new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
-                foreach (IServerListItem serverListItem in collection)
-                {
-                    _items.Insert(index, serverListItem);
-                }
-            });
+            int index = _items.IndexOf(serverCollection) + 1;
+
+            ObservableCollection<IServerListItem> collection =
+                new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
+            foreach (IServerListItem serverListItem in collection)
+            {
+                _items.Insert(index, serverListItem);
+            }
         }
 
         public void CollapseCollection(IServerCollection serverCollection)
@@ -268,32 +266,35 @@ namespace ProtonVPN.Sidebar
 
         private void CreateList()
         {
-            if (SecureCore)
+            _scheduler.Schedule(() =>
             {
-                Items = _serverListFactory.BuildSecureCoreList();
-            }
-            else if (PortForwarding)
-            {
-                Items = _serverListFactory.BuildPortForwardingList(SearchValue);
-            }
-            else
-            {
-                Items = _serverListFactory.BuildServerList(SearchValue);
-            }
-
-            foreach (IServerListItem item in Items.ToList())
-            {
-                if (item is ServersByCountryViewModel serversByCountry && serversByCountry.Expanded)
+                if (SecureCore)
                 {
-                    serversByCountry.Expanded = false;
-                    ExpandCollection(serversByCountry);
+                    Items = _serverListFactory.BuildSecureCoreList();
                 }
-            }
+                else if (PortForwarding)
+                {
+                    Items = _serverListFactory.BuildPortForwardingList(SearchValue);
+                }
+                else
+                {
+                    Items = _serverListFactory.BuildServerList(SearchValue);
+                }
 
-            if (_vpnState != null)
-            {
-                OnVpnStateChanged(_vpnState);
-            }
+                foreach (IServerListItem item in Items.ToList())
+                {
+                    if (item is ServersByCountryViewModel serversByCountry && serversByCountry.Expanded)
+                    {
+                        serversByCountry.Expanded = false;
+                        ExpandCollection(serversByCountry);
+                    }
+                }
+
+                if (_vpnState != null)
+                {
+                    OnVpnStateChanged(_vpnState);
+                }
+            });
         }
 
         private void UpdateVpnState(VpnState state)
@@ -334,14 +335,17 @@ namespace ProtonVPN.Sidebar
 
         private void ExpandAction(IServerCollection serverCollection)
         {
-            if (!serverCollection.Expanded)
+            _scheduler.Schedule(() =>
             {
-                ExpandCollection(serverCollection);
-            }
-            else
-            {
-                CollapseCollection(serverCollection);
-            }
+                if (!serverCollection.Expanded)
+                {
+                    ExpandCollection(serverCollection);
+                }
+                else
+                {
+                    CollapseCollection(serverCollection);
+                }
+            });
         }
 
         private async void ConnectAction(ServerItemViewModel serverItemViewModel)
