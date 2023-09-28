@@ -19,7 +19,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace ProtonVPN.Client.Common.Validation.Attributes;
+namespace ProtonVPN.Client.Common.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
 public class RequiredIfAttribute : RequiredAttribute

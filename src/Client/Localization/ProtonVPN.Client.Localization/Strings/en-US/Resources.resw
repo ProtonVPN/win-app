@@ -1790,7 +1790,7 @@
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>Error logs show us what went wrong, and which actions led to your issue. We’ll only ever use them to help our engineers fix bugs.</value>
+    <value>Error logs show us what went wrong, and which actions led to your issue. We'll only ever use them to help our engineers fix bugs.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
@@ -1803,7 +1803,7 @@
     <value>Something went wrong</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>We couldn’t send your report. Please check your connection and try again.</value>
+    <value>We couldn't send your report. Please check your connection and try again.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
     <value>Try again</value>
@@ -1812,7 +1812,7 @@
     <value>Report sent</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>Thanks for your feedback. We’ll get back to you as soon as we can.</value>
+    <value>Thanks for your feedback. We'll get back to you as soon as we can.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
     <value>Auto connect</value>
@@ -1872,7 +1872,7 @@
     <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>When kill switch is on, you won’t be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
     <value>Standard</value>
@@ -1957,5 +1957,44 @@
   </data>
   <data name="Settings_Common_Discard_Title" xml:space="preserve">
     <value>Discard settings changes?</value>
+  </data>
+  <data name="Common_Actions_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
+    <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
+    <value>Enable custom DNS servers?</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
+    <value>This will disable split tunneling.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
+    <value>Enable kill switch?</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
+    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
+    <value>Enable NetShield?</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
+    <value>This will disable kill switch.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
+    <value>Enable split tunneling?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
+    <value>You won't be able to use port forwarding with Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
+    <value>Enable Moderate NAT?</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
+    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
+    <value>Enable port forwarding?</value>
   </data>
 </root>

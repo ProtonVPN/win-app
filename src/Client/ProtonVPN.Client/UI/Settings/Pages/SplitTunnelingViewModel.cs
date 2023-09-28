@@ -22,6 +22,7 @@ using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
@@ -51,6 +52,7 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
     private bool _isSplitTunnelingEnabled;
 
     [ObservableProperty]
+    [property: SettingName(nameof(ISettings.SplitTunnelingMode))]
     [NotifyPropertyChangedFor(nameof(IsStandardSplitTunneling))]
     [NotifyPropertyChangedFor(nameof(IsInverseSplitTunneling))]
     private SplitTunnelingMode _currentSplitTunnelingMode;
@@ -73,12 +75,14 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
         set => SetSplitTunnelingMode(value, SplitTunnelingMode.Inverse);
     }
 
+    [property: SettingName(nameof(ISettings.SplitTunnelingAppsList))]
     public ObservableCollection<SplitTunnelingAppViewModel> Apps { get; }
 
     public bool HasApps => Apps.Any();
 
     public int ActiveAppsCount => Apps.Count(a => a.IsActive);
 
+    [property: SettingName(nameof(ISettings.SplitTunnelingIpAddressesList))]
     public ObservableCollection<SplitTunnelingIpAddressViewModel> IpAddresses { get; }
 
     public bool HasIpAddresses => IpAddresses.Any();
@@ -88,9 +92,10 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
     public SplitTunnelingViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
 
@@ -138,7 +143,7 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
         }
         else
         {
-            IpAddresses.Add(new(Localizer, this, CurrentIpAddress));
+            IpAddresses.Add(new(Localizer, this, CurrentIpAddress!));
         }
 
         CurrentIpAddress = string.Empty;

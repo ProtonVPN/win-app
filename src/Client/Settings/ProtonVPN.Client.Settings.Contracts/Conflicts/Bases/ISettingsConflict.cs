@@ -17,19 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Parameters;
+using ProtonVPN.Client.Common.Models;
 
-public struct MessageDialogParameters
+namespace ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
+
+public interface ISettingsConflict
 {
-    public string Title { get; set; }
+    string SettingsName { get; }
 
-    public string Message { get; set; }
+    dynamic? SettingsValue { get; }
 
-    public string PrimaryButtonText { get; set; }
+    dynamic? SettingsResetValue { get; }
 
-    public string SecondaryButtonText { get; set; }
+    bool IsConflicting { get; }
 
-    public string CloseButtonText { get; set; }
+    MessageDialogParameters MessageParameters { get; }
 
-    public bool UseVerticalLayoutForButtons { get; set; }
+    Action ResolveAction { get; }
+
+    bool Matches(string settingsName, dynamic? settingsValue);
 }

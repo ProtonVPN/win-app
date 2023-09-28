@@ -20,13 +20,13 @@
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Parameters;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
@@ -35,8 +35,13 @@ public abstract partial class ConnectionSettingsPageViewModelBase : SettingsPage
 {
     protected readonly IConnectionManager ConnectionManager;
 
-    public ConnectionSettingsPageViewModelBase(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, IConnectionManager connectionManager)
-        : base(viewNavigator, localizationProvider, settings)
+    public ConnectionSettingsPageViewModelBase(
+        IMainViewNavigator viewNavigator, 
+        ILocalizationProvider localizationProvider, 
+        ISettings settings, 
+        ISettingsConflictResolver settingsConflictResolver, 
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
         ConnectionManager = connectionManager;
     }
@@ -65,8 +70,7 @@ public abstract partial class ConnectionSettingsPageViewModelBase : SettingsPage
         if (!CanReconnect())
         {
             // No reconnection required, simply save settings when leaving page
-            SaveSettings();
-            return true;
+            return await base.OnNavigatingFromAsync();
         }
 
         ContentDialogResult result = await ViewNavigator.ShowMessageAsync(
@@ -96,23 +100,10 @@ public abstract partial class ConnectionSettingsPageViewModelBase : SettingsPage
         }
     }
 
-    public override void OnNavigatedTo(object parameter)
-    {
-        base.OnNavigatedTo(parameter);
-
-        RetrieveSettings();
-    }
-
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
         base.OnPropertyChanged(e);
 
         ReconnectCommand.NotifyCanExecuteChanged();
     }
-
-    protected abstract bool HasConfigurationChanged();
-
-    protected abstract void SaveSettings();
-
-    protected abstract void RetrieveSettings();
 }

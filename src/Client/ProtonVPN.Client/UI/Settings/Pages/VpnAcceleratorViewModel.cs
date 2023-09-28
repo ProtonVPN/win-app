@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
@@ -25,34 +26,39 @@ using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class VpnAcceleratorViewModel : SettingsPageViewModelBase
+public partial class VpnAcceleratorViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
+
+    [ObservableProperty]
+    private bool _isVpnAcceleratorEnabled;
 
     public override string? Title => Localizer.Get("Settings_Connection_VpnAccelerator");
 
     public string LearnMoreUrl => _urls.VpnAcceleratorLearnMore;
 
-    public bool IsVpnAcceleratorEnabled
-    {
-        get => Settings.IsVpnAcceleratorEnabled;
-        set => Settings.IsVpnAcceleratorEnabled = value;
-    }
-
     public VpnAcceleratorViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
         _urls = urls;
     }
 
-    protected override void OnSettingsChanged(string propertyName)
+    protected override bool HasConfigurationChanged()
     {
-        if (propertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
-        {
-            OnPropertyChanged(nameof(IsVpnAcceleratorEnabled));
-        }
+        return Settings.IsVpnAcceleratorEnabled != IsVpnAcceleratorEnabled;
+    }
+
+    protected override void SaveSettings()
+    {
+        Settings.IsVpnAcceleratorEnabled = IsVpnAcceleratorEnabled;
+    }
+
+    protected override void RetrieveSettings()
+    {
+        IsVpnAcceleratorEnabled = Settings.IsVpnAcceleratorEnabled;
     }
 }

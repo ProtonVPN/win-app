@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -25,7 +26,6 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -34,6 +34,7 @@ public partial class ProtocolViewModel : ConnectionSettingsPageViewModelBase
     private readonly IUrls _urls;
 
     [ObservableProperty]
+    [property: SettingName(nameof(ISettings.VpnProtocol))]
     [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
     [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
     [NotifyPropertyChangedFor(nameof(IsOpenVpnUdpProtocol))]
@@ -70,27 +71,16 @@ public partial class ProtocolViewModel : ConnectionSettingsPageViewModelBase
 
     public string LearnMoreUrl => _urls.ProtocolsLearnMore;
 
-    public ProtocolViewModel(IMainViewNavigator viewNavigator,
+    public ProtocolViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        switch (message.PropertyName)
-        {
-            case nameof(ISettings.VpnProtocol):
-                OnPropertyChanged(nameof(IsSmartProtocol));
-                OnPropertyChanged(nameof(IsWireGuardUdpProtocol));
-                OnPropertyChanged(nameof(IsOpenVpnUdpProtocol));
-                OnPropertyChanged(nameof(IsOpenVpnTcpProtocol));
-                break;
-        }
     }
 
     protected override void OnLanguageChanged()

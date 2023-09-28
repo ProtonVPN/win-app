@@ -20,8 +20,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.Models.Parameters;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
