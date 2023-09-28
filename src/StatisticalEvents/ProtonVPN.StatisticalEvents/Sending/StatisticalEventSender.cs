@@ -22,6 +22,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
@@ -51,7 +52,7 @@ namespace ProtonVPN.StatisticalEvents.Sending
         private readonly SingleAction _triggerSendAction;
 
         private ConcurrentQueue<StatisticalEvent>? _eventsToSend;
-        private readonly object _lock = new();
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
 
         private DateTime _lastSendTime = DateTime.MinValue;
         private bool _isLoggedIn;
@@ -97,7 +98,8 @@ namespace ProtonVPN.StatisticalEvents.Sending
         {
             if (_isLoggedIn && _appSettings.IsTelemetryGloballyEnabled)
             {
-                lock (_lock)
+                await _semaphore.WaitAsync();
+                try
                 {
                     _eventsToSend ??= new ConcurrentQueue<StatisticalEvent>();
                     _eventsToSend.Enqueue(statisticalEvent);
@@ -115,6 +117,10 @@ namespace ProtonVPN.StatisticalEvents.Sending
                     }
                     _logger.Info<AppLog>($"{_eventsToSend.Count} statistical events are now queued.");
                     SaveToFile();
+                }
+                finally
+                {
+                    _semaphore.Release();
                 }
                 _triggerSendAction.Run();
             }
@@ -139,9 +145,14 @@ namespace ProtonVPN.StatisticalEvents.Sending
         private async Task SendAsync()
         {
             StatisticalEventsBatch statisticalEventsBatch = new();
-            lock (_lock)
+            await _semaphore.WaitAsync();
+            try
             {
                 statisticalEventsBatch.EventInfo = _eventsToSend?.ToList() ?? new();
+            }
+            finally
+            {
+                _semaphore.Release();
             }
 
             if (statisticalEventsBatch.EventInfo.Count <= 0)
@@ -155,7 +166,7 @@ namespace ProtonVPN.StatisticalEvents.Sending
             if (baseResponse.Success)
             {
                 _logger.Info<AppLog>($"Successfully sent {statisticalEventsBatch.EventInfo.Count} statistical events. Removing them from the queue.");
-                RemoveSuccessfullySentEvents(statisticalEventsBatch.EventInfo);
+                await RemoveSuccessfullySentEventsAsync(statisticalEventsBatch.EventInfo);
             }
             else
             {
@@ -163,9 +174,10 @@ namespace ProtonVPN.StatisticalEvents.Sending
             }
         }
 
-        private void RemoveSuccessfullySentEvents(List<StatisticalEvent> statisticalEventsSent)
+        private async Task RemoveSuccessfullySentEventsAsync(List<StatisticalEvent> statisticalEventsSent)
         {
-            lock (_lock)
+            await _semaphore.WaitAsync();
+            try
             {
                 int numOfEventsSent = statisticalEventsSent.Count;
                 for (int i = 0; i < numOfEventsSent; i++)
@@ -186,6 +198,10 @@ namespace ProtonVPN.StatisticalEvents.Sending
                     _logger.Info<AppLog>($"Removed successfully sent statistical events. {_eventsToSend.Count} events are now queued.");
                 }
                 SaveToFile();
+            }
+            finally
+            {
+                _semaphore.Release();
             }
         }
 
@@ -214,13 +230,14 @@ namespace ProtonVPN.StatisticalEvents.Sending
             _eventsToSend = null;
         }
 
-        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        public async void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
             if (e.PropertyName is not null &&
                 e.PropertyName.Equals(nameof(IAppSettings.IsTelemetryGloballyEnabled)) &&
                 !_appSettings.IsTelemetryGloballyEnabled)
             {
-                lock (_lock)
+                await _semaphore.WaitAsync();
+                try
                 {
                     if (_eventsToSend is null)
                     {
@@ -235,6 +252,10 @@ namespace ProtonVPN.StatisticalEvents.Sending
                             $"{numOfEventsBefore} queued events before deletion. " +
                             $"{_eventsToSend.Count} queued events after deletion.");
                     }
+                }
+                finally
+                {
+                    _semaphore.Release();
                 }
             }
         }
