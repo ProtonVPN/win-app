@@ -54,9 +54,9 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
 
     public override bool IsBackEnabled => false;
 
-    public bool IsConnecting => _connectionManager.ConnectionStatus == ConnectionStatus.Connecting;
+    public bool IsConnecting => _connectionManager.IsConnecting;
 
-    public bool IsConnected => _connectionManager.ConnectionStatus == ConnectionStatus.Connected;
+    public bool IsConnected => _connectionManager.IsConnected;
 
     public override IconElement Icon { get; } = new House();
 
