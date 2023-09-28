@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -42,17 +43,20 @@ public partial class CustomDnsServersViewModel : ConnectionSettingsPageViewModel
 
     public override string? Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
 
+    [property: SettingName(nameof(ISettings.CustomDnsServersList))]
     public ObservableCollection<DnsServerViewModel> CustomDnsServers { get; }
 
     public bool HasCustomDnsServers => CustomDnsServers.Any();
 
     public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
 
-    public CustomDnsServersViewModel(IMainViewNavigator viewNavigator,
+    public CustomDnsServersViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(viewNavigator, localizationProvider, settings, connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _currentIpAddress = string.Empty;
 

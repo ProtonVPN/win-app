@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Repositories;
 
@@ -38,5 +39,12 @@ public class SettingsModule : Module
         builder.RegisterType<SettingsRestorer>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ClientConfigObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+
+        builder.RegisterType<SettingsConflictResolver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+
+        builder.RegisterAssemblyTypes(typeof(ISettingsConflict).Assembly)
+               .Where(t => typeof(ISettingsConflict).IsAssignableFrom(t))
+               .AsImplementedInterfaces()
+               .SingleInstance();
     }
 }

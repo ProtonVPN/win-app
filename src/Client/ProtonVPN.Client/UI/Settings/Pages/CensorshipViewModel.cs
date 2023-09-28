@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
@@ -25,46 +26,45 @@ using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class CensorshipViewModel : SettingsPageViewModelBase
+public partial class CensorshipViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
 
+    [ObservableProperty]
+    private bool _isShareStatisticsEnabled;
+
+    [ObservableProperty]
+    private bool _isShareCrashReportsEnabled;
+
     public override string? Title => Localizer.Get("Settings_Improve_Censorship");
-
-    public bool IsShareStatisticsEnabled
-    {
-        get => Settings.IsShareStatisticsEnabled;
-        set => Settings.IsShareStatisticsEnabled = value;
-    }
-
-    public bool IsShareCrashReportsEnabled
-    {
-        get => Settings.IsShareCrashReportsEnabled;
-        set => Settings.IsShareCrashReportsEnabled = value;
-    }
-
     public string LearnMoreUrl => _urls.UsageStatisticsLearnMore;
 
-    public CensorshipViewModel(IMainViewNavigator viewNavigator, 
-        ILocalizationProvider localizationProvider, 
-        ISettings settings, 
+    public CensorshipViewModel(
+        IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
         _urls = urls;
     }
 
-    protected override void OnSettingsChanged(string propertyName)
+    protected override bool HasConfigurationChanged()
     {
-        switch (propertyName)
-        {
-            case nameof(IsShareStatisticsEnabled):
-                OnPropertyChanged(nameof(IsShareStatisticsEnabled));
-                break;
+        return Settings.IsShareStatisticsEnabled != IsShareStatisticsEnabled
+            || Settings.IsShareCrashReportsEnabled != IsShareCrashReportsEnabled;
+    }
 
-            case nameof(IsShareCrashReportsEnabled):
-                OnPropertyChanged(nameof(IsShareCrashReportsEnabled));
-                break;
-        }
+    protected override void SaveSettings()
+    {
+        Settings.IsShareStatisticsEnabled = IsShareStatisticsEnabled;
+        Settings.IsShareCrashReportsEnabled = IsShareCrashReportsEnabled;
+    }
+
+    protected override void RetrieveSettings()
+    {
+        IsShareStatisticsEnabled = Settings.IsShareStatisticsEnabled;
+        IsShareCrashReportsEnabled = Settings.IsShareCrashReportsEnabled;
     }
 }

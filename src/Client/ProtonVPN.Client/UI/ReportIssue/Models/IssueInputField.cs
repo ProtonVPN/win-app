@@ -19,7 +19,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Common.Validation.Attributes;
+using ProtonVPN.Client.Common.Attributes;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Models;
 

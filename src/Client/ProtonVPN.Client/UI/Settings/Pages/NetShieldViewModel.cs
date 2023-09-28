@@ -46,9 +46,10 @@ public partial class NetShieldViewModel : ConnectionSettingsPageViewModelBase
     public NetShieldViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
     }

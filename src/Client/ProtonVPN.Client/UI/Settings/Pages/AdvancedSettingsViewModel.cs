@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
@@ -27,21 +29,24 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class AdvancedSettingsViewModel : SettingsPageViewModelBase
+public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
+
+    [ObservableProperty]
+    private bool _isAlternativeRoutingEnabled;
+
+    [ObservableProperty]
+    [property: SettingName(nameof(ISettings.NatType))]
+    [NotifyPropertyChangedFor(nameof(IsStrictNatType))]
+    [NotifyPropertyChangedFor(nameof(IsModerateNatType))]
+    private NatType _currentNatType;
 
     public override string? Title => Localizer.Get("Settings_Connection_AdvancedSettings");
 
     public string CustomDnsServersSettingsState => Localizer.GetToggleValue(Settings.IsCustomDnsServersEnabled);
 
     public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
-
-    public bool IsAlternativeRoutingEnabled
-    {
-        get => Settings.IsAlternativeRoutingEnabled;
-        set => Settings.IsAlternativeRoutingEnabled = value;
-    }
 
     public bool IsStrictNatType
     {
@@ -55,11 +60,13 @@ public class AdvancedSettingsViewModel : SettingsPageViewModelBase
         set => SetNatType(value, NatType.Moderate);
     }
 
-    public AdvancedSettingsViewModel(IMainViewNavigator viewNavigator,
+    public AdvancedSettingsViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        ISettings settings,
+        ISettings settings, 
+        ISettingsConflictResolver settingsConflictResolver,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
         _urls = urls;
     }
@@ -68,15 +75,6 @@ public class AdvancedSettingsViewModel : SettingsPageViewModelBase
     {
         switch (propertyName)
         {
-            case nameof(ISettings.IsAlternativeRoutingEnabled):
-                OnPropertyChanged(nameof(IsAlternativeRoutingEnabled));
-                break;
-
-            case nameof(ISettings.NatType):
-                OnPropertyChanged(nameof(IsStrictNatType));
-                OnPropertyChanged(nameof(IsModerateNatType));
-                break;
-
             case nameof(ISettings.IsCustomDnsServersEnabled):
                 OnPropertyChanged(nameof(CustomDnsServersSettingsState));
                 break;
@@ -90,16 +88,34 @@ public class AdvancedSettingsViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(CustomDnsServersSettingsState));
     }
 
+    protected override bool HasConfigurationChanged()
+    {
+        return Settings.NatType != CurrentNatType
+            || Settings.IsAlternativeRoutingEnabled != IsAlternativeRoutingEnabled;
+    }
+
+    protected override void SaveSettings()
+    {
+        Settings.NatType = CurrentNatType;
+        Settings.IsAlternativeRoutingEnabled = IsAlternativeRoutingEnabled;
+    }
+
+    protected override void RetrieveSettings()
+    {
+        CurrentNatType = Settings.NatType;
+        IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
+    }
+
     private bool IsNatType(NatType natType)
     {
-        return Settings.NatType == natType;
+        return CurrentNatType == natType;
     }
 
     private void SetNatType(bool value, NatType natType)
     {
         if (value)
         {
-            Settings.NatType = natType;
+            CurrentNatType = natType;
         }
     }
 }

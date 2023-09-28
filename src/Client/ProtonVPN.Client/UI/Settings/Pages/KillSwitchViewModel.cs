@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
@@ -28,21 +30,26 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class KillSwitchViewModel : SettingsPageViewModelBase
+public partial class KillSwitchViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
+    private bool _isKillSwitchEnabled;
+
+    [ObservableProperty]
+    [property: SettingName(nameof(ISettings.KillSwitchMode))]
+    [NotifyPropertyChangedFor(nameof(IsStandardKillSwitch))]
+    [NotifyPropertyChangedFor(nameof(IsAdvancedKillSwitch))]
+    [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
+    private KillSwitchMode _currentKillSwitchMode;
+
     public override string? Title => Localizer.Get("Settings_Features_KillSwitch");
 
-    public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(Settings.IsKillSwitchEnabled, Settings.KillSwitchMode);
+    public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(IsKillSwitchEnabled, CurrentKillSwitchMode);
 
     public string LearnMoreUrl => _urls.KillSwitchLearnMore;
-
-    public bool IsKillSwitchEnabled
-    {
-        get => Settings.IsKillSwitchEnabled;
-        set => Settings.IsKillSwitchEnabled = value;
-    }
 
     public bool IsStandardKillSwitch
     {
@@ -56,11 +63,13 @@ public class KillSwitchViewModel : SettingsPageViewModelBase
         set => SetKillSwitchMode(value, KillSwitchMode.Advanced);
     }
 
-    public KillSwitchViewModel(IMainViewNavigator viewNavigator,
+    public KillSwitchViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
         _urls = urls;
     }
@@ -80,36 +89,34 @@ public class KillSwitchViewModel : SettingsPageViewModelBase
         };
     }
 
-    protected override void OnSettingsChanged(string propertyName)
+    protected override bool HasConfigurationChanged()
     {
-        switch (propertyName)
-        {
-            case nameof(ISettings.IsKillSwitchEnabled):
-                OnPropertyChanged(nameof(IsKillSwitchEnabled));
-                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
-                break;
+        return Settings.IsKillSwitchEnabled != IsKillSwitchEnabled
+            || Settings.KillSwitchMode != CurrentKillSwitchMode;
+    }
 
-            case nameof(ISettings.KillSwitchMode):
-                OnPropertyChanged(nameof(IsStandardKillSwitch));
-                OnPropertyChanged(nameof(IsAdvancedKillSwitch));
-                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
-                break;
+    protected override void SaveSettings()
+    {
+        Settings.IsKillSwitchEnabled = IsKillSwitchEnabled;
+        Settings.KillSwitchMode = CurrentKillSwitchMode;
+    }
 
-            default:
-                break;
-        }
+    protected override void RetrieveSettings()
+    {
+        IsKillSwitchEnabled = Settings.IsKillSwitchEnabled;
+        CurrentKillSwitchMode = Settings.KillSwitchMode;
     }
 
     private bool IsKillSwitchMode(KillSwitchMode killSwitchMode)
     {
-        return Settings.KillSwitchMode == killSwitchMode;
+        return CurrentKillSwitchMode == killSwitchMode;
     }
 
     private void SetKillSwitchMode(bool value, KillSwitchMode killSwitchMode)
     {
         if (value)
         {
-            Settings.KillSwitchMode = killSwitchMode;
+            CurrentKillSwitchMode = killSwitchMode;
         }
     }
 }

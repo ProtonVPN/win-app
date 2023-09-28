@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
@@ -25,13 +27,26 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public class AutoStartupViewModel : SettingsPageViewModelBase
+public partial class AutoStartupViewModel : SettingsPageViewModelBase
 {
-    public bool IsAutoLaunchEnabled
-    {
-        get => Settings.IsAutoLaunchEnabled;
-        set => Settings.IsAutoLaunchEnabled = value;
-    }
+    [ObservableProperty]
+    private bool _isAutoLaunchEnabled;
+
+    [ObservableProperty]
+    [property: SettingName(nameof(ISettings.AutoLaunchMode))]
+    [NotifyPropertyChangedFor(nameof(IsAutoLaunchOpenOnDesktop))]
+    [NotifyPropertyChangedFor(nameof(IsAutoLaunchMinimizeToSystemTray))]
+    [NotifyPropertyChangedFor(nameof(IsAutoLaunchMinimizeToTaskbar))]
+    private AutoLaunchMode _currentAutoLaunchMode;
+
+    [ObservableProperty]
+    private bool _isAutoConnectEnabled;
+
+    [ObservableProperty]
+    [property: SettingName(nameof(ISettings.AutoConnectMode))]
+    [NotifyPropertyChangedFor(nameof(IsAutoConnectFastestConnection))]
+    [NotifyPropertyChangedFor(nameof(IsAutoConnectLatestConnection))]
+    private AutoConnectMode _currentAutoConnectMode;
 
     public bool IsAutoLaunchOpenOnDesktop
     {
@@ -51,12 +66,6 @@ public class AutoStartupViewModel : SettingsPageViewModelBase
         set => SetAutoLaunchMode(value, AutoLaunchMode.MinimizeToTaskbar);
     }
 
-    public bool IsAutoConnectEnabled
-    {
-        get => Settings.IsAutoConnectEnabled;
-        set => Settings.IsAutoConnectEnabled = value;
-    }
-
     public bool IsAutoConnectFastestConnection
     {
         get => IsAutoConnectMode(AutoConnectMode.FastestConnection);
@@ -71,60 +80,61 @@ public class AutoStartupViewModel : SettingsPageViewModelBase
 
     public override string? Title => Localizer.Get("Settings_General_AutoStartup");
 
-    public AutoStartupViewModel(IMainViewNavigator viewNavigator,
+    public AutoStartupViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        ISettings settings)
-        : base(viewNavigator, localizationProvider, settings)
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     { }
 
-    protected override void OnSettingsChanged(string propertyName)
+    protected override bool HasConfigurationChanged()
     {
-        switch (propertyName)
-        {
-            case nameof(ISettings.IsAutoLaunchEnabled):
-                OnPropertyChanged(nameof(IsAutoLaunchEnabled));
-                break;
+        return Settings.IsAutoLaunchEnabled != IsAutoLaunchEnabled
+            || Settings.AutoLaunchMode != CurrentAutoLaunchMode
+            || Settings.IsAutoConnectEnabled != IsAutoConnectEnabled
+            || Settings.AutoConnectMode != CurrentAutoConnectMode;
+    }
 
-            case nameof(ISettings.AutoLaunchMode):
-                OnPropertyChanged(nameof(IsAutoLaunchOpenOnDesktop));
-                OnPropertyChanged(nameof(IsAutoLaunchMinimizeToSystemTray));
-                OnPropertyChanged(nameof(IsAutoLaunchMinimizeToTaskbar));
-                break;
+    protected override void SaveSettings()
+    {
+        Settings.IsAutoLaunchEnabled = IsAutoLaunchEnabled;
+        Settings.AutoLaunchMode = CurrentAutoLaunchMode;
+        Settings.IsAutoConnectEnabled = IsAutoConnectEnabled;
+        Settings.AutoConnectMode = CurrentAutoConnectMode;
+    }
 
-            case nameof(ISettings.IsAutoConnectEnabled):
-                OnPropertyChanged(nameof(IsAutoConnectEnabled));
-                break;
-
-            case nameof(ISettings.AutoConnectMode):
-                OnPropertyChanged(nameof(IsAutoConnectFastestConnection));
-                OnPropertyChanged(nameof(IsAutoConnectLatestConnection));
-                break;
-        }
+    protected override void RetrieveSettings()
+    {
+        IsAutoLaunchEnabled = Settings.IsAutoLaunchEnabled;
+        CurrentAutoLaunchMode = Settings.AutoLaunchMode;
+        IsAutoConnectEnabled = Settings.IsAutoConnectEnabled;
+        CurrentAutoConnectMode = Settings.AutoConnectMode;
     }
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)
     {
-        return Settings.AutoLaunchMode == autoLaunchMode;
+        return CurrentAutoLaunchMode == autoLaunchMode;
     }
 
     private void SetAutoLaunchMode(bool value, AutoLaunchMode autoLaunchMode)
     {
         if (value)
         {
-            Settings.AutoLaunchMode = autoLaunchMode;
+            CurrentAutoLaunchMode = autoLaunchMode;
         }
     }
 
     private bool IsAutoConnectMode(AutoConnectMode autoConnectMode)
     {
-        return Settings.AutoConnectMode == autoConnectMode;
+        return CurrentAutoConnectMode == autoConnectMode;
     }
 
     private void SetAutoConnectMode(bool value, AutoConnectMode autoConnectMode)
     {
         if (value)
         {
-            Settings.AutoConnectMode = autoConnectMode;
+            CurrentAutoConnectMode = autoConnectMode;
         }
     }
 }

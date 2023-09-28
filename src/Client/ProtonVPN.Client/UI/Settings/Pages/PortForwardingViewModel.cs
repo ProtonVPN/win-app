@@ -39,30 +39,27 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
     [NotifyCanExecuteChangedFor(nameof(CopyPortNumberCommand))]
     private int? _activePortNumber;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
+    private bool _isPortForwardingEnabled;
+
+    [ObservableProperty]
+    private bool _isPortForwardingNotificationEnabled;
+
     public override string? Title => Localizer.Get("Settings_Features_PortForwarding");
 
-    public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(Settings.IsPortForwardingEnabled);
+    public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(IsPortForwardingEnabled);
 
     public string LearnMoreUrl => _urls.PortForwardingLearnMore;
 
-    public bool IsPortForwardingEnabled
-    {
-        get => Settings.IsPortForwardingEnabled;
-        set => Settings.IsPortForwardingEnabled = value;
-    }
-
-    public bool IsPortForwardingNotificationEnabled
-    {
-        get => Settings.IsPortForwardingNotificationEnabled;
-        set => Settings.IsPortForwardingNotificationEnabled = value;
-    }
-
-    public PortForwardingViewModel(IMainViewNavigator viewNavigator,
+    public PortForwardingViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
         IClipboardEditor clipboardEditor)
-        : base(viewNavigator, localizationProvider, settings)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
         _urls = urls;
         _clipboardEditor = clipboardEditor;
@@ -93,28 +90,32 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
         return IsPortForwardingEnabled && ActivePortNumber.HasValue;
     }
 
-    protected override void OnSettingsChanged(string propertyName)
+    protected override bool HasConfigurationChanged()
     {
-        switch (propertyName)
-        {
-            case nameof(ISettings.IsPortForwardingEnabled):
-                OnPropertyChanged(nameof(IsPortForwardingEnabled));
-                OnPropertyChanged(nameof(PortForwardingFeatureIconSource));
-                InvalidateActivePortNumber();
-                break;
+        return Settings.IsPortForwardingEnabled != IsPortForwardingEnabled
+            || Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled;
+    }
 
-            case nameof(ISettings.IsPortForwardingNotificationEnabled):
-                OnPropertyChanged(nameof(IsPortForwardingNotificationEnabled));
-                break;
+    protected override void SaveSettings()
+    {
+        Settings.IsPortForwardingEnabled = IsPortForwardingEnabled;
+        Settings.IsShareCrashReportsEnabled = IsPortForwardingNotificationEnabled;
+    }
 
-            default:
-                break;
-        }
+    protected override void RetrieveSettings()
+    {
+        IsPortForwardingEnabled = Settings.IsPortForwardingEnabled;
+        IsPortForwardingNotificationEnabled = Settings.IsPortForwardingNotificationEnabled;
     }
 
     private void InvalidateActivePortNumber()
     {
         // TODO: Retrieve the actual port number for port forwarding
         ActivePortNumber = IsPortForwardingEnabled ? 12345 : null;
+    }
+
+    partial void OnIsPortForwardingEnabledChanged(bool value)
+    {
+        InvalidateActivePortNumber();
     }
 }

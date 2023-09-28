@@ -19,6 +19,7 @@
 
 using System.Runtime.CompilerServices;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Extensions;
