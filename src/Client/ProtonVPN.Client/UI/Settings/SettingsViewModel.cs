@@ -29,6 +29,8 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -51,6 +53,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     private readonly IUrls _urls;
     private readonly IDialogActivator _dialogActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IConnectionManager _connectionManager;
     private readonly Lazy<ObservableCollection<string>> _languages;
 
     public string ClientVersionDescription => $"{App.APPLICATION_NAME} {EnvironmentHelper.GetClientVersionDescription()}";
@@ -117,7 +120,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
 
     public override string? Title => Localizer.Get("Settings_Page_Title");
 
-    public SettingsViewModel(IThemeSelector themeSelector,
+    public SettingsViewModel(
+        IThemeSelector themeSelector,
         IMainViewNavigator viewNavigator,
         ILocalizationService localizationService,
         ILocalizationProvider localizationProvider,
@@ -125,7 +129,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         ISettingsRestorer settingsRestorer,
         IUrls urls,
         IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator)
+        IReportIssueViewNavigator reportIssueViewNavigator,
+        IConnectionManager connectionManager)
         : base(viewNavigator, localizationProvider)
     {
         _themeSelector = themeSelector;
@@ -135,6 +140,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
         _urls = urls;
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
+        _connectionManager = connectionManager;
 
         _languages = new Lazy<ObservableCollection<string>>(
             () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
@@ -145,18 +151,28 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     [RelayCommand]
     public async Task RestoreDefaultSettingsAsync()
     {
+        bool needReconnection = !_connectionManager.IsDisconnected;
+
         ContentDialogResult result = await ViewNavigator.ShowMessageAsync(
             new MessageDialogParameters
             {
                 Title = Localizer.Get("Settings_RestoreDefault_Confirmation_Title"),
                 Message = Localizer.Get("Settings_RestoreDefault_Confirmation_Message"),
-                PrimaryButtonText = Localizer.Get("Settings_RestoreDefault_Confirmation_Action"),
+                PrimaryButtonText = needReconnection
+                    ? Localizer.Get("Settings_RestoreDefaultAndReconnect_Confirmation_Action")
+                    : Localizer.Get("Settings_RestoreDefault_Confirmation_Action"),
                 CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+                UseVerticalLayoutForButtons = true
             });
 
         if (result == ContentDialogResult.Primary)
         {
             _settingsRestorer.Restore();
+
+            if (needReconnection)
+            {
+                await _connectionManager.ReconnectAsync();
+            }
         }
     }
 

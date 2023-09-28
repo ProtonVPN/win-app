@@ -27,6 +27,12 @@ public interface IConnectionManager
 {
     ConnectionStatus ConnectionStatus { get; }
 
+    bool IsDisconnected { get; }
+
+    bool IsConnecting { get; }
+
+    bool IsConnected { get; }
+
     Task ConnectAsync(IConnectionIntent? connectionIntent);
 
     Task ReconnectAsync();

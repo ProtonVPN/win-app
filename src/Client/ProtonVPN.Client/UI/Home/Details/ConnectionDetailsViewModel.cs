@@ -25,7 +25,6 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
@@ -97,7 +96,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
 
     public void Receive(ConnectionStatusChanged message)
     {
-        CurrentConnectionDetails = _connectionManager.ConnectionStatus == ConnectionStatus.Connected
+        CurrentConnectionDetails = _connectionManager.IsConnected
             ? _connectionManager.GetConnectionDetails()
             : null;
     }

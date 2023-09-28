@@ -1848,7 +1848,10 @@
     <value>Service logs</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Restore</value>
+    <value>Restore default settings</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
+    <value>Restore and reconnect</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
     <value>This will reset your Proton VPN settings to their original state.</value>

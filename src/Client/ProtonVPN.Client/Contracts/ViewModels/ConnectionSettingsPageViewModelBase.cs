@@ -24,7 +24,6 @@ using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
@@ -36,10 +35,10 @@ public abstract partial class ConnectionSettingsPageViewModelBase : SettingsPage
     protected readonly IConnectionManager ConnectionManager;
 
     public ConnectionSettingsPageViewModelBase(
-        IMainViewNavigator viewNavigator, 
-        ILocalizationProvider localizationProvider, 
-        ISettings settings, 
-        ISettingsConflictResolver settingsConflictResolver, 
+        IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
         : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
     {
@@ -56,7 +55,8 @@ public abstract partial class ConnectionSettingsPageViewModelBase : SettingsPage
 
     public bool CanReconnect()
     {
-        return ConnectionManager?.ConnectionStatus != ConnectionStatus.Disconnected
+        return ConnectionManager != null
+            && !ConnectionManager.IsDisconnected
             && HasConfigurationChanged();
     }
 

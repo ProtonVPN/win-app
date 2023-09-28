@@ -42,6 +42,12 @@ public class ConnectionManager : IConnectionManager, IEventMessageReceiver<VpnSt
 
     public ConnectionStatus ConnectionStatus { get; private set; }
 
+    public bool IsDisconnected => ConnectionStatus == ConnectionStatus.Disconnected;
+
+    public bool IsConnecting => ConnectionStatus == ConnectionStatus.Connecting;
+
+    public bool IsConnected => ConnectionStatus == ConnectionStatus.Connected;
+
     public ConnectionManager(
         IServiceCaller serviceCaller,
         IEventMessageSender eventMessageSender,
