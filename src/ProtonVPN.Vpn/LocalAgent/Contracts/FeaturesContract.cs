@@ -29,8 +29,8 @@ namespace ProtonVPN.Vpn.LocalAgent.Contracts
         [JsonProperty(PropertyName = "bouncing")]
         public string Bouncing { get; set; }
 
-        [JsonProperty(PropertyName = "split-tcp")]
-        public bool SplitTcp { get; set; }
+        [JsonProperty(PropertyName = "split-tcp", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SplitTcp { get; set; }
 
         [JsonProperty(PropertyName = "netshield-level")]
         public int NetShieldLevel { get; set; }

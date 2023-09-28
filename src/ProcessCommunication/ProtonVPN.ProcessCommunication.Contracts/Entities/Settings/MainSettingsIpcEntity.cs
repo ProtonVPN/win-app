@@ -36,7 +36,7 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Settings
         public bool ModerateNat { get; set; }
 
         [DataMember(Order = 5)]
-        public bool SplitTcp { get; set; }
+        public bool? SplitTcp { get; set; }
         [DataMember(Order = 6)]
         public bool? AllowNonStandardPorts { get; set; }
         [DataMember(Order = 7)]

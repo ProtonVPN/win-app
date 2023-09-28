@@ -312,6 +312,7 @@ namespace ProtonVPN.Vpn.Connectors
         private VpnConfig VpnConfig(VpnProtocol protocol)
         {
             List<string> customDns = (from ip in _appSettings.CustomDnsIps where ip.Enabled select ip.Ip).ToList();
+            bool isPaidFeatureAllowed = _userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled;
 
             return new VpnConfig(
                 new VpnConfigParameters
@@ -328,7 +329,7 @@ namespace ProtonVPN.Vpn.Connectors
                     ModerateNat = _appSettings.ModerateNat,
                     PreferredProtocols = GetPreferredProtocols(protocol),
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
-                    SplitTcp = _appSettings.IsVpnAcceleratorEnabled() && (_userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled),
+                    SplitTcp = isPaidFeatureAllowed ? _appSettings.IsVpnAcceleratorEnabled() : null,
                     AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
                     PortForwarding = _appSettings.IsPortForwardingEnabled(),
                 });
