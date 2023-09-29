@@ -74,7 +74,7 @@ namespace ProtonVPN.Settings.SplitTunneling
             set
             {
                 _appSettings.SplitTunnelMode = value;
-                OnPropertyChanged(nameof(SplitTunnelMode));
+                OnPropertyChanged();
             }
         }
 
@@ -101,6 +101,10 @@ namespace ProtonVPN.Settings.SplitTunneling
             if (e.PropertyName.Equals(nameof(IAppSettings.KillSwitchMode)) && _appSettings.KillSwitchMode != KillSwitchMode.Off)
             {
                 _appSettings.SplitTunnelingEnabled = false;
+                OnPropertyChanged(nameof(Enabled));
+            }
+            else if (e.PropertyName == nameof(IAppSettings.SplitTunnelingEnabled))
+            {
                 OnPropertyChanged(nameof(Enabled));
             }
         }

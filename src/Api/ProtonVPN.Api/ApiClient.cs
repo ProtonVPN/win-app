@@ -27,7 +27,6 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Geographical;
-using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
@@ -97,7 +96,7 @@ namespace ProtonVPN.Api
         public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)
         {
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get,
-                "vpn/logicals?SignServer=Server.EntryIP,Server.Label&WithPartnerLogicals=1", ip);
+                "vpn/logicals?SignServer=Server.EntryIP,Server.Label", ip);
             request.SetRetryCount(SERVERS_RETRY_COUNT);
             request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
             return await SendRequest<ServersResponse>(request, "Get servers");
@@ -178,12 +177,6 @@ namespace ProtonVPN.Api
         {
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/streamingservices");
             return await SendRequest<StreamingServicesResponse>(request, "Get streaming services");
-        }
-
-        public async Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/partners");
-            return await SendRequest<PartnersResponse>(request, "Get partners");
         }
 
         public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()

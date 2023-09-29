@@ -76,9 +76,6 @@ namespace ProtonVPN.Common.Configuration
         public string StreamingServicesFilePath { get; set; }
 
         [Required]
-        public string PartnersFilePath { get; set; }
-
-        [Required]
         public string ServiceLogFolder { get; set; }
 
         [Required]
@@ -152,9 +149,6 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan StreamingServicesUpdateInterval { get; set; }
-
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        public TimeSpan PartnersUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         public TimeSpan AnnouncementUpdateInterval { get; set; }

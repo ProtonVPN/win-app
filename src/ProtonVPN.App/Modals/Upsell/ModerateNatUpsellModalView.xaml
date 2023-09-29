@@ -25,7 +25,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
-                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
+                          xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
+                          xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
                           Style="{StaticResource BaseWindowStyle}"
                           SizeToContent="Height"
                           Title=" "
@@ -33,42 +34,48 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Height="Auto"
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:ModerateNatUpsellModalViewModel}">
+
     <Grid>
-        <StackPanel Margin="80,10,80,50">
-            <vectorImages:ModerateNat />
+        <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/gradient-top-green.png"
+               VerticalAlignment="Top" />
+        <StackPanel Width="367"
+                    VerticalAlignment="Top"
+                    Margin="0,64"
+                    HorizontalAlignment="Center">
+            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/moderate-nat.png"
+                   Width="328"/>
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
                        Foreground="{StaticResource TextNormBrushColor}"
-                       Padding="15,0,15,0"
+                       Margin="0,8"
                        TextAlignment="Center"
                        FontWeight="SemiBold"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_ModerateNat_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource TextNormBrushColor}"
-                       Padding="0,25,0,0"
+                       Foreground="{StaticResource TextWeakBrushColor}"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
-                       Text="{translations:Loc Upsell_ModerateNat_Subtitle}" />
-            <TextBlock TextWrapping="Wrap"
-                       FontSize="16"
-                       Foreground="{StaticResource TextNormBrushColor}"
-                       Padding="0,25,0,0"
-                       TextAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Text="{translations:Loc Upsell_ModerateNat_Unlock}" />
+                       behavior:TextStyleBehavior.FormattedText="{translations:Loc Upsell_ModerateNat_Subtitle}" />
+            <Border Style="{StaticResource BulletPanelBorder}">
+                <StackPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:MagicWand Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_ModerateNat_Bullet1}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:Accent Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_ModerateNat_Bullet2}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                </StackPanel>
+            </Border>
             <Button Style="{StaticResource PrimaryModalButton}"
-                    Margin="0,40,0,0"
                     HorizontalAlignment="Center"
                     Content="{translations:Loc Upsell_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
-            <Button Style="{StaticResource ClearStyleButton}"
-                    HorizontalAlignment="Center"
-                    FontWeight="Bold"
-                    Margin="0,20,0,0"
-                    Content="{translations:Loc Upsell_ModerateNat_About}"
-                    Command="{Binding OpenModerateNatArticleCommand}" />
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

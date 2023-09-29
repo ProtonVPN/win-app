@@ -111,7 +111,7 @@ namespace ProtonVPN.UI.Tests.Results
         public HomeResult CheckIfUpgradeRequiredModalIsShown()
         {
             WaitUntilElementExistsByName("Upgrade", TestConstants.VeryShortTimeout);
-            CheckIfDisplayedByClassName("PlusCountries");
+            CheckIfDisplayedByAutomationId("UpsellModalTitle");
             return this;
         }
 

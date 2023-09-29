@@ -243,6 +243,12 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
+        public bool IsFreeRescopeModalDisplayed
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
+
         public bool NetShieldModalShown
         {
             get => GetPerUser<bool>();
@@ -456,6 +462,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeatureFreeRescopeEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool FeatureSmartReconnectEnabled
         {
             get => Get<bool>();
@@ -576,6 +588,36 @@ namespace ProtonVPN.Core
         public bool FeatureNetShieldStatsEnabled
         {
             get => Get<bool>();
+            set => Set(value);
+        }
+
+        public int ChangeServerAttempts
+        {
+            get => GetPerUser<int>();
+            set => SetPerUser(value);
+        }
+
+        public DateTime NextChangeServerTimeUtc
+        {
+            get => GetPerUser<DateTime>();
+            set => SetPerUser(value);
+        }
+
+        public int ChangeServerAttemptLimit
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public int ChangeServerShortDelayInSeconds
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public int ChangeServerLongDelayInSeconds
+        {
+            get => Get<int>();
             set => Set(value);
         }
 

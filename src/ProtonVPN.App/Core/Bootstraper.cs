@@ -83,7 +83,6 @@ using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
-using ProtonVPN.Partners;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -324,7 +323,6 @@ namespace ProtonVPN.Core
                 await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
-                await Resolve<IPartnersUpdater>().Update();
 
                 GuestHoleState guestHoleState = Resolve<GuestHoleState>();
                 if (guestHoleState.Active)

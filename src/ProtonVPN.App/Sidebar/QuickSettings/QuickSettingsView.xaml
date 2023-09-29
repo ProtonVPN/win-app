@@ -271,21 +271,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ContentControl x:Name="Icon"
                                                 Content="{TemplateBinding Icon}"
                                                 Foreground="{StaticResource TextNormBrushColor}" />
-                                <Border x:Name="Plus"
-                                        DockPanel.Dock="Right"
-                                        Visibility="Collapsed"
-                                        BorderThickness="2"
-                                        Height="20"
-                                        BorderBrush="{StaticResource InteractionWeakBrushColor}"
-                                        CornerRadius="6">
-                                    <Label x:Name="PlusLabel"
-                                           Content="Plus"
-                                           Padding="8,2"
-                                           VerticalAlignment="Center"
-                                           FontWeight="Bold"
-                                           Foreground="{StaticResource TextNormBrushColor}"
-                                           FontSize="10" />
-                                </Border>
+                                <icons:ProtonPlus x:Name="Plus"
+                                                  Width="38"
+                                                  DockPanel.Dock="Right"
+                                                  Visibility="Collapsed" />
                                 <TextBlock Text="{TemplateBinding Title}"
                                            x:Name="Title"
                                            Margin="10,0,0,0"
@@ -307,8 +296,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
                                 <Setter TargetName="Title" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
                                 <Setter TargetName="Plus" Property="Visibility" Value="{Binding IsToShowPlusBadge, Converter={StaticResource BoolToVis}}" />
-                                <Setter TargetName="Plus" Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}" />
-                                <Setter TargetName="PlusLabel" Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

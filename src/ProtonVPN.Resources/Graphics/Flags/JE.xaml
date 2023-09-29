@@ -1,0 +1,45 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Flags.JE"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox>
+        <Canvas Height="16" Width="24">
+            <Canvas>
+                <Canvas.Clip>
+                    <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,24,16" />
+                </Canvas.Clip>
+                <Path Data="M24 -0.00250244H0V15.995H24V-0.00250244Z" Fill="#F0F0F0" />
+                <Path Data="M24 -0.00250244H0V15.995H24V-0.00250244Z" Fill="#F0F0F0" />
+                <Path
+                    Data="M14.1225 8L24 1.415V-0.00250244H21.8775L12 6.59L2.1225 -0.00250244H0V1.415L9.8775 8L0 14.585V16.0025H2.1225L12 9.4175L21.8775 16.0025H24V14.585L14.1225 8Z"
+                    Fill="#D80027" />
+                <Path
+                    Data="M10.9575 3.83002L12 4.08502L13.0425 3.83002V2.93752L12.63 3.14752L12 2.52502L11.3775 3.14752L10.9575 2.93752V3.83002Z"
+                    Fill="#FFDA44" />
+                <Path
+                    Data="M10.9575 3.82251V4.47501C10.9575 5.27751 12 5.52501 12 5.52501C12 5.52501 13.0425 5.27751 13.0425 4.47501V3.82251H10.9575V3.82251Z"
+                    Fill="#D80027" />
+            </Canvas>
+        </Canvas>
+    </Viewbox>
+</UserControl>

@@ -79,6 +79,17 @@ namespace ProtonVPN.Core.Service.Vpn
                 sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
         }
 
+        public async Task ReconnectToFreeRandomServerAsync(
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerMemberName] string sourceMemberName = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            _logger.Info<ConnectTriggerLog>("[VpnManager] Random free server connect requested.", sourceFilePath: sourceFilePath,
+                sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
+            await EnqueueAsync(() => _vpnConnector.ConnectToDifferentRandomFreeServerAsync(),
+                sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
+        }
+
         public async Task QuickConnectAsync(
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",

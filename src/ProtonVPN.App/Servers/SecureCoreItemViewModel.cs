@@ -17,15 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using ProtonVPN.Core.Servers.Models;
-using ProtonVPN.Partners;
 
 namespace ProtonVPN.Servers
 {
     internal class SecureCoreItemViewModel : ServerItemViewModel
     {
-        public SecureCoreItemViewModel(Server server, sbyte userTier) : base(server, new List<PartnerType>(), userTier)
+        public SecureCoreItemViewModel(Server server, sbyte userTier) : base(server, userTier)
         {
         }
     }

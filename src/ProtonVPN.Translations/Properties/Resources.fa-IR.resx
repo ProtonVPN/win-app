@@ -1754,9 +1754,11 @@
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1">
-    <value>صدها سرور در ۵۵ کشور</value>
-    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_One">
+    <value>Hundreds of servers in {0} country</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
+    <value>Hundreds of servers in {0} countries</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>همزمان به ۱۰ دستگاه متصل شوید</value>
@@ -2037,6 +2039,9 @@
     <value>حجم آپلود:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
+  <data name="Map_UpgradeTooltip">
+    <value>Upgrade to Plus</value>
+  </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>متصل</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
@@ -2057,6 +2062,12 @@
     <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
+  <data name="Modal_ChangeServer_Subtitle">
+    <value>Get unlimited changes with VPN Plus</value>
+  </data>
+  <data name="Modal_ChangeServer_Title">
+    <value>You’ve reached the maximum number of Free server changes for now.</value>
+  </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>فعال کردن Secure Core</value>
   </data>
@@ -2071,6 +2082,24 @@
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>نکته‌ای دربارهٔ سرعت...</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountries">
+    <value>New Free countries</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountriesDescription">
+    <value>There are now Free servers in Poland and Romania.</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelection">
+    <value>Changes to server selection</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelectionDescription">
+    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+  </data>
+  <data name="Modals_Rescope_Title">
+    <value>What’s new</value>
+  </data>
+  <data name="Modals_Rescope_btn_GotIt">
+    <value>Got it</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2513,6 +2542,10 @@
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
   </data>
+  <data name="Servers_Fastest">
+    <value>Fastest</value>
+    <comment>The label for fastest server item in the country list</comment>
+  </data>
   <data name="Servers_Feature_val_P2P">
     <value>سرور P2P</value>
     <comment>The name of P2P server feature</comment>
@@ -2531,6 +2564,9 @@
   <data name="Servers_Feature_val_Tor">
     <value>سرور Tor</value>
     <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_FreeConnections">
+    <value>Free connections (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP سرور:</value>
@@ -2560,6 +2596,12 @@
     <value>از طریق {0} به {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
+  <data name="Servers_UpsellBanner">
+    <value>Get worldwide coverage with VPN Plus</value>
+  </data>
+  <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
+    <value>Not the country you wanted? Upgrade to choose any server</value>
+  </data>
   <data name="Servers_btn_Connect">
     <value>اتصال</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
@@ -2572,9 +2614,8 @@
     <value>ارتقا</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
-  <data name="Servers_lbl_Upgrade">
-    <value>ارتقاء</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  <data name="Servers_lbl_UpgradeToPlus">
+    <value>Upgrade to Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>از طریق</value>
@@ -2695,6 +2736,9 @@
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
     <value>با اجازه دادن به دسترسی به اینترنت برنامه های پشتیبانی شده محلی سرعت تورنت و بازی آنلاین خود را افزایش دهید. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;بیشتر بدانید&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
@@ -2838,6 +2882,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>عمومی</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
+  <data name="Settings_btn_UpgradeToPlus">
+    <value>Upgrade to Plus</value>
+    <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
+  </data>
   <data name="Settings_lnk_Reconnect">
     <value>اتصال مجدد</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
@@ -2865,6 +2913,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_B2BPopup_Title">
     <value>What's a gateway?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_ChangeServer">
+    <value>Change server</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>اتصال سریع</value>
@@ -2899,7 +2950,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>مکان‌ها ({0})</value>
+    <value>Plus locations ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>مکان‌های پایه &amp; پلاس ({0})</value>
@@ -2918,9 +2969,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Information</value>
-  </data>
-  <data name="Sidebar_Countries_OurPartners">
-    <value>Our partners</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>مکان‌های پلاس({0})</value>
@@ -3085,40 +3133,95 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>تنظیمات اعلان</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
-  <data name="Upsell_Countries_BlockAds">
-    <value>مسدود کردن تبلیغات و بدافزارها با NetShield</value>
+  <data name="Upsell_Accelerator_Bullet1">
+    <value>Access faster, less crowded servers.</value>
   </data>
-  <data name="Upsell_Countries_BrowseFast">
-    <value>با بالاترین سرعت وبگردی کنید (10 گیگابیت بر ثانیه)</value>
+  <data name="Upsell_Accelerator_Bullet2">
+    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
-  <data name="Upsell_Countries_GlobalStreamingServices">
-    <value>دسترسی به سرویس‌های استریم جهانی</value>
+  <data name="Upsell_Accelerator_Bullet3">
+    <value>Improved speed and stability when connected to distant servers.</value>
   </data>
-  <data name="Upsell_Countries_MoreFeatures">
-    <value>و بسیاری از ویژگی‌های دیگر</value>
+  <data name="Upsell_Accelerator_Title">
+    <value>Browse at even higher speeds (up to 10 Gbps)</value>
   </data>
-  <data name="Upsell_Countries_SimultaneousDevices">
-    <value>همزمان به ۱۰ دستگاه متصل شوید</value>
+  <data name="Upsell_Countries_AccessGeoblockedContent">
+    <value>Access geoblocked content</value>
+  </data>
+  <data name="Upsell_Countries_ChooseAnyLocation">
+    <value>Choose any location</value>
+  </data>
+  <data name="Upsell_Countries_HigherVpnSpeed">
+    <value>Even higher VPN speed</value>
+  </data>
+  <data name="Upsell_Countries_StreamMovies">
+    <value>Stream your favorite movies</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>زمانی که شما به Plus ارتقا دهید</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} in {1}.</value>
+    <value>Access over {0} in {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
-  <data name="Upsell_ModerateNat_About">
-    <value>Moderate NAT چیست؟</value>
+  <data name="Upsell_Country_Bullet1_One">
+    <value>Connect to {0} country</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Other">
+    <value>Connect to {0} countries</value>
+  </data>
+  <data name="Upsell_Country_Bullet2">
+    <value>Higher speeds (10 Gbps)</value>
+  </data>
+  <data name="Upsell_Country_Bullet3">
+    <value>Stream your favorite movies</value>
+  </data>
+  <data name="Upsell_Country_Bullet4">
+    <value>Protect up to 10 devices</value>
+  </data>
+  <data name="Upsell_Country_Bullet5">
+    <value>30-day money back guarantee</value>
+  </data>
+  <data name="Upsell_Country_Subtitle">
+    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_Country_Title">
+    <value>Want to choose a specific country?</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet1">
+    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet2">
+    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet3">
+    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Title">
+    <value>Unlock advanced VPN customization</value>
+  </data>
+  <data name="Upsell_FreeConnections_Locations">
+    <value>Free server locations ({0})</value>
+    <comment>{0} represents a number of free server locations.</comment>
+  </data>
+  <data name="Upsell_FreeConnections_Subtitle">
+    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Title">
+    <value>Free connections</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet1">
+    <value>Improve online gaming and video call performance</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet2">
+    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Moderate NAT، که به عنوان NAT نوع ۲ نیز شناخته می‌شود، می‌تواند تجربهٔ آنلاین شما را با برنامه‌های متفاوت و بازی‌های ویدئویی آنلاین بهبود ببخشد.</value>
+    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>فعالسازی NAT متوسط</value>
-  </data>
-  <data name="Upsell_ModerateNat_Unlock">
-    <value>حساب خود را به طرحی خریدنی ارتقا دهید تا این ویژگی و بسیاری دیگر را فعال کنید.</value>
+    <value>Level up your gaming experience</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>مسدود کردن تبلیغات و ردیاب‌ها</value>
@@ -3155,14 +3258,35 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Available with VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
-  <data name="Upsell_PortForwarding_About">
-    <value>Port Forwarding چیست؟</value>
+  <data name="Upsell_PortForwarding_Bullet1">
+    <value>Improve your peer-to-peer download speeds</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet2">
+    <value>Connect to online gaming servers and host multiplayer games</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet3">
+    <value>Set up remote access to devices on your local network</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>سرعت دانلود P2P را افزایش دهید و تجربه بازی آنلاین خود با Port Forwarding بهبود ببخشید. &lt;LineBreak/&gt;&lt;LineBreak/&gt;به این ویژگی و امکانات زیاد دیگر با VPN Plus دسترسی پیدا کنید.</value>
+    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>فعال سازی هدایت پورت (Port Forwarding)</value>
+    <value>Supercharge your P2P connections</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet1">
+    <value>Save your preferred server, city, or country.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet2">
+    <value>Set custom protocols and premium VPN features.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet3">
+    <value>Set up auto-connect for even faster access.</value>
+  </data>
+  <data name="Upsell_Profiles_Subtitle">
+    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_Profiles_Title">
+    <value>Get quick access to your frequent connections</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>اضافه کردن یک لایه دیگر رمزنگاری به ارتباط VPN شما</value>
@@ -3178,6 +3302,21 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>با Secure Core دو بار رمزنگاری کنید</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet1">
+    <value>Split your traffic into VPN and non-VPN tunnels</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet2">
+    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet3">
+    <value>Access both home and local content when browsing from abroad</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Subtitle">
+    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Title">
+    <value>Get the best of both worlds</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>ارتقاء</value>

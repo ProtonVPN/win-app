@@ -1,0 +1,99 @@
+﻿<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<resource:BaseModalWindow x:Class="ProtonVPN.Modals.Upsell.FreeConnectionsUpsellModalView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:upsell="clr-namespace:ProtonVPN.Modals.Upsell"
+                          xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+                          xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
+                          xmlns:controls="clr-namespace:ProtonVPN.Views.Controls"
+                          xmlns:wpf="clr-namespace:ProtonVPN.Core.Wpf"
+                          Style="{StaticResource BaseWindowStyle}"
+                          SizeToContent="Height"
+                          Title=" "
+                          mc:Ignorable="d"
+                          Height="Auto"
+                          Width="567"
+                          d:DataContext="{d:DesignInstance upsell:FreeConnectionsUpsellModalViewModel}">
+    <resource:BaseModalWindow.Resources>
+        <Style x:Key="CountryContainer" TargetType="DockPanel">
+            <Setter Property="Margin" Value="8" />
+        </Style>
+    </resource:BaseModalWindow.Resources>
+    <Grid>
+        <StackPanel Margin="0,64">
+            <StackPanel Margin="64,0">
+                <TextBlock TextWrapping="Wrap"
+                           FontSize="24"
+                           FontWeight="DemiBold"
+                           Foreground="{StaticResource TextNormBrushColor}"
+                           Margin="0,0,0,8"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="{translations:Loc Upsell_FreeConnections_Title}" />
+                <TextBlock TextWrapping="Wrap"
+                           FontSize="16"
+                           Foreground="{StaticResource TextWeakBrushColor}"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,32"
+                           Text="{translations:Loc Upsell_FreeConnections_Subtitle}" />
+                <TextBlock TextWrapping="Wrap"
+                           FontSize="14"
+                           Foreground="{StaticResource TextNormBrushColor}"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,16"
+                           FontWeight="DemiBold"
+                           Text="{Binding Locations}" />
+            </StackPanel>
+
+            <ItemsControl ItemsSource="{Binding FreeCountries}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <wpf:AlignableWrapPanel Margin="128,0"
+                                                HorizontalContentAlignment="Center"
+                                                HorizontalAlignment="Center" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Style="{StaticResource CountryContainer}">
+                            <ContentPresenter Width="24"
+                                              Margin="0,0,8,0"
+                                              Content="{Binding Converter={StaticResource CountryToFlagConverter}, ConverterParameter='svg'}" />
+                            <TextBlock Text="{Binding Converter={StaticResource CountryCodeToNameConverter}}"
+                                       FontSize="14"
+                                       Foreground="{StaticResource TextNormBrushColor}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <controls:UpsellBanner Width="311"
+                                   Margin="0,32,0,0"
+                                   Title="{translations:Loc Servers_UpsellBanner}"
+                                   ImagePath="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/worldwide-coverage-small.png"
+                                   Command="{Binding ContinueCommand}">
+            </controls:UpsellBanner>
+        </StackPanel>
+    </Grid>
+</resource:BaseModalWindow>

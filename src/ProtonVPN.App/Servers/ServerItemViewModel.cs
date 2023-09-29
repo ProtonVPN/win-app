@@ -25,7 +25,6 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Partners;
 
 namespace ProtonVPN.Servers
 {
@@ -35,14 +34,11 @@ namespace ProtonVPN.Servers
         private bool _connected;
         private bool _showIp = true;
 
-        private readonly List<PartnerType> _partnerTypes;
         private readonly sbyte _userTier;
         private readonly InfoPopupViewModel _streamingInfoPopupViewModel;
 
-        public ServerItemViewModel(Server server, List<PartnerType> partnerTypes, sbyte userTier,
-            InfoPopupViewModel streamingInfoPopupViewModel = null)
+        public ServerItemViewModel(Server server, sbyte userTier, InfoPopupViewModel streamingInfoPopupViewModel = null)
         {
-            _partnerTypes = partnerTypes;
             _userTier = userTier;
             _streamingInfoPopupViewModel = streamingInfoPopupViewModel;
 
@@ -106,20 +102,6 @@ namespace ProtonVPN.Servers
             if (server.SupportsStreaming())
             {
                 list.Add(new StreamingFeature(_streamingInfoPopupViewModel));
-            }
-
-            if (server.IsPartner())
-            {
-                foreach (PartnerType partnerType in _partnerTypes)
-                {
-                    foreach (Partner partner in partnerType.Partners)
-                    {
-                        if (partner.LogicalIDs.Contains(server.Id))
-                        {
-                            list.Add(new PartnerFeature(partner.Name, partner.IconUrl, _partnerTypes));
-                        }
-                    }
-                }
             }
 
             Features = list;

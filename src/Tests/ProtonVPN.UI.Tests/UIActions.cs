@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
@@ -30,114 +31,81 @@ namespace ProtonVPN.UI.Tests
     {
         protected dynamic WaitUntilElementExistsByName(string name, TimeSpan time)
         {
-            RetryResult<AutomationElement> retry = Retry.WhileNull(
-                () => {
-                    App.WaitWhileBusy();
-                    RefreshWindow();
-                    return Window.FindFirstDescendant(cf => cf.ByName(name));
-                },
-                time, TestConstants.RetryInterval);
-
-            if (!retry.Success)
+            WaitForElement(() =>
             {
-                Assert.Fail("Failed to get " + name + " element within " + time.Seconds + " seconds.");
-            }
+                RefreshWindow();
+                return Window.FindFirstDescendant(cf => cf.ByName(name)) != null;
+            }, time, name);
+
             return this;
         }
 
         protected dynamic WaitUntilDisplayedByAutomationId(string automationId, TimeSpan time)
         {
-            RetryResult<bool> retry = Retry.WhileTrue(
-                () => {
-                    RefreshWindow();
-                    if (Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) == null)
-                    {
-                        return true;
-                    }
-                    return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen;
-                },
-                time, TestConstants.RetryInterval);
-
-            if (!retry.Success)
+            WaitForElement(() =>
             {
-                Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
-            }
+                RefreshWindow();
+                if (Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) == null)
+                {
+                    return false;
+                }
+                return !Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen;
+            }, time, automationId);
+            
             return this;
         }
 
         public dynamic WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
         {
-            RetryResult<AutomationElement> retry = Retry.WhileNull(
-                () => {
-                    RefreshWindow();
-                    return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
-                },
-                time, TestConstants.RetryInterval);
-
-            if (!retry.Success)
+            WaitForElement(() =>
             {
-                Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
-            }
+                RefreshWindow();
+                return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) != null;
+            }, time, automationId);
+
+            return this;
+        }
+
+        protected dynamic WaitUntilElementExistsByClassName(string className, TimeSpan time)
+        {
+            WaitForElement(() =>
+            {
+                RefreshWindow();
+                return Window.FindFirstDescendant(cf => cf.ByClassName(className)) != null;
+            }, time, className);
+
+            return this;
+        }
+
+        protected dynamic WaitUntilTextMatchesByAutomationId(string automationId, TimeSpan time, string text, string timeoutMessage)
+        {
+            string elementText = "ELEMENT_NOT_FOUND";
+            WaitForElement(() =>
+            {
+                RefreshWindow();
+                AutomationElement element = Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+                if (element != null)
+                {
+                    elementText = element.AsLabel().Text;
+                    return element.AsLabel().Text == text;
+                }
+                return false;
+            }, time, automationId, $"Expected text: '{text}' does not match {automationId} element text {elementText}");
+
             return this;
         }
 
         protected AutomationElement WaitUntilElementExistsByAutomationIdAndReturnTheElement(string automationId, TimeSpan time)
         {
             AutomationElement element = null;
-            RetryResult<AutomationElement> retry = Retry.WhileNull(
-                () => {
-                    RefreshWindow();
-                    element = Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
-                    return element;
-                },
-                time, TestConstants.RetryInterval);
-
-            if (!retry.Success)
+            WaitForElement(() =>
             {
-                Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
-            }
+                RefreshWindow();
+                element = Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+                return element != null;
+            }, time, automationId);
+
             return element;
-        }
-
-        protected dynamic WaitUntilElementExistsByClassName(string className, TimeSpan time)
-        {
-            RetryResult<AutomationElement> retry = Retry.WhileNull(
-                () => {
-                    RefreshWindow();
-                    return Window.FindFirstDescendant(cf => cf.ByClassName(className));
-                },
-                time, TestConstants.RetryInterval);
-
-            if (!retry.Success)
-            {
-                Assert.Fail("Failed to get " + className + "element within " + time.Seconds + " seconds.");
-            }
-            return this;
-        }
-
-        protected dynamic WaitUntilTextMatchesByAutomationId(string automationId, TimeSpan time, string text, string timeoutMessage)
-        {
-            AutomationElement element;
-            string elementText = null;
-            RetryResult<bool> retry = Retry.WhileFalse(
-                () => {
-                    RefreshWindow();
-                    element = Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
-                    if(element != null)
-                    {
-                        elementText = element.AsLabel().Text;
-                        return elementText == text;
-                    }
-                    return false;
-                },
-                time, TestConstants.RetryInterval);
-
-            if (!retry.Success)
-            {
-                elementText = "ELEMENT_WAS_NOT_FOUND";
-                Assert.Fail($"Expected text: '{text}' does not match {automationId} element text {elementText}");
-            }
-            return this;
         }
 
         protected dynamic CheckIfDisplayedByClassName(string className)
@@ -165,6 +133,13 @@ namespace ProtonVPN.UI.Tests
         {
             RefreshWindow();
             Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
+            return this;
+        }
+
+        protected dynamic CheckIfDisplayedByAutomationId(string automationId)
+        {
+            RefreshWindow();
+            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
             return this;
         }
 
@@ -224,6 +199,35 @@ namespace ProtonVPN.UI.Tests
                 }
             }
             return element;
+        }
+
+        private void WaitForElement(Func<bool> function, TimeSpan time, string selector, string customMessage = null)
+        {
+            RetryResult<bool> retry = Retry.WhileFalse(
+                () => {
+                    try
+                    {
+                        App.WaitWhileBusy();
+                        return function();
+                    }
+                    catch (COMException)
+                    {
+                        return false;
+                    }
+                },
+                time, TestConstants.RetryInterval);
+
+            if (!retry.Success)
+            {
+                if(customMessage == null)
+                {
+                    Assert.Fail($"Failed to get {selector} element within {time.TotalSeconds} seconds.");
+                } 
+                else
+                {
+                    Assert.Fail(customMessage);
+                }
+            } 
         }
     }
 }

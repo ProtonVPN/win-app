@@ -28,17 +28,29 @@
   script:
     - echo "Building native dependencies..."
     - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
-    - cmd.exe /c BuildDependencies.bat publish
+    - cmd.exe /c BuildDependencies.bat $DEPENDENCIES
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\build-scripts\main.py defaultConfig
     - echo "Publishing ${TYPE}..."
-    - dotnet publish ProtonVpn.sln -c ${TYPE} -r win-x64 --self-contained
+    - dotnet publish ProtonVpn.sln -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
   artifacts:
     expire_in: 1 day
     paths:
-      - src/bin/win-x64/publish
-      - src/ProtonVPN.NativeHost/bin
+      - $BUILD_PATH
+      - src/ProtonVPN.NativeHost/bin/
   variables:
     GIT_SUBMODULE_STRATEGY: normal
+    
+.build-installer:
+  stage: build-installer
+  tags:
+    - windows
+  script:
+    - python ci\build-scripts\main.py update-gh-list
+    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+  artifacts:
+    paths:
+      - Setup/Installers/
+    expire_in: 4 weeks

@@ -18,9 +18,14 @@
  */
 
 using System;
+using System.Collections.Specialized;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows;
+using ProtonVPN.Account;
+using ProtonVPN.Announcements.Contracts;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -34,6 +39,8 @@ namespace ProtonVPN.Core.Service.Vpn
     public class AppController : IAppController
     {
         private readonly ILogger _logger;
+        private readonly IVpnInfoUpdater _vpnInfoUpdater;
+        private readonly IAnnouncementService _announcementService;
 
         public event EventHandler<VpnStateIpcEntity> OnVpnStateChanged;
         public event EventHandler<PortForwardingStateIpcEntity> OnPortForwardingStateChanged;
@@ -42,9 +49,11 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<UpdateStateIpcEntity> OnUpdateStateChanged;
         public event EventHandler OnOpenWindowInvoked;
 
-        public AppController(ILogger logger)
+        public AppController(ILogger logger, IVpnInfoUpdater vpnInfoUpdater, IAnnouncementService announcementService)
         {
             _logger = logger;
+            _vpnInfoUpdater = vpnInfoUpdater;
+            _announcementService = announcementService;
         }
 
         public async Task VpnStateChange(VpnStateIpcEntity state)
@@ -98,10 +107,36 @@ namespace ProtonVPN.Core.Service.Vpn
             InvokeOnUiThread(() => OnNetShieldStatisticChanged?.Invoke(this, netShieldStatistic));
         }
 
-        public async Task OpenWindow()
+        public async Task OpenWindow(string args)
         {
             _logger.Debug<ProcessCommunicationLog>("Another process requested to open the main window.");
+            ProcessCommandArguments(args);
             InvokeOnUiThread(() => OnOpenWindowInvoked?.Invoke(this, null));
+        }
+
+        private void ProcessCommandArguments(string args)
+        {
+            if (Uri.TryCreate(args, UriKind.Absolute, out Uri uri))
+            {
+                ProcessCommandUriArgument(uri);
+            }
+        }
+
+        private void ProcessCommandUriArgument(Uri uri)
+        {
+            if (uri.Host.EqualsIgnoringCase(SubscriptionManager.REFRESH_ACCOUNT_COMMAND))
+            {
+                _vpnInfoUpdater.Update();
+            }
+
+            NameValueCollection uriQuery = HttpUtility.ParseQueryString(uri.Query);
+            foreach (string queryKey in uriQuery.AllKeys)
+            {
+                if (queryKey.EqualsIgnoringCase("delete-notification-id"))
+                {
+                    _announcementService.Delete(uriQuery[queryKey]);
+                }
+            }
         }
     }
 }

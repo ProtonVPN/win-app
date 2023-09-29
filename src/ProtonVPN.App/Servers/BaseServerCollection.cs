@@ -53,7 +53,7 @@ namespace ProtonVPN.Servers
             }
         }
 
-        public bool Dimmed => !HasAvailableServers() || Maintenance;
+        public bool Dimmed => !HasAvailableServers() || Maintenance || UpgradeRequired;
 
         public bool Expanded
         {

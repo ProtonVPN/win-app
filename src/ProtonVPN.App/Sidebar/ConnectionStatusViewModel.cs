@@ -19,8 +19,10 @@
 
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
@@ -45,6 +47,7 @@ using ProtonVPN.PortForwarding.ActivePorts;
 using ProtonVPN.Settings;
 using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Translations;
+using ProtonVPN.Sidebar.ChangeServer;
 
 namespace ProtonVPN.Sidebar
 {
@@ -55,7 +58,9 @@ namespace ProtonVPN.Sidebar
         IServersAware,
         IUserLocationAware,
         ISettingsAware,
-        IConnectionDetailsAware
+        IConnectionDetailsAware,
+        IUserDataAware,
+        IHandle<ChangeServerTimeLeftMessage>
     {
         private readonly IAppSettings _appSettings;
         private readonly SidebarManager _sidebarManager;
@@ -65,6 +70,7 @@ namespace ProtonVPN.Sidebar
         private readonly IUserStorage _userStorage;
         private readonly IModals _modals;
         private readonly ILogger _logger;
+        private readonly ServerChangeManager _serverChangeManager;
         private readonly SettingsModalViewModel _settingsModalViewModel;
         private readonly EnumToDisplayTextConverter _enumToDisplayTextConverter;
         private readonly ISchedulerTimer _timer;
@@ -73,6 +79,7 @@ namespace ProtonVPN.Sidebar
         private bool _sidebarMode;
 
         public ConnectionStatusViewModel(
+            IEventAggregator eventAggregator,
             IAppSettings appSettings,
             SidebarManager sidebarManager,
             ServerManager serverManager,
@@ -81,11 +88,14 @@ namespace ProtonVPN.Sidebar
             IUserStorage userStorage,
             IModals modals, 
             ILogger logger,
+            ServerChangeManager serverChangeManager,
             SettingsModalViewModel settingsModalViewModel,
             AnnouncementsViewModel announcementsViewModel,
             PortForwardingActivePortViewModel activePortViewModel,
             IScheduler scheduler)
         {
+            eventAggregator.Subscribe(this);
+
             _appSettings = appSettings;
             _sidebarManager = sidebarManager;
             _vpnManager = vpnManager;
@@ -94,10 +104,12 @@ namespace ProtonVPN.Sidebar
             _userStorage = userStorage;
             _modals = modals;
             _logger = logger;
+            _serverChangeManager = serverChangeManager;
             _settingsModalViewModel = settingsModalViewModel;
             _enumToDisplayTextConverter = new EnumToDisplayTextConverter();
 
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
+            ChangeServerCommand = new RelayCommand(ChangeServerActionAsync);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitch);
             ToggleSidebarModeCommand = new RelayCommand(ToggleSidebarModeAction);
             CloseVpnAcceleratorReconnectionPopupCommand = new RelayCommand(CloseVpnAcceleratorReconnectionPopupAction);
@@ -122,10 +134,13 @@ namespace ProtonVPN.Sidebar
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
 
         public ICommand QuickConnectCommand { get; set; }
+        public ICommand ChangeServerCommand { get; set; }
         public ICommand DisableKillSwitchCommand { get; set; }
         public ICommand ToggleSidebarModeCommand { get; set; }
         public ICommand CloseVpnAcceleratorReconnectionPopupCommand { get; set; }
         public ICommand OpenNotificationSettingsCommand { get; set; }
+
+        public bool IsToShowFreeRescopeUI => _appSettings.FeatureFreeRescopeEnabled && !_userStorage.GetUser().Paid();
 
         private bool _killSwitchActivated;
         public bool KillSwitchActivated
@@ -134,9 +149,18 @@ namespace ProtonVPN.Sidebar
             set => Set(ref _killSwitchActivated, value);
         }
 
+        public bool IsToShowChangeServerButton => Connected && IsToShowFreeRescopeUI;
+
         public string ServerExitCountry => _connectedServer?.ExitCountry;
 
         public int ServerLoad => _connectedServer?.Load ?? 0;
+
+        private string _changeServerTimeLeft = string.Empty;
+        public string ChangeServerTimeLeft
+        {
+            get => _changeServerTimeLeft;
+            set => Set(ref _changeServerTimeLeft, value);
+        }
 
         private string _ip;
         public string Ip
@@ -240,6 +264,11 @@ namespace ProtonVPN.Sidebar
             }
         }
 
+        public async Task HandleAsync(ChangeServerTimeLeftMessage message, CancellationToken cancellationToken)
+        {
+            ChangeServerTimeLeft = message.TimeLeftInSeconds > 0 ? message.TimeLeftFormatted : string.Empty;
+        }
+
         private void SetConnectedServerByIdOrDefault(string serverId, Server defaultServer = null)
         {
             // Retrieve the fresh server object to display updated server load value
@@ -290,6 +319,7 @@ namespace ProtonVPN.Sidebar
             }
 
             SetKillSwitchActivated(e.NetworkBlocked, e.State.Status);
+            OnPropertyChanged(nameof(IsToShowChangeServerButton));
 
             return Task.CompletedTask;
         }
@@ -373,19 +403,25 @@ namespace ProtonVPN.Sidebar
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(IAppSettings.SidebarMode))
+            switch (e.PropertyName)
             {
-                SetSidebarMode();
-            }
-
-            if (e.PropertyName == nameof(IAppSettings.Language))
-            {
-                OnPropertyChanged(nameof(ServerLoad));
-                Server connectedServer = ConnectedServer;
-                if (connectedServer != null)
+                case nameof(IAppSettings.SidebarMode):
+                    SetSidebarMode();
+                    break;
+                case nameof(IAppSettings.Language):
                 {
-                    SetConnectionName(connectedServer);
+                    OnPropertyChanged(nameof(ServerLoad));
+                    Server connectedServer = ConnectedServer;
+                    if (connectedServer != null)
+                    {
+                        SetConnectionName(connectedServer);
+                    }
+                    break;
                 }
+                case nameof(IAppSettings.FeatureFreeRescopeEnabled):
+                    OnPropertyChanged(nameof(IsToShowChangeServerButton));
+                    OnPropertyChanged(nameof(IsToShowFreeRescopeUI));
+                    break;
             }
         }
 
@@ -395,6 +431,12 @@ namespace ProtonVPN.Sidebar
             {
                 SetIp(connectionDetails.ServerIpAddress);
             }
+        }
+
+        public void OnUserDataChanged()
+        {
+            OnPropertyChanged(nameof(IsToShowChangeServerButton));
+            OnPropertyChanged(nameof(IsToShowFreeRescopeUI));
         }
 
         private Server _connectedServer;
@@ -443,6 +485,11 @@ namespace ProtonVPN.Sidebar
             {
                 await _vpnManager.DisconnectAsync();
             }
+        }
+
+        private async void ChangeServerActionAsync()
+        {
+            await _serverChangeManager.ChangeServerAsync();
         }
 
         private void SetConnectionName(Server server)

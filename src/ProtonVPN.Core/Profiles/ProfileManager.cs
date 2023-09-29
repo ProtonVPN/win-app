@@ -71,6 +71,12 @@ namespace ProtonVPN.Core.Profiles
             return profiles.FirstOrDefault(p => p.IsPredefined && p.Id == "Fastest");
         }
 
+        public async Task<Profile> GetRandomProfileAsync()
+        {
+            IReadOnlyList<Profile> profiles = await GetProfiles();
+            return profiles.FirstOrDefault(p => p.IsPredefined && p.Id == "Random");
+        }
+
         public Task RemoveProfile(Profile profile)
         {
             return _profiles.Delete(profile);

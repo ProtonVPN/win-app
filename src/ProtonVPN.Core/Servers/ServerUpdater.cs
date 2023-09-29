@@ -25,7 +25,6 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers.FileStoraging;
@@ -42,7 +41,6 @@ namespace ProtonVPN.Core.Servers
         private readonly SingleAction _updateAction;
         private readonly IAppSettings _appSettings;
 
-        private VpnProtocol _lastVpnProtocol;
         private bool _firstTime = true;
 
         public ServerUpdater(
@@ -72,7 +70,6 @@ namespace ProtonVPN.Core.Servers
         public void OnUserLoggedIn()
         {
             _timer.Start();
-            _lastVpnProtocol = _appSettings.GetProtocol();
         }
 
         public void OnUserLoggedOut()
@@ -141,12 +138,9 @@ namespace ProtonVPN.Core.Servers
 
         public void OnAppSettingsChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(IAppSettings.OvpnProtocol) &&
-                _lastVpnProtocol == VpnProtocol.WireGuard && _appSettings.GetProtocol() != VpnProtocol.WireGuard ||
-                _lastVpnProtocol != VpnProtocol.WireGuard && _appSettings.GetProtocol() == VpnProtocol.WireGuard)
+            if (e.PropertyName == nameof(IAppSettings.FeatureFreeRescopeEnabled))
             {
                 _updateAction.Run();
-                _lastVpnProtocol = _appSettings.GetProtocol();
             }
         }
     }

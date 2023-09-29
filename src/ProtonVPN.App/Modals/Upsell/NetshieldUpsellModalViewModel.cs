@@ -19,13 +19,14 @@
 
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Servers;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class NetshieldUpsellModalViewModel : UpsellModalViewModel
     {
-        public NetshieldUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(
-            subscriptionManager, urls)
+        public NetshieldUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager, IActiveUrls urls) : base(
+            subscriptionManager, serverManager, urls)
         {
         }
     }

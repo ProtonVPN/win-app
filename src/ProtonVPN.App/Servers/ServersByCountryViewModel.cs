@@ -26,8 +26,8 @@ using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
-using ProtonVPN.Partners;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 
@@ -35,12 +35,12 @@ namespace ProtonVPN.Servers
 {
     public class ServersByCountryViewModel : BaseServerCollection
     {
+        protected readonly IAppSettings AppSettings;
         protected readonly ServerManager ServerManager;
         protected readonly sbyte UserTier;
 
         private readonly VpnState _vpnConnectionStatus;
         private readonly IStreamingServices _streamingServices;
-        private readonly IPartnersService _partnersService;
 
         private bool _tor;
         public bool Tor
@@ -64,29 +64,30 @@ namespace ProtonVPN.Servers
         public ServersByCountryViewModel(
             string countryCode,
             sbyte userTier,
+            IAppSettings appSettings,
             ServerManager serverManager,
             VpnState vpnConnectionStatus,
-            IStreamingServices streamingServices,
-            IPartnersService partnersService)
-            : this(isB2B: false, countryCode, userTier, serverManager, vpnConnectionStatus, streamingServices, partnersService)
+            IStreamingServices streamingServices)
+            : this(isB2B: false, countryCode, userTier, appSettings, serverManager, vpnConnectionStatus, streamingServices)
         {
+            UpgradeRequired = AppSettings.FeatureFreeRescopeEnabled && userTier == ServerTiers.Free;
         }
 
         protected ServersByCountryViewModel(bool isB2B,
             string countryCode,
             sbyte userTier,
+            IAppSettings appSettings,
             ServerManager serverManager,
             VpnState vpnConnectionStatus,
-            IStreamingServices streamingServices,
-            IPartnersService partnersService)
+            IStreamingServices streamingServices)
         {
             _isB2B = isB2B;
             CountryCode = countryCode;
+            AppSettings = appSettings;
             ServerManager = serverManager;
             _vpnConnectionStatus = vpnConnectionStatus;
             UserTier = userTier;
             _streamingServices = streamingServices;
-            _partnersService = partnersService;
         }
 
         public override void LoadServers(string searchQuery = "", Features orderBy = Features.None)
@@ -102,16 +103,15 @@ namespace ProtonVPN.Servers
                 }
 
                 SetFeatureFlags(servers);
-                List<PartnerType> partnerTypes = tier == ServerTiers.Free ? GetPartnerTypes(servers) : new();
 
                 if (!IsB2B)
                 {
-                    serverListItems.Add(GetServerTierSeparator(tier, servers.Count, partnerTypes));
+                    serverListItems.Add(GetServerTierSeparator(tier, servers.Count));
                 }
 
                 foreach (Server server in servers)
                 {
-                    ServerItemViewModel item = new(server, partnerTypes, UserTier, GetStreamingInfoPopup(tier));
+                    ServerItemViewModel item = new(server, UserTier, GetStreamingInfoPopup(tier));
                     item.OnVpnStateChanged(_vpnConnectionStatus);
                     serverListItems.Add(item);
                 }
@@ -123,28 +123,6 @@ namespace ProtonVPN.Servers
             }
 
             Servers = serverListItems;
-        }
-
-        private List<PartnerType> GetPartnerTypes(IReadOnlyCollection<Server> servers)
-        {
-            List<PartnerType> partnerTypes = _partnersService.GetPartnerTypes();
-            List<PartnerType> associatedPartnerTypes = new();
-
-            foreach (Server server in servers.Where(s => s.IsPartner()))
-            {
-                foreach (PartnerType partnerType in partnerTypes)
-                {
-                    foreach (Partner partner in partnerType.Partners)
-                    {
-                        if (partner.LogicalIDs.Contains(server.Id) && !associatedPartnerTypes.Contains(partnerType))
-                        {
-                            associatedPartnerTypes.Add(partnerType);
-                        }
-                    }
-                }
-            }
-
-            return associatedPartnerTypes;
         }
 
         private void SetFeatureFlags(IReadOnlyCollection<Server> servers)
@@ -172,13 +150,13 @@ namespace ProtonVPN.Servers
             return list;
         }
 
-        private IServerListItem GetServerTierSeparator(sbyte tier, int totalServers, List<PartnerType> partnerTypes)
+        private IServerListItem GetServerTierSeparator(sbyte tier, int totalServers)
         {
             InfoPopupViewModel infoPopupViewModel = null;
             switch (tier)
             {
                 case ServerTiers.Free:
-                    infoPopupViewModel = GetFreeServersInfoPopup(partnerTypes);
+                    infoPopupViewModel = GetFreeServersInfoPopup();
                     break;
                 case ServerTiers.Plus:
                     infoPopupViewModel = GetStreamingInfoPopup(tier);
@@ -191,9 +169,9 @@ namespace ProtonVPN.Servers
             };
         }
 
-        private InfoPopupViewModel GetFreeServersInfoPopup(List<PartnerType> partnerTypes)
+        private InfoPopupViewModel GetFreeServersInfoPopup()
         {
-            return new InfoPopupViewModel(new FreeServersInfoPopupViewModel(partnerTypes),
+            return new InfoPopupViewModel(new FreeServersInfoPopupViewModel(),
                 Translation.Format("Sidebar_Countries_Information"));
         }
 
@@ -243,6 +221,11 @@ namespace ProtonVPN.Servers
 
         private sbyte[] GetTierOrderByUserTier()
         {
+            if (AppSettings.FeatureFreeRescopeEnabled && UserTier == ServerTiers.Free)
+            {
+                return new[] { ServerTiers.Internal, ServerTiers.Plus, ServerTiers.Basic };
+            }
+
             return new[] { UserTier }.Concat(new[]
             {
                 ServerTiers.Internal, ServerTiers.Plus, ServerTiers.Basic, ServerTiers.Free

@@ -1785,9 +1785,17 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>Aby fungoval Split Tunneling správně, je nutné vypnout funkci Kill Switch.</value>
   </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1">
-    <value>Stovky serverů v 55 zemích</value>
-    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_One">
+    <value>Stovky serverů v {0} zemi</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Few">
+    <value>Stovky serverů ve {0} zemích</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Many">
+    <value>Stovky serverů v {0} zemích</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
+    <value>Stovky serverů v {0} zemích</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>Připojte až 10 zařízení současně</value>
@@ -2068,6 +2076,9 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Objem odesílání:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
+  <data name="Map_UpgradeTooltip">
+    <value>Upgrade to Plus</value>
+  </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>PŘIPOJENO</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
@@ -2088,6 +2099,12 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
+  <data name="Modal_ChangeServer_Subtitle">
+    <value>Get unlimited changes with VPN Plus</value>
+  </data>
+  <data name="Modal_ChangeServer_Title">
+    <value>You’ve reached the maximum number of Free server changes for now.</value>
+  </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Aktivovat Secure Core</value>
   </data>
@@ -2102,6 +2119,24 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Poznámka k rychlosti...</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountries">
+    <value>New Free countries</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountriesDescription">
+    <value>There are now Free servers in Poland and Romania.</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelection">
+    <value>Changes to server selection</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelectionDescription">
+    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+  </data>
+  <data name="Modals_Rescope_Title">
+    <value>Co je nového</value>
+  </data>
+  <data name="Modals_Rescope_btn_GotIt">
+    <value>Rozumím</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2568,6 +2603,10 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
   </data>
+  <data name="Servers_Fastest">
+    <value>Nejrychlejší</value>
+    <comment>The label for fastest server item in the country list</comment>
+  </data>
   <data name="Servers_Feature_val_P2P">
     <value>Server P2P</value>
     <comment>The name of P2P server feature</comment>
@@ -2586,6 +2625,9 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Servers_Feature_val_Tor">
     <value>Server Tor</value>
     <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_FreeConnections">
+    <value>Free connections (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP serveru:</value>
@@ -2615,6 +2657,12 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Přes {0} na {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
+  <data name="Servers_UpsellBanner">
+    <value>Get worldwide coverage with VPN Plus</value>
+  </data>
+  <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
+    <value>Not the country you wanted? Upgrade to choose any server</value>
+  </data>
   <data name="Servers_btn_Connect">
     <value>Připojit</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
@@ -2627,9 +2675,8 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Navýšit</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
-  <data name="Servers_lbl_Upgrade">
-    <value>Navýšit tarif</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  <data name="Servers_lbl_UpgradeToPlus">
+    <value>Upgrade to Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>přes</value>
@@ -2750,6 +2797,9 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
     <value>Zrychlete torrenty a online hry tím, že k podporovaným lokálním aplikacím umožníte přístup z internetu. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Více informací&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
@@ -2893,6 +2943,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Obecné</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
+  <data name="Settings_btn_UpgradeToPlus">
+    <value>Upgrade to Plus</value>
+    <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
+  </data>
   <data name="Settings_lnk_Reconnect">
     <value>Obnovit připojení</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
@@ -2920,6 +2974,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_B2BPopup_Title">
     <value>Co je to brána?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_ChangeServer">
+    <value>Change server</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Rychlé připojení</value>
@@ -2954,7 +3011,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Umístění ({0})</value>
+    <value>Plus locations ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>Umístění BASIC &amp; PLUS ({0})</value>
@@ -2973,9 +3030,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Informace</value>
-  </data>
-  <data name="Sidebar_Countries_OurPartners">
-    <value>Naši partneři</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Umístění PLUS ({0})</value>
@@ -3158,40 +3212,101 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Nastavení oznámení</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
-  <data name="Upsell_Countries_BlockAds">
-    <value>Blokování reklam a malwaru pomocí Netshield</value>
+  <data name="Upsell_Accelerator_Bullet1">
+    <value>Access faster, less crowded servers.</value>
   </data>
-  <data name="Upsell_Countries_BrowseFast">
-    <value>Procházení nejvyšší rychlostí (10 Gb/s)</value>
+  <data name="Upsell_Accelerator_Bullet2">
+    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
-  <data name="Upsell_Countries_GlobalStreamingServices">
-    <value>Přístup ke globálním streamovacím službám</value>
+  <data name="Upsell_Accelerator_Bullet3">
+    <value>Improved speed and stability when connected to distant servers.</value>
   </data>
-  <data name="Upsell_Countries_MoreFeatures">
-    <value>A mnoho dalších prémiových funkcí</value>
+  <data name="Upsell_Accelerator_Title">
+    <value>Browse at even higher speeds (up to 10 Gbps)</value>
   </data>
-  <data name="Upsell_Countries_SimultaneousDevices">
-    <value>Připojte až 10 zařízení současně</value>
+  <data name="Upsell_Countries_AccessGeoblockedContent">
+    <value>Access geoblocked content</value>
+  </data>
+  <data name="Upsell_Countries_ChooseAnyLocation">
+    <value>Choose any location</value>
+  </data>
+  <data name="Upsell_Countries_HigherVpnSpeed">
+    <value>Even higher VPN speed</value>
+  </data>
+  <data name="Upsell_Countries_StreamMovies">
+    <value>Stream your favorite movies</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>Po navýšení na tarif Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Přístup přes {0} v {1}.</value>
+    <value>Access over {0} in {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
-  <data name="Upsell_ModerateNat_About">
-    <value>Co je Moderate NAT?</value>
+  <data name="Upsell_Country_Bullet1_One">
+    <value>Připojit k {0} zemi</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Few">
+    <value>Připojit ke {0} zemím</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Many">
+    <value>Připojit k {0} zemím</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Other">
+    <value>Připojit k {0} zemím</value>
+  </data>
+  <data name="Upsell_Country_Bullet2">
+    <value>Vyšší rychlosti (10 Gb/s)</value>
+  </data>
+  <data name="Upsell_Country_Bullet3">
+    <value>Streamujte své oblíbené filmy</value>
+  </data>
+  <data name="Upsell_Country_Bullet4">
+    <value>Chraňte až 10 zařízení</value>
+  </data>
+  <data name="Upsell_Country_Bullet5">
+    <value>30denní záruka na vrácení peněz</value>
+  </data>
+  <data name="Upsell_Country_Subtitle">
+    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_Country_Title">
+    <value>Want to choose a specific country?</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet1">
+    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet2">
+    <value>Uložení často používaných připojení pomocí &lt;Bold&gt;profilů&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet3">
+    <value>Získejte rychlejší přístup ke svým profilům pomocí &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Title">
+    <value>Odemknutí pokročilého přizpůsobení VPN</value>
+  </data>
+  <data name="Upsell_FreeConnections_Locations">
+    <value>Volná umístění serveru ({0})</value>
+    <comment>{0} represents a number of free server locations.</comment>
+  </data>
+  <data name="Upsell_FreeConnections_Subtitle">
+    <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému serveru. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Title">
+    <value>Bezplatné připojení</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet1">
+    <value>Zlepšení výkonu online her a videohovorů</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet2">
+    <value>NAT typu 2 (mírný) optimalizuje rychlost a stabilitu tím, že umožňuje přímé připojení mezi zařízeními.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Moderate NAT, též známý jako NAT Typu 2, může vylepšit váš online zážitek s různými aplikacemi a online videohrami.</value>
+    <value>Odblokování &lt;Bold&gt;NAT typu 2&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Povolit Moderate NAT</value>
-  </data>
-  <data name="Upsell_ModerateNat_Unlock">
-    <value>Chcete-li odemknout tuto a mnoho dalších funkcí, přejděte na placený tarif.</value>
+    <value>Zvyšte úroveň svých herních zážitků</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blokování reklam a sledovačů</value>
@@ -3228,14 +3343,35 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Dostupné s VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
-  <data name="Upsell_PortForwarding_About">
-    <value>Co je přesměrování portu?</value>
+  <data name="Upsell_PortForwarding_Bullet1">
+    <value>Zlepšení rychlosti stahování peer-to-peer</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet2">
+    <value>Připojení k online herním serverům a hostování her pro více hráčů</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet3">
+    <value>Nastavení vzdáleného přístupu k zařízením v místní síti</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Získejte rychlejší stahování P2P a vylepšete své zážitky z online hraní pomocí funkce Přesměrování Portů. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Odemkněte tuto funkci a mnoho dalších s VPN Plus.</value>
+    <value>Odblokování &lt;Bold&gt;přesměrování portů&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Zapnout přesměrování portů</value>
+    <value>Supercharge your P2P connections</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet1">
+    <value>Uložit preferovaný server, město nebo zemi.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet2">
+    <value>Nastavení vlastních protokolů a prémiových funkcí VPN.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet3">
+    <value>Nastavte automatické připojení pro ještě rychlejší přístup.</value>
+  </data>
+  <data name="Upsell_Profiles_Subtitle">
+    <value>Odblokování &lt;Bold&gt;profilů&lt;/Bold&gt; pomocí VPN Plus</value>
+  </data>
+  <data name="Upsell_Profiles_Title">
+    <value>Získejte rychlý přístup ke svým častým spojením</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>Přidejte další úroveň šifrování vašemu VPN připojení</value>
@@ -3251,6 +3387,21 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Dvojnásobné šifrování pomocí Secure Core</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet1">
+    <value>Rozdělení provozu na tunely VPN a tunely bez VPN</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet2">
+    <value>Umožnit důvěryhodným aplikacím a IP adresám obejít VPN a dosáhnout vyšší rychlosti</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet3">
+    <value>Přístup k domácímu i místnímu obsahu při procházení ze zahraničí</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Subtitle">
+    <value>Odemknutí &lt;Bold&gt;rozděleného tunelování&lt;/Bold&gt; pomocí VPN Plus</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Title">
+    <value>Získejte to nejlepší z obou světů</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Navýšit</value>

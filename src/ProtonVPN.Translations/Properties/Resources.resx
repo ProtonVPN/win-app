@@ -550,6 +550,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Connect</value>
     <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
   </data>
+  <data name="Map_UpgradeTooltip" xml:space="preserve">
+    <value>Upgrade to Plus</value>
+  </data>
   <data name="Profiles_btn_Create" xml:space="preserve">
     <value>Create Profile</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
@@ -909,10 +912,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Map_lbl_SecureCore" xml:space="preserve">
     <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
-  </data>
-  <data name="Servers_lbl_Upgrade" xml:space="preserve">
-    <value>Upgrade</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
   </data>
   <data name="Map_VpnStatus_val_Connected" xml:space="preserve">
     <value>CONNECTED</value>
@@ -2657,7 +2656,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
   </data>
   <data name="Sidebar_Countries_AllLocationCount" xml:space="preserve">
-    <value>Locations ({0})</value>
+    <value>Plus locations ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier0" xml:space="preserve">
     <value>FREE Servers ({0})</value>
@@ -2801,8 +2800,12 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Upgrade again to enjoy all the features:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1" xml:space="preserve">
-    <value>Hundreds of servers in 55 countries</value>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_One" xml:space="preserve">
+    <value>Hundreds of servers in {0} country</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Other" xml:space="preserve">
+    <value>Hundreds of servers in {0} countries</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2" xml:space="preserve">
@@ -3013,7 +3016,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title" xml:space="preserve">
-    <value>Access over {0} in {1}.</value>
+    <value>Access over {0} in {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Secure_Servers_lbl_One" xml:space="preserve">
@@ -3028,20 +3031,17 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Countries_lbl_Other" xml:space="preserve">
     <value>{0} countries</value>
   </data>
-  <data name="Upsell_Countries_BlockAds" xml:space="preserve">
-    <value>Block ads and malware with NetShield</value>
+  <data name="Upsell_Countries_StreamMovies" xml:space="preserve">
+    <value>Stream your favorite movies</value>
   </data>
-  <data name="Upsell_Countries_BrowseFast" xml:space="preserve">
-    <value>Browse at the highest speeds (10 Gbps)</value>
+  <data name="Upsell_Countries_HigherVpnSpeed" xml:space="preserve">
+    <value>Even higher VPN speed</value>
   </data>
-  <data name="Upsell_Countries_GlobalStreamingServices" xml:space="preserve">
-    <value>Access global streaming services</value>
+  <data name="Upsell_Countries_AccessGeoblockedContent" xml:space="preserve">
+    <value>Access geoblocked content</value>
   </data>
-  <data name="Upsell_Countries_MoreFeatures" xml:space="preserve">
-    <value>And many more premium features</value>
-  </data>
-  <data name="Upsell_Countries_SimultaneousDevices" xml:space="preserve">
-    <value>Connect up to 10 devices at once</value>
+  <data name="Upsell_Countries_ChooseAnyLocation" xml:space="preserve">
+    <value>Choose any location</value>
   </data>
   <data name="Upsell_Netshield_BlockAds" xml:space="preserve">
     <value>Block ads and trackers</value>
@@ -3074,7 +3074,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Double the encryption with Secure Core</value>
   </data>
   <data name="Upsell_ModerateNat_Title" xml:space="preserve">
-    <value>Enable Moderate NAT</value>
+    <value>Level up your gaming experience</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat" xml:space="preserve">
     <value>Moderate NAT</value>
@@ -3083,13 +3083,13 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Moderate NAT disables randomization of the local addresses mapping, which can slightly reduce your security, but allows techniques such as direct connections for applications like online games.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle" xml:space="preserve">
-    <value>Moderate NAT, also known as Nat Type 2, can improve your online experience with various applications and online video games.</value>
+    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
   </data>
-  <data name="Upsell_ModerateNat_About" xml:space="preserve">
-    <value>What is Moderate NAT?</value>
+  <data name="Upsell_ModerateNat_Bullet1" xml:space="preserve">
+    <value>Improve online gaming and video call performance</value>
   </data>
-  <data name="Upsell_ModerateNat_Unlock" xml:space="preserve">
-    <value>Upgrade to a paid plan to unlock this and many other features.</value>
+  <data name="Upsell_ModerateNat_Bullet2" xml:space="preserve">
+    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore" xml:space="preserve">
     <value>Learn More</value>
@@ -3122,6 +3122,9 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Learn more&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Tooltip" xml:space="preserve">
+    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+  </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings" xml:space="preserve">
     <value>Port Forwarding shortcut</value>
   </data>
@@ -3142,15 +3145,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="PortForwarding_lbl_CopyValue" xml:space="preserve">
     <value>Click to copy this port number.</value>
-  </data>
-  <data name="Upsell_PortForwarding_Title" xml:space="preserve">
-    <value>Enable Port Forwarding</value>
-  </data>
-  <data name="Upsell_PortForwarding_Subtitle" xml:space="preserve">
-    <value>Get faster P2P downloads and enhance your online gaming experience with Port Forwarding. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Unlock this feature and many more with VPN Plus.</value>
-  </data>
-  <data name="Upsell_PortForwarding_About" xml:space="preserve">
-    <value>What is Port Forwarding?</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore" xml:space="preserve">
     <value>Activate Secure Core</value>
@@ -3257,9 +3251,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Sidebar_Countries_FreeServersInfo" xml:space="preserve">
     <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
   </data>
-  <data name="Sidebar_Countries_OurPartners" xml:space="preserve">
-    <value>Our partners</value>
-  </data>
   <data name="Sidebar_Countries_FreeServers" xml:space="preserve">
     <value>Free servers</value>
   </data>
@@ -3278,5 +3269,157 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Upsell_Plan_Business_Info" xml:space="preserve">
     <value>Available with VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
+  </data>
+  <data name="Settings_btn_UpgradeToPlus" xml:space="preserve">
+    <value>Upgrade to Plus</value>
+    <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
+  </data>
+  <data name="Servers_lbl_UpgradeToPlus" xml:space="preserve">
+    <value>Upgrade to Plus</value>
+  </data>
+  <data name="Servers_Fastest" xml:space="preserve">
+    <value>Fastest</value>
+    <comment>The label for fastest server item in the country list</comment>
+  </data>
+  <data name="Servers_FreeConnections" xml:space="preserve">
+    <value>Free connections (1)</value>
+  </data>
+  <data name="Servers_UpsellBanner" xml:space="preserve">
+    <value>Get worldwide coverage with VPN Plus</value>
+  </data>
+  <data name="Servers_UpsellBanner_NotTheCountryYouWanted" xml:space="preserve">
+    <value>Not the country you wanted? Upgrade to choose any server</value>
+  </data>
+  <data name="Upsell_Accelerator_Bullet1" xml:space="preserve">
+    <value>Access faster, less crowded servers.</value>
+  </data>
+  <data name="Upsell_Accelerator_Bullet2" xml:space="preserve">
+    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+  </data>
+  <data name="Upsell_Accelerator_Bullet3" xml:space="preserve">
+    <value>Improved speed and stability when connected to distant servers.</value>
+  </data>
+  <data name="Upsell_Accelerator_Title" xml:space="preserve">
+    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Title" xml:space="preserve">
+    <value>Get the best of both worlds</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Subtitle" xml:space="preserve">
+    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet1" xml:space="preserve">
+    <value>Split your traffic into VPN and non-VPN tunnels</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet2" xml:space="preserve">
+    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet3" xml:space="preserve">
+    <value>Access both home and local content when browsing from abroad</value>
+  </data>
+  <data name="Upsell_Profiles_Title" xml:space="preserve">
+    <value>Get quick access to your frequent connections</value>
+  </data>
+  <data name="Upsell_Profiles_Subtitle" xml:space="preserve">
+    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet1" xml:space="preserve">
+    <value>Save your preferred server, city, or country.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet2" xml:space="preserve">
+    <value>Set custom protocols and premium VPN features.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet3" xml:space="preserve">
+    <value>Set up auto-connect for even faster access.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Title" xml:space="preserve">
+    <value>Free connections</value>
+  </data>
+  <data name="Upsell_FreeConnections_Subtitle" xml:space="preserve">
+    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Locations" xml:space="preserve">
+    <value>Free server locations ({0})</value>
+    <comment>{0} represents a number of free server locations.</comment>
+  </data>
+  <data name="Modals_Rescope_btn_GotIt" xml:space="preserve">
+    <value>Got it</value>
+  </data>
+  <data name="Modals_Rescope_Title" xml:space="preserve">
+    <value>What’s new</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountries" xml:space="preserve">
+    <value>New Free countries</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountriesDescription" xml:space="preserve">
+    <value>There are now Free servers in Poland and Romania.</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelection" xml:space="preserve">
+    <value>Changes to server selection</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelectionDescription" xml:space="preserve">
+    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+  </data>
+  <data name="Upsell_Country_Title" xml:space="preserve">
+    <value>Want to choose a specific country?</value>
+  </data>
+  <data name="Upsell_Country_Subtitle" xml:space="preserve">
+    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_One" xml:space="preserve">
+    <value>Connect to {0} country</value>
+    <comment>{0} represents a number of countries.</comment>
+  </data>
+  <data name="Upsell_Country_Bullet1_Other" xml:space="preserve">
+    <value>Connect to {0} countries</value>
+    <comment>{0} represents a number of countries.</comment>
+  </data>
+  <data name="Upsell_Country_Bullet2" xml:space="preserve">
+    <value>Higher speeds (10 Gbps)</value>
+  </data>
+  <data name="Upsell_Country_Bullet3" xml:space="preserve">
+    <value>Stream your favorite movies</value>
+  </data>
+  <data name="Upsell_Country_Bullet4" xml:space="preserve">
+    <value>Protect up to 10 devices</value>
+  </data>
+  <data name="Upsell_Country_Bullet5" xml:space="preserve">
+    <value>30-day money back guarantee</value>
+  </data>
+  <data name="Sidebar_Connection_btn_ChangeServer" xml:space="preserve">
+    <value>Change server</value>
+  </data>
+  <data name="Modal_ChangeServer_Title" xml:space="preserve">
+    <value>You’ve reached the maximum number of Free server changes for now.</value>
+  </data>
+  <data name="Modal_ChangeServer_Subtitle" xml:space="preserve">
+    <value>Get unlimited changes with VPN Plus</value>
+  </data>
+  <data name="Upsell_CustomDns_Title" xml:space="preserve">
+    <value>Unlock advanced VPN customization</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet1" xml:space="preserve">
+    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet2" xml:space="preserve">
+    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet3" xml:space="preserve">
+    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_PortForwarding_Title" xml:space="preserve">
+    <value>Supercharge your P2P connections</value>
+  </data>
+  <data name="Upsell_PortForwarding_Subtitle" xml:space="preserve">
+    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet1" xml:space="preserve">
+    <value>Improve your peer-to-peer download speeds</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet2" xml:space="preserve">
+    <value>Connect to online gaming servers and host multiplayer games</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet3" xml:space="preserve">
+    <value>Set up remote access to devices on your local network</value>
   </data>
 </root>

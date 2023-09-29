@@ -48,6 +48,7 @@ namespace ProtonVPN.Map.ViewModels.Pins
 
             Connected = e.State.Status == VpnStatus.Connected &&
                         e.State.Server.EntryCountry.EqualsIgnoringCase(CountryCode);
+            Highlighted = Connected;
         }
 
         protected override bool BeforeShowTooltip()

@@ -21,9 +21,9 @@ namespace ProtonVPN.ProcessCommunication.App.Installers
 {
     public static class FirstAppInstanceCallerInitializer
     {
-        public static async Task OpenMainWindowAsync()
+        public static async Task OpenMainWindowAsync(string args)
         {
-            await FirstAppInstanceCaller.OpenMainWindowAsync();
+            await FirstAppInstanceCaller.OpenMainWindowAsync(args);
         }
     }
 }

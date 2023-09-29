@@ -28,6 +28,7 @@ using ProtonVPN.Core.Servers.Name;
 using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Profiles.Servers;
 using ProtonVPN.Translations;
 
@@ -36,27 +37,38 @@ namespace ProtonVPN.Profiles
     public class ProfileViewModelFactory
     {
         private readonly ILogger _logger;
+        private readonly IAppSettings _appSettings;
         private readonly ServerManager _serverManager;
         private readonly ProfileManager _profileManager;
+        private readonly IUserStorage _userStorage;
 
-        public ProfileViewModelFactory(ILogger logger, 
+        public ProfileViewModelFactory(ILogger logger,
+            IAppSettings appSettings,
             ServerManager serverManager, 
-            ProfileManager profileManager)
+            ProfileManager profileManager,
+            IUserStorage userStorage)
         {
             _logger = logger;
+            _appSettings = appSettings;
             _serverManager = serverManager;
             _profileManager = profileManager;
+            _userStorage = userStorage;
         }
 
         public async Task<List<ProfileViewModel>> GetProfiles()
         {
             return (await _profileManager.GetProfiles())
-                .Where(profile => profile.IsPredefined ||
-                                  profile.Server != null ||
-                                  profile.ProfileType is ProfileType.Fastest or ProfileType.Random)
+                .Where(IsToIncludeProfile)
                 .Select(GetProfileViewModel)
                 .Where(viewModel => viewModel != null)
                 .ToList();
+        }
+
+        private bool IsToIncludeProfile(Profile profile)
+        {
+            return profile.IsPredefined ||
+                   profile.Server != null ||
+                   profile.ProfileType is ProfileType.Fastest or ProfileType.Random;
         }
 
         private ProfileViewModel GetProfileViewModel(Profile profile)
@@ -142,7 +154,17 @@ namespace ProtonVPN.Profiles
                 }
             }
 
+            SetUpgradeRequired(viewModel);
+
             return viewModel;
+        }
+
+        private void SetUpgradeRequired(ProfileViewModel profile)
+        {
+            if (_appSettings.FeatureFreeRescopeEnabled && !_userStorage.GetUser().Paid())
+            {
+                profile.UpgradeRequired = true;
+            }
         }
 
         private string ServerNameAsProfile(ProfileType type)
@@ -168,6 +190,8 @@ namespace ProtonVPN.Profiles
                     profileViewModel.Description = Translation.Get("Profiles_Profile_Description_val_Random");
                     break;
             }
+
+            SetUpgradeRequired(profileViewModel);
 
             return profileViewModel;
         }

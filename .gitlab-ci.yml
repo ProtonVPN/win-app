@@ -7,6 +7,10 @@ include:
     ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
     
+  - project: 'ProtonVPN/qa/test-configuration'
+    ref: develop
+    file: '/windows-config.yml'
+    
   - local: '/.gitlab-ci-templates.yml'
 
 variables:
@@ -42,6 +46,8 @@ build-release:
     - /^release.*$/
   variables:
     TYPE: Release
+    DEPENDENCIES: publish
+    BUILD_PATH: src/bin/win-x64/publish
   
 build-debug:
   extends: .build-script
@@ -50,6 +56,21 @@ build-debug:
     - /^release.*$/
   variables:
     TYPE: Debug
+    DEPENDENCIES: publish
+    BUILD_PATH: src/bin/win-x64/publish
+    
+build-bti:
+  extends: 
+    - .build-script
+    - .build-bti-vars
+  when: manual
+  except:
+    - master
+    - /^release.*$/
+  variables:
+    TYPE: Debug
+    DEPENDENCIES: publish-BTI
+    BUILD_PATH: src/bin/win-x64/BTI/publish
 
 ui-test:
   extends: .test_execution_script
@@ -88,17 +109,23 @@ tests:
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer:
-  stage: build-installer
-  tags:
-    - windows
-  script:
-    - python ci\build-scripts\main.py update-gh-list
-    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
-
+  dependencies:
+    - build-debug
+    - build-release
+  extends: 
+    - .build-installer
+  variables:
+    BUILD_PATH: src/bin/win-x64/publish
+    
+build-BTI-installer:
+  dependencies:
+    - build-bti
+  when: manual
+  extends: 
+    - .build-installer
+  variables:
+    BUILD_PATH: src/bin/win-x64/BTI/publish
+    
 prepare-internal-beta-release:
   stage: internal-beta
   tags:

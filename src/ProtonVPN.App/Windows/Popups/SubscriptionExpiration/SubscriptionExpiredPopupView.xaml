@@ -80,7 +80,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            VerticalAlignment="Center"
                            FontSize="15"
                            Foreground="{StaticResource TextNormBrushColor}"
-                           Text="{translations:Loc Dialogs_SubscriptionExpired_ListOption1}" />
+                           Text="{Binding ListOption1}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <icons:CheckmarkCircleFilled Width="24"

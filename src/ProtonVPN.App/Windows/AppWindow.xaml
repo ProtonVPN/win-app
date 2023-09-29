@@ -122,6 +122,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"
                                   Header="{translations:Loc App_mnu_Profiles}"
                                   Style="{StaticResource BlockableTopMenuItem}"
+                                  Visibility="{Binding IsToShowProfilesMenuItem, Converter={StaticResource BoolToVis}}"
                                   AutomationProperties.AutomationId="{StaticResource MenuProfilesButton}"/>
                         <MenuItem Command="{Binding SettingsCommand}"
                                   IsEnabled="{Binding Connecting, Converter={StaticResource InvertedBoolConverter}}"

@@ -43,6 +43,7 @@ namespace ProtonVPN.Api.Contracts.VpnConfig
         public bool? SafeMode { get; set; }
 
         public bool? PromoCode { get; set; }
+        public bool? ShowNewFreePlan { get; set; }
 
         public bool? NetShieldStats { get; set; }
     }

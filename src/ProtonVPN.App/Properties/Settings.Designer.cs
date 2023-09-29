@@ -12,7 +12,7 @@ namespace ProtonVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -1587,6 +1587,102 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["FeatureNetShieldStatsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FeatureFreeRescopeEnabled {
+            get {
+                return ((bool)(this["FeatureFreeRescopeEnabled"]));
+            }
+            set {
+                this["FeatureFreeRescopeEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserIsFreeRescopeModalDisplayed {
+            get {
+                return ((string)(this["UserIsFreeRescopeModalDisplayed"]));
+            }
+            set {
+                this["UserIsFreeRescopeModalDisplayed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserChangeServerAttempts {
+            get {
+                return ((string)(this["UserChangeServerAttempts"]));
+            }
+            set {
+                this["UserChangeServerAttempts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int ChangeServerAttemptLimit {
+            get {
+                return ((int)(this["ChangeServerAttemptLimit"]));
+            }
+            set {
+                this["ChangeServerAttemptLimit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int UserChangeServerAttemptsDefault {
+            get {
+                return ((int)(this["UserChangeServerAttemptsDefault"]));
+            }
+            set {
+                this["UserChangeServerAttemptsDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserNextChangeServerTimeUtc {
+            get {
+                return ((string)(this["UserNextChangeServerTimeUtc"]));
+            }
+            set {
+                this["UserNextChangeServerTimeUtc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("90")]
+        public int ChangeServerShortDelayInSeconds {
+            get {
+                return ((int)(this["ChangeServerShortDelayInSeconds"]));
+            }
+            set {
+                this["ChangeServerShortDelayInSeconds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1200")]
+        public int ChangeServerLongDelayInSeconds {
+            get {
+                return ((int)(this["ChangeServerLongDelayInSeconds"]));
+            }
+            set {
+                this["ChangeServerLongDelayInSeconds"] = value;
             }
         }
     }

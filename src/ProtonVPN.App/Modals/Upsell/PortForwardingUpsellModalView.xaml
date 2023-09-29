@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
                           xmlns:resource="clr-namespace:ProtonVPN.Resource;assembly=ProtonVPN.Resource"
                           xmlns:behavior="clr-namespace:ProtonVPN.Core.Wpf.Behavior"
-                          xmlns:vectorImages="clr-namespace:ProtonVPN.Resource.Graphics.VectorImages;assembly=ProtonVPN.Resource"
+                          xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
                           Style="{StaticResource BaseWindowStyle}"
                           SizeToContent="Height"
                           Title=" "
@@ -35,34 +35,51 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Width="567"
                           d:DataContext="{d:DesignInstance upsell:PortForwardingUpsellModalViewModel}">
     <Grid>
-        <StackPanel Margin="80,20,80,64">
-            <vectorImages:PortForward HorizontalAlignment="Center" />
+        <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/gradient-top-green.png"
+               VerticalAlignment="Top" />
+        <StackPanel Width="367"
+                    VerticalAlignment="Top"
+                    Margin="0,64"
+                    HorizontalAlignment="Center">
+            <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/p2p.png"
+                   Width="328" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="24"
                        Foreground="{StaticResource TextNormBrushColor}"
-                       Padding="15,0"
-                       Margin="0,10,0,0"
+                       Margin="0,8"
                        TextAlignment="Center"
+                       FontWeight="SemiBold"
                        HorizontalAlignment="Center"
                        Text="{translations:Loc Upsell_PortForwarding_Title}" />
             <TextBlock TextWrapping="Wrap"
                        FontSize="16"
-                       Foreground="{StaticResource TextNormBrushColor}"
-                       Padding="0,25,0,0"
+                       Foreground="{StaticResource TextWeakBrushColor}"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"
                        behavior:TextStyleBehavior.FormattedText="{translations:Loc Upsell_PortForwarding_Subtitle}" />
+            <Border Style="{StaticResource BulletPanelBorder}">
+                <StackPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:Bolt Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_PortForwarding_Bullet1}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:Users Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_PortForwarding_Bullet2}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource BulletPanel}">
+                        <icons:ShieldCheckFilled Style="{StaticResource Icon}" />
+                        <TextBlock Text="{translations:Loc Upsell_PortForwarding_Bullet3}"
+                                   Style="{StaticResource BulletBlock}" />
+                    </DockPanel>
+                </StackPanel>
+            </Border>
             <Button Style="{StaticResource PrimaryModalButton}"
-                    Margin="0,40,0,0"
                     HorizontalAlignment="Center"
                     Content="{translations:Loc Upsell_btn_Upgrade}"
                     Command="{Binding ContinueCommand}" />
-            <Button Style="{StaticResource ClearStyleButton}"
-                    HorizontalAlignment="Center"
-                    FontWeight="Bold"
-                    Margin="0,20,0,0"
-                    Content="{translations:Loc Upsell_PortForwarding_About}"
-                    Command="{Binding OpenAboutPageCommand}" />
         </StackPanel>
     </Grid>
 </resource:BaseModalWindow>

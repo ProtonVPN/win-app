@@ -1,0 +1,47 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Flags.LK"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox>
+        <Canvas Height="16" Width="24">
+            <Canvas>
+                <Canvas.Clip>
+                    <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,24,16" />
+                </Canvas.Clip>
+                <Path Data="M22.9575 14.96H10.4325V1.0475H22.9575V14.96ZM0 -0.00250244V16.0025H24V-0.00250244H0Z"
+                      Fill="#FFDA44" />
+                <Path Data="M22.9576 1.03998H10.4326V14.9525H22.9576V1.03998Z" Fill="#A2001D" />
+                <Path Data="M10.4325 1.03998H1.04248V14.9525H10.4325V1.03998Z" Fill="#D80027" />
+                <Path Data="M10.4326 -0.00250244H9.39014V15.995H10.4326V-0.00250244Z" Fill="#FFDA44" />
+                <Path Data="M5.21998 1.03998H1.04248V14.9525H5.21998V1.03998Z" Fill="#6DA544" />
+                <Path Data="M9.39723 1.03998H5.21973V14.9525H9.39723V1.03998V1.03998Z" Fill="#FF9811" />
+                <Path
+                    Data="M16.8149 7.73745V5.65245C16.8149 5.30745 16.2899 4.95495 16.2899 4.95495C16.2899 4.95495 15.7724 5.30745 15.7724 5.65245H13.6799V7.73745H14.7224V8.74995C14.7239 8.97195 14.7697 9.19095 14.8574 9.39495L14.3774 9.79245H12.9899V3.38745C12.7115 3.38745 12.4444 3.49808 12.2475 3.69499C12.0506 3.8919 11.9399 4.15897 11.9399 4.43745V8.93745C11.9429 9.08017 11.9759 9.22067 12.0366 9.34986C12.0973 9.47906 12.1845 9.59406 12.2924 9.68745V11.3449H12.9899V10.52H16.1174V11.9149H15.4199V12.6049H16.8149V11.2175L17.4524 10.52H19.4999V11.9149H18.8024V12.6049H20.2499V11.2175L20.8874 10.52L21.4799 8.63745L20.9624 7.73745H16.8149V7.73745Z"
+                    Fill="#FFDA44" />
+                <Path
+                    Data="M17.3701 5.92998V7.11498H20.7226V7.73748H20.9326V6.90498H17.5801V6.13998H21.1426V5.92998H17.3701V5.92998ZM11.4751 1.03998H10.4326V2.08248H11.4751V1.03998ZM22.9576 1.03998H21.9151V2.08248H22.9576V1.03998ZM11.4751 13.91H10.4326V14.9525H11.4751V13.91ZM22.9576 13.91H21.9151V14.9525H22.9576V13.91Z"
+                    Fill="#FFDA44" />
+            </Canvas>
+        </Canvas>
+    </Viewbox>
+</UserControl>
