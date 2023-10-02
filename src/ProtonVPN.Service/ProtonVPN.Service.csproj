@@ -31,9 +31,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="protonvpn.ico" />
-    <Content Include="Resources\config.ovpn">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

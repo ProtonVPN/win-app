@@ -143,6 +143,7 @@ Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl"
 [UninstallDelete]
 Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
 Type: filesandordirs; Name: "{localappdata}\ProtonVPN"
+Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
 
 [Dirs]
 Name: "{localappdata}\ProtonVPN\DiagnosticLogs"
