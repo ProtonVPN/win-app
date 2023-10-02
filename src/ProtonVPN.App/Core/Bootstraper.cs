@@ -38,6 +38,7 @@ using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Cli;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Installers.Extensions;
@@ -157,7 +158,7 @@ namespace ProtonVPN.Core
             SetHardwareAcceleration();
             RegisterEvents();
             Resolve<Language>().Initialize(e.Args);
-            Resolve<UpdateService>().Initialize();
+            InitializeUpdates(e.Args);
 
             if (Resolve<IAppSettings>().StartMinimized == StartMinimizedMode.Disabled)
             {
@@ -176,6 +177,17 @@ namespace ProtonVPN.Core
             }
 
             await Resolve<IUserAuthenticator>().InvokeAutoLoginEventAsync();
+        }
+
+        private void InitializeUpdates(string[] args)
+        {
+            CommandLineOption option = new("DisableAutoUpdate", args);
+            if (option.Exists())
+            {
+                Resolve<IAppSettings>().IsToAutoUpdate = false;
+            }
+
+            Resolve<UpdateService>().Initialize();
         }
 
         private async Task StartGrpcServerAsync()

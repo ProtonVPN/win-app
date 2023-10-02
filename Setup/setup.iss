@@ -201,7 +201,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent, IsInstallPathModified: Boolean;
+  IsToReboot, IsVerySilent, IsToDisableAutoUpdate, IsInstallPathModified: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -311,6 +311,14 @@ begin
     end;
 end;
 
+procedure SetIsToDisableAutoUpdate();
+begin
+  IsToDisableAutoUpdate := Pos('/DisableAutoUpdate', GetCmdTail()) > 0;
+  if IsToDisableAutoUpdate = true then begin
+    Log('The app will be launched with auto updates disabled.');
+  end;
+end;
+
 function InitializeSetup(): Boolean;
 var
   Version: String;
@@ -318,6 +326,7 @@ var
   WindowsVersion: TWindowsVersion;
 begin
   SetIsVerySilent();
+  SetIsToDisableAutoUpdate();
   if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
     if WizardSilent() = false then begin
       MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
@@ -400,6 +409,9 @@ begin
         langCode := ActiveLanguage();
         StringChangeEx(langCode, '_', '-', True);
         launcherArgs := '/lang ' + langCode;
+      end;
+      if IsToDisableAutoUpdate = true then begin
+        launcherArgs := launcherArgs + ' /DisableAutoUpdate';
       end;
       if IsVerySilent = false then begin
         ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
