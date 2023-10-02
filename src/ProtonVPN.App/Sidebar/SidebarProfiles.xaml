@@ -207,8 +207,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </ContentControl>
                                     <TextBlock Style="{StaticResource ProfileName}"
                                                Text="{Binding Name}" />
-                                    <Border HorizontalAlignment="Right" Background="{Binding Color}" Width="12"
-                                            Height="12" CornerRadius="6" />
+                                    <Border HorizontalAlignment="Right"
+                                            Background="{Binding Color}"
+                                            Width="12"
+                                            Height="12"
+                                            CornerRadius="6" />
                                 </DockPanel>
                             </DockPanel>
                         </DataTemplate>
