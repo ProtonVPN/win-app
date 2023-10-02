@@ -91,45 +91,46 @@ ProcessExecutionResult Os::RunProcess(const wchar_t* application_path, wstring c
     if (stdout_rd)
     {
         stdout_thread = thread([&]
-            {
-                DWORD n;
-        const size_t buffer_size = 1000;
-        char buffer[buffer_size];
-        for (;;)
         {
-            n = 0;
-            const int success = ReadFile(
-                stdout_rd,
-                buffer,
-                buffer_size,
-                &n,
-                nullptr
-            );
-
-            if (!success || n == 0)
+            DWORD n;
+            const size_t buffer_size = 1000;
+            char buffer[buffer_size];
+            for (;;)
             {
-                break;
+                n = 0;
+                const int success = ReadFile(
+                    stdout_rd,
+                    buffer,
+                    buffer_size,
+                    &n,
+                    nullptr
+                );
+
+                if (!success || n == 0)
+                {
+                    break;
+                }
+                string s(buffer, n);
+                std_out += s;
             }
-            string s(buffer, n);
-            std_out += s;
-        }
-            });
+        });
     }
 
     uint32_t return_code;
     WaitForSingleObject(process_info.hProcess, INFINITE);
-    if (!GetExitCodeProcess(process_info.hProcess, (DWORD*)&return_code))
-    {
-        return_code = -1;
-    }
+    GetExitCodeProcess(process_info.hProcess, (DWORD*)&return_code);
 
     CloseHandle(process_info.hProcess);
 
     if (stdout_thread.joinable())
+    {
         stdout_thread.join();
+    }
 
     if (stderr_thread.joinable())
+    {
         stderr_thread.join();
+    }
 
     CloseHandle(stdout_rd);
     CloseHandle(stderr_rd);

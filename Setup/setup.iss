@@ -14,6 +14,8 @@
 #define NetworkDriverName "ProtonVPNCallout"
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
 
+#define ProtonDriveDownloaderName "ProtonDrive.Downloader.exe"
+
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 #define SourcePath GetEnv("BUILD_PATH")
@@ -29,7 +31,7 @@
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-DefaultDirName={autopf}\Proton\VPN
+DefaultDirName={pf}
 DefaultGroupName=Proton
 DisableDirPage=auto
 DisableProgramGroupPage=auto
@@ -46,6 +48,7 @@ SetupIconFile=Images\protonvpn.ico
 SetupLogging=yes
 DisableFinishedPage=yes
 DisableStartupPrompt=yes
+DirExistsWarning=no
 VersionInfoProductTextVersion={#MyAppVersion}-{#hash}
 VersionInfoVersion={#MyAppVersion}
 AppCopyright=© 2022 {#MyPublisher}
@@ -116,7 +119,11 @@ Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
 Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; 
+Name: "installProtonDrive"; Description: "Install Proton Drive - Encrypted cloud storage (Free with Proton VPN)"; Check: ShouldDisplayProtonDriveCheckbox;
+
+[Run]
+Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{code:GetDriveInstallPath}"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl"
@@ -152,6 +159,9 @@ external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl d
 
 function UninstallProduct(upgradeCode: String): Integer;
 external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
+function IsProductInstalled(upgradeCode: String): Integer;
+external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -190,7 +200,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent: Boolean;
+  IsToReboot, IsVerySilent, IsInstallPathModified: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -414,4 +424,26 @@ begin
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
   end;
+end;
+
+function ShouldDisplayProtonDriveCheckbox: Boolean;
+begin
+  Result := IsProductInstalled('{F3B95BD2-1311-4B82-8B4A-B9EB7C0500ED}') = 0;
+end;
+
+function GetDriveInstallPath(value: String): String;
+var
+  path: String;
+begin
+    path := WizardForm.DirEdit.Text;
+    StringChangeEx(path, '\Proton\VPN', '\Proton\Drive', True);
+    Result := '"' + path + '"';
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+    if (CurPageID = wpPreparing) and (IsInstallPathModified = False) then begin
+      IsInstallPathModified := true;
+      WizardForm.DirEdit.Text := WizardForm.DirEdit.Text + '\Proton\VPN';
+    end;
 end;

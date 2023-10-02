@@ -1,0 +1,50 @@
+﻿<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Window x:Class="ProtonDrive.Downloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Proton Drive"
+        ResizeMode="NoResize"
+        Width="500"
+        SizeToContent="Height">
+    <Grid>
+        <Image Source="pack://application:,,,/ProtonDrive.Downloader;component/Assets/Dialog.png" />
+        <StackPanel HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Downloading Proton Drive installer..."
+                       Margin="0,0,0,10"
+                       HorizontalAlignment="Center" />
+            <Grid>
+                <ProgressBar x:Name="ProgressBar"
+                             Height="20"
+                             BorderBrush="#6D4AFF"
+                             Background="Transparent"
+                             Margin="20,0"
+                             Minimum="0"
+                             Maximum="100" />
+                <TextBlock Text="{Binding ElementName=ProgressBar, Path=Value, StringFormat={}{0:0}%}"
+                           HorizontalAlignment="Center" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
