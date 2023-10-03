@@ -44,13 +44,6 @@
     GIT_SUBMODULE_STRATEGY: normal
     
 .build-installer:
-  stage: build-installer
-  tags:
-    - windows
   script:
     - python ci\build-scripts\main.py update-gh-list
     - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
