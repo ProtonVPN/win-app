@@ -118,120 +118,120 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Impossibile cercare gli aggiornamenti</value>
+    <value>განახლებების შემოწმების შეცდომა</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Checking">
-    <value>Controllando gli aggiornamenti</value>
+    <value>განახლების შემოწმება</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Impossibile scaricare l'aggiornamento</value>
+    <value>განახლების გადმოწერის შეცდომა</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Downloading">
-    <value>Scaricando l'aggiornamento</value>
+    <value>განახლების გადმოწერა</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_None">
-    <value>Proton VPN è aggiornato</value>
+    <value>Proton VPN განახლებულია</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Ready">
-    <value>Nuova versione dell'app disponibile!</value>
+    <value>ხელმისაწვდომია აპის ახალი ვერსია!</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion">
-    <value>Changelog della v.{0}</value>
+    <value>ცვლილებები v.{0}</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
   </data>
   <data name="About_lbl_ChangelogVersion_New">
-    <value>Nuovo</value>
+    <value>ახალი</value>
     <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
   </data>
   <data name="About_lbl_CurrentVersion">
-    <value>Versione corrente:</value>
+    <value>მიმდინარე ვერსია:</value>
     <comment>The label for current app version number in About window</comment>
   </data>
   <data name="About_lbl_CurrentVersion_EarlyAccess">
-    <value>Accesso anticipato</value>
+    <value>ადრეული წვდომა</value>
     <comment>The label displayed next to current app version in About window. Displayed for early access app version.</comment>
   </data>
   <data name="About_lbl_LastUpdate">
-    <value>Ultimo aggiornamento:</value>
+    <value>ბოლო განახლება:</value>
     <comment>The label for last update date in About window</comment>
   </data>
   <data name="About_lbl_LicensingInformation">
-    <value>Informazioni sulla licenza:</value>
+    <value>ლიცენზირების ინფორმაცია:</value>
     <comment>The label for licensing information in About window</comment>
   </data>
   <data name="About_lnk_ReadLicense">
-    <value>Leggi qui</value>
+    <value>წაიკითხეთ აქ</value>
     <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
   </data>
   <data name="About_lnk_Update">
-    <value>Aggiorna</value>
+    <value>განახლება</value>
     <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
   </data>
   <data name="About_ttl">
-    <value>Info</value>
+    <value>შესახებ</value>
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
-    <value>Gestisci abbonamento</value>
+    <value>გამოწერის მართვა</value>
     <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
-    <value>Accesso a contenuti bloccati</value>
+    <value>მიუწვდომელი შიგთავსი</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_AccountPlan">
-    <value>Piano dell'account:</value>
+    <value>სატარიფო გეგმა:</value>
     <comment>The label for account plan name in Account window</comment>
   </data>
   <data name="Account_lbl_AccountType">
-    <value>Tipo di account:</value>
+    <value>ანგარიშის ტიპი:</value>
     <comment>The label for account type in Account window</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures">
-    <value>Tutte le funzionalità del piano Plus</value>
+    <value>Plus სატარიფო გეგმის ყველა ფუნქცია</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Connection_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; Connessione VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN შეერთება</value>
   </data>
   <data name="Account_lbl_Connection_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; Connessioni VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN შეერთება</value>
   </data>
   <data name="Account_lbl_Countries_One">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; paese</value>
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; ქვეყანა</value>
   </data>
   <data name="Account_lbl_Countries_Other">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; paesi</value>
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; ქვეყანა</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
-    <value>Piano attuale</value>
+    <value>მიმდინარე ტარიფი</value>
   </data>
   <data name="Account_lbl_Device_One">
-    <value>Dispositivo</value>
+    <value>მოწყობილობა</value>
   </data>
   <data name="Account_lbl_Device_Other">
-    <value>Dispositivi</value>
+    <value>მოწყობილობა</value>
   </data>
   <data name="Account_lbl_Free">
     <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_HighSpeed">
-    <value>&lt;Bold&gt;Alta&lt;/Bold&gt; velocità</value>
+    <value>&lt;Bold&gt;მაღალი&lt;/Bold&gt; სიჩქარე</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Velocità massima&lt;/Bold&gt; (fino a 10 Gbps)</value>
+    <value>&lt;Bold&gt;უმაღლესი&lt;/Bold&gt; სიჩქარე (10 გბ/წმ-მდე)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
-    <value>&lt;Bold&gt;Media&lt;/Bold&gt; velocità</value>
+    <value>&lt;Bold&gt;საშუალო&lt;/Bold&gt; სიჩქარე</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
@@ -239,15 +239,15 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Rigorosa politica di non conservazione dei log</value>
+    <value>ჩვენ არ ვინახავთ ჟურნალს</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
-    <value>Supporto P2P/BitTorrent</value>
+    <value>P2P/BitTorrent -ის მხარდაჭერა</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info">
-    <value>Supporto per protocolli di condivisione dei file come Bittorrent.</value>
+    <value>BitTorrent-ის მსგავსი ფაილების გასაზიარებელი პროტოკოლების მხარდაჭერა.</value>
     <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_Plus">
@@ -259,76 +259,76 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; სერვერი</value>
   </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; სერვერი</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Streaming supportato</value>
+    <value>სტრიმინგის სერვერის მხარდაჭერა</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
-    <value>TOR su VPN</value>
+    <value>Tor VPN-ის ზემოდან</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Username">
-    <value>Nome utente:</value>
+    <value>მომხმარებლის სახელი:</value>
     <comment>The label for user login name in Account window</comment>
   </data>
   <data name="Account_ttl">
-    <value>Account</value>
+    <value>ანგარიში</value>
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>La tua richiesta è fallita. Per favore riprova.</value>
+    <value>მოთხოვნის შეცდომა. თავიდან სცადეთ.</value>
   </data>
   <data name="App_mnu_About">
-    <value>Info</value>
+    <value>შესახებ</value>
     <comment>The header of About menu item in the main app window (opens About window)</comment>
   </data>
   <data name="App_mnu_Account">
-    <value>Account</value>
+    <value>ანგარიში</value>
     <comment>The header of Account menu item in the main app window (opens Account window)</comment>
   </data>
   <data name="App_mnu_Connect">
-    <value>Connetti</value>
+    <value>დაკავშირება</value>
     <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="App_mnu_Disconnect">
-    <value>Disconnetti</value>
+    <value>გათიშვა</value>
     <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
   </data>
   <data name="App_mnu_Exit">
-    <value>Esci</value>
+    <value>გასვლა</value>
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
-    <value>Aiuto</value>
+    <value>დახმარება</value>
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Disconnetti</value>
+    <value>გასვლა</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
-    <value>Profili</value>
+    <value>პროფილები</value>
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
   <data name="App_mnu_ReportBug">
-    <value>Segnala un problema</value>
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
     <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="App_mnu_Settings">
-    <value>Impostazioni</value>
+    <value>მორგება</value>
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Disconnettendo l'applicazione, tutte le connessioni VPN attive verranno terminate. Vuoi continuare?</value>
+    <value>აპლიკაციიდან გასვლა VPN-ის აქტიურ სესიას გათიშავს. გნებავთ, გააგრძელოთ?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Per completare il processo di aggiornamento, Proton VPN si disconnetterà temporaneamente e disattiverà il kill switch permanente se attivo. Vuoi continuare?</value>
+    <value>განახლების პროცესის დასასრულებლად Proton VPN დროებით გათიშავს მუდმივ Kill Switch-ს, თუ რომელიმე აქტიურია. გნებავთ, გააგრძელოთ?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -336,173 +336,173 @@
     <comment>The title of main app window. Should not be converted.</comment>
   </data>
   <data name="BugReport_btn_Back">
-    <value>Indietro</value>
+    <value>უკან</value>
     <comment>The text on Back button in Issue Report window</comment>
   </data>
   <data name="BugReport_btn_Cancel">
-    <value>Annulla</value>
+    <value>გაუქმება</value>
     <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
   </data>
   <data name="BugReport_btn_Close">
-    <value>Chiudi</value>
+    <value>დახურვა</value>
     <comment>The text on Close button in Issue Report window (closes the window)</comment>
   </data>
   <data name="BugReport_btn_FillOutTheForm">
-    <value>Contattaci</value>
+    <value>დაგვიკავშირდით</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Aggiorna</value>
+    <value>განახლება</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Completato</value>
+    <value>მზადაა</value>
   </data>
   <data name="BugReport_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>გაიგეთ მეტი</value>
   </data>
   <data name="BugReport_btn_Retry">
-    <value>Riprova</value>
+    <value>თავიდან</value>
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Invia segnalazione</value>
+    <value>ანგარიშის გაგზავნა</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
-    <value>Risoluzione problemi</value>
+    <value>შეცდომების გასწორება</value>
     <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
   </data>
   <data name="BugReport_lbl_DidNotHelp">
-    <value>Non ha funzionato?</value>
+    <value>არ იმუშავა?</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>Email</value>
+    <value>ელფოსტა</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Questa email verrà utilizzata per contattarti in merito a questo problema.</value>
+    <value>ამ პრობლემის შესახებ ელფოსტაზე შეგატყობინებთ.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
-    <value>Quali sono i passaggi esatti che hai eseguito?</value>
+    <value>ზუსტად რომელი ნაბიჯები შეასრულეთ?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
-    <value>Invia log errore</value>
+    <value>შეცდომის ჟურნალის გაგზავნა</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Fornendo le seguenti informazioni, il nostro team può identificare il tuo problema e una possibile soluzione con maggiore probabilità e in tempi più brevi:
-• Log di installazione dei driver
-• Elenco delle applicazioni installate
-• Log dell'applicazione Proton VPN e dei suoi servizi
-• Elenco delle schede di rete
-• Informazioni sulla tabella di routing</value>
+    <value>თუ გამოგვიგზავნით ამ დეტალებს, ჩვენი გუნდი შეძლებს, იდენტიფიკაცია გაუკეთოს პრობლემას და, დიდი შანსით, შესაძლო გადაწყვეტილება უფრო მოკლე დროში მოგაწოდოთ:
+• დრაივერების დაყენების ჟურნალი
+• დაყენებული პროგრამების სია
+• Proton VPN აპის და Proton VPN-ის სერვისის ჟურნალი
+• ქსელური ინტერფეისების სია
+• რაუტინგის ცხრილის ინფორმაცია</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>I log degli errori ci aiutano ad arrivare alla fine del tuo problema. Se non li includi, potremmo non essere in grado di effettuare accertamenti completi.</value>
+    <value>შეცდომების ჟურნალი გვეხმარება თქვენი პრობლემის ფსკერში ჩავიხედოთ. თუ მათ არ გამოგვიგზავნით, დახმარებას ადვილად ვერ შევძლებთ.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Un log è un tipo di file che ci mostra le azioni intraprese che hanno portato a un errore. Li useremo solo per aiutare i nostri ingegneri a correggere i bug.</value>
+    <value>ჟურნალი ფაილის ტიპია, რომელიც გვაჩვენებს ქმედებებს, რომლებმაც შეცდომა გამოიწვია. ჩვენ მას, მხოლოდ, თქვენი პრობლემების გადასაწყვეტად ვიყენებთ.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Aggiorna Proton VPN</value>
+    <value>Proton VPN-ის განახლება</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>Questa versione di Proton VPN potrebbe aver già risolto il tuo problema!</value>
+    <value>Proton VPN-ის ამ ვერსიამ თქვენი პრობლემა უკვე გადაწყვიტა!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Soluzioni veloci</value>
+    <value>სწრაფი ჩასწორებები</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
-    <value>Questi suggerimenti potrebbero aiutarti a risolvere il problema più velocemente.</value>
+    <value>ეს მინიშნებები დაგეხმარებათ, თქვენი პრობლემა უსწრაფესად გადაჭრათ.</value>
   </data>
   <data name="BugReport_lbl_Step">
-    <value>Passaggio</value>
+    <value>ნაბიჯი</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Nome utente</value>
+    <value>მომხმარებლის სახელი</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Il tuo nome utente Proton, nel caso tu abbia già un account.</value>
+    <value>თქვენი Proton-ის მომხმარებლის სახელი, თუ უკვე გაქვთ ის.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
-    <value>Quale è il problema?</value>
+    <value>რა პრობლემა გაქვთ?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>Cosa non ha funzionato?</value>
+    <value>რა გაფუჭდა?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
-    <value>Ti risponderemo il prima possibile.</value>
+    <value>დავბრუნდებით, რაც შეიძლება მალე.</value>
   </data>
   <data name="BugReport_lbl_of">
-    <value>di</value>
+    <value>სულ</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Email non valida</value>
+    <value>ელფოსტა არასწორია</value>
   </data>
   <data name="BugReport_msg_Sending">
-    <value>Invio della segnalazione...</value>
+    <value>ანგარიშის გაგზავნა...</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>La tua segnalazione non è stata inviata</value>
+    <value>თქვენი ანგარიში არ გაგზავნილა</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Attendi fino al termine del processo di invio</value>
+    <value>მოთმინეთ გაგზავნის პროცესის დასრულებამდე</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
-    <value>Grazie per la tua opinione</value>
+    <value>მადლობა გამოხმაურებისთვის</value>
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Segnala un problema</value>
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>Assegnazione dell'IP</value>
+    <value>IP-ის მინიჭება</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Authenticating">
-    <value>Autenticazione utente</value>
+    <value>მომხმარებლის ავთენტიკაცია</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Connecting">
-    <value>Inizializzando la connessione</value>
+    <value>შეერთების ინიციალიზაცია</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Pinging">
-    <value>In attesa di una rete utilizzabile...</value>
+    <value>გამოყენებადი ქსელის მოლოდინი...</value>
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>Creazione tunnel VPN</value>
+    <value>VPN გვირაბის დამყარება</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
-    <value>Inizializzando la connessione</value>
+    <value>შეერთების ინიციალიზაცია</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
-    <value>Annulla</value>
+    <value>გაუქმება</value>
     <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
   </data>
   <data name="Connecting_btn_TryAgain">
-    <value>Riprova</value>
+    <value>კიდევ ცდა</value>
     <comment>The text on retry button in Connecting overlay of main app window (retries connection to VPN)</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1">
-    <value>Connessione a</value>
+    <value>დაკავშირება</value>
     <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
-    <value>Creazione</value>
+    <value>შექმნა</value>
     <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2">
@@ -510,1553 +510,1552 @@
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
-    <value>connessione</value>
+    <value>კავშირი</value>
     <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1">
-    <value>Connessione a</value>
+    <value>დაკავშირებულია</value>
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value>La</value>
+    <value></value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>non riuscita</value>
+    <value>ავარიულად დასრულდა</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>connessione non è riuscita</value>
+    <value>შეერთების შეცდომა</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
-    <value>{0} paese</value>
+    <value>{0} ქვეყანა</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} paesi</value>
+    <value>{0} ქვეყანა</value>
   </data>
   <data name="Country_val_AD">
-    <value>Andorra</value>
+    <value>ანდორა</value>
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE">
-    <value>Emirati Arabi Uniti</value>
+    <value>არაბეთის გაერთიანებული ემირატები</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF">
-    <value>Afghanistan</value>
+    <value>ავღანეთი</value>
     <comment>The name of AF country</comment>
   </data>
   <data name="Country_val_AG">
-    <value>Antigua e Barbuda</value>
+    <value>ანტიგუა და ბარბუდა</value>
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI">
-    <value>Anguilla</value>
+    <value>ანგვილა</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL">
-    <value>Albania</value>
+    <value>ალბანეთი</value>
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM">
-    <value>Armenia</value>
+    <value>სომხეთი</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO">
-    <value>Angola</value>
+    <value>ანგოლა</value>
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ">
-    <value>Antartide</value>
+    <value>ანტარქტიკა</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR">
-    <value>Argentina</value>
+    <value>არგენტინა</value>
     <comment>The name of AR country</comment>
   </data>
   <data name="Country_val_AS">
-    <value>Samoa Americane</value>
+    <value>ამერიკული სამოა</value>
     <comment>The name of AS country</comment>
   </data>
   <data name="Country_val_AT">
-    <value>Austria</value>
+    <value>ავსტრია</value>
     <comment>The name of AT country</comment>
   </data>
   <data name="Country_val_AU">
-    <value>Australia</value>
+    <value>ავსტრალია</value>
     <comment>The name of AU country</comment>
   </data>
   <data name="Country_val_AW">
-    <value>Aruba</value>
+    <value>არუბა</value>
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX">
-    <value>Isole Aland</value>
+    <value>ალანდის კუნძულები</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
-    <value>Azerbaigian</value>
+    <value>აზერბაიჯანი</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
-    <value>Bosnia ed Herzegovina</value>
+    <value>ბოსნია და ჰერცოგოვინა</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB">
-    <value>Barbados</value>
+    <value>ბარბადოსი</value>
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD">
-    <value>Bangladesh</value>
+    <value>ბანგლადეში</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE">
-    <value>Belgio</value>
+    <value>ბელგია</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF">
-    <value>Burkina Faso</value>
+    <value>ბურკინა ფასო</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG">
-    <value>Bulgaria</value>
+    <value>ბულგარეთი</value>
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH">
-    <value>Bahrein</value>
+    <value>ბაჰრეინი</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI">
-    <value>Burundi</value>
+    <value>ბურუნდი</value>
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ">
-    <value>Benin</value>
+    <value>ბენინი</value>
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL">
-    <value>Saint Barthélemy</value>
+    <value>სენ-ბართელმი</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM">
-    <value>Bermuda</value>
+    <value>ბერმუდა</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN">
-    <value>Sultanato del Brunei</value>
+    <value>ბრუნეი-დარუსსალამი</value>
     <comment>The name of BN country</comment>
   </data>
   <data name="Country_val_BO">
-    <value>Bolivia</value>
+    <value>ბოლივია</value>
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ">
-    <value>Bonaire, Sint Eustatius e Saba</value>
+    <value>კარიბის ნიდერლანდები</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR">
-    <value>Brasile</value>
+    <value>ბრაზილია</value>
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS">
-    <value>Bahamas</value>
+    <value>ბაჰამები</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT">
-    <value>Bhutan</value>
+    <value>ბუტანი</value>
     <comment>The name of BT country</comment>
   </data>
   <data name="Country_val_BV">
-    <value>Isola di Bouvet</value>
+    <value>ბუვეტის კუნძული</value>
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW">
-    <value>Botswana</value>
+    <value>ბოტსვანა</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY">
-    <value>Bielorussia</value>
+    <value>ბელარუსი</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ">
-    <value>Belize</value>
+    <value>ბელიზი</value>
     <comment>The name of BZ country</comment>
   </data>
   <data name="Country_val_CA">
-    <value>Canada</value>
+    <value>კანადა</value>
     <comment>The name of CA country</comment>
   </data>
   <data name="Country_val_CC">
-    <value>Isole Cocos (Keeling)</value>
+    <value>ქოქოსის კუნძულები</value>
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD">
-    <value>Congo (Repubblica democratica del)</value>
+    <value>დემოკრატიული რესპუბლიკა კონგო</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF">
-    <value>Repubblica Centrafricana</value>
+    <value>ცენტრალური აფრიკის რესპუბლიკა</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG">
-    <value>Congo</value>
+    <value>კონგო</value>
     <comment>The name of CG country</comment>
   </data>
   <data name="Country_val_CH">
-    <value>Svizzera</value>
+    <value>შვეიცარია</value>
     <comment>The name of CH country</comment>
   </data>
   <data name="Country_val_CI">
-    <value>Costa d'Avorio</value>
+    <value>კოტ-დ’ივუარი</value>
     <comment>The name of CI country</comment>
   </data>
   <data name="Country_val_CK">
-    <value>Isole Cook</value>
+    <value>კუკის კუნძულები</value>
     <comment>The name of CK country</comment>
   </data>
   <data name="Country_val_CL">
-    <value>Cile</value>
+    <value>ჩილე</value>
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM">
-    <value>Camerun</value>
+    <value>კამერუნი</value>
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN">
-    <value>Cina</value>
+    <value>ჩინეთი</value>
     <comment>The name of CN country</comment>
   </data>
   <data name="Country_val_CO">
-    <value>Colombia</value>
+    <value>კოლუმბია</value>
     <comment>The name of CO country</comment>
   </data>
   <data name="Country_val_CR">
-    <value>Costa Rica</value>
+    <value>კოსტა რიკა</value>
     <comment>The name of CR country</comment>
   </data>
   <data name="Country_val_CU">
-    <value>Cuba</value>
+    <value>კუბა</value>
     <comment>The name of CU country</comment>
   </data>
   <data name="Country_val_CV">
-    <value>Capo Verde</value>
+    <value>კაბო-ვერდე</value>
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW">
-    <value>Curaçao</value>
+    <value>კიურასაო</value>
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX">
-    <value>Isola di Natale</value>
+    <value>შობის კუნძული</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY">
-    <value>Cipro</value>
+    <value>კვიპროსი</value>
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ">
-    <value>Repubblica Ceca</value>
+    <value>ჩეხეთი</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE">
-    <value>Germania</value>
+    <value>გერმანია</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Gibuti</value>
+    <value>ჯიბუტი</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
-    <value>Danimarca</value>
+    <value>დანია</value>
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM">
-    <value>Dominica</value>
+    <value>დომინიკა</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO">
-    <value>Repubblica Dominicana</value>
+    <value>დომენიკის რესპუბლიკა</value>
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ">
-    <value>Algeria</value>
+    <value>ალჟირი</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC">
-    <value>Ecuador</value>
+    <value>ეკვადორი</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE">
-    <value>Estonia</value>
+    <value>ესტონეთი</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG">
-    <value>Egitto</value>
+    <value>ეგვიპტე</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH">
-    <value>Sahara Occidentale</value>
+    <value>დასავლეთ საჰარა</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER">
-    <value>Eritrea</value>
+    <value>ერიტრეა</value>
     <comment>The name of ER country</comment>
   </data>
   <data name="Country_val_ES">
-    <value>Spagna</value>
+    <value>ესპანეთი</value>
     <comment>The name of ES country</comment>
   </data>
   <data name="Country_val_ET">
-    <value>Etiopia</value>
+    <value>ეთიოპია</value>
     <comment>The name of ET country</comment>
   </data>
   <data name="Country_val_FI">
-    <value>Finlandia</value>
+    <value>ფინეთი</value>
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ">
-    <value>Fiji</value>
+    <value>ფიჯი</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK">
-    <value>Isole Falkland (Malvine)</value>
+    <value>ფელკლენდის კუნძულები</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM">
-    <value>Micronesia</value>
+    <value>მიკრონეზია</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO">
-    <value>Isole Faroe</value>
+    <value>ფაროს კუნძულები</value>
     <comment>The name of FO country</comment>
   </data>
   <data name="Country_val_FR">
-    <value>Francia</value>
+    <value>საფრანგეთი</value>
     <comment>The name of FR country</comment>
   </data>
   <data name="Country_val_GA">
-    <value>Gabon</value>
+    <value>გაბონი</value>
     <comment>The name of GA country</comment>
   </data>
   <data name="Country_val_GB">
-    <value>Regno Unito</value>
+    <value>გაერთიანებული სამეფო</value>
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD">
-    <value>Grenada</value>
+    <value>გრენადა</value>
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE">
-    <value>Georgia</value>
+    <value>საქართველო</value>
     <comment>The name of GE country</comment>
   </data>
   <data name="Country_val_GF">
-    <value>Guiana Francese</value>
+    <value>ფრანგული გუიანა</value>
     <comment>The name of GF country</comment>
   </data>
   <data name="Country_val_GG">
-    <value>Guernsey</value>
+    <value>გერნსი</value>
     <comment>The name of GG country</comment>
   </data>
   <data name="Country_val_GH">
-    <value>Ghana</value>
+    <value>განა</value>
     <comment>The name of GH country</comment>
   </data>
   <data name="Country_val_GI">
-    <value>Gibilterra</value>
+    <value>გიბრალტარი</value>
     <comment>The name of GI country</comment>
   </data>
   <data name="Country_val_GL">
-    <value>Groenlandia</value>
+    <value>გრინლანდია</value>
     <comment>The name of GL country</comment>
   </data>
   <data name="Country_val_GM">
-    <value>Gambia</value>
+    <value>გამბია</value>
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN">
-    <value>Guinea</value>
+    <value>გვინეა</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP">
-    <value>Guadalupa</value>
+    <value>გვადელუპა</value>
     <comment>The name of GP country</comment>
   </data>
   <data name="Country_val_GQ">
-    <value>Guinea Equatoriale</value>
+    <value>ეკვატორული გვინეა</value>
     <comment>The name of GQ country</comment>
   </data>
   <data name="Country_val_GR">
-    <value>Grecia</value>
+    <value>საბერძნეთი</value>
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS">
-    <value>Georgia del Sud e Isole Sandwich Australi</value>
+    <value>სამხრეთ ჯორჯია და სამხრეთ სენდვიჩის კუნძულები</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT">
-    <value>Guatemala</value>
+    <value>გვატემალა</value>
     <comment>The name of GT country</comment>
   </data>
   <data name="Country_val_GU">
-    <value>Guam</value>
+    <value>გუამი</value>
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW">
-    <value>Guinea-Bissau</value>
+    <value>გვინეა-ბისაუ</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY">
-    <value>Guyana</value>
+    <value>გაიანა</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Hong Kong</value>
+    <value>ჰონგ კონგი</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
-    <value>Isola Heard e Isole McDonald</value>
+    <value>ჰერდის კუნძული და მაკდონალდის კუნძულები</value>
     <comment>The name of HM country</comment>
   </data>
   <data name="Country_val_HN">
-    <value>Honduras</value>
+    <value>ჰონდურასი</value>
     <comment>The name of HN country</comment>
   </data>
   <data name="Country_val_HR">
-    <value>Croazia</value>
+    <value>ხორვატია</value>
     <comment>The name of HR country</comment>
   </data>
   <data name="Country_val_HT">
-    <value>Haiti</value>
+    <value>ჰაიტი</value>
     <comment>The name of HT country</comment>
   </data>
   <data name="Country_val_HU">
-    <value>Ungheria</value>
+    <value>უნგრეთი</value>
     <comment>The name of HU country</comment>
   </data>
   <data name="Country_val_ID">
-    <value>Indonesia</value>
+    <value>ინდონეზია</value>
     <comment>The name of ID country</comment>
   </data>
   <data name="Country_val_IE">
-    <value>Irlanda</value>
+    <value>ირლანდია</value>
     <comment>The name of IE country</comment>
   </data>
   <data name="Country_val_IL">
-    <value>Israele</value>
+    <value>ისრაელი</value>
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM">
-    <value>Isola di Man</value>
+    <value>მენის კუნძული</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN">
-    <value>India</value>
+    <value>ინდოეთი</value>
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO">
-    <value>Territori Britannici dell'Oceano Indiano</value>
+    <value>ბრიტანეთის ინდოეთის ოკეანის ტერიტორია</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ">
-    <value>Iraq</value>
+    <value>ერაყი</value>
     <comment>The name of IQ country</comment>
   </data>
   <data name="Country_val_IR">
-    <value>Iran</value>
+    <value>ირანი</value>
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS">
-    <value>Islanda</value>
+    <value>ისლანდია</value>
     <comment>The name of IS country</comment>
   </data>
   <data name="Country_val_IT">
-    <value>Italia</value>
+    <value>იტალია</value>
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE">
-    <value>Jersey</value>
+    <value>ჯერსი</value>
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM">
-    <value>Giamaica</value>
+    <value>იამაიკა</value>
     <comment>The name of JM country</comment>
   </data>
   <data name="Country_val_JO">
-    <value>Giordania</value>
+    <value>იორდანია</value>
     <comment>The name of JO country</comment>
   </data>
   <data name="Country_val_JP">
-    <value>Giappone</value>
+    <value>იაპონია</value>
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE">
-    <value>Kenia</value>
+    <value>კენია</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG">
-    <value>Kirghizistan</value>
+    <value>ყირგიზეთი</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH">
-    <value>Cambogia</value>
+    <value>კამბოჯა</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI">
-    <value>Kiribati</value>
+    <value>კირიბატი</value>
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM">
-    <value>Comore</value>
+    <value>კომოროსი</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN">
-    <value>Saint Kitts e Nevis</value>
+    <value>სენტ კიტსი და ნევისი</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP">
-    <value>Corea del Nord</value>
+    <value>ჩრდილო კორეა</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR">
-    <value>Corea del Sud</value>
+    <value>სამხრეთ კორეა</value>
     <comment>The name of KR country</comment>
   </data>
   <data name="Country_val_KW">
-    <value>Kuwait</value>
+    <value>ქუვეითი</value>
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY">
-    <value>Isole Caiman</value>
+    <value>კაიმანის კუნძულები</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ">
-    <value>Kazakistan</value>
+    <value>ყაზახეთი</value>
     <comment>The name of KZ country</comment>
   </data>
   <data name="Country_val_LA">
-    <value>Laos</value>
+    <value>ლაოსი</value>
     <comment>The name of LA country</comment>
   </data>
   <data name="Country_val_LB">
-    <value>Libano</value>
+    <value>ლებანონი</value>
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC">
-    <value>Santa Lucia</value>
+    <value>სანტა ლუჩია</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI">
-    <value>Liechtenstein</value>
+    <value>ლიხტენშტეინი</value>
     <comment>The name of LI country</comment>
   </data>
   <data name="Country_val_LK">
-    <value>Sri Lanka</value>
+    <value>შრი ლანკა</value>
     <comment>The name of LK country</comment>
   </data>
   <data name="Country_val_LR">
-    <value>Liberia</value>
+    <value>ლიბერია</value>
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS">
-    <value>Lesoto</value>
+    <value>ლესოტო</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT">
-    <value>Lituania</value>
+    <value>ლიეტუვა</value>
     <comment>The name of LT country</comment>
   </data>
   <data name="Country_val_LU">
-    <value>Lussemburgo</value>
+    <value>ლუქსემბურგი</value>
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV">
-    <value>Lettonia</value>
+    <value>ლატვია</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY">
-    <value>Libia</value>
+    <value>ლიბია</value>
     <comment>The name of LY country</comment>
   </data>
   <data name="Country_val_MA">
-    <value>Marocco</value>
+    <value>მოროკო</value>
     <comment>The name of MA country</comment>
   </data>
   <data name="Country_val_MC">
-    <value>Monaco</value>
+    <value>მონაკო</value>
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD">
-    <value>Moldavia</value>
+    <value>მოლდოვა</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME">
-    <value>Montenegro</value>
+    <value>მონტენეგრო</value>
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF">
-    <value>Saint Martin (parte francese)</value>
+    <value>სენტ მარტინი (ფრანგული ნაწილი)</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG">
-    <value>Madagascar</value>
+    <value>მადაგასკარი</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH">
-    <value>Isole Marshall</value>
+    <value>მარშალის კუნძულები</value>
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Macedonia</value>
+    <value>მაკედონია</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
-    <value>Mali</value>
+    <value>მალი</value>
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM">
-    <value>Myanmar</value>
+    <value>მიანმარი</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN">
-    <value>Mongolia</value>
+    <value>მონღოლეთი</value>
     <comment>The name of MN country</comment>
   </data>
   <data name="Country_val_MO">
-    <value>Macao</value>
+    <value>მაკაო</value>
     <comment>The name of MO country</comment>
   </data>
   <data name="Country_val_MP">
-    <value>Isole Marianne Settentrionali</value>
+    <value>ჩრდილოეთ მარიანას კუნძულები</value>
     <comment>The name of MP country</comment>
   </data>
   <data name="Country_val_MQ">
-    <value>Martinica</value>
+    <value>მარტინიკა</value>
     <comment>The name of MQ country</comment>
   </data>
   <data name="Country_val_MR">
-    <value>Mauritania</value>
+    <value>მავრიტანია</value>
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS">
-    <value>Montserrato</value>
+    <value>მონსერატი</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT">
-    <value>Malta</value>
+    <value>მალტა</value>
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU">
-    <value>Mauritius</value>
+    <value>მავრიკი</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV">
-    <value>Maldive</value>
+    <value>მალდივები</value>
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW">
-    <value>Malawi</value>
+    <value>მალავი</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX">
-    <value>Messico</value>
+    <value>მექსიკა</value>
     <comment>The name of MX country</comment>
   </data>
   <data name="Country_val_MY">
-    <value>Malesia</value>
+    <value>მალაიზია</value>
     <comment>The name of MY country</comment>
   </data>
   <data name="Country_val_MZ">
-    <value>Mozambico</value>
+    <value>მოზამბიკი</value>
     <comment>The name of MZ country</comment>
   </data>
   <data name="Country_val_NA">
-    <value>Namibia</value>
+    <value>ნამიბია</value>
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC">
-    <value>Nuova Caledonia</value>
+    <value>ახალი კალედონია</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE">
-    <value>Niger</value>
+    <value>ნიგერია</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF">
-    <value>Isola Norfolk</value>
+    <value>ნორფოლკის კუნძული</value>
     <comment>The name of NF country</comment>
   </data>
   <data name="Country_val_NG">
-    <value>Nigeria</value>
+    <value>ნიგერია</value>
     <comment>The name of NG country</comment>
   </data>
   <data name="Country_val_NI">
-    <value>Nicaragua</value>
+    <value>ნიკარაგუა</value>
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL">
-    <value>Paesi Bassi</value>
+    <value>ჰოლანდია</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO">
-    <value>Norvegia</value>
+    <value>ნორვეგია</value>
     <comment>The name of NO country</comment>
   </data>
   <data name="Country_val_NP">
-    <value>Nepal</value>
+    <value>ნეპალი</value>
     <comment>The name of NP country</comment>
   </data>
   <data name="Country_val_NR">
-    <value>Nauru</value>
+    <value>ნაურუ</value>
     <comment>The name of NR country</comment>
   </data>
   <data name="Country_val_NU">
-    <value>Niue</value>
+    <value>ნიუე</value>
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ">
-    <value>Nuova Zelanda</value>
+    <value>ახალი ზელანდია</value>
     <comment>The name of NZ country</comment>
   </data>
   <data name="Country_val_OM">
-    <value>Oman</value>
+    <value>ომანი</value>
     <comment>The name of OM country</comment>
   </data>
   <data name="Country_val_PA">
-    <value>Panama</value>
+    <value>პანამა</value>
     <comment>The name of PA country</comment>
   </data>
   <data name="Country_val_PE">
-    <value>Perù</value>
+    <value>პერუ</value>
     <comment>The name of PE country</comment>
   </data>
   <data name="Country_val_PF">
-    <value>Polinesia Francese</value>
+    <value>ფრანგული პოლინეზია</value>
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG">
-    <value>Papua Nuova Guinea</value>
+    <value>პაპუა ახალი გვინეა</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH">
-    <value>Filippine</value>
+    <value>ფილიპინები</value>
     <comment>The name of PH country</comment>
   </data>
   <data name="Country_val_PK">
-    <value>Pakistan</value>
+    <value>პაკისტანი</value>
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL">
-    <value>Polonia</value>
+    <value>პოლონეთი</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM">
-    <value>Saint Pierre e Miquelon</value>
+    <value>წმინდა პიერი და მიქელონი</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN">
-    <value>Isole Pitcairn</value>
+    <value>პიტკერნი</value>
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR">
-    <value>Portorico</value>
+    <value>პუერტო რიკო</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS">
-    <value>Palestina</value>
+    <value>პალესტინა</value>
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT">
-    <value>Portogallo</value>
+    <value>პორტუგალია</value>
     <comment>The name of PT country</comment>
   </data>
   <data name="Country_val_PW">
-    <value>Palau</value>
+    <value>პალაუ</value>
     <comment>The name of PW country</comment>
   </data>
   <data name="Country_val_PY">
-    <value>Paraguai</value>
+    <value>პარაგვაი</value>
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA">
-    <value>Qatar</value>
+    <value>ყატარი</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE">
-    <value>Riunione</value>
+    <value>რეიუნიონი</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO">
-    <value>Romania</value>
+    <value>რუმინეთი</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS">
-    <value>Serbia</value>
+    <value>სერბეთი</value>
     <comment>The name of RS country</comment>
   </data>
   <data name="Country_val_RU">
-    <value>Russia</value>
+    <value>რუსეთი</value>
     <comment>The name of RU country</comment>
   </data>
   <data name="Country_val_RW">
-    <value>Ruanda</value>
+    <value>რუანდა</value>
     <comment>The name of RW country</comment>
   </data>
   <data name="Country_val_SA">
-    <value>Arabia Saudita</value>
+    <value>საუდის არაბეთი</value>
     <comment>The name of SA country</comment>
   </data>
   <data name="Country_val_SB">
-    <value>Isole Salomone</value>
+    <value>სოლომონის კუნძულები</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC">
-    <value>Seychelles</value>
+    <value>სეიშელი</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD">
-    <value>Sudan</value>
+    <value>სუდანი</value>
     <comment>The name of SD country</comment>
   </data>
   <data name="Country_val_SE">
-    <value>Svezia</value>
+    <value>შვედეთი</value>
     <comment>The name of SE country</comment>
   </data>
   <data name="Country_val_SG">
-    <value>Singapore</value>
+    <value>სინგაპური</value>
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH">
-    <value>Sant'Elena, Ascensione e Tristan da Cunha</value>
+    <value>წმინდა ელენე, ამაღლება და ტრისტანი-და-კუნია</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI">
-    <value>Slovenia</value>
+    <value>სლოვენია</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ">
-    <value>Svalbard e Jan Mayen</value>
+    <value>სვალბარდი და ან-მაიენი</value>
     <comment>The name of SJ country</comment>
   </data>
   <data name="Country_val_SK">
-    <value>Slovacchia</value>
+    <value>სლოვაკეთი</value>
     <comment>The name of SK country</comment>
   </data>
   <data name="Country_val_SL">
-    <value>Sierra Leone</value>
+    <value>სიერა ლეონე</value>
     <comment>The name of SL country</comment>
   </data>
   <data name="Country_val_SM">
-    <value>San Marino</value>
+    <value>სან მარინო</value>
     <comment>The name of SM country</comment>
   </data>
   <data name="Country_val_SN">
-    <value>Senegal</value>
+    <value>სენეგალი</value>
     <comment>The name of SN country</comment>
   </data>
   <data name="Country_val_SO">
-    <value>Somalia</value>
+    <value>სომალი</value>
     <comment>The name of SO country</comment>
   </data>
   <data name="Country_val_SR">
-    <value>Suriname</value>
+    <value>სურინამი</value>
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS">
-    <value>Sudan Del Sud</value>
+    <value>სამხრეთ სუდანი</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST">
-    <value>São Tomé e Príncipe</value>
+    <value>საო ტომე და პრინციპე</value>
     <comment>The name of ST country</comment>
   </data>
   <data name="Country_val_SV">
-    <value>El Salvador</value>
+    <value>ელ სალვადორი</value>
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Sint Maarten</value>
+    <value>სინტ მაარტენი</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Siria</value>
+    <value>სირია</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
-    <value>Eswatini</value>
+    <value>ესვატინი</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC">
-    <value>Isole Turks e Caicos</value>
+    <value>ტერქსისა და კაიკოსის კუნძულები</value>
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD">
-    <value>Ciad</value>
+    <value>ჩადი</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF">
-    <value>Terre Australi e Antartiche Francesi</value>
+    <value>ფრანგული სამხრეთ ტერიტორიები</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG">
-    <value>Togo</value>
+    <value>ტოგო</value>
     <comment>The name of TG country</comment>
   </data>
   <data name="Country_val_TH">
-    <value>Thailandia</value>
+    <value>ტაილანდი</value>
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ">
-    <value>Tagikistan</value>
+    <value>ტაჯიკეთი</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
-    <value>Tokelau</value>
+    <value>ტოკელაუ</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Timor Est</value>
+    <value>აღმოსავლეთ ტიმორი</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
-    <value>Turkmenistan</value>
+    <value>თურქმენეთი</value>
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN">
-    <value>Tunisia</value>
+    <value>ტუნისი</value>
     <comment>The name of TN country</comment>
   </data>
   <data name="Country_val_TO">
-    <value>Tonga</value>
+    <value>ტონგა</value>
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Turchia</value>
+    <value>თურქეთი</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
-    <value>Trinidad e Tobago</value>
+    <value>ტრინიდადი და ტობაგო</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV">
-    <value>Tuvalu</value>
+    <value>ტუვალუ</value>
     <comment>The name of TV country</comment>
   </data>
   <data name="Country_val_TW">
-    <value>Taiwan</value>
+    <value>ტაივანი</value>
     <comment>The name of TW country</comment>
   </data>
   <data name="Country_val_TZ">
-    <value>Tanzania</value>
+    <value>ტანზანია</value>
     <comment>The name of TZ country</comment>
   </data>
   <data name="Country_val_UA">
-    <value>Ucraina</value>
+    <value>უკრაინა</value>
     <comment>The name of UA country</comment>
   </data>
   <data name="Country_val_UG">
-    <value>Uganda</value>
+    <value>უგანდა</value>
     <comment>The name of UG country</comment>
   </data>
   <data name="Country_val_UK">
-    <value>Regno Unito</value>
+    <value>გაერთიანებული სამეფო</value>
     <comment>The name of UK country</comment>
   </data>
   <data name="Country_val_UM">
-    <value>Isole minori esterne degli Stati Uniti d'America</value>
+    <value>შეერთებული შტატების მცირე გარემდებარე კუნძულები</value>
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US">
-    <value>Stati Uniti</value>
+    <value>შეერთებული შტატები</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY">
-    <value>Uruguay</value>
+    <value>ურუგვაი</value>
     <comment>The name of UY country</comment>
   </data>
   <data name="Country_val_UZ">
-    <value>Uzbekistan</value>
+    <value>უზბეკეთი</value>
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA">
-    <value>Città del Vaticano</value>
+    <value>ვატიკანი სითი</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC">
-    <value>Saint Vincent e Grenadines</value>
+    <value>სენტ ვინცენტი და გრენადინები</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE">
-    <value>Venezuela</value>
+    <value>ვენესუელა</value>
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG">
-    <value>Isole Vergini Britanniche</value>
+    <value>ბრიტანეთის ვირჯინის კუნძულები</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI">
-    <value>Isole Vergini Americane</value>
+    <value>აშშ-ის ვირჯინის კუნძულები.</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN">
-    <value>Vietnam</value>
+    <value>ვიეტნამი</value>
     <comment>The name of VN country</comment>
   </data>
   <data name="Country_val_VU">
-    <value>Vanuatu</value>
+    <value>ვანუატუ</value>
     <comment>The name of VU country</comment>
   </data>
   <data name="Country_val_WF">
-    <value>Wallis e Futuna</value>
+    <value>ვალისი და ფუტუნა</value>
     <comment>The name of WF country</comment>
   </data>
   <data name="Country_val_WS">
-    <value>Samoa</value>
+    <value>სამოა</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE">
-    <value>Yemen</value>
+    <value>იემენი</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT">
-    <value>Mayotte</value>
+    <value>მაიოტი</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA">
-    <value>Sudafrica</value>
+    <value>სამხრეთ აფრიკა</value>
     <comment>The name of ZA country</comment>
   </data>
   <data name="Country_val_ZM">
-    <value>Zambia</value>
+    <value>ზამბია</value>
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW">
-    <value>Zimbabwe</value>
+    <value>ზიმბაბვე</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ">
-    <value>Sconosciuto</value>
+    <value>უცნობი</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_Assign">
-    <value>Assegna connessioni VPN</value>
+    <value>VPN შეერთებების მინიჭება</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Accedi di nuovo</value>
+    <value>თავიდან შესვლა</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Per iniziare il tuo viaggio in Proton VPN, assegna le connessioni VPN al tuo account o a qualsiasi altro account secondario.</value>
+    <value>Proton VPN-ში მოგზაურობის დასაწყებად გთხოვთ, თქვენს ანგარიშს ან ნებისმიერ ქვეანგარიშს VPN შეერთება მიანიჭოთ.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Questo passaggio richiederà solo pochi minuti. Dopodiché sarai in grado di accedere e proteggere tutti i tuoi dispositivi.</value>
+    <value>ამ ნაბიჯს სულ რამდენიმე წუთი დასჭირდება. ამის შემდეგ თქვენ შეძლებთ, შეხვიდეთ სისტემაში და დაიცვათ თქვენი ყველა მოწყობილობა.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Grazie per l'aggiornamento</value>
+    <value>მადლობა განახლებისთვის</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Uno dei servizi richiesti da Proton VPN (Base Filtering Engine) non è in esecuzione.&lt;LineBreak/&gt;
-Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; istruzioni per riattivarlo e riprova.</value>
+    <value>Proton VPN-ისთვის საჭირო ერთ-ერთი სერვისი (Base Filtering Engine) გაშვებული არაა.&lt;LineBreak/&gt;მიჰყევით ინსტრუქციას, &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt;თუ როგორ ჩართოთ ის და თავიდან სცადეთ.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
-    <value>Aggiorna la Mia Fatturazione</value>
+    <value>ჩემი ბილინგის განახლება</value>
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Potrai nuovamente accedere alle funzionalità premium dopo il pagamento. Per ora, ci stiamo riconnettendo al server del piano GRATUITO più veloce disponibile.</value>
+    <value>ფასიან ფუნქციებთან წვდომა ინვოსების გადახდის შემდეგ გექნებათ. ჯერჯერობით კი უსწრაფეს უფასო სერვერთან მიგაერთებთ.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Potrai accedere di nuovo alle funzionalità premium dopo che saranno state pagate.</value>
+    <value>გადახდის შემდეგ ფასიან ფუნქციებთან წვდომა ისევ გექნებათ.</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>Il tuo account VPN ha fatture in sospeso</value>
+    <value>თქვენი VPN-ის ანგარიშზე გადაუხდელი ინვოისებია დარჩენილი</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
-    <value>Abilita</value>
+    <value>ჩართვა</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>მეტის ნახვა</value>
   </data>
   <data name="Dialogs_DisabledService_btn_ShowLess">
-    <value>Mostra meno</value>
+    <value>ნაკლების ჩვენება</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Alcune applicazioni come antivirus o ottimizzatori per PC possono interferire con i servizi di sistema richiesti da Proton VPN per proteggere la tua connessione. Facendo clic su Abilita, consenti a Windows di riattivare i servizi di Proton VPN.&lt;LineBreak/&gt;Se il problema persiste, prova a riavviare il PC o a reinstallare Proton VPN.</value>
+    <value>ზოგიერთ აპლიკაციას, როგორებიცაა ანტივირუსი ან PC-ის ოპტიმიზატორი შეუძლიათ, ხელი შეუშალონ სისტემურ სერვისებს, რომლებიც Proton VPN-ს თქვენი უსაფრთხოებისთვის სჭირდება. ჩართვაზე დაჭერით თქვენ უფლებას აძლევთ Windows-ს, Proton VPN-ის სერვისები თავიდან გაააქტიუროს.&lt;LineBreak/&gt;თუ პრობლემა არ მოგვარდა, სცადეთ, გადატვირთოთ კომპიუტერი ან თავიდან დააყენოთ Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Alcuni componenti di Proton VPN potrebbero essere bloccati o disabilitati, impedendoti di connetterti. Fare clic su Abilita per risolvere.&lt;LineBreak/&gt;Questa operazione richiede i privilegi di Amministratore.</value>
+    <value>Proton VPN-ის ზოგიერთი კომპონენტი დაბლოკილი ან გამორთულია, რის გამოც შეერთება შეუძლებელია. დააწკაპუნეთ, რომ პრობლემის მოგვარება ვცადოთ.&lt;LineBreak/&gt; დაიმახსოვრეთ, ამ ოპერაციას ადმინისტრატორის უფლებების ესაჭიროება.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disabilita kill switch</value>
+    <value>Kill Switch-ის გამორთვა</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>უკეთესი პაკეტი</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
-    <value>La tua scheda di rete è attualmente in uso.</value>
+    <value>ქსელის თქვენი ადაპტერი ამჟამად გამოიყენება.</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying">
-    <value>Identificando il problema...</value>
+    <value>პრობლების იდენტიფიკაცია...</value>
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch protegge il tuo IP bloccando tutte le connessioni. In caso di problemi puoi disabilitare kill switch.</value>
+    <value>Kill Switch-ი იცავს თქვენს IP-ს ყველა შეერთების დაბლოკვის საშუალებით. პრობლემების შემთხვევაში სცადეთ, გამორთოთ.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
-    <value>Non ci sono server disponibili per la tua selezione. Seleziona un'altra opzione.</value>
+    <value>ამჟამად თქვენი არჩეული სერვერები მიუწვდომელია. აირჩიეთ სხვა პარამეტრი.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
-    <value>Manca l'adattatore di rete.</value>
+    <value>ქსელის ადაპტერი ვერ ვიპოვე.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
-    <value>La versione dell'adattatore di rete non è aggiornata.</value>
+    <value>ქსელის ადაპტერის ვერსია მოძველებულია.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
-    <value>Per favore, guarda questo &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;articolo&lt;/Hyperlink&gt; di supporto su come risolvere.</value>
+    <value>იხილეთ მხარდაჭერის &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;ეს სტატია&lt;/Hyperlink&gt;, როგორ მოაგვაროთ პრობლემა.</value>
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>C'è un problema di convalida del certificato del server VPN, il che potrebbe indicare che la connessione di rete è stata manomessa o che il server a cui si sta cercando di connettersi ha un problema di configurazione. Chiedi aiuto al nostro servizio di assistenza clienti inviando una &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Segnalazione di errore"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>არსებობს პრობლემა VPN სერვერის სერტიფიკატის გადამოწმებასთან, რაც შეიძლება ნიშნავდეს, რომ თქვენი ქსელური შეერთება გზაში იცვლება, ან სერვერს, რომელთან მიერთებასაც ცდილობთ, პრობლემები აქვს. დაუკავშირდით ჩვენი მხარდაჭერის გუნდს&lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt; -ის გაგზავნით.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
-    <value>Non mostrare più questo messaggio</value>
+    <value>ეს შეტყობინება მეტჯერ აღარ მაჩვენო</value>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_Enable">
-    <value>Abilita</value>
+    <value>ჩართვა</value>
     <comment>The text on Enable button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
-    <value>Mantieni disabilitate</value>
+    <value>გათიშულად დატოვება</value>
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe aggirare queste limitazioni.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Scopri di più a riguardo di Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN-მა აღმოაჩინა, რომ თქვენი მიმდინარე ქსელი VPN-თან მიერთებას ხელს უშლის. ჭკვიანი პროტოკოლის ჩართვა შეიძლება დაგეხმაროთ.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;გაიგეთ მეტი ჭკვიანი პროტოკოლის შესახებ.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
-    <value>Smart Protocol è attualmente disabilitato</value>
+    <value>Smart Protocol-ი ამჟამად გათიშულია</value>
     <comment>The title of the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_Exit_btn_Cancel">
-    <value>Annulla</value>
+    <value>გაუქმება</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit">
-    <value>Esci</value>
+    <value>გასვლა</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
-    <value>Vuoi continuare?</value>
+    <value>გნებვთ, გააგრძელოთ?</value>
     <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
-    <value>Uscire dall'applicazione ti disconnetterà dalla VPN.</value>
+    <value>აპლიკაციიდან გასვლა VPN-საც გაგითიშავთ.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill Switch sta bloccando tutte le connessioni per evitare perdite di dati. Uscire dall'applicazione disattiverà kill switch.</value>
+    <value>Kill Switch-ი ბლოკავს ყველა შეერთებას, რათა არ დაუშვას თქვენი მონაცემების გაპარვა. ალიკაციიდან გასვლის შემთხვევაში Kill Switch-ი გაითიშება.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Kill switch permanente è abilitato. L'uscita dell'applicazione bloccherà tutte le connessioni in uscita fino a quando Proton VPN non sarà nuovamente connesso.</value>
+    <value>მუდმივი Kill Switch-ი ჩართულია. ამ აპლიკაციიდან გასვლა დაბლოკავს ყველა გამავალ შეერთებას, სანამ Proton VPN-ი სერვერს თავიდან არ დაუკავშირდება.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
-    <value>Verifica umana</value>
+    <value>ადამიანის შემოწმება</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>L'orologio del tuo sistema sembra non essere sincronizzato, il che potrebbe impedire alla VPN di connettersi correttamente. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;qui&lt;/Hyperlink&gt; per maggiori informazioni.</value>
+    <value>როგორც ჩანს, თქვენი სისტემური დრო აცდენილია რეალურს, რაც ხელს უშლის VPN-ის მიერთებას. დააწკაპუნეთ &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;აქ&lt;/Hyperlink&gt;, მეტი რომ გაიგოთ.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Con il kill switch permanente, se la VPN non è connessa, non sarà possibile accedere a Internet.</value>
+    <value>თუ Kill Switch სულ ჩართულია, თუ რაიმე მიზეზით VPN-ი მიერთებული არაა, ინტერნეტთან წვდომა არ გექნებათ.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Abilitare il kill switch permanente?</value>
+    <value>ჩავრთო მუდმივი Kill Switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
-    <value>Ho capito</value>
+    <value>გავიგე</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Disconnetti un altro dispositivo per connettere questo.</value>
+    <value>ამ მოწყობილობით შესასვლელად გამორთეთ სხვა, ჩართული მოწყობილობა.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
-    <value>Hai raggiunto il limite massimo di dispositivi</value>
+    <value>მიაღწიეთ მოწყობილობების რაოდენობის ლიმიტს</value>
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>უკეთესი პაკეტი</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>გათიშეთ სხვა მოწყობილობა რომ ეს მიაერთოთ ან, 10 მოწყობილობის ერთდროულად მისაერთებლად, PLUS ტარიფამდე განახლდით.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
-    <value>Chiudi</value>
+    <value>გასვლა</value>
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Downloading">
-    <value>Download in corso</value>
+    <value>გადმოწერა</value>
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Si è verificato un problema durante il download di una versione più recente. Aggiorna manualmente per ottenere quella più recente.</value>
+    <value>პრობლემა ახალი ვერსიის გადმოწერისას. სცადეთ ხელით განაახლოთ.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
-    <value>Aggiorna</value>
+    <value>განახლება</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_UpdateManually">
-    <value>Aggiornamento manuale</value>
+    <value>ხელით განახლება</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>La versione dell'applicazione che stai utilizzando non è più supportata. Per favore, appena l'aggiornamento è disponibile, aggiorna all'ultima versione.</value>
+    <value>აპლიკაციის ვერსია, რომელსაც იყენებთ, მხარდაჭერილი აღარაა. განახლდით ბოლო ვერსიამდე.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Kill switch è abilitato. Aggiornare o uscire dall'applicazione lo disattiverà.</value>
+    <value>გაითვალისწინეთ, რომ Kill Switch ჩართულია. აპლიკაციის განახლება ან გასვლა გამორთავს მას.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>La tua connessione è stata disattivata perché stai utilizzando un server che non supporta il traffico peer-to-peer (P2P). P2P non è supportato su server gratuiti. Utilizza un server diverso per il P2P.</value>
+    <value>თქვენი შეერთება გათიშულია, რადგან იყენებთ სერვერს, რომელსაც P2P ტრაფიკის მხარდაჭერა არ გააჩნია. P2P მხარდაუჭერელია უფასო სერვერებზე. P2P-სთვის სხვა სერვერი აირჩიეთ.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Abilita Port Forwarding solo quando ne hai bisogno per garantire la più forte protezione della privacy e della sicurezza.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Ho bisogno del Port Forwarding?&lt;/Hyperlink&gt;</value>
+    <value>ჩართეთ პორტების გადამისამართება, მხოლოდ, მაშინ, როცა გჭირდებათ, რომ დარწმუნდეთ, რომ თქვენი დაცვა უმაღლესია.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;მჭირდება პორტების გადამისამართება?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
-    <value>Abilitare il Port Forwarding?</value>
+    <value>ჩავრთო პორტის გადამისამართება?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN ha rilevato un server proxy configurato sulla tua rete locale. L'app Proton VPN non può proteggere il traffico che passa attraverso questo proxy. Ciò significa che la tua connessione non sarà completamente protetta come previsto.</value>
+    <value>Proton VPN-მა თქვენს ლოკალურ ქსელში პროქსი იპოვა. ჩვენ არ შეგვიძლია, დავიცვათ ტრაფიკი, რომელიც პროქსის გავლით გადის. ეს ნიშნავს, რომ ტრაფიკი სრულად დაცული არ იქნება.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Ti presentiamo il nuovo look di Proton. Molti servizi, una sola missione: una nuova versione di internet, dove la privacy è la regola. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
+    <value>წარმოგიდგენთ Proton-ის განახლებულ გარეგნობას. ბევრი სერვისი, ერთი მისია. მოგესალმებით ინტერნეტში, სადაც კონფიდენციალობა ნაგულისხმებია. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;გაიგეთ მეტი&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
-    <value>Nuovo Proton, protezione unificata</value>
+    <value>განახლებული Proton-ი, გაერთიანებული დაცვა</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>OK</value>
+    <value>გავიგე</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Per far funzionare correttamente Split Tunneling, è necessario disabilitare kill switch.</value>
+    <value>Split Tunneling-ის სწორად სამუშაოდ Kill Switch-ის გამორთვა აუცილებელია.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
-    <value>Centinaia di server in {0} paese</value>
+    <value>ასობით სერვერი {0} ქვეყანაში</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Centinaia di server in {0} paesi</value>
+    <value>ასობით სერვერი {0} ქვეყანაში</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
-    <value>Connetti fino a 10 dispositivi contemporaneamente</value>
+    <value>მიუერთეთ ერთდროულად10 მოწყობილობამდე</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption3">
-    <value>Funzioni avanzate: NetShield, Secure Core, Tor, P2P</value>
+    <value>დამატებითი ფუნქციები: NetShield, Secure Core, Tor, P2P</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Aggiorna di nuovo per godere di tutte le funzionalità:</value>
+    <value>ყველა ფუნქციის მისაღებად გთხოვთ, განახლდეთ კიდევ ერთხელ:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Il tuo abbonamento è stato declassato, quindi ci stiamo riconnettendo al server più veloce disponibile.</value>
+    <value>გადახვედით უფრო იაფიან გადმოწერაზე, ამიტომ გადაგრთავთ ყველაზე სწრაფ წვდომად სერვერზე.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Il tuo abbonamento è stato declassato.</value>
+    <value>თქვენი გამოწერის დონე დაწეულია.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Il tuo piano di abbonamento VPN è scaduto</value>
+    <value>VPN-ის თქვენს გამოწერის გეგმას ვადა გაუვიდა</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Aggiorna di Nuovo</value>
+    <value>კიდევ გაუმჯობესება</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
-    <value>Risoluzione dei problemi di Proton VPN</value>
+    <value>Proton VPN -ის პრობლემების პოვნა</value>
     <comment>The text displayed in Troubleshoot modal window title</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_Close">
-    <value>Chiudi</value>
+    <value>დახურვა</value>
     <comment>The button displayed in Troubleshoot modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>გაიგეთ მეტი</value>
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Percorso alternativo&lt;/Bold&gt; - Nel caso in cui i siti Proton siano bloccati, questa impostazione consente all'applicazione di provare un instradamento alternativo nella rete per raggiungere Proton, che può essere utile per aggirare i firewall o problemi di rete. Consigliamo di mantenere attiva questa impostazione per una maggiore affidabilità. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Ulteriori informazioni&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;ალტერნატიული რაუტინგი&lt;/Bold&gt; - იმ შემთხვევაში, თუ Proton-ის საიტები დაბლოკილია, ეს პარამეტრი აპს საშუალებას აძლევს, Proton-მდე მისასვლელად ქსელის ალტერნატიული რაუტინგი სცადოს, რაც შეიძლება, სასარგებლო იყოს ბრანდმაუერის ან ქსელის პრობლემების გვერდის ასავლელად. მეტი საიმედოობისთვის გირჩევთ, ჩართოთ ეს პარამეტრი.&lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;გაიგეთ მეტი&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interferenza antivirus&lt;/Bold&gt; - Disattivare temporaneamente o rimuovere il software antivirus.</value>
+    <value>&lt;Bold&gt;კონფლიქტი ანტივირუსთან&lt;/Bold&gt; - დროებით გამორთეთ ან წაშალეთ ანტივირუსი.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Interferenza Proxy/Firewall&lt;/Bold&gt; - Disabilita qualsiasi proxy o firewall, o contatta l'amministratore di rete.</value>
+    <value>&lt;Bold&gt;კონფლიქტი პროქსისთან ან ბრანდმაუერთან&lt;/Bold&gt; - გამორთეთ პროქსი და ბრანდმაუერი ან თქვენი ქსელის ადმინისტრატორს დაუკავშირდით.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Bloccato dal Governo&lt;/Bold&gt; - Il tuo paese potrebbe bloccare l'accesso a Proton. Prova ad utilizzare &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; per accedere a Proton.</value>
+    <value>&lt;Bold&gt;სამთავრობო ბლოკი&lt;/Bold&gt; - შესაძლოა, თქვენი ქვეყანა Proton-თან წვდომას ბლოკავს. წვდომისთვის სცადეთ, &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor-ი&lt;/Hyperlink&gt; გამოიყენოთ.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Bloccato dal Governo&lt;/Bold&gt; - Il tuo paese potrebbe bloccare l'accesso a Proton. Prova ad utilizzare &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; per accedere a Proton.</value>
+    <value>&lt;Bold&gt;სამთავრობო ბლოკი&lt;/Bold&gt; - შესაძლოა, თქვენი ქვეყანა Proton-თან წვდომას ბლოკავს. წვდომისთვის სცადეთ, &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor-ი&lt;/Hyperlink&gt; გამოიყენოთ.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
-    <value>&lt;Bold&gt;Problema del provider internet (ISP)&lt;/Bold&gt; - Prova a connetterti a Proton da una rete diversa (o usa &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <value>&lt;Bold&gt;თქვენი ინტერნეტ-პროვაიდერის(ISP) პრობლემა&lt;/Bold&gt; - სცადეთ Proton-ს სხვა ქსელიდან მიუერთდეთ (ან &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor-ი&lt;/Hyperlink&gt; გამოიყენეთ).</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Nessuna connessione internet&lt;/Bold&gt; - Assicurati che la tua connessione internet funzioni.</value>
+    <value>&lt;Bold&gt;ინტერნეტ-შეერთების გარეშე&lt;/Bold&gt; - დარწმუნდით, რომ თქვენი ინტერნეტი მუშაობს.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
-    <value>&lt;Bold&gt;Proton è offline&lt;/Bold&gt; - Controlla &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Stato di Proton&lt;/Hyperlink&gt; per il nostro stato di sistema.</value>
+    <value>&lt;Bold&gt;Proton-ი გათიშულია&lt;/Bold&gt; ჩვენი სისტემის სტატუსის სანახავად - შეამოწმეთ &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton-ის სტატუსი&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Potenziali problemi che potrebbero causare un timeout di connessione e la loro soluzione</value>
+    <value>პოტენციური პრობლემები, რომლებსაც შეუძლია ქსელში პაკეტების კარგვა გამოიწვიოს და მათი გადაწყვეტა</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Non è ancora possibile trovare una soluzione&lt;/Bold&gt; - Contattaci direttamente attraverso il nostro &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;modulo di supporto&lt;/Hyperlink&gt;, email (support@protonvpn.com), o &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;გადაწყვეტა ჯერ ვერ ვიპოვეთ&lt;/Bold&gt; - დაგვიკავშირდით პირდაპირ ჩვენი&lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;მხარდაჭერის ფორმით &lt;/Hyperlink&gt;,ელფოსტას (support@protonvpn.com) ან &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter-ზე&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
-    <value>Passa a TAP</value>
+    <value>TAP-ზე გადართვა</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN non ha potuto connettersi perché la scheda di rete TUN è già in uso. Disconnetti qualsiasi VPN attiva e riprova. In alternativa, passa all'adattatore TAP (puoi tornare a TUN nelle impostazioni avanzate).</value>
+    <value>Proton VPN-ით მიერთება შეუძლებელია, რადგან TUN ქსელის ინტერფეისი უკვე გამოიყენება. გათიშეთ ყველა აქტიური VPN და თავიდან სცადეთ. ან გადაერთეთ TAP ინტერფეისზე (TUN-ზე დაბრუნება დამატებითი პარამეტრებიდან შეგიძლიათ).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN non ha potuto connettersi perché la scheda di rete WireGuard è già in uso. Disconnetti qualsiasi VPN attiva e riprova. In alternativa, puoi cambiare i protocolli nelle impostazioni avanzate.</value>
+    <value>Proton VPN-ით მიერთება შეუძლებელია, რადგან WireGuard-ის ქსელის ინტერფეისი უკე გამოიყენება. გათიშეთ ყველა აქტიური VPN- და თავიდან სცადეთ. ან, შეგიძლიათ, პროტოკოლი გადართოთ დამატებითი პარამეტრებიდან.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
-    <value>Annulla</value>
+    <value>გაუქმება</value>
     <comment>The text on Cancel button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Close">
-    <value>Chiudi</value>
+    <value>დახურვა</value>
     <comment>The text on Close button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Continue">
-    <value>Continua</value>
+    <value>გაგრძელება</value>
     <comment>The text on Continue button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Enable">
-    <value>Abilita</value>
+    <value>ჩართვა</value>
   </data>
   <data name="Dialogs_btn_NoThanks">
-    <value>No, Grazie</value>
+    <value>არა, მადლობა</value>
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>OK</value>
+    <value>დიახ</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
-    <value>Dal server:</value>
+    <value>სერვერიდან:</value>
     <comment>The label for the previous server in dialog windows</comment>
   </data>
   <data name="Dialogs_reconnection_ToServer">
-    <value>Al server:</value>
+    <value>სერვერამდე:</value>
     <comment>The label for the new server in dialog windows</comment>
   </data>
   <data name="Dialogs_ttl_Question">
-    <value>Attenzione</value>
+    <value>ყურადღება</value>
     <comment>The title of question message window</comment>
   </data>
   <data name="Dialogs_ttl_Warning">
-    <value>Attenzione</value>
+    <value>ყურადღება</value>
     <comment>The title of warning message window</comment>
   </data>
   <data name="ErrorWindow_lbl_Close">
-    <value>Chiudi</value>
+    <value>დახურვა</value>
   </data>
   <data name="ErrorWindow_lbl_Download">
-    <value>Scarica</value>
+    <value>გადმოწერა</value>
   </data>
   <data name="ErrorWindow_lbl_DownloadInfo">
-    <value>Scarica e installa l'ultima versione per risolvere il problema.</value>
+    <value>პრობლემის აღმოსაფხვრელად გადმოწერეთ და დააყენეთ ბოლო ვერსია.</value>
   </data>
   <data name="ErrorWindow_lbl_MissingHeading">
-    <value>All'applicazione manca un file richiesto</value>
+    <value>აპლიკაციას საჭირო ფაილი აკლია</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Alcune applicazioni sul tuo PC potrebbero aver rimosso alcuni file o impedito loro di essere installati correttamente.</value>
+    <value>თქვენს კომპიუტერზე დაყენებულ ზოგიერთ პროგრამას შეეძლო, ფაილები წაეშალა ან ხელი შეეშალა მათი სწორად დაყენებისთვის.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
-    <value>Ripara</value>
+    <value>შეკეთება</value>
   </data>
   <data name="ErrorWindow_lbl_RepairInfo">
-    <value>Ripara la tua installazione.</value>
+    <value>გაასწორეთ თქვენი პროგრამა.</value>
   </data>
   <data name="KillSwitch">
     <value>Kill switch</value>
     <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
-    <value>Licenza</value>
+    <value>ლიცენზია</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>La tua sessione è scaduta. Per favore riprova l'accesso.</value>
+    <value>თქვენს სესიას ვადა გაუვიდა. თავიდან შედით.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token di aggiornamento non valido, accedi di nuovo.</value>
+    <value>განახლების არასწორი კოდი. თავიდან შედით.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
-    <value>Errore sconosciuto</value>
+    <value>უცნობი შეცდომა</value>
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Autentica</value>
+    <value>ავთენტიკაცია</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Accedi</value>
+    <value>შესვლა</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill Switch è attualmente attivo</value>
+    <value>Kill Switch-ი ამჟამად აქტიურია</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
-    <value>Password</value>
+    <value>პაროლი</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Internet sicuro ovunque</value>
+    <value>უსაფრთხო ინტერნეტი ყველგან</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
-    <value>Apri e collegati all'avvio</value>
+    <value>ჩატვირთვისას გაშვება და მიერთება</value>
   </data>
   <data name="Login_lbl_StartWithWindows">
-    <value>Avvia con Windows</value>
+    <value>Windows-თან ერთად გაშვება</value>
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Connessione a Proton VPN in corso...</value>
+    <value>მიმდინარეობს Proton VPN-თან დაკავშირება...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Codice di autenticazione a due fattori</value>
+    <value>2FA კოდი</value>
   </data>
   <data name="Login_lbl_Username">
-    <value>Nome utente</value>
+    <value>მომხმარებლის სახელი</value>
     <comment>The label for Username text box in Login window</comment>
   </data>
   <data name="Login_lnk_CommonSignInIssues">
-    <value>Problemi di accesso comuni</value>
+    <value>შესვლის ზოგადი პრობლემები</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
-    <value>Crea account</value>
+    <value>ანგარიშის შექმნა</value>
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
-    <value>Nome utente dimenticato</value>
+    <value>დაგავიწყდათ თქვენი მომხმარებლის სახელი</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
   </data>
   <data name="Login_lnk_LoginProblems">
-    <value>Problemi di accesso comuni</value>
+    <value>შესვლის ზოგადი პრობლემები</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
   </data>
   <data name="Login_lnk_NeedHelp">
-    <value>Hai bisogno di aiuto?</value>
+    <value>დახმარება გჭირდებათ?</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
   <data name="Login_lnk_ReportAnIssue">
-    <value>Segnala un problema</value>
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
-    <value>Segnala un problema</value>
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Reimposta la password</value>
+    <value>პაროლის თავიდან დაყენება</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Codice di autenticazione a due fattori non valido</value>
+    <value>არასწორი 2FA კოდი</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Credenziali di accesso non valide. Per favore riprova.</value>
+    <value>არასწორი შესვლის პარამეტრები. თავიდან სცადეთ.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
     <comment>The title of Login window. Should not be converted.</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownSpeed">
-    <value>Velocità di download:</value>
+    <value>გადმოწერის სიჩქარე:</value>
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownVolume">
-    <value>Volume di download:</value>
+    <value>გადმოწერილი მოცულობა:</value>
     <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Session">
-    <value>Sessione:</value>
+    <value>სესია:</value>
     <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Speed">
-    <value>Velocità</value>
+    <value>სიჩქარე</value>
     <comment>The label for overall data transfer speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_TimeUnits">
-    <value>60 secondi</value>
+    <value>60 წამი</value>
     <comment>The time units of Speed graph in Map of main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Traffic">
-    <value>Traffico della sessione</value>
+    <value>სესიის ტრაფიკი</value>
     <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpSpeed">
-    <value>Velocità di upload:</value>
+    <value>ატვირთვის სიჩქარე:</value>
     <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpVolume">
-    <value>Volume di upload:</value>
+    <value>ატვირთულია:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Effettua l'upgrade a Plus</value>
+    <value>Plus-მდე აწევა</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
-    <value>CONNESSO</value>
+    <value>დაკავშირებულია</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
   </data>
   <data name="Map_VpnStatus_val_Disconnected">
-    <value>DISCONNESSO</value>
+    <value>გათიშული</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
   </data>
   <data name="Map_btn_Connect">
-    <value>Connetti</value>
+    <value>დაკავშირება</value>
     <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
   </data>
   <data name="Map_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>გათიშვა</value>
     <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
   </data>
   <data name="Map_lbl_SecureCore">
@@ -2064,471 +2063,471 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Ottieni cambi illimitati con VPN Plus</value>
+    <value>მიიღეთ განუსაზღვრელი ცვლილებები VPN Plus-თან ერთად</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>Hai raggiunto il numero massimo di cambi gratuiti del server per ora.</value>
+    <value>მიაღწიეთ ამ დროისთვის დაშვებული უფასო სერვერების ცვლილების მაქსიმალურ რაოდენობას.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
-    <value>Attiva Secure Core</value>
+    <value>Secure Core-ის აქტივაცია</value>
   </data>
   <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
-    <value>Non mostrare nuovamente</value>
+    <value>აღარ მაჩვენო</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Scopri di più</value>
+    <value>გაიგეთ მეტი</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core offre il livello più elevato di sicurezza e privacy, ma potrebbe ridurre la velocità del tuo Internet. Se necessiti di maggiori prestazioni, puoi disabilitare Secure Core.</value>
+    <value>Secure Core უსაფრთხოებისა და კონფიდენციალობის უმაღლეს დონეს გთავაზობთ, მაგრამ მან ასევე საგრძნობლად შეიძლება, შეამციროს ინტერნეტის სიჩქარე. თუ გესაჭიროებათ მეტი წარმადობა, შეგიძლიათ, სცადოთ გამორთოთ ის.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Una nota sulla velocità...</value>
+    <value>შენიშვნა სიჩქარის შესახებ...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>Nuovi paesi gratuiti</value>
+    <value>ახალი უფასო ქვეყნები</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>Ora sono disponibili server gratuiti in Polonia e Romania.</value>
+    <value>ახლა უფასო სერვერები პოლონეთში და რუმინეთშიც გვაქვს.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Modifiche alla selezione del server</value>
+    <value>სერვერის არჩევანის ცვლილება</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Per evitare il sovraffollamento dei server e garantire a tutti l'accesso a una navigazione veloce e sicura, abbiamo rimosso la selezione manuale del paese e abbiamo apportato notevoli miglioramenti alla selezione automatica del server.</value>
+    <value>იმისათვის, რომ თავიდან ავიცილოთ სერვერის გადატვირთვა და დავრწმუნდეთ, რომ სწრაფ და უსაფრთხო ქსელთან ყველას აქვს წვდომა, ჩვენ მოვაცილეთ ქვეყნის ხელით არჩევის პარამეტი და დიდი ნაბიჯი გადავდგით ავტომატური სერვერის არჩევის ალგორითმში.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>Cosa c'è di nuovo</value>
+    <value>სიახლეები</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Ho capito</value>
+    <value>გავიგე</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
   </data>
   <data name="Notifications_Delinquency_Description">
-    <value>Potrai accedere di nuovo alle funzionalità premium dopo che saranno state pagate.</value>
+    <value>გადახდის შემდეგ ფასიან ფუნქციებთან წვდომა ისევ გექნებათ.</value>
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Potrai nuovamente accedere alle funzionalità premium dopo il pagamento. Per ora, ci stiamo riconnettendo al server del piano GRATUITO più veloce disponibile.</value>
+    <value>ფასიან ფუნქციებთან წვდომა ინვოსების გადახდის შემდეგ გექნებათ. ჯერჯერობით კი უსწრაფეს უფასო სერვერთან მიგაერთებთ.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>Il tuo account VPN ha fatture in sospeso</value>
+    <value>თქვენი VPN-ის ანგარიშზე გადაუხდელი ინვოისებია დარჩენილი</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe bypassare queste limitazioni.</value>
+    <value>Proton VPN-მა აღმოაჩინა, რომ თქვენი მიმდინარე ქსელი VPN-შეერთების დამყარებას ხელს უშლის. შეზღუდვის მოხსნის ცდა ჭკვიანი პროტოკოლის ჩართვით შეგიძლიათ.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
-    <value>Smart Protocol è attualmente disabilitato</value>
+    <value>Smart Protocol-ი ამჟამად გათიშულია</value>
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Scopri di più</value>
+    <value>გაიგეთ მეტი</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Rilevata connessione Wi-Fi non sicura: {0}</value>
+    <value>WiFi შეერთება დაუცველია: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Disconnetti un altro dispositivo per connettere questo.</value>
+    <value>ამ მოწყობილობით შესასვლელად გამორთეთ სხვა, ჩართული მოწყობილობა.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
-    <value>Hai raggiunto il limite massimo di dispositivi</value>
+    <value>მიაღწიეთ მოწყობილობების რაოდენობის ლიმიტს</value>
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>გათიშეთ სხვა მოწყობილობა, რომ ეს მიაერთოთ ან, 10 მოწყობილობის ერთდროულად მისაერთებლად, PLUS ტარიფამდე განახლდით.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Il tuo abbonamento è stato declassato. Aggiorna di nuovo per godere di tutte le funzionalità.</value>
+    <value>თქვენი სატარიფო გეგმა ჩამოიწია. ხელახლა განაახლეთ ყველა ფუნქციით სარგებლობისთვის.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Il tuo abbonamento è stato declassato, quindi ci stiamo riconnettendo al server più veloce disponibile. Aggiorna di nuovo per godere di tutte le funzionalità.</value>
+    <value>მიმდინარეობს გამოწერის დონის ჩამოწევა, ასე რომ, შეგაერთებთ უსწრაფეს ხელმისაწვდომ სერვერთან. ყველა ფუნქციით სარგებლობისთვის ტარიფის გეგმა ისევ ასწიეთ.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Il tuo piano di abbonamento VPN è scaduto</value>
+    <value>VPN-ის თქვენს გამოწერის გეგმას ვადა გაუვიდა</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Riavvia</value>
+    <value>გადატვირთვა</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
-    <value>Cosa c'è di nuovo</value>
+    <value>სიახლეები</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>È disponibile una nuova versione dell'app!</value>
+    <value>ხელმისაწვდომია აპის ახალი ვერსია!</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>CONNESSO a {0}</value>
+    <value>მიერთებული {0}-სთან</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
-    <value>DISCONNESSO</value>
+    <value>გათიშული</value>
     <comment>The message displayed in VPN state system notification when app disconnects from VPN</comment>
   </data>
   <data name="Onboarding_btn_EndTour">
-    <value>Termina tour</value>
+    <value>ტურის დასრულება</value>
     <comment>The text on End Tour button in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_btn_NextStep">
-    <value>Prossimo consiglio</value>
+    <value>შემდეგი მინიშნება</value>
     <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_1">
-    <value>Connettiti automaticamente al server che ti fornisce la connessione più veloce.</value>
+    <value>ავტომატურად დაგაკავშირებთ სერვერთან, რომელიც ყველაზე სწრაფ შეერთებას უზრუნველყოფს.</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Salva le impostazioni e i server preferiti per l'utilizzo futuro.</value>
+    <value>შეინახეთ თქვენი პარამეტრები და სერვერები მომავალში გამოსაყენებლად.</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
-    <value>Scegli quale paese e server vuoi utilizzare per il tuo indirizzo IP finale.</value>
+    <value>აირჩიეთ, თქვენი საბოლოო IP მისამართისთვის, რომელი ქვეყანა და სერვერი გნებავთ, გამოიყენოთ.</value>
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>Adatta la tua connessione VPN alla tua attività online con le funzionalità speciali di Proton VPN per una velocità e una protezione della privacy ottimali.</value>
+    <value>მოერგეთ თქვენი VPN კავშირი თქვენს ონლაინ აქტივობას Proton VPN-ის სპეციალური ფუნქციებით ოპტიმალური სიჩქარისა და კონფიდენციალობის დაცვისთვის.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
-    <value>Connessione rapida</value>
+    <value>სწრაფი მიერთება</value>
     <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_2">
-    <value>Profili</value>
+    <value>პროფილები</value>
     <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_3">
-    <value>Paesi</value>
+    <value>ქვეყნები</value>
     <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_4">
-    <value>Impostazioni rapide</value>
+    <value>სწრაფი პარამეტრები</value>
     <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="PortForwarding">
-    <value>Port Forwarding</value>
+    <value>პორტის გადამისამართება</value>
   </data>
   <data name="PortForwarding_lbl_ActivePort">
-    <value>Porta attiva:</value>
+    <value>აქტიური პორტი:</value>
   </data>
   <data name="PortForwarding_lbl_CopyValue">
-    <value>Clicca per copiare questo numero di porta.</value>
+    <value>წკაპი პორტის ნომრის დასაკოპირებლად.</value>
   </data>
   <data name="PortForwarding_lbl_Info">
-    <value>Imposta questo numero nella tua app BitTorrent per una maggiore velocità.</value>
+    <value>დააყენეთ ეს რიცხვი BitTorrent-ის თქვენ აპლიკაციაში უფრო მეტი სიჩქარის მისაღებად.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Per utilizzare il Port Forwarding, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;collegati&lt;/Hyperlink&gt; ad un server che supporta il P2P.</value>
+    <value>პორტის გადამისამართებსთვის &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;დაუკავშირდით&lt;/Hyperlink&gt; სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN non è riuscito a recuperare il certificato di autenticazione a causa di un problema di rete.</value>
+    <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
-    <value>Server più veloce disponibile</value>
+    <value>უსწრაფესი ხელმისაწვდომი სერვერებიდან</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Random">
-    <value>Server diverso ogni volta</value>
+    <value>სხვა სერვერი ყოველ ჯერზე</value>
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Il profilo non può essere salvato:</value>
+    <value>პროფილის შენახვის შეცდომა:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Per favore seleziona un colore</value>
+    <value>აირჩიეთ ფერი</value>
     <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Per favore seleziona un paese</value>
+    <value>აირჩიეთ ქვეყანა</value>
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Seleziona un gateway</value>
+    <value>აირჩიეთ კარიბჭე</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Per favore seleziona un nome del profilo</value>
+    <value>აირჩიეთ პროფილის სახელი</value>
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
-    <value>Nome del profilo già esistente</value>
+    <value>პროფილის სახელი უკვე არსებობს</value>
     <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>La lunghezza massima del nome del profilo è {0} simbolo. Scegli un nome profilo più breve.</value>
+    <value>პროფილის სახელის მაქსიმალური სიგრძეა {0} სიმბოლო. აირჩიეთ პროფილი უფრო მოკლე სახელით.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>La lunghezza massima del nome del profilo è {0} simboli. Scegli un nome profilo più breve.</value>
+    <value>პროფილის სახელის მაქსიმალური სიგრძეა {0} სიმბოლო. აირჩიეთ პროფილი უფრო მოკლე სახელით.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Per favore seleziona un server</value>
+    <value>აირჩეთ სერვერი</value>
     <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
-    <value>Seleziona il paese di uscita</value>
+    <value>აირჩიეთ გასასვლელი ქვეყანა</value>
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Gateway_Watermark">
-    <value>Seleziona gateway</value>
+    <value>აირჩიეთ კარიბჭე</value>
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
-    <value>Inserisci il nome del profilo</value>
+    <value>შეიყვანეთ პროფილის სახელი</value>
     <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Fastest">
-    <value>Più veloce</value>
+    <value>უსწრაფესი</value>
     <comment>The name of Fastest profile</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Random">
-    <value>Casuale</value>
+    <value>შემთხვევითი</value>
     <comment>The name of Random profile</comment>
   </data>
   <data name="Profiles_Profile_btn_Discard">
-    <value>Scarta</value>
+    <value>მოცილება</value>
     <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Continua modifiche</value>
+    <value>რედაქტირების გაგრძელება</value>
     <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Color">
-    <value>Colore:</value>
+    <value>ფერი:</value>
     <comment>The label for Color selection in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country">
-    <value>Paese:</value>
+    <value>ქვეყანა:</value>
     <comment>The label for Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country_Watermark">
-    <value>Seleziona paese</value>
+    <value>აირჩიეთ ქვეყანა</value>
     <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_ExitCountry">
-    <value>Paese di uscita:</value>
+    <value>გამოსასვლელი ქვეყანა:</value>
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Gateway:</value>
+    <value>კარიბჭე:</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
-    <value>Nome:</value>
+    <value>სახელი:</value>
     <comment>The label for Name text box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Protocol">
-    <value>Protocollo:</value>
+    <value>პროტოკოლი:</value>
     <comment>The label for Protocol combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Server">
-    <value>Server:</value>
+    <value>სერვერი:</value>
     <comment>The label for Server combo box in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Server_Watermark">
-    <value>Seleziona server</value>
+    <value>აირჩიეთ სერვერი</value>
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Ci sono modifiche del profilo non salvate.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Sei sicuro di volerle scartare?</value>
+    <value>პროფილის შეუნახავი ცვლილებები.&lt;LineBreak/&gt;&lt;LineBreak/&gt;დარწმუნებული ბრძანდებით, რომ გნებავთ, გააუქმოთ ისინი?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Crea profilo</value>
+    <value>პროფილის შექმნა</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
-    <value>Modifica profilo</value>
+    <value>პროფილის ჩასწორება</value>
     <comment>The title of Profile window when editing profile</comment>
   </data>
   <data name="Profiles_btn_Close">
-    <value>Chiudi</value>
+    <value>დახურვა</value>
     <comment>The text on Close button in Profiles window</comment>
   </data>
   <data name="Profiles_btn_Create">
-    <value>Crea profilo</value>
+    <value>პროფილის შექმნა</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
   <data name="Profiles_btn_Troubleshoot">
-    <value>Risoluzione problemi</value>
+    <value>შეცდომების გასწორება</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
   </data>
   <data name="Profiles_col_Action">
-    <value>Azione</value>
+    <value>ქმედება</value>
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection">
-    <value>Connessione</value>
+    <value>კავშირი</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
-    <value>Profilo</value>
+    <value>პროფილი</value>
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Protocol">
-    <value>Protocollo</value>
+    <value>პროტოკოლი</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
-    <value>I server sono attualmente offline per manutenzione.</value>
+    <value>სერვერები ამჟამად ტექმომსახურებაზეა.</value>
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>I server in questo paese sono attualmente offline per manutenzione. Per favore seleziona un altro paese.</value>
+    <value>არჩეულ ქვეყანაში ყველა სერვერი ტექმომსახურებაზეა. აირჩიეთ სხვა ქვეყანა.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
-    <value>Questo profilo verrà eliminato. Vuoi continuare?</value>
+    <value>ეს პროფილი წაიშლება. გნებავთ გაგრძელება?</value>
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Non ci sono server disponibili per la tua selezione. Seleziona un'altra opzione.</value>
+    <value>ამჟამად თქვენი არჩეული სერვერები მიუწვდომელია. აირჩიეთ სხვა პარამეტრი.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
-    <value>Profili</value>
+    <value>პროფილები</value>
     <comment>The title of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
-    <value>Applica</value>
+    <value>გადატარება</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Codice coupon</value>
+    <value>კუპონის კოდი</value>
   </data>
   <data name="PromoCode_lbl_Success">
-    <value>Il coupon è stato applicato con successo.</value>
+    <value>კუპონი წარმატებით გადატარდა.</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
-    <value>Utilizza coupon</value>
+    <value>კუპონის გამოყენება</value>
   </data>
   <data name="QuickLaunch_btn_Connect">
-    <value>Connessione rapida</value>
+    <value>სწრაფი მიერთება</value>
     <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
   </data>
   <data name="QuickLaunch_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>გათიშვა</value>
     <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
   </data>
   <data name="QuickLaunch_btn_OpenApp">
-    <value>Apri Proton VPN</value>
+    <value>Proton VPN-ის გახსნა</value>
     <comment>The text on button in Quick Launch window (opens app)</comment>
   </data>
   <data name="QuickLaunch_lbl_Connecting">
-    <value>Connessione a</value>
+    <value>დაკავშირება</value>
     <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
   </data>
   <data name="QuickLaunch_lbl_Profiles">
-    <value>Profili</value>
+    <value>პროფილები</value>
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Spento</value>
+    <value>Kill Switch გამორთულია</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch Attivo</value>
+    <value>Kill Switch ჩართულია</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>მეტის ნახვა</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOff">
-    <value>Non bloccare</value>
+    <value>არ დაბლოკო</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnFirst">
-    <value>Blocca solo malware</value>
+    <value>მხოლოდ malware-ის დაბლოკვა</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Blocca malware, annunci e tracker</value>
+    <value>დაბლოკეთ მავნე პროგრამები, რეკლამები &amp; ტრეკერები</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Kill switch permanente</value>
+    <value>მუდმივი Kill Switch</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
-    <value>Port Forwarding Disattivato</value>
+    <value>პორტის გადამისამართება გამორთულია</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOn">
-    <value>Port Forwarding Attivato</value>
+    <value>პორტის გადამისამართება ჩართულია</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core Spento</value>
+    <value>Secure Core გამორთულია</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core Attivato</value>
+    <value>Secure Core ჩართულია</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>EFFETTUA L'UPGRADE</value>
+    <value>გაუმჯობესება</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disabilita internet se la connessione della VPN si interrompe per prevenire eventuali fughe d'indirizzi IP.</value>
+    <value>IP-ის გაჟონვის თავიდან ასაცილებლად VPN შეერთების გათიშვის შემთხვევაში ინტერნეტის გამორთვა.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Naviga su internet evitando malware e pubblicità.</value>
+    <value>ათვალიერეთ ვებგვერდები რეკლამებისა და არასასურველი პროგრამების გარეშე.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>Annunci bloccati</value>
+    <value>რეკლამა ბლოკირებულია</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>Annuncio bloccato</value>
+    <value>რეკლამა ბლოკირებულია</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>I siti web pubblicitari usano cookie ed elementi traccianti per identificarti.</value>
+    <value>რეკლამის ვებგვერდები ტრეკერებს და ქუქიებს თქვენს საპოვნელად იყენებენ.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Dati salvati</value>
+    <value>მინაცემები შენახულია</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Stima della quantità di annunci, elementi traccianti, e malware che NetShield ha bloccato.</value>
+    <value>NetShield-ის მიერ დაბლოკილი რეკლამების, ტრეკერებისა და არასასურველი პროგრამებს დაახლოებითი ზომა.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Tracker fermati</value>
+    <value>შეჩერებული ტრეკერი</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Tracker fermato</value>
+    <value>შეჩერებული ტრეკერი</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>I Trackers sono siti di terze parti che collezionano, memorizzano e vendono informazioni riguardanti la tua attività sul web.</value>
+    <value>ტრეკერები მესამე პირების ვებგვერდებია, რომლებიც აგროვებენ და ყიდიან ინფორმაციას თქვენი ვებ-აქტივობების შესახებ.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
-    <value>Se i siti web non si caricano, prova a disabilitare NetShield</value>
+    <value>თუ გვერდი არ იტვირთება, სცადეთ NetShield-ი გათიშოთ</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Velocizza i tuoi torrent e giochi online consentendo alle app locali supportate di essere raggiungibili da internet.</value>
+    <value>ააჩქარეთ თქვენი ტორენტი და ონლაინ თამაშები ლოკალური აპლიკაციებისთვის ინტერნეტიდან წვდომის ქონის ჩართვით.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>Instrada i tuoi dati più sensibili attraverso i nostri server più sicuri in paesi rispettosi della privacy.</value>
+    <value>დაარაუტეთ თქვენი ყველაზე მგრძნობიარე მონაცემები ჩვენი ყველაზე დაცული სერვერების გავლით.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
-    <value>Secure Core può ridurre la velocità VPN</value>
+    <value>Secure Core -მა შეიძლება VPN -ის სიჩქარე შეამციროს</value>
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
   <data name="Secure_Servers_lbl_One">
-    <value>{0} server sicuro</value>
+    <value>{0} დაცული სერვერი</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} server sicuri</value>
+    <value>{0} დაცული სერვერი</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Gateway</value>
+    <value>კარიბჭეები</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
-    <value>Standard</value>
+    <value>სტანდარტული</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_P2P">
@@ -2544,15 +2543,15 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Più veloce</value>
+    <value>უსწრაფესი</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
-    <value>Server P2P</value>
+    <value>P2P სერვერი</value>
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Server Plus</value>
+    <value>Plus სერვერი</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2560,99 +2559,99 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The name of Secure Core server feature</comment>
   </data>
   <data name="Servers_Feature_val_Streaming">
-    <value>Streaming</value>
+    <value>სტრიმინგი</value>
   </data>
   <data name="Servers_Feature_val_Tor">
-    <value>Server Tor</value>
+    <value>Tor სერვერი</value>
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Connessioni gratuite (1)</value>
+    <value>უფასო მიერთებები (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>IP del server:</value>
+    <value>სერვერის IP:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
-    <value>Assegnato automaticamente</value>
+    <value>ენიჭება ავტომატურად</value>
     <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_Load">
-    <value>Carico del server:</value>
+    <value>სერვერის დატვირთვა:</value>
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% carico</value>
+    <value>დატვირთვა {0}%</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
-    <value>Nessun dato</value>
+    <value>მონაცემების გარეშე</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Servers_Load_lbl_Status">
-    <value>Stato del server:</value>
+    <value>სერვერის სტატუსი:</value>
     <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_ViaCountry">
-    <value>Da {0} a {1}</value>
+    <value>{0}-ის გავლით {1}-მდე</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Ottieni una copertura mondiale con VPN Plus</value>
+    <value>იქონიეთ წვდომა ყველაფერზე VPN Plus-თან ერთად</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Non è il paese che vuoi? Effettua l'upgrade per scegliere qualsiasi server</value>
+    <value>ის ქვეყანა არაა, რომელიც გნებავდათ? ნებისმიერი სერვერის ასარჩევად ასწიეთ ტარიფი</value>
   </data>
   <data name="Servers_btn_Connect">
-    <value>Connetti</value>
+    <value>დაკავშირება</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
   </data>
   <data name="Servers_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>გათიშვა</value>
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>უკეთესი პაკეტი</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Effettua l'upgrade a Plus</value>
+    <value>Plus-მდე აწევა</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
-    <value>tramite</value>
+    <value>გავლით</value>
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN non è stato in grado di aggiornare il certificato di autenticazione del client.</value>
+    <value>Proton VPN-მა კლიენტის ავთენტიკაციის სერტიფიკატი ვერ განაახლა.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Il server al quale stai cercando di connetterti è attualmente offline per manutenzione. Per favore seleziona un altro server o profilo.</value>
+    <value>სერვერი, რომელთანაც მიერთებას ცდილობთ, გამორთულია ტექნიკური მომსახურებისთვის. აირჩიეთ სხვა სერვერი ან პროფილი.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>Il server a cui stai cercando di connetterti è stato rimosso. Per favore seleziona un altro server o profilo.</value>
+    <value>სერვერი, რომელთანაც მიერთებას ცდილობთ, აღარ არსებობს. აირჩიეთ სხვა სერვერი ან პროფილი.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN non può connettersi perché il server RPC non è disponibile sul tuo sistema. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;VIsualizza possibili soluzioni&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN-ს არ მიერთება არ შეუძლია. თქვენს სისტემაზე RPC სერვერი მიუწვდომელია.&lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;იხილეთ შესაძლო გადაწყვეტილებები&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Sfortunatamente questo server non supporta WireGuard.</value>
+    <value>სამწუხაროდ, ამ სერვერს WireGuard-ის მხარდაჭერა არ გააჩნია.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
-    <value>Aggiungi app</value>
+    <value>აპის დამატება</value>
     <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>APP:</value>
+    <value>აპები:</value>
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Escludi app/IP dall'utilizzo del tunnel VPN</value>
+    <value>აპის/IP-ების გამორიცხვა VPN გვირაბის გამოყენებიდან</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Solo le apps/IP selezionate/i useranno il tunnel VPN</value>
+    <value>VPN გვირაბში, მხოლოდ, ჩასმული აპები/IP-ები გაივლიან</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
@@ -2660,104 +2659,104 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
-    <value>Aggiungi indirizzo IPv4</value>
+    <value>IPv4 მისამართის დამატება</value>
     <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
-    <value>IP non valido</value>
+    <value>IP არასწორია</value>
     <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
-    <value>Protezione dalle perdite di DNS</value>
+    <value>DNS გაპარებისგან დაცვა</value>
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Impedire la perdita di dettagli delle query DNS a terzi. Sempre attivo.</value>
+    <value>DNS მოთხოვნების მესამე პირების ხელში ჩავარდნის თავიდან აცილება. ყოველთვის ჩართულია.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
-    <value>Consenti routing alternativo</value>
+    <value>ალტერნატიული რაუტინგის ჩართვა</value>
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>Nel caso in cui i siti Proton siano bloccati, questa impostazione consente all'app di provare l'instradamento di rete alternativo per raggiungere Proton, che può essere utile per aggirare i firewall o problemi di rete. Consigliamo di mantenere questa impostazione per una maggiore affidabilità.</value>
+    <value>იმ შემთხვევაში, თუ Proton-ის საიტები დაბლოკილია, ეს პარამეტრი აპს საშუალებას აძლევს, Proton-მდე მისასვლელად ქსელის ალტერნატიული რაუტინგი სცადოს, რაც შეიძლება, სასარგებლო იყოს ბრანდმაუერის ან ქსელის პრობლემების გვერდის ავლით. მეტი საიმედოობისთვის გირჩევთ, ჩართოთ ეს პარამეტრი.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
-    <value>Accelerazione hardware</value>
+    <value>აპარატურული აჩქარება</value>
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Fornisce prestazioni di sistema migliorate e un'esperienza più fluida usando la GPU per il rendering grafico. Disattivala in caso di glitch dello schermo.</value>
+    <value>უზრუნველყოფს სისტემის გაზრდილ წარმადობას და ინტერფეისის სირბილეს გრაფიკის GPU-ზე რენდერით. გამორთეთ, თუ ეკრანი ციმციმებს.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
-    <value>Protezione perdita di IPv6</value>
+    <value>IPv6 გაპარებისგან დაცვა</value>
     <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
-    <value>Evita la perdita di indirizzo IPv6.</value>
+    <value>IPv6 მისამართის გაჟონვის ხელის შეშლა.</value>
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver">
-    <value>Apri il driver di Rete di OpenVPN</value>
+    <value>OpenVPN -ის ქსელის დრაივერი</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>I driver di rete possono influire sulla tua connessione e velocità. Il nuovo adattatore TUN fornisce una velocità maggiore, torna sull'adattatore TAP se riscontri problemi di connettività.</value>
+    <value>ქსელის დრაივერებს შეერთების თქვენს სიჩქარეზე დიდი ეფექტის მოხდენა შეუძლიათ. ახალი TUN ტიპის ადაპტერს უფრო დიდი წარმადობა გააჩნია. თუ რაიმე პრობლემას შეამჩნევთ, ძველ, TAP ადაპტერზე გადაერთეთ.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
-    <value>Porte non standard</value>
+    <value>არასტანდარტული პორტები</value>
     <comment>The label for toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
-    <value>Usa Proton VPN per qualsiasi esigenza speciale consentendo il traffico verso porte non standard attraverso la rete VPN.</value>
+    <value>გამოიყენეთ Proton VPN ნებისმიერი განსაკუთრებული მოთხოვნის მქონე ამოცანისთვის VPN ქსელში არასტანდარტული პორტების ჩართვის საშუალებით.</value>
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>Adattatore TAP</value>
+    <value>TAP ადაპტერი</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>Adattatore TUN</value>
+    <value>TUN ადაპტერი</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
-    <value>Port Forwarding</value>
+    <value>პორტის გადამისამართება</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Scorciatoia per il Port Forwarding</value>
+    <value>პორტის გადამისამართების მალსახმობი</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
-    <value>Accedi alle impostazioni di Port Forwarding dalle Impostazioni rapide</value>
+    <value>პორტის გადამისამართებასთან წვდომა სწრაფი პარამეტრებიდან</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications">
-    <value>Notifiche di Port Forwarding</value>
+    <value>პორტის გადამისამართების შეტყობინებები</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
-    <value>Ricevi una notifica quando il numero di Port Forwarding cambia</value>
+    <value>გაფრთხილება, როცა პორტის გადამისამართების რიცხვი შეიცვლება</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Velocizza i tuoi torrent e i giochi online consentendo alle app locali supportate di essere raggiungibili da Internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
+    <value>აასწრაფეთ თქვენი Torrent და თამაშები, ლოკალური აპების ინტერნეტიდან წვდომადობის ჩართვით. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;გაიგე მეტი&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Velocizza i tuoi torrent e giochi online consentendo alle app locali supportate di essere raggiungibili da internet.</value>
+    <value>ააჩქარეთ თქვენი ტორენტი და ონლაინ თამაშები ლოკალური აპლიკაციებისთვის ინტერნეტიდან წვდომის ჩართვით.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Escludi un'applicazione o un indirizzo IP dal traffico VPN o includi solo applicazioni specifiche. Non può essere attivato insieme al Kill Switch.</value>
+    <value>გამორიცხავს აპლიკაციას ან IP მისამართს VPN-ის ტრაფიკიდან ან ჩასვამს, მხოლოდ, მითითებულ აპებს. Kill Switch-თან ერთად ვერ ჩართავთ.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>მეტის ნახვა</value>
   </data>
   <data name="Settings_Advanced_ttl">
-    <value>Avanzate</value>
+    <value>დამატებით</value>
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
-    <value>Smart (suggerito)</value>
+    <value>ჭკვიანი (გირჩევთ)</value>
     <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Tcp">
@@ -2773,57 +2772,57 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Utilizzando server DNS Personalizzati disattiverai NetShield. I server DNS servono per indirizzarti ai siti web corretti. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Utilizza solo i server DNS di cui ti fidi. Vuoi attivare i server DNS personalizzati?</value>
+    <value>DNS სერვერების ხელით მითითება NetShield-ს გათიშავს. DNS სერვერების პასუხისმგებლობაა სწორ ვებგვერდებზე გადაგამისამართოთ.&lt;LineBreak/&gt;&lt;LineBreak/&gt;გამოიყენეთ, მხოლოდ, სანდო DNS სერვერები. გნებავთ, ჩართოთ ხელით მითითება?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>უკეთესი პაკეტი</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
-    <value>Server DNS personalizzati</value>
+    <value>DNS სერვერების ხელით მითითება</value>
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Inserisci un server DNS privato (come AdGuard DNS) per elaborare le tue richieste DNS. L'uso di un server DNS personalizzato disabiliterà NetShield. I server DNS sono servono per indirizzarti al sito corretto, quindi utilizza solo i server di cui ti fidi.</value>
+    <value>შეიყვანეთ პირადი DNS სერვერი (მაგ: AdGuard DNS). DNS სერვერის ხელით მითითება NetShield-ს გათიშავს. DNS სერვერები პასუხისმგებლები არიან თქვენს სწორ საიტზე გაშვებაზე, ასე რომ. გამოიყენეთ, მხოლოდ, ის სერვერები, რომლებსაც ენდობით.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
-    <value>Protocollo</value>
+    <value>პროტოკოლი</value>
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Abilita il Protocollo Smart per usare automaticamente il protocollo e la porta che offrono la connettività migliore.</value>
+    <value>ჩართეთ Smart Protocol ავტომატურად გამოიყენოს პროტოკოლი და პორტი, რომელიც გთავაზობთ საუკეთესო კავშირს.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>NAT moderato</value>
+    <value>საშუალო NAT-ი</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Il NAT moderato disabilita la randomizzazione della mappatura degli indirizzi locali, che può ridurre leggermente la tua sicurezza, ma consente tecniche come le connessioni dirette per applicazioni come i giochi online.</value>
+    <value>საშუალო NAT-ი გამორთავს ლოკალური მისამართების მიბმის გაშემთხვევითებას, რამაც თქვენი უსაფრთხოება შეიძლება, ოდნავ შეამციროს, მაგრამ საშუალებას იძლევა, დამყარდეს პირდაპირი შეერთებები, რაც ონლაინ-თამაშებს სჭირდებათ.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
-    <value>Connessione rapida</value>
+    <value>სწრაფი მიერთება</value>
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Il pulsante Connessione Rapida ti collega al profilo selezionato.</value>
+    <value>სწრაფი მიერთების ღილაკი არჩეულ პროფილთან მიგაერთებთ.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
-    <value>Riconnessione Automatica</value>
+    <value>ავტომატურად შეერთება თავიდან</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
-    <value>Notifiche di riconnessione</value>
+    <value>თავიდან მიერთების შეტყობინებები</value>
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
-    <value>Attivalo per ricevere le notifiche quando l'Acceleratore della VPN ti connette a un server più veloce.</value>
+    <value>ჩართეთ, რომ მიიღოთ შეტყობინება, როცა VPN ამაჩქარებელი უფრო სწრაფ სერვერზე გადაგრთავთ.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect_Info">
-    <value>Passa automaticamente a un server più veloce simile a quello selezionato.</value>
+    <value>ავტომატური გადართვა ისეთივე სწრაფ სერვერზე, როგორიც ხლა აირჩიეთ.</value>
     <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
@@ -2831,170 +2830,170 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info">
-    <value>VPN Accelerator abilita una serie di tecnologie uniche di miglioramento delle prestazioni che possono aumentare la velocità della VPN fino al 400%.</value>
+    <value>VPN-ის ამაჩქარებელი ჩართავს წარმადობის გაზრდის უნიკალურ ტექნოლოგიებს, რომლებსაც VPN-ის სიჩქარის 400%-მდე გაზრდა შეუძლიათ.</value>
     <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_ttl">
-    <value>Connessione</value>
+    <value>კავშირი</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate">
-    <value>Aggiornamenti automatici</value>
+    <value>ავტომატური განახლებები</value>
     <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate_Info">
-    <value>Verifica e installa automaticamente gli aggiornamenti per Proton VPN.</value>
+    <value>Proton VPN-ის განახლებების ავტომატური შემოწმება და დაყენება.</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
-    <value>Connetti all'avvio dell'app</value>
+    <value>აპლიკაციის გაშვებისას მიერთება</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Connettiti automaticamente al profilo Quick Connect all'avvio di Proton VPN.</value>
+    <value>Proton VPN-ის გაშვებისას ავტომატური მიერთება სწრაფი მიერთების პროფილთან.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
-    <value>Accesso anticipato</value>
+    <value>ადრეული წვდომა</value>
     <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess_Info">
-    <value>Sii il primo a ricevere gli aggiornamenti più recenti. Ricorda che le versioni in anteprima potrebbero essere meno stabili.</value>
+    <value>იყავით პირველი, ვინც ბოლო განახლებებს მიიღებს. დაიმახსოვრეთ, რომ ადრეული ვერსიები ნაკლებად სტაბილური შეიძლება იყოს.</value>
     <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_Language">
-    <value>Lingua</value>
+    <value>ენა</value>
     <comment>The label for Language combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ShowNotifications">
-    <value>Mostra notifiche</value>
+    <value>გაფრთხილებების ჩვენება</value>
     <comment>The label for Show Notifications toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartMinimized">
-    <value>Avvia ridotto a icona</value>
+    <value>ჩაკეცილი გაშვება</value>
     <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartOnBoot">
-    <value>Apri all'avvio</value>
+    <value>ჩატვირთვისას გაშვება</value>
     <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Settings_General_ttl">
-    <value>Generale</value>
+    <value>საერთო</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Effettua l'upgrade a Plus</value>
+    <value>Plus-მდე აწევა</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
-    <value>Riconnetti</value>
+    <value>თავიდან დაკავშირება</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
   </data>
   <data name="Settings_msg_ReconnectRequired">
-    <value>Alcuni cambiamenti richiedono la riconnessione per avere effetto.</value>
+    <value>ზოგიერთ ცვლილებას ძალაში შესასვლელად თავიდან მიერთება სჭირდება.</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
   </data>
   <data name="Settings_ttl">
-    <value>Impostazioni</value>
+    <value>მორგება</value>
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>I miei Profili</value>
+    <value>ჩემი პროფილები</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Raccomandato</value>
+    <value>რეკომენდებულია</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>Un gateway VPN è una connessione sicura che fornisce un accesso controllato ai dati e ai servizi della tua azienda attraverso server dedicati.</value>
+    <value>VPN კარიბჭე დაცული მიერთებაა, რომელიც, თქვენი კომპანიის მონაცემებზე და სერვისებზე, გამოყოფილი სერვერების გავლით გაძლევთ წვდომას.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
-    <value>Cos'è un gateway?</value>
+    <value>რა არის კარიბჭე?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Cambia server</value>
+    <value>სერვერის შეცვლა</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
-    <value>Connessione rapida</value>
+    <value>სწრაფი მიერთება</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>გათიშვა</value>
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected">
-    <value>Non sei protetto!</value>
+    <value>დაცული არ ბრძანდებით!</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
-    <value>Connettiti a un server VPN per avere una connessione sicura.</value>
+    <value>დაცული კავშირისთვის მიუერთდით VPN სერვერს.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown">
-    <value>Sconosciuto</value>
+    <value>უცნობი</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Impossibile recuperare il tuo indirizzo IP a causa di problemi di rete o restrizioni da parte del tuo ISP.</value>
+    <value>თქვენი IP მისამართის მიღება შეუძლებელია ქსელის პრობლემების ან თქვენი ISP-ის შეზღუდვების გამო.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill Switch attivato!</value>
+    <value>Kill Switch გააქტიურდა!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill Switch sta bloccando tutte le connessioni per evitare l'esposizione dei dati.</value>
+    <value>Kill Switch ბლოკავს ყველა შეერთებას, მონაცემების გაჟონვის თავიდან ასაცილებლად.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Località Plus ({0})</value>
+    <value>Plus მდებარეობები ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
-    <value>Località BASIC &amp; PLUS ({0})</value>
+    <value>BASIC &amp; PLUS მდებარეობები ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicLocationCount">
-    <value>Posizioni BASIC ({0})</value>
+    <value>BASIC მდებარეობები ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
-    <value>Posizioni GRATUITE ({0})</value>
+    <value>უფასო მდებარეობები ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Server gratuiti</value>
+    <value>უფასო სერვერები</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>I server gratuiti non hanno limiti di dati e di banda. La loro velocità potrebbe essere limitata a causa dell'alto numero di utenti connessi.</value>
+    <value>უფასო სერვერები, რომლებსაც მონაცემებისა და ქსელის შეზღუდვები არ აქვთ. სიჩქარის ლიმიტი, მხოლოდ, მომხმარებლების დიდი რაოდენობითაა შეზღუდული.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Informazione</value>
+    <value>ინფორმაცია</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
-    <value>Posizioni PLUS ({0})</value>
+    <value>PLUS მდებარეობები ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier0">
-    <value>Server GRATIS ({0})</value>
+    <value>უფასო სერვერები ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier1">
-    <value>Server BASIC ({0})</value>
+    <value>BASIC სერვერები ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Server Plus ({0})</value>
+    <value>Plus სერვერები ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
-    <value>Server INTERNI</value>
+    <value>შიდა სერვერები</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
-    <value>In manutenzione</value>
+    <value>შესაკეთებლადაა</value>
     <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Search_Watermark">
-    <value>Cerca</value>
+    <value>ძებნა</value>
     <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore">
@@ -3002,32 +3001,32 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore_Info">
-    <value>Fornisce una protezione aggiuntiva contro i server VPN compromessi indirizzando il traffico attraverso la nostra rete sicura</value>
+    <value>ტრაფიკის ჩვენს დაცულ ქსელში რაუტინგის საშუალებით VPN სერვერის გატეხვისგან დამატებითი დაცვა</value>
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Disabilitando Secure Core scollegherai la connessione VPN attiva. Vuoi continuare?</value>
+    <value>Secore Core-ის გამორთვა გათიშავს VPN-ის აქტიურ სესიას. გნებავთ, გააგრძელოთ?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
-    <value>Passare alla modalità Secure Core disconnetterà la connessione VPN attiva. Vuoi continuare?</value>
+    <value>Secore Core-ის რეჟიმზე გადართვა გათიშავს VPN-ის აქტიურ სესიას. გნებავთ, გააგრძელოთ?</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_ttl">
-    <value>Paesi</value>
+    <value>ქვეყნები</value>
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
     <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
-    <value>Scopri di più</value>
+    <value>მეტის ნახვა</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
     <value>P2P/BitTorrent</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P_Desc">
-    <value>Questi server offrono le migliori prestazioni per BitTorrent e la condivisione di file.</value>
+    <value>ეს სერვერები საუკეთესო წარმადობას BitTorrent-სთვის და ფაილის გასაზიარებლად იძლევიან.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
     <value>PLUS</value>
@@ -3036,94 +3035,94 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
-    <value>Questa tecnologia consente a ProtonVPN di fornire maggiore velocità e sicurezza in paesi difficili da servire.</value>
+    <value>ეს ტექნოლოგია საშუალებას აძლევს Proton VPN-ს, მოგაწოდოთ უფრო მეტი სიჩქარე და უსაფრთხოება ძნელად მისაწვდომ ქვეყნებშიც კი.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
-    <value>Streaming</value>
+    <value>სტრიმინგი</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>I server PLUS supportano lo streaming (Netflix, Disney+, etc) da qualsiasi parte del mondo.</value>
+    <value>PLUS სერვერებს სტრიმინგის (Netflix, Disney+, და ა. შ.) მხარდაჭერა მთელი მსოფლიოდან აქვს.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
-    <value>Funzionalità</value>
+    <value>თვისებები</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor">
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Convoglia tutto il traffico internet attraverso la rete Tor. Più lento, ma più privato.</value>
+    <value>გადაამისამართეთ თქვენი ინტერნეტ-ტრაფიკი Tor-ის ქსელში. ის ოდნავ ნელია, მაგრამ უფრო დაცული.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
-    <value>Crea profilo</value>
+    <value>პროფილის შექმნა</value>
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
-    <value>Gestisci</value>
+    <value>მართვა</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Sidebar_Profiles_ttl">
-    <value>Profili</value>
+    <value>პროფილები</value>
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>Altri</value>
+    <value>სხვები</value>
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
-    <value>Server Plus</value>
+    <value>Plus სერვერი</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Streaming - {0}</value>
+    <value>ვიდეონაკადი - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
-    <value>Funzionalità</value>
+    <value>თვისებები</value>
   </data>
   <data name="Sidebar_Streaming_Info">
-    <value>Connettiti a un server Plus in questo paese per avviare lo streaming.</value>
+    <value>სტრიმინგის დასაწყებად მიუერთდით ამ ქვეყანაში მდებარე Plus სერვერს.</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
-    <value>Nota: Utilizzare una nuova scheda del browser e/o cancellare la cache per garantire che i nuovi contenuti appaiano.</value>
+    <value>შენიშვნა: გამოიყენეთ ბრაუზერის ახალიჩანართი ან/და გაასუფთავეთ ქეში, რომ დარწმუნებული იყოთ, რომ ნაჩვენები შემცველობა ახალი იქნება.</value>
   </data>
   <data name="Sidebar_Streaming_More">
-    <value>e altro</value>
+    <value>და სხვა</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Disabilitato</value>
+    <value>გათიშულია</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>nell'Area di notifica del sistema</value>
+    <value>საათთან</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>nella barra delle applicazioni</value>
+    <value>პროგრამების ზოლში</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Iniziare a digitare...</value>
+    <value>დაიწყეთ კრეფა...</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="TimeUnit_val_Day_One">
-    <value>giorno</value>
+    <value>დღე</value>
   </data>
   <data name="TimeUnit_val_Day_Other">
-    <value>giorni</value>
+    <value>დღე</value>
   </data>
   <data name="TimeUnit_val_Hour_One">
-    <value>ora</value>
+    <value>სთ</value>
   </data>
   <data name="TimeUnit_val_Hour_Other">
-    <value>ore</value>
+    <value>სთ</value>
   </data>
   <data name="TimeUnit_val_Minute_One">
-    <value>minuto</value>
+    <value>წუთი</value>
   </data>
   <data name="TimeUnit_val_Minute_Other">
-    <value>minuti</value>
+    <value>წუთი</value>
   </data>
   <data name="Tooltips_SmartReconnection_Description">
-    <value>Sei stato passato ad un server più veloce simile a quello selezionato.</value>
+    <value>გადაერთეთ უფრო სწრაფ სერვერზე, რომელიც იმის მსგავსია, რომელიც აირჩიეთ.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
@@ -3131,196 +3130,196 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Impostazioni di Notifica</value>
+    <value>შეტყობინებების მორგება</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Accedi più velocemente, server meno affollati.</value>
+    <value>იქონიეთ წვდომა უფრო სწრაფ, ნაკლებად დატვირთულ სერვერებთან.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Aumenta le velocità di connessione fino al 400% con &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>გაზარდეთ მიერთების სიჩქარე 400%-მდე &lt;Bold&gt;VPN-ის ამაჩქარებელთან&lt;/Bold&gt; ერთად.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Velocità e stabilità migliorate quando sei connesso a server distanti.</value>
+    <value>გააუმჯობესეთ სიჩქარე და სტაბილურობა, როცა ძალიან შორსმყოფ სერვერს უკავშირდებით.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Naviga a velocità ancora più elevate (fino a 10 Gbps)</value>
+    <value>იმუშავეთ კიდევ უფრო სწრაფად (10 გბ/წმ-მდე)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Accedi ai contenuti geograficamente bloccati</value>
+    <value>იქონიეთ წვდომა გეოგრაფიულად დაბლოკილ შემცველობასთან</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Scegli qualsiasi località</value>
+    <value>აირჩიეთ ნებისმიერი მდებარეობა</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Velocità VPN ancora più elevata</value>
+    <value>კიდევ უფრო სწრაფი VPN</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Guarda in streaming i tuoi film preferiti</value>
+    <value>დასტრიმეთ თქვენი რჩეული ფილმები</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>როცა Plus-ზე განახლდებით</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Accedi a oltre {0} in {1}</value>
+    <value>მიიღეთ წვდომა {0}-ზე {1}-ში</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
-    <value>Connettiti a {0} paese</value>
+    <value>მიეურთდით {0} ქვეყანას</value>
   </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connettiti a {0} paesi</value>
+    <value>მიეურთდით {0} ქვეყანას</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Velocità più elevate (10 Gbps)</value>
+    <value>ჩქაროსნული (10 გბ/წმ)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Guarda in streaming i tuoi film preferiti</value>
+    <value>დასტრიმეთ თქვენი რჩეული ფილმები</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Proteggi fino a 10 dispositivi</value>
+    <value>დაიცავით 10-მდე მოწყობილობა</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>Garanzia di rimborso entro 30 giorni</value>
+    <value>ფულის დაბრუნების 30-დღიანი გარანტია</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Sblocca la &lt;Bold&gt;selezione del paese&lt;/Bold&gt; con VPN Plus</value>
+    <value>განბლოკეთ &lt;Bold&gt;ქვეყნის არჩევანი&lt;/Bold&gt; VPN Plus-თან ერთად</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Vuoi scegliere un paese specifico?</value>
+    <value>გნებავთ მითითებული ქვეყნის არჩევა?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connettiti a una VPN con il tuo &lt;Bold&gt;sistema dei nomi di domino (DNS) personalizzato&lt;/Bold&gt;</value>
+    <value>მიუერთდით VPN სერვერს თქვენი &lt;Bold&gt;საკუთარი დომენის სახელით სისტემით (DNS)&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Salva le connessioni usate frequentemente con i &lt;Bold&gt;profili&lt;/Bold&gt;</value>
+    <value>შეინახეთ ხშირად გამოყენებული მიერთებები &lt;Bold&gt;პროფილებით&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Ottieni un accesso più veloce ai tuoi profili con la &lt;Bold&gt;Connessione rapida&lt;/Bold&gt;</value>
+    <value>მიიღეთ სწრაფი წვდომა თქვენს პროფილებთან &lt;Bold&gt;სწრაფი მიერთებით&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Sblocca la personalizzazione VPN avanzata</value>
+    <value>განბლოკეთ VPN-ის დამატებითი პარამეტრები</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Località dei server gratuiti ({0})</value>
+    <value>უფასო სერვერის მდებარეობები ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free ti connette automaticamente al server più veloce disponibile. Solitamente è il server più vicino alla tua posizione.</value>
+    <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს ხელმისაწვდომ სერვერს. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Connessioni gratuite</value>
+    <value>უფასო მიერთებები</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Migliora le prestazioni dei giochi online e delle videochiamate</value>
+    <value>გააუმჯობესეთ ონლაინ-თამაშების და ვიდეოზარების წარმადობა</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT di tipo 2 (moderato) ottimizza velocità e stabilità abilitando le connessioni dirette tra i dispositivi</value>
+    <value>მეორე ტიპის NAT (საშუალო) სტაბილურობისა და სიჩქარის ოპტიმიზაციას ახდენს მოწყობილობებს შორის პირდაპირი მიერთების დაშვებით</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Sblocca &lt;Bold&gt;NAT di tipo 2&lt;/Bold&gt; con VPN Plus</value>
+    <value>გაბლოკეთ &lt;Bold&gt;მეორე ტიპის NAT&lt;/Bold&gt; VPN Plus-თან ერთად</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Migliora la tua esperienza di gioco</value>
+    <value>ასწიეთ თქვენი თამაშის გამოცდილება</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Blocca annunci e tracker</value>
+    <value>დაბლოკეთ რეკლამები და ტრეკერები</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
-    <value>Naviga alla massima velocità</value>
+    <value>საიტების უსწრაფესად დათვალეირება</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
-    <value>Proteggi il tuo dispositivo dai malware</value>
+    <value>დაიცავით თქვენი მოწყობილობა მავნე პროგრამებისგან</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>როცა Plus-ზე განახლდებით</value>
   </data>
   <data name="Upsell_Netshield_Title">
-    <value>Goditi la navigazione senza pubblicità con NetShield</value>
+    <value>ისიამოვნეთ ურეკლამო ინტერნეტით NetShield-თან ერთად</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>გაიგეთ მეტი</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>უკეთესი პაკეტი</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Hai esigenze di elaborazione avanzate o professionali che richiedono porte non standard? Esegui l'upgrade a VPN Plus per accedere a questa e ad altre funzionalità premium.</value>
+    <value>გაქვთ დამატებითი ან პროფესიული გამოთვლითი საჭიროებები, რომლებსაც არასტანდარტულ პორტები სჭირდება? ამ და სხვა ფასიანი ფუნქციების მისაღებად განახლდით VPN Plus-ზე.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
-    <value>Consenti il ​​traffico verso porte non standard</value>
+    <value>არასტანდარტულ პორტებზე ტრაფიკის ნების დართვა</value>
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Disponibile con VPN Business.</value>
+    <value>ხელმისაწვდომია VPN Business-თან ერთად.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Migliora le tue velocità di download peer-to-peer</value>
+    <value>გააუმჯობესეთ თქვენი P2P გადმოწერის სიჩქარე</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connettiti ai server di gioco online e ospita giochi multigiocatore</value>
+    <value>დაუკავშირდით ონლაინ-თამაშების სერვერებს და დაჰოსტეთ მრავალმომხმარებლიანი თამაშები</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Configura l'accesso remoto ai dispositivi sulla tua rete locale</value>
+    <value>მოირგეთ დაშორებული წვდომა თქვენს ლოკალურ ქსელში არსებულ მოწყობილობებთან</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Sblocca il &lt;Bold&gt;port forwarding&lt;/Bold&gt; con VPN Plus</value>
+    <value>განბლოკეთ &lt;Bold&gt;პორტების გადამისამართება&lt;/Bold&gt; VPN Plus-თან ერთად</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Potenzia le tue connessioni P2P</value>
+    <value>დაუყენეთ ტურბო თქვენს P2P მიერთებებს</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Salva il tuo server, città o paese preferito.</value>
+    <value>შეინახეთ რჩეული სერვერი, ქალაქი ან ქვეყანა.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Imposta protocolli personalizzati e funzionalità VPN premium.</value>
+    <value>დააყენეთ მომხმარებლის პროტოკოლები და ფასიანი VPN-ის ფუნქციები.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Configura la connessione automatica per un accesso ancora più veloce.</value>
+    <value>მოირგეთ ავტომატური მიერთება კიდევ უფრო სწრაფი წვდომისთვის.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Sblocca i &lt;Bold&gt;profili&lt;/Bold&gt; con VPN Plus</value>
+    <value>გაბლოკეთ &lt;Bold&gt;პროფილები&lt;/Bold&gt; VPN Plus-თან ერთად</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Ottieni un accesso rapido alle tue connessioni frequenti</value>
+    <value>მიიღეთ სწრაფი წვდომა თქვენს ხშირ მიერთებებთან</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Aggiungi un altro livello di crittografia alla tua connessione VPN</value>
+    <value>დაამატეთ თქვენს VPN-ს უსაფრთხოების კიდევ ერთი დონე</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
-    <value>Proteggiti dagli attacchi di rete</value>
+    <value>დაიცავით თავი ქსელური შეტევებისგან</value>
   </data>
   <data name="Upsell_SecureCore_RouteThrough">
-    <value>Passa attraverso server ultra sicuri in Svizzera, Svezia e Islanda</value>
+    <value>დააროუტეთ თქვენი ტრაფიკი ჩვენს ზედაცულ სერვერებზე, რომლებიც შვეიცარიაში, შვედეთში და ისლანდიაში მდებარეობს</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>როცა Plus-ზე განახლდებით</value>
   </data>
   <data name="Upsell_SecureCore_Title">
-    <value>Raddoppia la crittografia con Secure Core</value>
+    <value>გააორმაგეთ შიფრაცია Secure Core-სთან ერთად</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Separa il tuo traffico in tunnel VPN e non-VPN</value>
+    <value>გაჰყავით თქვენი ტრაფიკი VPN და არა-VPN გვირაბებად</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Permetti alle app e agli indirizzi IP attendibili di ignorare la VPN per velocità più elevate</value>
+    <value>მიეცით უფლება სანდო აპებსა და IP მისამართებს უფრო მაღალი სიჩქარისთვის VPN-ს გვერდის ავლით იმუშაონ</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Accedi sia ai contenuti di casa sia a quelli locali quando navighi dall'estero</value>
+    <value>იქონიეთ წვდომა ორივე, სახლისა და ადგილობრივ შემცველობასთან, როცა საზღვარგარეთიდან მუშაობთ</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Sblocca lo &lt;Bold&gt;split tunneling&lt;/Bold&gt; con VPN Plus</value>
+    <value>განბლოკეთ &lt;Bold&gt;გაყოფილი გვირაბი&lt;/Bold&gt; VPN Plus-თან ერთად</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Ottieni il meglio di entrambi i mondi</value>
+    <value>მიიღეთ საუკეთესო ორივე სამყაროდან</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>უკეთესი პაკეტი</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3355,19 +3354,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>WireGuard</value>
   </data>
   <data name="Welcome_btn_Skip">
-    <value>Salta</value>
+    <value>გამოტოვება</value>
     <comment>The text on Skip button in Welcome window</comment>
   </data>
   <data name="Welcome_btn_TakeATour">
-    <value>Fai un tour</value>
+    <value>გასაცნობი ტური</value>
     <comment>The text on Take a Tour button in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Thanks">
-    <value>Grazie per utilizzare Proton VPN. Dai un rapido sguardo alle funzioni principali dell'app.</value>
+    <value>მადლობა Proton VPN-ის გამოყენებისთვის. თვალი გადაავლეთ აპის მთავარ ფუნქციებს.</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">
-    <value>TI DIAMO IL BENVENUTO A BORDO!</value>
+    <value>კეთილი იყოს თქვენი მობრძანება!</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_ttl">
@@ -3375,23 +3374,23 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Welcome window</comment>
   </data>
   <data name="Window_btn_Cancel">
-    <value>Annulla</value>
+    <value>გაუქმება</value>
     <comment>The text on Cancel button in data entry windows</comment>
   </data>
   <data name="Window_btn_Disable">
-    <value>Disabilita</value>
+    <value>გათიშვა</value>
     <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
-    <value>Salva</value>
+    <value>შენახვა</value>
     <comment>The text on Save button in data entry windows</comment>
   </data>
   <data name="Window_lbl_Error">
-    <value>Errore:</value>
+    <value>შეცდომა:</value>
     <comment>The label for list of errors on Error Panel of data entry Window</comment>
   </data>
   <data name="Window_lbl_Loading">
-    <value>Caricamento</value>
+    <value>იტვირთება</value>
     <comment>The text displayed while content is loading</comment>
   </data>
   <data name="WireGuard_lbl">

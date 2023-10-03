@@ -285,8 +285,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        PlacementTarget="{Binding ElementName=HelpButton}"
                        PlacementRectangle="-75,-150,0,0"
                        StaysOpen="False"
+                       Name="HelpPopup"
                        IsOpen="{Binding ShowHelpBalloon}">
-                    <StackPanel HorizontalAlignment="Center" Height="142" Width="220">
+                    <StackPanel HorizontalAlignment="Center"
+                                Height="142"
+                                Name="HelpPopupPanel">
                         <Border SnapsToDevicePixels="True"
                                 Height="132"
                                 Background="{StaticResource BackgroundNormBrushColor}"
@@ -331,10 +334,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Canvas SnapsToDevicePixels="True"
                                 Height="10">
                             <Polygon Style="{StaticResource PopupTrianglePiece}"
+                                     Name="PopupTrianglePiece1"
                                      StrokeThickness="1"
                                      Stroke="{StaticResource BorderWeakBrushColor}"
                                      Points="0,0 12,10,24,0" />
                             <Polygon Style="{StaticResource PopupTrianglePiece}"
+                                     Name="PopupTrianglePiece2"
                                      Points="1,0 1,1 23,1 23,0" />
                         </Canvas>
                     </StackPanel>

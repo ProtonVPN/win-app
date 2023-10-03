@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -32,6 +33,17 @@ namespace ProtonVPN.Login.Views
         public LoginView()
         {
             InitializeComponent();
+            HelpPopup.Opened += OnHelpPopupOpened;
+        }
+
+        private void OnHelpPopupOpened(object sender, EventArgs e)
+        {
+            double xOffset = -(HelpPopupPanel.ActualWidth - HelpButton.ActualWidth) / 2;
+            HelpPopup.PlacementRectangle = new Rect(xOffset, -150, 0, 0);
+
+            double triangleOffset = HelpPopupPanel.ActualWidth / 2 - PopupTrianglePiece1.ActualWidth / 2;
+            Canvas.SetLeft(PopupTrianglePiece1, triangleOffset);
+            Canvas.SetLeft(PopupTrianglePiece2, triangleOffset);
         }
 
         private void PasswordInput_PasswordChanged(object sender, RoutedEventArgs e)
