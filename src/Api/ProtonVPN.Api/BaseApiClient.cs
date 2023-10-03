@@ -67,18 +67,13 @@ namespace ProtonVPN.Api
             return new(json, Encoding.UTF8, "application/json");
         }
 
-        protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response)
+        protected async Task<ApiResponseResult<T>> GetApiResponseResultAsync<T>(HttpResponseMessage response)
             where T : BaseResponse
         {
             string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                T json = JsonConvert.DeserializeObject<T>(body);
-                if (json == null)
-                {
-                    throw new HttpRequestException(string.Empty);
-                }
-
+                T json = JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
                 ApiResponseResult<T> result = CreateApiResponseResult(json, response);
                 HandleResult(result, response);
                 return result;
@@ -103,7 +98,9 @@ namespace ProtonVPN.Api
                 case ResponseCodes.OkResponse:
                     return ApiResponseResult<T>.Ok(responseMessage, response);
                 default:
-
+                    string method = responseMessage.RequestMessage?.Method.ToString();
+                    string message = $"{method} {responseMessage.RequestMessage?.RequestUri} responded with {response.Code} code.";
+                    Logger.Info<ApiResponseLog>(message);
                     return ApiResponseResult<T>.Fail(response, responseMessage, response.Error);
             }
         }
@@ -160,27 +157,6 @@ namespace ProtonVPN.Api
             }
 
             return request;
-        }
-
-        protected async Task<ApiResponseResult<T>> GetResponseStreamResult<T>(HttpResponseMessage response)
-            where T : BaseResponse
-        {
-            Stream stream = await response.Content.ReadAsStreamAsync();
-            using StreamReader streamReader = new(stream);
-            using JsonTextReader jsonTextReader = new(streamReader);
-
-            T json = _jsonSerializer.Deserialize<T>(jsonTextReader);
-            if (json == null)
-            {
-                throw new HttpRequestException(string.Empty);
-            }
-
-            if (json.Code != ResponseCodes.OkResponse)
-            {
-                return ApiResponseResult<T>.Fail(response, json.Error);
-            }
-
-            return ApiResponseResult<T>.Ok(response, json);
         }
 
         protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null) where T : BaseResponse
