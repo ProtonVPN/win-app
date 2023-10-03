@@ -8,7 +8,7 @@ include:
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
     
   - project: 'ProtonVPN/qa/test-configuration'
-    ref: develop
+    ref: master
     file: '/windows-config.yml'
     
   - local: '/.gitlab-ci-templates.yml'
