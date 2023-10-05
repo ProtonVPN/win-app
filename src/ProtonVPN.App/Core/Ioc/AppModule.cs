@@ -300,6 +300,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SubscriptionManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetShieldStatsManager>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpgradeModalManager>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

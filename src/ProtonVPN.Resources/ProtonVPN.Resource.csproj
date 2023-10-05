@@ -18,9 +18,12 @@
     <None Remove="Graphics\Images\moderate-nat.png" />
     <None Remove="Graphics\Images\p2p.png" />
     <None Remove="Graphics\Images\profiles.png" />
+    <None Remove="Graphics\Images\proton-unlimited.png" />
     <None Remove="Graphics\Images\speed.png" />
     <None Remove="Graphics\Images\split-tunneling.png" />
     <None Remove="Graphics\Images\stars.png" />
+    <None Remove="Graphics\Images\vpn-plus.png" />
+    <None Remove="Graphics\Images\welcome-to-proton-vpn.png" />
     <None Remove="Graphics\Images\worldwide-coverage-small.png" />
     <None Remove="Graphics\Images\worldwide-coverage.png" />
     <None Remove="Graphics\Images\wrong-country.png" />
@@ -37,9 +40,12 @@
     <Resource Include="Graphics\Images\moderate-nat.png" />
     <Resource Include="Graphics\Images\p2p.png" />
     <Resource Include="Graphics\Images\profiles.png" />
+    <Resource Include="Graphics\Images\proton-unlimited.png" />
     <Resource Include="Graphics\Images\speed.png" />
     <Resource Include="Graphics\Images\split-tunneling.png" />
     <Resource Include="Graphics\Images\stars.png" />
+    <Resource Include="Graphics\Images\vpn-plus.png" />
+    <Resource Include="Graphics\Images\welcome-to-proton-vpn.png" />
     <Resource Include="Graphics\Images\worldwide-coverage-small.png" />
     <Resource Include="Graphics\Images\worldwide-coverage.png" />
     <Resource Include="Graphics\Images\wrong-country.png" />

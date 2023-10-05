@@ -60,6 +60,11 @@ namespace ProtonVPN.Core.Models
             return VpnPlan is "vpnplus" or "vpn2022";
         }
 
+        public bool IsUnlimitedPlan()
+        {
+            return VpnPlan is "bundle2022";
+        }
+
         public bool Empty()
         {
             return string.IsNullOrEmpty(Username);

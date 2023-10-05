@@ -39,7 +39,7 @@ namespace ProtonVPN.Core.Service.Vpn
     public class AppController : IAppController
     {
         private readonly ILogger _logger;
-        private readonly IVpnInfoUpdater _vpnInfoUpdater;
+        private readonly IUpgradeModalManager _upgradeModalManager;
         private readonly IAnnouncementService _announcementService;
 
         public event EventHandler<VpnStateIpcEntity> OnVpnStateChanged;
@@ -49,10 +49,10 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<UpdateStateIpcEntity> OnUpdateStateChanged;
         public event EventHandler OnOpenWindowInvoked;
 
-        public AppController(ILogger logger, IVpnInfoUpdater vpnInfoUpdater, IAnnouncementService announcementService)
+        public AppController(ILogger logger, IUpgradeModalManager upgradeModalManager, IAnnouncementService announcementService)
         {
             _logger = logger;
-            _vpnInfoUpdater = vpnInfoUpdater;
+            _upgradeModalManager = upgradeModalManager;
             _announcementService = announcementService;
         }
 
@@ -126,7 +126,7 @@ namespace ProtonVPN.Core.Service.Vpn
         {
             if (uri.Host.EqualsIgnoringCase(SubscriptionManager.REFRESH_ACCOUNT_COMMAND))
             {
-                _vpnInfoUpdater.Update();
+                _upgradeModalManager.CheckForVpnPlanUpgrade();
             }
 
             NameValueCollection uriQuery = HttpUtility.ParseQueryString(uri.Query);
