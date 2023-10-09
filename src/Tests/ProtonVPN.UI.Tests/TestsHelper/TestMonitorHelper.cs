@@ -48,17 +48,14 @@ namespace ProtonVPN.UI.Tests.TestsHelper
 
         public static async Task ReportTestStatusAsync(string name, string description)
         {
-            if (IsMonitoringState)
+            TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
+            if (status == TestStatus.Passed)
             {
-                TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
-                if (status == TestStatus.Passed)
-                {
-                    await IncrementMetricAsync(name, description, 0);
-                }
-                else if (status == TestStatus.Failed)
-                {
-                    await IncrementMetricAsync(name, description, 1);
-                }
+                await IncrementMetricAsync(name, description, 0);
+            }
+            else if (IsMonitoringState && status == TestStatus.Failed)
+            {
+                await IncrementMetricAsync(name, description, 1);
             }
         }
 
