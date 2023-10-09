@@ -121,25 +121,25 @@ Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks:
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; 
-Name: "installProtonDrive"; Description: "Install Proton Drive - Encrypted cloud storage (Free with Proton VPN)"; Check: ShouldDisplayProtonDriveCheckbox;
+Name: "installProtonDrive"; Description: "{cm:InstallProtonDriveTitle}"; Check: ShouldDisplayProtonDriveCheckbox;
 
 [Run]
 Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{code:GetDriveInstallPath}"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
 
 [Languages]
-Name: "en_US"; MessagesFile: "compiler:Default.isl"
-Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl"
-Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl"
-Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl"
-Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl"
-Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl"
-Name: "pl_PL"; MessagesFile: "compiler:Languages\Polish.isl"
-Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
-Name: "pt_PT"; MessagesFile: "compiler:Languages\Portuguese.isl"
-Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl"
-Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl"
-Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl"
+Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
+Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
+Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl,Strings\German.isl"
+Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl,Strings\French.isl"
+Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl,Strings\Dutch.isl"
+Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl,Strings\Italian.isl"
+Name: "pl_PL"; MessagesFile: "compiler:Languages\Polish.isl,Strings\Polish.isl"
+Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl,Strings\BrazilianPortuguese.isl"
+Name: "pt_PT"; MessagesFile: "compiler:Languages\Portuguese.isl,Strings\Portuguese.isl"
+Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl,Strings\Russian.isl"
+Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl,Strings\Spanish.isl"
+Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian.isl"
+Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
