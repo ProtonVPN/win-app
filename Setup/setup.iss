@@ -89,9 +89,11 @@ Source: "..\publish\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFo
 
 Source: "..\publish\Assets\*.ico"; DestDir: "{app}\{#VersionFolder}\Assets";
 Source: "..\publish\Assets\Illustrations\*.svg"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
+Source: "..\publish\Assets\Illustrations\*.png"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
 
 Source: "..\publish\Assets\Illustrations\Dark\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Dark";
 Source: "..\publish\Assets\Illustrations\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Light";
+Source: "..\publish\Assets\Illustrations\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
