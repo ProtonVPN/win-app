@@ -6,12 +6,12 @@
     <PackageVersion Include="Albireo.Base32" Version="1.2.0" />
     <PackageVersion Include="Appium.WebDriver" Version="4.4.5" />
     <PackageVersion Include="ARSoft.Tools.Net.Dns" Version="2.3.1" />
-    <PackageVersion Include="Autofac" Version="7.0.1" />
+    <PackageVersion Include="Autofac" Version="7.1.0" />
     <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageVersion Include="BouncyCastle.NetCore" Version="1.9.0" />
     <PackageVersion Include="Caliburn.Micro.Core" Version="4.0.212" />
     <PackageVersion Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.17" />
-    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageVersion Include="CommunityToolkit.WinUI" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Input" Version="7.1.2" />
@@ -31,14 +31,14 @@
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.4" />
+    <PackageVersion Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.11" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.4" />
     <PackageVersion Include="Microsoft.Windows.Compatibility" Version="7.0.1" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.3.230602002" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
     <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageVersion Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageVersion Include="MSTest.TestAdapter" Version="3.0.4" />
@@ -75,10 +75,10 @@
     <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="7.0.1" />
     <PackageVersion Include="System.ServiceProcess.ServiceController" Version="7.0.1" />
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-    <PackageVersion Include="System.Text.Json" Version="7.0.2" />
+    <PackageVersion Include="System.Text.Json" Version="7.0.3" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
     <PackageVersion Include="WinUI3Localizer" Version="1.0.1" />
-    <PackageVersion Include="WinUIEx" Version="2.2.0" />
+    <PackageVersion Include="WinUIEx" Version="2.3.1" />
   </ItemGroup>
 </Project>
