@@ -2908,7 +2908,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>Una puerta de enlace VPN es una conexión segura que proporciona acceso controlado a los datos y servicios de tu empresa mediante servidores dedicados.</value>
+    <value>Una puerta de enlace VPN es una conexión segura que proporciona acceso controlado a los datos y servicios de tu empresa con servidores dedicados.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
@@ -3002,7 +3002,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore_Info">
-    <value>Proporciona protección adicional contra el compromiso del servidor VPN mediante el enrutamiento a través de nuestra red segura</value>
+    <value>Proporciona protección adicional contra el compromiso del servidor VPN con el enrutamiento a través de nuestra red segura</value>
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">

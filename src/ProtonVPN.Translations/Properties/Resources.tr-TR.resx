@@ -2600,7 +2600,7 @@
     <value>VPN Plus tarifesi ile tüm Dünya'ya erişin</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>İstediğiniz ülke yok mu? İstediğiniz sunucuyu seçmek için tarifenizi yükseltin</value>
+    <value>İstediğiniz ülke yok mu? İstediğiniz sunucuyu seçebilmek için tarifenizi yükseltin</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Bağlan</value>

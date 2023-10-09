@@ -2100,10 +2100,10 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Získejte neomezené změny s VPN Plus</value>
+    <value>Získejte neomezený počet změn s VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>Pro teď jste dosáhli maximální počet změn Free serverů.</value>
+    <value>V této chvíli jste dosáhli maximálního počtu změn Free serverů.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Aktivovat Secure Core</value>
@@ -2124,7 +2124,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Nové Free země</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>Free servery jsou nyní v Polsku a Rumunsku.</value>
+    <value>Free servery jsou nyní i v Polsku a Rumunsku.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
     <value>Změny ve výběru serverů</value>
@@ -2658,10 +2658,10 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Získejte celosvětový pokryv s VPN Plus</value>
+    <value>Získejte celosvětové pokrytí díky VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Not the country you wanted? Upgrade to choose any server</value>
+    <value>Není to země, kterou jste si přáli? Navyšte tarif pro výběr libovolného serveru</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Připojit</value>
@@ -2799,7 +2799,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Zrychlete práci s torrenty a online hrami tím, že podporované místní aplikace budou dostupné z internetu.</value>
+    <value>Zrychlete torrenty a online hry tím, že povolíte internetový přístup k podporovaným místním aplikacím.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split Tunneling</value>
@@ -3011,7 +3011,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Plus lokace ({0})</value>
+    <value>Umístění Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>Umístění BASIC &amp; PLUS ({0})</value>
@@ -3213,10 +3213,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Získejte přístup k rychlejším, méně vytíženým serverům.</value>
+    <value>Přístup k rychlejším, méně vytíženým serverům.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Zvyšte rychlost připojení až o 400 % pomocí nástroje &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>Zvyšte rychlost připojení až o 400 % pomocí funkce &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
     <value>Vyšší rychlost a stabilita při připojení ke vzdáleným serverům.</value>
@@ -3225,7 +3225,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Procházejte ještě vyšší rychlostí (až 10 Gb/s)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Získejte přístup ke geoblokovanému obsahu</value>
+    <value>Přístup ke geograficky blokovanému obsahu</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
     <value>Vyberte si libovolné umístění</value>
@@ -3241,7 +3241,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Přístup přes {0} v {1}</value>
+    <value>Přístup k {0} v {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
@@ -3275,26 +3275,26 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Chcete vybrat konkrétní zemi?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Připojte se k VPN s Vaším &lt;Bold&gt;vlastním systémem doménových jmen (DNS)&lt;/Bold&gt;</value>
+    <value>Připojte se k VPN pomocí &lt;Bold&gt;vlastního DNS serveru&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
     <value>Uložení často používaných připojení pomocí &lt;Bold&gt;profilů&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Získejte rychlejší přístup ke svým profilům pomocí &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+    <value>Získejte rychlejší přístup ke svým profilům pomocí funkce &lt;Bold&gt;Rychlé připojení&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
     <value>Odemknutí pokročilého přizpůsobení VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Volná umístění serveru ({0})</value>
+    <value>Umístění serverů Free ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
     <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému serveru. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Bezplatné připojení</value>
+    <value>Připojení Free</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
     <value>Zlepšení výkonu online her a videohovorů</value>
@@ -3306,7 +3306,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Odblokování &lt;Bold&gt;NAT typu 2&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Zvyšte úroveň svých herních zážitků</value>
+    <value>Zvýšení úrovně vašich herních zážitků</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blokování reklam a sledovačů</value>

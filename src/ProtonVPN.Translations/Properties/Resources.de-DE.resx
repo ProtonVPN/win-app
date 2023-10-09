@@ -2085,7 +2085,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Ein Hinweis zur Geschwindigkeit...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>Neue kostenlose Länder</value>
+    <value>Neue Free Länder</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
     <value>Es gibt jetzt kostenlose Server in Polen und Rumänien.</value>
@@ -2601,7 +2601,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Erhalte weltweite Abdeckung mit VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Nicht das gewünschte Land? Upgrade, um einen beliebigen Server auszuwählen</value>
+    <value>Nicht das gewünschte Land? Upgrade, um einen beliebigen Server auszuwählen.</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Verbinden</value>
@@ -3185,7 +3185,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>30 Tage Geld-zurück-Garantie</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Freischalten der &lt;Bold&gt;Länderauswahl&lt;/Bold&gt; mit VPN Plus</value>
+    <value>Freischalten der &lt;Bold&gt;Länderauswahl&lt;/Bold&gt; mit VPN Plus.</value>
   </data>
   <data name="Upsell_Country_Title">
     <value>Möchtest du ein bestimmtes Land auswählen?</value>
@@ -3203,26 +3203,26 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Erweiterte VPN-Anpassung freischalten</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Verfügbare Serverstandorte ({0})</value>
+    <value>Free-Serverstandorte ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
     <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren Server. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Kostenlose Verbindungen</value>
+    <value>Free-Verbindungen</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
     <value>Verbessere die Leistung von Online-Spielen und Videoanrufen</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT-Typ 2 (moderat) optimiert die Geschwindigkeit und Stabilität, indem es direkte Verbindungen zwischen Geräten ermöglicht</value>
+    <value>NAT-Typ 2 (moderat) optimiert die Geschwindigkeit und Stabilität, indem es direkte Verbindungen zwischen Geräten ermöglicht.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Freischalten von &lt;Bold&gt;Split-Tunneling&lt;/Bold&gt; mit VPN Plus</value>
+    <value>Schalte &lt;Bold&gt;NAT-Typ 2&lt;/Bold&gt; frei mit VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Verbessere das Spielerlebnis</value>
+    <value>Verbessere dein Spielerlebnis</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blockiere Werbung und Tracker</value>
@@ -3260,7 +3260,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Verbessere die Peer-to-Peer-Download-Geschwindigkeit</value>
+    <value>Verbessere deine Peer-to-Peer-Download-Geschwindigkeit</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
     <value>Verbinde dich mit Online-Gaming-Servern und hoste Multiplayer-Spiele</value>
@@ -3272,7 +3272,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Schalte &lt;Bold&gt;Portweiterleitungen&lt;/Bold&gt; mit VPN Plus frei</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Lade deine P2P-Verbindungen auf</value>
+    <value>Verbessere deine P2P-Verbindungen</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
     <value>Speichere deinen bevorzugten Server, Stadt oder Land.</value>
@@ -3284,7 +3284,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Einrichten der automatischen Verbindung für noch schnelleren Zugriff.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Schalte &lt;Bold&gt;Profile&lt;/Bold&gt; mit VPN Plus frei</value>
+    <value>Schalte &lt;Bold&gt;Profile&lt;/Bold&gt; mit VPN Plus frei.</value>
   </data>
   <data name="Upsell_Profiles_Title">
     <value>Erhalte schnellen Zugriff auf deine häufigen Verbindungen</value>
@@ -3314,7 +3314,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Zugriff auf heimische und lokale Inhalte, wenn du vom Ausland aus surfst</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Schalte &lt;Bold&gt;Split-Tunneling&lt;/Bold&gt; mit VPN Plus frei</value>
+    <value>Schalte &lt;Bold&gt;Split-Tunneling&lt;/Bold&gt; mit VPN Plus frei.</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>Erhalte das Beste aus beiden Welten</value>
