@@ -94,7 +94,6 @@ public class ConnectionTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnecting()
             .VerifyConnectionCardIsConnecting()
-            .Wait(500)
             .DoCancelConnection()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected();

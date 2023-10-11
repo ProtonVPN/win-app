@@ -17,20 +17,68 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Settings;
 
 public partial class SettingsRobot
 {
+
+    public SettingsRobot DoNavigateToNetShieldSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(NetShieldSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToKillSwitchSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(KillSwitchSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToPortForwardingSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(PortForwardingSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToSplitTunnelingSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(SplitTunnelingSettingsCard);
+    }
+
     public SettingsRobot DoNavigateToProtocolSettingsPage()
     {
-        ProtocolSettingsCard.Click();
+        return NavigateToSpecificSettingsPage(ProtocolSettingsCard);
+    }
 
-        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
-        this.Wait(TestConstants.DefaultAnimationDelay);
+    public SettingsRobot DoNavigateToVpnAcceleratorSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(VpnAcceleratorSettingsCard);
+    }
 
-        return this;
+    public SettingsRobot DoNavigateToAdvancedSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(AdvancedSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToAutoStartupSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(AutoStartupSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToDebugLogsSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(DebugLogsSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToCensorshipSettingsPage()
+    {
+        return NavigateToSpecificSettingsPage(CensorshipSettingsCard);
+    }
+
+    public SettingsRobot DoNavigateToCustomDnsServersSettingsPage()
+    {
+        return DoNavigateToAdvancedSettingsPage()
+            .NavigateToSpecificSettingsPage(CustomDnsServersSettingsCard);
     }
 
     public SettingsRobot DoSelectWireGuardProtocol()
@@ -41,13 +89,23 @@ public partial class SettingsRobot
 
     public SettingsRobot DoRestoreSettings()
     {
-        RestoreDefaultSettingsButton.Invoke();
+        RestoreDefaultSettingsButton.FocusAndClick();
         return this;
     }
 
     public SettingsRobot DoReportAnIssue()
     {
         ReportIssueSettingsCard.FocusAndClick();
+        return this;
+    }
+
+    private SettingsRobot NavigateToSpecificSettingsPage(Button settingsCard)
+    {
+        settingsCard.FocusAndClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
         return this;
     }
 }

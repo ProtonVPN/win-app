@@ -669,4 +669,113 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="GhostSettingsCardStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="labs:SettingsCard">
+        <Setter Property="Background" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="labs:SettingsCard">
+                    <Grid x:Name="PART_RootGrid"
+                          MinWidth="{TemplateBinding MinWidth}"
+                          MinHeight="{TemplateBinding MinHeight}"
+                          MaxWidth="{TemplateBinding MaxWidth}"
+                          Padding="{TemplateBinding Padding}"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                          Background="{TemplateBinding Background}"
+                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </Grid.BackgroundTransition>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              MinWidth="{StaticResource SettingsCardLeftIndention}" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Viewbox x:Name="PART_HeaderIconPresenterHolder"
+                                 Grid.RowSpan="2"
+                                 MaxWidth="{StaticResource SettingsCardHeaderIconMaxSize}"
+                                 MaxHeight="{StaticResource SettingsCardHeaderIconMaxSize}"
+                                 Margin="{StaticResource SettingsCardHeaderIconMargin}">
+                            <ContentPresenter x:Name="PART_HeaderIconPresenter"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding HeaderIcon}"
+                                              HighContrastAdjustment="None" />
+                        </Viewbox>
+
+                        <StackPanel x:Name="HeaderPanel"
+                                    Grid.Column="1"
+                                    Margin="0,0,24,0"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+
+                            <ContentPresenter x:Name="PART_HeaderPresenter"
+                                              HorizontalAlignment="Left"
+                                              Content="{TemplateBinding Header}"
+                                              FontSize="{StaticResource BodyFontSize}"
+                                              FontWeight="{StaticResource BodyFontWeight}"
+                                              HighContrastAdjustment="None"
+                                              TextWrapping="Wrap" />
+
+                            <ContentPresenter x:Name="PART_DescriptionPresenter"
+                                              Content="{TemplateBinding Description}"
+                                              FontSize="{StaticResource SettingsCardDescriptionFontSize}"
+                                              Foreground="{ThemeResource SettingsCardDescriptionForeground}"
+                                              TextWrapping="Wrap"
+                                              Visibility="{Binding Description, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Grid.Column="2"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          Foreground="{ThemeResource SettingsCardContentForeground}" />
+
+                        <Viewbox x:Name="PART_ActionIconPresenterHolder"
+                                 Grid.RowSpan="2"
+                                 Grid.Column="3"
+                                 MaxWidth="{StaticResource SettingsCardActionIconMaxSize}"
+                                 MaxHeight="{StaticResource SettingsCardActionIconMaxSize}"
+                                 Margin="{StaticResource SettingsCardActionIconMargin}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HighContrastAdjustment="None"
+                                 Visibility="{Binding IsClickEnabled, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <ContentPresenter x:Name="PART_ActionIconPresenter"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding ActionIcon}"
+                                              FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                              Foreground="{ThemeResource SettingsCardContentForeground}"
+                                              HighContrastAdjustment="None"
+                                              ToolTipService.ToolTip="{TemplateBinding ActionIconToolTip}" />
+                        </Viewbox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -33,7 +33,17 @@ namespace ProtonVPN.UI.Tests.Tests;
 public class SettingsTests : TestSession
 {
     private const string SETTINGS_PAGE_TITLE = "Settings";
+    private const string NETSHIELD_PAGE_TITLE = "NetShield";
+    private const string KILL_SWITCH_PAGE_TITLE = "Kill switch";
+    private const string PORT_FORWARDING_PAGE_TITLE = "Port forwarding";
+    private const string SPLIT_TUNNELING_PAGE_TITLE = "Split tunneling";
     private const string PROTOCOL_PAGE_TITLE = "Protocol";
+    private const string VPN_ACCELERATOR_PAGE_TITLE = "VPN Accelerator";
+    private const string ADVANCED_SETTINGS_PAGE_TITLE = "Advanced settings";
+    private const string AUTO_STARTUP_PAGE_TITLE = "Auto startup";
+    private const string DEBUG_LOGS_PAGE_TITLE = "Debug logs";
+    private const string CENSORSHIP_PAGE_TITLE = "Help us fight censorship";
+    private const string CUSTOM_DNS_SERVERS_PAGE_TITLE = "Custom DNS servers";
 
     private const string SMART_PROTOCOL = "Smart";
     private const string WIREGUARD_PROTOCOL = "WireGuard";
@@ -109,6 +119,91 @@ public class SettingsTests : TestSession
 
         _shellRobot
             .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true);
+    }
+
+    [Test]
+    public void NavigateThroughSettingsPages()
+    {
+        _shellRobot
+            .DoNavigateToSettingsPage()
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
+
+        _settingsRobot
+            .DoNavigateToNetShieldSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(NETSHIELD_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToKillSwitchSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(KILL_SWITCH_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToPortForwardingSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(PORT_FORWARDING_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToSplitTunnelingSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(SPLIT_TUNNELING_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToProtocolSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToVpnAcceleratorSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(VPN_ACCELERATOR_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToAdvancedSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(ADVANCED_SETTINGS_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToAutoStartupSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(AUTO_STARTUP_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToDebugLogsSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(DEBUG_LOGS_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToCensorshipSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(CENSORSHIP_PAGE_TITLE, true)
+            .DoNavigateBackward();
+
+        _settingsRobot
+            .DoNavigateToCustomDnsServersSettingsPage();
+
+        _shellRobot
+            .VerifyCurrentPage(CUSTOM_DNS_SERVERS_PAGE_TITLE, true)
+            .DoNavigateBackward();
     }
 
     [TearDown]
