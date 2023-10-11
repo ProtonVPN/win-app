@@ -454,9 +454,14 @@ begin
     Result := '"' + path + '"';
 end;
 
+function IsUpgrade: Boolean;
+begin
+  Result := FileExists(ExpandConstant('{app}\{#LauncherExeName}'));
+end;
+
 procedure CurPageChanged(CurPageID: Integer);
 begin
-    if (CurPageID = wpPreparing) and (IsInstallPathModified = False) then begin
+    if (CurPageID = wpPreparing) and (IsInstallPathModified = False) and (IsUpgrade = False) then begin
       IsInstallPathModified := true;
       WizardForm.DirEdit.Text := WizardForm.DirEdit.Text + '\Proton\VPN';
     end;
