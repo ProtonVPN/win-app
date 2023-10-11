@@ -47,6 +47,11 @@ public partial class SettingsRobot : UIActions
 
     protected Button CensorshipSettingsCard => ElementByAutomationId("CensorshipSettingsCard").AsButton();
 
+    protected Button AlternativeRoutingSettingsCard => ElementByAutomationId("AlternativeRoutingSettingsCard").AsButton();
+    protected Button CustomDnsServersSettingsCard => ElementByAutomationId("CustomDnsServersSettingsCard").AsButton();
+    protected Button NatTypeSettingsCard => ElementByAutomationId("NatTypeSettingsCard").AsButton();
+
+
     protected Button RestoreDefaultSettingsButton => ElementByAutomationId("RestoreDefaultSettingsButton").AsButton();
 
 

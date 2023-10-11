@@ -65,8 +65,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
 
                 <labs:SettingsExpander.Items>
-                    <StackPanel Margin="0,-8"
-                                Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal"
                                 Spacing="8">
                         <TextBlock VerticalAlignment="Center"
                                    Style="{StaticResource CaptionStrongTextBlockStyle}">

@@ -42,7 +42,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="AlternativeRoutingSettingsCard"
+                               Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
@@ -50,7 +51,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToCommand}"
+            <labs:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
+                               Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
@@ -60,7 +62,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
+            <labs:SettingsCard AutomationProperties.AutomationId="NatTypeSettingsCard"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
                                IsTabStop="False"
                                Style="{StaticResource VerticalSettingsCardStyle}">
                 <labs:SettingsCard.Description>
