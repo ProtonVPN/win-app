@@ -11,6 +11,8 @@
 
 #include "ProcessExecutionResult.h"
 #include "Os.h"
+#include <shobjidl.h>
+
 #include "WinApiErrorException.h"
 
 using namespace std;
@@ -270,4 +272,29 @@ long Os::ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* targe
     CoUninitialize();
 
     return 0;
+}
+
+void Os::RemovePinnedIcons(PCWSTR shortcut_path)
+{
+    HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+    if (SUCCEEDED(hr))
+    {
+        IShellItem* item;
+        hr = SHCreateItemFromParsingName(shortcut_path, nullptr, IID_PPV_ARGS(&item));
+
+        if (SUCCEEDED(hr))
+        {
+            IStartMenuPinnedList* pStartMenuPinnedList;
+            hr = CoCreateInstance(CLSID_StartMenuPin, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pStartMenuPinnedList));
+            if (SUCCEEDED(hr))
+            {
+                pStartMenuPinnedList->RemoveFromList(item);
+                pStartMenuPinnedList->Release();
+            }
+
+            item->Release();
+        }
+    }
+
+    CoUninitialize();
 }

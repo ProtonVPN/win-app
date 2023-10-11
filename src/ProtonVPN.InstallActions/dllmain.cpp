@@ -169,3 +169,9 @@ extern "C" EXPORT DWORD UpdateTaskbarIconTarget(const wchar_t* launcher_path)
 
     return shortcut_path.empty() ? 0 : Os::ChangeShortcutTarget(shortcut_path.c_str(), launcher_path);
 }
+
+extern "C" EXPORT DWORD RemovePinnedIcons(const wchar_t* shortcut_path)
+{
+    Os::RemovePinnedIcons(shortcut_path);
+    return 0;
+}

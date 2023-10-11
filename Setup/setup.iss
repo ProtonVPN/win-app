@@ -2,6 +2,7 @@
 #define MyAppName "Proton VPN" 
 #define MyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
+#define AppUserModelID "Proton.VPN"
 
 #define MyPublisher "Proton AG"
 
@@ -59,6 +60,9 @@ SetupWindowTitle={#MyAppName}
 
 [Registry]
 Root: HKCR; Subkey: "ProtonVPN"; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "AppUserModelId\{#AppUserModelID}"; Flags: uninsdeletekey;
+; Old registry values when we didn't have AppUserModelID set
+Root: HKCR; Subkey: "AppUserModelId\{{6D809377-6AF0-444B-8957-A3773F02200E}\Proton\VPN"; Flags: deletekey uninsdeletekey;
 Root: HKCR; Subkey: "ProtonVPN"; ValueType: string; ValueName: "URL Protocol"; ValueData: "";
 Root: HKCR; Subkey: "ProtonVPN\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#VersionFolder}\{#MyAppExeName}"" ""%1""";
 
@@ -117,7 +121,7 @@ Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
-Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon
+Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon; AppUserModelID: "{#AppUserModelID}";
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; 
@@ -167,6 +171,9 @@ external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayl
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
+
+function RemovePinnedIcons(shortcutPath: String): Integer;
+external 'RemovePinnedIcons@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -426,6 +433,7 @@ var res, errorCode: Integer;
 begin
   Log('CurUninstallStepChanged(' + IntToStr(Ord(CurUninstallStep)) + ') called');
   if CurUninstallStep = usUninstall then begin
+    RemovePinnedIcons(ExpandConstant('{commondesktop}\Proton VPN.lnk'));
     Log('Killing {#MyAppExeName} process');
     ShellExec('open', 'taskkill.exe', '/f /im {#MyAppExeName}', '', SW_HIDE, ewNoWait, errorCode);
     Log('taskkill returned ' + IntToStr(errorCode) + ' code');
