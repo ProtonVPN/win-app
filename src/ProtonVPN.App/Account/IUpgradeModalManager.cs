@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+
 namespace ProtonVPN.Account
 {
     public interface IUpgradeModalManager
     {
-        void CheckForVpnPlanUpgrade();
+        Task CheckForVpnPlanUpgradeAsync(string modalSource, string notificationReference);
     }
 }

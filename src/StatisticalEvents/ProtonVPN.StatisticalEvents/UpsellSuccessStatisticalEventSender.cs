@@ -40,16 +40,16 @@ namespace ProtonVPN.StatisticalEvents
             _statisticalEventSender = statisticalEventSender;
         }
 
-        public void Send(ModalSources modalSource, string oldPlan, string newPlan)
+        public void Send(ModalSources modalSource, string oldPlan, string newPlan, string? reference = null)
         {
-            StatisticalEvent statisticalEvent = Create(modalSource, oldPlan, newPlan);
+            StatisticalEvent statisticalEvent = Create(modalSource, oldPlan, newPlan, reference);
             _statisticalEventSender.EnqueueAsync(statisticalEvent);
         }
 
-        private StatisticalEvent Create(ModalSources modalSource, string oldPlan, string newPlan)
+        private StatisticalEvent Create(ModalSources modalSource, string oldPlan, string newPlan, string? reference)
         {
             StatisticalEvent statisticalEvent = CreateStatisticalEvent();
-            statisticalEvent.Dimensions = _upsellDimensionBuilder.Build(modalSource);
+            statisticalEvent.Dimensions = _upsellDimensionBuilder.Build(modalSource, reference);
             statisticalEvent.Dimensions["user_plan"] = oldPlan;
             statisticalEvent.Dimensions.Add("upgraded_user_plan", newPlan);
             return statisticalEvent;

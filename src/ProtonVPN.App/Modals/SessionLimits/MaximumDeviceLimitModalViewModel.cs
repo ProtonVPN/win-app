@@ -21,6 +21,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Modals.Dialogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.SessionLimits
 {
@@ -47,7 +48,7 @@ namespace ProtonVPN.Modals.SessionLimits
 
         protected virtual void UpgradeAction()
         {
-            _subscriptionManager.UpgradeAccountAsync();
+            _subscriptionManager.UpgradeAccountAsync(ModalSources.MaxConnections);
             TryClose();
         }
     }

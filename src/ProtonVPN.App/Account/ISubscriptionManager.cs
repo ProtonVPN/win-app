@@ -18,12 +18,13 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Account
 {
     public interface ISubscriptionManager
     {
-        Task UpgradeAccountAsync();
+        Task UpgradeAccountAsync(ModalSources modalSource, string notificationReference = null);
         Task ManageSubscriptionAsync();
     }
 }

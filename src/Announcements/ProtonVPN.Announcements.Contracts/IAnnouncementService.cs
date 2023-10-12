@@ -32,6 +32,7 @@ namespace ProtonVPN.Announcements.Contracts
         public void MarkAsSeen(string id);
 
         public void Delete(string id);
+        public void DeleteByReference(string reference);
 
         public event EventHandler AnnouncementsChanged;
     }

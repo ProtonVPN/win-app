@@ -35,5 +35,7 @@ namespace ProtonVPN.Api.Contracts.Announcements
         public OfferResponse Offer { get; set; }
 
         public int Type { get; set; }
+
+        public string Reference { get; set; }
     }
 }

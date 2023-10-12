@@ -495,6 +495,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </controls:UpsellBanner.Style>
                     </controls:UpsellBanner>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type servers:AnnouncementBannerViewModel}">
+                    <controls:AnnouncementBanner Margin="-14,0,0,12"
+                                                 Width="282"
+                                                 Command="{Binding OpenUrlCommand}">
+                        <controls:AnnouncementBanner.Style>
+                            <Style TargetType="controls:AnnouncementBanner">
+                                <Setter Property="ImagePath" Value="{Binding ImagePath}" />
+                                <Setter Property="TimeLeft" Value="{Binding TimeLeft}" />
+                            </Style>
+                        </controls:AnnouncementBanner.Style>
+                    </controls:AnnouncementBanner>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type servers:CountryB2BSeparatorViewModel}">
                     <Border x:Name="Border" Height="48">
                         <Grid Width="310" Margin="27,3,0,3" HorizontalAlignment="Left">

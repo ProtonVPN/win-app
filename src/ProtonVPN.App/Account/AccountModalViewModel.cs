@@ -30,6 +30,7 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Modals;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account

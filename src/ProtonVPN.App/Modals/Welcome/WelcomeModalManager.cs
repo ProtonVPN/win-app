@@ -108,7 +108,7 @@ namespace ProtonVPN.Modals.Welcome
         private void ShowUpsellOffer(Announcement announcement)
         {
             _announcementService.MarkAsSeen(announcement.Id);
-            _offerPopupViewModel.Panel = announcement.Panel;
+            _offerPopupViewModel.SetByAnnouncement(announcement);
             _popupWindows.Show<OfferPopupViewModel>();
         }
 

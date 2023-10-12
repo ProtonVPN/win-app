@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
@@ -41,7 +43,9 @@ namespace ProtonVPN.Servers
         private readonly IUserStorage _userStorage;
         private readonly IStreamingServices _streamingServices;
         private readonly UpsellBannerViewModel _upsellBannerViewModel;
+        private readonly AnnouncementBannerViewModel _announcementBannerViewModel;
         private readonly IActiveUrls _urls;
+        private readonly IAnnouncementService _announcementService;
         private VpnState _vpnState = new(VpnStatus.Disconnected);
 
         public ServerListFactory(
@@ -50,14 +54,18 @@ namespace ProtonVPN.Servers
             IUserStorage userStorage,
             IStreamingServices streamingServices,
             UpsellBannerViewModel upsellBannerViewModel,
-            IActiveUrls urls)
+            AnnouncementBannerViewModel announcementBannerViewModel,
+            IActiveUrls urls,
+            IAnnouncementService announcementService)
         {
             _appSettings = appSettings;
             _serverManager = serverManager;
             _userStorage = userStorage;
             _streamingServices = streamingServices;
             _upsellBannerViewModel = upsellBannerViewModel;
+            _announcementBannerViewModel = announcementBannerViewModel;
             _urls = urls;
+            _announcementService = announcementService;
         }
 
         public ObservableCollection<IServerListItem> BuildServerList(string searchQuery = null)
@@ -78,6 +86,12 @@ namespace ProtonVPN.Servers
             }
             else
             {
+                IServerListItem banner = GetServerListAnnouncementBanner();
+                if (banner is not null)
+                {
+                    serverListItems.Add(banner);
+                }
+
                 AddB2BServers(serverListItems, searchQuery);
 
                 IList<string> freeCountries = GetCountriesByTiers(ServerTiers.Free);
@@ -118,14 +132,51 @@ namespace ProtonVPN.Servers
             if (plusLocationViewModels.Count > 0)
             {
                 serverListItems.Add(CreateCountryListSeparator(Translation.Format("Sidebar_Countries_AllLocationCount", plusLocationViewModels.Count)));
-                if (!_userStorage.GetUser().Paid())
+                IServerListItem banner = GetServerListAnnouncementBanner();
+                if (banner is not null)
                 {
-                    serverListItems.Add(_upsellBannerViewModel);
+                    serverListItems.Add(banner);
                 }
                 serverListItems.AddRange(plusLocationViewModels);
             }
 
             return new ObservableCollection<IServerListItem>(serverListItems);
+        }
+
+        private IServerListItem GetServerListAnnouncementBanner()
+        {
+            DateTime now = DateTime.UtcNow;
+            Announcement announcement = _announcementService.Get()
+                .Where(a => a.Type == (int)AnnouncementType.Banner && a.StartDateTimeUtc <= now && a.EndDateTimeUtc > now)
+                .OrderBy(a => a.EndDateTimeUtc)
+                .FirstOrDefault();
+
+            if (announcement is null)
+            {
+                if (!_userStorage.GetUser().Paid())
+                {
+                    return _upsellBannerViewModel;
+                }
+            }
+            else
+            {
+                string imagePath = announcement.Panel?.FullScreenImage?.Source;
+                DateTime endDate = announcement.EndDateTimeUtc;
+                PanelButton panelButton = announcement.Panel?.Button;
+
+                if (announcement.ShowCountdown)
+                {
+                    _announcementBannerViewModel.SetWithCountdown(imagePath, endDate, panelButton, announcement.Reference);
+                }
+                else
+                {
+                    _announcementBannerViewModel.Set(imagePath, endDate, panelButton, announcement.Reference);
+                }
+
+                return _announcementBannerViewModel;
+            }
+
+            return null;
         }
 
         private IServerListItem CreateB2BCountryListSeparator(string name)

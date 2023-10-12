@@ -31,6 +31,7 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals
 {
@@ -177,7 +178,7 @@ namespace ProtonVPN.Modals
 
         private void UpgradeAction()
         {
-            _subscriptionManager.UpgradeAccountAsync();
+            _subscriptionManager.UpgradeAccountAsync(ModalSources.MaxConnections);
             TryClose();
         }
 

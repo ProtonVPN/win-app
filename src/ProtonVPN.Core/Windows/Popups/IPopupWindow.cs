@@ -23,6 +23,8 @@ namespace ProtonVPN.Core.Windows.Popups
 {
     public interface IPopupWindow
     {
+        void BeforeOpenPopup(dynamic options);
+
         Task TryCloseAsync();
     }
 }

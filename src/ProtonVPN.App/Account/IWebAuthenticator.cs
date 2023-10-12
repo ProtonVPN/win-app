@@ -18,12 +18,13 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Account
 {
     public interface IWebAuthenticator
     {
         Task<string> GetLoginUrlAsync(LoginUrlParams urlParams);
-        Task<string> GetLoginUrlAsync(string url);
+        Task<string> GetLoginUrlAsync(string url, ModalSources modalSource, string notificationReference);
     }
 }

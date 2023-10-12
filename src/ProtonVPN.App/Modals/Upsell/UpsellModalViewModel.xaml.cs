@@ -55,7 +55,7 @@ namespace ProtonVPN.Modals.Upsell
         protected override void ContinueAction()
         {
             _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource);
-            _subscriptionManager.UpgradeAccountAsync();
+            _subscriptionManager.UpgradeAccountAsync(ModalSource);
             TryClose(true);
         }
 

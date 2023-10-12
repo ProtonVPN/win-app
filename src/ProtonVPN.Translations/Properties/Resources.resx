@@ -2321,6 +2321,18 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>minutes</value>
     <comment>The time unit: minutes</comment>
   </data>
+  <data name="TimeUnit_val_Second_One" xml:space="preserve">
+    <value>second</value>
+    <comment>The time unit: second</comment>
+  </data>
+  <data name="TimeUnit_val_Second_Other" xml:space="preserve">
+    <value>seconds</value>
+    <comment>The time unit: seconds</comment>
+  </data>
+  <data name="Sidebar_AnnouncementBanner_lbl_Countdown" xml:space="preserve">
+    <value>{0} {1} left</value>
+    <comment>The countdown string in the announcement banner at the top of the server list. The {0} and {1} are both strings consisting of a numeric value followed by its respective time unit. Example: 6 days 2 hours left</comment>
+  </data>
   <data name="Account_lbl_Device_Other" xml:space="preserve">
     <value>Devices</value>
     <comment>The supported number of devices in Account window.</comment>

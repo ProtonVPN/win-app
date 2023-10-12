@@ -152,7 +152,7 @@ namespace ProtonVPN.Sidebar.Announcements
         private void OpenAnnouncement(Announcement announcement)
         {
             _announcementService.MarkAsSeen(announcement.Id);
-            _offerPopupViewModel.Panel = announcement.Panel;
+            _offerPopupViewModel.SetByAnnouncement(announcement);
             _popupWindows.Show<OfferPopupViewModel>();
         }
     }

@@ -22,10 +22,11 @@ using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Windows.Popups.Offers
 {
@@ -34,6 +35,8 @@ namespace ProtonVPN.Windows.Popups.Offers
         private readonly ILogger _logger;
         private readonly IOsProcesses _processes;
         private readonly IWebAuthenticator _webAuthenticator;
+        private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+        private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
         private Panel _panel;
         public Panel Panel
@@ -76,6 +79,7 @@ namespace ProtonVPN.Windows.Popups.Offers
 
         private ActiveUrl _buttonUrl;
 
+        public string Reference { get; set; } = string.Empty;
         public ICommand ButtonCommand { get; set; }
         public ICommand FullScreenImageButtonCommand { get; set; }
 
@@ -83,14 +87,24 @@ namespace ProtonVPN.Windows.Popups.Offers
             AppWindow appWindow,
             ILogger logger,
             IOsProcesses processes,
-            IWebAuthenticator webAuthenticator) : base(appWindow)
+            IWebAuthenticator webAuthenticator,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender) : base(appWindow)
         {
             _logger = logger;
             _processes = processes;
             _webAuthenticator = webAuthenticator;
+            _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
+            _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
 
             ButtonCommand = new RelayCommand(ButtonAction);
             FullScreenImageButtonCommand = new RelayCommand(OpenFullScreenImageButtonLink);
+        }
+
+        public void SetByAnnouncement(Announcement announcement)
+        {
+            Panel = announcement.Panel;
+            Reference = announcement.Reference;
         }
 
         private void OnPanelChange(Panel value)
@@ -125,9 +139,10 @@ namespace ProtonVPN.Windows.Popups.Offers
             if (Panel.Button.Action == "OpenURL")
             {
                 string url = Panel.Button.Behaviors.Contains("AutoLogin")
-                    ? await _webAuthenticator.GetLoginUrlAsync(Panel.Button.Url)
+                    ? await _webAuthenticator.GetLoginUrlAsync(Panel.Button.Url, ModalSources.PromoOffer, Reference)
                     : Panel.Button.Url;
                 _processes.Open(url);
+                _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSources.PromoOffer, Reference);
             }
             else
             {
@@ -144,6 +159,11 @@ namespace ProtonVPN.Windows.Popups.Offers
                 _buttonUrl.Open();
                 await TryCloseAsync();
             }
+        }
+
+        public override void BeforeOpenPopup(dynamic options)
+        {
+            _upsellDisplayStatisticalEventSender.Send(ModalSources.PromoOffer, Reference);
         }
     }
 }

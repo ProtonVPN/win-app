@@ -36,6 +36,7 @@ using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Servers;
+using ProtonVPN.Sidebar.Announcements;
 using ProtonVPN.Sidebar.QuickSettings;
 using ProtonVPN.Vpn.Connectors;
 
@@ -47,7 +48,8 @@ namespace ProtonVPN.Sidebar
         IVpnStateAware,
         ISettingsAware,
         ILogoutAware,
-        IServersAware
+        IServersAware,
+        IAnnouncementsAware
     {
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
@@ -244,6 +246,11 @@ namespace ProtonVPN.Sidebar
         }
 
         public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+        {
+            CreateList();
+        }
+
+        public void OnAnnouncementsChanged()
         {
             CreateList();
         }

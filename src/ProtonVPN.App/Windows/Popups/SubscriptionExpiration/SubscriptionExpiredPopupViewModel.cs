@@ -23,6 +23,7 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Servers.Reconnections;
 using ProtonVPN.Sidebar;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
@@ -31,18 +32,23 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
     {
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
         private readonly ServerManager _serverManager;
+        private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
         
         public ReconnectionData ReconnectionData { get; private set; }
+        protected override ModalSources ModalSource => ModalSources.Downgrade;
 
         public SubscriptionExpiredPopupViewModel(
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
             ServerManager serverManager,
             ISubscriptionManager subscriptionManager,
-            AppWindow appWindow)
-            : base(subscriptionManager, appWindow)
+            AppWindow appWindow,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+            : base(subscriptionManager, appWindow, upsellUpgradeAttemptStatisticalEventSender)
         {
             _connectionStatusViewModel = connectionStatusViewModel;
             _serverManager = serverManager;
+            _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
         }
 
         public string ListOption1
@@ -85,6 +91,11 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
         public void SetReconnectionData(Server previousServer, Server currentServer)
         {
             ReconnectionData = new ReconnectionData(previousServer, currentServer);
+        }
+
+        public override void BeforeOpenPopup(dynamic options)
+        {
+            _upsellDisplayStatisticalEventSender.Send(ModalSource);
         }
     }
 }
