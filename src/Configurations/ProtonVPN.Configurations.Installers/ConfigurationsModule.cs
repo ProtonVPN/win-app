@@ -29,6 +29,7 @@ public class ConfigurationsModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<Configuration>().As<IConfiguration>().SingleInstance();
+        builder.RegisterType<StaticConfiguration>().As<IStaticConfiguration>().SingleInstance();
         builder.RegisterType<ConfigurationRepository>().AsImplementedInterfaces().SingleInstance();
 
 #if DEBUG

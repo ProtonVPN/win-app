@@ -17,11 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts;
+
+namespace ProtonVPN.Configurations;
 
 public class DefaultConfiguration : IConfiguration
 {
+    private const Environment.SpecialFolder LOCAL_APP_DATA = Environment.SpecialFolder.LocalApplicationData;
+    private const Environment.SpecialFolder COMMON_APP_DATA = Environment.SpecialFolder.CommonApplicationData;
+    private const string LOGS_FOLDER_RELATIVE_PATH = "Proton/Proton VPN/Logs";
+
     public string ServiceName => "ProtonVPN Service";
+
+    public string ClientLogsFilePath
+    {
+        get
+        {
+            string folderPath = Path.Combine(Environment.GetFolderPath(LOCAL_APP_DATA), LOGS_FOLDER_RELATIVE_PATH);
+            return Path.Combine(folderPath, "client-logs.txt");
+        }
+    }
+
+    public string ServiceLogsFilePath
+    {
+        get
+        {
+            string folderPath = Path.Combine(Environment.GetFolderPath(COMMON_APP_DATA), LOGS_FOLDER_RELATIVE_PATH);
+            return Path.Combine(folderPath, "service-logs.txt");
+        }
+    }
+
+
 
 
     //public const int MAX_QUICK_CONNECT_SERVERS_ON_RECONNECTION = 50;

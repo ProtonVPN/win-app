@@ -20,7 +20,6 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
-using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Serialization.Contracts;

@@ -28,7 +28,7 @@ public class ServiceManager : IServiceManager
     private readonly IService _service;
 
     public ServiceManager(IServiceFactory serviceFactory,
-        IConfiguration configuration)
+        IStaticConfiguration configuration)
     {
         _service = serviceFactory.Get(configuration.ServiceName);
     }

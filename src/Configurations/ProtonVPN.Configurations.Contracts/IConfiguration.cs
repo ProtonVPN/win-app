@@ -21,9 +21,6 @@ namespace ProtonVPN.Configurations.Contracts;
 
 public interface IConfiguration
 {
-    public string ServiceName { get; }
-
-
 
     //[Required]
     //string AppName { get; set; }

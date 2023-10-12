@@ -31,9 +31,7 @@ public class Configuration : IConfiguration
     {
         _repository = repository;
 
-        _serviceName = new(() => _repository.GetReferenceType<string>(nameof(ServiceName)) ?? _default.ServiceName);
-    }
+        //_example = new(() => _repository.GetReferenceType<string>(nameof(Example)) ?? _default.Example);
 
-    private readonly Lazy<string> _serviceName;
-    public string ServiceName => _serviceName.Value;
+    }
 }
