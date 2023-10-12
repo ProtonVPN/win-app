@@ -107,14 +107,18 @@ namespace ProtonVPN.UI.Tests
         protected static void LaunchApp()
         {
             string[] versionFolders = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
-            string newestVersionFolder = FindNewestVersionFolder(versionFolders) + @"\ProtonVPN.exe";
-            App = Application.Launch(newestVersionFolder);
-            RetryResult<bool> result = WaitUntilAppIsRunning();
+            string appExecutable = FindNewestVersionFolder(versionFolders) + @"\ProtonVPN.exe";
+            ProcessStartInfo startInfo = new ProcessStartInfo(appExecutable)
+            {
+                Arguments = "/DisableAutoUpdate"
+            };
 
+            App = Application.Launch(startInfo);
+            RetryResult<bool> result = WaitUntilAppIsRunning();
             if (!result.Success)
             {
                 //Sometimes app fails to launch on first try due to CI issues.
-                App = Application.Launch(newestVersionFolder + @"\ProtonVPN.exe");
+                App = Application.Launch(startInfo);
             }
             RefreshWindow(TestConstants.LongTimeout);
         }
