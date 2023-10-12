@@ -38,6 +38,7 @@ namespace ProtonVPN.Servers
         private readonly ILogger _logger;
         private readonly IOsProcesses _processes;
         private readonly IWebAuthenticator _webAuthenticator;
+        private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
         private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
         private readonly ISchedulerTimer _timer;
         private DateTime _endDate;
@@ -76,11 +77,13 @@ namespace ProtonVPN.Servers
             IScheduler scheduler,
             IOsProcesses processes,
             IWebAuthenticator webAuthenticator,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
             IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
         {
             _logger = logger;
             _processes = processes;
             _webAuthenticator = webAuthenticator;
+            _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
             _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
             OpenUrlCommand = new RelayCommand(OpenUrlAction);
 
@@ -97,6 +100,7 @@ namespace ProtonVPN.Servers
                     ? await _webAuthenticator.GetLoginUrlAsync(_panelButton.Url, ModalSources.PromoOffer, _reference)
                     : _panelButton.Url;
                 _processes.Open(url);
+                _upsellDisplayStatisticalEventSender.Send(ModalSources.PromoOffer, _reference);
                 _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSources.PromoOffer, _reference);
             }
             else
