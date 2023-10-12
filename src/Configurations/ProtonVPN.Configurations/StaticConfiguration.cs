@@ -17,25 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Configurations.Files;
-using ProtonVPN.Configurations.Repositories;
 
-namespace ProtonVPN.Configurations.Installers;
+namespace ProtonVPN.Configurations;
 
-public class ConfigurationsModule : Module
+public class StaticConfiguration : IStaticConfiguration
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<Configuration>().As<IConfiguration>().SingleInstance();
-        builder.RegisterType<StaticConfiguration>().As<IStaticConfiguration>().SingleInstance();
-        builder.RegisterType<ConfigurationRepository>().AsImplementedInterfaces().SingleInstance();
+    private readonly DefaultConfiguration _default = new();
 
-#if DEBUG
-        builder.RegisterType<DebugConfigurationFileManager>().AsImplementedInterfaces().SingleInstance();
-#else
-        builder.RegisterType<ReleaseConfigurationFileManager>().AsImplementedInterfaces().SingleInstance();
-#endif
+    public StaticConfiguration()
+    {
+        _serviceName = new(() => _default.ServiceName);
+        _clientLogsFullFilePath = new(() => _default.ClientLogsFilePath);
+        _serviceLogsFullFilePath = new(() => _default.ServiceLogsFilePath);
     }
+
+    private readonly Lazy<string> _serviceName;
+    public string ServiceName => _serviceName.Value;
+
+    private readonly Lazy<string> _clientLogsFullFilePath;
+    public string ClientLogsFilePath => _clientLogsFullFilePath.Value;
+
+    private readonly Lazy<string> _serviceLogsFullFilePath;
+    public string ServiceLogsFilePath => _serviceLogsFullFilePath.Value;
 }

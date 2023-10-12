@@ -26,6 +26,7 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
@@ -65,10 +66,11 @@ namespace ProtonVPN.Service.Start
             new ConfigDirectories(config).Prepare();
 
             ContainerBuilder builder = new();
-            builder.RegisterLoggerConfiguration(c => c.ServiceLogDefaultFullFilePath)
+            builder.RegisterLoggerConfiguration(c => c.ServiceLogsFilePath)
                    .RegisterModule<CryptoModule>()
                    .RegisterModule<ServiceModule>()
                    .RegisterModule<ApiModule>()
+                   .RegisterModule<ConfigurationsModule>()
                    .RegisterAssemblyModule<LoggingModule>()
                    .RegisterAssemblyModule<UpdateModule>();
             _container = builder.Build();

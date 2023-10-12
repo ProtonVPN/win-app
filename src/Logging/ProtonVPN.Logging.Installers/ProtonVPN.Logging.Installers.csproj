@@ -17,6 +17,7 @@
     <PackageReference Include="Autofac" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
     <ProjectReference Include="..\ProtonVPN.Logging\ProtonVPN.Logging.csproj" />
   </ItemGroup>

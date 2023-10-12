@@ -18,21 +18,20 @@
  */
 
 using Autofac;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Logging.Installers
+namespace ProtonVPN.Logging.Installers;
+
+public static class LoggerConfigurator
 {
-    public static class LoggerConfigurator
+    public static ContainerBuilder RegisterLoggerConfiguration(this ContainerBuilder builder, 
+        Func<IStaticConfiguration, string> filePathFunction)
     {
-        public static ContainerBuilder RegisterLoggerConfiguration(this ContainerBuilder builder, 
-            Func<IConfiguration, string> filePathFunction)
-        {
-            builder
-                .Register(c => new LoggerConfiguration(filePathFunction(c.Resolve<IConfiguration>())))
-                .As<ILoggerConfiguration>()
-                .SingleInstance();
-            return builder;
-        }
+        builder
+            .Register(c => new LoggerConfiguration(filePathFunction(c.Resolve<IStaticConfiguration>())))
+            .As<ILoggerConfiguration>()
+            .SingleInstance();
+        return builder;
     }
 }

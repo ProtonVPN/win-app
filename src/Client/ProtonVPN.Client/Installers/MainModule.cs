@@ -33,8 +33,6 @@ using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
-using ProtonVPN.Logging;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
@@ -49,22 +47,17 @@ public class MainModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        // Default Activation Handler
         builder.RegisterType<DefaultActivationHandler>()
                .As<ActivationHandler<LaunchActivatedEventArgs>>()
                .InstancePerDependency();
 
-        // TODO
-#warning This should come from IConfiguration.AppLogDefaultFullFilePath
-        const string LOGS_FOLDER_PATH = "Proton/Proton VPN/Logs";
-        const Environment.SpecialFolder ROOT_FOLDER = Environment.SpecialFolder.LocalApplicationData;
-        string logsFullFolderPath = Path.Combine(Environment.GetFolderPath(ROOT_FOLDER), LOGS_FOLDER_PATH);
-        string clientLogsFullFilePath = Path.Combine(logsFullFolderPath, "client-logs.txt");
-        builder.Register(c => new LoggerConfiguration(clientLogsFullFilePath))
-               .As<ILoggerConfiguration>()
-               .SingleInstance();
+        builder.RegisterLoggerConfiguration(c => c.ClientLogsFilePath);
 
-        // Modules
+        RegisterModules(builder);
+    }
+
+    private void RegisterModules(ContainerBuilder builder)
+    {
         builder.RegisterModule<EventMessageReceiverActivationModule>()
                .RegisterModule<LoggingModule>()
                .RegisterModule<RegistriesModule>()
