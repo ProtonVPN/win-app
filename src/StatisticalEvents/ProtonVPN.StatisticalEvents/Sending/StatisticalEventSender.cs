@@ -155,22 +155,31 @@ namespace ProtonVPN.StatisticalEvents.Sending
                 _semaphore.Release();
             }
 
-            if (statisticalEventsBatch.EventInfo.Count <= 0)
+            int numOfEvents = statisticalEventsBatch.EventInfo.Count;
+            if (numOfEvents <= 0)
             {
                 return;
             }
 
             _lastSendTime = DateTime.UtcNow;
-            _logger.Info<AppLog>($"Sending {statisticalEventsBatch.EventInfo.Count} statistical events.");
-            ApiResponseResult<BaseResponse> baseResponse = await _api.PostStatisticalEventsAsync(statisticalEventsBatch);
-            if (baseResponse.Success)
+            _logger.Info<AppLog>($"Sending {numOfEvents} statistical events.");
+
+            try
             {
-                _logger.Info<AppLog>($"Successfully sent {statisticalEventsBatch.EventInfo.Count} statistical events. Removing them from the queue.");
-                await RemoveSuccessfullySentEventsAsync(statisticalEventsBatch.EventInfo);
+                ApiResponseResult<BaseResponse> baseResponse = await _api.PostStatisticalEventsAsync(statisticalEventsBatch);
+                if (baseResponse.Success)
+                {
+                    _logger.Info<AppLog>($"Successfully sent {numOfEvents} statistical events. Removing them from the queue.");
+                    await RemoveSuccessfullySentEventsAsync(statisticalEventsBatch.EventInfo);
+                }
+                else
+                {
+                    _logger.Error<AppLog>($"Failed to send {numOfEvents} statistical events. Keeping them in the queue.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _logger.Error<AppLog>($"Failed to send {statisticalEventsBatch.EventInfo.Count} statistical events. Keeping them in the queue.");
+                _logger.Error<AppLog>($"Exception thrown when sending {numOfEvents} statistical events. Keeping them in the queue.", ex);
             }
         }
 
