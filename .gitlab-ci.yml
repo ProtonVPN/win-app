@@ -185,7 +185,9 @@ i18n-commit-translations:
     - git config --global core.autocrlf false
 
 create-release:
-  image: debian:stable-slim
+  image: harbor.protontech.ch/docker.io/library/python:latest
+  tags:
+    - shared-small
   stage: release
   when: manual
   only:
