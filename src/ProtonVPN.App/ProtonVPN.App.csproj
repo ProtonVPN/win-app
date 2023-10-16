@@ -344,6 +344,8 @@
     <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
     <ProjectReference Include="..\ProtonVPN.Resources\ProtonVPN.Resource.csproj" />
     <ProjectReference Include="..\ProtonVPN.Translations\ProtonVPN.Translations.csproj" />
+    <ProjectReference Include="..\StatisticalEvents\ProtonVPN.StatisticalEvents.Contracts\ProtonVPN.StatisticalEvents.Contracts.csproj" />
+    <ProjectReference Include="..\StatisticalEvents\ProtonVPN.StatisticalEvents.Installers\ProtonVPN.StatisticalEvents.Installers.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\SidebarFlags\ad.jpg" />

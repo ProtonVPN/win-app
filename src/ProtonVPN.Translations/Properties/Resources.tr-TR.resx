@@ -1675,7 +1675,7 @@
     <value>Sistem saatiniz doğru değil gibi görünüyor. Bu durum VPN bağlantısının kurulmasını engelleyebilir. Ayrıntılı bilgi almak için &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;buraya&lt;/Hyperlink&gt; bakabilirsiniz.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, internete erişemezsiniz.</value>
+    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, İnternet erişiminiz de kesilir.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Kalıcı bağlantı kesici açılsın mı?</value>
@@ -1725,7 +1725,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Bağlantı kesicinin etkin olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesiciyi kapatır.</value>
+    <value>Bağlantı kesicinin açık olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesiciyi kapatır.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1743,7 +1743,7 @@
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir İnternet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Güncellenmiş Proton, birleşik koruma</value>
@@ -1825,7 +1825,7 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;İnternet bağlantısı yok&lt;/Bold&gt; - Lütfen internet bağlantınızın çalıştığından emin olun.</value>
+    <value>&lt;Bold&gt;İnternet bağlantısı yok&lt;/Bold&gt; - Lütfen İnternet bağlantınızın çalıştığından emin olun.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1944,7 +1944,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Her yerde güvenli internet</value>
+    <value>Her yerde güvenli İnternet</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2078,7 +2078,7 @@
     <value>Ayrıntılı bilgi alın</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
+    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak İnternet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Hız hakkında bir not...</value>
@@ -2129,7 +2129,7 @@
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Güvenli olmayan WiFi bağlantısı algılandı: {0}</value>
+    <value>Güvenli olmayan Wi-Fi bağlantısı algılandı: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
@@ -2472,7 +2472,7 @@
     <value>YÜKSELT</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için interneti kapatır.</value>
+    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için İnternet erişimini kapatır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>İnternette reklamlar ve kötü amaçlı yazılımlar olmadan gezinin.</value>
@@ -2484,7 +2484,7 @@
     <value>Reklam engellendi</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Reklam web siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
+    <value>Reklam siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
     <value>Kazanılan veri</value>
@@ -2505,7 +2505,7 @@
     <value>Siteler yüklenmiyorsa, NetShield özelliğini kapatmayı deneyin</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
+    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>En hassas verilerinizi gizliliğe saygı gösteren ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
@@ -2734,11 +2734,11 @@
     <value>Yönlendirilen bağlantı noktası değiştirildiğinde bildirim alın</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
+    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Ayrılmış tünelleme</value>
@@ -2938,7 +2938,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Ağ sorunları veya internet hizmeti sağlayıcınızın kısıtlamaları nedeniyle IP adresiniz alınamadı.</value>
+    <value>Ağ sorunları veya İnternet hizmeti sağlayıcınızın kısıtlamaları nedeniyle IP adresiniz alınamadı.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
@@ -3181,7 +3181,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>10 aygıta kadar koruyun</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>30 gün içinde ücret iade garantisi</value>
+    <value>30 gün içinde ücreti geri ödeme garantisi</value>
   </data>
   <data name="Upsell_Country_Subtitle">
     <value>VPN Plus tarifesi ile &lt;Bold&gt;ülke seçimine&lt;/Bold&gt; geçin</value>

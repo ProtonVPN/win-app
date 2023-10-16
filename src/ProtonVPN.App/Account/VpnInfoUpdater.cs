@@ -48,7 +48,7 @@ namespace ProtonVPN.Account
 
         private readonly TimeSpan _checkInterval;
         private readonly ISchedulerTimer _timer;
-        private DateTime _lastCheck = DateTime.Now;
+        private DateTime _lastCheck = DateTime.UtcNow;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
         public VpnInfoUpdater(IConfiguration appConfig,
@@ -92,12 +92,12 @@ namespace ProtonVPN.Account
 
         private async Task Handle()
         {
-            if (DateTime.Now.Subtract(_lastCheck) < _checkInterval)
+            if (DateTime.UtcNow.Subtract(_lastCheck) < _checkInterval)
             {
                 return;
             }
 
-            _lastCheck = DateTime.Now;
+            _lastCheck = DateTime.UtcNow;
             await Update();
         }
 

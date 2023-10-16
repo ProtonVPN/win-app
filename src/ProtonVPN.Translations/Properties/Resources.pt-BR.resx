@@ -3185,7 +3185,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Garantimos a devolução do seu dinheiro por até 30 dias</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+    <value>Desbloqueie a &lt;Bold&gt; seleção de países &lt;/Bold&gt; com a VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
     <value>Quer escolher um país específico?</value>

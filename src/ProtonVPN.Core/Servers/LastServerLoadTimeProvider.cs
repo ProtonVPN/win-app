@@ -23,11 +23,11 @@ namespace ProtonVPN.Core.Servers
 {
     public class LastServerLoadTimeProvider : ILastServerLoadTimeProvider
     {
-        private DateTime _lastCheck = DateTime.Now;
+        private DateTime _lastCheck = DateTime.UtcNow;
 
         public void Update()
         {
-            _lastCheck = DateTime.Now;
+            _lastCheck = DateTime.UtcNow;
         }
 
         public DateTime LastChecked()

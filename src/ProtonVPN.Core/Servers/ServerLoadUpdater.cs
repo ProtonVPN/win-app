@@ -114,7 +114,7 @@ namespace ProtonVPN.Core.Servers
 
         private bool TimeToUpdateLoads()
         {
-            return DateTime.Now.Subtract(_lastServerLoadTimeProvider.LastChecked()) > _updateInterval;
+            return DateTime.UtcNow.Subtract(_lastServerLoadTimeProvider.LastChecked()) > _updateInterval;
         }
 
         private void StartUpdateAction()

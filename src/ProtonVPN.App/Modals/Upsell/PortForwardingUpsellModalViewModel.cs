@@ -22,6 +22,7 @@ using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
 {
@@ -29,8 +30,13 @@ namespace ProtonVPN.Modals.Upsell
     {
         public ICommand OpenAboutPageCommand { get; set; }
 
+        protected override ModalSources ModalSource { get; } = ModalSources.PortForwarding;
+
         public PortForwardingUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager,
-            IActiveUrls urls) : base(subscriptionManager, serverManager, urls)
+            IActiveUrls urls, IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender) 
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+                  upsellDisplayStatisticalEventSender)
         {
             OpenAboutPageCommand = new RelayCommand(OpenAboutPage);
         }

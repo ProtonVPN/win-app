@@ -354,7 +354,10 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 IsCertificateValidationDisabled = false,
 
-                DeviceRolloutPercentage = null
+                DeviceRolloutPercentage = null,
+
+                StatisticalEventSendTriggerInterval = TimeSpan.FromMinutes(15),
+                StatisticalEventMinimumWaitInterval = TimeSpan.FromMinutes(10)
             };
         }
     }

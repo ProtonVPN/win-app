@@ -1775,7 +1775,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Представляємо оновлений вигляд Proton. Багато служб, одна місія. Ласкаво просимо до Інтернету, де приватність — це стандарт. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Докладніше&lt;/Hyperlink&gt;</value>
+    <value>Представляємо оновлений вигляд Proton. Багато служб, одна місія. Ласкаво просимо до інтернету, де приватність — це стандарт. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Докладніше&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Оновлений Proton, єдиний захист</value>
@@ -1787,16 +1787,16 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Для правильної роботи роздільного тунелювання необхідно вимкнути Kill Switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
-    <value>Hundreds of servers in {0} country</value>
+    <value>Сотні серверів у {0} країні</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Few">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>Сотні серверів у {0} країнах</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Many">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>Сотні серверів у {0} країнах</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>Сотні серверів у {0} країнах</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>Під'єднайте до 10 пристроїв одночасно</value>
@@ -2078,7 +2078,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Upgrade to Plus</value>
+    <value>Покращити до Plus</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>ПІД'ЄДНАНО</value>
@@ -2101,10 +2101,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Get unlimited changes with VPN Plus</value>
+    <value>Змінюйте сервери без обмежень з VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>You’ve reached the maximum number of Free server changes for now.</value>
+    <value>Ви досягли максимальної кількості змін безплатних серверів.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Активувати Secure Core</value>
@@ -2122,22 +2122,22 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Примітка про швидкість...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>New Free countries</value>
+    <value>Нові країни з безплатними серверами</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>There are now Free servers in Poland and Romania.</value>
+    <value>Тепер є нові безплатні сервери в Польщі та Румунії.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Changes to server selection</value>
+    <value>Зміни у виборі сервера</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+    <value>Щоб запобігти перевантаженню серверів та гарантувати всім швидкий і безпечний доступ до інтернету, ми вилучили можливість ручного вибору країни та зробили суттєві покращення автоматичного вибору сервера.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>What’s new</value>
+    <value>Що нового</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Got it</value>
+    <value>Зрозуміло</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2605,7 +2605,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Fastest</value>
+    <value>Найшвидші</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
@@ -2628,7 +2628,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Free connections (1)</value>
+    <value>Безплатні з'єднання (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP сервера:</value>
@@ -2659,10 +2659,10 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Get worldwide coverage with VPN Plus</value>
+    <value>Користуйтеся світовим покриттям з VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Not the country you wanted? Upgrade to choose any server</value>
+    <value>Хочете під'єднатися до іншої країни? Передплатіть тарифний план, щоб вибирати будь-який сервер</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>З'єднатися</value>
@@ -2677,7 +2677,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>Покращити до Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>через</value>
@@ -2800,7 +2800,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>Пришвидште роботу з торентами та онлайн-іграми, дозволивши підтримуваним локальним програмам бути доступними з інтернету.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Роздільне тунелювання</value>
@@ -2945,7 +2945,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>Покращити до Plus</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2977,7 +2977,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Change server</value>
+    <value>Змінити сервер</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Швидке з'єднання</value>
@@ -3000,7 +3000,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Неможливо отримати вашу IP-адресу через проблеми з мережею або обмеженнями вашого постачальника Інтернету.</value>
+    <value>Неможливо отримати вашу IP-адресу через проблеми з мережею або обмеженнями вашого інтернет-провайдера.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
@@ -3012,7 +3012,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Plus locations ({0})</value>
+    <value>Розташування Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>Розташування BASIC та PLUS ({0})</value>
@@ -3214,100 +3214,100 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Access faster, less crowded servers.</value>
+    <value>Користуйтеся швидшими, менш навантаженими серверами</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>Збільште швидкість з'єднання до 400% за допомогою &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Improved speed and stability when connected to distant servers.</value>
+    <value>Покращена швидкість і стабільність під час з'єднання з віддаленими серверами.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+    <value>Користуйтеся інтернетом на ще вищій швидкості (10 Гбіт/с)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Access geoblocked content</value>
+    <value>Доступ до вмісту, заблокованого на рівні розташування</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Choose any location</value>
+    <value>Обирайте будь-яке розташування</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Even higher VPN speed</value>
+    <value>Ще вища швидкість VPN</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Stream your favorite movies</value>
+    <value>Дивіться трансляції улюблених фільмів</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>У разі оновлення до тарифного плану Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} in {1}</value>
+    <value>Доступ до понад {0} в {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
-    <value>Connect to {0} country</value>
+    <value>Під'єднуйтеся до {0} країни</value>
   </data>
   <data name="Upsell_Country_Bullet1_Few">
-    <value>Connect to {0} countries</value>
+    <value>Під'єднуйтеся до {0} країн</value>
   </data>
   <data name="Upsell_Country_Bullet1_Many">
-    <value>Connect to {0} countries</value>
+    <value>Під'єднуйтеся до {0} країн</value>
   </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connect to {0} countries</value>
+    <value>Під'єднуйтеся до {0} країн</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Higher speeds (10 Gbps)</value>
+    <value>Вища швидкість (10 Гбіт/с)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Stream your favorite movies</value>
+    <value>Дивіться трансляції улюблених фільмів</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Protect up to 10 devices</value>
+    <value>Захистіть до 10 пристроїв</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>30-day money back guarantee</value>
+    <value>Гарантія повернення коштів протягом 30 днів</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+    <value>Розблокуйте &lt;Bold&gt;вибір країни&lt;/Bold&gt;, передплативши VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Want to choose a specific country?</value>
+    <value>Хочете вибрати певну країну?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+    <value>Під'єднуйтеся до VPN за допомогою &lt;Bold&gt;власної системи доменних імен (DNS)&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+    <value>Зберігайте часто використовувані з'єднання за допомогою &lt;Bold&gt;профілів&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+    <value>Отримайте швидший доступ до своїх профілів за допомогою &lt;Bold&gt;Швидкого з'єднання&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Unlock advanced VPN customization</value>
+    <value>Розблокуйте розширені налаштування VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Free server locations ({0})</value>
+    <value>Розташування безплатних серверів ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматично з'єднає вас із найшвидшим доступним сервером. Зазвичай – це найближчий до вашого розташування сервер.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Free connections</value>
+    <value>Безплатні з'єднання</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Improve online gaming and video call performance</value>
+    <value>Вдоскональте режим гри онлайн та якість відеовикликів</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
+    <value>NAT Type 2 (помірний) оптимізує швидкість і стабільність, дозволяючи прямі з'єднання між пристроями</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>Розблокуйте &lt;Bold&gt;NAT Type 2&lt;/Bold&gt;, передплативши VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>Перейдіть на новий ігровий рівень</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Блокування реклами та стеження</value>
@@ -3345,34 +3345,34 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>Покращте швидкість P2P-завантажень</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>Під'єднуйтеся до ігрових серверів та організовуйте багатокористувацькі режими</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>Налаштовуйте віддалений доступ до пристроїв у локальній мережі</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>Розблокуйте &lt;Bold&gt;переспрямування портів&lt;/Bold&gt;, передплативши VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>Вдоскональте роботу з P2P-з'єднаннями</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Save your preferred server, city, or country.</value>
+    <value>Зберігайте улюблений сервер, місто або країну.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Set custom protocols and premium VPN features.</value>
+    <value>Налаштуйте бажані протоколи та преміумфункції VPN.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Set up auto-connect for even faster access.</value>
+    <value>Налаштуйте автоматичне з'єднання для ще швидшого доступу.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+    <value>Розблокуйте &lt;Bold&gt;профілі&lt;/Bold&gt;, передплативши VPN Plus</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Get quick access to your frequent connections</value>
+    <value>Отримайте швидкий доступ до частих з'єднань</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>Додайте ще один рівень шифрування до свого VPN-з'єднання</value>
@@ -3390,19 +3390,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Подвійне шифрування за допомогою Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Split your traffic into VPN and non-VPN tunnels</value>
+    <value>Спрямовуйте трафік через VPN або в обхід VPN-тунелю</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+    <value>Дозвольте довіреним програмам та IP-адресам обходити VPN для швидшого з'єднання</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Access both home and local content when browsing from abroad</value>
+    <value>Отримуйте доступ як до місцевої, так і до домашньої мережі під час подорожей за кордон</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+    <value>Користуйтеся &lt;Bold&gt;роздільним тунелюванням&lt;/Bold&gt; з VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Get the best of both worlds</value>
+    <value>Відчуйте переваги повного контролю VPN-з'єднання</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Покращити</value>

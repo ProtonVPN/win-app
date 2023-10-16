@@ -2567,7 +2567,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Connexions gratuites (1)</value>
+    <value>Connexions Free (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP du serveur :</value>
@@ -3203,14 +3203,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Accédez à la personnalisation avancée du VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Emplacements des serveurs gratuits ({0})</value>
+    <value>Emplacements des serveurs Free ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
     <value>Proton Free vous connecte automatiquement au serveur disponible le plus rapide. Il s'agit normalement du serveur le plus proche de votre emplacement.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Connexions gratuites</value>
+    <value>Connexions Free</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
     <value>Améliorez les performances des jeux en ligne et des appels vidéo.</value>

@@ -21,18 +21,25 @@ using System.Collections.Generic;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class FreeConnectionsUpsellModalViewModel : UpsellModalViewModel
     {
-        public FreeConnectionsUpsellModalViewModel(ISubscriptionManager subscriptionManager,
-            ServerManager serverManager, IActiveUrls urls) : base(subscriptionManager, serverManager, urls)
-        {
-        }
+        protected override ModalSources ModalSource { get; } = ModalSources.Countries;
 
         public IList<string> FreeCountries => ServerManager.GetCountriesByTier(ServerTiers.Free);
 
         public string Locations => Translations.Translation.Format("Upsell_FreeConnections_Locations", FreeCountries.Count);
+
+        public FreeConnectionsUpsellModalViewModel(ISubscriptionManager subscriptionManager, 
+            ServerManager serverManager, IActiveUrls urls,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+                  upsellDisplayStatisticalEventSender)
+        {
+        }
     }
 }

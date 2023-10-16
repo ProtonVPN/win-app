@@ -21,6 +21,7 @@ using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Modals.Dialogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Upsell
@@ -30,18 +31,30 @@ namespace ProtonVPN.Modals.Upsell
         private const int SERVERS_COUNT_ROUNDED_DOWN = 3000;
 
         private readonly ISubscriptionManager _subscriptionManager;
+        private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+        private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+
         protected readonly ServerManager ServerManager;
         protected readonly IActiveUrls Urls;
 
-        public UpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager, IActiveUrls urls)
+        protected virtual ModalSources ModalSource { get; } = ModalSources.Countries;
+
+        public UpsellModalViewModel(ISubscriptionManager subscriptionManager,
+            ServerManager serverManager,
+            IActiveUrls urls,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
         {
             _subscriptionManager = subscriptionManager;
             ServerManager = serverManager;
             Urls = urls;
+            _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+            _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
         }
 
         protected override void ContinueAction()
         {
+            _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource);
             _subscriptionManager.UpgradeAccountAsync();
             TryClose(true);
         }
@@ -54,6 +67,11 @@ namespace ProtonVPN.Modals.Upsell
             string nSecureServers = string.Format(Translation.GetPlural("Secure_Servers_lbl", SERVERS_COUNT_ROUNDED_DOWN), SERVERS_COUNT_ROUNDED_DOWN);
             string nCountries = string.Format(Translation.GetPlural("Countries_lbl", totalCountries), totalCountries);
             return Translation.Format("Upsell_Countries_Title", nSecureServers, nCountries);
+        }
+
+        public override void BeforeOpenModal(dynamic options)
+        {
+            _upsellDisplayStatisticalEventSender.Send(ModalSource);
         }
     }
 }

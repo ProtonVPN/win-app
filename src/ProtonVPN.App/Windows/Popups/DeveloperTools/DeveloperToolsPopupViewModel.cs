@@ -39,6 +39,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Windows.Popups.DeveloperTools
@@ -55,6 +56,9 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private readonly IAppSettings _appSettings;
         private readonly ReconnectManager _reconnectManager;
         private readonly IAppExitInvoker _appExitInvoker;
+        private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+        private readonly IUpsellSuccessStatisticalEventSender _upsellSuccessStatisticalEventSender;
+        private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
         public DeveloperToolsPopupViewModel(AppWindow appWindow,
             IConfiguration config,
@@ -68,7 +72,10 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             ReconnectManager reconnectManager,
             IAppExitInvoker appExitInvoker,
             IEnumerable<IModal> modals,
-            IEnumerable<IPopupWindow> popupWindows)
+            IEnumerable<IPopupWindow> popupWindows,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+            IUpsellSuccessStatisticalEventSender upsellSuccessStatisticalEventSender,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
             : base(appWindow)
         {
             _config = config;
@@ -81,6 +88,9 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             _appSettings = appSettings;
             _reconnectManager = reconnectManager;
             _appExitInvoker = appExitInvoker;
+            _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
+            _upsellSuccessStatisticalEventSender = upsellSuccessStatisticalEventSender;
+            _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
             LoadModals(modals);
             LoadPopupWindows(popupWindows);
             InitializeCommands();
@@ -120,6 +130,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
             OpenPopupWindowCommand = new RelayCommand(OpenPopupWindowAction);
             OpenAllPopupWindowsCommand = new RelayCommand(OpenAllPopupWindowsAction);
             RefreshVpnInfoCommand = new RelayCommand(RefreshVpnInfoAction);
+            SendStatisticalEventsCommand = new RelayCommand(SendStatisticalEventsAction);
             CheckIfCurrentServerIsOnlineCommand = new RelayCommand(CheckIfCurrentServerIsOnlineAction);
             ShowReconnectionTooltipCommand = new RelayCommand(ShowReconnectionTooltipAction);
             ResetDoNotShowAgainCommand = new RelayCommand(ResetDoNotShowAgainAction);
@@ -134,6 +145,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         public ICommand OpenPopupWindowCommand { get; set; }
         public ICommand OpenAllPopupWindowsCommand { get; set; }
         public ICommand RefreshVpnInfoCommand { get; set; }
+        public ICommand SendStatisticalEventsCommand { get; set; }
         public ICommand CheckIfCurrentServerIsOnlineCommand { get; set; }
         public ICommand ShowReconnectionTooltipCommand { get; set; }
         public ICommand ResetDoNotShowAgainCommand { get; set; }
@@ -265,6 +277,13 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
                 _notificationSender.Send("Request failed",
                     $"[{ex.GetType().Name}] Exception message: {ex.CombinedMessage()}");
             }
+        }
+
+        private void SendStatisticalEventsAction()
+        {
+            _upsellDisplayStatisticalEventSender.Send(ModalSources.SecureCore);
+            _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSources.SplitTunneling);
+            _upsellSuccessStatisticalEventSender.Send(ModalSources.Countries, "free", "bundle2022");
         }
 
         private async void CheckIfCurrentServerIsOnlineAction()

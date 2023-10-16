@@ -181,6 +181,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <icons:ChartLine Style="{StaticResource Icon}" />
+                        <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Content="Send statistical events" Style="{StaticResource Title}"/>
+                            <Label Content="Triggers some made up statistical events to be sent" Style="{StaticResource Description}" />
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Style="{StaticResource Button}"
+                                Command="{Binding SendStatisticalEventsCommand}"
+                                Content="Send"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Left">
                         <icons:Wrench Style="{StaticResource Icon}" />
                         <StackPanel Margin="20,0,30,0" Orientation="Vertical" HorizontalAlignment="Left">
                             <Label Content="Check if server is online" Style="{StaticResource Title}"/>

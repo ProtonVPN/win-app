@@ -32,8 +32,6 @@ using ProtonVPN.Common.Collections.Concurrent;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
@@ -44,6 +42,8 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Dns.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Settings;
 
 namespace ProtonVPN.Core
@@ -619,6 +619,18 @@ namespace ProtonVPN.Core
         {
             get => Get<int>();
             set => Set(value);
+        }
+
+        public bool IsTelemetryGloballyEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        
+        public string StatisticalEvents
+        {
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
         }
 
         public TimeSpan MaintenanceCheckInterval

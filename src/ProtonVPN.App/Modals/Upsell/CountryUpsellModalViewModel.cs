@@ -20,12 +20,15 @@
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class CountryUpsellModalViewModel : UpsellModalViewModel
     {
+        protected override ModalSources ModalSource { get; } = ModalSources.Countries;
+
         public string Title => Translation.Get("Upsell_Country_Title");
 
         public string Bullet1
@@ -37,17 +40,22 @@ namespace ProtonVPN.Modals.Upsell
             }
         }
 
-        public CountryUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager, IActiveUrls urls) : base(
-            subscriptionManager, serverManager, urls)
-        {
-        }
-
         private string _countryCode;
 
         public string CountryCode
         {
             get => _countryCode;
             set => Set(ref _countryCode, value);
+        }
+
+        public CountryUpsellModalViewModel(ISubscriptionManager subscriptionManager,
+            ServerManager serverManager,
+            IActiveUrls urls,
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+                  upsellDisplayStatisticalEventSender)
+        {
         }
 
         public override void BeforeOpenModal(dynamic countryCode)

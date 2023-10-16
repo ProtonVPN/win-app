@@ -28,22 +28,18 @@ def push_branch(name):
 def create_commit(message):
     os.system(f"git commit -m \"{message}\"")
 
-def create_debug_branch(version):
-    branch = f"debug/{version}"
-    checkout_branch(branch)
-    push_branch(branch)
-
-def create_release_branch(version, commit_message):
+def create_branch(version, branch_name, commit_message):
     checkout_develop()
-    branch = f"release/{version}"
-    checkout_branch(branch)
+    checkout_branch(branch_name)
     update_app_version(version)
     create_commit(commit_message)
-    push_branch(branch)
+    push_branch(branch_name)
 
-def create_release_and_debug_branches(version):
-    create_release_branch(version, f"Increase app version to {version}")
-    create_debug_branch(version)
+def create_debug_branch(version, commit_message):
+    create_branch(version, f"debug/{version}", commit_message)
+
+def create_release_branch(version, commit_message):
+    create_branch(version, f"release/{version}", commit_message)
 
 def update_app_version(version):
     file_path = 'src/GlobalAssemblyInfo.cs'
@@ -63,6 +59,7 @@ if version == None:
 
 configure_git(os.getenv('RELEASE_GIT_EMAIL'), os.getenv('RELEASE_GIT_USERNAME'))
 
-create_release_and_debug_branches(version)
+create_release_branch(version, f"Increase app version to {version}")
+create_debug_branch(version, f"Increase app version to {version}")
 delete_branch("release/9.9.9")
 create_release_branch('9.9.9', f"Build app version 9.9.9 to test {version} installer")
