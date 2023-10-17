@@ -3,7 +3,7 @@
   dependencies:
     - build-installer
   tags:
-    - e2e-tests
+    - redesign
   script:
     - ci\test-scripts\uninstall-app.ps1
     - ci\test-scripts\install-the-app.ps1
