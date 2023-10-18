@@ -25,7 +25,7 @@ public partial class ShellRobot
 {
     public ShellRobot DoNavigateToHomePage()
     {
-        HomeNavigationViewItem.Click();
+        HomeNavigationViewItem.FocusAndDoubleClick();
 
         // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
         this.Wait(TestConstants.DefaultAnimationDelay);
@@ -35,7 +35,7 @@ public partial class ShellRobot
 
     public ShellRobot DoNavigateToCountriesPage()
     {
-        CountriesNavigationViewItem.FocusAndClick();
+        CountriesNavigationViewItem.FocusAndDoubleClick();
 
         // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
         this.Wait(TestConstants.DefaultAnimationDelay);
@@ -45,7 +45,7 @@ public partial class ShellRobot
 
     public ShellRobot DoNavigateToSettingsPage()
     {
-        SettingsNavigationViewItem.Click();
+        SettingsNavigationViewItem.FocusAndDoubleClick();
 
         // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
         this.Wait(TestConstants.DefaultAnimationDelay);

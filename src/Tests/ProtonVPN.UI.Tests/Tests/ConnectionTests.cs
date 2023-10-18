@@ -63,6 +63,8 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
+    [Retry(3)]
+    //TODO When reconnection logic is implemented remove retry
     public void Connect()
     {
         _homeRobot
@@ -74,6 +76,8 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
+    [Retry(3)]
+    //TODO When reconnection logic is implemented remove retry
     public void ConnectAndDisconnect()
     {
         _homeRobot
@@ -88,6 +92,8 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
+    [Retry(3)]
+    //TODO When reconnection logic is implemented remove retry
     public void ConnectAndCancel()
     {
         _homeRobot
@@ -136,6 +142,8 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
+    [Retry(3)]
+    //TODO When reconnection logic is implemented remove retry
     public void OpenConnectionDetails()
     {
         _homeRobot

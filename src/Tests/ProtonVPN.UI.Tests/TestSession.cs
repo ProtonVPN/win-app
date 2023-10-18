@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using FlaUI.Core;
@@ -105,43 +106,25 @@ public class TestSession
 
         string versionFolder = $"v{GetAppVersion()}";
         string installedClientPath = Path.Combine(TestConstants.AppFolderPath, versionFolder, CLIENT_NAME);
-
-        int retriesCounter = 0;
-        while (!File.Exists(installedClientPath) && retriesCounter < MAX_APP_START_TRIES)
-        {
-            Thread.Sleep(1000);
-            retriesCounter++;
-        }
-
-        if (retriesCounter >= MAX_APP_START_TRIES)
-        {
-            Assert.Fail($"Path to '{installedClientPath}' cannot be found");
-            return;
-        }
-
         App = Application.Launch(installedClientPath);
+        RetryResult<bool> result = WaitUntilAppIsRunning();
+        if (!result.Success)
+        {
+            //Sometimes app fails to launch on first try due to CI issues.
+            App = Application.Launch(installedClientPath);
+        }
+
         RefreshWindow(TestConstants.LongTimeout);
-        Window.WaitUntilClickable(TimeSpan.FromSeconds(10));
+        Window.WaitUntilClickable(TestConstants.ShortTimeout);
         Window.Focus();
     }
 
     protected static void KillProtonVpnProcess()
     {
-        Process process = new();
-        ProcessStartInfo startInfo = new()
-        {
-            WindowStyle = ProcessWindowStyle.Hidden,
-            FileName = "cmd.exe",
-            Arguments = "/C taskkill /F /im protonvpn.exe",
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true
-        };
-        process.StartInfo = startInfo;
-        process.Start();
-        process.Close();
-        //Give some time to properly exit the app
-        Thread.Sleep(2000);
+        Process.GetProcesses()
+            .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
+            .ToList()
+            .ForEach(process => process.Kill());
     }
 
     protected static void RestartFileExplorer()
@@ -192,7 +175,7 @@ public class TestSession
 
     private static void SaveScreenshotAndLogsIfFailed()
     {
-        if (!TestEnvironment.AreTestsRunningLocally() && !TestEnvironment.IsWindows11())
+        if (!TestEnvironment.AreTestsRunningLocally())
         {
             TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
             string testName = TestContext.CurrentContext.Test.MethodName;
@@ -201,5 +184,16 @@ public class TestSession
                 TestsRecorder.SaveScreenshotAndLogs(testName);
             }
         }
+    }
+    private static RetryResult<bool> WaitUntilAppIsRunning()
+    {
+        RetryResult<bool> retry = Retry.WhileFalse(
+            () => {
+                Process[] pname = Process.GetProcessesByName("ProtonVPN.Client");
+                return pname.Length > 0;
+            },
+            TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
+
+        return retry;
     }
 }

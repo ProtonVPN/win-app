@@ -91,6 +91,17 @@ public static class CommonActions
         element.Click();
     }
 
+    public static void FocusAndDoubleClick(this AutomationElement element)
+    {
+        if (element == null)
+        {
+            return;
+        }
+
+        element.FocusAndClick();
+        element.Click();
+    }
+
     public static void WaitUntilElementExistsByAutomationId(this Window window, string automationId, TimeSpan time)
     {
         RetryResult<AutomationElement> retry = Retry.WhileNull(

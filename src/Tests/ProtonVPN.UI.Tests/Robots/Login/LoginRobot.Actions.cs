@@ -35,12 +35,12 @@ public partial class LoginRobot
 
     public LoginRobot DoEnterTwoFactorCode(string code)
     {
-        TwoFactorInputField("First").Enter(code[0].ToString());
-        TwoFactorInputField("Second").Enter(code[1].ToString());
-        TwoFactorInputField("Third").Enter(code[2].ToString());
-        TwoFactorInputField("Fourth").Enter(code[3].ToString());
-        TwoFactorInputField("Fifth").Enter(code[4].ToString());
-        TwoFactorInputField("Sixth").Enter(code[5].ToString());
+        TwoFactorInputField("First").Text = (code[0].ToString());
+        TwoFactorInputField("Second").Text = (code[1].ToString());
+        TwoFactorInputField("Third").Text = (code[2].ToString());
+        TwoFactorInputField("Fourth").Text = (code[3].ToString());
+        TwoFactorInputField("Fifth").Text = (code[4].ToString());
+        TwoFactorInputField("Sixth").Text = (code[5].ToString());
         AuthenticateButton.WaitUntilEnabled();
         AuthenticateButton.Click();
         return this;

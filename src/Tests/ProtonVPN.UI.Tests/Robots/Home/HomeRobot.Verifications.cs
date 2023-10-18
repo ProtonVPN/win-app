@@ -59,45 +59,41 @@ public partial class HomeRobot
 
     public HomeRobot VerifyConnectionCardIsInInitalState()
     {
-        Assert.IsNotNull(ConnectionCardConnectButton);
-
         VerifyConnectionCardLabels(CONNECTION_CARD_DEFAULT_HEADER, CONNECTION_CARD_DEFAULT_TITLE);
+        Assert.IsNotNull(ConnectionCardConnectButton);
 
         return this;
     }
 
     public HomeRobot VerifyConnectionCardIsDisconnected(string countryCode = null, string cityState = null, int? serverNumber = null)
     {
-        Assert.IsNotNull(ConnectionCardConnectButton);
-        
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
         string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_DISCONNECTED_HEADER, expectedTitle, expectedSubtitle);
+        Assert.IsNotNull(ConnectionCardConnectButton);
 
         return this;
     }
 
     public HomeRobot VerifyConnectionCardIsConnecting(string countryCode = null, string cityState = null, int? serverNumber = null)
     {
-        Assert.IsNotNull(ConnectionCardCancelButton);
-
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
         string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTING_HEADER, expectedTitle, expectedSubtitle);
+        Assert.IsNotNull(ConnectionCardCancelButton);
 
         return this;
     }
 
     public HomeRobot VerifyConnectionCardIsConnected(string countryCode = null, string cityState = null, int? serverNumber = null)
     {
-        Assert.IsNotNull(ConnectionCardDisconnectButton);
-
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
         string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTED_HEADER, expectedTitle, expectedSubtitle);
+        Assert.IsNotNull(ConnectionCardDisconnectButton);
 
         return this;
     }

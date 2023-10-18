@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
@@ -30,48 +31,33 @@ public class UIActions : TestSession
 {
     protected dynamic WaitUntilElementExistsByName(string name, TimeSpan time)
     {
-        RetryResult<AutomationElement> retry = Retry.WhileNull(
-            () => {
-                App.WaitWhileBusy();
-                RefreshWindow();
-                return Window.FindFirstDescendant(cf => cf.ByName(name));
-            },
-            time, TestConstants.RetryInterval);
-
-        if (!retry.Success)
+        WaitForElement(() =>
         {
-            Assert.Fail("Failed to get " + name + " element within " + time.Seconds + " seconds.");
-        }
+            RefreshWindow();
+            return Window.FindFirstDescendant(cf => cf.ByName(name)) != null;
+        }, time, name);
+
         return this;
     }
 
     public dynamic WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
     {
-        RetryResult<AutomationElement> retry = Retry.WhileNull(
-            () => {
-                RefreshWindow();
-                return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
-            },
-            time, TestConstants.RetryInterval);
-
-        if (!retry.Success)
+        WaitForElement(() =>
         {
-            Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
-        }
+            RefreshWindow();
+            return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) != null;
+        }, time, automationId);
+
         return this;
     }
 
     protected dynamic WaitUntilTextMatches(Func<Label> getLabelMethod, TimeSpan time, string text)
     {
-        RetryResult<bool> retry = Retry.WhileFalse(() => {
-            return getLabelMethod()?.Text.Equals(text) ?? false;
-        }, time, TestConstants.RetryInterval);
-
-
-        if (!retry.Success)
+        WaitForElement(() =>
         {
-            Assert.Fail($"Expected text: '{text}' does not match: '{getLabelMethod().Text}'.");
-        }
+            RefreshWindow();
+            return getLabelMethod()?.Text.Equals(text) ?? false;
+        }, time, text);
         return this;
     }
 
@@ -92,5 +78,34 @@ public class UIActions : TestSession
     {
         WaitUntilElementExistsByName(name, timeout ?? TestConstants.VeryShortTimeout);
         return Window.FindFirstDescendant(cf => cf.ByName(name));
+    }
+
+    private void WaitForElement(Func<bool> function, TimeSpan time, string selector, string customMessage = null)
+    {
+        RetryResult<bool> retry = Retry.WhileFalse(
+            () => {
+                try
+                {
+                    App.WaitWhileBusy();
+                    return function();
+                }
+                catch (COMException)
+                {
+                    return false;
+                }
+            },
+            time, TestConstants.RetryInterval);
+
+        if (!retry.Success)
+        {
+            if (customMessage == null)
+            {
+                Assert.Fail($"Failed to get {selector} element within {time.TotalSeconds} seconds.");
+            }
+            else
+            {
+                Assert.Fail(customMessage);
+            }
+        }
     }
 }
