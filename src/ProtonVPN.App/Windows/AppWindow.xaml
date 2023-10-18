@@ -42,11 +42,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      MinHeight="600"
                      FlowDirection="{Binding FlowDirection}"
                      d:DataContext="{d:DesignData viewModel:MainViewModel}">
+
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="{Binding ActualHeight, ElementName=Titlebar}"
                       GlassFrameThickness="0" 
                       CornerRadius="0"/>
     </WindowChrome.WindowChrome>
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="TaskBarItemInfo" />
+    </Window.TaskbarItemInfo>
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:AppLoadingViewModel}">

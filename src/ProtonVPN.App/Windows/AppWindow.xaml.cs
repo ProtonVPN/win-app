@@ -62,6 +62,7 @@ namespace ProtonVPN.Windows
         private const int DEFAULT_WIDTH = 800;
         private const string ICON_PATH = "protonvpn.ico";
         private const string CONNECTED_ICON_PATH = "Resources/Assets/Images/Icons/systray-connected.ico";
+        private const string CHECKMARK_ICON_PATH = "Resources/Assets/Images/Icons/checkmark.ico";
 
         private readonly ILogger _logger;
         private readonly IEventAggregator _eventAggregator;
@@ -72,6 +73,7 @@ namespace ProtonVPN.Windows
         private readonly DoubleAnimation _blurOutAnimation = new(0, TimeSpan.FromMilliseconds(200));
         private readonly ResourceIcon _icon;
         private readonly ResourceIcon _connectedIcon;
+        private readonly ResourceIcon _checkmarkIcon;
 
         private static FieldInfo _menuDropAlignmentField;
         private bool _sidebarModeBeforeMaximize;
@@ -121,6 +123,7 @@ namespace ProtonVPN.Windows
 
             _icon = new(ICON_PATH);
             _connectedIcon = new(CONNECTED_ICON_PATH);
+            _checkmarkIcon = new(CHECKMARK_ICON_PATH);
             _sidebarModeBeforeMaximize = _appSettings.SidebarMode;
         }
 
@@ -220,10 +223,12 @@ namespace ProtonVPN.Windows
                 if (_isConnected && vpnStatus != VpnStatus.Connected)
                 {
                     Icon = BitmapFrame.Create(_icon.GetIconStream());
+                    TaskBarItemInfo.Overlay = null;
                 }
                 else if (!_isConnected && vpnStatus == VpnStatus.Connected)
                 {
                     Icon = BitmapFrame.Create(_connectedIcon.GetIconStream());
+                    TaskBarItemInfo.Overlay = BitmapFrame.Create(_checkmarkIcon.GetIconStream());
                 }
             }
             catch (Exception exception)
