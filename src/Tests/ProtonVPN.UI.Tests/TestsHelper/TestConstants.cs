@@ -31,11 +31,11 @@ public static class TestConstants
     public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
     public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
-    public static string ProfileName => "@AutomationProfile";
-    public static string AppFolderPath => @"C:\Program Files\Proton\VPN";
     public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
-    public static string MapCountry => "CA";
-    public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
+    public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
+    public static string MapCountry = "CA";
+    public static string PathToRecorder = @"C:\TestRecorder\ffmpeg.exe";
+    public static string ServiceLogsPath = @"C:\ProgramData\Proton\Proton VPN\Logs\service-logs.txt";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
 }

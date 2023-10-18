@@ -71,6 +71,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             if (File.Exists(TestConstants.ClientLogsPath))
             {
                 File.Copy(TestConstants.ClientLogsPath, pathToScreenshotFolder + @"\client-logs.txt", true);
+                File.Copy(TestConstants.ServiceLogsPath, pathToScreenshotFolder + @"\service-logs.txt", true);
             }
         }
 

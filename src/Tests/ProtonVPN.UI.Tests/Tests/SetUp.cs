@@ -35,6 +35,7 @@ public class SetUp : TestSession
     [OneTimeTearDown]
     public void TestFinalTearDown()
     {
+        KillProtonVpnProcess();
         TestsRecorder.StopRecording();
     }
 }
