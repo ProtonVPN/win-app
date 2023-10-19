@@ -96,9 +96,6 @@ namespace ProtonVPN.Common.Configuration
         public string PortForwardingRisksUrl { get; set; }
 
         [Required]
-        public string AboutModerateNatUrl { get; set; }
-
-        [Required]
         public string InvoicesUrl { get; set; }
 
         [Required]

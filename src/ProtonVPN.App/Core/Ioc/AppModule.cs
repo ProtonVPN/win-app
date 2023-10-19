@@ -60,7 +60,6 @@ using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.Modals.Welcome;
 using ProtonVPN.NetShield;
 using ProtonVPN.Notifications;
-using ProtonVPN.Partners;
 using ProtonVPN.PortForwarding;
 using ProtonVPN.Resource.Colors;
 using ProtonVPN.Servers;
@@ -69,6 +68,7 @@ using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Settings.ReconnectNotification;
 using ProtonVPN.Settings.SplitTunneling;
 using ProtonVPN.Sidebar;
+using ProtonVPN.Sidebar.ChangeServer;
 using ProtonVPN.Streaming;
 using ProtonVPN.Update;
 using ProtonVPN.Vpn;
@@ -92,6 +92,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
             builder.RegisterType<SidebarManager>().SingleInstance();
+            builder.RegisterType<ServerChangeManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<UpdateViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnConnectionSpeed>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
@@ -271,13 +272,12 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SettingsBuilder>().SingleInstance();
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnInfoUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UserSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UserCreationDateUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PlanChangeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
             builder.RegisterType<StreamingServicesFileStorage>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<PartnersService>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<PartnersUpdater>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<PartnersFileStorage>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NotificationSender>().As<INotificationSender>().SingleInstance();
 
             builder.RegisterType<Ed25519Asn1KeyGenerator>().As<IEd25519Asn1KeyGenerator>().SingleInstance();

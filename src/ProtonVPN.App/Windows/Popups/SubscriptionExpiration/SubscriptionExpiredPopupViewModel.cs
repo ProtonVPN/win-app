@@ -19,24 +19,39 @@
 
 using System;
 using ProtonVPN.Account;
+using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Servers.Reconnections;
 using ProtonVPN.Sidebar;
+using ProtonVPN.Translations;
 
 namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
 {
     public class SubscriptionExpiredPopupViewModel : BaseUpgradePlanPopupViewModel, ISubscriptionExpiredPopupViewModel
     {
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
+        private readonly ServerManager _serverManager;
         
         public ReconnectionData ReconnectionData { get; private set; }
 
-        public SubscriptionExpiredPopupViewModel(ISubscriptionManager subscriptionManager,
+        public SubscriptionExpiredPopupViewModel(
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
+            ServerManager serverManager,
+            ISubscriptionManager subscriptionManager,
             AppWindow appWindow)
             : base(subscriptionManager, appWindow)
         {
             _connectionStatusViewModel = connectionStatusViewModel;
+            _serverManager = serverManager;
+        }
+
+        public string ListOption1
+        {
+            get
+            {
+                int totalCountries = _serverManager.GetCountries().Count;
+                return string.Format(Translation.GetPlural("Dialogs_SubscriptionExpired_ListOption1", totalCountries), totalCountries);
+            }
         }
 
         protected override void OnViewAttached(object view, object context)

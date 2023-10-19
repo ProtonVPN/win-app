@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -28,11 +27,14 @@ using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Servers;
 using ProtonVPN.Sidebar.QuickSettings;
 using ProtonVPN.Vpn.Connectors;
@@ -48,31 +50,43 @@ namespace ProtonVPN.Sidebar
         IServersAware
     {
         private readonly IAppSettings _appSettings;
+        private readonly IVpnManager _vpnManager;
         private readonly ServerListFactory _serverListFactory;
         private readonly IScheduler _scheduler;
         private readonly ServerConnector _serverConnector;
         private readonly CountryConnector _countryConnector;
         private readonly GatewayConnector _gatewayConnector;
+        private readonly IModals _modals;
+        private readonly IUserStorage _userStorage;
         private VpnStateChangedEventArgs _vpnState = new(new VpnState(VpnStatus.Disconnected), VpnError.None, false);
 
         public CountriesViewModel(
             IAppSettings appSettings,
+            IVpnManager vpnManager,
             ServerListFactory serverListFactory,
             IScheduler scheduler,
             ServerConnector serverConnector,
             CountryConnector countryConnector,
             GatewayConnector gatewayConnector,
+            IModals modals,
+            IUserStorage userStorage,
             QuickSettingsViewModel quickSettingsViewModel)
         {
             _appSettings = appSettings;
+            _vpnManager = vpnManager;
             _serverListFactory = serverListFactory;
             _scheduler = scheduler;
             _serverConnector = serverConnector;
             _countryConnector = countryConnector;
+            _modals = modals;
+            _userStorage = userStorage;
             _gatewayConnector = gatewayConnector;
             QuickSettingsViewModel = quickSettingsViewModel;
 
             Connect = new RelayCommand<ServerItemViewModel>(ConnectAction);
+            Upgrade = new RelayCommand<ServerItemViewModel>(UpgradeActionAsync);
+            ShowFreeConnectionsModalCommand = new RelayCommand(ShowFreeConnectionsModalActionAsync);
+            ConnectFastest = new RelayCommand(ConnectFastestActionAsync);
             ConnectCountry = new RelayCommand<IServerCollection>(ConnectCountryActionAsync);
             Expand = new RelayCommand<IServerCollection>(ExpandAction);
             ClearSearchCommand = new RelayCommand(ClearSearchAction);
@@ -81,6 +95,9 @@ namespace ProtonVPN.Sidebar
         public QuickSettingsViewModel QuickSettingsViewModel { get; }
 
         public ICommand Connect { get; }
+        public ICommand Upgrade { get; }
+        public ICommand ShowFreeConnectionsModalCommand { get; }
+        public ICommand ConnectFastest { get; }
         public ICommand ConnectCountry { get; }
         public ICommand Expand { get; set; }
         public ICommand ClearSearchCommand { get; }
@@ -135,18 +152,16 @@ namespace ProtonVPN.Sidebar
                 return;
             }
 
-            _scheduler.Schedule(() =>
-            {
-                serverCollection.Expanded = true;
-                int index = _items.IndexOf(serverCollection) + 1;
+            serverCollection.Expanded = true;
 
-                ObservableCollection<IServerListItem> collection = 
-                    new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
-                foreach (IServerListItem serverListItem in collection)
-                {
-                    _items.Insert(index, serverListItem);
-                }
-            });
+            int index = _items.IndexOf(serverCollection) + 1;
+
+            ObservableCollection<IServerListItem> collection =
+                new ObservableCollection<IServerListItem>(serverCollection.Servers.Reverse());
+            foreach (IServerListItem serverListItem in collection)
+            {
+                _items.Insert(index, serverListItem);
+            }
         }
 
         public void CollapseCollection(IServerCollection serverCollection)
@@ -193,6 +208,10 @@ namespace ProtonVPN.Sidebar
                 case nameof(IAppSettings.Language):
                     CreateList();
                     break;
+
+                case nameof(IAppSettings.FeatureFreeRescopeEnabled):
+                    CreateList();
+                    break;
             }
         }
 
@@ -200,7 +219,7 @@ namespace ProtonVPN.Sidebar
         {
             _vpnState = e;
 
-            if (!(e.State.Server is Server server))
+            if (!(e.State.Server is Server server) || (_appSettings.FeatureFreeRescopeEnabled && !_userStorage.GetUser().Paid()))
             {
                 return;
             }
@@ -247,32 +266,35 @@ namespace ProtonVPN.Sidebar
 
         private void CreateList()
         {
-            if (SecureCore)
+            _scheduler.Schedule(() =>
             {
-                Items = _serverListFactory.BuildSecureCoreList();
-            }
-            else if (PortForwarding)
-            {
-                Items = _serverListFactory.BuildPortForwardingList(SearchValue);
-            }
-            else
-            {
-                Items = _serverListFactory.BuildServerList(SearchValue);
-            }
-
-            foreach (IServerListItem item in Items.ToList())
-            {
-                if (item is ServersByCountryViewModel serversByCountry && serversByCountry.Expanded)
+                if (SecureCore)
                 {
-                    serversByCountry.Expanded = false;
-                    ExpandCollection(serversByCountry);
+                    Items = _serverListFactory.BuildSecureCoreList();
                 }
-            }
+                else if (PortForwarding)
+                {
+                    Items = _serverListFactory.BuildPortForwardingList(SearchValue);
+                }
+                else
+                {
+                    Items = _serverListFactory.BuildServerList(SearchValue);
+                }
 
-            if (_vpnState != null)
-            {
-                OnVpnStateChanged(_vpnState);
-            }
+                foreach (IServerListItem item in Items.ToList())
+                {
+                    if (item is ServersByCountryViewModel serversByCountry && serversByCountry.Expanded)
+                    {
+                        serversByCountry.Expanded = false;
+                        ExpandCollection(serversByCountry);
+                    }
+                }
+
+                if (_vpnState != null)
+                {
+                    OnVpnStateChanged(_vpnState);
+                }
+            });
         }
 
         private void UpdateVpnState(VpnState state)
@@ -313,14 +335,17 @@ namespace ProtonVPN.Sidebar
 
         private void ExpandAction(IServerCollection serverCollection)
         {
-            if (!serverCollection.Expanded)
+            _scheduler.Schedule(() =>
             {
-                ExpandCollection(serverCollection);
-            }
-            else
-            {
-                CollapseCollection(serverCollection);
-            }
+                if (!serverCollection.Expanded)
+                {
+                    ExpandCollection(serverCollection);
+                }
+                else
+                {
+                    CollapseCollection(serverCollection);
+                }
+            });
         }
 
         private async void ConnectAction(ServerItemViewModel serverItemViewModel)
@@ -332,6 +357,28 @@ namespace ProtonVPN.Sidebar
             }
 
             await _serverConnector.Connect(serverItemViewModel.Server);
+        }
+
+        private async void UpgradeActionAsync(ServerItemViewModel serverItemViewModel)
+        {
+            if (serverItemViewModel != null && !string.IsNullOrEmpty(serverItemViewModel.Server.ExitCountry) && _appSettings.FeatureFreeRescopeEnabled)
+            {
+                await _modals.ShowAsync<CountryUpsellModalViewModel>(serverItemViewModel.Server.ExitCountry);
+            }
+            else
+            {
+                await _modals.ShowAsync<UpsellModalViewModel>();
+            }
+        }
+
+        private async void ShowFreeConnectionsModalActionAsync()
+        {
+            await _modals.ShowAsync<FreeConnectionsUpsellModalViewModel>();
+        }
+
+        private async void ConnectFastestActionAsync()
+        {
+            await _vpnManager.QuickConnectAsync();
         }
 
         private async void ConnectCountryActionAsync(IServerCollection serverCollection)

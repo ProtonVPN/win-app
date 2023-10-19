@@ -35,6 +35,7 @@ namespace ProtonVPN.Core.Service.Vpn
         bool NetworkBlocked { get; }
         Task<IList<Server>> GetSortedAndValidQuickConnectServersAsync(int? maxServers = null);
         Task QuickConnectAsync(int? maxServers = null);
+        Task ConnectToDifferentRandomFreeServerAsync();
         Task ConnectToBestProfileAsync(Profile profile, Profile fallbackProfile = null, int? maxServers = null);
         Task ConnectToPreSortedCandidatesAsync(IReadOnlyCollection<Server> sortedCandidates, VpnProtocol vpnProtocol);
         Task ConnectToProfileAsync(Profile profile, VpnProtocol? vpnProtocol = null);

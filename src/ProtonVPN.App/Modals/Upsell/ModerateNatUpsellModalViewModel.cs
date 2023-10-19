@@ -17,25 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class ModerateNatUpsellModalViewModel : UpsellModalViewModel
     {
-        public ModerateNatUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(subscriptionManager, urls)
-        {
-            OpenModerateNatArticleCommand = new RelayCommand(OpenModerateNatArticleAction);
-        }
+        protected override ModalSources ModalSource { get; } = ModalSources.ModerateNat;
 
-        public ICommand OpenModerateNatArticleCommand { get; }
-
-        private void OpenModerateNatArticleAction()
+        public ModerateNatUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager,
+            IActiveUrls urls, IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+                   upsellDisplayStatisticalEventSender)
         {
-            Urls.AboutModerateNatUrl.Open();
         }
     }
 }

@@ -1675,7 +1675,7 @@
     <value>Sistem saatiniz doğru değil gibi görünüyor. Bu durum VPN bağlantısının kurulmasını engelleyebilir. Ayrıntılı bilgi almak için &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;buraya&lt;/Hyperlink&gt; bakabilirsiniz.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, internete erişemezsiniz.</value>
+    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, İnternet erişiminiz de kesilir.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>Kalıcı bağlantı kesici açılsın mı?</value>
@@ -1725,7 +1725,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Bağlantı kesicinin etkin olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesiciyi kapatır.</value>
+    <value>Bağlantı kesicinin açık olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesiciyi kapatır.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1743,7 +1743,7 @@
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir İnternet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Güncellenmiş Proton, birleşik koruma</value>
@@ -1754,9 +1754,11 @@
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>Ayrılmış tünellemenin düzgün çalışması için bağlantı kesiciyi kapatmalısınız.</value>
   </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1">
-    <value>55 ülkede yüzlerce sunucu</value>
-    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_One">
+    <value>{0} ülkede yüzlerce sunucu</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
+    <value>{0} ülkede yüzlerce sunucu</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>Aynı anda 10 aygıta kadar bağlantı</value>
@@ -1823,7 +1825,7 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;İnternet bağlantısı yok&lt;/Bold&gt; - Lütfen internet bağlantınızın çalıştığından emin olun.</value>
+    <value>&lt;Bold&gt;İnternet bağlantısı yok&lt;/Bold&gt; - Lütfen İnternet bağlantınızın çalıştığından emin olun.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1942,7 +1944,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Her yerde güvenli internet</value>
+    <value>Her yerde güvenli İnternet</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2037,6 +2039,9 @@
     <value>Gönderilen miktar:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
+  <data name="Map_UpgradeTooltip">
+    <value>Plus tarifesine yükselt</value>
+  </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>BAĞLI</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
@@ -2057,6 +2062,12 @@
     <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
+  <data name="Modal_ChangeServer_Subtitle">
+    <value>VPN Plus tarifesi ile sınırsız değişim sayısı edinin</value>
+  </data>
+  <data name="Modal_ChangeServer_Title">
+    <value>Yapabileceğiniz en fazla Free sunucu değişikliği sayısına ulaştınız.</value>
+  </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Secure Core kullanılsın</value>
   </data>
@@ -2067,10 +2078,28 @@
     <value>Ayrıntılı bilgi alın</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
+    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak İnternet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Hız hakkında bir not...</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountries">
+    <value>Yeni Free ülkeleri</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountriesDescription">
+    <value>Artık Polonya ve Romanya'da Free sunucuları var.</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelection">
+    <value>Sunucu seçimindeki değişiklikler</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelectionDescription">
+    <value>Sunucu kalabalığını önlemek ve herkesin hızlı ve güvenli gezinmeye erişmesini sağlamak için el ile ülke seçimini kaldırdık ve otomatik sunucu seçiminde önemli iyileştirmeler yaptık.</value>
+  </data>
+  <data name="Modals_Rescope_Title">
+    <value>Yenilikler</value>
+  </data>
+  <data name="Modals_Rescope_btn_GotIt">
+    <value>Anladım</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2100,7 +2129,7 @@
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Güvenli olmayan WiFi bağlantısı algılandı: {0}</value>
+    <value>Güvenli olmayan Wi-Fi bağlantısı algılandı: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
@@ -2443,7 +2472,7 @@
     <value>YÜKSELT</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için interneti kapatır.</value>
+    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için İnternet erişimini kapatır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>İnternette reklamlar ve kötü amaçlı yazılımlar olmadan gezinin.</value>
@@ -2455,7 +2484,7 @@
     <value>Reklam engellendi</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Reklam web siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
+    <value>Reklam siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
     <value>Kazanılan veri</value>
@@ -2476,7 +2505,7 @@
     <value>Siteler yüklenmiyorsa, NetShield özelliğini kapatmayı deneyin</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
+    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>En hassas verilerinizi gizliliğe saygı gösteren ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
@@ -2513,6 +2542,10 @@
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
   </data>
+  <data name="Servers_Fastest">
+    <value>En hızlı</value>
+    <comment>The label for fastest server item in the country list</comment>
+  </data>
   <data name="Servers_Feature_val_P2P">
     <value>P2P sunucusu</value>
     <comment>The name of P2P server feature</comment>
@@ -2531,6 +2564,9 @@
   <data name="Servers_Feature_val_Tor">
     <value>Tor sunucusu</value>
     <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_FreeConnections">
+    <value>Free bağlantıları (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>Sunucu IP adresi:</value>
@@ -2560,6 +2596,12 @@
     <value>{0} üzerinden {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
+  <data name="Servers_UpsellBanner">
+    <value>VPN Plus tarifesi ile tüm Dünya'ya erişin</value>
+  </data>
+  <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
+    <value>İstediğiniz ülke yok mu? İstediğiniz sunucuyu seçmek için tarifenizi yükseltin</value>
+  </data>
   <data name="Servers_btn_Connect">
     <value>Bağlan</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
@@ -2572,9 +2614,8 @@
     <value>Yükselt</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
-  <data name="Servers_lbl_Upgrade">
-    <value>Yükselt</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  <data name="Servers_lbl_UpgradeToPlus">
+    <value>Plus tarifesine yükselt</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>şu ülkeden</value>
@@ -2693,8 +2734,11 @@
     <value>Yönlendirilen bağlantı noktası değiştirildiğinde bildirim alın</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Desteklenen yerel uygulamalara internet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
+    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Ayrılmış tünelleme</value>
@@ -2838,6 +2882,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Genel</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
+  <data name="Settings_btn_UpgradeToPlus">
+    <value>Plus tarifesine yükselt</value>
+    <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
+  </data>
   <data name="Settings_lnk_Reconnect">
     <value>Yeniden bağlan</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
@@ -2866,6 +2914,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ağ geçidi nedir?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
+  <data name="Sidebar_Connection_btn_ChangeServer">
+    <value>Sunucu değiştir</value>
+  </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Hızlı bağlan</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
@@ -2887,7 +2938,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Ağ sorunları veya internet hizmeti sağlayıcınızın kısıtlamaları nedeniyle IP adresiniz alınamadı.</value>
+    <value>Ağ sorunları veya İnternet hizmeti sağlayıcınızın kısıtlamaları nedeniyle IP adresiniz alınamadı.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
@@ -2899,7 +2950,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Konumlar ({0})</value>
+    <value>Plus konumları ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>Basic ve Plus konumları ({0})</value>
@@ -2918,9 +2969,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Bilgiler</value>
-  </data>
-  <data name="Sidebar_Countries_OurPartners">
-    <value>İş ortaklarımız</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>Plus konumları ({0})</value>
@@ -3085,40 +3133,95 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Bildirim ayarları</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
-  <data name="Upsell_Countries_BlockAds">
-    <value>NetShield ile reklam ve kötü amaçlı yazılımları engelleyin</value>
+  <data name="Upsell_Accelerator_Bullet1">
+    <value>Daha hızlı ve daha az kalabalık sunuculara erişin</value>
   </data>
-  <data name="Upsell_Countries_BrowseFast">
-    <value>En yüksek hızlarda gezinin (10 Gb/sn)</value>
+  <data name="Upsell_Accelerator_Bullet2">
+    <value>&lt;Bold&gt;VPN Accelerator&lt;/Bold&gt; ile bağlantı hızlarını %400 oranında artırın.</value>
   </data>
-  <data name="Upsell_Countries_GlobalStreamingServices">
-    <value>Tüm dünyaradaki yayın akışı hizmetlerine erişin</value>
+  <data name="Upsell_Accelerator_Bullet3">
+    <value>Uzak sunucularla bağlantı kurarken daha iyi hız ve kararlılık elde edin</value>
   </data>
-  <data name="Upsell_Countries_MoreFeatures">
-    <value>Ve pek çok diğer ücretli özellik</value>
+  <data name="Upsell_Accelerator_Title">
+    <value>Daha da yüksek hızlarda gezinin (10 Gb/sn değerine varan)</value>
   </data>
-  <data name="Upsell_Countries_SimultaneousDevices">
-    <value>Aynı anda 10 aygıta kadar bağlanın</value>
+  <data name="Upsell_Countries_AccessGeoblockedContent">
+    <value>Bölgenizde engellenen içeriğe erişin</value>
+  </data>
+  <data name="Upsell_Countries_ChooseAnyLocation">
+    <value>İstediğiniz konumu seçin</value>
+  </data>
+  <data name="Upsell_Countries_HigherVpnSpeed">
+    <value>Daha yüksek VPN hızı</value>
+  </data>
+  <data name="Upsell_Countries_StreamMovies">
+    <value>Sevdiğiniz filmleri izleyin</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>Plus tarifesine yükselttiğinizde</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>{0} ile {1} erişim.</value>
+    <value>{0} ile {1} erişim</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
-  <data name="Upsell_ModerateNat_About">
-    <value>Ilımlı NAT nedir?</value>
+  <data name="Upsell_Country_Bullet1_One">
+    <value>{0} ülkeden bağlantı kurun</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Other">
+    <value>{0} ülkeden bağlantı kurun</value>
+  </data>
+  <data name="Upsell_Country_Bullet2">
+    <value>Daha yüksek hızlar (10 Gb/sn)</value>
+  </data>
+  <data name="Upsell_Country_Bullet3">
+    <value>Sevdiğiniz filmleri izleyin</value>
+  </data>
+  <data name="Upsell_Country_Bullet4">
+    <value>10 aygıta kadar koruyun</value>
+  </data>
+  <data name="Upsell_Country_Bullet5">
+    <value>30 gün içinde ücreti geri ödeme garantisi</value>
+  </data>
+  <data name="Upsell_Country_Subtitle">
+    <value>VPN Plus tarifesi ile &lt;Bold&gt;ülke seçimine&lt;/Bold&gt; geçin</value>
+  </data>
+  <data name="Upsell_Country_Title">
+    <value>Belirli bir ülke seçmek ister misiniz?</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet1">
+    <value>VPN bağlantınızı &lt;Bold&gt;özel etki alanı adı sisteminiz (DNS)&lt;/Bold&gt; ile yapın</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet2">
+    <value>&lt;Bold&gt;Profiller&lt;/Bold&gt; ile sık kullandığınız bağlantıları kaydedin</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet3">
+    <value>&lt;Bold&gt;Hızlı bağlan&lt;/Bold&gt; ile profillerinize daha hızlı erişin</value>
+  </data>
+  <data name="Upsell_CustomDns_Title">
+    <value>Gelişmiş VPN özelleştirmelerine erişin</value>
+  </data>
+  <data name="Upsell_FreeConnections_Locations">
+    <value>Free sunucuları konumları ({0})</value>
+    <comment>{0} represents a number of free server locations.</comment>
+  </data>
+  <data name="Upsell_FreeConnections_Subtitle">
+    <value>Proton Free sizi otomatik olarak kullanılabilecek en hızlı sunucuya bağlar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Title">
+    <value>Free bağlantıları</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet1">
+    <value>Çevrim içi oyun ve görüntülü görüşme başarımını artırın</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet2">
+    <value>NAT Type 2 (ortalama) aygıtlar arasında doğrudan bağlantı kurulmasını sağlayarak hız ve kararlılığı iyileştirir</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Ilımlı NAT, 2. tür Nat olarak da bilinir ve çeşitli uygulamalar ve çevrim içi video oyunlarıyla ilgili çevrim içi deneyiminizi iyileştirebilir.</value>
+    <value>VPN Plus tarifesi ile &lt;Bold&gt;NAT Type 2&lt;/Bold&gt; özelliğine erişin</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Ilımlı NAT kullanılsın</value>
-  </data>
-  <data name="Upsell_ModerateNat_Unlock">
-    <value>Ücretli bir tarife ile bu ve başka pek çok özelliği kullanabilirsiniz.</value>
+    <value>Oyun deneyiminizi üst düzeye çıkarın</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Reklam ve etkinlik izleyicileri engelleyebilirsiniz</value>
@@ -3155,14 +3258,35 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>VPN Business ile kullanılabilir.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
-  <data name="Upsell_PortForwarding_About">
-    <value>Bağlantı noktası yönlendirmesi nedir?</value>
+  <data name="Upsell_PortForwarding_Bullet1">
+    <value>Eşler arası indirme hızlarınızı iyileştirin</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet2">
+    <value>Çevrim içi oyun sunucularına bağlanın ve çok oyunculu oyunlar sunun</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet3">
+    <value>Yerel ağınızdaki aygıtlara uzaktan erişim sağlayın</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Bağlantı noktası yönlendirme ile daha hızlı P2P indirmeleri ve daha iyi çevrim içi oyun deneyimi elde edin. &lt;LineBreak/&gt;&lt;LineBreak/&gt;VPN Plus tarifesine geçerek bu ve pek çok diğer özelliği edinebilirsiniz.</value>
+    <value>VPN Plus tarifesi ile &lt;Bold&gt;bağlantı noktası yönlendirme&lt;/Bold&gt; özelliğine erişin</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Bağlantı noktası yönlendirmesi kullanılsın</value>
+    <value>P2P bağlantılarınızı hızlandırın</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet1">
+    <value>Yeğlediğiniz sunucuyu, ili ve ülkeyi kaydedin.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet2">
+    <value>Özel iletişim kuralları ayarlayın ve ücretli VPN özelliklerine erişin.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet3">
+    <value>Daha hızlı erişim için otomatik bağlantı kurun.</value>
+  </data>
+  <data name="Upsell_Profiles_Subtitle">
+    <value>VPN Plus tarifesi ile &lt;Bold&gt;profiller&lt;/Bold&gt; özelliğine erişin</value>
+  </data>
+  <data name="Upsell_Profiles_Title">
+    <value>Sık kullandığınız bağlantılara hızla erişin</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>VPN bağlantınıze ek bir şifreleme düzeyi ekleyebilirsiniz</value>
@@ -3178,6 +3302,21 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Secure Core ile şifrelemeyi iki katına çıkarabilirsiniz</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet1">
+    <value>VPN kullanan ve VPN kullanmayan trafiğinizi ayırın</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet2">
+    <value>Daha yüksek hız için güvenilir uygulamaların ve IP adreslerinin VPN kullanmamasını sağlayın</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet3">
+    <value>Yurt dışındayken hem evinizdeki hem de yerel içeriklere erişin</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Subtitle">
+    <value>VPN Plus tarifesi ile &lt;Bold&gt;ayrılmış tünelleme&lt;/Bold&gt; özelliğine erişin</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Title">
+    <value>İki dünyanın da en iyisini edinin</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Yükselt</value>

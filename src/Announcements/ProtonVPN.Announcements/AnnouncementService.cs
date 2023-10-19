@@ -30,13 +30,13 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Announcements
 {

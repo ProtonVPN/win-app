@@ -192,5 +192,30 @@ namespace ProtonVPN.Settings
             _userSettings.Set("Services", user.Services);
             _userSettings.Set("VpnPlanName", user.VpnPlanName);
         }
+
+        public void StoreCreationDateUtc(DateTime creationDateUtc)
+        {
+            _userSettings.Set("CreationDateUtc", creationDateUtc.ToString("O").Encrypt());
+        }
+
+        public DateTime? GetCreationDateUtc()
+        {
+            try
+            {
+                return UnsafeCreationDateUtc();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error<UserLog>("Failed to get location from storage", ex);
+            }
+
+            return null;
+        }
+
+        private DateTime? UnsafeCreationDateUtc()
+        {
+            string creationDateString = _userSettings.Get<string>("CreationDateUtc").Decrypt();
+            return DateTime.TryParse(creationDateString, out DateTime result) ? result : null;
+        }
     }
 }

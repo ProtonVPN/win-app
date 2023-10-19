@@ -328,7 +328,7 @@ namespace ProtonVPN.Vpn.Connectors
                     ModerateNat = _appSettings.ModerateNat,
                     PreferredProtocols = GetPreferredProtocols(protocol),
                     NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
-                    SplitTcp = _appSettings.IsVpnAcceleratorEnabled(),
+                    SplitTcp = _appSettings.IsVpnAcceleratorEnabled() && (_userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled),
                     AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
                     PortForwarding = _appSettings.IsPortForwardingEnabled(),
                 });

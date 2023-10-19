@@ -16,6 +16,13 @@
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
+#define SourcePath GetEnv("BUILD_PATH")
+#define IsBTISource SourcePath == "src/bin/win-x64/BTI/publish"
+#if IsBTISource
+#define OutputBaseSuffix "_BTI"
+#else
+#define OutputBaseSuffix ""
+#endif
 
 #include "CodeDependencies.iss"
 
@@ -29,7 +36,7 @@ DisableProgramGroupPage=auto
 AppPublisher={#MyPublisher}
 UninstallDisplayIcon={app}\{#LauncherExeName}
 UninstallDisplayName={#MyAppName}
-OutputBaseFilename=ProtonVPN_{#VersionFolder}
+OutputBaseFilename=ProtonVPN_{#VersionFolder}{#OutputBaseSuffix}
 WizardStyle=modern
 Compression=lzma2
 SolidCompression=yes
@@ -56,42 +63,42 @@ Root: HKCR; Subkey: "ProtonVPN\shell\open\command"; ValueType: string; ValueName
 Source: "..\src\ProtonVPN.NativeHost\bin\ProtonVPN.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.NativeHost\bin\nethost.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
-Source: "..\src\bin\win-x64\publish\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
+Source: "..\{#SourcePath}\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
 
-Source: "..\src\bin\win-x64\publish\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\ProtonVPNService.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\ProtonVPNService.deps.json"; DestDir: "{app}\{#VersionFolder}";
-Source: "..\src\bin\win-x64\publish\ProtonVPNService.runtimeconfig.json"; DestDir: "{app}\{#VersionFolder}"; AfterInstall: InstallService;
+Source: "..\{#SourcePath}\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\ProtonVPNService.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\ProtonVPNService.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\{#SourcePath}\ProtonVPNService.runtimeconfig.json"; DestDir: "{app}\{#VersionFolder}"; AfterInstall: InstallService;
 
-Source: "..\src\bin\win-x64\publish\*.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\*.exe"; Excludes: "ProtonVPN.exe,ProtonVPN.Launcher.exe,ProtonVPNService.exe,createdump.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
-Source: "..\src\bin\win-x64\publish\*.dll.config"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\{#SourcePath}\*.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\*.exe"; Excludes: "ProtonVPN.exe,ProtonVPN.Launcher.exe,ProtonVPNService.exe,createdump.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\{#SourcePath}\*.dll.config"; DestDir: "{app}\{#VersionFolder}";
 
-Source: "..\src\bin\win-x64\publish\runtimes\win-x64\native\*"; DestDir: "{app}\{#VersionFolder}\runtimes\win-x64\native";
+Source: "..\{#SourcePath}\runtimes\win-x64\native\*"; DestDir: "{app}\{#VersionFolder}\runtimes\win-x64\native";
 
-Source: "..\src\bin\win-x64\publish\en-US\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\en-US"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\cs-CZ\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\cs-CZ"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\de-DE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\de-DE"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\fa-IR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fa-IR"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\fr-FR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fr-FR"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\nl-NL\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nl-NL"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\hr-HR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\hr-HR"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\id-ID\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\id-ID"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\it-IT\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\it-IT"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\pl-PL\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pl-PL"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\pt-PT\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pt-PT"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\pt-BR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pt-BR"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\ro-RO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ro-RO"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\ru-RU\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ru-RU"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\es-ES\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\es-ES"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\es-419\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\es-419"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\uk-UA\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\uk-UA"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\tr-TR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\tr-TR"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\be-BY\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
+Source: "..\{#SourcePath}\en-US\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\en-US"; Flags: signonce;
+Source: "..\{#SourcePath}\cs-CZ\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\cs-CZ"; Flags: signonce;
+Source: "..\{#SourcePath}\de-DE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\de-DE"; Flags: signonce;
+Source: "..\{#SourcePath}\fa-IR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fa-IR"; Flags: signonce;
+Source: "..\{#SourcePath}\fr-FR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fr-FR"; Flags: signonce;
+Source: "..\{#SourcePath}\nl-NL\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nl-NL"; Flags: signonce;
+Source: "..\{#SourcePath}\hr-HR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\hr-HR"; Flags: signonce;
+Source: "..\{#SourcePath}\id-ID\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\id-ID"; Flags: signonce;
+Source: "..\{#SourcePath}\it-IT\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\it-IT"; Flags: signonce;
+Source: "..\{#SourcePath}\pl-PL\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pl-PL"; Flags: signonce;
+Source: "..\{#SourcePath}\pt-PT\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pt-PT"; Flags: signonce;
+Source: "..\{#SourcePath}\pt-BR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pt-BR"; Flags: signonce;
+Source: "..\{#SourcePath}\ro-RO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ro-RO"; Flags: signonce;
+Source: "..\{#SourcePath}\ru-RU\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ru-RU"; Flags: signonce;
+Source: "..\{#SourcePath}\es-ES\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\es-ES"; Flags: signonce;
+Source: "..\{#SourcePath}\es-419\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\es-419"; Flags: signonce;
+Source: "..\{#SourcePath}\uk-UA\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\uk-UA"; Flags: signonce;
+Source: "..\{#SourcePath}\tr-TR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\tr-TR"; Flags: signonce;
+Source: "..\{#SourcePath}\be-BY\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
 
-Source: "..\src\bin\win-x64\publish\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\src\bin\win-x64\publish\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\tunnel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 

@@ -30,9 +30,13 @@ namespace ProtonVPN.Core.Settings
         event EventHandler<VpnPlanChangedEventArgs> VpnPlanChanged;
 
         User GetUser();
-        UserLocation GetLocation();
         void StoreVpnInfo(VpnInfoWrapperResponse vpnInfoWrapper);
-        void SaveLocation(UserLocation location);
         void SaveUsername(string username);
+        
+        void SaveLocation(UserLocation location);
+        UserLocation GetLocation();
+
+        void StoreCreationDateUtc(DateTime creationDateUtc);
+        DateTime? GetCreationDateUtc();
     }
 }

@@ -22,7 +22,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:views="clr-namespace:ProtonVPN.Map.Views"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations">
+             xmlns:translations="clr-namespace:ProtonVPN.Translations;assembly=ProtonVPN.Translations"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource">
     <UserControl.Resources>
         <Style TargetType="views:Pin">
             <Setter Property="Highlighted" Value="{Binding Highlighted, Mode=TwoWay}"/>
@@ -37,10 +38,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <TextBlock Name="CountryName"
-                                   Margin="0,0,0,0"
-                                   Foreground="{StaticResource TextNormBrushColor}"
-                                   Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}}"/>
+                        <DockPanel Margin="0,5,0,0">
+                            <icons:ProtonPlus Width="38"
+                                              Margin="0,0,8,0"
+                                              VerticalAlignment="Center"
+                                              Visibility="{Binding UpgradeRequired, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Name="CountryName"
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource TextNormBrushColor}"
+                                       Text="{Binding CountryCode, Converter={StaticResource CountryCodeToNameConverter}}" />
+                        </DockPanel>
                         <ControlTemplate.Triggers>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
@@ -54,6 +61,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding Connected}" Value="False"/>
+                                    <Condition Binding="{Binding UpgradeRequired}" Value="False"/>
                                     <Condition Binding="{Binding IsMouseOver, ElementName=CountryName}" Value="True"/>
                                 </MultiDataTrigger.Conditions>
                                 <Setter TargetName="CountryName" Property="Text" Value="{translations:Loc Map_btn_Connect}"/>
@@ -63,6 +71,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <DataTrigger Binding="{Binding Highlighted}" Value="False">
                                 <Setter TargetName="CountryName" Property="Foreground" Value="{StaticResource TextDisabledBrushColor}"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
+                                <Setter TargetName="CountryName" Property="Foreground" Value="{StaticResource TextNormBrushColor}"/>
+                                <Setter Property="ToolTip" Value="{translations:Loc Map_UpgradeTooltip}"/>
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Connected}" Value="True"/>
+                                    <Condition Binding="{Binding IsMouseOver, ElementName=CountryName}" Value="True"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="ToolTip" Value="{x:Null}"/>
+                            </MultiDataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

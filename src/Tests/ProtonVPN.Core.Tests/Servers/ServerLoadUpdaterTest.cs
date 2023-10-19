@@ -76,7 +76,7 @@ namespace ProtonVPN.Core.Tests.Servers
         public async Task ItShouldStartUpdatingServerLoads()
         {
             // Arrange
-            ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.Now.Subtract(TimeSpan.FromHours(1)));
+            ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.UtcNow.Subtract(TimeSpan.FromHours(1)));
 
             // Act
             await sut.HandleAsync(new WindowStateMessage(true, WindowState.Normal), new CancellationTokenSource().Token);
@@ -89,7 +89,7 @@ namespace ProtonVPN.Core.Tests.Servers
         public async Task ItShouldNotStartUpdatingServerLoads()
         {
             // Arrange
-            ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.Now);
+            ServerLoadUpdater sut = GetServerLoadUpdater(DateTime.UtcNow);
 
             // Act
             await sut.HandleAsync(new WindowStateMessage(true, WindowState.Normal), new CancellationTokenSource().Token);

@@ -17,24 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using System.Linq;
 using Caliburn.Micro;
-using ProtonVPN.Partners;
 
 namespace ProtonVPN.Servers
 {
     public class FreeServersInfoPopupViewModel : Screen
     {
-        public FreeServersInfoPopupViewModel(List<PartnerType> partnerTypes)
-        {
-            PartnerTypes = partnerTypes;
-            Partners = partnerTypes.SelectMany(partnerType => partnerType.Partners).ToList();
-        }
-
-        public List<PartnerType> PartnerTypes { get; set; }
-        public List<Partner> Partners { get; set; }
-
-        public bool IsToShowPartners => Partners.Count > 0;
     }
 }

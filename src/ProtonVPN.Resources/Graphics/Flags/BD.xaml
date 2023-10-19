@@ -1,0 +1,38 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Flags.BD"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox>
+        <Canvas Height="16" Width="24">
+            <Canvas>
+                <Canvas.Clip>
+                    <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,24,16" />
+                </Canvas.Clip>
+                <Path Data="M24 -0.00256348H0V15.9949H24V-0.00256348Z" Fill="#496E2D" />
+                <Path
+                    Data="M10.3624 11.4785C10.8192 11.4647 11.2688 11.3611 11.6856 11.1735C12.1024 10.986 12.4781 10.7182 12.7913 10.3854C13.1046 10.0526 13.3493 9.66145 13.5113 9.23414C13.6734 8.80683 13.7497 8.35178 13.7359 7.89498C13.7221 7.43818 13.6185 6.98856 13.431 6.57181C13.2434 6.15506 12.9756 5.77932 12.6429 5.46606C12.3101 5.15281 11.9189 4.90816 11.4916 4.74609C11.0643 4.58401 10.6092 4.50769 10.1524 4.52148C9.22987 4.54933 8.35617 4.94252 7.72351 5.61456C7.09086 6.28659 6.75108 7.18243 6.77893 8.10498C6.80678 9.02754 7.19997 9.90124 7.87201 10.5339C8.54404 11.1666 9.43987 11.5063 10.3624 11.4785Z"
+                    Fill="#D80027" />
+            </Canvas>
+        </Canvas>
+    </Viewbox>
+</UserControl>

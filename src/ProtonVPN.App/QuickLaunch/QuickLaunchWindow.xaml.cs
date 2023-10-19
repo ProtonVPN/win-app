@@ -39,6 +39,15 @@ namespace ProtonVPN.QuickLaunch
 
             Deactivated += QuickLaunch_Deactivated;
             Activated += QuickLaunch_Activated;
+            SizeChanged += QuickLaunch_SizeChanged;
+        }
+
+        private void QuickLaunch_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        {
+            if (e.HeightChanged && e.PreviousSize is not { Width: 0, Height: 0 })
+            {
+                Top += e.PreviousSize.Height - e.NewSize.Height;
+            }
         }
 
         private void QuickLaunch_Activated(object sender, EventArgs e)

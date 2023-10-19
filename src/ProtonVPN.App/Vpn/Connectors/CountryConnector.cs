@@ -18,32 +18,47 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Modals.Upsell;
 
 namespace ProtonVPN.Vpn.Connectors
 {
     public class CountryConnector : BaseConnector
     {
+        private readonly IModals _modals;
+        private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
         private readonly IProfileFactory _profileFactory;
 
         public CountryConnector(
+            IModals modals,
+            IUserStorage userStorage,
             IAppSettings appSettings,
             IVpnManager vpnManager,
             IProfileFactory profileFactory) :
             base(vpnManager)
         {
+            _modals = modals;
+            _userStorage = userStorage;
             _appSettings = appSettings;
             _profileFactory = profileFactory;
         }
 
         public async Task ConnectAsync(string countryCode)
         {
-            Profile profile = CreateProfile(countryCode); 
-            await VpnManager.ConnectAsync(profile);
+            if (!_appSettings.FeatureFreeRescopeEnabled || _userStorage.GetUser().Paid())
+            {
+                Profile profile = CreateProfile(countryCode);
+                await VpnManager.ConnectAsync(profile);
+            }
+            else
+            {
+                await _modals.ShowAsync<CountryUpsellModalViewModel>(countryCode);
+            }
         }
 
         private Profile CreateProfile(string countryCode)

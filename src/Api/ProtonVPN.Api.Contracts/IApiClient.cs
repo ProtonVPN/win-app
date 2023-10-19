@@ -24,11 +24,13 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Geographical;
-using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Api.Contracts.Settings;
 using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnSessions;
+using ProtonVPN.Common.StatisticalEvents;
 
 namespace ProtonVPN.Api.Contracts
 {
@@ -49,10 +51,12 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<VpnConfig.VpnConfigResponse>> GetVpnConfig();
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
-        Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
         Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request);
         Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
         Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
+        Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync();
+        Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
+        Task<ApiResponseResult<UsersResponse>> GetUserAsync();
     }
 }

@@ -32,8 +32,6 @@ using ProtonVPN.Common.Collections.Concurrent;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
@@ -44,6 +42,8 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Settings.Contracts;
 using ProtonVPN.Core.Storage;
 using ProtonVPN.Dns.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Settings;
 
 namespace ProtonVPN.Core
@@ -238,6 +238,12 @@ namespace ProtonVPN.Core
         }
 
         public bool WelcomeModalShown
+        {
+            get => GetPerUser<bool>();
+            set => SetPerUser(value);
+        }
+
+        public bool IsFreeRescopeModalDisplayed
         {
             get => GetPerUser<bool>();
             set => SetPerUser(value);
@@ -456,6 +462,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool FeatureFreeRescopeEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public bool FeatureSmartReconnectEnabled
         {
             get => Get<bool>();
@@ -577,6 +589,48 @@ namespace ProtonVPN.Core
         {
             get => Get<bool>();
             set => Set(value);
+        }
+
+        public int ChangeServerAttempts
+        {
+            get => GetPerUser<int>();
+            set => SetPerUser(value);
+        }
+
+        public DateTime NextChangeServerTimeUtc
+        {
+            get => GetPerUser<DateTime>();
+            set => SetPerUser(value);
+        }
+
+        public int ChangeServerAttemptLimit
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public int ChangeServerShortDelayInSeconds
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public int ChangeServerLongDelayInSeconds
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public bool IsTelemetryGloballyEnabled
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        
+        public string StatisticalEvents
+        {
+            get => GetPerUserDecrypted();
+            set => SetPerUserEncrypted(value);
         }
 
         public TimeSpan MaintenanceCheckInterval

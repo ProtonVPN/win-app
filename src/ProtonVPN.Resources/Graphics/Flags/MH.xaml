@@ -1,0 +1,39 @@
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<UserControl x:Class="ProtonVPN.Resource.Graphics.Flags.MH"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Viewbox>
+        <Canvas Height="16" Width="24">
+            <Canvas>
+                <Canvas.Clip>
+                    <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,24,16" />
+                </Canvas.Clip>
+                <Path Data="M24 -0.00250244H0V15.995H24V-0.00250244Z" Fill="#0052B4" />
+                <Path
+                    Data="M10.965 4.6775L9.9825 5.135L10.5075 6.08L9.4425 5.8775L9.3075 6.95L8.5725 6.1625L7.83 6.95L7.695 5.8775L6.6375 6.08L7.155 5.135L6.18 4.6775L7.155 4.22L6.6375 3.275L7.695 3.4775L7.83 2.405L8.5725 3.1925L9.3075 2.405L9.4425 3.4775L10.5075 3.275L9.9825 4.22L10.965 4.6775ZM20.01 -0.00250244L0 15.755V15.935L23.61 -0.00250244H20.01Z"
+                    Fill="#F0F0F0" />
+                <Path Data="M24 -0.00250244H23.61L0 15.935V16.0025H0.1725L24 2.42V-0.00250244Z" Fill="#FF9811" />
+            </Canvas>
+        </Canvas>
+    </Viewbox>
+</UserControl>

@@ -34,6 +34,7 @@ using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 using ProtonVPN.Modals.Upsell;
@@ -47,7 +48,7 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings
 {
-    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware
+    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, IVpnPlanAware
     {
         private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
@@ -102,6 +103,11 @@ namespace ProtonVPN.Settings
 
             ReconnectCommand = new RelayCommand(ReconnectAction);
             UpgradeCommand = new RelayCommand(UpgradeAction);
+            ShowVpnAcceleratorUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<VpnAcceleratorUpsellModalViewModel>);
+            ShowSplitTunnelingUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<SplitTunnelingUpsellModalViewModel>);
+            ShowPortForwardingUpgradeModalCommand = new RelayCommand(() => PortForwarding = true);
+            ShowCustomDnsUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<CustomDnsUpsellModalViewModel>);
+            ShowModerateNatUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<ModerateNatUpsellModalViewModel>);
             LearnMoreAboutPortForwardingCommand = new RelayCommand(LearnMoreAboutPortForwardingAction);
         }
 
@@ -110,6 +116,11 @@ namespace ProtonVPN.Settings
 
         public ICommand ReconnectCommand { get; set; }
         public ICommand UpgradeCommand { get; set; }
+        public ICommand ShowVpnAcceleratorUpgradeModalCommand { get; set; }
+        public ICommand ShowSplitTunnelingUpgradeModalCommand { get; set; }
+        public ICommand ShowPortForwardingUpgradeModalCommand { get; set; }
+        public ICommand ShowCustomDnsUpgradeModalCommand { get; set; }
+        public ICommand ShowModerateNatUpgradeModalCommand { get; set; }
         public ICommand LearnMoreAboutPortForwardingCommand { get; set; }
 
         public IpListViewModel Ips { get; }
@@ -133,6 +144,15 @@ namespace ProtonVPN.Settings
                 SplitTunnelingViewModel.Disconnected = value;
             }
         }
+
+        public bool IsPaidUser => _userStorage.GetUser().Paid();
+
+        public bool IsToShowPaidFeatureToggleButton => IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled;
+
+        public bool IsToShowPaidFeatureUpgradeButton => !IsToShowPaidFeatureToggleButton;
+
+        public bool IsToShowPortForwardingSubSettings => _appSettings.FeaturePortForwardingEnabled &&
+                                                         (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
 
         public bool IsToShowNetworkDriverSelection => _appSettings.GetProtocol() != VpnProtocol.WireGuard;
 
@@ -180,7 +200,7 @@ namespace ProtonVPN.Settings
             get => _appSettings.AllowNonStandardPorts;
             set
             {
-                if (value && !_userStorage.GetUser().Paid())
+                if (value && !IsPaidUser)
                 {
                     ShowNonStandardPortsUpsellModal();
                     return;
@@ -203,7 +223,7 @@ namespace ProtonVPN.Settings
             get => _appSettings.ModerateNat;
             set
             {
-                if (value && !_userStorage.GetUser().Paid())
+                if (value && !IsPaidUser)
                 {
                     ShowModerateNatUpsellModal();
                     return;
@@ -251,7 +271,7 @@ namespace ProtonVPN.Settings
         {
             get
             {
-                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled;
+                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
             }
         }
 
@@ -259,7 +279,7 @@ namespace ProtonVPN.Settings
         {
             get
             {
-                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && ShowNotifications;
+                return _appSettings.FeatureVpnAcceleratorEnabled && _appSettings.FeatureSmartReconnectEnabled && ShowNotifications && (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
             }
         }
 
@@ -267,7 +287,7 @@ namespace ProtonVPN.Settings
         {
             get
             {
-                return _appSettings.SmartReconnectEnabled;
+                return _appSettings.SmartReconnectEnabled && (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
             }
         }
 
@@ -566,6 +586,7 @@ namespace ProtonVPN.Settings
             else if (e.PropertyName.Equals(nameof(IAppSettings.PortForwardingEnabled)))
             {
                 NotifyOfPropertyChange(() => IsToShowPortForwardingWarningLabel);
+                NotifyOfPropertyChange(() => IsToShowPortForwardingSubSettings);
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.SmartReconnectEnabled)))
             {
@@ -587,8 +608,27 @@ namespace ProtonVPN.Settings
             {
                 HardwareAccelerationManager.Set(HardwareAccelerationEnabled);
             }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.CustomDnsEnabled)))
+            {
+                NotifyOfPropertyChange(() => CustomDnsEnabled);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.PortForwardingInQuickSettings)))
+            {
+                NotifyOfPropertyChange(() => PortForwardingInQuickSettings);
+            }
+            else if (e.PropertyName.Equals(nameof(IAppSettings.FeatureFreeRescopeEnabled)))
+            {
+                NotifyUserPlanRelatedSettings();
+            }
 
             RefreshReconnectRequiredState(e.PropertyName);
+        }
+
+        private void NotifyUserPlanRelatedSettings()
+        {
+            NotifyOfPropertyChange(() => IsToShowPaidFeatureToggleButton);
+            NotifyOfPropertyChange(() => IsToShowPaidFeatureUpgradeButton);
+            NotifyOfPropertyChange(() => IsToShowPortForwardingSubSettings);
         }
 
         private void OnShowNotificationsChanged()
@@ -612,6 +652,11 @@ namespace ProtonVPN.Settings
             NotifyOfPropertyChange(() => StartMinimized);
             
             await LoadProfiles();
+        }
+
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+        {
+            NotifyUserPlanRelatedSettings();
         }
 
         private void SetDisconnected()
@@ -666,6 +711,11 @@ namespace ProtonVPN.Settings
         private void UpgradeAction()
         {
             _subscriptionManager.UpgradeAccountAsync();
+        }
+
+        private async void ShowUpgradeModalActionAsync<T>() where T : UpsellModalViewModel
+        {
+            await _modals.ShowAsync<T>();
         }
 
         private void LearnMoreAboutPortForwardingAction()

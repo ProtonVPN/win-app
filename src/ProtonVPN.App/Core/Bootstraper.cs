@@ -46,7 +46,6 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
-using ProtonVPN.Core.Events;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
@@ -83,7 +82,6 @@ using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
 using ProtonVPN.P2PDetection;
-using ProtonVPN.Partners;
 using ProtonVPN.ProcessCommunication.App.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -133,7 +131,8 @@ namespace ProtonVPN.Core
                    .RegisterAssemblyModule<DnsModule>()
                    .RegisterAssemblyModule<EntityMappingModule>()
                    .RegisterAssemblyModule<ProcessCommunicationModule>()
-                   .RegisterAssemblyModule<AppProcessCommunicationModule>();
+                   .RegisterAssemblyModule<AppProcessCommunicationModule>()
+                   .RegisterAssemblyModule<StatisticalEventsModule>();
 
             _container = builder.Build();
         }
@@ -324,7 +323,6 @@ namespace ProtonVPN.Core
                 await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
-                await Resolve<IPartnersUpdater>().Update();
 
                 GuestHoleState guestHoleState = Resolve<GuestHoleState>();
                 if (guestHoleState.Active)
@@ -547,6 +545,7 @@ namespace ProtonVPN.Core
             LoadViewModels();
             Resolve<IP2PDetector>();
             Resolve<IVpnInfoUpdater>();
+            Resolve<IUserSettingsUpdater>();
 
             AppWindow appWindow = Resolve<AppWindow>();
             appWindow.DataContext = Resolve<MainViewModel>();

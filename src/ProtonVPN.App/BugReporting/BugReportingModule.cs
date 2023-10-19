@@ -38,6 +38,7 @@ namespace ProtonVPN.BugReporting
             builder.RegisterType<ServiceLogFileSource>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AttachmentsLoader>().AsImplementedInterfaces().SingleInstance();
             
+            builder.RegisterType<InstalledDriversLog>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<InstalledAppsLog>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<DriverInstallLog>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UserSettingsLog>().AsImplementedInterfaces().SingleInstance();

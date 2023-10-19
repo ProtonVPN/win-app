@@ -59,7 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Connect}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
-                <Setter TargetName="Button" Property="Content" Value="{translations:Loc Servers_btn_Upgrade}"/>
+                <Setter TargetName="ConnectButtonBorder" Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}, Path=IsMouseOver}" Value="True">
                 <Setter Property="Visibility" Value="Visible"/>
@@ -100,6 +100,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Background" Value="{StaticResource BackgroundNormBrushColor}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Server.Status}" Value="0">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding UpgradeRequired}" Value="True">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
         </Style.Triggers>

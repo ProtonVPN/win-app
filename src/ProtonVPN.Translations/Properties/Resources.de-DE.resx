@@ -1755,9 +1755,11 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>Damit „Split-Tunneling“ richtig funktioniert, musst du „Kill Switch“ deaktivieren.</value>
   </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1">
-    <value>Hunderte von Servern in 55 Ländern</value>
-    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_One">
+    <value>Hunderte von Servern in {0} Land</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
+    <value>Hunderte von Servern in {0} Ländern</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>Verbinde bis zu 10 Geräte gleichzeitig</value>
@@ -2038,6 +2040,9 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Hochgeladen:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
+  <data name="Map_UpgradeTooltip">
+    <value>Auf Plus upgraden</value>
+  </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>VERBUNDEN</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
@@ -2058,6 +2063,12 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Secure Core</value>
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
+  <data name="Modal_ChangeServer_Subtitle">
+    <value>Erhalte unbegrenzte Wechsel mit VPN Plus</value>
+  </data>
+  <data name="Modal_ChangeServer_Title">
+    <value>Du hast die maximale Anzahl an kostenlosen Serverwechseln erreicht.</value>
+  </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Secure Core aktivieren</value>
   </data>
@@ -2072,6 +2083,24 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Ein Hinweis zur Geschwindigkeit...</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountries">
+    <value>Neue kostenlose Länder</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountriesDescription">
+    <value>Es gibt jetzt kostenlose Server in Polen und Rumänien.</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelection">
+    <value>Änderungen der Serverauswahl</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelectionDescription">
+    <value>Um eine Überlastung der Server zu verhindern und sicherzustellen, dass jeder Zugang zu schnellem und sicherem Surfen hat, haben wir die manuelle Länderauswahl abgeschafft und die automatische Serverauswahl erheblich verbessert.</value>
+  </data>
+  <data name="Modals_Rescope_Title">
+    <value>Was gibt es Neues?</value>
+  </data>
+  <data name="Modals_Rescope_btn_GotIt">
+    <value>Verstanden</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2514,6 +2543,10 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Tor</value>
     <comment>The server type in Profile window</comment>
   </data>
+  <data name="Servers_Fastest">
+    <value>Am schnellsten</value>
+    <comment>The label for fastest server item in the country list</comment>
+  </data>
   <data name="Servers_Feature_val_P2P">
     <value>P2P‐Server</value>
     <comment>The name of P2P server feature</comment>
@@ -2532,6 +2565,9 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Servers_Feature_val_Tor">
     <value>Tor‐Server</value>
     <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_FreeConnections">
+    <value>Kostenlose Verbindungen (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>Server‐IP:</value>
@@ -2561,6 +2597,12 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Über {0} nach {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
+  <data name="Servers_UpsellBanner">
+    <value>Erhalte weltweite Abdeckung mit VPN Plus</value>
+  </data>
+  <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
+    <value>Nicht das gewünschte Land? Upgrade, um einen beliebigen Server auszuwählen</value>
+  </data>
   <data name="Servers_btn_Connect">
     <value>Verbinden</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
@@ -2573,9 +2615,8 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Upgraden</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
-  <data name="Servers_lbl_Upgrade">
-    <value>Upgraden</value>
-    <comment>The label displayed next to server name in Server list in Countries tab of Sidebar in main app window</comment>
+  <data name="Servers_lbl_UpgradeToPlus">
+    <value>Auf Plus upgraden</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>über</value>
@@ -2696,6 +2737,9 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
     <value>Beschleunige dein Torrenting und Online-Spiele, indem du unterstützten lokalen Apps erlaubst, vom Internet aus erreichbar zu sein. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Mehr erfahren&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
+    <value>Beschleunige das Torrenting und Online-Gaming, indem du unterstützte lokale Anwendungen über das Internet erreichbar machst.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Split‐Tunneling</value>
@@ -2839,6 +2883,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Allgemein</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
+  <data name="Settings_btn_UpgradeToPlus">
+    <value>Auf Plus upgraden</value>
+    <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
+  </data>
   <data name="Settings_lnk_Reconnect">
     <value>Neu verbinden</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
@@ -2866,6 +2914,9 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Sidebar_B2BPopup_Title">
     <value>Was ist ein Gateway?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_ChangeServer">
+    <value>Server wechseln</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Schnellverbinden</value>
@@ -2900,7 +2951,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Standorte: {0}</value>
+    <value>Plus-Standorte ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>BASIC- und PLUS-Standorte ({0})</value>
@@ -2919,9 +2970,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Informationen</value>
-  </data>
-  <data name="Sidebar_Countries_OurPartners">
-    <value>Unsere Partner</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>PLUS-Standorte ({0})</value>
@@ -3086,40 +3134,95 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Benachrichtigungseinstellungen</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
-  <data name="Upsell_Countries_BlockAds">
-    <value>Blockiere Werbung und Malware mit NetShield</value>
+  <data name="Upsell_Accelerator_Bullet1">
+    <value>Zugriff auf schnellere, weniger überlastete Server.</value>
   </data>
-  <data name="Upsell_Countries_BrowseFast">
-    <value>Surfe mit höchster Geschwindigkeit (10 Gbit/s)</value>
+  <data name="Upsell_Accelerator_Bullet2">
+    <value>Erhöhe die Verbindungsgeschwindigkeit um bis zu 400 % mit &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
-  <data name="Upsell_Countries_GlobalStreamingServices">
-    <value>Greife auf globale Streaming-Dienste zu</value>
+  <data name="Upsell_Accelerator_Bullet3">
+    <value>Verbesserte Geschwindigkeit und Stabilität bei der Verbindung mit entfernten Servern.</value>
   </data>
-  <data name="Upsell_Countries_MoreFeatures">
-    <value>Sowie viele weitere Premium-Funktionen</value>
+  <data name="Upsell_Accelerator_Title">
+    <value>Surfen mit noch höherer Geschwindigkeit (bis zu 10 Gbit/s)</value>
   </data>
-  <data name="Upsell_Countries_SimultaneousDevices">
-    <value>Verbinde bis zu 10 Geräte gleichzeitig</value>
+  <data name="Upsell_Countries_AccessGeoblockedContent">
+    <value>Zugriff auf durch Landessperren unzugängliche Inhalte</value>
+  </data>
+  <data name="Upsell_Countries_ChooseAnyLocation">
+    <value>Wähle einen beliebigen Standort</value>
+  </data>
+  <data name="Upsell_Countries_HigherVpnSpeed">
+    <value>Noch höhere VPN-Geschwindigkeit</value>
+  </data>
+  <data name="Upsell_Countries_StreamMovies">
+    <value>Streame deine Lieblingsfilme</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>Wenn du auf Plus umsteigst</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Greife auf über {0} in {1} zu.</value>
+    <value>Greife auf über {0} in {1} zu</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
-  <data name="Upsell_ModerateNat_About">
-    <value>Was ist Moderates NAT?</value>
+  <data name="Upsell_Country_Bullet1_One">
+    <value>Verbinde dich mit {0} Land</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Other">
+    <value>Verbinde dich mit {0} Ländern</value>
+  </data>
+  <data name="Upsell_Country_Bullet2">
+    <value>Höhere Geschwindigkeiten (10 GBit/s)</value>
+  </data>
+  <data name="Upsell_Country_Bullet3">
+    <value>Streame deine Lieblingsfilme</value>
+  </data>
+  <data name="Upsell_Country_Bullet4">
+    <value>Schütze bis zu 10 Geräte</value>
+  </data>
+  <data name="Upsell_Country_Bullet5">
+    <value>30 Tage Geld-zurück-Garantie</value>
+  </data>
+  <data name="Upsell_Country_Subtitle">
+    <value>Freischalten der &lt;Bold&gt;Länderauswahl&lt;/Bold&gt; mit VPN Plus</value>
+  </data>
+  <data name="Upsell_Country_Title">
+    <value>Möchtest du ein bestimmtes Land auswählen?</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet1">
+    <value>Verbinde dich mit dem VPN über dein &lt;Bold&gt;benutzerdefiniertes Domain-Namen-System (DNS)&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet2">
+    <value>Speichere häufig verwendete Verbindungen mit &lt;Bold&gt;Profilen&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet3">
+    <value>Schnellerer Zugriff auf deine Profile mit &lt;Bold&gt;Schnellverbindung&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Title">
+    <value>Erweiterte VPN-Anpassung freischalten</value>
+  </data>
+  <data name="Upsell_FreeConnections_Locations">
+    <value>Verfügbare Serverstandorte ({0})</value>
+    <comment>{0} represents a number of free server locations.</comment>
+  </data>
+  <data name="Upsell_FreeConnections_Subtitle">
+    <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren Server. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Title">
+    <value>Kostenlose Verbindungen</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet1">
+    <value>Verbessere die Leistung von Online-Spielen und Videoanrufen</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet2">
+    <value>NAT-Typ 2 (moderat) optimiert die Geschwindigkeit und Stabilität, indem es direkte Verbindungen zwischen Geräten ermöglicht</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Moderates NAT, auch bekannt als NAT Typ 2, kann dein Online-Erlebnis mit verschiedenen Anwendungen und Online-Videospielen verbessern.</value>
+    <value>Freischalten von &lt;Bold&gt;Split-Tunneling&lt;/Bold&gt; mit VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Moderates NAT aktivieren</value>
-  </data>
-  <data name="Upsell_ModerateNat_Unlock">
-    <value>Durch ein Upgrade auf ein kostenpflichtiges Abonnement kannst du diese und viele andere Funktionen freischalten.</value>
+    <value>Verbessere das Spielerlebnis</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blockiere Werbung und Tracker</value>
@@ -3156,14 +3259,35 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Verfügbar mit VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
-  <data name="Upsell_PortForwarding_About">
-    <value>Was ist Port-Weiterleitung?</value>
+  <data name="Upsell_PortForwarding_Bullet1">
+    <value>Verbessere die Peer-to-Peer-Download-Geschwindigkeit</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet2">
+    <value>Verbinde dich mit Online-Gaming-Servern und hoste Multiplayer-Spiele</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet3">
+    <value>Richte Fernzugriff auf Geräte in deinem lokalen Netzwerk ein</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Erhalte schnellere P2P-Downloads und verbessere dein Online-Gaming-Erlebnis mit Port-Weiterleitung. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Schalte diese Funktion und viele weitere mit VPN Plus frei.</value>
+    <value>Schalte &lt;Bold&gt;Portweiterleitungen&lt;/Bold&gt; mit VPN Plus frei</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Port-Weiterleitung aktivieren</value>
+    <value>Lade deine P2P-Verbindungen auf</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet1">
+    <value>Speichere deinen bevorzugten Server, Stadt oder Land.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet2">
+    <value>Lege benutzerdefinierte Protokolle und Premium-VPN-Funktionen fest.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet3">
+    <value>Einrichten der automatischen Verbindung für noch schnelleren Zugriff.</value>
+  </data>
+  <data name="Upsell_Profiles_Subtitle">
+    <value>Schalte &lt;Bold&gt;Profile&lt;/Bold&gt; mit VPN Plus frei</value>
+  </data>
+  <data name="Upsell_Profiles_Title">
+    <value>Erhalte schnellen Zugriff auf deine häufigen Verbindungen</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>Füge deiner VPN-Verbindung eine weitere Verschlüsselungsebene hinzu</value>
@@ -3179,6 +3303,21 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Verdopple die Verschlüsselung mit Secure Core</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet1">
+    <value>Teile deinen Datenverkehr in VPN- und Nicht-VPN-Tunnel auf</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet2">
+    <value>Lass vertrauenswürdige Anwendungen und IP-Adressen VPN für höhere Geschwindigkeiten umgehen</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet3">
+    <value>Zugriff auf heimische und lokale Inhalte, wenn du vom Ausland aus surfst</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Subtitle">
+    <value>Schalte &lt;Bold&gt;Split-Tunneling&lt;/Bold&gt; mit VPN Plus frei</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Title">
+    <value>Erhalte das Beste aus beiden Welten</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Upgraden</value>

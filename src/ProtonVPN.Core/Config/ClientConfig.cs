@@ -30,11 +30,12 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Windows;
 
 namespace ProtonVPN.Core.Config
 {
-    public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware, IHandle<WindowStateMessage>
+    public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware, IVpnPlanAware, IHandle<WindowStateMessage>
     {
         private readonly IAppSettings _appSettings;
         private readonly IApiClient _apiClient;
@@ -132,6 +133,24 @@ namespace ProtonVPN.Core.Config
                     _appSettings.ShowNonStandardPortsToFreeUsers = response.Value.FeatureFlags.SafeMode ?? false;
                     _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                     _appSettings.FeaturePromoCodeEnabled = response.Value.FeatureFlags.PromoCode ?? false;
+                    _appSettings.FeatureFreeRescopeEnabled = response.Value.FeatureFlags.ShowNewFreePlan ?? false;
+
+                    if (response.Value.ChangeServerAttemptLimit.HasValue)
+                    {
+                        _appSettings.ChangeServerAttemptLimit = response.Value.ChangeServerAttemptLimit.Value;
+                    }
+
+                    if (response.Value.ChangeServerShortDelayInSeconds.HasValue)
+                    {
+                        _appSettings.ChangeServerShortDelayInSeconds =
+                            response.Value.ChangeServerShortDelayInSeconds.Value;
+                    }
+
+                    if (response.Value.ChangeServerLongDelayInSeconds.HasValue)
+                    {
+                        _appSettings.ChangeServerLongDelayInSeconds =
+                            response.Value.ChangeServerLongDelayInSeconds.Value;
+                    }
                 }
             }
             catch
@@ -154,6 +173,11 @@ namespace ProtonVPN.Core.Config
                 _lastUpdateCallTime = DateTime.UtcNow;
                 _updateAction.Run();
             }
+        }
+
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+        {
+            _updateAction.Run();
         }
     }
 }

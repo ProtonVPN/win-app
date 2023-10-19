@@ -21,14 +21,22 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Core.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
 {
     public class SecureCoreUpsellModalViewModel : UpsellModalViewModel
     {
+        protected override ModalSources ModalSource { get; } = ModalSources.SecureCore;
+
         public ICommand AboutSecureCoreCommand { get; set; }
 
-        public SecureCoreUpsellModalViewModel(ISubscriptionManager subscriptionManager, IActiveUrls urls) : base(subscriptionManager, urls)
+        public SecureCoreUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager,
+            IActiveUrls urls, IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+                  upsellDisplayStatisticalEventSender)
         {
             AboutSecureCoreCommand = new RelayCommand(OpenAboutSecureCorePage);
         }

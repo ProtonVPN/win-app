@@ -80,22 +80,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
                 </Grid>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type servers:PartnerFeature}">
-                <Grid>
-                    <ToggleButton x:Name="InfoToggleButton"
-                                  ToolTip="{Binding Name}"
-                                  DockPanel.Dock="Right"
-                                  Style="{StaticResource EmptyToggleButton}"
-                                  Background="Transparent"
-                                  BorderBrush="Transparent">
-                        <Image Source="{Binding IconUrl}" Height="20" />
-                    </ToggleButton>
-                    <servers:InfoPopup DataContext="{Binding InfoPopupViewModel}"
-                                       Title="{Binding Title}"
-                                       PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid, AncestorLevel=2}}"
-                                       ShowPopup="{Binding Path=IsChecked, ElementName=InfoToggleButton, Mode=TwoWay}" />
-                </Grid>
-            </DataTemplate>
         </ItemsControl.Resources>
     </ItemsControl>
 </UserControl>

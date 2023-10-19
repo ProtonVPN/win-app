@@ -88,6 +88,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Property="Padding" Value="15,0,15,0"/>
                         <Setter Property="Margin" Value="0,0,0,20"/>
                     </Style>
+                    <Style x:Key="UpgradeButton" TargetType="Button">
+                        <Setter Property="Height" Value="24" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="HorizontalContentAlignment" Value="Right" />
+                        <Setter Property="ToolTip" Value="{translations:Loc Settings_btn_UpgradeToPlus}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <icons:ProtonPlus />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -151,7 +165,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </DockPanel>
                         </Border>
 
-                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                        <Border Style="{StaticResource BorderlessSettingContainer}"
+                                Visibility="{Binding IsToShowPaidFeatureToggleButton, Converter={StaticResource BoolToVis}}">
                             <DockPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Style="{StaticResource SettingName}"
@@ -288,11 +303,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                             ToolTip="{translations:Loc Settings_Connection_lbl_VpnAccelerator_Info}"/>
                                 </StackPanel>
 
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          Margin="0,0,14,0"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding VpnAccelerator}"
-                                          AutomationProperties.AutomationId="{StaticResource VpnAcceleratorCheckbox}"/>
+                                <Grid HorizontalAlignment="Right" Margin="0,0,14,0">
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              IsChecked="{Binding VpnAccelerator}"
+                                              Visibility="{Binding IsToShowPaidFeatureToggleButton, Converter={StaticResource BoolToVis}}"
+                                              AutomationProperties.AutomationId="{StaticResource VpnAcceleratorCheckbox}" />
+                                    <Button Style="{StaticResource UpgradeButton}"
+                                            Command="{Binding ShowVpnAcceleratorUpgradeModalCommand, Mode=OneTime}"
+                                            Visibility="{Binding IsToShowPaidFeatureUpgradeButton, Converter={StaticResource BoolToVis}}" />
+                                </Grid>
                             </DockPanel>
                         </Border>
 
@@ -345,11 +364,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                             ToolTip="{translations:Loc Settings_Connection_lbl_ModerateNat_Info}"/>
                                 </StackPanel>
 
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          Margin="0,0,14,0"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding ModerateNat}"
-                                          AutomationProperties.AutomationId="{StaticResource ModerateNatCheckbox}"/>
+                                <Grid Margin="0,0,14,0" HorizontalAlignment="Right">
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              IsChecked="{Binding ModerateNat}"
+                                              Visibility="{Binding IsToShowPaidFeatureToggleButton, Converter={StaticResource BoolToVis}}"
+                                              AutomationProperties.AutomationId="{StaticResource ModerateNatCheckbox}"/>
+                                    <Button Style="{StaticResource UpgradeButton}"
+                                            Command="{Binding ShowModerateNatUpgradeModalCommand, Mode=OneTime}"
+                                            Visibility="{Binding IsToShowPaidFeatureUpgradeButton, Converter={StaticResource BoolToVis}}" />
+                                </Grid>
                             </DockPanel>
                         </Border>
 
@@ -360,12 +383,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
                                                             ToolTip="{translations:Loc Settings_Connection_lbl_CustomDnsServer_Info}"/>
                                 </StackPanel>
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          Margin="0,0,14,0"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding CustomDnsEnabled}" 
-                                          AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}"/>
-
+                                <Grid HorizontalAlignment="Right" Margin="0,0,14,0">
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              IsChecked="{Binding CustomDnsEnabled}"
+                                              Visibility="{Binding IsToShowPaidFeatureToggleButton, Converter={StaticResource BoolToVis}}"
+                                              AutomationProperties.AutomationId="{StaticResource CheckBoxCustomDnsServers}" />
+                                    <Button Style="{StaticResource UpgradeButton}"
+                                            Command="{Binding ShowCustomDnsUpgradeModalCommand, Mode=OneTime}"
+                                            Visibility="{Binding IsToShowPaidFeatureUpgradeButton, Converter={StaticResource BoolToVis}}" />
+                                </Grid>
                             </DockPanel>
                         </Border>
 
@@ -427,19 +453,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <DockPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_PortForwarding}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            Visibility="{Binding IsToShowPaidFeatureUpgradeButton, Converter={StaticResource BoolToVis}}"
+                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwarding_Tooltip}"/>
                                 </StackPanel>
 
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          Margin="0,0,0,0"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding PortForwarding}"
-                                          AutomationProperties.AutomationId="{StaticResource PortForwardingCheckbox}"/>
-
+                                <Grid Margin="0,0,0,0"
+                                      HorizontalAlignment="Right">
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              IsChecked="{Binding PortForwarding}"
+                                              Visibility="{Binding IsToShowPaidFeatureToggleButton, Converter={StaticResource BoolToVis}}"
+                                              AutomationProperties.AutomationId="{StaticResource PortForwardingCheckbox}"/>
+                                    <Button Style="{StaticResource UpgradeButton}"
+                                            Command="{Binding ShowPortForwardingUpgradeModalCommand, Mode=OneTime}"
+                                            Visibility="{Binding IsToShowPaidFeatureUpgradeButton, Converter={StaticResource BoolToVis}}" />
+                                </Grid>
                             </DockPanel>
                         </Border>
 
                         <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="Auto"
-                                Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
+                                Visibility="{Binding IsToShowPortForwardingSubSettings, Converter={StaticResource BoolToVis}}">
                             <DockPanel>
                                 <TextBlock TextWrapping="Wrap"
                                            FontSize="12"
@@ -447,69 +480,77 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </DockPanel>
                         </Border>
 
-                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0"
-                                Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
-                            <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
-                        </Border>
+                        <StackPanel DockPanel.Dock="Top"
+                                    Visibility="{Binding IsToShowPortForwardingSubSettings, Converter={StaticResource BoolToVis}}">
+                            <Border Style="{StaticResource BorderlessSettingContainer}"
+                                    Padding="5,0,75,0"
+                                    Visibility="{Binding IsToShowPortForwardingWarningLabel, Converter={StaticResource BoolToVis}}">
+                                <settings:PortForwardingWarningView DataContext="{Binding PortForwardingWarningViewModel}" />
+                            </Border>
 
-                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="5,0,75,0" Height="20" Margin="0,10,0,5"
-                                Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
-                            <DockPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="10"
-                                             Height="10"
-                                             Margin="0,2,5,0"
-                                             VerticalAlignment="Top"
-                                             Fill="{StaticResource SignalSuccessBrushColor}" />
-                                    <TextBlock
-                                        Margin="0,0,5,0"
-                                        TextWrapping="Wrap"
-                                        FontSize="12"
-                                        Foreground="{StaticResource TextNormBrushColor}"
-                                        Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
-                                    <activePorts:PortForwardingActivePortView DataContext="{Binding ActivePortViewModel}"
-                                                                              FontWeight="Bold"/>
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
+                            <Border Style="{StaticResource BorderlessSettingContainer}"
+                                    Padding="5,0,75,0"
+                                    Height="20"
+                                    Margin="0,10,0,5"
+                                    Visibility="{Binding HasPortForwardingValue, Converter={StaticResource BoolToVis}}">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="10"
+                                                 Height="10"
+                                                 Margin="0,2,5,0"
+                                                 VerticalAlignment="Top"
+                                                 Fill="{StaticResource SignalSuccessBrushColor}" />
+                                        <TextBlock Margin="0,0,5,0"
+                                                   TextWrapping="Wrap"
+                                                   FontSize="12"
+                                                   Foreground="{StaticResource TextNormBrushColor}"
+                                                   Text="{translations:Loc PortForwarding_lbl_ActivePort}" />
+                                        <activePorts:PortForwardingActivePortView
+                                            DataContext="{Binding ActivePortViewModel}"
+                                            FontWeight="Bold" />
+                                    </StackPanel>
+                                </DockPanel>
+                            </Border>
 
-                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}" Padding="0,0,0,4"
-                                Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
-                            <DockPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
-                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
-                                           Content="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings}"/>
-                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings_Info}"/>
-                                </StackPanel>
+                            <Border Style="{StaticResource BorderlessSettingContainer}"
+                                    Padding="0,0,0,4"
+                                    Visibility="{Binding IsToShowPortForwarding, Converter={StaticResource BoolToVis}}">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                        <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                               Content="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings}" />
+                                        <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                                ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingInQuickSettings_Info}" />
+                                    </StackPanel>
 
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          Margin="0,0,0,0"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding PortForwardingInQuickSettings}"
-                                          AutomationProperties.AutomationId="{StaticResource PortForwardingInQuickSettingsCheckbox}"/>
-                            </DockPanel>
-                        </Border>
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              Margin="0,0,0,0"
+                                              HorizontalAlignment="Right"
+                                              IsChecked="{Binding PortForwardingInQuickSettings}"
+                                              AutomationProperties.AutomationId="{StaticResource PortForwardingInQuickSettingsCheckbox}" />
+                                </DockPanel>
+                            </Border>
 
-                        <Border DockPanel.Dock="Top" Style="{StaticResource BorderSettingContainer}" Padding="0,0,0,4"
-                                Visibility="{Binding IsToShowPortForwardingNotifications, Converter={StaticResource BoolToVis}}">
-                            <DockPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
-                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
-                                           Content="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications}"/>
-                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications_Info}"/>
-                                </StackPanel>
+                            <Border Style="{StaticResource BorderSettingContainer}" Padding="0,0,0,4"
+                                    Visibility="{Binding IsToShowPortForwardingNotifications, Converter={StaticResource BoolToVis}}">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                        <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                               Content="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications}" />
+                                        <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                                ToolTip="{translations:Loc Settings_Advanced_lbl_PortForwardingNotifications_Info}" />
+                                    </StackPanel>
 
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          Margin="0,0,0,0"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding PortForwardingNotifications}"
-                                          AutomationProperties.AutomationId="{StaticResource PortForwardingNotificationsCheckbox}"/>
-                            </DockPanel>
-                        </Border>
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              Margin="0,0,0,0"
+                                              HorizontalAlignment="Right"
+                                              IsChecked="{Binding PortForwardingNotifications}"
+                                              AutomationProperties.AutomationId="{StaticResource PortForwardingNotificationsCheckbox}" />
+                                </DockPanel>
+                            </Border>
+                        </StackPanel>
 
                         <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}"
                                 Visibility="{Binding IsToShowNetworkDriverSelection, Converter={StaticResource BoolToVis}}">
@@ -614,10 +655,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
                                                             ToolTip="{translations:Loc Settings_Advanced_lbl_SplitTunnel_Info}"/>
                                 </StackPanel>
-                                <CheckBox Style="{StaticResource ToggleSwitch}"
-                                          HorizontalAlignment="Right"
-                                          IsChecked="{Binding SplitTunnelingViewModel.Enabled}"
-                                          AutomationProperties.AutomationId="{StaticResource SplitTunnelingToggle}"/>
+                                <Grid HorizontalAlignment="Right">
+                                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                                              IsChecked="{Binding SplitTunnelingViewModel.Enabled}"
+                                              Visibility="{Binding IsToShowPaidFeatureToggleButton, Converter={StaticResource BoolToVis}}"
+                                              AutomationProperties.AutomationId="{StaticResource SplitTunnelingToggle}"/>
+                                    <Button Style="{StaticResource UpgradeButton}"
+                                            Command="{Binding ShowSplitTunnelingUpgradeModalCommand, Mode=OneTime}"
+                                            Visibility="{Binding IsToShowPaidFeatureUpgradeButton, Converter={StaticResource BoolToVis}}" />
+                                </Grid>
                             </DockPanel>
                         </Border>
 

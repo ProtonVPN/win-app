@@ -240,6 +240,10 @@ namespace ProtonVPN.Map.ViewModels
             {
                 GeneratePins();
             }
+            else if (e.PropertyName == nameof(IAppSettings.FeatureFreeRescopeEnabled))
+            {
+                BuildMapElements();
+            }
         }
 
         public void OnPinsChanged()

@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
@@ -34,7 +36,7 @@ using ProtonVPN.Windows.Popups.SubscriptionExpiration;
 
 namespace ProtonVPN.AccountPlan
 {
-    public class PlanChangeHandler : IVpnPlanAware, IVpnStateAware
+    public class PlanChangeHandler : IVpnPlanAware, IVpnStateAware, ILoggedInAware, ISettingsAware
     {
         private readonly IUserStorage _userStorage;
         private readonly IVpnManager _vpnManager;
@@ -87,6 +89,28 @@ namespace ProtonVPN.AccountPlan
             }
         }
 
+        public void OnUserLoggedIn()
+        {
+            User user = _userStorage.GetUser();
+            if (!user.Paid())
+            {
+                DisablePaidFeatures(user);
+            }
+        }
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.FeatureFreeRescopeEnabled))
+            {
+                User user = _userStorage.GetUser();
+                if (_appSettings.FeatureFreeRescopeEnabled && !user.Paid())
+                {
+                    DisablePaidFeatures(user);
+                }
+                _appSettings.PortForwardingInQuickSettings = !_appSettings.FeatureFreeRescopeEnabled;
+            }
+        }
+
         private async Task DowngradeUserAsync(User user)
         {
             DisablePaidFeatures(user);
@@ -107,6 +131,13 @@ namespace ProtonVPN.AccountPlan
                 _appSettings.PortForwardingEnabled = false;
                 _appSettings.NetShieldEnabled = false;
                 _appSettings.AllowNonStandardPorts = false;
+                _appSettings.ModerateNat = false;
+                if (_appSettings.FeatureFreeRescopeEnabled)
+                {
+                    _appSettings.CustomDnsEnabled = false;
+                    _appSettings.VpnAcceleratorEnabled = false;
+                    _appSettings.SplitTunnelingEnabled = false;
+                }
             }
         }
 

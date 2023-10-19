@@ -19,6 +19,7 @@
 
 using System;
 using System.Globalization;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace ProtonVPN.Core.MVVM.Converters
@@ -27,10 +28,24 @@ namespace ProtonVPN.Core.MVVM.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (string.IsNullOrEmpty((string)value))
-                value = "zz";
+            string countryCode = (string)value;
+            if (string.IsNullOrEmpty(countryCode))
+            {
+                countryCode = "zz";
+            }
 
-            return $"/ProtonVPN;component/Resources/Assets/Images/Flags/{value}.png";
+            if (parameter == null)
+            {
+                return $"/ProtonVPN;component/Resources/Assets/Images/Flags/{countryCode}.png";
+            }
+
+            Type type = Type.GetType($"ProtonVPN.Resource.Graphics.Flags.{countryCode.ToUpper()}, ProtonVPN.Resource");
+            if (type != null && Activator.CreateInstance(type) is UserControl control)
+            {
+                return control;
+            }
+
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

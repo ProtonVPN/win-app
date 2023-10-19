@@ -289,3 +289,6 @@ dotnet_diagnostic.ide1006.severity=warning
 # Ignore that our code is compatible only with Windows
 # CA1416: Validate platform compatibility
 dotnet_diagnostic.CA1416.severity = none
+
+# IDE0058: Remove unnecessary expression value
+csharp_style_unused_value_expression_statement_preference = discard_variable:none

@@ -12,11 +12,37 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Graphics\Images\brand-logo-box.png" />
+    <None Remove="Graphics\Images\custom-dns.png" />
+    <None Remove="Graphics\Images\gradient-top-green.png" />
+    <None Remove="Graphics\Images\moderate-nat.png" />
+    <None Remove="Graphics\Images\p2p.png" />
+    <None Remove="Graphics\Images\profiles.png" />
+    <None Remove="Graphics\Images\speed.png" />
+    <None Remove="Graphics\Images\split-tunneling.png" />
+    <None Remove="Graphics\Images\stars.png" />
+    <None Remove="Graphics\Images\worldwide-coverage-small.png" />
+    <None Remove="Graphics\Images\worldwide-coverage.png" />
+    <None Remove="Graphics\Images\wrong-country.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Graphics\Images\brand-logo-box.png" />
+    <Resource Include="Graphics\Images\custom-dns.png" />
+    <Resource Include="Graphics\Images\gradient-top-green.png" />
+    <Resource Include="Graphics\Images\moderate-nat.png" />
+    <Resource Include="Graphics\Images\p2p.png" />
+    <Resource Include="Graphics\Images\profiles.png" />
+    <Resource Include="Graphics\Images\speed.png" />
+    <Resource Include="Graphics\Images\split-tunneling.png" />
+    <Resource Include="Graphics\Images\stars.png" />
+    <Resource Include="Graphics\Images\worldwide-coverage-small.png" />
+    <Resource Include="Graphics\Images\worldwide-coverage.png" />
+    <Resource Include="Graphics\Images\wrong-country.png" />
     <Resource Include="protonvpn.ico" />
   </ItemGroup>
   <ItemGroup>

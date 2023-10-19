@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Linq;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Core.Auth;
@@ -31,7 +32,7 @@ using ProtonVPN.Windows.Popups.Rebranding;
 
 namespace ProtonVPN.Modals.Welcome
 {
-    public class WelcomeModalManager : ILogoutAware
+    public class WelcomeModalManager : ILogoutAware, ISettingsAware
     {
         private readonly Random _random = new();
         private readonly IAppSettings _appSettings;
@@ -57,6 +58,9 @@ namespace ProtonVPN.Modals.Welcome
             _offerPopupViewModel = offerPopupViewModel;
         }
 
+        private bool IsToShowFreeRescopePopup => _appSettings.FeatureFreeRescopeEnabled &&
+                                                 !_appSettings.IsFreeRescopeModalDisplayed &&
+                                                 !_userStorage.GetUser().Paid();
         public void Load()
         {
             User user = _userStorage.GetUser();
@@ -68,9 +72,22 @@ namespace ProtonVPN.Modals.Welcome
             {
                 ShowRebrandingPopup();
             }
+            else if (IsToShowFreeRescopePopup)
+            {
+                ShowFreeRescopeModal();
+            }
             else if (!user.Paid() && !_userStorage.GetUser().IsDelinquent())
             {
                 ShowUpsellModal();
+            }
+        }
+
+        private async void ShowFreeRescopeModal()
+        {
+            if (_appSettings.WelcomeModalShown)
+            {
+                await _modals.ShowAsync<FreeRescopeModalViewModel>();
+                _appSettings.IsFreeRescopeModalDisplayed = true;
             }
         }
 
@@ -110,6 +127,10 @@ namespace ProtonVPN.Modals.Welcome
         {
             await _modals.ShowAsync<WelcomeModalViewModel>();
             _appSettings.WelcomeModalShown = true;
+            if (_appSettings.FeatureFreeRescopeEnabled && !_appSettings.IsFreeRescopeModalDisplayed)
+            {
+                _appSettings.IsFreeRescopeModalDisplayed = true;
+            }
         }
 
         private void ShowRebrandingPopup()
@@ -128,6 +149,14 @@ namespace ProtonVPN.Modals.Welcome
             if (_popupWindows.IsOpen<OfferPopupViewModel>())
             {
                 _popupWindows.Close<OfferPopupViewModel>();
+            }
+        }
+
+        public void OnAppSettingsChanged(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IAppSettings.FeatureFreeRescopeEnabled) && IsToShowFreeRescopePopup)
+            {
+                ShowFreeRescopeModal();
             }
         }
     }

@@ -75,9 +75,6 @@ namespace ProtonVPN.Common.Configuration
         string StreamingServicesFilePath { get; set; }
 
         [Required]
-        string PartnersFilePath { get; set; }
-
-        [Required]
         string ServiceLogFolder { get; set; }
 
         [Required]
@@ -151,9 +148,6 @@ namespace ProtonVPN.Common.Configuration
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         TimeSpan StreamingServicesUpdateInterval { get; set; }
-
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-        TimeSpan PartnersUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         TimeSpan AnnouncementUpdateInterval { get; set; }
@@ -252,5 +246,11 @@ namespace ProtonVPN.Common.Configuration
         public bool IsCertificateValidationDisabled { get; set; }
 
         public decimal? DeviceRolloutPercentage { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        TimeSpan StatisticalEventSendTriggerInterval { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
+        TimeSpan StatisticalEventMinimumWaitInterval { get; set; }
     }
 }

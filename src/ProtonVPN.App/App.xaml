@@ -88,6 +88,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="Resources/Assets/Styles/ToggleButton.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/ToggleSwitch.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Menu.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/Upsell.xaml"/>
+                <ResourceDictionary Source="Resources/Assets/Styles/ChangeServerButton.xaml"/>
                 <ResourceDictionary Source="Views/Forms/Style.xaml"/>
                 <ResourceDictionary Source="Profiles/Style.xaml"/>
                 <ResourceDictionary Source="Resources/Assets/Styles/Sidebar.xaml"/>

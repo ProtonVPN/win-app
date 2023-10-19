@@ -27,14 +27,16 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Geographical;
-using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Api.Contracts.Settings;
 using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.StatisticalEvents;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
@@ -97,7 +99,7 @@ namespace ProtonVPN.Api
         public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)
         {
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get,
-                "vpn/logicals?SignServer=Server.EntryIP,Server.Label&WithPartnerLogicals=1", ip);
+                "vpn/logicals?SignServer=Server.EntryIP,Server.Label", ip);
             request.SetRetryCount(SERVERS_RETRY_COUNT);
             request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
             return await SendRequest<ServersResponse>(request, "Get servers");
@@ -180,12 +182,6 @@ namespace ProtonVPN.Api
             return await SendRequest<StreamingServicesResponse>(request, "Get streaming services");
         }
 
-        public async Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/partners");
-            return await SendRequest<PartnersResponse>(request, "Get partners");
-        }
-
         public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
         {
             HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
@@ -213,6 +209,25 @@ namespace ProtonVPN.Api
             request.SetCustomTimeout(TimeSpan.FromSeconds(3));
             request.Content = GetJsonContent(authForkSessionRequest);
             return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
+        }
+
+        public async Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync()
+        {
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/settings");
+            return await SendRequest<SettingsResponse>(request, "Get user settings");
+        }
+
+        public async Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+        {
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "data/v1/stats/multiple");
+            request.Content = GetJsonContent(statisticalEvents);
+            return await SendRequest<BaseResponse>(request, "Post statistical events batch");
+        }
+
+        public async Task<ApiResponseResult<UsersResponse>> GetUserAsync()
+        {
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/users");
+            return await SendRequest<UsersResponse>(request, "Get user");
         }
 
         private async Task<ApiResponseResult<T>> SendRequest<T>(HttpRequestMessage request, string logDescription)

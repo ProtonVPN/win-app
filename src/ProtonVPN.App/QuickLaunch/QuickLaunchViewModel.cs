@@ -20,8 +20,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
@@ -34,6 +36,7 @@ using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Profiles;
+using ProtonVPN.Sidebar.ChangeServer;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Windows;
 
@@ -43,17 +46,22 @@ namespace ProtonVPN.QuickLaunch
         LanguageAwareViewModel,
         IVpnStateAware,
         IUserLocationAware,
-        IConnectionDetailsAware
+        IConnectionDetailsAware,
+        IVpnPlanAware,
+        IHandle<ChangeServerTimeLeftMessage>
     {
         private readonly ProfileManager _profileManager;
         private readonly ProfileViewModelFactory _profileHelper;
         private readonly IVpnManager _vpnManager;
         private readonly AppWindow _appWindow;
+        private readonly IAppSettings _appSettings;
+        private readonly ServerChangeManager _serverChangeManager;
         private readonly IUserStorage _userStorage;
         
         public ICommand ShowAppCommand { get; set; }
         public ICommand QuickConnectCommand { get; set; }
         public ICommand ProfileConnectCommand { get; set; }
+        public ICommand ChangeServerCommand { get; set; }
 
         private VpnStatus _vpnStatus;
 
@@ -138,21 +146,41 @@ namespace ProtonVPN.QuickLaunch
             }
         }
 
+        private string _changeServerTimeLeft = string.Empty;
+        public string ChangeServerTimeLeft
+        {
+            get => _changeServerTimeLeft;
+            set => Set(ref _changeServerTimeLeft, value);
+        }
+
+        public bool IsToShowProfileSelection =>
+            !_appSettings.FeatureFreeRescopeEnabled || _userStorage.GetUser().Paid();
+
+        public bool IsToShowChangeServerButton => Connected && !IsToShowProfileSelection;
+
         public QuickLaunchViewModel(
+            IEventAggregator eventAggregator,
             ProfileManager profileManager,
             ProfileViewModelFactory profileHelper,
             IVpnManager vpnManager,
-            AppWindow appWindow, 
+            AppWindow appWindow,
+            IAppSettings appSettings,
+            ServerChangeManager serverChangeManager,
             IUserStorage userStorage)
         {
+            eventAggregator.Subscribe(this);
+
             ShowAppCommand = new RelayCommand(ShowAppAction);
             QuickConnectCommand = new RelayCommand(QuickConnectAction);
             ProfileConnectCommand = new RelayCommand<ProfileViewModel>(ProfileConnectAction);
+            ChangeServerCommand = new RelayCommand(ChangeServerActionAsync);
 
             _profileManager = profileManager;
             _profileHelper = profileHelper;
             _vpnManager = vpnManager;
             _appWindow = appWindow;
+            _appSettings = appSettings;
+            _serverChangeManager = serverChangeManager;
             _userStorage = userStorage;
         }
 
@@ -196,7 +224,14 @@ namespace ProtonVPN.QuickLaunch
                     break;
             }
 
+            NotifyOfPropertyChange(nameof(IsToShowChangeServerButton));
+
             return Task.CompletedTask;
+        }
+
+        public async Task HandleAsync(ChangeServerTimeLeftMessage message, CancellationToken cancellationToken)
+        {
+            ChangeServerTimeLeft = message.TimeLeftInSeconds > 0 ? message.TimeLeftFormatted : string.Empty;
         }
 
         private void SetConnectionName(Server server)
@@ -247,16 +282,22 @@ namespace ProtonVPN.QuickLaunch
         {
             base.OnAppSettingsChanged(e);
 
-            if (e.PropertyName.Equals(nameof(IAppSettings.Language)))
+            switch (e.PropertyName)
             {
-                await LoadProfiles();
+                case nameof(IAppSettings.Language):
+                case nameof(IAppSettings.Profiles):
+                case nameof(IAppSettings.SecureCore):
+                    await LoadProfiles();
+                    break;
+                case nameof(IAppSettings.FeatureFreeRescopeEnabled):
+                    NotifyOfPropertyChange(nameof(IsToShowProfileSelection));
+                    break;
             }
+        }
 
-            if (e.PropertyName.Equals(nameof(IAppSettings.Profiles))
-                || e.PropertyName.Equals(nameof(IAppSettings.SecureCore)))
-            {
-                await LoadProfiles();
-            }
+        public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(nameof(IsToShowProfileSelection));
         }
 
         private async void QuickConnectAction()
@@ -304,6 +345,11 @@ namespace ProtonVPN.QuickLaunch
         private async void ShowAppAction()
         {
             await _appWindow.OpenWindowAsync();
+        }
+
+        private async void ChangeServerActionAsync()
+        {
+            await _serverChangeManager.ChangeServerAsync();
         }
     }
 }

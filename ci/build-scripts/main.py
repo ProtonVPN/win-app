@@ -33,6 +33,9 @@ subparsers.add_parser('sign')
 custom_parser = subparsers.add_parser('app-installer')
 custom_parser.add_argument('hash', type=str, help='Commit hash string')
 
+custom_parser = subparsers.add_parser('app-bti-installer')
+custom_parser.add_argument('hash', type=str, help='Commit hash string')
+
 custom_parser = subparsers.add_parser('add-commit-hash')
 custom_parser.add_argument('hash', type=str, help='Commit hash string')
 
@@ -74,11 +77,20 @@ elif args.command == 'lint-languages':
     sys.exit(code)
 
 elif args.command == 'app-installer':
-    v = win32api.GetFileVersionInfo('.\\src\\bin\\win-x64\\publish\\ProtonVPN.exe', '\\')
+    build_path = os.environ.get('BUILD_PATH', '.\\src\\bin\\win-x64\\publish\\')
+    exe_path = os.path.join(build_path, 'ProtonVPN.exe')
+    print('Executable File Path:', exe_path)
+    v = win32api.GetFileVersionInfo(exe_path, '\\')
     semVersion = "%d.%d.%d" % (v['FileVersionMS'] / 65536, v['FileVersionMS'] % 65536, v['FileVersionLS'] / 65536)
     print('Building app installer')
     err = installer.build(semVersion, args.hash, 'Setup/setup.iss')
-    print_sha256('.\Setup\Installers\ProtonVPN_v{semVersion}.exe'.format(semVersion=semVersion))
+    installer_filename = 'ProtonVPN_v{semVersion}.exe'.format(semVersion=semVersion)
+    
+    if 'BTI' in build_path:
+        installer_filename = 'ProtonVPN_v{semVersion}_BTI.exe'.format(semVersion=semVersion)  
+    installer_path = os.path.join('.\Setup\Installers', installer_filename)
+    
+    print_sha256(installer_path)
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':

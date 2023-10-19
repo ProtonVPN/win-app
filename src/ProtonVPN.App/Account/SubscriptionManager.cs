@@ -24,7 +24,7 @@ namespace ProtonVPN.Account
 {
     public class SubscriptionManager : ISubscriptionManager
     {
-        public const string REDIRECT_ENDPOINT = "refresh-account";
+        public const string REFRESH_ACCOUNT_COMMAND = "refresh-account";
 
         private readonly IOsProcesses _processes;
         private readonly IWebAuthenticator _webAuthenticator;
@@ -51,7 +51,7 @@ namespace ProtonVPN.Account
             {
                 Action = "subscribe-account",
                 Fullscreen = "off",
-                Redirect = REDIRECT_ENDPOINT,
+                Redirect = REFRESH_ACCOUNT_COMMAND,
                 Start = "compare",
                 Type = type,
             };
