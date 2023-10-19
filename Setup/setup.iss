@@ -152,6 +152,7 @@ Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
 
 [Dirs]
 Name: "{localappdata}\ProtonVPN\DiagnosticLogs"
+Name: "{commonappdata}\ProtonVPN\Updates"; AfterInstall: SetFolderPermissions;
 
 [Code]
 function InitLogger(logger: Longword): Integer;
@@ -168,6 +169,9 @@ external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayloa
 
 function IsProductInstalled(upgradeCode: String): Integer;
 external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
+function SetUpdatesFolderPermission(updatesFolderPath: String): Integer;
+external 'SetUpdatesFolderPermission@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -229,6 +233,11 @@ begin
     lstrcpyW(line, ptr);
     Log(line);
   end;
+end;
+
+procedure SetFolderPermissions();
+begin
+  SetUpdatesFolderPermission(ExpandConstant('{commonappdata}\ProtonVPN\Updates'));
 end;
 
 procedure DeleteNonRunningVersions(const Directory: string);
