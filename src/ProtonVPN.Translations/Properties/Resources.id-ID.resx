@@ -363,11 +363,11 @@
     <value>Apakah solusi di atas tidak membantu?</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>Email</value>
+    <value>Surel</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Kami akan menggunakan alamat email ini untuk menghubungi Anda terkait masalah yang Anda hadapi.</value>
+    <value>Kami akan menggunakan alamat surel ini untuk menghubungi Anda terkait masalah yang Anda hadapi.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -431,7 +431,7 @@
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Email tidak valid</value>
+    <value>Surel tidak valid</value>
   </data>
   <data name="BugReport_msg_Sending">
     <value>Mengirim laporan...</value>
@@ -1820,7 +1820,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Masih belum dapat menemukan solusi&lt;/Bold&gt; - Hubungi kami secara langsung melalui &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulir dukungan&lt;/Hyperlink&gt; kami, email (support@protonvpn.com), atau &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Masih belum dapat menemukan solusi&lt;/Bold&gt; - Hubungi kami secara langsung melalui &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulir dukungan&lt;/Hyperlink&gt; kami, surel (support@protonvpn.com), atau &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">

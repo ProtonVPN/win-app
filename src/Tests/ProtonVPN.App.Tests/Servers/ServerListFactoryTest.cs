@@ -24,13 +24,18 @@ using Caliburn.Micro;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Account;
+using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.Threading;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Servers;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Streaming;
 
 namespace ProtonVPN.App.Tests.Servers
@@ -86,8 +91,21 @@ namespace ProtonVPN.App.Tests.Servers
             _eventAggregator = Substitute.For<IEventAggregator>();
 
             InitializeSortedCountries();
-            _serverListFactory = new ServerListFactory(_appSettings, _serverManager, _userStorage, _streamingServices,
-                new UpsellBannerViewModel(_eventAggregator), _urls);
+            _serverListFactory = new ServerListFactory(
+                _appSettings, 
+                _serverManager, 
+                _userStorage, 
+                _streamingServices,
+                new UpsellBannerViewModel(_eventAggregator), 
+                new AnnouncementBannerViewModel(
+                    _logger,
+                    Substitute.For<IScheduler>(),
+                    Substitute.For<IOsProcesses>(),
+                    Substitute.For<IWebAuthenticator>(),
+                    Substitute.For<IUpsellDisplayStatisticalEventSender>(),
+                    Substitute.For<IUpsellUpgradeAttemptStatisticalEventSender>()), 
+                _urls, 
+                Substitute.For<IAnnouncementService>());
         }
 
         private void InitializeUserStorage()
@@ -152,12 +170,16 @@ namespace ProtonVPN.App.Tests.Servers
             // Act
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList();
 
-            Assert.AreEqual(result[0].Name, "FREE Locations (" + _countriesWithFreeServers.Count + ")");
+            // Upsell banner comes first
+            Assert.IsInstanceOfType<UpsellBannerViewModel>(result[0]);
+
+            // Then the first servers are the free ones
+            Assert.AreEqual("FREE Locations (" + _countriesWithFreeServers.Count + ")", result[1].Name);
 
             // Assert
             for (int i = 0; i < _countriesWithFreeServers.Count; i++)
             {
-                Assert.AreEqual(Countries.GetName(_countriesWithFreeServers[i]), result[i + 1].Name);
+                Assert.AreEqual(Countries.GetName(_countriesWithFreeServers[i]), result[i + 2].Name);
             }
         }
 
@@ -171,9 +193,9 @@ namespace ProtonVPN.App.Tests.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList(searchQuery);
 
             // Assert
-            Assert.AreEqual(2, result.Count);
-            Assert.IsInstanceOfType(result[1], typeof(ServersByCountryViewModel));
-            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[1];
+            Assert.AreEqual(3, result.Count);
+            Assert.IsInstanceOfType(result[2], typeof(ServersByCountryViewModel));
+            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[2];
             Assert.AreEqual("CH", viewModel.CountryCode);
         }
 
@@ -187,8 +209,8 @@ namespace ProtonVPN.App.Tests.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList(searchQuery);
 
             // Assert
-            Assert.AreEqual(2, result.Count);
-            ServersByCountryViewModel countryViewModel = (ServersByCountryViewModel)result[1];
+            Assert.AreEqual(3, result.Count);
+            ServersByCountryViewModel countryViewModel = (ServersByCountryViewModel)result[2];
             Assert.AreEqual(2, countryViewModel.Servers.Count);
             ServerItemViewModel serverItemViewModel = (ServerItemViewModel)countryViewModel.Servers[1];
             Assert.AreEqual("Houston", serverItemViewModel.Server.City);
@@ -204,9 +226,9 @@ namespace ProtonVPN.App.Tests.Servers
             ObservableCollection<IServerListItem> result = _serverListFactory.BuildServerList(searchQuery);
 
             // Assert
-            Assert.AreEqual(2, result.Count);
-            Assert.IsInstanceOfType(result[1], typeof(ServersByCountryViewModel));
-            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[1];
+            Assert.AreEqual(3, result.Count);
+            Assert.IsInstanceOfType(result[2], typeof(ServersByCountryViewModel));
+            ServersByCountryViewModel viewModel = (ServersByCountryViewModel)result[2];
             Assert.AreEqual("US", viewModel.CountryCode);
             foreach (IServerListItem server in viewModel.Servers)
             {

@@ -26,9 +26,6 @@ namespace ProtonVPN.Api.Contracts
         public const int ClientPublicKeyConflict = 2500;
         public const int OutdatedAppResponse = 5003;
         public const int OutdatedApiResponse = 5005;
-        public const int InvalidProfileIdOnUpdate = 86062;
-        public const int InvalidProfileIdOnDelete = 86063;
-        public const int ProfileNameConflict = 86065;
         public const int HumanVerificationRequired = 9001;
         public const int NoVpnConnectionsAssigned = 86300;
         public const int IncorrectLoginCredentials = 8002;

@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.App", "src\ProtonVPN.App\ProtonVPN.App.csproj", "{0CDCA012-BB2D-49B3-944E-CE80D75D651A}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Service", "src\ProtonVPN.Service\ProtonVPN.Service.csproj", "{25781B52-5858-4387-80A5-C9C38C32B3CC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CA44B51D-7645-413A-818F-2C5B57DB67DD} = {CA44B51D-7645-413A-818F-2C5B57DB67DD}
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.App", "src\ProtonVPN.App\ProtonVPN.App.csproj", "{0CDCA012-BB2D-49B3-944E-CE80D75D651A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Core", "src\ProtonVPN.Core\ProtonVPN.Core.csproj", "{CA44B51D-7645-413A-818F-2C5B57DB67DD}"
 EndProject
@@ -183,13 +183,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Logging.Installer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Logging.Tests", "src\Logging\ProtonVPN.Logging.Tests\ProtonVPN.Logging.Tests.csproj", "{433F53CA-E2E3-4CE1-A342-4A358D1999FC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonDrive.Downloader", "src\ProtonDrive.Downloader\ProtonDrive.Downloader.csproj", "{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StatisticalEvents", "StatisticalEvents", "{4B1EF657-A679-43B5-83DD-612D602C6333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.StatisticalEvents", "src\StatisticalEvents\ProtonVPN.StatisticalEvents\ProtonVPN.StatisticalEvents.csproj", "{C8B78B43-EFEE-41CF-8BE9-1EA84AA18BF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.StatisticalEvents", "src\StatisticalEvents\ProtonVPN.StatisticalEvents\ProtonVPN.StatisticalEvents.csproj", "{C8B78B43-EFEE-41CF-8BE9-1EA84AA18BF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.StatisticalEvents.Contracts", "src\StatisticalEvents\ProtonVPN.StatisticalEvents.Contracts\ProtonVPN.StatisticalEvents.Contracts.csproj", "{669BF256-765D-4BF1-9278-68EF33F86FFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.StatisticalEvents.Contracts", "src\StatisticalEvents\ProtonVPN.StatisticalEvents.Contracts\ProtonVPN.StatisticalEvents.Contracts.csproj", "{669BF256-765D-4BF1-9278-68EF33F86FFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.StatisticalEvents.Installers", "src\StatisticalEvents\ProtonVPN.StatisticalEvents.Installers\ProtonVPN.StatisticalEvents.Installers.csproj", "{CEE9045E-0299-4488-80FF-0162D099C544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.StatisticalEvents.Installers", "src\StatisticalEvents\ProtonVPN.StatisticalEvents.Installers\ProtonVPN.StatisticalEvents.Installers.csproj", "{CEE9045E-0299-4488-80FF-0162D099C544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1041,6 +1043,18 @@ Global
 		{433F53CA-E2E3-4CE1-A342-4A358D1999FC}.Release|x64.Build.0 = Release|Any CPU
 		{433F53CA-E2E3-4CE1-A342-4A358D1999FC}.Release|x86.ActiveCfg = Release|Any CPU
 		{433F53CA-E2E3-4CE1-A342-4A358D1999FC}.Release|x86.Build.0 = Release|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Debug|x64.Build.0 = Debug|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Release|x64.Build.0 = Release|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4908758-811B-4D99-AEE7-3D9F3BC2E3C5}.Release|x86.Build.0 = Release|Any CPU
 		{C8B78B43-EFEE-41CF-8BE9-1EA84AA18BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8B78B43-EFEE-41CF-8BE9-1EA84AA18BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8B78B43-EFEE-41CF-8BE9-1EA84AA18BF9}.Debug|x64.ActiveCfg = Debug|Any CPU

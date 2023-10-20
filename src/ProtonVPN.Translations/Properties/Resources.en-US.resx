@@ -3422,4 +3422,37 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Upsell_PortForwarding_Bullet3" xml:space="preserve">
     <value>Set up remote access to devices on your local network</value>
   </data>
+  <data name="PlusWelcome_Title" xml:space="preserve">
+    <value>Welcome to VPN Plus</value>
+  </data>
+  <data name="PlusWelcome_Subtitle" xml:space="preserve">
+    <value>Enjoy extra privacy features, supercharged performance, and next-level VPN customization.</value>
+  </data>
+  <data name="PlusWelcome_Bullet1_One" xml:space="preserve">
+    <value>1800+ new servers in {0} country</value>
+  </data>
+  <data name="PlusWelcome_Bullet1_Other" xml:space="preserve">
+    <value>1800+ new servers in {0} countries</value>
+  </data>
+  <data name="PlusWelcome_Bullet2" xml:space="preserve">
+    <value>Advanced security features</value>
+  </data>
+  <data name="PlusWelcome_Bullet3" xml:space="preserve">
+    <value>Up to 10 devices at once</value>
+  </data>
+  <data name="PaidWelcome_btn_GetStarted" xml:space="preserve">
+    <value>Get started</value>
+  </data>
+  <data name="UnlimitedWelcome_Title" xml:space="preserve">
+    <value>Welcome to Proton Unlimited</value>
+  </data>
+  <data name="UnlimitedWelcome_Subtitle" xml:space="preserve">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services, plus &lt;Bold&gt;500 GB&lt;/Bold&gt; total storage.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Enjoy the best of Proton privacy. </value>
+  </data>
+  <data name="FallbackWelcome_Title" xml:space="preserve">
+    <value>Congratulations</value>
+  </data>
+  <data name="FallbackWelcome_Subtitle" xml:space="preserve">
+    <value>You've upgraded your subscription. Enjoy advanced privacy features and next-level performance.</value>
+  </data>
 </root>

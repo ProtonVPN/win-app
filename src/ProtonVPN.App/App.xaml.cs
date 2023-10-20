@@ -25,6 +25,7 @@ using ProtonVPN.Config;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Native.PInvoke;
+using ProtonVPN.Windows;
 
 namespace ProtonVPN
 {
@@ -49,6 +50,7 @@ namespace ProtonVPN
 
             if (await SingleInstanceApplication.InitializeAsFirstInstance("{588dc704-8eac-4a43-9345-ec7186b23f05}", string.Join(" ", e.Args)))
             {
+                BalloonNotification.SetAppId("Proton.VPN");
                 SetDllDirectories();
 
                 IConfiguration config = GetConfig();

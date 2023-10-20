@@ -19,9 +19,7 @@
 
 using System;
 using System.IO;
-using System.Reflection;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests
@@ -29,9 +27,6 @@ namespace ProtonVPN.UI.Tests.Tests
     [SetUpFixture]
     public class SetUp : TestSession
     {
-        private readonly string _testRailUrl = "https://proton.testrail.io/";
-        private Assembly asm = Assembly.GetExecutingAssembly();
-
         [OneTimeSetUp]
         public void TestInitialize()
         {

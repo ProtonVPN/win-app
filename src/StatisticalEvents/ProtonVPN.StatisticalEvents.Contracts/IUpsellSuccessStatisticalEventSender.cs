@@ -21,6 +21,6 @@ namespace ProtonVPN.StatisticalEvents.Contracts
 {
     public interface IUpsellSuccessStatisticalEventSender
     {
-        void Send(ModalSources modalSource, string oldPlan, string newPlan);
+        void Send(ModalSources modalSource, string oldPlan, string newPlan, string? reference = null);
     }
 }

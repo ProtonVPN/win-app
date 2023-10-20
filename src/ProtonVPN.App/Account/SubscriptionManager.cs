@@ -19,6 +19,7 @@
 
 using System.Threading.Tasks;
 using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Account
 {
@@ -35,23 +36,40 @@ namespace ProtonVPN.Account
             _webAuthenticator = webAuthenticator;
         }
 
-        public async Task UpgradeAccountAsync()
+        public async Task UpgradeAccountAsync(ModalSources modalSource, string notificationReference = null)
         {
-            await OpenLoginUrl("upgrade");
+            string redirectUrl = GetRedirectUrl(modalSource, notificationReference);
+            await OpenLoginUrlAsync("upgrade", redirectUrl);
         }
 
         public async Task ManageSubscriptionAsync()
         {
-            await OpenLoginUrl("manage-subscription");
+            await OpenLoginUrlAsync("manage-subscription", GetRedirectUrl());
         }
 
-        private async Task OpenLoginUrl(string type)
+        private string GetRedirectUrl(ModalSources modalSource, string notificationReference = null)
+        {
+            string url = $"{GetRedirectUrl()}?modal-source={modalSource}";
+            if (!string.IsNullOrWhiteSpace(notificationReference))
+            {
+                url += $"&notification-reference={notificationReference}";
+            }
+
+            return url;
+        }
+
+        private string GetRedirectUrl()
+        {
+            return REFRESH_ACCOUNT_COMMAND;
+        }
+
+        private async Task OpenLoginUrlAsync(string type, string redirectUrl)
         {
             LoginUrlParams urlParams = new()
             {
                 Action = "subscribe-account",
                 Fullscreen = "off",
-                Redirect = REFRESH_ACCOUNT_COMMAND,
+                Redirect = redirectUrl,
                 Start = "compare",
                 Type = type,
             };

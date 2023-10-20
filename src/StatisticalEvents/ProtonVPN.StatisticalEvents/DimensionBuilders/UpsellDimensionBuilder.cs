@@ -38,7 +38,7 @@ namespace ProtonVPN.StatisticalEvents.DimensionBuilders
             _appSettings = appSettings;
         }
 
-        public Dictionary<string, string> Build(ModalSources modalSource)
+        public Dictionary<string, string> Build(ModalSources modalSource, string? reference = null)
         {
             string country = _userStorage.GetLocation().Country;
             return new()
@@ -48,7 +48,8 @@ namespace ProtonVPN.StatisticalEvents.DimensionBuilders
                 { "vpn_status", _isConnected ? "on" : "off" },
                 { "user_country", string.IsNullOrWhiteSpace(country) ? "n/a" : country },
                 { "new_free_plan_ui", _appSettings.FeatureFreeRescopeEnabled ? "yes" : "no" },
-                { "days_since_account_creation", GetDaysSinceAccountCreation() }
+                { "days_since_account_creation", GetDaysSinceAccountCreation() },
+                { "reference", string.IsNullOrWhiteSpace(reference) ? "n/a" : reference }
             };
         }
 

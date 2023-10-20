@@ -198,4 +198,7 @@
   <data name="Language_be-BY" xml:space="preserve">
     <value>Беларуская</value>
   </data>
+  <data name="Language_ka-GE" xml:space="preserve">
+    <value>ქართული (beta)</value>
+  </data>
 </root>

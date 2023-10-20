@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -33,50 +32,74 @@ namespace ProtonVPN.UI.Tests.Tests
     {
         private HomeWindow _homeWindow = new HomeWindow();
         private LoginWindow _loginWindow = new LoginWindow();
+        private string _statusMetricName;
+        private string _statusMetricDescription;
 
-        private static readonly Stopwatch _timer = new Stopwatch();
-        private readonly PrometheusHelper _prometheusHelper = new PrometheusHelper();
-
-        [SetUp]
-        public void TestInitialize()
+        [OneTimeSetUp]
+        public async Task OneTimeSetUpAsync()
         {
             DeleteUserConfig();
             LaunchApp();
+            await TestMonitorHelper.IncrementMetricAsync(
+                "windows_pipeline_id",
+                "Pipeline ID for alerts",
+                double.Parse(Environment.GetEnvironmentVariable("CI_JOB_ID"))
+            );
         }
 
-        [Test]
-        public async Task QuickConnectPerformanceAsync()
-        {
-            _loginWindow.SignIn(TestUserData.GetPlusUser());
-            _homeWindow.PressQuickConnectButton();
-            _timer.Start();
-            _homeWindow.WaitUntilConnected();
-            _timer.Stop();
-            _homeWindow.PressQuickConnectButton();
-            //Sometimes API calls break due to VPN connection disconnection, so timeout is needed.
-            Thread.Sleep(3000);
-            await _prometheusHelper.PushMetricAsync("windows_connection_duration_seconds", "Windows client connection duration.", _timer.Elapsed.TotalSeconds);
-            Console.WriteLine($"Connection time: {_timer.Elapsed.Seconds} seconds.");
-        }
-
-        [Test]
+        [Test, Order(1)]
         public async Task LoginPerformanceAsync()
         {
+            _statusMetricName = "windows_login_status";
+            _statusMetricDescription = "Indicates if login passed.";
+
             _loginWindow.EnterCredentials(TestUserData.GetPlusUser());
-            _timer.Start();
+
+            TestMonitorHelper.Start();
             _loginWindow.WaitUntilLoggedIn();
-            _timer.Stop();
-            await _prometheusHelper.PushMetricAsync("windows_login_duration_seconds", "Windows client login duration.", _timer.Elapsed.TotalSeconds);
-            Console.WriteLine($"Login time: {_timer.Elapsed.Seconds} seconds.");
+            TestMonitorHelper.Stop();
+
+            await TestMonitorHelper.ReportDurationAsync("windows_login_duration_seconds", "Login time");
+        }
+
+        [Test, Order(2)]
+        public async Task QuickConnectPerformanceAsync()
+        {
+            _statusMetricName = "windows_connection_status";
+            _statusMetricDescription = "Indicates if connection passed.";
+
+            _homeWindow.PressQuickConnectButton();
+            _homeWindow.WaitUntilConnected();
+            _homeWindow.PressQuickConnectButton();
+
+            //Cooldown for another connection
+            Thread.Sleep(2000);
+
+            _homeWindow.PressQuickConnectButton();
+            TestMonitorHelper.Start();
+            _homeWindow.WaitUntilConnected();
+            TestMonitorHelper.Stop();
+            _homeWindow.PressQuickConnectButton();
+
+            // Sometimes API calls break due to VPN connection disconnection, so timeout is needed.
+            Thread.Sleep(5000);
+
+            await TestMonitorHelper.ReportDurationAsync("windows_connection_duration_seconds", "Connection time");
         }
 
         [TearDown]
-        public void TestCleanup()
+        public async Task TestCleanupAsync()
+        {
+            string testName = TestContext.CurrentContext.Test.MethodName;
+            await TestMonitorHelper.ReportTestStatusAsync(_statusMetricName, _statusMetricDescription);
+            TestsRecorder.SaveLogs(testName);
+            TestMonitorHelper.Reset();
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             Cleanup();
-            string testName = TestContext.CurrentContext.Test.MethodName;
-            TestsRecorder.SaveLogs(testName);
-            _timer.Reset();
         }
     }
 }

@@ -24,6 +24,6 @@ namespace ProtonVPN.StatisticalEvents.DimensionBuilders
 {
     public interface IUpsellDimensionBuilder
     {
-        Dictionary<string, string> Build(ModalSources modalSource);
+        Dictionary<string, string> Build(ModalSources modalSource, string? reference = null);
     }
 }

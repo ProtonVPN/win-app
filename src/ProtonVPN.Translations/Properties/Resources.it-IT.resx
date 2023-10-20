@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Per completare il processo di aggiornamento, Proton VPN si disconnetterà temporaneamente e disattiverà Kill Switch Permanente se attivo. Vuoi continuare?</value>
+    <value>Per completare il processo di aggiornamento, Proton VPN si disconnetterà temporaneamente e disattiverà il kill switch permanente se attivo. Vuoi continuare?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -403,7 +403,7 @@
     <value>I log degli errori ci aiutano ad arrivare alla fine del tuo problema. Se non li includi, potremmo non essere in grado di effettuare accertamenti completi.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Un registro è un tipo di file che ci mostra le azioni intraprese che hanno portato a un errore. Li useremo solo per aiutare i nostri ingegneri a correggere i bug.</value>
+    <value>Un log è un tipo di file che ci mostra le azioni intraprese che hanno portato a un errore. Li useremo solo per aiutare i nostri ingegneri a correggere i bug.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
     <value>Aggiorna Proton VPN</value>
@@ -454,7 +454,7 @@
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Si prega di attendere fino al termine del processo di invio</value>
+    <value>Attendi fino al termine del processo di invio</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -466,7 +466,7 @@
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>Assegnando l'indirizzo IP</value>
+    <value>Assegnazione dell'IP</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Authenticating">
@@ -592,7 +592,7 @@
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX">
-    <value>Isole Aland</value>
+    <value>Isole Åland</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
@@ -600,7 +600,7 @@
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
-    <value>Bosnia ed Herzegovina</value>
+    <value>Bosnia ed Erzegovina</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB">
@@ -756,7 +756,7 @@
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ">
-    <value>Repubblica Ceca</value>
+    <value>Cechia</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE">
@@ -992,7 +992,7 @@
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE">
-    <value>Kenia</value>
+    <value>Kenya</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG">
@@ -1140,7 +1140,7 @@
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS">
-    <value>Montserrato</value>
+    <value>Montserrat</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT">
@@ -1260,7 +1260,7 @@
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR">
-    <value>Portorico</value>
+    <value>Porto Rico</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS">
@@ -1643,7 +1643,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe aggirare queste limitazioni.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Scopri di più a riguardo di Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe evitare queste limitazioni.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Scopri di più a riguardo di Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -1667,7 +1667,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Kill Switch sta bloccando tutte le connessioni per evitare perdite di dati. Uscire dall'applicazione disattiverà kill switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Kill Switch permanente è abilitato. L'uscita dell'applicazione bloccherà tutte le connessioni in uscita fino a quando Proton VPN non sarà nuovamente connesso.</value>
+    <value>Kill switch permanente è abilitato. L'uscita dell'applicazione bloccherà tutte le connessioni in uscita fino a quando Proton VPN non sarà nuovamente connesso.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Verifica umana</value>
@@ -1676,10 +1676,10 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>L'orologio del tuo sistema sembra non essere sincronizzato, il che potrebbe impedire alla VPN di connettersi correttamente. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;qui&lt;/Hyperlink&gt; per maggiori informazioni.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Con Kill Switch permanente, se la VPN non è connessa, non sarà possibile accedere a Internet.</value>
+    <value>Con il kill switch permanente, se la VPN non è connessa, non sarà possibile accedere a Internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Abilitare kill switch permanente?</value>
+    <value>Abilitare il kill switch permanente?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Ho capito</value>
@@ -1802,7 +1802,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Percorso alternativo&lt;/Bold&gt; - Nel caso in cui i siti Proton siano bloccati, questa impostazione consente all'applicazione di provare un instradamento alternativo nella rete per raggiungere Proton, che può essere utile per aggirare i firewall o problemi di rete. Consigliamo di mantenere attiva questa impostazione per una maggiore affidabilità. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Ulteriori informazioni&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;Percorso alternativo&lt;/Bold&gt; - Nel caso in cui i siti di Proton siano bloccati, questa impostazione consente all'app di provare l'indirizzamento di rete alternativo per raggiungere Proton, che potrebbe esser utile per evitare firewall o problemi di rete. Consigliamo di mantenere questa impostazione attiva per una maggiore affidabilità. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
@@ -1845,10 +1845,10 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Passa a TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN non ha potuto connettersi perché la scheda di rete TUN è già in uso. Si prega di disconnettere qualsiasi VPN attiva e riprovare. In alternativa, passare all'adattatore TAP (è possibile tornare a TUN nelle impostazioni avanzate).</value>
+    <value>Proton VPN non ha potuto connettersi perché la scheda di rete TUN è già in uso. Disconnetti qualsiasi VPN attiva e riprova. In alternativa, passa all'adattatore TAP (puoi tornare a TUN nelle impostazioni avanzate).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN non ha potuto connettersi perché l'adattatore di rete WireGuard è già in uso. Si prega di disconnettere qualsiasi VPN attiva e riprovare. In alternativa, è anche possibile modificare i protocolli nelle impostazioni avanzate.</value>
+    <value>Proton VPN non ha potuto connettersi perché la scheda di rete WireGuard è già in uso. Disconnetti qualsiasi VPN attiva e riprova. In alternativa, puoi cambiare i protocolli nelle impostazioni avanzate.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Annulla</value>
@@ -2002,7 +2002,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Codice di autenticazione a due fattori non valido</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Credenziali di accesso non valide. Si prega di riprovare.</value>
+    <value>Credenziali di accesso non valide. Per favore riprova.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
@@ -2118,7 +2118,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe bypassare queste limitazioni.</value>
+    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe evitare queste limitazioni.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
@@ -2451,7 +2451,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Blocca solo malware</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Blocca malware, annunci &amp; tracker</value>
+    <value>Blocca malware, annunci e tracker</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Kill switch permanente</value>
@@ -2676,11 +2676,11 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
-    <value>Consenti routing alternativo</value>
+    <value>Consenti percorso alternativo</value>
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>Nel caso in cui i siti Proton siano bloccati, questa impostazione consente all'app di provare l'instradamento di rete alternativo per raggiungere Proton, che può essere utile per aggirare i firewall o problemi di rete. Consigliamo di mantenere questa impostazione per una maggiore affidabilità.</value>
+    <value>Nel caso in cui i siti di Proton siano bloccati, questa impostazione consente all'app di provare l'indirizzamento di rete alternativo per raggiungere Proton, che potrebbe esser utile per evitare firewall o problemi di rete. Consigliamo di mantenere questa impostazione attiva per una maggiore affidabilità.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
@@ -2954,7 +2954,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Località Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
-    <value>Posizioni BASIC &amp; PLUS ({0})</value>
+    <value>Località BASIC &amp; PLUS ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicLocationCount">
     <value>Posizioni BASIC ({0})</value>

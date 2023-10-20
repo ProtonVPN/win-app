@@ -102,7 +102,6 @@ namespace ProtonVPN.Settings
             PortForwardingWarningViewModel = portForwardingWarningViewModel;
 
             ReconnectCommand = new RelayCommand(ReconnectAction);
-            UpgradeCommand = new RelayCommand(UpgradeAction);
             ShowVpnAcceleratorUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<VpnAcceleratorUpsellModalViewModel>);
             ShowSplitTunnelingUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<SplitTunnelingUpsellModalViewModel>);
             ShowPortForwardingUpgradeModalCommand = new RelayCommand(() => PortForwarding = true);
@@ -115,7 +114,6 @@ namespace ProtonVPN.Settings
         public PortForwardingWarningViewModel PortForwardingWarningViewModel { get; }
 
         public ICommand ReconnectCommand { get; set; }
-        public ICommand UpgradeCommand { get; set; }
         public ICommand ShowVpnAcceleratorUpgradeModalCommand { get; set; }
         public ICommand ShowSplitTunnelingUpgradeModalCommand { get; set; }
         public ICommand ShowPortForwardingUpgradeModalCommand { get; set; }
@@ -706,11 +704,6 @@ namespace ProtonVPN.Settings
         private async void ReconnectAction()
         {
             await _vpnManager.ReconnectAsync();
-        }
-
-        private void UpgradeAction()
-        {
-            _subscriptionManager.UpgradeAccountAsync();
         }
 
         private async void ShowUpgradeModalActionAsync<T>() where T : UpsellModalViewModel

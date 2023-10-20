@@ -21,6 +21,6 @@ namespace ProtonVPN.StatisticalEvents.Contracts
 {
     public interface IUpsellUpgradeAttemptStatisticalEventSender
     {
-        void Send(ModalSources modalSource);
+        void Send(ModalSources modalSource, string? reference = null);
     }
 }

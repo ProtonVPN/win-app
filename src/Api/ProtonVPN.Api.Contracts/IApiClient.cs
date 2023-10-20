@@ -29,6 +29,7 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Settings;
 using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.Users;
+using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.StatisticalEvents;
 
@@ -48,7 +49,7 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();
-        Task<ApiResponseResult<VpnConfig.VpnConfigResponse>> GetVpnConfig();
+        Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig();
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();

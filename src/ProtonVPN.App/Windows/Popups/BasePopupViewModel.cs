@@ -41,5 +41,9 @@ namespace ProtonVPN.Windows.Popups
         {
             await base.TryCloseAsync();
         }
+
+        public virtual void BeforeOpenPopup(dynamic options)
+        {
+        }
     }
 }

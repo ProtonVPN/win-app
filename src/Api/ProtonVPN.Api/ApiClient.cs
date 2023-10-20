@@ -249,7 +249,7 @@ namespace ProtonVPN.Api
             {
                 using (HttpResponseMessage response = await httpClient.SendAsync(request).ConfigureAwait(false))
                 {
-                    return Logged(await GetApiResponseResult<T>(response), logDescription);
+                    return Logged(await GetApiResponseResultAsync<T>(response), logDescription);
                 }
             }
             catch (Exception e)

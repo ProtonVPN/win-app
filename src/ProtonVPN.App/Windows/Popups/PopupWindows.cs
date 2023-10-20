@@ -47,11 +47,12 @@ namespace ProtonVPN.Windows.Popups
 
         public void Show<T>(dynamic options = null) where T : IPopupWindow
         {
-            T screen = _container.Resolve<T>();
             _scheduler.Schedule(() =>
             {
                 if (!IsOpen<T>())
                 {
+                    T screen = _container.Resolve<T>();
+                    screen.BeforeOpenPopup(options);
                     _windowManager.ShowWindowAsync(screen);
                 }
             });
@@ -88,11 +89,12 @@ namespace ProtonVPN.Windows.Popups
 
         public void Show(Type type, dynamic options = null)
         {
-            IPopupWindow screen = (IPopupWindow)_container.Resolve(type);
             _scheduler.Schedule(async () =>
             {
                 if (!IsOpen(type))
                 {
+                    IPopupWindow screen = (IPopupWindow)_container.Resolve(type);
+                    screen.BeforeOpenPopup(options);
                     await _windowManager.ShowWindowAsync(screen);
                 }
             });

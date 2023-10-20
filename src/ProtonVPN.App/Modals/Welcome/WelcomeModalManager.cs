@@ -63,7 +63,6 @@ namespace ProtonVPN.Modals.Welcome
                                                  !_userStorage.GetUser().Paid();
         public void Load()
         {
-            User user = _userStorage.GetUser();
             if (WelcomeModalHasToBeShown())
             {
                 ShowWelcomeModal();
@@ -76,7 +75,7 @@ namespace ProtonVPN.Modals.Welcome
             {
                 ShowFreeRescopeModal();
             }
-            else if (!user.Paid() && !_userStorage.GetUser().IsDelinquent())
+            else
             {
                 ShowUpsellModal();
             }
@@ -93,13 +92,18 @@ namespace ProtonVPN.Modals.Welcome
 
         private void ShowUpsellModal()
         {
+            User user = _userStorage.GetUser();
+            DateTime now = DateTime.UtcNow;
             Announcement announcement = _announcementService.Get()
-                .FirstOrDefault(a => a.Type == (int)AnnouncementType.OneTime && !a.Seen);
+                .Where(a => a.Type == (int)AnnouncementType.OneTime && !a.Seen && a.StartDateTimeUtc <= now && a.EndDateTimeUtc > now)
+                .OrderBy(a => a.EndDateTimeUtc)
+                .FirstOrDefault();
+
             if (announcement != null)
             {
                 ShowUpsellOffer(announcement);
             }
-            else
+            else if (!user.Paid() && !user.IsDelinquent())
             {
                 ShowStandardUpsellModal();
             }
@@ -108,7 +112,7 @@ namespace ProtonVPN.Modals.Welcome
         private void ShowUpsellOffer(Announcement announcement)
         {
             _announcementService.MarkAsSeen(announcement.Id);
-            _offerPopupViewModel.Panel = announcement.Panel;
+            _offerPopupViewModel.SetByAnnouncement(announcement);
             _popupWindows.Show<OfferPopupViewModel>();
         }
 

@@ -44,5 +44,7 @@ namespace ProtonVPN.Api.Contracts.Announcements
         public string PageFooter { get; set; }
 
         public FullScreenImageResponse FullScreenImage { get; set; }
+
+        public bool ShowCountdown { get; set; }
     }
 }

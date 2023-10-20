@@ -2,6 +2,7 @@
 #define MyAppName "Proton VPN" 
 #define MyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
+#define AppUserModelID "Proton.VPN"
 
 #define MyPublisher "Proton AG"
 
@@ -13,6 +14,8 @@
 
 #define NetworkDriverName "ProtonVPNCallout"
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
+
+#define ProtonDriveDownloaderName "ProtonDrive.Downloader.exe"
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
@@ -29,7 +32,7 @@
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-DefaultDirName={autopf}\Proton\VPN
+DefaultDirName={pf}
 DefaultGroupName=Proton
 DisableDirPage=auto
 DisableProgramGroupPage=auto
@@ -46,6 +49,7 @@ SetupIconFile=Images\protonvpn.ico
 SetupLogging=yes
 DisableFinishedPage=yes
 DisableStartupPrompt=yes
+DirExistsWarning=no
 VersionInfoProductTextVersion={#MyAppVersion}-{#hash}
 VersionInfoVersion={#MyAppVersion}
 AppCopyright=© 2022 {#MyPublisher}
@@ -56,6 +60,9 @@ SetupWindowTitle={#MyAppName}
 
 [Registry]
 Root: HKCR; Subkey: "ProtonVPN"; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "AppUserModelId\{#AppUserModelID}"; Flags: uninsdeletekey;
+; Old registry values when we didn't have AppUserModelID set
+Root: HKCR; Subkey: "AppUserModelId\{{6D809377-6AF0-444B-8957-A3773F02200E}\Proton\VPN"; Flags: deletekey uninsdeletekey;
 Root: HKCR; Subkey: "ProtonVPN"; ValueType: string; ValueName: "URL Protocol"; ValueData: "";
 Root: HKCR; Subkey: "ProtonVPN\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#VersionFolder}\{#MyAppExeName}"" ""%1""";
 
@@ -96,6 +103,7 @@ Source: "..\{#SourcePath}\es-419\ProtonVPN.Translations.resources.dll"; DestDir:
 Source: "..\{#SourcePath}\uk-UA\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\uk-UA"; Flags: signonce;
 Source: "..\{#SourcePath}\tr-TR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\tr-TR"; Flags: signonce;
 Source: "..\{#SourcePath}\be-BY\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
+Source: "..\{#SourcePath}\ka-GE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ka-GE"; Flags: signonce;
 
 Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
@@ -113,29 +121,34 @@ Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
-Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon
+Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon; AppUserModelID: "{#AppUserModelID}";
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; 
+Name: "installProtonDrive"; Description: "{cm:InstallProtonDriveTitle}"; Check: ShouldDisplayProtonDriveCheckbox;
+
+[Run]
+Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{code:GetDriveInstallPath}"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
 
 [Languages]
-Name: "en_US"; MessagesFile: "compiler:Default.isl"
-Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl"
-Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl"
-Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl"
-Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl"
-Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl"
-Name: "pl_PL"; MessagesFile: "compiler:Languages\Polish.isl"
-Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
-Name: "pt_PT"; MessagesFile: "compiler:Languages\Portuguese.isl"
-Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl"
-Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl"
-Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl"
+Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
+Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
+Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl,Strings\German.isl"
+Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl,Strings\French.isl"
+Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl,Strings\Dutch.isl"
+Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl,Strings\Italian.isl"
+Name: "pl_PL"; MessagesFile: "compiler:Languages\Polish.isl,Strings\Polish.isl"
+Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl,Strings\BrazilianPortuguese.isl"
+Name: "pt_PT"; MessagesFile: "compiler:Languages\Portuguese.isl,Strings\Portuguese.isl"
+Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl,Strings\Russian.isl"
+Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl,Strings\Spanish.isl"
+Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian.isl"
+Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
 Type: filesandordirs; Name: "{localappdata}\ProtonVPN"
+Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
 
 [Dirs]
 Name: "{localappdata}\ProtonVPN\DiagnosticLogs"
@@ -153,8 +166,14 @@ external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl d
 function UninstallProduct(upgradeCode: String): Integer;
 external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
+function IsProductInstalled(upgradeCode: String): Integer;
+external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
+
+function RemovePinnedIcons(shortcutPath: String): Integer;
+external 'RemovePinnedIcons@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -190,7 +209,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent: Boolean;
+  IsToReboot, IsVerySilent, IsToDisableAutoUpdate, IsInstallPathModified: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -300,6 +319,14 @@ begin
     end;
 end;
 
+procedure SetIsToDisableAutoUpdate();
+begin
+  IsToDisableAutoUpdate := Pos('/DisableAutoUpdate', GetCmdTail()) > 0;
+  if IsToDisableAutoUpdate = true then begin
+    Log('The app will be launched with auto updates disabled.');
+  end;
+end;
+
 function InitializeSetup(): Boolean;
 var
   Version: String;
@@ -307,6 +334,7 @@ var
   WindowsVersion: TWindowsVersion;
 begin
   SetIsVerySilent();
+  SetIsToDisableAutoUpdate();
   if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
     if WizardSilent() = false then begin
       MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
@@ -390,6 +418,9 @@ begin
         StringChangeEx(langCode, '_', '-', True);
         launcherArgs := '/lang ' + langCode;
       end;
+      if IsToDisableAutoUpdate = true then begin
+        launcherArgs := launcherArgs + ' /DisableAutoUpdate';
+      end;
       if IsVerySilent = false then begin
         ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
       end;
@@ -402,6 +433,7 @@ var res, errorCode: Integer;
 begin
   Log('CurUninstallStepChanged(' + IntToStr(Ord(CurUninstallStep)) + ') called');
   if CurUninstallStep = usUninstall then begin
+    RemovePinnedIcons(ExpandConstant('{commondesktop}\Proton VPN.lnk'));
     Log('Killing {#MyAppExeName} process');
     ShellExec('open', 'taskkill.exe', '/f /im {#MyAppExeName}', '', SW_HIDE, ewNoWait, errorCode);
     Log('taskkill returned ' + IntToStr(errorCode) + ' code');
@@ -414,4 +446,31 @@ begin
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
   end;
+end;
+
+function ShouldDisplayProtonDriveCheckbox: Boolean;
+begin
+  Result := IsProductInstalled('{F3B95BD2-1311-4B82-8B4A-B9EB7C0500ED}') = 0;
+end;
+
+function GetDriveInstallPath(value: String): String;
+var
+  path: String;
+begin
+    path := WizardForm.DirEdit.Text;
+    StringChangeEx(path, '\Proton\VPN', '\Proton\Drive', True);
+    Result := '"' + path + '"';
+end;
+
+function IsUpgrade: Boolean;
+begin
+  Result := FileExists(ExpandConstant('{app}\{#LauncherExeName}'));
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+    if (CurPageID = wpPreparing) and (IsInstallPathModified = False) and (IsUpgrade = False) then begin
+      IsInstallPathModified := true;
+      WizardForm.DirEdit.Text := WizardForm.DirEdit.Text + '\Proton\VPN';
+    end;
 end;

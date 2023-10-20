@@ -47,6 +47,11 @@ namespace ProtonVPN.Windows
             Shell_NotifyIcon(NotifyCommand.Modify, ref data);
         }
 
+        public static void SetAppId(string appId)
+        {
+            SetCurrentProcessExplicitAppUserModelID(appId);
+        }
+
         private static IntPtr GetHandle(NotifyIcon icon)
         {
             if (WindowField == null)
@@ -106,5 +111,8 @@ namespace ProtonVPN.Windows
 
         [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
         private static extern int Shell_NotifyIcon(NotifyCommand cmd, ref NotifyIconData data);
+
+        [DllImport("shell32.dll", SetLastError = true)]
+        private static extern void SetCurrentProcessExplicitAppUserModelID([MarshalAs(UnmanagedType.LPWStr)] string appId);
     }
 }

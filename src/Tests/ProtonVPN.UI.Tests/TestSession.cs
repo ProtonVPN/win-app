@@ -31,6 +31,8 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using System.Windows.Automation;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -98,20 +100,25 @@ namespace ProtonVPN.UI.Tests
 
             if (!retry.Success)
             {
-                Assert.Fail($"Failed to refresh window in {refreshTimeout.Seconds} seconds.");
+                Assert.Fail($"Failed to refresh window in {refreshTimeout.TotalSeconds} seconds.");
             }
         }
 
         protected static void LaunchApp()
         {
-            string[] path = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
-            App = Application.Launch(path[0] + @"\ProtonVPN.exe");
-            RetryResult<bool> result = WaitUntilAppIsRunning();
+            string[] versionFolders = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
+            string appExecutable = FindNewestVersionFolder(versionFolders) + @"\ProtonVPN.exe";
+            ProcessStartInfo startInfo = new ProcessStartInfo(appExecutable)
+            {
+                Arguments = "/DisableAutoUpdate"
+            };
 
+            App = Application.Launch(startInfo);
+            RetryResult<bool> result = WaitUntilAppIsRunning();
             if (!result.Success)
             {
                 //Sometimes app fails to launch on first try due to CI issues.
-                App = Application.Launch(path + @"\ProtonVPN.exe");
+                App = Application.Launch(startInfo);
             }
             RefreshWindow(TestConstants.LongTimeout);
         }
@@ -183,6 +190,17 @@ namespace ProtonVPN.UI.Tests
                 TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
 
             return retry;
+        }
+
+        private static string FindNewestVersionFolder(string[] versionFolders)
+        {
+            return versionFolders.MaxBy(GetVersion);
+        }
+
+        private static Version GetVersion(string folderPath)
+        {
+            string versionString = Path.GetFileName(folderPath).TrimStart('v');
+            return Version.TryParse(versionString, out Version version) ? version : new();
         }
     }
 }

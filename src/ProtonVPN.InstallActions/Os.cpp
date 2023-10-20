@@ -11,6 +11,8 @@
 
 #include "ProcessExecutionResult.h"
 #include "Os.h"
+#include <shobjidl.h>
+
 #include "WinApiErrorException.h"
 
 using namespace std;
@@ -91,45 +93,46 @@ ProcessExecutionResult Os::RunProcess(const wchar_t* application_path, wstring c
     if (stdout_rd)
     {
         stdout_thread = thread([&]
-            {
-                DWORD n;
-        const size_t buffer_size = 1000;
-        char buffer[buffer_size];
-        for (;;)
         {
-            n = 0;
-            const int success = ReadFile(
-                stdout_rd,
-                buffer,
-                buffer_size,
-                &n,
-                nullptr
-            );
-
-            if (!success || n == 0)
+            DWORD n;
+            const size_t buffer_size = 1000;
+            char buffer[buffer_size];
+            for (;;)
             {
-                break;
+                n = 0;
+                const int success = ReadFile(
+                    stdout_rd,
+                    buffer,
+                    buffer_size,
+                    &n,
+                    nullptr
+                );
+
+                if (!success || n == 0)
+                {
+                    break;
+                }
+                string s(buffer, n);
+                std_out += s;
             }
-            string s(buffer, n);
-            std_out += s;
-        }
-            });
+        });
     }
 
     uint32_t return_code;
     WaitForSingleObject(process_info.hProcess, INFINITE);
-    if (!GetExitCodeProcess(process_info.hProcess, (DWORD*)&return_code))
-    {
-        return_code = -1;
-    }
+    GetExitCodeProcess(process_info.hProcess, (DWORD*)&return_code);
 
     CloseHandle(process_info.hProcess);
 
     if (stdout_thread.joinable())
+    {
         stdout_thread.join();
+    }
 
     if (stderr_thread.joinable())
+    {
         stderr_thread.join();
+    }
 
     CloseHandle(stdout_rd);
     CloseHandle(stderr_rd);
@@ -269,4 +272,29 @@ long Os::ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* targe
     CoUninitialize();
 
     return 0;
+}
+
+void Os::RemovePinnedIcons(PCWSTR shortcut_path)
+{
+    HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+    if (SUCCEEDED(hr))
+    {
+        IShellItem* item;
+        hr = SHCreateItemFromParsingName(shortcut_path, nullptr, IID_PPV_ARGS(&item));
+
+        if (SUCCEEDED(hr))
+        {
+            IStartMenuPinnedList* pStartMenuPinnedList;
+            hr = CoCreateInstance(CLSID_StartMenuPin, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pStartMenuPinnedList));
+            if (SUCCEEDED(hr))
+            {
+                pStartMenuPinnedList->RemoveFromList(item);
+                pStartMenuPinnedList->Release();
+            }
+
+            item->Release();
+        }
+    }
+
+    CoUninitialize();
 }

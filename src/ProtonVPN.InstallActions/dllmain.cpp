@@ -70,8 +70,13 @@ extern "C" EXPORT DWORD UninstallProduct(const wchar_t* upgrade_code)
 {
     return ExecuteAction([upgrade_code]
     {
-        return Uninstall(upgrade_code);
+        return Installer::Uninstall(upgrade_code);
     });
+}
+
+extern "C" EXPORT DWORD IsProductInstalled(const wchar_t* upgrade_code)
+{
+    return Installer::IsProductInstalled(upgrade_code);
 }
 
 extern "C" EXPORT DWORD InstallService(const wchar_t* name, const wchar_t* display_name, const wchar_t* path)
@@ -163,4 +168,10 @@ extern "C" EXPORT DWORD UpdateTaskbarIconTarget(const wchar_t* launcher_path)
     }
 
     return shortcut_path.empty() ? 0 : Os::ChangeShortcutTarget(shortcut_path.c_str(), launcher_path);
+}
+
+extern "C" EXPORT DWORD RemovePinnedIcons(const wchar_t* shortcut_path)
+{
+    Os::RemovePinnedIcons(shortcut_path);
+    return 0;
 }

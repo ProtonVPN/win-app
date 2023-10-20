@@ -23,5 +23,6 @@ namespace ProtonVPN.Announcements.Contracts
     {
         Standard = 0,
         OneTime = 1,
+        Banner = 2
     }
 }

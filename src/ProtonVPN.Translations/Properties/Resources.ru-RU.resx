@@ -1786,7 +1786,7 @@
     <value>Для правильной работы раздельного туннелирования, вам нужно выключить kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
-    <value>Hundreds of servers in {0} country</value>
+    <value>Сотни серверов в {0} стране</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Few">
     <value>Hundreds of servers in {0} countries</value>
@@ -1795,7 +1795,7 @@
     <value>Hundreds of servers in {0} countries</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>Сотни серверов в {0} странах</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>Подключайте до 10 устройств одновременно</value>
@@ -2077,7 +2077,7 @@
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Upgrade to Plus</value>
+    <value>Улучшить до Plus</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>ПОДКЛЮЧЕНО</value>
@@ -2100,10 +2100,10 @@
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Get unlimited changes with VPN Plus</value>
+    <value>Получите неограниченное количество изменений с VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>You’ve reached the maximum number of Free server changes for now.</value>
+    <value>На данный момент вы достигли максимального количества изменений на сервере Free.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Активировать Secure Core</value>
@@ -2121,22 +2121,22 @@
     <value>Замечание о скорости...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>New Free countries</value>
+    <value>Новые страны с бесплатными серверами</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>There are now Free servers in Poland and Romania.</value>
+    <value>Теперь бесплатные серверы доступны в Польше и Румынии.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Changes to server selection</value>
+    <value>Изменения в выборе сервера</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+    <value>Для предотвращения перегрузки серверов и обеспечения быстрой и безопасной работы в интернете для каждого пользователя, мы отказались от ручного выбора страны и значительно улучшили систему автоматического выбора сервера.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>What’s new</value>
+    <value>Что нового</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Got it</value>
+    <value>Понятно</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2604,7 +2604,7 @@
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Fastest</value>
+    <value>Самый быстрый</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
@@ -2627,7 +2627,7 @@
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Free connections (1)</value>
+    <value>Бесплатные подключения (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP-адрес сервера:</value>
@@ -2661,7 +2661,7 @@
     <value>Get worldwide coverage with VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Not the country you wanted? Upgrade to choose any server</value>
+    <value>Не та страна, которую вы хотели? Улучшите тариф для выбора любого сервера</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Подключить</value>
@@ -2676,7 +2676,7 @@
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>Улучшить до Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>через</value>
@@ -2944,7 +2944,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>Улучшить до Plus</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2976,7 +2976,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Change server</value>
+    <value>Сменить сервер</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Быстрое подключение</value>
@@ -3294,7 +3294,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Free connections</value>
+    <value>Бесплатные подключения</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
     <value>Improve online gaming and video call performance</value>

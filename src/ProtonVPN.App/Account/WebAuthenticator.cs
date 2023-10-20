@@ -18,13 +18,17 @@
  */
 
 using System;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Account
 {
@@ -49,8 +53,18 @@ namespace ProtonVPN.Account
             return selector.IsNullOrEmpty() ? _config.Urls.AccountUrl : GetAutoLoginUrl(urlParams, selector);
         }
 
-        public async Task<string> GetLoginUrlAsync(string url)
+        public async Task<string> GetLoginUrlAsync(string url, ModalSources modalSource, string notificationReference)
         {
+            Uri uri = new(url);
+            NameValueCollection uriQuery = HttpUtility.ParseQueryString(uri.Query);
+            if (uriQuery.AllKeys.Contains("redirect") && uriQuery["redirect"] is not null)
+            {
+                string queryPrefix = uriQuery["redirect"].Contains('?') ? "&" : "?";
+                uriQuery["redirect"] += $"{queryPrefix}modal-source={modalSource}&notification-reference={notificationReference}";
+            }
+
+            url = $"{uri.GetLeftPart(UriPartial.Path)}?{uriQuery}";
+
             string selector = await GetSelector();
             return selector.IsNullOrEmpty() ? _config.Urls.AccountUrl : url + $"#selector={selector}";
         }

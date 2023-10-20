@@ -45,6 +45,7 @@ namespace ProtonVPN.Core.Service.Settings
 
         public MainSettingsIpcEntity Create(OpenVpnAdapter? openVpnAdapter = null)
         {
+            bool isPaidFeatureAllowed = _userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled;
             return new()
             {
                 KillSwitchMode = _entityMapper.Map<KillSwitchMode, KillSwitchModeIpcEntity>(_appSettings.KillSwitchMode),
@@ -56,9 +57,9 @@ namespace ProtonVPN.Core.Service.Settings
                     AppPaths = _appSettings.GetSplitTunnelApps(),
                     Ips = GetSplitTunnelIps()
                 },
-                ModerateNat = !_userStorage.GetUser().Empty() && _appSettings.ModerateNat,
+                ModerateNat = !_userStorage.GetUser().Empty() && _appSettings.ModerateNat && isPaidFeatureAllowed,
                 NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
-                SplitTcp = _appSettings.IsVpnAcceleratorEnabled() && (_userStorage.GetUser().Paid() || !_appSettings.FeatureFreeRescopeEnabled),
+                SplitTcp = isPaidFeatureAllowed ? _appSettings.IsVpnAcceleratorEnabled() : null,
                 AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(_appSettings.GetProtocol()),

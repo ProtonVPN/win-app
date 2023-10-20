@@ -39,7 +39,7 @@ namespace ProtonVPN.Core.Service.Vpn
     public class AppController : IAppController
     {
         private readonly ILogger _logger;
-        private readonly IVpnInfoUpdater _vpnInfoUpdater;
+        private readonly IUpgradeModalManager _upgradeModalManager;
         private readonly IAnnouncementService _announcementService;
 
         public event EventHandler<VpnStateIpcEntity> OnVpnStateChanged;
@@ -49,10 +49,10 @@ namespace ProtonVPN.Core.Service.Vpn
         public event EventHandler<UpdateStateIpcEntity> OnUpdateStateChanged;
         public event EventHandler OnOpenWindowInvoked;
 
-        public AppController(ILogger logger, IVpnInfoUpdater vpnInfoUpdater, IAnnouncementService announcementService)
+        public AppController(ILogger logger, IUpgradeModalManager upgradeModalManager, IAnnouncementService announcementService)
         {
             _logger = logger;
-            _vpnInfoUpdater = vpnInfoUpdater;
+            _upgradeModalManager = upgradeModalManager;
             _announcementService = announcementService;
         }
 
@@ -110,24 +110,22 @@ namespace ProtonVPN.Core.Service.Vpn
         public async Task OpenWindow(string args)
         {
             _logger.Debug<ProcessCommunicationLog>("Another process requested to open the main window.");
-            ProcessCommandArguments(args);
+            await ProcessCommandArgumentsAsync(args);
             InvokeOnUiThread(() => OnOpenWindowInvoked?.Invoke(this, null));
         }
 
-        private void ProcessCommandArguments(string args)
+        private async Task ProcessCommandArgumentsAsync(string args)
         {
             if (Uri.TryCreate(args, UriKind.Absolute, out Uri uri))
             {
-                ProcessCommandUriArgument(uri);
+                await ProcessCommandUriArgumentAsync(uri);
             }
         }
 
-        private void ProcessCommandUriArgument(Uri uri)
+        private async Task ProcessCommandUriArgumentAsync(Uri uri)
         {
-            if (uri.Host.EqualsIgnoringCase(SubscriptionManager.REFRESH_ACCOUNT_COMMAND))
-            {
-                _vpnInfoUpdater.Update();
-            }
+            string modalSource = null;
+            string notificationReference = null;
 
             NameValueCollection uriQuery = HttpUtility.ParseQueryString(uri.Query);
             foreach (string queryKey in uriQuery.AllKeys)
@@ -136,6 +134,20 @@ namespace ProtonVPN.Core.Service.Vpn
                 {
                     _announcementService.Delete(uriQuery[queryKey]);
                 }
+                else if (queryKey.EqualsIgnoringCase("notification-reference"))
+                {
+                    _announcementService.DeleteByReference(uriQuery[queryKey]);
+                    notificationReference = uriQuery[queryKey];
+                }
+                else if (queryKey.EqualsIgnoringCase("modal-source"))
+                {
+                    modalSource = uriQuery[queryKey];
+                }
+            }
+
+            if (uri.Host.EqualsIgnoringCase(SubscriptionManager.REFRESH_ACCOUNT_COMMAND))
+            {
+                await _upgradeModalManager.CheckForVpnPlanUpgradeAsync(modalSource, notificationReference);
             }
         }
     }

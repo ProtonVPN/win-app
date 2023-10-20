@@ -48,11 +48,13 @@ namespace ProtonVPN.Announcements
         private readonly IAppSettings _appSettings;
         private readonly IApiClient _apiClient;
         private readonly IAnnouncementCache _announcementCache;
-        private readonly ISchedulerTimer _timer;
-        private readonly SingleAction _updateAction;
         private readonly ILogger _logger;
         private readonly IHttpClient _httpClient;
         private readonly IConfiguration _config;
+
+        private readonly TimeSpan _maxSchedulingInterval;
+        private readonly ISchedulerTimer _timer;
+        private readonly SingleAction _updateAction;
 
         private bool _isUserLoggedIn;
 
@@ -71,9 +73,13 @@ namespace ProtonVPN.Announcements
             _logger = logger;
             _httpClient = fileDownloadHttpClientFactory.GetHttpClientWithTlsPinning();
             _config = config;
+
+            _maxSchedulingInterval = config.AnnouncementUpdateInterval * 1.5;
+
             _timer = scheduler.Timer();
             _timer.Interval = config.AnnouncementUpdateInterval.RandomizedWithDeviation(0.2);
             _timer.Tick += Timer_OnTick;
+
             _updateAction = new(Fetch);
         }
 
@@ -97,8 +103,23 @@ namespace ProtonVPN.Announcements
             int numOfAnnouncementsToDelete = oldAnnouncements.Count - newAnnouncements.Count;
             _logger.Info<AppLog>($"Deleting {numOfAnnouncementsToDelete} announcements with ID '{id}'.");
 
-            _announcementCache.Store(newAnnouncements);
+            StoreToCache(newAnnouncements);
+        }
 
+        public void DeleteByReference(string reference)
+        {
+            IReadOnlyList<Announcement> oldAnnouncements = _announcementCache.Get();
+            IReadOnlyList<Announcement> newAnnouncements = oldAnnouncements.Where(a => a.Reference != reference).ToList();
+
+            int numOfAnnouncementsToDelete = oldAnnouncements.Count - newAnnouncements.Count;
+            _logger.Info<AppLog>($"Deleting {numOfAnnouncementsToDelete} announcements with reference '{reference}'.");
+
+            StoreToCache(newAnnouncements);
+        }
+
+        private void StoreToCache(IReadOnlyList<Announcement> announcements)
+        {
+            _announcementCache.Store(announcements);
             AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -153,23 +174,88 @@ namespace ProtonVPN.Announcements
 
             try
             {
-                AnnouncementsRequest request = new AnnouncementsRequest
+                AnnouncementsRequest request = new()
                 {
                     FullScreenImageWidth = 1024,
                     FullScreenImageHeight = 768,
                     FullScreenImageSupport = SUPPORTED_IMAGE_FORMAT,
                 };
+
                 ApiResponseResult<AnnouncementsResponse> response = await _apiClient.GetAnnouncementsAsync(request);
+                DateTime now = DateTime.UtcNow;
                 if (response.Success)
                 {
                     IReadOnlyList<Announcement> announcements = await Map(response.Value.Announcements);
+                    announcements = GetNonExpiredAnnouncementsAndLog(announcements, now);
+                    ScheduleRevalidations(announcements, now);
                     _announcementCache.Store(announcements);
                     AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
+                }
+                else
+                {
+                    ScheduleRevalidations(_announcementCache.Get(), now);
                 }
             }
             catch
             {
             }
+        }
+
+        private IReadOnlyList<Announcement> GetNonExpiredAnnouncementsAndLog(IReadOnlyList<Announcement> announcements, DateTime now)
+        {
+            int numOfAnnouncementsBefore = announcements.Count;
+            announcements = GetNonExpiredAnnouncements(announcements, now); 
+            if (numOfAnnouncementsBefore != announcements.Count)
+            {
+                _logger.Info<AppLog>($"The number of announcements stored ({announcements.Count}) " +
+                    $"is different from the number received ({numOfAnnouncementsBefore}) " +
+                    $"because there were announcements with a EndDateTimeUtc in the past.");
+            }
+            return announcements;
+        }
+
+        private void ScheduleRevalidations(IReadOnlyList<Announcement> announcements, DateTime now)
+        {
+            foreach (Announcement announcement in announcements)
+            {
+                // -1 second to the end date so that it disappears when the timer reaches zero, instead of after
+                ScheduleRevalidation(announcement.EndDateTimeUtc.AddSeconds(-1) - now);
+                ScheduleRevalidation(announcement.StartDateTimeUtc - now);
+            }
+        }
+
+        private IReadOnlyList<Announcement> GetNonExpiredAnnouncements(IReadOnlyList<Announcement> announcements, DateTime now)
+        {
+            return announcements.Where(a => now.AddSeconds(3) < a.EndDateTimeUtc).ToList();
+        }
+
+        private void ScheduleRevalidation(TimeSpan timeUntilTrigger)
+        {
+            if (timeUntilTrigger <= TimeSpan.Zero || timeUntilTrigger > _maxSchedulingInterval)
+            {
+                return;
+            }
+            _logger.Info<AppLog>($"Announcement revalidation scheduled to be done in '{timeUntilTrigger}'.");
+            Task waitTask = Task.Delay(timeUntilTrigger);
+            waitTask.ContinueWith(_ =>
+            {
+                _logger.Info<AppLog>("Triggering scheduled announcement revalidation.");
+                Revalidate();
+            });
+        }
+
+        private void Revalidate()
+        {
+            IReadOnlyList<Announcement> oldAnnouncements = _announcementCache.Get();
+            DateTime now = DateTime.UtcNow;
+            IReadOnlyList<Announcement> newAnnouncements = GetNonExpiredAnnouncements(oldAnnouncements, now);
+
+            int numOfAnnouncementsToDelete = oldAnnouncements.Count - newAnnouncements.Count;
+            _logger.Info<AppLog>($"Deleting {numOfAnnouncementsToDelete} announcements for having a EndDateTimeUtc in the past.");
+
+            _announcementCache.Store(newAnnouncements);
+
+            AnnouncementsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void ClearCache()
@@ -197,7 +283,7 @@ namespace ProtonVPN.Announcements
                 {
                     Announcement announcement = await MapAnnouncement(announcementResponse);
                     bool hasFailedFullscreenImage =
-                        announcementResponse.Offer.Panel.FullScreenImage?.Source?.Count > 0 &&
+                        announcementResponse.Offer.Panel?.FullScreenImage?.Source?.Count > 0 &&
                         announcement.Panel.FullScreenImage.Source == null;
                     if (announcement != null && !hasFailedFullscreenImage)
                     {
@@ -218,13 +304,15 @@ namespace ProtonVPN.Announcements
                 {
                     Id = announcementResponse.Id,
                     Type = announcementResponse.Type,
+                    Reference = announcementResponse.Reference,
                     StartDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.StartTimestamp),
                     EndDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.EndTimestamp),
                     Url = announcementResponse.Offer.Url,
                     Icon = announcementResponse.Offer.Icon,
                     Label = announcementResponse.Offer.Label,
                     Panel = await MapPanel(announcementResponse.Offer.Panel),
-                    Seen = false
+                    Seen = false,
+                    ShowCountdown = announcementResponse.Offer.Panel?.ShowCountdown ?? false
                 };
             }
             catch (Exception e)

@@ -8,7 +8,7 @@ include:
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
     
   - project: 'ProtonVPN/qa/test-configuration'
-    ref: develop
+    ref: master
     file: '/windows-config.yml'
     
   - local: '/.gitlab-ci-templates.yml'
@@ -58,19 +58,6 @@ build-debug:
     TYPE: Debug
     DEPENDENCIES: publish
     BUILD_PATH: src/bin/win-x64/publish
-    
-build-bti:
-  extends: 
-    - .build-script
-    - .build-bti-vars
-  when: manual
-  except:
-    - master
-    - /^release.*$/
-  variables:
-    TYPE: Debug
-    DEPENDENCIES: publish-BTI
-    BUILD_PATH: src/bin/win-x64/BTI/publish
 
 ui-test:
   extends: .test_execution_script
@@ -109,6 +96,9 @@ tests:
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer:
+  stage: build-installer
+  tags:
+    - windows
   dependencies:
     - build-debug
     - build-release
@@ -116,15 +106,34 @@ build-installer:
     - .build-installer
   variables:
     BUILD_PATH: src/bin/win-x64/publish
+  artifacts:
+    paths:
+      - Setup/Installers/
+    expire_in: 4 weeks
     
 build-BTI-installer:
-  dependencies:
-    - build-bti
+  stage: build-installer
   when: manual
+  dependencies: []
+  tags:
+    - windows
   extends: 
-    - .build-installer
+    - .build-bti-vars
+  except:
+    - master
+    - /^release.*$/
+  script:
+    - !reference [.build-script, script]
+    - !reference [.build-installer, script]
   variables:
+    TYPE: Debug
+    DEPENDENCIES: publish-BTI
     BUILD_PATH: src/bin/win-x64/BTI/publish
+    GIT_SUBMODULE_STRATEGY: normal
+  artifacts:
+    paths:
+      - Setup/Installers/
+    expire_in: 1 weeks
     
 prepare-internal-beta-release:
   stage: internal-beta
@@ -176,7 +185,9 @@ i18n-commit-translations:
     - git config --global core.autocrlf false
 
 create-release:
-  image: debian:stable-slim
+  image: harbor.protontech.ch/docker.io/library/python:latest
+  tags:
+    - shared-small
   stage: release
   when: manual
   only:

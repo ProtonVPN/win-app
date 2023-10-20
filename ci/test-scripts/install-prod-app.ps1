@@ -1,6 +1,5 @@
 $response = Invoke-RestMethod -Uri "https://protonvpn.com/download/windows-releases.json"
-$documentsFolderPath = [Environment]::GetFolderPath("MyDocuments")
-$installersFolderPath = Join-Path $documentsFolderPath "Installers"
+$installersFolderPath = "C:\Installers"
 
 if (-not (Test-Path -Path $installersFolderPath -PathType Container)) {
     New-Item -Path $installersFolderPath -ItemType Directory
