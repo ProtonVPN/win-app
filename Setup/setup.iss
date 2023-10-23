@@ -104,6 +104,12 @@ Source: "..\{#SourcePath}\uk-UA\ProtonVPN.Translations.resources.dll"; DestDir: 
 Source: "..\{#SourcePath}\tr-TR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\tr-TR"; Flags: signonce;
 Source: "..\{#SourcePath}\be-BY\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
 Source: "..\{#SourcePath}\ka-GE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ka-GE"; Flags: signonce;
+Source: "..\{#SourcePath}\el-GR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\el-GR"; Flags: signonce;
+Source: "..\{#SourcePath}\fi-FI\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fi-FI"; Flags: signonce;
+Source: "..\{#SourcePath}\ko-KR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ko-KR"; Flags: signonce;
+Source: "..\{#SourcePath}\zh-TW\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\zh-TW"; Flags: signonce;
+Source: "..\{#SourcePath}\sv-SE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sv-SE"; Flags: signonce;
+Source: "..\{#SourcePath}\ja-JP\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ja-JP"; Flags: signonce;
 
 Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
@@ -134,6 +140,7 @@ Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{c
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
 Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
 Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl,Strings\German.isl"
+Name: "fi_FI"; MessagesFile: "compiler:Languages\Finnish.isl,Strings\Finnish.isl"
 Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl,Strings\French.isl"
 Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl,Strings\Dutch.isl"
 Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl,Strings\Italian.isl"

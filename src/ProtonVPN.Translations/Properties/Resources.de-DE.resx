@@ -2085,7 +2085,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Ein Hinweis zur Geschwindigkeit...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>Neue Free Länder</value>
+    <value>Neue Länder im Free-Abonnement</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
     <value>Es gibt jetzt kostenlose Server in Polen und Rumänien.</value>
@@ -3203,14 +3203,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Erweiterte VPN-Anpassung freischalten</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Free-Serverstandorte ({0})</value>
+    <value>Kostenlose-Serverstandorte ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
     <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren Server. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Free-Verbindungen</value>
+    <value>Kostenlose Verbindungen</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
     <value>Verbessere die Leistung von Online-Spielen und Videoanrufen</value>

@@ -3260,19 +3260,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Higher speeds (10 Gbps)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Stream your favorite movies</value>
+    <value>Смотрите любимые фильмы</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Protect up to 10 devices</value>
+    <value>Защитите до 10 устройств</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>30-day money back guarantee</value>
+    <value>30-дневная гарантия возврата денег</value>
   </data>
   <data name="Upsell_Country_Subtitle">
     <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Want to choose a specific country?</value>
+    <value>Хотите выбрать определенную страну?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
     <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
@@ -3401,7 +3401,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Get the best of both worlds</value>
+    <value>Получите лучшее из обоих миров</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Улучшить</value>
