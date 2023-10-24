@@ -18,8 +18,8 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Serialization.Contracts;
 
@@ -29,7 +29,7 @@ public class GuestHoleServersFileStorage : FileStorageBase<IEnumerable<GuestHole
     IGuestHoleServersFileStorage
 {
     public GuestHoleServersFileStorage(ILogger logger,
-        IJsonSerializer jsonSerializer, IConfiguration config)
+        IJsonSerializer jsonSerializer, IStaticConfiguration config)
         : base(logger, jsonSerializer, config.GuestHoleServersJsonFilePath)
     {
     }

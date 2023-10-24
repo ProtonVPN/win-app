@@ -21,53 +21,52 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Common.Tests.Vpn
+namespace ProtonVPN.Common.Tests.Vpn;
+
+[TestClass]
+public class VpnConfigTest
 {
-    [TestClass]
-    public class VpnConfigTest
+    [TestMethod]
+    public void VpnConfig_ShouldThrow_WhenPortIsNotValid()
     {
-        [TestMethod]
-        public void VpnConfig_ShouldThrow_WhenPortIsNotValid()
+        Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new()
         {
-            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new()
-            {
-                1,
-                2,
-                3,
-                1080,
-                80,
-                1944,
-                9999999
-            });
+            1,
+            2,
+            3,
+            1080,
+            80,
+            1944,
+            9999999
+        });
 
-            // Act
-            Action action = () => new VpnConfig(new() {Ports = portConfig});
+        // Act
+        Action action = () => new VpnConfig(new() { Ports = portConfig });
 
-            // Assert
-            action.Should().Throw<ArgumentException>();
-        }
+        // Assert
+        action.Should().Throw<ArgumentException>();
+    }
 
-        [TestMethod]
-        public void VpnConfig_ShouldThrow_WhenDnsIsNotValid()
-        {
-            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new() {1, 2, 3});
+    [TestMethod]
+    public void VpnConfig_ShouldThrow_WhenDnsIsNotValid()
+    {
+        Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = GetPortConfig(new() { 1, 2, 3 });
 
-            List<string> customDns = new List<string> {"1.1.1.1", "8.8.8.8", "--invalid-ip",};
+        List<string> customDns = new List<string> { "1.1.1.1", "8.8.8.8", "--invalid-ip", };
 
-            // Act
-            Action action = () =>
-                new VpnConfig(new() {Ports = portConfig, CustomDns = customDns});
+        // Act
+        Action action = () =>
+            new VpnConfig(new() { Ports = portConfig, CustomDns = customDns });
 
-            // Assert
-            action.Should().Throw<ArgumentException>();
-        }
+        // Assert
+        action.Should().Throw<ArgumentException>();
+    }
 
-        private Dictionary<VpnProtocol, IReadOnlyCollection<int>> GetPortConfig(List<int> ports)
-        {
-            return new() {{VpnProtocol.OpenVpnTcp, ports}};
-        }
+    private Dictionary<VpnProtocol, IReadOnlyCollection<int>> GetPortConfig(List<int> ports)
+    {
+        return new() { { VpnProtocol.OpenVpnTcp, ports } };
     }
 }

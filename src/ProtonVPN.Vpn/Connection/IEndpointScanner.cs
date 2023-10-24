@@ -20,14 +20,13 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Vpn.Connection
+namespace ProtonVPN.Vpn.Connection;
+
+public interface IEndpointScanner
 {
-    public interface IEndpointScanner
-    {
-        Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, IList<VpnProtocol> preferredProtocols, CancellationToken cancellationToken);
-    }
+    Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
+        IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, IList<VpnProtocol> preferredProtocols, CancellationToken cancellationToken);
 }

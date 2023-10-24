@@ -19,47 +19,46 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Vpn.OpenVpn
+namespace ProtonVPN.Vpn.OpenVpn;
+
+public class OpenVpnProcessParams
 {
-    public class OpenVpnProcessParams
+    public OpenVpnProcessParams(
+        VpnEndpoint endpoint,
+        int managementPort,
+        string password,
+        IReadOnlyCollection<string> customDns,
+        SplitTunnelMode splitTunnelMode,
+        IReadOnlyCollection<string> splitTunnelIPs,
+        OpenVpnAdapter openVpnAdapter,
+        string interfaceGuid)
     {
-        public OpenVpnProcessParams(
-            VpnEndpoint endpoint,
-            int managementPort,
-            string password,
-            IReadOnlyCollection<string> customDns,
-            SplitTunnelMode splitTunnelMode,
-            IReadOnlyCollection<string> splitTunnelIPs,
-            OpenVpnAdapter openVpnAdapter,
-            string interfaceGuid)
-        {
-            Endpoint = endpoint;
-            ManagementPort = managementPort;
-            Password = password;
-            CustomDns = customDns;
-            SplitTunnelMode = splitTunnelMode;
-            SplitTunnelIPs = splitTunnelIPs;
-            OpenVpnAdapter = openVpnAdapter;
-            InterfaceGuid = interfaceGuid;
-        }
-
-        public VpnEndpoint Endpoint { get; }
-
-        public int ManagementPort { get; }
-
-        public string Password { get; }
-
-        public IReadOnlyCollection<string> CustomDns { get; }
-
-        public SplitTunnelMode SplitTunnelMode { get; }
-
-        public IReadOnlyCollection<string> SplitTunnelIPs { get; }
-
-        public OpenVpnAdapter OpenVpnAdapter { get; }
-
-        public string InterfaceGuid { get; }
+        Endpoint = endpoint;
+        ManagementPort = managementPort;
+        Password = password;
+        CustomDns = customDns;
+        SplitTunnelMode = splitTunnelMode;
+        SplitTunnelIPs = splitTunnelIPs;
+        OpenVpnAdapter = openVpnAdapter;
+        InterfaceGuid = interfaceGuid;
     }
+
+    public VpnEndpoint Endpoint { get; }
+
+    public int ManagementPort { get; }
+
+    public string Password { get; }
+
+    public IReadOnlyCollection<string> CustomDns { get; }
+
+    public SplitTunnelMode SplitTunnelMode { get; }
+
+    public IReadOnlyCollection<string> SplitTunnelIPs { get; }
+
+    public OpenVpnAdapter OpenVpnAdapter { get; }
+
+    public string InterfaceGuid { get; }
 }

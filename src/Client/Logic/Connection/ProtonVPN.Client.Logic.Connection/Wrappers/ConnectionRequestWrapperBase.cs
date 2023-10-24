@@ -47,11 +47,11 @@ public abstract class ConnectionRequestWrapperBase : RequestWrapperBase
             AllowNonStandardPorts = settings.AllowNonStandardPorts,
             SplitTcp = settings.SplitTcp,
             PreferredProtocols = settings.VpnProtocol == VpnProtocolIpcEntity.Smart
-                ? new List<VpnProtocolIpcEntity> { VpnProtocolIpcEntity.WireGuard, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp }
+                ? new List<VpnProtocolIpcEntity> { VpnProtocolIpcEntity.WireGuardUdp, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp }
                 : new List<VpnProtocolIpcEntity> { settings.VpnProtocol },
             Ports = new Dictionary<VpnProtocolIpcEntity, int[]>
             {
-                { VpnProtocolIpcEntity.WireGuard, Settings.WireGuardPorts },
+                { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardPorts },
                 { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
                 { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
             },

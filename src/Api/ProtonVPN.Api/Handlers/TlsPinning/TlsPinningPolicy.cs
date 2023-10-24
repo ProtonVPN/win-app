@@ -19,21 +19,20 @@
 
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
+using ProtonVPN.Configurations.Contracts.Entities;
 
-namespace ProtonVPN.Api.Handlers.TlsPinning
+namespace ProtonVPN.Api.Handlers.TlsPinning;
+
+public class TlsPinningPolicy
 {
-    public class TlsPinningPolicy
+    public bool Valid(ITlsPinnedDomain domain, X509Certificate certificate)
     {
-        public bool Valid(TlsPinnedDomain domain, X509Certificate certificate)
+        if (domain == null)
         {
-            if (domain == null)
-            {
-                return true;
-            }
-
-            string hash = new PublicKeyInfoHash(certificate).Value();
-            return domain.PublicKeyHashes.Contains(hash);
+            return true;
         }
+
+        string hash = new PublicKeyInfoHash(certificate).Value();
+        return domain.PublicKeyHashes.Contains(hash);
     }
 }

@@ -19,114 +19,113 @@
 
 using System;
 using Microsoft.Win32;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
-namespace ProtonVPN.Common.OS.Registry
+namespace ProtonVPN.Common.OS.Registry;
+
+public class CurrentUserStartupRecord : ICurrentUserStartupRecord
 {
-    public class CurrentUserStartupRecord : ICurrentUserStartupRecord
+    private const string RUN_KEY = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+
+    private readonly ILogger _logger;
+    private readonly string _name;
+    private readonly string _command;
+
+    public CurrentUserStartupRecord(ILogger logger, IStaticConfiguration staticConfig)
     {
-        private const string RUN_KEY = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+        _logger = logger;
+        _name = staticConfig.ClientName;
+        _command = staticConfig.ClientLauncherExePath;
+    }
 
-        private readonly ILogger _logger;
-        private readonly string _name;
-        private readonly string _command;
+    public bool Exists()
+    {
+        return HandleExceptions(ExecuteExists, false, "read");
+    }
 
-        public CurrentUserStartupRecord(ILogger logger, IConfiguration appConfig)
+    private TResult HandleExceptions<TResult>(Func<TResult> function, TResult defaultResult, string actionName)
+    {
+        try
         {
-            _logger = logger;
-            _name = appConfig.AppName;
-            _command = appConfig.AppLauncherExePath;
+            return function();
+        }
+        catch (Exception ex) when (ex.IsRegistryAccessException())
+        {
+            _logger.Error<OperatingSystemRegistryAccessFailedLog>(
+                $"Can't {actionName} auto start record in Windows registry", ex);
         }
 
-        public bool Exists()
-        {
-            return HandleExceptions(ExecuteExists, false, "read");
-        }
+        return defaultResult;
+    }
 
-        private TResult HandleExceptions<TResult>(Func<TResult> function, TResult defaultResult, string actionName)
+    private bool ExecuteExists()
+    {
+        return Execute(key => key?.GetValue(_name) != null);
+    }
+
+    private T Execute<T>(Func<RegistryKey, T> function)
+    {
+        using (RegistryKey registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RUN_KEY, false))
         {
-            try
+            return function(registryKey);
+        }
+    }
+
+    public bool Valid()
+    {
+        return HandleExceptions(ExecuteValid, false, "read");
+    }
+
+    private bool ExecuteValid()
+    {
+        return Execute(key => key?.GetValue(_name) is string command && _command == command);
+    }
+
+    public void Create()
+    {
+        HandleExceptions(ExecuteCreate, "create");
+    }
+
+    private void HandleExceptions(Action action, string actionName)
+    {
+        HandleExceptions<object>(() =>
+        {
+            action();
+            return null;
+        }, null, actionName);
+    }
+
+    private void ExecuteCreate()
+    {
+        Execute(key => key?.SetValue(_name, _command));
+    }
+
+    private void Execute(Action<RegistryKey> action)
+    {
+        using (RegistryKey registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RUN_KEY, true))
+        {
+            action(registryKey);
+        }
+        _logger.Info<OperatingSystemRegistryChangedLog>($"Written registry key '{_name}':'{_command}'.");
+    }
+
+    public void Remove()
+    {
+        HandleExceptions(ExecuteRemove, "delete");
+    }
+
+    private void ExecuteRemove()
+    {
+        Execute(key =>
+        {
+            if (key.GetValue(_name) != null)
             {
-                return function();
+                key.DeleteValue(_name);
+                _logger.Info<OperatingSystemRegistryChangedLog>($"Deleted registry key '{_name}'.");
             }
-            catch (Exception ex) when (ex.IsRegistryAccessException())
-            {
-                _logger.Error<OperatingSystemRegistryAccessFailedLog>(
-                    $"Can't {actionName} auto start record in Windows registry", ex);
-            }
-
-            return defaultResult;
-        }
-
-        private bool ExecuteExists()
-        {
-            return Execute(key => key?.GetValue(_name) != null);
-        }
-
-        private T Execute<T>(Func<RegistryKey, T> function)
-        {
-            using (RegistryKey registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RUN_KEY, false))
-            {
-                return function(registryKey);
-            }
-        }
-
-        public bool Valid()
-        {
-            return HandleExceptions(ExecuteValid, false, "read");
-        }
-
-        private bool ExecuteValid()
-        {
-            return Execute(key => key?.GetValue(_name) is string command && _command == command);
-        }
-
-        public void Create()
-        {
-            HandleExceptions(ExecuteCreate, "create");
-        }
-
-        private void HandleExceptions(Action action, string actionName)
-        {
-            HandleExceptions<object>(() => 
-            {
-                action();
-                return null;
-            }, null, actionName);
-        }
-
-        private void ExecuteCreate()
-        {
-            Execute(key => key?.SetValue(_name, _command));
-        }
-
-        private void Execute(Action<RegistryKey> action)
-        {
-            using (RegistryKey registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RUN_KEY, true))
-            {
-                action(registryKey);
-            }
-            _logger.Info<OperatingSystemRegistryChangedLog>($"Written registry key '{_name}':'{_command}'.");
-        }
-
-        public void Remove()
-        {
-            HandleExceptions(ExecuteRemove, "delete");
-        }
-
-        private void ExecuteRemove()
-        {
-            Execute(key =>
-            {
-                if (key.GetValue(_name) != null)
-                {
-                    key.DeleteValue(_name);
-                    _logger.Info<OperatingSystemRegistryChangedLog>($"Deleted registry key '{_name}'.");
-                }
-            });
-        }
+        });
     }
 }

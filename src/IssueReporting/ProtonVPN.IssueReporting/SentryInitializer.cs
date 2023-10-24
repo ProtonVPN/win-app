@@ -21,102 +21,101 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.IssueReporting.DiagnosticLogging;
 using ProtonVPN.IssueReporting.HttpHandlers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.SourceGenerators;
 using Sentry;
 
-namespace ProtonVPN.IssueReporting
+namespace ProtonVPN.IssueReporting;
+
+public static class SentryInitializer
 {
-    public static class SentryInitializer
+    private static readonly ISentryDiagnosticLogger _sentryDiagnosticLogger = new SentryDiagnosticLogger();
+    private static ILogger _logger;
+
+    public static void SetLogger(ILogger logger)
     {
-        private static readonly ISentryDiagnosticLogger _sentryDiagnosticLogger = new SentryDiagnosticLogger();
-        private static ILogger _logger;
+        _logger = logger;
+        _sentryDiagnosticLogger?.SetLogger(logger);
+        DeviceIdStaticBuilder.SetLogger(logger);
+    }
 
-        public static void SetLogger(ILogger logger)
-        {
-            _logger = logger;
-            _sentryDiagnosticLogger?.SetLogger(logger);
-            DeviceIdStaticBuilder.SetLogger(logger);
-        }
+    public static void Run()
+    {
+        SentryOptions options = GetSentryOptions();
+        SentrySdk.Init(options);
+    }
 
-        public static void Run()
+    private static SentryOptions GetSentryOptions()
+    {
+        SentryOptions options = new()
         {
-            SentryOptions options = GetSentryOptions();
-            SentrySdk.Init(options);
-        }
-
-        private static SentryOptions GetSentryOptions()
-        {
-            SentryOptions options = new()
+            Release = $"vpn.windows-{GetAppVersion()}",
+            AttachStacktrace = true,
+            Dsn = GlobalConfig.SentryDsn,
+            ReportAssembliesMode = ReportAssembliesMode.None,
+            CreateHttpClientHandler = () => new SentryHttpClientHandler(),
+            AutoSessionTracking = false,
+            Debug = true,
+            DiagnosticLogger = _sentryDiagnosticLogger,
+            BeforeSend = e =>
             {
-                Release = $"vpn.windows-{GetAppVersion()}",
-                AttachStacktrace = true,
-                Dsn = GlobalConfig.SentryDsn,
-                ReportAssembliesMode = ReportAssembliesMode.None,
-                CreateHttpClientHandler = () => new SentryHttpClientHandler(),
-                AutoSessionTracking = false,
-                Debug = true,
-                DiagnosticLogger = _sentryDiagnosticLogger,
-                BeforeSend = e =>
+                LogSentryEvent(e);
+                e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
+                e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
+                e.SetExtra("logs", GetLogs());
+
+                return e;
+            }
+        };
+
+        return options;
+    }
+
+    private static string GetAppVersion()
+    {
+        return Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+    }
+
+    private static void LogSentryEvent(SentryEvent e)
+    {
+        switch (e.Level)
+        {
+            case SentryLevel.Debug:
+                _logger?.Debug<AppLog>(e.Message?.Message);
+                break;
+            case SentryLevel.Info:
+                _logger?.Info<AppLog>(e.Message?.Message);
+                break;
+            case SentryLevel.Warning:
+                _logger?.Warn<AppLog>(e.Message?.Message);
+                break;
+            case SentryLevel.Error:
+                string message = e.Message?.Message;
+                if (string.IsNullOrEmpty(message))
                 {
-                    LogSentryEvent(e);
-                    e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
-                    e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
-                    e.SetExtra("logs", GetLogs());
-
-                    return e;
+                    message = "Exception handled by Sentry";
                 }
-            };
-
-            return options;
+                _logger?.Error<AppLog>(message, e.Exception);
+                break;
+            case SentryLevel.Fatal:
+                _logger?.Fatal<AppCrashLog>(e.Message?.Message);
+                break;
         }
+    }
 
-        private static string GetAppVersion()
+    private static string GetLogs()
+    {
+        IList<string> logs = _logger?.GetRecentLogs() ?? new List<string>();
+        StringBuilder sb = new();
+        foreach (string log in logs)
         {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+            sb.AppendLine(log);
         }
 
-        private static void LogSentryEvent(SentryEvent e)
-        {
-            switch (e.Level)
-            {
-                case SentryLevel.Debug:
-                    _logger?.Debug<AppLog>(e.Message?.Message);
-                    break;
-                case SentryLevel.Info:
-                    _logger?.Info<AppLog>(e.Message?.Message);
-                    break;
-                case SentryLevel.Warning:
-                    _logger?.Warn<AppLog>(e.Message?.Message);
-                    break;
-                case SentryLevel.Error:
-                    string message = e.Message?.Message;
-                    if (string.IsNullOrEmpty(message))
-                    {
-                        message = "Exception handled by Sentry";
-                    }
-                    _logger?.Error<AppLog>(message, e.Exception);
-                    break;
-                case SentryLevel.Fatal:
-                    _logger?.Fatal<AppCrashLog>(e.Message?.Message);
-                    break;
-            }
-        }
-
-        private static string GetLogs()
-        {
-            IList<string> logs = _logger?.GetRecentLogs() ?? new List<string>();
-            StringBuilder sb = new();
-            foreach (string log in logs)
-            {
-                sb.AppendLine(log);
-            }
-
-            return sb.ToString();
-        }
+        return sb.ToString();
     }
 }

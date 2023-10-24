@@ -19,20 +19,20 @@
 
 using System;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Api;
 
 public class ReportClientUriProvider : IReportClientUriProvider
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _config;
 
-    public ReportClientUriProvider(IConfiguration configuration)
+    public ReportClientUriProvider(IConfiguration config)
     {
-        _configuration = configuration;
+        _config = config;
     }
     public Uri GetReportClientUri()
     {
-        return new Uri(_configuration.Urls.TlsReportUrl);
+        return new Uri(_config.Urls.TlsReportUrl);
     }
 }

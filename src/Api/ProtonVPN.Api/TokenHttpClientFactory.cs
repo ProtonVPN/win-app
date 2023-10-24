@@ -23,23 +23,23 @@ using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Api;
 
 public class TokenHttpClientFactory : ITokenHttpClientFactory
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _config;
     private readonly HttpMessageHandler _innerHandler;
 
-    public TokenHttpClientFactory(IConfiguration configuration,
+    public TokenHttpClientFactory(IConfiguration config,
         //TODO: restore AlternativeHostHandler alternativeHostHandler,
         RetryingHandler retryingHandler,
         //TODO: restore DnsHandler dnsHandler,
         LoggingHandlerBase loggingHandlerBase,
         TlsPinnedCertificateHandler tlsPinnedCertificateHandler)
     {
-        _configuration = configuration;
+        _config = config;
 
         _innerHandler = new HttpMessageHandlerStackBuilder()
             //TODO: restore .AddDelegatingHandler(alternativeHostHandler)
@@ -52,6 +52,6 @@ public class TokenHttpClientFactory : ITokenHttpClientFactory
 
     public HttpClient GetTokenHttpClient()
     {
-        return new HttpClient(_innerHandler) { BaseAddress = new Uri(_configuration.Urls.ApiUrl) };
+        return new HttpClient(_innerHandler) { BaseAddress = new Uri(_config.Urls.ApiUrl) };
     }
 }

@@ -22,100 +22,99 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Core.Tests.Servers
+namespace ProtonVPN.Core.Tests.Servers;
+
+[TestClass]
+public class ServerManagerTest
 {
-    [TestClass]
-    public class ServerManagerTest
+    private IUserStorage _userStorage;
+    private IAppSettings _appSettings;
+    private ILogger _logger;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private IUserStorage _userStorage;
-        private IAppSettings _appSettings;
-        private ILogger _logger;
+        _userStorage = Substitute.For<IUserStorage>();
+        _appSettings = Substitute.For<IAppSettings>();
+        _logger = Substitute.For<ILogger>();
+    }
 
-        [TestInitialize]
-        public void Initialize()
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _userStorage = null;
+        _appSettings = null;
+        _logger = null;
+    }
+
+    [TestMethod]
+    public void ItShouldSkipServersWithoutPublicKeyForWireguard()
+    {
+        // Arrange
+        _appSettings.GetProtocol().Returns(VpnProtocol.WireGuardUdp);
+        _userStorage.GetUser().Returns(new User { MaxTier = 0 });
+        ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
+
+        // Act
+        serverManager.Load(GetServerList());
+
+        // Assert
+        serverManager.GetServers(new AnyServer()).Count.Should().Be(1);
+    }
+
+    [TestMethod]
+    public void ItShouldSkipCountriesWithNoServersForWireguard()
+    {
+        // Arrange
+        _appSettings.GetProtocol().Returns(VpnProtocol.WireGuardUdp);
+        ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
+
+        // Act
+        serverManager.Load(GetServerList());
+
+        // Assert
+        serverManager.GetCountries().Should().NotContain("US");
+    }
+
+    private List<LogicalServerResponse> GetServerList()
+    {
+        return new()
         {
-            _userStorage = Substitute.For<IUserStorage>();
-            _appSettings = Substitute.For<IAppSettings>();
-            _logger = Substitute.For<ILogger>();
-        }
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _userStorage = null;
-            _appSettings = null;
-            _logger = null;
-        }
-
-        [TestMethod]
-        public void ItShouldSkipServersWithoutPublicKeyForWireguard()
-        {
-            // Arrange
-            _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
-            _userStorage.GetUser().Returns(new User {MaxTier = 0});
-            ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
-
-            // Act
-            serverManager.Load(GetServerList());
-
-            // Assert
-            serverManager.GetServers(new AnyServer()).Count.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void ItShouldSkipCountriesWithNoServersForWireguard()
-        {
-            // Arrange
-            _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
-            ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
-
-            // Act
-            serverManager.Load(GetServerList());
-
-            // Assert
-            serverManager.GetCountries().Should().NotContain("US");
-        }
-
-        private List<LogicalServerResponse> GetServerList()
-        {
-            return new()
+            new()
             {
-                new()
+                Name = "US#1",
+                EntryCountry = "US",
+                Servers = new List<PhysicalServerResponse>
                 {
-                    Name = "US#1",
-                    EntryCountry = "US",
-                    Servers = new List<PhysicalServerResponse>
-                    {
-                        new() {X25519PublicKey = string.Empty},
-                        new() {X25519PublicKey = string.Empty},
-                    }
-                },
-                new()
-                {
-                    Name = "CH#1",
-                    EntryCountry = "CH",
-                    Servers = new List<PhysicalServerResponse>
-                    {
-                        new() {X25519PublicKey = "key"},
-                        new() {X25519PublicKey = "key"},
-                    }
+                    new() {X25519PublicKey = string.Empty},
+                    new() {X25519PublicKey = string.Empty},
                 }
-            };
-        }
-
-        public class AnyServer : Specification<LogicalServerResponse>
-        {
-            public override bool IsSatisfiedBy(LogicalServerResponse item)
+            },
+            new()
             {
-                return true;
+                Name = "CH#1",
+                EntryCountry = "CH",
+                Servers = new List<PhysicalServerResponse>
+                {
+                    new() {X25519PublicKey = "key"},
+                    new() {X25519PublicKey = "key"},
+                }
             }
+        };
+    }
+
+    public class AnyServer : Specification<LogicalServerResponse>
+    {
+        public override bool IsSatisfiedBy(LogicalServerResponse item)
+        {
+            return true;
         }
     }
 }

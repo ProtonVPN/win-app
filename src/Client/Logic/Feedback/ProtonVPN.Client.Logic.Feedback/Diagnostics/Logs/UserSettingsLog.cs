@@ -22,7 +22,7 @@ using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
@@ -31,8 +31,8 @@ public class UserSettingsLog : LogBase
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
 
-    public UserSettingsLog(IConfiguration config, ISettings settings, IUserAuthenticator userAuthenticator)
-        : base(config.DiagnosticsLogFolder, "Settings.txt")
+    public UserSettingsLog(IStaticConfiguration config, ISettings settings, IUserAuthenticator userAuthenticator)
+        : base(config.DiagnosticLogsFolder, "Settings.txt")
     {
         _settings = settings;
         _userAuthenticator = userAuthenticator;

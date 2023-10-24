@@ -18,34 +18,33 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Resolvers;
 using ProtonVPN.Dns.Tests.Mocks;
 
-namespace ProtonVPN.Dns.Tests.Resolvers
+namespace ProtonVPN.Dns.Tests.Resolvers;
+
+[TestClass]
+public class DnsOverHttpsTxtRecordsResolverTest
+    : DnsOverHttpsResolverTestBase<DnsOverHttpsTxtRecordsResolver>
 {
-    [TestClass]
-    public class DnsOverHttpsTxtRecordsResolverTest
-        : DnsOverHttpsResolverTestBase<DnsOverHttpsTxtRecordsResolver>
+    private const string HOST = "dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz";
+
+    public DnsOverHttpsTxtRecordsResolverTest() : base(HOST)
     {
-        private const string HOST = "dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz";
+    }
 
-        public DnsOverHttpsTxtRecordsResolverTest() : base(HOST)
-        {
-        }
+    protected override DnsOverHttpsTxtRecordsResolver CreateResolver(IConfiguration configuration,
+        MockOfLogger logger, MockOfHttpClientFactory mockOfHttpClientFactory,
+        IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
+    {
+        return new DnsOverHttpsTxtRecordsResolver(configuration, logger,
+            mockOfHttpClientFactory, dnsOverHttpsProvidersManager);
+    }
 
-        protected override DnsOverHttpsTxtRecordsResolver CreateResolver(IConfiguration configuration,
-            MockOfLogger logger, MockOfHttpClientFactory mockOfHttpClientFactory,
-            IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
-        {
-            return new DnsOverHttpsTxtRecordsResolver(configuration, logger,
-                mockOfHttpClientFactory, dnsOverHttpsProvidersManager);
-        }
-
-        protected override void AssertCorrectResponse(DnsResponse response)
-        {
-            Assert.IsTrue(response.AlternativeHosts.Count > 0);
-        }
+    protected override void AssertCorrectResponse(DnsResponse response)
+    {
+        Assert.IsTrue(response.AlternativeHosts.Count > 0);
     }
 }

@@ -17,25 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Vpn.OpenVpn
+namespace ProtonVPN.Vpn.OpenVpn;
+
+internal class BestLocalOpenVpnEndpoint
 {
-    internal class BestLocalOpenVpnEndpoint
+    private readonly SafeBestNetworkInterface _interface;
+
+    public BestLocalOpenVpnEndpoint(VpnEndpoint endpoint)
     {
-        private readonly SafeBestNetworkInterface _interface;
+        _interface = endpoint.VpnProtocol == VpnProtocol.OpenVpnUdp ?
+            new SafeBestNetworkInterface(new BestNetworkInterface(endpoint.Server.Ip)) :
+            null;
+    }
 
-        public BestLocalOpenVpnEndpoint(VpnEndpoint endpoint)
-        {
-            _interface = endpoint.VpnProtocol == VpnProtocol.OpenVpnUdp ?
-                new SafeBestNetworkInterface(new BestNetworkInterface(endpoint.Server.Ip)) :
-                null;
-        }
-
-        public string Ip()
-        {
-            return _interface?.Ip()?.ToString() ?? string.Empty;
-        }
+    public string Ip()
+    {
+        return _interface?.Ip()?.ToString() ?? string.Empty;
     }
 }

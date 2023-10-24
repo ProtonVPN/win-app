@@ -21,55 +21,57 @@ using System;
 using System.Net.Http;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using ProtonVPN.Api.Handlers.Retries;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Api.Tests.Handlers.Retries
+namespace ProtonVPN.Api.Tests.Handlers.Retries;
+
+[TestClass]
+public class RequestTimeoutProviderTest
 {
-    [TestClass]
-    public class RequestTimeoutProviderTest
+    [TestMethod]
+    public void ItShouldUseCustomTimeout()
     {
-        [TestMethod]
-        public void ItShouldUseCustomTimeout()
+        // Arrange
+        IConfiguration config = Substitute.For<IConfiguration>();
+        RequestTimeoutProvider sut = new(config);
+        HttpRequestMessage request = new();
+        TimeSpan timeout = TimeSpan.FromSeconds(30);
+        request.SetCustomTimeout(timeout);
+
+        // Assert
+        sut.GetTimeout(request).Should().Be(timeout);
+    }
+
+    [TestMethod]
+    public void ItShouldUseDefaultTimeoutWhenNotUploadingFiles()
+    {
+        // Arrange
+        TimeSpan timeout = TimeSpan.FromSeconds(60);
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.ApiTimeout.Returns(timeout);
+        RequestTimeoutProvider sut = new(config);
+
+        // Assert
+        sut.GetTimeout(new HttpRequestMessage()).Should().Be(timeout);
+    }
+
+    [TestMethod]
+    public void ItShouldUseSpecialTimeoutForUploadRequests()
+    {
+        // Arrange
+        TimeSpan timeout = TimeSpan.FromSeconds(120);
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.ApiUploadTimeout.Returns(timeout);
+        HttpRequestMessage request = new()
         {
-            // Arrange
-            IConfiguration config = new Config();
-            RequestTimeoutProvider sut = new(config);
-            HttpRequestMessage request = new();
-            TimeSpan timeout = TimeSpan.FromSeconds(30);
-            request.SetCustomTimeout(timeout);
+            Content = new MultipartFormDataContent()
+        };
+        RequestTimeoutProvider sut = new(config);
 
-            // Assert
-            sut.GetTimeout(request).Should().Be(timeout);
-        }
-
-        [TestMethod]
-        public void ItShouldUseDefaultTimeoutWhenNotUploadingFiles()
-        {
-            // Arrange
-            TimeSpan timeout = TimeSpan.FromSeconds(60);
-            IConfiguration config = new Config { ApiTimeout = timeout };
-            RequestTimeoutProvider sut = new(config);
-
-            // Assert
-            sut.GetTimeout(new HttpRequestMessage()).Should().Be(timeout);
-        }
-
-        [TestMethod]
-        public void ItShouldUseSpecialTimeoutForUploadRequests()
-        {
-            // Arrange
-            TimeSpan timeout = TimeSpan.FromSeconds(120);
-            IConfiguration config = new Config { ApiUploadTimeout = timeout };
-            HttpRequestMessage request = new()
-            {
-                Content = new MultipartFormDataContent()
-            };
-            RequestTimeoutProvider sut = new(config);
-
-            // Assert
-            sut.GetTimeout(request).Should().Be(timeout);
-        }
+        // Assert
+        sut.GetTimeout(request).Should().Be(timeout);
     }
 }

@@ -17,42 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Models;
 
-namespace ProtonVPN.Core.Vpn
+namespace ProtonVPN.Core.Vpn;
+
+public class VpnStateChangedEventArgs
 {
-    public class VpnStateChangedEventArgs
+    public VpnState State { get; }
+    public VpnError Error { get; }
+    public bool NetworkBlocked { get; }
+
+    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp,
+        bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null,
+        string label = "")
+        : this(new VpnState(status, endpointIp, vpnProtocol, networkAdapterType, label), error, networkBlocked)
     {
-        public VpnState State { get; }
-        public VpnError Error { get; }
-        public bool NetworkBlocked { get; }
-
-        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp,
-            bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null,
-            string label = "")
-            : this(new VpnState(status, endpointIp, vpnProtocol, networkAdapterType, label), error, networkBlocked)
-        {
-        }
-
-        public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server, bool networkBlocked)
-            : this(new VpnState(status, server), error, networkBlocked)
-        {
-        }
-
-        public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked)
-        {
-            Ensure.NotNull(state, nameof(state));
-
-            State = state;
-            Error = error;
-            NetworkBlocked = networkBlocked;
-        }
-
-        public bool UnexpectedDisconnect =>
-            (State.Status == VpnStatus.Disconnected || State.Status == VpnStatus.Disconnecting) &&
-            Error != VpnError.None;
     }
+
+    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server, bool networkBlocked)
+        : this(new VpnState(status, server), error, networkBlocked)
+    {
+    }
+
+    public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked)
+    {
+        Ensure.NotNull(state, nameof(state));
+
+        State = state;
+        Error = error;
+        NetworkBlocked = networkBlocked;
+    }
+
+    public bool UnexpectedDisconnect =>
+        (State.Status == VpnStatus.Disconnected || State.Status == VpnStatus.Disconnecting) &&
+        Error != VpnError.None;
 }

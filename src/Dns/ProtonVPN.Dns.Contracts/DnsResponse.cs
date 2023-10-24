@@ -20,51 +20,50 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Dns.Contracts
+namespace ProtonVPN.Dns.Contracts;
+
+public class DnsResponse
 {
-    public class DnsResponse
+    public string Host { get; set; }
+    public IList<IpAddress> IpAddresses { get; set; }
+    public IList<string> AlternativeHosts { get; set; }
+
+    public TimeSpan TimeToLive { get; set; }
+    public DateTime ResponseDateTimeUtc { get; set; }
+    public DateTime ExpirationDateTimeUtc { get; set; }
+
+    public DnsResponse()
     {
-        public string Host { get; set; }
-        public IList<IpAddress> IpAddresses { get; set; }
-        public IList<string> AlternativeHosts { get; set; }
+    }
 
-        public TimeSpan TimeToLive { get; set; }
-        public DateTime ResponseDateTimeUtc { get; set; }
-        public DateTime ExpirationDateTimeUtc { get; set; }
+    public DnsResponse(string host, TimeSpan timeToLive, IList<IpAddress> ipAddresses, DateTime? responseDateTimeUtc = null)
+        : this(host, timeToLive, ipAddresses, null, responseDateTimeUtc)
+    {
+    }
 
-        public DnsResponse()
-        {
-        }
-        
-        public DnsResponse(string host, TimeSpan timeToLive, IList<IpAddress> ipAddresses, DateTime? responseDateTimeUtc = null)
-            : this(host, timeToLive, ipAddresses, null, responseDateTimeUtc)
-        {
-        }
-        
-        public DnsResponse(string host, TimeSpan timeToLive, IList<string> alternativeHosts, DateTime? responseDateTimeUtc = null)
-            : this(host, timeToLive, null, alternativeHosts, responseDateTimeUtc)
-        {
-        }
+    public DnsResponse(string host, TimeSpan timeToLive, IList<string> alternativeHosts, DateTime? responseDateTimeUtc = null)
+        : this(host, timeToLive, null, alternativeHosts, responseDateTimeUtc)
+    {
+    }
 
-        private DnsResponse(string host, TimeSpan timeToLive, IList<IpAddress> ipAddresses,
-            IList<string> alternativeHosts, DateTime? responseDateTimeUtc)
-        {
-            ResponseDateTimeUtc = responseDateTimeUtc ?? DateTime.UtcNow;
-            ExpirationDateTimeUtc = ResponseDateTimeUtc + timeToLive;
-            TimeToLive = timeToLive;
+    private DnsResponse(string host, TimeSpan timeToLive, IList<IpAddress> ipAddresses,
+        IList<string> alternativeHosts, DateTime? responseDateTimeUtc)
+    {
+        ResponseDateTimeUtc = responseDateTimeUtc ?? DateTime.UtcNow;
+        ExpirationDateTimeUtc = ResponseDateTimeUtc + timeToLive;
+        TimeToLive = timeToLive;
 
-            Host = host;
-            IpAddresses = ipAddresses ?? new List<IpAddress>();
-            AlternativeHosts = alternativeHosts?.Distinct().ToList() ?? new List<string>();
-        }
+        Host = host;
+        IpAddresses = ipAddresses ?? new List<IpAddress>();
+        AlternativeHosts = alternativeHosts?.Distinct().ToList() ?? new List<string>();
+    }
 
-        public void SetDatesAndTimeToLive(TimeSpan timeToLive)
-        {
-            ResponseDateTimeUtc = DateTime.UtcNow;
-            ExpirationDateTimeUtc = ResponseDateTimeUtc + timeToLive;
-            TimeToLive = timeToLive;
-        }
+    public void SetDatesAndTimeToLive(TimeSpan timeToLive)
+    {
+        ResponseDateTimeUtc = DateTime.UtcNow;
+        ExpirationDateTimeUtc = ResponseDateTimeUtc + timeToLive;
+        TimeToLive = timeToLive;
     }
 }

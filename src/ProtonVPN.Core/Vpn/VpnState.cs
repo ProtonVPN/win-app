@@ -17,41 +17,40 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Models;
 
-namespace ProtonVPN.Core.Vpn
+namespace ProtonVPN.Core.Vpn;
+
+public class VpnState
 {
-    public class VpnState
+    public VpnStatus Status { get; }
+    public string EntryIp { get; }
+    public Server Server { get; }
+    public OpenVpnAdapter? NetworkAdapterType { get; }
+    public VpnProtocol VpnProtocol { get; }
+    public string Label { get; }
+
+    public VpnState(VpnStatus status, string entryIp, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null, string label = "")
     {
-        public VpnStatus Status { get; }
-        public string EntryIp { get; }
-        public Server Server { get; }
-        public OpenVpnAdapter? NetworkAdapterType { get; }
-        public VpnProtocol VpnProtocol { get; }
-        public string Label { get; }
+        Status = status;
+        EntryIp = entryIp;
+        VpnProtocol = vpnProtocol;
+        NetworkAdapterType = networkAdapterType;
+        Label = label;
+    }
 
-        public VpnState(VpnStatus status, string entryIp, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null, string label = "")
-        {
-            Status = status;
-            EntryIp = entryIp;
-            VpnProtocol = vpnProtocol;
-            NetworkAdapterType = networkAdapterType;
-            Label = label;
-        }
+    public VpnState(VpnStatus status, Server server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart, OpenVpnAdapter? networkAdapterType = null)
+    {
+        Status = status;
+        Server = server ?? Server.Empty();
+        VpnProtocol = vpnProtocol;
+        NetworkAdapterType = networkAdapterType;
+    }
 
-        public VpnState(VpnStatus status, Server server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart, OpenVpnAdapter? networkAdapterType = null)
-        {
-            Status = status;
-            Server = server ?? Server.Empty();
-            VpnProtocol = vpnProtocol;
-            NetworkAdapterType = networkAdapterType;
-        }
-
-        public override string ToString()
-        {
-            return $"Status: {Status}. Server: {Server?.ToString() ?? "None"}";
-        }
+    public override string ToString()
+    {
+        return $"Status: {Status}. Server: {Server?.ToString() ?? "None"}";
     }
 }

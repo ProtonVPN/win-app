@@ -19,20 +19,19 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Serialization.Contracts;
 
-namespace ProtonVPN.Core.Servers.FileStoraging
+namespace ProtonVPN.Core.Servers.FileStoraging;
+
+public class ServersFileStorage : FileStorageBase<IEnumerable<LogicalServerResponse>>,
+    IServersFileStorage
 {
-    public class ServersFileStorage : FileStorageBase<IEnumerable<LogicalServerResponse>>,
-        IServersFileStorage
+    public ServersFileStorage(ILogger logger,
+        IJsonSerializer jsonSerializer, IStaticConfiguration config)
+        : base(logger, jsonSerializer, config.ServersJsonCacheFilePath)
     {
-        public ServersFileStorage(ILogger logger,
-            IJsonSerializer jsonSerializer, IConfiguration config)
-            : base(logger, jsonSerializer, config.ServersJsonCacheFilePath)
-        {
-        }
     }
 }

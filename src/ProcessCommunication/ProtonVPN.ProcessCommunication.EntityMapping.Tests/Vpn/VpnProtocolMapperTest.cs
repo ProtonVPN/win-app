@@ -18,20 +18,19 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class VpnProtocolMapperTest : EnumMapperTestBase<VpnProtocol, VpnProtocolIpcEntity>
 {
-    [TestClass]
-    public class VpnProtocolMapperTest : EnumMapperTestBase<VpnProtocol, VpnProtocolIpcEntity>
+    protected override IMapper<VpnProtocol, VpnProtocolIpcEntity> CreateMapper()
     {
-        protected override IMapper<VpnProtocol, VpnProtocolIpcEntity> CreateMapper()
-        {
-            return new VpnProtocolMapper();
-        }
+        return new VpnProtocolMapper();
     }
 }

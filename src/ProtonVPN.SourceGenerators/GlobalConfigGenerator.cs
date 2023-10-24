@@ -40,23 +40,28 @@ namespace ProtonVPN.SourceGenerators
             string btiAlternativeRoutingTlsPinningPublicKeyHashes = GetEnvironmentVariableOrNull("BTI_ALT_ROUTE_TLS_PINNINGS");
             string btiCertificateValidation = GetEnvironmentVariableOrNull("BTI_CERT_VALIDATION");
             string btiDohUrls = GetEnvironmentVariableOrNull("BTI_DOH_URLS");
+            string btiServerSignaturePublicKey = GetEnvironmentVariableOrNull("BTI_SERVER_SIGNATURE_PUBLIC_KEY");
 
-            context.AddSource("GlobalConfig.g.cs", SourceText.From($@"
+            string className = "GlobalConfig";
+            string text = $@"
 using System.Collections.Generic;
 
-namespace ProtonVPN.Common.Configuration
+namespace ProtonVPN.SourceGenerators;
+
+public static class {className}
 {{
-    public class GlobalConfig
-    {{
-        public const string SentryDsn = ""{sentryDsn}"";
-        public const string InternalReleaseUpdateUrl = ""{internalReleaseUrl}"";
-        public const string BtiApiDomain = ""{btiApiDomain}"";
-        public const string BtiApiTlsPinningPublicKeyHashes = ""{btiApiTlsPinningPublicKeyHashes}"";
-        public const string BtiAlternativeRoutingTlsPinningPublicKeyHashes = ""{btiAlternativeRoutingTlsPinningPublicKeyHashes}"";
-        public const string BtiCertificateValidation = ""{btiCertificateValidation}"";
-        public const string BtiDohProviders = ""{btiDohUrls}"";
-    }}
-}}", Encoding.UTF8));
+    public const string SentryDsn = ""{sentryDsn}"";
+    public const string InternalReleaseUpdateUrl = ""{internalReleaseUrl}"";
+
+    public const string BtiApiDomain = ""{btiApiDomain}"";
+    public const string BtiApiTlsPinningPublicKeyHashes = ""{btiApiTlsPinningPublicKeyHashes}"";
+    public const string BtiAlternativeRoutingTlsPinningPublicKeyHashes = ""{btiAlternativeRoutingTlsPinningPublicKeyHashes}"";
+    public const string BtiCertificateValidation = ""{btiCertificateValidation}"";
+    public const string BtiDohProviders = ""{btiDohUrls}"";
+    public const string BtiServerSignaturePublicKey = ""{btiServerSignaturePublicKey}"";
+}}
+";
+            context.AddSource($"{className}.g.cs", SourceText.From(text, Encoding.UTF8));
         }
 
         public static string GetEnvironmentVariableOrNull(string variable)

@@ -22,204 +22,203 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.OpenVpn;
 
-namespace ProtonVPN.Vpn.Connection
+namespace ProtonVPN.Vpn.Connection;
+
+public class VpnEndpointScanner : IEndpointScanner
 {
-    public class VpnEndpointScanner : IEndpointScanner
+    private static readonly TimeSpan PingTimeout = TimeSpan.FromSeconds(3);
+
+    private readonly ILogger _logger;
+    private readonly ITaskQueue _taskQueue;
+    private readonly TcpPortScanner _tcpPortScanner;
+    private readonly UdpPingClient _udpPingClient;
+
+    public VpnEndpointScanner(
+        ILogger logger,
+        ITaskQueue taskQueue,
+        TcpPortScanner tcpPortScanner,
+        UdpPingClient udpPingClient)
     {
-        private static readonly TimeSpan PingTimeout = TimeSpan.FromSeconds(3);
+        _logger = logger;
+        _taskQueue = taskQueue;
+        _tcpPortScanner = tcpPortScanner;
+        _udpPingClient = udpPingClient;
+    }
 
-        private readonly ILogger _logger;
-        private readonly ITaskQueue _taskQueue;
-        private readonly TcpPortScanner _tcpPortScanner;
-        private readonly UdpPingClient _udpPingClient;
+    public async Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
+        IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, IList<VpnProtocol> preferredProtocols,
+        CancellationToken cancellationToken)
+    {
+        return await EnqueueAsync(() => ScanPortsAsync(endpoint, ports, preferredProtocols, cancellationToken), cancellationToken);
+    }
 
-        public VpnEndpointScanner(
-            ILogger logger,
-            ITaskQueue taskQueue,
-            TcpPortScanner tcpPortScanner,
-            UdpPingClient udpPingClient)
+    private async Task<VpnEndpoint> EnqueueAsync(Func<Task<VpnEndpoint>> func, CancellationToken cancellationToken)
+    {
+        if (cancellationToken.IsCancellationRequested)
         {
-            _logger = logger;
-            _taskQueue = taskQueue;
-            _tcpPortScanner = tcpPortScanner;
-            _udpPingClient = udpPingClient;
+            return VpnEndpoint.Empty;
         }
 
-        public async Task<VpnEndpoint> ScanForBestEndpointAsync(VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports, IList<VpnProtocol> preferredProtocols, 
-            CancellationToken cancellationToken)
-        {
-            return await EnqueueAsync(() => ScanPortsAsync(endpoint, ports, preferredProtocols, cancellationToken), cancellationToken);
-        }
-
-        private async Task<VpnEndpoint> EnqueueAsync(Func<Task<VpnEndpoint>> func, CancellationToken cancellationToken)
+        return await _taskQueue.Enqueue(async () =>
         {
             if (cancellationToken.IsCancellationRequested)
             {
                 return VpnEndpoint.Empty;
             }
 
-            return await _taskQueue.Enqueue(async () =>
-            {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    return VpnEndpoint.Empty;
-                }
+            return await func();
+        });
+    }
 
-                return await func();
-            });
-        }
+    private async Task<VpnEndpoint> ScanPortsAsync(VpnEndpoint endpoint,
+        IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
+        IList<VpnProtocol> preferredProtocols,
+        CancellationToken cancellationToken)
+    {
+        IList<Task<VpnEndpoint>> candidates = EndpointCandidates(endpoint, ports, preferredProtocols, cancellationToken);
+        VpnEndpoint bestEndpoint = await BestEndpointAsync(candidates, preferredProtocols, cancellationToken);
 
-        private async Task<VpnEndpoint> ScanPortsAsync(VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
-            IList<VpnProtocol> preferredProtocols,
-            CancellationToken cancellationToken)
+        return HandleBestEndpoint(bestEndpoint, endpoint.Server);
+    }
+
+    private async Task<VpnEndpoint> BestEndpointAsync(IList<Task<VpnEndpoint>> candidates,
+        IList<VpnProtocol> preferredProtocols, CancellationToken cancellationToken)
+    {
+        Dictionary<VpnProtocol, VpnEndpoint> endpointsByProtocol = GetEndpointsByProtocol(preferredProtocols);
+
+        while (candidates.Any())
         {
-            IList<Task<VpnEndpoint>> candidates = EndpointCandidates(endpoint, ports, preferredProtocols, cancellationToken);
-            VpnEndpoint bestEndpoint = await BestEndpointAsync(candidates, preferredProtocols, cancellationToken);
+            Task<VpnEndpoint> firstCompletedTask = await Task.WhenAny(candidates);
+            candidates.Remove(firstCompletedTask);
+            VpnEndpoint candidate = await firstCompletedTask;
 
-            return HandleBestEndpoint(bestEndpoint, endpoint.Server);
-        }
-
-        private async Task<VpnEndpoint> BestEndpointAsync(IList<Task<VpnEndpoint>> candidates, 
-            IList<VpnProtocol> preferredProtocols, CancellationToken cancellationToken)
-        {
-            Dictionary<VpnProtocol, VpnEndpoint> endpointsByProtocol = GetEndpointsByProtocol(preferredProtocols);
-
-            while (candidates.Any())
+            if (cancellationToken.IsCancellationRequested || candidate == null)
             {
-                Task<VpnEndpoint> firstCompletedTask = await Task.WhenAny(candidates);
-                candidates.Remove(firstCompletedTask);
-                VpnEndpoint candidate = await firstCompletedTask;
+                break;
+            }
 
-                if (cancellationToken.IsCancellationRequested || candidate == null)
+            if (candidate.Port != 0)
+            {
+                endpointsByProtocol[candidate.VpnProtocol] = candidate;
+                if (candidate.VpnProtocol == preferredProtocols.First())
                 {
                     break;
                 }
-
-                if (candidate.Port != 0)
-                {
-                    endpointsByProtocol[candidate.VpnProtocol] = candidate;
-                    if (candidate.VpnProtocol == preferredProtocols.First())
-                    {
-                        break;
-                    }
-                }
             }
+        }
 
-            foreach (VpnProtocol preferredProtocol in preferredProtocols)
+        foreach (VpnProtocol preferredProtocol in preferredProtocols)
+        {
+            if (endpointsByProtocol[preferredProtocol] != null)
             {
-                if (endpointsByProtocol[preferredProtocol] != null)
-                {
-                    return endpointsByProtocol[preferredProtocol];
-                }
+                return endpointsByProtocol[preferredProtocol];
             }
-
-            return VpnEndpoint.Empty;
         }
 
-        private Dictionary<VpnProtocol, VpnEndpoint> GetEndpointsByProtocol(IList<VpnProtocol> preferredProtocols)
+        return VpnEndpoint.Empty;
+    }
+
+    private Dictionary<VpnProtocol, VpnEndpoint> GetEndpointsByProtocol(IList<VpnProtocol> preferredProtocols)
+    {
+        Dictionary<VpnProtocol, VpnEndpoint> endpoints = new Dictionary<VpnProtocol, VpnEndpoint>();
+        foreach (VpnProtocol protocol in preferredProtocols)
         {
-            Dictionary<VpnProtocol, VpnEndpoint> endpoints = new Dictionary<VpnProtocol, VpnEndpoint>();
-            foreach (VpnProtocol protocol in preferredProtocols)
+            endpoints.Add(protocol, null);
+        }
+
+        return endpoints;
+    }
+
+    private IList<Task<VpnEndpoint>> EndpointCandidates(
+        VpnEndpoint endpoint,
+        IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
+        IList<VpnProtocol> preferredProtocols,
+        CancellationToken cancellationToken)
+    {
+        List<Task<VpnEndpoint>> list = new List<Task<VpnEndpoint>>();
+        foreach (VpnProtocol preferredProtocol in preferredProtocols)
+        {
+            if (!ports.ContainsKey(preferredProtocol) ||
+                (endpoint.Server.X25519PublicKey == null && preferredProtocol is VpnProtocol.WireGuardUdp or VpnProtocol.OpenVpnUdp))
             {
-                endpoints.Add(protocol, null);
+                continue;
             }
 
-            return endpoints;
-        }
-
-        private IList<Task<VpnEndpoint>> EndpointCandidates(
-            VpnEndpoint endpoint,
-            IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports,
-            IList<VpnProtocol> preferredProtocols,
-            CancellationToken cancellationToken)
-        {
-            List<Task<VpnEndpoint>> list = new List<Task<VpnEndpoint>>();
-            foreach (VpnProtocol preferredProtocol in preferredProtocols)
+            foreach (int port in ports[preferredProtocol])
             {
-                if (!ports.ContainsKey(preferredProtocol) || 
-                    (endpoint.Server.X25519PublicKey == null && preferredProtocol is VpnProtocol.WireGuard or VpnProtocol.OpenVpnUdp))
-                {
-                    continue;
-                }
-
-                foreach (int port in ports[preferredProtocol])
-                {
-                    list.Add(GetPortAliveAsync(new VpnEndpoint(endpoint.Server, preferredProtocol, port), cancellationToken));
-                }
+                list.Add(GetPortAliveAsync(new VpnEndpoint(endpoint.Server, preferredProtocol, port), cancellationToken));
             }
-
-            return list;
         }
 
-        private async Task<VpnEndpoint> GetPortAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        return list;
+    }
+
+    private async Task<VpnEndpoint> GetPortAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+    {
+        _logger.Info<ConnectScanLog>($"Pinging VPN endpoint {endpoint.Server.Ip}:{endpoint.Port} for {endpoint.VpnProtocol} protocol.");
+
+        bool isAlive = false;
+        switch (endpoint.VpnProtocol)
         {
-            _logger.Info<ConnectScanLog>($"Pinging VPN endpoint {endpoint.Server.Ip}:{endpoint.Port} for {endpoint.VpnProtocol} protocol.");
-
-            bool isAlive = false;
-            switch (endpoint.VpnProtocol)
-            {
-                case VpnProtocol.OpenVpnTcp:
-                    isAlive = await IsOpenVpnEndpointAliveAsync(endpoint, cancellationToken);
-                    break;
-                case VpnProtocol.OpenVpnUdp:
-                case VpnProtocol.WireGuard:
-                    isAlive = await IsUdpEndpointAliveAsync(endpoint, cancellationToken);
-                    break;
-            }
-
-            return isAlive ? endpoint : VpnEndpoint.Empty;
+            case VpnProtocol.OpenVpnTcp:
+                isAlive = await IsOpenVpnEndpointAliveAsync(endpoint, cancellationToken);
+                break;
+            case VpnProtocol.OpenVpnUdp:
+            case VpnProtocol.WireGuardUdp:
+                isAlive = await IsUdpEndpointAliveAsync(endpoint, cancellationToken);
+                break;
         }
 
-        private async Task<bool> IsOpenVpnEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        return isAlive ? endpoint : VpnEndpoint.Empty;
+    }
+
+    private async Task<bool> IsOpenVpnEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+    {
+        return await IsEndpointAliveAsync(async timeoutTask => await _tcpPortScanner.Alive(endpoint, timeoutTask), cancellationToken);
+    }
+
+    private async Task<bool> IsUdpEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+    {
+        return await IsEndpointAliveAsync(async timeoutTask => await _udpPingClient.Ping(
+            endpoint.Server.Ip,
+            endpoint.Port,
+            endpoint.Server.X25519PublicKey.Base64,
+            timeoutTask), cancellationToken);
+    }
+
+    private async Task<bool> IsEndpointAliveAsync(Func<Task, Task<bool>> func, CancellationToken cancellationToken)
+    {
+        Task timeoutTask = Task.Delay(PingTimeout, cancellationToken);
+        bool isAlive = await func(timeoutTask);
+        if (!isAlive)
         {
-            return await IsEndpointAliveAsync(async timeoutTask => await _tcpPortScanner.Alive(endpoint, timeoutTask), cancellationToken);
+            await timeoutTask;
         }
 
-        private async Task<bool> IsUdpEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        return isAlive;
+    }
+
+    private VpnEndpoint HandleBestEndpoint(VpnEndpoint bestEndpoint, VpnHost server)
+    {
+        bool isResponding = bestEndpoint.Port != 0;
+
+        if (isResponding)
         {
-            return await IsEndpointAliveAsync(async timeoutTask => await _udpPingClient.Ping(
-                endpoint.Server.Ip,
-                endpoint.Port,
-                endpoint.Server.X25519PublicKey.Base64,
-                timeoutTask), cancellationToken);
+            _logger.Info<ConnectScanResultLog>($"The endpoint {bestEndpoint.Server.Ip}:{bestEndpoint.Port} " +
+                $"with protocol {bestEndpoint.VpnProtocol} was the fastest to respond.");
+            return bestEndpoint;
         }
 
-        private async Task<bool> IsEndpointAliveAsync(Func<Task, Task<bool>> func, CancellationToken cancellationToken)
-        {
-            Task timeoutTask = Task.Delay(PingTimeout, cancellationToken);
-            bool isAlive = await func(timeoutTask);
-            if (!isAlive)
-            {
-                await timeoutTask;
-            }
-
-            return isAlive;
-        }
-
-        private VpnEndpoint HandleBestEndpoint(VpnEndpoint bestEndpoint, VpnHost server)
-        {
-            bool isResponding = bestEndpoint.Port != 0;
-
-            if (isResponding)
-            {
-                _logger.Info<ConnectScanResultLog>($"The endpoint {bestEndpoint.Server.Ip}:{bestEndpoint.Port} " +
-                    $"with protocol {bestEndpoint.VpnProtocol} was the fastest to respond.");
-                return bestEndpoint;
-            }
-
-            _logger.Info<ConnectScanFailLog>($"No VPN port has responded for {server.Ip}.");
-            return VpnEndpoint.Empty;
-        }
+        _logger.Info<ConnectScanFailLog>($"No VPN port has responded for {server.Ip}.");
+        return VpnEndpoint.Empty;
     }
 }

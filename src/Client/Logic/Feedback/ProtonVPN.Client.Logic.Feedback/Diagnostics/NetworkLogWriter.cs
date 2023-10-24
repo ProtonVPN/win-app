@@ -19,7 +19,7 @@
 
 using System.IO.Compression;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -29,9 +29,9 @@ public class NetworkLogWriter : INetworkLogWriter
 {
     private readonly IEnumerable<ILog> _networkLogs;
     private readonly ILogger _logger;
-    private readonly IConfiguration _config;
+    private readonly IStaticConfiguration _config;
 
-    public NetworkLogWriter(IConfiguration config, IEnumerable<ILog> networkLogs, ILogger logger)
+    public NetworkLogWriter(IStaticConfiguration config, IEnumerable<ILog> networkLogs, ILogger logger)
     {
         _config = config;
         _logger = logger;
@@ -42,7 +42,7 @@ public class NetworkLogWriter : INetworkLogWriter
     {
         await Task.Run(() =>
         {
-            using FileStream fs = new(_config.DiagnosticsZipPath, FileMode.Create);
+            using FileStream fs = new(_config.DiagnosticLogsZipFilePath, FileMode.Create);
             using ZipArchive arch = new(fs, ZipArchiveMode.Create);
 
             foreach (ILog log in _networkLogs)

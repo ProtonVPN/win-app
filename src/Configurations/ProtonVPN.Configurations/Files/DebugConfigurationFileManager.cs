@@ -20,6 +20,7 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using ProtonVPN.Configurations.Defaults;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Serialization.Contracts;
@@ -112,12 +113,16 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
 
     private Dictionary<string, object?> GenerateDefaultConfigurationDictionary()
     {
-        DefaultConfiguration defaultConfiguration = new();
-        PropertyInfo[] properties = typeof(DefaultConfiguration).GetProperties();
+        PropertyInfo[] properties = typeof(Configuration).GetProperties(BindingFlagsConstants.PUBLIC_DECLARED_ONLY);
+        PropertyInfo[] defaultProperties = typeof(DefaultConfiguration).GetProperties();
         Dictionary<string, object?> dictionary = new();
         foreach (PropertyInfo property in properties)
         {
-            dictionary.Add(property.Name, property.GetValue(defaultConfiguration, null));
+            PropertyInfo? defaultProperty = defaultProperties.FirstOrDefault(dp => dp.Name == property.Name);
+            if (defaultProperty is not null)
+            {
+                dictionary.Add(property.Name, defaultProperty.GetValue(null));
+            }
         }
         return dictionary;
     }

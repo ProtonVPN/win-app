@@ -18,26 +18,25 @@
  */
 
 using System.Net;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Os.Net;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Service.Settings;
 
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Service.SplitTunneling;
+
+internal class BestNetworkInterface
 {
-    internal class BestNetworkInterface
+    private readonly IStaticConfiguration _staticConfig;
+    private readonly IServiceSettings _serviceSettings;
+
+    public BestNetworkInterface(IStaticConfiguration staticConfig, IServiceSettings serviceSettings)
     {
-        private readonly IConfiguration _config;
-        private readonly IServiceSettings _serviceSettings;
+        _staticConfig = staticConfig;
+        _serviceSettings = serviceSettings;
+    }
 
-        public BestNetworkInterface(IConfiguration config, IServiceSettings serviceSettings)
-        {
-            _config = config;
-            _serviceSettings = serviceSettings;
-        }
-
-        public IPAddress LocalIpAddress()
-        {
-            return NetworkUtil.GetBestInterfaceIp(_config.GetHardwareId(_serviceSettings.OpenVpnAdapter));
-        }
+    public IPAddress LocalIpAddress()
+    {
+        return NetworkUtil.GetBestInterfaceIp(_staticConfig.GetHardwareId(_serviceSettings.OpenVpnAdapter));
     }
 }

@@ -17,43 +17,42 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Vpn.Common
+namespace ProtonVPN.Vpn.Common;
+
+public class VpnState
 {
-    public class VpnState
+    public VpnStatus Status { get; }
+    public VpnError Error { get; }
+    public string LocalIp { get; }
+    public string RemoteIp { get; }
+    public OpenVpnAdapter? OpenVpnAdapter { get; }
+    public VpnProtocol VpnProtocol { get; }
+    public string Label { get; }
+    public bool PortForwarding { get; }
+
+    public VpnState(VpnStatus status, VpnProtocol vpnProtocol)
+        : this(status, VpnError.None, string.Empty, string.Empty, vpnProtocol)
     {
-        public VpnStatus Status { get; }
-        public VpnError Error { get; }
-        public string LocalIp { get; }
-        public string RemoteIp { get; }
-        public OpenVpnAdapter? OpenVpnAdapter { get; }
-        public VpnProtocol VpnProtocol { get; }
-        public string Label { get; }
-        public bool PortForwarding { get; }
+    }
 
-        public VpnState(VpnStatus status, VpnProtocol vpnProtocol)
-            : this(status, VpnError.None, string.Empty, string.Empty, vpnProtocol)
-        {
-        }
+    public VpnState(VpnStatus status, VpnError error, VpnProtocol vpnProtocol)
+        : this(status, error, string.Empty, string.Empty, vpnProtocol)
+    {
+    }
 
-        public VpnState(VpnStatus status, VpnError error, VpnProtocol vpnProtocol)
-            : this(status, error, string.Empty, string.Empty, vpnProtocol)
-        {
-        }
-
-        public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol vpnProtocol,
-            bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "")
-        {
-            Status = status;
-            Error = error;
-            LocalIp = localIp;
-            RemoteIp = remoteIp;
-            VpnProtocol = vpnProtocol;
-            PortForwarding = portForwarding;
-            OpenVpnAdapter = openVpnAdapter;
-            Label = label;
-        }
+    public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol vpnProtocol,
+        bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "")
+    {
+        Status = status;
+        Error = error;
+        LocalIp = localIp;
+        RemoteIp = remoteIp;
+        VpnProtocol = vpnProtocol;
+        PortForwarding = portForwarding;
+        OpenVpnAdapter = openVpnAdapter;
+        Label = label;
     }
 }

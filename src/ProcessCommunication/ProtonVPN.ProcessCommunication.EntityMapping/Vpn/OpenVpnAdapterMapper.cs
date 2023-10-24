@@ -17,32 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class OpenVpnAdapterMapper : IMapper<OpenVpnAdapter, OpenVpnAdapterIpcEntity>
-    {
-        public OpenVpnAdapterIpcEntity Map(OpenVpnAdapter leftEntity)
-        {
-            return leftEntity switch
-                {
-                    OpenVpnAdapter.Tap => OpenVpnAdapterIpcEntity.Tap,
-                    OpenVpnAdapter.Tun => OpenVpnAdapterIpcEntity.Tun,
-                    _ => throw new NotImplementedException("OpenVpnAdapter has an unknown value.")
-                };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public OpenVpnAdapter Map(OpenVpnAdapterIpcEntity rightEntity)
+public class OpenVpnAdapterMapper : IMapper<OpenVpnAdapter, OpenVpnAdapterIpcEntity>
+{
+    public OpenVpnAdapterIpcEntity Map(OpenVpnAdapter leftEntity)
+    {
+        return leftEntity switch
         {
-            return rightEntity switch
-                {
-                    OpenVpnAdapterIpcEntity.Tap => OpenVpnAdapter.Tap,
-                    OpenVpnAdapterIpcEntity.Tun => OpenVpnAdapter.Tun,
-                    _ => throw new NotImplementedException("OpenVpnAdapter has an unknown value.")
-                };
-        }
+            OpenVpnAdapter.Tap => OpenVpnAdapterIpcEntity.Tap,
+            OpenVpnAdapter.Tun => OpenVpnAdapterIpcEntity.Tun,
+            _ => throw new NotImplementedException("OpenVpnAdapter has an unknown value.")
+        };
+    }
+
+    public OpenVpnAdapter Map(OpenVpnAdapterIpcEntity rightEntity)
+    {
+        return rightEntity switch
+        {
+            OpenVpnAdapterIpcEntity.Tap => OpenVpnAdapter.Tap,
+            OpenVpnAdapterIpcEntity.Tun => OpenVpnAdapter.Tun,
+            _ => throw new NotImplementedException("OpenVpnAdapter has an unknown value.")
+        };
     }
 }

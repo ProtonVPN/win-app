@@ -18,28 +18,27 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Core.Vpn
-{
-    public class VpnConnectionRequest
-    {
-        public VpnConnectionRequest(
-            IReadOnlyList<VpnHost> servers,
-            VpnProtocol vpnProtocol,
-            VpnConfig config,
-            VpnCredentials credentials)
-        {
-            Servers = servers;
-            VpnProtocol = vpnProtocol;
-            Config = config;
-            Credentials = credentials;
-        }
+namespace ProtonVPN.Core.Vpn;
 
-        public IReadOnlyList<VpnHost> Servers { get; }
-        public VpnProtocol VpnProtocol { get; }
-        public VpnCredentials Credentials { get; }
-        public VpnConfig Config { get; }
+public class VpnConnectionRequest
+{
+    public VpnConnectionRequest(
+        IReadOnlyList<VpnHost> servers,
+        VpnProtocol vpnProtocol,
+        VpnConfig config,
+        VpnCredentials credentials)
+    {
+        Servers = servers;
+        VpnProtocol = vpnProtocol;
+        Config = config;
+        Credentials = credentials;
     }
+
+    public IReadOnlyList<VpnHost> Servers { get; }
+    public VpnProtocol VpnProtocol { get; }
+    public VpnCredentials Credentials { get; }
+    public VpnConfig Config { get; }
 }

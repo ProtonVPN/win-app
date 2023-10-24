@@ -18,78 +18,77 @@
  */
 
 using ProtonVPN.Common;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.OS.Net.Routing;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Vpn.SplitTunnel
+namespace ProtonVPN.Vpn.SplitTunnel;
+
+internal class SplitTunnelRouting
 {
-    internal class SplitTunnelRouting
+    private const int ROUTE_METRIC = 32000;
+
+    private readonly IStaticConfiguration _config;
+    private readonly INetworkInterfaces _networkInterfaces;
+    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+
+    public SplitTunnelRouting(IStaticConfiguration config, INetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
     {
-        private const int ROUTE_METRIC = 32000;
+        _config = config;
+        _networkInterfaces = networkInterfaces;
+        _networkInterfaceLoader = networkInterfaceLoader;
+    }
 
-        private readonly IConfiguration _config;
-        private readonly INetworkInterfaces _networkInterfaces;
-        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
-
-        public SplitTunnelRouting(IConfiguration config, INetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
+    public void SetUpRoutingTable(VpnConfig vpnConfig, string localIp)
+    {
+        INetworkInterface adapter = _networkInterfaceLoader.GetByVpnProtocol(vpnConfig.VpnProtocol, vpnConfig.OpenVpnAdapter);
+        switch (vpnConfig.SplitTunnelMode)
         {
-            _config = config;
-            _networkInterfaces = networkInterfaces;
-            _networkInterfaceLoader = networkInterfaceLoader;
-        }
+            case SplitTunnelMode.Permit:
+                //Remove default wireguard route as it has metric 0, but instead we add the same route with low priority
+                //so that we still have the route for include mode apps to be routed through the tunnel.
+                RoutingTableHelper.DeleteRoute("0.0.0.0", "0.0.0.0", localIp);
+                RoutingTableHelper.CreateRoute("0.0.0.0", "0.0.0.0", localIp, adapter.Index, ROUTE_METRIC);
+                RoutingTableHelper.CreateRoute(_config.WireGuard.DefaultDnsServer, "255.255.255.255", localIp, adapter.Index, ROUTE_METRIC);
 
-        public void SetUpRoutingTable(VpnConfig vpnConfig, string localIp)
-        {
-            INetworkInterface adapter = _networkInterfaceLoader.GetByVpnProtocol(vpnConfig.VpnProtocol, vpnConfig.OpenVpnAdapter);
-            switch (vpnConfig.SplitTunnelMode)
-            {
-                case SplitTunnelMode.Permit:
-                    //Remove default wireguard route as it has metric 0, but instead we add the same route with low priority
-                    //so that we still have the route for include mode apps to be routed through the tunnel.
-                    RoutingTableHelper.DeleteRoute("0.0.0.0", "0.0.0.0", localIp);
-                    RoutingTableHelper.CreateRoute("0.0.0.0", "0.0.0.0", localIp, adapter.Index, ROUTE_METRIC);
-                    RoutingTableHelper.CreateRoute(_config.WireGuard.DefaultDnsServer, "255.255.255.255", localIp, adapter.Index, ROUTE_METRIC);
-
+                foreach (string ip in vpnConfig.SplitTunnelIPs)
+                {
+                    NetworkAddress address = new(ip);
+                    RoutingTableHelper.CreateRoute(address.Ip, address.Mask, localIp, adapter.Index, ROUTE_METRIC);
+                }
+                break;
+            case SplitTunnelMode.Block:
+                INetworkInterface bestInterface = _networkInterfaces.GetBestInterface(_config.GetHardwareId(vpnConfig.OpenVpnAdapter));
+                int result = RoutingTableHelper.GetIpInterfaceEntry(bestInterface.Index, out MibIPInterfaceRow interfaceRow);
+                if (result == 0)
+                {
                     foreach (string ip in vpnConfig.SplitTunnelIPs)
                     {
                         NetworkAddress address = new(ip);
-                        RoutingTableHelper.CreateRoute(address.Ip, address.Mask, localIp, adapter.Index, ROUTE_METRIC);
+                        RoutingTableHelper.CreateRoute(
+                            address.Ip,
+                            address.Mask,
+                            bestInterface.DefaultGateway.ToString(),
+                            bestInterface.Index,
+                            (int)interfaceRow.Metric);
                     }
-                    break;
-                case SplitTunnelMode.Block:
-                    INetworkInterface bestInterface = _networkInterfaces.GetBestInterface(_config.GetHardwareId(vpnConfig.OpenVpnAdapter));
-                    int result = RoutingTableHelper.GetIpInterfaceEntry(bestInterface.Index, out MibIPInterfaceRow interfaceRow);
-                    if (result == 0)
-                    {
-                        foreach (string ip in vpnConfig.SplitTunnelIPs)
-                        {
-                            NetworkAddress address = new(ip);
-                            RoutingTableHelper.CreateRoute(
-                                address.Ip,
-                                address.Mask,
-                                bestInterface.DefaultGateway.ToString(),
-                                bestInterface.Index,
-                                (int)interfaceRow.Metric);
-                        }
-                    }
-                    break;
-            }
+                }
+                break;
         }
+    }
 
-        public void DeleteRoutes(VpnConfig vpnConfig)
+    public void DeleteRoutes(VpnConfig vpnConfig)
+    {
+        switch (vpnConfig.SplitTunnelMode)
         {
-            switch (vpnConfig.SplitTunnelMode)
-            {
-                case SplitTunnelMode.Block:
-                    foreach (string ip in vpnConfig.SplitTunnelIPs)
-                    {
-                        RoutingTableHelper.DeleteRoute(new NetworkAddress(ip).Ip);
-                    }
-                    break;
-            }
+            case SplitTunnelMode.Block:
+                foreach (string ip in vpnConfig.SplitTunnelIPs)
+                {
+                    RoutingTableHelper.DeleteRoute(new NetworkAddress(ip).Ip);
+                }
+                break;
         }
     }
 }

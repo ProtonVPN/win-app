@@ -18,100 +18,99 @@
  */
 
 using System;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 
-namespace ProtonVPN.Service.Settings
+namespace ProtonVPN.Service.Settings;
+
+public class ServiceSettings : IServiceSettings
 {
-    public class ServiceSettings : IServiceSettings
+    private readonly ISettingsFileStorage _storage;
+
+    private MainSettingsIpcEntity _settings;
+    private IpFilter _ipFilter;
+
+    public event EventHandler<MainSettingsIpcEntity> SettingsChanged;
+
+    public ServiceSettings(ISettingsFileStorage storage, IpFilter ipFilter)
     {
-        private readonly ISettingsFileStorage _storage;
+        _storage = storage;
+        _ipFilter = ipFilter;
+    }
 
-        private MainSettingsIpcEntity _settings;
-        private IpFilter _ipFilter;
-
-        public event EventHandler<MainSettingsIpcEntity> SettingsChanged;
-
-        public ServiceSettings(ISettingsFileStorage storage, IpFilter ipFilter)
+    public KillSwitchMode KillSwitchMode
+    {
+        get
         {
-            _storage = storage;
-            _ipFilter = ipFilter;
+            Load();
+            return (KillSwitchMode)_settings.KillSwitchMode;
         }
+    }
 
-        public KillSwitchMode KillSwitchMode
+    public SplitTunnelSettingsIpcEntity SplitTunnelSettings
+    {
+        get
         {
-            get
+            Load();
+            return _settings.SplitTunnel ??= new SplitTunnelSettingsIpcEntity();
+        }
+    }
+
+    public bool Ipv6LeakProtection
+    {
+        get
+        {
+            Load();
+            return _settings.Ipv6LeakProtection;
+        }
+    }
+
+    public VpnProtocol VpnProtocol
+    {
+        get
+        {
+            Load();
+            return (VpnProtocol)_settings.VpnProtocol;
+        }
+    }
+
+    public OpenVpnAdapter OpenVpnAdapter
+    {
+        get
+        {
+            Load();
+            return (OpenVpnAdapter)_settings.OpenVpnAdapter;
+        }
+    }
+
+    public void Apply(MainSettingsIpcEntity settings)
+    {
+        Ensure.NotNull(settings, nameof(settings));
+
+        _settings = settings;
+        Save();
+
+        SettingsChanged?.Invoke(this, settings);
+    }
+
+    private void Load()
+    {
+        if (_settings == null)
+        {
+            _settings = _storage.Get() ?? new MainSettingsIpcEntity();
+            if (_ipFilter.PermanentSublayer.GetFilterCount() > 0)
             {
-                Load();
-                return (KillSwitchMode)_settings.KillSwitchMode;
+                _settings.KillSwitchMode = KillSwitchModeIpcEntity.Hard;
             }
         }
+    }
 
-        public SplitTunnelSettingsIpcEntity SplitTunnelSettings
-        {
-            get
-            {
-                Load();
-                return _settings.SplitTunnel ??= new SplitTunnelSettingsIpcEntity();
-            }
-        }
-
-        public bool Ipv6LeakProtection
-        {
-            get
-            {
-                Load();
-                return _settings.Ipv6LeakProtection;
-            }
-        }
-
-        public VpnProtocol VpnProtocol
-        {
-            get
-            {
-                Load();
-                return (VpnProtocol)_settings.VpnProtocol;
-            }
-        }
-
-        public OpenVpnAdapter OpenVpnAdapter
-        {
-            get
-            {
-                Load();
-                return (OpenVpnAdapter)_settings.OpenVpnAdapter;
-            }
-        }
-
-        public void Apply(MainSettingsIpcEntity settings)
-        {
-            Ensure.NotNull(settings, nameof(settings));
-
-            _settings = settings;
-            Save();
-
-            SettingsChanged?.Invoke(this, settings);
-        }
-
-        private void Load()
-        {
-            if (_settings == null)
-            {
-                _settings = _storage.Get() ?? new MainSettingsIpcEntity();
-                if (_ipFilter.PermanentSublayer.GetFilterCount() > 0)
-                {
-                    _settings.KillSwitchMode = KillSwitchModeIpcEntity.Hard;
-                }
-            }
-        }
-
-        private void Save()
-        {
-            _storage.Set(_settings);
-        }
+    private void Save()
+    {
+        _storage.Set(_settings);
     }
 }

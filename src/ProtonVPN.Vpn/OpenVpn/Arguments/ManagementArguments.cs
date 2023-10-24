@@ -19,28 +19,27 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts.Entities;
 
-namespace ProtonVPN.Vpn.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.OpenVpn.Arguments;
+
+public class ManagementArguments : IEnumerable<string>
 {
-    public class ManagementArguments : IEnumerable<string>
+    private readonly IOpenVpnConfigurations _openVpnConfigs;
+    private readonly int _managementPort;
+
+    public ManagementArguments(IOpenVpnConfigurations openVpnConfigs, int managementPort)
     {
-        private readonly OpenVpnConfig _config;
-        private readonly int _managementPort;
-
-        public ManagementArguments(OpenVpnConfig config, int managementPort)
-        {
-            _config = config;
-            _managementPort = managementPort;
-        }
-
-        public IEnumerator<string> GetEnumerator()
-        {
-            yield return $"--management {_config.ManagementHost} {_managementPort} stdin";
-            yield return "--management-query-passwords";
-            yield return "--management-hold";
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        _openVpnConfigs = openVpnConfigs;
+        _managementPort = managementPort;
     }
+
+    public IEnumerator<string> GetEnumerator()
+    {
+        yield return $"--management {_openVpnConfigs.ManagementHost} {_managementPort} stdin";
+        yield return "--management-query-passwords";
+        yield return "--management-hold";
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

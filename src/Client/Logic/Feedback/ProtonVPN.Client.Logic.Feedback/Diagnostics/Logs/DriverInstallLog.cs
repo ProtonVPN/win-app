@@ -18,7 +18,7 @@
  */
 
 using System.IO.Compression;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
@@ -26,8 +26,8 @@ public class DriverInstallLog : LogBase
 {
     private const string SETUP_API_LOG_FILE = "setupapi.dev.log";
 
-    public DriverInstallLog(IConfiguration config)
-        : base(config.DiagnosticsLogFolder, "setupapi.dev.zip")
+    public DriverInstallLog(IStaticConfiguration config)
+        : base(config.DiagnosticLogsFolder, "setupapi.dev.zip")
     { }
 
     public override void Write()

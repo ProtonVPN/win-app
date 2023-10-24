@@ -18,32 +18,31 @@
  */
 
 using System;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Api;
+
+public class ApiAppVersion : IApiAppVersion
 {
-    public class ApiAppVersion : IApiAppVersion
+    private readonly IConfiguration _config;
+
+    public ApiAppVersion(IConfiguration appConfig)
     {
-        private readonly IConfiguration _appConfig;
+        _config = appConfig;
+    }
 
-        public ApiAppVersion(IConfiguration appConfig)
-        {
-            _appConfig = appConfig;
-        }
+    public string Value()
+    {
+        return $"{_config.ApiClientId}@{GetVersion()}";
+    }
 
-        public string Value()
-        {
-            return $"{_appConfig.ApiClientId}@{GetVersion()}";
-        }
+    public string UserAgent()
+    {
+        return $"{_config.UserAgent}/{GetVersion()} ({Environment.OSVersion})";
+    }
 
-        public string UserAgent()
-        {
-            return $"{_appConfig.UserAgent}/{GetVersion()} ({Environment.OSVersion})";
-        }
-
-        private string GetVersion()
-        {
-            return _appConfig.AppVersion;
-        }
+    private string GetVersion()
+    {
+        return _config.ClientVersion;
     }
 }

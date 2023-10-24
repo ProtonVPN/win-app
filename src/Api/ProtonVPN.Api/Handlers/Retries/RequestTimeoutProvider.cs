@@ -19,30 +19,29 @@
 
 using System;
 using System.Net.Http;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Api.Handlers.Retries
+namespace ProtonVPN.Api.Handlers.Retries;
+
+public class RequestTimeoutProvider : IRequestTimeoutProvider
 {
-    public class RequestTimeoutProvider : IRequestTimeoutProvider
+    private readonly IConfiguration _config;
+
+    public RequestTimeoutProvider(IConfiguration config)
     {
-        private readonly IConfiguration _config;
+        _config = config;
+    }
 
-        public RequestTimeoutProvider(IConfiguration config)
-        {
-            _config = config;
-        }
+    public TimeSpan GetTimeout(HttpRequestMessage request)
+    {
+        return request.GetCustomTimeout() ?? GetConfigTimeout(request);
+    }
 
-        public TimeSpan GetTimeout(HttpRequestMessage request)
-        {
-            return request.GetCustomTimeout() ?? GetConfigTimeout(request);
-        }
-
-        private TimeSpan GetConfigTimeout(HttpRequestMessage request)
-        {
-            return request.Content is MultipartFormDataContent
-                ? _config.ApiUploadTimeout
-                : _config.ApiTimeout;
-        }
+    private TimeSpan GetConfigTimeout(HttpRequestMessage request)
+    {
+        return request.Content is MultipartFormDataContent
+            ? _config.ApiUploadTimeout
+            : _config.ApiTimeout;
     }
 }

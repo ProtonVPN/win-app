@@ -22,9 +22,9 @@ using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Configurations.Contracts;
 using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Client.Settings;
@@ -33,7 +33,7 @@ public class ClientConfigObserver : IClientConfigObserver, IEventMessageReceiver
 {
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _config;
 
     private readonly SingleAction _updateAction;
 
@@ -44,17 +44,17 @@ public class ClientConfigObserver : IClientConfigObserver, IEventMessageReceiver
     public ClientConfigObserver(
         ISettings settings,
         IApiClient apiClient,
-        IConfiguration configuration)
+        IConfiguration config)
     {
         _settings = settings;
         _apiClient = apiClient;
-        _configuration = configuration;
+        _config = config;
 
         _updateAction = new SingleAction(UpdateAsync);
 
         _timer = new Timer
         {
-            Interval = _configuration.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2).TotalMilliseconds
+            Interval = _config.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2).TotalMilliseconds
         };
         _timer.Elapsed += OnTimerElapsed;
 

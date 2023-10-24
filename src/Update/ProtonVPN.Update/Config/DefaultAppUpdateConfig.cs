@@ -21,19 +21,18 @@ using System;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Update.Contracts.Config;
 
-namespace ProtonVPN.Update.Config
+namespace ProtonVPN.Update.Config;
+
+/// <summary>
+/// The simple DTO object for providing configuration data to Update module.
+/// </summary>
+public class DefaultAppUpdateConfig : IAppUpdateConfig
 {
-    /// <summary>
-    /// The simple DTO object for providing configuration data to Update module.
-    /// </summary>
-    public class DefaultAppUpdateConfig : IAppUpdateConfig
-    {
-        public IHttpClient FeedHttpClient { get; set; }
-        public IHttpClient FileHttpClient { get; set; }
-        public IFeedUrlProvider FeedUriProvider { get; set; }
-        public Version CurrentVersion { get; set; }
-        public string UpdatesPath { get; set; }
-        public string EarlyAccessCategoryName { get; set; }
-        public TimeSpan MinProgressDuration { get; set; }
-    }
+    public IHttpClient FeedHttpClient { get; set; }
+    public IHttpClient FileHttpClient { get; set; }
+    public IFeedUrlProvider FeedUriProvider { get; set; }
+    public Version CurrentVersion { get; set; }
+    public string UpdatesPath { get; set; }
+    public string EarlyAccessCategoryName { get; set; }
+    public TimeSpan MinProgressDuration { get; set; }
 }

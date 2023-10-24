@@ -19,26 +19,25 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts.Entities;
 
-namespace ProtonVPN.Vpn.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.OpenVpn.Arguments;
+
+public class BasicArguments : IEnumerable<string>
 {
-    public class BasicArguments : IEnumerable<string>
+    private readonly IOpenVpnConfigurations _openVpnConfig;
+
+    public BasicArguments(IOpenVpnConfigurations openVpnConfig)
     {
-        private readonly OpenVpnConfig _config;
-
-        public BasicArguments(OpenVpnConfig config)
-        {
-            _config = config;
-        }
-
-        public IEnumerator<string> GetEnumerator()
-        {
-            yield return $"--config \"{_config.ConfigPath}\"";
-            yield return "--suppress-timestamps";
-            yield return $"--service {_config.ExitEventName} 0";
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        _openVpnConfig = openVpnConfig;
     }
+
+    public IEnumerator<string> GetEnumerator()
+    {
+        yield return $"--config \"{_openVpnConfig.ConfigPath}\"";
+        yield return "--suppress-timestamps";
+        yield return $"--service {_openVpnConfig.ExitEventName} 0";
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

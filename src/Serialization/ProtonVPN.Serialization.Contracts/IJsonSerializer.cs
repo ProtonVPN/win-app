@@ -23,7 +23,9 @@ public interface IJsonSerializer
 {
     string Serialize(object? value);
     string SerializePretty(object? value);
+    void Serialize<T>(T value, TextWriter writer);
+
     T? Deserialize<T>(string value);
     T? Deserialize<T>(TextReader source);
-    void Serialize<T>(T value, TextWriter writer);
+    object? Deserialize(string value, Type type);
 }

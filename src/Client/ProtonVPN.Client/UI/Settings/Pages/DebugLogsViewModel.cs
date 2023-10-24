@@ -23,39 +23,38 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
 {
-    private readonly IConfiguration _configuration;
+    private readonly IStaticConfiguration _staticConfig;
     private readonly IUrls _urls;
 
     public override string? Title => Localizer.Get("Settings_Support_DebugLogs");
 
     public DebugLogsViewModel(
         IMainViewNavigator viewNavigator, 
-        ILocalizationProvider localizationProvider, 
-        IConfiguration configuration, 
+        ILocalizationProvider localizationProvider,
+        IStaticConfiguration staticConfig, 
         IUrls urls)
         : base(viewNavigator, localizationProvider)
     {
-        _configuration = configuration;
+        _staticConfig = staticConfig;
         _urls = urls;
     }
 
     [RelayCommand]
     public async Task OpenApplicationLogsAsync()
     {
-        await OpenLogsFolderAsync(_configuration.AppLogFolder);
+        await OpenLogsFolderAsync(_staticConfig.ClientLogsFolder);
     }
 
     [RelayCommand]
     public async Task OpenServiceLogsAsync()
     {
-        await OpenLogsFolderAsync(_configuration.ServiceLogFolder);
+        await OpenLogsFolderAsync(_staticConfig.ServiceLogsFolder);
     }
 
     private async Task OpenLogsFolderAsync(string logFolder)

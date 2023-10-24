@@ -20,46 +20,45 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Api.Handlers
+namespace ProtonVPN.Api.Handlers;
+
+/// <summary>
+/// Cancels all not finished requests on user logout.
+/// </summary>
+public class CancellingHandler : CancellingHandlerBase
 {
-    /// <summary>
-    /// Cancels all not finished requests on user logout.
-    /// </summary>
-    public class CancellingHandler : CancellingHandlerBase
+    private readonly IConfiguration _config;
+    private readonly CancellationHandle _cancellationHandle = new();
+
+    public CancellingHandler(IConfiguration config)
     {
-        private readonly IConfiguration _config;
-        private readonly CancellationHandle _cancellationHandle = new();
+        _config = config;
+    }
 
-        public CancellingHandler(IConfiguration config)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        if (IsLogout(request))
         {
-            _config = config;
+            _cancellationHandle.Cancel();
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request,
-            CancellationToken cancellationToken)
-        {
-            if (IsLogout(request))
-            {
-                _cancellationHandle.Cancel();
-            }
+        return await base.SendAsync(request,
+            HasAuthorization(request) ? _cancellationHandle.Token : cancellationToken);
+    }
 
-            return await base.SendAsync(request,
-                HasAuthorization(request) ? _cancellationHandle.Token : cancellationToken);
-        }
+    private bool IsLogout(HttpRequestMessage request)
+    {
+        string endpoint = request.RequestUri.AbsoluteUri.Replace(_config.Urls.ApiUrl, "");
+        return request.Method == HttpMethod.Delete && endpoint == "auth";
+    }
 
-        private bool IsLogout(HttpRequestMessage request)
-        {
-            string endpoint = request.RequestUri.AbsoluteUri.Replace(_config.Urls.ApiUrl, "");
-            return request.Method == HttpMethod.Delete && endpoint == "auth";
-        }
-
-        private static bool HasAuthorization(HttpRequestMessage request)
-        {
-            return request.Headers.Authorization?.Scheme == "Bearer" && !string.IsNullOrEmpty(request.Headers.Authorization.Parameter);
-        }
+    private static bool HasAuthorization(HttpRequestMessage request)
+    {
+        return request.Headers.Authorization?.Scheme == "Bearer" && !string.IsNullOrEmpty(request.Headers.Authorization.Parameter);
     }
 }

@@ -18,24 +18,23 @@
  */
 
 using System.Net.Http;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Api.Handlers.Retries
+namespace ProtonVPN.Api.Handlers.Retries;
+
+public class RetryCountProvider : IRetryCountProvider
 {
-    public class RetryCountProvider : IRetryCountProvider
+    private readonly IConfiguration _config;
+
+    public RetryCountProvider(IConfiguration config)
     {
-        private readonly IConfiguration _config;
+        _config = config;
+    }
 
-        public RetryCountProvider(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        public int GetRetryCount(HttpRequestMessage request)
-        {
-            int? customRetryCount = request.GetRetryCount();
-            return customRetryCount is > 0 ? customRetryCount.Value : _config.ApiRetries;
-        }
+    public int GetRetryCount(HttpRequestMessage request)
+    {
+        int? customRetryCount = request.GetRetryCount();
+        return customRetryCount is > 0 ? customRetryCount.Value : _config.ApiRetries;
     }
 }

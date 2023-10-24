@@ -19,30 +19,29 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts.Entities;
 
-namespace ProtonVPN.Vpn.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.OpenVpn.Arguments;
+
+public class TlsVerifyArguments : IEnumerable<string>
 {
-    public class TlsVerifyArguments : IEnumerable<string>
+    private const string SERVER_NAME_ENVIRONMENT_VARIABLE = "peer_dns_name";
+
+    private readonly IOpenVpnConfigurations _openVpnConfigs;
+    private readonly string _serverName;
+
+    public TlsVerifyArguments(IOpenVpnConfigurations openVpnConfigs, string serverName)
     {
-        private const string ServerNameEnvironmentVariable = "peer_dns_name";
-
-        private readonly OpenVpnConfig _config;
-        private readonly string _serverName;
-
-        public TlsVerifyArguments(OpenVpnConfig config, string serverName)
-        {
-            _config = config;
-            _serverName = serverName;
-        }
-
-        public IEnumerator<string> GetEnumerator()
-        {
-            yield return $"--setenv {ServerNameEnvironmentVariable} \"{_serverName}\"";
-            yield return $"--tls-export-cert \"{_config.TlsExportCertFolder}\"";
-            yield return $"--tls-verify \"{_config.TlsVerifyExePath}\"";
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        _openVpnConfigs = openVpnConfigs;
+        _serverName = serverName;
     }
+
+    public IEnumerator<string> GetEnumerator()
+    {
+        yield return $"--setenv {SERVER_NAME_ENVIRONMENT_VARIABLE} \"{_serverName}\"";
+        yield return $"--tls-export-cert \"{_openVpnConfigs.TlsExportCertFolder}\"";
+        yield return $"--tls-verify \"{_openVpnConfigs.TlsVerifyExePath}\"";
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

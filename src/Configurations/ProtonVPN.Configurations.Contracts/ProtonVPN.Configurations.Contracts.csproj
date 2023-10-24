@@ -14,5 +14,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
+  </ItemGroup>
 </Project>

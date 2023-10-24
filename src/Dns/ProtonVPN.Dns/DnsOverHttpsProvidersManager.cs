@@ -23,50 +23,49 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.DnsLogs;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Resolvers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 
-namespace ProtonVPN.Dns
+namespace ProtonVPN.Dns;
+
+public class DnsOverHttpsProvidersManager : ARecordDnsManagerBase, IDnsOverHttpsProvidersManager
 {
-    public class DnsOverHttpsProvidersManager : ARecordDnsManagerBase, IDnsOverHttpsProvidersManager
+    private readonly IDnsOverUdpResolver _dnsOverUdpResolver;
+
+    public DnsOverHttpsProvidersManager(IDnsOverUdpResolver dnsOverUdpResolver,
+        ISettings settings, IConfiguration config, ILogger logger, IDnsCacheManager dnsCacheManager)
+        : base(settings, config, logger, dnsCacheManager)
     {
-        private readonly IDnsOverUdpResolver _dnsOverUdpResolver;
+        _dnsOverUdpResolver = dnsOverUdpResolver;
+    }
 
-        public DnsOverHttpsProvidersManager(IDnsOverUdpResolver dnsOverUdpResolver,
-            ISettings settings, IConfiguration configuration, ILogger logger, IDnsCacheManager dnsCacheManager)
-            : base(settings, configuration, logger, dnsCacheManager)
+    protected override async Task<IList<IpAddress>> ResolveHostAsync(string host, CancellationToken cancellationToken)
+    {
+        try
         {
-            _dnsOverUdpResolver = dnsOverUdpResolver;
-        }
+            Logger.Info<DnsLog>($"Attempting a UDP DNS request for host '{host}'.");
+            DnsResponse dnsResponse = await _dnsOverUdpResolver.ResolveAsync(host, cancellationToken);
 
-        protected override async Task<IList<IpAddress>> ResolveHostAsync(string host, CancellationToken cancellationToken)
-        {
-            try
+            if (dnsResponse != null && dnsResponse.IpAddresses.Any())
             {
-                Logger.Info<DnsLog>($"Attempting a UDP DNS request for host '{host}'.");
-                DnsResponse dnsResponse = await _dnsOverUdpResolver.ResolveAsync(host, cancellationToken);
-
-                if (dnsResponse != null && dnsResponse.IpAddresses.Any())
-                {
-                    Logger.Info<DnsLog>($"The UDP DNS request was successful for host '{host}'. Saving to cache.");
-                    IList<IpAddress> ipAddresses = dnsResponse.IpAddresses;
-                    await DnsCacheManager.AddOrReplaceAsync(host, dnsResponse);
-                    return ipAddresses;
-                }
-
-                Logger.Error<DnsErrorLog>($"The UDP DNS request was unsuccessful for host '{host}'.");
-            }
-            catch (Exception e)
-            {
-                Logger.Error<DnsErrorLog>($"An unexpected error as occurred when resolving UDP DNS for host '{host}'.", e);
+                Logger.Info<DnsLog>($"The UDP DNS request was successful for host '{host}'. Saving to cache.");
+                IList<IpAddress> ipAddresses = dnsResponse.IpAddresses;
+                await DnsCacheManager.AddOrReplaceAsync(host, dnsResponse);
+                return ipAddresses;
             }
 
-            return new List<IpAddress>();
+            Logger.Error<DnsErrorLog>($"The UDP DNS request was unsuccessful for host '{host}'.");
         }
+        catch (Exception e)
+        {
+            Logger.Error<DnsErrorLog>($"An unexpected error as occurred when resolving UDP DNS for host '{host}'.", e);
+        }
+
+        return new List<IpAddress>();
     }
 }

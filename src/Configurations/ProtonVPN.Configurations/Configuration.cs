@@ -18,20 +18,48 @@
  */
 
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Configurations.Repositories;
+using ProtonVPN.Configurations.Contracts.Entities;
 
 namespace ProtonVPN.Configurations;
 
-public class Configuration : IConfiguration
+public partial class Configuration : StaticConfiguration, IConfiguration
 {
-    private readonly IConfigurationRepository _repository;
-    private readonly DefaultConfiguration _default = new();
+    public string ClientVersion => Get();
+    public string ApiClientId => Get();
+    public string UserAgent => Get();
+    public string ApiVersion => Get();
+    public string ServerValidationPublicKey => Get();
 
-    public Configuration(IConfigurationRepository repository)
-    {
-        _repository = repository;
+    public string GuestHoleVpnUsername => Get();
+    public string GuestHoleVpnPassword => Get();
+    public string VpnUsernameSuffix => Get();
 
-        //_example = new(() => _repository.GetReferenceType<string>(nameof(Example)) ?? _default.Example);
+    public long BugReportingMaxFileSize => Get();
+    public int MaxClientLogsAttached => Get();
+    public int MaxServiceLogsAttached => Get();
+    public int MaxDiagnosticLogsAttached => Get();
 
-    }
+    public int ApiRetries => Get();
+    public int MaxGuestHoleRetries => Get();
+
+    public bool IsCertificateValidationEnabled => Get();
+
+    public TimeSpan ServiceCheckInterval => Get();
+    public TimeSpan ClientConfigUpdateInterval => Get();
+    public TimeSpan AuthCertificateUpdateInterval => Get();
+    public TimeSpan ServerUpdateInterval => Get();
+    public TimeSpan AnnouncementUpdateInterval => Get();
+    public TimeSpan AlternativeRoutingCheckInterval => Get();
+    public TimeSpan ApiUploadTimeout => Get();
+    public TimeSpan ApiTimeout => Get();
+    public TimeSpan FailedDnsRequestTimeout => Get();
+    public TimeSpan NewCacheTimeToLiveOnResolveError => Get();
+    public TimeSpan DnsResolveTimeout => Get();
+    public TimeSpan DefaultDnsTimeToLive => Get();
+    public TimeSpan DnsOverHttpsPerProviderTimeout => Get();
+    public TimeSpan DohClientTimeout => Get();
+
+    public IList<string> DohProviders => Get();
+    public IUrlsConfiguration Urls => Get();
+    public ITlsPinningConfiguration TlsPinning => Get();
 }

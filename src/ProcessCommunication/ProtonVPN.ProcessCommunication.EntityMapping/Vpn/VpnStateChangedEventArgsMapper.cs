@@ -17,52 +17,51 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+
+public class VpnStateChangedEventArgsMapper : IMapper<VpnStateChangedEventArgs, VpnStateIpcEntity>
 {
-    public class VpnStateChangedEventArgsMapper : IMapper<VpnStateChangedEventArgs, VpnStateIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public VpnStateChangedEventArgsMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public VpnStateChangedEventArgsMapper(IEntityMapper entityMapper)
+    public VpnStateIpcEntity Map(VpnStateChangedEventArgs leftEntity)
+    {
+        return new VpnStateIpcEntity()
         {
-            _entityMapper = entityMapper;
-        }
+            Status = _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(leftEntity.State.Status),
+            Error = _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(leftEntity.Error),
+            NetworkBlocked = leftEntity.NetworkBlocked,
+            EndpointIp = leftEntity.State.EntryIp,
+            OpenVpnAdapterType = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(leftEntity.State.NetworkAdapterType),
+            VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.State.VpnProtocol),
+            Label = leftEntity.State.Label
+        };
+    }
 
-        public VpnStateIpcEntity Map(VpnStateChangedEventArgs leftEntity)
+    public VpnStateChangedEventArgs Map(VpnStateIpcEntity rightEntity)
+    {
+        if (rightEntity is null)
         {
-            return new VpnStateIpcEntity()
-            {
-                Status = _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(leftEntity.State.Status),
-                Error = _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(leftEntity.Error),
-                NetworkBlocked = leftEntity.NetworkBlocked,
-                EndpointIp = leftEntity.State.EntryIp,
-                OpenVpnAdapterType = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(leftEntity.State.NetworkAdapterType),
-                VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.State.VpnProtocol),
-                Label = leftEntity.State.Label
-            };
+            throw new ArgumentNullException(nameof(VpnStateIpcEntity),
+                $"The {nameof(VpnStateIpcEntity)} parameter cannot be mapped from null to {nameof(VpnStateChangedEventArgs)}.");
         }
-
-        public VpnStateChangedEventArgs Map(VpnStateIpcEntity rightEntity)
-        {
-            if (rightEntity is null)
-            {
-                throw new ArgumentNullException(nameof(VpnStateIpcEntity),
-                    $"The {nameof(VpnStateIpcEntity)} parameter cannot be mapped from null to {nameof(VpnStateChangedEventArgs)}.");
-            }
-            return new VpnStateChangedEventArgs(
-                status: _entityMapper.Map<VpnStatusIpcEntity, VpnStatus>(rightEntity.Status),
-                error: _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(rightEntity.Error),
-                endpointIp: rightEntity.EndpointIp,
-                networkBlocked: rightEntity.NetworkBlocked,
-                vpnProtocol: _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.VpnProtocol),
-                networkAdapterType: _entityMapper.MapNullableStruct<OpenVpnAdapterIpcEntity, OpenVpnAdapter>(rightEntity.OpenVpnAdapterType),
-                label: rightEntity.Label);
-        }
+        return new VpnStateChangedEventArgs(
+            status: _entityMapper.Map<VpnStatusIpcEntity, VpnStatus>(rightEntity.Status),
+            error: _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(rightEntity.Error),
+            endpointIp: rightEntity.EndpointIp,
+            networkBlocked: rightEntity.NetworkBlocked,
+            vpnProtocol: _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.VpnProtocol),
+            networkAdapterType: _entityMapper.MapNullableStruct<OpenVpnAdapterIpcEntity, OpenVpnAdapter>(rightEntity.OpenVpnAdapterType),
+            label: rightEntity.Label);
     }
 }

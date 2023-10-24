@@ -19,8 +19,8 @@
 
 using System.Text;
 using Microsoft.Win32;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
@@ -33,8 +33,8 @@ public class InstalledAppsLog : LogBase
     private const string PROGRAM_TAG = "[Program]";
     private const string WINDOWS_APP_TAG = "[WindowsApp]";
 
-    public InstalledAppsLog(IConfiguration configuration)
-        : base(configuration.DiagnosticsLogFolder, "Apps.txt")
+    public InstalledAppsLog(IStaticConfiguration configuration)
+        : base(configuration.DiagnosticLogsFolder, "Apps.txt")
     { }
 
     public override void Write()

@@ -17,11 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Configurations.Contracts.Entities;
+
 namespace ProtonVPN.Configurations.Contracts;
 
 public interface IStaticConfiguration
 {
-    public string ServiceName { get; }
-    public string ClientLogsFilePath { get; }
-    public string ServiceLogsFilePath { get; }
+    string ClientName { get; }
+    string ServiceName { get; }
+    string CalloutServiceName { get; }
+
+    string ClientLauncherExePath { get; }
+    string InstallActionsPath { get; }
+    string ClientExePath { get; }
+    string ServiceExePath { get; }
+
+    string ClientLogsFolder { get; }
+    string ServiceLogsFolder { get; }
+    string DiagnosticLogsFolder { get; }
+    string ImageCacheFolder { get; }
+    string UpdatesFolder { get; }
+
+    string ClientLogsFilePath { get; }
+    string ServiceLogsFilePath { get; }
+    string DiagnosticLogsZipFilePath { get; }
+    string GuestHoleServersJsonFilePath { get; }
+    string ServiceSettingsFilePath { get; }
+
+    string ServersJsonCacheFilePath { get; }
+
+    IOpenVpnConfigurations OpenVpn { get; }
+    IWireGuardConfigurations WireGuard { get; }
+
+    string WintunDriverPath { get; }
+    string WintunAdapterName { get; }
+
+    string GetHardwareId(OpenVpnAdapter openVpnAdapter);
 }

@@ -313,6 +313,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.EntityMapping.Map
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.EntityMapping.Mappers.Tests", "src\EntityMapping\ProtonVPN.EntityMapping.Mappers.Tests\ProtonVPN.EntityMapping.Mappers.Tests.csproj", "{96A658E4-73B8-4C3C-A329-7BF8444D3C1A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Configurations.Tests", "src\Configurations\ProtonVPN.Configurations.Tests\ProtonVPN.Configurations.Tests.csproj", "{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1257,6 +1259,14 @@ Global
 		{96A658E4-73B8-4C3C-A329-7BF8444D3C1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96A658E4-73B8-4C3C-A329-7BF8444D3C1A}.Release|x64.ActiveCfg = Release|Any CPU
 		{96A658E4-73B8-4C3C-A329-7BF8444D3C1A}.Release|x64.Build.0 = Release|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Debug|x64.Build.0 = Debug|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1379,6 +1389,7 @@ Global
 		{8EBC6413-FE93-4E44-8546-4A4FA362CEE5} = {7E03F2A7-4D54-41AA-9C6B-66DBC017F65E}
 		{127F096E-1128-46CF-A2DE-0D2194A2EDB1} = {E85D3982-0792-430A-9E58-8B7C1A329F88}
 		{96A658E4-73B8-4C3C-A329-7BF8444D3C1A} = {E85D3982-0792-430A-9E58-8B7C1A329F88}
+		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5} = {7930FDD8-889C-472B-A36B-06A644D27ACB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

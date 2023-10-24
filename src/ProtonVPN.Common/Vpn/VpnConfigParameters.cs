@@ -18,30 +18,29 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Common.Vpn
+namespace ProtonVPN.Common.Vpn;
+
+public class VpnConfigParameters
 {
-    public class VpnConfigParameters
-    {
-        public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; set; }
-        public IReadOnlyCollection<string> CustomDns { get; set; }
-        public SplitTunnelMode SplitTunnelMode { get; set; }
-        public IReadOnlyCollection<string> SplitTunnelIPs { get; set; }
-        public OpenVpnAdapter OpenVpnAdapter { get; set; }
-        public VpnProtocol VpnProtocol { get; set; }
-        public IList<VpnProtocol> PreferredProtocols { get; set; }
-        public int NetShieldMode { get; set; }
-        public bool SplitTcp { get; set; }
-        public bool ModerateNat { get; set; }
-        public bool? AllowNonStandardPorts { get; set; }
-        public bool PortForwarding { get; set; }
+    public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; set; }
+    public IReadOnlyCollection<string> CustomDns { get; set; }
+    public SplitTunnelMode SplitTunnelMode { get; set; }
+    public IReadOnlyCollection<string> SplitTunnelIPs { get; set; }
+    public OpenVpnAdapter OpenVpnAdapter { get; set; }
+    public VpnProtocol VpnProtocol { get; set; }
+    public IList<VpnProtocol> PreferredProtocols { get; set; }
+    public int NetShieldMode { get; set; }
+    public bool SplitTcp { get; set; }
+    public bool ModerateNat { get; set; }
+    public bool? AllowNonStandardPorts { get; set; }
+    public bool PortForwarding { get; set; }
 
-        public VpnConfigParameters()
-        {
-            Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>();
-            CustomDns = new List<string>();
-            SplitTunnelIPs = new List<string>();
-        }
+    public VpnConfigParameters()
+    {
+        Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>();
+        CustomDns = new List<string>();
+        SplitTunnelIPs = new List<string>();
     }
 }

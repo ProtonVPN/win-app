@@ -20,39 +20,41 @@
 using System.Net.Http;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using ProtonVPN.Api.Handlers.Retries;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Api.Tests.Handlers.Retries
+namespace ProtonVPN.Api.Tests.Handlers.Retries;
+
+[TestClass]
+public class RetryCountProviderTest
 {
-    [TestClass]
-    public class RetryCountProviderTest
+    [TestMethod]
+    public void ItShouldUseDefaultRetryCount()
     {
-        [TestMethod]
-        public void ItShouldUseDefaultRetryCount()
-        {
-            // Arrange
-            int retryCount = 3;
-            IConfiguration config = new Config { ApiRetries = retryCount };
-            RetryCountProvider sut = new(config);
+        // Arrange
+        int retryCount = 3;
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.ApiRetries.Returns(retryCount);
+        RetryCountProvider sut = new(config);
 
-            // Assert
-            sut.GetRetryCount(new HttpRequestMessage()).Should().Be(retryCount);
-        }
+        // Assert
+        sut.GetRetryCount(new HttpRequestMessage()).Should().Be(retryCount);
+    }
 
-        [TestMethod]
-        public void ItShouldUseCustomRetryCount()
-        {
-            // Arrange
-            IConfiguration config = new Config { ApiRetries = 3 };
-            RetryCountProvider sut = new(config);
-            HttpRequestMessage request = new();
-            int retryCount = 10;
-            request.SetRetryCount(retryCount);
+    [TestMethod]
+    public void ItShouldUseCustomRetryCount()
+    {
+        // Arrange
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.ApiRetries.Returns(3);
+        RetryCountProvider sut = new(config);
+        HttpRequestMessage request = new();
+        int retryCount = 10;
+        request.SetRetryCount(retryCount);
 
-            // Assert
-            sut.GetRetryCount(request).Should().Be(retryCount);
-        }
+        // Assert
+        sut.GetRetryCount(request).Should().Be(retryCount);
     }
 }

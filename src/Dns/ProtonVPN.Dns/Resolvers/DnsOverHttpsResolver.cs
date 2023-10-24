@@ -20,50 +20,49 @@
 using System.Collections.Generic;
 using System.Net;
 using ARSoft.Tools.Net.Dns;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.DnsLogs;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Resolvers;
 using ProtonVPN.Dns.HttpClients;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 
-namespace ProtonVPN.Dns.Resolvers
+namespace ProtonVPN.Dns.Resolvers;
+
+public class DnsOverHttpsResolver : DnsOverHttpsResolverBase, IDnsOverHttpsResolver
 {
-    public class DnsOverHttpsResolver : DnsOverHttpsResolverBase, IDnsOverHttpsResolver
+    public DnsOverHttpsResolver(IConfiguration config, ILogger logger,
+        IHttpClientFactory httpClientFactory, IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
+        : base(config, logger, httpClientFactory, dnsOverHttpsProvidersManager, RecordType.A)
     {
-        public DnsOverHttpsResolver(IConfiguration configuration, ILogger logger, 
-            IHttpClientFactory httpClientFactory, IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
-            : base(configuration, logger, httpClientFactory, dnsOverHttpsProvidersManager, RecordType.A)
-        {
-        }
+    }
 
-        protected override bool IsNullOrEmpty(DnsResponse dnsResponse)
-        {
-            return dnsResponse == null || dnsResponse.IpAddresses.IsNullOrEmpty();
-        }
+    protected override bool IsNullOrEmpty(DnsResponse dnsResponse)
+    {
+        return dnsResponse == null || dnsResponse.IpAddresses.IsNullOrEmpty();
+    }
 
-        protected override DnsResponse ParseDnsResponseMessage(DnsOverHttpsParallelHttpRequestConfiguration config, 
-            DnsMessage dnsResponseMessage)
+    protected override DnsResponse ParseDnsResponseMessage(DnsOverHttpsParallelHttpRequestConfiguration config,
+        DnsMessage dnsResponseMessage)
+    {
+        IList<IPAddress> ipAddresses = new List<IPAddress>();
+        int? timeToLiveInSeconds = null;
+        foreach (DnsRecordBase record in dnsResponseMessage.AnswerRecords)
         {
-            IList<IPAddress> ipAddresses = new List<IPAddress>();
-            int? timeToLiveInSeconds = null;
-            foreach (DnsRecordBase record in dnsResponseMessage.AnswerRecords)
+            if (record is ARecord aRecord)
             {
-                if (record is ARecord aRecord)
+                ipAddresses.Add(aRecord.Address);
+                if (aRecord.TimeToLive > 0 && (timeToLiveInSeconds == null || timeToLiveInSeconds.Value > aRecord.TimeToLive))
                 {
-                    ipAddresses.Add(aRecord.Address);
-                    if (aRecord.TimeToLive > 0 && (timeToLiveInSeconds == null || timeToLiveInSeconds.Value > aRecord.TimeToLive))
-                    {
-                        timeToLiveInSeconds = aRecord.TimeToLive;
-                    }
+                    timeToLiveInSeconds = aRecord.TimeToLive;
                 }
             }
-
-            Logger.Info<DnsResponseLog>($"{ipAddresses.Count} records were received for host '{config.Host}' " +
-                $"with DNS over HTTPS provider '{config.ProviderUrl}'. TTL is {timeToLiveInSeconds} seconds.");
-
-            return CreateDnsResponseWithIpAddresses(config.Host, timeToLiveInSeconds, ipAddresses);
         }
+
+        Logger.Info<DnsResponseLog>($"{ipAddresses.Count} records were received for host '{config.Host}' " +
+            $"with DNS over HTTPS provider '{config.ProviderUrl}'. TTL is {timeToLiveInSeconds} seconds.");
+
+        return CreateDnsResponseWithIpAddresses(config.Host, timeToLiveInSeconds, ipAddresses);
     }
 }

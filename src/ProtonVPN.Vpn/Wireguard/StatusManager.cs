@@ -22,108 +22,107 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
-using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.Threading;
-using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Vpn.WireGuard
+namespace ProtonVPN.Vpn.WireGuard;
+
+public class StatusManager
 {
-    public class StatusManager
+    private const int SkipLogCharacters = 27;
+
+    private readonly ILogger _logger;
+    private readonly RingLogger _ringLogger;
+    private readonly SingleAction _receiveLogsAction;
+    private VpnError _lastError = VpnError.None;
+    private bool _isHandshakeResponseHandled;
+
+    public StatusManager(ILogger logger, string logPath)
     {
-        private const int SkipLogCharacters = 27;
+        _logger = logger;
+        _ringLogger = new RingLogger(logPath);
+        _receiveLogsAction = new SingleAction(ReceiveLogsAction);
+    }
 
-        private readonly ILogger _logger;
-        private readonly RingLogger _ringLogger;
-        private readonly SingleAction _receiveLogsAction;
-        private VpnError _lastError = VpnError.None;
-        private bool _isHandshakeResponseHandled;
+    public event EventHandler<EventArgs<VpnState>> StateChanged;
 
-        public StatusManager(ILogger logger, string logPath)
+    public void Start()
+    {
+        _ringLogger.Start();
+        _isHandshakeResponseHandled = false;
+        _receiveLogsAction.Run();
+    }
+
+    public void Stop()
+    {
+        _receiveLogsAction.Cancel();
+        _isHandshakeResponseHandled = false;
+        _ringLogger.Stop();
+    }
+
+    private async Task ReceiveLogsAction(CancellationToken cancellationToken)
+    {
+        uint cursor = RingLogger.CursorAll;
+
+        while (true)
         {
-            _logger = logger;
-            _ringLogger = new RingLogger(logPath);
-            _receiveLogsAction = new SingleAction(ReceiveLogsAction);
-        }
-
-        public event EventHandler<EventArgs<VpnState>> StateChanged;
-
-        public void Start()
-        {
-            _ringLogger.Start();
-            _isHandshakeResponseHandled = false;
-            _receiveLogsAction.Run();
-        }
-
-        public void Stop()
-        {
-            _receiveLogsAction.Cancel();
-            _isHandshakeResponseHandled = false;
-            _ringLogger.Stop();
-        }
-
-        private async Task ReceiveLogsAction(CancellationToken cancellationToken)
-        {
-            uint cursor = RingLogger.CursorAll;
-
-            while (true)
+            List<string> lines = _ringLogger.FollowFromCursor(ref cursor);
+            foreach (string line in lines)
             {
-                List<string> lines = _ringLogger.FollowFromCursor(ref cursor);
-                foreach (string line in lines)
-                {
-                    _logger.Info<ProtocolLog>(GetFormattedMessage(line));
+                _logger.Info<ProtocolLog>(GetFormattedMessage(line));
 
-                    if (line.Contains("Receiving handshake response from peer") && !_isHandshakeResponseHandled)
-                    {
-                        _logger.Info<ConnectConnectedLog>("Invoking connected state after receiving successful handshake response.");
-                        InvokeStateChange(VpnStatus.Connected);
-                        _isHandshakeResponseHandled = true;
-                    }
-                    else if (line.Contains("Shutting down"))
-                    {
-                        InvokeStateChange(VpnStatus.Disconnected, _lastError);
-                        _lastError = VpnError.None;
-                    }
-                    else if (line.Contains("The RPC server is unavailable"))
-                    {
-                        _lastError = VpnError.RpcServerUnavailable;
-                    }
-                    else if (line.Contains("Could not install driver"))
-                    {
-                        _lastError = VpnError.NoTapAdaptersError;
-                    }
-                    else if (line.Contains("Unable to configure adapter network settings: unable to set ips: The object already exists"))
-                    {
-                        _lastError = VpnError.WireGuardAdapterInUseError;
-                    }
-                }
-
-                try
+                if (line.Contains("Receiving handshake response from peer") && !_isHandshakeResponseHandled)
                 {
-                    Thread.Sleep(300);
+                    _logger.Info<ConnectConnectedLog>("Invoking connected state after receiving successful handshake response.");
+                    InvokeStateChange(VpnStatus.Connected);
+                    _isHandshakeResponseHandled = true;
                 }
-                catch
+                else if (line.Contains("Shutting down"))
                 {
-                    break;
+                    InvokeStateChange(VpnStatus.Disconnected, _lastError);
+                    _lastError = VpnError.None;
                 }
-
-                cancellationToken.ThrowIfCancellationRequested();
+                else if (line.Contains("The RPC server is unavailable"))
+                {
+                    _lastError = VpnError.RpcServerUnavailable;
+                }
+                else if (line.Contains("Could not install driver"))
+                {
+                    _lastError = VpnError.NoTapAdaptersError;
+                }
+                else if (line.Contains("Unable to configure adapter network settings: unable to set ips: The object already exists"))
+                {
+                    _lastError = VpnError.WireGuardAdapterInUseError;
+                }
             }
-        }
 
-        private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
-        {
-            StateChanged?.Invoke(this, new EventArgs<VpnState>(new VpnState(status, error, VpnProtocol.WireGuard)));
-        }
+            try
+            {
+                Thread.Sleep(300);
+            }
+            catch
+            {
+                break;
+            }
 
-        private string GetFormattedMessage(string message)
-        {
-            return message.Length > SkipLogCharacters
-                ? message.Substring(SkipLogCharacters, message.Length - SkipLogCharacters).Trim()
-                : message;
+            cancellationToken.ThrowIfCancellationRequested();
         }
+    }
+
+    private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
+    {
+        StateChanged?.Invoke(this, new EventArgs<VpnState>(new VpnState(status, error, VpnProtocol.WireGuardUdp)));
+    }
+
+    private string GetFormattedMessage(string message)
+    {
+        return message.Length > SkipLogCharacters
+            ? message.Substring(SkipLogCharacters, message.Length - SkipLogCharacters).Trim()
+            : message;
     }
 }

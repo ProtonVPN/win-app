@@ -33,7 +33,7 @@ public class FeedbackLogicModule : Module
         builder.RegisterType<ReportIssueSender>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DiagnosticsLogFileSource>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AppLogFileSource>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ClientLogFileSource>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServiceLogFileSource>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AttachmentsLoader>().AsImplementedInterfaces().SingleInstance();
 

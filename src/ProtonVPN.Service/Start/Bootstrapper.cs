@@ -19,13 +19,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Api.Installers;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.IssueReporting.Installers;
@@ -41,117 +42,121 @@ using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 
-namespace ProtonVPN.Service.Start
+namespace ProtonVPN.Service.Start;
+
+internal class Bootstrapper
 {
-    internal class Bootstrapper
+    private IContainer _container;
+    private T Resolve<T>() => _container.Resolve<T>();
+
+    public Bootstrapper()
     {
-        private IContainer _container;
-        private T Resolve<T>() => _container.Resolve<T>();
+        IssueReportingInitializer.Run();
+    }
 
-        public Bootstrapper()
+    public void Initialize()
+    {
+        SetDllDirectories();
+        Configure();
+        PrepareDirectories();
+        Start();
+    }
+
+    private void Configure()
+    {
+        ContainerBuilder builder = new();
+        builder.RegisterLoggerConfiguration(c => c.ServiceLogsFilePath)
+               .RegisterModule<CryptoModule>()
+               .RegisterModule<ServiceModule>()
+               .RegisterModule<ApiModule>()
+               .RegisterModule<ConfigurationsModule>()
+               .RegisterAssemblyModule<LoggingModule>()
+               .RegisterAssemblyModule<UpdateModule>();
+        _container = builder.Build();
+    } 
+
+    private void PrepareDirectories()
+    {
+        IStaticConfiguration staticConfig = Resolve<IStaticConfiguration>();
+
+        Directory.CreateDirectory(staticConfig.ServiceLogsFolder);
+        Directory.CreateDirectory(staticConfig.OpenVpn.TlsExportCertFolder);
+    }
+
+    private void Start()
+    {
+        ILogger logger = Resolve<ILogger>();
+
+        logger.Info<AppServiceStartLog>(
+            $"= Booting ProtonVPN Service version: {Resolve<IConfiguration>().ClientVersion} os: {Environment.OSVersion.VersionString} =");
+
+        AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+        RegisterEvents();
+
+        Resolve<ILogCleaner>().Clean(Resolve<IStaticConfiguration>().ServiceLogsFolder, 10);
+        FixNetworkAdapters();
+
+        VpnService vpnService = Resolve<VpnService>();
+        ServiceBase.Run(vpnService);
+        vpnService.CancellationToken.WaitHandle.WaitOne();
+
+        logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
+    }
+
+    private void FixNetworkAdapters()
+    {
+        INetworkAdapterManager networkAdapterManager = Resolve<INetworkAdapterManager>();
+        networkAdapterManager.DisableDuplicatedWireGuardAdapters();
+        networkAdapterManager.EnableOpenVpnAdapters();
+    }
+
+    private void RegisterEvents()
+    {
+        Resolve<IVpnConnection>().StateChanged += (_, e) =>
         {
-            IssueReportingInitializer.Run();
-        }
-
-        public void Initialize()
-        {
-            SetDllDirectories();
-            Configure();
-            Start();
-        }
-
-        private void Configure()
-        {
-            IConfiguration config = new ConfigFactory().Config();
-            new ConfigDirectories(config).Prepare();
-
-            ContainerBuilder builder = new();
-            builder.RegisterLoggerConfiguration(c => c.ServiceLogsFilePath)
-                   .RegisterModule<CryptoModule>()
-                   .RegisterModule<ServiceModule>()
-                   .RegisterModule<ApiModule>()
-                   .RegisterModule<ConfigurationsModule>()
-                   .RegisterAssemblyModule<LoggingModule>()
-                   .RegisterAssemblyModule<UpdateModule>();
-            _container = builder.Build();
-        }
-
-        private void Start()
-        {
-            IConfiguration config = Resolve<IConfiguration>();
-            ILogger logger = Resolve<ILogger>();
-
-            logger.Info<AppServiceStartLog>(
-                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} =");
-
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
-            RegisterEvents();
-
-            Resolve<ILogCleaner>().Clean(config.ServiceLogFolder, 10);
-            FixNetworkAdapters();
-
-            VpnService vpnService = Resolve<VpnService>();
-            ServiceBase.Run(vpnService);
-            vpnService.CancellationToken.WaitHandle.WaitOne();
-
-            logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
-        }
-
-        private void FixNetworkAdapters()
-        {
-            INetworkAdapterManager networkAdapterManager = Resolve<INetworkAdapterManager>();
-            networkAdapterManager.DisableDuplicatedWireGuardAdapters();
-            networkAdapterManager.EnableOpenVpnAdapters();
-        }
-
-        private void RegisterEvents()
-        {
-            Resolve<IVpnConnection>().StateChanged += (_, e) =>
+            VpnState state = e.Data;
+            IEnumerable<IVpnStateAware> instances = Resolve<IEnumerable<IVpnStateAware>>();
+            foreach (IVpnStateAware instance in instances)
             {
-                VpnState state = e.Data;
-                IEnumerable<IVpnStateAware> instances = Resolve<IEnumerable<IVpnStateAware>>();
-                foreach (IVpnStateAware instance in instances)
+                switch (state.Status)
                 {
-                    switch (state.Status)
-                    {
-                        case VpnStatus.Connecting:
-                        case VpnStatus.Reconnecting:
-                            instance.OnVpnConnecting(state);
-                            break;
-                        case VpnStatus.Connected:
-                            instance.OnVpnConnected(state);
-                            break;
-                        case VpnStatus.Disconnecting:
-                        case VpnStatus.Disconnected:
-                            instance.OnVpnDisconnected(state);
-                            break;
-                    }
+                    case VpnStatus.Connecting:
+                    case VpnStatus.Reconnecting:
+                        instance.OnVpnConnecting(state);
+                        break;
+                    case VpnStatus.Connected:
+                        instance.OnVpnConnected(state);
+                        break;
+                    case VpnStatus.Disconnecting:
+                    case VpnStatus.Disconnected:
+                        instance.OnVpnDisconnected(state);
+                        break;
                 }
-            };
+            }
+        };
 
-            Resolve<IServiceSettings>().SettingsChanged += (_, e) =>
+        Resolve<IServiceSettings>().SettingsChanged += (_, e) =>
+        {
+            IEnumerable<IServiceSettingsAware> instances = Resolve<IEnumerable<IServiceSettingsAware>>();
+            foreach (IServiceSettingsAware instance in instances)
             {
-                IEnumerable<IServiceSettingsAware> instances = Resolve<IEnumerable<IServiceSettingsAware>>();
-                foreach (IServiceSettingsAware instance in instances)
-                {
-                    instance.OnServiceSettingsChanged(e);
-                }
-            };
-        }
+                instance.OnServiceSettingsChanged(e);
+            }
+        };
+    }
 
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            IConfiguration config = Resolve<IConfiguration>();
-            IOsProcesses processes = Resolve<IOsProcesses>();
-            Resolve<IVpnConnection>().Disconnect();
-            Resolve<OpenVpnProcess>().Stop();
-            processes.KillProcesses(config.AppName);
-        }
+    private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        IStaticConfiguration config = Resolve<IStaticConfiguration>();
+        IOsProcesses processes = Resolve<IOsProcesses>();
+        Resolve<IVpnConnection>().Disconnect();
+        Resolve<OpenVpnProcess>().Stop();
+        processes.KillProcesses(config.ClientName);
+    }
 
-        private static void SetDllDirectories()
-        {
-            Kernel32.SetDefaultDllDirectories(Kernel32.SetDefaultDllDirectoriesFlags.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
-        }
+    private static void SetDllDirectories()
+    {
+        Kernel32.SetDefaultDllDirectories(Kernel32.SetDefaultDllDirectoriesFlags.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     }
 }

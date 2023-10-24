@@ -20,7 +20,6 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
 using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -32,7 +31,6 @@ public class GuestHoleConnector : IGuestHoleConnector
     private readonly Random _random = new();
 
     private readonly ILogger _logger;
-    private readonly IConfiguration _config;
     private readonly IServiceCaller _serviceCaller;
     private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
     private readonly IGuestHoleConnectionRequestWrapper _connectionRequestWrapper;
@@ -42,14 +40,12 @@ public class GuestHoleConnector : IGuestHoleConnector
 
     public GuestHoleConnector(
         ILogger logger,
-        IConfiguration config,
         IServiceCaller serviceCaller,
         IGuestHoleServersFileStorage guestHoleServersFileStorage,
         IGuestHoleConnectionRequestWrapper connectionRequestWrapper,
         IDisconnectionRequestWrapper disconnectionRequestWrapper)
     {
         _logger = logger;
-        _config = config;
         _serviceCaller = serviceCaller;
         _guestHoleServersFileStorage = guestHoleServersFileStorage;
         _connectionRequestWrapper = connectionRequestWrapper;

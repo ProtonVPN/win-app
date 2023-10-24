@@ -18,54 +18,53 @@
  */
 
 using System;
-using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Common.OS.Net
+namespace ProtonVPN.Common.OS.Net;
+
+public class NetworkInterfaceLoader : INetworkInterfaceLoader
 {
-    public class NetworkInterfaceLoader : INetworkInterfaceLoader
+    private readonly IStaticConfiguration _config;
+    private readonly INetworkInterfaces _networkInterfaces;
+
+    public NetworkInterfaceLoader(IStaticConfiguration config, INetworkInterfaces networkInterfaces)
     {
-        private readonly IConfiguration _config;
-        private readonly INetworkInterfaces _networkInterfaces;
+        _networkInterfaces = networkInterfaces;
+        _config = config;
+    }
 
-        public NetworkInterfaceLoader(IConfiguration config, INetworkInterfaces networkInterfaces)
-        {
-            _networkInterfaces = networkInterfaces;
-            _config = config;
-        }
+    public INetworkInterface GetOpenVpnTapInterface()
+    {
+        return _networkInterfaces.GetByDescription(_config.OpenVpn.TapAdapterDescription);
+    }
 
-        public INetworkInterface GetOpenVpnTapInterface()
-        {
-            return _networkInterfaces.GetByDescription(_config.OpenVpn.TapAdapterDescription);
-        }
+    public INetworkInterface GetOpenVpnTunInterface()
+    {
+        return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName);
+    }
 
-        public INetworkInterface GetOpenVpnTunInterface()
-        {
-            return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName);
-        }
+    public INetworkInterface GetWireGuardTunInterface()
+    {
+        INetworkInterface networkInterface = _networkInterfaces.GetById(Guid.Parse(_config.WireGuard.TunAdapterGuid));
+        return networkInterface ?? _networkInterfaces.GetByName(_config.WireGuard.TunAdapterName);
+    }
 
-        public INetworkInterface GetWireGuardTunInterface()
-        {
-            INetworkInterface networkInterface = _networkInterfaces.GetById(Guid.Parse(_config.WireGuard.TunAdapterGuid));
-            return networkInterface ?? _networkInterfaces.GetByName(_config.WireGuard.TunAdapterName);
-        }
+    public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
+    {
+        return vpnProtocol == VpnProtocol.WireGuardUdp
+            ? GetWireGuardTunInterface()
+            : GetByOpenVpnAdapter(openVpnAdapter);
+    }
 
-        public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
+    public INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter)
+    {
+        return openVpnAdapter switch
         {
-            return vpnProtocol == VpnProtocol.WireGuard
-                ? GetWireGuardTunInterface()
-                : GetByOpenVpnAdapter(openVpnAdapter);
-        }
-
-        public INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter)
-        {
-            return openVpnAdapter switch
-            {
-                OpenVpnAdapter.Tap => GetOpenVpnTapInterface(),
-                OpenVpnAdapter.Tun => GetOpenVpnTunInterface(),
-                _ => new NullNetworkInterface()
-            };
-        }
+            OpenVpnAdapter.Tap => GetOpenVpnTapInterface(),
+            OpenVpnAdapter.Tun => GetOpenVpnTunInterface(),
+            _ => new NullNetworkInterface()
+        };
     }
 }

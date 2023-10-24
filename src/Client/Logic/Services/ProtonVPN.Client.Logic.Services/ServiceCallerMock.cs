@@ -47,7 +47,7 @@ public class ServiceCallerMock : IServiceCaller
         {
             EndpointIp = "103.107.197.6",
             Status = VpnStatusIpcEntity.Connected,
-            VpnProtocol = VpnProtocolIpcEntity.WireGuard,
+            VpnProtocol = VpnProtocolIpcEntity.WireGuardUdp,
             Error = VpnErrorTypeIpcEntity.None,
             Label = string.Empty,
             NetworkBlocked = false,

@@ -18,51 +18,50 @@
  */
 using System.Collections.Generic;
 using ARSoft.Tools.Net.Dns;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.DnsLogs;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Resolvers;
 using ProtonVPN.Dns.HttpClients;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 
-namespace ProtonVPN.Dns.Resolvers
+namespace ProtonVPN.Dns.Resolvers;
+
+public class DnsOverHttpsTxtRecordsResolver : DnsOverHttpsResolverBase, IDnsOverHttpsTxtRecordsResolver
 {
-    public class DnsOverHttpsTxtRecordsResolver : DnsOverHttpsResolverBase, IDnsOverHttpsTxtRecordsResolver
+    public DnsOverHttpsTxtRecordsResolver(IConfiguration config, ILogger logger,
+        IHttpClientFactory httpClientFactory, IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
+        : base(config, logger, httpClientFactory, dnsOverHttpsProvidersManager, RecordType.Txt)
     {
-        public DnsOverHttpsTxtRecordsResolver(IConfiguration configuration, ILogger logger, 
-            IHttpClientFactory httpClientFactory, IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager) 
-            : base(configuration, logger, httpClientFactory, dnsOverHttpsProvidersManager, RecordType.Txt)
-        {
-        }
+    }
 
-        protected override bool IsNullOrEmpty(DnsResponse dnsResponse)
-        {
-            return dnsResponse == null || dnsResponse.AlternativeHosts.IsNullOrEmpty();
-        }
+    protected override bool IsNullOrEmpty(DnsResponse dnsResponse)
+    {
+        return dnsResponse == null || dnsResponse.AlternativeHosts.IsNullOrEmpty();
+    }
 
-        protected override DnsResponse ParseDnsResponseMessage(DnsOverHttpsParallelHttpRequestConfiguration config, 
-            DnsMessage dnsResponseMessage)
+    protected override DnsResponse ParseDnsResponseMessage(DnsOverHttpsParallelHttpRequestConfiguration config,
+        DnsMessage dnsResponseMessage)
+    {
+        IList<string> alternativeHosts = new List<string>();
+        int? timeToLiveInSeconds = null;
+        foreach (DnsRecordBase record in dnsResponseMessage.AnswerRecords)
         {
-            IList<string> alternativeHosts = new List<string>();
-            int? timeToLiveInSeconds = null;
-            foreach (DnsRecordBase record in dnsResponseMessage.AnswerRecords)
+            if (record is TxtRecord txtRecord)
             {
-                if (record is TxtRecord txtRecord)
+                alternativeHosts.Add(txtRecord.TextData);
+                if (txtRecord.TimeToLive > 0 &&
+                    (timeToLiveInSeconds == null || timeToLiveInSeconds.Value > txtRecord.TimeToLive))
                 {
-                    alternativeHosts.Add(txtRecord.TextData);
-                    if (txtRecord.TimeToLive > 0 && 
-                        (timeToLiveInSeconds == null || timeToLiveInSeconds.Value > txtRecord.TimeToLive))
-                    {
-                        timeToLiveInSeconds = txtRecord.TimeToLive;
-                    }
+                    timeToLiveInSeconds = txtRecord.TimeToLive;
                 }
             }
-
-            Logger.Info<DnsResponseLog>($"{alternativeHosts.Count} TXT records were received for host '{config.Host}' " +
-                $"with DNS over HTTPS provider '{config.ProviderUrl}'. TTL is {timeToLiveInSeconds} seconds.");
-
-            return CreateDnsResponseWithAlternativeHosts(config.Host, timeToLiveInSeconds, alternativeHosts);
         }
+
+        Logger.Info<DnsResponseLog>($"{alternativeHosts.Count} TXT records were received for host '{config.Host}' " +
+            $"with DNS over HTTPS provider '{config.ProviderUrl}'. TTL is {timeToLiveInSeconds} seconds.");
+
+        return CreateDnsResponseWithAlternativeHosts(config.Host, timeToLiveInSeconds, alternativeHosts);
     }
 }
