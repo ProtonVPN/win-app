@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
@@ -36,8 +36,8 @@ public class RoutingTableLog : LogBase
         }
     }
 
-    public RoutingTableLog(IOsProcesses osProcesses, IConfiguration config)
-                : base(config.DiagnosticsLogFolder, "RoutingTable.txt")
+    public RoutingTableLog(IOsProcesses osProcesses, IStaticConfiguration config)
+                : base(config.DiagnosticLogsFolder, "RoutingTable.txt")
     {
         _osProcesses = osProcesses;
     }

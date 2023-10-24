@@ -17,27 +17,51 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts.Entities;
+using ProtonVPN.Configurations.Defaults;
 
 namespace ProtonVPN.Configurations;
 
 public class StaticConfiguration : IStaticConfiguration
 {
-    private readonly DefaultConfiguration _default = new();
+    public string ClientName { get; } = DefaultConfiguration.ClientName;
+    public string ServiceName { get; } = DefaultConfiguration.ServiceName;
+    public string CalloutServiceName { get; } = DefaultConfiguration.CalloutServiceName;
 
-    public StaticConfiguration()
+    public string ClientLauncherExePath { get; } = DefaultConfiguration.ClientLauncherExePath;
+    public string InstallActionsPath { get; } = DefaultConfiguration.InstallActionsPath;
+    public string ClientExePath { get; } = DefaultConfiguration.ClientExePath;
+    public string ServiceExePath { get; } = DefaultConfiguration.ServiceExePath;
+
+    public string ClientLogsFolder { get; } = DefaultConfiguration.ClientLogsFolder;
+    public string ServiceLogsFolder { get; } = DefaultConfiguration.ServiceLogsFolder;
+    public string DiagnosticLogsFolder { get; } = DefaultConfiguration.DiagnosticLogsFolder;
+    public string ImageCacheFolder { get; } = DefaultConfiguration.ImageCacheFolder;
+    public string UpdatesFolder { get; } = DefaultConfiguration.UpdatesFolder;
+
+    public string ClientLogsFilePath { get; } = DefaultConfiguration.ClientLogsFilePath;
+    public string ServiceLogsFilePath { get; } = DefaultConfiguration.ServiceLogsFilePath;
+    public string DiagnosticLogsZipFilePath { get; } = DefaultConfiguration.DiagnosticLogsZipFilePath;
+    public string GuestHoleServersJsonFilePath { get; } = DefaultConfiguration.GuestHoleServersJsonFilePath;
+    public string ServiceSettingsFilePath { get; } = DefaultConfiguration.ServiceSettingsFilePath;
+
+    public string ServersJsonCacheFilePath { get; } = DefaultConfiguration.ServersJsonCacheFilePath;
+
+    public IOpenVpnConfigurations OpenVpn { get; } = DefaultConfiguration.OpenVpn;
+    public IWireGuardConfigurations WireGuard { get; } = DefaultConfiguration.WireGuard;
+
+    public string WintunDriverPath { get; } = DefaultConfiguration.WintunDriverPath;
+    public string WintunAdapterName { get; } = DefaultConfiguration.WintunAdapterName;
+
+    public string GetHardwareId(OpenVpnAdapter openVpnAdapter)
     {
-        _serviceName = new(() => _default.ServiceName);
-        _clientLogsFullFilePath = new(() => _default.ClientLogsFilePath);
-        _serviceLogsFullFilePath = new(() => _default.ServiceLogsFilePath);
+        return openVpnAdapter switch
+        {
+            OpenVpnAdapter.Tap => OpenVpn.TapAdapterId,
+            OpenVpnAdapter.Tun => OpenVpn.TunAdapterId,
+            _ => WireGuard.TunAdapterHardwareId
+        };
     }
-
-    private readonly Lazy<string> _serviceName;
-    public string ServiceName => _serviceName.Value;
-
-    private readonly Lazy<string> _clientLogsFullFilePath;
-    public string ClientLogsFilePath => _clientLogsFullFilePath.Value;
-
-    private readonly Lazy<string> _serviceLogsFullFilePath;
-    public string ServiceLogsFilePath => _serviceLogsFullFilePath.Value;
 }

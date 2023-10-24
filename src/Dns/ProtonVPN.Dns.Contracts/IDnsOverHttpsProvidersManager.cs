@@ -20,14 +20,13 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Dns.Contracts
+namespace ProtonVPN.Dns.Contracts;
+
+public interface IDnsOverHttpsProvidersManager
 {
-    public interface IDnsOverHttpsProvidersManager
-    {
-        /// <summary>Returns the cached IP addresses of the DNS over HTTPS providers if they are fresh, otherwise
-        /// makes a UDP DNS request for them. If the resolve fails, returns the cached IP addresses.</summary>
-        Task<IList<IpAddress>> GetAsync(string host, CancellationToken cancellationToken);
-    }
+    /// <summary>Returns the cached IP addresses of the DNS over HTTPS providers if they are fresh, otherwise
+    /// makes a UDP DNS request for them. If the resolve fails, returns the cached IP addresses.</summary>
+    Task<IList<IpAddress>> GetAsync(string host, CancellationToken cancellationToken);
 }

@@ -22,86 +22,85 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
 
-namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments;
+
+[TestClass]
+public class TlsVerifyArgumentsTest
 {
-    [TestClass]
-    public class TlsVerifyArgumentsTest
+    private IOpenVpnConfigurations _openVpnConfig;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private OpenVpnConfig _config;
+        _openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _config = Substitute.For<OpenVpnConfig>();
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
+    {
+        // Arrange
+        _openVpnConfig.TlsExportCertFolder.Returns("ExportCert");
+        _openVpnConfig.TlsVerifyExePath.Returns("ProtonVPN.TlsVerify.exe");
+        TlsVerifyArguments subject = new(_openVpnConfig, "nl-101.proton.com");
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
-        {
-            // Arrange
-            _config.TlsExportCertFolder = "ExportCert";
-            _config.TlsVerifyExePath = "ProtonVPN.TlsVerify.exe";
-            TlsVerifyArguments subject = new TlsVerifyArguments(_config, "nl-101.proton.com");
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().HaveCount(3);
+    }
 
-            // Assert
-            result.Should().HaveCount(3);
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_SetEnvOption()
+    {
+        // Arrange
+        const string serverName = "nl-1.proton.com";
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_SetEnvOption()
-        {
-            // Arrange
-            const string serverName = "nl-1.proton.com";
+        _openVpnConfig.TlsExportCertFolder.Returns("ExportCert");
+        _openVpnConfig.TlsVerifyExePath.Returns("ProtonVPN.TlsVerify.exe");
+        TlsVerifyArguments subject = new(_openVpnConfig, serverName);
 
-            _config.TlsExportCertFolder = "ExportCert";
-            _config.TlsVerifyExePath = "ProtonVPN.TlsVerify.exe";
-            TlsVerifyArguments subject = new TlsVerifyArguments(_config, serverName);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().Contain($"--setenv peer_dns_name \"{serverName}\"");
+    }
 
-            // Assert
-            result.Should().Contain($"--setenv peer_dns_name \"{serverName}\"");
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_TlsExportCertOption()
+    {
+        // Arrange
+        const string exportCertFolder = "C:\\ProgramData\\ExportCert";
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_TlsExportCertOption()
-        {
-            // Arrange
-            const string exportCertFolder = "C:\\ProgramData\\ExportCert";
+        _openVpnConfig.TlsExportCertFolder.Returns(exportCertFolder);
+        _openVpnConfig.TlsVerifyExePath.Returns("ProtonVPN.TlsVerify.exe");
+        TlsVerifyArguments subject = new(_openVpnConfig, "gb-15.proton.com");
 
-            _config.TlsExportCertFolder = exportCertFolder;
-            _config.TlsVerifyExePath = "ProtonVPN.TlsVerify.exe";
-            TlsVerifyArguments subject = new TlsVerifyArguments(_config, "gb-15.proton.com");
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().Contain($"--tls-export-cert \"{exportCertFolder}\"");
+    }
 
-            // Assert
-            result.Should().Contain($"--tls-export-cert \"{exportCertFolder}\"");
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_TlsVerifyOption()
+    {
+        // Arrange
+        const string tlsVerifyExePath = "C:\\Program Files\\TlsVerify.exe";
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_TlsVerifyOption()
-        {
-            // Arrange
-            const string tlsVerifyExePath = "C:\\Program Files\\TlsVerify.exe";
+        _openVpnConfig.TlsExportCertFolder.Returns("ExportCert");
+        _openVpnConfig.TlsVerifyExePath.Returns(tlsVerifyExePath);
+        TlsVerifyArguments subject = new(_openVpnConfig, "gb-15.proton.com");
 
-            _config.TlsExportCertFolder = "ExportCert";
-            _config.TlsVerifyExePath = tlsVerifyExePath;
-            TlsVerifyArguments subject = new TlsVerifyArguments(_config, "gb-15.proton.com");
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
-
-            // Assert
-            result.Should().Contain($"--tls-verify \"{tlsVerifyExePath}\"");
-        }
+        // Assert
+        result.Should().Contain($"--tls-verify \"{tlsVerifyExePath}\"");
     }
 }

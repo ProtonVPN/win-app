@@ -17,83 +17,82 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Os.Net;
 using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Service.Vpn
+namespace ProtonVPN.Service.Vpn;
+
+public class NetworkSettings : IVpnStateAware
 {
-    public class NetworkSettings : IVpnStateAware
+    private readonly ILogger _logger;
+    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly WintunRegistryFixer _wintunRegistryFixer;
+
+    public NetworkSettings(ILogger logger, INetworkInterfaceLoader networkInterfaceLoader, WintunRegistryFixer wintunRegistryFixer)
     {
-        private readonly ILogger _logger;
-        private readonly INetworkInterfaceLoader _networkInterfaceLoader;
-        private readonly WintunRegistryFixer _wintunRegistryFixer;
+        _logger = logger;
+        _networkInterfaceLoader = networkInterfaceLoader;
+        _wintunRegistryFixer = wintunRegistryFixer;
+    }
 
-        public NetworkSettings(ILogger logger, INetworkInterfaceLoader networkInterfaceLoader, WintunRegistryFixer wintunRegistryFixer)
+    public void OnVpnDisconnected(VpnState state)
+    {
+        if (state.VpnProtocol != VpnProtocol.WireGuardUdp)
         {
-            _logger = logger;
-            _networkInterfaceLoader = networkInterfaceLoader;
-            _wintunRegistryFixer = wintunRegistryFixer;
+            RestoreNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
+        }
+    }
+
+    public void OnVpnConnected(VpnState state)
+    {
+    }
+
+    public void OnVpnConnecting(VpnState state)
+    {
+        if (state.VpnProtocol == VpnProtocol.OpenVpnTcp || state.VpnProtocol == VpnProtocol.OpenVpnUdp)
+        {
+            ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
+            _wintunRegistryFixer.EnsureTunAdapterRegistryIsCorrect();
+        }
+    }
+
+    private void ApplyNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
+    {
+        uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index;
+
+        try
+        {
+            _logger.Info<NetworkLog>("Setting interface metric...");
+            NetworkUtil.SetLowestTapMetric(interfaceIndex);
+            _logger.Info<NetworkLog>("Interface metric set.");
+        }
+        catch (NetworkUtilException e)
+        {
+            _logger.Error<NetworkLog>("Failed to apply network settings. Error code: " + e.Code);
+        }
+    }
+
+    private void RestoreNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
+    {
+        uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter)?.Index ?? 0;
+        if (interfaceIndex == 0)
+        {
+            return;
         }
 
-        public void OnVpnDisconnected(VpnState state)
+        try
         {
-            if (state.VpnProtocol != VpnProtocol.WireGuard)
-            {
-                RestoreNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
-            }
+            _logger.Info<NetworkLog>("Restoring interface metric...");
+            NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
+            _logger.Info<NetworkLog>("Interface metric restored.");
         }
-
-        public void OnVpnConnected(VpnState state)
+        catch (NetworkUtilException e)
         {
-        }
-
-        public void OnVpnConnecting(VpnState state)
-        {
-            if (state.VpnProtocol == VpnProtocol.OpenVpnTcp || state.VpnProtocol == VpnProtocol.OpenVpnUdp)
-            {
-                ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
-                _wintunRegistryFixer.EnsureTunAdapterRegistryIsCorrect();
-            }
-        }
-
-        private void ApplyNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
-        {
-            uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index;
-
-            try
-            {
-                _logger.Info<NetworkLog>("Setting interface metric...");
-                NetworkUtil.SetLowestTapMetric(interfaceIndex);
-                _logger.Info<NetworkLog>("Interface metric set.");
-            }
-            catch (NetworkUtilException e)
-            {
-                _logger.Error<NetworkLog>("Failed to apply network settings. Error code: " + e.Code);
-            }
-        }
-
-        private void RestoreNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
-        {
-            uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter)?.Index ?? 0;
-            if (interfaceIndex == 0)
-            {
-                return;
-            }
-
-            try
-            {
-                _logger.Info<NetworkLog>("Restoring interface metric...");
-                NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
-                _logger.Info<NetworkLog>("Interface metric restored.");
-            }
-            catch (NetworkUtilException e)
-            {
-                _logger.Error<NetworkLog>("Failed restore network settings. Error code: " + e.Code);
-            }
+            _logger.Error<NetworkLog>("Failed restore network settings. Error code: " + e.Code);
         }
     }
 }

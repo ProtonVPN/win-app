@@ -20,7 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -29,15 +29,15 @@ namespace ProtonVPN.Client.Logic.Connection.Wrappers;
 
 public class GuestHoleConnectionRequestWrapper : ConnectionRequestWrapperBase, IGuestHoleConnectionRequestWrapper
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _config;
 
     public GuestHoleConnectionRequestWrapper(
         ISettings settings,
         IEntityMapper entityMapper,
-        IConfiguration configuration)
+        IConfiguration config)
         : base(settings, entityMapper)
     {
-        _configuration = configuration;
+        _config = config;
     }
 
     public ConnectionRequestIpcEntity Wrap(IEnumerable<GuestHoleServerContract> servers)
@@ -60,14 +60,14 @@ public class GuestHoleConnectionRequestWrapper : ConnectionRequestWrapperBase, I
     {
         return new()
         {
-            Username = AddSuffixToUsername(_configuration.GuestHoleVpnUsername),
-            Password = _configuration.GuestHoleVpnPassword,
+            Username = AddSuffixToUsername(_config.GuestHoleVpnUsername),
+            Password = _config.GuestHoleVpnPassword,
         };
     }
 
     private string AddSuffixToUsername(string username)
     {
-        return username + _configuration.VpnUsernameSuffix;
+        return username + _config.VpnUsernameSuffix;
     }
 
     private VpnServerIpcEntity[] GetVpnServers(IEnumerable<GuestHoleServerContract> servers)

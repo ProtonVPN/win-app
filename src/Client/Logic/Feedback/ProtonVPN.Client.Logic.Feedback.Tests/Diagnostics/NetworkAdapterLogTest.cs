@@ -48,13 +48,13 @@ public class NetworkAdapterLogTest : LogBaseTest
         };
         _networkInterfaces.GetInterfaces().Returns(interfaces);
 
-        NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, Config);
+        NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, StaticConfig);
 
         // Act
         log.Write();
 
         // Assert
-        string path = Path.Combine(TmpPath, "NetworkAdapters.txt");
+        string path = Path.Combine(TMP_PATH, "NetworkAdapters.txt");
         File.Exists(path).Should().BeTrue();
 
         string content = File.ReadAllText(path);

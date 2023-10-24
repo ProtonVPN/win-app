@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 

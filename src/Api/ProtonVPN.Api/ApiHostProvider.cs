@@ -20,43 +20,42 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Api;
+
+public class ApiHostProvider : IApiHostProvider, IVpnStateAware
 {
-    public class ApiHostProvider : IApiHostProvider, IVpnStateAware
+    private const int MAX_HOURS_WITH_PROXY = 24;
+
+    private readonly string _apiHost;
+    private readonly IAppSettings _appSettings;
+    private bool _isDisconnected = true;
+
+    public ApiHostProvider(IAppSettings appSettings, IConfiguration config)
     {
-        private const int MAX_HOURS_WITH_PROXY = 24;
+        _appSettings = appSettings;
+        _apiHost = new Uri(config.Urls.ApiUrl).Host;
+    }
 
-        private readonly string _apiHost;
-        private readonly IAppSettings _appSettings;
-        private bool _isDisconnected = true;
+    public string GetHost()
+    {
+        return IsProxyActive() ? _appSettings.ActiveAlternativeApiBaseUrl : _apiHost;
+    }
 
-        public ApiHostProvider(IAppSettings appSettings, IConfiguration config)
-        {
-            _appSettings = appSettings;
-            _apiHost = new Uri(config.Urls.ApiUrl).Host;
-        }
+    public bool IsProxyActive()
+    {
+        return _appSettings.DoHEnabled &&
+               _isDisconnected &&
+               DateTime.UtcNow.Subtract(_appSettings.LastPrimaryApiFailDateUtc).TotalHours < MAX_HOURS_WITH_PROXY &&
+               !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
+    }
 
-        public string GetHost()
-        {
-            return IsProxyActive() ? _appSettings.ActiveAlternativeApiBaseUrl : _apiHost;
-        }
-
-        public bool IsProxyActive()
-        {
-            return _appSettings.DoHEnabled &&
-                   _isDisconnected &&
-                   DateTime.UtcNow.Subtract(_appSettings.LastPrimaryApiFailDateUtc).TotalHours < MAX_HOURS_WITH_PROXY &&
-                   !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
-        }
-
-        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            _isDisconnected = e.State.Status == VpnStatus.Disconnected;
-        }
+    public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+    {
+        _isDisconnected = e.State.Status == VpnStatus.Disconnected;
     }
 }

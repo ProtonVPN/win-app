@@ -12,6 +12,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
+    <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
   </ItemGroup>
 </Project>

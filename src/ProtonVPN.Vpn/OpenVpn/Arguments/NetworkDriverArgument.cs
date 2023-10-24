@@ -19,31 +19,30 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Vpn.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.OpenVpn.Arguments;
+
+internal class NetworkDriverArgument : IEnumerable<string>
 {
-    internal class NetworkDriverArgument : IEnumerable<string>
+    private readonly string _interfaceGuid;
+    private readonly OpenVpnAdapter _openVpnAdapter;
+
+    public NetworkDriverArgument(string interfaceGuid, OpenVpnAdapter openVpnAdapter)
     {
-        private readonly string _interfaceGuid;
-        private readonly OpenVpnAdapter _openVpnAdapter;
-
-        public NetworkDriverArgument(string interfaceGuid, OpenVpnAdapter openVpnAdapter)
-        {
-            _openVpnAdapter = openVpnAdapter;
-            _interfaceGuid = interfaceGuid;
-        }
-
-        public IEnumerator<string> GetEnumerator()
-        {
-            yield return $"--dev-node \"{_interfaceGuid}\"";
-
-            if (_openVpnAdapter == OpenVpnAdapter.Tun)
-            {
-                yield return "--windows-driver wintun";
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        _openVpnAdapter = openVpnAdapter;
+        _interfaceGuid = interfaceGuid;
     }
+
+    public IEnumerator<string> GetEnumerator()
+    {
+        yield return $"--dev-node \"{_interfaceGuid}\"";
+
+        if (_openVpnAdapter == OpenVpnAdapter.Tun)
+        {
+            yield return "--windows-driver wintun";
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

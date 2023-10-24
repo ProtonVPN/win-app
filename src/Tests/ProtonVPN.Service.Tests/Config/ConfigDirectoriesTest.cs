@@ -17,116 +17,107 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.IO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Configuration;
-using ProtonVPN.Service.Config;
+using NSubstitute;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Tests.Common;
 
-namespace ProtonVPN.Service.Tests.Config
+namespace ProtonVPN.Service.Tests.Config;
+
+[TestClass]
+public class ConfigDirectoriesTest
 {
-    [TestClass]
-    public class ConfigDirectoriesTest
+    [TestMethod]
+    public void Prepare_ShouldCreate_ServiceLogFolder()
     {
-        [TestMethod]
-        public void Prepare_ShouldCreate_ServiceLogFolder()
+        // Arrange
+        string path = TestConfig.GetFolderPath();
+        if (Directory.Exists(path))
         {
-            // Arrange
-            string path = TestConfig.GetFolderPath();
-            if (Directory.Exists(path))
-            {
-                Directory.Delete(path);
-            }
-
-            IConfiguration config = new Common.Configuration.Config()
-            {
-                ServiceLogFolder = path,
-                OpenVpn =
-                {
-                    TlsExportCertFolder = $"{path}-1"
-                }
-            };
-            ConfigDirectories subject = new(config);
-
-            // Act
-            subject.Prepare();
-            // Assert
-            Directory.Exists(path).Should().BeTrue();
-            Directory.Delete(path, true);
+            Directory.Delete(path);
         }
 
-        [TestMethod]
-        public void Prepare_ShouldSucceed_When_ServiceLogFolder_Exists()
+        IStaticConfiguration stateConfig = Substitute.For<IStaticConfiguration>();
+        stateConfig.ServiceLogsFolder.Returns(path);
+
+        IOpenVpnConfigurations openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+        openVpnConfig.TlsExportCertFolder.Returns($"{path}-1");
+        stateConfig.OpenVpn.Returns(openVpnConfig);
+
+        // Act
+        PrepareDirectories(stateConfig);
+
+        // Assert
+        Directory.Exists(path).Should().BeTrue();
+        Directory.Delete(path, true);
+    }
+
+    private void PrepareDirectories(IStaticConfiguration staticConfig)
+    {
+        Directory.CreateDirectory(staticConfig.ServiceLogsFolder);
+        Directory.CreateDirectory(staticConfig.OpenVpn.TlsExportCertFolder);
+    }
+
+    [TestMethod]
+    public void Prepare_ShouldSucceed_When_ServiceLogFolder_Exists()
+    {
+        // Arrange
+        string path = TestConfig.GetFolderPath();
+        Directory.CreateDirectory(path);
+
+        IStaticConfiguration stateConfig = Substitute.For<IStaticConfiguration>();
+        stateConfig.ServiceLogsFolder.Returns(path);
+
+        IOpenVpnConfigurations openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+        openVpnConfig.TlsExportCertFolder.Returns($"{path}-1");
+        stateConfig.OpenVpn.Returns(openVpnConfig);
+
+        // Act
+        PrepareDirectories(stateConfig);
+    }
+
+    [TestMethod]
+    public void Prepare_ShouldCreate_TlsExportCertFolder()
+    {
+        // Arrange
+        string path = TestConfig.GetFolderPath();
+        if (Directory.Exists(path))
         {
-            // Arrange
-            string path = TestConfig.GetFolderPath();
-            Directory.CreateDirectory(path);
-
-            IConfiguration config = new Common.Configuration.Config()
-            {
-                ServiceLogFolder = path,
-                OpenVpn =
-                {
-                    TlsExportCertFolder = $"{path}-1"
-                }
-            };
-            ConfigDirectories subject = new(config);
-
-            // Act
-            Action action = () => subject.Prepare();
-            // Assert
-            action.Should().NotThrow();
+            Directory.Delete(path);
         }
 
-        [TestMethod]
-        public void Prepare_ShouldCreate_TlsExportCertFolder()
-        {
-            // Arrange
-            string path = TestConfig.GetFolderPath();
-            if (Directory.Exists(path))
-            {
-                Directory.Delete(path);
-            }
+        IStaticConfiguration stateConfig = Substitute.For<IStaticConfiguration>();
+        stateConfig.ServiceLogsFolder.Returns($"{path}-1");
 
-            IConfiguration config = new Common.Configuration.Config()
-            {
-                ServiceLogFolder = $"{path}-1",
-                OpenVpn =
-                {
-                    TlsExportCertFolder = path
-                }
-            };
-            ConfigDirectories subject = new(config);
-            
-            // Act
-            subject.Prepare();
-            // Assert
-            Directory.Exists(path).Should().BeTrue();
-        }
+        IOpenVpnConfigurations openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+        openVpnConfig.TlsExportCertFolder.Returns(path);
+        stateConfig.OpenVpn.Returns(openVpnConfig);
 
-        [TestMethod]
-        public void Prepare_ShouldSucceed_When_TlsExportCertFolder_Exists()
-        {
-            // Arrange
-            string path = TestConfig.GetFolderPath();
-            Directory.CreateDirectory(path);
+        // Act
+        PrepareDirectories(stateConfig);
 
-            IConfiguration config = new Common.Configuration.Config()
-            {
-                ServiceLogFolder = $"{path}-1",
-                OpenVpn =
-                {
-                    TlsExportCertFolder = path
-                }
-            };
-            ConfigDirectories subject = new(config);
+        // Assert
+        Directory.Exists(path).Should().BeTrue();
+    }
 
-            // Act
-            Action action = () => subject.Prepare();
-            // Assert
-            action.Should().NotThrow();
-        }
+    [TestMethod]
+    public void Prepare_ShouldSucceed_When_TlsExportCertFolder_Exists()
+    {
+        // Arrange
+        string path = TestConfig.GetFolderPath();
+        Directory.CreateDirectory(path);
+
+        IStaticConfiguration stateConfig = Substitute.For<IStaticConfiguration>();
+        stateConfig.ServiceLogsFolder.Returns($"{path}-1");
+
+        IOpenVpnConfigurations openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+        openVpnConfig.TlsExportCertFolder.Returns(path);
+        stateConfig.OpenVpn.Returns(openVpnConfig);
+
+        // Act
+        PrepareDirectories(stateConfig);
     }
 }

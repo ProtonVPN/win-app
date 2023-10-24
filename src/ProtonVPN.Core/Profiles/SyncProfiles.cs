@@ -20,81 +20,78 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Core.Profiles.Cached;
 using ProtonVPN.Core.Profiles.Comparers;
 
-namespace ProtonVPN.Core.Profiles
+namespace ProtonVPN.Core.Profiles;
+
+public class SyncProfiles : IProfileStorageAsync
 {
-    public class SyncProfiles : IProfileStorageAsync
+    private const int MAX_PROFILE_NAME_LENGTH = 25;
+
+    private static readonly ProfileByIdEqualityComparer ProfileByIdEqualityComparer = new();
+    private static readonly ProfileByNameEqualityComparer ProfileByNameEqualityComparer = new();
+
+    private readonly IProfileStorageAsync _profiles;
+    private readonly CachedProfiles _cachedProfiles;
+
+    public SyncProfiles(
+        Profiles profiles,
+        CachedProfiles cachedProfiles)
     {
-        private static readonly ProfileByIdEqualityComparer ProfileByIdEqualityComparer = new();
-        private static readonly ProfileByNameEqualityComparer ProfileByNameEqualityComparer = new();
+        _profiles = profiles;
+        _cachedProfiles = cachedProfiles;
+    }
 
-        private readonly IProfileStorageAsync _profiles;
-        private readonly IConfiguration _appConfig;
-        private readonly CachedProfiles _cachedProfiles;
+    public Task<IReadOnlyList<Profile>> GetAll()
+    {
+        return _profiles.GetAll();
+    }
 
-        public SyncProfiles(
-            Profiles profiles,
-            IConfiguration appConfig, 
-            CachedProfiles cachedProfiles)
+    public async Task Create(Profile profile)
+    {
+        // Toggle profile on QuickConnectViewModel is not checking for profile name duplicates.
+        // Ensure new profile name shown to the user is initially adjusted for uniqueness.
+        Profile p = EnsureUniqueName(profile);
+
+        await _profiles.Create(p);
+    }
+
+    public Profile EnsureUniqueName(Profile profile)
+    {
+        if (profile == null)
         {
-            _profiles = profiles;
-            _appConfig = appConfig;
-            _cachedProfiles = cachedProfiles;
+            return null;
         }
 
-        public Task<IReadOnlyList<Profile>> GetAll()
+        using (CachedProfileData cached = _cachedProfiles.ProfileData())
         {
-            return _profiles.GetAll();
-        }
-
-        public async Task Create(Profile profile)
-        {
-            // Toggle profile on QuickConnectViewModel is not checking for profile name duplicates.
-            // Ensure new profile name shown to the user is initially adjusted for uniqueness.
-            Profile p = EnsureUniqueName(profile);
-
-            await _profiles.Create(p);
-        }
-
-        public Profile EnsureUniqueName(Profile profile)
-        {
-            if (profile == null)
+            List<Profile> local = cached.Local.Where(x => x.Status != ProfileStatus.Deleted).ToList();
+            Profile p = profile.WithUniqueNameCandidate(MAX_PROFILE_NAME_LENGTH);
+            while (ContainsOtherWithSameName(local, p) ||
+                   ContainsOtherWithSameName(cached.External, p))
             {
-                return null;
+                p = p.WithNextUniqueNameCandidate(MAX_PROFILE_NAME_LENGTH);
             }
 
-            using (CachedProfileData cached = _cachedProfiles.ProfileData())
-            {
-                List<Profile> local = cached.Local.Where(x => x.Status != ProfileStatus.Deleted).ToList();
-                Profile p = profile.WithUniqueNameCandidate(_appConfig.MaxProfileNameLength);
-                while (ContainsOtherWithSameName(local, p) ||
-                       ContainsOtherWithSameName(cached.External, p))
-                {
-                    p = p.WithNextUniqueNameCandidate(_appConfig.MaxProfileNameLength);
-                }
-
-                return p;
-            }
+            return p;
         }
+    }
 
-        private bool ContainsOtherWithSameName(IEnumerable<Profile> profiles, Profile profile)
-        {
-            return profiles.Any(x =>
-                !ProfileByIdEqualityComparer.Equals(x, profile) &&
-                ProfileByNameEqualityComparer.Equals(x, profile));
-        }
+    private bool ContainsOtherWithSameName(IEnumerable<Profile> profiles, Profile profile)
+    {
+        return profiles.Any(x =>
+            !ProfileByIdEqualityComparer.Equals(x, profile) &&
+            ProfileByNameEqualityComparer.Equals(x, profile));
+    }
 
-        public async Task Update(Profile profile)
-        {
-            await _profiles.Update(profile);
-        }
+    public async Task Update(Profile profile)
+    {
+        await _profiles.Update(profile);
+    }
 
-        public async Task Delete(Profile profile)
-        {
-            await _profiles.Delete(profile);
-        }
+    public async Task Delete(Profile profile)
+    {
+        await _profiles.Delete(profile);
     }
 }

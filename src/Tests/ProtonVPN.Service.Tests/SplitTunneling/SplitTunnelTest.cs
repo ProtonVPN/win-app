@@ -19,7 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -28,307 +28,306 @@ using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Service.Tests.SplitTunneling
+namespace ProtonVPN.Service.Tests.SplitTunneling;
+
+[TestClass]
+public class SplitTunnelTest
 {
-    [TestClass]
-    public class SplitTunnelTest
+    private IServiceSettings _serviceSettings;
+    private ISplitTunnelClient _splitTunnelClient;
+    private IncludeModeApps _reverseSplitTunnelApps;
+    private IFilterCollection _appFilter;
+    private IFilterCollection _permittedRemoteAddress;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private IServiceSettings _serviceSettings;
-        private ISplitTunnelClient _splitTunnelClient;
-        private IncludeModeApps _reverseSplitTunnelApps;
-        private IFilterCollection _appFilter;
-        private IFilterCollection _permittedRemoteAddress;
+        _serviceSettings = Substitute.For<IServiceSettings>();
+        _splitTunnelClient = Substitute.For<ISplitTunnelClient>();
+        _appFilter = Substitute.For<IFilterCollection>();
+        _reverseSplitTunnelApps = new IncludeModeApps(_serviceSettings);
+        _permittedRemoteAddress = Substitute.For<IFilterCollection>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
+    [TestMethod]
+    public void OnVpnConnecting_WhenBlockMode_DisableReversed()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            _serviceSettings = Substitute.For<IServiceSettings>();
-            _splitTunnelClient = Substitute.For<ISplitTunnelClient>();
-            _appFilter = Substitute.For<IFilterCollection>();
-            _reverseSplitTunnelApps = new IncludeModeApps(_serviceSettings);
-            _permittedRemoteAddress = Substitute.For<IFilterCollection>();
-        }
+            Mode = SplitTunnelModeIpcEntity.Block
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel(false, true);
 
-        [TestMethod]
-        public void OnVpnConnecting_WhenBlockMode_DisableReversed()
+        // Act
+        splitTunnel.OnVpnConnecting(GetConnectingVpnState());
+
+        // Assert
+        _splitTunnelClient.Received(1).Disable();
+    }
+
+    [TestMethod]
+    public void OnVpnConnecting_WhenBlockMode_Disable()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel(false, true);
+            Mode = SplitTunnelModeIpcEntity.Permit
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel(true);
 
-            // Act
-            splitTunnel.OnVpnConnecting(GetConnectingVpnState());
+        // Act
+        splitTunnel.OnVpnConnecting(GetConnectingVpnState());
 
-            // Assert
-            _splitTunnelClient.Received(1).Disable();
-        }
+        // Assert
+        _splitTunnelClient.Received(1).Disable();
+    }
 
-        [TestMethod]
-        public void OnVpnConnecting_WhenBlockMode_Disable()
+    [TestMethod]
+    public void OnVpnConnected_PermitRemoteAddressesOnBlockMode()
+    {
+        // Arrange
+        string[] addresses = new[] { "127.0.0.1", "192.168.0.1", "8.8.8.8" };
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Permit
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel(true);
+            Mode = SplitTunnelModeIpcEntity.Block,
+            Ips = addresses,
+            AppPaths = new string[] { },
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnecting(GetConnectingVpnState());
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
 
-            // Assert
-            _splitTunnelClient.Received(1).Disable();
-        }
+        // Assert
+        _permittedRemoteAddress.Received(1).Add(addresses, NetworkFilter.Action.SoftPermit);
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_PermitRemoteAddressesOnBlockMode()
+    [TestMethod]
+    public void OnVpnConnected_WhenBlockMode_CallEnable()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            string[] addresses = new[] { "127.0.0.1", "192.168.0.1", "8.8.8.8" };
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block,
-                Ips = addresses,
-                AppPaths = new string[] {},
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Block,
+            AppPaths = new string[] { },
+            Ips = new string[] { },
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
 
-            // Assert
-            _permittedRemoteAddress.Received(1).Add(addresses, NetworkFilter.Action.SoftPermit);
-        }
+        // Assert
+        _splitTunnelClient.Received(1).EnableExcludeMode(Arg.Any<string[]>(), Arg.Any<string[]>());
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_WhenBlockMode_CallEnable()
+    [TestMethod]
+    public void OnVpnConnected_WhenBlockMode_CalloutDriverStart()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block,
-                AppPaths = new string[] {},
-                Ips = new string[] {},
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Block,
+            AppPaths = new string[] { },
+            Ips = new string[] { },
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
+    }
 
-            // Assert
-            _splitTunnelClient.Received(1).EnableExcludeMode(Arg.Any<string[]>(), Arg.Any<string[]>());
-        }
-
-        [TestMethod]
-        public void OnVpnConnected_WhenBlockMode_CalloutDriverStart()
+    [TestMethod]
+    public void OnVpnConnected_WhenPermitMode_CalloutDriverStart()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block,
-                AppPaths = new string[] {},
-                Ips = new string[] { },
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Permit
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
-        }
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_WhenPermitMode_CalloutDriverStart()
+    [TestMethod]
+    public void OnVpnConnected_WhenDisabled_CalloutDriverDoNotStart()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Permit
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Disabled
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
-        }
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_WhenDisabled_CalloutDriverDoNotStart()
+    [TestMethod]
+    public void OnVpnConnected_WhenDisabled_DoNotEnable()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Disabled
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Disabled
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
-        }
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
 
-        [TestMethod]
-        public void OnVpnConnected_WhenDisabled_DoNotEnable()
+        // Assert
+        _splitTunnelClient.Received(0);
+    }
+
+    [TestMethod]
+    public void OnVpnConnected_WhenPermitMode_EnableReversed()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Disabled
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Permit
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
 
-            // Assert
-            _splitTunnelClient.Received(0);
-        }
+        // Assert
+        _splitTunnelClient
+            .Received(1)
+            .EnableIncludeMode(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<string>());
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_WhenPermitMode_EnableReversed()
+    [TestMethod]
+    public void OnVpnConnected_PermitAppsOnBlockMode()
+    {
+        // Arrange
+        string[] apps = new[] { "app1", "app2", "app3" };
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Permit
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Block,
+            AppPaths = apps,
+            Ips = new string[] { },
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
+        // Act
+        splitTunnel.OnVpnConnected(GetConnectedVpnState());
 
-            // Assert
-            _splitTunnelClient
-                .Received(1)
-                .EnableIncludeMode(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<string>());
-        }
+        // Assert
+        _appFilter.Received(1).Add(apps, NetworkFilter.Action.SoftPermit);
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_PermitAppsOnBlockMode()
+    [TestMethod]
+    public void OnVpnConnecting_ShouldBlockApps_WhenModeIsPermit()
+    {
+        // Arrange
+        string[] apps = new[] { "app1", "app2", "app3" };
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            string[] apps = new[] { "app1", "app2", "app3" };
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block,
-                AppPaths = apps,
-                Ips = new string[] {},
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+            Mode = SplitTunnelModeIpcEntity.Permit,
+            AppPaths = apps
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel(true);
 
-            // Act
-            splitTunnel.OnVpnConnected(GetConnectedVpnState());
+        // Act
+        splitTunnel.OnVpnConnecting(GetConnectingVpnState());
 
-            // Assert
-            _appFilter.Received(1).Add(apps, NetworkFilter.Action.SoftPermit);
-        }
+        // Assert
+        _appFilter.Received(1).Add(apps, NetworkFilter.Action.SoftBlock);
+    }
 
-        [TestMethod]
-        public void OnVpnConnecting_ShouldBlockApps_WhenModeIsPermit()
+    [TestMethod]
+    public void OnVpnDisconnected_ManualDisconnect_ShouldDisable()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            string[] apps = new [] {"app1", "app2", "app3"};
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Permit,
-                AppPaths = apps
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel(true);
+            Mode = SplitTunnelModeIpcEntity.Block
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel(true);
 
-            // Act
-            splitTunnel.OnVpnConnecting(GetConnectingVpnState());
+        // Act
+        splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
 
-            // Assert
-            _appFilter.Received(1).Add(apps, NetworkFilter.Action.SoftBlock);
-        }
+        // Assert
+        _splitTunnelClient.Received(1).Disable();
+    }
 
-        [TestMethod]
-        public void OnVpnDisconnected_ManualDisconnect_ShouldDisable()
+    [TestMethod]
+    public void OnVpnDisconnected_ManualDisconnect_ShouldDisableReversed()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel(true);
+            Mode = SplitTunnelModeIpcEntity.Permit
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel(false, true);
 
-            // Act
-            splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
+        // Act
+        splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
 
-            // Assert
-            _splitTunnelClient.Received(1).Disable();
-        }
+        // Assert
+        _splitTunnelClient.Received(1).Disable();
+    }
 
-        [TestMethod]
-        public void OnVpnDisconnected_ManualDisconnect_ShouldDisableReversed()
+    [TestMethod]
+    public void OnVpnDisconnected_ManualDisconnect_ShouldStopCalloutDriver()
+    {
+        // Arrange
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Permit
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel(false, true);
+            Mode = SplitTunnelModeIpcEntity.Permit
+        });
+        SplitTunnel splitTunnel = GetSplitTunnel();
 
-            // Act
-            splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
+        // Act
+        splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
+    }
 
-            // Assert
-            _splitTunnelClient.Received(1).Disable();
-        }
+    private SplitTunnel GetSplitTunnel(bool enabled = false, bool reverseEnabled = false)
+    {
+        return new SplitTunnel(
+            enabled,
+            reverseEnabled,
+            _serviceSettings,
+            _splitTunnelClient,
+            _reverseSplitTunnelApps,
+            _appFilter,
+            _permittedRemoteAddress);
+    }
 
-        [TestMethod]
-        public void OnVpnDisconnected_ManualDisconnect_ShouldStopCalloutDriver()
-        {
-            // Arrange
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Permit
-            });
-            SplitTunnel splitTunnel = GetSplitTunnel();
+    private VpnState GetConnectedVpnState()
+    {
+        return new VpnState(
+            VpnStatus.Connected,
+            VpnError.None,
+            "1.1.1.1",
+            "2.2.2.2",
+            VpnProtocol.Smart);
+    }
 
-            // Act
-            splitTunnel.OnVpnDisconnected(GetDisconnectedVpnState(true));
-        }
+    private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)
+    {
+        return new VpnState(
+            VpnStatus.Disconnected,
+            manualDisconnect ? VpnError.None : VpnError.Unknown,
+            "1.1.1.1",
+            "2.2.2.2",
+            VpnProtocol.Smart);
+    }
 
-        private SplitTunnel GetSplitTunnel(bool enabled = false, bool reverseEnabled = false)
-        {
-            return new SplitTunnel(
-                enabled,
-                reverseEnabled,
-                _serviceSettings,
-                _splitTunnelClient,
-                _reverseSplitTunnelApps,
-                _appFilter,
-                _permittedRemoteAddress);
-        }
-
-        private VpnState GetConnectedVpnState()
-        {
-            return new VpnState(
-                VpnStatus.Connected,
-                VpnError.None,
-                "1.1.1.1",
-                "2.2.2.2",
-                VpnProtocol.Smart);
-        }
-
-        private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)
-        {
-            return new VpnState(
-                VpnStatus.Disconnected,
-                manualDisconnect ? VpnError.None : VpnError.Unknown,
-                "1.1.1.1",
-                "2.2.2.2",
-                VpnProtocol.Smart);
-        }
-
-        private VpnState GetConnectingVpnState()
-        {
-            return new VpnState(
-                VpnStatus.Disconnected,
-                VpnError.None,
-                "1.1.1.1",
-                "2.2.2.2",
-                VpnProtocol.Smart);
-        }
+    private VpnState GetConnectingVpnState()
+    {
+        return new VpnState(
+            VpnStatus.Disconnected,
+            VpnError.None,
+            "1.1.1.1",
+            "2.2.2.2",
+            VpnProtocol.Smart);
     }
 }

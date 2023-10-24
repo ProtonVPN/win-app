@@ -17,31 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FluentAssertions;
-using ProtonVPN.Common.Configuration;
+using NSubstitute;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
 
 public class LogBaseTest
 {
-    protected const string TmpPath = "BugReporting\\Diagnostic\\Tmp";
-    protected IConfiguration Config { get; private set; }
+    protected const string TMP_PATH = "BugReporting\\Diagnostic\\Tmp";
+    protected IStaticConfiguration? StaticConfig { get; private set; }
 
     [TestInitialize]
     public virtual void Initialize()
     {
-        if (Directory.Exists(TmpPath))
+        if (Directory.Exists(TMP_PATH))
         {
-            Directory.Delete(TmpPath, true);
+            Directory.Delete(TMP_PATH, true);
         }
 
-        Directory.CreateDirectory(TmpPath);
-        Config = new Config() { DiagnosticsLogFolder = TmpPath };
+        Directory.CreateDirectory(TMP_PATH);
+        StaticConfig = CreateStaticConfiguration();
+    }
+
+    private IStaticConfiguration CreateStaticConfiguration()
+    {
+        IStaticConfiguration staticConfig = Substitute.For<IStaticConfiguration>();
+        staticConfig.DiagnosticLogsFolder.Returns(TMP_PATH);
+        return staticConfig;
     }
 
     [TestCleanup]
     public virtual void Cleanup()
     {
-        Config = null;
+        StaticConfig = null;
     }
 }

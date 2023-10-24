@@ -18,34 +18,33 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Resolvers;
 using ProtonVPN.Dns.Tests.Mocks;
 
-namespace ProtonVPN.Dns.Tests.Resolvers
+namespace ProtonVPN.Dns.Tests.Resolvers;
+
+[TestClass]
+public class DnsOverHttpsResolverTest
+    : DnsOverHttpsResolverTestBase<DnsOverHttpsResolver>
 {
-    [TestClass]
-    public class DnsOverHttpsResolverTest
-        : DnsOverHttpsResolverTestBase<DnsOverHttpsResolver>
+    private const string HOST = "api.protonvpn.ch";
+
+    public DnsOverHttpsResolverTest() : base(HOST)
     {
-        private const string HOST = "api.protonvpn.ch";
+    }
 
-        public DnsOverHttpsResolverTest() : base(HOST)
-        {
-        }
+    protected override DnsOverHttpsResolver CreateResolver(IConfiguration configuration,
+        MockOfLogger logger, MockOfHttpClientFactory mockOfHttpClientFactory,
+        IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
+    {
+        return new DnsOverHttpsResolver(configuration, logger,
+            mockOfHttpClientFactory, dnsOverHttpsProvidersManager);
+    }
 
-        protected override DnsOverHttpsResolver CreateResolver(IConfiguration configuration,
-            MockOfLogger logger, MockOfHttpClientFactory mockOfHttpClientFactory,
-            IDnsOverHttpsProvidersManager dnsOverHttpsProvidersManager)
-        {
-            return new DnsOverHttpsResolver(configuration, logger,
-                mockOfHttpClientFactory, dnsOverHttpsProvidersManager);
-        }
-
-        protected override void AssertCorrectResponse(DnsResponse response)
-        {
-            Assert.IsTrue(response.IpAddresses.Count > 0);
-        }
+    protected override void AssertCorrectResponse(DnsResponse response)
+    {
+        Assert.IsTrue(response.IpAddresses.Count > 0);
     }
 }

@@ -23,65 +23,64 @@ using System.IO;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 
-namespace ProtonVPN.Update.Files.UpdatesDirectory
+namespace ProtonVPN.Update.Files.UpdatesDirectory;
+
+/// <summary>
+/// Represents directory of downloaded updates, performs cleanup of outdated downloads.
+/// </summary>
+internal class UpdatesDirectory : IUpdatesDirectory
 {
-    /// <summary>
-    /// Represents directory of downloaded updates, performs cleanup of outdated downloads.
-    /// </summary>
-    internal class UpdatesDirectory : IUpdatesDirectory
+    private readonly string _path;
+    private readonly Version _currentVersion;
+
+    public UpdatesDirectory(string path, Version currentVersion)
     {
-        private readonly string _path;
-        private readonly Version _currentVersion;
+        Ensure.NotEmpty(path, nameof(path));
 
-        public UpdatesDirectory(string path, Version currentVersion)
+        _path = path;
+        _currentVersion = currentVersion;
+    }
+
+    public string Path
+    {
+        get
         {
-            Ensure.NotEmpty(path, nameof(path));
-
-            _path = path;
-            _currentVersion = currentVersion;
+            Directory.CreateDirectory(_path);
+            return _path;
         }
+    }
 
-        public string Path
+    public void Cleanup()
+    {
+        string[] dirs = Directory.GetDirectories(_path);
+        foreach (string dir in dirs)
         {
-            get
+            Directory.Delete(dir, true);
+        }
+        DeleteOldFiles(_path, _currentVersion);
+    }
+
+    private static void DeleteOldFiles(string dir, Version currentVersion)
+    {
+        string[] files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly);
+        foreach (string file in files)
+        {
+            if (!IsExeFile(file) || FileVersion(file) < currentVersion)
             {
-                Directory.CreateDirectory(_path);
-                return _path;
+                File.Delete(file);
             }
         }
+    }
 
-        public void Cleanup()
-        {
-            string[] dirs = Directory.GetDirectories(_path);
-            foreach (string dir in dirs)
-            {
-                Directory.Delete(dir, true);
-            }
-            DeleteOldFiles(_path, _currentVersion);
-        }
+    private static bool IsExeFile(string path) =>
+        string.Equals(System.IO.Path.GetExtension(path), ".exe", StringComparison.OrdinalIgnoreCase);
 
-        private static void DeleteOldFiles(string dir, Version currentVersion)
-        {
-            string[] files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly);
-            foreach (string file in files)
-            {
-                if (!IsExeFile(file) || FileVersion(file) < currentVersion)
-                {
-                    File.Delete(file);
-                }
-            }
-        }
-
-        private static bool IsExeFile(string path) =>
-            string.Equals(System.IO.Path.GetExtension(path), ".exe", StringComparison.OrdinalIgnoreCase);
-
-        private static Version FileVersion(string path)
-        {
-            var info = FileVersionInfo.GetVersionInfo(path);
-            Version.TryParse(info.FileVersion, out var version);
-            return version != null 
-                ? version.Normalized() 
-                : new Version(0, 0, 0);
-        }
+    private static Version FileVersion(string path)
+    {
+        FileVersionInfo info = FileVersionInfo.GetVersionInfo(path);
+        Version.TryParse(info.FileVersion, out Version version);
+        return version != null
+            ? version.Truncate()
+            : new Version(0, 0, 0);
     }
 }

@@ -19,74 +19,73 @@
 
 using System;
 using System.Runtime.InteropServices;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
-namespace ProtonVPN.Vpn.NetworkAdapters
+namespace ProtonVPN.Vpn.NetworkAdapters;
+
+public class TapAdapter
 {
-    public class TapAdapter
+    private const string INSTALL_ACTIONS_DLL = "ProtonVPN.InstallActions.dll";
+    private IntPtr _libraryHandle;
+    private readonly IStaticConfiguration _staticConfig;
+    private readonly ILogger _logger;
+    private readonly Logger _nativeLogger;
+
+    public TapAdapter(IStaticConfiguration staticConfig, ILogger logger)
     {
-        private const string INSTALL_ACTIONS_DLL = "ProtonVPN.InstallActions.dll";
-        private IntPtr _libraryHandle;
-        private readonly IConfiguration _config;
-        private readonly ILogger _logger;
-        private readonly Logger _nativeLogger;
+        _staticConfig = staticConfig;
+        _logger = logger;
+        _nativeLogger = LogMessage;
+    }
 
-        public TapAdapter(IConfiguration config, ILogger logger)
+    public void Create()
+    {
+        if (InitializeLibrary())
         {
-            _config = config;
-            _logger = logger;
-            _nativeLogger = LogMessage;
-        }
-
-        public void Create()
-        {
-            if (InitializeLibrary())
+            ulong result = InstallTapAdapter(_staticConfig.OpenVpn.TapInstallerDir);
+            if (result != 0)
             {
-                ulong result = InstallTapAdapter(_config.OpenVpn.TapInstallerDir);
-                if (result != 0)
-                {
-                    _logger.Error<OperatingSystemLog>($"Failed to install TAP adapter. Error code: {result}");
-                }
+                _logger.Error<OperatingSystemLog>($"Failed to install TAP adapter. Error code: {result}");
             }
         }
+    }
 
-        private bool InitializeLibrary()
+    private bool InitializeLibrary()
+    {
+        if (_libraryHandle == IntPtr.Zero)
         {
+            _libraryHandle = LoadLibrary(_staticConfig.InstallActionsPath);
             if (_libraryHandle == IntPtr.Zero)
             {
-                _libraryHandle = LoadLibrary(_config.InstallActionsPath);
-                if (_libraryHandle == IntPtr.Zero)
-                {
-                    _logger.Error<OperatingSystemLog>($"Failed to initialize {_config.InstallActionsPath}. Error code: {GetLastError()}");
-                    return false;
-                }
-
-                InitLogger(_nativeLogger);
+                _logger.Error<OperatingSystemLog>($"Failed to initialize {_staticConfig.InstallActionsPath}. Error code: {GetLastError()}");
+                return false;
             }
 
-            return true;
+            InitLogger(_nativeLogger);
         }
 
-        private void LogMessage(IntPtr ptr)
-        {
-            string message = Marshal.PtrToStringAuto(ptr);
-            _logger.Info<OperatingSystemLog>(message);
-        }
-
-        private delegate void Logger(IntPtr messagePtr);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern IntPtr LoadLibrary(string path);
-
-        [DllImport("kernel32.dll")]
-        public static extern uint GetLastError();
-
-        [DllImport(INSTALL_ACTIONS_DLL, EntryPoint = "InstallTapAdapter", SetLastError = true)]
-        private static extern ulong InstallTapAdapter([MarshalAs(UnmanagedType.LPWStr)] string tapInstallerDir);
-
-        [DllImport(INSTALL_ACTIONS_DLL, EntryPoint = "InitLogger", SetLastError = true)]
-        private static extern ulong InitLogger(Logger logger);
+        return true;
     }
+
+    private void LogMessage(IntPtr ptr)
+    {
+        string message = Marshal.PtrToStringAuto(ptr);
+        _logger.Info<OperatingSystemLog>(message);
+    }
+
+    private delegate void Logger(IntPtr messagePtr);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    private static extern IntPtr LoadLibrary(string path);
+
+    [DllImport("kernel32.dll")]
+    public static extern uint GetLastError();
+
+    [DllImport(INSTALL_ACTIONS_DLL, EntryPoint = "InstallTapAdapter", SetLastError = true)]
+    private static extern ulong InstallTapAdapter([MarshalAs(UnmanagedType.LPWStr)] string tapInstallerDir);
+
+    [DllImport(INSTALL_ACTIONS_DLL, EntryPoint = "InitLogger", SetLastError = true)]
+    private static extern ulong InitLogger(Logger logger);
 }

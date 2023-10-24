@@ -22,99 +22,98 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ApiLogs;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Exceptions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
-namespace ProtonVPN.Api.Handlers
+namespace ProtonVPN.Api.Handlers;
+
+public class DnsHandler : DelegatingHandler
 {
-    public class DnsHandler : DelegatingHandler
+    private readonly ILogger _logger;
+    private readonly IDnsManager _dnsManager;
+
+    public DnsHandler(ILogger logger, IDnsManager dnsManager)
     {
-        private readonly ILogger _logger;
-        private readonly IDnsManager _dnsManager;
+        _logger = logger;
+        _dnsManager = dnsManager;
+    }
 
-        public DnsHandler(ILogger logger, IDnsManager dnsManager)
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        if (request.RequestUri.HostNameType == UriHostNameType.Dns)
         {
-            _logger = logger;
-            _dnsManager = dnsManager;
+            return await SendRequestToDomainAsync(request, cancellationToken);
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
-        {
-            if (request.RequestUri.HostNameType == UriHostNameType.Dns)
-            {
-                return await SendRequestToDomainAsync(request, cancellationToken);
-            }
+        return await SendRequestAsync(request, cancellationToken);
+    }
 
-            return await SendRequestAsync(request, cancellationToken);
-        }
-
-        private async Task<HttpResponseMessage> SendRequestToDomainAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
+    private async Task<HttpResponseMessage> SendRequestToDomainAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        IList<IpAddress> ipAddresses = await _dnsManager.GetAsync(request.RequestUri.IdnHost, cancellationToken);
+        if (!ipAddresses.IsNullOrEmpty())
         {
-            IList<IpAddress> ipAddresses = await _dnsManager.GetAsync(request.RequestUri.IdnHost, cancellationToken);
-            if (!ipAddresses.IsNullOrEmpty())
+            for (int i = 0; i < ipAddresses.Count; i++)
             {
-                for (int i = 0; i < ipAddresses.Count; i++)
+                try
                 {
-                    try
+                    HttpResponseMessage httpResponseMessage = await SendRequestToIpAddressAsync(
+                        ipAddresses[i], request, cancellationToken);
+                    return httpResponseMessage;
+                }
+                catch
+                {
+                    if (i + 1 == ipAddresses.Count)
                     {
-                        HttpResponseMessage httpResponseMessage = await SendRequestToIpAddressAsync(
-                            ipAddresses[i], request, cancellationToken);
-                        return httpResponseMessage;
-                    }
-                    catch
-                    {
-                        if (i + 1 == ipAddresses.Count)
-                        {
-                            throw;
-                        }
+                        throw;
                     }
                 }
             }
-            throw new DnsException($"No IP addresses to make the API request to '{request.RequestUri}'.");
         }
+        throw new DnsException($"No IP addresses to make the API request to '{request.RequestUri}'.");
+    }
 
-        private async Task<HttpResponseMessage> SendRequestToIpAddressAsync(IpAddress ipAddress,
-            HttpRequestMessage request, CancellationToken token)
+    private async Task<HttpResponseMessage> SendRequestToIpAddressAsync(IpAddress ipAddress,
+        HttpRequestMessage request, CancellationToken token)
+    {
+        Uri oldRequestUri = request.RequestUri;
+        SetRequestHost(request, ipAddress.ToString(), oldRequestUri);
+        HttpResponseMessage httpResponseMessage;
+        try
         {
-            Uri oldRequestUri = request.RequestUri;
-            SetRequestHost(request, ipAddress.ToString(), oldRequestUri);
-            HttpResponseMessage httpResponseMessage;
-            try
-            {
-                httpResponseMessage = await SendRequestAsync(request, token);
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<ApiErrorLog>($"API request '{request.RequestUri}' failed.", ex);
-                ResetRequestUri(request, oldRequestUri);
-                throw;
-            }
-            return httpResponseMessage;
+            httpResponseMessage = await SendRequestAsync(request, token);
         }
+        catch (Exception ex)
+        {
+            _logger.Error<ApiErrorLog>($"API request '{request.RequestUri}' failed.", ex);
+            ResetRequestUri(request, oldRequestUri);
+            throw;
+        }
+        return httpResponseMessage;
+    }
 
-        private void SetRequestHost(HttpRequestMessage request, string uriHost, Uri oldRequestUri)
-        {
-            UriBuilder uriBuilder = new(request.RequestUri) { Host = uriHost };
-            request.Headers.Host = oldRequestUri.Host;
-            request.RequestUri = uriBuilder.Uri;
-        }
+    private void SetRequestHost(HttpRequestMessage request, string uriHost, Uri oldRequestUri)
+    {
+        UriBuilder uriBuilder = new(request.RequestUri) { Host = uriHost };
+        request.Headers.Host = oldRequestUri.Host;
+        request.RequestUri = uriBuilder.Uri;
+    }
 
-        private void ResetRequestUri(HttpRequestMessage request, Uri uri)
-        {
-            UriBuilder uriBuilder = new(uri) { Host = uri.Host };
-            request.Headers.Host = uriBuilder.Host;
-            request.RequestUri = uriBuilder.Uri;
-        }
+    private void ResetRequestUri(HttpRequestMessage request, Uri uri)
+    {
+        UriBuilder uriBuilder = new(uri) { Host = uri.Host };
+        request.Headers.Host = uriBuilder.Host;
+        request.RequestUri = uriBuilder.Uri;
+    }
 
-        private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken token)
-        {
-            return await base.SendAsync(request, token);
-        }
+    private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken token)
+    {
+        return await base.SendAsync(request, token);
     }
 }

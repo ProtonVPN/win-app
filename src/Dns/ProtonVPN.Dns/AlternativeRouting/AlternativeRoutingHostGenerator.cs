@@ -19,37 +19,36 @@
 using System;
 using System.Text;
 using Albireo.Base32;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 
-namespace ProtonVPN.Dns.AlternativeRouting
+namespace ProtonVPN.Dns.AlternativeRouting;
+
+public class AlternativeRoutingHostGenerator : IAlternativeRoutingHostGenerator
 {
-    public class AlternativeRoutingHostGenerator : IAlternativeRoutingHostGenerator
+    private const string HOST_FORMAT = "d{0}.protonpro.xyz";
+
+    private Lazy<string> _baseHost;
+
+    public AlternativeRoutingHostGenerator(IConfiguration config)
     {
-        private const string HOST_FORMAT = "d{0}.protonpro.xyz";
+        _baseHost = new Lazy<string>(() => GenerateBaseHost(config.Urls.ApiUrl));
+    }
 
-        private Lazy<string> _baseHost;
+    private string GenerateBaseHost(string apiUrl)
+    {
+        string base32ApiUrl = CalculateBase32ApiUrl(apiUrl);
+        return string.Format(HOST_FORMAT, base32ApiUrl);
+    }
 
-        public AlternativeRoutingHostGenerator(IConfiguration configuration)
-        {
-            _baseHost = new Lazy<string>(() => GenerateBaseHost(configuration.Urls.ApiUrl));
-        }
+    private string CalculateBase32ApiUrl(string apiUrl)
+    {
+        Uri apiUri = new(apiUrl);
+        return Base32.Encode(Encoding.UTF8.GetBytes(apiUri.Host)).TrimEnd('=');
+    }
 
-        private string GenerateBaseHost(string apiUrl)
-        {
-            string base32ApiUrl = CalculateBase32ApiUrl(apiUrl);
-            return string.Format(HOST_FORMAT, base32ApiUrl);
-        }
-
-        private string CalculateBase32ApiUrl(string apiUrl)
-        {
-            Uri apiUri = new(apiUrl);
-            return Base32.Encode(Encoding.UTF8.GetBytes(apiUri.Host)).TrimEnd('=');
-        }
-
-        public string Generate(string uid)
-        {
-            return string.IsNullOrEmpty(uid) ? _baseHost.Value : $"{uid}.{_baseHost.Value}";
-        }
+    public string Generate(string uid)
+    {
+        return string.IsNullOrEmpty(uid) ? _baseHost.Value : $"{uid}.{_baseHost.Value}";
     }
 }

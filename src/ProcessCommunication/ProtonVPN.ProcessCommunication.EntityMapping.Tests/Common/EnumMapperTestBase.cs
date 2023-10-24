@@ -20,78 +20,77 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.EntityMapping.Contracts;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
+
+[TestClass]
+public abstract class EnumMapperTestBase<TLeft, TRight>
+    where TLeft : struct, Enum
+    where TRight : struct, Enum
 {
-    [TestClass]
-    public abstract class EnumMapperTestBase<TLeft, TRight>
-        where TLeft : struct, Enum
-        where TRight : struct, Enum
+    private IMapper<TLeft, TRight> _mapper;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private IMapper<TLeft, TRight> _mapper;
+        _mapper = CreateMapper();
+    }
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            _mapper = CreateMapper();
-        }
+    protected abstract IMapper<TLeft, TRight> CreateMapper();
 
-        protected abstract IMapper<TLeft, TRight> CreateMapper();
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _mapper = null;
+    }
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _mapper = null;
-        }
+    [TestMethod]
+    public void TestEnumsHaveEqualUnderlyingType()
+    {
+        Assert.AreEqual(
+            Enum.GetUnderlyingType(typeof(TLeft)),
+            Enum.GetUnderlyingType(typeof(TRight)));
+    }
 
-        [TestMethod]
-        public void TestEnumsHaveEqualUnderlyingType()
+    [TestMethod]
+    public void TestEnumsHaveEqualCount()
+    {
+        int count = Enum.GetValues<TLeft>().Count();
+        Assert.AreEqual(count, Enum.GetValues<TRight>().Count());
+        Assert.AreEqual(count, Enum.GetNames<TLeft>().Count());
+        Assert.AreEqual(count, Enum.GetNames<TRight>().Count());
+    }
+
+    [TestMethod]
+    public void TestEnumsHaveEqualValues()
+    {
+        List<TLeft> leftEntities = Enum.GetValues<TLeft>().ToList();
+        List<TRight> rightEntities = Enum.GetValues<TRight>().ToList();
+
+        for (int i = 0; i < leftEntities.Count; i++)
         {
             Assert.AreEqual(
-                Enum.GetUnderlyingType(typeof(TLeft)), 
-                Enum.GetUnderlyingType(typeof(TRight)));
+                GetValueAsUnderlyingType(leftEntities[i]),
+                GetValueAsUnderlyingType(rightEntities[i]));
+            Assert.AreEqual(rightEntities[i], _mapper.Map(leftEntities[i]));
+            Assert.AreEqual(leftEntities[i], _mapper.Map(rightEntities[i]));
         }
+    }
 
-        [TestMethod]
-        public void TestEnumsHaveEqualCount()
+    private object GetValueAsUnderlyingType<T>(T value)
+        where T : struct, Enum
+    {
+        return Convert.ChangeType(value, value.GetTypeCode());
+    }
+
+    [TestMethod]
+    public void TestEnumsHaveEqualNames()
+    {
+        List<string> leftEntitynames = Enum.GetNames<TLeft>().ToList();
+        List<string> rightEntityNames = Enum.GetNames<TRight>().ToList();
+
+        for (int i = 0; i < leftEntitynames.Count; i++)
         {
-            int count = Enum.GetValues<TLeft>().Count();
-            Assert.AreEqual(count, Enum.GetValues<TRight>().Count());
-            Assert.AreEqual(count, Enum.GetNames<TLeft>().Count());
-            Assert.AreEqual(count, Enum.GetNames<TRight>().Count());
-        }
-
-        [TestMethod]
-        public void TestEnumsHaveEqualValues()
-        {
-            List<TLeft> leftEntities = Enum.GetValues<TLeft>().ToList();
-            List<TRight> rightEntities = Enum.GetValues<TRight>().ToList();
-
-            for (int i = 0; i < leftEntities.Count; i++)
-            {
-                Assert.AreEqual(
-                    GetValueAsUnderlyingType(leftEntities[i]),
-                    GetValueAsUnderlyingType(rightEntities[i]));
-                Assert.AreEqual(rightEntities[i], _mapper.Map(leftEntities[i]));
-                Assert.AreEqual(leftEntities[i], _mapper.Map(rightEntities[i]));
-            }
-        }
-
-        private object GetValueAsUnderlyingType<T>(T value)
-            where T : struct, Enum
-        {
-            return Convert.ChangeType(value, value.GetTypeCode());
-        }
-
-        [TestMethod]
-        public void TestEnumsHaveEqualNames()
-        {
-            List<string> leftEntitynames = Enum.GetNames<TLeft>().ToList();
-            List<string> rightEntityNames = Enum.GetNames<TRight>().ToList();
-
-            for (int i = 0; i < leftEntitynames.Count; i++)
-            {
-                Assert.AreEqual(leftEntitynames[i], rightEntityNames[i]);
-            }
+            Assert.AreEqual(leftEntitynames[i], rightEntityNames[i]);
         }
     }
 }

@@ -21,64 +21,63 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.WireGuard;
 
-namespace ProtonVPN.Vpn.Tests.WireGuard
+namespace ProtonVPN.Vpn.Tests.WireGuard;
+
+[TestClass]
+public class WireGuardConnectionTest
 {
-    [TestClass]
-    public class WireGuardConnectionTest
+    [TestMethod]
+    public void ConnectShouldFireErrorEventWhenServerPublicKeyIsNullOrEmpty()
     {
-        [TestMethod]
-        public void ConnectShouldFireErrorEventWhenServerPublicKeyIsNullOrEmpty()
+        // Assert
+        WireGuardConnection wireGuardConnection = GetWireGuardConnection();
+        int timesFired = 0;
+
+        wireGuardConnection.StateChanged += (_, e) =>
         {
-            // Assert
-            WireGuardConnection wireGuardConnection = GetWireGuardConnection();
-            int timesFired = 0;
-
-            wireGuardConnection.StateChanged += (_, e) =>
+            if (e.Data.Status == VpnStatus.Disconnected && e.Data.Error == VpnError.MissingServerPublicKey)
             {
-                if (e.Data.Status == VpnStatus.Disconnected && e.Data.Error == VpnError.MissingServerPublicKey)
-                {
-                    timesFired++;
-                }
-            };
+                timesFired++;
+            }
+        };
 
-            // Act
-            wireGuardConnection.Connect(
-                new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null, signature: string.Empty), VpnProtocol.WireGuard),
-                new VpnCredentials("cert",
-                    new AsymmetricKeyPair(
-                        new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),
-                        new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown))),
-                new VpnConfig(new VpnConfigParameters()));
+        // Act
+        wireGuardConnection.Connect(
+            new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null, signature: string.Empty), VpnProtocol.WireGuardUdp),
+            new VpnCredentials("cert",
+                new AsymmetricKeyPair(
+                    new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),
+                    new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown))),
+            new VpnConfig(new VpnConfigParameters()));
 
-            // Assert
-            timesFired.Should().Be(1);
-        }
+        // Assert
+        timesFired.Should().Be(1);
+    }
 
-        private WireGuardConnection GetWireGuardConnection()
-        {
-            IConfiguration config = new ProtonVPN.Common.Configuration.Config
-            {
-                ServiceCheckInterval = TimeSpan.FromMilliseconds(1000)
-            };
-            ILogger logger = Substitute.For<ILogger>();
-            IGatewayCache gatewayCache = Substitute.For<IGatewayCache>();
-            IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
-            WireGuardService wireGuardService =
-                new(logger, new ProtonVPN.Common.Configuration.Config(), Substitute.For<IService>());
-            TrafficManager trafficManager = new("ProtonVPN", logger);
-            StatusManager statusManager = new(logger, string.Empty);
+    private WireGuardConnection GetWireGuardConnection()
+    {
+        IStaticConfiguration staticConfig = Substitute.For<IStaticConfiguration>();
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.ServiceCheckInterval.Returns(TimeSpan.FromMilliseconds(1000));
 
-            return new(logger, config, gatewayCache, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
-        }
+        ILogger logger = Substitute.For<ILogger>();
+        IGatewayCache gatewayCache = Substitute.For<IGatewayCache>();
+        IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
+        WireGuardService wireGuardService =
+            new(logger, staticConfig, Substitute.For<IService>());
+        TrafficManager trafficManager = new("ProtonVPN", logger);
+        StatusManager statusManager = new(logger, string.Empty);
+
+        return new(logger, config, gatewayCache, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
     }
 }

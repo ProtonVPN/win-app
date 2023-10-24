@@ -46,9 +46,9 @@ public class RoutingTableLogTest : LogBaseTest
     public void ItShouldCreateLogFile()
     {
         // Act
-        new RoutingTableLog(_osProcesses, Config).Write();
+        new RoutingTableLog(_osProcesses, StaticConfig).Write();
 
         // Assert
-        File.Exists(Path.Combine(TmpPath, "RoutingTable.txt")).Should().BeTrue();
+        File.Exists(Path.Combine(TMP_PATH, "RoutingTable.txt")).Should().BeTrue();
     }
 }

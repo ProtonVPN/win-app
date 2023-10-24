@@ -18,22 +18,21 @@
  */
 
 using System;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
-namespace ProtonVPN.Service.Settings
+namespace ProtonVPN.Service.Settings;
+
+public interface IServiceSettings
 {
-    public interface IServiceSettings
-    {
-        KillSwitchMode KillSwitchMode { get; }
-        SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
-        bool Ipv6LeakProtection { get; }
-        VpnProtocol VpnProtocol { get; }
-        OpenVpnAdapter OpenVpnAdapter { get; }
+    KillSwitchMode KillSwitchMode { get; }
+    SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
+    bool Ipv6LeakProtection { get; }
+    VpnProtocol VpnProtocol { get; }
+    OpenVpnAdapter OpenVpnAdapter { get; }
 
-        event EventHandler<MainSettingsIpcEntity> SettingsChanged;
+    event EventHandler<MainSettingsIpcEntity> SettingsChanged;
 
-        void Apply(MainSettingsIpcEntity settings);
-    }
+    void Apply(MainSettingsIpcEntity settings);
 }

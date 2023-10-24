@@ -22,78 +22,77 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
 
-namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments;
+
+[TestClass]
+public class BasicArgumentsTest
 {
-    [TestClass]
-    public class BasicArgumentsTest
+    private IOpenVpnConfigurations _openVpnConfig;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private OpenVpnConfig _config;
+        _openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _config = Substitute.For<OpenVpnConfig>();
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
+    {
+        // Arrange
+        BasicArguments subject = new(_openVpnConfig);
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
-        {
-            // Arrange
-            BasicArguments subject = new BasicArguments(_config);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().HaveCount(3);
+    }
 
-            // Assert
-            result.Should().HaveCount(3);
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ConfigOption()
+    {
+        const string configPath = @"C:\Program Files\Proton Technologies\ProtonVPN\Resources\config.ovpn";
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ConfigOption()
-        {
-            const string configPath = @"C:\Program Files\Proton Technologies\ProtonVPN\Resources\config.ovpn";
+        // Arrange
+        _openVpnConfig.ConfigPath.Returns(configPath);
+        BasicArguments subject = new(_openVpnConfig);
 
-            // Arrange
-            _config.ConfigPath = configPath;
-            BasicArguments subject = new BasicArguments(_config);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().Contain($"--config \"{configPath}\"");
+    }
 
-            // Assert
-            result.Should().Contain($"--config \"{configPath}\"");
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_SuppressTimestampsOption()
+    {
+        // Arrange
+        BasicArguments subject = new(_openVpnConfig);
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_SuppressTimestampsOption()
-        {
-            // Arrange
-            BasicArguments subject = new BasicArguments(_config);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().Contain("--suppress-timestamps");
+    }
 
-            // Assert
-            result.Should().Contain("--suppress-timestamps");
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ServiceOption()
+    {
+        const string exitEventName = "Exit-Event";
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ServiceOption()
-        {
-            const string exitEventName = "Exit-Event";
+        // Arrange
+        _openVpnConfig.ExitEventName.Returns(exitEventName);
+        BasicArguments subject = new(_openVpnConfig);
 
-            // Arrange
-            _config.ExitEventName = exitEventName;
-            BasicArguments subject = new BasicArguments(_config);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
-
-            // Assert
-            result.Should().Contain($"--service {exitEventName} 0");
-        }
+        // Assert
+        result.Should().Contain($"--service {exitEventName} 0");
     }
 }

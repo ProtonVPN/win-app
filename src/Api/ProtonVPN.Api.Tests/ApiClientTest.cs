@@ -26,7 +26,7 @@ using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using RichardSzalay.MockHttp;
 
@@ -62,7 +62,7 @@ public class ApiClientTest
         _apiHttpClientFactory.GetApiHttpClientWithoutCache().Returns(httpClient);
         _apiHttpClientFactory.GetApiHttpClientWithCache().Returns(httpClient);
 
-        IConfiguration config = new Config();
+        IConfiguration config = Substitute.For<IConfiguration>();
 
         _apiClient = new ApiClient(_apiHttpClientFactory, _logger, _appVersion, _appSettings, config);
     }

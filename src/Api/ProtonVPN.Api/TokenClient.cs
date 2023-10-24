@@ -25,8 +25,8 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 

@@ -20,73 +20,72 @@
 using System;
 using System.Collections.Generic;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Common.Vpn
+namespace ProtonVPN.Common.Vpn;
+
+public class VpnConfig
 {
-    public class VpnConfig
+    public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; }
+    public IReadOnlyCollection<string> CustomDns { get; }
+    public SplitTunnelMode SplitTunnelMode { get; }
+    public IReadOnlyCollection<string> SplitTunnelIPs { get; }
+    public OpenVpnAdapter OpenVpnAdapter { get; set; }
+    public VpnProtocol VpnProtocol { get; }
+    public IList<VpnProtocol> PreferredProtocols { get; }
+    public int NetShieldMode { get; }
+    public bool SplitTcp { get; }
+    public bool PortForwarding { get; }
+
+    public bool ModerateNat { get; }
+
+    public bool? AllowNonStandardPorts { get; }
+
+    public VpnConfig(VpnConfigParameters parameters)
     {
-        public IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> Ports { get; }
-        public IReadOnlyCollection<string> CustomDns { get; }
-        public SplitTunnelMode SplitTunnelMode { get; }
-        public IReadOnlyCollection<string> SplitTunnelIPs { get; }
-        public OpenVpnAdapter OpenVpnAdapter { get; set; }
-        public VpnProtocol VpnProtocol { get; }
-        public IList<VpnProtocol> PreferredProtocols { get; }
-        public int NetShieldMode { get; }
-        public bool SplitTcp { get; }
-        public bool PortForwarding { get; }
+        AssertPortsValid(parameters.Ports);
+        AssertCustomDnsValid(parameters.CustomDns);
 
-        public bool ModerateNat { get; }
+        Ports = parameters.Ports;
+        CustomDns = parameters.CustomDns ?? new List<string>();
+        SplitTunnelMode = parameters.SplitTunnelMode;
+        SplitTunnelIPs = parameters.SplitTunnelIPs ?? new List<string>();
+        OpenVpnAdapter = parameters.OpenVpnAdapter;
+        VpnProtocol = parameters.VpnProtocol;
+        PreferredProtocols = parameters.PreferredProtocols;
+        NetShieldMode = parameters.NetShieldMode;
+        SplitTcp = parameters.SplitTcp;
+        ModerateNat = parameters.ModerateNat;
+        AllowNonStandardPorts = parameters.AllowNonStandardPorts;
+        PortForwarding = parameters.PortForwarding;
+    }
 
-        public bool? AllowNonStandardPorts { get; }
-
-        public VpnConfig(VpnConfigParameters parameters)
+    private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)
+    {
+        foreach (KeyValuePair<VpnProtocol, IReadOnlyCollection<int>> item in ports)
         {
-            AssertPortsValid(parameters.Ports);
-            AssertCustomDnsValid(parameters.CustomDns);
-
-            Ports = parameters.Ports;
-            CustomDns = parameters.CustomDns ?? new List<string>();
-            SplitTunnelMode = parameters.SplitTunnelMode;
-            SplitTunnelIPs = parameters.SplitTunnelIPs ?? new List<string>();
-            OpenVpnAdapter = parameters.OpenVpnAdapter;
-            VpnProtocol = parameters.VpnProtocol;
-            PreferredProtocols = parameters.PreferredProtocols;
-            NetShieldMode = parameters.NetShieldMode;
-            SplitTcp = parameters.SplitTcp;
-            ModerateNat = parameters.ModerateNat;
-            AllowNonStandardPorts = parameters.AllowNonStandardPorts;
-            PortForwarding = parameters.PortForwarding;
-        }
-
-        private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)
-        {
-            foreach (KeyValuePair<VpnProtocol, IReadOnlyCollection<int>> item in ports)
+            foreach (int port in item.Value)
             {
-                foreach (int port in item.Value)
+                if (port < 1 || port > 65535)
                 {
-                    if (port < 1 || port > 65535)
-                    {
-                        throw new ArgumentException($"Invalid OpenVPN port: {port}");
-                    }
+                    throw new ArgumentException($"Invalid OpenVPN port: {port}");
                 }
             }
         }
+    }
 
-        private void AssertCustomDnsValid(IReadOnlyCollection<string> customDns)
+    private void AssertCustomDnsValid(IReadOnlyCollection<string> customDns)
+    {
+        if (customDns == null)
         {
-            if (customDns == null)
-            {
-                return;
-            }
+            return;
+        }
 
-            foreach (string dns in customDns)
+        foreach (string dns in customDns)
+        {
+            if (!dns.IsValidIpAddress())
             {
-                if (!dns.IsValidIpAddress())
-                {
-                    throw new ArgumentException($"Invalid DNS address: {dns}");
-                }
+                throw new ArgumentException($"Invalid DNS address: {dns}");
             }
         }
     }

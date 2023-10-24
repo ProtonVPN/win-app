@@ -21,137 +21,136 @@ using System;
 using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Service
+namespace ProtonVPN.Service;
+
+internal partial class VpnService : ServiceBase
 {
-    internal partial class VpnService : ServiceBase
+    public CancellationToken CancellationToken { get; private set; }
+
+    private readonly CancellationTokenSource _cancellationTokenSource;
+    private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
+    private readonly IStaticConfiguration _staticConfig;
+    private readonly IOsProcesses _osProcesses;
+    private readonly IVpnConnection _vpnConnection;
+    private readonly Ipv6 _ipv6;
+    private bool _isConnected;
+    private IGrpcServer _grpcServer;
+
+    public VpnService(
+        ILogger logger,
+        IIssueReporter issueReporter,
+        IStaticConfiguration staticConfig,
+        IOsProcesses osProcesses,
+        IVpnConnection vpnConnection,
+        Ipv6 ipv6,
+        IGrpcServer grpcServer)
     {
-        public CancellationToken CancellationToken { get; private set; }
+        _logger = logger;
+        _issueReporter = issueReporter;
+        _staticConfig = staticConfig;
+        _osProcesses = osProcesses;
+        _vpnConnection = vpnConnection;
+        _ipv6 = ipv6;
+        _grpcServer = grpcServer;
+        _vpnConnection.StateChanged += OnVpnStateChanged;
 
-        private readonly CancellationTokenSource _cancellationTokenSource;
-        private readonly ILogger _logger;
-        private readonly IIssueReporter _issueReporter;
-        private readonly IConfiguration _config;
-        private readonly IOsProcesses _osProcesses;
-        private readonly IVpnConnection _vpnConnection;
-        private readonly Ipv6 _ipv6;
-        private bool _isConnected;
-        private IGrpcServer _grpcServer;
+        _cancellationTokenSource = new CancellationTokenSource();
+        CancellationToken = _cancellationTokenSource.Token;
 
-        public VpnService(
-            ILogger logger,
-            IIssueReporter issueReporter,
-            IConfiguration config,
-            IOsProcesses osProcesses,
-            IVpnConnection vpnConnection,
-            Ipv6 ipv6,
-            IGrpcServer grpcServer)
+        InitializeComponent();
+    }
+
+    protected override void OnStart(string[] args)
+    {
+        try
         {
-            _logger = logger;
-            _issueReporter = issueReporter;
-            _config = config;
-            _osProcesses = osProcesses;
-            _vpnConnection = vpnConnection;
-            _ipv6 = ipv6;
-            _grpcServer = grpcServer;
-            _vpnConnection.StateChanged += OnVpnStateChanged;
+            _grpcServer.CreateAndStart();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<AppServiceStartFailedLog>("An error occurred when starting VPN Service.", ex);
+            LogEvent($"OnStart: {ex}");
+            _issueReporter.CaptureError(ex);
+        }
+    }
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken = _cancellationTokenSource.Token;
+    protected override async void OnStop()
+    {
+        try
+        {
+            _logger.Info<AppServiceStopLog>("Service is stopping");
+            LogEvent("Service is stopping");
 
-            InitializeComponent();
+            _vpnConnection.Disconnect();
+            StopWireGuardService();
+
+            if (!_ipv6.Enabled)
+            {
+                _ipv6.Enable();
+            }
+
+            await _grpcServer?.KillAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<AppServiceStopFailedLog>("An error occurred when stopping VPN Service.", ex);
+            LogEvent($"OnStop: {ex}");
+            _issueReporter.CaptureError(ex);
+        }
+        finally
+        {
+            _cancellationTokenSource.Cancel();
+        }
+    }
+
+    protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
+    {
+        _logger.Info<OperatingSystemLog>($"Power status changed to {powerStatus}");
+        if (powerStatus == PowerBroadcastStatus.ResumeSuspend && _isConnected)
+        {
+            _logger.Info<ConnectionLog>("Disconnecting due to resume from sleep.");
+            _vpnConnection.Disconnect(VpnError.Unknown);
         }
 
-        protected override void OnStart(string[] args)
+        return true;
+    }
+
+    private void StopWireGuardService()
+    {
+        SystemService wireGuardService = new(_staticConfig.WireGuard.ServiceName, _osProcesses);
+        if (wireGuardService.Running())
         {
-            try
-            {
-                _grpcServer.CreateAndStart();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<AppServiceStartFailedLog>("An error occurred when starting VPN Service.", ex);
-                LogEvent($"OnStart: {ex}");
-                _issueReporter.CaptureError(ex);
-            }
+            wireGuardService.StopAsync(new CancellationToken()).Wait();
         }
+    }
 
-        protected override async void OnStop()
+    private void LogEvent(string message)
+    {
+        try
         {
-            try
-            {
-                _logger.Info<AppServiceStopLog>("Service is stopping");
-                LogEvent("Service is stopping");
-
-                _vpnConnection.Disconnect();
-                StopWireGuardService();
-
-                if (!_ipv6.Enabled)
-                {
-                    _ipv6.Enable();
-                }
-
-                await _grpcServer?.KillAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<AppServiceStopFailedLog>("An error occurred when stopping VPN Service.", ex);
-                LogEvent($"OnStop: {ex}");
-                _issueReporter.CaptureError(ex);
-            }
-            finally
-            {
-                _cancellationTokenSource.Cancel();
-            }
+            EventLog.WriteEntry(message.Replace('%', '_'));
         }
-
-        protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
+        catch (Exception e) when (e is InvalidOperationException or Win32Exception)
         {
-            _logger.Info<OperatingSystemLog>($"Power status changed to {powerStatus}");
-            if (powerStatus == PowerBroadcastStatus.ResumeSuspend && _isConnected)
-            {
-                _logger.Info<ConnectionLog>("Disconnecting due to resume from sleep.");
-                _vpnConnection.Disconnect(VpnError.Unknown);
-            }
-
-            return true;
         }
+    }
 
-        private void StopWireGuardService()
-        {
-            SystemService wireGuardService = new(_config.WireGuard.ServiceName, _osProcesses);
-            if (wireGuardService.Running())
-            {
-                wireGuardService.StopAsync(new CancellationToken()).Wait();
-            }
-        }
-
-        private void LogEvent(string message)
-        {
-            try
-            {
-                EventLog.WriteEntry(message.Replace('%', '_'));
-            }
-            catch (Exception e) when (e is InvalidOperationException or Win32Exception)
-            {
-            }
-        }
-
-        private void OnVpnStateChanged(object sender, Common.EventArgs<VpnState> e)
-        {
-            _isConnected = e.Data.Status == VpnStatus.Connected;
-        }
+    private void OnVpnStateChanged(object sender, Common.EventArgs<VpnState> e)
+    {
+        _isConnected = e.Data.Status == VpnStatus.Connected;
     }
 }

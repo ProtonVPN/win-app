@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
@@ -42,8 +42,8 @@ public class NetworkAdapterLog : LogBase
         }
     }
 
-    public NetworkAdapterLog(INetworkInterfaces networkInterfaces, IConfiguration config)
-        : base(config.DiagnosticsLogFolder, "NetworkAdapters.txt")
+    public NetworkAdapterLog(INetworkInterfaces networkInterfaces, IStaticConfiguration config)
+        : base(config.DiagnosticLogsFolder, "NetworkAdapters.txt")
     {
         _networkInterfaces = networkInterfaces;
     }

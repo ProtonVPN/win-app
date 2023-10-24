@@ -59,6 +59,12 @@ public class JsonSerializer : IJsonSerializer
         return JsonConvert.SerializeObject(value, _prettySerializationSettings);
     }
 
+    public void Serialize<T>(T value, TextWriter writer)
+    {
+        using JsonTextWriter jsonWriter = new(writer);
+        _serializer.Serialize(jsonWriter, value);
+    }
+
     public T? Deserialize<T>(string value)
     {
         return JsonConvert.DeserializeObject<T>(value);
@@ -70,9 +76,8 @@ public class JsonSerializer : IJsonSerializer
         return _serializer.Deserialize<T>(jsonReader);
     }
 
-    public void Serialize<T>(T value, TextWriter writer)
+    public object? Deserialize(string value, Type type)
     {
-        using JsonTextWriter jsonWriter = new(writer);
-        _serializer.Serialize(jsonWriter, value);
+        return JsonConvert.DeserializeObject(value, type);
     }
 }

@@ -17,227 +17,48 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Configurations.Contracts.Entities;
+
 namespace ProtonVPN.Configurations.Contracts;
 
-public interface IConfiguration
+public interface IConfiguration : IStaticConfiguration
 {
-
-    //[Required]
-    //string AppName { get; set; }
-
-    //[Required]
-    //string AppVersion { get; set; }
-
-    //[Required]
-    //string AppExePath { get; set; }
-
-    //[Required]
-    //string AppLauncherExePath { get; set; }
-
-    //[Required]
-    //string AppLogFolder { get; set; }
-
-    //[Required]
-    //string AppLogDefaultFullFilePath { get; set; }
-
-    //[Required]
-    //string DiagnosticsLogFolder { get; set; }
-
-    //[Required]
-    //string DiagnosticsZipPath { get; set; }
-
-    //[Required]
-    //string TranslationsFolder { get; set; }
-
-    //[Required]
-    //string ServiceExePath { get; set; }
-
-    //[Required]
-    //string ServiceSettingsFilePath { get; set; }
-
-    //[Required]
-    //string ServersJsonCacheFilePath { get; set; }
-
-    //[Required]
-    //string GuestHoleServersJsonFilePath { get; set; }
-
-    //[Required]
-    //string StreamingServicesFilePath { get; set; }
-
-    //[Required]
-    //string PartnersFilePath { get; set; }
-
-    //[Required]
-    //string ServiceLogFolder { get; set; }
-
-    //[Required]
-    //string ServiceLogDefaultFullFilePath { get; set; }
-
-    //[Required]
-    //string UpdateFilePath { get; set; }
-
-    //[Required]
-    //string UpdatesPath { get; set; }
-
-    //[Required]
-    //string CalloutServiceName { get; set; }
-
-    //[Required]
-    //string LocalAppDataFolder { get; set; }
-
-    //[Required]
-    //public string ImageCacheFolder { get; set; }
-
-    //[Range(1, 100)]
-    //int MaxAppLogsAttached { get; set; }
-
-    //[Range(1, 100)]
-    //int MaxDiagnosticLogsAttached { get; set; }
-
-    //[Range(1, 100)]
-    //int MaxServiceLogsAttached { get; set; }
-
-    //[Required]
-    //string ApiClientId { get; set; }
-
-    //[Required]
-    //string ApiVersion { get; set; }
-
-    //[Required]
-    //string UserAgent { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "00:05:00")]
-    //TimeSpan ApiTimeout { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "00:05:00")]
-    //TimeSpan ApiUploadTimeout { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "00:01:00")]
-    //TimeSpan DohClientTimeout { get; set; }
-
-    //[Range(0, 5)]
-    //int ApiRetries { get; set; }
-
-    //[Required]
-    //int MaxGuestHoleRetries { get; set; }
-
-    //[Required]
-    //string GuestHoleVpnUsername { get; set; }
-
-    //[Required]
-    //string GuestHoleVpnPassword { get; set; }
-
-    //[Required]
-    //string VpnUsernameSuffix { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "10:00:00:00")]
-    //TimeSpan UpdateCheckInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "10.00:00:00")]
-    //TimeSpan UpdateRemindInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan ServerUpdateInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan StreamingServicesUpdateInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan PartnersUpdateInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan AnnouncementUpdateInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan ServerLoadUpdateInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan ClientConfigUpdateInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan P2PCheckInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan VpnInfoCheckInterval { get; set; }
-
-    //[Required]
-    //string DefaultCurrency { get; set; }
-
-    //[Range(1, 200)]
-    //int ReportBugMaxFiles { get; set; }
-
-    //[Range(1, int.MaxValue)]
-    //long ReportBugMaxFileSize { get; set; }
-
-    //[Range(1, 255)]
-    //int MaxProfileNameLength { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan EventCheckInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan ServiceCheckInterval { get; set; }
-
-    //[Required]
-    //int[] DefaultOpenVpnUdpPorts { get; set; }
-
-    //[Required]
-    //int[] DefaultOpenVpnTcpPorts { get; set; }
-
-    //[Required]
-    //int[] DefaultWireGuardPorts { get; set; }
-
-    //UrlConfig Urls { get; }
-
-    //OpenVpnConfig OpenVpn { get; }
-
-    //WireGuardConfig WireGuard { get; }
-
-    //TlsPinningConfig TlsPinningConfig { get; set; }
-
-    //List<string> DoHProviders { get; set; }
-
-    //[Required]
-    //string DefaultLocale { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:00", "23:59:59")]
-    //TimeSpan MaintenanceCheckInterval { get; set; }
-
-    //int? MaxQuickConnectServersOnReconnection { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
-    //TimeSpan AuthCertificateUpdateInterval { get; set; }
-
-    //string NtpServerUrl { get; set; }
-
-    //string ServerValidationPublicKey { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan FailedDnsRequestTimeout { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan DnsResolveTimeout { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan DnsOverHttpsPerProviderTimeout { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan NewCacheTimeToLiveOnResolveError { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan DefaultDnsTimeToLive { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan AlternativeRoutingCheckInterval { get; set; }
-
-    //[Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
-    //TimeSpan NetShieldStatisticRequestInterval { get; set; }
-
-    //public string AutoLoginBaseUrl { get; set; }
-
-    //public string WintunDriverPath { get; set; }
-    //public string WintunAdapterName { get; set; }
-    //public string InstallActionsPath { get; set; }
-
-    //public bool IsCertificateValidationDisabled { get; set; }
+    string ClientVersion { get; }
+    string ApiClientId { get; }
+    string UserAgent { get; }
+    string ApiVersion { get; }
+    string ServerValidationPublicKey { get; }
+
+    string GuestHoleVpnUsername { get; }
+    string GuestHoleVpnPassword { get; }
+    string VpnUsernameSuffix { get; }
+
+    long BugReportingMaxFileSize { get; }
+    int MaxClientLogsAttached { get; }
+    int MaxServiceLogsAttached { get; }
+    int MaxDiagnosticLogsAttached { get; }
+
+    int ApiRetries { get; }
+    int MaxGuestHoleRetries { get; }
+
+    bool IsCertificateValidationEnabled { get; }
+
+    TimeSpan ServiceCheckInterval { get; }
+    TimeSpan ClientConfigUpdateInterval { get; }
+    TimeSpan AuthCertificateUpdateInterval { get; }
+    TimeSpan ServerUpdateInterval { get; }
+    TimeSpan AnnouncementUpdateInterval { get; }
+    TimeSpan AlternativeRoutingCheckInterval { get; }
+    TimeSpan ApiUploadTimeout { get; }
+    TimeSpan ApiTimeout { get; }
+    TimeSpan FailedDnsRequestTimeout { get; }
+    TimeSpan NewCacheTimeToLiveOnResolveError { get; }
+    TimeSpan DnsResolveTimeout { get; }
+    TimeSpan DefaultDnsTimeToLive { get; }
+    TimeSpan DnsOverHttpsPerProviderTimeout { get; }
+    TimeSpan DohClientTimeout { get; }
+
+    IList<string> DohProviders { get; }
+    IUrlsConfiguration Urls { get; }
+    ITlsPinningConfiguration TlsPinning { get; }
 }

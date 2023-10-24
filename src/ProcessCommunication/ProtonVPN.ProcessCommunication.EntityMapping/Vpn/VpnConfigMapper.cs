@@ -18,75 +18,74 @@
  */
 
 using ProtonVPN.Common;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+
+public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
 {
-    public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public VpnConfigMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public VpnConfigMapper(IEntityMapper entityMapper)
+    public VpnConfigIpcEntity Map(VpnConfig leftEntity)
+    {
+        if (leftEntity is null)
         {
-            _entityMapper = entityMapper;
+            throw new ArgumentNullException(nameof(VpnConfig),
+                $"The {nameof(VpnConfig)} parameter cannot be mapped from null to {nameof(VpnConfigIpcEntity)}.");
         }
+        Dictionary<VpnProtocolIpcEntity, int[]> portConfig = leftEntity.Ports.ToDictionary(
+            p => _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(p.Key),
+            p => p.Value.ToArray());
 
-        public VpnConfigIpcEntity Map(VpnConfig leftEntity)
+        return new VpnConfigIpcEntity
         {
-            if (leftEntity is null)
-            {
-                throw new ArgumentNullException(nameof(VpnConfig),
-                    $"The {nameof(VpnConfig)} parameter cannot be mapped from null to {nameof(VpnConfigIpcEntity)}.");
-            }
-            Dictionary<VpnProtocolIpcEntity, int[]> portConfig = leftEntity.Ports.ToDictionary(
-                p => _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(p.Key),
-                p => p.Value.ToArray());
+            Ports = portConfig,
+            CustomDns = leftEntity.CustomDns.ToList(),
+            AllowNonStandardPorts = leftEntity.AllowNonStandardPorts,
+            SplitTunnelMode = _entityMapper.Map<SplitTunnelMode, SplitTunnelModeIpcEntity>(leftEntity.SplitTunnelMode),
+            SplitTunnelIPs = leftEntity.SplitTunnelIPs.ToList(),
+            NetShieldMode = leftEntity.NetShieldMode,
+            VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.VpnProtocol),
+            ModerateNat = leftEntity.ModerateNat,
+            PreferredProtocols = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.PreferredProtocols),
+            SplitTcp = leftEntity.SplitTcp,
+            PortForwarding = leftEntity.PortForwarding,
+        };
+    }
 
-            return new VpnConfigIpcEntity
+    public VpnConfig Map(VpnConfigIpcEntity rightEntity)
+    {
+        if (rightEntity is null)
+        {
+            throw new ArgumentNullException(nameof(VpnConfigIpcEntity),
+                $"The {nameof(VpnConfigIpcEntity)} parameter cannot be mapped from null to {nameof(VpnConfig)}.");
+        }
+        Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = rightEntity.Ports.ToDictionary(
+            p => _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(p.Key),
+            p => (IReadOnlyCollection<int>)p.Value.ToList());
+
+        return new VpnConfig(
+            new VpnConfigParameters
             {
                 Ports = portConfig,
-                CustomDns = leftEntity.CustomDns.ToList(),
-                AllowNonStandardPorts = leftEntity.AllowNonStandardPorts,
-                SplitTunnelMode = _entityMapper.Map<SplitTunnelMode, SplitTunnelModeIpcEntity>(leftEntity.SplitTunnelMode),
-                SplitTunnelIPs = leftEntity.SplitTunnelIPs.ToList(),
-                NetShieldMode = leftEntity.NetShieldMode,
-                VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.VpnProtocol),
-                ModerateNat = leftEntity.ModerateNat,
-                PreferredProtocols = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.PreferredProtocols),
-                SplitTcp = leftEntity.SplitTcp,
-                PortForwarding = leftEntity.PortForwarding,
-            };
-        }
-
-        public VpnConfig Map(VpnConfigIpcEntity rightEntity)
-        {
-            if (rightEntity is null)
-            {
-                throw new ArgumentNullException(nameof(VpnConfigIpcEntity),
-                    $"The {nameof(VpnConfigIpcEntity)} parameter cannot be mapped from null to {nameof(VpnConfig)}.");
-            }
-            Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = rightEntity.Ports.ToDictionary(
-                p => _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(p.Key),
-                p => (IReadOnlyCollection<int>)p.Value.ToList());
-
-            return new VpnConfig(
-                new VpnConfigParameters
-                {
-                    Ports = portConfig,
-                    CustomDns = rightEntity.CustomDns,
-                    SplitTunnelMode = _entityMapper.Map<SplitTunnelModeIpcEntity, SplitTunnelMode>(rightEntity.SplitTunnelMode),
-                    SplitTunnelIPs = rightEntity.SplitTunnelIPs,
-                    VpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.VpnProtocol),
-                    PreferredProtocols = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.PreferredProtocols),
-                    ModerateNat = rightEntity.ModerateNat,
-                    NetShieldMode = rightEntity.NetShieldMode,
-                    SplitTcp = rightEntity.SplitTcp,
-                    AllowNonStandardPorts = rightEntity.AllowNonStandardPorts,
-                    PortForwarding = rightEntity.PortForwarding,
-                });
-        }
+                CustomDns = rightEntity.CustomDns,
+                SplitTunnelMode = _entityMapper.Map<SplitTunnelModeIpcEntity, SplitTunnelMode>(rightEntity.SplitTunnelMode),
+                SplitTunnelIPs = rightEntity.SplitTunnelIPs,
+                VpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.VpnProtocol),
+                PreferredProtocols = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.PreferredProtocols),
+                ModerateNat = rightEntity.ModerateNat,
+                NetShieldMode = rightEntity.NetShieldMode,
+                SplitTcp = rightEntity.SplitTcp,
+                AllowNonStandardPorts = rightEntity.AllowNonStandardPorts,
+                PortForwarding = rightEntity.PortForwarding,
+            });
     }
 }

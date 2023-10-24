@@ -117,4 +117,31 @@ public class ConfigurationRepository : IConfigurationRepository
         }
         return _jsonSerializer.Deserialize<T>(json);
     }
+
+    public object? GetByType(Type type, [CallerMemberName] string propertyName = "")
+    {
+        try
+        {
+            string? json = Get(propertyName);
+            return json is null ? null : Deserialize(json, type);
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<SettingsLog>($"Failed to read the configuration '{propertyName}'.", ex);
+            return null;
+        }
+    }
+
+    private object? Deserialize(string json, Type type)
+    {
+        if (type == typeof(string))
+        {
+            return json;
+        }
+        if (type.IsEnum && Enum.TryParse(type, json, out dynamic? result))
+        {
+            return result;
+        }
+        return _jsonSerializer.Deserialize(json, type);
+    }
 }

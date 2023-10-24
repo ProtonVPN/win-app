@@ -24,15 +24,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Go;
+using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
-using ProtonVPN.Common.Networking;
-using ProtonVPN.Common.Threading;
-using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Config;
 using ProtonVPN.Vpn.Gateways;
@@ -41,383 +40,382 @@ using ProtonVPN.Vpn.LocalAgent.Contracts;
 using ProtonVPN.Vpn.SplitTunnel;
 using PInvoke = ProtonVPN.Vpn.LocalAgent.PInvoke;
 
-namespace ProtonVPN.Vpn.Connection
+namespace ProtonVPN.Vpn.Connection;
+
+internal class LocalAgentWrapper : ISingleVpnConnection
 {
-    internal class LocalAgentWrapper : ISingleVpnConnection
+    private const int MINIMUM_NETSHIELD_STATS_TIMEOUT_IN_SECONDS = 20;
+    private const int DEFAULT_PORT = 65432;
+    private const int CONNECT_TIMEOUT = 10000;
+
+    private readonly ILogger _logger;
+    private readonly EventReceiver _eventReceiver;
+    private readonly SplitTunnelRouting _splitTunnelRouting;
+    private readonly IGatewayCache _gatewayCache;
+    private readonly IAdapterSingleVpnConnection _origin;
+    private readonly ISingleAction _timeoutAction;
+    private readonly List<VpnError> _avoidDisconnectOnErrors = new()
     {
-        private const int MINIMUM_NETSHIELD_STATS_TIMEOUT_IN_SECONDS = 20;
-        private const int DEFAULT_PORT = 65432;
-        private const int CONNECT_TIMEOUT = 10000;
+        VpnError.UnableToVerifyCert,
+        VpnError.CertificateNotYetProvided,
+    };
 
-        private readonly ILogger _logger;
-        private readonly EventReceiver _eventReceiver;
-        private readonly SplitTunnelRouting _splitTunnelRouting;
-        private readonly IGatewayCache _gatewayCache;
-        private readonly IAdapterSingleVpnConnection _origin;
-        private readonly ISingleAction _timeoutAction;
-        private readonly List<VpnError> _avoidDisconnectOnErrors = new()
+    private VpnStatus _currentStatus;
+    private VpnEndpoint _endpoint;
+    private VpnCredentials _credentials;
+    private VpnConfig _vpnConfig;
+    private bool _isTlsChannelActive;
+    private bool _isConnectRequested;
+    private bool _tlsConnected;
+    private EventArgs<VpnState> _vpnState;
+    private string _clientCertPem = string.Empty;
+    private string _localIp = string.Empty;
+    private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
+
+    public LocalAgentWrapper(
+        ILogger logger,
+        EventReceiver eventReceiver,
+        SplitTunnelRouting splitTunnelRouting,
+        IGatewayCache gatewayCache,
+        IAdapterSingleVpnConnection origin)
+    {
+        _logger = logger;
+        _eventReceiver = eventReceiver;
+        _splitTunnelRouting = splitTunnelRouting;
+        _gatewayCache = gatewayCache;
+        _origin = origin;
+        origin.StateChanged += OnVpnStateChanged;
+        eventReceiver.StateChanged += OnLocalAgentStateChanged;
+        eventReceiver.ErrorOccurred += OnLocalAgentErrorOccurred;
+        _timeoutAction = new SingleAction(TimeoutAction);
+        _timeoutAction.Completed += OnTimeoutActionCompleted;
+    }
+
+    public event EventHandler<EventArgs<VpnState>> StateChanged;
+    public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+    {
+        add => _eventReceiver.ConnectionDetailsChanged += value;
+        remove => _eventReceiver.ConnectionDetailsChanged -= value;
+    }
+
+    public InOutBytes Total => _origin.Total;
+
+    public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+    {
+        _logger.Info<LocalAgentLog>("Connect action started");
+        _isConnectRequested = true;
+        _endpoint = endpoint;
+        _credentials = credentials;
+        _vpnConfig = config;
+        _clientCertPem = credentials.ClientCertPem;
+        _origin.Connect(endpoint, credentials, config);
+    }
+
+    public void Disconnect(VpnError error)
+    {
+        _logger.Info<LocalAgentLog>("Disconnect action started");
+        StopTimeoutAction();
+        _eventReceiver.Stop();
+        CloseTlsChannel();
+        _origin.Disconnect(error);
+    }
+
+    public void SetFeatures(VpnFeatures vpnFeatures)
+    {
+        if (!_isTlsChannelActive)
         {
-            VpnError.UnableToVerifyCert,
-            VpnError.CertificateNotYetProvided,
+            return;
+        }
+
+        UpdateVpnConfig(vpnFeatures);
+        using GoString goFeatures = GetFeatures(vpnFeatures).ToGoString();
+        PInvoke.SetFeatures(goFeatures);
+    }
+
+    private void UpdateVpnConfig(VpnFeatures vpnFeatures)
+    {
+        if (_vpnConfig != null)
+        {
+            _vpnConfig = new VpnConfig(CreateVpnConfigParameters(vpnFeatures));
+        }
+    }
+
+    private VpnConfigParameters CreateVpnConfigParameters(VpnFeatures vpnFeatures)
+    {
+        return new()
+        {
+            Ports = _vpnConfig.Ports,
+            CustomDns = _vpnConfig.CustomDns,
+            SplitTunnelMode = _vpnConfig.SplitTunnelMode,
+            SplitTunnelIPs = _vpnConfig.SplitTunnelIPs,
+            OpenVpnAdapter = _vpnConfig.OpenVpnAdapter,
+            VpnProtocol = _vpnConfig.VpnProtocol,
+            PreferredProtocols = _vpnConfig.PreferredProtocols,
+            NetShieldMode = vpnFeatures.NetShieldMode,
+            SplitTcp = vpnFeatures.SplitTcp,
+            PortForwarding = vpnFeatures.PortForwarding
         };
+    }
 
-        private VpnStatus _currentStatus;
-        private VpnEndpoint _endpoint;
-        private VpnCredentials _credentials;
-        private VpnConfig _vpnConfig;
-        private bool _isTlsChannelActive;
-        private bool _isConnectRequested;
-        private bool _tlsConnected;
-        private EventArgs<VpnState> _vpnState;
-        private string _clientCertPem = string.Empty;
-        private string _localIp = string.Empty;
-        private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
+    public void UpdateAuthCertificate(string certificate)
+    {
+        _clientCertPem = certificate;
+        _logger.Info<LocalAgentLog>("Client certificate updated. Closing existing TLS channel and reconnecting.");
+        _eventReceiver.Stop();
+        CloseTlsChannel();
+        ConnectToTlsChannel();
+    }
 
-        public LocalAgentWrapper(
-            ILogger logger,
-            EventReceiver eventReceiver,
-            SplitTunnelRouting splitTunnelRouting,
-            IGatewayCache gatewayCache,
-            IAdapterSingleVpnConnection origin)
+    private async Task TimeoutAction(CancellationToken cancellationToken)
+    {
+        await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
+
+        if (!_tlsConnected)
         {
-            _logger = logger;
-            _eventReceiver = eventReceiver;
-            _splitTunnelRouting = splitTunnelRouting;
-            _gatewayCache = gatewayCache;
-            _origin = origin;
-            origin.StateChanged += OnVpnStateChanged;
-            eventReceiver.StateChanged += OnLocalAgentStateChanged;
-            eventReceiver.ErrorOccurred += OnLocalAgentErrorOccurred;
-            _timeoutAction = new SingleAction(TimeoutAction);
-            _timeoutAction.Completed += OnTimeoutActionCompleted;
+            _logger.Info<LocalAgentLog>(
+                $"Failed to connect to TLS channel in {TimeSpan.FromMilliseconds(CONNECT_TIMEOUT).Seconds} seconds. " +
+                "Disconnecting with ServerUnreachable error.");
+            _origin.Disconnect(VpnError.ServerUnreachable);
         }
+    }
 
-        public event EventHandler<EventArgs<VpnState>> StateChanged;
-        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+    private void OnTimeoutActionCompleted(object sender, TaskCompletedEventArgs e)
+    {
+        _logger.Info<LocalAgentLog>("Timeout action completed.");
+    }
+
+    private void OnLocalAgentStateChanged(object sender, EventArgs<LocalAgentState> e)
+    {
+        _logger.Info<LocalAgentStateChangeLog>($"State changed to {e.Data}");
+
+        switch (e.Data)
         {
-            add => _eventReceiver.ConnectionDetailsChanged += value;
-            remove => _eventReceiver.ConnectionDetailsChanged -= value;
+            case LocalAgentState.Connected:
+                OnLocalAgentStateChangedToConnected();
+                break;
+            case LocalAgentState.ServerCertificateError:
+                _origin.Disconnect(VpnError.TlsCertificateError);
+                break;
+            case LocalAgentState.ClientCertificateExpiredError:
+            case LocalAgentState.ClientCertificateUnknownCA:
+                InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
+                break;
         }
+    }
 
-        public InOutBytes Total => _origin.Total;
-
-        public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+    private void OnLocalAgentStateChangedToConnected()
+    {
+        if (_tlsConnected)
         {
-            _logger.Info<LocalAgentLog>("Connect action started");
-            _isConnectRequested = true;
-            _endpoint = endpoint;
-            _credentials = credentials;
-            _vpnConfig = config;
-            _clientCertPem = credentials.ClientCertPem;
-            _origin.Connect(endpoint, credentials, config);
+            InvokeStateChange(_currentStatus);
         }
-
-        public void Disconnect(VpnError error)
+        else
         {
-            _logger.Info<LocalAgentLog>("Disconnect action started");
+            _tlsConnected = true;
+            if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuardUdp)
+            {
+                _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
+            }
+
             StopTimeoutAction();
-            _eventReceiver.Stop();
-            CloseTlsChannel();
-            _origin.Disconnect(error);
+            _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
+            InvokeStateChange(VpnStatus.Connected);
         }
+    }
 
-        public void SetFeatures(VpnFeatures vpnFeatures)
+    private void StopTimeoutAction()
+    {
+        if (_timeoutAction.IsRunning)
         {
-            if (!_isTlsChannelActive)
+            _timeoutAction.Cancel();
+        }
+    }
+
+    public void RequestNetShieldStats()
+    {
+        if (_lastNetShieldStatsRequestDate.AddSeconds(MINIMUM_NETSHIELD_STATS_TIMEOUT_IN_SECONDS) < DateTime.UtcNow
+            && _tlsConnected)
+        {
+            _lastNetShieldStatsRequestDate = DateTime.UtcNow;
+            PInvoke.SendGetStatus(true);
+        }
+    }
+
+    private void OnLocalAgentErrorOccurred(object sender, LocalAgentErrorArgs e)
+    {
+        _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");
+
+        if (!_avoidDisconnectOnErrors.Contains(e.Error))
+        {
+            switch (e.Error)
             {
-                return;
-            }
-
-            UpdateVpnConfig(vpnFeatures);
-            using GoString goFeatures = GetFeatures(vpnFeatures).ToGoString();
-            PInvoke.SetFeatures(goFeatures);
-        }
-
-        private void UpdateVpnConfig(VpnFeatures vpnFeatures)
-        {
-            if (_vpnConfig != null)
-            {
-                _vpnConfig = new VpnConfig(CreateVpnConfigParameters(vpnFeatures));
-            }
-        }
-
-        private VpnConfigParameters CreateVpnConfigParameters(VpnFeatures vpnFeatures)
-        {
-            return new()
-            {
-                Ports = _vpnConfig.Ports,
-                CustomDns = _vpnConfig.CustomDns,
-                SplitTunnelMode = _vpnConfig.SplitTunnelMode,
-                SplitTunnelIPs = _vpnConfig.SplitTunnelIPs,
-                OpenVpnAdapter = _vpnConfig.OpenVpnAdapter,
-                VpnProtocol = _vpnConfig.VpnProtocol,
-                PreferredProtocols = _vpnConfig.PreferredProtocols,
-                NetShieldMode = vpnFeatures.NetShieldMode,
-                SplitTcp = vpnFeatures.SplitTcp,
-                PortForwarding = vpnFeatures.PortForwarding
-            };
-        }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _clientCertPem = certificate;
-            _logger.Info<LocalAgentLog>("Client certificate updated. Closing existing TLS channel and reconnecting.");
-            _eventReceiver.Stop();
-            CloseTlsChannel();
-            ConnectToTlsChannel();
-        }
-
-        private async Task TimeoutAction(CancellationToken cancellationToken)
-        {
-            await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
-
-            if (!_tlsConnected)
-            {
-                _logger.Info<LocalAgentLog>(
-                    $"Failed to connect to TLS channel in {TimeSpan.FromMilliseconds(CONNECT_TIMEOUT).Seconds} seconds. " +
-                    "Disconnecting with ServerUnreachable error.");
-                _origin.Disconnect(VpnError.ServerUnreachable);
-            }
-        }
-
-        private void OnTimeoutActionCompleted(object sender, TaskCompletedEventArgs e)
-        {
-            _logger.Info<LocalAgentLog>("Timeout action completed.");
-        }
-
-        private void OnLocalAgentStateChanged(object sender, EventArgs<LocalAgentState> e)
-        {
-            _logger.Info<LocalAgentStateChangeLog>($"State changed to {e.Data}");
-
-            switch (e.Data)
-            {
-                case LocalAgentState.Connected:
-                    OnLocalAgentStateChangedToConnected();
+                case VpnError.CertificateRevoked:
+                case VpnError.CertRevokedOrExpired:
+                case VpnError.PlanNeedsToBeUpgraded:
+                    _origin.Disconnect(e.Error);
                     break;
-                case LocalAgentState.ServerCertificateError:
-                    _origin.Disconnect(VpnError.TlsCertificateError);
-                    break;
-                case LocalAgentState.ClientCertificateExpiredError:
-                case LocalAgentState.ClientCertificateUnknownCA:
+                case VpnError.CertificateExpired:
                     InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
                     break;
+                case VpnError.SessionLimitReached:
+                case VpnError.SessionKilledDueToMultipleKeys:
+                case VpnError.SessionLimitReachedFree:
+                case VpnError.SessionLimitReachedBasic:
+                case VpnError.SessionLimitReachedPlus:
+                case VpnError.SessionLimitReachedPro:
+                case VpnError.SessionLimitReachedVisionary:
+                case VpnError.SessionLimitReachedUnknown:
+                    _origin.Disconnect(VpnError.AuthorizationError);
+                    break;
+            }
+        }
+    }
+
+    private string GetFeatures()
+    {
+        return GetFeaturesJson(new FeaturesContract
+        {
+            Bouncing = _endpoint.Server.Label,
+            SplitTcp = _vpnConfig.SplitTcp,
+            NetShieldLevel = _vpnConfig.NetShieldMode,
+            SafeMode = !_vpnConfig.AllowNonStandardPorts,
+            PortForwarding = _vpnConfig.PortForwarding,
+            RandomizedNat = !_vpnConfig.ModerateNat,
+        });
+    }
+
+    private string GetFeatures(VpnFeatures vpnFeatures)
+    {
+        return GetFeaturesJson(new FeaturesContract
+        {
+            SplitTcp = vpnFeatures.SplitTcp,
+            NetShieldLevel = vpnFeatures.NetShieldMode,
+            SafeMode = !vpnFeatures.AllowNonStandardPorts,
+            PortForwarding = vpnFeatures.PortForwarding,
+            RandomizedNat = !vpnFeatures.ModerateNat,
+        });
+    }
+
+    private string GetFeaturesJson(FeaturesContract contract)
+    {
+        return JsonConvert.SerializeObject(contract, Formatting.None,
+            new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+    }
+
+    private void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
+    {
+        if (_isConnectRequested)
+        {
+            switch (e.Data.Status)
+            {
+                case VpnStatus.Connected:
+                    _localIp = e.Data.LocalIp;
+                    HandleVpnConnectedState();
+                    return;
+                case VpnStatus.Disconnected:
+                case VpnStatus.Reconnecting:
+                    HandleVpnDisconnectedState();
+                    break;
             }
         }
 
-        private void OnLocalAgentStateChangedToConnected()
-        {
-            if (_tlsConnected)
-            {
-                InvokeStateChange(_currentStatus);
-            }
-            else
-            {
-                _tlsConnected = true;
-                if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
-                {
-                    _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
-                }
+        _vpnState = e;
+        InvokeStateChange(e);
+    }
 
-                StopTimeoutAction();
-                _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
-                InvokeStateChange(VpnStatus.Connected);
-            }
+    private void HandleVpnConnectedState()
+    {
+        if (string.IsNullOrEmpty(_credentials.ClientCertPem))
+        {
+            InvokeStateChange(VpnStatus.Connected);
+        }
+        else
+        {
+            InvokeStateChange(VpnStatus.AssigningIp);
+            ConnectToTlsChannel();
+            _timeoutAction.Run();
+        }
+    }
+
+    private void HandleVpnDisconnectedState()
+    {
+        if (string.IsNullOrEmpty(_credentials.ClientCertPem))
+        {
+            return;
         }
 
-        private void StopTimeoutAction()
+        CloseTlsChannel();
+        _eventReceiver.Stop();
+        if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuardUdp)
         {
-            if (_timeoutAction.IsRunning)
-            {
-                _timeoutAction.Cancel();
-            }
+            _splitTunnelRouting.DeleteRoutes(_vpnConfig);
+        }
+    }
+
+    private void CloseTlsChannel()
+    {
+        if (_isTlsChannelActive)
+        {
+            _isTlsChannelActive = false;
+            _tlsConnected = false;
+            PInvoke.Close();
+        }
+    }
+
+    private void ConnectToTlsChannel()
+    {
+        IPAddress gatewayIPAddress = _gatewayCache.Get();
+        if (gatewayIPAddress == null)
+        {
+            _logger.Error<ConnectionErrorLog>("Default gateway is missing. Disconnecting.");
+            _origin.Disconnect(VpnError.Unknown);
+            return;
         }
 
-        public void RequestNetShieldStats()
+        using GoString clientCertPem = _clientCertPem.ToGoString();
+        using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
+        using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
+        using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();
+        using GoString featuresJson = GetFeatures().ToGoString();
+        using GoString certServerName = _endpoint.Server.Name.ToGoString();
+        string result = PInvoke
+            .Connect(clientCertPem, clientKeyPem, serverCaPem, host, certServerName, featuresJson, true)
+            .ConvertToString();
+        if (result == "")
         {
-            if (_lastNetShieldStatsRequestDate.AddSeconds(MINIMUM_NETSHIELD_STATS_TIMEOUT_IN_SECONDS) < DateTime.UtcNow
-                && _tlsConnected)
-            {
-                _lastNetShieldStatsRequestDate = DateTime.UtcNow;
-                PInvoke.SendGetStatus(true);
-            }
+            _isTlsChannelActive = true;
+            _eventReceiver.Start();
         }
-
-        private void OnLocalAgentErrorOccurred(object sender, LocalAgentErrorArgs e)
+        else
         {
-            _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");
-
-            if (!_avoidDisconnectOnErrors.Contains(e.Error))
-            {
-                switch (e.Error)
-                {
-                    case VpnError.CertificateRevoked:
-                    case VpnError.CertRevokedOrExpired:
-                    case VpnError.PlanNeedsToBeUpgraded:
-                        _origin.Disconnect(e.Error);
-                        break;
-                    case VpnError.CertificateExpired:
-                        InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
-                        break;
-                    case VpnError.SessionLimitReached:
-                    case VpnError.SessionKilledDueToMultipleKeys:
-                    case VpnError.SessionLimitReachedFree:
-                    case VpnError.SessionLimitReachedBasic:
-                    case VpnError.SessionLimitReachedPlus:
-                    case VpnError.SessionLimitReachedPro:
-                    case VpnError.SessionLimitReachedVisionary:
-                    case VpnError.SessionLimitReachedUnknown:
-                        _origin.Disconnect(VpnError.AuthorizationError);
-                        break;
-                }
-            }
+            _logger.Error<LocalAgentLog>("Failed to connect to TLS channel: " + result);
+            _origin.Disconnect(GetVpnError(result));
         }
+    }
 
-        private string GetFeatures()
-        {
-            return GetFeaturesJson(new FeaturesContract
-            {
-                Bouncing = _endpoint.Server.Label,
-                SplitTcp = _vpnConfig.SplitTcp,
-                NetShieldLevel = _vpnConfig.NetShieldMode,
-                SafeMode = !_vpnConfig.AllowNonStandardPorts,
-                PortForwarding = _vpnConfig.PortForwarding,
-                RandomizedNat = !_vpnConfig.ModerateNat,
-            });
-        }
+    private VpnError GetVpnError(string result)
+    {
+        return result.Contains("private key does not match public key")
+            ? VpnError.ClientKeyMismatch
+            : VpnError.Unknown;
+    }
 
-        private string GetFeatures(VpnFeatures vpnFeatures)
-        {
-            return GetFeaturesJson(new FeaturesContract
-            {
-                SplitTcp = vpnFeatures.SplitTcp,
-                NetShieldLevel = vpnFeatures.NetShieldMode,
-                SafeMode = !vpnFeatures.AllowNonStandardPorts,
-                PortForwarding = vpnFeatures.PortForwarding,
-                RandomizedNat = !vpnFeatures.ModerateNat,
-            });
-        }
+    private void InvokeStateChange(VpnStatus status, VpnError? error = null)
+    {
+        _currentStatus = status;
+        InvokeStateChange(new EventArgs<VpnState>(new VpnState(
+            status,
+            error ?? _vpnState?.Data.Error ?? VpnError.None,
+            _localIp,
+            _vpnState?.Data.RemoteIp ?? string.Empty,
+            _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
+            _vpnConfig?.PortForwarding ?? false,
+            _vpnConfig?.OpenVpnAdapter,
+            _vpnState?.Data.Label ?? string.Empty)));
+    }
 
-        private string GetFeaturesJson(FeaturesContract contract)
-        {
-            return JsonConvert.SerializeObject(contract, Formatting.None,
-                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-        }
-
-        private void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
-        {
-            if (_isConnectRequested)
-            {
-                switch (e.Data.Status)
-                {
-                    case VpnStatus.Connected:
-                        _localIp = e.Data.LocalIp;
-                        HandleVpnConnectedState();
-                        return;
-                    case VpnStatus.Disconnected:
-                    case VpnStatus.Reconnecting:
-                        HandleVpnDisconnectedState();
-                        break;
-                }
-            }
-
-            _vpnState = e;
-            InvokeStateChange(e);
-        }
-
-        private void HandleVpnConnectedState()
-        {
-            if (string.IsNullOrEmpty(_credentials.ClientCertPem))
-            {
-                InvokeStateChange(VpnStatus.Connected);
-            }
-            else
-            {
-                InvokeStateChange(VpnStatus.AssigningIp);
-                ConnectToTlsChannel();
-                _timeoutAction.Run();
-            }
-        }
-
-        private void HandleVpnDisconnectedState()
-        {
-            if (string.IsNullOrEmpty(_credentials.ClientCertPem))
-            {
-                return;
-            }
-
-            CloseTlsChannel();
-            _eventReceiver.Stop();
-            if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
-            {
-                _splitTunnelRouting.DeleteRoutes(_vpnConfig);
-            }
-        }
-
-        private void CloseTlsChannel()
-        {
-            if (_isTlsChannelActive)
-            {
-                _isTlsChannelActive = false;
-                _tlsConnected = false;
-                PInvoke.Close();
-            }
-        }
-
-        private void ConnectToTlsChannel()
-        {
-            IPAddress gatewayIPAddress = _gatewayCache.Get();
-            if (gatewayIPAddress == null)
-            {
-                _logger.Error<ConnectionErrorLog>("Default gateway is missing. Disconnecting.");
-                _origin.Disconnect(VpnError.Unknown);
-                return;
-            }
-
-            using GoString clientCertPem = _clientCertPem.ToGoString();
-            using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
-            using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
-            using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();
-            using GoString featuresJson = GetFeatures().ToGoString();
-            using GoString certServerName = _endpoint.Server.Name.ToGoString();
-            string result = PInvoke
-                .Connect(clientCertPem, clientKeyPem, serverCaPem, host, certServerName, featuresJson, true)
-                .ConvertToString();
-            if (result == "")
-            {
-                _isTlsChannelActive = true;
-                _eventReceiver.Start();
-            }
-            else
-            {
-                _logger.Error<LocalAgentLog>("Failed to connect to TLS channel: " + result);
-                _origin.Disconnect(GetVpnError(result));
-            }
-        }
-
-        private VpnError GetVpnError(string result)
-        {
-            return result.Contains("private key does not match public key")
-                ? VpnError.ClientKeyMismatch
-                : VpnError.Unknown;
-        }
-
-        private void InvokeStateChange(VpnStatus status, VpnError? error = null)
-        {
-            _currentStatus = status;
-            InvokeStateChange(new EventArgs<VpnState>(new VpnState(
-                status,
-                error ?? _vpnState?.Data.Error ?? VpnError.None,
-                _localIp,
-                _vpnState?.Data.RemoteIp ?? string.Empty,
-                _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
-                _vpnConfig?.PortForwarding ?? false,
-                _vpnConfig?.OpenVpnAdapter,
-                _vpnState?.Data.Label ?? string.Empty)));
-        }
-
-        private void InvokeStateChange(EventArgs<VpnState> state)
-        {
-            StateChanged?.Invoke(this, state);
-        }
+    private void InvokeStateChange(EventArgs<VpnState> state)
+    {
+        StateChanged?.Invoke(this, state);
     }
 }

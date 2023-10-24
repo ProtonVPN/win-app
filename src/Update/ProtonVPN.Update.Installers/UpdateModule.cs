@@ -20,7 +20,7 @@
 using System;
 using Autofac;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts;
@@ -29,47 +29,46 @@ using ProtonVPN.Update.Files.Launchable;
 using ProtonVPN.Update.Updates;
 using Module = Autofac.Module;
 
-namespace ProtonVPN.Update.Installers
+namespace ProtonVPN.Update.Installers;
+
+public class UpdateModule : Module
 {
-    public class UpdateModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
+        builder.RegisterType<AppUpdates>().SingleInstance();
+        builder.RegisterType<LaunchableFile>().As<ILaunchableFile>().SingleInstance();
+
+        builder.Register(c =>
+            new CleanableOnceAppUpdates(
+                new AsyncAppUpdates(
+                    new SafeAppUpdates(c.Resolve<ILogger>(),
+                        c.Resolve<AppUpdates>())
+                ))).As<IAppUpdates>().SingleInstance();
+
+        builder.Register(c =>
+            new SafeAppUpdate(c.Resolve<ILogger>(),
+                new ExtendedProgressAppUpdate(c.Resolve<IAppUpdateConfig>().MinProgressDuration,
+                    new NotifyingAppUpdate(
+                        new AppUpdate(c.Resolve<AppUpdates>()), c.Resolve<ILogger>()
+                    )))).As<INotifyingAppUpdate>().SingleInstance();
+
+        builder.Register(CreateDefaultAppUpdateConfig).As<IAppUpdateConfig>().SingleInstance();
+    }
+
+    // TO DO: Refactor the code in order to delete this custom registration
+    private DefaultAppUpdateConfig CreateDefaultAppUpdateConfig(IComponentContext c)
+    {
+        IUpdateHttpClientFactory updateHttpClientFactory = c.Resolve<IUpdateHttpClientFactory>();
+
+        return new DefaultAppUpdateConfig
         {
-            builder.RegisterType<AppUpdates>().SingleInstance();
-            builder.RegisterType<LaunchableFile>().As<ILaunchableFile>().SingleInstance();
-
-            builder.Register(c =>
-                new CleanableOnceAppUpdates(
-                    new AsyncAppUpdates(
-                        new SafeAppUpdates(c.Resolve<ILogger>(),
-                            c.Resolve<AppUpdates>())
-                    ))).As<IAppUpdates>().SingleInstance();
-
-            builder.Register(c =>
-                new SafeAppUpdate(c.Resolve<ILogger>(),
-                    new ExtendedProgressAppUpdate(c.Resolve<IAppUpdateConfig>().MinProgressDuration,
-                        new NotifyingAppUpdate(
-                            new AppUpdate(c.Resolve<AppUpdates>()), c.Resolve<ILogger>()
-                        )))).As<INotifyingAppUpdate>().SingleInstance();
-
-            builder.Register(CreateDefaultAppUpdateConfig).As<IAppUpdateConfig>().SingleInstance();
-        }
-
-        // TO DO: Refactor the code in order to delete this custom registration
-        private DefaultAppUpdateConfig CreateDefaultAppUpdateConfig(IComponentContext c)
-        {
-            IUpdateHttpClientFactory updateHttpClientFactory = c.Resolve<IUpdateHttpClientFactory>();
-
-            return new DefaultAppUpdateConfig
-            {
-                FeedHttpClient = updateHttpClientFactory.GetFeedHttpClient(),
-                FileHttpClient = updateHttpClientFactory.GetUpdateDownloadHttpClient(),
-                FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
-                UpdatesPath = c.Resolve<IConfiguration>().UpdatesPath,
-                CurrentVersion = Version.Parse(c.Resolve<IConfiguration>().AppVersion),
-                EarlyAccessCategoryName = "EarlyAccess",
-                MinProgressDuration = TimeSpan.FromSeconds(1.5)
-            };
-        }
+            FeedHttpClient = updateHttpClientFactory.GetFeedHttpClient(),
+            FileHttpClient = updateHttpClientFactory.GetUpdateDownloadHttpClient(),
+            FeedUriProvider = c.Resolve<IFeedUrlProvider>(),
+            UpdatesPath = c.Resolve<IStaticConfiguration>().UpdatesFolder,
+            CurrentVersion = Version.Parse(c.Resolve<IConfiguration>().ClientVersion),
+            EarlyAccessCategoryName = "EarlyAccess",
+            MinProgressDuration = TimeSpan.FromSeconds(1.5)
+        };
     }
 }

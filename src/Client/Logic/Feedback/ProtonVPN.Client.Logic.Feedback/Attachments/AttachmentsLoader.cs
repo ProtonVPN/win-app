@@ -27,11 +27,11 @@ public class AttachmentsLoader : IAttachmentsLoader
 {
     private readonly ILogger _logger;
     private readonly IDiagnosticsLogFileSource _diagnosticsLogFileSource;
-    private readonly IAppLogFileSource _appLogFileSource;
+    private readonly IClientLogFileSource _appLogFileSource;
     private readonly IServiceLogFileSource _serviceLogFileSource;
 
     public AttachmentsLoader(ILogger logger, IDiagnosticsLogFileSource diagnosticsLogFileSource,
-        IAppLogFileSource appLogFileSource, IServiceLogFileSource serviceLogFileSource)
+        IClientLogFileSource appLogFileSource, IServiceLogFileSource serviceLogFileSource)
     {
         _logger = logger;
         _diagnosticsLogFileSource = diagnosticsLogFileSource;

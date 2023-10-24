@@ -18,35 +18,35 @@
  */
 
 using System;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.SourceGenerators;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;
 
-namespace ProtonVPN.Service.Update
+namespace ProtonVPN.Service.Update;
+
+public class FeedUrlProvider : IFeedUrlProvider
 {
-    public class FeedUrlProvider : IFeedUrlProvider
+    private readonly IConfiguration _config;
+    private FeedType _feedType = FeedType.Public;
+
+    public FeedUrlProvider(IConfiguration config)
     {
-        private readonly IConfiguration _config;
-        private FeedType _feedType = FeedType.Public;
+        _config = config;
+    }
 
-        public FeedUrlProvider(IConfiguration config)
+    public Uri GetFeedUrl()
+    {
+        if (_feedType is FeedType.Internal)
         {
-            _config = config;
+            return new Uri(GlobalConfig.InternalReleaseUpdateUrl);
         }
 
-        public Uri GetFeedUrl()
-        {
-            if (_feedType is FeedType.Internal)
-            {
-                return new Uri(GlobalConfig.InternalReleaseUpdateUrl);
-            }
+        return new Uri(_config.Urls.UpdateUrl);
+    }
 
-            return new Uri(_config.Urls.UpdateUrl);
-        }
-
-        public void SetFeedType(FeedType feedType)
-        {
-            _feedType = feedType;
-        }
+    public void SetFeedType(FeedType feedType)
+    {
+        _feedType = feedType;
     }
 }

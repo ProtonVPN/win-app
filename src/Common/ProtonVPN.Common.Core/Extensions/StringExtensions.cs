@@ -21,183 +21,182 @@ using System.Globalization;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace ProtonVPN.Common.Core.Extensions
+namespace ProtonVPN.Common.Core.Extensions;
+
+public static class StringExtensions
 {
-    public static class StringExtensions
+    private static readonly Regex Base64KeyRegex = new("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+
+    public static bool IsNullOrEmpty(this string value)
     {
-        private static readonly Regex Base64KeyRegex = new("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+        return string.IsNullOrEmpty(value);
+    }
 
-        public static bool IsNullOrEmpty(this string value)
+    public static bool? ToBoolOrNull(this string value)
+    {
+        return bool.TryParse(value, out bool result) ? result : null;
+    }
+
+    public static bool EqualsIgnoringCase(this string value, string other)
+    {
+        return value.Equals(other, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static bool ContainsIgnoringCase(this string value, string other)
+    {
+        return value != null && value.IndexOf(other, StringComparison.OrdinalIgnoreCase) >= 0;
+    }
+
+    public static bool ContainsIgnoringCase(this IEnumerable<string> collection, string other)
+    {
+        return collection != null && collection.Any(e => e.Equals(other, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public static bool StartsWithIgnoringCase(this string value, string other)
+    {
+        return value != null && value.StartsWith(other, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static bool EndsWithIgnoringCase(this string value, string other)
+    {
+        return value != null && value.EndsWith(other, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static bool IsNotNullAndContains(this string value, string other)
+    {
+        return value != null && value.Contains(other);
+    }
+
+    public static string FirstCharToUpper(this string value)
+    {
+        if (string.IsNullOrEmpty(value))
         {
-            return string.IsNullOrEmpty(value);
+            return string.Empty;
         }
 
-        public static bool? ToBoolOrNull(this string value)
+        return value.First().ToString().ToUpper() + value.Substring(1);
+    }
+
+    public static string TrimEnd(this string value, string ending)
+    {
+        if (!value.EndsWith(ending))
         {
-            return bool.TryParse(value, out bool result) ? result : null;
+            return value;
         }
 
-        public static bool EqualsIgnoringCase(this string value, string other)
+        return value.Remove(value.LastIndexOf(ending));
+    }
+
+    public static string GetLastChars(this string value, int length)
+    {
+        return length >= value.Length ? value : value.Substring(value.Length - length);
+    }
+
+    public static string GetFirstChars(this string value, int maxLength)
+    {
+        return value?.Length > maxLength ? value.Substring(0, maxLength) : value;
+    }
+
+    public static byte[] HexStringToByteArray(this string hex)
+    {
+        return Enumerable.Range(0, hex.Length)
+            .Where(x => x % 2 == 0)
+            .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+            .ToArray();
+    }
+
+    public static bool IsValidIpAddress(this string ip)
+    {
+        return IPAddress.TryParse(ip, out IPAddress? parsedIpAddress) &&
+               ip.EqualsIgnoringCase(parsedIpAddress.ToString());
+    }
+
+    public static bool IsValidBase64Key(this string key)
+    {
+        return Base64KeyRegex.IsMatch(key);
+    }
+
+    public static uint ToIPAddressBytes(this string value)
+    {
+        if (IPAddress.TryParse(value, out IPAddress address))
         {
-            return value.Equals(other, StringComparison.OrdinalIgnoreCase);
+            return BitConverter.ToUInt32(address.GetAddressBytes(), 0);
         }
 
-        public static bool ContainsIgnoringCase(this string value, string other)
+        return 0;
+    }
+
+    public static string FormatIfNotEmpty(this string value, string format)
+    {
+        if (value.IsNullOrEmpty())
         {
-            return value != null && value.IndexOf(other, StringComparison.OrdinalIgnoreCase) >= 0;
+            return value;
         }
 
-        public static bool ContainsIgnoringCase(this IEnumerable<string> collection, string other)
+        return string.Format(format, value);
+    }
+
+    public static IEnumerable<string> SplitToEnumerable(this string value, char separator)
+    {
+        return string.IsNullOrWhiteSpace(value)
+            ? null
+            : value.Split(separator).Select(e => e.Trim());
+    }
+
+    public static HashSet<string> SplitToHashSet(this string value, char separator)
+    {
+        return value.SplitToEnumerable(separator)?.ToHashSet();
+    }
+
+    public static List<string> SplitToList(this string value, char separator)
+    {
+        return value.SplitToEnumerable(separator)?.ToList();
+    }
+
+    public static bool IsHttpUri(this string uriString, out Uri uri)
+    {
+        return Uri.TryCreate(uriString, UriKind.Absolute, out uri) && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp)
+            || Uri.TryCreate($"https://{uriString}", UriKind.Absolute, out uri);
+    }
+
+    public static bool IsValidEmailAddress(this string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
         {
-            return collection != null && collection.Any(e => e.Equals(other, StringComparison.OrdinalIgnoreCase));
+            return false;
         }
 
-        public static bool StartsWithIgnoringCase(this string value, string other)
+        try
         {
-            return value != null && value.StartsWith(other, StringComparison.OrdinalIgnoreCase);
-        }
+            email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                RegexOptions.None, TimeSpan.FromMilliseconds(200));
 
-        public static bool EndsWithIgnoringCase(this string value, string other)
-        {
-            return value != null && value.EndsWith(other, StringComparison.OrdinalIgnoreCase);
-        }
-
-        public static bool IsNotNullAndContains(this string value, string other)
-        {
-            return value != null && value.Contains(other);
-        }
-
-        public static string FirstCharToUpper(this string value)
-        {
-            if (string.IsNullOrEmpty(value))
+            string DomainMapper(Match match)
             {
-                return string.Empty;
+                IdnMapping idn = new();
+                string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                return match.Groups[1].Value + domainName;
             }
-
-            return value.First().ToString().ToUpper() + value.Substring(1);
+        }
+        catch (RegexMatchTimeoutException)
+        {
+            return false;
+        }
+        catch (ArgumentException)
+        {
+            return false;
         }
 
-        public static string TrimEnd(this string value, string ending)
+        try
         {
-            if (!value.EndsWith(ending))
-            {
-                return value;
-            }
-
-            return value.Remove(value.LastIndexOf(ending));
+            return Regex.IsMatch(email,
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
         }
-
-        public static string GetLastChars(this string value, int length)
+        catch (RegexMatchTimeoutException)
         {
-            return length >= value.Length ? value : value.Substring(value.Length - length);
-        }
-
-        public static string GetFirstChars(this string value, int maxLength)
-        {
-            return value?.Length > maxLength ? value.Substring(0, maxLength) : value;
-        }
-
-        public static byte[] HexStringToByteArray(this string hex)
-        {
-            return Enumerable.Range(0, hex.Length)
-                .Where(x => x % 2 == 0)
-                .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
-                .ToArray();
-        }
-
-        public static bool IsValidIpAddress(this string ip)
-        {
-            return IPAddress.TryParse(ip, out var parsedIpAddress) &&
-                   ip.EqualsIgnoringCase(parsedIpAddress.ToString());
-        }
-
-        public static bool IsValidBase64Key(this string key)
-        {
-            return Base64KeyRegex.IsMatch(key);
-        }
-
-        public static uint ToIPAddressBytes(this string value)
-        {
-            if (IPAddress.TryParse(value, out IPAddress address))
-            {
-                return BitConverter.ToUInt32(address.GetAddressBytes(), 0);
-            }
-
-            return 0;
-        }
-
-        public static string FormatIfNotEmpty(this string value, string format)
-        {
-            if (value.IsNullOrEmpty())
-            {
-                return value;
-            }
-
-            return string.Format(format, value);
-        }
-
-        public static IEnumerable<string> SplitToEnumerable(this string value, char separator)
-        {
-            return string.IsNullOrWhiteSpace(value)
-                ? null
-                : value.Split(separator).Select(e => e.Trim());
-        }
-
-        public static HashSet<string> SplitToHashSet(this string value, char separator)
-        {
-            return value.SplitToEnumerable(separator)?.ToHashSet();
-        }
-
-        public static List<string> SplitToList(this string value, char separator)
-        {
-            return value.SplitToEnumerable(separator)?.ToList();
-        }
-
-        public static bool IsHttpUri(this string uriString, out Uri uri)
-        {
-            return Uri.TryCreate(uriString, UriKind.Absolute, out uri) && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp)
-                || Uri.TryCreate($"https://{uriString}", UriKind.Absolute, out uri);
-        }
-
-        public static bool IsValidEmailAddress(this string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return false;
-            }
-
-            try
-            {
-                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                    RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                string DomainMapper(Match match)
-                {
-                    IdnMapping idn = new();
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-
-                    return match.Groups[1].Value + domainName;
-                }
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
-            catch (ArgumentException)
-            {
-                return false;
-            }
-
-            try
-            {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

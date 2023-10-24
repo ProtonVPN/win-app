@@ -20,38 +20,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Vpn.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.OpenVpn.Arguments;
+
+public class OpenVpnEndpointArguments : IEnumerable<string>
 {
-    public class OpenVpnEndpointArguments : IEnumerable<string>
+    private readonly VpnEndpoint _endpoint;
+
+    public OpenVpnEndpointArguments(VpnEndpoint endpoint)
     {
-        private readonly VpnEndpoint _endpoint;
+        _endpoint = endpoint;
+    }
 
-        public OpenVpnEndpointArguments(VpnEndpoint endpoint)
+    public IEnumerator<string> GetEnumerator()
+    {
+        yield return $"--remote {_endpoint.Server.Ip} {_endpoint.Port} {VpnProtocolToString(_endpoint.VpnProtocol)}";
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    private string VpnProtocolToString(VpnProtocol protocol)
+    {
+        switch (protocol)
         {
-            _endpoint = endpoint;
+            case VpnProtocol.OpenVpnUdp:
+                return "udp";
+            case VpnProtocol.OpenVpnTcp:
+                return "tcp";
         }
 
-        public IEnumerator<string> GetEnumerator()
-        {
-            yield return $"--remote {_endpoint.Server.Ip} {_endpoint.Port} {VpnProtocolToString(_endpoint.VpnProtocol)}";
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        private string VpnProtocolToString(VpnProtocol protocol)
-        {
-            switch (protocol)
-            {
-                case VpnProtocol.OpenVpnUdp:
-                    return "udp";
-                case VpnProtocol.OpenVpnTcp:
-                    return "tcp";
-            }
-
-            throw new ArgumentException(nameof(protocol));
-        }
+        throw new ArgumentException(nameof(protocol));
     }
 }

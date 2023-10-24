@@ -17,41 +17,40 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Vpn;
 
-namespace ProtonVPN.Vpn.Common
+namespace ProtonVPN.Vpn.Common;
+
+public class VpnEndpoint
 {
-    public class VpnEndpoint
+    public VpnProtocol VpnProtocol { get; }
+
+    public VpnHost Server { get; }
+    public int Port { get; }
+    public bool IsEmpty { get; }
+
+    public VpnEndpoint(VpnHost server, VpnProtocol vpnProtocol)
+        : this(server, vpnProtocol, 0)
     {
-        public VpnProtocol VpnProtocol { get; }
-
-        public VpnHost Server { get; }
-        public int Port { get; }
-        public bool IsEmpty { get; }
-
-        public VpnEndpoint(VpnHost server, VpnProtocol vpnProtocol)
-            : this(server, vpnProtocol, 0)
-        {
-        }
-
-        public VpnEndpoint(VpnHost server, int port, bool isEmpty = false)
-        {
-            Server = server;
-            Port = port;
-            IsEmpty = isEmpty;
-        }
-
-        public VpnEndpoint(VpnHost server, VpnProtocol vpnProtocol, int port)
-            : this(server, port)
-        {
-            VpnProtocol = vpnProtocol;
-        }
-
-        public VpnEndpoint() : this(default, default, true)
-        {
-        }
-
-        public static VpnEndpoint Empty => new();
     }
+
+    public VpnEndpoint(VpnHost server, int port, bool isEmpty = false)
+    {
+        Server = server;
+        Port = port;
+        IsEmpty = isEmpty;
+    }
+
+    public VpnEndpoint(VpnHost server, VpnProtocol vpnProtocol, int port)
+        : this(server, port)
+    {
+        VpnProtocol = vpnProtocol;
+    }
+
+    public VpnEndpoint() : this(default, default, true)
+    {
+    }
+
+    public static VpnEndpoint Empty => new();
 }

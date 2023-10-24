@@ -20,21 +20,20 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Networking;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Dns.Contracts
+namespace ProtonVPN.Dns.Contracts;
+
+public interface IDnsManager
 {
-    public interface IDnsManager
-    {
-        /// <summary>Returns the cached IP addresses if they are fresh, otherwise resolves for new ones.
-        /// If the resolve fails, returns the cached IP addresses.</summary>
-        Task<IList<IpAddress>> GetAsync(string host, CancellationToken cancellationToken);
-        
-        /// <summary>Resolves for IP addresses.
-        /// Doesn't check cache and doesn't return cached IP addresses in case of failure.</summary>
-        Task<IList<IpAddress>> ResolveWithoutCacheAsync(string host, CancellationToken cancellationToken);
-        
-        /// <summary>Returns the cached IP addresses.</summary>
-        IList<IpAddress> GetFromCache(string host);
-    }
+    /// <summary>Returns the cached IP addresses if they are fresh, otherwise resolves for new ones.
+    /// If the resolve fails, returns the cached IP addresses.</summary>
+    Task<IList<IpAddress>> GetAsync(string host, CancellationToken cancellationToken);
+
+    /// <summary>Resolves for IP addresses.
+    /// Doesn't check cache and doesn't return cached IP addresses in case of failure.</summary>
+    Task<IList<IpAddress>> ResolveWithoutCacheAsync(string host, CancellationToken cancellationToken);
+
+    /// <summary>Returns the cached IP addresses.</summary>
+    IList<IpAddress> GetFromCache(string host);
 }

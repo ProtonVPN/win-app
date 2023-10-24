@@ -31,4 +31,6 @@ public interface IConfigurationRepository
 
     List<T> GetListValueType<T>([CallerMemberName] string propertyName = "")
         where T : struct;
+
+    object? GetByType(Type type, [CallerMemberName] string propertyName = "");
 }

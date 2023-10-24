@@ -18,21 +18,20 @@
  */
 using System.Runtime.Serialization;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
+[DataContract]
+public enum VpnProtocolIpcEntity
 {
-    [DataContract]
-    public enum VpnProtocolIpcEntity
-    {
-        [EnumMember]
-        Smart,
+    [EnumMember]
+    Smart,
 
-        [EnumMember]
-        OpenVpnTcp,
+    [EnumMember]
+    OpenVpnTcp,
 
-        [EnumMember]
-        OpenVpnUdp,
+    [EnumMember]
+    OpenVpnUdp,
 
-        [EnumMember]
-        WireGuard,
-    }
+    [EnumMember]
+    WireGuardUdp,
 }

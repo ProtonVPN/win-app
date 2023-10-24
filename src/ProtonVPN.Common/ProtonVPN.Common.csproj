@@ -14,9 +14,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+    <ProjectReference Include="..\Configurations\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />
     <ProjectReference Include="..\Crypto\ProtonVPN.Crypto.Contracts\ProtonVPN.Crypto.Contracts.csproj" />
     <ProjectReference Include="..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -25,9 +25,6 @@
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Polly" />
     <PackageReference Include="System.ServiceProcess.ServiceController" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Configuration\GlobalConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

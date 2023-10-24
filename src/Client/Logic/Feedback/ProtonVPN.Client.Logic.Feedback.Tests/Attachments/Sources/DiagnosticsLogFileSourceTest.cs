@@ -19,7 +19,7 @@
 
 using NSubstitute;
 using ProtonVPN.Client.Logic.Feedback.Attachments.Sources;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Tests.Attachments.Sources;
@@ -30,11 +30,11 @@ public class DiagnosticsLogFileSourceTest : LogFileSourceBaseTest<DiagnosticsLog
     protected override DiagnosticsLogFileSource Construct(string folderPath, int maxNumOfFiles)
     {
         ILogger logger = Substitute.For<ILogger>();
-        IConfiguration configuration = Substitute.For<IConfiguration>();
-        configuration.ReportBugMaxFileSize.Returns(MAX_FILE_SIZE);
-        configuration.DiagnosticsLogFolder.Returns(folderPath);
-        configuration.MaxDiagnosticLogsAttached.Returns(maxNumOfFiles);
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.BugReportingMaxFileSize.Returns(MAX_FILE_SIZE);
+        config.DiagnosticLogsFolder.Returns(folderPath);
+        config.MaxDiagnosticLogsAttached.Returns(maxNumOfFiles);
 
-        return new DiagnosticsLogFileSource(logger, configuration);
+        return new DiagnosticsLogFileSource(logger, config);
     }
 }

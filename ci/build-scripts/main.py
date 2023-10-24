@@ -49,7 +49,7 @@ if len(sys.argv) < 2:
 args = parser.parse_args()
 
 if args.command == 'defaultConfig':
-    configPath = "src\ProtonVPN.Common\Configuration\Source\DefaultConfig.cs"
+    configPath = "src\Configurations\ProtonVPN.Configurations\Defaults\DefaultTlsPinningConfigurationFactory.cs"
     f = open(configPath, "rt")
     data = f.read()
     data = data.replace('[InternalReleaseHost]', os.environ.get("INTERNAL_RELEASE_HOST"))

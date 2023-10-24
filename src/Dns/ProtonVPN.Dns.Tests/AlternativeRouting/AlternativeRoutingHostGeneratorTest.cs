@@ -16,35 +16,35 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Dns.AlternativeRouting;
 
-namespace ProtonVPN.Dns.Tests.AlternativeRouting
+namespace ProtonVPN.Dns.Tests.AlternativeRouting;
+
+[TestClass]
+public class AlternativeRoutingHostGeneratorTest
 {
-    [TestClass]
-    public class AlternativeRoutingHostGeneratorTest
+    private const string API_URL = "https://api.protonvpn.ch";
+    private const string EXPECTED_BASE_HOST = "dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz";
+
+    [TestMethod]
+    [DataRow(null, EXPECTED_BASE_HOST)]
+    [DataRow("", EXPECTED_BASE_HOST)]
+    [DataRow("abc123", $"abc123.{EXPECTED_BASE_HOST}")]
+    public void TestGenerate(string uid, string expectedResult)
     {
-        private const string API_URL = "https://api.protonvpn.ch";
-        private const string EXPECTED_BASE_HOST = "dMFYGSLTQOJXXI33OOZYG4LTDNA.protonpro.xyz";
+        IUrlsConfiguration urlsConfig = Substitute.For<IUrlsConfiguration>();
+        urlsConfig.ApiUrl.Returns(API_URL);
+        IConfiguration config = Substitute.For<IConfiguration>();
+        config.Urls.Returns(urlsConfig);
+        AlternativeRoutingHostGenerator generator = new(config);
 
-        [TestMethod]
-        [DataRow(null, EXPECTED_BASE_HOST)]
-        [DataRow("", EXPECTED_BASE_HOST)]
-        [DataRow("abc123", $"abc123.{EXPECTED_BASE_HOST}")]
-        public void TestGenerate(string uid, string expectedResult)
-        {
-            IConfiguration configuration = Substitute.For<IConfiguration>();
-            configuration.Urls.Returns(new UrlConfig()
-            {
-                ApiUrl = API_URL
-            });
-            AlternativeRoutingHostGenerator generator = new(configuration);
+        string result = generator.Generate(uid);
 
-            string result = generator.Generate(uid);
-
-            Assert.AreEqual(expectedResult, result);
-        }
+        Assert.AreEqual(expectedResult, result);
     }
 }

@@ -18,11 +18,12 @@
  */
 
 using Autofac;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -43,138 +44,138 @@ using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
 
-namespace ProtonVPN.Vpn.Config
+namespace ProtonVPN.Vpn.Config;
+
+public class Module
 {
-    public class Module
+    public void Load(ContainerBuilder builder)
     {
-        public void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<ServerValidator>().As<IServerValidator>().SingleInstance();
-            builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
-            builder.RegisterType<VpnEndpointScanner>().SingleInstance();
-            builder.RegisterType<TcpPortScanner>().SingleInstance();
-            builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
-            builder.RegisterType<SplitTunnelRouting>().SingleInstance();
-            builder.RegisterType<UdpPingClient>().SingleInstance();
-            builder.RegisterType<WintunAdapter>().SingleInstance();
-            builder.RegisterType<TapAdapter>().SingleInstance();
-            builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c =>
-                {
-                    ILogger logger = c.Resolve<ILogger>();
-                    OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
+        builder.RegisterType<ServerValidator>().As<IServerValidator>().SingleInstance();
+        builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
+        builder.RegisterType<VpnEndpointScanner>().SingleInstance();
+        builder.RegisterType<TcpPortScanner>().SingleInstance();
+        builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
+        builder.RegisterType<SplitTunnelRouting>().SingleInstance();
+        builder.RegisterType<UdpPingClient>().SingleInstance();
+        builder.RegisterType<WintunAdapter>().SingleInstance();
+        builder.RegisterType<TapAdapter>().SingleInstance();
+        builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
+        builder.Register(c =>
+            {
+                ILogger logger = c.Resolve<ILogger>();
+                IStaticConfiguration staticConfig = c.Resolve<IStaticConfiguration>();
 
-                    return new OpenVpnProcess(
-                        logger,
-                        c.Resolve<IOsProcesses>(),
-                        new OpenVpnExitEvent(logger,
-                            new SystemSynchronizationEvents(logger),
-                            config.ExitEventName),
-                        config);
-                }
-            ).SingleInstance();
-
-            RegisterPortMapping(builder);
-        }
-
-        private void RegisterPortMapping(ContainerBuilder builder)
-        {
-            builder.RegisterAssemblyTypes(typeof(IMessageSerializer).Assembly)
-                .Where(t => typeof(IMessageSerializer).IsAssignableFrom(t))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-            builder.RegisterType<MessageSerializerFactory>().As<IMessageSerializerFactory>().SingleInstance();
-            builder.RegisterType<MessageSerializerProxy>().As<IMessageSerializerProxy>().SingleInstance();
-            builder.RegisterType<UdpClientWrapper>().As<IUdpClientWrapper>().SingleInstance();
-            builder.RegisterType<PortMappingProtocolClient>().As<IPortMappingProtocolClient>().SingleInstance();
-        }
-
-        public IVpnConnection GetVpnConnection(IComponentContext c)
-        {
-            ILogger logger = c.Resolve<ILogger>();
-            INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
-            INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
-            ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
-            TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
-            tcpPortScanner.Config(c.Resolve<OpenVpnConfig>().OpenVpnStaticKey);
-            IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
-            VpnEndpointCandidates candidates = new();
-            IIssueReporter issueReporter = c.Resolve<IIssueReporter>();
-            IPortMappingProtocolClient portMappingProtocolClient = c.Resolve<IPortMappingProtocolClient>();
-            IServerValidator serverValidator = c.Resolve<IServerValidator>();
-
-            return new LoggingWrapper(
-                logger,
-                    new ReconnectingWrapper(
-                        logger,
-                        candidates,
-                        serverValidator,
-                        endpointScanner,
-                        new HandlingRequestsWrapper(
-                            logger,
-                            taskQueue,
-                            new ServerAuthenticatorWrapper(
-                                serverValidator,
-                                new BestPortWrapper(
-                                    logger,
-                                    taskQueue,
-                                    endpointScanner,
-                                    new NetworkAdapterStatusWrapper(
-                                        logger,
-                                        issueReporter,
-                                        networkAdapterManager,
-                                        networkInterfaceLoader,
-                                        c.Resolve<WintunAdapter>(),
-                                        c.Resolve<TapAdapter>(),
-                                        new QueueingEventsWrapper(
-                                            taskQueue,
-                                            new PortForwardingWrapper(
-                                                logger,
-                                                portMappingProtocolClient,
-                                                new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))))));
-        }
-
-        private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
-        {
-            ILogger logger = c.Resolve<ILogger>();
-            IConfiguration config = c.Resolve<IConfiguration>();
-            IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
-            INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
-            IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
-
-            return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
-                gatewayCache,
-                new WireGuardConnection(logger, config, gatewayCache,
-                    new WireGuardService(logger, config, new SafeService(
-                        new LoggingService(logger,
-                            new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
-                    new TrafficManager(config.WireGuard.ConfigFileName, logger),
-                    new StatusManager(logger, config.WireGuard.LogFilePath),
-                    x25519KeyGenerator));
-        }
-
-        private ISingleVpnConnection GetOpenVpnConnection(IComponentContext c)
-        {
-            ILogger logger = c.Resolve<ILogger>();
-            OpenVpnConfig config = c.Resolve<OpenVpnConfig>();
-            IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
-            INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
-
-            return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
-                gatewayCache,
-                new OpenVpnConnection(
+                return new OpenVpnProcess(
                     logger,
-                    c.Resolve<IConfiguration>(),
-                    c.Resolve<INetworkInterfaceLoader>(),
-                    c.Resolve<OpenVpnProcess>(),
-                    c.Resolve<IRandomStringGenerator>(),
-                    new ManagementClient(
+                    c.Resolve<IOsProcesses>(),
+                    new OpenVpnExitEvent(logger,
+                        new SystemSynchronizationEvents(logger),
+                        staticConfig.OpenVpn.ExitEventName),
+                    staticConfig);
+            }
+        ).SingleInstance();
+
+        RegisterPortMapping(builder);
+    }
+
+    private void RegisterPortMapping(ContainerBuilder builder)
+    {
+        builder.RegisterAssemblyTypes(typeof(IMessageSerializer).Assembly)
+            .Where(t => typeof(IMessageSerializer).IsAssignableFrom(t))
+            .AsImplementedInterfaces()
+            .SingleInstance();
+        builder.RegisterType<MessageSerializerFactory>().As<IMessageSerializerFactory>().SingleInstance();
+        builder.RegisterType<MessageSerializerProxy>().As<IMessageSerializerProxy>().SingleInstance();
+        builder.RegisterType<UdpClientWrapper>().As<IUdpClientWrapper>().SingleInstance();
+        builder.RegisterType<PortMappingProtocolClient>().As<IPortMappingProtocolClient>().SingleInstance();
+    }
+
+    public IVpnConnection GetVpnConnection(IComponentContext c)
+    {
+        ILogger logger = c.Resolve<ILogger>();
+        INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
+        INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
+        ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
+        TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
+        tcpPortScanner.Config(c.Resolve<IStaticConfiguration>().OpenVpn.StaticKey);
+        IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
+        VpnEndpointCandidates candidates = new();
+        IIssueReporter issueReporter = c.Resolve<IIssueReporter>();
+        IPortMappingProtocolClient portMappingProtocolClient = c.Resolve<IPortMappingProtocolClient>();
+        IServerValidator serverValidator = c.Resolve<IServerValidator>();
+
+        return new LoggingWrapper(
+            logger,
+                new ReconnectingWrapper(
+                    logger,
+                    candidates,
+                    serverValidator,
+                    endpointScanner,
+                    new HandlingRequestsWrapper(
                         logger,
-                        gatewayCache,
-                        new ConcurrentManagementChannel(
-                            new TcpManagementChannel(
+                        taskQueue,
+                        new ServerAuthenticatorWrapper(
+                            serverValidator,
+                            new BestPortWrapper(
                                 logger,
-                                config.ManagementHost)))));
-        }
+                                taskQueue,
+                                endpointScanner,
+                                new NetworkAdapterStatusWrapper(
+                                    logger,
+                                    issueReporter,
+                                    networkAdapterManager,
+                                    networkInterfaceLoader,
+                                    c.Resolve<WintunAdapter>(),
+                                    c.Resolve<TapAdapter>(),
+                                    new QueueingEventsWrapper(
+                                        taskQueue,
+                                        new PortForwardingWrapper(
+                                            logger,
+                                            portMappingProtocolClient,
+                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))))));
+    }
+
+    private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
+    {
+        ILogger logger = c.Resolve<ILogger>();
+        IStaticConfiguration staticConfig = c.Resolve<IStaticConfiguration>();
+        IConfiguration config = c.Resolve<IConfiguration>();
+        IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+        INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+        IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
+
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
+            gatewayCache,
+            new WireGuardConnection(logger, config, gatewayCache,
+                new WireGuardService(logger, staticConfig, new SafeService(
+                    new LoggingService(logger,
+                        new SystemService(staticConfig.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
+                new TrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
+                new StatusManager(logger, staticConfig.WireGuard.LogFilePath),
+                x25519KeyGenerator));
+    }
+
+    private ISingleVpnConnection GetOpenVpnConnection(IComponentContext c)
+    {
+        ILogger logger = c.Resolve<ILogger>();
+        IOpenVpnConfigurations openVpnConfig = c.Resolve<IStaticConfiguration>().OpenVpn;
+        IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+        INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
+            gatewayCache,
+            new OpenVpnConnection(
+                logger,
+                c.Resolve<IStaticConfiguration>(),
+                c.Resolve<INetworkInterfaceLoader>(),
+                c.Resolve<OpenVpnProcess>(),
+                c.Resolve<IRandomStringGenerator>(),
+                new ManagementClient(
+                    logger,
+                    gatewayCache,
+                    new ConcurrentManagementChannel(
+                        new TcpManagementChannel(
+                            logger,
+                            openVpnConfig.ManagementHost)))));
     }
 }

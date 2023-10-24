@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings.Contracts;
 

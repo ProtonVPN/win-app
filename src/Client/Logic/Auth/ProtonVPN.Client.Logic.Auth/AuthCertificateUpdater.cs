@@ -20,8 +20,8 @@
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
@@ -30,18 +30,18 @@ namespace ProtonVPN.Client.Logic.Auth;
 public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageReceiver<LoginSuccessMessage>,
     IEventMessageReceiver<LogoutMessage>
 {
-    private readonly IConfiguration _appConfig;
+    private readonly IConfiguration _config;
     private readonly IAuthCertificateManager _authCertificateManager;
     private readonly ILogger _logger;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private Timer _timer;
 
-    public AuthCertificateUpdater(IConfiguration appConfig,
+    public AuthCertificateUpdater(IConfiguration config,
         IAuthCertificateManager authCertificateManager,
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher)
     {
-        _appConfig = appConfig;
+        _config = config;
         _authCertificateManager = authCertificateManager;
         _logger = logger;
         _uiThreadDispatcher = uiThreadDispatcher;
@@ -60,7 +60,7 @@ public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageRece
 
     public void Receive(LoginSuccessMessage message)
     {
-        TimeSpan interval = _appConfig.AuthCertificateUpdateInterval.RandomizedWithDeviation(0.2);
+        TimeSpan interval = _config.AuthCertificateUpdateInterval.RandomizedWithDeviation(0.2);
         _timer = new(Timer_OnTick);
         _timer.Change(interval, interval);
         _logger.Info<UserCertificateScheduleRefreshLog>(

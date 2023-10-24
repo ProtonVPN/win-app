@@ -46,9 +46,9 @@ public class UserSettingsLogTest : LogBaseTest
     public void ItShouldCreateLogFile()
     {
         // Act
-        new UserSettingsLog(Config, _settings, _userAuthenticator).Write();
+        new UserSettingsLog(StaticConfig, _settings, _userAuthenticator).Write();
 
         // Assert
-        File.Exists(Path.Combine(TmpPath, "Settings.txt")).Should().BeTrue();
+        File.Exists(Path.Combine(TMP_PATH, "Settings.txt")).Should().BeTrue();
     }
 }

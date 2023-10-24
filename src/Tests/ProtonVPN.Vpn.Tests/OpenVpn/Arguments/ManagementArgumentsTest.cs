@@ -22,75 +22,74 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
 
-namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments
+namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments;
+
+[TestClass]
+public class ManagementArgumentsTest
 {
-    [TestClass]
-    public class ManagementArgumentsTest
+    private IOpenVpnConfigurations _openVpnConfig;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private OpenVpnConfig _config;
+        _openVpnConfig = Substitute.For<IOpenVpnConfigurations>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _config = Substitute.For<OpenVpnConfig>();
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
+    {
+        // Arrange
+        ManagementArguments subject = new(_openVpnConfig, 333);
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
-        {
-            // Arrange
-            ManagementArguments subject = new(_config, 333);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().HaveCount(3);
+    }
 
-            // Assert
-            result.Should().HaveCount(3);
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ManagementOption()
+    {
+        const int managementPort = 4444;
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ManagementOption()
-        {
-            const int managementPort = 4444;
+        // Arrange
+        _openVpnConfig.ManagementHost.Returns("127.0.0.5");
+        ManagementArguments subject = new(_openVpnConfig, managementPort);
 
-            // Arrange
-            _config.ManagementHost = "127.0.0.5";
-            ManagementArguments subject = new(_config, managementPort);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().Contain($"--management {_openVpnConfig.ManagementHost} {managementPort} stdin");
+    }
 
-            // Assert
-            result.Should().Contain($"--management {_config.ManagementHost} {managementPort} stdin");
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ManagementQueryPasswordsOption()
+    {
+        // Arrange
+        ManagementArguments subject = new(_openVpnConfig, 55);
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ManagementQueryPasswordsOption()
-        {
-            // Arrange
-            ManagementArguments subject = new(_config, 55);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
+        // Assert
+        result.Should().Contain("--management-query-passwords");
+    }
 
-            // Assert
-            result.Should().Contain("--management-query-passwords");
-        }
+    [TestMethod]
+    public void Enumerable_ShouldContain_ManagementHoldOption()
+    {
+        // Arrange
+        ManagementArguments subject = new(_openVpnConfig, 66);
 
-        [TestMethod]
-        public void Enumerable_ShouldContain_ManagementHoldOption()
-        {
-            // Arrange
-            ManagementArguments subject = new(_config, 66);
+        // Act
+        List<string> result = subject.ToList();
 
-            // Act
-            List<string> result = subject.ToList();
-
-            // Assert
-            result.Should().Contain($"--management-hold");
-        }
+        // Assert
+        result.Should().Contain($"--management-hold");
     }
 }

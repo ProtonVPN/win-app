@@ -17,18 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Configuration;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Attachments.Sources;
 
 public class ServiceLogFileSource : LogFileSourceBase, IServiceLogFileSource
 {
-    public ServiceLogFileSource(ILogger logger, IConfiguration appConfig)
+    public ServiceLogFileSource(ILogger logger, IConfiguration config)
         : base(logger,
-            maxFileSize: appConfig.ReportBugMaxFileSize,
-            path: appConfig.ServiceLogFolder,
-            maxNumOfFiles: appConfig.MaxServiceLogsAttached)
+            maxFileSize: config.BugReportingMaxFileSize,
+            path: config.ServiceLogsFolder,
+            maxNumOfFiles: config.MaxServiceLogsAttached)
     {
     }
 }

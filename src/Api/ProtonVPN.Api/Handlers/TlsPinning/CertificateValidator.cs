@@ -19,51 +19,49 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.Configuration;
-using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
-using ProtonVPN.Common.Configuration.Source;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts.Entities;
 
-namespace ProtonVPN.Api.Handlers.TlsPinning
+namespace ProtonVPN.Api.Handlers.TlsPinning;
+
+public class CertificateValidator : ICertificateValidator
 {
-    public class CertificateValidator : ICertificateValidator
+    private readonly TlsPinningPolicy _policy;
+    private readonly IReportClient _reportClient;
+    private readonly IConfiguration _config;
+
+    public CertificateValidator(IReportClient reportClient, IConfiguration config)
     {
-        private readonly TlsPinningPolicy _policy;
-        private readonly IReportClient _reportClient;
-        private readonly IConfiguration _config;
+        _policy = new();
+        _reportClient = reportClient;
+        _config = config;
+    }
 
-        public CertificateValidator(IReportClient reportClient, IConfiguration config)
+    public bool IsValid(CertificateValidationParams validationParams)
+    {
+        ITlsPinnedDomain domain = GetPinnedDomain(validationParams.Host) ?? GetPinnedDomain(Constants.ALTERNATIVE_ROUTING_HOSTNAME);
+        if (domain == null)
         {
-            _policy = new();
-            _reportClient = reportClient;
-            _config = config;
+            return !validationParams.HasSslError && !_config.TlsPinning.Enforce;
         }
 
-        public bool IsValid(CertificateValidationParams validationParams)
+        if (domain.Name != Constants.ALTERNATIVE_ROUTING_HOSTNAME && validationParams.HasSslError)
         {
-            TlsPinnedDomain domain = GetPinnedDomain(validationParams.Host) ?? GetPinnedDomain(DefaultConfig.ALTERNATIVE_ROUTING_HOSTNAME);
-            if (domain == null)
-            {
-                return !validationParams.HasSslError && !_config.TlsPinningConfig.Enforce;
-            }
-
-            if (domain.Name != DefaultConfig.ALTERNATIVE_ROUTING_HOSTNAME && validationParams.HasSslError)
-            {
-                return false;
-            }
-
-            bool isValid = _policy.Valid(domain, validationParams.Certificate);
-            if (!isValid && domain.SendReport)
-            {
-                List<string> knownPins = domain.PublicKeyHashes.ToList();
-                _reportClient.Send(new ReportBody(knownPins, validationParams.RequestUri, validationParams.Chain).Value());
-            }
-
-            return (!validationParams.HasSslError && !domain.Enforce) || isValid;
+            return false;
         }
 
-        private TlsPinnedDomain GetPinnedDomain(string host)
+        bool isValid = _policy.Valid(domain, validationParams.Certificate);
+        if (!isValid && domain.SendReport)
         {
-            return _config.TlsPinningConfig.PinnedDomains.FirstOrDefault(d => d.Name == host);
+            List<string> knownPins = domain.PublicKeyHashes.ToList();
+            _reportClient.Send(new ReportBody(knownPins, validationParams.RequestUri, validationParams.Chain).Value());
         }
+
+        return (!validationParams.HasSslError && !domain.Enforce) || isValid;
+    }
+
+    private ITlsPinnedDomain GetPinnedDomain(string host)
+    {
+        return _config.TlsPinning.PinnedDomains.FirstOrDefault(d => d.Name == host);
     }
 }

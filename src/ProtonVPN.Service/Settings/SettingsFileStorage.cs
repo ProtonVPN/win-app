@@ -17,20 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.FileStoraging;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.Serialization.Contracts;
 
-namespace ProtonVPN.Service.Settings
+namespace ProtonVPN.Service.Settings;
+
+public class SettingsFileStorage : FileStorageBase<MainSettingsIpcEntity>, ISettingsFileStorage
 {
-    public class SettingsFileStorage : FileStorageBase<MainSettingsIpcEntity>, ISettingsFileStorage
+    public SettingsFileStorage(ILogger logger,
+        IJsonSerializer jsonSerializer, IStaticConfiguration staticConfig)
+        : base(logger, jsonSerializer, staticConfig.ServiceSettingsFilePath)
     {
-        public SettingsFileStorage(ILogger logger,
-            IJsonSerializer jsonSerializer, IConfiguration config)
-            : base(logger, jsonSerializer, config.ServiceSettingsFilePath)
-        {
-        }
     }
 }
