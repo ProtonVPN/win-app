@@ -53,8 +53,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:Name="TogglePopupButton">
             <Grid>
                 <Image Name="IconImage"
-                       Width="23"
-                       Height="23"
+                       Width="24"
+                       Height="24"
                        Margin="0"
                        ImageFailed="OnIconImageFailed"
                        Source="{Binding Announcement.Icon}">
@@ -70,8 +70,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Image.Style>
                 </Image>
                 <icons:Bell Name="FallbackIconImage"
-                            Width="23"
-                            Height="23"
+                            Width="24"
+                            Height="24"
                             Foreground="White"
                             Margin="0">
                     <icons:Bell.Style>

@@ -135,28 +135,28 @@ namespace ProtonVPN.Announcements.Tests
                 new()
                 {
                     Id = "1",
-                    Type = (int)AnnouncementType.Standard,
+                    Type = AnnouncementType.Standard,
                     StartDateTimeUtc = DateTime.UtcNow,
                     EndDateTimeUtc = DateTime.UtcNow.AddDays(1),
                 },
                 new()
                 {
                     Id = "2",
-                    Type = (int)AnnouncementType.Standard,
+                    Type = AnnouncementType.Standard,
                     StartDateTimeUtc = DateTime.UtcNow,
                     EndDateTimeUtc = DateTime.UtcNow.AddDays(1),
                 },
                 new()
                 {
                     Id = "3",
-                    Type = (int)AnnouncementType.OneTime,
+                    Type = AnnouncementType.OneTime,
                     StartDateTimeUtc = DateTime.UtcNow,
                     EndDateTimeUtc = DateTime.UtcNow.AddDays(1),
                 },
                 new()
                 {
                     Id = "4",
-                    Type = (int)AnnouncementType.OneTime,
+                    Type = AnnouncementType.OneTime,
                     StartDateTimeUtc = DateTime.UtcNow,
                     EndDateTimeUtc = DateTime.UtcNow.AddDays(1),
                 }

@@ -36,12 +36,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Visibility="{Binding IsToDisplayFullScreenImage, Converter={StaticResource BoolToVis}}">
             <Image Name="FullscreenImage"
                    HorizontalAlignment="Center"
-                   Source="{Binding FullScreenImageSource}" />
+                   Source="{Binding FullScreenImageSource}"              
+                   RenderOptions.BitmapScalingMode="HighQuality"      
+                   MaxHeight="768" 
+                   MaxWidth="1024"/>
             <Button Name="FullscreenImageButton"
                     Style="{StaticResource PrimaryModalButton}"
                     HorizontalAlignment="Center"
                     Padding="40,0,40,1"
-                    Margin="0,0,0,30"
+                    Margin="0,-20,0,40"
                     Command="{Binding FullScreenImageButtonCommand}"
                     Content="{Binding Panel.Button.Text}" />
         </StackPanel>

@@ -27,22 +27,6 @@ namespace ProtonVPN.Core.Tests.Models
     public class UserTest
     {
         [DataTestMethod]
-        [DataRow(0, "Proton Mail Account")]
-        [DataRow(1, "Proton Mail Account")]
-        [DataRow(2, "Proton Mail Account")]
-        [DataRow(3, "Proton Mail Account")]
-        [DataRow(4, "Proton VPN Account")]
-        public void GetAccountPlan_ShouldBe_MappedFormServices(int services, string expected)
-        {
-            // Arrange
-            User user = new() { Services = services };
-            // Act
-            string result = user.GetAccountPlan();
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [DataTestMethod]
         [DataRow(null, false)]
         [DataRow("free", false)]
         [DataRow("basic", true)]

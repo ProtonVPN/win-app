@@ -35,11 +35,6 @@ namespace ProtonVPN.Core.Models
         public string OriginalVpnPlan { get; set; }
         public string VpnPlanName { get; set; }
 
-        public string GetAccountPlan()
-        {
-            return (Services & 1) == 0 && (Services & 4) != 0 ? "Proton VPN Account" : "Proton Mail Account";
-        }
-
         public bool Paid()
         {
             return VpnPlan != null && !VpnPlan.Equals("free");

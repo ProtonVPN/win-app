@@ -103,7 +103,8 @@ namespace ProtonVPN.App.Tests.Servers
                     Substitute.For<IOsProcesses>(),
                     Substitute.For<IWebAuthenticator>(),
                     Substitute.For<IUpsellDisplayStatisticalEventSender>(),
-                    Substitute.For<IUpsellUpgradeAttemptStatisticalEventSender>()), 
+                    Substitute.For<IUpsellUpgradeAttemptStatisticalEventSender>(),
+                    Substitute.For<IAnnouncementService>()), 
                 _urls, 
                 Substitute.For<IAnnouncementService>());
         }

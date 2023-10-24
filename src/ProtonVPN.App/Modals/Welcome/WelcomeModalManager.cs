@@ -95,7 +95,7 @@ namespace ProtonVPN.Modals.Welcome
             User user = _userStorage.GetUser();
             DateTime now = DateTime.UtcNow;
             Announcement announcement = _announcementService.Get()
-                .Where(a => a.Type == (int)AnnouncementType.OneTime && !a.Seen && a.StartDateTimeUtc <= now && a.EndDateTimeUtc > now)
+                .Where(a => a.Type == AnnouncementType.OneTime && !a.Seen && a.StartDateTimeUtc <= now && a.EndDateTimeUtc > now)
                 .OrderBy(a => a.EndDateTimeUtc)
                 .FirstOrDefault();
 

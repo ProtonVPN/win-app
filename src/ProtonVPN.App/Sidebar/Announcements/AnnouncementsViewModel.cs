@@ -98,7 +98,8 @@ namespace ProtonVPN.Sidebar.Announcements
             List<Announcement> items = new();
             DateTime currentTimeUtc = DateTime.UtcNow;
             IReadOnlyCollection<Announcement> announcements = _announcementService.Get()
-                .Where(a => a.Type == (int)AnnouncementType.Standard)
+                .Where(a => a.Type == AnnouncementType.Standard)
+                .OrderBy(a => a.EndDateTimeUtc)
                 .ToList();
             foreach (Announcement announcement in announcements)
             {

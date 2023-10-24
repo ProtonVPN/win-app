@@ -46,5 +46,7 @@ namespace ProtonVPN.Api.Contracts.Announcements
         public FullScreenImageResponse FullScreenImage { get; set; }
 
         public bool ShowCountdown { get; set; }
+
+        public bool IsDismissible { get; set; } = true;
     }
 }
