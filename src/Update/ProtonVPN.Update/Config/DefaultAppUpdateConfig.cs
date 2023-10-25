@@ -18,7 +18,7 @@
  */
 
 using System;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Update.Contracts.Config;
 
 namespace ProtonVPN.Update.Config;

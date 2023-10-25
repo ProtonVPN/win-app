@@ -19,7 +19,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 
 namespace ProtonVPN.NetworkFilter
 {

@@ -22,8 +22,8 @@ using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using Timer = System.Timers.Timer;
 

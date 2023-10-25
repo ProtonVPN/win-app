@@ -1,37 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-	<OutputPath>..\..\bin\</OutputPath>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <IsPublishable>false</IsPublishable>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Appium.WebDriver" />
-    <PackageReference Include="Autofac" />
-    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" />
-    <PackageReference Include="FlaUI.UIA3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="NSubstitute" />
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" />
-    <PackageReference Include="Otp.NET" />
-    <PackageReference Include="MSTest.TestAdapter" />
-    <PackageReference Include="MSTest.TestFramework" />
-    <PackageReference Include="System.ServiceProcess.ServiceController" />
-  </ItemGroup>
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWPF>true</UseWPF>
+        <OutputPath>..\..\bin\</OutputPath>
+        <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <IsPublishable>false</IsPublishable>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="app.config" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Appium.WebDriver" />
+        <PackageReference Include="Autofac" />
+        <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" />
+        <PackageReference Include="FlaUI.UIA3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="NSubstitute" />
+        <PackageReference Include="NUnit" />
+        <PackageReference Include="NUnit3TestAdapter" />
+        <PackageReference Include="Otp.NET" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="MSTest.TestFramework" />
+        <PackageReference Include="System.ServiceProcess.ServiceController" />
+    </ItemGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
+    </ItemGroup>
 </Project>

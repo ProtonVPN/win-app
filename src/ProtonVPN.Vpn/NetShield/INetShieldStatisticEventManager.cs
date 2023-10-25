@@ -18,7 +18,7 @@
  */
 
 using System;
-using ProtonVPN.Common.NetShield;
+using ProtonVPN.Common.Legacy.NetShield;
 
 namespace ProtonVPN.Vpn.NetShield
 {

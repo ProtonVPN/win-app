@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 
 namespace ProtonVPN.Api.Contracts
 {

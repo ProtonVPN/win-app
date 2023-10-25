@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;

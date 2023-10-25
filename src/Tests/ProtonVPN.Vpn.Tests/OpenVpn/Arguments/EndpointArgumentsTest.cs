@@ -24,7 +24,7 @@ using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.OpenVpn.Arguments;
 

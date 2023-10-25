@@ -23,7 +23,7 @@ using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Handlers.StackBuilders;
 using ProtonVPN.Api.Handlers.TlsPinning;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 
 namespace ProtonVPN.Api
 {

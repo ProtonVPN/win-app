@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.Legacy.OS.Net;
 
 namespace ProtonVPN.Common.Tests.OS.Net
 {

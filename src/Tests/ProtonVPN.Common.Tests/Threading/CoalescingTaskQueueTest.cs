@@ -23,8 +23,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Tests.Common.Breakpoints;
 
 namespace ProtonVPN.Common.Tests.Threading

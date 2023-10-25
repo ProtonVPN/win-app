@@ -19,8 +19,8 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common;
-using ProtonVPN.Common.PortForwarding;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.PortForwarding;
 
 namespace ProtonVPN.Vpn.PortMapping
 {

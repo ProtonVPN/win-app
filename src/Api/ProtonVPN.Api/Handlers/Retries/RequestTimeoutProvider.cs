@@ -19,7 +19,7 @@
 
 using System;
 using System.Net.Http;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Api.Handlers.Retries;

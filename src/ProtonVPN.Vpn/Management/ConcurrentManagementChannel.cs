@@ -18,7 +18,7 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.Threading;
 
 namespace ProtonVPN.Vpn.Management
 {

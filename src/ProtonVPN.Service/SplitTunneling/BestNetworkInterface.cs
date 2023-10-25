@@ -18,7 +18,7 @@
  */
 
 using System.Net;
-using ProtonVPN.Common.Os.Net;
+using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Service.Settings;
 

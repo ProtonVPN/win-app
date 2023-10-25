@@ -19,10 +19,10 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;

@@ -26,10 +26,10 @@ using ProtonVPN.Client.Logic.Feedback.Attachments;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.OS.DeviceIds;
-using ProtonVPN.Common.OS.Systems;
+using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
+using ProtonVPN.Common.Legacy.OS.Systems;
 using File = ProtonVPN.Api.Contracts.File;
 
 namespace ProtonVPN.Client.Logic.Feedback;

@@ -1,33 +1,28 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <OutputPath>..\..\..\..\bin</OutputPath>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
-    <ProjectReference Include="..\..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
-    <ProjectReference Include="..\..\Auth\ProtonVPN.Client.Logic.Auth.Contracts\ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
-    <ProjectReference Include="..\..\Services\ProtonVPN.Client.Logic.Services.Contracts\ProtonVPN.Client.Logic.Services.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
-  </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\..\..\..\bin</OutputPath>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
+        <ProjectReference Include="..\..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
+        <ProjectReference Include="..\..\Auth\ProtonVPN.Client.Logic.Auth.Contracts\ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
+        <ProjectReference Include="..\..\Services\ProtonVPN.Client.Logic.Services.Contracts\ProtonVPN.Client.Logic.Services.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
+    </ItemGroup>
 </Project>

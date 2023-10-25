@@ -1,27 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	<OutputPath>..\..\..\..\bin</OutputPath>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
-    <ProjectReference Include="..\..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
-    <ProjectReference Include="..\..\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
-  </ItemGroup>
-
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\..\..\..\bin</OutputPath>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
+        <ProjectReference Include="..\..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+        <ProjectReference Include="..\..\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
+    </ItemGroup>
 </Project>

@@ -32,7 +32,7 @@ using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Settings;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Client.UI;
 

@@ -18,7 +18,7 @@
  */
 
 using System;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {

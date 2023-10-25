@@ -21,9 +21,9 @@ using System;
 using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Services;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -149,7 +149,7 @@ internal partial class VpnService : ServiceBase
         }
     }
 
-    private void OnVpnStateChanged(object sender, Common.EventArgs<VpnState> e)
+    private void OnVpnStateChanged(object sender, Common.Legacy.EventArgs<VpnState> e)
     {
         _isConnected = e.Data.Status == VpnStatus.Connected;
     }

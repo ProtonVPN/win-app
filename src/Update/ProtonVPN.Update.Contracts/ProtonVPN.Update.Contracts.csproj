@@ -1,23 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net6.0-windows</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<OutputType>Library</OutputType>
-		<OutputPath>..\..\bin\</OutputPath>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\..\GlobalAssemblyInfo.cs">
-			<Link>Properties\GlobalAssemblyInfo.cs</Link>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-	</ItemGroup>
-
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Library</OutputType>
+        <OutputPath>..\..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
+    </ItemGroup>
 </Project>

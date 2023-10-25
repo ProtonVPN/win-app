@@ -20,7 +20,7 @@
 using System;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;

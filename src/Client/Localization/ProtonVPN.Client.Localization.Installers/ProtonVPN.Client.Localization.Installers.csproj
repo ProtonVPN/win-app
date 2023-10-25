@@ -1,28 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
-    <RootNamespace>ProtonVPN.Client.Localization.Installers</RootNamespace>
-    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
-    <UseWinUI>true</UseWinUI>
-    <EnableMsixTooling>true</EnableMsixTooling>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\..\..\bin</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-      <PackageReference Include="Autofac" />
-      <PackageReference Include="Microsoft.WindowsAppSDK" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Client.Localization\ProtonVPN.Client.Localization.csproj" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+        <RootNamespace>ProtonVPN.Client.Localization.Installers</RootNamespace>
+        <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+        <UseWinUI>true</UseWinUI>
+        <EnableMsixTooling>true</EnableMsixTooling>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\..\..\bin</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Localization\ProtonVPN.Client.Localization.csproj" />
+    </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 using Polly;
 using Polly.Retry;
 using ProtonVPN.Api.Extensions;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 

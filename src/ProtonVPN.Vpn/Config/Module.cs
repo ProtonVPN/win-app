@@ -18,10 +18,10 @@
  */
 
 using Autofac;
-using ProtonVPN.Common.OS.Net;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.OS.Net;
+using ProtonVPN.Common.Legacy.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Services;
+using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Crypto.Contracts;

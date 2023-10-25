@@ -19,7 +19,7 @@
 
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Management;
 
 namespace ProtonVPN.Vpn.Tests.Management
@@ -63,7 +63,7 @@ namespace ProtonVPN.Vpn.Tests.Management
             ManagementError error = new ManagementError(message);
 
             // Act
-            VpnError result = error.VpnError();
+            VpnError result = error.GetVpnError();
 
             // Assert
             result.Should().Be(expected);

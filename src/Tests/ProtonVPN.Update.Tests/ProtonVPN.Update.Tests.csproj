@@ -1,56 +1,56 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\..\bin\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <IsPublishable>false</IsPublishable>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Update="TestData\windows-releases-invalid-versions.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestData\windows-releases.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TestData\ProtonVPN_win_v1.0.0.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\ProtonVPN_win_v1.5.0.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\ProtonVPN_win_v1.5.1.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\ProtonVPN_win_v1.5.2.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\ProtonVPN_win_v2.0.0.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\Empty file.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="MSTest.TestAdapter" />
-    <PackageReference Include="MSTest.TestFramework" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="NSubstitute" />
-    <PackageReference Include="System.ComponentModel.Composition" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
-    <PackageReference Include="System.ValueTuple" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <IsPublishable>false</IsPublishable>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Update="TestData\windows-releases-invalid-versions.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\windows-releases.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
+        <ProjectReference Include="..\..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="TestData\ProtonVPN_win_v1.0.0.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="TestData\ProtonVPN_win_v1.5.0.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="TestData\ProtonVPN_win_v1.5.1.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="TestData\ProtonVPN_win_v1.5.2.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="TestData\ProtonVPN_win_v2.0.0.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="TestData\Empty file.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="MSTest.TestFramework" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="NSubstitute" />
+        <PackageReference Include="System.ComponentModel.Composition" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+        <PackageReference Include="System.Threading.Tasks.Extensions" />
+        <PackageReference Include="System.ValueTuple" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" />
+    </ItemGroup>
 </Project>

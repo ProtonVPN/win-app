@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -31,14 +31,14 @@ namespace ProtonVPN.Vpn.Management
     {
         private static readonly Dictionary<VpnError, Predicate<string>> ErrorMap = new()
         {
-            [ProtonVPN.Common.Vpn.VpnError.AuthorizationError] = ContainsAuthError,
-            [ProtonVPN.Common.Vpn.VpnError.TapAdapterInUseError] = ContainsTapInUseError,
-            [ProtonVPN.Common.Vpn.VpnError.NoTapAdaptersError] = ContainsNoTapError,
-            [ProtonVPN.Common.Vpn.VpnError.TapRequiresUpdateError] = ContainsTapRequiresUpdateError,
-            [ProtonVPN.Common.Vpn.VpnError.AdapterTimeoutError] = ContainsTimeoutError,
-            [ProtonVPN.Common.Vpn.VpnError.NetshError] = ContainsNetshError,
-            [ProtonVPN.Common.Vpn.VpnError.TlsCertificateError] = ContainsTlsCertificateError,
-            [ProtonVPN.Common.Vpn.VpnError.ClientKeyMismatch] = ContainsKeyVerificationError,
+            [VpnError.AuthorizationError] = ContainsAuthError,
+            [VpnError.TapAdapterInUseError] = ContainsTapInUseError,
+            [VpnError.NoTapAdaptersError] = ContainsNoTapError,
+            [VpnError.TapRequiresUpdateError] = ContainsTapRequiresUpdateError,
+            [VpnError.AdapterTimeoutError] = ContainsTimeoutError,
+            [VpnError.NetshError] = ContainsNetshError,
+            [VpnError.TlsCertificateError] = ContainsTlsCertificateError,
+            [VpnError.ClientKeyMismatch] = ContainsKeyVerificationError,
         };
 
         public string Message { get; }
@@ -48,7 +48,7 @@ namespace ProtonVPN.Vpn.Management
             Message = message;
         }
 
-        public VpnError VpnError() => GetErrorType();
+        public VpnError GetVpnError() => GetErrorType();
 
         public static bool ContainsError(string message)
         {
@@ -68,7 +68,7 @@ namespace ProtonVPN.Vpn.Management
                 }
             }
 
-            return ProtonVPN.Common.Vpn.VpnError.Unknown;
+            return VpnError.Unknown;
         }
 
         private static bool ContainsNetshError(string message)

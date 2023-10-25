@@ -18,7 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.PortForwarding;
+using ProtonVPN.Common.Legacy.PortForwarding;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;

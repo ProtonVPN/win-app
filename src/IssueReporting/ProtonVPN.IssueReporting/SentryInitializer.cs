@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
-using ProtonVPN.Common.OS.DeviceIds;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.IssueReporting.DiagnosticLogging;
 using ProtonVPN.IssueReporting.HttpHandlers;
 using ProtonVPN.Logging.Contracts;

@@ -19,8 +19,8 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common;
-using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.OS.Net;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {

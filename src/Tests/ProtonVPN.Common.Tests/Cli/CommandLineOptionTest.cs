@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Cli;
+using ProtonVPN.Common.Legacy.Cli;
 
 // ReSharper disable ObjectCreationAsStatement
 

@@ -28,7 +28,7 @@ using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;

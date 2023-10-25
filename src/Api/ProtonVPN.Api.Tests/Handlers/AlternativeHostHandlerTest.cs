@@ -34,7 +34,7 @@ using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Core.Vpn;

@@ -19,7 +19,7 @@
 
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Logging.Log4Net

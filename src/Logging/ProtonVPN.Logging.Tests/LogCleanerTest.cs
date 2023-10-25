@@ -20,7 +20,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;

@@ -1,35 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
-    <RootNamespace>ProtonVPN.Client.Localization</RootNamespace>
-    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
-    <UseWinUI>true</UseWinUI>
-    <EnableMsixTooling>true</EnableMsixTooling>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\..\..\bin</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Include="Strings\en-US\Resources.resw" />
-    <EmbeddedResource Include="Strings\fr-FR\Resources.resw" />
-    <EmbeddedResource Include="Strings\pt-PT\Resources.resw" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-      <PackageReference Include="Microsoft.WindowsAppSDK" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-      <PackageReference Include="WinUI3Localizer" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
-    <ProjectReference Include="..\..\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+        <RootNamespace>ProtonVPN.Client.Localization</RootNamespace>
+        <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+        <UseWinUI>true</UseWinUI>
+        <EnableMsixTooling>true</EnableMsixTooling>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\..\..\bin</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Strings\en-US\Resources.resw" />
+        <EmbeddedResource Include="Strings\fr-FR\Resources.resw" />
+        <EmbeddedResource Include="Strings\pt-PT\Resources.resw" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+        <PackageReference Include="WinUI3Localizer" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+        <ProjectReference Include="..\..\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
+    </ItemGroup>
 </Project>

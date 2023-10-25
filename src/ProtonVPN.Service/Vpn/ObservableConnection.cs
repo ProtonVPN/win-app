@@ -19,8 +19,8 @@
 
 using System;
 using System.Collections.Generic;
-using ProtonVPN.Common;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.Vpn

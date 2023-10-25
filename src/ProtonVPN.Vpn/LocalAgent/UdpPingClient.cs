@@ -19,8 +19,8 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Go;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Go;
+using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {

@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 

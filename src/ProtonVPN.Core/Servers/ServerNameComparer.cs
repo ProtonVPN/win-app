@@ -19,7 +19,7 @@
 
 using System;
 using System.Collections.Generic;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Core.Servers
 {

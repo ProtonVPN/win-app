@@ -29,7 +29,7 @@ using ARSoft.Tools.Net;
 using ARSoft.Tools.Net.Dns;
 using Microsoft.AspNetCore.WebUtilities;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Exceptions;

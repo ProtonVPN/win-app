@@ -19,8 +19,8 @@
 
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Extensions;
-using static ProtonVPN.Common.Extensions.ExponentialExtensions;
+using ProtonVPN.Common.Legacy.Extensions;
+using static ProtonVPN.Common.Legacy.Extensions.ExponentialExtensions;
 
 namespace ProtonVPN.Common.Tests.Extensions
 {

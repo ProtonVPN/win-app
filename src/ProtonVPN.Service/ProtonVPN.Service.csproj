@@ -1,88 +1,86 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <AssemblyName>ProtonVPNService</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>protonvpn.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\bin\</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-      <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-      <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <AssemblyName>ProtonVPNService</AssemblyName>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ApplicationIcon>protonvpn.ico</ApplicationIcon>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    </PropertyGroup>
     <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Update="VpnService.cs" />
-    <Compile Update="VpnService.Designer.cs">
-      <DependentUpon>VpnService.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="protonvpn.ico" />
-    <Content Include="Resources\config.ovpn">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
-    <ProjectReference Include="..\Common\ProtonVPN.Common.Installers\ProtonVPN.Common.Installers.csproj" />
-    <ProjectReference Include="..\Configurations\ProtonVPN.Configurations.Installers\ProtonVPN.Configurations.Installers.csproj" />
-    <ProjectReference Include="..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
-    <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
-    <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
-    <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />
-    <ProjectReference Include="..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
-    <ProjectReference Include="..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
-    <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
-    <ProjectReference Include="..\ProcessCommunication\Service\ProtonVPN.ProcessCommunication.Service.Installers\ProtonVPN.ProcessCommunication.Service.Installers.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
-    <ProjectReference Include="..\ProtonVPN.NetworkFilter\ProtonVPN.NetworkFilter.csproj" />
-    <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj"
-                      OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
-    <ProjectReference Include="..\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj" />
-    <ProjectReference Include="..\Update\ProtonVPN.Update.Installers\ProtonVPN.Update.Installers.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" />
-    <PackageReference Include="Grpc.Core" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
-    <PackageReference Include="PInvoke.Kernel32" />
-    <PackageReference Include="Polly" />
-    <PackageReference Include="protobuf-net.Grpc" />
-    <PackageReference Include="protobuf-net.Grpc.Native" />
-    <PackageReference Include="System.Collections.Immutable" />
-    <PackageReference Include="System.ComponentModel.Annotations" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" />
-    <PackageReference Include="System.Formats.Asn1" />
-    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" />
-    <PackageReference Include="System.Text.Encoding.CodePages" />
-    <PackageReference Include="System.Text.Json" />
-  </ItemGroup>
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+        <Compile Include="..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+        <Compile Update="VpnService.cs" />
+        <Compile Update="VpnService.Designer.cs">
+            <DependentUpon>VpnService.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="protonvpn.ico" />
+        <Content Include="Resources\config.ovpn">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
+        <ProjectReference Include="..\Common\ProtonVPN.Common.Installers\ProtonVPN.Common.Installers.csproj" />
+        <ProjectReference Include="..\Configurations\ProtonVPN.Configurations.Installers\ProtonVPN.Configurations.Installers.csproj" />
+        <ProjectReference Include="..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
+        <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
+        <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
+        <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />
+        <ProjectReference Include="..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
+        <ProjectReference Include="..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
+        <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
+        <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
+        <ProjectReference Include="..\ProcessCommunication\Service\ProtonVPN.ProcessCommunication.Service.Installers\ProtonVPN.ProcessCommunication.Service.Installers.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
+        <ProjectReference Include="..\ProtonVPN.NetworkFilter\ProtonVPN.NetworkFilter.csproj" />
+        <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
+        <ProjectReference Include="..\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj" />
+        <ProjectReference Include="..\Update\ProtonVPN.Update.Installers\ProtonVPN.Update.Installers.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+        <PackageReference Include="Grpc.Core" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
+        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
+        <PackageReference Include="PInvoke.Kernel32" />
+        <PackageReference Include="Polly" />
+        <PackageReference Include="protobuf-net.Grpc" />
+        <PackageReference Include="protobuf-net.Grpc.Native" />
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.ComponentModel.Annotations" />
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
+        <PackageReference Include="Microsoft.Windows.Compatibility" />
+        <PackageReference Include="System.Text.Encoding.CodePages" />
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
 </Project>

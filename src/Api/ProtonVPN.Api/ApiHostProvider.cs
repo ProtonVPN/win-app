@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;

@@ -21,7 +21,7 @@ using System;
 using System.Net.Http;
 using Polly;
 using ProtonVPN.Api.Extensions;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Api.Handlers.Retries
 {

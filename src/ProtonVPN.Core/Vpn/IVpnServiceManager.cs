@@ -20,9 +20,9 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using ProtonVPN.Common.NetShield;
-using ProtonVPN.Common.PortForwarding;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.NetShield;
+using ProtonVPN.Common.Legacy.PortForwarding;
+using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Core.Vpn
 {

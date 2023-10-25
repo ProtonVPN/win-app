@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Files.Downloadable;
 using ProtonVPN.Update.Files.Validatable;

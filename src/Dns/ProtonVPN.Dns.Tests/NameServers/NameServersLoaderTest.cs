@@ -23,7 +23,7 @@ using System.Net;
 using System.Net.Sockets;
 using DnsClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Dns.NameServers;
 using ProtonVPN.Dns.Tests.Mocks;
 

@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.NetShield;
+using ProtonVPN.Common.Legacy.NetShield;
 
 namespace ProtonVPN.Core.NetShield
 {
