@@ -30,7 +30,6 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -44,7 +43,10 @@ using ProtonVPN.Client.UI.Settings.Pages;
 
 namespace ProtonVPN.Client.UI.Settings;
 
-public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMessageReceiver<ThemeChangedMessage>, IEventMessageReceiver<SettingChangedMessage>, IEventMessageReceiver<LoginSuccessMessage>
+public partial class SettingsViewModel : NavigationPageViewModelBase,
+    IEventMessageReceiver<ThemeChangedMessage>,
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<LoginSuccessMessage>
 {
     private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
@@ -102,12 +104,6 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
     {
         get => _settings.IsBetaAccessEnabled;
         set => _settings.IsBetaAccessEnabled = value;
-    }
-
-    public bool IsHardwareAccelerationEnabled
-    {
-        get => _settings.IsHardwareAccelerationEnabled;
-        set => _settings.IsHardwareAccelerationEnabled = value;
     }
 
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
@@ -232,10 +228,6 @@ public partial class SettingsViewModel : NavigationPageViewModelBase, IEventMess
 
             case nameof(ISettings.IsBetaAccessEnabled):
                 OnPropertyChanged(nameof(IsBetaAccessEnabled));
-                break;
-
-            case nameof(ISettings.IsHardwareAccelerationEnabled):
-                OnPropertyChanged(nameof(IsHardwareAccelerationEnabled));
                 break;
         }
     }

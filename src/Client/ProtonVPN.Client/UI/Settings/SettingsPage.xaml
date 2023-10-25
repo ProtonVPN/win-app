@@ -204,18 +204,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="HardwareAccelerationSettingsCard"
-                               Description="{x:Bind ViewModel.Localizer.Get('Settings_General_HardwareAcceleration_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_General_HardwareAcceleration')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
-                    <pathicons:Robot />
-                </labs:SettingsCard.HeaderIcon>
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsHardwareAccelerationEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
-
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Support')}" />
 

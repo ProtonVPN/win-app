@@ -1582,12 +1582,6 @@
   <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
     <value>Get early access and help us test new versions of Proton VPN</value>
   </data>
-  <data name="Settings_General_HardwareAcceleration" xml:space="preserve">
-    <value>Hardware acceleration</value>
-  </data>
-  <data name="Settings_General_HardwareAcceleration_Description" xml:space="preserve">
-    <value>Increase Proton VPN app performance by using your graphics card (GPU) for rendering</value>
-  </data>
   <data name="Settings_General_Language" xml:space="preserve">
     <value>Language</value>
   </data>

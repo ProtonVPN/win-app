@@ -1613,12 +1613,6 @@
   <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
     <value>Obtenha acesso antecipado e ajude-nos a testar novas versões da Proton VPN</value>
   </data>
-  <data name="Settings_General_HardwareAcceleration" xml:space="preserve">
-    <value>Aceleração de hardware</value>
-  </data>
-  <data name="Settings_General_HardwareAcceleration_Description" xml:space="preserve">
-    <value>Melhore o desempenho da aplicação Proton VPN através da utilização da sua placa gráfica na renderização</value>
-  </data>
   <data name="Settings_General_Notifications" xml:space="preserve">
     <value>Notificações</value>
   </data>

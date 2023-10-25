@@ -83,7 +83,6 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.IsWindowMaximized), _settings.IsWindowMaximized);
         yield return new(nameof(ISettings.IsNotificationEnabled), _settings.IsNotificationEnabled);
         yield return new(nameof(ISettings.IsBetaAccessEnabled), _settings.IsBetaAccessEnabled);
-        yield return new(nameof(ISettings.IsHardwareAccelerationEnabled), _settings.IsHardwareAccelerationEnabled);
         yield return new(nameof(ISettings.IsShareStatisticsEnabled), _settings.IsShareStatisticsEnabled);
         yield return new(nameof(ISettings.IsShareCrashReportsEnabled), _settings.IsShareCrashReportsEnabled);
         yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), _settings.IsAlternativeRoutingEnabled);

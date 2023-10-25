@@ -118,7 +118,6 @@ public interface IAppSettings
     string AccessToken { get; set; }
     string RefreshToken { get; set; }
     string Uid { get; set; }
-    bool HardwareAccelerationEnabled { get; set; }
     bool IsToShowRebrandingPopup { get; set; }
     ConcurrentDictionary<string, DnsResponse> DnsCache { get; set; }
     bool FeatureNetShieldStatsEnabled { get; set; }
