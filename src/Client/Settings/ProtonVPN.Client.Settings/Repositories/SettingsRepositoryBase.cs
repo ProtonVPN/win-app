@@ -19,7 +19,6 @@
 
 using System.Runtime.CompilerServices;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Extensions;
@@ -86,13 +85,13 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
         }
     }
 
-    public List<T> GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public List<T>? GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
         {
             string? json = GetJson(propertyName, encryption);
-            return Deserialize<List<T>>(json ?? string.Empty) ?? new();
+            return Deserialize<List<T>>(json ?? string.Empty);
         }
         catch (Exception ex)
         {
@@ -184,9 +183,9 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
     {
         try
         {
-            List<T> oldValue = GetListValueType<T>(encryption, propertyName);
+            List<T>? oldValue = GetListValueType<T>(encryption, propertyName);
 
-            if (oldValue.SequenceEqual(newValue))
+            if (oldValue is not null && oldValue.SequenceEqual(newValue))
             {
                 return;
             }

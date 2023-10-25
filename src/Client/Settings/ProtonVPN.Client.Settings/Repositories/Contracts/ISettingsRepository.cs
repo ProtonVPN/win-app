@@ -35,7 +35,9 @@ public interface ISettingsRepository
     void SetReferenceType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : class;
 
-    List<T> GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    // Null - The setting was never set up. Useful to be filled with a default value.
+    // Empty - The setting was set up as an empty list. Useful to not be filled with a default value.
+    List<T>? GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
 
     void SetListValueType<T>(List<T> newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
