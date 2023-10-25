@@ -139,6 +139,7 @@ Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{c
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
 Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
+Name: "ja_JP"; MessagesFile: "compiler:Languages\Japanese.isl,Strings\Japanese.isl"
 Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl,Strings\German.isl"
 Name: "fi_FI"; MessagesFile: "compiler:Languages\Finnish.isl,Strings\Finnish.isl"
 Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl,Strings\French.isl"
