@@ -148,6 +148,7 @@ namespace ProtonVPN.Core.Service.Vpn
             if (uri.Host.EqualsIgnoringCase(SubscriptionManager.REFRESH_ACCOUNT_COMMAND))
             {
                 await _upgradeModalManager.CheckForVpnPlanUpgradeAsync(modalSource, notificationReference);
+                await _announcementService.UpdateAsync();
             }
         }
     }

@@ -27,7 +27,7 @@ namespace ProtonVPN.Announcements.Contracts
     {
         public IReadOnlyCollection<Announcement> Get();
 
-        public Task Update();
+        public Task UpdateAsync();
 
         public void MarkAsSeen(string id);
 

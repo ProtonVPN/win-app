@@ -115,7 +115,7 @@ namespace ProtonVPN.Announcements.Tests
             AnnouncementService sut = GetAnnouncementService();
 
             // Act
-            await sut.Update();
+            await sut.UpdateAsync();
 
             // Assert
             _announcementCache.Get().Should().BeEmpty();

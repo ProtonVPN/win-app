@@ -188,7 +188,7 @@ namespace ProtonVPN.Servers
                     firstTimeUnit = $"{timeSpan.Days} {Translation.GetPlural("TimeUnit_val_Day", timeSpan.Days)}";
                     secondTimeUnit = $"{timeSpan.Hours} {Translation.GetPlural("TimeUnit_val_Hour", timeSpan.Hours)}";
                 }
-                else if (timeSpan.Minutes > 0)
+                else if (timeSpan.Hours > 0)
                 {
                     firstTimeUnit = $"{timeSpan.Hours} {Translation.GetPlural("TimeUnit_val_Hour", timeSpan.Hours)}";
                     secondTimeUnit = $"{timeSpan.Minutes} {Translation.GetPlural("TimeUnit_val_Minute", timeSpan.Minutes)}";

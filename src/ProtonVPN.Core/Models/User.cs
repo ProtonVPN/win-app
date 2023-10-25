@@ -52,7 +52,7 @@ namespace ProtonVPN.Core.Models
 
         public bool IsPlusPlan()
         {
-            return VpnPlan is "vpnplus" or "vpn2022";
+            return VpnPlan is "vpnplus" or "vpn2022" or "vpnpass2023";
         }
 
         public bool IsUnlimitedPlan()

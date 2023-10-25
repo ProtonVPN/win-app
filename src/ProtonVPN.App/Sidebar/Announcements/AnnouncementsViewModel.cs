@@ -52,7 +52,7 @@ namespace ProtonVPN.Sidebar.Announcements
             OpenAnnouncementCommand = new RelayCommand(OpenAnnouncement);
         }
 
-        private Announcement _announcement = new();
+        private Announcement _announcement;
         public Announcement Announcement
         {
             get => _announcement;
@@ -66,19 +66,9 @@ namespace ProtonVPN.Sidebar.Announcements
             set => Set(ref _showAnnouncements, value);
         }
 
-        private bool _hasUnread;
-        public bool HasUnread
-        {
-            get => _hasUnread;
-            private set => Set(ref _hasUnread, value);
-        }
-
-        private bool _hasAnnouncements;
-        public bool HasAnnouncements
-        {
-            get => _hasAnnouncements;
-            private set => Set(ref _hasAnnouncements, value);
-        }
+        public bool HasUnread => !Announcement?.Seen ?? false;
+        
+        public bool HasAnnouncements => Announcement != null;
 
         public ICommand OpenAnnouncementCommand { get; }
 
@@ -94,7 +84,6 @@ namespace ProtonVPN.Sidebar.Announcements
 
         private void Load()
         {
-            HasUnread = false;
             List<Announcement> items = new();
             DateTime currentTimeUtc = DateTime.UtcNow;
             IReadOnlyCollection<Announcement> announcements = _announcementService.Get()
@@ -117,16 +106,14 @@ namespace ProtonVPN.Sidebar.Announcements
                     }
                     continue;
                 }
-                if (!announcement.Seen)
-                {
-                    HasUnread = true;
-                }
 
                 items.Add(announcement);
             }
 
             Announcement = items.FirstOrDefault();
-            HasAnnouncements = items.Count > 0;
+
+            NotifyOfPropertyChange(nameof(HasAnnouncements));
+            NotifyOfPropertyChange(nameof(HasUnread));
         }
 
         private void ScheduleReload(TimeSpan nextReloadInterval)
@@ -145,8 +132,8 @@ namespace ProtonVPN.Sidebar.Announcements
             Announcement announcement = Announcement;
             if (announcement != null)
             {
-                HasUnread = false;
                 OpenAnnouncement(announcement);
+                NotifyOfPropertyChange(nameof(HasUnread));
             }
         }
 

@@ -90,7 +90,7 @@ public class AnnouncementService : IAnnouncementService, ILoggedInAware, ILogout
         return _announcementCache.Get();
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
         await _updateAction.Run();
     }
