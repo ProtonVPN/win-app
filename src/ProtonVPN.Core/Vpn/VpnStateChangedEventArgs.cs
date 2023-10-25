@@ -18,8 +18,8 @@
  */
 
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Helpers;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Core.Servers.Models;
 
 namespace ProtonVPN.Core.Vpn;

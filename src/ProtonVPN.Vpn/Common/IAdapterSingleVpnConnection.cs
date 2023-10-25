@@ -18,8 +18,8 @@
  */
 
 using System;
-using ProtonVPN.Common;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Vpn.Common
 {

@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Extensions;
+namespace ProtonVPN.Common.Core.Extensions;
 
 public static class VersionExtensions
 {

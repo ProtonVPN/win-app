@@ -22,13 +22,13 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ProtonVPN.Common;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Go;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Legacy.Go;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
-using ProtonVPN.Common.NetShield;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.NetShield;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
 using ProtonVPN.Vpn.NetShield;
 

@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Net;
 using ARSoft.Tools.Net.Dns;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Resolvers;

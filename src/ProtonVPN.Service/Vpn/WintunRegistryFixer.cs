@@ -19,7 +19,7 @@
 
 using System.Security;
 using Microsoft.Win32;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.IssueReporting.Contracts;

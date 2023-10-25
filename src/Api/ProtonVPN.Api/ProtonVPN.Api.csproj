@@ -1,32 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <OutputPath>..\..\bin\</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
-    <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
-    <ProjectReference Include="..\..\Client\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
-    <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />
-    <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DnsClient" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="Polly" />
-    <PackageReference Include="Polly.Contrib.WaitAndRetry" />
-    <PackageReference Include="System.Net.Http" />
-    <PackageReference Include="Caliburn.Micro.Core" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+        <OutputPath>..\..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
+        <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+        <ProjectReference Include="..\..\Client\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
+        <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />
+        <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
+        <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DnsClient" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="Polly" />
+        <PackageReference Include="Polly.Contrib.WaitAndRetry" />
+        <PackageReference Include="System.Net.Http" />
+        <PackageReference Include="Caliburn.Micro.Core" />
+    </ItemGroup>
 </Project>

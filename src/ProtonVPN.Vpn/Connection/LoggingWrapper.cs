@@ -19,10 +19,10 @@
 
 using System;
 using System.Collections.Generic;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.Connection

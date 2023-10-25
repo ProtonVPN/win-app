@@ -18,7 +18,7 @@
  */
 
 using FluentAssertions;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 using NSubstitute;
 

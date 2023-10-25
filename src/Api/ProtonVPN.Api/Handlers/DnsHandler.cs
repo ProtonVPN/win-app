@@ -23,7 +23,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Exceptions;
 using ProtonVPN.Logging.Contracts;

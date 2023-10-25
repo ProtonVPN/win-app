@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.PortForwarding;
+using ProtonVPN.Common.Legacy.PortForwarding;
 
 namespace ProtonVPN.Core.PortForwarding
 {

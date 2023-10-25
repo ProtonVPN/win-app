@@ -20,9 +20,9 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.OS.Net;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.KillSwitch;
+using ProtonVPN.Common.Legacy.OS.Net;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;

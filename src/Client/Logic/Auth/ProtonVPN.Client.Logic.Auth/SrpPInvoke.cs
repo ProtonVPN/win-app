@@ -20,8 +20,8 @@
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
-using ProtonVPN.Common.Go;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Go;
+using ProtonVPN.Common.Legacy.Helpers;
 
 namespace ProtonVPN.Client.Logic.Auth;
 

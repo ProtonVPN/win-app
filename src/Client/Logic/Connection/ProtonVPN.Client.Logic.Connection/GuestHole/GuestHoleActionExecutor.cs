@@ -20,7 +20,7 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;

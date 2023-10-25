@@ -18,7 +18,7 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Profiles.Cached

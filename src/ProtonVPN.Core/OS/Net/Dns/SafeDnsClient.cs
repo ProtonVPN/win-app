@@ -24,7 +24,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using DnsClient;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 
 namespace ProtonVPN.Core.OS.Net.Dns
 {

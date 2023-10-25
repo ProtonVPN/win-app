@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\bin\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
-    <PackageReference Include="System.Collections.Immutable" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" />
-    <PackageReference Include="System.Formats.Asn1" />
-    <PackageReference Include="System.Text.Encoding.CodePages" />
-    <PackageReference Include="System.Text.Json" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <OutputType>WinExe</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Encoding.CodePages" />
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
 </Project>

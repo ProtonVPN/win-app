@@ -28,7 +28,7 @@ using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth.Tests;

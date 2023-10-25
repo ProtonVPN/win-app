@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Legacy.Abstract;
 
 namespace ProtonVPN.Client.Logic.Feedback.Contracts;
 

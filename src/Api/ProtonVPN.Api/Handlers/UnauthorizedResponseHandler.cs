@@ -28,8 +28,8 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
-using ProtonVPN.Common.OS.Net.Http;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
+using ProtonVPN.Common.Legacy.Threading;
 
 namespace ProtonVPN.Api.Handlers;
 

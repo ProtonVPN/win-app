@@ -19,12 +19,12 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
-using ProtonVPN.Common.Threading;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Threading;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;

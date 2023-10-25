@@ -1,25 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	<OutputPath>..\..\..\..\bin</OutputPath>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Autofac" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Client.Logic.Services.Contracts\ProtonVPN.Client.Logic.Services.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Client.Logic.Services\ProtonVPN.Client.Logic.Services.csproj" />
-  </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\..\..\..\bin</OutputPath>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Services.Contracts\ProtonVPN.Client.Logic.Services.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Services\ProtonVPN.Client.Logic.Services.csproj" />
+    </ItemGroup>
 </Project>

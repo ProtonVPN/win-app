@@ -30,7 +30,7 @@ namespace ProtonVPN.Service.Firewall
         private readonly IpLayer _ipLayer;
         private readonly IpFilter _ipFilter;
 
-        private readonly Dictionary<string,List<Guid>> _list = new Dictionary<string, List<Guid>>();
+        private readonly Dictionary<string, List<Guid>> _list = new();
 
         public PermittedRemoteAddress(IpFilter ipFilter, IpLayer ipLayer)
         {
@@ -53,7 +53,7 @@ namespace ProtonVPN.Service.Firewall
                 return;
             }
 
-            var networkAddress = new Common.OS.Net.NetworkAddress(address);
+            Common.Legacy.OS.Net.NetworkAddress networkAddress = new(address);
             if (!networkAddress.Valid())
             {
                 return;

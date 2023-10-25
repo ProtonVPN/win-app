@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;

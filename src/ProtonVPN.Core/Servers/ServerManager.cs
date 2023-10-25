@@ -22,7 +22,7 @@ using System.Linq;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Servers.Models;
 using ProtonVPN.Core.Servers.Specs;

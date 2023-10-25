@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Resource.Colors;
 
 namespace ProtonVPN.Core.Profiles

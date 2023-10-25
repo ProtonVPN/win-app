@@ -19,7 +19,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using ProtonVPN.Common.Go;
+using ProtonVPN.Common.Legacy.Go;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {

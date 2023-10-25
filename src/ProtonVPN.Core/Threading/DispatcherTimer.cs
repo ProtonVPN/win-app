@@ -19,7 +19,7 @@
 
 using System;
 using System.Windows.Threading;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.Threading;
 
 namespace ProtonVPN.Core.Threading
 {

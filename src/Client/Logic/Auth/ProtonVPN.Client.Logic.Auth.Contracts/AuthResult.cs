@@ -19,8 +19,8 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
-using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts;
 

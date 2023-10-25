@@ -19,7 +19,7 @@
 
 using System;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Legacy.KillSwitch;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Service.Settings;

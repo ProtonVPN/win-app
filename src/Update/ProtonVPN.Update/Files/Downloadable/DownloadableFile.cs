@@ -19,7 +19,7 @@
 
 using System.IO;
 using System.Threading.Tasks;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 
 namespace ProtonVPN.Update.Files.Downloadable
 {

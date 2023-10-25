@@ -24,7 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Dns.Caching;
 using ProtonVPN.Dns.Contracts;

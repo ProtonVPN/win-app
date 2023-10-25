@@ -18,8 +18,7 @@
  */
 
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Os.Net;
-using ProtonVPN.Common.OS.Net;
+using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.Vpn.Common;

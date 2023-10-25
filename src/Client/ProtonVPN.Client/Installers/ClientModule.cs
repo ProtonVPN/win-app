@@ -27,10 +27,10 @@ using ProtonVPN.Client.Models.Edition;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
-using ProtonVPN.Common.OS.DeviceIds;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
-using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Common.OS.Systems;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Systems;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Installers;

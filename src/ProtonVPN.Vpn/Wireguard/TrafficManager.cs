@@ -23,8 +23,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Common.Threading;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Threading;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.WireGuardDriver;
 
 namespace ProtonVPN.Vpn.WireGuard

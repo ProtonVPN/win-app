@@ -21,7 +21,7 @@ using System;
 using System.ComponentModel;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Legacy.OS.Services;
 
 namespace ProtonVPN.Common.Tests.OS.Services
 {

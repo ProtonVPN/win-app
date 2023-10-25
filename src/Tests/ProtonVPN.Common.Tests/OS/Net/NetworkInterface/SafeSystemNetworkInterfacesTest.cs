@@ -27,7 +27,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.Common.Tests.OS.Net.NetworkInterface
 {

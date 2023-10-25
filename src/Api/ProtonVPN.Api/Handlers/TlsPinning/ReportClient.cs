@@ -21,7 +21,7 @@ using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.Threading;
 
 namespace ProtonVPN.Api.Handlers.TlsPinning
 {

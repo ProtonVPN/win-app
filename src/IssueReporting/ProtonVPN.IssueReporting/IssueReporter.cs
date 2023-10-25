@@ -19,7 +19,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using Sentry;

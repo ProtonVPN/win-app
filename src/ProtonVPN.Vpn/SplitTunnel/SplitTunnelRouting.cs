@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common;
-using ProtonVPN.Common.OS.Net;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
-using ProtonVPN.Common.OS.Net.Routing;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.OS.Net;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.OS.Net.Routing;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Vpn.SplitTunnel;

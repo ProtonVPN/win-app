@@ -23,10 +23,10 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Gateways;
 
@@ -234,7 +234,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void HandleErrorMessage(ReceivedManagementMessage message)
         {
-            _lastError = message.Error().VpnError();
+            _lastError = message.Error().GetVpnError();
         }
 
         private async Task HandleStateMessage(ReceivedManagementMessage message)

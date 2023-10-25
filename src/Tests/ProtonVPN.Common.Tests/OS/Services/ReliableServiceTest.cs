@@ -23,8 +23,8 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Abstract;
-using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Common.Legacy.OS.Services;
 
 namespace ProtonVPN.Common.Tests.OS.Services
 {

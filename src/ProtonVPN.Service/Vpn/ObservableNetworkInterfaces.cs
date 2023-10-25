@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 
 namespace ProtonVPN.Service.Vpn
 {

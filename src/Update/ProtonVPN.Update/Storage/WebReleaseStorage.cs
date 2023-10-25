@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Responses;

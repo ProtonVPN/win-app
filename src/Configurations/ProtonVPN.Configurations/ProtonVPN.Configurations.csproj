@@ -1,25 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <OutputPath>..\..\bin</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
-    <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
-    <ProjectReference Include="..\..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />
-  </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <OutputPath>..\..\bin</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+        <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
+        <ProjectReference Include="..\..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />
+    </ItemGroup>
 </Project>

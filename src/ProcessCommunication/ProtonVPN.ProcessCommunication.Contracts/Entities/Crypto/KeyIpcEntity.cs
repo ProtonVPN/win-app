@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 using ProtoBuf;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Crypto.Contracts;
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto

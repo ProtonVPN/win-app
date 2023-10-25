@@ -1,40 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\..\bin\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <IsPublishable>false</IsPublishable>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="TestData\Config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestData\Test.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="MSTest.TestAdapter" />
-    <PackageReference Include="MSTest.TestFramework" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="NSubstitute" />
-    <PackageReference Include="Polly" />
-    <PackageReference Include="System.ComponentModel.Composition" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <IsPublishable>false</IsPublishable>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="TestData\Config.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\Test.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="MSTest.TestFramework" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="NSubstitute" />
+        <PackageReference Include="Polly" />
+        <PackageReference Include="System.ComponentModel.Composition" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+        <PackageReference Include="System.Threading.Tasks.Extensions" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" />
+    </ItemGroup>
 </Project>

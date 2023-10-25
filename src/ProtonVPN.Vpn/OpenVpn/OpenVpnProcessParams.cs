@@ -18,7 +18,7 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Vpn.Common;
 

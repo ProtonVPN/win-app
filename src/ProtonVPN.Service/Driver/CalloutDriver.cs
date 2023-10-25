@@ -18,7 +18,7 @@
  */
 
 using System.Threading;
-using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Common.Legacy.OS.Services;
 
 namespace ProtonVPN.Service.Driver
 {

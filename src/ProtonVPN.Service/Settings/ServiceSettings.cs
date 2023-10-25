@@ -19,8 +19,8 @@
 
 using System;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.KillSwitch;
+using ProtonVPN.Common.Legacy.Helpers;
+using ProtonVPN.Common.Legacy.KillSwitch;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;

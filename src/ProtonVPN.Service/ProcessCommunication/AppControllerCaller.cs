@@ -20,11 +20,11 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.NetShield;
-using ProtonVPN.Common.PortForwarding;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.NetShield;
+using ProtonVPN.Common.Legacy.PortForwarding;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;

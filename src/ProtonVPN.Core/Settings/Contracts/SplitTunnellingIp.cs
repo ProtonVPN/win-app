@@ -18,7 +18,7 @@
  */
 
 using System;
-using HashCode = ProtonVPN.Common.Helpers.HashCode;
+using HashCode = ProtonVPN.Common.Legacy.Helpers.HashCode;
 
 namespace ProtonVPN.Core.Settings.Contracts
 {

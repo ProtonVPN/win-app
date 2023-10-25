@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Common.Tests.Vpn;
 

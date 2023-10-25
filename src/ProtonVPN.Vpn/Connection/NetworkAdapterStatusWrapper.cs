@@ -18,11 +18,11 @@
  */
 
 using System;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.OS.Net;
-using ProtonVPN.Common.OS.Net.NetworkInterface;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.OS.Net;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;

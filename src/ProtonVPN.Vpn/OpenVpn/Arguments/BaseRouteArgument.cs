@@ -19,7 +19,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {

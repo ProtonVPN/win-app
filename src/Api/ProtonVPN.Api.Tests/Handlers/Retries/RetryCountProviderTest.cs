@@ -22,7 +22,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Handlers.Retries;
-using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Api.Tests.Handlers.Retries;

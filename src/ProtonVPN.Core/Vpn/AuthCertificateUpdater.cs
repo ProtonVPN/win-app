@@ -19,7 +19,7 @@
 
 using System.ComponentModel;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Core.Vpn

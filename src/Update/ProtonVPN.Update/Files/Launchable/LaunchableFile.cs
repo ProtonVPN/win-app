@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Processes;
 
 namespace ProtonVPN.Update.Files.Launchable
 {

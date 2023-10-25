@@ -29,7 +29,7 @@ using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.ReportIssue.Models;
 using ProtonVPN.Client.UI.ReportIssue.Models.Fields;
-using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Legacy.Abstract;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 

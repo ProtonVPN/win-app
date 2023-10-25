@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.OS.Net.NetworkInterface;
-using ProtonVPN.Common.Threading;
+using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
+using ProtonVPN.Common.Legacy.Threading;
 using System;
 using System.Collections.Generic;
 using System.Linq;

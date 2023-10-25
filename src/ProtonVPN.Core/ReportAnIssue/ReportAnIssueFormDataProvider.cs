@@ -23,7 +23,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 

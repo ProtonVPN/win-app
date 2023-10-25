@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Legacy.Abstract;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.NetworkInformation;

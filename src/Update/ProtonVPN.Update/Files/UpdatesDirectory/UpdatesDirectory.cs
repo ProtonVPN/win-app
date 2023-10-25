@@ -20,8 +20,8 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using ProtonVPN.Common.Extensions;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Legacy.Helpers;
 
 namespace ProtonVPN.Update.Files.UpdatesDirectory;
 

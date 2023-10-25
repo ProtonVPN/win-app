@@ -22,7 +22,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
-using ProtonVPN.Common.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Update.Files.Launchable;
 
 namespace ProtonVPN.Update.Tests.Files.Launchable

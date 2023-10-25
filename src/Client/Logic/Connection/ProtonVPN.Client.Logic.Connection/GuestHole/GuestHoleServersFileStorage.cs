@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Common.FileStoraging;
+using ProtonVPN.Common.Legacy.FileStoraging;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Serialization.Contracts;

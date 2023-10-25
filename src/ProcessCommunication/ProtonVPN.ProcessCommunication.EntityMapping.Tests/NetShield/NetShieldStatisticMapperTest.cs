@@ -18,7 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.NetShield;
+using ProtonVPN.Common.Legacy.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.EntityMapping.NetShield;
 

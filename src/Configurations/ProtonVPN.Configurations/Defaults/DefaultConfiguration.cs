@@ -18,7 +18,7 @@
  */
 
 using System.Reflection;
-using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts.Entities;
 
 namespace ProtonVPN.Configurations.Defaults;

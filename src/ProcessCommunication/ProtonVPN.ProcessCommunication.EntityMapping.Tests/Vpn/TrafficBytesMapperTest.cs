@@ -18,7 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 

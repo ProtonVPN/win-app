@@ -24,8 +24,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Update", "src\Upd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Update.Tests", "src\Tests\ProtonVPN.Update.Tests\ProtonVPN.Update.Tests.csproj", "{7D658974-C38C-421F-8186-B735F06CFC58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Common", "src\ProtonVPN.Common\ProtonVPN.Common.csproj", "{03B8E43C-5680-4803-A745-0A104FE6620C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Resource", "src\ProtonVPN.Resources\ProtonVPN.Resource.csproj", "{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Common.Tests", "src\Tests\ProtonVPN.Common.Tests\ProtonVPN.Common.Tests.csproj", "{5F2931B6-9A77-4F94-80CD-BC9B9A0C64BF}"
@@ -315,6 +313,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.EntityMapping.Map
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Configurations.Tests", "src\Configurations\ProtonVPN.Configurations.Tests\ProtonVPN.Configurations.Tests.csproj", "{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Common.Legacy", "src\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj", "{635A3267-A665-4E88-BA41-6ADFE902118F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -379,14 +379,6 @@ Global
 		{7D658974-C38C-421F-8186-B735F06CFC58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D658974-C38C-421F-8186-B735F06CFC58}.Release|x64.ActiveCfg = Release|Any CPU
 		{7D658974-C38C-421F-8186-B735F06CFC58}.Release|x64.Build.0 = Release|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Debug|x64.Build.0 = Debug|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Release|x64.ActiveCfg = Release|Any CPU
-		{03B8E43C-5680-4803-A745-0A104FE6620C}.Release|x64.Build.0 = Release|Any CPU
 		{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45A0EA81-D37E-4D7F-8CE1-CE6B6A95A9ED}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1267,6 +1259,14 @@ Global
 		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|x64.ActiveCfg = Release|Any CPU
 		{8AF1F458-11E2-4546-AF9F-A3967F52E8C5}.Release|x64.Build.0 = Release|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Debug|x64.Build.0 = Debug|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Release|x64.ActiveCfg = Release|Any CPU
+		{635A3267-A665-4E88-BA41-6ADFE902118F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

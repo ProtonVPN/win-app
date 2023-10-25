@@ -18,9 +18,9 @@
  */
 
 using System;
-using ProtonVPN.Common;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Vpn;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.Connection;

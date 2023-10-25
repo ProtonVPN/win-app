@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using ProtonVPN.Api.Contracts.Common;
-using ProtonVPN.Common.Abstract;
+using ProtonVPN.Common.Legacy.Abstract;
 
 namespace ProtonVPN.Api.Contracts
 {

@@ -1,63 +1,63 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\bin\</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\bin\</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <LangVersion>latest</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-    <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-	  <Content Include="Resources\libcrypto-1_1-x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\libpkcs11-helper-1.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\libssl-1_1-x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\openvpn.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\tunnel.dll" />
-    <Content Include="Resources\vcruntime140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\wireguard.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="System.Collections.Immutable" />
-    <PackageReference Include="System.Management" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
-  </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>copy $(MSBuildProjectDirectory)\Resources\tunnel.dll $(OutputPath)tunnel.dll
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <OutputPath>..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <OutputPath>..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
+        <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Resources\libcrypto-1_1-x64.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\libpkcs11-helper-1.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\libssl-1_1-x64.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\openvpn.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\tunnel.dll" />
+        <Content Include="Resources\vcruntime140.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\wireguard.dll" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Management" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+    </ItemGroup>
+    <PropertyGroup>
+        <PostBuildEvent>copy $(MSBuildProjectDirectory)\Resources\tunnel.dll $(OutputPath)tunnel.dll
 copy $(MSBuildProjectDirectory)\Resources\wireguard.dll $(OutputPath)wireguard.dll</PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
 </Project>

@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <OutputType>Library</OutputType>
-    <NoStandardLibraries>false</NoStandardLibraries>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\bin\</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Polly" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
-  </ItemGroup>
-  <ProjectExtensions>
-    <VisualStudio AllowExistingFolder="true" />
-  </ProjectExtensions>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <OutputType>Library</OutputType>
+        <NoStandardLibraries>false</NoStandardLibraries>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Polly" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
+    </ItemGroup>
+    <ProjectExtensions>
+        <VisualStudio AllowExistingFolder="true" />
+    </ProjectExtensions>
 </Project>

@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.Legacy.Helpers;
 
 namespace ProtonVPN.Vpn.OpenVpn
 {

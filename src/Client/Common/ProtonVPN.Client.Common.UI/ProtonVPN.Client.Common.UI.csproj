@@ -1,1953 +1,1901 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
-    <RootNamespace>ProtonVPN.Client.Common.UI</RootNamespace>
-    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
-    <UseWinUI>true</UseWinUI>
-    <EnableMsixTooling>true</EnableMsixTooling>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\..\..\bin</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Remove="Assets\Flags\AD.svg" />
-    <Content Remove="Assets\Flags\AE.svg" />
-    <Content Remove="Assets\Flags\AF.svg" />
-    <Content Remove="Assets\Flags\AG.svg" />
-    <Content Remove="Assets\Flags\AI.svg" />
-    <Content Remove="Assets\Flags\AL.svg" />
-    <Content Remove="Assets\Flags\AM.svg" />
-    <Content Remove="Assets\Flags\AO.svg" />
-    <Content Remove="Assets\Flags\AR.svg" />
-    <Content Remove="Assets\Flags\AS.svg" />
-    <Content Remove="Assets\Flags\AT.svg" />
-    <Content Remove="Assets\Flags\AU.svg" />
-    <Content Remove="Assets\Flags\AW.svg" />
-    <Content Remove="Assets\Flags\AZ.svg" />
-    <Content Remove="Assets\Flags\BA.svg" />
-    <Content Remove="Assets\Flags\BB.svg" />
-    <Content Remove="Assets\Flags\BD.svg" />
-    <Content Remove="Assets\Flags\BE.svg" />
-    <Content Remove="Assets\Flags\BF.svg" />
-    <Content Remove="Assets\Flags\BG.svg" />
-    <Content Remove="Assets\Flags\BH.svg" />
-    <Content Remove="Assets\Flags\BI.svg" />
-    <Content Remove="Assets\Flags\BJ.svg" />
-    <Content Remove="Assets\Flags\BL.svg" />
-    <Content Remove="Assets\Flags\BM.svg" />
-    <Content Remove="Assets\Flags\BN.svg" />
-    <Content Remove="Assets\Flags\BO.svg" />
-    <Content Remove="Assets\Flags\BQ.svg" />
-    <Content Remove="Assets\Flags\BR.svg" />
-    <Content Remove="Assets\Flags\BS.svg" />
-    <Content Remove="Assets\Flags\BT.svg" />
-    <Content Remove="Assets\Flags\BW.svg" />
-    <Content Remove="Assets\Flags\BY.svg" />
-    <Content Remove="Assets\Flags\BZ.svg" />
-    <Content Remove="Assets\Flags\CA.svg" />
-    <Content Remove="Assets\Flags\CD.svg" />
-    <Content Remove="Assets\Flags\CF.svg" />
-    <Content Remove="Assets\Flags\CG.svg" />
-    <Content Remove="Assets\Flags\CH.svg" />
-    <Content Remove="Assets\Flags\CI.svg" />
-    <Content Remove="Assets\Flags\CK.svg" />
-    <Content Remove="Assets\Flags\CL.svg" />
-    <Content Remove="Assets\Flags\CM.svg" />
-    <Content Remove="Assets\Flags\CN.svg" />
-    <Content Remove="Assets\Flags\CO.svg" />
-    <Content Remove="Assets\Flags\CR.svg" />
-    <Content Remove="Assets\Flags\CU.svg" />
-    <Content Remove="Assets\Flags\CV.svg" />
-    <Content Remove="Assets\Flags\CW.svg" />
-    <Content Remove="Assets\Flags\CY.svg" />
-    <Content Remove="Assets\Flags\CZ.svg" />
-    <Content Remove="Assets\Flags\DE.svg" />
-    <Content Remove="Assets\Flags\DJ.svg" />
-    <Content Remove="Assets\Flags\DK.svg" />
-    <Content Remove="Assets\Flags\DM.svg" />
-    <Content Remove="Assets\Flags\DO.svg" />
-    <Content Remove="Assets\Flags\DZ.svg" />
-    <Content Remove="Assets\Flags\EC.svg" />
-    <Content Remove="Assets\Flags\EE.svg" />
-    <Content Remove="Assets\Flags\EG.svg" />
-    <Content Remove="Assets\Flags\EH.svg" />
-    <Content Remove="Assets\Flags\ER.svg" />
-    <Content Remove="Assets\Flags\ES.svg" />
-    <Content Remove="Assets\Flags\ET.svg" />
-    <Content Remove="Assets\Flags\Fastest.svg" />
-    <Content Remove="Assets\Flags\FI.svg" />
-    <Content Remove="Assets\Flags\FJ.svg" />
-    <Content Remove="Assets\Flags\FK.svg" />
-    <Content Remove="Assets\Flags\FM.svg" />
-    <Content Remove="Assets\Flags\FO.svg" />
-    <Content Remove="Assets\Flags\FR.svg" />
-    <Content Remove="Assets\Flags\GA.svg" />
-    <Content Remove="Assets\Flags\GB.svg" />
-    <Content Remove="Assets\Flags\GD.svg" />
-    <Content Remove="Assets\Flags\GE.svg" />
-    <Content Remove="Assets\Flags\GF.svg" />
-    <Content Remove="Assets\Flags\GG.svg" />
-    <Content Remove="Assets\Flags\GH.svg" />
-    <Content Remove="Assets\Flags\GI.svg" />
-    <Content Remove="Assets\Flags\GL.svg" />
-    <Content Remove="Assets\Flags\GM.svg" />
-    <Content Remove="Assets\Flags\GN.svg" />
-    <Content Remove="Assets\Flags\GP.svg" />
-    <Content Remove="Assets\Flags\GQ.svg" />
-    <Content Remove="Assets\Flags\GR.svg" />
-    <Content Remove="Assets\Flags\GT.svg" />
-    <Content Remove="Assets\Flags\GU.svg" />
-    <Content Remove="Assets\Flags\GW.svg" />
-    <Content Remove="Assets\Flags\GY.svg" />
-    <Content Remove="Assets\Flags\HK.svg" />
-    <Content Remove="Assets\Flags\HN.svg" />
-    <Content Remove="Assets\Flags\HR.svg" />
-    <Content Remove="Assets\Flags\HT.svg" />
-    <Content Remove="Assets\Flags\HU.svg" />
-    <Content Remove="Assets\Flags\ID.svg" />
-    <Content Remove="Assets\Flags\IE.svg" />
-    <Content Remove="Assets\Flags\IL.svg" />
-    <Content Remove="Assets\Flags\IM.svg" />
-    <Content Remove="Assets\Flags\IN.svg" />
-    <Content Remove="Assets\Flags\IO.svg" />
-    <Content Remove="Assets\Flags\IQ.svg" />
-    <Content Remove="Assets\Flags\IR.svg" />
-    <Content Remove="Assets\Flags\IS.svg" />
-    <Content Remove="Assets\Flags\IT.svg" />
-    <Content Remove="Assets\Flags\JE.svg" />
-    <Content Remove="Assets\Flags\JM.svg" />
-    <Content Remove="Assets\Flags\JO.svg" />
-    <Content Remove="Assets\Flags\JP.svg" />
-    <Content Remove="Assets\Flags\KE.svg" />
-    <Content Remove="Assets\Flags\KG.svg" />
-    <Content Remove="Assets\Flags\KH.svg" />
-    <Content Remove="Assets\Flags\KI.svg" />
-    <Content Remove="Assets\Flags\KM.svg" />
-    <Content Remove="Assets\Flags\KN.svg" />
-    <Content Remove="Assets\Flags\KP.svg" />
-    <Content Remove="Assets\Flags\KR.svg" />
-    <Content Remove="Assets\Flags\KW.svg" />
-    <Content Remove="Assets\Flags\KY.svg" />
-    <Content Remove="Assets\Flags\KZ.svg" />
-    <Content Remove="Assets\Flags\LA.svg" />
-    <Content Remove="Assets\Flags\LB.svg" />
-    <Content Remove="Assets\Flags\LC.svg" />
-    <Content Remove="Assets\Flags\LI.svg" />
-    <Content Remove="Assets\Flags\LK.svg" />
-    <Content Remove="Assets\Flags\LR.svg" />
-    <Content Remove="Assets\Flags\LS.svg" />
-    <Content Remove="Assets\Flags\LT.svg" />
-    <Content Remove="Assets\Flags\LU.svg" />
-    <Content Remove="Assets\Flags\LV.svg" />
-    <Content Remove="Assets\Flags\LY.svg" />
-    <Content Remove="Assets\Flags\MA.svg" />
-    <Content Remove="Assets\Flags\MC.svg" />
-    <Content Remove="Assets\Flags\MD.svg" />
-    <Content Remove="Assets\Flags\ME.svg" />
-    <Content Remove="Assets\Flags\MF.svg" />
-    <Content Remove="Assets\Flags\MG.svg" />
-    <Content Remove="Assets\Flags\MH.svg" />
-    <Content Remove="Assets\Flags\MK.svg" />
-    <Content Remove="Assets\Flags\ML.svg" />
-    <Content Remove="Assets\Flags\MM.svg" />
-    <Content Remove="Assets\Flags\MN.svg" />
-    <Content Remove="Assets\Flags\MO.svg" />
-    <Content Remove="Assets\Flags\MP.svg" />
-    <Content Remove="Assets\Flags\MQ.svg" />
-    <Content Remove="Assets\Flags\MR.svg" />
-    <Content Remove="Assets\Flags\MS.svg" />
-    <Content Remove="Assets\Flags\MT.svg" />
-    <Content Remove="Assets\Flags\MU.svg" />
-    <Content Remove="Assets\Flags\MV.svg" />
-    <Content Remove="Assets\Flags\MW.svg" />
-    <Content Remove="Assets\Flags\MX.svg" />
-    <Content Remove="Assets\Flags\MY.svg" />
-    <Content Remove="Assets\Flags\MZ.svg" />
-    <Content Remove="Assets\Flags\NA.svg" />
-    <Content Remove="Assets\Flags\NC.svg" />
-    <Content Remove="Assets\Flags\NE.svg" />
-    <Content Remove="Assets\Flags\NF.svg" />
-    <Content Remove="Assets\Flags\NG.svg" />
-    <Content Remove="Assets\Flags\NI.svg" />
-    <Content Remove="Assets\Flags\NL.svg" />
-    <Content Remove="Assets\Flags\NO.svg" />
-    <Content Remove="Assets\Flags\NP.svg" />
-    <Content Remove="Assets\Flags\NR.svg" />
-    <Content Remove="Assets\Flags\NU.svg" />
-    <Content Remove="Assets\Flags\NZ.svg" />
-    <Content Remove="Assets\Flags\OM.svg" />
-    <Content Remove="Assets\Flags\PA.svg" />
-    <Content Remove="Assets\Flags\PE.svg" />
-    <Content Remove="Assets\Flags\PF.svg" />
-    <Content Remove="Assets\Flags\PG.svg" />
-    <Content Remove="Assets\Flags\PH.svg" />
-    <Content Remove="Assets\Flags\PK.svg" />
-    <Content Remove="Assets\Flags\PL.svg" />
-    <Content Remove="Assets\Flags\Placeholder.svg" />
-    <Content Remove="Assets\Flags\PM.svg" />
-    <Content Remove="Assets\Flags\PR.svg" />
-    <Content Remove="Assets\Flags\PS.svg" />
-    <Content Remove="Assets\Flags\PT.svg" />
-    <Content Remove="Assets\Flags\PW.svg" />
-    <Content Remove="Assets\Flags\PY.svg" />
-    <Content Remove="Assets\Flags\QA.svg" />
-    <Content Remove="Assets\Flags\RE.svg" />
-    <Content Remove="Assets\Flags\RO.svg" />
-    <Content Remove="Assets\Flags\RS.svg" />
-    <Content Remove="Assets\Flags\RU.svg" />
-    <Content Remove="Assets\Flags\RW.svg" />
-    <Content Remove="Assets\Flags\SA.svg" />
-    <Content Remove="Assets\Flags\SB.svg" />
-    <Content Remove="Assets\Flags\SC.svg" />
-    <Content Remove="Assets\Flags\SD.svg" />
-    <Content Remove="Assets\Flags\SE.svg" />
-    <Content Remove="Assets\Flags\SG.svg" />
-    <Content Remove="Assets\Flags\SH.svg" />
-    <Content Remove="Assets\Flags\SI.svg" />
-    <Content Remove="Assets\Flags\SK.svg" />
-    <Content Remove="Assets\Flags\SL.svg" />
-    <Content Remove="Assets\Flags\SM.svg" />
-    <Content Remove="Assets\Flags\SN.svg" />
-    <Content Remove="Assets\Flags\SO.svg" />
-    <Content Remove="Assets\Flags\SR.svg" />
-    <Content Remove="Assets\Flags\SS.svg" />
-    <Content Remove="Assets\Flags\ST.svg" />
-    <Content Remove="Assets\Flags\SV.svg" />
-    <Content Remove="Assets\Flags\SX.svg" />
-    <Content Remove="Assets\Flags\SY.svg" />
-    <Content Remove="Assets\Flags\SZ.svg" />
-    <Content Remove="Assets\Flags\TC.svg" />
-    <Content Remove="Assets\Flags\TD.svg" />
-    <Content Remove="Assets\Flags\TG.svg" />
-    <Content Remove="Assets\Flags\TH.svg" />
-    <Content Remove="Assets\Flags\TJ.svg" />
-    <Content Remove="Assets\Flags\TK.svg" />
-    <Content Remove="Assets\Flags\TL.svg" />
-    <Content Remove="Assets\Flags\TM.svg" />
-    <Content Remove="Assets\Flags\TN.svg" />
-    <Content Remove="Assets\Flags\TO.svg" />
-    <Content Remove="Assets\Flags\TR.svg" />
-    <Content Remove="Assets\Flags\TT.svg" />
-    <Content Remove="Assets\Flags\TV.svg" />
-    <Content Remove="Assets\Flags\TW.svg" />
-    <Content Remove="Assets\Flags\TZ.svg" />
-    <Content Remove="Assets\Flags\UA.svg" />
-    <Content Remove="Assets\Flags\UG.svg" />
-    <Content Remove="Assets\Flags\US.svg" />
-    <Content Remove="Assets\Flags\UY.svg" />
-    <Content Remove="Assets\Flags\UZ.svg" />
-    <Content Remove="Assets\Flags\VA.svg" />
-    <Content Remove="Assets\Flags\VC.svg" />
-    <Content Remove="Assets\Flags\VE.svg" />
-    <Content Remove="Assets\Flags\VG.svg" />
-    <Content Remove="Assets\Flags\VI.svg" />
-    <Content Remove="Assets\Flags\VN.svg" />
-    <Content Remove="Assets\Flags\VU.svg" />
-    <Content Remove="Assets\Flags\WF.svg" />
-    <Content Remove="Assets\Flags\WS.svg" />
-    <Content Remove="Assets\Flags\XK.svg" />
-    <Content Remove="Assets\Flags\YE.svg" />
-    <Content Remove="Assets\Flags\YT.svg" />
-    <Content Remove="Assets\Flags\ZA.svg" />
-    <Content Remove="Assets\Flags\ZM.svg" />
-    <Content Remove="Assets\Flags\ZW.svg" />
-    <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
-    <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
-    <Content Remove="Assets\Icons\IconUserControl.xaml.cs" />
-    <Content Remove="Assets\Icons\LatencyHigh.xaml" />
-    <Content Remove="Assets\Icons\LatencyHigh.xaml.cs" />
-    <Content Remove="Assets\Icons\LatencyLow.xaml" />
-    <Content Remove="Assets\Icons\LatencyMedium.xaml" />
-    <Content Remove="Assets\Icons\LatencyMedium.xaml.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Alias.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArchiveBox.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowDown.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowDownArrowUp.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowDownCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowDownCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowDownLine.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowDownToSquare.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowInToRectangle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowLeftAndUp.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowOutFromRectangle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowOutSquare.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowOverSquare.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowRightArrowLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowRotateRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsCross.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsFromCenter.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsRotate.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsSwapRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsSwitch.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsToCenter.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowsUpAndLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUp.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUpAndLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUpBigLine.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUpBounceLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUpCircleLine.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUpFromSquare.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ArrowUpLine.cs" />
-    <Content Remove="Assets\Icons\PathIcons\At.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Backspace.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BagPercent.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Bell.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Bolt.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Bookmark.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BookmarkFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandAmex.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandAndroid.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandApple.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandBitcoin.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandBrave.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandChrome.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandFirefox.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandLinux.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandMac.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandMastercard.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandPaypal.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandProton.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandProtonCalendar.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandProtonDrive.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandProtonMail.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandProtonPass.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandProtonVpn.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandTor.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandTwitter.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandVisa.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandWindows.cs" />
-    <Content Remove="Assets\Icons\PathIcons\BrandWireGuard.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Briefcase.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Broom.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Bug.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Buildings.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Calendar3Day.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarCells.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarCheckmark.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarDay.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarGrid.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarMonth.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarRow.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarToday.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CalendarWeek.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Camera.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CardIdentity.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChartLine.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Checkmark.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CheckmarkCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CheckmarkCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CheckmarkTriple.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronDown.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronDownFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronLeftFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronRightFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronsLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronSquareLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronSquareRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronsRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronUp.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ChevronUpFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Circle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CircleHalfFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CircleSlash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CirclesLock.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Clock.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ClockFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ClockPaperPlane.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ClockRotateLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Cloud.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Code.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CogWheel.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CogWheelFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CreditCard.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Cross.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CrossBig.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CrossCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CrossCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\CrossSmall.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Drive.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Earth.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EarthFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Emoji.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EmptyCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Envelope.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EnvelopeArrowUpAndRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EnvelopeCross.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EnvelopeDot.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EnvelopeMagnifyingGlass.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EnvelopeOpen.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EnvelopeOpenText.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Envelopes.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Eraser.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ExclamationCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ExclamationCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ExclamationTriangleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Eye.cs" />
-    <Content Remove="Assets\Icons\PathIcons\EyeSlash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\File.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FileArrowIn.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FileArrowInUp.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FileArrowOut.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FileImage.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FileLines.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FilePdf.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FileShapes.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FilingCabinet.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Filter.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Fingerprint.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Fire.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FireSlash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Folder.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderArrowIn.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderArrowInFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderArrowUp.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderOpen.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderOpenFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FolderPlus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Folders.cs" />
-    <Content Remove="Assets\Icons\PathIcons\FoldersFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Forward.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Gift.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Globe.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Grid2.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Grid3.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Hamburger.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Heart.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Hook.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Hourglass.cs" />
-    <Content Remove="Assets\Icons\PathIcons\House.cs" />
-    <Content Remove="Assets\Icons\PathIcons\HouseFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Image.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Inbox.cs" />
-    <Content Remove="Assets\Icons\PathIcons\InfoCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\InfoCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Key.cs" />
-    <Content Remove="Assets\Icons\PathIcons\KeySkeleton.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Language.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LifeRing.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Lightbulb.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LinesHorizontal.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LinesLongToSmall.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LinesVertical.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Link.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LinkPen.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LinkSlash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ListBullets.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ListNumbers.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Lock.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockCheckFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockExclamationFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockLayers.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockOpen.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockOpenCheckFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockOpenExclamationFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockOpenFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockOpenFilled2.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockOpenPenFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LockPenFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Locks.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LocksFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\LowDash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\MagicWand.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Magnifier.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Mailbox.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Map.cs" />
-    <Content Remove="Assets\Icons\PathIcons\MapPin.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Minus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\MinusCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Mobile.cs" />
-    <Content Remove="Assets\Icons\PathIcons\MobilePlus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\MoneyBills.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Moon.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Note.cs" />
-    <Content Remove="Assets\Icons\PathIcons\NotepadChecklist.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PaintRoller.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Palette.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PaperClip.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PaperClipVertical.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PaperPlane.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PaperPlaneHorizontal.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Pause.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PauseFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Pen.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Pencil.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PenSquare.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Phone.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PinFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PinSlashFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Placeholder.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Play.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PlayFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Plus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PlusCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PlusCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PowerOff.cs" />
-    <Content Remove="Assets\Icons\PathIcons\PresentationScreen.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Printer.cs" />
-    <Content Remove="Assets\Icons\PathIcons\QuestionCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\QuestionCircleFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Reply.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ReplyAll.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Robot.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Rocket.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Servers.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Shield.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ShieldFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ShieldHalfFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SidePanelLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SidePanelRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Sliders.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SpeechBubble.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Squares.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Star.cs" />
-    <Content Remove="Assets\Icons\PathIcons\StarFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\StarSlash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Storage.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Sun.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SwipeLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SwitchOff.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SwitchOn.cs" />
-    <Content Remove="Assets\Icons\PathIcons\SwitchOnLock.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Tag.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TagFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TagPlus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Tags.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextAlignCenter.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextAlignJustify.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextAlignLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextAlignRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextBold.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextItalic.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextQuote.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TextUnderline.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ThreeDotsHorizontal.cs" />
-    <Content Remove="Assets\Icons\PathIcons\ThreeDotsVertical.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Trash.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TrashClock.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TrashCross.cs" />
-    <Content Remove="Assets\Icons\PathIcons\TrashCrossFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Tv.cs" />
-    <Content Remove="Assets\Icons\PathIcons\User.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UserArrowLeft.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UserArrowRight.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UserCircle.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UserFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UserPlus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Users.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UsersFilled.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UsersMerge.cs" />
-    <Content Remove="Assets\Icons\PathIcons\UsersPlus.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Vault.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Wallet.cs" />
-    <Content Remove="Assets\Icons\PathIcons\WindowImage.cs" />
-    <Content Remove="Assets\Icons\PathIcons\WindowTerminal.cs" />
-    <Content Remove="Assets\Icons\PathIcons\Wrench.cs" />
-    <Content Remove="Assets\Icons\ProtectedLock.xaml" />
-    <Content Remove="Assets\Icons\ProtectedLock.xaml.cs" />
-    <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
-    <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml.cs" />
-    <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
-    <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml.cs" />
-    <Content Remove="Assets\Icons\UnprotectedLock.xaml" />
-    <Content Remove="Assets\Icons\UnprotectedLock.xaml.cs" />
-    <Content Remove="Assets\Icons\UserControl1.xaml.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Assets\Flags\AD.svg" />
-    <None Remove="Assets\Flags\AE.svg" />
-    <None Remove="Assets\Flags\AF.svg" />
-    <None Remove="Assets\Flags\AG.svg" />
-    <None Remove="Assets\Flags\AI.svg" />
-    <None Remove="Assets\Flags\AL.svg" />
-    <None Remove="Assets\Flags\AM.svg" />
-    <None Remove="Assets\Flags\AO.svg" />
-    <None Remove="Assets\Flags\AR.svg" />
-    <None Remove="Assets\Flags\AS.svg" />
-    <None Remove="Assets\Flags\AT.svg" />
-    <None Remove="Assets\Flags\AU.svg" />
-    <None Remove="Assets\Flags\AW.svg" />
-    <None Remove="Assets\Flags\AZ.svg" />
-    <None Remove="Assets\Flags\BA.svg" />
-    <None Remove="Assets\Flags\BB.svg" />
-    <None Remove="Assets\Flags\BD.svg" />
-    <None Remove="Assets\Flags\BE.svg" />
-    <None Remove="Assets\Flags\BF.svg" />
-    <None Remove="Assets\Flags\BG.svg" />
-    <None Remove="Assets\Flags\BH.svg" />
-    <None Remove="Assets\Flags\BI.svg" />
-    <None Remove="Assets\Flags\BJ.svg" />
-    <None Remove="Assets\Flags\BL.svg" />
-    <None Remove="Assets\Flags\BM.svg" />
-    <None Remove="Assets\Flags\BN.svg" />
-    <None Remove="Assets\Flags\BO.svg" />
-    <None Remove="Assets\Flags\BQ.svg" />
-    <None Remove="Assets\Flags\BR.svg" />
-    <None Remove="Assets\Flags\BS.svg" />
-    <None Remove="Assets\Flags\BT.svg" />
-    <None Remove="Assets\Flags\BW.svg" />
-    <None Remove="Assets\Flags\BY.svg" />
-    <None Remove="Assets\Flags\BZ.svg" />
-    <None Remove="Assets\Flags\CA.svg" />
-    <None Remove="Assets\Flags\CD.svg" />
-    <None Remove="Assets\Flags\CF.svg" />
-    <None Remove="Assets\Flags\CG.svg" />
-    <None Remove="Assets\Flags\CH.svg" />
-    <None Remove="Assets\Flags\CI.svg" />
-    <None Remove="Assets\Flags\CK.svg" />
-    <None Remove="Assets\Flags\CL.svg" />
-    <None Remove="Assets\Flags\CM.svg" />
-    <None Remove="Assets\Flags\CN.svg" />
-    <None Remove="Assets\Flags\CO.svg" />
-    <None Remove="Assets\Flags\CR.svg" />
-    <None Remove="Assets\Flags\CU.svg" />
-    <None Remove="Assets\Flags\CV.svg" />
-    <None Remove="Assets\Flags\CW.svg" />
-    <None Remove="Assets\Flags\CY.svg" />
-    <None Remove="Assets\Flags\CZ.svg" />
-    <None Remove="Assets\Flags\DE.svg" />
-    <None Remove="Assets\Flags\DJ.svg" />
-    <None Remove="Assets\Flags\DK.svg" />
-    <None Remove="Assets\Flags\DM.svg" />
-    <None Remove="Assets\Flags\DO.svg" />
-    <None Remove="Assets\Flags\DZ.svg" />
-    <None Remove="Assets\Flags\EC.svg" />
-    <None Remove="Assets\Flags\EE.svg" />
-    <None Remove="Assets\Flags\EG.svg" />
-    <None Remove="Assets\Flags\EH.svg" />
-    <None Remove="Assets\Flags\ER.svg" />
-    <None Remove="Assets\Flags\ES.svg" />
-    <None Remove="Assets\Flags\ET.svg" />
-    <None Remove="Assets\Flags\Fastest.svg" />
-    <None Remove="Assets\Flags\FI.svg" />
-    <None Remove="Assets\Flags\FJ.svg" />
-    <None Remove="Assets\Flags\FK.svg" />
-    <None Remove="Assets\Flags\FM.svg" />
-    <None Remove="Assets\Flags\FO.svg" />
-    <None Remove="Assets\Flags\FR.svg" />
-    <None Remove="Assets\Flags\GA.svg" />
-    <None Remove="Assets\Flags\GB.svg" />
-    <None Remove="Assets\Flags\GD.svg" />
-    <None Remove="Assets\Flags\GE.svg" />
-    <None Remove="Assets\Flags\GF.svg" />
-    <None Remove="Assets\Flags\GG.svg" />
-    <None Remove="Assets\Flags\GH.svg" />
-    <None Remove="Assets\Flags\GI.svg" />
-    <None Remove="Assets\Flags\GL.svg" />
-    <None Remove="Assets\Flags\GM.svg" />
-    <None Remove="Assets\Flags\GN.svg" />
-    <None Remove="Assets\Flags\GP.svg" />
-    <None Remove="Assets\Flags\GQ.svg" />
-    <None Remove="Assets\Flags\GR.svg" />
-    <None Remove="Assets\Flags\GT.svg" />
-    <None Remove="Assets\Flags\GU.svg" />
-    <None Remove="Assets\Flags\GW.svg" />
-    <None Remove="Assets\Flags\GY.svg" />
-    <None Remove="Assets\Flags\HK.svg" />
-    <None Remove="Assets\Flags\HN.svg" />
-    <None Remove="Assets\Flags\HR.svg" />
-    <None Remove="Assets\Flags\HT.svg" />
-    <None Remove="Assets\Flags\HU.svg" />
-    <None Remove="Assets\Flags\ID.svg" />
-    <None Remove="Assets\Flags\IE.svg" />
-    <None Remove="Assets\Flags\IL.svg" />
-    <None Remove="Assets\Flags\IM.svg" />
-    <None Remove="Assets\Flags\IN.svg" />
-    <None Remove="Assets\Flags\IO.svg" />
-    <None Remove="Assets\Flags\IQ.svg" />
-    <None Remove="Assets\Flags\IR.svg" />
-    <None Remove="Assets\Flags\IS.svg" />
-    <None Remove="Assets\Flags\IT.svg" />
-    <None Remove="Assets\Flags\JE.svg" />
-    <None Remove="Assets\Flags\JM.svg" />
-    <None Remove="Assets\Flags\JO.svg" />
-    <None Remove="Assets\Flags\JP.svg" />
-    <None Remove="Assets\Flags\KE.svg" />
-    <None Remove="Assets\Flags\KG.svg" />
-    <None Remove="Assets\Flags\KH.svg" />
-    <None Remove="Assets\Flags\KI.svg" />
-    <None Remove="Assets\Flags\KM.svg" />
-    <None Remove="Assets\Flags\KN.svg" />
-    <None Remove="Assets\Flags\KP.svg" />
-    <None Remove="Assets\Flags\KR.svg" />
-    <None Remove="Assets\Flags\KW.svg" />
-    <None Remove="Assets\Flags\KY.svg" />
-    <None Remove="Assets\Flags\KZ.svg" />
-    <None Remove="Assets\Flags\LA.svg" />
-    <None Remove="Assets\Flags\LB.svg" />
-    <None Remove="Assets\Flags\LC.svg" />
-    <None Remove="Assets\Flags\LI.svg" />
-    <None Remove="Assets\Flags\LK.svg" />
-    <None Remove="Assets\Flags\LR.svg" />
-    <None Remove="Assets\Flags\LS.svg" />
-    <None Remove="Assets\Flags\LT.svg" />
-    <None Remove="Assets\Flags\LU.svg" />
-    <None Remove="Assets\Flags\LV.svg" />
-    <None Remove="Assets\Flags\LY.svg" />
-    <None Remove="Assets\Flags\MA.svg" />
-    <None Remove="Assets\Flags\MC.svg" />
-    <None Remove="Assets\Flags\MD.svg" />
-    <None Remove="Assets\Flags\ME.svg" />
-    <None Remove="Assets\Flags\MF.svg" />
-    <None Remove="Assets\Flags\MG.svg" />
-    <None Remove="Assets\Flags\MH.svg" />
-    <None Remove="Assets\Flags\MK.svg" />
-    <None Remove="Assets\Flags\ML.svg" />
-    <None Remove="Assets\Flags\MM.svg" />
-    <None Remove="Assets\Flags\MN.svg" />
-    <None Remove="Assets\Flags\MO.svg" />
-    <None Remove="Assets\Flags\MP.svg" />
-    <None Remove="Assets\Flags\MQ.svg" />
-    <None Remove="Assets\Flags\MR.svg" />
-    <None Remove="Assets\Flags\MS.svg" />
-    <None Remove="Assets\Flags\MT.svg" />
-    <None Remove="Assets\Flags\MU.svg" />
-    <None Remove="Assets\Flags\MV.svg" />
-    <None Remove="Assets\Flags\MW.svg" />
-    <None Remove="Assets\Flags\MX.svg" />
-    <None Remove="Assets\Flags\MY.svg" />
-    <None Remove="Assets\Flags\MZ.svg" />
-    <None Remove="Assets\Flags\NA.svg" />
-    <None Remove="Assets\Flags\NC.svg" />
-    <None Remove="Assets\Flags\NE.svg" />
-    <None Remove="Assets\Flags\NF.svg" />
-    <None Remove="Assets\Flags\NG.svg" />
-    <None Remove="Assets\Flags\NI.svg" />
-    <None Remove="Assets\Flags\NL.svg" />
-    <None Remove="Assets\Flags\NO.svg" />
-    <None Remove="Assets\Flags\NP.svg" />
-    <None Remove="Assets\Flags\NR.svg" />
-    <None Remove="Assets\Flags\NU.svg" />
-    <None Remove="Assets\Flags\NZ.svg" />
-    <None Remove="Assets\Flags\OM.svg" />
-    <None Remove="Assets\Flags\PA.svg" />
-    <None Remove="Assets\Flags\PE.svg" />
-    <None Remove="Assets\Flags\PF.svg" />
-    <None Remove="Assets\Flags\PG.svg" />
-    <None Remove="Assets\Flags\PH.svg" />
-    <None Remove="Assets\Flags\PK.svg" />
-    <None Remove="Assets\Flags\PL.svg" />
-    <None Remove="Assets\Flags\Placeholder.svg" />
-    <None Remove="Assets\Flags\PM.svg" />
-    <None Remove="Assets\Flags\PR.svg" />
-    <None Remove="Assets\Flags\PS.svg" />
-    <None Remove="Assets\Flags\PT.svg" />
-    <None Remove="Assets\Flags\PW.svg" />
-    <None Remove="Assets\Flags\PY.svg" />
-    <None Remove="Assets\Flags\QA.svg" />
-    <None Remove="Assets\Flags\RE.svg" />
-    <None Remove="Assets\Flags\RO.svg" />
-    <None Remove="Assets\Flags\RS.svg" />
-    <None Remove="Assets\Flags\RU.svg" />
-    <None Remove="Assets\Flags\RW.svg" />
-    <None Remove="Assets\Flags\SA.svg" />
-    <None Remove="Assets\Flags\SB.svg" />
-    <None Remove="Assets\Flags\SC.svg" />
-    <None Remove="Assets\Flags\SD.svg" />
-    <None Remove="Assets\Flags\SE.svg" />
-    <None Remove="Assets\Flags\SG.svg" />
-    <None Remove="Assets\Flags\SH.svg" />
-    <None Remove="Assets\Flags\SI.svg" />
-    <None Remove="Assets\Flags\SK.svg" />
-    <None Remove="Assets\Flags\SL.svg" />
-    <None Remove="Assets\Flags\SM.svg" />
-    <None Remove="Assets\Flags\SN.svg" />
-    <None Remove="Assets\Flags\SO.svg" />
-    <None Remove="Assets\Flags\SR.svg" />
-    <None Remove="Assets\Flags\SS.svg" />
-    <None Remove="Assets\Flags\ST.svg" />
-    <None Remove="Assets\Flags\SV.svg" />
-    <None Remove="Assets\Flags\SX.svg" />
-    <None Remove="Assets\Flags\SY.svg" />
-    <None Remove="Assets\Flags\SZ.svg" />
-    <None Remove="Assets\Flags\TC.svg" />
-    <None Remove="Assets\Flags\TD.svg" />
-    <None Remove="Assets\Flags\TG.svg" />
-    <None Remove="Assets\Flags\TH.svg" />
-    <None Remove="Assets\Flags\TJ.svg" />
-    <None Remove="Assets\Flags\TK.svg" />
-    <None Remove="Assets\Flags\TL.svg" />
-    <None Remove="Assets\Flags\TM.svg" />
-    <None Remove="Assets\Flags\TN.svg" />
-    <None Remove="Assets\Flags\TO.svg" />
-    <None Remove="Assets\Flags\TR.svg" />
-    <None Remove="Assets\Flags\TT.svg" />
-    <None Remove="Assets\Flags\TV.svg" />
-    <None Remove="Assets\Flags\TW.svg" />
-    <None Remove="Assets\Flags\TZ.svg" />
-    <None Remove="Assets\Flags\UA.svg" />
-    <None Remove="Assets\Flags\UG.svg" />
-    <None Remove="Assets\Flags\US.svg" />
-    <None Remove="Assets\Flags\UY.svg" />
-    <None Remove="Assets\Flags\UZ.svg" />
-    <None Remove="Assets\Flags\VA.svg" />
-    <None Remove="Assets\Flags\VC.svg" />
-    <None Remove="Assets\Flags\VE.svg" />
-    <None Remove="Assets\Flags\VG.svg" />
-    <None Remove="Assets\Flags\VI.svg" />
-    <None Remove="Assets\Flags\VN.svg" />
-    <None Remove="Assets\Flags\VU.svg" />
-    <None Remove="Assets\Flags\WF.svg" />
-    <None Remove="Assets\Flags\WS.svg" />
-    <None Remove="Assets\Flags\XK.svg" />
-    <None Remove="Assets\Flags\YE.svg" />
-    <None Remove="Assets\Flags\YT.svg" />
-    <None Remove="Assets\Flags\ZA.svg" />
-    <None Remove="Assets\Flags\ZM.svg" />
-    <None Remove="Assets\Flags\ZW.svg" />
-    <None Remove="Assets\Icons\LatencyHigh.xaml" />
-    <None Remove="Assets\Icons\LatencyLow.xaml" />
-    <None Remove="Assets\Icons\LatencyMedium.xaml" />
-    <None Remove="Assets\Icons\ProtectedLock.xaml" />
-    <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
-    <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
-    <None Remove="Assets\Icons\UnprotectedLock.xaml" />
-    <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
-    <None Remove="Assets\Illustrations\Dark\welcome.jpg" />
-    <None Remove="Assets\Illustrations\kill-switch-off.png" />
-    <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
-    <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
-    <None Remove="Assets\Illustrations\Light\product-logo.svg" />
-    <None Remove="Assets\Illustrations\Light\welcome.jpg" />
-    <None Remove="Assets\Illustrations\netshield-off.png" />
-    <None Remove="Assets\Illustrations\netshield-on.png" />
-    <None Remove="Assets\Illustrations\port-forwarding-off.png" />
-    <None Remove="Assets\Illustrations\port-forwarding-on.png" />
-    <None Remove="Assets\Illustrations\report-error.png" />
-    <None Remove="Assets\Illustrations\report-success.png" />
-    <None Remove="Assets\Illustrations\split-tunneling-off.png" />
-    <None Remove="Assets\Illustrations\split-tunneling-on.png" />
-    <None Remove="Controls\CountryFlagControl.xaml" />
-    <None Remove="Controls\DualCommandsRowControl.xaml" />
-    <None Remove="Controls\ServerLoadControl.xaml" />
-    <None Remove="Controls\UserLocationControl.xaml" />
-    <None Remove="Assets\Icons\ActiveDot.xaml" />
-    <None Remove="Gallery\Controls\ColorsControl.xaml" />
-    <None Remove="Gallery\Controls\MapConnectionControl.xaml" />
-    <None Remove="Gallery\Controls\MapPinControl.xaml" />
-    <None Remove="Gallery\Controls\SampleControl.xaml" />
-    <None Remove="Gallery\Controls\TypographyControl.xaml" />
-    <None Remove="Gallery\GalleryStyles.xaml" />
-    <None Remove="Gallery\Pages\InputsPage.xaml" />
-    <None Remove="Gallery\Pages\MapPage.xaml" />
-    <None Remove="Gallery\Pages\OtherControlsPage.xaml" />
-    <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
-    <None Remove="Gallery\Pages\VpnSpecificPage.xaml" />
-    <None Remove="Styles\Brushes.xaml" />
-    <None Remove="Styles\Colors.xaml" />
-    <None Remove="Styles\Controls\ButtonStyles.xaml" />
-    <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
-    <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
-    <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
-    <None Remove="Styles\Controls\ExpanderStyles.xaml" />
-    <None Remove="Styles\Controls\FlyoutStyles.xaml" />
-    <None Remove="Styles\Controls\GhostButtonStyles.xaml" />
-    <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
-    <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
-    <None Remove="Styles\Controls\InfoBarStyles.xaml" />
-    <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
-    <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
-    <None Remove="Styles\Controls\PivotStyles.xaml" />
-    <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
-    <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
-    <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
-    <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
-    <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
-    <None Remove="Styles\Controls\TextBoxStyles.xaml" />
-    <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
-    <None Remove="Styles\Controls\TooltipStyles.xaml" />
-    <None Remove="Styles\Converters.xaml" />
-    <None Remove="Styles\Illustrations.xaml" />
-    <None Remove="Styles\Typography.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Input" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
-      <PackageReference Include="Microsoft.WindowsAppSDK" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Page Update="Styles\Brushes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\ActiveDot.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\CountryFlagControl.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\UserLocationControl.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Controls\HyperlinkStyles.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Controls\PivotStyles.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Controls\FlyoutStyles.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Controls\NavigationViewStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Pages\TextFieldsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Pages\InputsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\GalleryStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Controls\TypographyControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\ToggleSwitchStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\TextBoxStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\RadioButtonStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\HyperlinkButtonStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\CheckBoxStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Typography.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Converters.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\ButtonStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Controls\ColorsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <CustomAdditionalCompileInputs Remove="Gallery\Pages\MapPage.xaml" />
-  </ItemGroup>
-
-	<ItemGroup>
-    <Resource Remove="Gallery\Pages\MapPage.xaml" />
-  </ItemGroup>
-
-	<ItemGroup>
-	  <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Assets\Flags\AD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\AZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BB.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BJ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BQ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\BZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CV.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\CZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\DE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\DJ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\DK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\DM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\DO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\DZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\EC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\EE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\EG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\EH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ER.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ES.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ET.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\Fastest.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\FI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\FJ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\FK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\FM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\FO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\FR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GB.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GP.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GQ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\GY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\HK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\HN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\HR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\HT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\HU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ID.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IQ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\IT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\JE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\JM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\JO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\JP.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KP.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\KZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LB.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LV.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\LY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ME.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ML.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MP.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MQ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MV.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MX.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\MZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NP.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\NZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\OM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\Placeholder.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\PY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\QA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\RE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\RO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\RS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\RU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\RW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SB.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ST.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SV.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SX.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\SZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TD.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TH.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TJ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TL.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TO.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TR.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TV.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\TZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\UA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\UG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\US.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\UY.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\UZ.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VC.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VG.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VI.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VN.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\VU.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\WF.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\WS.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\XK.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\YE.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\YT.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ZA.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ZM.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Assets\Flags\ZW.svg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	</ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\SecureCoreFlagOutline.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\SecureCoreProtectedLock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\ProtectedLock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\UnprotectedLock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Controls\SampleControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Pages\VpnSpecificPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Controls\MapConnectionControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Controls\MapPinControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Gallery\Pages\OtherControlsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\PageContentControlStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\ExpanderStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Controls\DualCommandsRowControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <CustomAdditionalCompileInputs Remove="Controls\ServerLoadControl.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Remove="Controls\ServerLoadControl.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <CustomAdditionalCompileInputs Remove="Styles\Controls\ContentDialogStyles.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Assets\Illustrations\Dark\product-logo.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\Dark\welcome.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\kill-switch-off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\kill-switch-on-level-1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\kill-switch-on-level-2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\Light\product-logo.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\Light\welcome.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\netshield-off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\netshield-on.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\port-forwarding-off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\port-forwarding-on.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\report-error.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\report-success.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\split-tunneling-off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Illustrations\split-tunneling-on.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\ComboBoxStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\GhostButtonStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\SettingsExpanderStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Illustrations.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\ProgressBarStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\StepContentControlStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\SettingsCardStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\LatencyHigh.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\LatencyMedium.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Assets\Icons\LatencyLow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\InfoBarStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Controls\TooltipStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+        <RootNamespace>ProtonVPN.Client.Common.UI</RootNamespace>
+        <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+        <UseWinUI>true</UseWinUI>
+        <EnableMsixTooling>true</EnableMsixTooling>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\..\..\bin</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Remove="Assets\Flags\AD.svg" />
+        <Content Remove="Assets\Flags\AE.svg" />
+        <Content Remove="Assets\Flags\AF.svg" />
+        <Content Remove="Assets\Flags\AG.svg" />
+        <Content Remove="Assets\Flags\AI.svg" />
+        <Content Remove="Assets\Flags\AL.svg" />
+        <Content Remove="Assets\Flags\AM.svg" />
+        <Content Remove="Assets\Flags\AO.svg" />
+        <Content Remove="Assets\Flags\AR.svg" />
+        <Content Remove="Assets\Flags\AS.svg" />
+        <Content Remove="Assets\Flags\AT.svg" />
+        <Content Remove="Assets\Flags\AU.svg" />
+        <Content Remove="Assets\Flags\AW.svg" />
+        <Content Remove="Assets\Flags\AZ.svg" />
+        <Content Remove="Assets\Flags\BA.svg" />
+        <Content Remove="Assets\Flags\BB.svg" />
+        <Content Remove="Assets\Flags\BD.svg" />
+        <Content Remove="Assets\Flags\BE.svg" />
+        <Content Remove="Assets\Flags\BF.svg" />
+        <Content Remove="Assets\Flags\BG.svg" />
+        <Content Remove="Assets\Flags\BH.svg" />
+        <Content Remove="Assets\Flags\BI.svg" />
+        <Content Remove="Assets\Flags\BJ.svg" />
+        <Content Remove="Assets\Flags\BL.svg" />
+        <Content Remove="Assets\Flags\BM.svg" />
+        <Content Remove="Assets\Flags\BN.svg" />
+        <Content Remove="Assets\Flags\BO.svg" />
+        <Content Remove="Assets\Flags\BQ.svg" />
+        <Content Remove="Assets\Flags\BR.svg" />
+        <Content Remove="Assets\Flags\BS.svg" />
+        <Content Remove="Assets\Flags\BT.svg" />
+        <Content Remove="Assets\Flags\BW.svg" />
+        <Content Remove="Assets\Flags\BY.svg" />
+        <Content Remove="Assets\Flags\BZ.svg" />
+        <Content Remove="Assets\Flags\CA.svg" />
+        <Content Remove="Assets\Flags\CD.svg" />
+        <Content Remove="Assets\Flags\CF.svg" />
+        <Content Remove="Assets\Flags\CG.svg" />
+        <Content Remove="Assets\Flags\CH.svg" />
+        <Content Remove="Assets\Flags\CI.svg" />
+        <Content Remove="Assets\Flags\CK.svg" />
+        <Content Remove="Assets\Flags\CL.svg" />
+        <Content Remove="Assets\Flags\CM.svg" />
+        <Content Remove="Assets\Flags\CN.svg" />
+        <Content Remove="Assets\Flags\CO.svg" />
+        <Content Remove="Assets\Flags\CR.svg" />
+        <Content Remove="Assets\Flags\CU.svg" />
+        <Content Remove="Assets\Flags\CV.svg" />
+        <Content Remove="Assets\Flags\CW.svg" />
+        <Content Remove="Assets\Flags\CY.svg" />
+        <Content Remove="Assets\Flags\CZ.svg" />
+        <Content Remove="Assets\Flags\DE.svg" />
+        <Content Remove="Assets\Flags\DJ.svg" />
+        <Content Remove="Assets\Flags\DK.svg" />
+        <Content Remove="Assets\Flags\DM.svg" />
+        <Content Remove="Assets\Flags\DO.svg" />
+        <Content Remove="Assets\Flags\DZ.svg" />
+        <Content Remove="Assets\Flags\EC.svg" />
+        <Content Remove="Assets\Flags\EE.svg" />
+        <Content Remove="Assets\Flags\EG.svg" />
+        <Content Remove="Assets\Flags\EH.svg" />
+        <Content Remove="Assets\Flags\ER.svg" />
+        <Content Remove="Assets\Flags\ES.svg" />
+        <Content Remove="Assets\Flags\ET.svg" />
+        <Content Remove="Assets\Flags\Fastest.svg" />
+        <Content Remove="Assets\Flags\FI.svg" />
+        <Content Remove="Assets\Flags\FJ.svg" />
+        <Content Remove="Assets\Flags\FK.svg" />
+        <Content Remove="Assets\Flags\FM.svg" />
+        <Content Remove="Assets\Flags\FO.svg" />
+        <Content Remove="Assets\Flags\FR.svg" />
+        <Content Remove="Assets\Flags\GA.svg" />
+        <Content Remove="Assets\Flags\GB.svg" />
+        <Content Remove="Assets\Flags\GD.svg" />
+        <Content Remove="Assets\Flags\GE.svg" />
+        <Content Remove="Assets\Flags\GF.svg" />
+        <Content Remove="Assets\Flags\GG.svg" />
+        <Content Remove="Assets\Flags\GH.svg" />
+        <Content Remove="Assets\Flags\GI.svg" />
+        <Content Remove="Assets\Flags\GL.svg" />
+        <Content Remove="Assets\Flags\GM.svg" />
+        <Content Remove="Assets\Flags\GN.svg" />
+        <Content Remove="Assets\Flags\GP.svg" />
+        <Content Remove="Assets\Flags\GQ.svg" />
+        <Content Remove="Assets\Flags\GR.svg" />
+        <Content Remove="Assets\Flags\GT.svg" />
+        <Content Remove="Assets\Flags\GU.svg" />
+        <Content Remove="Assets\Flags\GW.svg" />
+        <Content Remove="Assets\Flags\GY.svg" />
+        <Content Remove="Assets\Flags\HK.svg" />
+        <Content Remove="Assets\Flags\HN.svg" />
+        <Content Remove="Assets\Flags\HR.svg" />
+        <Content Remove="Assets\Flags\HT.svg" />
+        <Content Remove="Assets\Flags\HU.svg" />
+        <Content Remove="Assets\Flags\ID.svg" />
+        <Content Remove="Assets\Flags\IE.svg" />
+        <Content Remove="Assets\Flags\IL.svg" />
+        <Content Remove="Assets\Flags\IM.svg" />
+        <Content Remove="Assets\Flags\IN.svg" />
+        <Content Remove="Assets\Flags\IO.svg" />
+        <Content Remove="Assets\Flags\IQ.svg" />
+        <Content Remove="Assets\Flags\IR.svg" />
+        <Content Remove="Assets\Flags\IS.svg" />
+        <Content Remove="Assets\Flags\IT.svg" />
+        <Content Remove="Assets\Flags\JE.svg" />
+        <Content Remove="Assets\Flags\JM.svg" />
+        <Content Remove="Assets\Flags\JO.svg" />
+        <Content Remove="Assets\Flags\JP.svg" />
+        <Content Remove="Assets\Flags\KE.svg" />
+        <Content Remove="Assets\Flags\KG.svg" />
+        <Content Remove="Assets\Flags\KH.svg" />
+        <Content Remove="Assets\Flags\KI.svg" />
+        <Content Remove="Assets\Flags\KM.svg" />
+        <Content Remove="Assets\Flags\KN.svg" />
+        <Content Remove="Assets\Flags\KP.svg" />
+        <Content Remove="Assets\Flags\KR.svg" />
+        <Content Remove="Assets\Flags\KW.svg" />
+        <Content Remove="Assets\Flags\KY.svg" />
+        <Content Remove="Assets\Flags\KZ.svg" />
+        <Content Remove="Assets\Flags\LA.svg" />
+        <Content Remove="Assets\Flags\LB.svg" />
+        <Content Remove="Assets\Flags\LC.svg" />
+        <Content Remove="Assets\Flags\LI.svg" />
+        <Content Remove="Assets\Flags\LK.svg" />
+        <Content Remove="Assets\Flags\LR.svg" />
+        <Content Remove="Assets\Flags\LS.svg" />
+        <Content Remove="Assets\Flags\LT.svg" />
+        <Content Remove="Assets\Flags\LU.svg" />
+        <Content Remove="Assets\Flags\LV.svg" />
+        <Content Remove="Assets\Flags\LY.svg" />
+        <Content Remove="Assets\Flags\MA.svg" />
+        <Content Remove="Assets\Flags\MC.svg" />
+        <Content Remove="Assets\Flags\MD.svg" />
+        <Content Remove="Assets\Flags\ME.svg" />
+        <Content Remove="Assets\Flags\MF.svg" />
+        <Content Remove="Assets\Flags\MG.svg" />
+        <Content Remove="Assets\Flags\MH.svg" />
+        <Content Remove="Assets\Flags\MK.svg" />
+        <Content Remove="Assets\Flags\ML.svg" />
+        <Content Remove="Assets\Flags\MM.svg" />
+        <Content Remove="Assets\Flags\MN.svg" />
+        <Content Remove="Assets\Flags\MO.svg" />
+        <Content Remove="Assets\Flags\MP.svg" />
+        <Content Remove="Assets\Flags\MQ.svg" />
+        <Content Remove="Assets\Flags\MR.svg" />
+        <Content Remove="Assets\Flags\MS.svg" />
+        <Content Remove="Assets\Flags\MT.svg" />
+        <Content Remove="Assets\Flags\MU.svg" />
+        <Content Remove="Assets\Flags\MV.svg" />
+        <Content Remove="Assets\Flags\MW.svg" />
+        <Content Remove="Assets\Flags\MX.svg" />
+        <Content Remove="Assets\Flags\MY.svg" />
+        <Content Remove="Assets\Flags\MZ.svg" />
+        <Content Remove="Assets\Flags\NA.svg" />
+        <Content Remove="Assets\Flags\NC.svg" />
+        <Content Remove="Assets\Flags\NE.svg" />
+        <Content Remove="Assets\Flags\NF.svg" />
+        <Content Remove="Assets\Flags\NG.svg" />
+        <Content Remove="Assets\Flags\NI.svg" />
+        <Content Remove="Assets\Flags\NL.svg" />
+        <Content Remove="Assets\Flags\NO.svg" />
+        <Content Remove="Assets\Flags\NP.svg" />
+        <Content Remove="Assets\Flags\NR.svg" />
+        <Content Remove="Assets\Flags\NU.svg" />
+        <Content Remove="Assets\Flags\NZ.svg" />
+        <Content Remove="Assets\Flags\OM.svg" />
+        <Content Remove="Assets\Flags\PA.svg" />
+        <Content Remove="Assets\Flags\PE.svg" />
+        <Content Remove="Assets\Flags\PF.svg" />
+        <Content Remove="Assets\Flags\PG.svg" />
+        <Content Remove="Assets\Flags\PH.svg" />
+        <Content Remove="Assets\Flags\PK.svg" />
+        <Content Remove="Assets\Flags\PL.svg" />
+        <Content Remove="Assets\Flags\Placeholder.svg" />
+        <Content Remove="Assets\Flags\PM.svg" />
+        <Content Remove="Assets\Flags\PR.svg" />
+        <Content Remove="Assets\Flags\PS.svg" />
+        <Content Remove="Assets\Flags\PT.svg" />
+        <Content Remove="Assets\Flags\PW.svg" />
+        <Content Remove="Assets\Flags\PY.svg" />
+        <Content Remove="Assets\Flags\QA.svg" />
+        <Content Remove="Assets\Flags\RE.svg" />
+        <Content Remove="Assets\Flags\RO.svg" />
+        <Content Remove="Assets\Flags\RS.svg" />
+        <Content Remove="Assets\Flags\RU.svg" />
+        <Content Remove="Assets\Flags\RW.svg" />
+        <Content Remove="Assets\Flags\SA.svg" />
+        <Content Remove="Assets\Flags\SB.svg" />
+        <Content Remove="Assets\Flags\SC.svg" />
+        <Content Remove="Assets\Flags\SD.svg" />
+        <Content Remove="Assets\Flags\SE.svg" />
+        <Content Remove="Assets\Flags\SG.svg" />
+        <Content Remove="Assets\Flags\SH.svg" />
+        <Content Remove="Assets\Flags\SI.svg" />
+        <Content Remove="Assets\Flags\SK.svg" />
+        <Content Remove="Assets\Flags\SL.svg" />
+        <Content Remove="Assets\Flags\SM.svg" />
+        <Content Remove="Assets\Flags\SN.svg" />
+        <Content Remove="Assets\Flags\SO.svg" />
+        <Content Remove="Assets\Flags\SR.svg" />
+        <Content Remove="Assets\Flags\SS.svg" />
+        <Content Remove="Assets\Flags\ST.svg" />
+        <Content Remove="Assets\Flags\SV.svg" />
+        <Content Remove="Assets\Flags\SX.svg" />
+        <Content Remove="Assets\Flags\SY.svg" />
+        <Content Remove="Assets\Flags\SZ.svg" />
+        <Content Remove="Assets\Flags\TC.svg" />
+        <Content Remove="Assets\Flags\TD.svg" />
+        <Content Remove="Assets\Flags\TG.svg" />
+        <Content Remove="Assets\Flags\TH.svg" />
+        <Content Remove="Assets\Flags\TJ.svg" />
+        <Content Remove="Assets\Flags\TK.svg" />
+        <Content Remove="Assets\Flags\TL.svg" />
+        <Content Remove="Assets\Flags\TM.svg" />
+        <Content Remove="Assets\Flags\TN.svg" />
+        <Content Remove="Assets\Flags\TO.svg" />
+        <Content Remove="Assets\Flags\TR.svg" />
+        <Content Remove="Assets\Flags\TT.svg" />
+        <Content Remove="Assets\Flags\TV.svg" />
+        <Content Remove="Assets\Flags\TW.svg" />
+        <Content Remove="Assets\Flags\TZ.svg" />
+        <Content Remove="Assets\Flags\UA.svg" />
+        <Content Remove="Assets\Flags\UG.svg" />
+        <Content Remove="Assets\Flags\US.svg" />
+        <Content Remove="Assets\Flags\UY.svg" />
+        <Content Remove="Assets\Flags\UZ.svg" />
+        <Content Remove="Assets\Flags\VA.svg" />
+        <Content Remove="Assets\Flags\VC.svg" />
+        <Content Remove="Assets\Flags\VE.svg" />
+        <Content Remove="Assets\Flags\VG.svg" />
+        <Content Remove="Assets\Flags\VI.svg" />
+        <Content Remove="Assets\Flags\VN.svg" />
+        <Content Remove="Assets\Flags\VU.svg" />
+        <Content Remove="Assets\Flags\WF.svg" />
+        <Content Remove="Assets\Flags\WS.svg" />
+        <Content Remove="Assets\Flags\XK.svg" />
+        <Content Remove="Assets\Flags\YE.svg" />
+        <Content Remove="Assets\Flags\YT.svg" />
+        <Content Remove="Assets\Flags\ZA.svg" />
+        <Content Remove="Assets\Flags\ZM.svg" />
+        <Content Remove="Assets\Flags\ZW.svg" />
+        <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
+        <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
+        <Content Remove="Assets\Icons\IconUserControl.xaml.cs" />
+        <Content Remove="Assets\Icons\LatencyHigh.xaml" />
+        <Content Remove="Assets\Icons\LatencyHigh.xaml.cs" />
+        <Content Remove="Assets\Icons\LatencyLow.xaml" />
+        <Content Remove="Assets\Icons\LatencyMedium.xaml" />
+        <Content Remove="Assets\Icons\LatencyMedium.xaml.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Alias.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArchiveBox.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowDown.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowDownArrowUp.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowDownCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowDownCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowDownLine.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowDownToSquare.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowInToRectangle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowLeftAndUp.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowOutFromRectangle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowOutSquare.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowOverSquare.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowRightArrowLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowRotateRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsCross.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsFromCenter.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsRotate.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsSwapRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsSwitch.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsToCenter.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowsUpAndLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUp.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUpAndLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUpBigLine.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUpBounceLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUpCircleLine.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUpFromSquare.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowUpLine.cs" />
+        <Content Remove="Assets\Icons\PathIcons\At.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Backspace.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BagPercent.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Bell.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Bolt.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Bookmark.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BookmarkFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandAmex.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandAndroid.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandApple.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandBitcoin.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandBrave.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandChrome.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandFirefox.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandLinux.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandMac.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandMastercard.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandPaypal.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProton.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonCalendar.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonDrive.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonMail.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonPass.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonVpn.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandTor.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandTwitter.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandVisa.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandWindows.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandWireGuard.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Briefcase.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Broom.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Bug.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Buildings.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Calendar3Day.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarCells.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarCheckmark.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarDay.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarGrid.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarMonth.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarRow.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarToday.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CalendarWeek.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Camera.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CardIdentity.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChartLine.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Checkmark.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CheckmarkCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CheckmarkCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CheckmarkTriple.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronDown.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronDownFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronLeftFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronRightFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronsLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronSquareLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronSquareRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronsRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronUp.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronUpFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Circle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CircleHalfFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CircleSlash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CirclesLock.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Clock.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ClockFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ClockPaperPlane.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ClockRotateLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Cloud.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Code.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CogWheel.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CogWheelFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CreditCard.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Cross.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CrossBig.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CrossCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CrossCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CrossSmall.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Drive.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Earth.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EarthFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Emoji.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EmptyCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Envelope.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EnvelopeArrowUpAndRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EnvelopeCross.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EnvelopeDot.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EnvelopeMagnifyingGlass.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EnvelopeOpen.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EnvelopeOpenText.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Envelopes.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Eraser.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ExclamationCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ExclamationCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ExclamationTriangleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Eye.cs" />
+        <Content Remove="Assets\Icons\PathIcons\EyeSlash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\File.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FileArrowIn.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FileArrowInUp.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FileArrowOut.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FileImage.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FileLines.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FilePdf.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FileShapes.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FilingCabinet.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Filter.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Fingerprint.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Fire.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FireSlash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Folder.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderArrowIn.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderArrowInFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderArrowUp.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderOpen.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderOpenFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FolderPlus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Folders.cs" />
+        <Content Remove="Assets\Icons\PathIcons\FoldersFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Forward.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Gift.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Globe.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Grid2.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Grid3.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Hamburger.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Heart.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Hook.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Hourglass.cs" />
+        <Content Remove="Assets\Icons\PathIcons\House.cs" />
+        <Content Remove="Assets\Icons\PathIcons\HouseFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Image.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Inbox.cs" />
+        <Content Remove="Assets\Icons\PathIcons\InfoCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\InfoCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Key.cs" />
+        <Content Remove="Assets\Icons\PathIcons\KeySkeleton.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Language.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LifeRing.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Lightbulb.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LinesHorizontal.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LinesLongToSmall.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LinesVertical.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Link.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LinkPen.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LinkSlash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ListBullets.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ListNumbers.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Lock.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockCheckFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockExclamationFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockLayers.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockOpen.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockOpenCheckFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockOpenExclamationFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockOpenFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockOpenFilled2.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockOpenPenFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LockPenFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Locks.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LocksFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\LowDash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\MagicWand.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Magnifier.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Mailbox.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Map.cs" />
+        <Content Remove="Assets\Icons\PathIcons\MapPin.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Minus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\MinusCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Mobile.cs" />
+        <Content Remove="Assets\Icons\PathIcons\MobilePlus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\MoneyBills.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Moon.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Note.cs" />
+        <Content Remove="Assets\Icons\PathIcons\NotepadChecklist.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PaintRoller.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Palette.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PaperClip.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PaperClipVertical.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PaperPlane.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PaperPlaneHorizontal.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Pause.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PauseFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Pen.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Pencil.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PenSquare.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Phone.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PinFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PinSlashFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Placeholder.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Play.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PlayFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Plus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PlusCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PlusCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PowerOff.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PresentationScreen.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Printer.cs" />
+        <Content Remove="Assets\Icons\PathIcons\QuestionCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\QuestionCircleFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Reply.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ReplyAll.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Robot.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Rocket.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Servers.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Shield.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ShieldFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ShieldHalfFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SidePanelLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SidePanelRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Sliders.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SpeechBubble.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Squares.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Star.cs" />
+        <Content Remove="Assets\Icons\PathIcons\StarFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\StarSlash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Storage.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Sun.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SwipeLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SwitchOff.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SwitchOn.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SwitchOnLock.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Tag.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TagFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TagPlus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Tags.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextAlignCenter.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextAlignJustify.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextAlignLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextAlignRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextBold.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextItalic.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextQuote.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TextUnderline.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ThreeDotsHorizontal.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ThreeDotsVertical.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Trash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TrashClock.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TrashCross.cs" />
+        <Content Remove="Assets\Icons\PathIcons\TrashCrossFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Tv.cs" />
+        <Content Remove="Assets\Icons\PathIcons\User.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UserArrowLeft.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UserArrowRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UserCircle.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UserFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UserPlus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Users.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UsersFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UsersMerge.cs" />
+        <Content Remove="Assets\Icons\PathIcons\UsersPlus.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Vault.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Wallet.cs" />
+        <Content Remove="Assets\Icons\PathIcons\WindowImage.cs" />
+        <Content Remove="Assets\Icons\PathIcons\WindowTerminal.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Wrench.cs" />
+        <Content Remove="Assets\Icons\ProtectedLock.xaml" />
+        <Content Remove="Assets\Icons\ProtectedLock.xaml.cs" />
+        <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
+        <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml.cs" />
+        <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
+        <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml.cs" />
+        <Content Remove="Assets\Icons\UnprotectedLock.xaml" />
+        <Content Remove="Assets\Icons\UnprotectedLock.xaml.cs" />
+        <Content Remove="Assets\Icons\UserControl1.xaml.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="Assets\Flags\AD.svg" />
+        <None Remove="Assets\Flags\AE.svg" />
+        <None Remove="Assets\Flags\AF.svg" />
+        <None Remove="Assets\Flags\AG.svg" />
+        <None Remove="Assets\Flags\AI.svg" />
+        <None Remove="Assets\Flags\AL.svg" />
+        <None Remove="Assets\Flags\AM.svg" />
+        <None Remove="Assets\Flags\AO.svg" />
+        <None Remove="Assets\Flags\AR.svg" />
+        <None Remove="Assets\Flags\AS.svg" />
+        <None Remove="Assets\Flags\AT.svg" />
+        <None Remove="Assets\Flags\AU.svg" />
+        <None Remove="Assets\Flags\AW.svg" />
+        <None Remove="Assets\Flags\AZ.svg" />
+        <None Remove="Assets\Flags\BA.svg" />
+        <None Remove="Assets\Flags\BB.svg" />
+        <None Remove="Assets\Flags\BD.svg" />
+        <None Remove="Assets\Flags\BE.svg" />
+        <None Remove="Assets\Flags\BF.svg" />
+        <None Remove="Assets\Flags\BG.svg" />
+        <None Remove="Assets\Flags\BH.svg" />
+        <None Remove="Assets\Flags\BI.svg" />
+        <None Remove="Assets\Flags\BJ.svg" />
+        <None Remove="Assets\Flags\BL.svg" />
+        <None Remove="Assets\Flags\BM.svg" />
+        <None Remove="Assets\Flags\BN.svg" />
+        <None Remove="Assets\Flags\BO.svg" />
+        <None Remove="Assets\Flags\BQ.svg" />
+        <None Remove="Assets\Flags\BR.svg" />
+        <None Remove="Assets\Flags\BS.svg" />
+        <None Remove="Assets\Flags\BT.svg" />
+        <None Remove="Assets\Flags\BW.svg" />
+        <None Remove="Assets\Flags\BY.svg" />
+        <None Remove="Assets\Flags\BZ.svg" />
+        <None Remove="Assets\Flags\CA.svg" />
+        <None Remove="Assets\Flags\CD.svg" />
+        <None Remove="Assets\Flags\CF.svg" />
+        <None Remove="Assets\Flags\CG.svg" />
+        <None Remove="Assets\Flags\CH.svg" />
+        <None Remove="Assets\Flags\CI.svg" />
+        <None Remove="Assets\Flags\CK.svg" />
+        <None Remove="Assets\Flags\CL.svg" />
+        <None Remove="Assets\Flags\CM.svg" />
+        <None Remove="Assets\Flags\CN.svg" />
+        <None Remove="Assets\Flags\CO.svg" />
+        <None Remove="Assets\Flags\CR.svg" />
+        <None Remove="Assets\Flags\CU.svg" />
+        <None Remove="Assets\Flags\CV.svg" />
+        <None Remove="Assets\Flags\CW.svg" />
+        <None Remove="Assets\Flags\CY.svg" />
+        <None Remove="Assets\Flags\CZ.svg" />
+        <None Remove="Assets\Flags\DE.svg" />
+        <None Remove="Assets\Flags\DJ.svg" />
+        <None Remove="Assets\Flags\DK.svg" />
+        <None Remove="Assets\Flags\DM.svg" />
+        <None Remove="Assets\Flags\DO.svg" />
+        <None Remove="Assets\Flags\DZ.svg" />
+        <None Remove="Assets\Flags\EC.svg" />
+        <None Remove="Assets\Flags\EE.svg" />
+        <None Remove="Assets\Flags\EG.svg" />
+        <None Remove="Assets\Flags\EH.svg" />
+        <None Remove="Assets\Flags\ER.svg" />
+        <None Remove="Assets\Flags\ES.svg" />
+        <None Remove="Assets\Flags\ET.svg" />
+        <None Remove="Assets\Flags\Fastest.svg" />
+        <None Remove="Assets\Flags\FI.svg" />
+        <None Remove="Assets\Flags\FJ.svg" />
+        <None Remove="Assets\Flags\FK.svg" />
+        <None Remove="Assets\Flags\FM.svg" />
+        <None Remove="Assets\Flags\FO.svg" />
+        <None Remove="Assets\Flags\FR.svg" />
+        <None Remove="Assets\Flags\GA.svg" />
+        <None Remove="Assets\Flags\GB.svg" />
+        <None Remove="Assets\Flags\GD.svg" />
+        <None Remove="Assets\Flags\GE.svg" />
+        <None Remove="Assets\Flags\GF.svg" />
+        <None Remove="Assets\Flags\GG.svg" />
+        <None Remove="Assets\Flags\GH.svg" />
+        <None Remove="Assets\Flags\GI.svg" />
+        <None Remove="Assets\Flags\GL.svg" />
+        <None Remove="Assets\Flags\GM.svg" />
+        <None Remove="Assets\Flags\GN.svg" />
+        <None Remove="Assets\Flags\GP.svg" />
+        <None Remove="Assets\Flags\GQ.svg" />
+        <None Remove="Assets\Flags\GR.svg" />
+        <None Remove="Assets\Flags\GT.svg" />
+        <None Remove="Assets\Flags\GU.svg" />
+        <None Remove="Assets\Flags\GW.svg" />
+        <None Remove="Assets\Flags\GY.svg" />
+        <None Remove="Assets\Flags\HK.svg" />
+        <None Remove="Assets\Flags\HN.svg" />
+        <None Remove="Assets\Flags\HR.svg" />
+        <None Remove="Assets\Flags\HT.svg" />
+        <None Remove="Assets\Flags\HU.svg" />
+        <None Remove="Assets\Flags\ID.svg" />
+        <None Remove="Assets\Flags\IE.svg" />
+        <None Remove="Assets\Flags\IL.svg" />
+        <None Remove="Assets\Flags\IM.svg" />
+        <None Remove="Assets\Flags\IN.svg" />
+        <None Remove="Assets\Flags\IO.svg" />
+        <None Remove="Assets\Flags\IQ.svg" />
+        <None Remove="Assets\Flags\IR.svg" />
+        <None Remove="Assets\Flags\IS.svg" />
+        <None Remove="Assets\Flags\IT.svg" />
+        <None Remove="Assets\Flags\JE.svg" />
+        <None Remove="Assets\Flags\JM.svg" />
+        <None Remove="Assets\Flags\JO.svg" />
+        <None Remove="Assets\Flags\JP.svg" />
+        <None Remove="Assets\Flags\KE.svg" />
+        <None Remove="Assets\Flags\KG.svg" />
+        <None Remove="Assets\Flags\KH.svg" />
+        <None Remove="Assets\Flags\KI.svg" />
+        <None Remove="Assets\Flags\KM.svg" />
+        <None Remove="Assets\Flags\KN.svg" />
+        <None Remove="Assets\Flags\KP.svg" />
+        <None Remove="Assets\Flags\KR.svg" />
+        <None Remove="Assets\Flags\KW.svg" />
+        <None Remove="Assets\Flags\KY.svg" />
+        <None Remove="Assets\Flags\KZ.svg" />
+        <None Remove="Assets\Flags\LA.svg" />
+        <None Remove="Assets\Flags\LB.svg" />
+        <None Remove="Assets\Flags\LC.svg" />
+        <None Remove="Assets\Flags\LI.svg" />
+        <None Remove="Assets\Flags\LK.svg" />
+        <None Remove="Assets\Flags\LR.svg" />
+        <None Remove="Assets\Flags\LS.svg" />
+        <None Remove="Assets\Flags\LT.svg" />
+        <None Remove="Assets\Flags\LU.svg" />
+        <None Remove="Assets\Flags\LV.svg" />
+        <None Remove="Assets\Flags\LY.svg" />
+        <None Remove="Assets\Flags\MA.svg" />
+        <None Remove="Assets\Flags\MC.svg" />
+        <None Remove="Assets\Flags\MD.svg" />
+        <None Remove="Assets\Flags\ME.svg" />
+        <None Remove="Assets\Flags\MF.svg" />
+        <None Remove="Assets\Flags\MG.svg" />
+        <None Remove="Assets\Flags\MH.svg" />
+        <None Remove="Assets\Flags\MK.svg" />
+        <None Remove="Assets\Flags\ML.svg" />
+        <None Remove="Assets\Flags\MM.svg" />
+        <None Remove="Assets\Flags\MN.svg" />
+        <None Remove="Assets\Flags\MO.svg" />
+        <None Remove="Assets\Flags\MP.svg" />
+        <None Remove="Assets\Flags\MQ.svg" />
+        <None Remove="Assets\Flags\MR.svg" />
+        <None Remove="Assets\Flags\MS.svg" />
+        <None Remove="Assets\Flags\MT.svg" />
+        <None Remove="Assets\Flags\MU.svg" />
+        <None Remove="Assets\Flags\MV.svg" />
+        <None Remove="Assets\Flags\MW.svg" />
+        <None Remove="Assets\Flags\MX.svg" />
+        <None Remove="Assets\Flags\MY.svg" />
+        <None Remove="Assets\Flags\MZ.svg" />
+        <None Remove="Assets\Flags\NA.svg" />
+        <None Remove="Assets\Flags\NC.svg" />
+        <None Remove="Assets\Flags\NE.svg" />
+        <None Remove="Assets\Flags\NF.svg" />
+        <None Remove="Assets\Flags\NG.svg" />
+        <None Remove="Assets\Flags\NI.svg" />
+        <None Remove="Assets\Flags\NL.svg" />
+        <None Remove="Assets\Flags\NO.svg" />
+        <None Remove="Assets\Flags\NP.svg" />
+        <None Remove="Assets\Flags\NR.svg" />
+        <None Remove="Assets\Flags\NU.svg" />
+        <None Remove="Assets\Flags\NZ.svg" />
+        <None Remove="Assets\Flags\OM.svg" />
+        <None Remove="Assets\Flags\PA.svg" />
+        <None Remove="Assets\Flags\PE.svg" />
+        <None Remove="Assets\Flags\PF.svg" />
+        <None Remove="Assets\Flags\PG.svg" />
+        <None Remove="Assets\Flags\PH.svg" />
+        <None Remove="Assets\Flags\PK.svg" />
+        <None Remove="Assets\Flags\PL.svg" />
+        <None Remove="Assets\Flags\Placeholder.svg" />
+        <None Remove="Assets\Flags\PM.svg" />
+        <None Remove="Assets\Flags\PR.svg" />
+        <None Remove="Assets\Flags\PS.svg" />
+        <None Remove="Assets\Flags\PT.svg" />
+        <None Remove="Assets\Flags\PW.svg" />
+        <None Remove="Assets\Flags\PY.svg" />
+        <None Remove="Assets\Flags\QA.svg" />
+        <None Remove="Assets\Flags\RE.svg" />
+        <None Remove="Assets\Flags\RO.svg" />
+        <None Remove="Assets\Flags\RS.svg" />
+        <None Remove="Assets\Flags\RU.svg" />
+        <None Remove="Assets\Flags\RW.svg" />
+        <None Remove="Assets\Flags\SA.svg" />
+        <None Remove="Assets\Flags\SB.svg" />
+        <None Remove="Assets\Flags\SC.svg" />
+        <None Remove="Assets\Flags\SD.svg" />
+        <None Remove="Assets\Flags\SE.svg" />
+        <None Remove="Assets\Flags\SG.svg" />
+        <None Remove="Assets\Flags\SH.svg" />
+        <None Remove="Assets\Flags\SI.svg" />
+        <None Remove="Assets\Flags\SK.svg" />
+        <None Remove="Assets\Flags\SL.svg" />
+        <None Remove="Assets\Flags\SM.svg" />
+        <None Remove="Assets\Flags\SN.svg" />
+        <None Remove="Assets\Flags\SO.svg" />
+        <None Remove="Assets\Flags\SR.svg" />
+        <None Remove="Assets\Flags\SS.svg" />
+        <None Remove="Assets\Flags\ST.svg" />
+        <None Remove="Assets\Flags\SV.svg" />
+        <None Remove="Assets\Flags\SX.svg" />
+        <None Remove="Assets\Flags\SY.svg" />
+        <None Remove="Assets\Flags\SZ.svg" />
+        <None Remove="Assets\Flags\TC.svg" />
+        <None Remove="Assets\Flags\TD.svg" />
+        <None Remove="Assets\Flags\TG.svg" />
+        <None Remove="Assets\Flags\TH.svg" />
+        <None Remove="Assets\Flags\TJ.svg" />
+        <None Remove="Assets\Flags\TK.svg" />
+        <None Remove="Assets\Flags\TL.svg" />
+        <None Remove="Assets\Flags\TM.svg" />
+        <None Remove="Assets\Flags\TN.svg" />
+        <None Remove="Assets\Flags\TO.svg" />
+        <None Remove="Assets\Flags\TR.svg" />
+        <None Remove="Assets\Flags\TT.svg" />
+        <None Remove="Assets\Flags\TV.svg" />
+        <None Remove="Assets\Flags\TW.svg" />
+        <None Remove="Assets\Flags\TZ.svg" />
+        <None Remove="Assets\Flags\UA.svg" />
+        <None Remove="Assets\Flags\UG.svg" />
+        <None Remove="Assets\Flags\US.svg" />
+        <None Remove="Assets\Flags\UY.svg" />
+        <None Remove="Assets\Flags\UZ.svg" />
+        <None Remove="Assets\Flags\VA.svg" />
+        <None Remove="Assets\Flags\VC.svg" />
+        <None Remove="Assets\Flags\VE.svg" />
+        <None Remove="Assets\Flags\VG.svg" />
+        <None Remove="Assets\Flags\VI.svg" />
+        <None Remove="Assets\Flags\VN.svg" />
+        <None Remove="Assets\Flags\VU.svg" />
+        <None Remove="Assets\Flags\WF.svg" />
+        <None Remove="Assets\Flags\WS.svg" />
+        <None Remove="Assets\Flags\XK.svg" />
+        <None Remove="Assets\Flags\YE.svg" />
+        <None Remove="Assets\Flags\YT.svg" />
+        <None Remove="Assets\Flags\ZA.svg" />
+        <None Remove="Assets\Flags\ZM.svg" />
+        <None Remove="Assets\Flags\ZW.svg" />
+        <None Remove="Assets\Icons\LatencyHigh.xaml" />
+        <None Remove="Assets\Icons\LatencyLow.xaml" />
+        <None Remove="Assets\Icons\LatencyMedium.xaml" />
+        <None Remove="Assets\Icons\ProtectedLock.xaml" />
+        <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
+        <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
+        <None Remove="Assets\Icons\UnprotectedLock.xaml" />
+        <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Dark\welcome.jpg" />
+        <None Remove="Assets\Illustrations\kill-switch-off.png" />
+        <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
+        <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
+        <None Remove="Assets\Illustrations\Light\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Light\welcome.jpg" />
+        <None Remove="Assets\Illustrations\netshield-off.png" />
+        <None Remove="Assets\Illustrations\netshield-on.png" />
+        <None Remove="Assets\Illustrations\port-forwarding-off.png" />
+        <None Remove="Assets\Illustrations\port-forwarding-on.png" />
+        <None Remove="Assets\Illustrations\report-error.png" />
+        <None Remove="Assets\Illustrations\report-success.png" />
+        <None Remove="Assets\Illustrations\split-tunneling-off.png" />
+        <None Remove="Assets\Illustrations\split-tunneling-on.png" />
+        <None Remove="Controls\CountryFlagControl.xaml" />
+        <None Remove="Controls\DualCommandsRowControl.xaml" />
+        <None Remove="Controls\ServerLoadControl.xaml" />
+        <None Remove="Controls\UserLocationControl.xaml" />
+        <None Remove="Assets\Icons\ActiveDot.xaml" />
+        <None Remove="Gallery\Controls\ColorsControl.xaml" />
+        <None Remove="Gallery\Controls\MapConnectionControl.xaml" />
+        <None Remove="Gallery\Controls\MapPinControl.xaml" />
+        <None Remove="Gallery\Controls\SampleControl.xaml" />
+        <None Remove="Gallery\Controls\TypographyControl.xaml" />
+        <None Remove="Gallery\GalleryStyles.xaml" />
+        <None Remove="Gallery\Pages\InputsPage.xaml" />
+        <None Remove="Gallery\Pages\MapPage.xaml" />
+        <None Remove="Gallery\Pages\OtherControlsPage.xaml" />
+        <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
+        <None Remove="Gallery\Pages\VpnSpecificPage.xaml" />
+        <None Remove="Styles\Brushes.xaml" />
+        <None Remove="Styles\Colors.xaml" />
+        <None Remove="Styles\Controls\ButtonStyles.xaml" />
+        <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
+        <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
+        <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
+        <None Remove="Styles\Controls\ExpanderStyles.xaml" />
+        <None Remove="Styles\Controls\FlyoutStyles.xaml" />
+        <None Remove="Styles\Controls\GhostButtonStyles.xaml" />
+        <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
+        <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
+        <None Remove="Styles\Controls\InfoBarStyles.xaml" />
+        <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
+        <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
+        <None Remove="Styles\Controls\PivotStyles.xaml" />
+        <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
+        <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
+        <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
+        <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
+        <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
+        <None Remove="Styles\Controls\TextBoxStyles.xaml" />
+        <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
+        <None Remove="Styles\Controls\TooltipStyles.xaml" />
+        <None Remove="Styles\Converters.xaml" />
+        <None Remove="Styles\Illustrations.xaml" />
+        <None Remove="Styles\Typography.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" />
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Input" />
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
+        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Colors.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Brushes.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\ActiveDot.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Controls\CountryFlagControl.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Controls\UserLocationControl.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Styles\Controls\HyperlinkStyles.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Styles\Controls\PivotStyles.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Styles\Controls\FlyoutStyles.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Styles\Controls\NavigationViewStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Pages\TextFieldsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Pages\InputsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\GalleryStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Controls\TypographyControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\ToggleSwitchStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\TextBoxStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\RadioButtonStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\HyperlinkButtonStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\CheckBoxStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Typography.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Converters.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\ButtonStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Controls\ColorsControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <CustomAdditionalCompileInputs Remove="Gallery\Pages\MapPage.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Resource Remove="Gallery\Pages\MapPage.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Assets\Flags\AD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\AZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BB.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BJ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BQ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\BZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CV.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\CZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\DE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\DJ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\DK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\DM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\DO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\DZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\EC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\EE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\EG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\EH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ER.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ES.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ET.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\Fastest.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\FI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\FJ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\FK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\FM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\FO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\FR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GB.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GP.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GQ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\GY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\HK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\HN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\HR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\HT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\HU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ID.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IQ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\IT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\JE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\JM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\JO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\JP.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KP.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\KZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LB.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LV.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\LY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ME.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ML.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MP.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MQ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MV.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MX.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\MZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NP.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\NZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\OM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\Placeholder.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\PY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\QA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\RE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\RO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\RS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\RU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\RW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SB.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ST.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SV.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SX.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\SZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TD.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TH.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TJ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TL.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TO.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TR.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TV.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\TZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\UA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\UG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\US.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\UY.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\UZ.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VC.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VG.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VI.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VN.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\VU.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\WF.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\WS.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\XK.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\YE.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\YT.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ZA.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ZM.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\Flags\ZW.svg">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\SecureCoreFlagOutline.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\SecureCoreProtectedLock.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\ProtectedLock.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\UnprotectedLock.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Controls\SampleControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Pages\VpnSpecificPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Controls\MapConnectionControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Controls\MapPinControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Gallery\Pages\OtherControlsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\PageContentControlStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\ExpanderStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Controls\DualCommandsRowControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <CustomAdditionalCompileInputs Remove="Controls\ServerLoadControl.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Resource Remove="Controls\ServerLoadControl.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <CustomAdditionalCompileInputs Remove="Styles\Controls\ContentDialogStyles.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Update="Assets\Illustrations\Dark\product-logo.svg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\welcome.jpg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\kill-switch-off.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\kill-switch-on-level-1.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\kill-switch-on-level-2.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\product-logo.svg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\welcome.jpg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\netshield-off.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\netshield-on.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\port-forwarding-off.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\port-forwarding-on.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\report-error.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\report-success.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\split-tunneling-off.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\split-tunneling-on.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\ComboBoxStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\GhostButtonStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\SettingsExpanderStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Illustrations.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\ProgressBarStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\StepContentControlStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\SettingsCardStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\LatencyHigh.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\LatencyMedium.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Assets\Icons\LatencyLow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\InfoBarStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Styles\Controls\TooltipStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
 </Project>

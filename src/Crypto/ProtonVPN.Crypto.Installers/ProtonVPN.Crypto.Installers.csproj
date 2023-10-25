@@ -1,22 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\..\bin</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Autofac" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProtonVPN.Crypto.Contracts\ProtonVPN.Crypto.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
-  </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\..\bin</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ProtonVPN.Crypto.Contracts\ProtonVPN.Crypto.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
+    </ItemGroup>
 </Project>
