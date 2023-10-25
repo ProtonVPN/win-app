@@ -48,7 +48,6 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.IsVpnAcceleratorEnabled = DefaultSettings.IsVpnAcceleratorEnabled;
         _settings.IsNotificationEnabled = DefaultSettings.IsNotificationEnabled;
         _settings.IsBetaAccessEnabled = DefaultSettings.IsBetaAccessEnabled;
-        _settings.IsHardwareAccelerationEnabled = DefaultSettings.IsHardwareAccelerationEnabled;
         _settings.IsAlternativeRoutingEnabled = DefaultSettings.IsAlternativeRoutingEnabled;
         _settings.IsCustomDnsServersEnabled = DefaultSettings.IsCustomDnsServersEnabled;
         _settings.CustomDnsServersList = DefaultSettings.CustomDnsServersList;

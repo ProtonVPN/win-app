@@ -45,7 +45,6 @@ public interface IUserSettings
     bool IsShareStatisticsEnabled { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
     bool IsAlternativeRoutingEnabled { get; set; }
-    bool IsHardwareAccelerationEnabled { get; set; }
     bool IsCustomDnsServersEnabled { get; set; }
     List<CustomDnsServer> CustomDnsServersList { get; set; }
     bool IsAutoConnectEnabled { get; set; }

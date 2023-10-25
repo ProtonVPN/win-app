@@ -149,12 +149,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsHardwareAccelerationEnabled
-    {
-        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsHardwareAccelerationEnabled;
-        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsCustomDnsServersEnabled
     {
         get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsCustomDnsServersEnabled;

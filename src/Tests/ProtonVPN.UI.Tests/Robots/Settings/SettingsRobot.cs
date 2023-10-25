@@ -39,7 +39,6 @@ public partial class SettingsRobot : UIActions
     protected Button LanguagesSettingsCard => ElementByAutomationId("LanguagesSettingsCard").AsButton();
     protected Button ThemesSettingsCard => ElementByAutomationId("ThemesSettingsCard").AsButton();
     protected Button BetaAccessSettingsCard => ElementByAutomationId("BetaAccessSettingsCard").AsButton();
-    protected Button HardwareAccelerationSettingsCard => ElementByAutomationId("HardwareAccelerationSettingsCard").AsButton();
 
     protected Button SupportCenterSettingsCard => ElementByAutomationId("SupportCenterSettingsCard").AsButton();
     protected Button ReportIssueSettingsCard => ElementByAutomationId("ReportIssueSettingsCard").AsButton();

@@ -34,7 +34,6 @@ public static class DefaultSettings
     public static bool IsWindowMaximized = false;
     public static bool IsNotificationEnabled = true; // TODO: Default value still marked as TBD on the spec
     public static bool IsBetaAccessEnabled = false;
-    public static bool IsHardwareAccelerationEnabled = false;
     public static bool IsShareStatisticsEnabled = true;
     public static bool IsShareCrashReportsEnabled = true;
     public static bool IsAlternativeRoutingEnabled = true;
