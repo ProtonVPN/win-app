@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -34,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Settings.Pages.SplitTunneling;
 using ProtonVPN.Common.Core.Extensions;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -271,5 +273,13 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
     private List<SplitTunnelingIpAddress> GetSplitTunnelingIpAddressesList()
     {
         return IpAddresses.Select(ip => new SplitTunnelingIpAddress(ip.IpAddress, ip.IsActive)).ToList();
+    }
+
+    public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
+    {
+        if (e.Key == VirtualKey.Enter && CanAddIpAddress())
+        {
+            AddIpAddressCommand.Execute(null);
+        }
     }
 }
