@@ -1789,13 +1789,13 @@
     <value>Сотни серверов в {0} стране</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Few">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>Сотни серверов в {0} странах</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Many">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>Сотни серверов в {0} странах</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Сотни серверов в {0} странах</value>
+    <value>Сотни серверов в {0} страны</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>Подключайте до 10 устройств одновременно</value>

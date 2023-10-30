@@ -111,6 +111,7 @@ Source: "..\{#SourcePath}\ko-KR\ProtonVPN.Translations.resources.dll"; DestDir: 
 Source: "..\{#SourcePath}\zh-TW\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\zh-TW"; Flags: signonce;
 Source: "..\{#SourcePath}\sv-SE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sv-SE"; Flags: signonce;
 Source: "..\{#SourcePath}\ja-JP\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ja-JP"; Flags: signonce;
+Source: "..\{#SourcePath}\sk-SK\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sk-SK"; Flags: signonce;
 
 Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;

@@ -3356,7 +3356,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Odblokování &lt;Bold&gt;přesměrování portů&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>Zvyšte výkon svých P2P připojení</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
     <value>Uložit preferovaný server, město nebo zemi.</value>

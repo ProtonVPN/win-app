@@ -1698,7 +1698,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>Disconnetti un altro dispositivo per connettere questo o effettua l'upgrade a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -2142,7 +2142,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>Disconnetti un altro dispositivo per connettere questo o effettua l'upgrade a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2626,7 +2626,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Proton VPN non è stato in grado di aggiornare il certificato di autenticazione del client.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Il server al quale stai cercando di connetterti è attualmente offline per manutenzione. Per favore seleziona un altro server o profilo.</value>
+    <value>Il server al quale stai provando a connetterti è attualmente offline per manutenzione. Seleziona un altro server o profilo.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
@@ -3042,7 +3042,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Streaming</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>I server PLUS supportano lo streaming (Netflix, Disney+, etc) da qualsiasi parte del mondo.</value>
+    <value>I server PLUS supportano lo streaming (Netflix, Disney+, ecc.) da qualsiasi parte del mondo.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Funzionalità</value>
@@ -3159,7 +3159,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Guarda in streaming i tuoi film preferiti</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>Quando effettui l'upgrade a Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
@@ -3234,7 +3234,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Proteggi il tuo dispositivo dai malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>Quando effettui l'upgrade a Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>Goditi la navigazione senza pubblicità con NetShield</value>
@@ -3248,7 +3248,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Hai esigenze di elaborazione avanzate o professionali che richiedono porte non standard? Esegui l'upgrade a VPN Plus per accedere a questa e ad altre funzionalità premium.</value>
+    <value>Hai esigenze di elaborazione avanzate o professionali che richiedono porte non standard? Effettua l'upgrade a VPN Plus per accedere a questa e ad altre funzionalità premium.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
@@ -3299,7 +3299,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Passa attraverso server ultra sicuri in Svizzera, Svezia e Islanda</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>Quando effettui l'upgrade a Plus</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Raddoppia la crittografia con Secure Core</value>
