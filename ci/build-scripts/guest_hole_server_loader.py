@@ -1,6 +1,5 @@
-import json
 import random
-from urllib.request import urlopen
+import requests
 
 def load():
     # Constants
@@ -13,7 +12,13 @@ def load():
 
     print('Started updating guest hole servers json')
 
-    original_json = json.loads(urlopen(server_list_api_url).read())
+    proxies = {
+        'http': 'http://proxy.plabs.ch:3128',
+        'https': 'http://proxy.plabs.ch:3128',
+    }
+
+    response = requests.get(server_list_api_url, proxies=proxies)
+    original_json = response.json()
 
     logical_servers = original_json["LogicalServers"]
     print(''.join(['Number of logical servers: ', str(len(logical_servers))]))
