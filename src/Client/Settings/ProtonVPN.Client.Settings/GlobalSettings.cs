@@ -41,36 +41,6 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
-    public int? WindowWidth
-    {
-        get => _globalRepository.GetValueType<int>(SettingEncryption.Unencrypted);
-        set => _globalRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public int? WindowHeight
-    {
-        get => _globalRepository.GetValueType<int>(SettingEncryption.Unencrypted);
-        set => _globalRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public int? WindowXPosition
-    {
-        get => _globalRepository.GetValueType<int>(SettingEncryption.Unencrypted);
-        set => _globalRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public int? WindowYPosition
-    {
-        get => _globalRepository.GetValueType<int>(SettingEncryption.Unencrypted);
-        set => _globalRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public bool IsWindowMaximized
-    {
-        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsWindowMaximized;
-        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsAutoLaunchEnabled
     {
         get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;

@@ -23,13 +23,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:ui="using:ProtonVPN.Client.UI"
+              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
               xmlns:wex="using:WinUIEx"
               Width="636"
               Height="589"
               MinWidth="376"
               MinHeight="489"
               Activated="OnActivated"
+              Closed="OnWindowClosed"
               PersistenceId="MainWindow"
               mc:Ignorable="d">
 
@@ -63,20 +64,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Height="16"
                    VerticalAlignment="Center"
                    AutomationProperties.AutomationId="ApplicationIcon"
-                   Source="/Assets/ProtonVPN.ico"
-                   Visibility="{Binding ViewModel.IsLoggedIn, ElementName=Shell, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   Source="/Assets/ProtonVPN.ico" />
 
             <TextBlock x:Name="AppTitleBarText"
                        Grid.Column="1"
                        VerticalAlignment="Center"
                        AutomationProperties.AutomationId="ApplicationTitleLabel"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{Binding ViewModel.Title, ElementName=Shell}"
+                       Text="{Binding Content.ViewModel.Title, ElementName=Container}"
                        TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       Visibility="{Binding ViewModel.IsLoggedIn, ElementName=Shell, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                       TextWrapping="NoWrap" />
         </Grid>
 
-        <ui:ShellPage x:Name="Shell" />
+        <icons:LoadingLogo Width="120"
+                           Height="120"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Stretch="Uniform" />
+
+        <ContentControl Name="Container"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch" />
+
     </Grid>
 </wex:WindowEx>

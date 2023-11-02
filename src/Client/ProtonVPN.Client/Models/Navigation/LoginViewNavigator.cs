@@ -17,11 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Client.UI.Login.Forms;
+using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Models.Navigation;
 
-public interface IAuthCredentialManager
+public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator
 {
-    Task<AuthCredential> GenerateAsync();
+    public LoginViewNavigator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector) 
+        : base(logger, viewMapper, themeSelector)
+    {
+    }
+
+    public Task NavigateToSrpLoginAsync()
+    {
+        return NavigateToAsync<LoginFormViewModel>();
+    }
+
+    public Task NavigateToSsoLoginAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task NavigateToTwoFactorAsync()
+    {
+        return NavigateToAsync<TwoFactorFormViewModel>();
+    }
 }

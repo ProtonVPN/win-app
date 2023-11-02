@@ -260,6 +260,8 @@
         <Content Remove="Assets\Icons\LatencyLow.xaml" />
         <Content Remove="Assets\Icons\LatencyMedium.xaml" />
         <Content Remove="Assets\Icons\LatencyMedium.xaml.cs" />
+        <Content Remove="Assets\Icons\LoadingLogo.xaml" />
+        <Content Remove="Assets\Icons\LoadingLogo.xaml.cs" />
         <Content Remove="Assets\Icons\PathIcons\Alias.cs" />
         <Content Remove="Assets\Icons\PathIcons\ArchiveBox.cs" />
         <Content Remove="Assets\Icons\PathIcons\ArrowDown.cs" />
@@ -805,6 +807,8 @@
         <None Remove="Assets\Icons\LatencyHigh.xaml" />
         <None Remove="Assets\Icons\LatencyLow.xaml" />
         <None Remove="Assets\Icons\LatencyMedium.xaml" />
+        <None Remove="Assets\Icons\LoadingLogo.xaml" />
+        <None Remove="Assets\Icons\logo-mark.svg" />
         <None Remove="Assets\Icons\ProtectedLock.xaml" />
         <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
@@ -1792,6 +1796,9 @@
         <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Content Update="Assets\Icons\logo-mark.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1837,6 +1844,11 @@
         <Content Update="Assets\Illustrations\split-tunneling-on.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\LoadingLogo.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
         <Page Update="Styles\Controls\ComboBoxStyles.xaml">

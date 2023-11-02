@@ -20,6 +20,9 @@
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Interop;
+using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Common.UI.Windowing.System;
+using ProtonVPN.Client.Common.UI.Windowing;
 using Windows.Foundation;
 using Windows.Graphics;
 using Windows.Storage;
@@ -68,6 +71,36 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.SetDragRectangles(gripArray);
     }
 
+    public static void SetPosition(this Window window, WindowPositionParameters parameters)
+    {
+        if (parameters.XPosition is null || parameters.YPosition is null)
+        {
+            W32Point? point = MonitorCalculator.CalculateWindowCenteredInCursorMonitor(parameters.Width, parameters.Height);
+            if (point is not null)
+            {
+                parameters.XPosition = point.Value.X;
+                parameters.YPosition = point.Value.Y;
+            }
+        }
+
+        if (parameters.XPosition is not null && parameters.YPosition is not null)
+        {
+            W32Rect windowRectangle = new(
+                new W32Point((int)parameters.XPosition, (int)parameters.YPosition),
+                width: (int)parameters.Width,
+                height: (int)parameters.Height);
+            W32Rect? validWindowRectangle = MonitorCalculator.GetValidWindowSizeAndPosition(windowRectangle);
+            if (validWindowRectangle is not null)
+            {
+                window.MoveAndResize(
+                    x: validWindowRectangle.Value.Left,
+                    y: validWindowRectangle.Value.Top,
+                    width: validWindowRectangle.Value.GetWidth(),
+                    height: validWindowRectangle.Value.GetHeight());
+            }
+        }
+    }
+
     public static async Task<string> PickSingleFileAsync(this Window window, string filterName, string[] filterFileExtensions)
     {
         try
@@ -88,5 +121,10 @@ public static class WindowExtensions
             // The method above fails when the app run in elevated mode. Use Win32 API instead.
             return RuntimeHelper.PickSingleFile(window, filterName, filterFileExtensions);
         }
+    }
+
+    public static double GetTitleBarOpacity(this WindowActivationState activationState)
+    {
+        return activationState != WindowActivationState.Deactivated ? 1.0 : 0.6;
     }
 }

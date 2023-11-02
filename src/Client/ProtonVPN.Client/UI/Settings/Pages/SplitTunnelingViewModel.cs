@@ -91,7 +91,8 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
 
     public int ActiveIpAddressesCount => IpAddresses.Count(ip => ip.IsActive);
 
-    public SplitTunnelingViewModel(IMainViewNavigator viewNavigator,
+    public SplitTunnelingViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
@@ -118,7 +119,7 @@ public partial class SplitTunnelingViewModel : ConnectionSettingsPageViewModelBa
     [RelayCommand]
     public async Task AddAppAsync()
     {
-        string filePath = await App.MainWindow.PickSingleFileAsync(Localizer.Get("Settings_Features_SplitTunneling_Apps_FilesFilterName"), new string[] { EXE_FILE_EXTENSION });
+        string filePath = await ViewNavigator.Window.PickSingleFileAsync(Localizer.Get("Settings_Features_SplitTunneling_Apps_FilesFilterName"), new string[] { EXE_FILE_EXTENSION });
         if (!IsValidAppPath(filePath))
         {
             return;

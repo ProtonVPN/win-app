@@ -35,6 +35,36 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
+    public int? WindowWidth
+    {
+        get => _userRepository.GetValueType<int>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
+    public int? WindowHeight
+    {
+        get => _userRepository.GetValueType<int>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
+    public int? WindowXPosition
+    {
+        get => _userRepository.GetValueType<int>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
+    public int? WindowYPosition
+    {
+        get => _userRepository.GetValueType<int>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsWindowMaximized
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsWindowMaximized;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public VpnProtocol VpnProtocol
     {
         get => _userRepository.GetValueType<VpnProtocol>(SettingEncryption.Unencrypted) ?? DefaultSettings.VpnProtocol;

@@ -19,10 +19,11 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 public class AuthResult : Result<AuthError>
 {

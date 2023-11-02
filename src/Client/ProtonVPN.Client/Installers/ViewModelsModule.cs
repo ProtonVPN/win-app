@@ -83,7 +83,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<NetShieldViewModel>(builder);
         RegisterViewModel<CountryViewModel>(builder);
         RegisterViewModel<AccountViewModel>(builder);
-        RegisterViewModel<LoginViewModel>(builder);
+        RegisterViewModel<LoginShellViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);
 

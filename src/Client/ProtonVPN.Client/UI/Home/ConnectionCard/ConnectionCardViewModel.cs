@@ -23,7 +23,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -40,7 +40,7 @@ namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 public partial class ConnectionCardViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<RecentConnectionsChanged>,
-    IEventMessageReceiver<LoginSuccessMessage>
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
@@ -125,7 +125,7 @@ public partial class ConnectionCardViewModel : ViewModelBase,
         InvalidateCurrentConnectionIntent();
     }
 
-    public async void Receive(LoginSuccessMessage message)
+    public async void Receive(LoggedInMessage message)
     {
         // TODO: Auto connect logic should not be part of the viewmodel
         if (_settings.IsAutoConnectEnabled)

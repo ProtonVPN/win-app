@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+namespace ProtonVPN.Client.Common.UI.Assets.Icons;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
-
-public interface IAuthCredentialManager
+public sealed partial class LoadingLogo
 {
-    Task<AuthCredential> GenerateAsync();
+    public LoadingLogo()
+    {
+        InitializeComponent();
+    }
 }

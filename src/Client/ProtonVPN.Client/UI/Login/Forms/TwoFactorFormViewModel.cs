@@ -23,13 +23,16 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
-public partial class TwoFactorFormViewModel : ViewModelBase
+public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNavigator>
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -41,8 +44,15 @@ public partial class TwoFactorFormViewModel : ViewModelBase
 
     public IRelayCommand<string> AuthenticateCommand { get; }
 
-    public TwoFactorFormViewModel(ILocalizationProvider localizationProvider, IEventMessageSender eventMessageSender,
-        IUserAuthenticator userAuthenticator, IGuestHoleActionExecutor guestHoleActionExecutor) : base(localizationProvider)
+    public override bool IsBackEnabled => true;
+
+    public TwoFactorFormViewModel(
+        ILoginViewNavigator loginViewNavigator, 
+        ILocalizationProvider localizationProvider, 
+        IEventMessageSender eventMessageSender,
+        IUserAuthenticator userAuthenticator, 
+        IGuestHoleActionExecutor guestHoleActionExecutor) 
+        : base(loginViewNavigator, localizationProvider)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
@@ -66,7 +76,6 @@ public partial class TwoFactorFormViewModel : ViewModelBase
                 }
 
                 _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
-                _eventMessageSender.Send(new LoginSuccessMessage());
             }
             else
             {

@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
-public interface IAuthCredentialManager
+public class LoggedOutMessage
 {
-    Task<AuthCredential> GenerateAsync();
 }

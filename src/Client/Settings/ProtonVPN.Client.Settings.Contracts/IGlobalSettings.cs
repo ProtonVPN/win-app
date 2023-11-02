@@ -27,11 +27,6 @@ public interface IGlobalSettings
 {
     string Language { get; set; }
     string? Username { get; set; }
-    int? WindowWidth { get; set; }
-    int? WindowHeight { get; set; }
-    int? WindowXPosition { get; set; }
-    int? WindowYPosition { get; set; }
-    bool IsWindowMaximized { get; set; }
     bool IsAutoLaunchEnabled { get; set; }
     AutoLaunchMode AutoLaunchMode { get; set; }
     int[] WireGuardPorts { get; set; }

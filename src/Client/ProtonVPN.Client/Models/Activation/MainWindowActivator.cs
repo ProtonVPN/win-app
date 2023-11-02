@@ -21,76 +21,99 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
-using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Activation;
 
-public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IEventMessageReceiver<LoginSuccessMessage>, IEventMessageReceiver<LogoutMessage>
+public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggedOutMessage>
 {
+    private readonly MainWindow _mainWindow;
+
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IDialogActivator _dialogActivator;
+    private readonly IServiceManager _serviceManager;
+    private readonly IEventMessageSender _eventMessageSender;
 
-    public MainWindowActivator(ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
+    public MainWindowActivator(
+        MainWindow mainWindow,
+        ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
         IEnumerable<IActivationHandler> activationHandlers,
         ILogger logger,
         IThemeSelector themeSelector,
-        IDialogActivator dialogActivator)
+        IDialogActivator dialogActivator,
+        IServiceManager serviceManager,
+        IEventMessageSender eventMessageSender)
         : base(logger, themeSelector)
     {
+        _mainWindow = mainWindow;
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
         _dialogActivator = dialogActivator;
+        _serviceManager = serviceManager;
+        _eventMessageSender = eventMessageSender;
 
         // By default app can't be resized, minimized, maximized until user logged in
-        App.MainWindow.IsMinimizable = false;
-        App.MainWindow.IsMaximizable = false;
-        App.MainWindow.IsResizable = false;
+        _mainWindow.IsMinimizable = false;
+        _mainWindow.IsMaximizable = false;
+        _mainWindow.IsResizable = false;
+
+        _mainWindow.Closed += OnMainWindowClosed;
     }
 
     public async Task ActivateAsync(LaunchActivatedEventArgs activationArgs)
     {
-        App.MainWindow.Closed += OnMainWindowClosed;
-
-        App.MainWindow.ApplyTheme(ThemeSelector.GetTheme().Theme);
+        _mainWindow.ApplyTheme(ThemeSelector.GetTheme().Theme);
 
         // Handle activation via ActivationHandlers.
         await HandleActivationAsync(activationArgs);
 
         // Activate the MainWindow.
-        App.MainWindow.Activate();
+        _mainWindow.Activate();
     }
 
-    public void Receive(LoginSuccessMessage message)
+    public void Receive(LoggedInMessage message)
     {
-        App.MainWindow.IsMinimizable = true;
-        App.MainWindow.IsMaximizable = true;
-        App.MainWindow.IsResizable = true;
+        _mainWindow.IsMinimizable = true;
+        _mainWindow.IsMaximizable = true;
+        _mainWindow.IsResizable = true;
+
+        // Apply theme based on user settings
+        InvalidateAppTheme();
     }
 
-    public void Receive(LogoutMessage message)
+    public void Receive(LoggedOutMessage message)
     {
-        App.MainWindow.IsMinimizable = false;
-        App.MainWindow.IsMaximizable = false;
-        App.MainWindow.IsResizable = false;
+        _mainWindow.IsMinimizable = false;
+        _mainWindow.IsMaximizable = false;
+        _mainWindow.IsResizable = false;
 
-        // Force dark theme when logged out.
-        // Theme is saved in user settings which cannot be retrieved until user logged in
-        App.MainWindow.ApplyTheme(ElementTheme.Dark);
+        // Theme is saved in user settings which cannot be retrieved until user logged in.
+        // When user logged out, app applies the default theme (Dark)
+        InvalidateAppTheme();
     }
 
     protected override void OnThemeChanged(ElementTheme theme)
     {
-        App.MainWindow.ApplyTheme(theme);
+        InvalidateAppTheme();
+    }
+
+    private void InvalidateAppTheme()
+    {
+        _mainWindow.ApplyTheme(ThemeSelector.GetTheme().Theme);
     }
 
     private void OnMainWindowClosed(object sender, WindowEventArgs args)
     {
-        App.MainWindow.Closed -= OnMainWindowClosed;
+        _mainWindow.Closed -= OnMainWindowClosed;
 
+        _eventMessageSender.Send(new MainWindowClosedMessage());
         _dialogActivator.CloseAll();
+        _serviceManager.Stop();
     }
 
     private async Task HandleActivationAsync(LaunchActivatedEventArgs activationArgs)

@@ -66,7 +66,9 @@ public class SettingsTests : TestSession
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
-            .DoWaitForVpnStatusSubtitleLabel();
+            .DoWaitForVpnStatusSubtitleLabel()
+            .VerifyVpnStatusIsDisconnected()
+            .VerifyConnectionCardIsInInitalState();
     }
 
     [Test]

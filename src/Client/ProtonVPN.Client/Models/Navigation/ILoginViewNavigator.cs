@@ -17,18 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts
+namespace ProtonVPN.Client.Models.Navigation;
+
+public interface ILoginViewNavigator : IViewNavigator
 {
-    public enum AuthError
-    {
-        None,
-        NoVpnAccess,
-        InvalidServerProof,
-        MissingGoSrpDll,
-        TwoFactorRequired,
-        IncorrectTwoFactorCode,
-        TwoFactorAuthFailed,
-        GuestHoleFailed,
-        Unknown,
-    }
+    Task NavigateToSrpLoginAsync();
+
+    Task NavigateToSsoLoginAsync();
+
+    Task NavigateToTwoFactorAsync();
 }

@@ -18,7 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
-using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Models;
 
 namespace ProtonVPN.Client.Messages;

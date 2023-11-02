@@ -17,11 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Crypto.Contracts;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
-public interface IAuthCredentialManager
+public class AuthCredential
 {
-    Task<AuthCredential> GenerateAsync();
+    public AsymmetricKeyPair KeyPair { get; set; }
+    public string CertificatePem { get; set; }
+
+    public AuthCredential()
+    {
+    }
+
+    public AuthCredential(AsymmetricKeyPair keyPair, string certificatePem)
+    {
+        KeyPair = keyPair;
+        CertificatePem = certificatePem;
+    }
 }

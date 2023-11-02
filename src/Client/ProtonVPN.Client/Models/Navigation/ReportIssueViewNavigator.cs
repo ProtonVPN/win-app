@@ -29,7 +29,11 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
 {
     public ReportIssueViewNavigator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
         : base(logger, viewMapper, themeSelector)
+    { }
+
+    public async Task NavigateToCategorySelectionAsync()
     {
+        await NavigateToAsync<CategorySelectionViewModel>();
     }
 
     public async Task NavigateToCategoryAsync(IssueCategory category)

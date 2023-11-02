@@ -22,7 +22,7 @@ using System.Security;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
-using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 namespace ProtonVPN.Core.Auth
 {

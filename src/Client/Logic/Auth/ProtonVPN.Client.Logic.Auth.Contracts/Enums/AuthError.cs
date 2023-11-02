@@ -17,11 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
-
-public interface IAuthCredentialManager
+public enum AuthError
 {
-    Task<AuthCredential> GenerateAsync();
+    None,
+    NoVpnAccess,
+    InvalidServerProof,
+    MissingGoSrpDll,
+    TwoFactorRequired,
+    IncorrectTwoFactorCode,
+    TwoFactorAuthFailed,
+    GuestHoleFailed,
+    Unknown,
 }
