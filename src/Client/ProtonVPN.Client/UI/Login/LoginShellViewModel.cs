@@ -18,47 +18,46 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 
 namespace ProtonVPN.Client.UI.Login;
 
-public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessageReceiver<LoginStateChangedMessage>
+public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>
 {
     private readonly ILogger _logger;
     private readonly IUserAuthenticator _userAuthenticator;
 
     [ObservableProperty]
-    private bool _isToShowError;
-
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasError))]
     private string _errorMessage;
 
-    [ObservableProperty]
-    private bool _isBackEnabled;
+    public bool HasError => !string.IsNullOrWhiteSpace(ErrorMessage);
 
-    public LoginViewModel(ILogger logger, ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator,
-        IUserAuthenticator userAuthenticator) : base(viewNavigator, localizationProvider)
+    public override bool IsBackEnabled => CurrentPage?.IsBackEnabled ?? false;
+
+    public LoginShellViewModel(
+        ILoginViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IUserAuthenticator userAuthenticator)
+        : base(viewNavigator, localizationProvider)
     {
         _logger = logger;
         _userAuthenticator = userAuthenticator;
+
+        _errorMessage = string.Empty;
     }
-
-    public Frame Frame { get; set; }
-
-    public override IconElement Icon { get; } = new User();
 
     public async void Receive(LoginStateChangedMessage message)
     {
@@ -66,34 +65,44 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
         {
             case LoginState.Success:
                 ClearErrorMessage();
-                await ViewNavigator.NavigateToAsync<HomeViewModel>();
+                await ViewNavigator.NavigateToSrpLoginAsync();
                 break;
+
             case LoginState.TwoFactorRequired:
                 ClearErrorMessage();
-                Frame.Navigate(typeof(TwoFactorForm));
-                IsBackEnabled = true;
+                await ViewNavigator.NavigateToTwoFactorAsync();
                 break;
+
             case LoginState.TwoFactorFailed:
                 switch (message.AuthError)
                 {
                     case AuthError.IncorrectTwoFactorCode:
                         ShowErrorMessage(Localizer.Get("Login_Error_IncorrectTwoFactorCode"));
                         break;
+
                     case AuthError.TwoFactorAuthFailed:
                         ShowErrorMessage(Localizer.Get("Login_Error_TwoFactorFailed"));
-                        Frame.Navigate(typeof(LoginForm));
-                        IsBackEnabled = false;
+                        await ViewNavigator.NavigateToSrpLoginAsync();
                         break;
+
                     case AuthError.Unknown:
                         ShowErrorMessage(message.ErrorMessage);
                         break;
                 }
 
                 break;
+
             case LoginState.Error:
                 HandleAuthError(message);
                 break;
         }
+    }
+
+    protected override void OnNavigated(object sender, NavigationEventArgs e)
+    {
+        base.OnNavigated(sender, e);
+
+        OnPropertyChanged(nameof(IsBackEnabled));
     }
 
     private void HandleAuthError(LoginStateChangedMessage message)
@@ -103,34 +112,27 @@ public partial class LoginViewModel : NavigationPageViewModelBase, IEventMessage
             case AuthError.MissingGoSrpDll:
                 _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
                 //TODO: add modal about missing file
-                App.MainWindow.Close();
+                ViewNavigator.CloseCurrentWindow();
                 break;
+
             case AuthError.GuestHoleFailed:
                 //TODO: show troubleshooting dialog
                 _logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
                 break;
+
             default:
                 ShowErrorMessage(message.ErrorMessage);
                 break;
         }
     }
 
-    public override async void OnNavigatedTo(object parameter)
-    {
-        base.OnNavigatedTo(parameter);
-        IsBackEnabled = false;
-        await _userAuthenticator.LogoutAsync();
-    }
-
     private void ShowErrorMessage(string message)
     {
         ErrorMessage = message;
-        IsToShowError = true;
     }
 
     private void ClearErrorMessage()
     {
         ErrorMessage = string.Empty;
-        IsToShowError = false;
     }
 }

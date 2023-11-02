@@ -39,6 +39,7 @@ public class ClientModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<MainWindow>().AsSelf().SingleInstance();
         builder.RegisterType<Bootstrapper>().As<IBootstrapper>().SingleInstance();
 
         builder.RegisterType<UIThreadDispatcher>().As<IUIThreadDispatcher>().SingleInstance();
@@ -47,6 +48,7 @@ public class ClientModule : Module
         builder.RegisterType<MainWindowActivator>().As<IMainWindowActivator>().SingleInstance();
         builder.RegisterType<ViewMapper>().As<IViewMapper>().SingleInstance();
         builder.RegisterType<MainViewNavigator>().As<IMainViewNavigator>().SingleInstance();
+        builder.RegisterType<LoginViewNavigator>().As<ILoginViewNavigator>().SingleInstance();
         builder.RegisterType<ReportIssueViewNavigator>().As<IReportIssueViewNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();

@@ -17,9 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Common.Models;
 
-public class LoginSuccessMessage
+public struct WindowPositionParameters
 {
+    public double Width { get; set; }
+
+    public double Height { get; set; }
+
+    public double? XPosition { get; set; }
+
+    public double? YPosition { get; set; }
+
+    public bool IsMaximized { get; set; }
 }

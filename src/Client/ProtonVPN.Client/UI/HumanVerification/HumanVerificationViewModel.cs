@@ -35,18 +35,18 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase, IEventMe
     private readonly IThemeSelector _themeSelector;
 
     private string _token = string.Empty;
-    
-    public HumanVerificationViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IEventMessageSender eventMessageSender, IThemeSelector themeSelector) 
-        : base(localizationProvider, viewNavigator)
-    {
-        _eventMessageSender = eventMessageSender;
-        _themeSelector = themeSelector;
-    }
 
     public bool IsDarkTheme => _themeSelector.GetTheme().ApplicationTheme == ApplicationTheme.Dark;
 
     //TODO: use configuration for api url
-    public string Url => $"https://vpn-api.proton.me/core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark" : string.Empty)}";
+    public string Url => $"https://vpn-api.proton.me/core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}";
+
+    public HumanVerificationViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IEventMessageSender eventMessageSender, IThemeSelector themeSelector)
+                : base(localizationProvider, viewNavigator)
+    {
+        _eventMessageSender = eventMessageSender;
+        _themeSelector = themeSelector;
+    }
 
     [RelayCommand]
     public void TriggerVerificationTokenMessage(string token)

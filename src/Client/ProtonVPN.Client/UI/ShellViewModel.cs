@@ -30,7 +30,6 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Common.Legacy.Extensions;
 
@@ -42,9 +41,6 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
 
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
-
-    [ObservableProperty]
-    private bool _isLoggedIn;
 
     public override string? Title => App.APPLICATION_NAME;
 
@@ -86,8 +82,6 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
     protected override void OnNavigated(object sender, NavigationEventArgs e)
     {
         base.OnNavigated(sender, e);
-
-        IsLoggedIn = CurrentPage is not LoginViewModel;
 
         SelectedNavigationPage = CurrentPage as NavigationPageViewModelBase
                               ?? NavigationPages.FirstOrDefault(p => p.IsHostFor(CurrentPage));

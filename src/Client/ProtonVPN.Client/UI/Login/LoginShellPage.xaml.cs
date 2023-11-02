@@ -19,35 +19,32 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.UI.Login.Forms;
+using ProtonVPN.Client.Contracts;
 
 namespace ProtonVPN.Client.UI.Login;
 
-public sealed partial class LoginPage
+public sealed partial class LoginShellPage : IShellPage
 {
-    public LoginPage()
+    public LoginShellViewModel ViewModel { get; }
+
+    public LoginShellPage()
     {
-        ViewModel = App.GetService<LoginViewModel>();
+        ViewModel = App.GetService<LoginShellViewModel>();
         InitializeComponent();
-
-        ViewModel.Frame = LoginWindowContentFrame;
-
-        Loaded += OnPageLoaded;
     }
 
-    public LoginViewModel ViewModel { get; }
-
-    private void OnPageLoaded(object sender, RoutedEventArgs e)
+    public void Initialize(Window window)
     {
-        LoginWindowContentFrame.Navigate(typeof(LoginForm));
+        ViewModel.InitializeViewNavigator(window, NavigationFrame);
     }
 
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+    public void Reset()
     {
-        if (LoginWindowContentFrame.CanGoBack)
-        {
-            LoginWindowContentFrame.GoBack();
-            ViewModel.IsBackEnabled = false;
-        }
+        ViewModel.ResetViewNavigator();
+    }
+
+    private async void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+    {
+        await ViewModel.GoBackAsync();
     }
 }

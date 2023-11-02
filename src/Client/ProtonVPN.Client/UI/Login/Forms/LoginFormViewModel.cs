@@ -29,15 +29,17 @@ using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Urls;
-using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue;
 using Windows.System;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
-public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<LoginSuccessMessage>
+public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IUrls _urls;
     private readonly IEventMessageSender _eventMessageSender;
@@ -66,14 +68,19 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
     private bool _isToShowCreateAccountSpinner;
 
-    public LoginFormViewModel(IUrls urls,
+    public override bool IsBackEnabled => false;
+
+    public LoginFormViewModel(
+        ILoginViewNavigator loginViewNavigator, 
         ILocalizationProvider localizationProvider,
+        IUrls urls,
         IEventMessageSender eventMessageSender,
         IUserAuthenticator userAuthenticator,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleActionExecutor guestHoleActionExecutor,
         IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator) : base(localizationProvider)
+        IReportIssueViewNavigator reportIssueViewNavigator) 
+        : base(loginViewNavigator, localizationProvider)
     {
         _urls = urls;
         _eventMessageSender = eventMessageSender;
@@ -136,7 +143,6 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
         }
 
         _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
-        _eventMessageSender.Send(new LoginSuccessMessage());
     }
 
     private SecureString GetSecurePassword()
@@ -159,7 +165,7 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
 
     private bool CanCreateAccount => !IsToShowCreateAccountSpinner;
 
-    public void Receive(LoginSuccessMessage message)
+    public void Receive(LoggedInMessage message)
     {
         ClearInputs();
     }
@@ -187,7 +193,7 @@ public partial class LoginFormViewModel : ViewModelBase, IEventMessageReceiver<L
     {
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
-        await _reportIssueViewNavigator.NavigateToAsync<CategorySelectionViewModel>();
+        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
     }
 
     [RelayCommand(CanExecute = nameof(CanCreateAccount))]

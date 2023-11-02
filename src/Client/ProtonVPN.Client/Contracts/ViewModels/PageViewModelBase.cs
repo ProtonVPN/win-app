@@ -32,6 +32,8 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEve
     [ObservableProperty]
     private bool _isNavigationPaneCollapsed;
 
+    public virtual bool IsBackEnabled => true;
+
     public Type PageType => GetType();
 
     public virtual string? Title { get; }
@@ -59,8 +61,6 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEve
 public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelBase, INavigationAware
     where TViewNavigator : IViewNavigator
 {
-    public virtual bool IsBackEnabled => true;
-
     protected TViewNavigator ViewNavigator { get; }
 
     public PageViewModelBase(TViewNavigator viewNavigator, ILocalizationProvider localizationProvider)

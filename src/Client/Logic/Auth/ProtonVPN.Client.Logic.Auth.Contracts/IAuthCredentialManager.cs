@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+
 namespace ProtonVPN.Client.Logic.Auth.Contracts;
 
 public interface IAuthCredentialManager

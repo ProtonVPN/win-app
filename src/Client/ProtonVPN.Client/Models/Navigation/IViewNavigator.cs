@@ -33,9 +33,9 @@ public interface IViewNavigator
 
     bool CanNavigate { get; set; }
 
-    Window? Window { get; set; }
+    Window Window { get; set; }
 
-    Frame? Frame { get; set; }
+    Frame Frame { get; set; }
 
     Task<bool> GoBackAsync();
 
@@ -52,4 +52,6 @@ public interface IViewNavigator
     Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters);
 
     void CloseOverlay();
+
+    void CloseCurrentWindow();
 }

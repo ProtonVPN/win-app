@@ -18,8 +18,8 @@
  */
 
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
-public class LogoutMessage
+public class LoggingInMessage
 {
 }

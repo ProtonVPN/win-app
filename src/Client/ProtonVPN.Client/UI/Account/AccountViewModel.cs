@@ -23,29 +23,31 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Login;
 
 namespace ProtonVPN.Client.UI.Account;
 
-public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<LoginSuccessMessage>
+public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<LoggedInMessage>
 {
     private readonly ISettings _settings;
-    private readonly IMainViewNavigator _viewNavigator;
+    private readonly IUserAuthenticator _userAuthenticator;
 
     public string? Username => _settings.Username;
 
     public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlanTitle);
 
-    public AccountViewModel(ILocalizationProvider localizationProvider, ISettings settings, IMainViewNavigator viewNavigator)
+    public AccountViewModel(
+        ILocalizationProvider localizationProvider, 
+        ISettings settings, 
+        IUserAuthenticator userAuthenticator)
         : base(localizationProvider)
     {
         _settings = settings;
-        _viewNavigator = viewNavigator;
+        _userAuthenticator = userAuthenticator;
     }
 
-    public void Receive(LoginSuccessMessage message)
+    public void Receive(LoggedInMessage message)
     {
         OnPropertyChanged(nameof(Username));
         OnPropertyChanged(nameof(VpnPlan));
@@ -54,7 +56,7 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     [RelayCommand]
     public async Task SignOutAsync()
     {
-        await _viewNavigator.NavigateToAsync<LoginViewModel>();
+        await _userAuthenticator.LogoutAsync();
     }
 
     protected override void OnLanguageChanged()

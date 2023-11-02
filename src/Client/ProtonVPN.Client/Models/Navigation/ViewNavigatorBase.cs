@@ -54,9 +54,9 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     public bool CanNavigate { get; set; } = true;
 
-    public Window? Window
+    public Window Window
     {
-        get => _window;
+        get => _window ?? throw new InvalidOperationException("The window associated to this view navigator has not been set yet.");
         set
         {
             UnregisterWindowEvents();
@@ -65,9 +65,9 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         }
     }
 
-    public Frame? Frame
+    public Frame Frame
     {
-        get => _frame;
+        get => _frame ?? throw new InvalidOperationException("The frame associated to this view navigator has not been set yet.");
         set
         {
             UnregisterFrameEvents();
@@ -146,11 +146,6 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     public async Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters)
     {
-        if (Frame == null)
-        {
-            throw new InvalidOperationException("Frame has not been initialized for this view navigator");
-        }
-
         if (Frame.XamlRoot == null)
         {
             // Xaml root is set only when the element is loaded in the visual tree. If not already set, give some time for loaded event to trigger
@@ -206,11 +201,6 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
             return false;
         }
 
-        if (Frame == null)
-        {
-            throw new InvalidOperationException("Frame has not been initialized for this view navigator");
-        }
-
         if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
         {
             Frame.Tag = clearNavigation;
@@ -242,11 +232,6 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     private async Task ShowOverlayAsync(Type overlayType)
     {
-        if (Frame == null)
-        {
-            throw new InvalidOperationException("Frame has not been initialized for this view navigator");
-        }
-
         if (Frame.XamlRoot == null)
         {
             // Xaml root is set only when the element is loaded in the visual tree. If not already set, give some time for loaded event to trigger
@@ -306,33 +291,38 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     private void RegisterFrameEvents()
     {
-        if (Frame != null)
+        if (_frame != null)
         {
-            Frame.Navigated += OnNavigated;
+            _frame.Navigated += OnNavigated;
         }
     }
 
     private void UnregisterFrameEvents()
     {
-        if (Frame != null)
+        if (_frame != null)
         {
-            Frame.Navigated -= OnNavigated;
+            _frame.Navigated -= OnNavigated;
         }
     }
 
     private void RegisterWindowEvents()
     {
-        if (Window != null)
+        if (_window != null)
         {
-            Window.Closed += OnWindowClosed;
+            _window.Closed += OnWindowClosed;
         }
     }
 
     private void UnregisterWindowEvents()
     {
-        if (Window != null)
+        if (_window != null)
         {
-            Window.Closed -= OnWindowClosed;
+            _window.Closed -= OnWindowClosed;
         }
+    }
+
+    public void CloseCurrentWindow()
+    {
+        _window?.Close();
     }
 }

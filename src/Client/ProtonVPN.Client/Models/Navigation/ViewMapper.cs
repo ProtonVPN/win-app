@@ -34,6 +34,7 @@ using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue.Results;
+using ProtonVPN.Client.UI.Login.Forms;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -124,7 +125,9 @@ public class ViewMapper : IViewMapper
         ConfigurePage<AutoStartupViewModel, AutoStartupPage>();
         ConfigurePage<CensorshipViewModel, CensorshipPage>();
         ConfigurePage<SettingsViewModel, SettingsPage>();
-        ConfigurePage<LoginViewModel, LoginPage>();
+        ConfigurePage<LoginShellViewModel, LoginShellPage>();
+        ConfigurePage<LoginFormViewModel, LoginForm>();
+        ConfigurePage<TwoFactorFormViewModel, TwoFactorForm>();
         ConfigurePage<ReportIssueShellViewModel, ReportIssueShellPage>();
         ConfigurePage<CategorySelectionViewModel, CategorySelectionPage>();
         ConfigurePage<QuickFixesViewModel, QuickFixesPage>();

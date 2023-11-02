@@ -28,7 +28,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
@@ -38,7 +38,6 @@ using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.ReportIssue;
-using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.Settings.Pages;
 
 namespace ProtonVPN.Client.UI.Settings;
@@ -46,7 +45,7 @@ namespace ProtonVPN.Client.UI.Settings;
 public partial class SettingsViewModel : NavigationPageViewModelBase,
     IEventMessageReceiver<ThemeChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<LoginSuccessMessage>
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
@@ -183,7 +182,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     {
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
-        await _reportIssueViewNavigator.NavigateToAsync<CategorySelectionViewModel>();
+        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
     }
 
     public void Receive(SettingChangedMessage message)
@@ -237,7 +236,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         OnPropertyChanged(nameof(SelectedTheme));
     }
 
-    public void Receive(LoginSuccessMessage message)
+    public void Receive(LoggedInMessage message)
     {
         InvalidateAllProperties();
     }

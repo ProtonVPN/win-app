@@ -51,12 +51,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     IsBackButtonVisible="Collapsed"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled}"
                     IsPaneToggleButtonVisible="True"
-                    IsPaneVisible="{x:Bind ViewModel.IsLoggedIn}"
+                    IsPaneVisible="True"
                     IsSettingsVisible="False"
                     ItemInvoked="OnNavigationViewItemInvoked"
                     MenuItemsSource="{x:Bind ViewModel.NavigationPages, Mode=OneTime}"
                     OpenPaneLength="160"
-                    PaneDisplayMode="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanToNavigationPaneDisplayModeConverter}}"
+                    PaneDisplayMode="Auto"
                     SelectedItem="{x:Bind ViewModel.SelectedNavigationPage}">
 
         <NavigationView.MenuItemTemplate>

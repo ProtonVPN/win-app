@@ -23,6 +23,8 @@ namespace ProtonVPN.Client.Models.Navigation;
 
 public interface IReportIssueViewNavigator : IViewNavigator
 {
+    Task NavigateToCategorySelectionAsync();
+
     Task NavigateToCategoryAsync(IssueCategory category);
 
     Task NavigateToResultAsync(bool isReportSent);

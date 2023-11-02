@@ -61,7 +61,7 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
         }
         else
         {
-            await ViewNavigator.NavigateToAsync<CategorySelectionViewModel>();
+            await ViewNavigator.NavigateToCategorySelectionAsync();
         }
     }
 

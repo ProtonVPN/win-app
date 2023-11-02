@@ -25,14 +25,13 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Models;
+using UnhandledExceptionEventArgs = Microsoft.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace ProtonVPN.Client;
 
 public partial class App
 {
     public const string APPLICATION_NAME = "Proton VPN";
-
-    public static MainWindow MainWindow { get; } = new MainWindow();
 
     // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
     // https://docs.microsoft.com/dotnet/core/extensions/generic-host
@@ -71,10 +70,11 @@ public partial class App
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
+
         await GetService<IBootstrapper>().StartAsync(args);
     }
 
-    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         // TODO: Log and handle exceptions as appropriate.
         // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception

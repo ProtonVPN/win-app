@@ -22,6 +22,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Auth;
 

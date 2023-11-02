@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -27,8 +28,7 @@ using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageReceiver<LoginSuccessMessage>,
-    IEventMessageReceiver<LogoutMessage>
+public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggingOutMessage>
 {
     private readonly IConfiguration _config;
     private readonly IAuthCertificateManager _authCertificateManager;
@@ -58,7 +58,7 @@ public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageRece
     //     await _authCertificateManager.ForceRequestNewCertificateAsync();
     // }
 
-    public void Receive(LoginSuccessMessage message)
+    public void Receive(LoggedInMessage message)
     {
         TimeSpan interval = _config.AuthCertificateUpdateInterval.RandomizedWithDeviation(0.2);
         _timer = new(Timer_OnTick);
@@ -67,7 +67,7 @@ public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageRece
             $"User certificate refresh scheduled for every '{interval}'.");
     }
 
-    public void Receive(LogoutMessage message)
+    public void Receive(LoggingOutMessage message)
     {
         _timer.Dispose();
     }

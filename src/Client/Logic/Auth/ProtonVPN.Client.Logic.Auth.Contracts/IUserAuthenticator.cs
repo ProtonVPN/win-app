@@ -20,6 +20,7 @@
 using System.Security;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts;
 

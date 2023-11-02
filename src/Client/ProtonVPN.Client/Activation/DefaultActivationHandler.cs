@@ -21,8 +21,6 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Client.UI.Login;
 
 namespace ProtonVPN.Client.Activation;
 
@@ -47,13 +45,8 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        if (string.IsNullOrEmpty(_settings.Username))
+        if (!string.IsNullOrEmpty(_settings.Username))
         {
-            await _viewNavigator.NavigateToAsync<LoginViewModel>(args.Arguments);
-        }
-        else
-        {
-            await _viewNavigator.NavigateToAsync<HomeViewModel>(args.Arguments);
             await _userAuthenticator.InvokeAutoLoginEventAsync();
         }
     }

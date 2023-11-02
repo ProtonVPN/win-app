@@ -23,6 +23,9 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Legacy.Abstract;
@@ -79,6 +82,8 @@ public class UserAuthenticator : IUserAuthenticator
 
     private async Task<AuthResult> RefreshVpnInfoAndInvokeLoginAsync()
     {
+        _eventMessageSender.Send(new LoggingInMessage());
+
         ApiResponseResult<VpnInfoWrapperResponse> vpnInfoResult = await RefreshVpnInfoAsync();
         if (vpnInfoResult.Failure)
         {
@@ -212,14 +217,18 @@ public class UserAuthenticator : IUserAuthenticator
 
     public async Task InvokeAutoLoginEventAsync()
     {
+        _eventMessageSender.Send(new LoggingInMessage());
+
         await InvokeUserLoggedInAsync(true);
     }
 
     private async Task InvokeUserLoggedInAsync(bool isAutoLogin)
     {
-        _eventMessageSender.Send(new LoginSuccessMessage());
-        await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
         IsLoggedIn = true;
+
+        _eventMessageSender.Send(new LoggedInMessage());
+
+        await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
     }
 
     private async Task RequestNewKeysAndCertificateOnLoginAsync(bool isAutoLogin)
@@ -238,13 +247,17 @@ public class UserAuthenticator : IUserAuthenticator
     {
         if (IsLoggedIn)
         {
-            IsLoggedIn = false;
-
-            _eventMessageSender.Send(new LogoutMessage());
-            await SendLogoutRequestAsync();
+            _eventMessageSender.Send(new LoggingOutMessage());
 
             _authCertificateManager.DeleteKeyPairAndCertificate();
+
+            await SendLogoutRequestAsync();
+
             ClearUserData();
+
+            IsLoggedIn = false;
+
+            _eventMessageSender.Send(new LoggedOutMessage());
         }
     }
 
