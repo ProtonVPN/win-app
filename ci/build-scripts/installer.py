@@ -18,7 +18,7 @@ def build(version, hash, setupFile):
     with open(setupFile, 'w') as file:
       file.write(fileData)
 
-    p = subprocess.Popen(['iscc', setupFile],
+    p = subprocess.Popen(['iscc', setupFile, "/Ssigntool=signtool.exe $p"],
                          env=os.environ,
                          stdout=subprocess.PIPE,
                          universal_newlines=True)

@@ -76,7 +76,7 @@ tests:
 build-installer:
   stage: build-installer
   tags:
-    - windows
+    - windows-vpn-signer
   script:
     - python ci\build-scripts\main.py update-gh-list
     - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
@@ -84,6 +84,12 @@ build-installer:
     paths:
       - Setup/Installers/
     expire_in: 4 weeks
+  variables:
+      FF_USE_FASTZIP: "true"
+      TRANSFER_METER_FREQUENCY: "2s"
+      ARTIFACT_COMPRESSION_LEVEL: "fastest"
+      CACHE_COMPRESSION_LEVEL: "fastest"
+      FASTZIP_ARCHIVER_BUFFER_SIZE: 128
 
 prepare-internal-beta-release:
   stage: internal-beta
