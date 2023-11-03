@@ -35,5 +35,7 @@ public interface ISettingsConflict
 
     Action ResolveAction { get; }
 
+    bool IsReconnectionRequired { get; }
+
     bool Matches(string settingsName, dynamic? settingsValue);
 }

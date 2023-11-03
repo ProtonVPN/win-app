@@ -59,6 +59,8 @@ public interface IUserSettings
     bool IsPortForwardingNotificationEnabled { get; set; }
     bool IsSplitTunnelingEnabled { get; set; }
     SplitTunnelingMode SplitTunnelingMode { get; set; }
-    List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList { get; set; }
-    List<SplitTunnelingApp> SplitTunnelingAppsList { get; set; }
+    List<SplitTunnelingApp> SplitTunnelingStandardAppsList { get; set; }
+    List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }
+    List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
+    List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
 }

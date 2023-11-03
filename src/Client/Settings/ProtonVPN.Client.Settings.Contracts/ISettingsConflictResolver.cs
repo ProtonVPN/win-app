@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 
 namespace ProtonVPN.Client.Settings.Contracts;

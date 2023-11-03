@@ -28,12 +28,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
 
-    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                               PageHeader="{x:Bind ViewModel.Title}">
-
-        <StackPanel x:Name="ContentArea">
+    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       PageHeader="{x:Bind ViewModel.Title}"
+                                       ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
+            
+            <StackPanel x:Name="ContentArea">
 
             <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
                                IsTabStop="False"
@@ -51,5 +53,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </labs:SettingsCard>
         </StackPanel>
-    </custom:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

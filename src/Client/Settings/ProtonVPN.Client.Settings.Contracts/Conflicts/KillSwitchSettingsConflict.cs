@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 namespace ProtonVPN.Client.Settings.Contracts.Conflicts;
 
@@ -46,4 +47,6 @@ public class KillSwitchSettingsConflict : SettingsConflictBase
     };
 
     public override Action ResolveAction => () => Settings.IsSplitTunnelingEnabled = false;
+
+    public override bool IsReconnectionRequired => RequiredReconnectionSettings.Contains(nameof(ISettings.IsSplitTunnelingEnabled)) && IsConflicting;
 }

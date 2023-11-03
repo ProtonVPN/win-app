@@ -23,10 +23,12 @@ using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -68,8 +70,9 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
         ILocalizationProvider localizationProvider,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
+        IUrls urls,
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
     }
@@ -89,12 +92,6 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
         };
     }
 
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.IsKillSwitchEnabled != IsKillSwitchEnabled
-            || Settings.KillSwitchMode != CurrentKillSwitchMode;
-    }
-
     protected override void SaveSettings()
     {
         Settings.IsKillSwitchEnabled = IsKillSwitchEnabled;
@@ -105,6 +102,12 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
     {
         IsKillSwitchEnabled = Settings.IsKillSwitchEnabled;
         CurrentKillSwitchMode = Settings.KillSwitchMode;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsKillSwitchEnabled), IsKillSwitchEnabled, Settings.IsKillSwitchEnabled != IsKillSwitchEnabled);
+        yield return new(nameof(ISettings.KillSwitchMode), CurrentKillSwitchMode, Settings.KillSwitchMode != CurrentKillSwitchMode);
     }
 
     private bool IsKillSwitchMode(KillSwitchMode killSwitchMode)

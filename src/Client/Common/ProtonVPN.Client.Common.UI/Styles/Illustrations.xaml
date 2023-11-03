@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ResourceDictionary x:Key="Light">
 
             <BitmapImage x:Key="WelcomeIllustrationSource"
-                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/welcome.jpg" />
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg" />
         </ResourceDictionary>
@@ -34,7 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ResourceDictionary x:Key="Dark">
 
             <BitmapImage x:Key="WelcomeIllustrationSource"
-                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/welcome.jpg" />
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/product-logo.svg" />
         </ResourceDictionary>

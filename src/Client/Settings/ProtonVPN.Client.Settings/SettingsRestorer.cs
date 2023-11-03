@@ -41,8 +41,10 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.IsPortForwardingNotificationEnabled = DefaultSettings.IsPortForwardingNotificationEnabled;
         _settings.IsSplitTunnelingEnabled = DefaultSettings.IsSplitTunnelingEnabled;
         _settings.SplitTunnelingMode = DefaultSettings.SplitTunnelingMode;
-        _settings.SplitTunnelingIpAddressesList = DefaultSettings.SplitTunnelingIpAddressesList;
-        _settings.SplitTunnelingAppsList = DefaultSettings.SplitTunnelingAppsList();
+        _settings.SplitTunnelingStandardAppsList = DefaultSettings.SplitTunnelingAppsList();
+        _settings.SplitTunnelingInverseAppsList = DefaultSettings.SplitTunnelingAppsList();
+        _settings.SplitTunnelingStandardIpAddressesList = DefaultSettings.SplitTunnelingIpAddressesList;
+        _settings.SplitTunnelingInverseIpAddressesList = DefaultSettings.SplitTunnelingIpAddressesList;
         _settings.VpnProtocol = DefaultSettings.VpnProtocol;
         _settings.NatType = DefaultSettings.NatType;
         _settings.IsVpnAcceleratorEnabled = DefaultSettings.IsVpnAcceleratorEnabled;

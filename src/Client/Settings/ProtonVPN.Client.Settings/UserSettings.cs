@@ -233,16 +233,28 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<SplitTunnelingMode>(value, SettingEncryption.Unencrypted);
     }
 
-    public List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList
+    public List<SplitTunnelingApp> SplitTunnelingStandardAppsList
+    {
+        get => _userRepository.GetListValueType<SplitTunnelingApp>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingAppsList();
+        set => _userRepository.SetListValueType<SplitTunnelingApp>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<SplitTunnelingApp> SplitTunnelingInverseAppsList
+    {
+        get => _userRepository.GetListValueType<SplitTunnelingApp>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingAppsList();
+        set => _userRepository.SetListValueType<SplitTunnelingApp>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList
     {
         get => _userRepository.GetListValueType<SplitTunnelingIpAddress>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingIpAddressesList;
         set => _userRepository.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
     }
 
-    public List<SplitTunnelingApp> SplitTunnelingAppsList
+    public List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList
     {
-        get => _userRepository.GetListValueType<SplitTunnelingApp>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingAppsList();
-        set => _userRepository.SetListValueType<SplitTunnelingApp>(value, SettingEncryption.Unencrypted);
+        get => _userRepository.GetListValueType<SplitTunnelingIpAddress>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingIpAddressesList;
+        set => _userRepository.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
     }
 
     public UserSettings(IGlobalSettingsRepository globalSettingsRepository, IUserSettingsRepository userSettingsRepository)

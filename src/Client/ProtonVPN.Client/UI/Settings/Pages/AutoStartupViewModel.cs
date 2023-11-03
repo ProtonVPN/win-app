@@ -21,9 +21,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -84,17 +86,10 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ISettings settings,
-        ISettingsConflictResolver settingsConflictResolver)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     { }
-
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.IsAutoLaunchEnabled != IsAutoLaunchEnabled
-            || Settings.AutoLaunchMode != CurrentAutoLaunchMode
-            || Settings.IsAutoConnectEnabled != IsAutoConnectEnabled
-            || Settings.AutoConnectMode != CurrentAutoConnectMode;
-    }
 
     protected override void SaveSettings()
     {
@@ -110,6 +105,14 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         CurrentAutoLaunchMode = Settings.AutoLaunchMode;
         IsAutoConnectEnabled = Settings.IsAutoConnectEnabled;
         CurrentAutoConnectMode = Settings.AutoConnectMode;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsAutoLaunchEnabled), IsAutoLaunchEnabled, Settings.IsAutoLaunchEnabled != IsAutoLaunchEnabled);
+        yield return new(nameof(ISettings.AutoLaunchMode), CurrentAutoLaunchMode, Settings.AutoLaunchMode != CurrentAutoLaunchMode);
+        yield return new(nameof(ISettings.IsAutoConnectEnabled), IsAutoConnectEnabled, Settings.IsAutoConnectEnabled != IsAutoConnectEnabled);
+        yield return new(nameof(ISettings.AutoConnectMode), CurrentAutoConnectMode, Settings.AutoConnectMode != CurrentAutoConnectMode);
     }
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)

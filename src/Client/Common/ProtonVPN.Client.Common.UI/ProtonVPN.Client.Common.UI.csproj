@@ -814,12 +814,12 @@
         <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
         <None Remove="Assets\Icons\UnprotectedLock.xaml" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
-        <None Remove="Assets\Illustrations\Dark\welcome.jpg" />
+        <None Remove="Assets\Illustrations\Dark\welcome.png" />
         <None Remove="Assets\Illustrations\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
-        <None Remove="Assets\Illustrations\Light\welcome.jpg" />
+        <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\netshield-off.png" />
         <None Remove="Assets\Illustrations\netshield-on.png" />
         <None Remove="Assets\Illustrations\port-forwarding-off.png" />
@@ -1802,7 +1802,7 @@
         <Content Update="Assets\Illustrations\Dark\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\Dark\welcome.jpg">
+        <Content Update="Assets\Illustrations\Dark\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\kill-switch-off.png">
@@ -1817,7 +1817,7 @@
         <Content Update="Assets\Illustrations\Light\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\Light\welcome.jpg">
+        <Content Update="Assets\Illustrations\Light\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\netshield-off.png">
