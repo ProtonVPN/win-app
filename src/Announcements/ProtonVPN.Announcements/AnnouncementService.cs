@@ -308,7 +308,7 @@ public class AnnouncementService : IAnnouncementService, ILoggedInAware, ILogout
                 StartDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.StartTimestamp),
                 EndDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.EndTimestamp),
                 Url = announcementResponse.Offer.Url,
-                Icon = announcementResponse.Offer.Icon,
+                Icon = await MapImageAsync(announcementResponse.Offer.Icon),
                 Label = announcementResponse.Offer.Label,
                 Panel = await MapPanel(announcementResponse.Offer.Panel),
                 Seen = false,
@@ -346,29 +346,35 @@ public class AnnouncementService : IAnnouncementService, ILoggedInAware, ILogout
             IncentivePrice = offerPanelResponse?.IncentivePrice,
             IncentiveSuffix = incentiveSuffix,
             Pill = offerPanelResponse?.Pill,
-            PictureUrl = offerPanelResponse?.PictureUrl,
+            PictureUrl = await MapImageAsync(offerPanelResponse?.PictureUrl),
             Title = offerPanelResponse?.Title,
-            Features = MapFeatures(offerPanelResponse?.Features),
+            Features = await MapFeaturesAsync(offerPanelResponse?.Features),
             FeaturesFooter = offerPanelResponse?.FeaturesFooter,
             Button = MapButton(offerPanelResponse?.Button),
             PageFooter = offerPanelResponse?.PageFooter,
-            FullScreenImage = await MapFullScreenImage(offerPanelResponse?.FullScreenImage)
+            FullScreenImage = await MapFullScreenImageAsync(offerPanelResponse?.FullScreenImage)
         };
     }
 
-    private async Task<FullScreenImage> MapFullScreenImage(FullScreenImageResponse response)
+    private async Task<string> MapImageAsync(string imageUrl)
     {
-        string url = response?.Source.FirstOrDefault(s => s.Type.EqualsIgnoringCase(SUPPORTED_IMAGE_FORMAT))?.Url;
-        string source = null;
-
-        if (url != null)
+        if (imageUrl != null)
         {
-            string localImagePath = await StoreImage(url);
+            string localImagePath = await StoreImage(imageUrl);
             if (localImagePath != null)
             {
-                source = localImagePath;
+                return localImagePath;
             }
         }
+
+        return null;
+    }
+
+    private async Task<FullScreenImage> MapFullScreenImageAsync(FullScreenImageResponse response)
+    {
+        string imageUrl = response?.Source?.FirstOrDefault(s => s.Type.EqualsIgnoringCase(SUPPORTED_IMAGE_FORMAT))?.Url;
+
+        string source = await MapImageAsync(imageUrl);
 
         return new()
         {
@@ -377,16 +383,31 @@ public class AnnouncementService : IAnnouncementService, ILoggedInAware, ILogout
         };
     }
 
-    private IList<PanelFeature> MapFeatures(IList<OfferPanelFeatureResponse> offerPanelFeatures)
+    private async Task<IList<PanelFeature>> MapFeaturesAsync(IList<OfferPanelFeatureResponse> offerPanelFeatures)
     {
-        return offerPanelFeatures?.Select(MapFeature).ToList();
+        if (offerPanelFeatures == null)
+        {
+            return null;
+        }
+
+        List<PanelFeature> panelFeatures = new();
+
+        foreach (OfferPanelFeatureResponse offerPanelFeature in offerPanelFeatures)
+        {
+            if (offerPanelFeature is not null)
+            {
+                panelFeatures.Add(await MapFeatureAsync(offerPanelFeature));
+            }
+        }
+
+        return panelFeatures;
     }
 
-    private PanelFeature MapFeature(OfferPanelFeatureResponse offerPanelFeatureResponse)
+    private async Task<PanelFeature> MapFeatureAsync(OfferPanelFeatureResponse offerPanelFeatureResponse)
     {
         return new()
         {
-            IconUrl = offerPanelFeatureResponse.IconUrl,
+            IconUrl = await MapImageAsync(offerPanelFeatureResponse.IconUrl),
             Text = offerPanelFeatureResponse.Text
         };
     }
