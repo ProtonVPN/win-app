@@ -25,11 +25,12 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class ProtocolViewModel : ConnectionSettingsPageViewModelBase
+public partial class ProtocolViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
 
@@ -90,11 +91,6 @@ public partial class ProtocolViewModel : ConnectionSettingsPageViewModelBase
         OnPropertyChanged(nameof(Recommended));
     }
 
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.VpnProtocol != CurrentVpnProtocol;
-    }
-
     protected override void SaveSettings()
     {
         Settings.VpnProtocol = CurrentVpnProtocol;
@@ -103,6 +99,11 @@ public partial class ProtocolViewModel : ConnectionSettingsPageViewModelBase
     protected override void RetrieveSettings()
     {
         CurrentVpnProtocol = Settings.VpnProtocol;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.VpnProtocol), CurrentVpnProtocol, Settings.VpnProtocol != CurrentVpnProtocol);
     }
 
     private bool IsProtocol(VpnProtocol protocol)

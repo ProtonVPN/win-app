@@ -115,8 +115,52 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <ItemsRepeater Grid.Row="0"
                                        Margin="0,0,0,16"
-                                       ItemsSource="{x:Bind ViewModel.Apps}"
-                                       Visibility="{x:Bind ViewModel.HasApps, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                       ItemsSource="{x:Bind ViewModel.StandardApps}"
+                                       Visibility="{x:Bind ViewModel.HasStandardApps, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="8" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate x:DataType="st:SplitTunnelingAppViewModel">
+                                    <Grid ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0"
+                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}">
+                                            <Grid ColumnSpacing="8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0"
+                                                       Width="20"
+                                                       Height="20"
+                                                       Source="{x:Bind AppIcon}" />
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{x:Bind AppName}"
+                                                           TextTrimming="CharacterEllipsis" />
+                                            </Grid>
+                                        </CheckBox>
+                                        <custom:GhostButton Grid.Column="1"
+                                                            AutomationProperties.AutomationId="RemoveAppButton"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}"
+                                                            Command="{x:Bind RemoveAppCommand, Mode=OneTime}"
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}">
+                                            <custom:GhostButton.LeftIcon>
+                                                <pathicons:Trash />
+                                            </custom:GhostButton.LeftIcon>
+                                        </custom:GhostButton>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+
+                        <ItemsRepeater Grid.Row="0"
+                                       Margin="0,0,0,16"
+                                       ItemsSource="{x:Bind ViewModel.InverseApps}"
+                                       Visibility="{x:Bind ViewModel.HasInverseApps, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <ItemsRepeater.Layout>
                                 <StackLayout Spacing="8" />
                             </ItemsRepeater.Layout>
@@ -187,24 +231,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <TextBox Grid.Row="0"
-                                 Grid.Column="0"
-                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Watermark')}"
-                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"/>
-
-                        <Button Grid.Row="0"
-                                Grid.Column="1"
-                                AutomationProperties.AutomationId="AddIpAddressButton"
-                                Command="{x:Bind ViewModel.AddIpAddressCommand, Mode=OneTime}"
-                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Add')}" />
-
-                        <ItemsRepeater Grid.Row="1"
+                        <ItemsRepeater Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2"
-                                       Margin="0,16,0,0"
-                                       ItemsSource="{x:Bind ViewModel.IpAddresses}"
-                                       Visibility="{x:Bind ViewModel.HasIpAddresses, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                       Margin="0,0,0,16"
+                                       ItemsSource="{x:Bind ViewModel.StandardIpAddresses}"
+                                       Visibility="{x:Bind ViewModel.HasStandardIpAddresses, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <ItemsRepeater.Layout>
                                 <StackLayout Spacing="8" />
                             </ItemsRepeater.Layout>
@@ -231,6 +263,51 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </DataTemplate>
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
+
+                        <ItemsRepeater Grid.Row="0"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0,0,0,16"
+                                       ItemsSource="{x:Bind ViewModel.InverseIpAddresses}"
+                                       Visibility="{x:Bind ViewModel.HasInverseIpAddresses, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="8" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate x:DataType="st:SplitTunnelingIpAddressViewModel">
+                                    <Grid ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0"
+                                                  Content="{x:Bind IpAddress}"
+                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}" />
+                                        <custom:GhostButton Grid.Column="1"
+                                                            AutomationProperties.AutomationId="RemoveIpAddressButton"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}"
+                                                            Command="{x:Bind RemoveIpAddressCommand, Mode=OneTime}"
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}">
+                                            <custom:GhostButton.LeftIcon>
+                                                <pathicons:Trash />
+                                            </custom:GhostButton.LeftIcon>
+                                        </custom:GhostButton>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="0"
+                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Watermark')}"
+                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"/>
+
+                        <Button Grid.Row="1"
+                                Grid.Column="1"
+                                AutomationProperties.AutomationId="AddIpAddressButton"
+                                Command="{x:Bind ViewModel.AddIpAddressCommand, Mode=OneTime}"
+                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Add')}" />
                     </Grid>
                 </labs:SettingsCard>
             </StackPanel>

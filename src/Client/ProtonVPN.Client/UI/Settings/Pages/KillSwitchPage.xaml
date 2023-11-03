@@ -35,11 +35,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
-                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}">
+    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
 
-        <custom:PageContentControl.PageHeader>
+            <custom:PageContentControl.PageHeader>
             <StackPanel Orientation="Horizontal"
                         Spacing="16">
                 <Image Width="32"
@@ -98,5 +100,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Footer')}" />
         </StackPanel>
-    </custom:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

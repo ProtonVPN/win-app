@@ -22,10 +22,12 @@ using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -63,10 +65,11 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
     public AdvancedSettingsViewModel(
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        ISettings settings, 
+        ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
+        IUrls urls,
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
     }
@@ -88,12 +91,6 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(CustomDnsServersSettingsState));
     }
 
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.NatType != CurrentNatType
-            || Settings.IsAlternativeRoutingEnabled != IsAlternativeRoutingEnabled;
-    }
-
     protected override void SaveSettings()
     {
         Settings.NatType = CurrentNatType;
@@ -104,6 +101,13 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
     {
         CurrentNatType = Settings.NatType;
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.NatType), CurrentNatType, Settings.NatType != CurrentNatType);
+        yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), IsAlternativeRoutingEnabled,
+            Settings.IsAlternativeRoutingEnabled != IsAlternativeRoutingEnabled);
     }
 
     private bool IsNatType(NatType natType)

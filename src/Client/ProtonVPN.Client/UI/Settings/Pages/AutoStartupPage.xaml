@@ -38,10 +38,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
-                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                               PageHeader="{x:Bind ViewModel.Title}">
+    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       PageHeader="{x:Bind ViewModel.Title}"
+                                       ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
 
         <StackPanel x:Name="ContentArea">
 
@@ -84,5 +86,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </labs:SettingsExpander.Items>
             </labs:SettingsExpander>
         </StackPanel>
-    </custom:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

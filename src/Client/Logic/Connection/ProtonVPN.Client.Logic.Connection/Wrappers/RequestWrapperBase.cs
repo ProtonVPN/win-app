@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -53,8 +54,8 @@ public abstract class RequestWrapperBase
                 Mode = Settings.IsSplitTunnelingEnabled
                     ? EntityMapper.Map<SplitTunnelingMode, SplitTunnelModeIpcEntity>(Settings.SplitTunnelingMode)
                     : SplitTunnelModeIpcEntity.Disabled,
-                AppPaths = Settings.SplitTunnelingAppsList.Where(app => app.IsActive).SelectMany(app => app.GetAllAppFilePaths()).ToArray(),
-                Ips = Settings.SplitTunnelingIpAddressesList.Where(ip => ip.IsActive).Select(ip => ip.IpAddress).ToArray()
+                AppPaths = GetSplitTunnelingApps(),
+                Ips = GetSplitTunnelingIpAddresses()
             },
             ModerateNat = Settings.NatType == NatType.Moderate,
             NetShieldMode = Settings.IsNetShieldEnabled ? 2 : 0,
@@ -64,5 +65,29 @@ public abstract class RequestWrapperBase
             SplitTcp = Settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = EntityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(Settings.OpenVpnAdapter),
         };
+    }
+
+    private string[] GetSplitTunnelingApps()
+    {
+        return Settings.SplitTunnelingMode == SplitTunnelingMode.Standard
+            ? GetSplitTunnelingApps(Settings.SplitTunnelingStandardAppsList)
+            : GetSplitTunnelingApps(Settings.SplitTunnelingInverseAppsList);
+    }
+
+    private string[] GetSplitTunnelingApps(List<SplitTunnelingApp> settingsApps)
+    {
+        return settingsApps.Where(app => app.IsActive).SelectMany(app => app.GetAllAppFilePaths()).ToArray();
+    }
+
+    private string[] GetSplitTunnelingIpAddresses()
+    {
+        return Settings.SplitTunnelingMode == SplitTunnelingMode.Standard
+            ? GetSplitTunnelingIpAddresses(Settings.SplitTunnelingStandardIpAddressesList)
+            : GetSplitTunnelingIpAddresses(Settings.SplitTunnelingInverseIpAddressesList);
+    }
+
+    private string[] GetSplitTunnelingIpAddresses(List<SplitTunnelingIpAddress> settingsIpAddresses)
+    {
+        return settingsIpAddresses.Where(ip => ip.IsActive).Select(ip => ip.IpAddress).ToArray();
     }
 }

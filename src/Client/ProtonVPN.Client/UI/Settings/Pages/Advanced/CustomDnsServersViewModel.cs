@@ -28,11 +28,12 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
-public partial class CustomDnsServersViewModel : ConnectionSettingsPageViewModelBase
+public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 {
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddDnsServerCommand))]
@@ -97,12 +98,6 @@ public partial class CustomDnsServersViewModel : ConnectionSettingsPageViewModel
         OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
     }
 
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.IsCustomDnsServersEnabled != IsCustomDnsServersEnabled
-            || !Settings.CustomDnsServersList.SequenceEqual(GetCustomDnsServersList());
-    }
-
     protected override void SaveSettings()
     {
         Settings.IsCustomDnsServersEnabled = IsCustomDnsServersEnabled;
@@ -118,6 +113,15 @@ public partial class CustomDnsServersViewModel : ConnectionSettingsPageViewModel
         {
             CustomDnsServers.Add(new(Localizer, this, server.IpAddress, server.IsActive));
         }
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsCustomDnsServersEnabled), IsCustomDnsServersEnabled,
+            Settings.IsCustomDnsServersEnabled != IsCustomDnsServersEnabled);
+
+        yield return new(nameof(ISettings.CustomDnsServersList), GetCustomDnsServersList(),
+            !Settings.CustomDnsServersList.SequenceEqual(GetCustomDnsServersList()));
     }
 
     private void OnCustomDnsServersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

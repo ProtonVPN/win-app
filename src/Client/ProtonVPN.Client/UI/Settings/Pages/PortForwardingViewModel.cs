@@ -23,10 +23,12 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Edition;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -58,8 +60,9 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
-        IClipboardEditor clipboardEditor)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
+        IClipboardEditor clipboardEditor,
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
         _clipboardEditor = clipboardEditor;
@@ -90,22 +93,25 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
         return IsPortForwardingEnabled && ActivePortNumber.HasValue;
     }
 
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.IsPortForwardingEnabled != IsPortForwardingEnabled
-            || Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled;
-    }
-
     protected override void SaveSettings()
     {
         Settings.IsPortForwardingEnabled = IsPortForwardingEnabled;
-        Settings.IsShareCrashReportsEnabled = IsPortForwardingNotificationEnabled;
+        Settings.IsPortForwardingNotificationEnabled = IsPortForwardingNotificationEnabled;
     }
 
     protected override void RetrieveSettings()
     {
         IsPortForwardingEnabled = Settings.IsPortForwardingEnabled;
         IsPortForwardingNotificationEnabled = Settings.IsPortForwardingNotificationEnabled;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsPortForwardingEnabled), IsPortForwardingEnabled,
+            Settings.IsPortForwardingEnabled != IsPortForwardingEnabled);
+        
+        yield return new(nameof(ISettings.IsPortForwardingNotificationEnabled), IsPortForwardingNotificationEnabled,
+            Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
 
     private void InvalidateActivePortNumber()

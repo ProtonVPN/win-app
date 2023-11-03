@@ -40,6 +40,8 @@ public abstract class SettingsConflictBase : ISettingsConflict
 
     public abstract Action ResolveAction { get; }
 
+    public abstract bool IsReconnectionRequired { get; }
+
     protected SettingsConflictBase(ILocalizationProvider localizer, ISettings settings)
     {
         Localizer = localizer;

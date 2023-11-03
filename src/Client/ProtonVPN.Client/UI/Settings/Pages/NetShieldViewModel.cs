@@ -26,10 +26,11 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class NetShieldViewModel : ConnectionSettingsPageViewModelBase
+public partial class NetShieldViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
 
@@ -61,11 +62,6 @@ public partial class NetShieldViewModel : ConnectionSettingsPageViewModelBase
             : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource");
     }
 
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.IsNetShieldEnabled != IsNetShieldEnabled;
-    }
-
     protected override void SaveSettings()
     {
         Settings.IsNetShieldEnabled = IsNetShieldEnabled;
@@ -74,5 +70,10 @@ public partial class NetShieldViewModel : ConnectionSettingsPageViewModelBase
     protected override void RetrieveSettings()
     {
         IsNetShieldEnabled = Settings.IsNetShieldEnabled;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsNetShieldEnabled), IsNetShieldEnabled, Settings.IsNetShieldEnabled != IsNetShieldEnabled);
     }
 }

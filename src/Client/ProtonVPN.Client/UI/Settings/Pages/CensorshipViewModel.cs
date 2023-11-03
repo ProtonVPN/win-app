@@ -20,9 +20,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -44,16 +46,11 @@ public partial class CensorshipViewModel : SettingsPageViewModelBase
         ILocalizationProvider localizationProvider,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver)
+        IUrls urls,
+        IConnectionManager connectionManager)
+        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
-    }
-
-    protected override bool HasConfigurationChanged()
-    {
-        return Settings.IsShareStatisticsEnabled != IsShareStatisticsEnabled
-            || Settings.IsShareCrashReportsEnabled != IsShareCrashReportsEnabled;
     }
 
     protected override void SaveSettings()
@@ -66,5 +63,14 @@ public partial class CensorshipViewModel : SettingsPageViewModelBase
     {
         IsShareStatisticsEnabled = Settings.IsShareStatisticsEnabled;
         IsShareCrashReportsEnabled = Settings.IsShareCrashReportsEnabled;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsShareStatisticsEnabled), IsShareStatisticsEnabled,
+            Settings.IsShareStatisticsEnabled != IsShareStatisticsEnabled);
+
+        yield return new(nameof(ISettings.IsShareCrashReportsEnabled), IsShareCrashReportsEnabled,
+            Settings.IsShareCrashReportsEnabled != IsShareCrashReportsEnabled);
     }
 }

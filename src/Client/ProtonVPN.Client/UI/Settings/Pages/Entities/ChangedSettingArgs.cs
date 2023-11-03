@@ -17,13 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
+namespace ProtonVPN.Client.UI.Settings.Pages.Entities;
 
-namespace ProtonVPN.Client.Settings.Contracts;
-
-public interface ISettingsConflictResolver
+public class ChangedSettingArgs
 {
-    ISettingsConflict? GetConflict(string settingsName, dynamic? settingsValue);
+    public string Name { get; }
+    public dynamic? NewValue { get; }
+    public bool HasChanged { get; }
 
-    void ResolveConflict(string settingsName, dynamic? settingsValue);
+    public ChangedSettingArgs(string name, dynamic? newValue, bool hasChanged)
+    {
+        Name = name;
+        NewValue = newValue;
+        HasChanged = hasChanged;
+    }
 }

@@ -19,27 +19,92 @@
 
 using System.ComponentModel;
 using System.Reflection;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
-public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMainViewNavigator>, IEventMessageReceiver<SettingChangedMessage>
+public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMainViewNavigator>,
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     protected readonly ISettings Settings;
-    private readonly ISettingsConflictResolver _settingsConflictResolver;
+    protected readonly ISettingsConflictResolver SettingsConflictResolver;
+    protected readonly IConnectionManager ConnectionManager;
 
-    public SettingsPageViewModelBase(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider, ISettings settings, ISettingsConflictResolver settingsConflictResolver)
+    public SettingsPageViewModelBase(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager)
         : base(viewNavigator, localizationProvider)
     {
         Settings = settings;
-        _settingsConflictResolver = settingsConflictResolver;
+        SettingsConflictResolver = settingsConflictResolver;
+        ConnectionManager = connectionManager;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanReconnect))]
+    public async Task ReconnectAsync()
+    {
+        SaveSettings();
+
+        await ConnectionManager.ReconnectAsync();
+    }
+
+    public bool CanReconnect()
+    {
+        return !ConnectionManager.IsDisconnected
+            && HasChangedSettings()
+            && IsReconnectionRequired();
+    }
+
+    private bool HasChangedSettings()
+    {
+        return GetChangedSettings().Any();
+    }
+
+    protected abstract IEnumerable<ChangedSettingArgs> GetSettings();
+
+    private bool IsReconnectionRequired()
+    {
+        IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
+        foreach (ChangedSettingArgs changedSetting in changedSettings)
+        {
+            if (RequiredReconnectionSettings.Contains(changedSetting.Name))
+            {
+                return true;
+            }
+
+            ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(changedSetting.Name, changedSetting.NewValue);
+            if (conflict is not null && conflict.IsReconnectionRequired)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private IEnumerable<ChangedSettingArgs> GetChangedSettings()
+    {
+        return GetSettings().Where(s => s.HasChanged);
+    }
+
+    public void Receive(ConnectionStatusChanged message)
+    {
+        ReconnectCommand.NotifyCanExecuteChanged();
     }
 
     public void Receive(SettingChangedMessage message)
@@ -47,15 +112,39 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         OnSettingsChanged(message.PropertyName);
     }
 
-    public override Task<bool> OnNavigatingFromAsync()
+    public override async Task<bool> OnNavigatingFromAsync()
     {
-        if (HasConfigurationChanged())
+        if (!CanReconnect()) // No reconnection required, simply save settings when leaving page
         {
-            // If any changes, save settings when leaving page
-            SaveSettings();
+            if (HasChangedSettings()) // If any changes, save settings when leaving page
+            {
+                SaveSettings();
+            }
+            return true;
         }
 
-        return Task.FromResult(true);
+        ContentDialogResult result = await ViewNavigator.ShowMessageAsync(
+            new MessageDialogParameters
+            {
+                Title = Localizer.Get("Settings_Common_Discard_Title"),
+                PrimaryButtonText = Localizer.Get("Settings_Common_Discard"),
+                SecondaryButtonText = Localizer.Get("Settings_Common_ApplyAndReconnect"),
+                CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+                UseVerticalLayoutForButtons = true,
+            });
+
+        switch (result)
+        {
+            case ContentDialogResult.Primary: // Do nothing, user decided to discard settings changes.
+                return true;
+
+            case ContentDialogResult.Secondary: // Apply settings and trigger reconnections
+                await ReconnectAsync();
+                return true;
+
+            default: // Cancel navigation, stays on current page without deleting changes user have made
+                return false;
+        }
     }
 
     public override void OnNavigatedTo(object parameter)
@@ -68,8 +157,6 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     protected virtual void OnSettingsChanged(string propertyName)
     { }
 
-    protected abstract bool HasConfigurationChanged();
-
     protected abstract void SaveSettings();
 
     protected abstract void RetrieveSettings();
@@ -77,6 +164,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     protected override async void OnPropertyChanged(PropertyChangedEventArgs e)
     {
         base.OnPropertyChanged(e);
+
+        ReconnectCommand.NotifyCanExecuteChanged();
 
         if (string.IsNullOrEmpty(e?.PropertyName))
         {
@@ -86,7 +175,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         string settingName = GetSettingName(e.PropertyName);
         object? settingValue = GetType()?.GetProperty(e.PropertyName)?.GetValue(this);
 
-        ISettingsConflict? conflict = _settingsConflictResolver.GetConflict(settingName, settingValue);
+        ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(settingName, settingValue);
 
         if (conflict != null)
         {
