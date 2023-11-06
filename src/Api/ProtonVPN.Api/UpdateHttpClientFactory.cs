@@ -60,7 +60,7 @@ namespace ProtonVPN.Api
                 .AddLastHandler(_tlsPinnedCertificateHandler)
                 .Build();
 
-            return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent());
+            return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent);
         }
 
         public IHttpClient GetUpdateDownloadHttpClient()
@@ -71,7 +71,7 @@ namespace ProtonVPN.Api
                 .AddLastHandler(_sslCertificateHandler)
                 .Build();
 
-            return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent());
+            return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent);
         }
     }
 }

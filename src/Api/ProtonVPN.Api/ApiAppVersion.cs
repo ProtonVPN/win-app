@@ -24,19 +24,33 @@ namespace ProtonVPN.Api;
 
 public class ApiAppVersion : IApiAppVersion
 {
+    private const string DEVELOPMENT_SUFFIX = "-dev";
+
     private readonly IConfiguration _config;
+    private readonly Lazy<string> _appVersion;
+    private readonly Lazy<string> _userAgent;
+
+    public string AppVersion => _appVersion.Value;
+    public string UserAgent => _userAgent.Value;
 
     public ApiAppVersion(IConfiguration appConfig)
     {
         _config = appConfig;
+
+        _appVersion = new(() => CalculateAppVersion());
+        _userAgent = new(() => CalculateUserAgent());
     }
 
-    public string Value()
+    public string CalculateAppVersion()
     {
-        return $"{_config.ApiClientId}@{GetVersion()}";
+        string value = $"{_config.ApiClientId}@{GetVersion()}";
+#if DEBUG
+        value += DEVELOPMENT_SUFFIX;
+#endif
+        return value;
     }
 
-    public string UserAgent()
+    public string CalculateUserAgent()
     {
         return $"{_config.UserAgent}/{GetVersion()} ({Environment.OSVersion})";
     }

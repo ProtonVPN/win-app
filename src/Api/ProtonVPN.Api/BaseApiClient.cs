@@ -123,9 +123,9 @@ public class BaseApiClient : IClientBase
     {
         HttpRequestMessage request = new(method, requestUri);
         request.Headers.Add("x-pm-apiversion", _apiVersion);
-        request.Headers.Add("x-pm-appversion", _appVersion.Value());
+        request.Headers.Add("x-pm-appversion", _appVersion.AppVersion);
         request.Headers.Add("x-pm-locale", Settings.Language);
-        request.Headers.Add("User-Agent", _appVersion.UserAgent());
+        request.Headers.Add("User-Agent", _appVersion.UserAgent);
 
         return request;
     }

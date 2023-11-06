@@ -48,8 +48,8 @@ public class ApiClientTest
         _logger = Substitute.For<ILogger>();
 
         _appVersion = Substitute.For<IApiAppVersion>();
-        _appVersion.Value().Returns(string.Empty);
-        _appVersion.UserAgent().Returns("User agent");
+        _appVersion.AppVersion.Returns(string.Empty);
+        _appVersion.UserAgent.Returns("User agent");
 
         _appSettings = Substitute.For<ISettings>();
         _appSettings.AccessToken.Returns(string.Empty);

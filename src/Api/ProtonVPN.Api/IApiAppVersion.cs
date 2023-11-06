@@ -17,12 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api
-{
-    public interface IApiAppVersion
-    {
-        string Value();
+namespace ProtonVPN.Api;
 
-        string UserAgent();
-    }
+public interface IApiAppVersion
+{
+    string AppVersion { get; }    
+    string UserAgent { get; }
 }
