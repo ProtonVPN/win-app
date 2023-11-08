@@ -17,17 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Client.Models;
-
-public partial class Server : ObservableRecipient
+public class ServerTiers
 {
-    [ObservableProperty]
-    private string _serverName;
-
-    public Server(string serverName)
-    {
-        _serverName = serverName;
-    }
+    public const sbyte Free = 0;
+    public const sbyte Basic = 1;
+    public const sbyte Plus = 2;
+    public const sbyte Internal = 3;
 }

@@ -22,7 +22,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.UI.Countries;
-using ProtonVPN.Client.UI.Countries.Pages;
+using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
+using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
@@ -112,7 +113,7 @@ public class ViewMapper : IViewMapper
     {
         ConfigurePage<HomeViewModel, HomePage>();
         ConfigurePage<CountriesViewModel, CountriesPage>();
-        ConfigurePage<CountryViewModel, CountryPage>();
+        ConfigurePage<CountryTabViewModel, CountryPage>();
         ConfigurePage<NetShieldViewModel, NetShieldPage>();
         ConfigurePage<KillSwitchViewModel, KillSwitchPage>();
         ConfigurePage<PortForwardingViewModel, PortForwardingPage>();
@@ -133,6 +134,14 @@ public class ViewMapper : IViewMapper
         ConfigurePage<QuickFixesViewModel, QuickFixesPage>();
         ConfigurePage<ContactFormViewModel, ContactFormPage>();
         ConfigurePage<ReportIssueResultViewModel, ReportIssueResultPage>();
+        ConfigurePage<AllCountriesPageViewModel, AllCountriesPage>();
+        ConfigurePage<CitiesPageViewModel, CitiesPage>();
+        ConfigurePage<P2PCitiesPageViewModel, P2PCitiesPage>();
+        ConfigurePage<SecureCoreCountriesPageViewModel, SecureCoreCountriesPage>();
+        ConfigurePage<SecureCoreCountryPageViewModel, SecureCoreCountryPage>();
+        ConfigurePage<TorServersPageViewModel, TorServersPage>();
+        ConfigurePage<P2PCountriesPageViewModel, P2PCountriesPage>();
+        ConfigurePage<TorCountriesPageViewModel, TorCountriesPage>();
 
         ConfigureDebugPages();
     }
@@ -150,6 +159,10 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<ProtocolOverlayViewModel, ProtocolOverlayDialog>();
         ConfigureOverlay<ServerLoadOverlayViewModel, ServerLoadOverlayDialog>();
         ConfigureOverlay<HumanVerificationViewModel, HumanVerificationDialog>();
+        ConfigureOverlay<SecureCoreOverlayViewModel, SecureCoreOverlayDialog>();
+        ConfigureOverlay<SmartRoutingOverlayViewModel, SmartRoutingOverlayDialog>();
+        ConfigureOverlay<P2POverlayViewModel, P2POverlayDialog>();
+        ConfigureOverlay<TorOverlayViewModel, TorOverlayDialog>();
     }
 
     protected void ConfigureDialogs()

@@ -38,7 +38,7 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEve
 
     public virtual string? Title { get; }
 
-    public PageViewModelBase(ILocalizationProvider localizationProvider)
+    protected PageViewModelBase(ILocalizationProvider localizationProvider)
         : base(localizationProvider)
     { }
 

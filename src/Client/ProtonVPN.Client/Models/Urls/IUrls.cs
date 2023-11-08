@@ -37,6 +37,10 @@ public interface IUrls
     string PortForwardingLearnMore { get; }
     string SplitTunnelingLearnMore { get; }
     string VpnAcceleratorLearnMore { get; }
+    string SecureCoreLearnMore { get; }
+    string SmartRoutingLearnMore { get; }
+    string P2PLearnMore { get; }
+    string TorLearnMore { get; }
 
     void NavigateTo(string url);
 }

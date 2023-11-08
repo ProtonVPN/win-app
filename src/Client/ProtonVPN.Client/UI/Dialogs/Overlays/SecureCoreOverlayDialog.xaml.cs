@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Countries.Pages;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
-public sealed partial class CountryPage
+public sealed partial class SecureCoreOverlayDialog
 {
-    public CountryPage()
+    public SecureCoreOverlayViewModel ViewModel { get; }
+
+    public SecureCoreOverlayDialog()
     {
-        ViewModel = App.GetService<CountryViewModel>();
+        ViewModel = App.GetService<SecureCoreOverlayViewModel>();
         InitializeComponent();
     }
-
-    public CountryViewModel ViewModel { get; }
 }

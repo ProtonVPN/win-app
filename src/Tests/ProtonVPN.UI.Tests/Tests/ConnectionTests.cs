@@ -105,41 +105,42 @@ public class ConnectionTests : TestSession
             .VerifyConnectionCardIsDisconnected();
     }
 
-    [Test]
-    public void ConnectToSpecificCity()
-    {
-        _shellRobot
-            .DoNavigateToCountriesPage()
-            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
-
-        _countriesRobot
-            .VerifyConnectionFormExists()
-            .DoConnectTo(COUNTRY_CODE, CITY);
-
-        _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY, CITY);
-    }
-
-    [Test]
-    public void ConnectToSpecificServer()
-    {
-        _shellRobot
-            .DoNavigateToCountriesPage()
-            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
-
-        _countriesRobot
-            .VerifyConnectionFormExists()
-            .DoConnectTo(COUNTRY_CODE, CITY, SERVER_NUMBER);
-
-        _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY, CITY, SERVER_NUMBER)
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
-    }
+    // TODO: reintroduce these tests once connecting over countries/servers is implemented
+    // [Test]
+    // public void ConnectToSpecificCity()
+    // {
+    //     _shellRobot
+    //         .DoNavigateToCountriesPage()
+    //         .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
+    //
+    //     _countriesRobot
+    //         .VerifyConnectionFormExists()
+    //         .DoConnectTo(COUNTRY_CODE, CITY);
+    //
+    //     _homeRobot
+    //         .VerifyVpnStatusIsConnecting()
+    //         .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
+    //         .VerifyVpnStatusIsConnected()
+    //         .VerifyConnectionCardIsConnected(COUNTRY, CITY);
+    // }
+    //
+    // [Test]
+    // public void ConnectToSpecificServer()
+    // {
+    //     _shellRobot
+    //         .DoNavigateToCountriesPage()
+    //         .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
+    //
+    //     _countriesRobot
+    //         .VerifyConnectionFormExists()
+    //         .DoConnectTo(COUNTRY_CODE, CITY, SERVER_NUMBER);
+    //
+    //     _homeRobot
+    //         .VerifyVpnStatusIsConnecting()
+    //         .VerifyConnectionCardIsConnecting(COUNTRY, CITY, SERVER_NUMBER)
+    //         .VerifyVpnStatusIsConnected()
+    //         .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
+    // }
 
     [Test]
     [Retry(3)]

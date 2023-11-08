@@ -1,216 +1,256 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
-    <RootNamespace>ProtonVPN.Client</RootNamespace>
-    <ApplicationIcon>Assets/ProtonVPN.ico</ApplicationIcon>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>x64</Platforms>
-    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <UseWinUI>true</UseWinUI>
-    <EnableMsixTooling>true</EnableMsixTooling>
-    <WindowsPackageType>None</WindowsPackageType>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <OutputPath>..\..\bin</OutputPath>
-    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="UI\Dialogs\Infos\**" />
-    <Compile Remove="UI\Home\VpnStatus\**" />
-    <Compile Remove="Views\**" />
-    <EmbeddedResource Remove="UI\Dialogs\Infos\**" />
-    <EmbeddedResource Remove="UI\Home\VpnStatus\**" />
-    <EmbeddedResource Remove="Views\**" />
-    <None Remove="UI\Dialogs\Infos\**" />
-    <None Remove="UI\Home\VpnStatus\**" />
-    <None Remove="Views\**" />
-    <Page Remove="UI\Dialogs\Infos\**" />
-    <Page Remove="UI\Home\VpnStatus\**" />
-    <Page Remove="Views\**" />
-  </ItemGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+        <RootNamespace>ProtonVPN.Client</RootNamespace>
+        <ApplicationIcon>Assets/ProtonVPN.ico</ApplicationIcon>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <Platforms>x64</Platforms>
+        <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWinUI>true</UseWinUI>
+        <EnableMsixTooling>true</EnableMsixTooling>
+        <WindowsPackageType>None</WindowsPackageType>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <OutputPath>..\..\bin</OutputPath>
+        <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Remove="UI\Dialogs\Infos\**" />
+        <Compile Remove="UI\Home\VpnStatus\**" />
+        <Compile Remove="Views\**" />
+        <EmbeddedResource Remove="UI\Dialogs\Infos\**" />
+        <EmbeddedResource Remove="UI\Home\VpnStatus\**" />
+        <EmbeddedResource Remove="Views\**" />
+        <None Remove="UI\Dialogs\Infos\**" />
+        <None Remove="UI\Home\VpnStatus\**" />
+        <None Remove="Views\**" />
+        <Page Remove="UI\Dialogs\Infos\**" />
+        <Page Remove="UI\Home\VpnStatus\**" />
+        <Page Remove="Views\**" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Manifest Include="$(ApplicationManifest)" />
-  </ItemGroup>
+    <ItemGroup>
+        <Manifest Include="$(ApplicationManifest)" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Autofac" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
-    <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" />
-    <PackageReference Include="CommunityToolkit.Mvvm" />
-    <PackageReference Include="CommunityToolkit.WinUI" />
-    <PackageReference Include="CommunityToolkit.WinUI.UI" />
-    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
-    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="System.Collections.Immutable" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" />
-    <PackageReference Include="System.Formats.Asn1" />
-    <PackageReference Include="System.Text.Encoding.CodePages" />
-    <PackageReference Include="System.Text.Json" />
-    <PackageReference Include="WinUIEx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Page Update="UI\ReportIssue\Results\ReportIssueResultPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\ReportIssue\Steps\ContactFormPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\ReportIssue\Steps\QuickFixesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\ReportIssue\Steps\CategorySelectionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\HumanVerification\HumanVerificationDialog.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Account\AccountComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Dialogs\Windows\ReportIssueShellPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Dialogs\Windows\ReportIssueWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Gallery\GalleryItemPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Dialogs\ServerLoadInfoDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Login\TwoFactorForm.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Login\LoginForm.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Login\LoginShellPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Home\Details\VpnSpeedComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Home\Details\IpAddressComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Home\Details\ConnectionDetailsComponent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\Gallery\GalleryPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+        <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" />
+        <PackageReference Include="CommunityToolkit.Mvvm" />
+        <PackageReference Include="CommunityToolkit.WinUI" />
+        <PackageReference Include="CommunityToolkit.WinUI.UI" />
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
+        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
+        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
+        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Encoding.CodePages" />
+        <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="WinUIEx" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <Page Update="UI\Countries\Controls\CountryFeatureTitleControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Countries\Controls\ServerRowControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Countries\Components\CountryListComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Countries\Components\CountryRowComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Countries\CountryFeatureTabs\P2PCitiesPage.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="UI\Countries\CountryFeatureTabs\CityListComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Countries\CountryFeatureTabs\TorServersPage.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="UI\ReportIssue\Results\ReportIssueResultPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\ReportIssue\Steps\ContactFormPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\ReportIssue\Steps\QuickFixesPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\ReportIssue\Steps\CategorySelectionPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\HumanVerification\HumanVerificationDialog.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Account\AccountComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Dialogs\Windows\ReportIssueShellPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Dialogs\Windows\ReportIssueWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Gallery\GalleryItemPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Dialogs\ServerLoadInfoDialog.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Login\TwoFactorForm.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="UI\Login\LoginForm.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Login\LoginShellPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Home\Details\VpnSpeedComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Home\Details\IpAddressComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Home\Details\ConnectionDetailsComponent.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Gallery\GalleryPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Illustrations\latency-desktop.svg" />
-    <None Remove="Assets\protonvpn.ico" />
-    <None Remove="UI\Account\AccountComponent.xaml" />
-    <None Remove="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml" />
-    <None Remove="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml" />
-    <None Remove="UI\Dialogs\ServerLoadInfoDialog.xaml" />
-    <None Remove="UI\Dialogs\Windows\ReportIssueShellPage.xaml" />
-    <None Remove="UI\Dialogs\Windows\ReportIssueWindow.xaml" />
-    <None Remove="UI\Gallery\GalleryItemPage.xaml" />
-    <None Remove="UI\Gallery\GalleryPage.xaml" />
-    <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
-    <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
-    <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />
-    <None Remove="UI\HumanVerification\HumanVerificationDialog.xaml" />
-    <None Remove="UI\Login\LoginForm.xaml" />
-    <None Remove="UI\Login\LoginShellPage.xaml" />
-    <None Remove="UI\Login\TwoFactorForm.xaml" />
-    <None Remove="UI\ReportIssue\Results\ReportIssueResultPage.xaml" />
-    <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />
-    <None Remove="UI\ReportIssue\Steps\ContactFormPage.xaml" />
-    <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PRIResource Remove="Views\**" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="UI\Home\ConnectionCard\" />
-    <Folder Include="UI\Home\Map\" />
-    <Folder Include="UI\Home\Help\" />
-    <Folder Include="UI\Login\Forms\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PRIResource Remove="UI\Home\VpnStatus\**" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
-    <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Installers\ProtonVPN.Configurations.Installers.csproj" />
-    <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
-    <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj" />
-    <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
-    <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
-    <ProjectReference Include="..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Installers\ProtonVPN.OperatingSystems.Processes.Installers.csproj" />
-    <ProjectReference Include="..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
-    <ProjectReference Include="..\..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Installers\ProtonVPN.OperatingSystems.Services.Installers.csproj" />
-    <ProjectReference Include="..\..\ProcessCommunication\App\ProtonVPN.ProcessCommunication.App.Installers\ProtonVPN.ProcessCommunication.App.Installers.csproj" />
-    <ProjectReference Include="..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
-    <ProjectReference Include="..\..\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj" />
-    <ProjectReference Include="..\Common\ProtonVPN.Client.Common.Interop\ProtonVPN.Client.Common.Interop.csproj" />
-    <ProjectReference Include="..\Common\ProtonVPN.Client.Common.UI\ProtonVPN.Client.Common.UI.csproj" />
-    <ProjectReference Include="..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
-    <ProjectReference Include="..\EventMessaging\ProtonVPN.Client.EventMessaging.Installers\ProtonVPN.Client.EventMessaging.Installers.csproj" />
-    <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
-    <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Extensions\ProtonVPN.Client.Localization.Extensions.csproj" />
-    <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Installers\ProtonVPN.Client.Localization.Installers.csproj" />
-    <ProjectReference Include="..\Logic\Auth\ProtonVPN.Client.Logic.Auth.Installers\ProtonVPN.Client.Logic.Auth.Installers.csproj" />
-    <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
-    <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Installers\ProtonVPN.Client.Logic.Connection.Installers.csproj" />
-    <ProjectReference Include="..\Logic\Feedback\ProtonVPN.Client.Logic.Feedback.Installers\ProtonVPN.Client.Logic.Feedback.Installers.csproj" />
-    <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
-    <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Installers\ProtonVPN.Client.Logic.Recents.Installers.csproj" />
-    <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
-    <ProjectReference Include="..\Settings\ProtonVPN.Client.Settings.Installers\ProtonVPN.Client.Settings.Installers.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PRIResource Remove="UI\Dialogs\Infos\**" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Content Update="Assets\Illustrations\latency-desktop.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\ProtonVPN.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Assets\Illustrations\latency-desktop.svg" />
+        <None Remove="Assets\protonvpn.ico" />
+        <None Remove="UI\Account\AccountComponent.xaml" />
+        <None Remove="UI\Countries\Controls\CountryFeatureTitleControl.xaml" />
+        <None Remove="UI\Countries\Controls\CountryListControl.xaml" />
+        <None Remove="UI\Countries\Controls\CountryRowControl.xaml" />
+        <None Remove="UI\Countries\Controls\ServerRowControl.xaml" />
+        <None Remove="UI\Countries\CountriesFeatureTabs\AllCountriesPage.xaml" />
+        <None Remove="UI\Countries\CountriesFeatureTabs\P2PCountriesPage.xaml" />
+        <None Remove="UI\Countries\CountriesFeatureTabs\SecureCoreCountriesPage.xaml" />
+        <None Remove="UI\Countries\CountriesFeatureTabs\TorCountriesPage.xaml" />
+        <None Remove="UI\Countries\CountryFeatureTabs\CitiesPage.xaml" />
+        <None Remove="UI\Countries\CountryFeatureTabs\CityListComponent.xaml" />
+        <None Remove="UI\Countries\CountryFeatureTabs\P2PCitiesPage.xaml" />
+        <None Remove="UI\Countries\CountryFeatureTabs\SecureCoreCountryPage.xaml" />
+        <None Remove="UI\Countries\CountryFeatureTabs\TorServersPage.xaml" />
+        <None Remove="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\P2POverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\SecureCoreOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\SmartRoutingOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\TorOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\ServerLoadInfoDialog.xaml" />
+        <None Remove="UI\Dialogs\Windows\ReportIssueShellPage.xaml" />
+        <None Remove="UI\Dialogs\Windows\ReportIssueWindow.xaml" />
+        <None Remove="UI\Gallery\GalleryItemPage.xaml" />
+        <None Remove="UI\Gallery\GalleryPage.xaml" />
+        <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
+        <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
+        <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />
+        <None Remove="UI\HumanVerification\HumanVerificationDialog.xaml" />
+        <None Remove="UI\Login\LoginForm.xaml" />
+        <None Remove="UI\Login\LoginShellPage.xaml" />
+        <None Remove="UI\Login\TwoFactorForm.xaml" />
+        <None Remove="UI\ReportIssue\Results\ReportIssueResultPage.xaml" />
+        <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />
+        <None Remove="UI\ReportIssue\Steps\ContactFormPage.xaml" />
+        <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PRIResource Remove="Views\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="UI\Home\ConnectionCard\" />
+        <Folder Include="UI\Home\Map\" />
+        <Folder Include="UI\Home\Help\" />
+        <Folder Include="UI\Login\Forms\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PRIResource Remove="UI\Home\VpnStatus\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
+        <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Installers\ProtonVPN.Configurations.Installers.csproj" />
+        <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
+        <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj" />
+        <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
+        <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
+        <ProjectReference Include="..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Installers\ProtonVPN.OperatingSystems.Processes.Installers.csproj" />
+        <ProjectReference Include="..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
+        <ProjectReference Include="..\..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Installers\ProtonVPN.OperatingSystems.Services.Installers.csproj" />
+        <ProjectReference Include="..\..\ProcessCommunication\App\ProtonVPN.ProcessCommunication.App.Installers\ProtonVPN.ProcessCommunication.App.Installers.csproj" />
+        <ProjectReference Include="..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
+        <ProjectReference Include="..\..\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj" />
+        <ProjectReference Include="..\Common\ProtonVPN.Client.Common.Interop\ProtonVPN.Client.Common.Interop.csproj" />
+        <ProjectReference Include="..\Common\ProtonVPN.Client.Common.UI\ProtonVPN.Client.Common.UI.csproj" />
+        <ProjectReference Include="..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
+        <ProjectReference Include="..\EventMessaging\ProtonVPN.Client.EventMessaging.Installers\ProtonVPN.Client.EventMessaging.Installers.csproj" />
+        <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
+        <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Extensions\ProtonVPN.Client.Localization.Extensions.csproj" />
+        <ProjectReference Include="..\Localization\ProtonVPN.Client.Localization.Installers\ProtonVPN.Client.Localization.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Auth\ProtonVPN.Client.Logic.Auth.Installers\ProtonVPN.Client.Logic.Auth.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
+        <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Installers\ProtonVPN.Client.Logic.Connection.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Feedback\ProtonVPN.Client.Logic.Feedback.Installers\ProtonVPN.Client.Logic.Feedback.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
+        <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Installers\ProtonVPN.Client.Logic.Recents.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj" />
+        <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Installers\ProtonVPN.Client.Logic.Servers.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
+        <ProjectReference Include="..\Settings\ProtonVPN.Client.Settings.Installers\ProtonVPN.Client.Settings.Installers.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PRIResource Remove="UI\Dialogs\Infos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="Assets\Illustrations\latency-desktop.svg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\ProtonVPN.ico">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
 </Project>

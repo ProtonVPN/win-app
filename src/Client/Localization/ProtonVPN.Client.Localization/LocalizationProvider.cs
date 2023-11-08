@@ -18,8 +18,10 @@
  */
 
 using System;
+using Microsoft.Extensions.Localization;
 using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
+using ReswPlusLib;
 using WinUI3Localizer;
 
 namespace ProtonVPN.Client.Localization;
@@ -27,10 +29,12 @@ namespace ProtonVPN.Client.Localization;
 public class LocalizationProvider : ILocalizationProvider
 {
     private readonly ILocalizer _localizer;
+    private readonly IStringLocalizer _stringLocalizer;
 
     public LocalizationProvider(ILocalizerFactory localizerFactory)
     {
         _localizer = localizerFactory.GetOrCreate();
+        _stringLocalizer = new StringLocalizer(this);
     }
 
     public string Get(string resourceKey)
@@ -57,6 +61,16 @@ public class LocalizationProvider : ILocalizationProvider
     public string GetFormat(string resourceKey, params object[] args)
     {
         return Safe(resourceKey, value => string.Format(value, args));
+    }
+
+    public string GetPlural(string resourceKey, int number)
+    {
+        return _stringLocalizer.GetPlural(resourceKey, number);
+    }
+
+    public string GetPluralFormat(string resourceKey, int number)
+    {
+        return string.Format(GetPlural(resourceKey, number), number);
     }
 
     private string Safe(string resourceKey, Func<string, string> func)

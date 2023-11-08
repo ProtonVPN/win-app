@@ -144,13 +144,13 @@ public class BaseApiClient : IClientBase
         return request;
     }
 
-        protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
+    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
+        if (!string.IsNullOrEmpty(ip))
         {
-            HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
-            if (!string.IsNullOrEmpty(ip))
-            {
-                request.Headers.Add("x-pm-netzone", ip);
-            }
+            request.Headers.Add("x-pm-netzone", ip);
+        }
 
         return request;
     }

@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Helpers;
+
 namespace ProtonVPN.Client.UI.Countries;
 
 public sealed partial class CountriesPage
@@ -25,7 +28,26 @@ public sealed partial class CountriesPage
     {
         ViewModel = App.GetService<CountriesViewModel>();
         InitializeComponent();
+
+        ViewModel.CountriesFeatureTabsViewNavigator.Frame = CountriesFeatureTabFrame;
     }
 
     public CountriesViewModel ViewModel { get; }
+
+    private async void OnNavigationViewItemInvokedAsync(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    {
+        bool isNavigationCompleted = false;
+
+        NavigationViewItem? selectedItem = args.InvokedItemContainer as NavigationViewItem;
+
+        if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
+        {
+            isNavigationCompleted = await ViewModel.CountriesFeatureTabsViewNavigator.NavigateToAsync(pageKey);
+        }
+
+        if (!isNavigationCompleted)
+        {
+            NavigationViewControl.SelectedItem = ViewModel.SelectedNavigationPage;
+        }
+    }
 }

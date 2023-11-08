@@ -19,17 +19,13 @@
 
 using System.Windows.Input;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Markup;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace ProtonVPN.Client.Common.UI.Controls;
 
 [ContentProperty(Name = "RowContent")]
-public sealed partial class DualCommandsRowControl : UserControl
+public sealed partial class DualCommandsRowControl
 {
     public static readonly DependencyProperty RowContentProperty =
         DependencyProperty.Register(nameof(RowContent), typeof(UIElement), typeof(DualCommandsRowControl), new PropertyMetadata(default));
@@ -56,13 +52,13 @@ public sealed partial class DualCommandsRowControl : UserControl
         DependencyProperty.Register(nameof(SecondaryCommandParameter), typeof(object), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
     public static readonly DependencyProperty SecondaryCommandTextProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandText), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(SecondaryCommandText), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default, OnSecondaryCommandTextPropertyChanged));
 
     public static readonly DependencyProperty SecondaryCommandToolTipProperty =
         DependencyProperty.Register(nameof(SecondaryCommandToolTip), typeof(object), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
     public static readonly DependencyProperty SecondaryCommandIconProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandIcon), typeof(UIElement), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(SecondaryCommandIcon), typeof(UIElement), typeof(DualCommandsRowControl), new PropertyMetadata(default, OnSecondaryCommandIconPropertyChanged));
 
     public static readonly DependencyProperty SecondaryCommandFlyoutProperty =
         DependencyProperty.Register(nameof(SecondaryCommandFlyout), typeof(FlyoutBase), typeof(DualCommandsRowControl), new PropertyMetadata(default));
@@ -142,5 +138,45 @@ public sealed partial class DualCommandsRowControl : UserControl
     public DualCommandsRowControl()
     {
         InitializeComponent();
+
+        Loaded += DualCommandsRowControl_Loaded;
+    }
+
+    private void DualCommandsRowControl_Loaded(object sender, RoutedEventArgs e)
+    {
+        SetSecondaryContainerVisibility();
+    }
+
+    private static void OnSecondaryCommandTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DualCommandsRowControl control)
+        {
+            control.SetSecondaryContainerVisibility();
+        }
+    }
+
+    private static void OnSecondaryCommandIconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DualCommandsRowControl control)
+        {
+            control.SetSecondaryContainerVisibility();
+        }
+    }
+
+    private void SetSecondaryContainerVisibility()
+    {
+        containerSecondary.Visibility = HasSecondaryAction()
+            ? Visibility.Visible
+            : Visibility.Collapsed;
+    }
+
+    private bool HasSecondaryAction()
+    {
+        if (!string.IsNullOrEmpty(SecondaryCommandText))
+        {
+            return true;
+        }
+
+        return SecondaryCommandIcon is not null && SecondaryCommandIcon.Visibility == Visibility.Visible;
     }
 }

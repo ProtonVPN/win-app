@@ -19,11 +19,10 @@
 
 using System;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Common.UI.Controls;
 
-public sealed partial class ServerLoadControl : UserControl
+public sealed partial class ServerLoadControl
 {
     public const double MEDIUM_SERVER_LOAD_THRESHOLD = 0.75;
     public const double HIGH_SERVER_LOAD_THRESHOLD = 0.90;

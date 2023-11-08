@@ -27,7 +27,7 @@ public abstract partial class OverlayViewModelBase : ViewModelBase
 {
     protected readonly IViewNavigator ViewNavigator;
 
-    public OverlayViewModelBase(ILocalizationProvider localizationProvider, IViewNavigator viewNavigator)
+    protected OverlayViewModelBase(ILocalizationProvider localizationProvider, IViewNavigator viewNavigator)
         : base(localizationProvider)
     {
         ViewNavigator = viewNavigator;

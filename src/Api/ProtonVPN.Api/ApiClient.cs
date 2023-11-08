@@ -103,8 +103,10 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get,
-            "vpn/logicals?SignServer=Server.EntryIP,Server.Label&WithPartnerLogicals=1", ip);
+        // TODO: use IP
+        HttpRequestMessage request = GetRequest(HttpMethod.Get,
+            "vpn/logicals?SignServer=Server.EntryIP,Server.Label&WithPartnerLogicals=1");
+
         request.SetRetryCount(SERVERS_RETRY_COUNT);
         request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
         return await SendRequest<ServersResponse>(request, "Get servers");

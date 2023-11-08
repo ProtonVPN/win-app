@@ -64,6 +64,14 @@ public class Urls : IUrls
 
     public string VpnAcceleratorLearnMore => "https://protonvpn.com/support/how-to-use-vpn-accelerator";
 
+    public string SecureCoreLearnMore => "https://protonvpn.com/support/secure-core-vpn";
+
+    public string SmartRoutingLearnMore => "https://protonvpn.com/support/how-smart-routing-works";
+
+    public string P2PLearnMore => "https://protonvpn.com/features/p2p-support";
+
+    public string TorLearnMore => "https://protonvpn.com/support/tor-vpn";
+
     public void NavigateTo(string url)
     {
         try

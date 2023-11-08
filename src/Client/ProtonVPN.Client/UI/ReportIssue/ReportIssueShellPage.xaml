@@ -28,8 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:StepContentControl Grid.Row="0"
-                               Width="328"
+    <custom:StepContentControl Width="328"
                                Margin="0,64"
                                CurrentStep="{x:Bind ViewModel.CurrentStep}"
                                Header="{x:Bind ViewModel.StepsHeader}"
@@ -38,7 +37,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
                                TotalSteps="{x:Bind ViewModel.TotalSteps}">
         <Frame x:Name="NavigationFrame"
-               Grid.Row="1"
                HorizontalAlignment="Center"
                VerticalAlignment="Stretch" />
     </custom:StepContentControl>

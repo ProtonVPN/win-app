@@ -50,6 +50,8 @@ public class ClientModule : Module
         builder.RegisterType<MainViewNavigator>().As<IMainViewNavigator>().SingleInstance();
         builder.RegisterType<LoginViewNavigator>().As<ILoginViewNavigator>().SingleInstance();
         builder.RegisterType<ReportIssueViewNavigator>().As<IReportIssueViewNavigator>().SingleInstance();
+        builder.RegisterType<CountriesFeatureTabViewNavigator>().As<ICountriesFeatureTabsViewNavigator>().SingleInstance();
+        builder.RegisterType<CountryFeatureTabViewNavigator>().As<ICountryFeatureTabsViewNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();

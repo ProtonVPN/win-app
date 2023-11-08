@@ -67,6 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 AutomationProperties.FullDescription="{x:Bind SecondaryCommandToolTip}"
                 AutomationProperties.Name="{x:Bind SecondaryCommandText}"
                 Command="{x:Bind SecondaryCommand}"
+                CommandParameter="{x:Bind SecondaryCommandParameter}"
                 Flyout="{x:Bind SecondaryCommandFlyout}"
                 Style="{StaticResource RowButtonStyle}"
                 TabIndex="2"
@@ -77,6 +78,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Grid.ColumnSpan="2"
                 AutomationProperties.FullDescription="{x:Bind PrimaryCommandText}"
                 Command="{x:Bind PrimaryCommand}"
+                CommandParameter="{x:Bind PrimaryCommandParameter}"
                 Style="{StaticResource RowButtonStyle}"
                 TabIndex="1"
                 ToolTipService.ToolTip="{x:Bind PrimaryCommandToolTip}" />
@@ -168,6 +170,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="RowContentContainer.Opacity" Value="0.6" />
+                        <Setter Target="tbPrimary.Opacity" Value="0.6" />
+                        <Setter Target="tbSecondary.Opacity" Value="0.6" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="RowContentEnabled" />

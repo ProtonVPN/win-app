@@ -1994,4 +1994,169 @@
   <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
     <value>Enable port forwarding?</value>
   </data>
+  <data name="Cities" xml:space="preserve">
+    <value>Cities</value>
+  </data>
+  <data name="Countries_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Countries_City_One" xml:space="preserve">
+    <value>{0} city</value>
+    <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
+  </data>
+  <data name="Countries_City_Other" xml:space="preserve">
+    <value>{0} cities</value>
+    <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
+  </data>
+  <data name="Countries_Connect" xml:space="preserve">
+    <value>Connect</value>
+    <comment>Connect button label on a country row in the countries tab</comment>
+  </data>
+  <data name="Countries_P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_SecureCore" xml:space="preserve">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_Tor" xml:space="preserve">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_Cities" xml:space="preserve">
+    <value>Cities</value>
+  </data>
+  <data name="Countries_Server_One" xml:space="preserve">
+    <value>{0} server</value>
+  </data>
+  <data name="Countries_Server_Other" xml:space="preserve">
+    <value>{0} servers</value>
+  </data>
+  <data name="Countries_CitiesNumber" xml:space="preserve">
+    <value>Cities ({0})</value>
+    <comment>{0} represents the number of cities</comment>
+  </data>
+  <data name="Countries_AllCountries" xml:space="preserve">
+    <value>All countries ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_SecureCoreCountries" xml:space="preserve">
+    <value>Secure Core countries ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
+    <value>Advanced privacy</value>
+  </data>
+  <data name="Dialogs_SecureCore_Description" xml:space="preserve">
+    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+
+This higher level of protection may cause higher latency and slower speeds.</value>
+  </data>
+  <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
+    <value>Higher latency</value>
+  </data>
+  <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
+    <value>High privacy</value>
+  </data>
+  <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
+    <value>Lower latency</value>
+  </data>
+  <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
+    <value>Secure Core VPN connection</value>
+  </data>
+  <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
+    <value>Standard VPN connection</value>
+  </data>
+  <data name="Dialogs_SecureCore_Title" xml:space="preserve">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCoreServers" xml:space="preserve">
+    <value>Secure Core servers ({0})</value>
+    <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_ViaCountry" xml:space="preserve">
+    <value>via {0}</value>
+    <comment>{0} represents country name. For example: via Australia.</comment>
+  </data>
+  <data name="Countries_SmartRouting_Description" xml:space="preserve">
+    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}.</value>
+    <comment>{0} and {1} represent country names.</comment>
+  </data>
+  <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+
+When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+
+Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  </data>
+  <data name="Countries_P2PCountries" xml:space="preserve">
+    <value>P2P countries ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_TorCountries" xml:space="preserve">
+    <value>Tor countries ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
+    <value>How to torrent with P2P</value>
+  </data>
+  <data name="Dialogs_P2P_Title" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
+    <value>What is a P2P server?</value>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
+    <value>P2P (peer-to-peer) VPN servers unblock torrent sites.</value>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
+    <value>What is torrenting?</value>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
+    <value>The fast sharing and downloading of large files over a peer-to-peer (P2P) network.</value>
+  </data>
+  <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
+    <value>Why use a P2P server when torrenting?</value>
+  </data>
+  <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
+    <value>• Increased upload and download speeds
+• No activity logs
+• Hide your IP address from your service provider and peers</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_Fastest" xml:space="preserve">
+    <value>Fastest country</value>
+  </data>
+  <data name="Dialogs_Tor_Description" xml:space="preserve">
+    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
+    <value>How to access the Tor network</value>
+  </data>
+  <data name="Dialogs_Tor_Title" xml:space="preserve">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_SearchPlaceholder" xml:space="preserve">
+    <value>I want to browse from...</value>
+  </data>
+  <data name="Countries_P2P_Cities" xml:space="preserve">
+    <value>P2P cities ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_TorServers" xml:space="preserve">
+    <value>Tor servers ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Countries_ServerLoad" xml:space="preserve">
+    <value>Server load</value>
+  </data>
+  <data name="Countries_SmartRouting" xml:space="preserve">
+    <value>Smart routing</value>
+  </data>
 </root>
