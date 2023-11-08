@@ -94,6 +94,7 @@ Source: "..\publish\Assets\Illustrations\*.png"; DestDir: "{app}\{#VersionFolder
 Source: "..\publish\Assets\Illustrations\Dark\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Dark";
 Source: "..\publish\Assets\Illustrations\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Light";
 Source: "..\publish\Assets\Illustrations\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations";
+Source: "..\publish\Assets\Flags\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Flags";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
@@ -116,7 +117,7 @@ Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
-Type: filesandordirs; Name: "{localappdata}\ProtonVPN"
+Type: filesandordirs; Name: "{localappdata}\Proton\Proton VPN"
 
 [Dirs]
 Name: "{localappdata}\ProtonVPN\DiagnosticLogs"

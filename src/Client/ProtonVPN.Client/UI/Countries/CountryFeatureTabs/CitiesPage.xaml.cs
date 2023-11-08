@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,21 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+namespace ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 
-namespace ProtonVPN.Client.Models;
-
-public partial class Country : ObservableRecipient
+public sealed partial class CitiesPage
 {
-    [ObservableProperty]
-    private string _countryName;
-
-    public Country(string countryName)
+    public CitiesPage()
     {
-        _countryName = countryName;
-        Cities = new ObservableCollection<City>();
+        ViewModel = App.GetService<CitiesPageViewModel>();
+        InitializeComponent();
     }
 
-    public ObservableCollection<City> Cities { get; }
+    public CitiesPageViewModel ViewModel { get; }
 }

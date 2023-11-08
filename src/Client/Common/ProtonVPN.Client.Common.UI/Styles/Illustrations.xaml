@@ -63,5 +63,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/split-tunneling-off.png" />
     <BitmapImage x:Key="SplitTunnelingOnIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/split-tunneling-on.png" />
-
+    <BitmapImage x:Key="StandardConnectionIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/standard-connection.png" />
+    <BitmapImage x:Key="SecureCoreConnectionIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/secure-core-connection.png" />
+    <BitmapImage x:Key="SmartRoutingIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/smart-routing.png" />
+    <BitmapImage x:Key="SpeedIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/speed.png" />
+    <BitmapImage x:Key="P2PDownloadIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/p2p-download.png" />
+    <BitmapImage x:Key="P2PServersIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/p2p-servers.png" />
 </ResourceDictionary>

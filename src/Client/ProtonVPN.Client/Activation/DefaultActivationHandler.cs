@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 
@@ -29,12 +30,14 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
     private readonly ISettings _settings;
     private readonly IMainViewNavigator _viewNavigator;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IServerManager _serverManager;
 
-    public DefaultActivationHandler(ISettings settings, IMainViewNavigator viewNavigator, IUserAuthenticator userAuthenticator)
+    public DefaultActivationHandler(ISettings settings, IMainViewNavigator viewNavigator, IUserAuthenticator userAuthenticator, IServerManager serverManager)
     {
         _settings = settings;
         _viewNavigator = viewNavigator;
         _userAuthenticator = userAuthenticator;
+        _serverManager = serverManager;
     }
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
@@ -45,6 +48,9 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
+        // TODO: think of a better place for this
+        await _serverManager.FetchServersAsync();
+
         if (!string.IsNullOrEmpty(_settings.Username))
         {
             await _userAuthenticator.InvokeAutoLoginEventAsync();

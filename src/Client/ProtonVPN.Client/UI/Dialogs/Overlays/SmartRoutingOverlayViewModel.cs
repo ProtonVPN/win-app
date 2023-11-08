@@ -17,21 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 
-namespace ProtonVPN.Client.Models;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
-public partial class City : ObservableRecipient
+public class SmartRoutingOverlayViewModel : OverlayViewModelBase
 {
-    [ObservableProperty]
-    private string _cityName;
+    private readonly IUrls _urls;
 
-    public City(string cityName)
+    public string LearnMoreUrl => _urls.SmartRoutingLearnMore;
+
+    public SmartRoutingOverlayViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IUrls urls)
+        : base(localizationProvider, viewNavigator)
     {
-        _cityName = cityName;
-        Servers = new ObservableCollection<Server>();
+        _urls = urls;
     }
-
-    public ObservableCollection<Server> Servers { get; }
 }

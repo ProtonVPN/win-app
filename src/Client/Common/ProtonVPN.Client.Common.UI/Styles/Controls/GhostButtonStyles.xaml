@@ -72,6 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Foreground" Value="{ThemeResource GhostButtonForeground}" />
         <Setter Property="Background" Value="{ThemeResource GhostButtonBackground}" />
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="BorderBrush" Value="{ThemeResource GhostButtonBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
@@ -93,9 +94,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <BrushTransition Duration="0:0:0.083" />
                         </Border.BackgroundTransition>
 
-                        <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                            <ContentPresenter x:Name="PART_LeftIconPresenter"
+                            <ContentPresenter Grid.Column="0"
+                                              x:Name="PART_LeftIconPresenter"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding LeftIcon}"
@@ -103,9 +110,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               HighContrastAdjustment="None"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <ContentPresenter x:Name="PART_ContentPresenter"
+                            <ContentPresenter Grid.Column="1"
+                                              x:Name="PART_ContentPresenter"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -113,14 +120,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Foreground="{TemplateBinding Foreground}"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <ContentPresenter x:Name="PART_RightIconPresenter"
+                            <ContentPresenter Grid.Column="2"
+                                              x:Name="PART_RightIconPresenter"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding RightIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
-                        </StackPanel>
+                        </Grid>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

@@ -1,0 +1,61 @@
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
+
+namespace ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
+
+public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
+{
+    public override IconElement Icon => new BrandTor();
+
+    public override string Title => Localizer.Get("Countries_Tor");
+
+    protected override CountryFeature CountryFeature => CountryFeature.Tor;
+
+    public TorCountriesPageViewModel(
+        IMainViewNavigator mainViewNavigator,
+        ICountriesFeatureTabsViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        IServerManager serverManager) : base(mainViewNavigator, serverManager, viewNavigator, localizationProvider)
+    {
+    }
+
+    [RelayCommand]
+    public async Task ShowInfoOverlayAsync()
+    {
+        await MainViewNavigator.ShowOverlayAsync<TorOverlayViewModel>();
+    }
+
+    protected override IList<string> GetCountryCodes()
+    {
+        return ServerManager.GetTorCountryCodes();
+    }
+
+    protected override int GetItemCountByCountry(string exitCountryCode)
+    {
+        return ServerManager.GetTorServersByExitCountry(exitCountryCode).Count;
+    }
+}

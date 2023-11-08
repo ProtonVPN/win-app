@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.UI.Countries.CountryFeatureTabs.SecureCoreCountryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+      xmlns:countries="using:ProtonVPN.Client.UI.Countries"
+      xmlns:countryControls="using:ProtonVPN.Client.UI.Countries.Controls"
+      NavigationCacheMode="Required"
+      x:DefaultBindMode="OneWay"
+      mc:Ignorable="d">
+
+    <StackPanel>
+        <countryControls:CountryFeatureTitleControl Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_SecureCoreServers', ViewModel.TotalItems)}"
+                                                    InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
+                                                    ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
+
+        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Items}">
+            <ItemsRepeater.Layout>
+                <StackLayout Spacing="8"
+                             Orientation="Vertical" />
+            </ItemsRepeater.Layout>
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate x:DataType="countries:CountryViewModel">
+                    <controls:DualCommandsRowControl Padding="12,0"
+                                                     PrimaryCommand="{x:Bind ConnectCommand, Mode=OneTime}"
+                                                     PrimaryCommandParameter="{x:Bind}"
+                                                     PrimaryCommandText="{x:Bind Localizer.Get('Countries_Connect')}">
+
+                        <Grid ColumnSpacing="8" Margin="0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <controls:CountryFlagControl Grid.Column="0"
+                                                         EntryCountryCode="{x:Bind EntryCountryCode}"
+                                                         ExitCountryCode="{x:Bind ExitCountryCode}"
+                                                         IsSecureCore="{x:Bind IsSecureCore}" />
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{x:Bind ExitCountryName}" />
+                                <TextBlock Text="{x:Bind EntryCountryName}"
+                                           Foreground="{ThemeResource TextWeakColorBrush}" />
+                            </StackPanel>
+                        </Grid>
+                    </controls:DualCommandsRowControl>
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+    </StackPanel>
+</Page>

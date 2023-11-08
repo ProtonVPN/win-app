@@ -17,31 +17,40 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Navigation;
 
-namespace ProtonVPN.Client.UI.Countries.Pages;
+namespace ProtonVPN.Client.UI.Countries;
 
-public partial class CountryViewModel : PageViewModelBase<IMainViewNavigator>
+public partial class ServerViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Title))]
-    private Country? _currentCountry;
+    private readonly IMainViewNavigator _mainViewNavigator;
 
-    public CountryViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(viewNavigator, localizationProvider)
+    public string Name { get; init; } = string.Empty;
+
+    public double Load { get; init; }
+
+    public string LoadPercent { get; init; }
+
+    public bool IsVirtual { get; init; }
+
+    public bool SupportsP2P { get; init; }
+
+    public bool IsUnderMaintenance { get; init; }
+
+    public bool IsActive { get; init; }
+
+    public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator) : base(
+        localizationProvider)
     {
+        _mainViewNavigator = mainViewNavigator;
     }
 
-    public override string? Title => CurrentCountry?.CountryName;
-
-    public override void OnNavigatedTo(object parameter)
+    [RelayCommand]
+    public async Task ConnectAsync(ServerViewModel serverViewModel)
     {
-        base.OnNavigatedTo(parameter);
-
-        CurrentCountry = parameter as Country;
+        // TODO: connect to serverViewModel
     }
 }
