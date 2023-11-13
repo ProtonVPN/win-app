@@ -57,10 +57,21 @@ public class ServerManager : IServerManager
         return _countries;
     }
 
+    public List<string> GetCities()
+    {
+        return GetCitiesByFilter(server => !string.IsNullOrWhiteSpace(server.City));
+    }
+
     public List<string> GetCitiesByCountry(string countryCode)
     {
         return GetCitiesByFilter(server => server.ExitCountry == countryCode &&
                                         !string.IsNullOrWhiteSpace(server.City));
+    }
+
+    public List<string> GetP2PCities()
+    {
+        return GetCitiesByFilter(server => ServerFeatures.SupportsP2P(server.Features) &&
+                                           !string.IsNullOrWhiteSpace(server.City));
     }
 
     public List<string> GetP2PCitiesByCountry(string countryCode)
@@ -109,6 +120,11 @@ public class ServerManager : IServerManager
             .ToList();
     }
 
+    public List<Server> GetSecureCoreServers()
+    {
+        return GetServers(server => ServerFeatures.IsSecureCore(server.Features));
+    }
+
     public List<Server> GetSecureCoreServersByExitCountry(string countryCode)
     {
         return GetServers(server => ServerFeatures.IsSecureCore(server.Features) && server.ExitCountry == countryCode);
@@ -117,6 +133,11 @@ public class ServerManager : IServerManager
     public List<Server> GetP2PServersByExitCountry(string countryCode)
     {
         return GetServers(server => ServerFeatures.SupportsP2P(server.Features) && server.ExitCountry == countryCode);
+    }
+
+    public List<Server> GetTorServers()
+    {
+        return GetServers(server => ServerFeatures.SupportsTor(server.Features));
     }
 
     public List<Server> GetTorServersByExitCountry(string countryCode)
@@ -129,10 +150,15 @@ public class ServerManager : IServerManager
         return GetServers(server => ServerFeatures.SupportsP2P(server.Features) && server.City == city);
     }
 
-    private List<Server> GetServers(Func<LogicalServerResponse, bool> filterFunc)
+    public List<Server> GetP2PServers()
+    {
+        return GetServers(server => ServerFeatures.SupportsP2P(server.Features));
+    }
+
+    public List<Server> GetServers(Func<LogicalServerResponse, bool>? filterFunc = null)
     {
         return _servers
-            .Where(filterFunc)
+            .Where(filterFunc ?? (_ => true))
             .Select(Map)
             .ToList();
     }

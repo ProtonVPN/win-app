@@ -23,6 +23,7 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 
 namespace ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
@@ -37,9 +38,12 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
 
     public TorCountriesPageViewModel(
         IMainViewNavigator mainViewNavigator,
-        ICountriesFeatureTabsViewNavigator viewNavigator,
+        ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
-        IServerManager serverManager) : base(mainViewNavigator, serverManager, viewNavigator, localizationProvider)
+        IServerManager serverManager,
+        NoSearchResultsViewModel noSearchResultsViewModel,
+        CountriesViewModelsFactory countriesViewModelsFactory) : base(mainViewNavigator, serverManager,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countriesViewModelsFactory)
     {
     }
 
@@ -49,13 +53,23 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
         await MainViewNavigator.ShowOverlayAsync<TorOverlayViewModel>();
     }
 
-    protected override IList<string> GetCountryCodes()
+    protected override List<string> GetCountryCodes()
     {
         return ServerManager.GetTorCountryCodes();
     }
 
-    protected override int GetItemCountByCountry(string exitCountryCode)
+    protected override List<string> GetCities()
     {
-        return ServerManager.GetTorServersByExitCountry(exitCountryCode).Count;
+        return new List<string>();
+    }
+
+    protected override List<Server> GetServers()
+    {
+        return ServerManager.GetTorServers();
+    }
+
+    protected override int GetCountryItemsCount(string countryCode)
+    {
+        return ServerManager.GetTorServersByExitCountry(countryCode).Count;
     }
 }

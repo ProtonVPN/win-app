@@ -17,51 +17,153 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.WinUI.UI;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Client.UI.Countries.Controls;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public abstract class CountriesTabViewModelBase : CountryTabViewModelBase, ICountryTabViewModelBase
+public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IViewNavigator>, ICountriesTabViewModelBase
 {
+    protected readonly IMainViewNavigator MainViewNavigator;
+
     protected readonly IServerManager ServerManager;
 
+    protected readonly NoSearchResultsViewModel NoSearchResultsViewModel;
+
+    private readonly CountriesViewModelsFactory _countriesViewModelsFactory;
+
     protected string LastSearchQuery = string.Empty;
+
+    public int TotalCountries => string.IsNullOrWhiteSpace(LastSearchQuery) ? Countries.Count - 1 : Countries.Count;
+
+    public bool HasCountries => TotalCountries > 0;
+
+    public bool HasCities => Cities.Count > 0;
+
+    public bool HasServers => Servers.Count > 0;
+
+    public bool HasItems => HasCountries || HasCities || HasServers;
+
+    [ObservableProperty]
+    private AdvancedCollectionView _countries = new();
+
+    [ObservableProperty]
+    private AdvancedCollectionView _cities = new();
+
+    [ObservableProperty]
+    private AdvancedCollectionView _servers = new();
 
     protected CountriesTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
         IServerManager serverManager,
-        ICountriesFeatureTabsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, viewNavigator, localizationProvider)
+        ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
+        ILocalizationProvider localizationProvider,
+        NoSearchResultsViewModel noSearchResultsViewModel,
+        CountriesViewModelsFactory countriesViewModelsFactory) : base(countriesFeatureTabsViewNavigator, localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
         ServerManager = serverManager;
+        NoSearchResultsViewModel = noSearchResultsViewModel;
+        _countriesViewModelsFactory = countriesViewModelsFactory;
     }
 
-    protected abstract CountryFeature CountryFeature { get; }
+    public abstract IconElement? Icon { get; }
 
-    protected abstract IList<string> GetCountryCodes();
+    public void LoadItems()
+    {
+        Countries = new AdvancedCollectionView(GetCountryViewModels(), true);
+        Countries.SortDescriptions.Add(new(SortDirection.Ascending));
 
-    protected abstract int GetItemCountByCountry(string exitCountryCode);
+        Cities = new AdvancedCollectionView(GetCityViewModels(), true);
+        Cities.SortDescriptions.Add(new(SortDirection.Ascending));
+        Cities.Filter = _ => false;
+
+        Servers = new AdvancedCollectionView(GetServerViewModels(), true);
+        Servers.SortDescriptions.Add(new(SortDirection.Ascending));
+        Servers.Filter = _ => false;
+
+        NotifyPropertyChanges();
+    }
 
     public virtual void FilterItems(string query)
     {
         LastSearchQuery = query;
-        Items.Filter = string.IsNullOrWhiteSpace(LastSearchQuery) ? null : o => MatchesSearchQuery(o, query);
-        OnPropertyChanged(nameof(HasItems));
-        OnPropertyChanged(nameof(TotalItems));
+       
+        Countries.Filter = GetCountriesFilter(query);
+        Cities.Filter = GetHiddenItemsFilter(query);
+        Servers.Filter = GetHiddenItemsFilter(query);
+
+        NotifyPropertyChanges();
     }
 
-    protected bool MatchesSearchQuery(object item, string query)
+    private Predicate<object?> GetCountriesFilter(string query)
     {
-        return item is CountryViewModel country &&
-               !string.IsNullOrWhiteSpace(country.ExitCountryCode) &&
-               country.ExitCountryName.ContainsIgnoringCase(query);
+        return string.IsNullOrWhiteSpace(LastSearchQuery) ? null : o => MatchesSearchQuery(o, query);
+    }
+
+    private Predicate<object> GetHiddenItemsFilter(string query)
+    {
+        return string.IsNullOrWhiteSpace(LastSearchQuery) ? _ => false : o => MatchesSearchQuery(o, query);
+    }
+
+    private void NotifyPropertyChanges()
+    {
+        OnPropertyChanged(nameof(HasItems));
+        OnPropertyChanged(nameof(HasCountries));
+        OnPropertyChanged(nameof(HasCities));
+        OnPropertyChanged(nameof(HasServers));
+        OnPropertyChanged(nameof(TotalCountries));
+    }
+
+    protected abstract List<string> GetCountryCodes();
+
+    protected abstract List<string> GetCities();
+
+    protected abstract List<Server> GetServers();
+
+    protected abstract int GetCountryItemsCount(string countryCode);
+
+    protected abstract CountryFeature CountryFeature { get; }
+
+    private List<CountryViewModel> GetCountryViewModels()
+    {
+        return GetCountryCodes()
+            .Select(GetCountryViewModel)
+            .Prepend(_countriesViewModelsFactory.GetFastestCountryViewModel(CountryFeature))
+            .ToList();
+    }
+
+    private CountryViewModel GetCountryViewModel(string countryCode)
+    {
+        return _countriesViewModelsFactory.GetCountryViewModel(countryCode, CountryFeature, GetCountryItemsCount(countryCode));
+    }
+
+    private List<CityViewModel> GetCityViewModels()
+    {
+        return GetCities().Select(city =>
+        {
+            List<ServerViewModel> servers = ServerManager.GetServersByCity(city)
+                .Select(_countriesViewModelsFactory.GetServerViewModel).ToList();
+            return _countriesViewModelsFactory.GetCityViewModel(city, servers);
+        }).ToList();
+    }
+
+    private List<ServerViewModel> GetServerViewModels()
+    {
+        return GetServers()
+            .Select(_countriesViewModelsFactory.GetServerViewModel)
+            .ToList();
+    }
+
+    protected bool MatchesSearchQuery(object o, string query)
+    {
+        return o is ISearchableItem item && item.MatchesSearchQuery(query);
     }
 
     public override void OnNavigatedTo(object parameter)
@@ -72,48 +174,5 @@ public abstract class CountriesTabViewModelBase : CountryTabViewModelBase, ICoun
         {
             FilterItems(LastSearchQuery);
         }
-    }
-    
-    protected override IList GetItems()
-    {
-        return GetCountryCodes()
-            .Select(CreateCountry)
-            .Prepend(GetFastestCountry())
-            .ToList();
-    }
-
-    protected CountryViewModel GetFastestCountry()
-    {
-        string fastestCountryLabel = Localizer.Get("Countries_Fastest");
-
-        return new CountryViewModel(Localizer, MainViewNavigator)
-        {
-            ExitCountryName = fastestCountryLabel,
-            CountryFeature = CountryFeature,
-            IsSecureCore = CountryFeature == CountryFeature.SecureCore,
-        };
-    }
-
-    protected override IList<SortDescription> GetSortDescriptions()
-    {
-        return new List<SortDescription> { new(SortDirection.Ascending) };
-    }
-
-    private CountryViewModel CreateCountry(string exitCountryCode)
-    {
-        return new CountryViewModel(Localizer, MainViewNavigator)
-        {
-            ExitCountryCode = exitCountryCode,
-            ExitCountryName = Localizer.GetCountryName(exitCountryCode),
-            IsUnderMaintenance = false,
-            SecondaryActionLabel = Localizer.GetPluralFormat(GetCountrySecondaryActionLabel(), GetItemCountByCountry(exitCountryCode)),
-            CountryFeature = CountryFeature,
-            IsSecureCore = CountryFeature == CountryFeature.SecureCore,
-        };
-    }
-
-    private string GetCountrySecondaryActionLabel()
-    {
-        return CountryFeature == CountryFeature.Cities ? "Countries_City" : "Countries_Server";
     }
 }

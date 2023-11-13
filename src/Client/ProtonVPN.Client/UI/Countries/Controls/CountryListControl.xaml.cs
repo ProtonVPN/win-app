@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
 using CommunityToolkit.WinUI.UI;
 using Microsoft.UI.Xaml;
 
@@ -25,24 +24,6 @@ namespace ProtonVPN.Client.UI.Countries.Controls;
 
 public sealed partial class CountryListControl
 {
-    public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
-        nameof(Title),
-        typeof(string),
-        typeof(CountryListControl),
-        new PropertyMetadata(string.Empty));
-
-    public static readonly DependencyProperty InfoLabelProperty = DependencyProperty.Register(
-        nameof(InfoLabel),
-        typeof(string),
-        typeof(CountryListControl),
-        new PropertyMetadata(string.Empty));
-
-    public static readonly DependencyProperty ShowInfoOverlayCommandProperty = DependencyProperty.Register(
-        nameof(ShowInfoOverlayCommand),
-        typeof(ICommand),
-        typeof(CountryListControl),
-        new PropertyMetadata(null));
-
     public static readonly DependencyProperty CountriesProperty = DependencyProperty.Register(
         nameof(Countries),
         typeof(AdvancedCollectionView),
@@ -52,24 +33,6 @@ public sealed partial class CountryListControl
     public CountryListControl()
     {
         InitializeComponent();
-    }
-
-    public string Title
-    {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
-    }
-
-    public string InfoLabel
-    {
-        get => (string)GetValue(InfoLabelProperty);
-        set => SetValue(InfoLabelProperty, value);
-    }
-
-    public ICommand? ShowInfoOverlayCommand
-    {
-        get => (ICommand)GetValue(ShowInfoOverlayCommandProperty);
-        set => SetValue(ShowInfoOverlayCommandProperty, value);
     }
 
     public AdvancedCollectionView Countries

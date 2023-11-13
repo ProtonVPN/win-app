@@ -29,8 +29,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
-    <controls:CountryListControl Countries="{x:Bind ViewModel.Items}"
-                                 InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
-                                 ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}"
-                                 Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_TorCountries', ViewModel.TotalItems)}" />
+    <StackPanel>
+        <controls:CountryListControl Countries="{x:Bind ViewModel.Countries}"
+                                     InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
+                                     ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}"
+                                     Visibility="{x:Bind ViewModel.HasCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_TorCountries', ViewModel.TotalCountries)}" />
+
+        <controls:ServerListControl Servers="{x:Bind ViewModel.Servers}"
+                                    Visibility="{x:Bind ViewModel.HasServers, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_ServersNumber', ViewModel.Servers.Count)}" />
+
+        <controls:NoSearchResultsView Visibility="{x:Bind ViewModel.HasItems, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+    </StackPanel>
 </Page>

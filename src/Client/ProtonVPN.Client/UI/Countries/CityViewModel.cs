@@ -22,10 +22,11 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class CityViewModel : ViewModelBase
+public partial class CityViewModel : ViewModelBase, ISearchableItem
 {
     private readonly IMainViewNavigator _mainViewNavigator;
 
@@ -49,5 +50,10 @@ public partial class CityViewModel : ViewModelBase
     public async Task ShowServerLoadOverlayAsync()
     {
         await _mainViewNavigator.ShowOverlayAsync<ServerLoadOverlayViewModel>();
+    }
+
+    public bool MatchesSearchQuery(string query)
+    {
+        return !string.IsNullOrWhiteSpace(Name) && Name.ContainsIgnoringCase(query);
     }
 }

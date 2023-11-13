@@ -54,7 +54,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <DataTemplate x:DataType="countries:CountriesTabViewModelBase">
                         <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
                                             AutomationProperties.AutomationId="NavigationViewItem"
-                                            Visibility="{x:Bind HasItems, Converter={StaticResource BooleanToVisibilityConverter}}"
                                             Icon="{x:Bind Icon}"
                                             Content="{x:Bind Title}" />
                     </DataTemplate>

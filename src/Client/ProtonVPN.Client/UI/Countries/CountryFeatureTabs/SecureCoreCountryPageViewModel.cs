@@ -22,7 +22,6 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.WinUI.UI;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
@@ -41,7 +40,9 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
         IMainViewNavigator mainViewNavigator,
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, viewNavigator, localizationProvider)
+        CountriesViewModelsFactory countriesViewModelsFactory,
+        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countriesViewModelsFactory, viewNavigator,
+        localizationProvider)
     {
         _serverManager = serverManager;
     }
@@ -59,18 +60,17 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
         await MainViewNavigator.ShowOverlayAsync<SecureCoreOverlayViewModel>();
     }
 
+    protected override List<Server> GetServers(string city)
+    {
+        return new List<Server>();
+    }
+
     protected override IList GetItems()
     {
-        return _serverManager.GetSecureCoreServersByExitCountry(CurrentCountryCode)
-            .Select(s => new CountryViewModel(Localizer, MainViewNavigator)
-            {
-                EntryCountryCode = s.EntryCountry,
-                EntryCountryName = Localizer.GetFormat("Countries_ViaCountry", Localizer.GetCountryName(s.EntryCountry)),
-                ExitCountryCode = s.ExitCountry,
-                ExitCountryName = Localizer.GetCountryName(s.ExitCountry),
-                CountryFeature = CountryFeature.SecureCore,
-                IsSecureCore = true,
-            }).ToList();
+        return _serverManager
+            .GetSecureCoreServersByExitCountry(CurrentCountryCode)
+            .Select(CountriesViewModelsFactory.GetServerViewModel)
+            .ToList();
     }
 
     protected override IList<SortDescription> GetSortDescriptions()

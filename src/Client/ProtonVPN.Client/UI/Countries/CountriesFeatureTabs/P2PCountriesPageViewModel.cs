@@ -23,6 +23,7 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 
 namespace ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
@@ -37,9 +38,13 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
 
     public P2PCountriesPageViewModel(
         IMainViewNavigator mainViewNavigator,
-        ICountriesFeatureTabsViewNavigator viewNavigator,
+        ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
-        IServerManager serverManager) : base(mainViewNavigator, serverManager, viewNavigator, localizationProvider)
+        IServerManager serverManager,
+        NoSearchResultsViewModel noSearchResultsViewModel,
+        CountriesViewModelsFactory countriesViewModelsFactory) : base(
+        mainViewNavigator, serverManager, countriesFeatureTabsViewNavigator, localizationProvider,
+        noSearchResultsViewModel, countriesViewModelsFactory)
     {
     }
 
@@ -49,13 +54,23 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
         MainViewNavigator.ShowOverlayAsync<P2POverlayViewModel>();
     }
 
-    protected override IList<string> GetCountryCodes()
+    protected override List<string> GetCountryCodes()
     {
         return ServerManager.GetP2PCountryCodes();
     }
 
-    protected override int GetItemCountByCountry(string exitCountryCode)
+    protected override List<string> GetCities()
     {
-        return ServerManager.GetP2PServersByExitCountry(exitCountryCode).Count;
+        return ServerManager.GetP2PCities();
+    }
+
+    protected override List<Server> GetServers()
+    {
+        return ServerManager.GetP2PServers();
+    }
+
+    protected override int GetCountryItemsCount(string countryCode)
+    {
+        return ServerManager.GetP2PServersByExitCountry(countryCode).Count;
     }
 }

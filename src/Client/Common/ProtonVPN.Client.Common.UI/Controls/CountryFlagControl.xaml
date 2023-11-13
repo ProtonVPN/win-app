@@ -49,7 +49,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <SolidColorBrush x:Key="ShadowColorBrush"
                          Color="#66000000" />
-        <StaticResource x:Key="SecureCoreOutlineColorBrush" ResourceKey="BorderNormColorBrush" />
     </UserControl.Resources>
 
     <Viewbox>
@@ -90,7 +89,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <!--  Secure Core outline  -->
             <icons:SecureCoreFlagOutline x:Name="PART_SecureCoreOutline"
-                                         Foreground="{ThemeResource SecureCoreOutlineColorBrush}"
+                                         Foreground="{ThemeResource BorderNormColorBrush}"
                                          Margin="-5,5,5,-5"
                                          Visibility="Collapsed" />
         </Grid>

@@ -43,7 +43,9 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         IMainViewNavigator mainViewNavigator,
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, viewNavigator, localizationProvider)
+        CountriesViewModelsFactory countryFeaturesViewModelsFactory,
+        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countryFeaturesViewModelsFactory,
+        viewNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
         MainViewNavigator = mainViewNavigator;
@@ -70,27 +72,10 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         return GetCities().Select(GetCity).ToList();
     }
 
-    protected CityViewModel GetCity(string city)
-    {
-        List<ServerViewModel> servers = GetServersByCity(city);
-        return new(Localizer, MainViewNavigator)
-        {
-            Name = city,
-            Servers = servers,
-        };
-    }
-
     protected override IList<SortDescription> GetSortDescriptions()
     {
         return new List<SortDescription> { new(nameof(CityViewModel.Name), SortDirection.Ascending) };
     }
 
     protected abstract List<string> GetCities();
-
-    protected abstract List<Server> GetServers(string city);
-
-    private List<ServerViewModel> GetServersByCity(string city)
-    {
-        return GetServers(city).Select(Map).OrderBy(s => s.Load).ToList();
-    }
 }

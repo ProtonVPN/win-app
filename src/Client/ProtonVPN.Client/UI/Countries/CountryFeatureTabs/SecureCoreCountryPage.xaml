@@ -24,48 +24,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
-      xmlns:countries="using:ProtonVPN.Client.UI.Countries"
       xmlns:countryControls="using:ProtonVPN.Client.UI.Countries.Controls"
       NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
-    <StackPanel>
-        <countryControls:CountryFeatureTitleControl Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_SecureCoreServers', ViewModel.TotalItems)}"
-                                                    InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
-                                                    ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
-
-        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Items}">
-            <ItemsRepeater.Layout>
-                <StackLayout Spacing="8"
-                             Orientation="Vertical" />
-            </ItemsRepeater.Layout>
-            <ItemsRepeater.ItemTemplate>
-                <DataTemplate x:DataType="countries:CountryViewModel">
-                    <controls:DualCommandsRowControl Padding="12,0"
-                                                     PrimaryCommand="{x:Bind ConnectCommand, Mode=OneTime}"
-                                                     PrimaryCommandParameter="{x:Bind}"
-                                                     PrimaryCommandText="{x:Bind Localizer.Get('Countries_Connect')}">
-
-                        <Grid ColumnSpacing="8" Margin="0,8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <controls:CountryFlagControl Grid.Column="0"
-                                                         EntryCountryCode="{x:Bind EntryCountryCode}"
-                                                         ExitCountryCode="{x:Bind ExitCountryCode}"
-                                                         IsSecureCore="{x:Bind IsSecureCore}" />
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{x:Bind ExitCountryName}" />
-                                <TextBlock Text="{x:Bind EntryCountryName}"
-                                           Foreground="{ThemeResource TextWeakColorBrush}" />
-                            </StackPanel>
-                        </Grid>
-                    </controls:DualCommandsRowControl>
-                </DataTemplate>
-            </ItemsRepeater.ItemTemplate>
-        </ItemsRepeater>
-    </StackPanel>
+    <countryControls:ServerListControl Servers="{x:Bind ViewModel.Items}"
+                                       Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_SecureCoreServers', ViewModel.TotalItems)}"
+                                       InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
+                                       ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
 </Page>

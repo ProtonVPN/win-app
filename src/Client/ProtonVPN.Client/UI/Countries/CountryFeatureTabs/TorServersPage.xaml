@@ -24,23 +24,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:countries="using:ProtonVPN.Client.UI.Countries"
       xmlns:controls="using:ProtonVPN.Client.UI.Countries.Controls"
       NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
-    <StackPanel>
-        <controls:CountryFeatureTitleControl Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_TorServers', ViewModel.TotalItems)}"
-                                             InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
-                                             ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
-       
-        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Items}">
-            <ItemsRepeater.ItemTemplate>
-                <DataTemplate x:DataType="countries:ServerViewModel">
-                    <controls:ServerRowControl ServerViewModel="{x:Bind}" />
-                </DataTemplate>
-            </ItemsRepeater.ItemTemplate>
-        </ItemsRepeater>
-    </StackPanel>
+    <controls:ServerListControl Servers="{x:Bind ViewModel.Items}"
+                                Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_TorServers', ViewModel.TotalItems)}"
+                                InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
+                                ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
 </Page>

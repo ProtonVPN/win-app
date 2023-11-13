@@ -23,6 +23,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Account;
 using ProtonVPN.Client.UI.Countries;
+using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
 using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
@@ -99,6 +100,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<LoginShellViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);
+        RegisterViewModel<NoSearchResultsViewModel>(builder);
 
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);

@@ -29,11 +29,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
-    <StackPanel>
-        <controls:CountryFeatureTitleControl Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_P2P_Cities', ViewModel.TotalItems)}"
-                                             InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
-                                             ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
-
-        <controls:CityListControl Cities="{x:Bind ViewModel.Items}" />
-    </StackPanel>
+    <controls:CityListControl Cities="{x:Bind ViewModel.Items}"
+                              Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_P2P_Cities', ViewModel.TotalItems)}"
+                              InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
+                              ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}" />
 </Page>

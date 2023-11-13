@@ -33,6 +33,8 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
 {
     protected IMainViewNavigator MainViewNavigator;
 
+    public readonly CountriesViewModelsFactory CountriesViewModelsFactory;
+
     public abstract IconElement? Icon { get; }
 
     public virtual bool HasItems => Items.Count > 0;
@@ -47,10 +49,12 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
 
     protected CountryTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
+        CountriesViewModelsFactory countriesViewModelsFactory,
         IViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider) : base(viewNavigator, localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
+        CountriesViewModelsFactory = countriesViewModelsFactory;
     }
 
     public virtual void LoadItems(string? country = null)
@@ -72,18 +76,21 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
         LoadItems(CurrentCountryCode);
     }
 
-    protected ServerViewModel Map(Server server)
+    protected CityViewModel GetCity(string city)
     {
-        return new ServerViewModel(Localizer, MainViewNavigator)
-        {
-            Name = server.Name,
-            Load = server.Load / 100d,
-            LoadPercent = $"{(double)server.Load / 100:P0}",
-            IsVirtual = server.IsVirtual,
-            SupportsP2P = server.SupportsP2P,
-            IsUnderMaintenance = server.IsUnderMaintenance,
-        };
+        List<ServerViewModel> servers = GetServersByCity(city);
+        return CountriesViewModelsFactory.GetCityViewModel(city, servers);
     }
+
+    private List<ServerViewModel> GetServersByCity(string city)
+    {
+        return GetServers(city)
+            .Select(CountriesViewModelsFactory.GetServerViewModel)
+            .OrderBy(s => s.Load)
+            .ToList();
+    }
+
+    protected abstract List<Server> GetServers(string city);
 
     protected abstract IList GetItems();
 

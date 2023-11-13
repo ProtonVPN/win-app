@@ -66,16 +66,20 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Countries\Controls\NoSearchResultsView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Countries\Controls\ServerListControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Countries\Controls\CountryFeatureTitleControl.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Countries\Controls\SecureCoreServerRowControl.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
         <Page Update="UI\Countries\Controls\ServerRowControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="UI\Countries\Components\CountryListComponent.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="UI\Countries\Components\CountryRowComponent.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
         <Page Update="UI\Countries\CountryFeatureTabs\P2PCitiesPage.xaml">
@@ -156,6 +160,9 @@
         <None Remove="UI\Countries\Controls\CountryFeatureTitleControl.xaml" />
         <None Remove="UI\Countries\Controls\CountryListControl.xaml" />
         <None Remove="UI\Countries\Controls\CountryRowControl.xaml" />
+        <None Remove="UI\Countries\Controls\NoSearchResultsView.xaml" />
+        <None Remove="UI\Countries\Controls\SecureCoreServerRowControl.xaml" />
+        <None Remove="UI\Countries\Controls\ServerListControl.xaml" />
         <None Remove="UI\Countries\Controls\ServerRowControl.xaml" />
         <None Remove="UI\Countries\CountriesFeatureTabs\AllCountriesPage.xaml" />
         <None Remove="UI\Countries\CountriesFeatureTabs\P2PCountriesPage.xaml" />

@@ -27,6 +27,7 @@ using ProtonVPN.Client.Models.Edition;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.OS.Processes;
@@ -65,5 +66,7 @@ public class ClientModule : Module
         builder.Register(c =>
             new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
             .As<INetworkInterfaces>().SingleInstance();
+
+        builder.RegisterType<CountriesViewModelsFactory>().SingleInstance();
     }
 }

@@ -139,7 +139,7 @@ public sealed partial class CountryFlagControl
 
     private void UpdateEntryCountryFlag()
     {
-        GetImageSource(EntryCountryCode);
+        PART_EntryCountryFlag.Source = GetImageSource(EntryCountryCode);
     }
 
     private SvgImageSource GetImageSource(string? countryCode)

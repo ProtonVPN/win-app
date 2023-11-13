@@ -44,14 +44,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
         <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
-
-        <Style x:Key="RowButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button">
-            <Setter Property="CornerRadius" Value="8" />
-            <Setter Property="MinHeight" Value="36" />
-            <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
     </UserControl.Resources>
 
     <Grid x:Name="ContentArea">

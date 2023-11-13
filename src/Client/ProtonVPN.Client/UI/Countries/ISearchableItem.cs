@@ -19,15 +19,7 @@
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public class CountryNavigationArgs
+public interface ISearchableItem
 {
-    public string CountryCode { get; }
-
-    public CountryFeature Feature { get; }
-
-    public CountryNavigationArgs(string countryCode, CountryFeature feature)
-    {
-        CountryCode = countryCode;
-        Feature = feature;
-    }
+    bool MatchesSearchQuery(string query);
 }
