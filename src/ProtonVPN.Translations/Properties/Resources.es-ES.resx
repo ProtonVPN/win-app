@@ -1834,7 +1834,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Problemas potenciales que podrían causar que su conexión se agotara el tiempo de conexión y su solución</value>
+    <value>Problemas potenciales que podrían causar que tu conexión se agotara el tiempo de conexión y su solución</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
@@ -2773,7 +2773,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Usar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirte a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo use servidores DNS en los que confíe. ¿Desea activar los servidores DNS personalizados?</value>
+    <value>Utilizar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirte a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo utiliza servidores DNS en los que confíes. ¿Deseas activar servidores DNS personalizados?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">

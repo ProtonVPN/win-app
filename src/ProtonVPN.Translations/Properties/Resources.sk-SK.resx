@@ -150,7 +150,7 @@
     <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
   </data>
   <data name="About_lbl_CurrentVersion">
-    <value>Momentálna verzia:</value>
+    <value>Aktuálna verzia:</value>
     <comment>The label for current app version number in About window</comment>
   </data>
   <data name="About_lbl_CurrentVersion_EarlyAccess">
@@ -222,7 +222,7 @@
     <value>v &lt;Bold&gt;{0}&lt;/Bold&gt; krajinách</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
-    <value>Momentálne predplatné</value>
+    <value>Súčasný plán</value>
   </data>
   <data name="Account_lbl_Device_One">
     <value>Zariadenie</value>
@@ -305,7 +305,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Vaša žiadosť zlyhala. Prosím skúste znovu.</value>
+    <value>Vaša žiadosť zlyhala. Skúste znovu, prosím.</value>
   </data>
   <data name="App_mnu_About">
     <value>O aplikácii</value>
@@ -328,7 +328,7 @@
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
-    <value>Pomoc</value>
+    <value>Nápoveda</value>
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
@@ -474,11 +474,11 @@
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>Vaše nahlásenie nebolo odoslané</value>
+    <value>Vaše hlásenie nebolo odoslané</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Prosím počkajte, kým sa proces odosielania nedokončí</value>
+    <value>Počkajte, prosím, kým sa proces odosielania nedokončí</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -570,7 +570,7 @@
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE">
-    <value>Spojené Arabské Emiráty</value>
+    <value>Spojené arabské emiráty</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF">

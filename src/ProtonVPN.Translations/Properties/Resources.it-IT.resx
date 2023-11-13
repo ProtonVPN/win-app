@@ -2582,7 +2582,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% carico</value>
+    <value>Carico al {0}%</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
@@ -2960,7 +2960,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Posizioni BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
-    <value>Posizioni GRATUITE ({0})</value>
+    <value>Località GRATUITE ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
     <value>Server gratuiti</value>
