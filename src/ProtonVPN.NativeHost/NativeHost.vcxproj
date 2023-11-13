@@ -117,10 +117,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Host.win-x64\7.0.2\runtimes\win-x64\native\nethost.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>nethost\nethost.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Host.win-x64\7.0.2\runtimes\win-x64\native\nethost.dll" "$(OutputPath)nethost.dll"</Command>
+      <Command>copy /Y "nethost\nethost.dll" "$(OutputPath)nethost.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,10 +139,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Host.win-x64\7.0.2\runtimes\win-x64\native\nethost.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>nethost\nethost.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Host.win-x64\7.0.2\runtimes\win-x64\native\nethost.dll" "$(OutputPath)nethost.dll"</Command>
+      <Command>copy /Y "nethost\nethost.dll" "$(OutputPath)nethost.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
