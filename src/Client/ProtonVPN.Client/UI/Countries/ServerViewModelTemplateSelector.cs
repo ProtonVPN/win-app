@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,27 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI.UI;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
-namespace ProtonVPN.Client.UI.Countries.Controls;
+namespace ProtonVPN.Client.UI.Countries;
 
-public sealed partial class CountryListControl
+public class ServerViewModelTemplateSelector : DataTemplateSelector
 {
-    public static readonly DependencyProperty CountriesProperty = DependencyProperty.Register(
-        nameof(Countries),
-        typeof(AdvancedCollectionView),
-        typeof(CountryListControl),
-        new PropertyMetadata(null));
+    public DataTemplate SecureCoreServerTemplate { get; set; }
 
-    public CountryListControl()
-    {
-        InitializeComponent();
-    }
+    public DataTemplate ServerTemplate { get; set; }
 
-    public AdvancedCollectionView Countries
+    protected override DataTemplate SelectTemplateCore(object item)
     {
-        get => (AdvancedCollectionView)GetValue(CountriesProperty);
-        set => SetValue(CountriesProperty, value);
+        if (item is SecureCoreServerViewModel)
+        {
+            return SecureCoreServerTemplate;
+        }
+
+        return item is ServerViewModel ? ServerTemplate : null;
     }
 }

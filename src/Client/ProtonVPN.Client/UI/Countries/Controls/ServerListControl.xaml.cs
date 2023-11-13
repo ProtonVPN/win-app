@@ -22,22 +22,22 @@ using Microsoft.UI.Xaml;
 
 namespace ProtonVPN.Client.UI.Countries.Controls;
 
-public sealed partial class CountryListControl
+public sealed partial class ServerListControl
 {
-    public static readonly DependencyProperty CountriesProperty = DependencyProperty.Register(
-        nameof(Countries),
+    public static readonly DependencyProperty ServersProperty = DependencyProperty.Register(
+        nameof(Servers),
         typeof(AdvancedCollectionView),
-        typeof(CountryListControl),
+        typeof(ServerListControl),
         new PropertyMetadata(null));
 
-    public CountryListControl()
+    public ServerListControl()
     {
         InitializeComponent();
     }
 
-    public AdvancedCollectionView Countries
+    public AdvancedCollectionView Servers
     {
-        get => (AdvancedCollectionView)GetValue(CountriesProperty);
-        set => SetValue(CountriesProperty, value);
+        get => (AdvancedCollectionView)GetValue(ServersProperty);
+        set => SetValue(ServersProperty, value);
     }
 }

@@ -31,10 +31,11 @@ public class CitiesPageViewModel : CitiesPageViewModelBase
     public CitiesPageViewModel(
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
+        CountriesViewModelsFactory countriesViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator) : base(connectionManager, mainViewNavigator, serverManager, viewNavigator,
-        localizationProvider)
+        countriesViewModelsFactory, localizationProvider)
     {
     }
 

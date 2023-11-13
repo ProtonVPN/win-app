@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts.Servers;
+
 namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IServerManager
@@ -24,12 +26,17 @@ public interface IServerManager
     Task FetchServersAsync();
 
     List<string> GetCountryCodes();
+    List<string> GetCities();
 
     List<string> GetCitiesByCountry(string countryCode);
+
+    List<string> GetP2PCities();
 
     List<string> GetP2PCitiesByCountry(string countryCode);
 
     List<Server> GetServersByCity(string city);
+
+    List<Server> GetServers(Func<LogicalServerResponse, bool>? filterFunc = null);
 
     List<string> GetSecureCoreCountryCodes();
 
@@ -37,13 +44,19 @@ public interface IServerManager
 
     List<string> GetTorCountryCodes();
 
+    List<Server> GetSecureCoreServers();
+
     List<Server> GetSecureCoreServersByExitCountry(string countryCode);
 
     List<Server> GetP2PServersByExitCountry(string countryCode);
 
+    List<Server> GetTorServers();
+
     List<Server> GetTorServersByExitCountry(string countryCode);
 
     List<Server> GetP2PServersByCity(string city);
+
+    List<Server> GetP2PServers();
 
     string? GetHostCountryCode(string countryCode);
 }

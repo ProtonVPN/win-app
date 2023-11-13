@@ -39,8 +39,10 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
     public TorServersPageViewModel(
         IMainViewNavigator mainViewNavigator,
         IServerManager serverManager,
+        CountriesViewModelsFactory countriesViewModelsFactory,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, viewNavigator, localizationProvider)
+        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countriesViewModelsFactory, viewNavigator,
+        localizationProvider)
     {
         _serverManager = serverManager;
     }
@@ -58,11 +60,16 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
         await MainViewNavigator.ShowOverlayAsync<TorOverlayViewModel>();
     }
 
+    protected override List<Server> GetServers(string city)
+    {
+        return new List<Server>();
+    }
+
     protected override IList GetItems()
     {
         return _serverManager
             .GetTorServersByExitCountry(CurrentCountryCode)
-            .Select(Map)
+            .Select(CountriesViewModelsFactory.GetServerViewModel)
             .ToList();
     }
 

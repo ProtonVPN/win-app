@@ -33,7 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <custom:GhostButton IsEnabled="{x:Bind ServerViewModel.IsUnderMaintenance, Converter={StaticResource NotBooleanToBooleanConverter}}"
                         Command="{x:Bind ServerViewModel.ConnectCommand, Mode=OneTime}"
-                        CommandParameter="{x:Bind ServerViewModel}"
                         HorizontalAlignment="Stretch"
                         CornerRadius="8"
                         Padding="8">
@@ -64,8 +63,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Orientation="Horizontal"
                         Spacing="4">
                 <pathIcons:Globe ToolTipService.ToolTip="{x:Bind ServerViewModel.Localizer.Get('Countries_SmartRouting')}"
+                                 Foreground="{ThemeResource TextWeakColorBrush}"
                                  Visibility="{x:Bind ServerViewModel.IsVirtual, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <pathIcons:ArrowRightArrowLeft ToolTipService.ToolTip="{x:Bind ServerViewModel.Localizer.Get('Countries_P2P')}"
+                                               Foreground="{ThemeResource TextWeakColorBrush}"
                                                Visibility="{x:Bind ServerViewModel.SupportsP2P, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
 

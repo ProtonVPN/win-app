@@ -21,12 +21,13 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class ServerViewModel : ViewModelBase
+public partial class ServerViewModel : ViewModelBase, IComparable, ISearchableItem
 {
-    private readonly IMainViewNavigator _mainViewNavigator;
+    protected readonly IMainViewNavigator MainViewNavigator;
 
     public string Name { get; init; } = string.Empty;
 
@@ -45,12 +46,22 @@ public partial class ServerViewModel : ViewModelBase
     public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator) : base(
         localizationProvider)
     {
-        _mainViewNavigator = mainViewNavigator;
+        MainViewNavigator = mainViewNavigator;
     }
 
     [RelayCommand]
-    public async Task ConnectAsync(ServerViewModel serverViewModel)
+    public async Task ConnectAsync()
     {
         // TODO: connect to serverViewModel
+    }
+
+    public int CompareTo(object? obj)
+    {
+        return obj is not ServerViewModel server ? 0 : Load.CompareTo(server.Load);
+    }
+
+    public bool MatchesSearchQuery(string query)
+    {
+        return Name.ContainsIgnoringCase(query);
     }
 }

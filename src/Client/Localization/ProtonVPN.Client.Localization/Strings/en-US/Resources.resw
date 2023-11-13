@@ -2030,12 +2030,12 @@
   <data name="Countries_Server_Other" xml:space="preserve">
     <value>{0} servers</value>
   </data>
-  <data name="Countries_CitiesNumber" xml:space="preserve">
+  <data name="Countries_NumberOfCities" xml:space="preserve">
     <value>Cities ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
-  <data name="Countries_AllCountries" xml:space="preserve">
-    <value>All countries ({0})</value>
+  <data name="Countries_NumberOfCountries" xml:space="preserve">
+    <value>Countries ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreCountries" xml:space="preserve">
@@ -2158,5 +2158,15 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Countries_SmartRouting" xml:space="preserve">
     <value>Smart routing</value>
+  </data>
+  <data name="Countries_NoSearchResults" xml:space="preserve">
+    <value>No results found</value>
+  </data>
+  <data name="Countries_TryDifferentKeyword" xml:space="preserve">
+    <value>Please try a different keyword</value>
+  </data>
+  <data name="Countries_NumberOfServers" xml:space="preserve">
+    <value>Servers ({0})</value>
+    <comment>{0} represents a number of servers</comment>
   </data>
 </root>

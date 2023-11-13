@@ -29,7 +29,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <controls:CountryListControl Countries="{x:Bind ViewModel.Items}"
-                                 InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
-                                 Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_AllCountries', ViewModel.TotalItems)}" />
+    <StackPanel>
+        <controls:CountryListControl Countries="{x:Bind ViewModel.Countries}"
+                                     InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
+                                     Visibility="{x:Bind ViewModel.HasCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfCountries', ViewModel.TotalCountries)}" />
+
+        <controls:CityListControl Cities="{x:Bind ViewModel.Cities}"
+                                  Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfCities', ViewModel.Cities.Count)}"
+                                  Visibility="{x:Bind ViewModel.HasCities, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <controls:ServerListControl Servers="{x:Bind ViewModel.Servers}"
+                                    Visibility="{x:Bind ViewModel.HasServers, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfServers', ViewModel.Servers.Count)}" />
+
+        <controls:NoSearchResultsView Visibility="{x:Bind ViewModel.HasItems, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+    </StackPanel>
 </Page>

@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Countries.Controls;
 
 namespace ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
 
@@ -32,25 +33,34 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
 
     protected override CountryFeature CountryFeature => CountryFeature.Cities;
 
-    public override bool HasItems => string.IsNullOrWhiteSpace(LastSearchQuery) ? Items.Count > 1 : Items.Count > 0;
-
-    public override int TotalItems => string.IsNullOrWhiteSpace(LastSearchQuery) ? Items.Count - 1 : Items.Count;
-
     public AllCountriesPageViewModel(
         IMainViewNavigator mainViewNavigator,
-        ICountriesFeatureTabsViewNavigator viewNavigator,
+        ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         IServerManager serverManager,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, serverManager, viewNavigator, localizationProvider)
+        ILocalizationProvider localizationProvider,
+        NoSearchResultsViewModel noSearchResultsViewModel,
+        CountriesViewModelsFactory countriesViewModelsFactory) : base(mainViewNavigator, serverManager,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countriesViewModelsFactory)
     {
     }
 
-    protected override IList<string> GetCountryCodes()
+    protected override List<string> GetCountryCodes()
     {
         return ServerManager.GetCountryCodes();
     }
 
-    protected override int GetItemCountByCountry(string exitCountryCode)
+    protected override List<string> GetCities()
     {
-        return ServerManager.GetCitiesByCountry(exitCountryCode).Count;
+        return ServerManager.GetCities();
+    }
+
+    protected override List<Server> GetServers()
+    {
+        return ServerManager.GetServers().Where(s => !s.IsSecureCore).ToList();
+    }
+
+    protected override int GetCountryItemsCount(string countryCode)
+    {
+        return ServerManager.GetCitiesByCountry(countryCode).Count;
     }
 }

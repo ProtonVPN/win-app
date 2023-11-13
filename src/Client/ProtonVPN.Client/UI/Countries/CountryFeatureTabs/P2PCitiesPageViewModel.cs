@@ -33,10 +33,12 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
     public P2PCitiesPageViewModel(
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
+        CountriesViewModelsFactory countriesViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator) :
-        base(connectionManager, mainViewNavigator, serverManager, viewNavigator, localizationProvider)
+        base(connectionManager, mainViewNavigator, serverManager, viewNavigator, countriesViewModelsFactory,
+            localizationProvider)
     {
     }
 

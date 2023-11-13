@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,27 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI.UI;
-using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Navigation;
 
-namespace ProtonVPN.Client.UI.Countries.Controls;
+namespace ProtonVPN.Client.UI.Countries;
 
-public sealed partial class CountryListControl
+public class SecureCoreServerViewModel : ServerViewModel
 {
-    public static readonly DependencyProperty CountriesProperty = DependencyProperty.Register(
-        nameof(Countries),
-        typeof(AdvancedCollectionView),
-        typeof(CountryListControl),
-        new PropertyMetadata(null));
+    public string ExitCountryCode { get; init; } = string.Empty;
 
-    public CountryListControl()
-    {
-        InitializeComponent();
-    }
+    public string ExitCountryName { get; init; } = string.Empty;
 
-    public AdvancedCollectionView Countries
+    public string EntryCountryCode { get; init; } = string.Empty;
+
+    public string EntryCountryName { get; init; } = string.Empty;
+
+    public SecureCoreServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator) :
+        base(localizationProvider, mainViewNavigator)
     {
-        get => (AdvancedCollectionView)GetValue(CountriesProperty);
-        set => SetValue(CountriesProperty, value);
     }
 }

@@ -17,51 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Input;
-using Microsoft.UI.Xaml;
-
 namespace ProtonVPN.Client.UI.Countries.Controls;
 
-public sealed partial class CountryFeatureTitleControl
+public partial class CountryFeatureTitleControl
 {
-    public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
-        nameof(Title),
-        typeof(string),
-        typeof(CountryFeatureTitleControl),
-        new PropertyMetadata(string.Empty));
-
-    public static readonly DependencyProperty InfoLabelProperty = DependencyProperty.Register(
-        nameof(InfoLabel),
-        typeof(string),
-        typeof(CountryFeatureTitleControl),
-        new PropertyMetadata(string.Empty));
-
-    public static readonly DependencyProperty ShowInfoOverlayCommandProperty = DependencyProperty.Register(
-        nameof(ShowInfoOverlayCommand),
-        typeof(ICommand),
-        typeof(CountryListControl),
-        new PropertyMetadata(null));
-
     public CountryFeatureTitleControl()
     {
         InitializeComponent();
-    }
-
-    public string Title
-    {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
-    }
-
-    public string InfoLabel
-    {
-        get => (string)GetValue(InfoLabelProperty);
-        set => SetValue(InfoLabelProperty, value);
-    }
-
-    public ICommand? ShowInfoOverlayCommand
-    {
-        get => (ICommand)GetValue(ShowInfoOverlayCommandProperty);
-        set => SetValue(ShowInfoOverlayCommandProperty, value);
     }
 }

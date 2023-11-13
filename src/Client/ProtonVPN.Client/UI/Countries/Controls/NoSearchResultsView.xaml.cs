@@ -17,27 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI.UI;
-using Microsoft.UI.Xaml;
-
 namespace ProtonVPN.Client.UI.Countries.Controls;
 
-public sealed partial class CountryListControl
+public sealed partial class NoSearchResultsView
 {
-    public static readonly DependencyProperty CountriesProperty = DependencyProperty.Register(
-        nameof(Countries),
-        typeof(AdvancedCollectionView),
-        typeof(CountryListControl),
-        new PropertyMetadata(null));
-
-    public CountryListControl()
+    public NoSearchResultsView()
     {
+        ViewModel = App.GetService<NoSearchResultsViewModel>();
         InitializeComponent();
     }
 
-    public AdvancedCollectionView Countries
-    {
-        get => (AdvancedCollectionView)GetValue(CountriesProperty);
-        set => SetValue(CountriesProperty, value);
-    }
+    public NoSearchResultsViewModel ViewModel { get; }
 }

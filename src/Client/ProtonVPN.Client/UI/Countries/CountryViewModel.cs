@@ -22,10 +22,11 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class CountryViewModel : ViewModelBase, IComparable
+public partial class CountryViewModel : ViewModelBase, IComparable, ISearchableItem
 {
     private readonly IMainViewNavigator _mainViewNavigator;
 
@@ -34,8 +35,6 @@ public partial class CountryViewModel : ViewModelBase, IComparable
     public string ExitCountryName { get; init; } = string.Empty;
 
     public string EntryCountryCode { get; init; } = string.Empty;
-
-    public string EntryCountryName { get; init; } = string.Empty;
 
     public string SecondaryActionLabel { get; init; } = string.Empty;
 
@@ -52,7 +51,7 @@ public partial class CountryViewModel : ViewModelBase, IComparable
     }
 
     [RelayCommand]
-    public async Task ConnectAsync(CountryViewModel country)
+    public async Task ConnectAsync()
     {
         await _mainViewNavigator.NavigateToAsync<HomeViewModel>();
         // TODO: connect
@@ -82,5 +81,10 @@ public partial class CountryViewModel : ViewModelBase, IComparable
         }
 
         return string.Compare(ExitCountryName, country.ExitCountryName, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public bool MatchesSearchQuery(string query)
+    {
+        return !string.IsNullOrWhiteSpace(ExitCountryCode) && ExitCountryName.ContainsIgnoringCase(query);
     }
 }
