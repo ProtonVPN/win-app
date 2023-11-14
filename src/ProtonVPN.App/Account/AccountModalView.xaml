@@ -99,7 +99,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Style="{StaticResource InfoLabel}"
                            Grid.Column="0"
@@ -115,19 +114,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Grid.Column="0"
                            Grid.Row="1"
                            FontSize="16"
-                           Text="{translations:Loc Account_lbl_AccountType}" />
-                <TextBlock Style="{StaticResource InfoValue}"
-                           Grid.Column="1"
-                           Grid.Row="1"
-                           Text="{Binding AccountType}" />
-                <TextBlock Style="{StaticResource InfoLabel}"
-                           Grid.Column="0"
-                           Grid.Row="2"
-                           FontSize="16"
                            Text="{translations:Loc Account_lbl_AccountPlan}" />
                 <TextBlock Style="{StaticResource InfoValue}"
                            Grid.Column="1"
-                           Grid.Row="2"
+                           Grid.Row="1"
                            Text="{Binding PlanName}" />
             </Grid>
             <Grid Grid.Column="1" HorizontalAlignment="Right">

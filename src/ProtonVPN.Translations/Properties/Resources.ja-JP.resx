@@ -118,136 +118,127 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Impossibile cercare gli aggiornamenti</value>
+    <value>更新を確認できませんでした</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Checking">
-    <value>Controllando gli aggiornamenti</value>
+    <value>更新を確認中</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Impossibile scaricare l'aggiornamento</value>
+    <value>更新プログラムをダウンロードできませんでした</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Downloading">
-    <value>Scaricando l'aggiornamento</value>
+    <value>更新プログラムをダウンロード中</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_None">
-    <value>Proton VPN è aggiornato</value>
+    <value>Proton VPN は最新です</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Ready">
-    <value>Nuova versione dell'app disponibile!</value>
+    <value>アプリの新バージョンが利用可能です！</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion">
-    <value>Changelog della v.{0}</value>
+    <value>v.{0} の更新情報</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
   </data>
   <data name="About_lbl_ChangelogVersion_New">
-    <value>Nuovo</value>
+    <value>新着情報</value>
     <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
   </data>
   <data name="About_lbl_CurrentVersion">
-    <value>Versione corrente:</value>
+    <value>現在のバージョン:</value>
     <comment>The label for current app version number in About window</comment>
   </data>
   <data name="About_lbl_CurrentVersion_EarlyAccess">
-    <value>Accesso anticipato</value>
+    <value>早期アクセス</value>
     <comment>The label displayed next to current app version in About window. Displayed for early access app version.</comment>
   </data>
   <data name="About_lbl_LastUpdate">
-    <value>Ultimo aggiornamento:</value>
+    <value>最後の更新:</value>
     <comment>The label for last update date in About window</comment>
   </data>
   <data name="About_lbl_LicensingInformation">
-    <value>Informazioni sulla licenza:</value>
+    <value>ライセンス情報:</value>
     <comment>The label for licensing information in About window</comment>
   </data>
   <data name="About_lnk_ReadLicense">
-    <value>Leggi qui</value>
+    <value>詳細はこちら</value>
     <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
   </data>
   <data name="About_lnk_Update">
-    <value>Aggiorna</value>
+    <value>更新</value>
     <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
   </data>
   <data name="About_ttl">
-    <value>Info</value>
+    <value>アプリについて</value>
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
-    <value>Gestisci abbonamento</value>
+    <value>サブスクリプションの管理</value>
     <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
-    <value>Accesso a contenuti bloccati</value>
+    <value>ブロックされたコンテンツへアクセス</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_AccountPlan">
-    <value>Piano dell'account:</value>
+    <value>アカウントプラン:</value>
     <comment>The label for account plan name in Account window</comment>
   </data>
   <data name="Account_lbl_AccountType">
-    <value>Tipo di account:</value>
+    <value>アカウントの種類:</value>
     <comment>The label for account type in Account window</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures">
-    <value>Tutte le funzionalità del piano Plus</value>
+    <value>Plus プランの全機能</value>
     <comment>The text displayed in Account window</comment>
   </data>
-  <data name="Account_lbl_Connection_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; Connessione VPN</value>
-  </data>
   <data name="Account_lbl_Connection_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; Connessioni VPN</value>
-  </data>
-  <data name="Account_lbl_Countries_One">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; paese</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; 件の VPN 接続</value>
   </data>
   <data name="Account_lbl_Countries_Other">
-    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; paesi</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; か国</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
-    <value>Piano attuale</value>
-  </data>
-  <data name="Account_lbl_Device_One">
-    <value>Dispositivo</value>
+    <value>現在のプラン</value>
   </data>
   <data name="Account_lbl_Device_Other">
-    <value>Dispositivi</value>
+    <value>デバイス</value>
   </data>
   <data name="Account_lbl_Free">
     <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_HighSpeed">
-    <value>&lt;Bold&gt;Alta&lt;/Bold&gt; velocità</value>
+    <value>&lt;Bold&gt;高速&lt;/Bold&gt;</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Velocità massima&lt;/Bold&gt; (fino a 10 Gbps)</value>
+    <value>&lt;Bold&gt;最高速&lt;/Bold&gt; (最大 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
-    <value>&lt;Bold&gt;Media&lt;/Bold&gt; velocità</value>
+    <value>&lt;Bold&gt;中速&lt;/Bold&gt;</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Adblocker (NetShield)</value>
+    <value>広告ブロッカー (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Rigorosa politica di non conservazione dei log</value>
+    <value>厳格なノーログポリシー</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
-    <value>Supporto P2P/BitTorrent</value>
+    <value>P2P・BitTorrent 対応</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info">
-    <value>Supporto per protocolli di condivisione dei file come Bittorrent.</value>
+    <value>BitTorrent 等のファイル共有プロトコルのサポート。</value>
     <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_Plus">
@@ -258,77 +249,74 @@
     <value>Secure Core VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
-  <data name="Account_lbl_Servers_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
-  </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; サーバー</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Streaming supportato</value>
+    <value>ストリーミングサービス対応</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
-    <value>TOR su VPN</value>
+    <value>Tor over VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Username">
-    <value>Nome utente:</value>
+    <value>ユーザー名:</value>
     <comment>The label for user login name in Account window</comment>
   </data>
   <data name="Account_ttl">
-    <value>Account</value>
+    <value>アカウント</value>
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>La tua richiesta è fallita. Per favore riprova.</value>
+    <value>リクエストに失敗しました。再度お試しください。</value>
   </data>
   <data name="App_mnu_About">
-    <value>Info</value>
+    <value>アプリについて</value>
     <comment>The header of About menu item in the main app window (opens About window)</comment>
   </data>
   <data name="App_mnu_Account">
-    <value>Account</value>
+    <value>アカウント</value>
     <comment>The header of Account menu item in the main app window (opens Account window)</comment>
   </data>
   <data name="App_mnu_Connect">
-    <value>Connetti</value>
+    <value>接続</value>
     <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="App_mnu_Disconnect">
-    <value>Disconnetti</value>
+    <value>接続解除</value>
     <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
   </data>
   <data name="App_mnu_Exit">
-    <value>Esci</value>
+    <value>終了</value>
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
-    <value>Aiuto</value>
+    <value>ヘルプ</value>
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Disconnetti</value>
+    <value>サインアウト</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
-    <value>Profili</value>
+    <value>プロファイル</value>
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
   <data name="App_mnu_ReportBug">
-    <value>Segnala un problema</value>
+    <value>問題を報告</value>
     <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="App_mnu_Settings">
-    <value>Impostazioni</value>
+    <value>設定</value>
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Disconnettendo l'applicazione, tutte le connessioni VPN attive verranno terminate. Vuoi continuare?</value>
+    <value>アプリケーションからサインアウトすると、現在有効な VPN 接続が解除されます。続行しますか？</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Per completare il processo di aggiornamento, Proton VPN si disconnetterà temporaneamente e disattiverà il kill switch permanente se attivo. Vuoi continuare?</value>
+    <value>更新を完了させるには、Proton VPN を一時的に接続解除し、有効な場合は永続的キルスイッチを無効にする必要があります。続行しますか？</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -336,173 +324,173 @@
     <comment>The title of main app window. Should not be converted.</comment>
   </data>
   <data name="BugReport_btn_Back">
-    <value>Indietro</value>
+    <value>戻る</value>
     <comment>The text on Back button in Issue Report window</comment>
   </data>
   <data name="BugReport_btn_Cancel">
-    <value>Annulla</value>
+    <value>キャンセル</value>
     <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
   </data>
   <data name="BugReport_btn_Close">
-    <value>Chiudi</value>
+    <value>閉じる</value>
     <comment>The text on Close button in Issue Report window (closes the window)</comment>
   </data>
   <data name="BugReport_btn_FillOutTheForm">
-    <value>Contattaci</value>
+    <value>お問い合わせ</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Aggiorna</value>
+    <value>更新</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Fatto</value>
+    <value>完了</value>
   </data>
   <data name="BugReport_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
   </data>
   <data name="BugReport_btn_Retry">
-    <value>Riprova</value>
+    <value>再試行</value>
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Invia segnalazione</value>
+    <value>レポートを送信</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
-    <value>Risoluzione problemi</value>
+    <value>トラブルシューティング</value>
     <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
   </data>
   <data name="BugReport_lbl_DidNotHelp">
-    <value>Non ha funzionato?</value>
+    <value>うまくいきませんか？</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>Email</value>
+    <value>メール</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Questa email verrà utilizzata per contattarti in merito a questo problema.</value>
+    <value>このメールは、本件に関する連絡に使用させていただきます。</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
-    <value>Quali sono i passaggi esatti che hai eseguito?</value>
+    <value>以下に、その問題が発生するまでに行った操作を可能な限り正確に順番通りにご記入ください。</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
-    <value>Invia log errore</value>
+    <value>エラーログを送信</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Fornendo le seguenti informazioni, il nostro team può identificare il tuo problema e una possibile soluzione con maggiore probabilità e in tempi più brevi:
-• Log di installazione dei driver
-• Elenco delle applicazioni installate
-• Log dell'applicazione Proton VPN e dei suoi servizi
-• Elenco delle schede di rete
-• Informazioni sulla tabella di routing</value>
+    <value>以下のような詳細情報をご提供いただくと、私たちのチームがより迅速に問題の特定・解決を行えるようになります。
+• ドライバのインストールログ
+• インストール済みアプリケーションの一覧
+• 「Proton VPN アプリ」および「Proton VPN サービス」のログ
+• ネットワークアダプタの一覧
+• ルーティングテーブルの情報</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>I log degli errori ci aiutano ad arrivare alla fine del tuo problema. Se non li includi, potremmo non essere in grado di effettuare accertamenti completi.</value>
+    <value>エラーログは、お客様の問題の真相を解明するのに役立ちます。エラーログが含まれていない場合は、十分な調査ができない可能性があります。</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Un log è un tipo di file che ci mostra le azioni intraprese che hanno portato a un errore. Li useremo solo per aiutare i nostri ingegneri a correggere i bug.</value>
+    <value>ログとは、エラーの原因となった動作を示すファイルの一種です。エンジニアがバグを修正するためにのみ使用されます。</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Aggiorna Proton VPN</value>
+    <value>Proton VPN をアップデート</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>Questa versione di Proton VPN potrebbe aver già risolto il tuo problema!</value>
+    <value>このバージョンの Proton VPN では問題が解決されている可能性があります!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Soluzioni veloci</value>
+    <value>迅速な修正</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
-    <value>Questi suggerimenti potrebbero aiutarti a risolvere il problema più velocemente.</value>
+    <value>これらのヒントは、問題をより早く解決するのに役立ちます。</value>
   </data>
   <data name="BugReport_lbl_Step">
-    <value>Passaggio</value>
+    <value>手順</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Nome utente</value>
+    <value>ユーザー名</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Il tuo nome utente Proton, nel caso tu abbia già un account.</value>
+    <value>Proton ユーザー名 (アカウントを持っている場合)</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
-    <value>Quale è il problema?</value>
+    <value>問題はなんですか?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>Cosa non ha funzionato?</value>
+    <value>どの様な問題が発生しましたか？</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
-    <value>Ti risponderemo il prima possibile.</value>
+    <value>できるだけ早く連絡いたします。</value>
   </data>
   <data name="BugReport_lbl_of">
-    <value>di</value>
+    <value>/</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Email non valida</value>
+    <value>無効なメールアドレスです</value>
   </data>
   <data name="BugReport_msg_Sending">
-    <value>Invio della segnalazione...</value>
+    <value>レポートを送信中...</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>La tua segnalazione non è stata inviata</value>
+    <value>レポートは送信されませんでした</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Attendi fino al termine del processo di invio</value>
+    <value>送信プロセスが完了するまでお待ちください</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
-    <value>Grazie per la tua opinione</value>
+    <value>ご意見ありがとうございます</value>
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Segnala un problema</value>
+    <value>問題を報告</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>Assegnazione dell'IP</value>
+    <value>IP を割り当て中</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Authenticating">
-    <value>Autenticazione utente</value>
+    <value>ユーザー認証中</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Connecting">
-    <value>Inizializzando la connessione</value>
+    <value>接続を初期化中</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Pinging">
-    <value>In attesa di una rete utilizzabile...</value>
+    <value>利用可能なネットワークを待機中...</value>
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>Creazione tunnel VPN</value>
+    <value>VPN トンネルを確立中</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
-    <value>Inizializzando la connessione</value>
+    <value>接続を初期化中</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
-    <value>Annulla</value>
+    <value>キャンセル</value>
     <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
   </data>
   <data name="Connecting_btn_TryAgain">
-    <value>Riprova</value>
+    <value>再試行</value>
     <comment>The text on retry button in Connecting overlay of main app window (retries connection to VPN)</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1">
-    <value>Connessione a</value>
+    <value>接続中：</value>
     <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
-    <value>Creazione</value>
+    <value>確立中：</value>
     <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2">
@@ -510,1553 +498,1546 @@
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
-    <value>connessione</value>
+    <value>への接続を試みています</value>
     <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1">
-    <value>Connessione a</value>
+    <value></value>
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value>La</value>
+    <value></value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>non riuscita</value>
+    <value>への接続は失敗しました</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>connessione non è riuscita</value>
+    <value>への接続は失敗しました</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
-  <data name="Countries_lbl_One">
-    <value>{0} paese</value>
-  </data>
   <data name="Countries_lbl_Other">
-    <value>{0} paesi</value>
+    <value>{0} か国</value>
   </data>
   <data name="Country_val_AD">
-    <value>Andorra</value>
+    <value>アンドラ</value>
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE">
-    <value>Emirati Arabi Uniti</value>
+    <value>アラブ首長国連邦</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF">
-    <value>Afghanistan</value>
+    <value>アフガニスタン</value>
     <comment>The name of AF country</comment>
   </data>
   <data name="Country_val_AG">
-    <value>Antigua e Barbuda</value>
+    <value>アンティグア・バーブーダ</value>
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI">
-    <value>Anguilla</value>
+    <value>アンギラ</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL">
-    <value>Albania</value>
+    <value>アルバニア</value>
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM">
-    <value>Armenia</value>
+    <value>アルメニア</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO">
-    <value>Angola</value>
+    <value>アンゴラ</value>
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ">
-    <value>Antartide</value>
+    <value>南極大陸</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR">
-    <value>Argentina</value>
+    <value>アルゼンチン</value>
     <comment>The name of AR country</comment>
   </data>
   <data name="Country_val_AS">
-    <value>Samoa Americane</value>
+    <value>アメリカ領サモア</value>
     <comment>The name of AS country</comment>
   </data>
   <data name="Country_val_AT">
-    <value>Austria</value>
+    <value>オーストリア</value>
     <comment>The name of AT country</comment>
   </data>
   <data name="Country_val_AU">
-    <value>Australia</value>
+    <value>オーストラリア</value>
     <comment>The name of AU country</comment>
   </data>
   <data name="Country_val_AW">
-    <value>Aruba</value>
+    <value>アルバ</value>
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX">
-    <value>Isole Åland</value>
+    <value>オーランド諸島</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
-    <value>Azerbaigian</value>
+    <value>アゼルバイジャン</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
-    <value>Bosnia ed Erzegovina</value>
+    <value>ボスニア・ヘルツェゴビナ</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB">
-    <value>Barbados</value>
+    <value>バルバドス</value>
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD">
-    <value>Bangladesh</value>
+    <value>バングラデシュ</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE">
-    <value>Belgio</value>
+    <value>ベルギー</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF">
-    <value>Burkina Faso</value>
+    <value>ブルキナファソ</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG">
-    <value>Bulgaria</value>
+    <value>ブルガリア</value>
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH">
-    <value>Bahrein</value>
+    <value>バーレーン</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI">
-    <value>Burundi</value>
+    <value>ブルンジ</value>
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ">
-    <value>Benin</value>
+    <value>ベナン</value>
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL">
-    <value>Saint Barthélemy</value>
+    <value>サン・バルテルミー島</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM">
-    <value>Bermuda</value>
+    <value>バミューダ</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN">
-    <value>Sultanato del Brunei</value>
+    <value>ブルネイ・ダルサラーム</value>
     <comment>The name of BN country</comment>
   </data>
   <data name="Country_val_BO">
-    <value>Bolivia</value>
+    <value>ボリビア</value>
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ">
-    <value>Bonaire, Sint Eustatius e Saba</value>
+    <value>ボネール、シント・ユースタティウスおよびサバ</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR">
-    <value>Brasile</value>
+    <value>ブラジル</value>
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS">
-    <value>Bahamas</value>
+    <value>バハマ</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT">
-    <value>Bhutan</value>
+    <value>ブータン</value>
     <comment>The name of BT country</comment>
   </data>
   <data name="Country_val_BV">
-    <value>Isola di Bouvet</value>
+    <value>ブーベ島</value>
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW">
-    <value>Botswana</value>
+    <value>ボツワナ</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY">
-    <value>Bielorussia</value>
+    <value>ベラルーシ</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ">
-    <value>Belize</value>
+    <value>ベリーズ</value>
     <comment>The name of BZ country</comment>
   </data>
   <data name="Country_val_CA">
-    <value>Canada</value>
+    <value>カナダ</value>
     <comment>The name of CA country</comment>
   </data>
   <data name="Country_val_CC">
-    <value>Isole Cocos (Keeling)</value>
+    <value>ココス (キーリング) 諸島</value>
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD">
-    <value>Congo (Repubblica democratica del)</value>
+    <value>コンゴ民主共和国</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF">
-    <value>Repubblica Centrafricana</value>
+    <value>中央アフリカ共和国</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG">
-    <value>Congo</value>
+    <value>コンゴ</value>
     <comment>The name of CG country</comment>
   </data>
   <data name="Country_val_CH">
-    <value>Svizzera</value>
+    <value>スイス</value>
     <comment>The name of CH country</comment>
   </data>
   <data name="Country_val_CI">
-    <value>Costa d'Avorio</value>
+    <value>コートジボワール</value>
     <comment>The name of CI country</comment>
   </data>
   <data name="Country_val_CK">
-    <value>Isole Cook</value>
+    <value>クック諸島</value>
     <comment>The name of CK country</comment>
   </data>
   <data name="Country_val_CL">
-    <value>Cile</value>
+    <value>チリ</value>
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM">
-    <value>Camerun</value>
+    <value>カメルーン</value>
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN">
-    <value>Cina</value>
+    <value>中国</value>
     <comment>The name of CN country</comment>
   </data>
   <data name="Country_val_CO">
-    <value>Colombia</value>
+    <value>コロンビア</value>
     <comment>The name of CO country</comment>
   </data>
   <data name="Country_val_CR">
-    <value>Costa Rica</value>
+    <value>コスタリカ</value>
     <comment>The name of CR country</comment>
   </data>
   <data name="Country_val_CU">
-    <value>Cuba</value>
+    <value>キューバ</value>
     <comment>The name of CU country</comment>
   </data>
   <data name="Country_val_CV">
-    <value>Capo Verde</value>
+    <value>カーボベルデ</value>
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW">
-    <value>Curaçao</value>
+    <value>キュラソー島</value>
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX">
-    <value>Isola di Natale</value>
+    <value>クリスマス島</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY">
-    <value>Cipro</value>
+    <value>キプロス</value>
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ">
-    <value>Cechia</value>
+    <value>チェコ</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE">
-    <value>Germania</value>
+    <value>ドイツ</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Gibuti</value>
+    <value>ジブチ</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
-    <value>Danimarca</value>
+    <value>デンマーク</value>
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM">
-    <value>Dominica</value>
+    <value>ドミニカ</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO">
-    <value>Repubblica Dominicana</value>
+    <value>ドミニカ共和国</value>
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ">
-    <value>Algeria</value>
+    <value>アルジェリア</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC">
-    <value>Ecuador</value>
+    <value>エクアドル</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE">
-    <value>Estonia</value>
+    <value>エストニア</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG">
-    <value>Egitto</value>
+    <value>エジプト</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH">
-    <value>Sahara Occidentale</value>
+    <value>西サハラ</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER">
-    <value>Eritrea</value>
+    <value>エリトリア</value>
     <comment>The name of ER country</comment>
   </data>
   <data name="Country_val_ES">
-    <value>Spagna</value>
+    <value>スペイン</value>
     <comment>The name of ES country</comment>
   </data>
   <data name="Country_val_ET">
-    <value>Etiopia</value>
+    <value>エチオピア</value>
     <comment>The name of ET country</comment>
   </data>
   <data name="Country_val_FI">
-    <value>Finlandia</value>
+    <value>フィンランド</value>
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ">
-    <value>Fiji</value>
+    <value>フィジー</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK">
-    <value>Isole Falkland (Malvine)</value>
+    <value>フォークランド諸島 (マルビナス)</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM">
-    <value>Micronesia</value>
+    <value>ミクロネシア</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO">
-    <value>Isole Faroe</value>
+    <value>フェロー諸島</value>
     <comment>The name of FO country</comment>
   </data>
   <data name="Country_val_FR">
-    <value>Francia</value>
+    <value>フランス</value>
     <comment>The name of FR country</comment>
   </data>
   <data name="Country_val_GA">
-    <value>Gabon</value>
+    <value>ガボン</value>
     <comment>The name of GA country</comment>
   </data>
   <data name="Country_val_GB">
-    <value>Regno Unito</value>
+    <value>イギリス</value>
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD">
-    <value>Grenada</value>
+    <value>グレナダ</value>
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE">
-    <value>Georgia</value>
+    <value>ジョージア</value>
     <comment>The name of GE country</comment>
   </data>
   <data name="Country_val_GF">
-    <value>Guiana Francese</value>
+    <value>フランス領ギアナ</value>
     <comment>The name of GF country</comment>
   </data>
   <data name="Country_val_GG">
-    <value>Guernsey</value>
+    <value>ガーンジー島</value>
     <comment>The name of GG country</comment>
   </data>
   <data name="Country_val_GH">
-    <value>Ghana</value>
+    <value>ガーナ</value>
     <comment>The name of GH country</comment>
   </data>
   <data name="Country_val_GI">
-    <value>Gibilterra</value>
+    <value>ジブラルタル</value>
     <comment>The name of GI country</comment>
   </data>
   <data name="Country_val_GL">
-    <value>Groenlandia</value>
+    <value>グリーンランド</value>
     <comment>The name of GL country</comment>
   </data>
   <data name="Country_val_GM">
-    <value>Gambia</value>
+    <value>ガンビア</value>
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN">
-    <value>Guinea</value>
+    <value>ギニア</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP">
-    <value>Guadalupa</value>
+    <value>グアドループ</value>
     <comment>The name of GP country</comment>
   </data>
   <data name="Country_val_GQ">
-    <value>Guinea Equatoriale</value>
+    <value>赤道ギニア</value>
     <comment>The name of GQ country</comment>
   </data>
   <data name="Country_val_GR">
-    <value>Grecia</value>
+    <value>ギリシャ</value>
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS">
-    <value>Georgia del Sud e Isole Sandwich Australi</value>
+    <value>サウスジョージア島と南サンドイッチ諸島</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT">
-    <value>Guatemala</value>
+    <value>グアテマラ</value>
     <comment>The name of GT country</comment>
   </data>
   <data name="Country_val_GU">
-    <value>Guam</value>
+    <value>グアム</value>
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW">
-    <value>Guinea-Bissau</value>
+    <value>ギニアビサウ</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY">
-    <value>Guyana</value>
+    <value>ガイアナ</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Hong Kong</value>
+    <value>香港</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
-    <value>Isola Heard e Isole McDonald</value>
+    <value>ハード島とマクドナルド諸島</value>
     <comment>The name of HM country</comment>
   </data>
   <data name="Country_val_HN">
-    <value>Honduras</value>
+    <value>ホンジュラス</value>
     <comment>The name of HN country</comment>
   </data>
   <data name="Country_val_HR">
-    <value>Croazia</value>
+    <value>クロアチア</value>
     <comment>The name of HR country</comment>
   </data>
   <data name="Country_val_HT">
-    <value>Haiti</value>
+    <value>ハイチ</value>
     <comment>The name of HT country</comment>
   </data>
   <data name="Country_val_HU">
-    <value>Ungheria</value>
+    <value>ハンガリー</value>
     <comment>The name of HU country</comment>
   </data>
   <data name="Country_val_ID">
-    <value>Indonesia</value>
+    <value>インドネシア</value>
     <comment>The name of ID country</comment>
   </data>
   <data name="Country_val_IE">
-    <value>Irlanda</value>
+    <value>アイルランド</value>
     <comment>The name of IE country</comment>
   </data>
   <data name="Country_val_IL">
-    <value>Israele</value>
+    <value>イスラエル</value>
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM">
-    <value>Isola di Man</value>
+    <value>マン島</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN">
-    <value>India</value>
+    <value>インド</value>
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO">
-    <value>Territori Britannici dell'Oceano Indiano</value>
+    <value>イギリス領インド洋地域</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ">
-    <value>Iraq</value>
+    <value>イラク</value>
     <comment>The name of IQ country</comment>
   </data>
   <data name="Country_val_IR">
-    <value>Iran</value>
+    <value>イラン</value>
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS">
-    <value>Islanda</value>
+    <value>アイスランド</value>
     <comment>The name of IS country</comment>
   </data>
   <data name="Country_val_IT">
-    <value>Italia</value>
+    <value>イタリア</value>
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE">
-    <value>Jersey</value>
+    <value>ジャージー</value>
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM">
-    <value>Giamaica</value>
+    <value>ジャマイカ</value>
     <comment>The name of JM country</comment>
   </data>
   <data name="Country_val_JO">
-    <value>Giordania</value>
+    <value>ヨルダン</value>
     <comment>The name of JO country</comment>
   </data>
   <data name="Country_val_JP">
-    <value>Giappone</value>
+    <value>日本</value>
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE">
-    <value>Kenya</value>
+    <value>ケニア</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG">
-    <value>Kirghizistan</value>
+    <value>キルギス</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH">
-    <value>Cambogia</value>
+    <value>カンボジア</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI">
-    <value>Kiribati</value>
+    <value>キリバス</value>
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM">
-    <value>Comore</value>
+    <value>コモロ</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN">
-    <value>Saint Kitts e Nevis</value>
+    <value>セントクリストファー・ネービス</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP">
-    <value>Corea del Nord</value>
+    <value>北朝鮮</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR">
-    <value>Corea del Sud</value>
+    <value>韓国</value>
     <comment>The name of KR country</comment>
   </data>
   <data name="Country_val_KW">
-    <value>Kuwait</value>
+    <value>クウェート</value>
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY">
-    <value>Isole Caiman</value>
+    <value>ケイマン諸島</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ">
-    <value>Kazakistan</value>
+    <value>カザフスタン</value>
     <comment>The name of KZ country</comment>
   </data>
   <data name="Country_val_LA">
-    <value>Laos</value>
+    <value>ラオス</value>
     <comment>The name of LA country</comment>
   </data>
   <data name="Country_val_LB">
-    <value>Libano</value>
+    <value>レバノン</value>
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC">
-    <value>Santa Lucia</value>
+    <value>セントルシア</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI">
-    <value>Liechtenstein</value>
+    <value>リヒテンシュタイン</value>
     <comment>The name of LI country</comment>
   </data>
   <data name="Country_val_LK">
-    <value>Sri Lanka</value>
+    <value>スリランカ</value>
     <comment>The name of LK country</comment>
   </data>
   <data name="Country_val_LR">
-    <value>Liberia</value>
+    <value>リベリア</value>
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS">
-    <value>Lesoto</value>
+    <value>レソト</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT">
-    <value>Lituania</value>
+    <value>リトアニア</value>
     <comment>The name of LT country</comment>
   </data>
   <data name="Country_val_LU">
-    <value>Lussemburgo</value>
+    <value>ルクセンブルク</value>
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV">
-    <value>Lettonia</value>
+    <value>ラトビア</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY">
-    <value>Libia</value>
+    <value>リビア</value>
     <comment>The name of LY country</comment>
   </data>
   <data name="Country_val_MA">
-    <value>Marocco</value>
+    <value>モロッコ</value>
     <comment>The name of MA country</comment>
   </data>
   <data name="Country_val_MC">
-    <value>Monaco</value>
+    <value>モナコ</value>
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD">
-    <value>Moldavia</value>
+    <value>モルドバ</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME">
-    <value>Montenegro</value>
+    <value>モンテネグロ</value>
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF">
-    <value>Saint Martin (parte francese)</value>
+    <value>サン・マルタン</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG">
-    <value>Madagascar</value>
+    <value>マダカスカル</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH">
-    <value>Isole Marshall</value>
+    <value>マーシャル諸島</value>
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Macedonia</value>
+    <value>マケドニア</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
-    <value>Mali</value>
+    <value>マリ</value>
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM">
-    <value>Myanmar</value>
+    <value>ミャンマー</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN">
-    <value>Mongolia</value>
+    <value>モンゴル</value>
     <comment>The name of MN country</comment>
   </data>
   <data name="Country_val_MO">
-    <value>Macao</value>
+    <value>マカオ</value>
     <comment>The name of MO country</comment>
   </data>
   <data name="Country_val_MP">
-    <value>Isole Marianne Settentrionali</value>
+    <value>北マリアナ諸島</value>
     <comment>The name of MP country</comment>
   </data>
   <data name="Country_val_MQ">
-    <value>Martinica</value>
+    <value>マルティニーク</value>
     <comment>The name of MQ country</comment>
   </data>
   <data name="Country_val_MR">
-    <value>Mauritania</value>
+    <value>モーリタニア</value>
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS">
-    <value>Montserrat</value>
+    <value>モントセラト</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT">
-    <value>Malta</value>
+    <value>マルタ</value>
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU">
-    <value>Mauritius</value>
+    <value>モーリシャス</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV">
-    <value>Maldive</value>
+    <value>モルディブ</value>
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW">
-    <value>Malawi</value>
+    <value>マラウイ</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX">
-    <value>Messico</value>
+    <value>メキシコ</value>
     <comment>The name of MX country</comment>
   </data>
   <data name="Country_val_MY">
-    <value>Malesia</value>
+    <value>マレーシア</value>
     <comment>The name of MY country</comment>
   </data>
   <data name="Country_val_MZ">
-    <value>Mozambico</value>
+    <value>モザンビーク</value>
     <comment>The name of MZ country</comment>
   </data>
   <data name="Country_val_NA">
-    <value>Namibia</value>
+    <value>ナミビア</value>
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC">
-    <value>Nuova Caledonia</value>
+    <value>ニューカレドニア</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE">
-    <value>Niger</value>
+    <value>ニジェール</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF">
-    <value>Isola Norfolk</value>
+    <value>ノーフォーク島</value>
     <comment>The name of NF country</comment>
   </data>
   <data name="Country_val_NG">
-    <value>Nigeria</value>
+    <value>ナイジェリア</value>
     <comment>The name of NG country</comment>
   </data>
   <data name="Country_val_NI">
-    <value>Nicaragua</value>
+    <value>ニカラグア</value>
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL">
-    <value>Paesi Bassi</value>
+    <value>オランダ</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO">
-    <value>Norvegia</value>
+    <value>ノルウェー</value>
     <comment>The name of NO country</comment>
   </data>
   <data name="Country_val_NP">
-    <value>Nepal</value>
+    <value>ネパール</value>
     <comment>The name of NP country</comment>
   </data>
   <data name="Country_val_NR">
-    <value>Nauru</value>
+    <value>ナウル</value>
     <comment>The name of NR country</comment>
   </data>
   <data name="Country_val_NU">
-    <value>Niue</value>
+    <value>ニウエ</value>
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ">
-    <value>Nuova Zelanda</value>
+    <value>ニュージーランド</value>
     <comment>The name of NZ country</comment>
   </data>
   <data name="Country_val_OM">
-    <value>Oman</value>
+    <value>オマーン</value>
     <comment>The name of OM country</comment>
   </data>
   <data name="Country_val_PA">
-    <value>Panama</value>
+    <value>パナマ</value>
     <comment>The name of PA country</comment>
   </data>
   <data name="Country_val_PE">
-    <value>Perù</value>
+    <value>ペルー</value>
     <comment>The name of PE country</comment>
   </data>
   <data name="Country_val_PF">
-    <value>Polinesia Francese</value>
+    <value>フランス領ポリネシア</value>
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG">
-    <value>Papua Nuova Guinea</value>
+    <value>パプアニューギニア</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH">
-    <value>Filippine</value>
+    <value>フィリピン</value>
     <comment>The name of PH country</comment>
   </data>
   <data name="Country_val_PK">
-    <value>Pakistan</value>
+    <value>パキスタン</value>
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL">
-    <value>Polonia</value>
+    <value>ポーランド</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM">
-    <value>Saint Pierre e Miquelon</value>
+    <value>サンピエール島・ミクロン島</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN">
-    <value>Isole Pitcairn</value>
+    <value>ピトケアン諸島</value>
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR">
-    <value>Porto Rico</value>
+    <value>プエルトリコ</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS">
-    <value>Palestina</value>
+    <value>パレスチナ</value>
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT">
-    <value>Portogallo</value>
+    <value>ポルトガル</value>
     <comment>The name of PT country</comment>
   </data>
   <data name="Country_val_PW">
-    <value>Palau</value>
+    <value>パラオ</value>
     <comment>The name of PW country</comment>
   </data>
   <data name="Country_val_PY">
-    <value>Paraguai</value>
+    <value>パラグアイ</value>
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA">
-    <value>Qatar</value>
+    <value>カタール</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE">
-    <value>Riunione</value>
+    <value>レユニオン</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO">
-    <value>Romania</value>
+    <value>ルーマニア</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS">
-    <value>Serbia</value>
+    <value>セルビア</value>
     <comment>The name of RS country</comment>
   </data>
   <data name="Country_val_RU">
-    <value>Russia</value>
+    <value>ロシア</value>
     <comment>The name of RU country</comment>
   </data>
   <data name="Country_val_RW">
-    <value>Ruanda</value>
+    <value>ルワンダ</value>
     <comment>The name of RW country</comment>
   </data>
   <data name="Country_val_SA">
-    <value>Arabia Saudita</value>
+    <value>サウジアラビア</value>
     <comment>The name of SA country</comment>
   </data>
   <data name="Country_val_SB">
-    <value>Isole Salomone</value>
+    <value>ソロモン諸島</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC">
-    <value>Seychelles</value>
+    <value>セーシェル</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD">
-    <value>Sudan</value>
+    <value>スーダン</value>
     <comment>The name of SD country</comment>
   </data>
   <data name="Country_val_SE">
-    <value>Svezia</value>
+    <value>スウェーデン</value>
     <comment>The name of SE country</comment>
   </data>
   <data name="Country_val_SG">
-    <value>Singapore</value>
+    <value>シンガポール</value>
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH">
-    <value>Sant'Elena, Ascensione e Tristan da Cunha</value>
+    <value>セントヘレナ・アセンションおよびトリスタンダクーニャ</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI">
-    <value>Slovenia</value>
+    <value>スロベニア</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ">
-    <value>Svalbard e Jan Mayen</value>
+    <value>スヴァールバル諸島およびヤンマイエン島</value>
     <comment>The name of SJ country</comment>
   </data>
   <data name="Country_val_SK">
-    <value>Slovacchia</value>
+    <value>スロバキア</value>
     <comment>The name of SK country</comment>
   </data>
   <data name="Country_val_SL">
-    <value>Sierra Leone</value>
+    <value>シエラレオネ</value>
     <comment>The name of SL country</comment>
   </data>
   <data name="Country_val_SM">
-    <value>San Marino</value>
+    <value>サンマリノ</value>
     <comment>The name of SM country</comment>
   </data>
   <data name="Country_val_SN">
-    <value>Senegal</value>
+    <value>セネガル</value>
     <comment>The name of SN country</comment>
   </data>
   <data name="Country_val_SO">
-    <value>Somalia</value>
+    <value>ソマリア</value>
     <comment>The name of SO country</comment>
   </data>
   <data name="Country_val_SR">
-    <value>Suriname</value>
+    <value>スリナム</value>
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS">
-    <value>Sudan Del Sud</value>
+    <value>南スーダン</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST">
-    <value>São Tomé e Príncipe</value>
+    <value>サントメ・プリンシペ</value>
     <comment>The name of ST country</comment>
   </data>
   <data name="Country_val_SV">
-    <value>El Salvador</value>
+    <value>エルサルバドル</value>
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Sint Maarten</value>
+    <value>シント・マールテン</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Siria</value>
+    <value>シリア</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
-    <value>Eswatini</value>
+    <value>エスワティニ</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC">
-    <value>Isole Turks e Caicos</value>
+    <value>タークス・カイコス諸島</value>
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD">
-    <value>Ciad</value>
+    <value>チャド</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF">
-    <value>Terre Australi e Antartiche Francesi</value>
+    <value>フランス領南方・南極地域</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG">
-    <value>Togo</value>
+    <value>トーゴ</value>
     <comment>The name of TG country</comment>
   </data>
   <data name="Country_val_TH">
-    <value>Thailandia</value>
+    <value>タイ</value>
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ">
-    <value>Tagikistan</value>
+    <value>タジキスタン</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
-    <value>Tokelau</value>
+    <value>トケラウ</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Timor Est</value>
+    <value>東ティモール</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
-    <value>Turkmenistan</value>
+    <value>トルクメニスタン</value>
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN">
-    <value>Tunisia</value>
+    <value>チュニジア</value>
     <comment>The name of TN country</comment>
   </data>
   <data name="Country_val_TO">
-    <value>Tonga</value>
+    <value>トンガ</value>
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Turchia</value>
+    <value>トルコ</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
-    <value>Trinidad e Tobago</value>
+    <value>トリニダード・ドバゴ</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV">
-    <value>Tuvalu</value>
+    <value>ツバル</value>
     <comment>The name of TV country</comment>
   </data>
   <data name="Country_val_TW">
-    <value>Taiwan</value>
+    <value>台湾</value>
     <comment>The name of TW country</comment>
   </data>
   <data name="Country_val_TZ">
-    <value>Tanzania</value>
+    <value>タンザニア</value>
     <comment>The name of TZ country</comment>
   </data>
   <data name="Country_val_UA">
-    <value>Ucraina</value>
+    <value>ウクライナ</value>
     <comment>The name of UA country</comment>
   </data>
   <data name="Country_val_UG">
-    <value>Uganda</value>
+    <value>ウガンダ</value>
     <comment>The name of UG country</comment>
   </data>
   <data name="Country_val_UK">
-    <value>Regno Unito</value>
+    <value>イギリス</value>
     <comment>The name of UK country</comment>
   </data>
   <data name="Country_val_UM">
-    <value>Isole minori esterne degli Stati Uniti d'America</value>
+    <value>合衆国領有小離島</value>
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US">
-    <value>Stati Uniti</value>
+    <value>アメリカ</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY">
-    <value>Uruguay</value>
+    <value>ウルグアイ</value>
     <comment>The name of UY country</comment>
   </data>
   <data name="Country_val_UZ">
-    <value>Uzbekistan</value>
+    <value>ウズベキスタン</value>
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA">
-    <value>Città del Vaticano</value>
+    <value>バチカン</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC">
-    <value>Saint Vincent e Grenadines</value>
+    <value>セントビンセント及びグレナディーン諸島</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE">
-    <value>Venezuela</value>
+    <value>ベネズエラ</value>
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG">
-    <value>Isole Vergini Britanniche</value>
+    <value>イギリス領ヴァージン諸島</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI">
-    <value>Isole Vergini Americane</value>
+    <value>アメリカ領ヴァージン諸島</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN">
-    <value>Vietnam</value>
+    <value>ベトナム</value>
     <comment>The name of VN country</comment>
   </data>
   <data name="Country_val_VU">
-    <value>Vanuatu</value>
+    <value>バヌアツ</value>
     <comment>The name of VU country</comment>
   </data>
   <data name="Country_val_WF">
-    <value>Wallis e Futuna</value>
+    <value>ウォリス・フツナ</value>
     <comment>The name of WF country</comment>
   </data>
   <data name="Country_val_WS">
-    <value>Samoa</value>
+    <value>サモア</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE">
-    <value>Yemen</value>
+    <value>イエメン</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT">
-    <value>Mayotte</value>
+    <value>マヨット</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA">
-    <value>Sudafrica</value>
+    <value>南アフリカ</value>
     <comment>The name of ZA country</comment>
   </data>
   <data name="Country_val_ZM">
-    <value>Zambia</value>
+    <value>ザンビア</value>
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW">
-    <value>Zimbabwe</value>
+    <value>ジンバブエ</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ">
-    <value>Sconosciuto</value>
+    <value>不明</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_Assign">
-    <value>Assegna connessioni VPN</value>
+    <value>VPN 接続を割り当て</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Accedi di nuovo</value>
+    <value>再度ログイン</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Per iniziare il tuo viaggio in Proton VPN, assegna le connessioni VPN al tuo account o a qualsiasi altro account secondario.</value>
+    <value>Proton VPN を始めるには、お客様のアカウントまたはその他のサブアカウントに VPN 接続を割り当ててください。</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Questo passaggio richiederà solo pochi minuti. Dopodiché sarai in grado di accedere e proteggere tutti i tuoi dispositivi.</value>
+    <value>この手順は数分かかります。その後、ログインしてすべてのデバイスを保護することができます。</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Grazie per l'aggiornamento</value>
+    <value>アップグレードありがとうございます</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Uno dei servizi richiesti da Proton VPN (Base Filtering Engine) non è in esecuzione.&lt;LineBreak/&gt;
-Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; istruzioni per riattivarlo e riprova.</value>
+    <value>Proton VPN (Base Filtering Engine) で、動作に必要なサービスの一つが実行されていません。&lt;LineBreak/&gt; &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; の手順に従って再度有効化してから、もう一度お試しください。</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
-    <value>Aggiorna la mia fatturazione</value>
+    <value>お支払いの更新</value>
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Potrai nuovamente accedere alle funzionalità premium dopo il pagamento. Per ora, ci stiamo riconnettendo al server del piano GRATUITO più veloce disponibile.</value>
+    <value>未払いの請求が支払われると、再度プレミアム機能を利用することができます。現在は FREE プランで利用できる高速なサーバーに再接続しています。</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Potrai accedere di nuovo alle funzionalità premium dopo che saranno state pagate.</value>
+    <value>未払いの請求が支払われると、再度プレミアム機能を利用することができます。</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>Il tuo account VPN ha fatture in sospeso</value>
+    <value>VPN アカウントに未払いの支払いがあります</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
-    <value>Abilita</value>
+    <value>有効化</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
   </data>
   <data name="Dialogs_DisabledService_btn_ShowLess">
-    <value>Mostra meno</value>
+    <value>詳細を非表示</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Alcune applicazioni come antivirus o ottimizzatori per PC possono interferire con i servizi di sistema richiesti da Proton VPN per proteggere la tua connessione. Facendo clic su Abilita, consenti a Windows di riattivare i servizi di Proton VPN.&lt;LineBreak/&gt;Se il problema persiste, prova a riavviare il PC o a reinstallare Proton VPN.</value>
+    <value>アンチウィルスや PC を最適化するアプリケーションなどは、Proton VPN が接続を保護するために必要とするシステムサービスを妨害する可能性があります。有効をクリックすると、Windows が Proton VPN のサービスを再度有効にできます。&lt;LineBreak/&gt;問題が解決しない場合は、PC を再起動するか、Proton VPN を再インストールしてください。</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Alcuni componenti di Proton VPN potrebbero essere bloccati o disabilitati, impedendoti di connetterti. Fare clic su Abilita per risolvere.&lt;LineBreak/&gt;Questa operazione richiede i privilegi di Amministratore.</value>
+    <value>Proton VPN のコンポーネントの一部がブロックされたり、無効になっていて、接続できない場合があります。修正するには「有効」をクリックしてください。&lt;LineBreak/&gt;なお、この操作には管理者権限が必要です。</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disabilita kill switch</value>
+    <value>キルスイッチを無効にする</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>アップグレード</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
-    <value>La tua scheda di rete è attualmente in uso.</value>
+    <value>ネットワークアダプタは現在使用中です。</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying">
-    <value>Identificando il problema...</value>
+    <value>問題を特定しています...</value>
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill Switch protegge il tuo IP bloccando tutte le connessioni. In caso di problemi puoi disabilitare kill switch.</value>
+    <value>キルスイッチはすべての接続をブロックすることであなたの IP を保護しています。問題が発生した場合はキルスイッチを無効にすることができます。</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
-    <value>Non ci sono server disponibili per la tua selezione. Seleziona un'altra opzione.</value>
+    <value>あなたが選択したサーバーは現在利用できません。別の設定をお試しください。</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
-    <value>Manca l'adattatore di rete.</value>
+    <value>ネットワークアダプタが利用できません。</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
-    <value>La versione dell'adattatore di rete non è aggiornata.</value>
+    <value>ネットワークアダプタのバージョンが古くなっています。</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
-    <value>Per favore, guarda questo &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;articolo&lt;/Hyperlink&gt; di supporto su come risolvere.</value>
+    <value>&lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;こちら&lt;/Hyperlink&gt;のサポート記事を見て修正方法を確認してください。</value>
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>C'è un problema di convalida del certificato del server VPN, il che potrebbe indicare che la connessione di rete è stata manomessa o che il server a cui si sta cercando di connettersi ha un problema di configurazione. Chiedi aiuto al nostro servizio di assistenza clienti inviando una &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Segnalazione di errore"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>VPN サーバー証明書の検証に失敗しました。ネットワーク接続が改ざんを受けているか、接続しようとしているサーバーの設定に問題があります。&lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="問題を報告"/&gt;&lt;/Hyperlink&gt;してサポートを受けてください。</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
-    <value>Non mostrare più questo messaggio</value>
+    <value>今後このメッセージを表示しない</value>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_Enable">
-    <value>Abilita</value>
+    <value>有効化</value>
     <comment>The text on Enable button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
-    <value>Mantieni disabilitate</value>
+    <value>無効のままにする</value>
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe evitare queste limitazioni.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Scopri di più a riguardo di Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>現在のネットワークが VPN に接続しようとしているのを妨げるのを検出しました。スマートプロトコルを有効にするとこれらの制限を回避が回避される可能性があります。&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;スマートプロトコルについての詳細。&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
-    <value>Smart Protocol è attualmente disabilitato</value>
+    <value>スマートプロトコルは現在無効です</value>
     <comment>The title of the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_Exit_btn_Cancel">
-    <value>Annulla</value>
+    <value>キャンセル</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit">
-    <value>Esci</value>
+    <value>終了</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
-    <value>Vuoi continuare?</value>
+    <value>続行してよろしいですか？</value>
     <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
-    <value>Uscire dall'applicazione ti disconnetterà dalla VPN.</value>
+    <value>アプリケーションを終了すると、VPN から切断されます。</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill Switch sta bloccando tutte le connessioni per evitare perdite di dati. Uscire dall'applicazione disattiverà kill switch.</value>
+    <value>データの漏洩を防ぐため、現在キルスイッチがすべての接続をブロックしています。アプリを終了させるとキルスイッチも無効になります。</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Kill switch permanente è abilitato. L'uscita dell'applicazione bloccherà tutte le connessioni in uscita fino a quando Proton VPN non sarà nuovamente connesso.</value>
+    <value>永続的キルスイッチが有効です。アプリケーションを終了しても Proton VPN に再度接続されるまですべての発信接続がブロックされます。</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
-    <value>Verifica umana</value>
+    <value>人間であることの検証</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>L'orologio del tuo sistema sembra non essere sincronizzato, il che potrebbe impedire alla VPN di connettersi correttamente. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;qui&lt;/Hyperlink&gt; per maggiori informazioni.</value>
+    <value>お使いのシステムクロックが同期していないようで、VPNが正常に接続できない可能性があります。詳細は&lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;詳細は&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Con il kill switch permanente, se la VPN non è connessa, non sarà possibile accedere a Internet.</value>
+    <value>永続的キルスイッチを使用すると、何らかの理由で VPN に接続されていない場合、インターネットにアクセスすることができなくなります。</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Abilitare il kill switch permanente?</value>
+    <value>永続的キルスイッチを有効にしますか？</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
-    <value>Ho capito</value>
+    <value>了解</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Disconnetti un altro dispositivo per connettere questo.</value>
+    <value>接続するには他のデバイスの接続を解除してください。</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
-    <value>Hai raggiunto il limite massimo di dispositivi</value>
+    <value>最大デバイス数の上限に達しています</value>
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>アップグレード</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>このデバイスを接続するために他のデバイスの接続を解除するか、同時に 10 デバイス接続できる PLUS プランにアップグレードしてください。</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
-    <value>Chiudi</value>
+    <value>終了</value>
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Downloading">
-    <value>Download in corso</value>
+    <value>ダウンロード中</value>
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>Si è verificato un problema durante il download di una versione più recente. Aggiorna manualmente per ottenere quella più recente.</value>
+    <value>新しいバージョンのダウンロード中にエラーが発生した場合は最新版に手動でアップデートしてください。</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
-    <value>Aggiorna</value>
+    <value>更新</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_UpdateManually">
-    <value>Aggiornamento manuale</value>
+    <value>手動でアップデート</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>La versione dell'applicazione che stai utilizzando non è più supportata. Per favore, appena l'aggiornamento è disponibile, aggiorna all'ultima versione.</value>
+    <value>現在ご使用のアプリケーションのバージョンは既にサポートが終了しています。すぐに最新版に更新してください。</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Kill switch è abilitato. Aggiornare o uscire dall'applicazione lo disattiverà.</value>
+    <value>キルスイッチは現在有効です。アプリを更新したり終了したりするとキルスイッチが無効化されます。</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>La tua connessione è stata disabilitata perché stai usando un server che non supporta il traffico peer-to-peer (P2P). Il P2P non è supportato su server gratuiti. Usa un server differente per il P2P.</value>
+    <value>このサーバーは P2P トラフィックに対応していないため、接続が解除されました。無料プランのサーバーは P2P に対応していません。P2P に対応した別のサーバーを選択してください。</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Abilita Port Forwarding solo quando ne hai bisogno per garantire la più forte protezione della privacy e della sicurezza.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Ho bisogno del Port Forwarding?&lt;/Hyperlink&gt;</value>
+    <value>最大限のプライバシーとセキュリティ保護の確保が必要な場合にのみ、ポート転送を有効にしてください。&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;ポート転送が必要ですか？&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
-    <value>Abilitare il Port Forwarding?</value>
+    <value>ポート転送を有効にしますか？</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN ha rilevato un server proxy configurato sulla tua rete locale. L'app Proton VPN non può proteggere il traffico che passa attraverso questo proxy. Ciò significa che la tua connessione non sarà completamente protetta come previsto.</value>
+    <value>Proton VPN はローカルネットワーク上に設定されたプロキシサーバーを検出しました。 Proton VPN アプリはこのプロキシを通過する通信を保護することができません。これは、あなたの接続の安全性が完全には保護されないことを意味します。</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Ti presentiamo il nuovo look di Proton. Molti servizi, una sola missione: una nuova versione di internet, dove la privacy è la regola. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
+    <value>新しい外観になった Proton をご紹介します。たくさんのサービス、1 つのミッション。どこでもプライベートなインターネットへようこそ。&lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;詳細&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
-    <value>Nuovo Proton, protezione unificata</value>
+    <value>統合された保護を新しくなった Proton で</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Ho capito</value>
+    <value>はい</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Per far funzionare correttamente Split Tunneling, è necessario disabilitare kill switch.</value>
-  </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1_One">
-    <value>Centinaia di server in {0} paese</value>
+    <value>スプリットトンネルを正常に機能させるには、キルスイッチを無効化する必要があります。</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Centinaia di server in {0} paesi</value>
+    <value>{0}カ国に数百台のサーバー</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
-    <value>Connetti fino a 10 dispositivi contemporaneamente</value>
+    <value>最大 10 台のデバイスを同時に接続可能</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption3">
-    <value>Funzioni avanzate: NetShield, Secure Core, Tor, P2P</value>
+    <value>高度な機能: NetShield, Secure Core, Tor, P2P</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Aggiorna di nuovo per godere di tutte le funzionalità:</value>
+    <value>すべての機能を利用するには再度アップグレードしてください:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Il tuo abbonamento è stato declassato, quindi ci stiamo riconnettendo al server più veloce disponibile.</value>
+    <value>サブスクリプションはダウングレードされました。利用可能な高速なサーバーに再接続します。</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Il tuo abbonamento è stato declassato.</value>
+    <value>サブスクリプションはダウングレードされました。</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Il tuo piano di abbonamento VPN è scaduto</value>
+    <value>VPN サブスクリプションのプランの有効期限が切れました</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Aggiorna di Nuovo</value>
+    <value>再度アップグレード</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
-    <value>Risoluzione dei problemi di Proton VPN</value>
+    <value>Proton VPN トラブルシューティング</value>
     <comment>The text displayed in Troubleshoot modal window title</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_Close">
-    <value>Chiudi</value>
+    <value>閉じる</value>
     <comment>The button displayed in Troubleshoot modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Percorso alternativo&lt;/Bold&gt; - Nel caso in cui i siti di Proton siano bloccati, questa impostazione consente all'app di provare l'indirizzamento di rete alternativo per raggiungere Proton, che potrebbe esser utile per evitare firewall o problemi di rete. Consigliamo di mantenere questa impostazione attiva per una maggiore affidabilità. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;代替ルーティング&lt;/Bold&gt; - Proton への接続がブロックされている場合、アプリは別のネットワーク経由で Proton へ接続を試みます。この設定は、ファイアウォールやネットワーク上の問題を回避するのに役立ちます。信頼性向上の観点から、この設定を有効にしておくことをおすすめします。&lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;詳細&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interferenza antivirus&lt;/Bold&gt; - Disattivare temporaneamente o rimuovere il software antivirus.</value>
+    <value>&lt;Bold&gt;ウイルス対策ソフトウェアの干渉&lt;/Bold&gt; - ウイルス対策ソフトウェアを一時的に無効にするか、削除することで解決する可能性もあります。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Interferenza Proxy/Firewall&lt;/Bold&gt; - Disabilita qualsiasi proxy o firewall, o contatta l'amministratore di rete.</value>
+    <value>&lt;Bold&gt;プロキシまたはファイアウォールの干渉&lt;/Bold&gt; - プロキシまたはファイアウォールを無効にするか、ネットワーク管理者に問い合わせてみてください。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Bloccato dal Governo&lt;/Bold&gt; - Il tuo paese potrebbe bloccare l'accesso a Proton. Prova ad utilizzare &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; per accedere a Proton.</value>
+    <value>&lt;Bold&gt;政府等による検閲&lt;/Bold&gt; - あなたの国(の政府)が、 Proton への接続を検閲(遮断)している可能性があります。 Proton に接続するために &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; を使用してみてください。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Bloccato dal Governo&lt;/Bold&gt; - Il tuo paese potrebbe bloccare l'accesso a Proton. Prova ad utilizzare &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; per accedere a Proton.</value>
+    <value>&lt;Bold&gt;政府等による検閲&lt;/Bold&gt; - あなたの国(の政府)が、 Proton への接続を検閲(遮断)している可能性があります。 Proton に接続するために &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; を使用してみてください。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
-    <value>&lt;Bold&gt;Problema del provider internet (ISP)&lt;/Bold&gt; - Prova a connetterti a Proton da una rete diversa (o usa &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <value>&lt;Bold&gt;インターネットサービスプロバイダー (ISP) の問題&lt;/Bold&gt; - 別のネットワークから Proton への接続を試みてみてください (または &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; を使用してみてください) 。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Nessuna connessione internet&lt;/Bold&gt; - Assicurati che la tua connessione internet funzioni.</value>
+    <value>&lt;Bold&gt;インターネットに接続されていない&lt;/Bold&gt; - インターネットに接続されていることをご確認ください。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
-    <value>&lt;Bold&gt;Proton è offline&lt;/Bold&gt; - Controlla &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Stato di Proton&lt;/Hyperlink&gt; per il nostro stato di sistema.</value>
+    <value>&lt;Bold&gt;Proton のサービスが一時的にダウンしている&lt;/Bold&gt; - &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton ステータス&lt;/Hyperlink&gt; から私たちのシステムの動作状況をご確認ください。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Potenziali problemi che potrebbero causare un timeout di connessione e la loro soluzione</value>
+    <value>コネクションタイムアウトを引き起こす潜在的な問題と解決方法</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Non è ancora possibile trovare una soluzione&lt;/Bold&gt; - Contattaci direttamente attraverso il nostro &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;modulo di supporto&lt;/Hyperlink&gt;, email (support@protonvpn.com), o &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;それでも問題が解決しない場合&lt;/Bold&gt; - &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;サポートフォーム&lt;/Hyperlink&gt;、電子メール (support@protonvpn.com) または &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt; から直接私たちにお問い合わせください。</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
-    <value>Passa a TAP</value>
+    <value>TAP に切り替える</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN non ha potuto connettersi perché la scheda di rete TUN è già in uso. Disconnetti qualsiasi VPN attiva e riprova. In alternativa, passa all'adattatore TAP (puoi tornare a TUN nelle impostazioni avanzate).</value>
+    <value>TUN ネットワークアダプターがすでに使用されているため接続できませんでした。アクティブな VPN から切断し再度お試しください。または TAP アダプターに切り替えてください (高度な設定から TUN アダプターに戻すことができます)。</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN non ha potuto connettersi perché la scheda di rete WireGuard è già in uso. Disconnetti qualsiasi VPN attiva e riprova. In alternativa, puoi cambiare i protocolli nelle impostazioni avanzate.</value>
+    <value>WireGuard ネットワークアダプターがすでに使用されているため接続できませんでした。アクティブな VPN を切断してから再度お試しください。または高度な設定からプロトコルを切り替えることもできます。</value>
   </data>
   <data name="Dialogs_btn_Cancel">
-    <value>Annulla</value>
+    <value>キャンセル</value>
     <comment>The text on Cancel button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Close">
-    <value>Chiudi</value>
+    <value>閉じる</value>
     <comment>The text on Close button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Continue">
-    <value>Continua</value>
+    <value>続行</value>
     <comment>The text on Continue button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Enable">
-    <value>Abilita</value>
+    <value>有効化</value>
   </data>
   <data name="Dialogs_btn_NoThanks">
-    <value>No, Grazie</value>
+    <value>いいえ</value>
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
     <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
-    <value>Dal server:</value>
+    <value>サーバーから:</value>
     <comment>The label for the previous server in dialog windows</comment>
   </data>
   <data name="Dialogs_reconnection_ToServer">
-    <value>Al server:</value>
+    <value>サーバーへ:</value>
     <comment>The label for the new server in dialog windows</comment>
   </data>
   <data name="Dialogs_ttl_Question">
-    <value>Attenzione</value>
+    <value>注意</value>
     <comment>The title of question message window</comment>
   </data>
   <data name="Dialogs_ttl_Warning">
-    <value>Attenzione</value>
+    <value>注意</value>
     <comment>The title of warning message window</comment>
   </data>
   <data name="ErrorWindow_lbl_Close">
-    <value>Chiudi</value>
+    <value>閉じる</value>
   </data>
   <data name="ErrorWindow_lbl_Download">
-    <value>Scarica</value>
+    <value>ダウンロード</value>
   </data>
   <data name="ErrorWindow_lbl_DownloadInfo">
-    <value>Scarica e installa l'ultima versione per risolvere il problema.</value>
+    <value>問題を修正するため最新版をダウンロードしてインストールします。</value>
   </data>
   <data name="ErrorWindow_lbl_MissingHeading">
-    <value>All'applicazione manca un file richiesto</value>
+    <value>アプリケーションに必要なファイルがありません</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Alcune applicazioni sul tuo PC potrebbero aver rimosso alcuni file o impedito loro di essere installati correttamente.</value>
+    <value>あなたの PC 上のいずれかのアプリケーションによって、一部のファイルが削除されたり、インストールが妨げられている可能性があります。</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
-    <value>Ripara</value>
+    <value>修復</value>
   </data>
   <data name="ErrorWindow_lbl_RepairInfo">
-    <value>Ripara la tua installazione.</value>
+    <value>インストールを修復してください。</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill switch</value>
+    <value>キルスイッチ</value>
     <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
-    <value>Licenza</value>
+    <value>ライセンス</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>La tua sessione è scaduta. Per favore riprova l'accesso.</value>
+    <value>セッションの有効期限が切れました。再度サインインしてください。</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token di aggiornamento non valido, accedi di nuovo.</value>
+    <value>無効な更新トークンです。再度サインインしてください。</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
-    <value>Errore sconosciuto</value>
+    <value>不明なエラー</value>
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Autentica</value>
+    <value>認証</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Accedi</value>
+    <value>ログイン</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill Switch è attualmente attivo</value>
+    <value>キルスイッチは現在有効です</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
-    <value>Password</value>
+    <value>パスワード</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Internet sicuro ovunque</value>
+    <value>どこでも安全なインターネットを</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
-    <value>Apri e collegati all'avvio</value>
+    <value>起動時に開始して接続</value>
   </data>
   <data name="Login_lbl_StartWithWindows">
-    <value>Avvia con Windows</value>
+    <value>Windows起動時に自動起動</value>
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Connessione a Proton VPN in corso...</value>
+    <value>Proton VPN へ接続中...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Codice di autenticazione a due fattori</value>
+    <value>2 要素認証コード</value>
   </data>
   <data name="Login_lbl_Username">
-    <value>Nome utente</value>
+    <value>ユーザー名</value>
     <comment>The label for Username text box in Login window</comment>
   </data>
   <data name="Login_lnk_CommonSignInIssues">
-    <value>Problemi di accesso comuni</value>
+    <value>サインインのよくある問題</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
-    <value>Crea account</value>
+    <value>アカウントの作成</value>
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
-    <value>Nome utente dimenticato</value>
+    <value>ユーザー名を忘れた</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
   </data>
   <data name="Login_lnk_LoginProblems">
-    <value>Problemi di accesso comuni</value>
+    <value>一般的なログインの問題</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
   </data>
   <data name="Login_lnk_NeedHelp">
-    <value>Hai bisogno di aiuto?</value>
+    <value>お困りですか？</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
   <data name="Login_lnk_ReportAnIssue">
-    <value>Segnala un problema</value>
+    <value>問題を報告</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
-    <value>Segnala un problema</value>
+    <value>問題を報告</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Reimposta la password</value>
+    <value>パスワードをリセット</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Codice di autenticazione a due fattori non valido</value>
+    <value>無効な 2 要素認証コードです</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Credenziali di accesso non valide. Per favore riprova.</value>
+    <value>ログイン情報が正しくありません。もう一度やり直してください。</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
     <comment>The title of Login window. Should not be converted.</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownSpeed">
-    <value>Velocità di download:</value>
+    <value>DL速度:</value>
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownVolume">
-    <value>Volume di download:</value>
+    <value>DL容量:</value>
     <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Session">
-    <value>Sessione:</value>
+    <value>接続時間:</value>
     <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Speed">
-    <value>Velocità</value>
+    <value>速度</value>
     <comment>The label for overall data transfer speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_TimeUnits">
-    <value>60 secondi</value>
+    <value>60秒</value>
     <comment>The time units of Speed graph in Map of main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Traffic">
-    <value>Traffico della sessione</value>
+    <value>接続の詳細</value>
     <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpSpeed">
-    <value>Velocità di upload:</value>
+    <value>UP速度:</value>
     <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpVolume">
-    <value>Volume di upload:</value>
+    <value>DL容量:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Effettua l'upgrade a Plus</value>
+    <value>プラスへのアップグレード</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
-    <value>CONNESSO</value>
+    <value>接続完了</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
   </data>
   <data name="Map_VpnStatus_val_Disconnected">
-    <value>DISCONNESSO</value>
+    <value>未接続</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
   </data>
   <data name="Map_btn_Connect">
-    <value>Connetti</value>
+    <value>接続</value>
     <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
   </data>
   <data name="Map_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>接続解除</value>
     <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
   </data>
   <data name="Map_lbl_SecureCore">
@@ -2064,471 +2045,459 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Ottieni cambi illimitati con VPN Plus</value>
+    <value>VPN Plus を使用すると無制限に変更できます</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>Hai raggiunto il numero massimo di cambi gratuiti del server per ora.</value>
+    <value>無料サーバーの変更回数が上限に達しました。</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
-    <value>Attiva Secure Core</value>
+    <value>Secure Core を有効化</value>
   </data>
   <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
-    <value>Non mostrare nuovamente</value>
+    <value>再度表示しない</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core offre il livello più elevato di sicurezza e privacy, ma potrebbe ridurre la velocità del tuo Internet. Se necessiti di maggiori prestazioni, puoi disabilitare Secure Core.</value>
+    <value>Secure Core は最高レベルのセキュリティとプライバシーを実現しますが、インターネットのスピードに影響する可能性があります。パフォーマンスを重視する場合は、Secure Core を無効化できます。</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Una nota sulla velocità...</value>
+    <value>速度について...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>Nuovi paesi gratuiti</value>
+    <value>新しい自由の国</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>Ora sono disponibili server gratuiti in Polonia e Romania.</value>
+    <value>現在、ポーランドとルーマニアに無料サーバーがある。</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Modifiche alla selezione del server</value>
+    <value>サーバー選択の変更</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Per evitare il sovraffollamento dei server e garantire a tutti l'accesso a una navigazione veloce e sicura, abbiamo rimosso la selezione manuale del paese e abbiamo apportato notevoli miglioramenti alla selezione automatica del server.</value>
+    <value>サーバーの混雑を防ぎ、誰もが高速で安全なブラウジングにアクセスできるようにするため、手動による国選択を廃止し、自動サーバー選択を大幅に改善しました。</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>Cosa c'è di nuovo</value>
+    <value>最新情報</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Ho capito</value>
+    <value>わかった</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
   </data>
   <data name="Notifications_Delinquency_Description">
-    <value>Potrai accedere di nuovo alle funzionalità premium dopo che saranno state pagate.</value>
+    <value>未払いの請求が支払われると、再度プレミアム機能を利用することができます。</value>
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Potrai nuovamente accedere alle funzionalità premium dopo il pagamento. Per ora, ci stiamo riconnettendo al server del piano GRATUITO più veloce disponibile.</value>
+    <value>未払いの請求が支払われると、再度プレミアム機能を利用することができます。現在は FREE プランで利用できる高速なサーバーに再接続しています。</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>Il tuo account VPN ha fatture in sospeso</value>
+    <value>VPN アカウントに未払いの支払いがあります</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN ha rilevato che la rete attuale sta impedendo una connessione alla VPN. Abilitare Smart Protocol potrebbe evitare queste limitazioni.</value>
+    <value>現在のネットワークが VPN に接続しようとしているのを妨げるのを検出しました。スマートプロトコルを有効にするとこれらの制限を回避できる可能性があります。</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
-    <value>Smart Protocol è attualmente disabilitato</value>
+    <value>スマートプロトコルは現在無効です</value>
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Rilevata connessione Wi-Fi non sicura: {0}</value>
+    <value>安全でないWi-Fi接続が検出されました: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Disconnetti un altro dispositivo per connettere questo.</value>
+    <value>接続するには他のデバイスの接続を解除してください。</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
-    <value>Hai raggiunto il limite massimo di dispositivi</value>
+    <value>最大デバイス数の上限に達しています</value>
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>このデバイスを接続するために他のデバイスの接続を解除するか、同時に 10 デバイス接続できる PLUS プランにアップグレードしてください。</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Il tuo abbonamento è stato declassato. Aggiorna di nuovo per godere di tutte le funzionalità.</value>
+    <value>サブスクリプションがダウングレードされました。すべての機能を使用するには再度アップグレードしてください。</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Il tuo abbonamento è stato declassato, quindi ci stiamo riconnettendo al server più veloce disponibile. Aggiorna di nuovo per godere di tutte le funzionalità.</value>
+    <value>サブスクリプションがダウングレードされました。利用可能な高速なサーバーに再接続します。 再度アップグレードすることですべての機能を使うことができます。</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Il tuo piano di abbonamento VPN è scaduto</value>
+    <value>VPN サブスクリプションのプランの有効期限が切れました</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Riavvia</value>
+    <value>再起動</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
-    <value>Cosa c'è di nuovo</value>
+    <value>更新情報</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>È disponibile una nuova versione dell'app!</value>
+    <value>アプリの最新版が公開されました！</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>CONNESSO a {0}</value>
+    <value>{0} に接続済み</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
-    <value>DISCONNESSO</value>
+    <value>接続が解除されました</value>
     <comment>The message displayed in VPN state system notification when app disconnects from VPN</comment>
   </data>
   <data name="Onboarding_btn_EndTour">
-    <value>Termina tour</value>
+    <value>ツアーを終了</value>
     <comment>The text on End Tour button in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_btn_NextStep">
-    <value>Prossimo consiglio</value>
+    <value>次のヒント</value>
     <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_1">
-    <value>Connettiti automaticamente al server che ti fornisce la connessione più veloce.</value>
+    <value>自動的に最も高速なサーバーに接続されます。</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Salva le impostazioni e i server preferiti per l'utilizzo futuro.</value>
+    <value>好みの設定とサーバーをプロファイルとして保存できます。</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
-    <value>Scegli quale paese e server vuoi utilizzare per il tuo indirizzo IP finale.</value>
+    <value>エンドIPアドレスとして利用する国とサーバーを選択できます。</value>
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>Adatta la tua connessione VPN alla tua attività online con le funzionalità speciali di Proton VPN per una velocità e una protezione della privacy ottimali.</value>
+    <value>Proton VPN の特別な機能により、オンラインアクティビティに最適なVPN接続を適応させ、最適な速度とプライバシー保護を実現します。</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
-    <value>Connessione rapida</value>
+    <value>クイック接続</value>
     <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_2">
-    <value>Profili</value>
+    <value>プロファイル</value>
     <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_3">
-    <value>Paesi</value>
+    <value>国別リスト</value>
     <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_4">
-    <value>Impostazioni rapide</value>
+    <value>クイック設定</value>
     <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="PortForwarding">
-    <value>Port Forwarding</value>
+    <value>ポート転送</value>
   </data>
   <data name="PortForwarding_lbl_ActivePort">
-    <value>Porta attiva:</value>
+    <value>有効なポート:</value>
   </data>
   <data name="PortForwarding_lbl_CopyValue">
-    <value>Clicca per copiare questo numero di porta.</value>
+    <value>クリックしてポート番号をコピーします。</value>
   </data>
   <data name="PortForwarding_lbl_Info">
-    <value>Imposta questo numero nella tua app BitTorrent per una maggiore velocità.</value>
+    <value>速度を上げるために BitTorrent へこの番号を指定します。</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Per utilizzare il Port Forwarding, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;collegati&lt;/Hyperlink&gt; ad un server che supporta il P2P.</value>
+    <value>ポート転送を使うには、P2P をサポートするサーバーに&lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;接続&lt;/Hyperlink&gt;してください。</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN non è riuscito a recuperare il certificato di autenticazione a causa di un problema di rete.</value>
+    <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
-    <value>Server più veloce disponibile</value>
+    <value>利用可能な最速のサーバー</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Random">
-    <value>Server diverso ogni volta</value>
+    <value>毎回別のサーバーに接続</value>
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Il profilo non può essere salvato:</value>
+    <value>プロファイルを保存できません:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Per favore seleziona un colore</value>
+    <value>色を選択してください</value>
     <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Per favore seleziona un paese</value>
+    <value>国を選択してください</value>
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Seleziona un gateway</value>
+    <value>ゲートウェイを選択してください</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Per favore seleziona un nome del profilo</value>
+    <value>プロファイル名を入力してください</value>
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
-    <value>Nome del profilo già esistente</value>
+    <value>プロファイル名は既に存在します</value>
     <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>La lunghezza massima del nome del profilo è {0} simbolo. Scegli un nome profilo più breve.</value>
-  </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>La lunghezza massima del nome del profilo è {0} simboli. Scegli un nome profilo più breve.</value>
+    <value>プロファイル名の最大文字数は {0} です。短いプロファイル名を使用してください。</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Per favore seleziona un server</value>
+    <value>サーバーを選択してください</value>
     <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
-    <value>Seleziona il paese di uscita</value>
+    <value>出口の国を選択</value>
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Gateway_Watermark">
-    <value>Seleziona gateway</value>
+    <value>ゲートウェイを選択</value>
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
-    <value>Inserisci il nome del profilo</value>
+    <value>プロファイル名を入力</value>
     <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Fastest">
-    <value>Più veloce</value>
+    <value>最速</value>
     <comment>The name of Fastest profile</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Random">
-    <value>Casuale</value>
+    <value>ランダム</value>
     <comment>The name of Random profile</comment>
   </data>
   <data name="Profiles_Profile_btn_Discard">
-    <value>Scarta</value>
+    <value>破棄</value>
     <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Continua modifiche</value>
+    <value>編集を続ける</value>
     <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Color">
-    <value>Colore:</value>
+    <value>色:</value>
     <comment>The label for Color selection in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country">
-    <value>Paese:</value>
+    <value>国:</value>
     <comment>The label for Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country_Watermark">
-    <value>Seleziona paese</value>
+    <value>国を選択</value>
     <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_ExitCountry">
-    <value>Paese di uscita:</value>
+    <value>出口の国:</value>
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Gateway:</value>
+    <value>ゲートウェイ:</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
-    <value>Nome:</value>
+    <value>名前:</value>
     <comment>The label for Name text box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Protocol">
-    <value>Protocollo:</value>
+    <value>プロトコル:</value>
     <comment>The label for Protocol combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Server">
-    <value>Server:</value>
+    <value>サーバー:</value>
     <comment>The label for Server combo box in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Server_Watermark">
-    <value>Seleziona server</value>
+    <value>サーバーを選択</value>
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Ci sono modifiche del profilo non salvate.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Sei sicuro di volerle scartare?</value>
+    <value>保存されていないプロファイルの変更があります。&lt;LineBreak/&gt;&lt;LineBreak/&gt;変更を破棄してよろしいですか？</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Crea profilo</value>
+    <value>プロファイルを作成</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
-    <value>Modifica profilo</value>
+    <value>プロファイルの編集</value>
     <comment>The title of Profile window when editing profile</comment>
   </data>
   <data name="Profiles_btn_Close">
-    <value>Chiudi</value>
+    <value>閉じる</value>
     <comment>The text on Close button in Profiles window</comment>
   </data>
   <data name="Profiles_btn_Create">
-    <value>Crea profilo</value>
+    <value>プロファイルを作成</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
   <data name="Profiles_btn_Troubleshoot">
-    <value>Risoluzione problemi</value>
+    <value>トラブルシューティング</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
   </data>
   <data name="Profiles_col_Action">
-    <value>Azione</value>
+    <value>アクション</value>
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection">
-    <value>Connessione</value>
+    <value>接続</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
-    <value>Profilo</value>
+    <value>プロフィール</value>
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Protocol">
-    <value>Protocollo</value>
+    <value>プロトコル</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
-    <value>I server sono attualmente offline per manutenzione.</value>
+    <value>サーバーは、メンテナンス中のため現在オフラインです。</value>
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>I server in questo paese sono attualmente offline per manutenzione. Per favore seleziona un altro paese.</value>
+    <value>この国のサーバーは、メンテナンス中のため現在オフラインです。別の国を選択してください。</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
-    <value>Questo profilo verrà eliminato. Vuoi continuare?</value>
+    <value>このプロファイルは削除されます。続行しますか？</value>
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Non ci sono server disponibili per la tua selezione. Seleziona un'altra opzione.</value>
+    <value>あなたが選択したサーバーは現在利用できません。別の設定をお試しください。</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
-    <value>Profili</value>
+    <value>プロファイル</value>
     <comment>The title of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
-    <value>Applica</value>
+    <value>適用</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Codice coupon</value>
+    <value>クーポンコード</value>
   </data>
   <data name="PromoCode_lbl_Success">
-    <value>Il coupon è stato applicato con successo.</value>
+    <value>クーポンは正常に適用されました。</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
-    <value>Usa un coupon</value>
+    <value>クーポンを使用</value>
   </data>
   <data name="QuickLaunch_btn_Connect">
-    <value>Connessione rapida</value>
+    <value>クイック接続</value>
     <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
   </data>
   <data name="QuickLaunch_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>接続解除</value>
     <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
   </data>
   <data name="QuickLaunch_btn_OpenApp">
-    <value>Apri Proton VPN</value>
+    <value>Proton VPN を開く</value>
     <comment>The text on button in Quick Launch window (opens app)</comment>
   </data>
   <data name="QuickLaunch_lbl_Connecting">
-    <value>Connessione a</value>
+    <value>接続中：</value>
     <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
   </data>
   <data name="QuickLaunch_lbl_Profiles">
-    <value>Profili</value>
+    <value>プロファイル</value>
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Spento</value>
+    <value>キルスイッチ無効</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch Attivo</value>
+    <value>キルスイッチ有効</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOff">
-    <value>Non bloccare</value>
+    <value>ブロックしない</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnFirst">
-    <value>Blocca solo malware</value>
+    <value>マルウェアのみブロック</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Blocca malware, annunci e tracker</value>
+    <value>マルウェア、広告、トラッカーをブロック</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Kill switch permanente</value>
+    <value>永続的キルスイッチ</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
-    <value>Port Forwarding Disattivato</value>
+    <value>ポート転送無効</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOn">
-    <value>Port Forwarding Attivato</value>
+    <value>ポート転送有効</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core Spento</value>
+    <value>Secure Core 無効</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core Attivato</value>
+    <value>Secure Core 有効</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>EFFETTUA L'UPGRADE</value>
+    <value>アップグレード</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disabilita internet se la connessione della VPN si interrompe per prevenire eventuali fughe d'indirizzi IP.</value>
+    <value>意図しない IP アドレスの漏洩を防ぐため、VPN 接続が切断された場合にインターネットを無効にします。</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Naviga su internet evitando malware e pubblicità.</value>
+    <value>広告やマルウェアのないインターネットを使いましょう。</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>Annunci bloccati</value>
-  </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>Annuncio bloccato</value>
+    <value>件の広告をブロック</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>I siti web pubblicitari usano cookie ed elementi traccianti per identificarti.</value>
+    <value>広告ウェブサイトは、Cookie とトラッカーを使用してあなたをターゲットします。</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Dati salvati</value>
+    <value>のデータを節約</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Stima della quantità di annunci, elementi traccianti, e malware che NetShield ha bloccato.</value>
+    <value>NetShield がブロックした広告、トラッカー、マルウェアの推定サイズです。</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Tracker fermati</value>
-  </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Tracker fermato</value>
+    <value>件のトラッカーを停止</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>I Trackers sono siti di terze parti che collezionano, memorizzano e vendono informazioni riguardanti la tua attività sul web.</value>
+    <value>トラッカーとは、あなたのウェブでの活動に関する情報を収集、保存、販売しているサードパーティのウェブサイトです。</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
-    <value>Se i siti web non si caricano, prova a disabilitare NetShield</value>
+    <value>ウェブサイトが読み込まれない場合は、NetShield を無効にしてみてください</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Velocizza i tuoi torrent e giochi online consentendo alle app locali supportate di essere raggiungibili da internet.</value>
+    <value>インターネットから対応するローカルアプリへの接続を許可することで、トレントやオンラインゲームの速度が向上します。</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>Instrada i tuoi dati più sensibili attraverso i nostri server più sicuri in paesi rispettosi della privacy.</value>
+    <value>プライバシーフレンドリーな国にある私たちの安全なサーバーを経由して接続します。</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
-    <value>Secure Core può ridurre la velocità VPN</value>
+    <value>Secure Core を使用すると VPN の通信速度が低下する可能性があります</value>
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Secure_Servers_lbl_One">
-    <value>{0} server sicuro</value>
-  </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} server sicuri</value>
+    <value>{0} 台の安全なサーバー</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Gateway</value>
+    <value>ゲートウェイ</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
-    <value>Standard</value>
+    <value>標準</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_P2P">
@@ -2544,15 +2513,15 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Più veloce</value>
+    <value>最速</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
-    <value>Server P2P</value>
+    <value>P2P サーバー</value>
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Server Plus</value>
+    <value>Plus サーバー</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2560,99 +2529,99 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The name of Secure Core server feature</comment>
   </data>
   <data name="Servers_Feature_val_Streaming">
-    <value>Streaming</value>
+    <value>ストリーミング</value>
   </data>
   <data name="Servers_Feature_val_Tor">
-    <value>Server Tor</value>
+    <value>Tor サーバー</value>
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Connessioni gratuite (1)</value>
+    <value>無料接続 (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>IP del server:</value>
+    <value>サーバーIP:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
-    <value>Assegnato automaticamente</value>
+    <value>自動割り当て</value>
     <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_Load">
-    <value>Carico del server:</value>
+    <value>サーバー負荷:</value>
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% carico</value>
+    <value>負荷 {0}%</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
-    <value>Nessun dato</value>
+    <value>データなし</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Servers_Load_lbl_Status">
-    <value>Stato del server:</value>
+    <value>サーバーの状態:</value>
     <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_ViaCountry">
-    <value>Da {0} a {1}</value>
+    <value>{0} 経由の {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Ottieni una copertura mondiale con VPN Plus</value>
+    <value>VPN Plusで世界中をカバー</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Non è il paese che vuoi? Effettua l'upgrade per scegliere qualsiasi server</value>
+    <value>ご希望の国ではないですか？アップグレードでどのサーバーでも選択可能</value>
   </data>
   <data name="Servers_btn_Connect">
-    <value>Connetti</value>
+    <value>接続</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
   </data>
   <data name="Servers_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>切断</value>
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>アップグレード</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Effettua l'upgrade a Plus</value>
+    <value>プラスへのアップグレード</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
-    <value>tramite</value>
+    <value>経由国</value>
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN non è stato in grado di aggiornare il certificato di autenticazione del client.</value>
+    <value>Proton VPN はクライアント証明書の更新に失敗しました。</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Il server al quale stai cercando di connetterti è attualmente offline per manutenzione. Per favore seleziona un altro server o profilo.</value>
+    <value>接続しようとしているサーバーは、メンテナンス中のため現在オフラインです。別のサーバーまたはプロファイルを選択してください。</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>Il server a cui stai cercando di connetterti è stato rimosso. Per favore seleziona un altro server o profilo.</value>
+    <value>接続しようとしているサーバーは、削除されたため接続できません。別のサーバーまたはプロファイルを選択してください。</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN non può connettersi perché il server RPC non è disponibile sul tuo sistema. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;VIsualizza possibili soluzioni&lt;/Hyperlink&gt;</value>
+    <value>このシステムで RPC サーバーは利用できないため Proton VPN に接続できません。&lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;解決方法を表示&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Sfortunatamente questo server non supporta WireGuard.</value>
+    <value>このサーバーは WireGuard をサポートしていません。</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
-    <value>Aggiungi app</value>
+    <value>アプリを追加</value>
     <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>APP:</value>
+    <value>アプリ:</value>
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Escludi app/IP dall'utilizzo del tunnel VPN</value>
+    <value>ここに含まれるアプリ/IPではVPNトンネルを使用しない</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Solo le apps/IP selezionate/i useranno il tunnel VPN</value>
+    <value>ここに含まれる「アプリ・IP」でのみ VPN トンネルを使用する</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
@@ -2660,104 +2629,104 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
-    <value>Aggiungi indirizzo IPv4</value>
+    <value>IPv4アドレスを追加</value>
     <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
-    <value>IP non valido</value>
+    <value>無効な IP です</value>
     <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
-    <value>Protezione dalle perdite di DNS</value>
+    <value>DNS 漏洩防止</value>
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Impedire la perdita di dettagli delle query DNS a terzi. Sempre attivo.</value>
+    <value>DNS クエリの内容が外部に漏洩するのを防ぎます。この設定は常に有効です。</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
-    <value>Consenti percorso alternativo</value>
+    <value>代替ルーティングを許可</value>
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>Nel caso in cui i siti di Proton siano bloccati, questa impostazione consente all'app di provare l'indirizzamento di rete alternativo per raggiungere Proton, che potrebbe esser utile per evitare firewall o problemi di rete. Consigliamo di mantenere questa impostazione attiva per una maggiore affidabilità.</value>
+    <value>Proton への接続がブロックされている場合、アプリは別のネットワーク経由で Proton へ接続を試みます。この設定は、ファイアウォールやネットワーク上の問題を回避するのに役立ちます。信頼性向上の観点から、この設定を有効にしておくことをおすすめします。</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
-    <value>Accelerazione hardware</value>
+    <value>ハードウェアアクセラレーション</value>
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Fornisce prestazioni di sistema migliorate e un'esperienza più fluida usando la GPU per il rendering grafico. Disattivala in caso di glitch dello schermo.</value>
+    <value>グラフィックスの描画にGPUを使用することで、システムのパフォーマンスを改善してスムーズな操作性を提供します。画面の不具合が発生した場合は無効化します。</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
-    <value>Protezione perdita di IPv6</value>
+    <value>IPv6 漏洩防止</value>
     <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
-    <value>Evita la perdita di indirizzo IPv6.</value>
+    <value>IPv6 アドレスの漏洩を防ぎます。</value>
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver">
-    <value>Apri il driver di Rete di OpenVPN</value>
+    <value>OpenVPN ネットワークドライバ</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>I driver di rete possono influire sulla tua connessione e velocità. Il nuovo adattatore TUN fornisce una velocità maggiore, torna sull'adattatore TAP se riscontri problemi di connettività.</value>
+    <value>ネットワークドライバーは接続と速度に影響を与える可能性があります。新しい TUN アダプターは高速ですが、接続に問題が発生した場合は TAP アダプターにフォールバックします。</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
-    <value>Porte non standard</value>
+    <value>標準的ではないポート</value>
     <comment>The label for toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
-    <value>Usa Proton VPN per qualsiasi esigenza speciale consentendo il traffico verso porte non standard attraverso la rete VPN.</value>
+    <value>標準以外のポートへの VPN ネットワーク経由のトラフィックを許可して、特殊な用途に Proton VPN を使用する。</value>
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>Adattatore TAP</value>
+    <value>TAP アダプタ</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>Adattatore TUN</value>
+    <value>TUN アダプタ</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
-    <value>Port Forwarding</value>
+    <value>ポート転送</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Scorciatoia per il Port Forwarding</value>
+    <value>ポート転送ショートカット</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
-    <value>Accedi alle impostazioni di Port Forwarding dalle Impostazioni rapide</value>
+    <value>クイック設定からポート転送設定にアクセスします</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications">
-    <value>Notifiche di Port Forwarding</value>
+    <value>ポート転送設定</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
-    <value>Ricevi una notifica quando il numero di Port Forwarding cambia</value>
+    <value>ポート転送番号が変更されたときに通知する</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Velocizza i tuoi torrent e i giochi online consentendo alle app locali supportate di essere raggiungibili da Internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Scopri di più&lt;/Hyperlink&gt;</value>
+    <value>インターネットから対応するローカルアプリへの接続を許可することで、トレントやオンラインゲームの速度が向上します。&lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;詳細&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Velocizza i tuoi torrent e giochi online consentendo alle app locali supportate di essere raggiungibili da internet.</value>
+    <value>サポートされているローカルアプリにインターネットからアクセスできるようにすることで、トレントやオンラインゲームをスピードアップ。</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
-    <value>Split Tunneling</value>
+    <value>スプリットトンネル</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Escludi un'applicazione o un indirizzo IP dal traffico VPN o includi solo applicazioni specifiche. Non può essere attivato insieme al Kill Switch.</value>
+    <value>特定のアプリ/IPアドレスをVPNトラフィックから除外、あるいは特定のアプリのみVPNトラフィックに接続します。キルスイッチと同時に利用することはできません。</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
   </data>
   <data name="Settings_Advanced_ttl">
-    <value>Avanzate</value>
+    <value>拡張</value>
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
-    <value>Smart (suggerito)</value>
+    <value>スマート (推奨)</value>
     <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Tcp">
@@ -2773,57 +2742,57 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>L'uso di server DNS personalizzati disabiliterà NetShield. I server DNS servono per indirizzarti ai siti web corretti. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Usa solamente server DNS di cui ti fidi. Vuoi attivare i server DNS personalizzati?</value>
+    <value>カスタム DNS サーバーを使用すると NetShield が無効化されます。悪意ある DNS サーバーを使用すると、偽物のウェブサイトに誘導される可能性があります。&lt;LineBreak/&gt;&lt;LineBreak/&gt;あなたが信用している DNS サーバーのみを使用してください。本当にカスタム DNS サーバーを有効化しますか？</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>アップグレード</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
-    <value>Server DNS personalizzati</value>
+    <value>カスタム DNS サーバー</value>
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Inserisci un server DNS privato (come AdGuard DNS) per elaborare le tue richieste DNS. L'uso di un server DNS personalizzato disabiliterà NetShield. I server DNS sono servono per indirizzarti al sito corretto, quindi utilizza solo i server di cui ti fidi.</value>
+    <value>あなたの DNS リクエストを処理するための（AdGuard DNS のような）プライベート DNS サーバーを入力してください。カスタム DNS サーバーを使用すると NetShield は無効になります。悪意ある DNS サーバーを使用すると、偽物のウェブサイトに誘導される可能性があります。あなたが信用している DNS サーバーのみを使用してください。</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
-    <value>Protocollo</value>
+    <value>プロトコル</value>
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Abilita il Protocollo Smart per usare automaticamente il protocollo e la porta che offrono la connettività migliore.</value>
+    <value>スマートプロトコルを有効化すると最適な接続を提供するプロトコルとポートを自動的に選択します。</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>NAT moderato</value>
+    <value>モデレート NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Il NAT moderato disabilita la randomizzazione della mappatura degli indirizzi locali, che può ridurre leggermente la tua sicurezza, ma consente tecniche come le connessioni dirette per applicazioni come i giochi online.</value>
+    <value>中程度のNATは、ローカルアドレスのマッピングのランダム化を無効にするため、セキュリティを若干低下さ せますが、オンラインゲームなどのアプリケーションの直接接続などのテクニックを可能にします。</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
-    <value>Connessione rapida</value>
+    <value>クイック接続</value>
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Il pulsante Connessione Rapida ti collega al profilo selezionato.</value>
+    <value>クイック接続ボタンをクリックすると、選択されたプロファイルに接続します。</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
-    <value>Riconnessione Automatica</value>
+    <value>自動再接続</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
-    <value>Notifiche di riconnessione</value>
+    <value>再接続の通知</value>
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
-    <value>Attivalo per ricevere le notifiche quando l'Acceleratore della VPN ti connette a un server più veloce.</value>
+    <value>有効にすると VPN Accelerator が高速なサーバーに接続する時に通知を受信します。</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect_Info">
-    <value>Passa automaticamente a un server più veloce simile a quello selezionato.</value>
+    <value>接続していたサーバーに近い高速なサーバーに自動的に切り替えます。</value>
     <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
@@ -2831,170 +2800,170 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info">
-    <value>VPN Accelerator abilita una serie di tecnologie uniche di miglioramento delle prestazioni che possono aumentare la velocità della VPN fino al 400%.</value>
+    <value>VPN Accelerator は独自のパフォーマンス向上技術を使用することで、VPN の速度を最大 400% 向上させることができます。</value>
     <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_ttl">
-    <value>Connessione</value>
+    <value>接続</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate">
-    <value>Aggiornamenti automatici</value>
+    <value>自動更新</value>
     <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate_Info">
-    <value>Verifica e installa automaticamente gli aggiornamenti per Proton VPN.</value>
+    <value>Proton VPN の更新を自動的に確認してインストールします。</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
-    <value>Connetti all'avvio dell'app</value>
+    <value>アプリ開始時に接続</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Connettiti automaticamente al profilo Quick Connect all'avvio di Proton VPN.</value>
+    <value>Proton VPN 起動時に自動的にクイック接続プロフィールに接続します。</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
-    <value>Accesso anticipato</value>
+    <value>早期アクセス</value>
     <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess_Info">
-    <value>Sii il primo a ricevere gli aggiornamenti più recenti. Ricorda che le versioni in anteprima potrebbero essere meno stabili.</value>
+    <value>最新の更新プログラムを最初に入手します。早期アクセス版は不安定な場合があるためご注意ください。</value>
     <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_Language">
-    <value>Lingua</value>
+    <value>言語 / Language</value>
     <comment>The label for Language combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ShowNotifications">
-    <value>Mostra notifiche</value>
+    <value>通知を表示</value>
     <comment>The label for Show Notifications toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartMinimized">
-    <value>Avvia ridotto a icona</value>
+    <value>最小化して起動</value>
     <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartOnBoot">
-    <value>Apri all'avvio</value>
+    <value>システム起動時に実行</value>
     <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Settings_General_ttl">
-    <value>Generale</value>
+    <value>一般</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Effettua l'upgrade a Plus</value>
+    <value>プラスへのアップグレード</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
-    <value>Riconnetti</value>
+    <value>再接続</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
   </data>
   <data name="Settings_msg_ReconnectRequired">
-    <value>Alcuni cambiamenti richiedono la riconnessione per avere effetto.</value>
+    <value>変更を有効化するには、再接続が必要です。</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
   </data>
   <data name="Settings_ttl">
-    <value>Impostazioni</value>
+    <value>設定</value>
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>I miei Profili</value>
+    <value>プロフィール</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Consigliato</value>
+    <value>おすすめ</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>Un gateway VPN è una connessione sicura che fornisce un accesso controllato ai dati e ai servizi della tua azienda attraverso server dedicati.</value>
+    <value>VPN ゲートウェイは、専用サーバーを介して会社のデータとサービスへの管理されたアクセスを提供する安全な接続です。</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
-    <value>Cos'è un gateway?</value>
+    <value>ゲートウェイとは？</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Cambia server</value>
+    <value>サーバーを変更する</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
-    <value>Connessione rapida</value>
+    <value>クイック接続</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Disconnect">
-    <value>Disconnetti</value>
+    <value>接続解除</value>
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected">
-    <value>Non sei protetto!</value>
+    <value>あなたは現在保護されていません！</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
-    <value>Connettiti a un server VPN per avere una connessione sicura.</value>
+    <value>セキュリティで保護された接続を確立するためには、VPN サーバーに接続してください。</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown">
-    <value>Sconosciuto</value>
+    <value>不明</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Impossibile recuperare il tuo indirizzo IP a causa di problemi di rete o restrizioni da parte del tuo ISP.</value>
+    <value>ネットワーク上で何らかの問題が発生しているか、または ISP が制限行っているため、IP アドレスを取得できません。</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill Switch attivato!</value>
+    <value>キルスイッチが有効です！</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill Switch sta bloccando tutte le connessioni per evitare l'esposizione dei dati.</value>
+    <value>データの漏洩を防ぐため、現在キルスイッチがすべての接続をブロックしています。</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Località Plus ({0})</value>
+    <value>プラスロケーション ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
-    <value>Località BASIC &amp; PLUS ({0})</value>
+    <value>BASIC と PLUS の場所 ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicLocationCount">
-    <value>Posizioni BASIC ({0})</value>
+    <value>BASIC の場所 ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
-    <value>Posizioni GRATUITE ({0})</value>
+    <value>FREE の場所 ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Server gratuiti</value>
+    <value>Free サーバー</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>I server gratuiti non hanno limiti di dati e di banda. La loro velocità potrebbe essere limitata a causa dell'alto numero di utenti connessi.</value>
+    <value>フリーサーバーにデータやネットワーク帯域の制限はありません。接続しているユーザー数が多い場合にのみスピードが制限されることがあります。</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Informazione</value>
+    <value>情報</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
-    <value>Posizioni PLUS ({0})</value>
+    <value>PLUS の場所 ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier0">
-    <value>Server GRATIS ({0})</value>
+    <value>FREE サーバー ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier1">
-    <value>Server BASIC ({0})</value>
+    <value>BASIC サーバー ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Server Plus ({0})</value>
+    <value>Plus サーバー ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
-    <value>Server INTERNI</value>
+    <value>INTERNAL サーバー</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
-    <value>In manutenzione</value>
+    <value>メンテナンス中</value>
     <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Search_Watermark">
-    <value>Cerca</value>
+    <value>検索</value>
     <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore">
@@ -3002,32 +2971,32 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore_Info">
-    <value>Fornisce una protezione aggiuntiva contro i server VPN compromessi indirizzando il traffico attraverso la nostra rete sicura</value>
+    <value>安全なネットワークを介した接続により、VPNサーバーの侵害に対する追加の保護を提供します。</value>
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Disabilitando Secure Core scollegherai la connessione VPN attiva. Vuoi continuare?</value>
+    <value>Secure Core を無効化すると、現在有効な VPN 接続が解除されます。続行しますか？</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
-    <value>Passare alla modalità Secure Core disconnetterà la connessione VPN attiva. Vuoi continuare?</value>
+    <value>Secure Core モードに切り替えると、現在有効な VPN 接続が解除されます。続行しますか？</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_ttl">
-    <value>Paesi</value>
+    <value>国別リスト</value>
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
     <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
     <value>P2P/BitTorrent</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P_Desc">
-    <value>Questi server offrono le migliori prestazioni per BitTorrent e la condivisione di file.</value>
+    <value>これらのサーバーは BitTorrent とファイル共有のための最適なパフォーマンスを提供します。</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
     <value>PLUS</value>
@@ -3036,94 +3005,85 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
-    <value>Questa tecnologia consente a ProtonVPN di fornire maggiore velocità e sicurezza in paesi difficili da servire.</value>
+    <value>この技術は ProtonVPN の提供が困難な国で高速な速度とセキュリティを提供します。</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
-    <value>Streaming</value>
+    <value>ストリーミング</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>I server PLUS supportano lo streaming (Netflix, Disney+, etc) da qualsiasi parte del mondo.</value>
+    <value>PLUS サーバーは世界中どこからでもストリーミングサービス (Netflix, Disney+ など) をサポートします。</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
-    <value>Funzionalità</value>
+    <value>機能</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor">
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Convoglia tutto il traffico internet attraverso la rete Tor. Più lento, ma più privato.</value>
+    <value>Tor ネットワークを経由するとネットワークは低速になりますが、さらにプライベートになります。</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
-    <value>Crea profilo</value>
+    <value>プロファイルを作成</value>
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
-    <value>Gestisci</value>
+    <value>管理</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Sidebar_Profiles_ttl">
-    <value>Profili</value>
+    <value>プロファイル</value>
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>Altri</value>
+    <value>その他</value>
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
-    <value>Server Plus</value>
+    <value>PLUS サーバー</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Streaming - {0}</value>
+    <value>ストリーミング - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
-    <value>Funzionalità</value>
+    <value>機能</value>
   </data>
   <data name="Sidebar_Streaming_Info">
-    <value>Connettiti a un server Plus in questo paese per avviare lo streaming.</value>
+    <value>この国の Plus サーバーに接続してストリーミングを開始します。</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
-    <value>Nota: Usa una nuova scheda del browser e/o cancella la cache per garantire che i nuovi contenuti appaiano.</value>
+    <value>注意: 新しいブラウザーのタブを開くか、キャッシュをクリアすることで新しいコンテンツが適用されます。</value>
   </data>
   <data name="Sidebar_Streaming_More">
-    <value>e altro</value>
+    <value>さらに</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Disabilitato</value>
+    <value>無効</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>nell'Area di notifica del sistema</value>
+    <value>通知領域に最小化</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>nella barra delle applicazioni</value>
+    <value>タスクバーに最小化</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Iniziare a digitare...</value>
+    <value>入力してください...</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
-  <data name="TimeUnit_val_Day_One">
-    <value>giorno</value>
-  </data>
   <data name="TimeUnit_val_Day_Other">
-    <value>giorni</value>
-  </data>
-  <data name="TimeUnit_val_Hour_One">
-    <value>ora</value>
+    <value>日</value>
   </data>
   <data name="TimeUnit_val_Hour_Other">
-    <value>ore</value>
-  </data>
-  <data name="TimeUnit_val_Minute_One">
-    <value>minuto</value>
+    <value>時間</value>
   </data>
   <data name="TimeUnit_val_Minute_Other">
-    <value>minuti</value>
+    <value>分</value>
   </data>
   <data name="Tooltips_SmartReconnection_Description">
-    <value>Sei stato passato ad un server più veloce simile a quello selezionato.</value>
+    <value>接続していたサーバーに近い高速なサーバーに切り替えられました。</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
@@ -3131,196 +3091,193 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Impostazioni di Notifica</value>
+    <value>通知設定</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Accedi più velocemente, server meno affollati.</value>
+    <value>より高速で混雑していないサーバーにアクセスできます。</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Aumenta le velocità di connessione fino al 400% con &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>&lt;Bold&gt;VPN アクセラレータ&lt;/Bold&gt; を使用すると、接続速度が最大 400% 向上します。</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Velocità e stabilità migliorate quando sei connesso a server distanti.</value>
+    <value>遠くのサーバーに接続する際の速度と安定性が向上しました。</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Naviga a velocità ancora più elevate (fino a 10 Gbps)</value>
+    <value>さらに高速なブラウジング(最大10Gbps)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Accedi ai contenuti geograficamente bloccati</value>
+    <value>ジオブロックされたコンテンツにアクセスする</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Scegli qualsiasi località</value>
+    <value>任意の場所を選択</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Velocità VPN ancora più elevata</value>
+    <value>さらに高速なVPN</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Guarda in streaming i tuoi film preferiti</value>
+    <value>お気に入りの映画をストリーミング</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>プラスへのアップグレード時</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Accedi a oltre {0} in {1}</value>
+    <value>{1} の {0} 経由でアクセス</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
-  <data name="Upsell_Country_Bullet1_One">
-    <value>Connettiti a {0} paese</value>
-  </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connettiti a {0} paesi</value>
+    <value>{0} か国に接続します</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Velocità più elevate (10 Gbps)</value>
+    <value>高速化(10 Gbps)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Guarda in streaming i tuoi film preferiti</value>
+    <value>お気に入りの映画をストリーミング</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Proteggi fino a 10 dispositivi</value>
+    <value>最大10台のデバイスを保護</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>Garanzia di rimborso entro 30 giorni</value>
+    <value>30日間返金保証</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Sblocca la &lt;Bold&gt;selezione del paese&lt;/Bold&gt; con VPN Plus</value>
+    <value>&lt;Bold&gt;国の選択&lt;/Bold&gt;のロックを解除します。 VPN プラスを使用すると</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Vuoi scegliere un paese specifico?</value>
+    <value>特定の国を選びたい？</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connettiti a una VPN con il tuo &lt;Bold&gt;sistema dei nomi di domino (DNS) personalizzato&lt;/Bold&gt;</value>
+    <value>&lt;Bold&gt;カスタム ドメイン ネーム システム (DNS)&lt;/Bold&gt;を使用して VPN に接続します。</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Salva le connessioni usate frequentemente con i &lt;Bold&gt;profili&lt;/Bold&gt;</value>
+    <value>頻繁に使用する接続を &lt;Bold&gt;プロファイル&lt;/Bold&gt; で保存します。</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Ottieni un accesso più veloce ai tuoi profili con la &lt;Bold&gt;Connessione rapida&lt;/Bold&gt;</value>
+    <value>&lt;Bold&gt;クイック接続&lt;/Bold&gt; を使用すると、プロファイルにすばやくアクセスできます。</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Sblocca la personalizzazione VPN avanzata</value>
+    <value>高度なVPNカスタマイズの解除</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Località dei server gratuiti ({0})</value>
+    <value>無料のサーバーの場所 ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free ti connette automaticamente al server più veloce disponibile. Solitamente è il server più vicino alla tua posizione.</value>
+    <value>Proton Freeでは、利用可能な最速のサーバーに自動的に接続されます。これは通常、あなたの所在地に最も近いサーバーとなります。</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Connessioni gratuite</value>
+    <value>無料接続</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Migliora le prestazioni dei giochi online e delle videochiamate</value>
+    <value>オンラインゲームとビデオ通話のパフォーマンス向上</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT di tipo 2 (moderato) ottimizza velocità e stabilità abilitando le connessioni dirette tra i dispositivi</value>
+    <value>NATタイプ2(中程度)は、デバイス間の直接接続を可能にすることで、速度と安定性を最適化します。</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Sblocca &lt;Bold&gt;NAT di tipo 2&lt;/Bold&gt; con VPN Plus</value>
+    <value>&lt;Bold&gt;NAT タイプ 2&lt;/Bold&gt; のロックを解除します。 VPN プラスを使用すると</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Migliora la tua esperienza di gioco</value>
+    <value>ゲーム体験のレベルアップ</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Blocca annunci e tracker</value>
+    <value>広告とトラッカーをブロック</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
-    <value>Naviga alla massima velocità</value>
+    <value>最高速でブラウズ</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
-    <value>Proteggi il tuo dispositivo dai malware</value>
+    <value>マルウェアからデバイスを保護</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>プラスへのアップグレード時</value>
   </data>
   <data name="Upsell_Netshield_Title">
-    <value>Goditi la navigazione senza pubblicità con NetShield</value>
+    <value>NetShield で広告なしのブラウジングを体験</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
-    <value>Scopri di più</value>
+    <value>詳細</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>アップグレード</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Hai esigenze di elaborazione avanzate o professionali che richiedono porte non standard? Esegui l'upgrade a VPN Plus per accedere a questa e ad altre funzionalità premium.</value>
+    <value>非標準なポートを使用する高度および専門的なコンピューティングを必要としていますか? VPN Plus にアップグレードしてこれを含めたプレミアムな機能を利用することができます。</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
-    <value>Consenti il ​​traffico verso porte non standard</value>
+    <value>標準的でないポートのトラフィックを許可</value>
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Disponibile con VPN Business.</value>
+    <value>VPN Business で利用可能です。</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Migliora le tue velocità di download peer-to-peer</value>
+    <value>ピアツーピアのダウンロード速度の向上</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connettiti ai server di gioco online e ospita giochi multigiocatore</value>
+    <value>オンラインゲームサーバーに接続し、マルチプレイヤーゲームをホストする</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Configura l'accesso remoto ai dispositivi sulla tua rete locale</value>
+    <value>ローカルネットワーク上のデバイスへのリモートアクセスを設定する</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Sblocca il &lt;Bold&gt;port forwarding&lt;/Bold&gt; con VPN Plus</value>
+    <value>&lt;Bold&gt;ポート転送&lt;/Bold&gt;のロックを解除します。 VPN プラスを使用すると</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Potenzia le tue connessioni P2P</value>
+    <value>P2P接続を強化する</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Salva il tuo server, città o paese preferito.</value>
+    <value>ご希望のサーバー、都市、国を保存してください。</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Imposta protocolli personalizzati e funzionalità VPN premium.</value>
+    <value>カスタムプロトコルとプレミアムVPN機能を設定します。</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Configura la connessione automatica per un accesso ancora più veloce.</value>
+    <value>自動接続を設定すれば、さらに高速にアクセスできます。</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Sblocca i &lt;Bold&gt;profili&lt;/Bold&gt; con VPN Plus</value>
+    <value>VPN プラスを使用すると&lt;Bold&gt;プロフィール&lt;/Bold&gt;のロックを解除します。</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Ottieni un accesso rapido alle tue connessioni frequenti</value>
+    <value>頻繁に利用するコネクションに素早くアクセス</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Aggiungi un altro livello di crittografia alla tua connessione VPN</value>
+    <value>VPN接続にもう1つの暗号化レイヤーを追加する</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
-    <value>Proteggiti dagli attacchi di rete</value>
+    <value>ネットワーク攻撃から自分を保護</value>
   </data>
   <data name="Upsell_SecureCore_RouteThrough">
-    <value>Passa attraverso server ultra sicuri in Svizzera, Svezia e Islanda</value>
+    <value>スイス、スウェーデン、アイスランドにある超安全なサーバーを経由する</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>プラスへのアップグレード時</value>
   </data>
   <data name="Upsell_SecureCore_Title">
-    <value>Raddoppia la crittografia con Secure Core</value>
+    <value>Secure Core で2重の暗号化</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Separa il tuo traffico in tunnel VPN e non-VPN</value>
+    <value>トラフィックをVPNトンネルと非VPNトンネルに分ける</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Permetti alle app e agli indirizzi IP attendibili di ignorare la VPN per velocità più elevate</value>
+    <value>信頼できるアプリやIPアドレスにVPNをバイパスさせ、高速化を実現</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Accedi sia ai contenuti di casa sia a quelli locali quando navighi dall'estero</value>
+    <value>海外から自国と現地のコンテンツにアクセスできる</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Sblocca lo &lt;Bold&gt;split tunneling&lt;/Bold&gt; con VPN Plus</value>
+    <value>VPN プラスを使用すると&lt;Bold&gt;スプリット トンネリング&lt;/Bold&gt;のロックを解除します。</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Ottieni il meglio di entrambi i mondi</value>
+    <value>両方の長所を生かす</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Effettua l'upgrade</value>
+    <value>アップグレード</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3355,19 +3312,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>WireGuard</value>
   </data>
   <data name="Welcome_btn_Skip">
-    <value>Salta</value>
+    <value>スキップ</value>
     <comment>The text on Skip button in Welcome window</comment>
   </data>
   <data name="Welcome_btn_TakeATour">
-    <value>Fai un tour</value>
+    <value>ツアーを開始</value>
     <comment>The text on Take a Tour button in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Thanks">
-    <value>Grazie per utilizzare Proton VPN. Dai un rapido sguardo alle funzioni principali dell'app.</value>
+    <value>Proton VPN をご利用いただきありがとうございます。ツアーでこのアプリの機能をご説明します。</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">
-    <value>TI DIAMO IL BENVENUTO A BORDO!</value>
+    <value>ProtonVPNへようこそ！</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_ttl">
@@ -3375,23 +3332,23 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Welcome window</comment>
   </data>
   <data name="Window_btn_Cancel">
-    <value>Annulla</value>
+    <value>キャンセル</value>
     <comment>The text on Cancel button in data entry windows</comment>
   </data>
   <data name="Window_btn_Disable">
-    <value>Disabilita</value>
+    <value>無効化</value>
     <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
-    <value>Salva</value>
+    <value>保存</value>
     <comment>The text on Save button in data entry windows</comment>
   </data>
   <data name="Window_lbl_Error">
-    <value>Errore:</value>
+    <value>エラー:</value>
     <comment>The label for list of errors on Error Panel of data entry Window</comment>
   </data>
   <data name="Window_lbl_Loading">
-    <value>Caricamento</value>
+    <value>読み込み中</value>
     <comment>The text displayed while content is loading</comment>
   </data>
   <data name="WireGuard_lbl">

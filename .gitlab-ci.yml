@@ -98,7 +98,7 @@ tests:
 build-installer:
   stage: build-installer
   tags:
-    - windows
+    - windows-vpn-signer
   dependencies:
     - build-debug
     - build-release
@@ -106,11 +106,16 @@ build-installer:
     - .build-installer
   variables:
     BUILD_PATH: src/bin/win-x64/publish
+    FF_USE_FASTZIP: "true"
+    TRANSFER_METER_FREQUENCY: "2s"
+    ARTIFACT_COMPRESSION_LEVEL: "fastest"
+    CACHE_COMPRESSION_LEVEL: "fastest"
+    FASTZIP_ARCHIVER_BUFFER_SIZE: 128
   artifacts:
     paths:
       - Setup/Installers/
     expire_in: 4 weeks
-    
+
 build-BTI-installer:
   stage: build-installer
   when: manual

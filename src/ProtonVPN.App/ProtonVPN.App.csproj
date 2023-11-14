@@ -36,6 +36,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Assets\Images\Icons\checkmark.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
@@ -44,6 +47,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Assets\Images\Icons\checkmark.ico" />
     <Resource Include="Resources\Assets\Images\Icons\systray-connected.ico" />
     <Resource Include="Resources\Assets\Images\Icons\systray-notconnected.ico" />
   </ItemGroup>

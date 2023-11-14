@@ -18,12 +18,14 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.MVVM;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Logging.Contracts;
@@ -33,29 +35,24 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Servers
 {
-    public class AnnouncementBannerViewModel : ViewModel, IServerListItem
+    public class AnnouncementBannerViewModel : ViewModel, IServerListItem, ILoggedInAware
     {
         private readonly ILogger _logger;
         private readonly IOsProcesses _processes;
         private readonly IWebAuthenticator _webAuthenticator;
         private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
         private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+        private readonly IAnnouncementService _announcementService;
         private readonly ISchedulerTimer _timer;
-        private DateTime _endDate;
-        private PanelButton _panelButton = null;
-        private string _reference;
+
+        private Announcement _announcement;
 
         public string Id => string.Empty;
         public string Name => string.Empty;
         public bool Maintenance => false;
         public bool Connected => false;
         
-        private string _imagePath;
-        public string ImagePath
-        {
-            get => _imagePath;
-            set => Set(ref _imagePath, value);
-        }
+        public string ImagePath => _announcement?.Panel?.FullScreenImage?.Source;
 
         private string _timeLeft;
         public string TimeLeft
@@ -71,21 +68,36 @@ namespace ProtonVPN.Servers
             set => Set(ref _isTimeLeftVisible, value);
         }
 
+        private bool _isBannerVisible;
+        public bool IsBannerVisible
+        {
+            get => _isBannerVisible;
+            set => Set(ref _isBannerVisible, value);
+        }
+
         public ICommand OpenUrlCommand { get; }
+
+        public ICommand CloseBannerCommand { get; }
 
         public AnnouncementBannerViewModel(ILogger logger,
             IScheduler scheduler,
             IOsProcesses processes,
             IWebAuthenticator webAuthenticator,
             IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
-            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+            IAnnouncementService announcementService)
         {
             _logger = logger;
             _processes = processes;
             _webAuthenticator = webAuthenticator;
             _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
             _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+            _announcementService = announcementService;
+
             OpenUrlCommand = new RelayCommand(OpenUrlAction);
+            CloseBannerCommand = new RelayCommand(CloseBannerAction, CanCloseBanner);
+
+            IsBannerVisible = true;
 
             _timer = scheduler.Timer();
             _timer.Interval = TimeSpan.FromSeconds(1);
@@ -94,46 +106,63 @@ namespace ProtonVPN.Servers
 
         private async void OpenUrlAction()
         {
-            if (_panelButton is not null && _panelButton.Action == "OpenURL")
+            string action = _announcement?.Panel?.Button?.Action ?? string.Empty;
+
+            if (action == "OpenURL")
             {
-                string url = _panelButton.Behaviors.Contains("AutoLogin")
-                    ? await _webAuthenticator.GetLoginUrlAsync(_panelButton.Url, ModalSources.PromoOffer, _reference)
-                    : _panelButton.Url;
+                string baseUrl = _announcement?.Panel?.Button?.Url ?? string.Empty;
+                List<string> behaviors = _announcement?.Panel?.Button?.Behaviors ?? new List<string>();
+                string reference = _announcement?.Reference ?? string.Empty;
+
+                string url = behaviors.Contains("AutoLogin")
+                    ? await _webAuthenticator.GetLoginUrlAsync(baseUrl, ModalSources.PromoOffer, reference)
+                    : baseUrl;
+
                 _processes.Open(url);
-                _upsellDisplayStatisticalEventSender.Send(ModalSources.PromoOffer, _reference);
-                _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSources.PromoOffer, _reference);
+                _upsellDisplayStatisticalEventSender.Send(ModalSources.PromoOffer, reference);
+                _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSources.PromoOffer, reference);
             }
             else
             {
-                _logger.Error<AppLog>($"The button is null or the action '{_panelButton?.Action}' is unsupported.");
+                _logger.Error<AppLog>($"The button is null or the action '{action}' is unsupported.");
             }
         }
 
-        public void SetWithCountdown(string imagePath, DateTime endDate, PanelButton panelButton, string reference)
+        private void CloseBannerAction()
         {
-            SetProperties(imagePath, endDate, panelButton, reference);
-            _timer.IsEnabled = true;
-            IsTimeLeftVisible = true;
-        }
-
-        private void SetProperties(string imagePath, DateTime endDate, PanelButton panelButton, string reference)
-        {
-            ImagePath = imagePath;
-            _endDate = endDate;
-            _panelButton = panelButton;
-            _reference = reference;
-        }
-
-        public void Set(string imagePath, DateTime endDate, PanelButton panelButton, string reference)
-        {
-            SetProperties(imagePath, endDate, panelButton, reference);
+            IsBannerVisible = false;
             _timer.IsEnabled = false;
-            IsTimeLeftVisible = false;
+
+            if (_announcement != null)
+            {
+                _announcementService.MarkAsSeen(_announcement.Id);
+            }
+        }
+
+        private bool CanCloseBanner()
+        {
+            return _announcement?.IsDismissible ?? false;
+        }
+
+        public void Set(Announcement announcement)
+        {
+            _announcement = announcement;
+
+            OnPropertyChanged(nameof(ImagePath));
+            (CloseBannerCommand as RelayCommand)?.RaiseCanExecuteChanged();
+
+            bool showCountdown = _announcement?.ShowCountdown ?? false;
+
+            _timer.IsEnabled = showCountdown;
+            IsTimeLeftVisible = showCountdown;
         }
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            TimeSpan timeUntilExpiry = _endDate - DateTime.UtcNow;
+            TimeSpan timeUntilExpiry = _announcement != null
+                ? _announcement.EndDateTimeUtc - DateTime.UtcNow
+                : TimeSpan.Zero;
+
             if (timeUntilExpiry.TotalSeconds < 1.0)
             {
                 TimeLeft = string.Empty;
@@ -159,7 +188,7 @@ namespace ProtonVPN.Servers
                     firstTimeUnit = $"{timeSpan.Days} {Translation.GetPlural("TimeUnit_val_Day", timeSpan.Days)}";
                     secondTimeUnit = $"{timeSpan.Hours} {Translation.GetPlural("TimeUnit_val_Hour", timeSpan.Hours)}";
                 }
-                else if (timeSpan.Minutes > 0)
+                else if (timeSpan.Hours > 0)
                 {
                     firstTimeUnit = $"{timeSpan.Hours} {Translation.GetPlural("TimeUnit_val_Hour", timeSpan.Hours)}";
                     secondTimeUnit = $"{timeSpan.Minutes} {Translation.GetPlural("TimeUnit_val_Minute", timeSpan.Minutes)}";
@@ -181,6 +210,12 @@ namespace ProtonVPN.Servers
 
         public void OnVpnStateChanged(VpnState state)
         {
+        }
+
+        public void OnUserLoggedIn()
+        {
+            // Reset banner visibility when user logs in
+            IsBannerVisible = true;
         }
     }
 }

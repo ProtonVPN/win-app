@@ -24,7 +24,7 @@ namespace ProtonVPN.Announcements.Contracts
     public class Announcement
     {
         public string Id { get; set; }
-        public int Type { get; set; }
+        public AnnouncementType Type { get; set; }
         public string Reference { get; set; }
         public DateTime StartDateTimeUtc { get; set; }
         public DateTime EndDateTimeUtc { get; set; }
@@ -34,5 +34,6 @@ namespace ProtonVPN.Announcements.Contracts
         public Panel Panel { get; set; }
         public bool Seen { get; set; }
         public bool ShowCountdown { get; set; }
+        public bool IsDismissible { get; set; }
     }
 }

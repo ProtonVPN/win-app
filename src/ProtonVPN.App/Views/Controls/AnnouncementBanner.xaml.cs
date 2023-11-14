@@ -24,6 +24,11 @@ namespace ProtonVPN.Views.Controls
 {
     public partial class AnnouncementBanner
     {
+        public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register(
+            nameof(CloseCommand),
+            typeof(ICommand),
+            typeof(AnnouncementBanner));
+
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
             nameof(Command),
             typeof(ICommand),
@@ -42,6 +47,12 @@ namespace ProtonVPN.Views.Controls
         public AnnouncementBanner()
         {
             InitializeComponent();
+        }
+
+        public ICommand CloseCommand
+        {
+            get => (ICommand)GetValue(CloseCommandProperty);
+            set => SetValue(CloseCommandProperty, value);
         }
 
         public ICommand Command

@@ -293,10 +293,6 @@
     <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
-  <data name="Account_lbl_AccountType" xml:space="preserve">
-    <value>Account Type:</value>
-    <comment>The label for account type in Account window</comment>
-  </data>
   <data name="Account_lbl_AccountPlan" xml:space="preserve">
     <value>Account Plan:</value>
     <comment>The label for account plan name in Account window</comment>

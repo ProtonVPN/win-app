@@ -19,32 +19,85 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <UserControl x:Class="ProtonVPN.Views.Controls.AnnouncementBanner"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:icons="clr-namespace:ProtonVPN.Resource.Graphics.Icons;assembly=ProtonVPN.Resource"
              xmlns:servers="clr-namespace:ProtonVPN.Servers"
-             mc:Ignorable="d"
+             x:Name="UserControl"
              d:DataContext="{d:DesignInstance servers:AnnouncementBannerViewModel}"
-             x:Name="UserControl">
-    
-    <Border CornerRadius="8"
-            HorizontalAlignment="Stretch"
-            Background="{StaticResource BackgroundStrongBrushColor}"
-            Padding="16"
-            Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
-        <Button Style="{StaticResource ClearStyleButton}"
-                HorizontalContentAlignment="Stretch"
-                Command="{Binding ElementName=UserControl, Path=Command}">
-            <StackPanel Orientation="Vertical">
-                <Image VerticalAlignment="Top"
-                       Source="{Binding ImagePath, ElementName=UserControl, TargetNullValue={x:Null}}" />
-                <TextBlock Text="{Binding TimeLeft, ElementName=UserControl}"
-                           Foreground="{StaticResource TextWeakBrushColor}"
-                           TextWrapping="Wrap"
-                           FontSize="14"
-                           FontWeight="Normal"
-                           Visibility="{Binding IsTimeLeftVisible, Mode=OneWay, Converter={StaticResource BoolToVis}}"/>
-            </StackPanel>
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="DismissBannerStyleButton" BasedOn="{StaticResource ClearStyleButton}" TargetType="Button">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0,-8,-8,0" />
+            <Setter Property="Background" Value="{StaticResource BackgroundStrongBrushColor}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderNormBrushColor}" />
+            <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Visibility" Value="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BoolToVis}}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Padding="2"
+                                Background="{StaticResource BackgroundWeakBrushColor}"
+                                CornerRadius="12"
+                                SnapsToDevicePixels="True">
+                            <Border Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10"
+                                    SnapsToDevicePixels="True">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{StaticResource TextDisabledBrushColor}" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource BorderNormBrushColor}" />
+                    <Setter Property="Foreground" Value="{StaticResource TextNormBrushColor}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="0,8,0,0"
+          Visibility="{Binding IsBannerVisible, Converter={StaticResource BoolToVis}}">
+        <Border Padding="16"
+                HorizontalAlignment="Stretch"
+                Background="{StaticResource BackgroundStrongBrushColor}"
+                CornerRadius="8">
+            <Button HorizontalContentAlignment="Stretch"
+                    Command="{Binding ElementName=UserControl, Path=Command}"
+                    Style="{StaticResource ClearStyleButton}">
+                <StackPanel Orientation="Vertical">
+                    <Image VerticalAlignment="Top"
+                           Source="{Binding ImagePath, ElementName=UserControl, TargetNullValue={x:Null}}" />
+                    <TextBlock FontSize="14"
+                               FontWeight="Normal"
+                               Foreground="{StaticResource TextWeakBrushColor}"
+                               Text="{Binding TimeLeft, ElementName=UserControl}"
+                               TextWrapping="Wrap"
+                               Visibility="{Binding IsTimeLeftVisible, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Button Command="{Binding ElementName=UserControl, Path=CloseCommand}"
+                Style="{StaticResource DismissBannerStyleButton}">
+            <icons:CrossSmall />
         </Button>
-    </Border>
+    </Grid>
 </UserControl>

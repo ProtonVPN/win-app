@@ -571,7 +571,7 @@ namespace ProtonVPN.Core
             Resolve<LoginWindow>().Hide();
 
             Resolve<PlanChangeHandler>();
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
             Resolve<WelcomeModalManager>().Load();
             await Resolve<SystemTimeValidator>().Validate();
             await Resolve<AutoConnect>().LoadAsync(autoLogin);

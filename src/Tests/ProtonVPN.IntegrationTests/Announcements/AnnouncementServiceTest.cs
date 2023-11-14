@@ -45,7 +45,7 @@ namespace ProtonVPN.IntegrationTests.Announcements
             InitializeAnnouncementMock("AnnouncementsResponseMock");
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             AssertAnnouncement();
@@ -58,7 +58,7 @@ namespace ProtonVPN.IntegrationTests.Announcements
             InitializeAnnouncementMock("MissingOfferAnnouncementsResponseMock");
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             AssertAnnouncement();
@@ -71,7 +71,7 @@ namespace ProtonVPN.IntegrationTests.Announcements
             InitializeAnnouncementMock("InvalidDataAnnouncementsResponseMock");
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             AssertAnnouncement();
@@ -85,7 +85,7 @@ namespace ProtonVPN.IntegrationTests.Announcements
             InitializeFullScreenImageMock();
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             IReadOnlyList<Announcement> announcements = Resolve<IAnnouncementCache>().Get();
@@ -100,8 +100,8 @@ namespace ProtonVPN.IntegrationTests.Announcements
             MockedRequest request = InitializeFullScreenImageMock();
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             MessageHandler.GetMatchCount(request).Should().Be(1);
@@ -116,7 +116,7 @@ namespace ProtonVPN.IntegrationTests.Announcements
             InitializeAnnouncementMock("FullScreenImageAnnouncementResponseMock");
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             Resolve<IAnnouncementCache>().Get().Count.Should().Be(0);
@@ -130,7 +130,7 @@ namespace ProtonVPN.IntegrationTests.Announcements
             InitializeAnnouncementMock("UnsupportedFullScreenImageMock");
 
             // Act
-            await Resolve<IAnnouncementService>().Update();
+            await Resolve<IAnnouncementService>().UpdateAsync();
 
             // Assert
             Resolve<IAnnouncementCache>().Get().Count.Should().Be(0);

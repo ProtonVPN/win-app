@@ -145,11 +145,19 @@ namespace ProtonVPN.Servers
 
         private IServerListItem GetServerListAnnouncementBanner()
         {
+            if (!_announcementBannerViewModel.IsBannerVisible)
+            {
+                // Banner has been dismissed by the user. do not show anymore until next app start
+                return null;
+            }
+
             DateTime now = DateTime.UtcNow;
             Announcement announcement = _announcementService.Get()
-                .Where(a => a.Type == (int)AnnouncementType.Banner && a.StartDateTimeUtc <= now && a.EndDateTimeUtc > now)
+                .Where(a => a.Type == AnnouncementType.Banner && a.StartDateTimeUtc <= now && a.EndDateTimeUtc > now && !a.Seen)
                 .OrderBy(a => a.EndDateTimeUtc)
                 .FirstOrDefault();
+
+            _announcementBannerViewModel.Set(announcement);
 
             if (announcement is null)
             {
@@ -160,19 +168,6 @@ namespace ProtonVPN.Servers
             }
             else
             {
-                string imagePath = announcement.Panel?.FullScreenImage?.Source;
-                DateTime endDate = announcement.EndDateTimeUtc;
-                PanelButton panelButton = announcement.Panel?.Button;
-
-                if (announcement.ShowCountdown)
-                {
-                    _announcementBannerViewModel.SetWithCountdown(imagePath, endDate, panelButton, announcement.Reference);
-                }
-                else
-                {
-                    _announcementBannerViewModel.Set(imagePath, endDate, panelButton, announcement.Reference);
-                }
-
                 return _announcementBannerViewModel;
             }
 

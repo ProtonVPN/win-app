@@ -30,7 +30,6 @@ using ProtonVPN.Core.Servers.Specs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Modals;
-using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Account
@@ -45,7 +44,6 @@ namespace ProtonVPN.Account
 
         private string _username;
         private string _planName;
-        private string _accountType;
         private string _actionMessage = string.Empty;
 
         public string ActionMessage
@@ -141,12 +139,6 @@ namespace ProtonVPN.Account
             set => Set(ref _planName, value);
         }
 
-        public string AccountType
-        {
-            get => _accountType;
-            set => Set(ref _accountType, value);
-        }
-
         protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             SetUserDetails();
@@ -176,7 +168,6 @@ namespace ProtonVPN.Account
             User user = _userStorage.GetUser();
             PlanName = user.VpnPlanName.IsNullOrEmpty() ? Translation.Get("Account_lbl_Free") : user.VpnPlanName;
             Username = user.Username;
-            AccountType = user.GetAccountPlan();
         }
 
         private void ManageSubscriptionAction()

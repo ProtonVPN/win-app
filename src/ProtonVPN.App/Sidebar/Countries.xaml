@@ -498,6 +498,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <DataTemplate DataType="{x:Type servers:AnnouncementBannerViewModel}">
                     <controls:AnnouncementBanner Margin="-14,0,0,12"
                                                  Width="282"
+                                                 CloseCommand="{Binding CloseBannerCommand}"
                                                  Command="{Binding OpenUrlCommand}">
                         <controls:AnnouncementBanner.Style>
                             <Style TargetType="controls:AnnouncementBanner">
