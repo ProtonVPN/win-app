@@ -35,7 +35,7 @@ public static class DefaultConfiguration
         string? location = Assembly.GetEntryAssembly()?.Location;
         return (location is null ? null : new FileInfo(location).DirectoryName) ?? AppDomain.CurrentDomain.BaseDirectory;
     });
-    private static readonly Lazy<string> _baseDirectoryPath = new(() => Path.GetDirectoryName(_baseDirectory.Value) ?? string.Empty);
+    private static readonly Lazy<string> _launcherDirectoryPath = new(() => Path.GetDirectoryName(_baseDirectory.Value) ?? string.Empty);
     private static readonly Lazy<string> _resourcesFolderPath = new(() => Path.Combine(_baseDirectory.Value, "Resources"));
 
     private static readonly Lazy<string> _localAppDataProtonVpnPath = new(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), PROTON_FOLDER_RELATIVE_PATH));
@@ -54,10 +54,10 @@ public static class DefaultConfiguration
     public static string ServiceName => "ProtonVPN Service";
     public static string CalloutServiceName => "ProtonVPNCallout";
 
-    public static string ClientLauncherExePath => Path.Combine(_baseDirectoryPath.Value, "ProtonVPN.Launcher.exe");
+    public static string ClientLauncherExePath => Path.Combine(_launcherDirectoryPath.Value, "ProtonVPN.Launcher.exe");
     public static string InstallActionsPath => Path.Combine(_resourcesFolderPath.Value, "ProtonVPN.InstallActions.dll");
-    public static string ClientExePath => Path.Combine(_baseDirectoryPath.Value, "ProtonVPN.Client.exe");
-    public static string ServiceExePath => Path.Combine(_baseDirectoryPath.Value, "ProtonVPNService.exe");
+    public static string ClientExePath => Path.Combine(_baseDirectory.Value, "ProtonVPN.Client.exe");
+    public static string ServiceExePath => Path.Combine(_baseDirectory.Value, "ProtonVPNService.exe");
 
     public static string ClientLogsFolder => _clientLogsFolder.Value;
     public static string ServiceLogsFolder => _serviceLogsFolder.Value;
@@ -108,7 +108,7 @@ public static class DefaultConfiguration
     public static TimeSpan DohClientTimeout => TimeSpan.FromSeconds(10);
 
     public static IOpenVpnConfigurations OpenVpn => DefaultOpenVpnConfigurationsFactory.Create(
-        baseFolder: _baseDirectoryPath.Value,
+        baseFolder: _baseDirectory.Value,
         resourcesFolderPath: _resourcesFolderPath.Value, 
         commonAppDataProtonVpnPath: _commonAppDataProtonVpnPath.Value);
     public static IWireGuardConfigurations WireGuard => DefaultWireGuardConfigurationsFactory.Create(
