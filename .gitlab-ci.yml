@@ -48,6 +48,16 @@ build-release:
     TYPE: Release
     DEPENDENCIES: publish
     BUILD_PATH: src/bin/win-x64/publish
+    
+build-bti:
+  extends:
+    - .build-bti-vars  
+    - .build-script
+  when: manual
+  variables:
+    TYPE: Debug
+    DEPENDENCIES: publish-BTI
+    BUILD_PATH: src/bin/win-x64/BTI/publish
   
 build-debug:
   extends: .build-script
@@ -68,7 +78,7 @@ connection-test:
   extends: .test_execution_script
   variables:
     CATEGORY: "Connection"
-    
+
 win-11-test:
   extends: .test_execution_script
   when: manual
@@ -96,7 +106,6 @@ tests:
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer:
-  stage: build-installer
   tags:
     - windows-vpn-signer
   dependencies:
@@ -106,39 +115,17 @@ build-installer:
     - .build-installer
   variables:
     BUILD_PATH: src/bin/win-x64/publish
-    FF_USE_FASTZIP: "true"
-    TRANSFER_METER_FREQUENCY: "2s"
-    ARTIFACT_COMPRESSION_LEVEL: "fastest"
-    CACHE_COMPRESSION_LEVEL: "fastest"
-    FASTZIP_ARCHIVER_BUFFER_SIZE: 128
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
 
 build-BTI-installer:
-  stage: build-installer
-  when: manual
-  dependencies: []
-  tags:
-    - windows
-  extends: 
-    - .build-bti-vars
+  needs:
+    - build-bti
   except:
     - master
     - /^release.*$/
-  script:
-    - !reference [.build-script, script]
-    - !reference [.build-installer, script]
+  extends: 
+    - .build-installer
   variables:
-    TYPE: Debug
-    DEPENDENCIES: publish-BTI
     BUILD_PATH: src/bin/win-x64/BTI/publish
-    GIT_SUBMODULE_STRATEGY: normal
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 1 weeks
     
 prepare-internal-beta-release:
   stage: internal-beta

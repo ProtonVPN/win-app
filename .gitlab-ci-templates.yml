@@ -27,7 +27,7 @@
     - windows-dot-net
   script:
     - echo "Building native dependencies..."
-    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
+    - nuget restore ProtonVPN.InstallActions.sln
     - cmd.exe /c BuildDependencies.bat $DEPENDENCIES
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
@@ -44,6 +44,19 @@
     GIT_SUBMODULE_STRATEGY: normal
     
 .build-installer:
+  stage: build-installer
+  tags:
+    - windows-vpn-signer
   script:
     - python ci\build-scripts\main.py update-gh-list
     - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+  artifacts:
+    paths:
+      - Setup/Installers/
+    expire_in: 4 weeks
+  variables:
+    FF_USE_FASTZIP: "true"
+    TRANSFER_METER_FREQUENCY: "2s"
+    ARTIFACT_COMPRESSION_LEVEL: "fastest"
+    CACHE_COMPRESSION_LEVEL: "fastest"
+    FASTZIP_ARCHIVER_BUFFER_SIZE: 128
