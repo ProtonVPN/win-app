@@ -17,16 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-
 namespace ProtonVPN.Api.Contracts.Auth;
 
-public class AuthResponse : SessionBaseResponse
+public class UnauthSessionResponse : SessionBaseResponse
 {
-    public string Scope { get; set; }
+    public string[] Scopes { get; set; }
 
-    public string ServerProof { get; set; }
-
-    [JsonProperty(PropertyName = "2FA")]
-    public TwoFactorAuthResponse TwoFactor { get; set; }
+    public string TokenType { get; set; }
 }

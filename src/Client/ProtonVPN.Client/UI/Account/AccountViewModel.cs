@@ -23,6 +23,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 
@@ -56,7 +57,7 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     [RelayCommand]
     public async Task SignOutAsync()
     {
-        await _userAuthenticator.LogoutAsync();
+        await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
     }
 
     protected override void OnLanguageChanged()

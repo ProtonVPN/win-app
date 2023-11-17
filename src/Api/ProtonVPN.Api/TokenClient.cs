@@ -51,12 +51,27 @@ public class TokenClient : BaseApiClient, ITokenClient
 
     public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
     {
+        return await RefreshTokenAsync(Settings.RefreshToken, token);
+    }
+
+    public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshUnauthTokenAsync(CancellationToken token)
+    {
+        return await RefreshTokenAsync(Settings.UnauthRefreshToken, token);
+    }
+
+    public void TriggerRefreshTokenExpiration()
+    {
+        RefreshTokenExpired?.Invoke(this, EventArgs.Empty);
+    }
+
+    private async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(string refreshToken, CancellationToken token)
+    {
         RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest
         {
             ResponseType = "token",
-            RefreshToken = Settings.RefreshToken,
+            RefreshToken = refreshToken,
             GrantType = "refresh_token",
-            RedirectUri = "http://api.protonvpn.ch"
+            RedirectUri =  Config.Urls.ApiUrl
         };
         ValidateRefreshTokenData(refreshTokenRequest);
 
@@ -65,7 +80,7 @@ public class TokenClient : BaseApiClient, ITokenClient
             HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/refresh");
             ValidateRequestHeaders(request);
             request.Content = GetJsonContent(refreshTokenRequest);
-            LogRefreshToken();
+            LogRefreshToken(refreshTokenRequest);
 
             using HttpResponseMessage response = await _client.SendAsync(request, token);
             return await GetApiResponseResult<RefreshTokenResponse>(response);
@@ -81,15 +96,10 @@ public class TokenClient : BaseApiClient, ITokenClient
         }
     }
 
-    public void TriggerRefreshTokenExpiration()
-    {
-        RefreshTokenExpired?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void LogRefreshToken()
+    private void LogRefreshToken(RefreshTokenRequest request)
     {
         Logger.Info<ApiLog>($"Using refresh token value (showing only first {REFRESH_TOKEN_LOG_LENGTH} chars) " +
-                            $"{Settings.RefreshToken.GetFirstChars(REFRESH_TOKEN_LOG_LENGTH)}");
+                            $"{request?.RefreshToken.GetFirstChars(REFRESH_TOKEN_LOG_LENGTH)}");
     }
 
     private void ValidateRefreshTokenData(RefreshTokenRequest request)
@@ -102,11 +112,7 @@ public class TokenClient : BaseApiClient, ITokenClient
 
     private void ValidateRequestHeaders(HttpRequestMessage request)
     {
-        string uid = request?.Headers?.GetValues("x-pm-uid")?.FirstOrDefault();
-
-        if (uid == null)
-        {
-            throw new ArgumentNullException("The UID header in the HttpRequest can't be null.");
-        }
+        string uid = (request?.Headers?.GetValues("x-pm-uid")?.FirstOrDefault()) 
+            ?? throw new ArgumentNullException("The UID header in the HttpRequest can't be null.");
     }
 }

@@ -532,6 +532,12 @@ public class UnauthorizedResponseHandlerTest
             return await _origin.RefreshTokenAsync(token);
         }
 
+        public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshUnauthTokenAsync(CancellationToken token)
+        {
+            await Breakpoint.Hit().WaitForContinue();
+            return await _origin.RefreshTokenAsync(token);
+        }
+
         public void TriggerRefreshTokenExpiration()
         {
         }

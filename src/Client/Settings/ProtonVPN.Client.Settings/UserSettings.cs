@@ -71,24 +71,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<VpnProtocol>(value, SettingEncryption.Unencrypted);
     }
 
-    public string? AccessToken
-    {
-        get => _userRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userRepository.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
-    public string? RefreshToken
-    {
-        get => _userRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userRepository.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
-    public string? UniqueSessionId
-    {
-        get => _userRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userRepository.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
     public string? VpnPlanTitle
     {
         get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);

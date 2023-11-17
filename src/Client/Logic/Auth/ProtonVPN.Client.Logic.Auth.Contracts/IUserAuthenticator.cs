@@ -20,6 +20,7 @@
 using System.Security;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts;
@@ -28,10 +29,11 @@ public interface IUserAuthenticator
 {
     bool IsLoggedIn { get; }
 
+    Task CreateUnauthSessionAsync();
     Task<AuthResult> LoginUserAsync(string username, SecureString password);
     Task<AuthResult> AuthAsync(string username, SecureString password);
     Task<AuthResult> SendTwoFactorCodeAsync(string code);
     Task<ApiResponseResult<VpnInfoWrapperResponse>> RefreshVpnInfoAsync();
     Task InvokeAutoLoginEventAsync();
-    Task LogoutAsync();
+    Task LogoutAsync(LogoutReason reason);
 }

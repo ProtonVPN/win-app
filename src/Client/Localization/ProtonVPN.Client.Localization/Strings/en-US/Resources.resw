@@ -2169,4 +2169,8 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Servers ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
+  <data name="Login_Error_SessionExpired" xml:space="preserve">
+    <value>Your session has expired. Please sign in again.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
 </root>

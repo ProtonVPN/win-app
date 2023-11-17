@@ -17,16 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts.Auth;
 
-namespace ProtonVPN.Api.Contracts.Auth;
+namespace ProtonVPN.Api.Contracts;
 
-public class AuthResponse : SessionBaseResponse
+public interface ITokenClient : IClientBase
 {
-    public string Scope { get; set; }
+    event EventHandler RefreshTokenExpired;
 
-    public string ServerProof { get; set; }
+    Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token);
 
-    [JsonProperty(PropertyName = "2FA")]
-    public TwoFactorAuthResponse TwoFactor { get; set; }
+    Task<ApiResponseResult<RefreshTokenResponse>> RefreshUnauthTokenAsync(CancellationToken token);
+
+    void TriggerRefreshTokenExpiration();
 }

@@ -20,15 +20,21 @@
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.Auth
+namespace ProtonVPN.Api.Contracts.Auth;
+
+public class AuthInfoResponse : BaseResponse
 {
-    public class AuthInfoResponse : BaseResponse
-    {
-        public string Modulus { get; set; }
-        public string ServerEphemeral { get; set; }
-        public int Version { get; set; }
-        public string Salt { get; set; }
-        [JsonProperty(PropertyName = "SRPSession")]
-        public string SrpSession { get; set; }
-    }
+    public string Modulus { get; set; }
+
+    public string ServerEphemeral { get; set; }
+
+    public int Version { get; set; }
+
+    public string Salt { get; set; }
+
+    [JsonProperty(PropertyName = "SRPSession")]
+    public string SrpSession { get; set; }
+
+    [JsonProperty(PropertyName = "SSOChallengeToken")]
+    public string SsoChallengeToken { get; set; }
 }

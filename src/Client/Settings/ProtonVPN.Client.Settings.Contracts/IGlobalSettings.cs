@@ -27,6 +27,12 @@ public interface IGlobalSettings
 {
     string Language { get; set; }
     string? Username { get; set; }
+    string? AccessToken { get; set; }
+    string? RefreshToken { get; set; }
+    string? UniqueSessionId { get; set; }
+    string? UnauthAccessToken { get; set; }
+    string? UnauthRefreshToken { get; set; }
+    string? UnauthUniqueSessionId { get; set; }
     bool IsAutoLaunchEnabled { get; set; }
     AutoLaunchMode AutoLaunchMode { get; set; }
     int[] WireGuardPorts { get; set; }

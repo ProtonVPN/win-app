@@ -76,13 +76,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextWrapping="NoWrap" />
         </Grid>
 
-        <icons:LoadingLogo Width="120"
+        <icons:LoadingLogo x:Name="LoadingLogo"
+                           Width="120"
                            Height="120"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Stretch="Uniform" />
 
-        <ContentControl Name="Container"
+        <ContentControl x:Name="Container"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch" />
 

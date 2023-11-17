@@ -39,6 +39,7 @@ public class BaseApiClient : IClientBase
 {
     protected ILogger Logger { get; }
     protected ISettings Settings { get; }
+    protected IConfiguration Config { get; }
 
     private readonly JsonSerializer _jsonSerializer = new();
     private readonly IApiAppVersion _appVersion;
@@ -53,9 +54,11 @@ public class BaseApiClient : IClientBase
         IConfiguration config)
     {
         Logger = logger;
+        Settings = settings;
+        Config = config;
+
         _appVersion = appVersion;
         _apiVersion = config.ApiVersion;
-        Settings = settings;
     }
 
     protected StringContent GetJsonContent(object data)
@@ -132,7 +135,14 @@ public class BaseApiClient : IClientBase
 
     protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
     {
-        return GetAuthorizedRequest(method, requestUri, Settings.AccessToken, Settings.UniqueSessionId);
+        string accessToken = string.IsNullOrEmpty(Settings.AccessToken)
+            ? Settings.UnauthAccessToken
+            : Settings.AccessToken;
+        string uniqueSessionId = string.IsNullOrEmpty(Settings.UniqueSessionId)
+            ? Settings.UnauthUniqueSessionId
+            : Settings.UniqueSessionId;
+
+        return GetAuthorizedRequest(method, requestUri, accessToken, uniqueSessionId);
     }
 
     protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)

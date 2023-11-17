@@ -41,6 +41,42 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
+    public string? AccessToken
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
+    public string? RefreshToken
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
+    public string? UniqueSessionId
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
+    public string? UnauthAccessToken
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
+    public string? UnauthRefreshToken
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
+    public string? UnauthUniqueSessionId
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
     public bool IsAutoLaunchEnabled
     {
         get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;

@@ -24,6 +24,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Navigation;
@@ -33,7 +34,7 @@ using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 
 namespace ProtonVPN.Client.UI.Login;
 
-public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>
+public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>, IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly ILogger _logger;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -94,6 +95,19 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
 
             case LoginState.Error:
                 HandleAuthError(message);
+                break;
+        }
+    }
+
+
+    public void Receive(LoggedOutMessage message)
+    {
+        switch (message.Reason)
+        {
+            case LogoutReason.UserAction:
+                break;
+            case LogoutReason.SessionExpired:
+                ShowErrorMessage(Localizer.Get("Login_Error_SessionExpired"));
                 break;
         }
     }

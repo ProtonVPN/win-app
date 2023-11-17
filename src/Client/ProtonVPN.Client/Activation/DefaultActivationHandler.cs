@@ -48,6 +48,8 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
+        await _userAuthenticator.CreateUnauthSessionAsync();
+
         // TODO: think of a better place for this
         await _serverManager.FetchServersAsync();
 

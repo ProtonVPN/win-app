@@ -19,14 +19,19 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.Auth
+namespace ProtonVPN.Api.Contracts.Auth;
+
+public class AuthRequest
 {
-    public class AuthRequest
-    {
-        public string ClientEphemeral { get; set; }
-        public string ClientProof { get; set; }
-        [JsonProperty(PropertyName = "SRPSession")]
-        public string SrpSession { get; set; }
-        public string Username { get; set; }
-    }
+    public string ClientEphemeral { get; set; }
+
+    public string ClientProof { get; set; }
+
+    [JsonProperty(PropertyName = "SRPSession")]
+    public string SrpSession { get; set; }
+
+    public string Username { get; set; }
+
+    [JsonProperty(PropertyName = "SSOResponseToken")]
+    public string SsoResponseToken { get; set; }
 }
