@@ -40,7 +40,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 namespace ProtonVPN.Client.UI.Login.Forms;
 
 public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoggedInMessage>
-{
+{ 
     private readonly IUrls _urls;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;

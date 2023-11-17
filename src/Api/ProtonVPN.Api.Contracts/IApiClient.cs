@@ -35,6 +35,7 @@ namespace ProtonVPN.Api.Contracts;
 
 public interface IApiClient : IClientBase
 {
+    Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync();
     Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest);
     Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest);
     Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid);

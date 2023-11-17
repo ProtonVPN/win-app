@@ -17,20 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Contracts.Auth;
+namespace ProtonVPN.Api.Contracts.Users;
 
-namespace ProtonVPN.Api
+public class UserResponse
 {
-    public interface ITokenClient : IClientBase
+    public string Name { get; set; }
+
+    public string DisplayName { get; set; }
+
+    public string Email { get; set; }
+
+    public long CreateTime { get; set; }
+
+    public string GetUsername()
     {
-        event EventHandler RefreshTokenExpired;
+        return !string.IsNullOrEmpty(Name)
+            ? Name
+            : !string.IsNullOrEmpty(Email)
+                ? Email
+                : DisplayName;
+    }
 
-        Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token);
-
-        void TriggerRefreshTokenExpiration();
+    public string GetDisplayName()
+    {
+        return !string.IsNullOrEmpty(DisplayName)
+            ? DisplayName
+            : !string.IsNullOrEmpty(Name)
+                ? Name
+                : Email;
     }
 }

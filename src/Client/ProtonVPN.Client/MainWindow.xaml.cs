@@ -20,6 +20,7 @@
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Common.UI.Assets.Icons;
 using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
@@ -76,6 +77,8 @@ public sealed partial class MainWindow : IEventMessageReceiver<LoggingInMessage>
     public void Receive(LoggingInMessage message)
     {
         Container.Visibility = Visibility.Collapsed;
+        LoadingLogo.Visibility = Visibility.Visible;
+
         HideTitleBar();
     }
 
@@ -84,12 +87,15 @@ public sealed partial class MainWindow : IEventMessageReceiver<LoggingInMessage>
         InvalidateWindowPosition();
         InvalidateWindowContent();
 
+        LoadingLogo.Visibility = Visibility.Collapsed;
         Container.Visibility = Visibility.Visible;
     }
 
     public void Receive(LoggingOutMessage message)
     {
         Container.Visibility = Visibility.Collapsed;
+        LoadingLogo.Visibility = Visibility.Visible;
+
         HideTitleBar();
 
         SaveWindowPosition();
@@ -100,6 +106,7 @@ public sealed partial class MainWindow : IEventMessageReceiver<LoggingInMessage>
         InvalidateWindowPosition();
         InvalidateWindowContent();
 
+        LoadingLogo.Visibility = Visibility.Collapsed;
         Container.Visibility = Visibility.Visible;
     }
 

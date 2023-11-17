@@ -54,7 +54,8 @@ public class UnauthorizedResponseHandler : DelegatingHandler
         _logger = logger;
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+   protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
         if (request.AuthHeadersInvalid())
@@ -71,12 +72,12 @@ public class UnauthorizedResponseHandler : DelegatingHandler
         }
 
         HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-        //TODO: add extra condition if user is not empty (is logged in)
+
         if (response.StatusCode == HttpStatusCode.Unauthorized)
         {
             try
             {
-                RefreshTokenStatus refreshSucceeded = await Refresh(refreshTask, cancellationToken);
+                RefreshTokenStatus refreshSucceeded = await RefreshAsync(refreshTask, cancellationToken);
                 return await ResendAsync(request, cancellationToken, refreshSucceeded);
             }
             finally
@@ -105,7 +106,8 @@ public class UnauthorizedResponseHandler : DelegatingHandler
         }
     }
 
-    private async Task<RefreshTokenStatus> Refresh(Task<RefreshTokenStatus> refreshTask,
+    private async Task<RefreshTokenStatus> RefreshAsync(
+        Task<RefreshTokenStatus> refreshTask, 
         CancellationToken cancellationToken)
     {
         TaskCompletionSource<RefreshTokenStatus> taskCompletion = new TaskCompletionSource<RefreshTokenStatus>();
@@ -119,15 +121,15 @@ public class UnauthorizedResponseHandler : DelegatingHandler
             return await prevTask;
         }
 
-        await taskCompletion.Wrap(() => RefreshTokens(cancellationToken));
+        await taskCompletion.Wrap(() => RefreshTokensAsync(cancellationToken));
         return await newTask;
     }
 
-    private async Task<RefreshTokenStatus> RefreshTokens(CancellationToken cancellationToken)
+    private async Task<RefreshTokenStatus> RefreshTokensAsync(CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(_settings.RefreshToken) || string.IsNullOrEmpty(_settings.UniqueSessionId))
         {
-            return RefreshTokenStatus.Unauthorized;
+            return await RefreshUnauthTokensAsync(cancellationToken);
         }
 
         try
@@ -155,8 +157,44 @@ public class UnauthorizedResponseHandler : DelegatingHandler
         return RefreshTokenStatus.Unauthorized;
     }
 
+    private async Task<RefreshTokenStatus> RefreshUnauthTokensAsync(CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(_settings.UnauthRefreshToken) || string.IsNullOrEmpty(_settings.UnauthUniqueSessionId))
+        {
+            return RefreshTokenStatus.Unauthorized;
+        }
+
+        try
+        {
+            ApiResponseResult<RefreshTokenResponse> response =
+                await _tokenClient.RefreshUnauthTokenAsync(cancellationToken);
+
+            if (response.Success)
+            {
+                _settings.UnauthAccessToken = response.Value.AccessToken;
+                _settings.UnauthRefreshToken = response.Value.RefreshToken;
+
+                return RefreshTokenStatus.Success;
+            }
+        }
+        catch (ArgumentNullException e)
+        {
+            _logger.Error<UserLog>($"An error occurred when refreshing the unauth token: {e.ParamName}");
+        }
+        catch (Exception)
+        {
+            return RefreshTokenStatus.Fail;
+        }
+
+        return RefreshTokenStatus.Unauthorized;
+    }
+
     private void PrepareRequest(HttpRequestMessage request)
     {
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _settings.AccessToken);
+        string accessToken = string.IsNullOrEmpty(_settings.AccessToken)
+            ? _settings.UnauthAccessToken
+            : _settings.AccessToken;
+
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
     }
 }

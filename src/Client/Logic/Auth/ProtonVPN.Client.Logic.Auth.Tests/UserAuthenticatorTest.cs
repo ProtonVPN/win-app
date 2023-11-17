@@ -48,6 +48,7 @@ public class UserAuthenticatorTest
     private IAuthCertificateManager _authCertificateManager;
     private IEventMessageSender _eventMessageSender;
     private IGuestHoleActionExecutor _guestHoleActionExecutor;
+    private ITokenClient _tokenClient;
 
     [TestInitialize]
     public void Initialize()
@@ -58,6 +59,7 @@ public class UserAuthenticatorTest
         _authCertificateManager = Substitute.For<IAuthCertificateManager>();
         _eventMessageSender = Substitute.For<IEventMessageSender>();
         _guestHoleActionExecutor = Substitute.For<IGuestHoleActionExecutor>();
+        _tokenClient = Substitute.For<ITokenClient>();
     }
 
     [TestCleanup]
@@ -128,6 +130,6 @@ public class UserAuthenticatorTest
 
     private UserAuthenticator GetUserAuthenticator()
     {
-        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender, _guestHoleActionExecutor);
+        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender, _guestHoleActionExecutor, _tokenClient);
     }
 }

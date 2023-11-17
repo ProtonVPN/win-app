@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api.Contracts.Auth
+namespace ProtonVPN.Api.Contracts.Auth;
+
+public class AuthInfoRequest
 {
-    public class AuthInfoRequest
-    {
-        public string Username { get; set; }
-    }
+    public string Username { get; set; }
+
+    public string Intent { get; set; }
 }

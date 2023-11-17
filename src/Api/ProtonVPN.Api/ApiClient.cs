@@ -61,16 +61,27 @@ public class ApiClient : BaseApiClient, IApiClient
         _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();
     }
 
+    public async Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync()
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/v4/sessions");
+
+        // TODO: Remove this header once ProtonVPN version has been whitelisted for unauth sessions
+        request.Headers.Add("X-Enforce-UnauthSession", "true");
+
+        return await SendRequest<UnauthSessionResponse>(request, "Post unauth sessions");
+    }
+
+
     public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest)
     {
-        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth");
         request.Content = GetJsonContent(authRequest);
         return await SendRequest<AuthResponse>(request, "Get auth");
     }
 
     public async Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest)
     {
-        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/info");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/info");
         request.Content = GetJsonContent(authInfoRequest);
         return await SendRequest<AuthInfoResponse>(request, "Get auth info");
     }
@@ -120,13 +131,13 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData()
     {
-        HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
         return await SendRequest<ReportAnIssueFormResponse>(request, "Get report an issue form data");
     }
 
     public async Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync()
     {
-        HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/location");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/location");
         return await SendRequestWithNoCache<UserLocationResponse>(request, "Get location data");
     }
 
@@ -149,7 +160,7 @@ public class ApiClient : BaseApiClient, IApiClient
             fileCount++;
         }
 
-        HttpRequestMessage request = GetRequest(HttpMethod.Post, "reports/bug");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "reports/bug");
         request.Content = content;
         return await SendRequest<BaseResponse>(request, "Report bug");
     }
@@ -197,7 +208,7 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
     {
-        HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "domains/available?Type=login");
         return await SendRequest<BaseResponse>(request, "Check authentication server status");
     }
 

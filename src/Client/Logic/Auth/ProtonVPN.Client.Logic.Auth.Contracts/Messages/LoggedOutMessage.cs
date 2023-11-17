@@ -18,8 +18,11 @@
  */
 
 
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+
 namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
 public class LoggedOutMessage
 {
+    public LogoutReason Reason { get; init; }
 }

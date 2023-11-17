@@ -32,9 +32,6 @@ public interface IUserSettings
     int? WindowYPosition { get; set; }
     bool IsWindowMaximized { get; set; }
     VpnProtocol VpnProtocol { get; set; }
-    string? AccessToken { get; set; }
-    string? RefreshToken { get; set; }
-    string? UniqueSessionId { get; set; }
     string? VpnPlanTitle { get; set; }
     string? AuthenticationPublicKey { get; set; }
     string? AuthenticationSecretKey { get; set; }
