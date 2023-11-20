@@ -71,7 +71,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <TextBox Grid.Row="0"
                                  Grid.Column="0"
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Watermark')}"
-                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}" />
 
                         <Button Grid.Row="0"
                                 Grid.Column="1"
