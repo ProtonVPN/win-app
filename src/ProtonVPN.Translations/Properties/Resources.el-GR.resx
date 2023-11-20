@@ -1546,7 +1546,7 @@
     <value>Είσοδος ξανά</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Για να ξεκινήσετε το ταξίδι σας με το Proton VPN παρακαλώ αναθέστε τις συνδέσεις VPN στον λογαριασμός σας ή σε δεύτερους συνδεδεμένους λογαριασμούς.</value>
+    <value>Για να ξεκινήσετε το ταξίδι σας με το Proton VPN παρακαλούμε αναθέστε τις συνδέσεις VPN στον λογαριασμός σας ή σε δεύτερους συνδεδεμένους λογαριασμούς.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
     <value>Αυτό το βήμα θα πάρει μόνο λίγα λεπτά. Μετά θα μπορείτε να συνδέεστε, και να προστατεύετε όλες τις συσκευές σας.</value>
@@ -1686,7 +1686,7 @@
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Παρακαλώ αποσυνδέστε την άλλη συσκευή για να συνδεθείτε με αυτή.</value>
+    <value>Παρακαλούμε αποσυνδέστε την άλλη συσκευή για να συνδεθείτε με αυτή.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1698,7 +1698,7 @@
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Παρακαλώ αποσυνδεθείτε από την άλλη συσκευή, που είναι συνδεδεμένη, για να συνδεθείτε με αυτή ή αναβαθμίστε τη συνδρομή σε PLUS με τη δυνατότητα ταυτόχρονης σύνδεσης μέχρι και 10 συσκευών.</value>
+    <value>Παρακαλούμε αποσυνδεθείτε από την άλλη συσκευή, που είναι συνδεδεμένη, για να συνδεθείτε με αυτή ή αναβαθμίστε τη συνδρομή σε PLUS με τη δυνατότητα ταυτόχρονης σύνδεσης μέχρι και 10 συσκευών.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1845,7 +1845,7 @@
     <value>Αλλάξτε σε TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Το Proton VPN δεν μπόρεσε να συνδεθεί επειδή ο προσαρμογέας δικτύου TUN είναι ήδη σε χρήση. Παρακαλώ αποσυνδέστε οποιαδήποτε ενεργά VPN και προσπαθήστε ξανά. Εναλλακτικά, μεταβείτε στον προσαρμογέα TAP (μπορείτε να αλλάξετε πίσω σε TUN στις προηγμένες ρυθμίσεις).</value>
+    <value>Το Proton VPN δεν μπόρεσε να συνδεθεί επειδή ο προσαρμογέας δικτύου TUN είναι ήδη σε χρήση. Παρακαλούμε αποσυνδέστε οποιαδήποτε ενεργά VPN και προσπαθήστε ξανά. Εναλλακτικά, μεταβείτε στον προσαρμογέα TAP (μπορείτε να αλλάξετε πίσω σε TUN στις προηγμένες ρυθμίσεις).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
     <value>Το Proton VPN δεν μπόρεσε να συνδεθεί επειδή ο προσαρμογέας δικτύου WireGuard είναι ήδη σε χρήση. Αποσυνδέστε τυχόν ενεργά VPN και δοκιμάστε ξανά. Εναλλακτικά, μπορείτε να αλλάξετε πρωτόκολλα στις Ρυθμίσεις για Προχωρημένους.</value>
@@ -2134,7 +2134,7 @@
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Παρακαλώ αποσυνδέστε την άλλη συσκευή για να συνδεθείτε με αυτή.</value>
+    <value>Παρακαλούμε αποσυνδέστε την άλλη συσκευή για να συνδεθείτε με αυτή.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
@@ -2142,7 +2142,7 @@
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Παρακαλώ αποσυνδεθείτε από την άλλη συσκευή, που είναι συνδεδεμένη, για να συνδεθείτε με αυτή ή αναβαθμίστε τη συνδρομή σε PLUS με τη δυνατότητα ταυτόχρονης σύνδεσης μέχρι και 10 συσκευών.</value>
+    <value>Παρακαλούμε αποσυνδεθείτε από την άλλη συσκευή, που είναι συνδεδεμένη, για να συνδεθείτε με αυτή ή αναβαθμίστε τη συνδρομή σε PLUS με τη δυνατότητα ταυτόχρονης σύνδεσης μέχρι και 10 συσκευών.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">

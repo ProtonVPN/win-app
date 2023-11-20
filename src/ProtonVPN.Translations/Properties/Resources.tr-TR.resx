@@ -2679,7 +2679,7 @@
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>Bu seçenek ile, Proton sitelerinin engellenmiş olması durumunda, uygulama Proton ağına ulaşmak için alternatif ağ yöneltmesini dener. Güvenlik duvarlarını veya ağ sorunlarını aşmakta yararlı olabilir. Bağlantı güvenilirliğini artırmak için bu seçeneği açık tutmanız önerilir.</value>
+    <value>Açıldığında, uygulama Proton sitelerinin engellenmiş olması durumunda Proton ağına erişmek için alternatif ağ yöneltmesini dener. Güvenlik duvarlarını veya ağ sorunlarını aşmakta yararlı olabilir. Bağlantı güvenilirliğini artırmak için bu seçeneği açık tutmanız önerilir.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">

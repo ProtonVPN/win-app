@@ -142,7 +142,7 @@
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion">
-    <value>Liste des changements de la v.{0}</value>
+    <value>Liste des modifications de la v.{0}</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
   </data>
   <data name="About_lbl_ChangelogVersion_New">
@@ -379,7 +379,7 @@
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Cette adresse e-mail sera utilisée pour vous contacter au sujet de ce problème.</value>
+    <value>Cette adresse e-mail sera utilisée pour vous contacter concernant ce problème.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -3101,7 +3101,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Commencer à écrire…</value>
+    <value>Commencez à écrire…</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="TimeUnit_val_Day_One">
