@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
@@ -30,6 +31,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Extensions;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
@@ -134,5 +136,13 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     private List<CustomDnsServer> GetCustomDnsServersList()
     {
         return CustomDnsServers.Select(s => new CustomDnsServer(s.IpAddress, s.IsActive)).ToList();
+    }
+
+    public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
+    {
+        if (e.Key == VirtualKey.Enter && CanAddDnsServer())
+        {
+            AddDnsServerCommand.Execute(null);
+        }
     }
 }
