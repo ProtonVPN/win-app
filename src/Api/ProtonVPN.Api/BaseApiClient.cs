@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -29,9 +28,9 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
-using ProtonVPN.Core.Settings;
 
 namespace ProtonVPN.Api
 {
