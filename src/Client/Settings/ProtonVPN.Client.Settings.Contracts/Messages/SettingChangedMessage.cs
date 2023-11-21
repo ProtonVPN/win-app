@@ -17,21 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts.Messages
-{
-    public class SettingChangedMessage
-    {
-        public string PropertyName { get; }
-        public Type Type { get; }
-        public object? OldValue { get; }
-        public object? NewValue { get; }
+namespace ProtonVPN.Client.Settings.Contracts.Messages;
 
-        public SettingChangedMessage(string propertyName, Type type, object? oldValue, object? newValue)
-        {
-            PropertyName = propertyName;
-            Type = type;
-            OldValue = oldValue;
-            NewValue = newValue;
-        }
+public class SettingChangedMessage
+{
+    public string PropertyName { get; }
+    public Type Type { get; }
+    public object? OldValue { get; }
+    public object? NewValue { get; }
+
+    public SettingChangedMessage(string propertyName, Type type, object? oldValue, object? newValue)
+    {
+        PropertyName = propertyName;
+        Type = type;
+        OldValue = oldValue;
+        NewValue = newValue;
     }
 }

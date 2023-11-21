@@ -19,6 +19,7 @@
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.BigTestInfra;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Defaults;
@@ -28,6 +29,8 @@ namespace ProtonVPN.Configurations;
 
 public partial class Configuration
 {
+    private const double RANDOMIZED_INTERVAL_DEVIATION = 0.2;
+
     private readonly IConfigurationRepository _repository;
     private readonly IDictionary<string, Lazy<object?>> _values;
 
@@ -75,5 +78,15 @@ public partial class Configuration
     private dynamic? Get([CallerMemberName] string propertyName = "")
     {
         return _values[propertyName].Value;
+    }
+
+    private TimeSpan GetWithRandomizedDeviation([CallerMemberName] string propertyName = "", double deviation = RANDOMIZED_INTERVAL_DEVIATION)
+    {
+        if (Get(propertyName) is not TimeSpan interval)
+        {
+            throw new InvalidCastException($"Property {propertyName} is not of type TimeSpan");
+        }
+
+        return interval.RandomizedWithDeviation(deviation);
     }
 }

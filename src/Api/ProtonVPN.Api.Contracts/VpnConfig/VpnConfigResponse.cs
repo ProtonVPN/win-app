@@ -27,7 +27,7 @@ namespace ProtonVPN.Api.Contracts.VpnConfig
 
         public int? ServerRefreshInterval { get; set; }
 
-        public FeatureFlagsResponse FeatureFlags { get; set; }
+        public ConfigFlagsResponse FeatureFlags { get; set; }
 
         public SmartProtocolResponse SmartProtocol { get; set; }
     }

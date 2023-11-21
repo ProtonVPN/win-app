@@ -142,7 +142,9 @@ public class BaseApiClient : IClientBase
             ? Settings.UnauthUniqueSessionId
             : Settings.UniqueSessionId;
 
-        return GetAuthorizedRequest(method, requestUri, accessToken, uniqueSessionId);
+        return !string.IsNullOrEmpty(accessToken) && !string.IsNullOrEmpty(uniqueSessionId)
+            ? GetAuthorizedRequest(method, requestUri, accessToken, uniqueSessionId)
+            : GetRequest(method, requestUri);
     }
 
     protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)

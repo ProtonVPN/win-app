@@ -17,9 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
-public interface IClientConfigObserver
+public interface IClientConfigObserver : IObserver
 {
-    Task UpdateAsync();
 }

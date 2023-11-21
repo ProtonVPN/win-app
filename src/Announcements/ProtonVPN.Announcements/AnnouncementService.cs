@@ -24,7 +24,6 @@ using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
@@ -68,7 +67,7 @@ public class AnnouncementService : IAnnouncementService, ILoggedInAware, ILogout
         _httpClient = fileDownloadHttpClientFactory.GetHttpClientWithTlsPinning();
         _config = config;
         _timer = scheduler.Timer();
-        _timer.Interval = config.AnnouncementUpdateInterval.RandomizedWithDeviation(0.2);
+        _timer.Interval = config.AnnouncementUpdateInterval;
         _timer.Tick += Timer_OnTick;
         _updateAction = new(Fetch);
     }

@@ -24,7 +24,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Core.Auth;
@@ -60,7 +59,7 @@ public class ServerUpdater : IServerUpdater, ILoggedInAware, ILogoutAware, ISett
         _appSettings = appSettings;
 
         _timer = scheduler.Timer();
-        _timer.Interval = config.ServerUpdateInterval.RandomizedWithDeviation(0.2);
+        _timer.Interval = config.ServerUpdateInterval;
         _timer.Tick += Timer_OnTick;
 
         _updateAction = new SingleAction(UpdateServers);

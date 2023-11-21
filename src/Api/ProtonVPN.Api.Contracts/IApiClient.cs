@@ -24,11 +24,14 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
+using ProtonVPN.Api.Contracts.Features;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Api.Contracts.Users;
+using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 
 namespace ProtonVPN.Api.Contracts;
@@ -49,7 +52,7 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();
     Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
     Task<ApiResponseResult<SessionsResponse>> GetSessions();
-    Task<ApiResponseResult<VpnConfig.VpnConfigResponse>> GetVpnConfig();
+    Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig();
     Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
     Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
     Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync();
@@ -57,4 +60,6 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request);
     Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
     Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
+    Task<ApiResponseResult<UsersResponse>> GetUserAsync();
+    Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();
 }

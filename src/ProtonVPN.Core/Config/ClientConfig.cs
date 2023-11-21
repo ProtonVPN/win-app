@@ -23,7 +23,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Core.Auth;
@@ -49,7 +48,7 @@ public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware
         _appSettings = appSettings;
         _apiClient = apiClient;
         _timer = scheduler.Timer();
-        _timer.Interval = config.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2);
+        _timer.Interval = config.ClientConfigUpdateInterval;
         _timer.Tick += Timer_OnTick;
         _updateAction = new SingleAction(UpdateAction);
     }
