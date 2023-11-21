@@ -66,7 +66,7 @@ public class AppController : IAppController
         }
         _logger.Info<ProcessCommunicationLog>(logMessage.ToString());
 
-#warning TODO: Should invoke something
+        _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(state));
     }
 
     public async Task ConnectionDetailsChange(ConnectionDetailsIpcEntity connectionDetails)

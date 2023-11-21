@@ -1604,7 +1604,7 @@
   <data name="Settings_Connection_Advanced_NonStandardPorts_Description" xml:space="preserve">
     <value>Permita que a sua VPN comunique com portas personalizadas.</value>
   </data>
-  <data name="Settings_General_AutoStartup_Descripton" xml:space="preserve">
+  <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
     <value>Arranque automático, conexão automática</value>
   </data>
   <data name="Settings_General_BetaAccess" xml:space="preserve">

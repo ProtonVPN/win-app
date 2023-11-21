@@ -21,9 +21,10 @@ using Autofac;
 using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Dispatching;
+using ProtonVPN.Client.Handlers;
 using ProtonVPN.Client.HumanVerification;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Edition;
+using ProtonVPN.Client.Models.Clipboards;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
@@ -63,10 +64,22 @@ public class ClientModule : Module
         builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
-        builder.Register(c =>
-            new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
-            .As<INetworkInterfaces>().SingleInstance();
 
         builder.RegisterType<CountriesViewModelsFactory>().SingleInstance();
+
+        RegisterHandlers(builder);
+
+        builder.Register(c =>
+            new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
+            .As<INetworkInterfaces>().SingleInstance(); // TODO: Remove this custom manual registration
+    }
+
+    private void RegisterHandlers(ContainerBuilder builder)
+    {
+        builder.RegisterAssemblyTypes(typeof(ConnectionStatusChangedHandler).Assembly)
+               .Where(t => typeof(IHandler).IsAssignableFrom(t))
+               .AsImplementedInterfaces()
+               .SingleInstance()
+               .AutoActivate();
     }
 }

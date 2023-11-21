@@ -21,10 +21,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Models.Edition;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Models.Clipboards;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -32,21 +34,27 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class PortForwardingViewModel : SettingsPageViewModelBase
+public partial class PortForwardingViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<PortForwardingPortChanged>
 {
     private readonly IUrls _urls;
     private readonly IClipboardEditor _clipboardEditor;
+    private readonly IPortForwardingManager _portForwardingManager;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CopyPortNumberCommand))]
+    [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
     private int? _activePortNumber;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
+    [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
     private bool _isPortForwardingEnabled;
 
     [ObservableProperty]
     private bool _isPortForwardingNotificationEnabled;
+
+    public bool HasActivePortNumber => ActivePortNumber.HasValue && IsPortForwardingEnabled && ConnectionManager.IsConnected;
 
     public override string? Title => Localizer.Get("Settings_Features_PortForwarding");
 
@@ -61,11 +69,13 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
         IClipboardEditor clipboardEditor,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IPortForwardingManager portForwardingManager)
         : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
         _clipboardEditor = clipboardEditor;
+        _portForwardingManager = portForwardingManager;
 
         InvalidateActivePortNumber();
     }
@@ -80,17 +90,16 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
     [RelayCommand(CanExecute = nameof(CanCopyPortNumber))]
     public async Task CopyPortNumberAsync()
     {
-        string portNumber = ActivePortNumber.GetValueOrDefault().ToString();
-
-        if (!string.IsNullOrEmpty(portNumber))
+        int? activePortNumber = ActivePortNumber;
+        if (activePortNumber is not null)
         {
-            await _clipboardEditor.SetTextAsync(portNumber);
+            await _clipboardEditor.SetTextAsync($"{activePortNumber}");
         }
     }
 
     public bool CanCopyPortNumber()
     {
-        return IsPortForwardingEnabled && ActivePortNumber.HasValue;
+        return HasActivePortNumber;
     }
 
     protected override void SaveSettings()
@@ -116,12 +125,17 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase
 
     private void InvalidateActivePortNumber()
     {
-        // TODO: Retrieve the actual port number for port forwarding
-        ActivePortNumber = IsPortForwardingEnabled ? 12345 : null;
+        ActivePortNumber = _portForwardingManager.ActivePort;
     }
 
-    partial void OnIsPortForwardingEnabledChanged(bool value)
+    public void Receive(PortForwardingPortChanged message)
     {
         InvalidateActivePortNumber();
+    }
+
+    public override void Receive(ConnectionStatusChanged message)
+    {
+        base.Receive(message);
+        OnPropertyChanged(nameof(HasActivePortNumber));
     }
 }

@@ -21,13 +21,14 @@ using System.Windows;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
-namespace ProtonVPN.Client.Models.Edition;
+namespace ProtonVPN.Client.Models.Clipboards;
 
 public class ClipboardEditor : IClipboardEditor
 {
     private const int MAX_CLIPBOARD_TRIES = 4;
     private const int BASE_CLIPBOARD_RETRY_TIME_IN_MILLISECONDS = 100;
     private const bool LEAVE_CLIPBOARD_VALUE_AFTER_APP_EXIT = true;
+
     private readonly ILogger _logger;
 
     public ClipboardEditor(ILogger logger)

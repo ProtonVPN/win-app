@@ -18,6 +18,7 @@
  */
 
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -29,7 +30,9 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -45,7 +48,9 @@ namespace ProtonVPN.Client.UI.Settings;
 public partial class SettingsViewModel : NavigationPageViewModelBase,
     IEventMessageReceiver<ThemeChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<PortForwardingPortChanged>,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
@@ -55,6 +60,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly IDialogActivator _dialogActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
     private readonly IConnectionManager _connectionManager;
+    private readonly IPortForwardingManager _portForwardingManager;
     private readonly Lazy<ObservableCollection<string>> _languages;
 
     public string ClientVersionDescription => $"{App.APPLICATION_NAME} {EnvironmentHelper.GetClientVersionDescription()}";
@@ -86,6 +92,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     public ImageSource PortForwardingFeatureIconSource => PortForwardingViewModel.GetFeatureIconSource(_settings.IsPortForwardingEnabled);
 
     public string PortForwardingFeatureState => Localizer.GetToggleValue(_settings.IsPortForwardingEnabled);
+
+    public string? PortForwardingCurrentActivePort => GetPortForwardingCurrentActivePort();
 
     public ImageSource SplitTunnelingFeatureIconSource => SplitTunnelingViewModel.GetFeatureIconSource(_settings.IsSplitTunnelingEnabled);
 
@@ -125,7 +133,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         IUrls urls,
         IDialogActivator dialogActivator,
         IReportIssueViewNavigator reportIssueViewNavigator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IPortForwardingManager portForwardingManager)
         : base(viewNavigator, localizationProvider)
     {
         _themeSelector = themeSelector;
@@ -136,11 +145,20 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
         _connectionManager = connectionManager;
+        _portForwardingManager = portForwardingManager;
 
         _languages = new Lazy<ObservableCollection<string>>(
             () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
 
         Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
+    }
+
+    private string? GetPortForwardingCurrentActivePort()
+    {
+        int? activePort = _portForwardingManager.ActivePort;
+        return activePort is not null && _settings.IsPortForwardingEnabled && _connectionManager.IsConnected
+            ? $"{Localizer.Get("Settings_Features_PortForwarding_ActivePort")} {activePort}"
+            : null;
     }
 
     [RelayCommand]
@@ -206,6 +224,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
             case nameof(ISettings.IsPortForwardingEnabled):
                 OnPropertyChanged(nameof(PortForwardingFeatureState));
                 OnPropertyChanged(nameof(PortForwardingFeatureIconSource));
+                OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
                 break;
 
             case nameof(ISettings.IsSplitTunnelingEnabled):
@@ -253,5 +272,15 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(SelectedTheme));
+    }
+
+    public void Receive(PortForwardingPortChanged message)
+    {
+        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+    }
+
+    public void Receive(ConnectionStatusChanged message)
+    {
+        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
     }
 }
