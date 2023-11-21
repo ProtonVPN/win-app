@@ -19,15 +19,23 @@
 
 namespace ProtonVPN.Serialization.Contracts;
 
-public interface IJsonSerializer
+public class InterfaceImplementation
 {
-    string Serialize(object? json);
-    string SerializePretty(object? json);
-    void Serialize<T>(T json, TextWriter writer);
+    public Type InterfaceType { get; }
+    public Type ImplementationType { get; }
 
-    T? Deserialize<T>(string json);
-    T? Deserialize<T>(TextReader source);
-    object? Deserialize(string json, Type type);
+    private InterfaceImplementation(Type interfaceType, Type implementationType)
+    {
+        InterfaceType = interfaceType;
+        ImplementationType = implementationType;
+    }
 
-    IDictionary<string, string?> DeserializeFirstLevel(string json);
+    public static InterfaceImplementation Create<TInterface, TImplementation>()
+        where TInterface : class
+        where TImplementation : class, TInterface
+    {
+        return new InterfaceImplementation(
+            interfaceType: typeof(TInterface),
+            implementationType: typeof(TImplementation));
+    }
 }

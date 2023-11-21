@@ -19,15 +19,7 @@
 
 namespace ProtonVPN.Serialization.Contracts;
 
-public interface IJsonSerializer
+public interface IJsonContractDeserializer
 {
-    string Serialize(object? json);
-    string SerializePretty(object? json);
-    void Serialize<T>(T json, TextWriter writer);
-
-    T? Deserialize<T>(string json);
-    T? Deserialize<T>(TextReader source);
-    object? Deserialize(string json, Type type);
-
-    IDictionary<string, string?> DeserializeFirstLevel(string json);
+    IEnumerable<InterfaceImplementation> Get();
 }

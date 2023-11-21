@@ -17,17 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Configurations.Contracts.Entities;
+using ProtonVPN.Configurations.Entities;
+using ProtonVPN.Serialization.Contracts;
 
-public interface IJsonSerializer
+namespace ProtonVPN.Configurations.Json;
+
+public class JsonContractDeserializer : IJsonContractDeserializer
 {
-    string Serialize(object? json);
-    string SerializePretty(object? json);
-    void Serialize<T>(T json, TextWriter writer);
-
-    T? Deserialize<T>(string json);
-    T? Deserialize<T>(TextReader source);
-    object? Deserialize(string json, Type type);
-
-    IDictionary<string, string?> DeserializeFirstLevel(string json);
+    public IEnumerable<InterfaceImplementation> Get()
+    {
+        yield return InterfaceImplementation.Create<IUrlsConfiguration, UrlsConfiguration>();
+        yield return InterfaceImplementation.Create<ITlsPinningConfiguration, TlsPinningConfiguration>();
+        yield return InterfaceImplementation.Create<ITlsPinnedDomain, TlsPinnedDomain>();
+    }
 }

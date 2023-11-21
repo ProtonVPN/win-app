@@ -17,17 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Serialization.Contracts;
+namespace ProtonVPN.Serialization.Tests.Mocks;
 
-public interface IJsonSerializer
+public interface IMockOfConfiguration
 {
-    string Serialize(object? json);
-    string SerializePretty(object? json);
-    void Serialize<T>(T json, TextWriter writer);
-
-    T? Deserialize<T>(string json);
-    T? Deserialize<T>(TextReader source);
-    object? Deserialize(string json, Type type);
-
-    IDictionary<string, string?> DeserializeFirstLevel(string json);
+    IUser? User { get; }
+    IDevice? Device { get; }
 }
