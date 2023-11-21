@@ -315,11 +315,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Configurations.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{28DFEF67-6811-40E8-9D5C-4677F66FB7ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Servers", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers\ProtonVPN.Client.Logic.Servers.csproj", "{42FE9FA4-BB18-41E6-BE7C-057F4D293785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Servers", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers\ProtonVPN.Client.Logic.Servers.csproj", "{42FE9FA4-BB18-41E6-BE7C-057F4D293785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Servers.Contracts", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj", "{ABF47C97-7CE7-45DB-9A87-E46C31530246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Servers.Contracts", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj", "{ABF47C97-7CE7-45DB-9A87-E46C31530246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Servers.Installers", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Installers\ProtonVPN.Client.Logic.Servers.Installers.csproj", "{072147CD-65AE-4F49-AB70-CFC541F384A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Servers.Installers", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Installers\ProtonVPN.Client.Logic.Servers.Installers.csproj", "{072147CD-65AE-4F49-AB70-CFC541F384A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Common.Legacy", "src\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj", "{635A3267-A665-4E88-BA41-6ADFE902118F}"
 EndProject

@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
         <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
         <RootNamespace>ProtonVPN.Client</RootNamespace>
         <ApplicationIcon>Assets/ProtonVPN.ico</ApplicationIcon>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <Platforms>x64</Platforms>
-        <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <UseWinUI>true</UseWinUI>
