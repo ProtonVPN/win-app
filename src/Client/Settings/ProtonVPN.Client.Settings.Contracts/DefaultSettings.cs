@@ -58,6 +58,7 @@ public static class DefaultSettings
     public static bool IsIpv6LeakProtectionEnabled = false;
     public static bool AllowNonStandardPorts = false;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
+    public static List<FeatureFlag> FeatureFlags = new();
 
     public static List<SplitTunnelingApp> SplitTunnelingAppsList()
     {

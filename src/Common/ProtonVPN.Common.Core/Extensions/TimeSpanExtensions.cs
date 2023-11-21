@@ -17,18 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Common.Core.Helpers;
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
+namespace ProtonVPN.Common.Core.Extensions;
+
+public static class TimeSpanExtensions
 {
-    public class VpnConfigResponse : BaseResponse
+    private static readonly Random _random = new();
+
+    public static TimeSpan RandomizedWithDeviation(this TimeSpan value, double deviation)
     {
-        public DefaultPortsResponse DefaultPorts { get; set; }
+        Ensure.IsTrue(value >= TimeSpan.Zero, $"{nameof(value)} must not be negative");
+        Ensure.IsTrue(deviation is >= 0 and < 1, $"{nameof(deviation)} must be between zero and one");
 
-        public int? ServerRefreshInterval { get; set; }
-
-        public ConfigFlagsResponse FeatureFlags { get; set; }
-
-        public SmartProtocolResponse SmartProtocol { get; set; }
+        return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * (2.0 * _random.NextDouble() - 1.0));
     }
 }

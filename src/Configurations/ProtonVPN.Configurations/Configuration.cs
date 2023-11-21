@@ -45,10 +45,11 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public bool IsCertificateValidationEnabled => Get();
 
     public TimeSpan ServiceCheckInterval => Get();
-    public TimeSpan ClientConfigUpdateInterval => Get();
-    public TimeSpan AuthCertificateUpdateInterval => Get();
-    public TimeSpan ServerUpdateInterval => Get();
-    public TimeSpan AnnouncementUpdateInterval => Get();
+    public TimeSpan ClientConfigUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan FeatureFlagsUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan AuthCertificateUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan ServerUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan AnnouncementUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AlternativeRoutingCheckInterval => Get();
     public TimeSpan ApiUploadTimeout => Get();
     public TimeSpan ApiTimeout => Get();

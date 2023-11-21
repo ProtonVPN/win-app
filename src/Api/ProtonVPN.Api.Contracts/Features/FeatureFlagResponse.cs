@@ -17,18 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts.Common;
+using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
+namespace ProtonVPN.Api.Contracts.Features;
+
+public class FeatureFlagResponse
 {
-    public class VpnConfigResponse : BaseResponse
-    {
-        public DefaultPortsResponse DefaultPorts { get; set; }
+    public string Name { get; set; }
 
-        public int? ServerRefreshInterval { get; set; }
-
-        public ConfigFlagsResponse FeatureFlags { get; set; }
-
-        public SmartProtocolResponse SmartProtocol { get; set; }
-    }
+    [JsonProperty(PropertyName = "enabled")]
+    public bool IsEnabled { get; set; }
 }

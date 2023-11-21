@@ -19,16 +19,9 @@
 
 using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
+namespace ProtonVPN.Api.Contracts.Users;
+
+public class UsersResponse : BaseResponse
 {
-    public class VpnConfigResponse : BaseResponse
-    {
-        public DefaultPortsResponse DefaultPorts { get; set; }
-
-        public int? ServerRefreshInterval { get; set; }
-
-        public ConfigFlagsResponse FeatureFlags { get; set; }
-
-        public SmartProtocolResponse SmartProtocol { get; set; }
-    }
+    public UserResponse User { get; set; }
 }

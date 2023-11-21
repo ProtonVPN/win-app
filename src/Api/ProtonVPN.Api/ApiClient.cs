@@ -27,11 +27,13 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
+using ProtonVPN.Api.Contracts.Features;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
+using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Client.Settings.Contracts;
@@ -233,6 +235,18 @@ public class ApiClient : BaseApiClient, IApiClient
         request.SetCustomTimeout(TimeSpan.FromSeconds(3));
         request.Content = GetJsonContent(authForkSessionRequest);
         return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
+    }
+
+    public async Task<ApiResponseResult<UsersResponse>> GetUserAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/users");
+        return await SendRequest<UsersResponse>(request, "Get user");
+    }
+
+    public async Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "feature/v2/frontend");
+        return await SendRequest<FeatureFlagsResponse>(request, "Get feature flags");
     }
 
     private async Task<ApiResponseResult<T>> SendRequest<T>(HttpRequestMessage request, string logDescription)

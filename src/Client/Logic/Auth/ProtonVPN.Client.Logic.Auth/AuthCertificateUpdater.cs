@@ -21,7 +21,6 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
@@ -60,7 +59,7 @@ public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageRece
 
     public void Receive(LoggedInMessage message)
     {
-        TimeSpan interval = _config.AuthCertificateUpdateInterval.RandomizedWithDeviation(0.2);
+        TimeSpan interval = _config.AuthCertificateUpdateInterval;
         _timer = new(Timer_OnTick);
         _timer.Change(interval, interval);
         _logger.Info<UserCertificateScheduleRefreshLog>(

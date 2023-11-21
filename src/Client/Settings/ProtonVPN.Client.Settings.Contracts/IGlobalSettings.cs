@@ -19,6 +19,7 @@
 
 using System.Collections.Concurrent;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings.Contracts;
@@ -42,4 +43,5 @@ public interface IGlobalSettings
     bool IsDoHEnabled { get; set; }
     bool IsKillSwitchEnabled { get; set; }
     KillSwitchMode KillSwitchMode { get; set; }
+    List<FeatureFlag> FeatureFlags { get; set; }
 }

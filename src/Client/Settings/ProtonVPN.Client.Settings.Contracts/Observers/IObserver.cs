@@ -17,18 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts.Common;
+namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
-{
-    public class VpnConfigResponse : BaseResponse
-    {
-        public DefaultPortsResponse DefaultPorts { get; set; }
-
-        public int? ServerRefreshInterval { get; set; }
-
-        public ConfigFlagsResponse FeatureFlags { get; set; }
-
-        public SmartProtocolResponse SmartProtocol { get; set; }
-    }
-}
+public interface IObserver
+{ }
