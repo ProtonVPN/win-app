@@ -18,28 +18,34 @@
  */
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Serialization.Json;
 
 public class JsonSerializer : IJsonSerializer
 {
-    private readonly Newtonsoft.Json.JsonSerializer _serializer = new();
+    private readonly Newtonsoft.Json.JsonSerializer _serializer;
     private readonly JsonSerializerSettings _serializationSettings;
     private readonly JsonSerializerSettings _prettySerializationSettings;
+    private readonly ContractDeserializationJsonConverter _contractDeserializationJsonConverter;
 
-    public JsonSerializer()
+    public JsonSerializer(IEnumerable<IJsonContractDeserializer> jsonContractDeserializers)
     {
+        _contractDeserializationJsonConverter = new(jsonContractDeserializers);
         _serializationSettings = CreateSerializationSettings();
         _prettySerializationSettings = CreatePrettySerializationSettings();
+        _serializer = Newtonsoft.Json.JsonSerializer.Create(_serializationSettings);
     }
 
     private JsonSerializerSettings CreateSerializationSettings()
     {
-        return new JsonSerializerSettings
+        JsonSerializerSettings jsonSerializerSettings = new()
         {
             NullValueHandling = NullValueHandling.Ignore
         };
+        jsonSerializerSettings.Converters.Add(_contractDeserializationJsonConverter);
+        return jsonSerializerSettings;
     }
 
     private JsonSerializerSettings CreatePrettySerializationSettings()
@@ -49,25 +55,26 @@ public class JsonSerializer : IJsonSerializer
         return settings;
     }
 
-    public string Serialize(object? value)
+    public string Serialize(object? json)
     {
-        return JsonConvert.SerializeObject(value, _serializationSettings);
+        return JsonConvert.SerializeObject(json, _serializationSettings);
     }
 
-    public string SerializePretty(object? value)
+    public string SerializePretty(object? json)
     {
-        return JsonConvert.SerializeObject(value, _prettySerializationSettings);
+        return JsonConvert.SerializeObject(json, _prettySerializationSettings);
     }
 
-    public void Serialize<T>(T value, TextWriter writer)
+    public void Serialize<T>(T json, TextWriter writer)
     {
         using JsonTextWriter jsonWriter = new(writer);
-        _serializer.Serialize(jsonWriter, value);
+        _serializer.Serialize(jsonWriter, json);
     }
 
-    public T? Deserialize<T>(string value)
+    public T? Deserialize<T>(string json)
     {
-        return JsonConvert.DeserializeObject<T>(value);
+        using JsonTextReader jsonReader = new(new StringReader(json));
+        return _serializer.Deserialize<T>(jsonReader);
     }
 
     public T? Deserialize<T>(TextReader source)
@@ -76,8 +83,17 @@ public class JsonSerializer : IJsonSerializer
         return _serializer.Deserialize<T>(jsonReader);
     }
 
-    public object? Deserialize(string value, Type type)
+    public object? Deserialize(string json, Type type)
     {
-        return JsonConvert.DeserializeObject(value, type);
+        using JsonTextReader jsonReader = new(new StringReader(json));
+        return _serializer.Deserialize(jsonReader, type);
+    }
+
+    public IDictionary<string, string?> DeserializeFirstLevel(string json)
+    {
+        return JObject.Parse(json)
+                      .Children<JProperty>()
+                      .ToDictionary(p => p.Name, 
+                                    p => p.Value?.ToString(Formatting.None));
     }
 }

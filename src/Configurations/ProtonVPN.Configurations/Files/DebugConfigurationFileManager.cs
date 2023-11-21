@@ -94,7 +94,7 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
     {
         _logger.Info<SettingsLog>($"Reading the configuration file {fullFilePath}.");
         string json = File.ReadAllText(fullFilePath);
-        return _jsonSerializer.Deserialize<Dictionary<string, string?>>(json) ?? new();
+        return _jsonSerializer.DeserializeFirstLevel(json);
     }
 
     private void SaveFile(string fullFilePath)

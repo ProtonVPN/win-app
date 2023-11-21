@@ -106,15 +106,6 @@ public class ConfigurationRepository : IConfigurationRepository
 
     private T? Deserialize<T>(string json)
     {
-        Type type = typeof(T);
-        if (type == typeof(string))
-        {
-            return (dynamic)json;
-        }
-        if (type.IsEnum && Enum.TryParse(type, json, out dynamic? result))
-        {
-            return result;
-        }
         return _jsonSerializer.Deserialize<T>(json);
     }
 
@@ -134,14 +125,6 @@ public class ConfigurationRepository : IConfigurationRepository
 
     private object? Deserialize(string json, Type type)
     {
-        if (type == typeof(string))
-        {
-            return json;
-        }
-        if (type.IsEnum && Enum.TryParse(type, json, out dynamic? result))
-        {
-            return result;
-        }
         return _jsonSerializer.Deserialize(json, type);
     }
 }

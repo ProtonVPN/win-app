@@ -20,8 +20,9 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NSubstitute;
 using ProtonVPN.Serialization.Contracts;
-using ProtonVPN.Serialization.Json;
+using ProtonVPN.Serialization.Tests.Mocks;
 
 namespace ProtonVPN.Serialization.Tests;
 
@@ -29,15 +30,31 @@ namespace ProtonVPN.Serialization.Tests;
 public class JsonSerializerTest
 {
     [TestMethod]
+    public void Serialize_ShouldSerialize_ToJson()
+    {
+        // Arrange
+        SampleContract value = new() { Number = 34, Name = "ZgD" };
+        IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
+        StringWriter writer = new();
+
+        // Act
+        serializer.Serialize(value, writer);
+
+        // Assert
+        string result = writer.GetStringBuilder().ToString();
+        result.Should().Be("{\"Number\":34,\"Name\":\"ZgD\"}");
+    }
+
+    [TestMethod]
     public void Deserialize_ShouldHave_ExpectedPropertyValues()
     {
         // Arrange
         StringReader reader = new("{\"Number\":199,\"Name\":\"Super Mario\"}");
-        IJsonSerializer serializer = new Json.JsonSerializer();
+        IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
 
         // Act
         SampleContract? result = serializer.Deserialize<SampleContract>(reader);
-            
+
         // Assert
         result?.Number.Should().Be(199);
         result?.Name.Should().Be("Super Mario");
@@ -48,7 +65,7 @@ public class JsonSerializerTest
     {
         // Arrange
         StringReader reader = new("{Segment");
-        IJsonSerializer serializer = new Json.JsonSerializer();
+        IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
 
         // Act
         Action action = () => serializer.Deserialize<SampleContract>(reader);
@@ -58,18 +75,55 @@ public class JsonSerializerTest
     }
 
     [TestMethod]
-    public void Serialize_ShouldSerialize_ToJson()
+    public void Deserialize_ShouldDeserializeExplicitContracts()
     {
         // Arrange
-        SampleContract value = new() { Number = 34, Name = "ZgD" };
-        IJsonSerializer serializer = new Json.JsonSerializer();
-        StringWriter writer = new();
+        StringReader reader = new("{\"Name\":\"Hulk\"}");
+
+        List<InterfaceImplementation> interfaceImplementations = new() { InterfaceImplementation.Create<IUser,User>() };
+        IJsonContractDeserializer jsonContractDeserializer = Substitute.For<IJsonContractDeserializer>();
+        jsonContractDeserializer.Get().Returns(interfaceImplementations);
+        IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>() { jsonContractDeserializer });
 
         // Act
-        serializer.Serialize(value, writer);
+        IUser user = serializer.Deserialize<IUser>(reader)!;
 
         // Assert
-        string result = writer.GetStringBuilder().ToString();
-        result.Should().Be("{\"Number\":34,\"Name\":\"ZgD\"}");
+        user!.Name.Should().Be("Hulk");
+    }
+
+    [TestMethod]
+    public void Deserialize_ShouldNotDeserializeNonExplicitContracts()
+    {
+        // Arrange
+        StringReader reader = new("{\"Name\":\"Hulk\"}");
+        IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
+
+        // Act
+        Exception exception = Assert.ThrowsException<JsonSerializationException>(() => serializer.Deserialize<IUser>(reader));
+        Assert.IsTrue(exception.Message.Contains($"Could not create an instance of type {typeof(IUser).FullName}. " +
+            $"Type is an interface or abstract class and cannot be instantiated."));
+    }
+
+    [TestMethod]
+    public void DeserializeFirstLevel()
+    {
+        // Arrange
+        string json = "{\"User\":{\"Name\":\"Harry Potter\"},\"Device\":{\"Code\":1893}}";
+
+        List<InterfaceImplementation> interfaceImplementations = new() { /*InterfaceImplementation.Create<IUser, User>()*/ };
+        IJsonContractDeserializer jsonContractDeserializer = Substitute.For<IJsonContractDeserializer>();
+        jsonContractDeserializer.Get().Returns(interfaceImplementations);
+        IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>() { jsonContractDeserializer });
+
+        // Act
+        IDictionary<string, string?> configJsonProperties = serializer.DeserializeFirstLevel(json)!;
+
+        // Assert
+        Assert.AreEqual(2, configJsonProperties.Count);
+        Assert.IsTrue(configJsonProperties.ContainsKey("User"));
+        Assert.AreEqual("{\"Name\":\"Harry Potter\"}", configJsonProperties["User"]);
+        Assert.IsTrue(configJsonProperties.ContainsKey("Device"));
+        Assert.AreEqual("{\"Code\":1893}", configJsonProperties["Device"]);
     }
 }
