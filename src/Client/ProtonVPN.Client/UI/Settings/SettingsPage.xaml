@@ -77,6 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:FeatureSettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
                                         Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                         CommandParameter="ProtonVPN.Client.UI.Settings.Pages.PortForwardingViewModel"
+                                        Description="{x:Bind ViewModel.PortForwardingCurrentActivePort}"
                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
                                         IsClickEnabled="True"
                                         Style="{StaticResource FeatureSettingsCardStyle}">
@@ -146,7 +147,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <labs:SettingsCard AutomationProperties.AutomationId="AutoStartupSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AutoStartupViewModel"
-                               Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_Descripton')}"
+                               Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">

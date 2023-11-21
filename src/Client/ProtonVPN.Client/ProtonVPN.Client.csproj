@@ -136,7 +136,7 @@
         <Page Update="UI\Login\LoginForm.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
-        <Page Update="UI\Login\LoginShellPage.xaml">
+        <Page Update="UI\Login\LoginPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
         <Page Update="UI\Home\Details\VpnSpeedComponent.xaml">
@@ -189,7 +189,7 @@
         <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />
         <None Remove="UI\HumanVerification\HumanVerificationDialog.xaml" />
         <None Remove="UI\Login\LoginForm.xaml" />
-        <None Remove="UI\Login\LoginShellPage.xaml" />
+        <None Remove="UI\Login\LoginPage.xaml" />
         <None Remove="UI\Login\TwoFactorForm.xaml" />
         <None Remove="UI\ReportIssue\Results\ReportIssueResultPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />
@@ -245,6 +245,7 @@
         <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj" />
         <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Installers\ProtonVPN.Client.Logic.Servers.Installers.csproj" />
         <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
+        <ProjectReference Include="..\Notifications\ProtonVPN.Client.Notifications.Installers\ProtonVPN.Client.Notifications.Installers.csproj" />
         <ProjectReference Include="..\Settings\ProtonVPN.Client.Settings.Installers\ProtonVPN.Client.Settings.Installers.csproj" />
     </ItemGroup>
 

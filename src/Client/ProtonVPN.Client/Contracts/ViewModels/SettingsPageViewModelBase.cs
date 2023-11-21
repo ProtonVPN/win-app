@@ -37,8 +37,8 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMainViewNavigator>,
-    IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     protected readonly ISettings Settings;
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
@@ -102,12 +102,12 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         return GetSettings().Where(s => s.HasChanged);
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public virtual void Receive(ConnectionStatusChanged message)
     {
         ReconnectCommand.NotifyCanExecuteChanged();
     }
 
-    public void Receive(SettingChangedMessage message)
+    public virtual void Receive(SettingChangedMessage message)
     {
         OnSettingsChanged(message.PropertyName);
     }

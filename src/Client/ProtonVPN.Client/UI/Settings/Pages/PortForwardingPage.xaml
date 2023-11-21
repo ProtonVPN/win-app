@@ -49,7 +49,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea">
 
             <labs:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
-                                   IsExpanded="{x:Bind ViewModel.IsPortForwardingEnabled}"
+                                   IsExpanded="{x:Bind ViewModel.HasActivePortNumber}"
                                    IsTabStop="False"
                                    Style="{StaticResource SettingsExpanderStyle}">
 

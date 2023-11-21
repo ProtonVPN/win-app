@@ -17,9 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Edition;
+using Autofac;
 
-public interface IClipboardEditor
+namespace ProtonVPN.Client.Notifications.Installers;
+
+public class NotificationsModule : Module
 {
-    Task SetTextAsync(string text);
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
+    }
 }

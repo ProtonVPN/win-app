@@ -32,6 +32,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<GuestHoleConnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<DisconnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<PortForwardingManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AppController>().As<IAppController>().SingleInstance();
         builder.RegisterType<GuestHoleServersFileStorage>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().SingleInstance();
