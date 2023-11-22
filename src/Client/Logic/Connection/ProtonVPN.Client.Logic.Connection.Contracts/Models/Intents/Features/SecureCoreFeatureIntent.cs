@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class SecureCoreFeatureIntent : FeatureIntentBase
@@ -25,18 +27,26 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
 
     public bool IsFastest => string.IsNullOrEmpty(EntryCountryCode);
 
-    public SecureCoreFeatureIntent(string entryCountryCode)
+    public SecureCoreFeatureIntent(string? entryCountryCode = null)
     {
         EntryCountryCode = entryCountryCode;
     }
-
-    public SecureCoreFeatureIntent()
-    { }
 
     public override bool IsSameAs(IFeatureIntent? intent)
     {
         return base.IsSameAs(intent)
             && intent is SecureCoreFeatureIntent secureCoreIntent
             && EntryCountryCode == secureCoreIntent.EntryCountryCode;
+    }
+
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        servers = servers.Where(s => s.IsSecureCore);
+        if (!string.IsNullOrEmpty(EntryCountryCode))
+        {
+            servers = servers.Where(s => s.EntryCountry == EntryCountryCode);
+        }
+
+        return servers;
     }
 }

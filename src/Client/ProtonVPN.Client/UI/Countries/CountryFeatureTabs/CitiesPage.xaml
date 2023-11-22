@@ -30,5 +30,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <controls:CityListControl Cities="{x:Bind ViewModel.Items}"
-                              Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_CitiesNumber', ViewModel.TotalItems)}" />
+                              Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfCities', ViewModel.TotalItems)}" />
 </Page>

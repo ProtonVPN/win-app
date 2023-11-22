@@ -31,11 +31,11 @@ public class CitiesPageViewModel : CitiesPageViewModelBase
     public CitiesPageViewModel(
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        CountriesViewModelsFactory countriesViewModelsFactory,
+        CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator) : base(connectionManager, mainViewNavigator, serverManager, viewNavigator,
-        countriesViewModelsFactory, localizationProvider)
+        countryViewModelsFactory, localizationProvider)
     {
     }
 
@@ -48,4 +48,6 @@ public class CitiesPageViewModel : CitiesPageViewModelBase
     {
         return ServerManager.GetServersByCity(city);
     }
+
+    protected override CountryFeature CountryFeature => CountryFeature.None;
 }

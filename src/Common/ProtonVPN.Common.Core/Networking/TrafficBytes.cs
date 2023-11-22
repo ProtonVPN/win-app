@@ -17,24 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Legacy.Vpn;
+namespace ProtonVPN.Common.Core.Networking;
 
-public struct InOutBytes
+public struct TrafficBytes
 {
-    public InOutBytes(double bytesIn, double bytesOut)
+    public TrafficBytes(ulong bytesIn, ulong bytesOut)
     {
         BytesIn = bytesIn;
         BytesOut = bytesOut;
     }
 
-    public double BytesIn { get; }
+    public ulong BytesIn { get; }
 
-    public double BytesOut { get; }
+    public ulong BytesOut { get; }
 
-    public static InOutBytes Zero { get; } = new InOutBytes(0, 0);
+    public static TrafficBytes Zero { get; } = new(0, 0);
 
-    public static InOutBytes operator -(InOutBytes op1, InOutBytes op2)
+    public static TrafficBytes operator -(TrafficBytes op1, TrafficBytes op2)
     {
-        return new InOutBytes(op1.BytesIn - op2.BytesIn, op1.BytesOut - op2.BytesOut);
+        return new TrafficBytes(op1.BytesIn - op2.BytesIn, op1.BytesOut - op2.BytesOut);
     }
 }

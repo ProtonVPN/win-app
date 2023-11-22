@@ -49,6 +49,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     [NotifyPropertyChangedFor(nameof(ServerLoad))]
     [NotifyPropertyChangedFor(nameof(FormattedServerLoad))]
     [NotifyPropertyChangedFor(nameof(ServerLatency))]
+    [NotifyPropertyChangedFor(nameof(VpnProtocol))]
     private ConnectionDetails? _currentConnectionDetails;
 
     public TimeSpan? SessionLength => CurrentConnectionDetails != null
@@ -70,6 +71,10 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     public string? ServerLatency => CurrentConnectionDetails?.ServerLatency != null
         ? Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails.ServerLatency.Value.TotalMilliseconds)
         : null;
+
+    public string VpnProtocol => CurrentConnectionDetails is not null
+        ? Localizer.GetVpnProtocol(CurrentConnectionDetails.Protocol)
+        : string.Empty;
 
     public ConnectionDetailsViewModel(ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
@@ -140,7 +145,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     {
         OnPropertyChanged(nameof(FormattedSessionLength));
 
-        _vpnSpeedViewModel.Refresh();
+        _vpnSpeedViewModel.RefreshAsync();
     }
 
     private void OnRefreshTimerTick(object? sender, EventArgs e)

@@ -17,23 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
 {
-    public class TrafficBytesMapper : IMapper<InOutBytes, TrafficBytesIpcEntity>
+    public class TrafficBytesMapper : IMapper<TrafficBytes, TrafficBytesIpcEntity>
     {
-        public TrafficBytesIpcEntity Map(InOutBytes leftEntity)
+        public TrafficBytesIpcEntity Map(TrafficBytes leftEntity)
         {
             return new() { BytesIn = leftEntity.BytesIn, BytesOut = leftEntity.BytesOut };
         }
 
-        public InOutBytes Map(TrafficBytesIpcEntity rightEntity)
+        public TrafficBytes Map(TrafficBytesIpcEntity rightEntity)
         {
             return rightEntity is null
-                ? InOutBytes.Zero
+                ? TrafficBytes.Zero
                 : new(bytesIn: rightEntity.BytesIn, bytesOut: rightEntity.BytesOut);
         }
     }

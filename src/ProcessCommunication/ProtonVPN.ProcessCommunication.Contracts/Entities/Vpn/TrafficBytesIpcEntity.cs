@@ -24,9 +24,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
     public class TrafficBytesIpcEntity
     {
         [DataMember(Order = 1, IsRequired = true)]
-        public double BytesIn { get; set; }
+        public ulong BytesIn { get; set; }
 
         [DataMember(Order = 2, IsRequired = true)]
-        public double BytesOut { get; set; }
+        public ulong BytesOut { get; set; }
     }
 }

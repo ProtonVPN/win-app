@@ -38,8 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate x:DataType="countries:CityViewModel">
                     <controls:DualCommandsRowControl Padding="12,0"
-                                                     PrimaryCommand="{x:Bind ConnectCommand, Mode=OneTime}"
-                                                     PrimaryCommandParameter="{x:Bind}"
+                                                     PrimaryCommand="{x:Bind ConnectCommand}"
                                                      PrimaryCommandText="{x:Bind Localizer.Get('Countries_Connect')}"
                                                      SecondaryCommandText="{x:Bind Localizer.GetPluralFormat('Countries_Server', Servers.Count)}">
 

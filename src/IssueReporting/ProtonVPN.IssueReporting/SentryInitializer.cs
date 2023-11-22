@@ -21,12 +21,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.IssueReporting.DiagnosticLogging;
 using ProtonVPN.IssueReporting.HttpHandlers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.SourceGenerators;
 using Sentry;
 
 namespace ProtonVPN.IssueReporting;

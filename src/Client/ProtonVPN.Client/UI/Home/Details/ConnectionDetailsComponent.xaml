@@ -144,8 +144,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </toolkit:HeaderedContentControl.Header>
                 </toolkit:HeaderedContentControl>
 
-                <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.CurrentConnectionDetails.Protocol}"
-                                                Visibility="{x:Bind ViewModel.CurrentConnectionDetails.Protocol, Converter={StaticResource NotNullToVisibilityConverter}}">
+                <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.VpnProtocol}"
+                                                Visibility="{x:Bind ViewModel.VpnProtocol, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
                         <StackPanel Orientation="Horizontal"
                                     Spacing="4">

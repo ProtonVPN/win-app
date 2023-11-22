@@ -20,6 +20,10 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Common.Core.Extensions;
@@ -29,6 +33,7 @@ namespace ProtonVPN.Client.UI.Countries;
 public partial class CountryViewModel : ViewModelBase, IComparable, ISearchableItem
 {
     private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly IConnectionManager _connectionManager;
 
     public string ExitCountryCode { get; init; } = string.Empty;
 
@@ -40,27 +45,31 @@ public partial class CountryViewModel : ViewModelBase, IComparable, ISearchableI
 
     public bool IsUnderMaintenance { get; init; }
 
-    public bool IsSecureCore { get; init; }
+    public bool IsSecureCore => CountryFeature == CountryFeature.SecureCore;
 
     public CountryFeature CountryFeature { get; init; }
 
-    public CountryViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator) :
+    public CountryViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator, IConnectionManager connectionManager) :
         base(localizationProvider)
     {
         _mainViewNavigator = mainViewNavigator;
+        _connectionManager = connectionManager;
     }
 
     [RelayCommand]
     public async Task ConnectAsync()
     {
+        ILocationIntent countryLocationIntent = new CountryLocationIntent(ExitCountryCode);
+        IFeatureIntent? featureIntent = CountryFeature.GetFeatureIntent(IsSecureCore ? string.Empty : ExitCountryCode);
+
         await _mainViewNavigator.NavigateToAsync<HomeViewModel>();
-        // TODO: connect
+        await _connectionManager.ConnectAsync(new ConnectionIntent(countryLocationIntent, featureIntent));
     }
 
     [RelayCommand]
-    public async Task NavigateToCountryAsync(CountryViewModel country)
+    public async Task NavigateToCountryAsync()
     {
-        await _mainViewNavigator.NavigateToAsync<CountryTabViewModel>(country);
+        await _mainViewNavigator.NavigateToAsync<CountryTabViewModel>(this);
     }
 
     public int CompareTo(object? obj)

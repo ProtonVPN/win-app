@@ -109,7 +109,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
 
         switch (country.CountryFeature)
         {
-            case CountryFeature.Cities:
+            case CountryFeature.None:
                 CountryFeatureTabsViewNavigator.NavigateToAsync<CitiesPageViewModel>(CurrentCountryCode);
                 SelectedFeatureTab = _citiesPageViewModel;
                 break;

@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class CityStateLocationIntent : CountryLocationIntent
@@ -34,5 +36,10 @@ public class CityStateLocationIntent : CountryLocationIntent
         return base.IsSameAs(intent)
             && intent is CityStateLocationIntent cityStateIntent
             && CityState == cityStateIntent.CityState;
+    }
+
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return base.FilterServers(servers).Where(s => s.City == CityState);
     }
 }

@@ -19,8 +19,13 @@
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
@@ -31,15 +36,21 @@ namespace ProtonVPN.Client.Logic.Connection.Wrappers;
 
 public class ConnectionRequestWrapper : ConnectionRequestWrapperBase, IConnectionRequestWrapper
 {
+    private const int MAX_PHYSICAL_SERVERS = 20;
+
     private readonly IAuthKeyManager _authKeyManager;
+    private readonly IServerManager _serverManager;
+    private readonly Random _random = new();
 
     public ConnectionRequestWrapper(
         ISettings settings,
         IEntityMapper entityMapper,
-        IAuthKeyManager authKeyManager)
+        IAuthKeyManager authKeyManager,
+        IServerManager serverManager)
         : base(settings, entityMapper)
     {
         _authKeyManager = authKeyManager;
+        _serverManager = serverManager;
     }
 
     public ConnectionRequestIpcEntity Wrap(IConnectionIntent connectionIntent)
@@ -76,17 +87,41 @@ public class ConnectionRequestWrapper : ConnectionRequestWrapperBase, IConnectio
 
     private VpnServerIpcEntity[] GetVpnServers(IConnectionIntent connectionIntent)
     {
-        // TODO consider intent when we implement Countries page and servers selection
-        return new List<VpnServerIpcEntity>()
+        IEnumerable<Server> servers = _serverManager.GetServers();
+        ILocationIntent? locationIntent = connectionIntent.Location;
+        IFeatureIntent? featureIntent = connectionIntent.Feature;
+
+        if (locationIntent is not null)
         {
-            new VpnServerIpcEntity() // CH#5
-            {
-                Name = "node-ch-02.protonvpn.net",
-                Ip = "185.159.157.6",
-                Label = "0",
-                X25519PublicKey = new ServerPublicKeyIpcEntity(new PublicKey("00WGV9C77fp+u1G2YrJ3VphcEKFCXcplgUU5THM+QgI=", KeyAlgorithm.X25519)),
-                Signature = "7zE5YnKNw5q9pE4BWaPaFzJTTj5NLeHkfhUxMfZynopZDMJCcrubIZhd0F1bWx+q5nIUNqEss+3ORHlzZwwcCg=="
-            }
-        }.ToArray();
+            servers = locationIntent.FilterServers(servers);
+        }
+
+        if (featureIntent is not null)
+        {
+            servers = featureIntent.FilterServers(servers);
+        }
+
+        IEnumerable<VpnHost> hosts = SortServers(servers)
+            .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))
+            .Where(s => s.Status != 0)
+            .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s), s.Signature))
+            .Distinct(s => (s.Ip, s.Label))
+            .Take(MAX_PHYSICAL_SERVERS);
+
+        return EntityMapper.Map<VpnHost, VpnServerIpcEntity>(hosts).ToArray();
+    }
+
+    public IEnumerable<Server> SortServers(IEnumerable<Server> source)
+    {
+        return Settings.IsPortForwardingEnabled
+            ? source.OrderByDescending(s => s.SupportsP2P).ThenBy(s => s.Score)
+            : source.OrderBy(s => s.Score);
+    }
+
+    private PublicKey? GetServerPublicKey(PhysicalServer server)
+    {
+        return string.IsNullOrEmpty(server.X25519PublicKey)
+            ? null
+            : new PublicKey(server.X25519PublicKey, KeyAlgorithm.X25519);
     }
 }

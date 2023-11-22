@@ -149,13 +149,16 @@ namespace ProtonVPN.Vpn.LocalAgent
 
         private void HandleStatusMessage(EventContract e)
         {
-            ConnectionDetailsChanged?.Invoke(this,
-                new ConnectionDetails
-                {
-                    ClientIpAddress = e.ConnectionDetails?.DeviceIp,
-                    ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
-                    ServerIpAddress = e.ConnectionDetails?.ServerIpv4,
-                });
+            if (e.ConnectionDetails is not null)
+            {
+                ConnectionDetailsChanged?.Invoke(this,
+                    new ConnectionDetails
+                    {
+                        ClientIpAddress = e.ConnectionDetails?.DeviceIp,
+                        ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
+                        ServerIpAddress = e.ConnectionDetails?.ServerIpv4,
+                    });
+            }
         }
 
         private void HandleError(EventContract e)

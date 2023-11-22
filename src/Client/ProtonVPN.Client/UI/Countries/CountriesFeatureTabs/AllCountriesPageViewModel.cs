@@ -31,7 +31,7 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
 
     public override string Title => Localizer.Get("Countries_All");
 
-    protected override CountryFeature CountryFeature => CountryFeature.Cities;
+    protected override CountryFeature CountryFeature => CountryFeature.None;
 
     public AllCountriesPageViewModel(
         IMainViewNavigator mainViewNavigator,
@@ -39,8 +39,8 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
         IServerManager serverManager,
         ILocalizationProvider localizationProvider,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountriesViewModelsFactory countriesViewModelsFactory) : base(mainViewNavigator, serverManager,
-        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countriesViewModelsFactory)
+        CountryViewModelsFactory countryViewModelsFactory) : base(mainViewNavigator, serverManager,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countryViewModelsFactory)
     {
     }
 

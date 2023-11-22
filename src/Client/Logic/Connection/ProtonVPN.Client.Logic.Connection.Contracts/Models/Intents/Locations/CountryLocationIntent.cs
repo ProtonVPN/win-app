@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class CountryLocationIntent : LocationIntentBase
@@ -39,5 +41,10 @@ public class CountryLocationIntent : LocationIntentBase
         return base.IsSameAs(intent)
             && intent is CountryLocationIntent countryIntent
             && CountryCode == countryIntent.CountryCode;
+    }
+
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return IsFastest ? servers : servers.Where(s => s.ExitCountry == CountryCode);
     }
 }

@@ -23,6 +23,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
@@ -60,7 +61,7 @@ namespace ProtonVPN.Vpn.Management
             _managementChannel = managementChannel;
         }
 
-        public event EventHandler<EventArgs<InOutBytes>> TransportStatsChanged;
+        public event EventHandler<EventArgs<TrafficBytes>> TransportStatsChanged;
 
         public event EventHandler<EventArgs<VpnState>> VpnStateChanged;
 
@@ -228,7 +229,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void HandleByteMessage(ReceivedManagementMessage message)
         {
-            InOutBytes bandwidth = message.Bandwidth();
+            TrafficBytes bandwidth = message.Bandwidth();
             OnTransportStatsChanged(bandwidth);
         }
 
@@ -302,9 +303,9 @@ namespace ProtonVPN.Vpn.Management
             VpnStateChanged?.Invoke(this, new EventArgs<VpnState>(state));
         }
 
-        private void OnTransportStatsChanged(InOutBytes bandwidth)
+        private void OnTransportStatsChanged(TrafficBytes bandwidth)
         {
-            TransportStatsChanged?.Invoke(this, new EventArgs<InOutBytes>(bandwidth));
+            TransportStatsChanged?.Invoke(this, new EventArgs<TrafficBytes>(bandwidth));
         }
     }
 }

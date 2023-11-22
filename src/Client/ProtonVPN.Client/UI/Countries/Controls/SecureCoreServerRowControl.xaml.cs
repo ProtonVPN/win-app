@@ -25,7 +25,7 @@ public sealed partial class SecureCoreServerRowControl
 {
     public static readonly DependencyProperty ServerViewModelProperty = DependencyProperty.Register(
         nameof(ServerViewModel),
-        typeof(SecureCoreServerViewModel),
+        typeof(ServerViewModel),
         typeof(SecureCoreServerRowControl),
         new PropertyMetadata(null));
 
@@ -34,9 +34,9 @@ public sealed partial class SecureCoreServerRowControl
         InitializeComponent();
     }
 
-    public SecureCoreServerViewModel ServerViewModel
+    public ServerViewModel ServerViewModel
     {
-        get => (SecureCoreServerViewModel)GetValue(ServerViewModelProperty);
+        get => (ServerViewModel)GetValue(ServerViewModelProperty);
         set => SetValue(ServerViewModelProperty, value);
     }
 }

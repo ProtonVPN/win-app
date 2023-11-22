@@ -33,7 +33,7 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
 {
     protected IMainViewNavigator MainViewNavigator;
 
-    public readonly CountriesViewModelsFactory CountriesViewModelsFactory;
+    public readonly CountryViewModelsFactory CountryViewModelsFactory;
 
     public abstract IconElement? Icon { get; }
 
@@ -49,12 +49,12 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
 
     protected CountryTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
-        CountriesViewModelsFactory countriesViewModelsFactory,
+        CountryViewModelsFactory countryViewModelsFactory,
         IViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider) : base(viewNavigator, localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
-        CountriesViewModelsFactory = countriesViewModelsFactory;
+        CountryViewModelsFactory = countryViewModelsFactory;
     }
 
     public virtual void LoadItems(string? country = null)
@@ -79,13 +79,13 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
     protected CityViewModel GetCity(string city)
     {
         List<ServerViewModel> servers = GetServersByCity(city);
-        return CountriesViewModelsFactory.GetCityViewModel(city, servers);
+        return CountryViewModelsFactory.GetCityViewModel(city, servers, CountryFeature);
     }
 
     private List<ServerViewModel> GetServersByCity(string city)
     {
         return GetServers(city)
-            .Select(CountriesViewModelsFactory.GetServerViewModel)
+            .Select(CountryViewModelsFactory.GetServerViewModel)
             .OrderBy(s => s.Load)
             .ToList();
     }
@@ -95,4 +95,6 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
     protected abstract IList GetItems();
 
     protected abstract IList<SortDescription> GetSortDescriptions();
+
+    protected abstract CountryFeature CountryFeature { get; }
 }

@@ -23,6 +23,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Localization.Extensions;
 
@@ -61,8 +62,7 @@ public static class LocalizationExtensions
 
         return connectionIntent?.Location switch
         {
-            FreeServerLocationIntent freeServerIntent => localizer.GetFormat("Connection_Intent_Free_Server", freeServerIntent.ServerNumber),
-            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.ServerNumber),
+            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.Number),
             CityStateLocationIntent cityStateIntent => cityStateIntent.CityState,
             _ => string.Empty,
         };
@@ -127,5 +127,17 @@ public static class LocalizationExtensions
         return string.IsNullOrEmpty(vpnPlan)
             ? localizer.Get("Account_VpnPlan_Free")
             : vpnPlan;
+    }
+
+    public static string GetVpnProtocol(this ILocalizationProvider localizer, VpnProtocol vpnProtocol)
+    {
+        return vpnProtocol switch
+        {
+            VpnProtocol.Smart => localizer.Get("VpnProtocol_Smart"),
+            VpnProtocol.OpenVpnTcp => localizer.Get("VpnProtocol_OpenVPN_Tcp"),
+            VpnProtocol.OpenVpnUdp => localizer.Get("VpnProtocol_OpenVPN_Udp"),
+            VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp"),
+            _ => string.Empty
+        };
     }
 }

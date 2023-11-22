@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
@@ -64,7 +65,7 @@ namespace ProtonVPN.Vpn.Connection
             remove => _origin.ConnectionDetailsChanged -= value;
         }
 
-        public InOutBytes Total => _origin.Total;
+        public TrafficBytes Total => _origin.Total;
 
         public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
         {

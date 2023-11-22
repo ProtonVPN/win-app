@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.NetShield;
 using ProtonVPN.Common.Legacy.PortForwarding;
 using ProtonVPN.Common.Legacy.Vpn;
@@ -34,7 +35,7 @@ namespace ProtonVPN.Core.Vpn
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0);
-        Task<InOutBytes> GetTrafficBytes();
+        Task<TrafficBytes> GetTrafficBytes();
         Task RepeatState();
 
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback);

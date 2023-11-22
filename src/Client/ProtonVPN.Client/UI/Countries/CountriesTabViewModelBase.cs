@@ -36,7 +36,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
 
     protected readonly NoSearchResultsViewModel NoSearchResultsViewModel;
 
-    private readonly CountriesViewModelsFactory _countriesViewModelsFactory;
+    private readonly CountryViewModelsFactory _countryViewModelsFactory;
 
     protected string LastSearchQuery = string.Empty;
 
@@ -65,12 +65,12 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountriesViewModelsFactory countriesViewModelsFactory) : base(countriesFeatureTabsViewNavigator, localizationProvider)
+        CountryViewModelsFactory countryViewModelsFactory) : base(countriesFeatureTabsViewNavigator, localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
         ServerManager = serverManager;
         NoSearchResultsViewModel = noSearchResultsViewModel;
-        _countriesViewModelsFactory = countriesViewModelsFactory;
+        _countryViewModelsFactory = countryViewModelsFactory;
     }
 
     public abstract IconElement? Icon { get; }
@@ -135,13 +135,13 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
     {
         return GetCountryCodes()
             .Select(GetCountryViewModel)
-            .Prepend(_countriesViewModelsFactory.GetFastestCountryViewModel(CountryFeature))
+            .Prepend(_countryViewModelsFactory.GetFastestCountryViewModel(CountryFeature))
             .ToList();
     }
 
     private CountryViewModel GetCountryViewModel(string countryCode)
     {
-        return _countriesViewModelsFactory.GetCountryViewModel(countryCode, CountryFeature, GetCountryItemsCount(countryCode));
+        return _countryViewModelsFactory.GetCountryViewModel(countryCode, CountryFeature, GetCountryItemsCount(countryCode));
     }
 
     private List<CityViewModel> GetCityViewModels()
@@ -149,15 +149,15 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
         return GetCities().Select(city =>
         {
             List<ServerViewModel> servers = ServerManager.GetServersByCity(city)
-                .Select(_countriesViewModelsFactory.GetServerViewModel).ToList();
-            return _countriesViewModelsFactory.GetCityViewModel(city, servers);
+                .Select(_countryViewModelsFactory.GetServerViewModel).ToList();
+            return _countryViewModelsFactory.GetCityViewModel(city, servers, CountryFeature);
         }).ToList();
     }
 
     private List<ServerViewModel> GetServerViewModels()
     {
         return GetServers()
-            .Select(_countriesViewModelsFactory.GetServerViewModel)
+            .Select(_countryViewModelsFactory.GetServerViewModel)
             .ToList();
     }
 

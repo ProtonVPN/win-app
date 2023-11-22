@@ -20,7 +20,12 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
@@ -28,31 +33,44 @@ namespace ProtonVPN.Client.UI.Countries;
 public partial class ServerViewModel : ViewModelBase, IComparable, ISearchableItem
 {
     protected readonly IMainViewNavigator MainViewNavigator;
+    protected readonly IConnectionManager ConnectionManager;
 
+    public string Id { get; init; }
+    public string ExitCountryCode { get; init; } = string.Empty;
+    public string ExitCountryName { get; init; } = string.Empty;
+    public string EntryCountryCode { get; init; } = string.Empty;
+    public string EntryCountryName { get; init; } = string.Empty;
     public string Name { get; init; } = string.Empty;
-
+    public string City { get; init; } = string.Empty;
     public double Load { get; init; }
-
     public string LoadPercent { get; init; }
-
     public bool IsVirtual { get; init; }
-
+    public bool IsSecureCore { get; init; }
     public bool SupportsP2P { get; init; }
-
+    public bool IsTor { get; init; }
     public bool IsUnderMaintenance { get; init; }
-
     public bool IsActive { get; init; }
 
-    public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator) : base(
-        localizationProvider)
+    public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator,
+        IConnectionManager connectionManager) : base(localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
+        ConnectionManager = connectionManager;
     }
 
     [RelayCommand]
-    public async Task ConnectAsync()
+    public virtual async Task ConnectAsync()
     {
-        // TODO: connect to serverViewModel
+        ILocationIntent locationIntent = new ServerLocationIntent(Id, Name, ExitCountryCode, City);
+        IFeatureIntent? featureIntent = GetFeatureIntent();
+
+        await NavigateToHomePageAsync();
+        await ConnectionManager.ConnectAsync(new ConnectionIntent(locationIntent, featureIntent));
+    }
+
+    protected async Task NavigateToHomePageAsync()
+    {
+        await MainViewNavigator.NavigateToAsync<HomeViewModel>();
     }
 
     public int CompareTo(object? obj)
@@ -63,5 +81,25 @@ public partial class ServerViewModel : ViewModelBase, IComparable, ISearchableIt
     public bool MatchesSearchQuery(string query)
     {
         return Name.ContainsIgnoringCase(query);
+    }
+
+    private IFeatureIntent? GetFeatureIntent()
+    {
+        if (IsSecureCore)
+        {
+            return new SecureCoreFeatureIntent(EntryCountryCode);
+        }
+
+        if (SupportsP2P)
+        {
+            return new P2PFeatureIntent();
+        }
+
+        if (IsTor)
+        {
+            return new TorFeatureIntent();
+        }
+
+        return null;
     }
 }

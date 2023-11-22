@@ -42,8 +42,8 @@ public partial class SecureCoreCountriesPageViewModel : CountriesTabViewModelBas
         ILocalizationProvider localizationProvider,
         IServerManager serverManager,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountriesViewModelsFactory countriesViewModelsFactory) : base(mainViewNavigator, serverManager,
-        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countriesViewModelsFactory)
+        CountryViewModelsFactory countryViewModelsFactory) : base(mainViewNavigator, serverManager,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countryViewModelsFactory)
     {
     }
 

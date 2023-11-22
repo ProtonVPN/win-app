@@ -21,11 +21,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
 public partial class VpnSpeedViewModel : ViewModelBase
 {
+    private readonly IConnectionManager _connectionManager;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadSpeed))]
     private long _downloadSpeed;
@@ -34,22 +38,25 @@ public partial class VpnSpeedViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(FormattedUploadSpeed))]
     private long _uploadSpeed;
 
-    private Random _random = new();
     public string FormattedDownloadSpeed => Localizer.GetFormattedSpeed(DownloadSpeed);
 
     public string FormattedUploadSpeed => Localizer.GetFormattedSpeed(UploadSpeed);
 
-    public VpnSpeedViewModel(ILocalizationProvider localizationProvider)
+    public VpnSpeedViewModel(ILocalizationProvider localizationProvider, IConnectionManager connectionManager)
         : base(localizationProvider)
     {
+        _connectionManager = connectionManager;
+
         DownloadSpeed = 0;
         UploadSpeed = 0;
     }
 
-    public void Refresh()
+    public async void RefreshAsync()
     {
-        DownloadSpeed = _random.Next(20000000);
-        UploadSpeed = _random.Next(10000000);
+        TrafficBytes trafficBytes = await _connectionManager.GetCurrentSpeedAsync();
+
+        DownloadSpeed = (long)trafficBytes.BytesIn;
+        UploadSpeed = (long)trafficBytes.BytesOut;
     }
 
     protected override void OnLanguageChanged()

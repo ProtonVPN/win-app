@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Services.Contracts
@@ -28,5 +29,7 @@ namespace ProtonVPN.Client.Logic.Services.Contracts
         Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
 
         Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
+
+        Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
     }
 }

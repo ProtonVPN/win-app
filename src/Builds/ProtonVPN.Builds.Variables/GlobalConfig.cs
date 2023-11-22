@@ -17,23 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models.Navigation;
+namespace ProtonVPN.Builds.Variables;
 
-namespace ProtonVPN.Client.UI.Countries;
-
-public class SecureCoreServerViewModel : ServerViewModel
+public static class GlobalConfig
 {
-    public string ExitCountryCode { get; init; } = string.Empty;
+    public const string SentryDsn = "https://215b16893fe24a448dba04afaef8dff7@api.protonvpn.ch/core/v4/reports/sentry/23";
+    public const string InternalReleaseUpdateUrl = "";
 
-    public string ExitCountryName { get; init; } = string.Empty;
-
-    public string EntryCountryCode { get; init; } = string.Empty;
-
-    public string EntryCountryName { get; init; } = string.Empty;
-
-    public SecureCoreServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator) :
-        base(localizationProvider, mainViewNavigator)
-    {
-    }
+    public const string BtiApiDomain = "";
+    public const string BtiApiTlsPinningPublicKeyHashes = "";
+    public const string BtiAlternativeRoutingTlsPinningPublicKeyHashes = "";
+    public const string BtiCertificateValidation = "";
+    public const string BtiDohProviders = "";
+    public const string BtiServerSignaturePublicKey = "";
 }

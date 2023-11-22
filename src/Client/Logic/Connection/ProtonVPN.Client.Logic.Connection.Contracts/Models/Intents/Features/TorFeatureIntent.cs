@@ -17,8 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class TorFeatureIntent : FeatureIntentBase
 {
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return servers.Where(s => s.SupportsTor);
+    }
 }

@@ -21,10 +21,10 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Common.Legacy.Threading;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.WireGuardDriver;
 
 namespace ProtonVPN.Vpn.WireGuard
@@ -35,7 +35,7 @@ namespace ProtonVPN.Vpn.WireGuard
         private readonly SingleAction _updateBytesTransferredAction;
         private readonly ILogger _logger;
 
-        public event EventHandler<InOutBytes> TrafficSent;
+        public event EventHandler<TrafficBytes> TrafficSent;
 
         public TrafficManager(string adapterName, ILogger logger)
         {
@@ -63,8 +63,8 @@ namespace ProtonVPN.Vpn.WireGuard
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    double rx = 0;
-                    double tx = 0;
+                    ulong rx = 0;
+                    ulong tx = 0;
 
                     try
                     {
@@ -81,7 +81,7 @@ namespace ProtonVPN.Vpn.WireGuard
                         //or computer is put to sleep.
                     }
 
-                    TrafficSent?.Invoke(this, new InOutBytes(rx, tx));
+                    TrafficSent?.Invoke(this, new TrafficBytes(rx, tx));
 
                     await Task.Delay(1000, cancellationToken);
                 }

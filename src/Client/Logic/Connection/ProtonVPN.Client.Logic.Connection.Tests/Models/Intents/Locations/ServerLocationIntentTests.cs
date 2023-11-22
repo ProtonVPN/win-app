@@ -17,22 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public class FreeServerLocationIntent : CountryLocationIntent
+namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
+
+[TestClass]
+public class ServerLocationIntentTests
 {
-    public int ServerNumber { get; set; }
-
-    public FreeServerLocationIntent(string countryCode, int serverNumber)
-        : base(countryCode)
+    [DataRow("CH#35", 35)]
+    [DataRow("DE#53-TOR", 53)]
+    [DataRow("DE-TOR-53", 0)]
+    [DataRow("DE#TOR-53", 0)]
+    [DataRow("CH#0", 0)]
+    [DataRow("CH", 0)]
+    [DataRow("CH#", 0)]
+    [DataRow("#CH", 0)]
+    [TestMethod]
+    public void ServerLocationIntent_Number_ShouldBeValid(string name, int number)
     {
-        ServerNumber = serverNumber;
-    }
+        ServerLocationIntent serverLocationIntent = new(string.Empty, name, string.Empty, string.Empty);
 
-    public override bool IsSameAs(ILocationIntent? intent)
-    {
-        return base.IsSameAs(intent)
-            && intent is FreeServerLocationIntent freeServerIntent
-            && ServerNumber == freeServerIntent.ServerNumber;
+        Assert.AreEqual(number, serverLocationIntent.Number);
     }
 }
