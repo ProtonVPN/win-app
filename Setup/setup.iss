@@ -17,6 +17,14 @@
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 
+#define SourcePath GetEnv("BUILD_PATH")
+#define IsBTISource SourcePath == "BTI/publish"
+#if IsBTISource
+#define OutputBaseSuffix "_BTI"
+#else
+#define OutputBaseSuffix ""
+#endif
+
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -27,7 +35,7 @@ DisableProgramGroupPage=auto
 AppPublisher={#MyPublisher}
 UninstallDisplayIcon={app}\{#LauncherExeName}
 UninstallDisplayName={#MyAppName}
-OutputBaseFilename=ProtonVPN_{#VersionFolder}
+OutputBaseFilename=ProtonVPN_{#VersionFolder}{#OutputBaseSuffix}
 WizardStyle=modern
 Compression=lzma2
 SolidCompression=yes
@@ -48,30 +56,30 @@ SignTool=signtool sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /t
 SetupWindowTitle={#MyAppName}
 
 [Files]
-Source: "..\publish\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
+Source: "..\{#SourcePath}\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
 
-Source: "..\publish\*.exe"; Excludes: "ProtonVPN.Launcher.exe,ProtonVPNService.exe,createdump.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\publish\*.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\publish\*.pri"; DestDir: "{app}\{#VersionFolder}";
-Source: "..\publish\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\{#SourcePath}\*.exe"; Excludes: "ProtonVPN.Launcher.exe,ProtonVPNService.exe,createdump.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\*.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\*.pri"; DestDir: "{app}\{#VersionFolder}";
+Source: "..\{#SourcePath}\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
 
-Source: "..\publish\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce; AfterInstall: InstallService;
+Source: "..\{#SourcePath}\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce; AfterInstall: InstallService;
 
-Source: "..\publish\en-us\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\en-us";
-Source: "..\publish\fr-FR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\fr-FR";
+Source: "..\{#SourcePath}\en-us\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\en-us";
+Source: "..\{#SourcePath}\fr-FR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\fr-FR";
 
-Source: "..\publish\Resources\GoSrp.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\libcrypto-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\libpkcs11-helper-1.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\libssl-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\LocalAgent.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\ProtonVPN.IPFilter.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\ProtonVPN.NetworkUtil.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\vcruntime140.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\openvpn.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\publish\Resources\config.ovpn"; DestDir: "{app}\{#VersionFolder}\Resources";
+Source: "..\{#SourcePath}\Resources\GoSrp.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\libcrypto-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\libpkcs11-helper-1.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\libssl-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\LocalAgent.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\ProtonVPN.IPFilter.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\ProtonVPN.NetworkUtil.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\vcruntime140.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\openvpn.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\config.ovpn"; DestDir: "{app}\{#VersionFolder}\Resources";
 
 Source: "..\src\ProtonVPN.Vpn\Resources\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\tunnel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -85,16 +93,16 @@ Source: "SplitTunnel\ProtonVPN.CalloutDriver.sys"; DestDir: "{app}\{#VersionFold
 Source: "tun\wintun.dll"; DestDir: "{app}\{#VersionFolder}\Resources";
 Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 
-Source: "..\publish\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFolder}\Microsoft.UI.Xaml\Assets";
+Source: "..\{#SourcePath}\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFolder}\Microsoft.UI.Xaml\Assets";
 
-Source: "..\publish\Assets\*.ico"; DestDir: "{app}\{#VersionFolder}\Assets";
-Source: "..\publish\Assets\Illustrations\*.svg"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
-Source: "..\publish\Assets\Illustrations\*.png"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
+Source: "..\{#SourcePath}\Assets\*.ico"; DestDir: "{app}\{#VersionFolder}\Assets";
+Source: "..\{#SourcePath}\Assets\Illustrations\*.svg"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
+Source: "..\{#SourcePath}\Assets\Illustrations\*.png"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
 
-Source: "..\publish\Assets\Illustrations\Dark\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Dark";
-Source: "..\publish\Assets\Illustrations\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Light";
-Source: "..\publish\Assets\Illustrations\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations";
-Source: "..\publish\Assets\Flags\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Flags";
+Source: "..\{#SourcePath}\Assets\Illustrations\Dark\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Dark";
+Source: "..\{#SourcePath}\Assets\Illustrations\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Light";
+Source: "..\{#SourcePath}\Assets\Illustrations\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations";
+Source: "..\{#SourcePath}\Assets\Flags\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Flags";
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"

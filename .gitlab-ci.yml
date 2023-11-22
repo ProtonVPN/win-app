@@ -7,6 +7,10 @@ include:
     ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
     
+  - project: 'ProtonVPN/qa/test-configuration'
+    ref: master
+    file: '/windows-config.yml'
+    
   - local: '/.gitlab-ci-templates.yml'
 
 variables:
@@ -38,6 +42,8 @@ build-release:
     - /^release.*$/
   variables:
     TYPE: Release
+    DEPENDENCIES: publish
+    BUILD_PATH: publish
   
 build-debug:
   extends: .build-script
@@ -46,6 +52,18 @@ build-debug:
     - /^release.*$/
   variables:
     TYPE: Debug
+    DEPENDENCIES: publish
+    BUILD_PATH: publish
+    
+build-bti:
+  extends:
+    - .build-bti-vars  
+    - .build-script
+  when: manual
+  variables:
+    TYPE: Debug
+    DEPENDENCIES: publish-BTI
+    BUILD_PATH: BTI/publish
 
 ui-test:
   extends: .test_execution_script
@@ -77,22 +95,27 @@ tests:
     GIT_SUBMODULE_STRATEGY: normal
 
 build-installer:
-  stage: build-installer
   tags:
     - windows-vpn-signer
-  script:
-    - python ci\build-scripts\main.py update-gh-list
-    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
+  dependencies:
+    - build-debug
+    - build-release
+  extends: 
+    - .build-installer
   variables:
-      FF_USE_FASTZIP: "true"
-      TRANSFER_METER_FREQUENCY: "2s"
-      ARTIFACT_COMPRESSION_LEVEL: "fastest"
-      CACHE_COMPRESSION_LEVEL: "fastest"
-      FASTZIP_ARCHIVER_BUFFER_SIZE: 128
+    BUILD_PATH: publish
+
+      
+build-BTI-installer:
+  needs:
+    - build-bti
+  except:
+    - master
+    - /^release.*$/
+  extends: 
+    - .build-installer
+  variables:
+    BUILD_PATH: BTI/publish
 
 prepare-internal-beta-release:
   stage: internal-beta

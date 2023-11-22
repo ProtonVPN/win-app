@@ -28,18 +28,37 @@
   script:
     - echo "Building native dependencies..."
     - nuget restore ProtonVPN.InstallActions.sln
-    - cmd.exe /c BuildDependencies.bat publish
+    - cmd.exe /c BuildDependencies.bat $DEPENDENCIES
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\build-scripts\main.py defaultConfig
     - dotnet build src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj
     - echo "Injecting CI variables"
     - src\bin\ProtonVPN.Builds.ConsoleJob.exe
-    - echo "Publishing ${TYPE}..."
-    - cmd.exe /c Publish.bat ${TYPE}
+    - echo "Publishing ${TYPE} Identifier ${RUNTIME_IDENTIFIER} Output ${BUILD_PATH} Paltform ${PLATFORM}"
+    - dotnet publish src\Client\ProtonVPN.Client\ProtonVPN.Client.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.Service\ProtonVPN.Service.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.TlsVerify\ProtonVPN.TlsVerify.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.WireGuardService\ProtonVPN.WireGuardService.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.Launcher\ProtonVPN.Launcher.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM} -p:PublishSingleFile=true
   artifacts:
     expire_in: 1 day
     paths:
-      - publish
+      - $BUILD_PATH
   variables:
     GIT_SUBMODULE_STRATEGY: normal
+    RUNTIME_IDENTIFIER: win-x64
+    PLATFORM: x64
+    
+.build-installer:
+  stage: build-installer
+  tags:
+    - windows-vpn-signer
+  script:
+    - python ci\build-scripts\main.py update-gh-list
+    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+  artifacts:
+    paths:
+      - Setup/Installers/
+    expire_in: 4 weeks
