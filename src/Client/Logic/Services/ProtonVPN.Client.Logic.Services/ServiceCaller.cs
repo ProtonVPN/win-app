@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -45,5 +46,10 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
     public Task DisconnectAsync(DisconnectionRequestIpcEntity disconnectionRequest)
     {
         return InvokeAsync(c => c.Disconnect(disconnectionRequest).Wrap());
+    }
+
+    public Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync()
+    {
+         return InvokeAsync(c => c.GetTrafficBytes());
     }
 }

@@ -30,14 +30,12 @@ public class LocationIntentEqualityTests
         ILocationIntent locationFastestCountry = new CountryLocationIntent();
         ILocationIntent locationCountry = new CountryLocationIntent("CH");
         ILocationIntent locationCity = new CityStateLocationIntent("CH", "Geneva");
-        ILocationIntent locationServer = new ServerLocationIntent("CH", "Geneva", 10);
-        ILocationIntent locationFreeServer = new FreeServerLocationIntent("CH", 10);
+        ILocationIntent locationServer = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
 
         Assert.IsTrue(locationFastestCountry.IsSameAs(locationFastestCountry));
         Assert.IsTrue(locationCountry.IsSameAs(locationCountry));
         Assert.IsTrue(locationCity.IsSameAs(locationCity));
         Assert.IsTrue(locationServer.IsSameAs(locationServer));
-        Assert.IsTrue(locationFreeServer.IsSameAs(locationFreeServer));
     }
 
     [TestMethod]
@@ -49,10 +47,8 @@ public class LocationIntentEqualityTests
         ILocationIntent locationCountryB = new CountryLocationIntent("CH");
         ILocationIntent locationCityA = new CityStateLocationIntent("CH", "Geneva");
         ILocationIntent locationCityB = new CityStateLocationIntent("CH", "Geneva");
-        ILocationIntent locationServerA = new ServerLocationIntent("CH", "Geneva", 10);
-        ILocationIntent locationServerB = new ServerLocationIntent("CH", "Geneva", 10);
-        ILocationIntent locationFreeServerA = new FreeServerLocationIntent("CH", 10);
-        ILocationIntent locationFreeServerB = new FreeServerLocationIntent("CH", 10);
+        ILocationIntent locationServerA = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
+        ILocationIntent locationServerB = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
 
         Assert.IsTrue(locationFastestCountryA.IsSameAs(locationFastestCountryB));
         Assert.IsTrue(locationFastestCountryB.IsSameAs(locationFastestCountryA));
@@ -62,8 +58,6 @@ public class LocationIntentEqualityTests
         Assert.IsTrue(locationCityB.IsSameAs(locationCityA));
         Assert.IsTrue(locationServerA.IsSameAs(locationServerB));
         Assert.IsTrue(locationServerB.IsSameAs(locationServerA));
-        Assert.IsTrue(locationFreeServerA.IsSameAs(locationFreeServerB));
-        Assert.IsTrue(locationFreeServerB.IsSameAs(locationFreeServerA));
     }
 
     [TestMethod]
@@ -119,10 +113,10 @@ public class LocationIntentEqualityTests
         Assert.IsFalse(locationCityD.IsSameAs(locationCityB));
         Assert.IsFalse(locationCityD.IsSameAs(locationCityC));
 
-        ILocationIntent locationServerA = new ServerLocationIntent("CH", "Geneva", 10);
-        ILocationIntent locationServerB = new ServerLocationIntent("CH", "Geneva", 20);
-        ILocationIntent locationServerC = new ServerLocationIntent("CH", "Zurich", 10);
-        ILocationIntent locationServerD = new ServerLocationIntent("FR", "Paris", 30);
+        ILocationIntent locationServerA = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
+        ILocationIntent locationServerB = new ServerLocationIntent("2", "CH#2", "CH", "Geneva");
+        ILocationIntent locationServerC = new ServerLocationIntent("3", "CH#3", "CH", "Zurich");
+        ILocationIntent locationServerD = new ServerLocationIntent("4", "FR#1", "FR", "Paris");
 
         Assert.IsFalse(locationServerA.IsSameAs(locationServerB));
         Assert.IsFalse(locationServerA.IsSameAs(locationServerC));
@@ -136,17 +130,6 @@ public class LocationIntentEqualityTests
         Assert.IsFalse(locationServerD.IsSameAs(locationServerA));
         Assert.IsFalse(locationServerD.IsSameAs(locationServerB));
         Assert.IsFalse(locationServerD.IsSameAs(locationServerC));
-
-        ILocationIntent locationFreeServerA = new FreeServerLocationIntent("CH", 10);
-        ILocationIntent locationFreeServerB = new FreeServerLocationIntent("CH", 20);
-        ILocationIntent locationFreeServerC = new FreeServerLocationIntent("FR", 10);
-
-        Assert.IsFalse(locationFreeServerA.IsSameAs(locationFreeServerB));
-        Assert.IsFalse(locationFreeServerA.IsSameAs(locationFreeServerC));
-        Assert.IsFalse(locationFreeServerB.IsSameAs(locationFreeServerA));
-        Assert.IsFalse(locationFreeServerB.IsSameAs(locationFreeServerC));
-        Assert.IsFalse(locationFreeServerC.IsSameAs(locationFreeServerA));
-        Assert.IsFalse(locationFreeServerC.IsSameAs(locationFreeServerB));
     }
 
     [TestMethod]
@@ -155,28 +138,19 @@ public class LocationIntentEqualityTests
         ILocationIntent locationFastestCountry = new CountryLocationIntent();
         ILocationIntent locationCountry = new CountryLocationIntent("CH");
         ILocationIntent locationCity = new CityStateLocationIntent("CH", "Geneva");
-        ILocationIntent locationServer = new ServerLocationIntent("CH", "Geneva", 10);
-        ILocationIntent locationFreeServer = new FreeServerLocationIntent("CH", 10);
+        ILocationIntent locationServer = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
 
         Assert.IsFalse(locationFastestCountry.IsSameAs(locationCountry));
         Assert.IsFalse(locationFastestCountry.IsSameAs(locationCity));
         Assert.IsFalse(locationFastestCountry.IsSameAs(locationServer));
-        Assert.IsFalse(locationFastestCountry.IsSameAs(locationFreeServer));
         Assert.IsFalse(locationCountry.IsSameAs(locationFastestCountry));
         Assert.IsFalse(locationCountry.IsSameAs(locationCity));
         Assert.IsFalse(locationCountry.IsSameAs(locationServer));
-        Assert.IsFalse(locationCountry.IsSameAs(locationFreeServer));
         Assert.IsFalse(locationCity.IsSameAs(locationFastestCountry));
         Assert.IsFalse(locationCity.IsSameAs(locationCountry));
         Assert.IsFalse(locationCity.IsSameAs(locationServer));
-        Assert.IsFalse(locationCity.IsSameAs(locationFreeServer));
         Assert.IsFalse(locationServer.IsSameAs(locationFastestCountry));
         Assert.IsFalse(locationServer.IsSameAs(locationCountry));
         Assert.IsFalse(locationServer.IsSameAs(locationCity));
-        Assert.IsFalse(locationServer.IsSameAs(locationFreeServer));
-        Assert.IsFalse(locationFreeServer.IsSameAs(locationFastestCountry));
-        Assert.IsFalse(locationFreeServer.IsSameAs(locationCountry));
-        Assert.IsFalse(locationFreeServer.IsSameAs(locationCity));
-        Assert.IsFalse(locationFreeServer.IsSameAs(locationServer));
     }
 }

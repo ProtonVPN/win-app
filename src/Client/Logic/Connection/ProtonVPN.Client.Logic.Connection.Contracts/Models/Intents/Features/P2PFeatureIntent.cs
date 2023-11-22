@@ -17,8 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class P2PFeatureIntent : FeatureIntentBase
 {
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return servers.Where(s => s.SupportsP2P);
+    }
 }

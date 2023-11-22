@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
-public abstract class FeatureIntentBase : IFeatureIntent
+public abstract class FeatureIntentBase : IntentBase, IFeatureIntent
 {
     public virtual bool IsSameAs(IFeatureIntent? intent)
     {

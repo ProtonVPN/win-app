@@ -30,11 +30,11 @@ public class ServerViewModelTemplateSelector : DataTemplateSelector
 
     protected override DataTemplate SelectTemplateCore(object item)
     {
-        if (item is SecureCoreServerViewModel)
+        if (item is ServerViewModel serverViewModel)
         {
-            return SecureCoreServerTemplate;
+            return serverViewModel.IsSecureCore ? SecureCoreServerTemplate : ServerTemplate;
         }
 
-        return item is ServerViewModel ? ServerTemplate : null;
+        return new DataTemplate();
     }
 }

@@ -93,7 +93,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     public event EventHandler<EventArgs<VpnState>> StateChanged;
     public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-    public InOutBytes Total { get; private set; } = InOutBytes.Zero;
+    public TrafficBytes Total { get; private set; } = TrafficBytes.Zero;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {
@@ -203,7 +203,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _lastVpnError = VpnError.None;
     }
 
-    private void OnTrafficSent(object sender, InOutBytes total)
+    private void OnTrafficSent(object sender, TrafficBytes total)
     {
         Total = total;
     }

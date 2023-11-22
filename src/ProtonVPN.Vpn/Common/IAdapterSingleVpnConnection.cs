@@ -18,6 +18,7 @@
  */
 
 using System;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 
@@ -28,7 +29,7 @@ namespace ProtonVPN.Vpn.Common
         event EventHandler<EventArgs<VpnState>> StateChanged;
         event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-        InOutBytes Total { get; }
+        TrafficBytes Total { get; }
 
         void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
         void Disconnect(VpnError error);

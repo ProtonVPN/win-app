@@ -40,8 +40,8 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
         IMainViewNavigator mainViewNavigator,
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        CountriesViewModelsFactory countriesViewModelsFactory,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countriesViewModelsFactory, viewNavigator,
+        CountryViewModelsFactory countryViewModelsFactory,
+        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countryViewModelsFactory, viewNavigator,
         localizationProvider)
     {
         _serverManager = serverManager;
@@ -69,7 +69,7 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
     {
         return _serverManager
             .GetSecureCoreServersByExitCountry(CurrentCountryCode)
-            .Select(CountriesViewModelsFactory.GetServerViewModel)
+            .Select(CountryViewModelsFactory.GetServerViewModel)
             .ToList();
     }
 
@@ -80,4 +80,6 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
             new(nameof(CountryViewModel.EntryCountryCode), SortDirection.Ascending)
         };
     }
+
+    protected override CountryFeature CountryFeature => CountryFeature.SecureCore;
 }

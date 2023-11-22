@@ -30,16 +30,10 @@ public class ConnectionIntent : IConnectionIntent
 
     public IFeatureIntent? Feature { get; }
 
-    public ConnectionIntent(ILocationIntent location, IFeatureIntent feature)
+    public ConnectionIntent(ILocationIntent location, IFeatureIntent? feature = null)
     {
         Location = location;
         Feature = feature;
-    }
-
-    public ConnectionIntent(ILocationIntent location)
-    {
-        Location = location;
-        Feature = null;
     }
 
     public bool IsSameAs(IConnectionIntent? intent)

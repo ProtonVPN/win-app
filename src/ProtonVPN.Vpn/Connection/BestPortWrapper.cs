@@ -65,7 +65,7 @@ public class BestPortWrapper : ISingleVpnConnection
         remove => _origin.ConnectionDetailsChanged -= value;
     }
 
-    public InOutBytes Total => _origin.Total;
+    public TrafficBytes Total => _origin.Total;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {

@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -111,7 +112,7 @@ namespace ProtonVPN.Service
 
         public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
         {
-            return _entityMapper.Map<InOutBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
+            return _entityMapper.Map<TrafficBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
         }
 
         public async Task ApplySettings(MainSettingsIpcEntity settings)

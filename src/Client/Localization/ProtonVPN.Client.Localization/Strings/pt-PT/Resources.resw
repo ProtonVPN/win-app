@@ -1149,10 +1149,6 @@
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the id of the server (eg. Zurich #20)</comment>
   </data>
-  <data name="Connection_Intent_Free_Server" xml:space="preserve">
-    <value>Servidor #{0}</value>
-    <comment>Name of the server. {0} is a placeholder for the id of the server (eg. Server #30)</comment>
-  </data>
   <data name="Connection_Via_SecureCore" xml:space="preserve">
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>

@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.OperatingSystems.EnvironmentVariables;
-using ProtonVPN.SourceGenerators;
 
 namespace ProtonVPN.Configurations.BigTestInfra;
 

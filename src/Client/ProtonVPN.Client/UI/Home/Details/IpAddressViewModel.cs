@@ -19,20 +19,24 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
-public partial class IpAddressViewModel : ViewModelBase
+public partial class IpAddressViewModel : ViewModelBase, IRecipient<ConnectionDetailsChanged>
 {
     private const string HIDDEN_IP_ADDRESS = "***.***.***.***";
+
+    private string _hiddenUserIpAddress;
 
     [ObservableProperty]
     private string _userIpAddress;
 
     [ObservableProperty]
-    private string _vpnIpAddress;
+    private string _serverIpAddress;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ShowUserIPAddressCommand))]
@@ -43,7 +47,6 @@ public partial class IpAddressViewModel : ViewModelBase
         : base(localizationProvider)
     {
         _userIpAddress = HIDDEN_IP_ADDRESS;
-        _vpnIpAddress = "103.107.197.6";
         _isUserIpVisible = false;
     }
 
@@ -62,12 +65,18 @@ public partial class IpAddressViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanShowUserIPAddress))]
     public void ShowUserIPAddress()
     {
-        UserIpAddress = "78.159.157.20";
+        UserIpAddress = _hiddenUserIpAddress;
         IsUserIpVisible = true;
     }
 
     private bool CanShowUserIPAddress()
     {
         return !IsUserIpVisible;
+    }
+
+    public void Receive(ConnectionDetailsChanged message)
+    {
+        _hiddenUserIpAddress = message.ClientIpAddress;
+        ServerIpAddress = message.ServerIpAddress;
     }
 }

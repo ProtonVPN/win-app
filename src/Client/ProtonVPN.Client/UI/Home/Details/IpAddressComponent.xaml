@@ -97,6 +97,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Grid.Column="2"
                    HorizontalAlignment="Center"
                    Style="{StaticResource CaptionStrongTextBlockStyle}"
-                   Text="{x:Bind ViewModel.VpnIpAddress}" />
+                   Text="{x:Bind ViewModel.ServerIpAddress}" />
     </Grid>
 </UserControl>

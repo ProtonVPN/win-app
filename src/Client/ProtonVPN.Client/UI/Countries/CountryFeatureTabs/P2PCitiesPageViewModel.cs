@@ -33,11 +33,11 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
     public P2PCitiesPageViewModel(
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        CountriesViewModelsFactory countriesViewModelsFactory,
+        CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator) :
-        base(connectionManager, mainViewNavigator, serverManager, viewNavigator, countriesViewModelsFactory,
+        base(connectionManager, mainViewNavigator, serverManager, viewNavigator, countryViewModelsFactory,
             localizationProvider)
     {
     }
@@ -57,4 +57,6 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
     {
         return ServerManager.GetP2PServersByCity(city);
     }
+
+    protected override CountryFeature CountryFeature => CountryFeature.P2P;
 }

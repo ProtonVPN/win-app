@@ -31,16 +31,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
 
-        <DataTemplate x:Key="ServerViewModel" x:DataType="countries:ServerViewModel">
+        <DataTemplate x:Key="ServerTemplate" x:DataType="countries:ServerViewModel">
             <controls:ServerRowControl ServerViewModel="{x:Bind}" />
         </DataTemplate>
-        <DataTemplate x:Key="SecureCoreServerViewModel" x:DataType="countries:SecureCoreServerViewModel">
+        <DataTemplate x:Key="SecureCoreServerTemplate" x:DataType="countries:ServerViewModel">
             <controls:SecureCoreServerRowControl ServerViewModel="{x:Bind}" />
         </DataTemplate>
 
         <countries:ServerViewModelTemplateSelector x:Key="ServerTemplateSelector"
-                                                   SecureCoreServerTemplate="{StaticResource SecureCoreServerViewModel}"
-                                                   ServerTemplate="{StaticResource ServerViewModel}" />
+                                                   SecureCoreServerTemplate="{StaticResource SecureCoreServerTemplate}"
+                                                   ServerTemplate="{StaticResource ServerTemplate}" />
     </UserControl.Resources>
 
     <StackPanel Spacing="4">

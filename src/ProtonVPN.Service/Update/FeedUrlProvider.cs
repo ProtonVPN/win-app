@@ -18,8 +18,8 @@
  */
 
 using System;
+using ProtonVPN.Builds.Variables;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.SourceGenerators;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;
 

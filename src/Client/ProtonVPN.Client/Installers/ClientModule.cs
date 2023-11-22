@@ -65,7 +65,7 @@ public class ClientModule : Module
         builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
 
-        builder.RegisterType<CountriesViewModelsFactory>().SingleInstance();
+        builder.RegisterType<CountryViewModelsFactory>().SingleInstance();
 
         RegisterHandlers(builder);
 

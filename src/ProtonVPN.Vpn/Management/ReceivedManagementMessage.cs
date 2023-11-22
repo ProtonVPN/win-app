@@ -18,8 +18,8 @@
  */
 
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Extensions;
-using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Vpn.Management
 {
@@ -63,25 +63,34 @@ namespace ProtonVPN.Vpn.Management
 
         public bool IsControlMessage => _messageText.ContainsIgnoringCase("PUSH: Received control message");
 
-        public InOutBytes Bandwidth()
+        public TrafficBytes Bandwidth()
         {
             string[] byteCountArr = _messageText.Split(':')[1].Split(',');
             if (byteCountArr.Length <= 1)
-                return InOutBytes.Zero;
+            {
+                return TrafficBytes.Zero;
+            }
 
-            if (!double.TryParse(byteCountArr[0], out double bytesIn))
-                return InOutBytes.Zero;
-            if (!double.TryParse(byteCountArr[1], out double bytesOut))
-                return InOutBytes.Zero;
+            if (!ulong.TryParse(byteCountArr[0], out ulong bytesIn))
+            {
+                return TrafficBytes.Zero;
+            }
 
-            return new InOutBytes(bytesIn, bytesOut);
+            if (!ulong.TryParse(byteCountArr[1], out ulong bytesOut))
+            {
+                return TrafficBytes.Zero;
+            }
+
+            return new TrafficBytes(bytesIn, bytesOut);
         }
 
         public ManagementState State()
         {
             string[] messageParts = _messageText.Split(',');
             if (messageParts.Length <= 1)
+            {
                 return ManagementState.Null;
+            }
 
             string stateText = messageParts[1];
             string statusText = messageParts.Length > 2 ? messageParts[2] : "";

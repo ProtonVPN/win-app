@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <custom:GhostButton IsEnabled="{x:Bind ServerViewModel.IsUnderMaintenance, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                        Command="{x:Bind ServerViewModel.ConnectCommand, Mode=OneTime}"
+                        Command="{x:Bind ServerViewModel.ConnectCommand}"
                         HorizontalAlignment="Stretch"
                         CornerRadius="8"
                         Padding="8">

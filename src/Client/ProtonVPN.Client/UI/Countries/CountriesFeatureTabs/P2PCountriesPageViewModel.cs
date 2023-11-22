@@ -42,9 +42,9 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
         ILocalizationProvider localizationProvider,
         IServerManager serverManager,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountriesViewModelsFactory countriesViewModelsFactory) : base(
+        CountryViewModelsFactory countryViewModelsFactory) : base(
         mainViewNavigator, serverManager, countriesFeatureTabsViewNavigator, localizationProvider,
-        noSearchResultsViewModel, countriesViewModelsFactory)
+        noSearchResultsViewModel, countryViewModelsFactory)
     {
     }
 

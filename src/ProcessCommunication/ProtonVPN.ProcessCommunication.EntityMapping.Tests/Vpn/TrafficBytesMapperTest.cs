@@ -18,7 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
@@ -44,19 +44,19 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
         [TestMethod]
         public void TestMapLeftToRight_WhenZero()
         {
-            InOutBytes entityToTest = InOutBytes.Zero;
+            TrafficBytes entityToTest = TrafficBytes.Zero;
 
             TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.BytesIn);
-            Assert.AreEqual(0, result.BytesOut);
+            Assert.AreEqual(0u, result.BytesIn);
+            Assert.AreEqual(0u, result.BytesOut);
         }
 
         [TestMethod]
         public void TestMapLeftToRight()
         {
-            InOutBytes entityToTest = new(DateTime.UtcNow.Ticks, DateTime.UtcNow.Millisecond);
+            TrafficBytes entityToTest = new((ulong)DateTime.UtcNow.Ticks, (ulong)DateTime.UtcNow.Millisecond);
 
             TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
 
@@ -70,11 +70,11 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
         {
             TrafficBytesIpcEntity entityToTest = null;
 
-            InOutBytes result = _mapper.Map(entityToTest);
+            TrafficBytes result = _mapper.Map(entityToTest);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.BytesIn);
-            Assert.AreEqual(0, result.BytesOut);
+            Assert.AreEqual(0u, result.BytesIn);
+            Assert.AreEqual(0u, result.BytesOut);
         }
 
         [TestMethod]
@@ -82,11 +82,11 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
         {
             TrafficBytesIpcEntity entityToTest = new()
             {
-                BytesIn = DateTime.UtcNow.Ticks,
-                BytesOut = DateTime.UtcNow.Millisecond,
+                BytesIn = (ulong)DateTime.UtcNow.Ticks,
+                BytesOut = (ulong)DateTime.UtcNow.Millisecond,
             };
 
-            InOutBytes result = _mapper.Map(entityToTest);
+            TrafficBytes result = _mapper.Map(entityToTest);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);

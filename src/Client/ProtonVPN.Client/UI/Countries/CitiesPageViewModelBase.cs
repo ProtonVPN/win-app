@@ -43,8 +43,8 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         IMainViewNavigator mainViewNavigator,
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        CountriesViewModelsFactory countryFeaturesViewModelsFactory,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countryFeaturesViewModelsFactory,
+        CountryViewModelsFactory countryViewModelsFactory,
+        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countryViewModelsFactory,
         viewNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;

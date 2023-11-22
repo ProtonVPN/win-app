@@ -55,7 +55,7 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
         }
     }
 
-    public InOutBytes Total => VpnConnection?.Total ?? InOutBytes.Zero;
+    public TrafficBytes Total => VpnConnection?.Total ?? TrafficBytes.Zero;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {

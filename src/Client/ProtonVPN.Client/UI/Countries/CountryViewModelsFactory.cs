@@ -19,33 +19,37 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
-using WinUI3Localizer;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public class CountriesViewModelsFactory
+public class CountryViewModelsFactory
 {
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ILocalizationProvider _localizer;
-    
-    public CountriesViewModelsFactory(ILocalizationProvider localizer, IMainViewNavigator mainViewNavigator)
+    private readonly IConnectionManager _connectionManager;
+
+    public CountryViewModelsFactory(
+        ILocalizationProvider localizer,
+        IMainViewNavigator mainViewNavigator,
+        IConnectionManager connectionManager)
     {
         _mainViewNavigator = mainViewNavigator;
         _localizer = localizer;
+        _connectionManager = connectionManager;
     }
 
     public CountryViewModel GetCountryViewModel(string exitCountryCode, CountryFeature countryFeature, int itemCount)
     {
-        return new CountryViewModel (_localizer, _mainViewNavigator)
+        return new CountryViewModel (_localizer, _mainViewNavigator, _connectionManager)
         {
             ExitCountryCode = exitCountryCode,
             ExitCountryName = _localizer.GetCountryName(exitCountryCode),
             IsUnderMaintenance = false,
             SecondaryActionLabel = _localizer.GetPluralFormat(GetCountrySecondaryActionLabel(countryFeature), itemCount),
             CountryFeature = countryFeature,
-            IsSecureCore = countryFeature == CountryFeature.SecureCore,
         };
     }
 
@@ -53,55 +57,46 @@ public class CountriesViewModelsFactory
     {
         string fastestCountryLabel = _localizer.Get("Countries_Fastest");
 
-        return new CountryViewModel(_localizer, _mainViewNavigator)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
         {
             ExitCountryName = fastestCountryLabel,
             CountryFeature = countryFeature,
-            IsSecureCore = countryFeature == CountryFeature.SecureCore,
         };
     }
 
     private string GetCountrySecondaryActionLabel(CountryFeature countryFeature)
     {
-        return countryFeature == CountryFeature.Cities ? "Countries_City" : "Countries_Server";
+        return countryFeature == CountryFeature.None ? "Countries_City" : "Countries_Server";
     }
 
-    public CityViewModel GetCityViewModel(string city, List<ServerViewModel> servers)
+    public CityViewModel GetCityViewModel(string city, List<ServerViewModel> servers, CountryFeature countryFeature)
     {
-        return new(_localizer, _mainViewNavigator)
+        return new(_localizer, _mainViewNavigator, _connectionManager)
         {
             Name = city,
             Servers = servers,
+            CountryFeature = countryFeature
         };
     }
 
     public ServerViewModel GetServerViewModel(Server server)
     {
-        if (server.IsSecureCore)
+        return new ServerViewModel(_localizer, _mainViewNavigator, _connectionManager)
         {
-            return new SecureCoreServerViewModel(_localizer, _mainViewNavigator)
-            {
-                Name = server.Name,
-                Load = server.Load / 100d,
-                LoadPercent = $"{(double)server.Load / 100:P0}",
-                IsVirtual = server.IsVirtual,
-                SupportsP2P = server.SupportsP2P,
-                IsUnderMaintenance = server.IsUnderMaintenance,
-                EntryCountryCode = server.EntryCountry,
-                EntryCountryName = _localizer.GetFormat("Countries_ViaCountry", _localizer.GetCountryName(server.EntryCountry)),
-                ExitCountryCode = server.ExitCountry,
-                ExitCountryName = _localizer.GetCountryName(server.ExitCountry),
-            };
-        }
-
-        return new ServerViewModel(_localizer, _mainViewNavigator)
-        {
+            Id = server.Id,
             Name = server.Name,
+            City = server.City,
             Load = server.Load / 100d,
             LoadPercent = $"{(double)server.Load / 100:P0}",
             IsVirtual = server.IsVirtual,
+            IsSecureCore = server.IsSecureCore,
             SupportsP2P = server.SupportsP2P,
+            IsTor = server.SupportsTor,
             IsUnderMaintenance = server.IsUnderMaintenance,
+            EntryCountryCode = server.EntryCountry,
+            EntryCountryName = _localizer.GetFormat("Countries_ViaCountry", _localizer.GetCountryName(server.EntryCountry)),
+            ExitCountryCode = server.ExitCountry,
+            ExitCountryName = _localizer.GetCountryName(server.ExitCountry),
         };
     }
 }

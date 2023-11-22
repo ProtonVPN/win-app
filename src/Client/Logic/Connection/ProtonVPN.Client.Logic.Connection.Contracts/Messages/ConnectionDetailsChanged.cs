@@ -17,15 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-namespace ProtonVPN.Client.UI.Countries;
-
-public interface ICountryTabViewModelBase
+public class ConnectionDetailsChanged
 {
-    IconElement? Icon { get; }
+    public string ClientIpAddress { get; }
+    public string ServerIpAddress { get; }
 
-    void LoadItems(string? country = null);
-
-    void FilterItems(string query);
+    public ConnectionDetailsChanged(string clientIpAddress, string serverIpAddress)
+    {
+        ClientIpAddress = clientIpAddress;
+        ServerIpAddress = serverIpAddress;
+    }
 }

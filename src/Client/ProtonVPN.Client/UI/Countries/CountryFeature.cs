@@ -21,7 +21,7 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public enum CountryFeature
 {
-    Cities,
+    None,
     SecureCore,
     Tor,
     P2P,

@@ -90,7 +90,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
     public event EventHandler<EventArgs<VpnState>> StateChanged;
     public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-    public InOutBytes Total { get; private set; } = InOutBytes.Zero;
+    public TrafficBytes Total { get; private set; } = TrafficBytes.Zero;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
     {
@@ -312,7 +312,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         OnStateChanged(state);
     }
 
-    private void ManagementClient_TransportStatsChanged(object sender, EventArgs<InOutBytes> e)
+    private void ManagementClient_TransportStatsChanged(object sender, EventArgs<TrafficBytes> e)
     {
         Total = e.Data;
     }

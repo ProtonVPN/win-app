@@ -18,7 +18,8 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models;
 
@@ -27,43 +28,22 @@ public class ConnectionDetails
     public IConnectionIntent OriginalConnectionIntent { get; }
 
     public DateTime EstablishedConnectionTime { get; }
-
     public string? CountryCode { get; set; }
-
     public string? CityState { get; set; }
-
     public string? ServerName { get; set; }
-
     public double? ServerLoad { get; set; }
-
     public TimeSpan? ServerLatency { get; set; }
+    public VpnProtocol Protocol { get; set; }
 
-    public string? Protocol { get; set; }
-
-    public IEnumerable<string> Features { get; }
-
-    public ConnectionDetails(IConnectionIntent connectionIntent)
+    public ConnectionDetails(IConnectionIntent connectionIntent, Server? server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart)
     {
         EstablishedConnectionTime = DateTime.UtcNow;
-
         OriginalConnectionIntent = connectionIntent;
-
-        Features = new List<string>();    
-
-        MockConnectionDetails();
-    }
-
-    private void MockConnectionDetails()
-    {
-        CountryCode = (OriginalConnectionIntent.Location as CountryLocationIntent)?.CountryCode;
-        CityState = (OriginalConnectionIntent.Location as CityStateLocationIntent)?.CityState;
-
-        int? serverNumber = (OriginalConnectionIntent.Location as ServerLocationIntent)?.ServerNumber ?? (OriginalConnectionIntent.Location as FreeServerLocationIntent)?.ServerNumber;
-        ServerName = !string.IsNullOrEmpty(CountryCode) && serverNumber != null
-            ? $"{CountryCode}#{serverNumber}" : null;
-        
-        ServerLoad = 0.4;
+        CountryCode = server?.ExitCountry;
+        CityState = server?.City;
+        ServerName = server?.Name;
+        ServerLoad = server?.Load / 100D;
         ServerLatency = TimeSpan.FromMilliseconds(46);
-        Protocol = "WireGuard";
+        Protocol = vpnProtocol;
     }
 }

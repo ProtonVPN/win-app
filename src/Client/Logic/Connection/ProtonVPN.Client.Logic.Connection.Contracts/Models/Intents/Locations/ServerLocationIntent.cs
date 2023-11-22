@@ -17,22 +17,46 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Text.RegularExpressions;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class ServerLocationIntent : CityStateLocationIntent
 {
-    public int ServerNumber { get; set; }
+    public string Id { get; }
+    public string Name { get; }
+    public int Number { get; }
 
-    public ServerLocationIntent(string countryCode, string cityState, int serverNumber)
+    public ServerLocationIntent(string id, string name, string countryCode, string cityState)
         : base(countryCode, cityState)
     {
-        ServerNumber = serverNumber;
+        Id = id;
+        Name = name;
+        Number = GetNumber();
     }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
             && intent is ServerLocationIntent serverIntent
-            && ServerNumber == serverIntent.ServerNumber;
+            && Id == serverIntent.Id;
+    }
+
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return servers.Where(s => s.Id == Id);
+    }
+
+    private int GetNumber()
+    {
+        Match match = new Regex(@"#(\d+)").Match(Name);
+        if (match.Success)
+        {
+            string numberString = match.Groups[1].Value;
+            return int.Parse(numberString);
+        }
+
+        return 0;
     }
 }

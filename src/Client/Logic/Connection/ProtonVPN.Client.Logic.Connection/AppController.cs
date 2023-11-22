@@ -74,7 +74,7 @@ public class AppController : IAppController
         _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
             $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
 
-#warning TODO: Should invoke something
+        _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(connectionDetails));
     }
 
     public async Task UpdateStateChange(UpdateStateIpcEntity updateStateDetails)

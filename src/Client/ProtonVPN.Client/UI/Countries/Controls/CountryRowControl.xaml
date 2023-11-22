@@ -31,11 +31,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <controls:DualCommandsRowControl Padding="12,0"
                                      IsRowContentDisabled="{x:Bind CountryViewModel.IsUnderMaintenance}"
-                                     PrimaryCommand="{x:Bind CountryViewModel.ConnectCommand, Mode=OneTime}"
-                                     PrimaryCommandParameter="{x:Bind CountryViewModel}"
+                                     PrimaryCommand="{x:Bind CountryViewModel.ConnectCommand}"
                                      PrimaryCommandText="{x:Bind CountryViewModel.Localizer.Get('Countries_Connect')}"
-                                     SecondaryCommand="{x:Bind CountryViewModel.NavigateToCountryCommand, Mode=OneTime}"
-                                     SecondaryCommandParameter="{x:Bind CountryViewModel}"
+                                     SecondaryCommand="{x:Bind CountryViewModel.NavigateToCountryCommand}"
                                      SecondaryCommandText="{x:Bind CountryViewModel.SecondaryActionLabel}">
 
         <controls:DualCommandsRowControl.SecondaryCommandIcon>

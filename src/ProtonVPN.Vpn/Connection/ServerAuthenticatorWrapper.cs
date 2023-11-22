@@ -18,6 +18,7 @@
  */
 
 using System;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -39,7 +40,7 @@ namespace ProtonVPN.Vpn.Connection
             _origin.StateChanged += Origin_StateChanged;
         }
 
-        public InOutBytes Total => _origin.Total;
+        public TrafficBytes Total => _origin.Total;
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
 
