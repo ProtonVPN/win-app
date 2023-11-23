@@ -17,13 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Configuration.Source;
+namespace ProtonVPN.Builds.Variables;
 
-namespace ProtonVPN.Common.Configuration.Storage
+public static class GlobalConfig
 {
-    public interface IConfigStorage : IConfigSource
-    {
-        void SaveIfNotExists(IConfiguration value);
-        void Save(IConfiguration value);
-    }
+    public const string SentryDsn = "";
+    public const string InternalReleaseUpdateUrl = "";
+
+    public const string BtiApiDomain = "";
+    public const string BtiApiTlsPinningPublicKeyHashes = "";
+    public const string BtiAlternativeRoutingTlsPinningPublicKeyHashes = "";
+    public const string BtiCertificateValidation = "";
+    public const string BtiDohProviders = "";
+    public const string BtiServerSignaturePublicKey = "";
 }

@@ -13,8 +13,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Builds\ProtonVPN.Builds.Variables\ProtonVPN.Builds.Variables.csproj" />
     <ProjectReference Include="..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
-    <ProjectReference Include="..\ProtonVPN.SourceGenerators\ProtonVPN.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />

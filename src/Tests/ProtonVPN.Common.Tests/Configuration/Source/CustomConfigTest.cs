@@ -92,7 +92,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Source
             // Act
             config.Value();
             // Assert
-            _storage.Received().Save(defaultValue);
+            _storage.Received().SaveIfNotExists(defaultValue);
         }
     }
 }

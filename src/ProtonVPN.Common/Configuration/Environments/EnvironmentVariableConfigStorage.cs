@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Configuration.Api.Handlers.TlsPinning;
 using ProtonVPN.Common.Configuration.Source;
 using ProtonVPN.Common.Configuration.Storage;
@@ -39,6 +40,11 @@ namespace ProtonVPN.Common.Configuration.Environments
         {
             _default = defaultSource;
             _origin = origin;
+        }
+
+        public void SaveIfNotExists(IConfiguration value)
+        {
+            _origin.SaveIfNotExists(value);
         }
 
         public void Save(IConfiguration value)

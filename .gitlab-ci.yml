@@ -93,6 +93,9 @@ tests:
     - windows-dot-net
   script:
     - cmd.exe /c BuildDependencies.bat bin gosrponly
+    - dotnet build src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj
+    - echo "Injecting CI variables"
+    - src\bin\ProtonVPN.Builds.ConsoleJob.exe
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
     - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"

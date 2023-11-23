@@ -37,6 +37,11 @@ namespace ProtonVPN.Common.Configuration.Storage
             return Valid(value) ? value : null;
         }
 
+        public void SaveIfNotExists(IConfiguration value)
+        {
+            _origin.SaveIfNotExists(value);
+        }
+
         public void Save(IConfiguration value)
         {
             _origin.Save(value);
