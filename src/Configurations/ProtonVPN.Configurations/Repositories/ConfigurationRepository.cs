@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Configurations.Files;
 using ProtonVPN.Logging.Contracts;
@@ -31,7 +30,7 @@ public class ConfigurationRepository : IConfigurationRepository
     private readonly ILogger _logger;
     private readonly IJsonSerializer _jsonSerializer;
     private readonly IConfigurationFileManager _fileManager;
-    private readonly Lazy<ConcurrentDictionary<string, string?>> _cache;
+    private readonly Lazy<IDictionary<string, string?>> _cache;
 
     public ConfigurationRepository(ILogger logger,
         IJsonSerializer jsonSerializer,
@@ -43,10 +42,10 @@ public class ConfigurationRepository : IConfigurationRepository
         _cache = CreateCache();
     }
 
-    private Lazy<ConcurrentDictionary<string, string?>> CreateCache()
+    private Lazy<IDictionary<string, string?>> CreateCache()
     {
 #if DEBUG
-        return new Lazy<ConcurrentDictionary<string, string?>>(() => new(_fileManager.Read()));
+        return new Lazy<IDictionary<string, string?>>(() => _fileManager.Read());
 #else
         return new(new ConcurrentDictionary<string, string?>());
 #endif
