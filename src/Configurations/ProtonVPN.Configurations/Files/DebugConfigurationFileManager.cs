@@ -68,13 +68,10 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
             fullFilePath = GetFullFilePath();
             if (fullFilePath is not null)
             {
-                if (File.Exists(fullFilePath))
+                bool isSaved = SaveFileIfNotExists(fullFilePath);
+                if (!isSaved)
                 {
                     return ReadFile(fullFilePath);
-                }
-                else
-                {
-                    SaveFile(fullFilePath);
                 }
             }
         }
@@ -92,23 +89,39 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
 
     private IDictionary<string, string?> ReadFile(string fullFilePath)
     {
-        _logger.Info<SettingsLog>($"Reading the configuration file {fullFilePath}.");
-        string json = File.ReadAllText(fullFilePath);
-        return _jsonSerializer.DeserializeFirstLevel(json);
+        using (FileStream fileStream = new(fullFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using (StreamReader streamReader = new(fileStream, new UTF8Encoding(true)))
+        {
+            _logger.Info<SettingsLog>($"Reading the configuration file {fullFilePath}.");
+            string json = streamReader.ReadToEnd();
+            _logger.Info<SettingsLog>($"Deserializing the configuration file {fullFilePath}.");
+            return _jsonSerializer.DeserializeFirstLevel(json);
+        }
     }
 
-    private void SaveFile(string fullFilePath)
+    private bool SaveFileIfNotExists(string fullFilePath)
     {
-        _logger.Info<SettingsLog>($"Saving the configuration file {fullFilePath}.");
         try
         {
-            string fileContent = _jsonSerializer.SerializePretty(GenerateDefaultConfigurationDictionary());
-            File.WriteAllText(fullFilePath, fileContent, Encoding.UTF8);
+            using (FileStream fileStream = new(fullFilePath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            {
+                _logger.Info<SettingsLog>($"Saving the configuration file {fullFilePath}.");
+                string fileContent = _jsonSerializer.SerializePretty(GenerateDefaultConfigurationDictionary());
+                byte[] fileBytes = new UTF8Encoding(true).GetBytes(fileContent);
+                fileStream.Write(fileBytes, 0, fileBytes.Length);
+                _logger.Info<SettingsLog>($"Saved the configuration file {fullFilePath}.");
+                return true;
+            }
+        }
+        catch (IOException ex) when (ex.HResult == -2147024816) // 0x80070050 - The file already exists
+        {
+            _logger.Info<SettingsLog>($"The configuration file already exists ({fullFilePath}).");
         }
         catch (Exception ex)
         {
             _logger.Error<SettingsLog>($"Failed to write the configuration file {fullFilePath}.", ex);
         }
+        return false;
     }
 
     private Dictionary<string, object?> GenerateDefaultConfigurationDictionary()
