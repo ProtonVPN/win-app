@@ -1875,7 +1875,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Stále nemôžem nájsť riešenie&lt;/Bold&gt; - Kontaktujte nás priamo prostredníctvom nášho &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulára podpory&lt;/Hyperlink&gt;, e-mailom (support@protonvpn.com), alebo na &lt;Hyperlink Command="{Binding ProtonTwitterCommand}" &gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Stále nemôžem nájsť riešenie&lt;/Bold&gt; - Kontaktujte nás priamo prostredníctvom nášho &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulára podpory&lt;/Hyperlink&gt;, emailom (support@protonvpn.com), alebo na &lt;Hyperlink Command="{Binding ProtonTwitterCommand}" &gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">

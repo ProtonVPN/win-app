@@ -1806,7 +1806,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&amp;lt;Bold&amp;gt;Interferencia antivirus&amp;lt;/Bold&amp;gt; - Desactivar o eliminar temporalmente su software antivirus.</value>
+    <value>&lt;Bold&gt;Interferencia antivirus&lt;/Bold&gt; - Desactiva o borra temporalmente tu software antivirus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -1901,7 +1901,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <value>Falta un archivo obligatorio en la aplicación</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Es posible que algunas aplicaciones de su PC hayan eliminado algunos archivos o hayan impedido que se instalen correctamente.</value>
+    <value>Es posible que algunas aplicaciones de su PC hayan borrado algunos archivos o hayan impedido que se instalen correctamente.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
     <value>Reparar</value>
@@ -2094,7 +2094,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <value>Cambios a la selección de servidor</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Para evitar la saturación de servidores y garantizar que todos tengan acceso a una navegación rápida y segura, eliminamos la selección manual de países e hicimos mejoras importantes en la selección automática de servidores.</value>
+    <value>Para evitar la saturación de servidores y garantizar que todos tengan acceso a una navegación rápida y segura, borramos la selección manual de países e hicimos mejoras importantes en la selección automática de servidores.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Novedades</value>
@@ -2630,7 +2630,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>El servidor al que estás intentando conectarse ha sido eliminado. Por favor, selecciona otro servidor o perfil.</value>
+    <value>El servidor al que estás intentando conectarse ha sido borrado. Selecciona otro servidor o perfil.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
