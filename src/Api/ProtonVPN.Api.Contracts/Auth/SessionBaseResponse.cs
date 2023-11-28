@@ -20,16 +20,14 @@
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.Auth
+namespace ProtonVPN.Api.Contracts.Auth;
+
+public class SessionBaseResponse : BaseResponse
 {
-    public class AuthResponse : SessionBaseResponse
-    {
-        public string Scope { get; set; }
+    [JsonProperty("UID")]
+    public string Uid { get; set; }
 
-        public string ServerProof { get; set; }
+    public string AccessToken { get; set; }
 
-        [JsonProperty(PropertyName = "2FA")]
-        public TwoFactorAuthResponse TwoFactor { get; set; }
-    }
-
+    public string RefreshToken { get; set; }
 }

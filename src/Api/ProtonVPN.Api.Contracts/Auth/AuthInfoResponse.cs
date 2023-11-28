@@ -30,5 +30,9 @@ namespace ProtonVPN.Api.Contracts.Auth
         public string Salt { get; set; }
         [JsonProperty(PropertyName = "SRPSession")]
         public string SrpSession { get; set; }
+
+        [JsonProperty(PropertyName = "SSOChallengeToken")]
+        public string SsoChallengeToken { get; set; }
+
     }
 }

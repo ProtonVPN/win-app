@@ -21,6 +21,18 @@ namespace ProtonVPN.Api.Contracts.Users
 {
     public class UserResponse
     {
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public string Email { get; set; }
         public long CreateTime { get; set; }
+
+        public string GetUsername()
+        {
+            return !string.IsNullOrEmpty(Name)
+                ? Name
+                : !string.IsNullOrEmpty(Email)
+                    ? Email
+                    : DisplayName;
+        }
     }
 }

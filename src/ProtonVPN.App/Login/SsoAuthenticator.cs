@@ -3,8 +3,7 @@
  *
  * This file is part of ProtonVPN.
  *
- * ProtonVPN is free software:
- you can redistribute it and/or modify
+ * ProtonVPN is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -19,24 +18,27 @@
  */
 
 using System.Threading.Tasks;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Core.Settings;
+using ProtonVPN.Core.Auth;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Login.ViewModels;
 
-namespace ProtonVPN.IntegrationTests.Auth
+namespace ProtonVPN.Login;
+
+public class SsoAuthenticator : ISsoAuthenticator
 {
-    [TestClass]
-    public class AuthCertificateTests : AuthenticatedUserTests
-    {
-        [TestMethod]
-        public async Task ItShouldSaveCertificateToAppSettings()
-        {
-            // Arrange
-            SetApiResponsesForAuth();
-            await MakeUserAuth(USERNAME, CORRECT_PASSWORD);
+    private readonly IModals _modals;
+    private readonly SsoLoginViewModel _ssoLoginViewModel;
 
-            // Assert
-            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CERTIFICATE);
-        }
+    public SsoAuthenticator(IModals modals, SsoLoginViewModel ssoLoginViewModel)
+    {
+        _modals = modals;
+        _ssoLoginViewModel = ssoLoginViewModel;
+    }
+
+    public async Task<string> AuthenticateAsync(AuthSsoSessionInfo sessionInfo)
+    {
+        await _modals.ShowAsync<SsoLoginViewModel>(sessionInfo);
+
+        return _ssoLoginViewModel.ResponseToken;
     }
 }

@@ -3,8 +3,7 @@
  *
  * This file is part of ProtonVPN.
  *
- * ProtonVPN is free software:
- you can redistribute it and/or modify
+ * ProtonVPN is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -18,25 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using ProtonVPN.Core.Settings;
 
-namespace ProtonVPN.IntegrationTests.Auth
-{
-    [TestClass]
-    public class AuthCertificateTests : AuthenticatedUserTests
-    {
-        [TestMethod]
-        public async Task ItShouldSaveCertificateToAppSettings()
-        {
-            // Arrange
-            SetApiResponsesForAuth();
-            await MakeUserAuth(USERNAME, CORRECT_PASSWORD);
+namespace ProtonVPN.Core.FeatureFlags;
 
-            // Assert
-            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CERTIFICATE);
-        }
+public class FeatureFlagsCache : IFeatureFlagsCache
+{
+    private readonly IAppSettings _appSettings;
+
+    public FeatureFlagsCache(IAppSettings appSettings)
+    {
+        _appSettings = appSettings;
+    }
+
+    public IReadOnlyList<FeatureFlag> Get()
+    {
+        return JsonConvert.DeserializeObject<IReadOnlyList<FeatureFlag>>(_appSettings.FeatureFlags);
+    }
+
+    public void Store(IReadOnlyList<FeatureFlag> flags)
+    {
+        _appSettings.FeatureFlags = JsonConvert.SerializeObject(flags);
     }
 }

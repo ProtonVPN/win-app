@@ -47,6 +47,7 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
@@ -156,6 +157,7 @@ namespace ProtonVPN.Core
 
             IncreaseAppStartCount();
             SetHardwareAcceleration();
+            Resolve<IFeatureFlagsProvider>().UpdateAsync();
             RegisterEvents();
             Resolve<Language>().Initialize(e.Args);
             InitializeUpdates(e.Args);
@@ -299,6 +301,15 @@ namespace ProtonVPN.Core
             AppWindow appWindow = Resolve<AppWindow>();
             IAppSettings appSettings = Resolve<IAppSettings>();
             Resolve<ISettingsServiceClientManager>();
+
+            Resolve<IFeatureFlagsProvider>().FeatureFlagsUpdated += (_, _) =>
+            {
+                IEnumerable<IFeatureFlagsAware> instances = Resolve<IEnumerable<IFeatureFlagsAware>>();
+                foreach (IFeatureFlagsAware instance in instances)
+                {
+                    instance.OnFeatureFlagsChanged();
+                }
+            };
 
             Resolve<IServerUpdater>().ServersUpdated += (sender, e) =>
             {

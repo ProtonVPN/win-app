@@ -18,18 +18,13 @@
  */
 
 using Newtonsoft.Json;
-using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.Auth
+namespace ProtonVPN.Api.Contracts.Features;
+
+public class ToggleResponse
 {
-    public class AuthResponse : SessionBaseResponse
-    {
-        public string Scope { get; set; }
+    public string Name { get; set; }
 
-        public string ServerProof { get; set; }
-
-        [JsonProperty(PropertyName = "2FA")]
-        public TwoFactorAuthResponse TwoFactor { get; set; }
-    }
-
+    [JsonProperty(PropertyName = "enabled")]
+    public bool IsEnabled { get; set; }
 }

@@ -17,9 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Account
+namespace ProtonVPN.Core.Auth
 {
-    public interface IUserCreationDateUpdater
+    public enum AuthIntent
     {
+        Proton,
+        Auto,
+        SSO
     }
 }

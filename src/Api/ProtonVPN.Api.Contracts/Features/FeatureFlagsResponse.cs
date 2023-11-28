@@ -17,19 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts.Users;
 
-namespace ProtonVPN.Api.Contracts.Auth
+namespace ProtonVPN.Api.Contracts.Features;
+
+public class FeatureFlagsResponse : BaseResponse
 {
-    public class AuthResponse : SessionBaseResponse
-    {
-        public string Scope { get; set; }
-
-        public string ServerProof { get; set; }
-
-        [JsonProperty(PropertyName = "2FA")]
-        public TwoFactorAuthResponse TwoFactor { get; set; }
-    }
-
+    [JsonProperty(PropertyName = "toggles")]
+    public IList<ToggleResponse> Toggles { get; set; }
 }

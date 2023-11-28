@@ -1721,5 +1721,17 @@ namespace ProtonVPN.Properties {
                 this["UserStatisticalEvents"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FeatureFlags {
+            get {
+                return ((string)(this["FeatureFlags"]));
+            }
+            set {
+                this["FeatureFlags"] = value;
+            }
+        }
     }
 }

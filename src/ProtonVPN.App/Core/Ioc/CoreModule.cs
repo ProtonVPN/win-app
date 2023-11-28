@@ -31,6 +31,7 @@ using ProtonVPN.Config;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Config;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS;
 using ProtonVPN.Core.OS.Net.Dns;
@@ -101,6 +102,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();
             builder.RegisterType<LastServerLoadTimeProvider>().As<ILastServerLoadTimeProvider>().SingleInstance();
             builder.RegisterType<ClientConfig>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<FeatureFlagsCache>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<FeatureFlagsProvider>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                     new NtpClient(c.Resolve<IConfiguration>().NtpServerUrl, c.Resolve<ILogger>())) // REMOVE THIS CUSTOM REGISTRATION
                 .As<INtpClient>().SingleInstance();

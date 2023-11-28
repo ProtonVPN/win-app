@@ -3,8 +3,7 @@
  *
  * This file is part of ProtonVPN.
  *
- * ProtonVPN is free software:
- you can redistribute it and/or modify
+ * ProtonVPN is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -18,25 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Core.Settings;
+using Newtonsoft.Json;
+using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.IntegrationTests.Auth
+namespace ProtonVPN.Api.Contracts.Auth
 {
-    [TestClass]
-    public class AuthCertificateTests : AuthenticatedUserTests
+    public class UnauthSessionResponse : SessionBaseResponse
     {
-        [TestMethod]
-        public async Task ItShouldSaveCertificateToAppSettings()
-        {
-            // Arrange
-            SetApiResponsesForAuth();
-            await MakeUserAuth(USERNAME, CORRECT_PASSWORD);
+        public string[] Scopes { get; set; }
 
-            // Assert
-            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CERTIFICATE);
-        }
+        public string TokenType { get; set; }
     }
+
 }

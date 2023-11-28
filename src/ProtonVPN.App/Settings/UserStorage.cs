@@ -193,9 +193,9 @@ namespace ProtonVPN.Settings
             _userSettings.Set("VpnPlanName", user.VpnPlanName);
         }
 
-        public void StoreCreationDateUtc(DateTime creationDateUtc)
+        public void StoreCreationDateUtc(DateTime? creationDateUtc)
         {
-            _userSettings.Set("CreationDateUtc", creationDateUtc.ToString("O").Encrypt());
+            _userSettings.Set("CreationDateUtc", creationDateUtc?.ToString("O").Encrypt());
         }
 
         public DateTime? GetCreationDateUtc()

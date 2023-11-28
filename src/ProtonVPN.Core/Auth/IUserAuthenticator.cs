@@ -33,6 +33,7 @@ namespace ProtonVPN.Core.Auth
         event EventHandler<EventArgs> UserLoggingIn;
 
         Task<AuthResult> LoginUserAsync(string username, SecureString password);
+        Task<AuthResult> SingleSignOnUserAsync(string username);
         Task<AuthResult> AuthAsync(string username, SecureString password);
         Task<AuthResult> SendTwoFactorCodeAsync(string code);
         Task<ApiResponseResult<VpnInfoWrapperResponse>> RefreshVpnInfoAsync();

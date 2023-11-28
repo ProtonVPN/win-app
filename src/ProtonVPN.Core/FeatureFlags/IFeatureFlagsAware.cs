@@ -17,19 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
-using ProtonVPN.Api.Contracts.Common;
+namespace ProtonVPN.Core.FeatureFlags;
 
-namespace ProtonVPN.Api.Contracts.Auth
+public interface IFeatureFlagsAware
 {
-    public class AuthResponse : SessionBaseResponse
-    {
-        public string Scope { get; set; }
-
-        public string ServerProof { get; set; }
-
-        [JsonProperty(PropertyName = "2FA")]
-        public TwoFactorAuthResponse TwoFactor { get; set; }
-    }
-
+    void OnFeatureFlagsChanged();
 }

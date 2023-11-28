@@ -28,6 +28,8 @@ namespace ProtonVPN.Core.Auth
         TwoFactorRequired,
         IncorrectTwoFactorCode,
         TwoFactorAuthFailed,
+        SwitchToSSO,
+        SwitchToSRP,
         Unknown,
     }
 }

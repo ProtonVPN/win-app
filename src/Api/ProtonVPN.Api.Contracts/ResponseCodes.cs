@@ -29,5 +29,7 @@ namespace ProtonVPN.Api.Contracts
         public const int HumanVerificationRequired = 9001;
         public const int NoVpnConnectionsAssigned = 86300;
         public const int IncorrectLoginCredentials = 8002;
+        public const int AuthSwitchToSSO = 8100;
+        public const int AuthSwitchToSRP = 8101;
     }
 }
