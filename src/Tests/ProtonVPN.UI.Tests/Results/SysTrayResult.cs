@@ -29,9 +29,9 @@ namespace ProtonVPN.UI.Tests.Results
         public SysTrayResult CheckIfClientIsClosed()
         {
             Process[] pname = Process.GetProcessesByName("Proton VPN");
-            Assert.IsTrue(pname.Length == 0);
+            Assert.That(pname.Length == 0, Is.True);
             ServiceController service = new ServiceController("ProtonVPN Service");
-            Assert.AreNotEqual(service.Status, ServiceControllerStatus.Running);
+            Assert.That(service.Status, Is.Not.EqualTo(ServiceControllerStatus.Running));
             return this;
         }
 

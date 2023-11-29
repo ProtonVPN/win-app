@@ -17,12 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
 using Autofac;
 using Caliburn.Micro;
 using ProtonVPN.ConnectionInfo;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Login.Views;
+using ProtonVPN.Profiles.Servers;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.ViewModels;
 using ProtonVPN.Windows;
@@ -62,7 +64,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ConnectionErrorResolver>().AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterAssemblyTypes(typeof(App).Assembly)
-                .Where(t => t.Name.EndsWith("ViewModel") && t.Name != nameof(DeveloperToolsPopupViewModel))
+                .Where(t => t.Name.EndsWith("ViewModel") && t.GetConstructors().Any())
+                .Except<DeveloperToolsPopupViewModel>()
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .SingleInstance();

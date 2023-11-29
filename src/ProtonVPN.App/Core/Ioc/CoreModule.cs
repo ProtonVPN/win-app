@@ -34,8 +34,6 @@ using ProtonVPN.Core.Config;
 using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Network;
 using ProtonVPN.Core.OS;
-using ProtonVPN.Core.OS.Net.Dns;
-using ProtonVPN.Core.OS.Net.DoH;
 using ProtonVPN.Core.ReportAnIssue;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service;
@@ -48,7 +46,6 @@ using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Vpn;
-using CoreDnsClient = ProtonVPN.Core.OS.Net.Dns.DnsClient;
 using Module = Autofac.Module;
 
 namespace ProtonVPN.Core.Ioc
@@ -81,22 +78,11 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<UserValidator>().SingleInstance();
             builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkClient>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<DnsClients>().As<IDnsClients>().SingleInstance();
             builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
-            builder.Register(c =>
-                    new SafeDnsClient(
-                        new CoreDnsClient(
-                            c.Resolve<IDnsClients>(),
-                            c.Resolve<INetworkInterfaces>())))
-                .As<IDnsClient>().SingleInstance();
 
             builder.RegisterType<VpnCredentialProvider>().As<IVpnCredentialProvider>().SingleInstance();
             builder.Register(c => new SafeSystemProxy(c.Resolve<ILogger>(), new SystemProxy()))
                 .AsImplementedInterfaces()
-                .SingleInstance();
-            builder.Register(c => new DohClients(
-                c.Resolve<IConfiguration>().DoHProviders, // REMOVE THIS CUSTOM REGISTRATION
-                c.Resolve<IConfiguration>().DohClientTimeout))
                 .SingleInstance();
             builder.RegisterType<MainWindowState>().As<IMainWindowState>().SingleInstance();
             builder.RegisterType<SingleActionFactory>().As<ISingleActionFactory>().SingleInstance();

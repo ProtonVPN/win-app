@@ -21,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
-using CommunityToolkit.Mvvm.Input;
+using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core.Servers;
@@ -33,7 +33,7 @@ namespace ProtonVPN.Modals
 {
     public class ChangeServerModalViewModel : UpsellModalViewModel, IHandle<ChangeServerTimeLeftMessage>
     {
-        protected override ModalSources ModalSource { get; } = ModalSources.ChangeServer;
+        protected override ModalSources ModalSource => ModalSources.ChangeServer;
 
         private readonly ServerChangeManager _serverChangeManager;
 

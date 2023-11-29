@@ -19,7 +19,6 @@
 
 using System;
 using System.IO;
-using Castle.Core.Internal;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {
@@ -29,7 +28,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         {
             bool isLocalEnvironment = false;
             string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
-            if (ciCommitHash.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(ciCommitHash))
             {
                 isLocalEnvironment = true;
             }

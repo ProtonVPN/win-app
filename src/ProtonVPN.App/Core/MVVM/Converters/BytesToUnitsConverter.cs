@@ -29,7 +29,7 @@ namespace ProtonVPN.Core.MVVM.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var bytes = ByteSize.FromBytes((double?)value ?? 0.0);
-            return bytes.LargestWholeNumberSymbol.ToUpper();
+            return bytes.LargestWholeNumberDecimalSymbol.ToUpper();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

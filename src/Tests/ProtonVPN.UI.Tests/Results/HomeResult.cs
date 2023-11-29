@@ -36,13 +36,13 @@ namespace ProtonVPN.UI.Tests.Results
 
         public HomeResult CheckIfDnsIsResolved(string url)
         {
-            Assert.IsTrue(TryToResolveDns(url), $"Dns was not resolved for {url}.");
+            Assert.That(TryToResolveDns(url), Is.True, $"Dns was not resolved for {url}.");
             return this;
         }
 
         public HomeResult CheckIfDnsIsNotResolved(string url)
         {
-            Assert.IsFalse(TryToResolveDns(url), $"DNS was resolved for {url}");
+            Assert.That(TryToResolveDns(url), Is.False, $"DNS was resolved for {url}");
             return this;
         }
 
@@ -51,14 +51,14 @@ namespace ProtonVPN.UI.Tests.Results
             string ipAddress = IpAddressLabelText;
             KillAndRestartProtonVpnClient();
             new HomeWindow().WaitUntilConnected();
-            Assert.IsTrue(ipAddress == IpAddressLabelText, "IP Address: " + IpAddressLabelText + " does not match previous " + ipAddress + " address");
+            Assert.That(ipAddress == IpAddressLabelText, Is.True, "IP Address: " + IpAddressLabelText + " does not match previous " + ipAddress + " address");
             return this;
         }
 
         public HomeResult CheckIfLocalNetworkingWorks(string localIpAddress)
         {
             PingReply reply = new Ping().Send(localIpAddress);
-            Assert.IsTrue(reply.Status == IPStatus.Success);
+            Assert.That(reply.Status == IPStatus.Success, Is.True);
             return this;
         }
 
@@ -66,7 +66,7 @@ namespace ProtonVPN.UI.Tests.Results
         {
             TestsApiClient client = new TestsApiClient("https://api.ipify.org/");
             string currentIpAddress = await client.GetIpAddress();
-            Assert.IsTrue(currentIpAddress == IpAddressLabelText, $"IP Address: {IpAddressLabelText} does not match expected {currentIpAddress} address from API");
+            Assert.That(currentIpAddress == IpAddressLabelText, Is.True, $"IP Address: {IpAddressLabelText} does not match expected {currentIpAddress} address from API");
         }
 
         private static bool TryToResolveDns(string url)
@@ -112,13 +112,6 @@ namespace ProtonVPN.UI.Tests.Results
         {
             WaitUntilElementExistsByName("Upgrade", TestConstants.VeryShortTimeout);
             CheckIfDisplayedByAutomationId("UpsellModalTitle");
-            return this;
-        }
-
-        public HomeResult CheckIfUpgradeRequiredModalIsShownSecureCore()
-        {
-            WaitUntilElementExistsByName("Upgrade", TestConstants.VeryShortTimeout);
-            CheckIfDisplayedByClassName("SecureCore");
             return this;
         }
 

@@ -48,25 +48,25 @@ namespace ProtonVPN.UI.Tests.Results
 
         public SettingsResult CheckIfDnsAddressMatches(string expectedDnsAddress)
         {
-            Assert.IsTrue(DoesContainDnsAddress(expectedDnsAddress), DnsAdressErrorMessage(expectedDnsAddress));
+            Assert.That(DoesContainDnsAddress(expectedDnsAddress), Is.True, DnsAdressErrorMessage(expectedDnsAddress));
             return this;
         }
 
         public SettingsResult CheckIfDnsAddressDoesNotMatch(string expectedDnsAddress)
         {
-            Assert.IsFalse(DoesContainDnsAddress(expectedDnsAddress), DnsAdressErrorMessage(expectedDnsAddress));
+            Assert.That(DoesContainDnsAddress(expectedDnsAddress), Is.False, DnsAdressErrorMessage(expectedDnsAddress));
             return this;
         }
 
         public SettingsResult CheckIfModerateNatIsEnabled()
         {
-            Assert.IsTrue(ModerateNatCheckBox.IsChecked.Value, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
+            Assert.That(ModerateNatCheckBox.IsChecked.Value, Is.True, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
             return this;
         }
 
         public SettingsResult CheckIfModerateNatIsDisabled()
         {
-            Assert.IsFalse(ModerateNatCheckBox.IsChecked.Value, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
+            Assert.That(ModerateNatCheckBox.IsChecked.Value, Is.False, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
             return this;
         }
 
