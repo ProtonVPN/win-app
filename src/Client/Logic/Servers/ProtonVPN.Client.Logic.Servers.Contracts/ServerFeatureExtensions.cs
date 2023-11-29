@@ -17,14 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-
-public class TorFeatureIntent : FeatureIntentBase
+public static class ServerFeatureExtensions
 {
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public static bool IsSupported(this ulong features, ServerFeatures expectedFeatures)
     {
-        return servers.Where(s => s.Features.IsSupported(ServerFeatures.Tor));
+        return ((ServerFeatures)features).IsSupported(expectedFeatures);
+    }
+
+    public static bool IsSupported(this ServerFeatures features, ServerFeatures expectedFeatures)
+    {
+        return features.HasFlag(expectedFeatures);
     }
 }

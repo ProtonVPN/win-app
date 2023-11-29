@@ -17,14 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.EntityMapping.Contracts;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+namespace ProtonVPN.Client.Logic.Servers.Mappers;
 
-public class TorFeatureIntent : FeatureIntentBase
+public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServer>
 {
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public PhysicalServer Map(PhysicalServerResponse leftEntity)
     {
-        return servers.Where(s => s.Features.IsSupported(ServerFeatures.Tor));
+        return new(
+            id: leftEntity.Id,
+            entryIp: leftEntity.EntryIp,
+            exitIp: leftEntity.ExitIp,
+            domain: leftEntity.Domain,
+            label: leftEntity.Label,
+            status: leftEntity.Status,
+            x25519PublicKey: leftEntity.X25519PublicKey,
+            signature: leftEntity.Signature);
+    }
+
+    public PhysicalServerResponse Map(PhysicalServer rightEntity)
+    {
+        throw new NotImplementedException();
     }
 }

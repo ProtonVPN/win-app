@@ -33,7 +33,7 @@ namespace ProtonVPN.Api.Contracts.Servers
         public string ExitCountry { get; set; }
         public string Domain { get; set; }
         public sbyte Tier { get; set; }
-        public sbyte Features { get; set; }
+        public ulong Features { get; set; }
         public LocationResponse LocationResponse { get; set; }
         public sbyte Status { get; set; }
         public sbyte Load { get; set; }

@@ -20,20 +20,22 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
 public class ServerManager : IServerManager
 {
     private readonly IApiClient _apiClient;
+    private readonly IEntityMapper _entityMapper;
 
     private List<string> _countries = new();
-
     private List<LogicalServerResponse> _servers = new();
 
-    public ServerManager(IApiClient apiClient)
+    public ServerManager(IApiClient apiClient, IEntityMapper entityMapper)
     {
         _apiClient = apiClient;
+        _entityMapper = entityMapper;
     }
 
     public async Task FetchServersAsync()
@@ -70,14 +72,14 @@ public class ServerManager : IServerManager
 
     public List<string> GetP2PCities()
     {
-        return GetCitiesByFilter(server => ServerFeatures.SupportsP2P(server.Features) &&
+        return GetCitiesByFilter(server => server.Features.IsSupported(ServerFeatures.P2P) &&
                                            !string.IsNullOrWhiteSpace(server.City));
     }
 
     public List<string> GetP2PCitiesByCountry(string countryCode)
     {
         return GetCitiesByFilter(server => server.ExitCountry == countryCode &&
-                                        ServerFeatures.SupportsP2P(server.Features) &&
+                                        server.Features.IsSupported(ServerFeatures.P2P) &&
                                         !string.IsNullOrWhiteSpace(server.City));
     }
 
@@ -92,22 +94,22 @@ public class ServerManager : IServerManager
 
     public List<Server> GetServersByCity(string city)
     {
-        return (from server in _servers where server.City == city select Map(server)).ToList();
+        return (from server in _servers where server.City == city select _entityMapper.Map<LogicalServerResponse, Server>(server)).ToList();
     }
 
     public List<string> GetSecureCoreCountryCodes()
     {
-        return GetCountryCodesByFilter(server => ServerFeatures.IsSecureCore(server.Features));
+        return GetCountryCodesByFilter(server => server.Features.IsSupported(ServerFeatures.SecureCore));
     }
 
     public List<string> GetP2PCountryCodes()
     {
-        return GetCountryCodesByFilter(server => ServerFeatures.SupportsP2P(server.Features));
+        return GetCountryCodesByFilter(server => server.Features.IsSupported(ServerFeatures.P2P));
     }
 
     public List<string> GetTorCountryCodes()
     {
-        return GetCountryCodesByFilter(server => ServerFeatures.SupportsTor(server.Features));
+        return GetCountryCodesByFilter(server => server.Features.IsSupported(ServerFeatures.Tor));
     }
 
     private List<string> GetCountryCodesByFilter(Func<LogicalServerResponse, bool> filterFunc)
@@ -122,44 +124,44 @@ public class ServerManager : IServerManager
 
     public List<Server> GetSecureCoreServers()
     {
-        return GetServers(server => ServerFeatures.IsSecureCore(server.Features));
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.SecureCore));
     }
 
     public List<Server> GetSecureCoreServersByExitCountry(string countryCode)
     {
-        return GetServers(server => ServerFeatures.IsSecureCore(server.Features) && server.ExitCountry == countryCode);
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.SecureCore) && server.ExitCountry == countryCode);
     }
 
     public List<Server> GetP2PServersByExitCountry(string countryCode)
     {
-        return GetServers(server => ServerFeatures.SupportsP2P(server.Features) && server.ExitCountry == countryCode);
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.P2P) && server.ExitCountry == countryCode);
     }
 
     public List<Server> GetTorServers()
     {
-        return GetServers(server => ServerFeatures.SupportsTor(server.Features));
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.Tor));
     }
 
     public List<Server> GetTorServersByExitCountry(string countryCode)
     {
-        return GetServers(server => ServerFeatures.SupportsTor(server.Features) && server.ExitCountry == countryCode);
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.Tor) && server.ExitCountry == countryCode);
     }
 
     public List<Server> GetP2PServersByCity(string city)
     {
-        return GetServers(server => ServerFeatures.SupportsP2P(server.Features) && server.City == city);
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.P2P) && server.City == city);
     }
 
     public List<Server> GetP2PServers()
     {
-        return GetServers(server => ServerFeatures.SupportsP2P(server.Features));
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.P2P));
     }
 
     public List<Server> GetServers(Func<LogicalServerResponse, bool>? filterFunc = null)
     {
         return _servers
             .Where(filterFunc ?? (_ => true))
-            .Select(Map)
+            .Select(_entityMapper.Map<LogicalServerResponse, Server>)
             .ToList();
     }
 
@@ -201,61 +203,5 @@ public class ServerManager : IServerManager
         }
 
         return true;
-    }
-
-    private static Server Map(LogicalServerResponse item)
-    {
-        if (item == null)
-        {
-            return null;
-        }
-
-        List<PhysicalServer> physicalServers = item.Servers.Select(Map).ToList();
-
-        return new Server
-        {
-            Id = item.Id,
-            Name = item.Name,
-            City = item.City,
-            EntryCountry = item.EntryCountry,
-            ExitCountry = item.ExitCountry,
-            Domain = item.Domain,
-            ExitIp = ExitIp(physicalServers),
-            Status = item.Status,
-            Tier = item.Tier,
-            Features = item.Features,
-            Load = item.Load,
-            Score = item.Score,
-            Servers = physicalServers,
-            IsVirtual = !string.IsNullOrEmpty(item.HostCountry),
-            IsSecureCore = ServerFeatures.IsSecureCore(item.Features),
-            SupportsP2P = ServerFeatures.SupportsP2P(item.Features),
-            SupportsTor = ServerFeatures.SupportsTor(item.Features),
-            IsUnderMaintenance = item.Status == 0,
-        };
-    }
-
-    private static PhysicalServer Map(PhysicalServerResponse server)
-    {
-        return new(
-            id: server.Id,
-            entryIp: server.EntryIp,
-            exitIp: server.ExitIp,
-            domain: server.Domain,
-            label: server.Label,
-            status: server.Status,
-            x25519PublicKey: server.X25519PublicKey,
-            signature: server.Signature);
-    }
-
-    /// <summary>
-    /// If ExitIp is same on all physical servers, it is returned.
-    /// </summary>
-    private static string ExitIp(IEnumerable<PhysicalServer> servers)
-    {
-        return servers.Aggregate(
-            (string)null,
-            (ip, p) => ip == null || ip == p.ExitIp ? p.ExitIp : "",
-            ip => !string.IsNullOrEmpty(ip) ? ip : null);
     }
 }

@@ -71,21 +71,21 @@ namespace ProtonVPN.Core.Tests.Servers
         [TestMethod]
         public void ItShouldReturnTrueForP2PServer()
         {
-            var server = new LogicalServerResponse { Features = (sbyte) Features.P2P };
+            var server = new LogicalServerResponse { Features = (ulong) Features.P2P };
             new P2PServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForTorServer()
         {
-            var server = new LogicalServerResponse { Features = (sbyte)Features.Tor };
+            var server = new LogicalServerResponse { Features = (ulong)Features.Tor };
             new TorServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
         [TestMethod]
         public void ItShouldReturnTrueForSecureCoreServer()
         {
-            var server = new LogicalServerResponse { Features = (sbyte)Features.SecureCore };
+            var server = new LogicalServerResponse { Features = (ulong)Features.SecureCore };
             new SecureCoreServer().IsSatisfiedBy(server).Should().BeTrue();
         }
 
@@ -98,10 +98,10 @@ namespace ProtonVPN.Core.Tests.Servers
         }
 
         [DataTestMethod]
-        [DataRow((sbyte)Features.None)]
-        [DataRow((sbyte)Features.P2P)]
-        [DataRow((sbyte)Features.Tor)]
-        public void ItShouldReturnTrueForStandardServer(sbyte feature)
+        [DataRow((ulong)Features.None)]
+        [DataRow((ulong)Features.P2P)]
+        [DataRow((ulong)Features.Tor)]
+        public void ItShouldReturnTrueForStandardServer(ulong feature)
         {
             var server = new LogicalServerResponse { Features = feature };
             new StandardServer().IsSatisfiedBy(server).Should().BeTrue();

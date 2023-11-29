@@ -333,7 +333,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builds", "Builds", "{F18DB0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Builds.Variables", "src\Builds\ProtonVPN.Builds.Variables\ProtonVPN.Builds.Variables.csproj", "{7D43370D-EC58-4536-9633-73D97527F0D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Builds.ConsoleJob", "src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj", "{6321300E-6C78-43BD-991C-D8F0222C7C71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Builds.ConsoleJob", "src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj", "{6321300E-6C78-43BD-991C-D8F0222C7C71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Servers.Mappers.Tests", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Mappers.Tests\ProtonVPN.Client.Logic.Servers.Mappers.Tests.csproj", "{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Servers.Mappers", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Mappers\ProtonVPN.Client.Logic.Servers.Mappers.csproj", "{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1343,6 +1347,22 @@ Global
 		{6321300E-6C78-43BD-991C-D8F0222C7C71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6321300E-6C78-43BD-991C-D8F0222C7C71}.Release|x64.ActiveCfg = Release|Any CPU
 		{6321300E-6C78-43BD-991C-D8F0222C7C71}.Release|x64.Build.0 = Release|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Debug|x64.Build.0 = Debug|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Release|x64.ActiveCfg = Release|Any CPU
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD}.Release|x64.Build.0 = Release|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Debug|x64.Build.0 = Debug|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Release|x64.ActiveCfg = Release|Any CPU
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1477,6 +1497,8 @@ Global
 		{34BBB849-8274-46CF-82A7-B2F9C166FE96} = {DAFD22C7-2959-4942-9BD1-50D976330F72}
 		{7D43370D-EC58-4536-9633-73D97527F0D9} = {F18DB077-4512-4E31-BCBF-C1C0143D369B}
 		{6321300E-6C78-43BD-991C-D8F0222C7C71} = {F18DB077-4512-4E31-BCBF-C1C0143D369B}
+		{B13D9F68-DDF0-4918-8EFE-F9979DF0DDDD} = {28DFEF67-6811-40E8-9D5C-4677F66FB7ED}
+		{1C0B358C-5688-4D2F-BA31-4EFFC5ED766B} = {28DFEF67-6811-40E8-9D5C-4677F66FB7ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}
