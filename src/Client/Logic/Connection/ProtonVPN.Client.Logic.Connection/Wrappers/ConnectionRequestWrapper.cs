@@ -114,7 +114,7 @@ public class ConnectionRequestWrapper : ConnectionRequestWrapperBase, IConnectio
     public IEnumerable<Server> SortServers(IEnumerable<Server> source)
     {
         return Settings.IsPortForwardingEnabled
-            ? source.OrderByDescending(s => s.SupportsP2P).ThenBy(s => s.Score)
+            ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(s => s.Score)
             : source.OrderBy(s => s.Score);
     }
 

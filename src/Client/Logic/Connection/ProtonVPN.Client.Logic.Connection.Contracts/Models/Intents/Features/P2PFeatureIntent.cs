@@ -25,6 +25,6 @@ public class P2PFeatureIntent : FeatureIntentBase
 {
     public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
     {
-        return servers.Where(s => s.SupportsP2P);
+        return servers.Where(s => s.Features.IsSupported(ServerFeatures.P2P));
     }
 }

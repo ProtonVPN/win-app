@@ -14,6 +14,7 @@
         <PackageReference Include="Autofac" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Servers.Mappers\ProtonVPN.Client.Logic.Servers.Mappers.csproj" />
         <ProjectReference Include="..\ProtonVPN.Client.Logic.Servers\ProtonVPN.Client.Logic.Servers.csproj" />
     </ItemGroup>
 </Project>

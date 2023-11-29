@@ -41,7 +41,7 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
 
     public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
     {
-        servers = servers.Where(s => s.IsSecureCore);
+        servers = servers.Where(s => s.Features.IsSupported(ServerFeatures.SecureCore));
         if (!string.IsNullOrEmpty(EntryCountryCode))
         {
             servers = servers.Where(s => s.EntryCountry == EntryCountryCode);

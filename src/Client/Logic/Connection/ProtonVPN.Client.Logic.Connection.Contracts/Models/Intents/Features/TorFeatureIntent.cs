@@ -25,6 +25,6 @@ public class TorFeatureIntent : FeatureIntentBase
 {
     public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
     {
-        return servers.Where(s => s.SupportsTor);
+        return servers.Where(s => s.Features.IsSupported(ServerFeatures.Tor));
     }
 }
