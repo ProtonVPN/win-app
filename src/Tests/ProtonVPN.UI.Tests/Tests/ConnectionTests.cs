@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
@@ -41,6 +42,9 @@ public class ConnectionTests : TestSession
     private const string LATENCY_OVERLAY_TITLE = "What is latency?";
     private const string PROTOCOL_OVERLAY_TITLE = "What is a VPN protocol?";
 
+    private const string PROTOCOL_PAGE_TITLE = "Protocol";
+    private const string SMART_PROTOCOL = "Smart";
+
     private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
     private CountriesRobot _countriesRobot = new();
@@ -60,6 +64,10 @@ public class ConnectionTests : TestSession
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
+
+        //TODO When reconnection logic is implemented remove this sleep.
+        //Certificate sometimes takes longer to get and app does not handle it yet
+        Thread.Sleep(2000);
     }
 
     [Test]
@@ -180,6 +188,31 @@ public class ConnectionTests : TestSession
         _homeRobot
             .DoCloseConnectionDetails();
     }
+
+    [Test]
+    public void NavigateToProtocolFromOverlay()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting()
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected()
+            .DoOpenConnectionDetails()
+            .VerifyConnectionDetailsIsOpened();
+
+        _homeRobot
+            .DoOpenProtocolOverlay();
+
+        _overlaysRobot
+            .VerifyOverlayIsOpened(PROTOCOL_OVERLAY_TITLE, true)
+            .VerifyProtocolOverlaySettingsCard(SMART_PROTOCOL)
+            .DoSwitchProtocol();
+
+        _shellRobot
+            .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true);
+    }
+
 
     [TearDown]
     public void TestCleanup()
