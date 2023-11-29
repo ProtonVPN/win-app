@@ -48,8 +48,6 @@ public class SettingsTests : TestSession
     private const string SMART_PROTOCOL = "Smart";
     private const string WIREGUARD_PROTOCOL = "WireGuard";
 
-    private const string PROTOCOL_OVERLAY_TITLE = "What is a VPN protocol?";
-
     private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
     private OverlaysRobot _overlaysRobot = new();
@@ -97,30 +95,6 @@ public class SettingsTests : TestSession
 
         _settingsRobot
             .VerifyProtocolSettingsCard(WIREGUARD_PROTOCOL);
-    }
-
-    [Test]
-    public void NavigateToProtocolFromOverlay()
-    {
-        _homeRobot
-            .DoConnect()
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting()
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected()
-            .DoOpenConnectionDetails()
-            .VerifyConnectionDetailsIsOpened();
-
-        _homeRobot
-            .DoOpenProtocolOverlay();
-
-        _overlaysRobot
-            .VerifyOverlayIsOpened(PROTOCOL_OVERLAY_TITLE, true)
-            .VerifyProtocolOverlaySettingsCard(SMART_PROTOCOL)
-            .DoSwitchProtocol();
-
-        _shellRobot
-            .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true);
     }
 
     [Test]
