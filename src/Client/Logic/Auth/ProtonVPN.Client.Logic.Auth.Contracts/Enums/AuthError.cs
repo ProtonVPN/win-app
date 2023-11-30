@@ -29,5 +29,9 @@ public enum AuthError
     IncorrectTwoFactorCode,
     TwoFactorAuthFailed,
     GuestHoleFailed,
+    GetSessionDetailsFailed,
+    SsoAuthFailed,
+    SwitchToSSO,
+    SwitchToSRP,
     Unknown,
 }

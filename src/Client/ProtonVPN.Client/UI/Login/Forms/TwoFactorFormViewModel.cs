@@ -67,6 +67,8 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
         {
             IsAuthenticating = true;
 
+            _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Authenticating));
+
             AuthResult result = await _userAuthenticator.SendTwoFactorCodeAsync(twoFactorCode);
             if (result.Success)
             {

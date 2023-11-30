@@ -48,14 +48,16 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        await _userAuthenticator.CreateUnauthSessionAsync();
+        if (string.IsNullOrEmpty(_settings.Username))
+        {
+            await _userAuthenticator.CreateUnauthSessionAsync();
+        }
+        else 
+        {
+            await _userAuthenticator.AutoLoginUserAsync();
+        }
 
         // TODO: think of a better place for this
         await _serverManager.FetchServersAsync();
-
-        if (!string.IsNullOrEmpty(_settings.Username))
-        {
-            await _userAuthenticator.InvokeAutoLoginEventAsync();
-        }
     }
 }

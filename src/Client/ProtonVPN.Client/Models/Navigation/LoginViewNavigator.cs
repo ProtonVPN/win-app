@@ -30,14 +30,9 @@ public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator
     {
     }
 
-    public Task NavigateToSrpLoginAsync()
+    public Task NavigateToLoginAsync()
     {
         return NavigateToAsync<LoginFormViewModel>();
-    }
-
-    public Task NavigateToSsoLoginAsync()
-    {
-        throw new NotImplementedException();
     }
 
     public Task NavigateToTwoFactorAsync()

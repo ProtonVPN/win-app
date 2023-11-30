@@ -190,7 +190,7 @@ public sealed partial class MainWindow : IEventMessageReceiver<LoggingInMessage>
             return;
         }
 
-        _loginViewNavigator.NavigateToSrpLoginAsync();
+        _loginViewNavigator.NavigateToLoginAsync();
         Container.Content = _loginShell;
         HideTitleBar();
     }

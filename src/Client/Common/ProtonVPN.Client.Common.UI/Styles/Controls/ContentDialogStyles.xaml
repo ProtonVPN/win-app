@@ -1086,6 +1086,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <!--  Shade effect on background  -->
                             <Rectangle Fill="{ThemeResource BackgroundNormColorBrush}"
                                        Opacity="0.4" />
+                            
+                            <!--  Close dialog when clicking outside of it  -->
+                            <Button HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent"
+                                    Command="{TemplateBinding CloseButtonCommand}"
+                                    IsTabStop="False"
+                                    Style="{StaticResource TransparentButtonStyle}" />
 
                             <Border x:Name="BackgroundElement"
                                     Margin="{StaticResource ContentDialogMargin}"

@@ -20,15 +20,14 @@
 using Microsoft.UI.Dispatching;
 using ProtonVPN.Client.Common.Dispatching;
 
-namespace ProtonVPN.Client.Dispatching
-{
-    public class UIThreadDispatcher : IUIThreadDispatcher
-    {
-        private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+namespace ProtonVPN.Client.Dispatching;
 
-        public bool TryEnqueue(Action callback)
-        {
-            return _dispatcherQueue.TryEnqueue(() => callback());
-        }
+public class UIThreadDispatcher : IUIThreadDispatcher
+{
+    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+
+    public bool TryEnqueue(Action callback)
+    {
+        return _dispatcherQueue.TryEnqueue(() => callback());
     }
 }

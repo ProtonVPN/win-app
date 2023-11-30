@@ -66,6 +66,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Login\Overlays\SsoLoginOverlayDialog.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Countries\Controls\NoSearchResultsView.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -190,6 +193,7 @@
         <None Remove="UI\HumanVerification\HumanVerificationDialog.xaml" />
         <None Remove="UI\Login\LoginForm.xaml" />
         <None Remove="UI\Login\LoginPage.xaml" />
+        <None Remove="UI\Login\Overlays\SsoLoginOverlayDialog.xaml" />
         <None Remove="UI\Login\TwoFactorForm.xaml" />
         <None Remove="UI\ReportIssue\Results\ReportIssueResultPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />

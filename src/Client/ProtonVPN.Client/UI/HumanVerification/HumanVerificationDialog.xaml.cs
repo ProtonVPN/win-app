@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.HumanVerification;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -39,6 +40,7 @@ public sealed partial class HumanVerificationDialog
         _humanVerificationConfig = App.GetService<IHumanVerificationConfig>();
 
         ViewModel = App.GetService<HumanVerificationViewModel>();
+        UserDataFolder = App.GetService<IConfiguration>().WebViewFolder;
 
         InitializeComponent();
         InitializeWebView();
@@ -46,9 +48,7 @@ public sealed partial class HumanVerificationDialog
 
     public HumanVerificationViewModel ViewModel { get; }
 
-    // TODO: move to configuration
-    public string UserDataFolder { get; } =
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Proton", "Proton VPN", "WebView2");
+    public string UserDataFolder { get; }
 
     private void InitializeWebView()
     {

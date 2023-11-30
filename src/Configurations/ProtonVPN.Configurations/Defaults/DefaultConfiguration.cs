@@ -64,6 +64,7 @@ public static class DefaultConfiguration
     public static string DiagnosticLogsFolder => _diagnosticLogsFolder.Value;
     public static string ImageCacheFolder => Path.Combine(_localAppDataProtonVpnPath.Value, "Images");
     public static string UpdatesFolder => Path.Combine(_commonAppDataProtonVpnPath.Value, "Updates");
+    public static string WebViewFolder => Path.Combine(_localAppDataProtonVpnPath.Value, "WebView2");
 
     public static string ClientLogsFilePath => Path.Combine(_clientLogsFolder.Value, "client-logs.txt");
     public static string ServiceLogsFilePath => Path.Combine(_serviceLogsFolder.Value, "service-logs.txt");

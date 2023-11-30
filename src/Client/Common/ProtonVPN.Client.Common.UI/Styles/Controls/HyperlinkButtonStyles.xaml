@@ -20,8 +20,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
 
     <ResourceDictionary.ThemeDictionaries>
 
@@ -74,7 +74,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Spacing="4">
 
                             <Border x:Name="UnderlineBorder"
-                                    Padding="0,0,0,0"
+                                    Padding="0"
                                     BorderBrush="{TemplateBinding Foreground}"
                                     BorderThickness="0,0,0,1">
                                 <ContentPresenter x:Name="ContentPresenter"
@@ -124,6 +124,67 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <Style x:Key="NoIconHyperlinkButtonStyle" BasedOn="{StaticResource HyperlinkButtonStyle}" TargetType="HyperlinkButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="HyperlinkButton">
+                    <Border x:Name="ContentContainer"
+                            Padding="{TemplateBinding Padding}"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </Border.BackgroundTransition>
+
+                        <Border x:Name="UnderlineBorder"
+                                Padding="0"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                BorderThickness="0,0,0,1">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              Foreground="{TemplateBinding Foreground}" />
+                        </Border>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundPointerOver}" />
+                                        <Setter Target="UnderlineBorder.BorderBrush" Value="{ThemeResource HyperlinkButtonForegroundPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundPressed}" />
+                                        <Setter Target="UnderlineBorder.BorderBrush" Value="{ThemeResource HyperlinkButtonForegroundPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                        <Setter Target="UnderlineBorder.BorderBrush" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style BasedOn="{StaticResource ProgressHyperlinkButtonStyle}" TargetType="custom:ProgressHyperlinkButton" />
 
     <Style x:Key="ProgressHyperlinkButtonStyle" BasedOn="{StaticResource HyperlinkButtonStyle}" TargetType="custom:ProgressHyperlinkButton">
@@ -146,7 +207,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Spacing="4">
 
                             <Border x:Name="UnderlineBorder"
-                                    Padding="0,0,0,0"
+                                    Padding="0"
                                     BorderBrush="{TemplateBinding Foreground}"
                                     BorderThickness="0,0,0,1">
                                 <ContentPresenter x:Name="ContentPresenter"
@@ -158,14 +219,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Foreground="{TemplateBinding Foreground}" />
                             </Border>
                             <pathicons:ArrowOutSquare x:Name="LinkGlyph"
-                                                      Visibility="{Binding IsProgressActive, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                                                      Foreground="{TemplateBinding Foreground}" />
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      Visibility="{Binding IsProgressActive, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}" />
 
-                            <ProgressRing IsActive="{TemplateBinding IsProgressActive }"
-                                          Foreground="{ThemeResource TextNormColorBrush}"
+                            <ProgressRing Width="16"
+                                          Height="16"
                                           HorizontalAlignment="Right"
-                                          Width="16"
-                                          Height="16" />
+                                          Foreground="{ThemeResource TextNormColorBrush}"
+                                          IsActive="{TemplateBinding IsProgressActive}" />
                         </StackPanel>
 
                         <VisualStateManager.VisualStateGroups>

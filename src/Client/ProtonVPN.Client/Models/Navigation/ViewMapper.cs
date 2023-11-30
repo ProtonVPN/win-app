@@ -36,6 +36,7 @@ using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Forms;
+using ProtonVPN.Client.UI.Login.Overlays;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -159,6 +160,7 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<ProtocolOverlayViewModel, ProtocolOverlayDialog>();
         ConfigureOverlay<ServerLoadOverlayViewModel, ServerLoadOverlayDialog>();
         ConfigureOverlay<HumanVerificationViewModel, HumanVerificationDialog>();
+        ConfigureOverlay<SsoLoginOverlayViewModel, SsoLoginOverlayDialog>();
         ConfigureOverlay<SecureCoreOverlayViewModel, SecureCoreOverlayDialog>();
         ConfigureOverlay<SmartRoutingOverlayViewModel, SmartRoutingOverlayDialog>();
         ConfigureOverlay<P2POverlayViewModel, P2POverlayDialog>();

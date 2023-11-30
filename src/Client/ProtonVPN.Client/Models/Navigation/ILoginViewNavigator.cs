@@ -21,9 +21,7 @@ namespace ProtonVPN.Client.Models.Navigation;
 
 public interface ILoginViewNavigator : IViewNavigator
 {
-    Task NavigateToSrpLoginAsync();
-
-    Task NavigateToSsoLoginAsync();
+    Task NavigateToLoginAsync();
 
     Task NavigateToTwoFactorAsync();
 }

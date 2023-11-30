@@ -34,7 +34,7 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
 
-    public string? Username => _settings.Username;
+    public string? Username => _settings.UserDisplayName;
 
     public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlanTitle);
 

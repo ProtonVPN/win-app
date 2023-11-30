@@ -21,6 +21,7 @@ using System.Security;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
@@ -31,6 +32,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
@@ -38,6 +40,7 @@ namespace ProtonVPN.Client.Logic.Auth;
 public class UserAuthenticator : IUserAuthenticator
 {
     private const string SRP_LOGIN_INTENT = "Proton";
+    private const string SSO_LOGIN_INTENT = "SSO";
 
     private readonly ILogger _logger;
     private readonly IApiClient _apiClient;
@@ -48,16 +51,15 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly ITokenClient _tokenClient;
 
     private AuthResponse _authResponse;
-    private string _username;
 
     public bool IsLoggedIn { get; private set; }
 
     public UserAuthenticator(
-        ILogger logger, 
-        IApiClient apiClient, 
+        ILogger logger,
+        IApiClient apiClient,
         IAuthCertificateManager authCertificateManager,
-        ISettings settings, 
-        IEventMessageSender eventMessageSender, 
+        ISettings settings,
+        IEventMessageSender eventMessageSender,
         IGuestHoleActionExecutor guestHoleActionExecutor,
         ITokenClient tokenClient)
     {
@@ -96,7 +98,9 @@ public class UserAuthenticator : IUserAuthenticator
         try
         {
             AuthResult result = await AuthAsync(username, password);
-            return result.Failure ? result : await RefreshVpnInfoAndInvokeLoginAsync();
+            return result.Success
+                ? await RefreshVpnInfoAndInvokeLoginAsync()
+                : result;
         }
         catch
         {
@@ -110,6 +114,46 @@ public class UserAuthenticator : IUserAuthenticator
                 ? await RefreshVpnInfoAndInvokeLoginAsync()
                 : AuthResult.Fail(AuthError.GuestHoleFailed);
         }
+    }
+
+    public async Task<SsoAuthResult> StartSsoAuthAsync(string username)
+    {
+        _logger?.Info<UserLog>("Trying to login user with SSO");
+
+        if (!IsUnauthSessionCreated())
+        {
+            await CreateUnauthSessionAsync();
+        }
+
+        ApiResponseResult<AuthInfoResponse> authInfoResponse =
+            await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username, Intent = SSO_LOGIN_INTENT });
+        if (!authInfoResponse.Success || string.IsNullOrEmpty(authInfoResponse.Value?.SsoChallengeToken))
+        {
+            _logger?.Error<UserLog>("Failed to login with SSO.");
+            return SsoAuthResult.FromAuthResult(AuthResult.Fail(authInfoResponse));
+        }
+
+        return SsoAuthResult.Ok(authInfoResponse.Value.SsoChallengeToken);
+    }
+
+    public async Task<AuthResult> CompleteSsoAuthAsync(string ssoResponseToken)
+    {
+        if (string.IsNullOrEmpty(ssoResponseToken))
+        {
+            return AuthResult.Fail(AuthError.SsoAuthFailed);
+        }
+
+        ApiResponseResult<AuthResponse> authResponse = await _apiClient.GetAuthResponse(new AuthRequest { SsoResponseToken = ssoResponseToken });
+        if (authResponse.Failure)
+        {
+            return AuthResult.Fail(authResponse);
+        }
+
+        AuthResult authResult = await SaveAuthSessionDetailsAsync(authResponse.Value);
+
+        return authResult.Success
+            ? await RefreshVpnInfoAndInvokeLoginAsync()
+            : authResult;
     }
 
     public async Task<AuthResult> AuthAsync(string username, SecureString password)
@@ -150,14 +194,11 @@ public class UserAuthenticator : IUserAuthenticator
 
             if ((response.Value.TwoFactor.Enabled & 1) != 0)
             {
-                _username = username;
                 _authResponse = response.Value;
                 return AuthResult.Fail(AuthError.TwoFactorRequired);
             }
 
-            SaveAuthSessionDetails(username, response.Value);
-
-            return AuthResult.Ok();
+            return await SaveAuthSessionDetailsAsync(response.Value);
         }
         catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
         {
@@ -179,27 +220,14 @@ public class UserAuthenticator : IUserAuthenticator
                 : AuthError.TwoFactorAuthFailed);
         }
 
-        SaveAuthSessionDetails(_username, _authResponse);
+        AuthResult authResult = await SaveAuthSessionDetailsAsync(_authResponse);
 
-        return await RefreshVpnInfoAndInvokeLoginAsync();
+        return authResult.Success
+            ? await RefreshVpnInfoAndInvokeLoginAsync()
+            : authResult;
     }
 
-    public async Task<ApiResponseResult<VpnInfoWrapperResponse>> RefreshVpnInfoAsync()
-    {
-        ApiResponseResult<VpnInfoWrapperResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
-        if (vpnInfo.Success)
-        {
-            SaveUserInfo(vpnInfo.Value);
-        }
-        else if (vpnInfo.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
-        {
-            ClearAuthSessionDetails();
-        }
-
-        return vpnInfo;
-    }
-
-    public async Task InvokeAutoLoginEventAsync()
+    public async Task AutoLoginUserAsync()
     {
         _eventMessageSender.Send(new LoggingInMessage());
 
@@ -226,6 +254,21 @@ public class UserAuthenticator : IUserAuthenticator
         }
     }
 
+    private async Task<ApiResponseResult<VpnInfoWrapperResponse>> RefreshVpnInfoAsync()
+    {
+        ApiResponseResult<VpnInfoWrapperResponse> vpnInfo = await _apiClient.GetVpnInfoResponse();
+        if (vpnInfo.Success)
+        {
+            SaveUserInfo(vpnInfo.Value);
+        }
+        else if (vpnInfo.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
+        {
+            ClearAuthSessionDetails();
+        }
+
+        return vpnInfo;
+    }
+
     private async void OnTokenExpired(object? sender, EventArgs e)
     {
         await LogoutAsync(LogoutReason.SessionExpired);
@@ -247,7 +290,6 @@ public class UserAuthenticator : IUserAuthenticator
 
         return AuthResult.Ok();
     }
-
 
     private AuthRequest GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
     {
@@ -275,12 +317,32 @@ public class UserAuthenticator : IUserAuthenticator
         _settings.Username = null;
     }
 
-    private void SaveAuthSessionDetails(string username, AuthResponse authResponse)
+    private async Task<AuthResult> SaveAuthSessionDetailsAsync(AuthResponse authResponse)
     {
-        _settings.Username = username;
         _settings.AccessToken = authResponse.AccessToken;
         _settings.UniqueSessionId = authResponse.UniqueSessionId;
         _settings.RefreshToken = authResponse.RefreshToken;
+
+        try
+        {
+            ApiResponseResult<UsersResponse> response = await _apiClient.GetUserAsync();
+            if (response.Success)
+            {
+                _settings.Username = response.Value.User.GetUsername();
+                _settings.UserDisplayName = response.Value.User.GetDisplayName();
+                return AuthResult.Ok();
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("An unexpected exception was thrown when updating the user info.", e);
+        }
+
+        // Failed to retrieve user, logout and clear auth session details.
+        await SendLogoutRequestAsync();
+        ClearAuthSessionDetails();
+
+        return AuthResult.Fail(AuthError.GetSessionDetailsFailed);
     }
 
     private bool IsUnauthSessionCreated()

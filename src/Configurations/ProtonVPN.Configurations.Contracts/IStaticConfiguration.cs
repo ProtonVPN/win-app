@@ -38,6 +38,7 @@ public interface IStaticConfiguration
     string DiagnosticLogsFolder { get; }
     string ImageCacheFolder { get; }
     string UpdatesFolder { get; }
+    string WebViewFolder { get; }
 
     string ClientLogsFilePath { get; }
     string ServiceLogsFilePath { get; }

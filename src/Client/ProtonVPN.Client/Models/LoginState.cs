@@ -22,6 +22,7 @@ namespace ProtonVPN.Client.Models;
 public enum LoginState
 {
     Initial,
+    Authenticating,
     Error,
     Success,
     TwoFactorRequired,
