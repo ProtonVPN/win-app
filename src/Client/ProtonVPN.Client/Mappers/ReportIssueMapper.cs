@@ -33,6 +33,7 @@ public static class ReportIssueMapper
     public const string USING_APP_CATEGORY = "Using the app";
     public const string STREAMING_CATEGORY = "Streaming";
     public const string SOMETHING_ELSE_CATEGORY = "Something else";
+    public const string PROMOTIONS_CATEGORY = "Promotions and Offers";
 
     public const string TEXT_FIELD_TYPE = "TextSingleLine";
     public const string MULTI_TEXT_FIELD_TYPE = "TextMultiLine";
@@ -85,7 +86,8 @@ public static class ReportIssueMapper
             USING_APP_CATEGORY => new BrandProtonVpn(),
             STREAMING_CATEGORY => new Play(),
             SOMETHING_ELSE_CATEGORY => new ThreeDotsHorizontal(),
-            _ => null
+            PROMOTIONS_CATEGORY => new BagPercent(),
+            _ => new Placeholder()
         };
     }
 }

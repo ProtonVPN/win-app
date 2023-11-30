@@ -36,7 +36,7 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
         await NavigateToAsync<CategorySelectionViewModel>();
     }
 
-    public async Task NavigateToCategoryAsync(IssueCategory category)
+    public async Task NavigateToCategoryAsync(IssueCategory? category)
     {
         if (category == null)
         {
@@ -49,14 +49,24 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
         }
         else
         {
-            await NavigateToAsync<ContactFormViewModel>(category);
+            await NavigateToContactFormAsync(category);
         }
 
         // This method can be called by the help component to jump from one category to another. 
         // Clear back stack so the back button does bring to the category selection page
         Frame?.BackStack.Clear();
     }
-    
+
+    public async Task NavigateToContactFormAsync(IssueCategory? category)
+    {
+        if (category == null)
+        {
+            throw new ArgumentNullException(nameof(category), "Cannot navigate to the contact form page, no category defined");
+        }
+
+        await NavigateToAsync<ContactFormViewModel>(category);
+    }
+
     public async Task NavigateToResultAsync(bool isReportSent)
     {
         await NavigateToAsync<ReportIssueResultViewModel>(isReportSent);

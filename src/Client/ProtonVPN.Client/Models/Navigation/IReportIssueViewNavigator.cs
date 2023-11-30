@@ -25,7 +25,9 @@ public interface IReportIssueViewNavigator : IViewNavigator
 {
     Task NavigateToCategorySelectionAsync();
 
-    Task NavigateToCategoryAsync(IssueCategory category);
+    Task NavigateToCategoryAsync(IssueCategory? category);
+
+    Task NavigateToContactFormAsync(IssueCategory? category);
 
     Task NavigateToResultAsync(bool isReportSent);
 }

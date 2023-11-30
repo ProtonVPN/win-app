@@ -20,6 +20,7 @@
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -62,6 +63,10 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
 
         InputFields = new();
         InputFields.ItemErrorsChanged += OnInputFieldsItemErrorsChanged;
+
+        IncludeLogs = true;
+
+        ViewNavigator.Window.Closed += OnReportIssueWindowClosed;
     }
 
     public override void OnNavigatedTo(object parameter)
@@ -89,14 +94,17 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
                            .Select(f => f.Serialize())
                            .ToDictionary(a => a.key, a => a.value);
 
-            Result result = await _reportIssueSender.SendAsync(Category.Key, email, serializedFields, IncludeLogs);
+            Result result = await _reportIssueSender.SendAsync(Category!.Key, email, serializedFields, IncludeLogs);
 
             isReportSent = result.Success;
         }
         finally
         {
-            IsSendingReport = false;
-            await ViewNavigator.NavigateToResultAsync(isReportSent);
+            if (IsSendingReport)
+            {
+                IsSendingReport = false;
+                await ViewNavigator.NavigateToResultAsync(isReportSent);
+            }
         }
     }
 
@@ -161,5 +169,14 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
     partial void OnIsSendingReportChanged(bool value)
     {
         ViewNavigator.CanNavigate = !value;
+    }
+
+    private void OnReportIssueWindowClosed(object sender, WindowEventArgs args)
+    {
+        if (IsSendingReport)
+        {
+            // If window is closed while sending the report, keep sending the report in background but reset the flag on the view model
+            IsSendingReport = false;
+        }
     }
 }
