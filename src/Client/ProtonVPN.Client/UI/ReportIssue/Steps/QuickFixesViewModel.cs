@@ -61,7 +61,7 @@ public partial class QuickFixesViewModel : PageViewModelBase<IReportIssueViewNav
     [RelayCommand]
     public async Task GoToContactFormAsync()
     {
-        await ViewNavigator.NavigateToAsync<ContactFormViewModel>(Category);
+        await ViewNavigator.NavigateToContactFormAsync(Category);
     }
 
     [RelayCommand]

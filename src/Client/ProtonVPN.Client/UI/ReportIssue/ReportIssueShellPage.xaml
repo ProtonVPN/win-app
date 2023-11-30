@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
                                TotalSteps="{x:Bind ViewModel.TotalSteps}">
         <Frame x:Name="NavigationFrame"
-               HorizontalAlignment="Center"
+               HorizontalAlignment="Stretch"
                VerticalAlignment="Stretch" />
     </custom:StepContentControl>
 </Page>
