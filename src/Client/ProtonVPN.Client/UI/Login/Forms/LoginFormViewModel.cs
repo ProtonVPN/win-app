@@ -21,40 +21,55 @@ using System.Security;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
-using ProtonVPN.Client.Models.Urls;
-using ProtonVPN.Client.UI.ReportIssue;
-using Windows.System;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Client.UI.Login.Enums;
+using ProtonVPN.Client.UI.Login.Overlays;
+using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Common.Core.Extensions;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
-public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoggedInMessage>
-{ 
+public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<FeatureFlagsChangedMessage>
+{
     private readonly IUrls _urls;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IDialogActivator _dialogActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
+
+    private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     [NotifyPropertyChangedFor(nameof(IsLoginFormEnabled))]
     private bool _isLoggingIn;
 
-    public bool IsLoginFormEnabled => !IsLoggingIn;
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
+    [NotifyPropertyChangedFor(nameof(UsernameFieldLabel))]
+    [NotifyPropertyChangedFor(nameof(SwitchPageLabel))]
+    [NotifyPropertyChangedFor(nameof(IsPasswordFieldVisible))]
+    private LoginFormType _loginFormType;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
@@ -68,10 +83,32 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
     [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
     private bool _isToShowCreateAccountSpinner;
 
+    public bool IsLoginFormEnabled => !IsLoggingIn;
+
+    public bool IsPasswordFieldVisible => LoginFormType == LoginFormType.SRP;
+
+    public string UsernameFieldLabel => LoginFormType switch
+    {
+        LoginFormType.SRP => Localizer.Get("Login_Form_Username"),
+        LoginFormType.SSO => Localizer.Get("Login_Form_Email"),
+        _ => Localizer.Get("Login_Form_Username")
+    };
+
+    public string SwitchPageLabel => LoginFormType switch
+    {
+        LoginFormType.SRP => Localizer.Get("Login_Form_SignInWithSso"),
+        LoginFormType.SSO => Localizer.Get("Login_Form_SignInWithPassword"),
+        _ => string.Empty
+    };
+
     public override bool IsBackEnabled => false;
 
+    public string CreateAccountUrl => _urls.CreateAccount;
+
+    private bool CanCreateAccount => !IsToShowCreateAccountSpinner;
+
     public LoginFormViewModel(
-        ILoginViewNavigator loginViewNavigator, 
+        ILoginViewNavigator loginViewNavigator,
         ILocalizationProvider localizationProvider,
         IUrls urls,
         IEventMessageSender eventMessageSender,
@@ -79,7 +116,10 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleActionExecutor guestHoleActionExecutor,
         IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator) 
+        IReportIssueViewNavigator reportIssueViewNavigator,
+        IFeatureFlagsObserver featureFlagsObserver,
+        IUIThreadDispatcher uiThreadDispatcher,
+        SsoLoginOverlayViewModel ssoLoginOverlayViewModel)
         : base(loginViewNavigator, localizationProvider)
     {
         _urls = urls;
@@ -89,9 +129,10 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         _guestHoleActionExecutor = guestHoleActionExecutor;
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
+        _featureFlagsObserver = featureFlagsObserver;
+        _uiThreadDispatcher = uiThreadDispatcher;
+        _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
     }
-
-    public string CreateAccountUrl => _urls.CreateAccount;
 
     [RelayCommand(CanExecute = nameof(CanLogIn))]
     public async Task LoginAsync()
@@ -99,10 +140,16 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         try
         {
             IsLoggingIn = true;
-            SecureString securePassword = GetSecurePassword();
-            Password = string.Empty;
 
-            AuthResult result = await _userAuthenticator.LoginUserAsync(Username, securePassword);
+            _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Authenticating));
+
+            AuthResult result = LoginFormType switch
+            {
+                LoginFormType.SRP => await HandleSrpLoginAsync(),
+                LoginFormType.SSO => await HandleSsoLoginAsync(),
+                _ => throw new NotSupportedException($"{LoginFormType} login is not supported.")
+            };
+
             if (result.Success)
             {
                 await HandleSuccessAsync();
@@ -122,17 +169,31 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         }
     }
 
-    private void HandleError(AuthResult result)
+    private bool CanLogIn()
     {
-        if (result.Value == AuthError.TwoFactorRequired)
+        return !IsLoggingIn && LoginFormType switch
         {
-            _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorRequired));
-        }
-        else
-        {
-            _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Error, result.Value,
-                result.Error));
-        }
+            LoginFormType.SRP => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrEmpty(Password),
+            LoginFormType.SSO => !string.IsNullOrWhiteSpace(Username) && Username.IsValidEmailAddress() && _featureFlagsObserver.IsSsoEnabled,
+            _ => false
+        };
+    }
+
+    private async Task<AuthResult> HandleSrpLoginAsync()
+    {
+        SecureString securePassword = Password.ToSecureString();
+        Password = string.Empty;
+
+        return await _userAuthenticator.LoginUserAsync(Username, securePassword);
+    }
+
+    private async Task<AuthResult> HandleSsoLoginAsync()
+    {
+        SsoAuthResult result = await _userAuthenticator.StartSsoAuthAsync(Username);
+
+        return result.Success
+            ? await _ssoLoginOverlayViewModel.AuthenticateAsync(result.SsoChallengeToken)
+            : result;
     }
 
     private async Task HandleSuccessAsync()
@@ -145,29 +206,58 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
     }
 
-    private SecureString GetSecurePassword()
+    private void HandleError(AuthResult result)
     {
-        SecureString secureString = new();
-        foreach (char c in Password)
+        switch (result.Value)
         {
-            secureString.AppendChar(c);
+            case AuthError.TwoFactorRequired:
+                _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorRequired));
+                break;
+
+            case AuthError.SwitchToSSO:
+            case AuthError.SwitchToSRP:
+                if (CanSwitchLoginForm())
+                {
+                    SwitchLoginForm();
+                }
+                goto default;
+
+            default:
+                _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Error, result.Value, result.Error));
+                break;
         }
-
-        secureString.MakeReadOnly();
-
-        return secureString;
     }
 
-    private bool CanLogIn()
+    private bool CanSwitchLoginForm()
     {
-        return Username.Length > 0 && Password.Length > 0 && !IsLoggingIn;
+        return LoginFormType switch
+        {
+            LoginFormType.SRP => _featureFlagsObserver.IsSsoEnabled,
+            LoginFormType.SSO => true,
+            _ => false,
+        };
     }
 
-    private bool CanCreateAccount => !IsToShowCreateAccountSpinner;
+    [RelayCommand(CanExecute = nameof(CanSwitchLoginForm))]
+    public void SwitchLoginForm()
+    {
+        LoginFormType = LoginFormType switch
+        {
+            LoginFormType.SRP => LoginFormType.SSO,
+            LoginFormType.SSO => LoginFormType.SRP,
+            _ => LoginFormType.SRP,
+        };
+    }
 
     public void Receive(LoggedInMessage message)
     {
         ClearInputs();
+    }
+
+    private void ClearInputs()
+    {
+        Username = string.Empty;
+        Password = string.Empty;
     }
 
     [RelayCommand]
@@ -223,9 +313,26 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         await Launcher.LaunchUriAsync(new Uri(_urls.CreateAccount));
     }
 
-    private void ClearInputs()
+    public void Receive(FeatureFlagsChangedMessage message)
     {
-        Username = string.Empty;
-        Password = string.Empty;
+        _uiThreadDispatcher.TryEnqueue(() =>
+        {
+            // If currently on SSO login page but SSO feature flag is not enabled, switch back to SRP login form
+            if (!_featureFlagsObserver.IsSsoEnabled && LoginFormType == LoginFormType.SSO)
+            {
+                SwitchLoginForm();
+            }
+
+            LoginCommand.NotifyCanExecuteChanged();
+            SwitchLoginFormCommand.NotifyCanExecuteChanged();
+        });
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(UsernameFieldLabel));
+        OnPropertyChanged(nameof(SwitchPageLabel));
     }
 }

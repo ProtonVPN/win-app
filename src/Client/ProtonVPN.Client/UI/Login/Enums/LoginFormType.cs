@@ -17,17 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Dispatching;
-using ProtonVPN.Client.Common.Dispatching;
+namespace ProtonVPN.Client.UI.Login.Enums;
 
-namespace ProtonVPN.Client.Dispatching;
-
-public class UIThreadDispatcher : IUIThreadDispatcher
+public enum LoginFormType
 {
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
-
-    public bool TryEnqueue(Action callback)
-    {
-        return _dispatcherQueue.TryEnqueue(() => callback());
-    }
+    SRP,
+    SSO
 }

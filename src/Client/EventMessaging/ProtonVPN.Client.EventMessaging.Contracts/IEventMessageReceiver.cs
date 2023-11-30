@@ -19,15 +19,12 @@
 
 using CommunityToolkit.Mvvm.Messaging;
 
-namespace ProtonVPN.Client.EventMessaging.Contracts
-{
-    public interface IEventMessageReceiver<TMessage> : IEventMessageReceiver, IRecipient<TMessage>
-        where TMessage : class
-    {
-        void Receive(TMessage message);
-    }
+namespace ProtonVPN.Client.EventMessaging.Contracts;
 
-    public interface IEventMessageReceiver
-    {
-    }
+public interface IEventMessageReceiver<TMessage> : IEventMessageReceiver, IRecipient<TMessage>
+    where TMessage : class
+{ }
+
+public interface IEventMessageReceiver
+{
 }

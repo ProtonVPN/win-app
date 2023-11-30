@@ -67,9 +67,6 @@ public class ApiClient : BaseApiClient, IApiClient
     {
         HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/v4/sessions");
 
-        // TODO: Remove this header once ProtonVPN version has been whitelisted for unauth sessions
-        request.Headers.Add("X-Enforce-UnauthSession", "true");
-
         return await SendRequest<UnauthSessionResponse>(request, "Post unauth sessions");
     }
 

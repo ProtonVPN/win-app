@@ -64,9 +64,13 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
     {
         switch (message.Value)
         {
+            case LoginState.Authenticating:
+                ClearErrorMessage();
+                break;
+
             case LoginState.Success:
                 ClearErrorMessage();
-                await ViewNavigator.NavigateToSrpLoginAsync();
+                await ViewNavigator.NavigateToLoginAsync();
                 break;
 
             case LoginState.TwoFactorRequired:
@@ -83,7 +87,7 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
 
                     case AuthError.TwoFactorAuthFailed:
                         ShowErrorMessage(Localizer.Get("Login_Error_TwoFactorFailed"));
-                        await ViewNavigator.NavigateToSrpLoginAsync();
+                        await ViewNavigator.NavigateToLoginAsync();
                         break;
 
                     case AuthError.Unknown:
@@ -132,6 +136,14 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
             case AuthError.GuestHoleFailed:
                 //TODO: show troubleshooting dialog
                 _logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
+                break;
+
+            case AuthError.SsoAuthFailed:
+                ShowErrorMessage(Localizer.Get("Login_Error_SsoAuthFailed"));
+                break;
+
+            case AuthError.GetSessionDetailsFailed:
+                ShowErrorMessage(Localizer.Get("Login_Error_GetSessionDetailsFailed"));
                 break;
 
             default:

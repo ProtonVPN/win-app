@@ -29,6 +29,12 @@ public class UserSettings : GlobalSettings, IUserSettings
 {
     private readonly IUserSettingsRepository _userRepository;
 
+    public string? UserDisplayName
+    {
+        get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
     public string Theme
     {
         get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;

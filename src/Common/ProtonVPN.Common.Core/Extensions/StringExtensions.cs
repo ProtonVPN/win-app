@@ -19,6 +19,7 @@
 
 using System.Globalization;
 using System.Net;
+using System.Security;
 using System.Text.RegularExpressions;
 
 namespace ProtonVPN.Common.Core.Extensions;
@@ -198,5 +199,22 @@ public static class StringExtensions
         {
             return false;
         }
+    }
+
+    public static SecureString ToSecureString(this string? value)
+    {
+        SecureString secureString = new();
+
+        if (!string.IsNullOrEmpty(value))
+        {
+            foreach (char c in value)
+            {
+                secureString.AppendChar(c);
+            }
+        }
+
+        secureString.MakeReadOnly();
+
+        return secureString;
     }
 }

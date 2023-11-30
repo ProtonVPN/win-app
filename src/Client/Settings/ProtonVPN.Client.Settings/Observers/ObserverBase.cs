@@ -22,7 +22,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -46,7 +45,7 @@ public abstract class ObserverBase : IObserver, IEventMessageReceiver<SettingCha
         ISettings settings,
         IApiClient apiClient,
         IConfiguration config,
-        ILogger logger)        
+        ILogger logger)
     {
         Settings = settings;
         ApiClient = apiClient;
@@ -62,12 +61,12 @@ public abstract class ObserverBase : IObserver, IEventMessageReceiver<SettingCha
         _timer.Elapsed += OnTimerElapsed;
     }
 
-    protected abstract Task UpdateAsync();
-
     public void Receive(SettingChangedMessage message)
     {
         OnSettingsChanged(message);
     }
+
+    protected abstract Task UpdateAsync();
 
     protected virtual void OnSettingsChanged(SettingChangedMessage message)
     { }

@@ -25,6 +25,7 @@ namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface IUserSettings
 {
+    string UserDisplayName { get; set; }
     string Theme { get; set; }
     int? WindowWidth { get; set; }
     int? WindowHeight { get; set; }

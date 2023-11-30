@@ -29,11 +29,12 @@ public interface IUserAuthenticator
 {
     bool IsLoggedIn { get; }
 
-    Task CreateUnauthSessionAsync();
+    Task CreateUnauthSessionAsync(); 
+    Task<SsoAuthResult> StartSsoAuthAsync(string username); 
+    Task<AuthResult> CompleteSsoAuthAsync(string ssoResponseToken);
     Task<AuthResult> LoginUserAsync(string username, SecureString password);
     Task<AuthResult> AuthAsync(string username, SecureString password);
     Task<AuthResult> SendTwoFactorCodeAsync(string code);
-    Task<ApiResponseResult<VpnInfoWrapperResponse>> RefreshVpnInfoAsync();
-    Task InvokeAutoLoginEventAsync();
+    Task AutoLoginUserAsync();
     Task LogoutAsync(LogoutReason reason);
 }

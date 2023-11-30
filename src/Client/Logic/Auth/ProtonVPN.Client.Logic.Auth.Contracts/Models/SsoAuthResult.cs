@@ -17,17 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Dispatching;
-using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
-namespace ProtonVPN.Client.Dispatching;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
-public class UIThreadDispatcher : IUIThreadDispatcher
+public class SsoAuthResult : AuthResult
 {
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+    public string SsoChallengeToken { get; init; }
 
-    public bool TryEnqueue(Action callback)
+    protected internal SsoAuthResult(AuthError value, bool success, string error)
+            : base(value, success, error)
     {
-        return _dispatcherQueue.TryEnqueue(() => callback());
+        SsoChallengeToken = string.Empty;
+    }
+
+    public static SsoAuthResult FromAuthResult(AuthResult result)
+    {
+        return new(result.Value, result.Success, result.Error);
+    }
+
+    public static SsoAuthResult Ok(string ssoChallengeToken)
+    {
+        return new(AuthError.None, true, string.Empty)
+        {
+            SsoChallengeToken = ssoChallengeToken,
+        };
     }
 }

@@ -2184,4 +2184,19 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
     <value>WireGuard</value>
   </data>
+  <data name="Login_Form_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Login_Form_SignInWithPassword" xml:space="preserve">
+    <value>Sign in with a password</value>
+  </data>
+  <data name="Login_Form_SignInWithSso" xml:space="preserve">
+    <value>Sign in with SSO</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
+    <value>An error occured when retrieving the session details. Please try again.</value>
+  </data>
+  <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
+    <value>SSO Authentication failed. Please try again.</value>
+  </data>
 </root>

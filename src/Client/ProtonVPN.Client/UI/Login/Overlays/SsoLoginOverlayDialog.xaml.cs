@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,17 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Dispatching;
-using ProtonVPN.Client.Common.Dispatching;
+namespace ProtonVPN.Client.UI.Login.Overlays;
 
-namespace ProtonVPN.Client.Dispatching;
-
-public class UIThreadDispatcher : IUIThreadDispatcher
+public sealed partial class SsoLoginOverlayDialog
 {
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+    public SsoLoginOverlayViewModel ViewModel { get; }
 
-    public bool TryEnqueue(Action callback)
+    public SsoLoginOverlayDialog()
     {
-        return _dispatcherQueue.TryEnqueue(() => callback());
+        ViewModel = App.GetService<SsoLoginOverlayViewModel>();
+        InitializeComponent();
     }
 }
