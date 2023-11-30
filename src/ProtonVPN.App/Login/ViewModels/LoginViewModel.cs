@@ -295,15 +295,18 @@ namespace ProtonVPN.Login.ViewModels
 
         public void OnFeatureFlagsChanged()
         {
-            OnPropertyChanged(nameof(IsLoginAllowed));
-
-            (SwitchToSingleSignOnCommand as RelayCommand)?.RaiseCanExecuteChanged();
-
-            // If currently on SSO login page but SSO feature flag is not enabled, switch back to User & Password
-            if (!_featureFlagsProvider.IsSsoEnabled && IsToShowSingleSignOn)
+            App.Current.Dispatcher.Invoke(() => 
             {
-                FormType = LoginFormType.UsernameAndPassword;
-            }
+                OnPropertyChanged(nameof(IsLoginAllowed));
+
+                (SwitchToSingleSignOnCommand as RelayCommand)?.RaiseCanExecuteChanged();
+
+                // If currently on SSO login page but SSO feature flag is not enabled, switch back to User & Password
+                if (!_featureFlagsProvider.IsSsoEnabled && IsToShowSingleSignOn)
+                {
+                    FormType = LoginFormType.UsernameAndPassword;
+                }
+            });
         }
 
         private void SetKillSwitchActive(bool isNetworkBlocked, VpnStatus vpnStatus)

@@ -34,11 +34,12 @@ public class FeatureFlagsCache : IFeatureFlagsCache
 
     public IReadOnlyList<FeatureFlag> Get()
     {
-        return JsonConvert.DeserializeObject<IReadOnlyList<FeatureFlag>>(_appSettings.FeatureFlags);
+        return JsonConvert.DeserializeObject<IReadOnlyList<FeatureFlag>>(_appSettings.FeatureFlags)
+            ?? new List<FeatureFlag>();
     }
 
     public void Store(IReadOnlyList<FeatureFlag> flags)
     {
-        _appSettings.FeatureFlags = JsonConvert.SerializeObject(flags);
+        _appSettings.FeatureFlags = JsonConvert.SerializeObject(flags ?? new List<FeatureFlag>());
     }
 }
