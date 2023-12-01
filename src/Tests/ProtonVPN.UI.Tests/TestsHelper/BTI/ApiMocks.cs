@@ -17,29 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
-
-namespace ProtonVPN.UI.Tests.Tests
+namespace ProtonVPN.UI.Tests.TestsHelper.BTI
 {
-    [SetUpFixture]
-    public class SetUp : TestSession
+    public class ApiMocks
     {
-        [OneTimeSetUp]
-        public void TestInitialize()
-        {
-            KillProtonVpnProcess();
-            string dir = Path.GetDirectoryName(TestData.AppFolderPath);
-            Directory.SetCurrentDirectory(dir);
-            TestsRecorder.StartVideoCapture();
-        }
-
-        [OneTimeTearDown]
-        public void TestFinalTearDown()
-        {
-            TestsRecorder.StopRecording();
-        }
+        public const string CERTIFICATE_ERROR_503 = @"POST /vpn/v1/certificate:
+  - body:
+      Error: Test scenario
+    status: 503";
     }
 }

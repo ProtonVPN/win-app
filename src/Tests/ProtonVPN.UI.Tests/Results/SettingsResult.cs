@@ -32,11 +32,11 @@ namespace ProtonVPN.UI.Tests.Results
 
         public SettingsResult CheckIfSettingsAreDisplayed()
         {
-            WaitUntilElementExistsByName("Start Minimized", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Start on boot", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Connect on app start", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Show Notifications", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Early Access", TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName("Start Minimized", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Start on boot", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Connect on app start", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Show Notifications", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Early Access", TestData.VeryShortTimeout);
             return this;
         }
 

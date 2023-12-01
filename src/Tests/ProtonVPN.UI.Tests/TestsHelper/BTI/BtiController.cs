@@ -20,34 +20,20 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
-namespace ProtonVPN.UI.Tests.ApiClient
+namespace ProtonVPN.UI.Tests.TestsHelper
 {
-    public class TestsApiClient
+    public class BtiController
     {
-        private readonly HttpClient _client;
-
-        public TestsApiClient(string baseAddress)
+        private static readonly HttpClient _client = new HttpClient
         {
-            _client = new HttpClient
-            {
-                BaseAddress = new Uri(baseAddress)
-            };
-        }
+            BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_CONTROLLER_IP"))
+        };
 
-        public async Task<string> GetIpAddress()
+        public static async Task SetScenarioAsync(string scenarioEndpoint)
         {
-            return await GetConnectionInfo("ip");
-        }
-
-        private async Task<string> GetConnectionInfo(string jsonKey)
-        {
-            HttpResponseMessage response = await _client.GetAsync("?format=json");
+            HttpResponseMessage response = await _client.GetAsync(scenarioEndpoint);
             response.EnsureSuccessStatusCode();
-            string responseBody = response.Content.ReadAsStringAsync().Result;
-            JObject json = JObject.Parse(responseBody);
-            return json[jsonKey].ToString();
         }
     }
 }

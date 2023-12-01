@@ -112,7 +112,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [TearDown]
         public void TestCleanup()
         {
-            Cleanup();
+            ClientCleanup();
         }
     }
 }

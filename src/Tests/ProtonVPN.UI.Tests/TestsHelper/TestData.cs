@@ -19,10 +19,11 @@
 
 using System;
 using System.IO;
+using System.Linq;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {
-    public static class TestConstants
+    public static class TestData
     {
         public static TimeSpan VeryShortTimeout => TimeSpan.FromSeconds(5);
         public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
@@ -34,6 +35,21 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         public static string MapCountry => "CA";
         public static string PathToRecorder => @"C:\TestRecorder\ffmpeg.exe";
         public static string AppLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs\app-logs.txt");
+        public static string AppLogsFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ProtonVPN\Logs");
         public static string ServiceLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"ProtonVPN\Logs\service-logs.txt");
+        public static string ServiceLogsFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"ProtonVPN\Logs");
+        public static string AppVersionFolder => FindNewestVersionFolder(Directory.GetDirectories(AppFolderPath, "v*"));
+        public static string TestConfigPath => AppVersionFolder + "/ProtonVPN.config";
+
+        private static string FindNewestVersionFolder(string[] versionFolders)
+        {
+            return versionFolders.MaxBy(GetVersion);
+        }
+
+        private static Version GetVersion(string folderPath)
+        {
+            string versionString = Path.GetFileName(folderPath).TrimStart('v');
+            return Version.TryParse(versionString, out Version version) ? version : new();
+        }
     }
 }

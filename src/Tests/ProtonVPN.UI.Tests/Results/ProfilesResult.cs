@@ -25,7 +25,7 @@ namespace ProtonVPN.UI.Tests.Results
     {
         public ProfilesResult CheckIfProfileIsDisplayed(string profileName)
         {
-            return WaitUntilElementExistsByName(profileName, TestConstants.VeryShortTimeout);
+            return WaitUntilElementExistsByName(profileName, TestData.VeryShortTimeout);
         }
 
         public ProfilesResult CheckIfProfileCreationErrorIsNotShown()
@@ -35,8 +35,8 @@ namespace ProtonVPN.UI.Tests.Results
 
         public ProfilesResult CheckIfDefaultProfilesAreDisplayed()
         {
-            WaitUntilElementExistsByName("Fastest", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Random", TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName("Fastest", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Random", TestData.VeryShortTimeout);
             return this;
         }
 

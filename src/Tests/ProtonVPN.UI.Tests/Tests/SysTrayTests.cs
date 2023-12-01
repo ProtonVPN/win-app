@@ -47,7 +47,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void OpenAppViaTray()
         {
-            _homeWindow.CloseApp();
+            _homeWindow.PressCloseButton();
             _trayWindow.OpenSysTrayWindow()
                 .OpenProtonVpn();
             _trayResult.CheckIfClientIsRunning();
@@ -64,7 +64,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectViaTrayProfile()
         {
-            _homeWindow.CloseApp();
+            _homeWindow.PressCloseButton();
             _trayWindow.OpenSysTrayWindow()
                 .ConnectToRandomProfile();
             _trayResult.WaitUntilConnected();
@@ -88,7 +88,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [TearDown]
         public void TestCleanup()
         {
-            Cleanup();
+            ClientCleanup();
         }
     }
 }

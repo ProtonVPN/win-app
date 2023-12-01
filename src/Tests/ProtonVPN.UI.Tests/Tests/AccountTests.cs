@@ -37,7 +37,7 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             _loginWindow.SignIn(TestUserData.GetPlusUser());
             _homeWindow.NavigateToAccount();
-            _homeResult.VerifyLoggedInAsTextIs(TestUserData.GetPlusUser().Username);
+            _homeResult.CheckIfUsernameIsDisplayedInAccount(TestUserData.GetPlusUser().Username);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.MoveMouseOnCountry("Canada");
             _homeResult.CheckIfConnectButtonIsNotDisplayed();
 
-            _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry);
+            _homeWindow.PerformConnectionViaMap(TestData.MapCountry);
             _homeResult.CheckIfUpgradeRequiredModalIsShown();
         }
 
@@ -62,7 +62,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [TearDown]
         public void CleanUp()
         {
-            Cleanup();
+            ClientCleanup();
         }
     }
 }

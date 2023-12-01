@@ -38,19 +38,19 @@ namespace ProtonVPN.UI.Tests.Results
         public SysTrayResult CheckIfClientIsRunning()
         {
             UIActions actions = new UIActions();
-            actions.WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestConstants.MediumTimeout);
+            actions.WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestData.MediumTimeout);
             return this;
         }
 
         public SysTrayResult WaitUntilConnected()
         {
-            WaitUntilDisplayedByAutomationId("QuickLaunchFlag", TestConstants.MediumTimeout);
+            WaitUntilDisplayedByAutomationId("QuickLaunchFlag", TestData.MediumTimeout);
             return this;
         }
 
         public SysTrayResult WaitUntilDisconnected()
         {
-            WaitUntilDisplayedByName("You are not protected!", TestConstants.MediumTimeout);
+            WaitUntilDisplayedByName("You are not protected!", TestData.MediumTimeout);
             return this;
         }
     }

@@ -48,12 +48,15 @@ namespace ProtonVPN.UI.Tests.Windows
         private AutomationElement ModalCloseButton => ElementByAutomationId("ModalCloseButton");
         private AutomationElement SidebarModeButton => ElementByAutomationId("SidebarModeButton");
         private Button CancelButton => ElementByAutomationId("CancelButton").AsButton();
-        private Button ClientCloseButton => ElementByAutomationId("CloseButton", TestConstants.ShortTimeout).AsButton();
+        private Button ClientCloseButton => ElementByAutomationId("CloseButton", TestData.ShortTimeout).AsButton();
         private AutomationElement NetshieldToggle => ElementByAutomationId("NetShieldToggle");
         private AutomationElement NetshieldOff => ElementByClassName("Shield");
         private AutomationElement NetshieldLevelOne => ElementByClassName("ShieldHalfFilled");
         private Button NetshieldLevelTwo => ElementByClassName("ShieldFilled").Parent.AsButton();
         private AutomationElement ChevronDown => ElementByClassName("ChevronDown");
+        private Button MinimizeButton => ElementByAutomationId("MinimizeButton").AsButton();
+        private Button NoThanksButton => ElementByName("No Thanks").AsButton();
+        private Button GotItButton => ElementByName("Got it").AsButton();
 
         public HomeWindow PressQuickConnectButton()
         {
@@ -127,13 +130,13 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public LoginWindow ContinueLogout()
         {
-            WaitUntilElementExistsByAutomationIdAndReturnTheElement("ContinueButton", TestConstants.MediumTimeout).AsButton().Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement("ContinueButton", TestData.MediumTimeout).AsButton().Invoke();
             return new LoginWindow();
         }
 
         public HomeWindow CancelLogout()
         {
-            WaitUntilElementExistsByAutomationIdAndReturnTheElement("CancelActionButton", TestConstants.MediumTimeout).AsButton().Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement("CancelActionButton", TestData.MediumTimeout).AsButton().Invoke();
             return this;
         }
 
@@ -202,11 +205,11 @@ namespace ProtonVPN.UI.Tests.Windows
         {
             WaitUntilElementExistsByAutomationIdAndReturnTheElement(
                 "CloseButton", 
-                TestConstants.VeryShortTimeout).AsButton().Invoke();
+                TestData.VeryShortTimeout).AsButton().Invoke();
             return this;
         }
 
-        public HomeWindow CloseApp()
+        public HomeWindow PressCloseButton()
         {
             ClientCloseButton.Invoke();
             return this;
@@ -233,20 +236,38 @@ namespace ProtonVPN.UI.Tests.Windows
             return this;
         }
 
+        public HomeWindow MinimizeApp()
+        {
+            MinimizeButton.Invoke();
+            return this;
+        }
+
+        public HomeWindow PressNoThanks()
+        {
+            NoThanksButton.Click();
+            return this;
+        }
+
+        public HomeWindow PressGotIt()
+        {
+            GotItButton.Click();
+            return this;
+        }
+
         public HomeWindow WaitUntilDisconnected()
         {
             return WaitUntilTextMatchesByAutomationId(
             "SidebarQuickConnectButton",
-            TestConstants.MediumTimeout,
+            TestData.MediumTimeout,
             "Quick Connect",
-            "Failed to disconnect in " + TestConstants.MediumTimeout.Seconds + " s");
+            "Failed to disconnect in " + TestData.MediumTimeout.Seconds + " s");
         }
 
         public HomeWindow WaitUntilConnected()
         {
             return WaitUntilTextMatchesByAutomationId(
             "SidebarQuickConnectButton",
-            TestConstants.MediumTimeout,
+            TestData.MediumTimeout,
             "Disconnect",
             "Failed to connect");
         }

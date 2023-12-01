@@ -22,7 +22,6 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Windows;
 
@@ -64,7 +63,7 @@ namespace ProtonVPN.UI.Tests.Results
 
         public async Task CheckIfCorrectIpAddressIsDisplayed()
         {
-            TestsApiClient client = new TestsApiClient("https://api.ipify.org/");
+            ConnectionDataHelper client = new ConnectionDataHelper();
             string currentIpAddress = await client.GetIpAddress();
             Assert.That(currentIpAddress == IpAddressLabelText, Is.True, $"IP Address: {IpAddressLabelText} does not match expected {currentIpAddress} address from API");
         }
@@ -87,18 +86,24 @@ namespace ProtonVPN.UI.Tests.Results
         {
             KillProtonVpnProcess();
             LaunchApp();
-            WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestConstants.LongTimeout);
+            WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestData.LongTimeout);
         }
 
         public HomeResult CheckIfLoggedIn()
         {
-            WaitUntilDisplayedByAutomationId("MenuHamburgerButton", TestConstants.MediumTimeout);
+            WaitUntilDisplayedByAutomationId("MenuHamburgerButton", TestData.MediumTimeout);
             return this;
         }
 
-        public HomeResult VerifyLoggedInAsTextIs(string objectName)
+        public HomeResult CheckIfUsernameIsDisplayedInAccount(string objectName)
         {
-            WaitUntilElementExistsByName(objectName, TestConstants.MediumTimeout);
+            WaitUntilElementExistsByName(objectName, TestData.MediumTimeout);
+            return this;
+        }
+
+        public HomeResult CheckIfCorrectPlanIsDisplayed(string planName)
+        {
+            WaitUntilElementExistsByName(planName, TestData.ShortTimeout);
             return this;
         }
 
@@ -110,7 +115,7 @@ namespace ProtonVPN.UI.Tests.Results
 
         public HomeResult CheckIfUpgradeRequiredModalIsShown()
         {
-            WaitUntilElementExistsByName("Upgrade", TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName("Upgrade", TestData.VeryShortTimeout);
             CheckIfDisplayedByAutomationId("UpsellModalTitle");
             return this;
         }
@@ -123,7 +128,21 @@ namespace ProtonVPN.UI.Tests.Results
 
         public HomeResult CheckIfPortForwardingQuickSettingIsVisible()
         {
-            WaitUntilDisplayedByAutomationId("PortForwardingButton", TestConstants.VeryShortTimeout);
+            WaitUntilDisplayedByAutomationId("PortForwardingButton", TestData.VeryShortTimeout);
+            return this;
+        }
+
+        public HomeResult CertificateErrorIsDisplayed()
+        {
+            WaitUntilElementExistsByName("Proton VPN failed to fetch authentication certificate due to network issue.", TestData.ShortTimeout);
+            return this;
+        }
+
+        public HomeResult DowngradeModalIsDisplayed()
+        {
+            WaitUntilElementExistsByName("Your VPN subscription plan has expired", TestData.ShortTimeout);
+            WaitUntilElementExistsByName("No Thanks", TestData.ShortTimeout);
+            WaitUntilElementExistsByName("Upgrade Again", TestData.ShortTimeout);
             return this;
         }
     }

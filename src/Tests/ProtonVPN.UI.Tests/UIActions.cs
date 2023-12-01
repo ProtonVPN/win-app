@@ -170,19 +170,19 @@ namespace ProtonVPN.UI.Tests
 
         protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
         {
-            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestData.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
         }
 
         protected AutomationElement ElementByClassName(string className)
         {
-            WaitUntilElementExistsByClassName(className, TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByClassName(className, TestData.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByClassName(className));
         }
 
         protected AutomationElement ElementByName(string name)
         {
-            WaitUntilElementExistsByName(name, TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName(name, TestData.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByName(name));
         }
 
@@ -215,7 +215,7 @@ namespace ProtonVPN.UI.Tests
                         return false;
                     }
                 },
-                time, TestConstants.RetryInterval);
+                time, TestData.RetryInterval);
 
             if (!retry.Success)
             {

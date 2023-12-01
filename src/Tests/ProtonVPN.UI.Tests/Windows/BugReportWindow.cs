@@ -30,7 +30,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public BugReportWindow FillBugReportForm(string bugType)
         {
-            WaitUntilElementExistsByName(bugType, TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName(bugType, TestData.VeryShortTimeout);
             ElementByName(bugType).Click();
             ContactUsButton.Click();
             AutomationElement[] bugReportInputFields = Window.FindAllDescendants(cf => cf.ByAutomationId("AdornedTextBox"));
@@ -46,7 +46,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public BugReportWindow VerifySendingIsSuccessful()
         {
-            WaitUntilElementExistsByClassName("Thanks", TestConstants.MediumTimeout);
+            WaitUntilElementExistsByClassName("Thanks", TestData.MediumTimeout);
             CheckIfDisplayedByName("We’ll get back to you as soon as we can.");
             CheckIfDisplayedByName("Done");
             return this;

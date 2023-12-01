@@ -99,7 +99,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Cleanup();
+            ClientCleanup();
         }
     }
 }

@@ -50,6 +50,12 @@ build-release:
     BUILD_PATH: src/bin/win-x64/publish
     
 build-bti:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: manual
   extends:
     - .build-bti-vars  
     - .build-script
@@ -64,6 +70,7 @@ build-debug:
   except:
     - master
     - /^release.*$/
+    - schedules
   variables:
     TYPE: Debug
     DEPENDENCIES: publish
@@ -71,17 +78,51 @@ build-debug:
 
 ui-test:
   extends: .test_execution_script
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   variables:
     CATEGORY: "UI"
     
 connection-test:
   extends: .test_execution_script
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   variables:
     CATEGORY: "Connection"
-
+    
+bti-test:
+  extends: .test_execution_script
+  needs:
+    - build-BTI-installer
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: manual
+  tags:
+    - BTI
+  dependencies:
+    - build-BTI-installer
+  variables:
+    CATEGORY: "BTI"
+  after_script:
+    - ci\test-scripts\alert-failure.ps1
+    
 win-11-test:
   extends: .test_execution_script
   when: manual
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   tags:
     - win11
   variables:
@@ -98,9 +139,11 @@ tests:
     - src\bin\ProtonVPN.Builds.ConsoleJob.exe
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
-    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
+    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance&TestCategory!=BTI"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
+  except:
+    - schedules
   artifacts:
     reports:
       coverage_report:
@@ -116,6 +159,8 @@ build-installer:
     - build-release
   extends: 
     - .build-installer
+  except:
+    - schedules
   variables:
     BUILD_PATH: src/bin/win-x64/publish
 
@@ -198,6 +243,8 @@ send-slack-notification:
   only:
     refs:
       - develop
+  except:
+    - schedules
   stage: publish-to-slack
   script:
     - python -m pip install -r ci\python-libs.txt

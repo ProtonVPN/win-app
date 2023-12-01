@@ -48,9 +48,9 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectAndDisconnectViaMapSecureCore()
         {
-            _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)
+            _mainWindow.PerformConnectionViaMapSecureCore(TestData.MapCountry)
                 .WaitUntilConnected();
-            _mainWindow.PerformConnectionViaMapSecureCore(TestConstants.MapCountry)
+            _mainWindow.PerformConnectionViaMapSecureCore(TestData.MapCountry)
                 .WaitUntilDisconnected();
         }
 
@@ -67,7 +67,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [TearDown]
         public void TestCleanup()
         {
-            Cleanup();
+            ClientCleanup();
         }
     }
 }

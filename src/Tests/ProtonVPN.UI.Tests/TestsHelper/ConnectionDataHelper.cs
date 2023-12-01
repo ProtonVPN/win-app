@@ -18,31 +18,31 @@
  */
 
 using System;
-using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace ProtonVPN.UI.Tests.TestsHelper
 {
-    public class TestEnvironment : TestSession
+    public class ConnectionDataHelper
     {
-        public static bool AreTestsRunningLocally()
+        private readonly HttpClient _client = new HttpClient
         {
-            bool isLocalEnvironment = false;
-            string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
-            if (string.IsNullOrEmpty(ciCommitHash))
-            {
-                isLocalEnvironment = true;
-            }
-            return isLocalEnvironment;
+            BaseAddress = new Uri("https://api.ipify.org/")
+        };
+
+        public async Task<string> GetIpAddress()
+        {
+            return await GetConnectionInfo("ip");
         }
 
-        public static bool IsVideoRecorderPresent()
+        private async Task<string> GetConnectionInfo(string jsonKey)
         {
-            return File.Exists(TestData.PathToRecorder);
-        }
-
-        public static bool IsWindows11()
-        {
-            return Environment.OSVersion.Version.Build >= 22000;
+            HttpResponseMessage response = await _client.GetAsync("?format=json");
+            response.EnsureSuccessStatusCode();
+            string responseBody = response.Content.ReadAsStringAsync().Result;
+            JObject json = JObject.Parse(responseBody);
+            return json[jsonKey].ToString();
         }
     }
 }

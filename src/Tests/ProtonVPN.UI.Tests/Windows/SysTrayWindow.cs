@@ -35,6 +35,7 @@ namespace ProtonVPN.UI.Tests.Windows
         private AutomationElement ExitOption => ElementByName("Exit");
         private Button ProfilesChevron => ElementByAutomationId("TogglePopupButton").AsButton();
         private AutomationElement RandomProfile => ElementByName("Random");
+        private AutomationElement ProtonVPNIcon => ElementByAutomationId("Proton.VPN");
 
         public SysTrayWindow OpenSysTrayWindow()
         {
@@ -73,6 +74,12 @@ namespace ProtonVPN.UI.Tests.Windows
             ProfilesChevron.Click();
             RandomProfile.Click();
             return this;
+        }
+
+        public SysTrayWindow ClickOnProtonIcon()
+        {
+           ProtonVPNIcon.Click();
+           return this;
         }
 
         public SysTrayWindow CloseActiveNotification()

@@ -17,32 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
-
-namespace ProtonVPN.UI.Tests.TestsHelper
+namespace ProtonVPN.UI.Tests.TestsHelper.BTI
 {
-    public class TestEnvironment : TestSession
+    public class Scenarios
     {
-        public static bool AreTestsRunningLocally()
+        public const string HARDJAIL_ALL_UNKOWN_ERROR = "enable/sessions_hardjail_all";
+        public const string UNHARDJAIL_ALL = "enable/sessions_un_hardjail_all";
+        public const string RESET = "reset";
+        public const string ATLAS_UNJAIL_ALL = "internal/quark/jail:unban";
+        public static string SEED_PLUS_USER(string username)
         {
-            bool isLocalEnvironment = false;
-            string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
-            if (string.IsNullOrEmpty(ciCommitHash))
-            {
-                isLocalEnvironment = true;
-            }
-            return isLocalEnvironment;
+            return $"/internal/quark/payments:seed-subscriber?username={username}&password=a&plan=vpn2022&cycle=12";
         }
 
-        public static bool IsVideoRecorderPresent()
+        public static string DOWNGRADE_USER(string userId)
         {
-            return File.Exists(TestData.PathToRecorder);
-        }
-
-        public static bool IsWindows11()
-        {
-            return Environment.OSVersion.Version.Build >= 22000;
+            return $"/internal/quark/payments:subscription:downgrade?userid={userId}";
         }
     }
 }
