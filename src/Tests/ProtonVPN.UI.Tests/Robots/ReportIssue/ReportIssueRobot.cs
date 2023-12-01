@@ -17,38 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
 using FlaUI.Core.AutomationElements;
-using FlaUI.UIA3;
-using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.ReportIssue;
 
 public partial class ReportIssueRobot : UIActions
 {
-    protected Window ReportIssueWindow { get; private set; }
 
-    protected AutomationElement ReportIssueWindowTitle => ReportIssueWindow.ElementByAutomationId("WindowTitleLabel").AsLabel();
-    protected TitleBar ReportIssueTitleBar => ReportIssueWindow.ElementByAutomationId("TitleBar").AsTitleBar();
-    protected Button MinimizeButton => ReportIssueTitleBar.FindFirstDescendant(c => c.ByName("Minimize")).AsButton();
-    protected Button CloseButton => ReportIssueTitleBar.FindFirstDescendant(c => c.ByName("Close")).AsButton();
-
-    protected Label StepsControlHeader => ReportIssueWindow.ElementByAutomationId("StepsControlHeader").AsLabel();
-    protected ProgressBar StepsControlProgressBar => ReportIssueWindow.ElementByAutomationId("StepsControlProgressBar").AsProgressBar();    
-    protected Label CategorySelectionPageHeader => ReportIssueWindow.ElementByAutomationId("CategorySelectionPageHeader").AsLabel();
-    protected Label QuickFixesPageHeader => ReportIssueWindow.ElementByAutomationId("QuickFixesPageHeader").AsLabel();
-    protected Label QuickFixesPageDescription => ReportIssueWindow.ElementByAutomationId("QuickFixesPageDescription").AsLabel();
-    protected Button IssueCategorySettingsCard => ReportIssueWindow.ElementByAutomationId("IssueCategorySettingsCard").AsButton();
-    protected Button ContactUsButton => ReportIssueWindow.ElementByAutomationId("ContactUsButton").AsButton();    
-    protected Button SendReportButton => ReportIssueWindow.ElementByAutomationId("SendReportButton").AsButton();
-    protected Button MoveBackwardButton => ReportIssueWindow.ElementByAutomationId("MoveBackwardButton").AsButton();
-
-    public ReportIssueRobot RefreshReportIssueWindow()
+    protected AutomationElement ReportIssueWindowTitle => ElementByAutomationId("WindowTitleLabel").AsLabel();
+    protected TitleBar ReportIssueTitleBar => ElementByAutomationId("TitleBar").AsTitleBar();
+    protected Button MinimizeButton => ElementByName("Minimize").AsButton();
+    protected Button CloseButton => ElementByName("Close").AsButton();
+    protected Label StepsControlHeader => ElementByAutomationId("StepsControlHeader").AsLabel();
+    protected ProgressBar StepsControlProgressBar => ElementByAutomationId("StepsControlProgressBar").AsProgressBar();    
+    protected Label CategorySelectionPageHeader => ElementByAutomationId("CategorySelectionPageHeader").AsLabel();
+    protected Label QuickFixesPageHeader => ElementByAutomationId("QuickFixesPageHeader").AsLabel();
+    protected Label QuickFixesPageDescription => ElementByAutomationId("QuickFixesPageDescription").AsLabel();
+    protected Button IssueCategorySettingsCard => ElementByAutomationId("IssueCategorySettingsCard").AsButton();
+    protected Button ContactUsButton => ElementByAutomationId("ContactUsButton").AsButton();    
+    protected Button SendReportButton => ElementByAutomationId("SendReportButton").AsButton();
+    protected Button MoveBackwardButton => ElementByAutomationId("MoveBackwardButton").AsButton();
+    protected TextBox EmailTextBox => ElementByName("Email").AsTextBox();
+    protected TextBox BugReportQuestionTextBox(string question)
     {
-        this.Wait(TestConstants.InitializationDelay);
-
-        ReportIssueWindow = App.GetAllTopLevelWindows(new UIA3Automation()).FirstOrDefault(w => Window != w);
-
-        return this;
+        return ElementByName(question).AsTextBox();
     }
 }

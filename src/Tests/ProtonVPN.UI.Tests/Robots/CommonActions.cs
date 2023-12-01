@@ -101,25 +101,4 @@ public static class CommonActions
         element.FocusAndClick();
         element.Click();
     }
-
-    public static void WaitUntilElementExistsByAutomationId(this Window window, string automationId, TimeSpan time)
-    {
-        RetryResult<AutomationElement> retry = Retry.WhileNull(
-            () =>
-            {
-                return window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
-            },
-            time, TestConstants.RetryInterval);
-
-        if (!retry.Success)
-        {
-            Assert.Fail("Failed to get " + automationId + "element within " + time.Seconds + " seconds.");
-        }
-    }
-
-    public static AutomationElement ElementByAutomationId(this Window window, string automationId, TimeSpan? timeout = null)
-    {
-        window.WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
-        return window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
-    }
 }

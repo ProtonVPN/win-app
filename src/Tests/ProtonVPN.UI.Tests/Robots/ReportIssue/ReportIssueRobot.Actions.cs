@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+
 namespace ProtonVPN.UI.Tests.Robots.ReportIssue;
 
 public partial class ReportIssueRobot
@@ -36,6 +38,22 @@ public partial class ReportIssueRobot
     public ReportIssueRobot DoGoBack()
     {
         MoveBackwardButton.FocusAndClick();
+        return this;
+    }
+
+    public ReportIssueRobot DoSendReport()
+    {
+        SendReportButton.FocusAndClick();
+        return this;
+    }
+
+    public ReportIssueRobot DoFillData(string email, List<string> _questions)
+    {
+        EmailTextBox.Text = email;
+        foreach (string question in _questions)
+        {
+            BugReportQuestionTextBox(question).Text = "Ignore this report";
+        }
         return this;
     }
 }

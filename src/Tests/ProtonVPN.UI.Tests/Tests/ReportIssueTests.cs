@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
@@ -35,6 +37,14 @@ public class ReportIssueTests : TestSession
     private const string SETTINGS_PAGE_TITLE = "Settings";
     private const string REPORT_ISSUE_WINDOW_TITLE = "Report an issue";
     private const string BROWSING_SPEED_PAGE_TITLE = "Browsing speed";
+    private const string EMAIL = "testing@email.com";
+    private readonly List<string> _questions =
+    [
+        "Network type",
+        "What are you trying to do?",
+        "What is the speed you are getting?",
+        "What is your connection speed without VPN?"
+    ];
 
     private ShellRobot _shellRobot = new();
     private SettingsRobot _settingsRobot = new();
@@ -54,38 +64,17 @@ public class ReportIssueTests : TestSession
     [Test]
     public void ReportIssueFromSettingsPage()
     {
-        Login();
+        DoNavigateToSubmissionForm();
 
-        _shellRobot
-            .DoNavigateToSettingsPage()
-            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
-
-        _settingsRobot
-            .DoReportAnIssue();
-
-        _reportIssueRobot
-            .RefreshReportIssueWindow()
-            .VerifyReportIssueWindowIsOpened()
-            .VerifyReportIssueStep(1, 3)
-            .VerifyReportIssueWindowTitle(REPORT_ISSUE_WINDOW_TITLE);
+        _reportIssueRobot.DoFillData(EMAIL, _questions)
+            .DoSendReport()
+            .VerifyReportIsSent();
     }
 
     [Test]
     public void ReportIssueThenNavigate()
     {
-        ReportIssueFromSettingsPage();
-
-        _reportIssueRobot
-            .DoSelectBrowsingSpeedCategory()
-            .Wait(TestConstants.DefaultNavigationDelay)
-            .VerifyReportIssueStep(2, 3)
-            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
-        
-        _reportIssueRobot
-            .DoGoToContactForm()
-            .Wait(TestConstants.DefaultNavigationDelay)
-            .VerifyReportIssueStep(3, 3)
-            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
+        DoNavigateToSubmissionForm();
 
         _reportIssueRobot
             .DoGoBack()
@@ -109,7 +98,6 @@ public class ReportIssueTests : TestSession
             .DoReportBrowsingSpeedIssue();
 
         _reportIssueRobot
-            .RefreshReportIssueWindow()
             .VerifyReportIssueWindowIsOpened()
             .VerifyReportIssueStep(2, 3)
             .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
@@ -123,7 +111,6 @@ public class ReportIssueTests : TestSession
             .DoReportAnIssue();
 
         _reportIssueRobot
-            .RefreshReportIssueWindow()
             .VerifyReportIssueWindowIsOpened()
             .VerifyReportIssueStep(1, 3)
             .VerifyReportIssueWindowTitle(REPORT_ISSUE_WINDOW_TITLE);
@@ -133,6 +120,35 @@ public class ReportIssueTests : TestSession
     public void TestCleanup()
     {
         Cleanup();
+    }
+
+    private void DoNavigateToSubmissionForm()
+    {
+        Login();
+
+        _shellRobot
+            .DoNavigateToSettingsPage()
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
+
+        _settingsRobot
+            .DoReportAnIssue();
+
+        _reportIssueRobot
+            .VerifyReportIssueWindowIsOpened()
+            .VerifyReportIssueStep(1, 3)
+            .VerifyReportIssueWindowTitle(REPORT_ISSUE_WINDOW_TITLE);
+
+        _reportIssueRobot
+            .DoSelectBrowsingSpeedCategory()
+            .Wait(TestConstants.DefaultNavigationDelay)
+            .VerifyReportIssueStep(2, 3)
+            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
+
+        _reportIssueRobot
+            .DoGoToContactForm()
+            .Wait(TestConstants.DefaultNavigationDelay)
+            .VerifyReportIssueStep(3, 3)
+            .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
     }
 
     private void Login()
