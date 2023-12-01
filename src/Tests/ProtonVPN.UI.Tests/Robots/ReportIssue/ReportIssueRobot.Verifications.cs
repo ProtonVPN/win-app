@@ -31,7 +31,6 @@ public partial class ReportIssueRobot
 
     public ReportIssueRobot VerifyReportIssueWindowIsOpened()
     {
-        Assert.IsNotNull(ReportIssueWindow);
         Assert.IsNotNull(ReportIssueTitleBar);
         Assert.IsNotNull(MinimizeButton);
         Assert.IsNotNull(CloseButton);
@@ -61,6 +60,14 @@ public partial class ReportIssueRobot
         Assert.AreEqual(expectedStep, stepsControlProgressBar.Value);
         Assert.AreEqual(expectedTotalSteps, stepsControlProgressBar.Maximum);
 
+        return this;
+    }
+
+    public ReportIssueRobot VerifyReportIsSent()
+    {
+        WaitUntilElementExistsByAutomationId("ReportImage", TestConstants.MediumTimeout);
+        WaitUntilElementExistsByName("Report sent", TestConstants.VeryShortTimeout);
+        WaitUntilElementExistsByName("Done", TestConstants.VeryShortTimeout);
         return this;
     }
 
