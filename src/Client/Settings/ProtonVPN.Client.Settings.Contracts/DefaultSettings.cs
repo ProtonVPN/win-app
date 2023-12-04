@@ -32,7 +32,7 @@ public static class DefaultSettings
     public static NatType NatType = NatType.Strict;
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
-    public static bool IsNotificationEnabled = true; // TODO: Default value still marked as TBD on the spec
+    public static bool IsNotificationEnabled = true;
     public static bool IsBetaAccessEnabled = false;
     public static bool IsShareStatisticsEnabled = true;
     public static bool IsShareCrashReportsEnabled = true;
@@ -45,9 +45,9 @@ public static class DefaultSettings
     public static int[] OpenVpnUdpPorts = { 443, 3389, 8080, 8443 };
     public static bool IsAutoLaunchEnabled = true;
     public static AutoLaunchMode AutoLaunchMode = AutoLaunchMode.MinimizeToSystemTray;
-    public static bool IsAutoConnectEnabled = false;
+    public static bool IsAutoConnectEnabled = true;
     public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;
-    public static bool IsNetShieldEnabled = false;
+    public static bool IsNetShieldEnabled = true;
     public static bool IsKillSwitchEnabled = false;
     public static KillSwitchMode KillSwitchMode = KillSwitchMode.Standard;
     public static bool IsPortForwardingEnabled = false;

@@ -48,8 +48,6 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.VpnProtocol = DefaultSettings.VpnProtocol;
         _settings.NatType = DefaultSettings.NatType;
         _settings.IsVpnAcceleratorEnabled = DefaultSettings.IsVpnAcceleratorEnabled;
-        _settings.IsNotificationEnabled = DefaultSettings.IsNotificationEnabled;
-        _settings.IsBetaAccessEnabled = DefaultSettings.IsBetaAccessEnabled;
         _settings.IsAlternativeRoutingEnabled = DefaultSettings.IsAlternativeRoutingEnabled;
         _settings.IsCustomDnsServersEnabled = DefaultSettings.IsCustomDnsServersEnabled;
         _settings.CustomDnsServersList = DefaultSettings.CustomDnsServersList;
