@@ -17,13 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Services.Contracts;
+using System.Reflection;
 
-public interface IServiceManager
+namespace ProtonVPN.Common.Core.Helpers;
+
+public static class AssemblyVersion
 {
-    Task StartAsync();
-    Task StopAsync();
+    private static Lazy<string> _version = new Lazy<string>(CreateVersion);
 
-    void Start();
-    void Stop();
+    private static string CreateVersion()
+    {
+        return (Assembly.GetExecutingAssembly().GetName().Version ?? new()).ToString(3);
+    }
+
+    public static string Get()
+    {
+        return _version.Value;
+    }
 }

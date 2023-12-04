@@ -42,17 +42,12 @@ public partial class SecureCoreCountriesPageViewModel : CountriesTabViewModelBas
         IOverlayActivator overlayActivator,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) 
-        : base(mainViewNavigator, 
-               overlayActivator,
-               serverManager,
-               countriesFeatureTabsViewNavigator, 
-               localizationProvider, 
-               noSearchResultsViewModel, 
-               countryViewModelsFactory)
-    { }
+        CountryViewModelsFactory countryViewModelsFactory) : base(mainViewNavigator, overlayActivator, serversLoader,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countryViewModelsFactory)
+    {
+    }
 
     [RelayCommand]
     public void ShowInfoOverlay()
@@ -60,23 +55,23 @@ public partial class SecureCoreCountriesPageViewModel : CountriesTabViewModelBas
         OverlayActivator.ShowOverlayAsync<SecureCoreOverlayViewModel>();
     }
 
-    protected override List<string> GetCountryCodes()
+    protected override IEnumerable<string> GetCountryCodes()
     {
-        return ServerManager.GetSecureCoreCountryCodes();
+        return ServersLoader.GetCountryCodesByFeatures(ServerFeatures.SecureCore);
     }
 
-    protected override List<City> GetCities()
+    protected override IEnumerable<City> GetCities()
     {
-        return new();
+        return new List<City>();
     }
 
-    protected override List<Server> GetServers()
+    protected override IEnumerable<Server> GetServers()
     {
-        return ServerManager.GetSecureCoreServers();
+        return ServersLoader.GetServersByFeatures(ServerFeatures.SecureCore);
     }
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServerManager.GetSecureCoreServersByExitCountry(countryCode).Count;
+        return ServersLoader.GetServersByFeaturesAndExitCountry(ServerFeatures.SecureCore, countryCode).Count();
     }
 }

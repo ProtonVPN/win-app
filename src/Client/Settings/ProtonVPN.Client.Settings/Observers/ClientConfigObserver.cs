@@ -19,8 +19,9 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -28,7 +29,7 @@ using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class ClientConfigObserver : ObserverBase, IClientConfigObserver
+public class ClientConfigObserver : ObserverBase, IClientConfigObserver, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly List<int> _unsupportedWireGuardPorts = new() { 53 };
 
@@ -41,7 +42,16 @@ public class ClientConfigObserver : ObserverBase, IClientConfigObserver
         ILogger logger)
         : base(settings, apiClient, config, logger)
     {
-        InvalidateTimer();
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        StartTimer();
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        StopTimer();
     }
 
     protected override async Task UpdateAsync()
@@ -66,30 +76,8 @@ public class ClientConfigObserver : ObserverBase, IClientConfigObserver
         }
     }
 
-    protected override void OnSettingsChanged(SettingChangedMessage message)
-    {
-        switch (message.PropertyName)
-        {
-            case nameof(ISettings.Username):
-                InvalidateTimer();
-                break;
-        }
-    }
-
     private bool IsWireGuardPortSupported(int port)
     {
         return !_unsupportedWireGuardPorts.Contains(port);
-    }
-
-    private void InvalidateTimer()
-    {
-        if (string.IsNullOrEmpty(Settings.Username))
-        {
-            StopTimer();
-        }
-        else
-        {
-            StartTimer();
-        }
     }
 }

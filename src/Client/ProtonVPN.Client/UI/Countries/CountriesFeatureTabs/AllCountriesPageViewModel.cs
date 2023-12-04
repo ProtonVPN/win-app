@@ -38,36 +38,31 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         ILocalizationProvider localizationProvider,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) 
-        : base(mainViewNavigator, 
-               overlayActivator,
-               serverManager, 
-               countriesFeatureTabsViewNavigator, 
-               localizationProvider, 
-               noSearchResultsViewModel, 
-               countryViewModelsFactory)
-    { }
-
-    protected override List<string> GetCountryCodes()
+        CountryViewModelsFactory countryViewModelsFactory) : base(mainViewNavigator, overlayActivator, serversLoader,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countryViewModelsFactory)
     {
-        return ServerManager.GetCountryCodes();
     }
 
-    protected override List<City> GetCities()
+    protected override IEnumerable<string> GetCountryCodes()
     {
-        return ServerManager.GetCities();
+        return ServersLoader.GetCountryCodes();
     }
 
-    protected override List<Server> GetServers()
+    protected override IEnumerable<City> GetCities()
     {
-        return ServerManager.GetServers().Where(s => !s.Features.IsSupported(ServerFeatures.SecureCore)).ToList();
+        return ServersLoader.GetCities();
+    }
+
+    protected override IEnumerable<Server> GetServers()
+    {
+        return ServersLoader.GetServers().Where(s => !s.Features.IsSupported(ServerFeatures.SecureCore));
     }
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServerManager.GetCitiesByCountry(countryCode).Count;
+        return ServersLoader.GetCitiesByCountryCode(countryCode).Count();
     }
 }

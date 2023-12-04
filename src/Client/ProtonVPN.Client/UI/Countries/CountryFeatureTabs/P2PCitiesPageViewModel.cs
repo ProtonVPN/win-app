@@ -31,22 +31,20 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
 {
     public override string Title => Localizer.GetFormat("Countries_P2P");
 
+    protected override CountryFeature CountryFeature => CountryFeature.P2P;
+
     public P2PCitiesPageViewModel(
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
-        IOverlayActivator overlayActivator)
-        : base(connectionManager, 
-               mainViewNavigator, 
-               overlayActivator,
-               serverManager, 
-               viewNavigator, 
-               countryViewModelsFactory,
-               localizationProvider)
-    { }
+        IOverlayActivator overlayActivator) :
+        base(connectionManager, mainViewNavigator, overlayActivator, serversLoader, viewNavigator, countryViewModelsFactory,
+            localizationProvider)
+    {
+    }
 
     [RelayCommand]
     public async Task ShowInfoOverlayAsync()
@@ -54,15 +52,13 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
         await OverlayActivator.ShowOverlayAsync<P2POverlayViewModel>();
     }
 
-    protected override List<City> GetCities()
+    protected override IEnumerable<City> GetCities()
     {
-        return ServerManager.GetP2PCitiesByCountry(CurrentCountryCode);
+        return ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, CurrentCountryCode);
     }
 
-    protected override List<Server> GetServers(City city)
+    protected override IEnumerable<Server> GetServers(City city)
     {
-        return ServerManager.GetP2PServersByCity(city);
+        return ServersLoader.GetServersByFeaturesAndCity(ServerFeatures.P2P, city);
     }
-
-    protected override CountryFeature CountryFeature => CountryFeature.P2P;
 }

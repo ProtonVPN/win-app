@@ -45,7 +45,7 @@ public class ConnectionManager : IConnectionManager,
     private readonly IEntityMapper _entityMapper;
     private readonly IConnectionRequestWrapper _connectionRequestWrapper;
     private readonly IDisconnectionRequestWrapper _disconnectionRequestWrapper;
-    private readonly IServerManager _serverManager;
+    private readonly IServersLoader _serversLoader;
 
     private ConnectionDetails? _connectionDetails;
     private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
@@ -65,7 +65,7 @@ public class ConnectionManager : IConnectionManager,
         IEntityMapper entityMapper,
         IConnectionRequestWrapper connectionRequestWrapper,
         IDisconnectionRequestWrapper disconnectionRequestWrapper,
-        IServerManager serverManger)
+        IServersLoader serversLoader)
     {
         _logger = logger;
         _serviceCaller = serviceCaller;
@@ -73,7 +73,7 @@ public class ConnectionManager : IConnectionManager,
         _entityMapper = entityMapper;
         _connectionRequestWrapper = connectionRequestWrapper;
         _disconnectionRequestWrapper = disconnectionRequestWrapper;
-        _serverManager = serverManger;
+        _serversLoader = serversLoader;
     }
 
     public async Task ConnectAsync(IConnectionIntent? connectionIntent)
@@ -170,12 +170,8 @@ public class ConnectionManager : IConnectionManager,
 
     private Server? GetCurrentServer(VpnStateIpcEntity state)
     {
-        List<Server> servers = _serverManager.GetServers();
-
         //TODO: instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
-        return (from server in servers
-            from physicalServer in server.Servers
-            where physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label
-            select server).FirstOrDefault();
+        return _serversLoader.GetServers()
+            .FirstOrDefault(s => s.Servers.Any(physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label));
     }
 }

@@ -17,21 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
-using System.Reflection;
-
-namespace ProtonVPN.Client.Common.Helpers;
-
-public static class EnvironmentHelper
+public interface IServersUpdater
 {
-    public static string GetClientVersionDescription()
-    {
-        Version version = Assembly.GetExecutingAssembly().GetName().Version!;
-        return $"{version.Major}.{version.Minor}.{version.Build}";
-    }
-
-    public static string GetOSVersionDescription()
-    {
-        return Environment.OSVersion.Version.ToString();
-    }
+    Task UpdateAsync();
 }

@@ -18,7 +18,7 @@
  */
 
 using System.Reflection;
-using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Configurations.Contracts.Entities;
 
 namespace ProtonVPN.Configurations.Defaults;
@@ -46,7 +46,7 @@ public static class DefaultConfiguration
     private static readonly Lazy<string> _diagnosticLogsFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, "DiagnosticLogs"));
 
     // Properties
-    public static string ClientVersion => (Assembly.GetExecutingAssembly().GetName().Version ?? new()).Truncate().ToString();
+    public static string ClientVersion => AssemblyVersion.Get();
     public static string ApiClientId => "windows-vpn";
     public static string UserAgent => "ProtonVPN";
     public static string ApiVersion => "3";

@@ -17,13 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 
-public interface IServiceManager
+namespace ProtonVPN.Client.Logic.Servers;
+
+public interface IServersCache
 {
-    Task StartAsync();
-    Task StopAsync();
-
-    void Start();
-    void Stop();
+    IReadOnlyList<Server> Servers { get; }
+    IReadOnlyList<string> CountryCodes { get; }
 }

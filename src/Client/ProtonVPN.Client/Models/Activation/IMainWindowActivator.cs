@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-
 namespace ProtonVPN.Client.Models.Activation;
 
 public interface IMainWindowActivator
 {
-    Task ActivateAsync(LaunchActivatedEventArgs activationArgs);
+    void Activate();
 }

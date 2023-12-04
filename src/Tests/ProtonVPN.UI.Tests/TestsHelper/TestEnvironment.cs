@@ -19,30 +19,30 @@
 
 using System;
 using System.IO;
+using ProtonVPN.Common.Core.Helpers;
 
-namespace ProtonVPN.UI.Tests.TestsHelper
+namespace ProtonVPN.UI.Tests.TestsHelper;
+
+public class TestEnvironment : TestSession
 {
-    public class TestEnvironment : TestSession
+    public static bool AreTestsRunningLocally()
     {
-        public static bool AreTestsRunningLocally()
+        bool isLocalEnvironment = false;
+        string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
+        if (string.IsNullOrEmpty(ciCommitHash))
         {
-            bool isLocalEnvironment = false;
-            string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
-            if (string.IsNullOrEmpty(ciCommitHash))
-            {
-                isLocalEnvironment = true;
-            }
-            return isLocalEnvironment;
+            isLocalEnvironment = true;
         }
+        return isLocalEnvironment;
+    }
 
-        public static bool IsVideoRecorderPresent()
-        {
-            return File.Exists(TestConstants.PathToRecorder);
-        }
+    public static bool IsVideoRecorderPresent()
+    {
+        return File.Exists(TestConstants.PathToRecorder);
+    }
 
-        public static bool IsWindows11()
-        {
-            return Environment.OSVersion.Version.Build >= 22000;
-        }
+    public static bool IsWindows11()
+    {
+        return OSVersion.Get().Build >= 22000;
     }
 }

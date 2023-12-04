@@ -18,10 +18,15 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Bootstrapping;
 
@@ -31,25 +36,58 @@ public class Bootstrapper : IBootstrapper
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
+    private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IServersUpdater _serversUpdater;
+    private readonly ISettings _settings;
+    private readonly ILogger _logger;
+    private readonly IConfiguration _configuration;
 
-    public Bootstrapper(IProcessCommunicationStarter processCommunicationStarter, 
+    public Bootstrapper(IProcessCommunicationStarter processCommunicationStarter,
         IMainWindowActivator mainWindowActivator,
         ISettingsRestorer settingsRestorer,
-        IServiceManager serviceManager)
+        IServiceManager serviceManager,
+        IUserAuthenticator userAuthenticator,
+        IServersUpdater serversUpdater,
+        ISettings settings,
+        ILogger logger,
+        IConfiguration configuration)
     {
         _processCommunicationStarter = processCommunicationStarter;
         _mainWindowActivator = mainWindowActivator;
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
+        _userAuthenticator = userAuthenticator;
+        _serversUpdater = serversUpdater;
+        _settings = settings;
+        _logger = logger;
+        _configuration = configuration;
     }
 
     public async Task StartAsync(LaunchActivatedEventArgs args)
     {
+        Start();
+    }
+
+    private void Start()
+    {
         ParseAndRunCommandLineArguments();
         CancellationToken cancellationToken = new CancellationTokenSource().Token;
-        _serviceManager.Start();
+
+        if (string.IsNullOrEmpty(_settings.Username))
+        {
+            _userAuthenticator.CreateUnauthSessionAsync();
+        }
+        else
+        {
+            _userAuthenticator.AutoLoginUserAsync();
+        }
+
+        _mainWindowActivator.Activate();
+
+        _serviceManager.StartAsync();
         _processCommunicationStarter.StartAsync(cancellationToken);
-        await _mainWindowActivator.ActivateAsync(args);
+
+        _serversUpdater.UpdateAsync();
     }
 
     private void ParseAndRunCommandLineArguments()

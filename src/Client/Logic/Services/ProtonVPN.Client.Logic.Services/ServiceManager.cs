@@ -33,6 +33,16 @@ public class ServiceManager : IServiceManager
         _service = serviceFactory.Get(configuration.ServiceName);
     }
 
+    public Task StartAsync()
+    {
+        return Task.Run(Start);
+    }
+
+    public Task StopAsync()
+    {
+        return Task.Run(Stop);
+    }
+
     public void Start()
     {
         _service.Start();

@@ -20,6 +20,7 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Features;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -27,12 +28,11 @@ using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
+public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
 
@@ -49,8 +49,23 @@ public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
         : base(settings, apiClient, config, logger)
     {
         _eventMessageSender = eventMessageSender;
+    }
 
+    private bool IsFlagEnabled(string featureFlagName)
+    {
+        return Settings.FeatureFlags
+            .FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagName), FeatureFlag.Default)
+            .IsEnabled;
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
         StartTimer();
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        StopTimer();
     }
 
     protected override async Task UpdateAsync()
@@ -83,12 +98,5 @@ public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
             }).ToList() ?? new();
 
         return featureFlags;
-    }
-
-    private bool IsFlagEnabled(string featureFlagName)
-    {
-        return Settings.FeatureFlags
-            .FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagName), FeatureFlag.Default)
-            .IsEnabled;
     }
 }

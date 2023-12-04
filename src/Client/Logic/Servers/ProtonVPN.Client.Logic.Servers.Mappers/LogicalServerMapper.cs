@@ -34,39 +34,40 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
 
     public Server Map(LogicalServerResponse leftEntity)
     {
-        List<PhysicalServer> physicalServers = _entityMapper.Map<PhysicalServerResponse, PhysicalServer>(leftEntity.Servers);
+        return leftEntity is null
+            ? null
+            : new Server()
+            {
+                Id = leftEntity.Id,
+                Name = leftEntity.Name,
+                City = leftEntity.City,
+                EntryCountry = leftEntity.EntryCountry,
+                ExitCountry = leftEntity.ExitCountry,
+                HostCountry = leftEntity.HostCountry,
+                Domain = leftEntity.Domain,
+                ExitIp = GetExitIpIfEqualInAllPhysicalServers(leftEntity.Servers),
+                Status = leftEntity.Status,
+                Tier = leftEntity.Tier,
+                Features = (ServerFeatures)leftEntity.Features,
+                Load = leftEntity.Load,
+                Score = leftEntity.Score,
+                Servers = _entityMapper.Map<PhysicalServerResponse, PhysicalServer>(leftEntity.Servers),
+                IsVirtual = !string.IsNullOrEmpty(leftEntity.HostCountry),
+                IsUnderMaintenance = leftEntity.Status == 0,
+                GatewayName = leftEntity.GatewayName,
+            };
+    }
 
-        return new Server
-        {
-            Id = leftEntity.Id,
-            Name = leftEntity.Name,
-            City = leftEntity.City,
-            EntryCountry = leftEntity.EntryCountry,
-            ExitCountry = leftEntity.ExitCountry,
-            Domain = leftEntity.Domain,
-            ExitIp = ExitIp(physicalServers),
-            Status = leftEntity.Status,
-            Tier = leftEntity.Tier,
-            Features = (ServerFeatures)leftEntity.Features,
-            Load = leftEntity.Load,
-            Score = leftEntity.Score,
-            Servers = physicalServers,
-            IsVirtual = !string.IsNullOrEmpty(leftEntity.HostCountry),
-            IsUnderMaintenance = leftEntity.Status == 0,
-            GatewayName = leftEntity.GatewayName,
-        };
+    private string GetExitIpIfEqualInAllPhysicalServers(IEnumerable<PhysicalServerResponse> physicalServers)
+    {
+        return physicalServers?.Aggregate(
+            (string)null,
+            (ip, p) => ip == null || ip == p.ExitIp ? p.ExitIp : "",
+            ip => !string.IsNullOrEmpty(ip) ? ip : null);
     }
 
     public LogicalServerResponse Map(Server rightEntity)
     {
-        throw new NotImplementedException();
-    }
-
-    private string ExitIp(IEnumerable<PhysicalServer> servers)
-    {
-        return servers.Aggregate(
-            (string)null,
-            (ip, p) => ip == null || ip == p.ExitIp ? p.ExitIp : "",
-            ip => !string.IsNullOrEmpty(ip) ? ip : null);
+        throw new NotImplementedException("We don't need to map to API responses.");
     }
 }

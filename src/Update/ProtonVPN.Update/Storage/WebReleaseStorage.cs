@@ -29,6 +29,7 @@ using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Responses;
+using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonVPN.Update.Storage
 {
@@ -77,7 +78,7 @@ namespace ProtonVPN.Update.Storage
             return (r.ReleaseDate is null || r.ReleaseDate.Value <= DateTimeOffset.UtcNow) &&
                    (r.MinimumOsVersion is null ||
                     !Version.TryParse(r.MinimumOsVersion, out Version minimumOsVersion) ||
-                    Environment.OSVersion.Version >= minimumOsVersion);
+                    OSVersion.Get() >= minimumOsVersion);
         }
 
         private async Task<CategoriesResponse> GetAsync(Uri feedUrl)

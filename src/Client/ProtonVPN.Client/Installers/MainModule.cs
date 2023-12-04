@@ -18,9 +18,7 @@
  */
 
 using Autofac;
-using Microsoft.UI.Xaml;
 using ProtonVPN.Api.Installers;
-using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.EventMessaging.Installers;
 using ProtonVPN.Client.Localization.Installers;
 using ProtonVPN.Client.Logic.Auth.Installers;
@@ -49,10 +47,6 @@ public class MainModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<DefaultActivationHandler>()
-               .As<ActivationHandler<LaunchActivatedEventArgs>>()
-               .InstancePerDependency();
-
         builder.RegisterLoggerConfiguration(c => c.ClientLogsFilePath);
 
         RegisterModules(builder);

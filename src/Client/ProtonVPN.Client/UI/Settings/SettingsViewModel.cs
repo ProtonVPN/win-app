@@ -40,6 +40,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Settings.Pages;
+using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonVPN.Client.UI.Settings;
 
@@ -62,9 +63,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly IPortForwardingManager _portForwardingManager;
     private readonly Lazy<ObservableCollection<string>> _languages;
 
-    public string ClientVersionDescription => $"{App.APPLICATION_NAME} {EnvironmentHelper.GetClientVersionDescription()}";
-
-    public string OperatingSystemVersionDescription => EnvironmentHelper.GetOSVersionDescription();
+    public string ClientVersionDescription => $"{App.APPLICATION_NAME} {AssemblyVersion.Get()}";
+    public string OperatingSystemVersionDescription => OSVersion.GetString();
 
     public ApplicationElementTheme SelectedTheme
     {

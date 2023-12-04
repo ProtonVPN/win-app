@@ -96,7 +96,7 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
             .ToList();
     }
 
-    protected abstract List<Server> GetServers(City city);
+    protected abstract IEnumerable<Server> GetServers(City city);
 
     protected abstract IList GetItems();
 

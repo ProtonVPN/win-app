@@ -18,9 +18,7 @@
  */
 
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
@@ -29,7 +27,7 @@ using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public abstract class ObserverBase : IObserver, IEventMessageReceiver<SettingChangedMessage>
+public abstract class ObserverBase : IObserver
 {
     protected readonly ISettings Settings;
     protected readonly IApiClient ApiClient;
@@ -61,23 +59,7 @@ public abstract class ObserverBase : IObserver, IEventMessageReceiver<SettingCha
         _timer.Elapsed += OnTimerElapsed;
     }
 
-    public void Receive(SettingChangedMessage message)
-    {
-        OnSettingsChanged(message);
-    }
-
     protected abstract Task UpdateAsync();
-
-    protected virtual void OnSettingsChanged(SettingChangedMessage message)
-    { }
-
-    protected void StopTimer()
-    {
-        if (_timer.Enabled)
-        {
-            _timer.Stop();
-        }
-    }
 
     protected void StartTimer()
     {
@@ -85,6 +67,14 @@ public abstract class ObserverBase : IObserver, IEventMessageReceiver<SettingCha
         {
             _timer.Start();
             _updateAction.Run();
+        }
+    }
+
+    protected void StopTimer()
+    {
+        if (_timer.Enabled)
+        {
+            _timer.Stop();
         }
     }
 
