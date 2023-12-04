@@ -58,9 +58,9 @@ public partial class SecureCoreCountriesPageViewModel : CountriesTabViewModelBas
         return ServerManager.GetSecureCoreCountryCodes();
     }
 
-    protected override List<string> GetCities()
+    protected override List<City> GetCities()
     {
-        return new List<string>();
+        return new();
     }
 
     protected override List<Server> GetServers()

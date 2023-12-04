@@ -39,12 +39,12 @@ public class CitiesPageViewModel : CitiesPageViewModelBase
     {
     }
 
-    protected override List<string> GetCities()
+    protected override List<City> GetCities()
     {
         return ServerManager.GetCitiesByCountry(CurrentCountryCode);
     }
 
-    protected override List<Server> GetServers(string city)
+    protected override List<Server> GetServers(City city)
     {
         return ServerManager.GetServersByCity(city);
     }

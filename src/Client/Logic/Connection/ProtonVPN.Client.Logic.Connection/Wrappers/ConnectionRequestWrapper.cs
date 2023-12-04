@@ -96,10 +96,10 @@ public class ConnectionRequestWrapper : ConnectionRequestWrapperBase, IConnectio
             servers = locationIntent.FilterServers(servers);
         }
 
-        if (featureIntent is not null)
-        {
-            servers = featureIntent.FilterServers(servers);
-        }
+        servers = featureIntent is null
+            ? servers.Where(s =>
+                !s.Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor))
+            : featureIntent.FilterServers(servers);
 
         IEnumerable<VpnHost> hosts = SortServers(servers)
             .SelectMany(s => s.Servers.OrderBy(_ => _random.Next()))

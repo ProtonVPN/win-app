@@ -30,10 +30,12 @@ public class ConnectionDetails
     public DateTime EstablishedConnectionTime { get; }
     public string? CountryCode { get; set; }
     public string? CityState { get; set; }
+    public string? ServerId { get; set; }
     public string? ServerName { get; set; }
     public double? ServerLoad { get; set; }
     public TimeSpan? ServerLatency { get; set; }
     public VpnProtocol Protocol { get; set; }
+    public bool IsGateway { get; }
 
     public ConnectionDetails(IConnectionIntent connectionIntent, Server? server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart)
     {
@@ -41,9 +43,11 @@ public class ConnectionDetails
         OriginalConnectionIntent = connectionIntent;
         CountryCode = server?.ExitCountry;
         CityState = server?.City;
+        ServerId = server?.Id;
         ServerName = server?.Name;
         ServerLoad = server?.Load / 100D;
-        ServerLatency = TimeSpan.FromMilliseconds(46);
+        ServerLatency = TimeSpan.FromMilliseconds(46); // TODO: implement real value
         Protocol = vpnProtocol;
+        IsGateway = server?.Features.IsSupported(ServerFeatures.B2B) ?? false;
     }
 }

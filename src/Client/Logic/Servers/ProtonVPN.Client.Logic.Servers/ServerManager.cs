@@ -59,42 +59,48 @@ public class ServerManager : IServerManager
         return _countries;
     }
 
-    public List<string> GetCities()
+    public List<City> GetCities()
     {
         return GetCitiesByFilter(server => !string.IsNullOrWhiteSpace(server.City));
     }
 
-    public List<string> GetCitiesByCountry(string countryCode)
+    public List<City> GetCitiesByCountry(string countryCode)
     {
         return GetCitiesByFilter(server => server.ExitCountry == countryCode &&
                                         !string.IsNullOrWhiteSpace(server.City));
     }
 
-    public List<string> GetP2PCities()
+    public List<City> GetP2PCities()
     {
         return GetCitiesByFilter(server => server.Features.IsSupported(ServerFeatures.P2P) &&
                                            !string.IsNullOrWhiteSpace(server.City));
     }
 
-    public List<string> GetP2PCitiesByCountry(string countryCode)
+    public List<City> GetP2PCitiesByCountry(string countryCode)
     {
         return GetCitiesByFilter(server => server.ExitCountry == countryCode &&
                                         server.Features.IsSupported(ServerFeatures.P2P) &&
                                         !string.IsNullOrWhiteSpace(server.City));
     }
 
-    private List<string> GetCitiesByFilter(Func<LogicalServerResponse, bool> filterFunc)
+    private List<City> GetCitiesByFilter(Func<LogicalServerResponse, bool> filterFunc)
     {
         return _servers
             .Where(filterFunc)
-            .Select(s => s.City)
-            .Distinct()
+            .Select(s => new City
+            {
+                Name = s.City,
+                CountryCode = s.ExitCountry
+            })
+            .DistinctBy(c => c.Name + c.CountryCode)
             .ToList();
     }
 
-    public List<Server> GetServersByCity(string city)
+    public List<Server> GetServersByCity(City city)
     {
-        return (from server in _servers where server.City == city select _entityMapper.Map<LogicalServerResponse, Server>(server)).ToList();
+        return (from server in _servers
+            where server.City == city.Name && server.ExitCountry == city.CountryCode
+            select _entityMapper.Map<LogicalServerResponse, Server>(server)).ToList();
     }
 
     public List<string> GetSecureCoreCountryCodes()
@@ -147,9 +153,11 @@ public class ServerManager : IServerManager
         return GetServers(server => server.Features.IsSupported(ServerFeatures.Tor) && server.ExitCountry == countryCode);
     }
 
-    public List<Server> GetP2PServersByCity(string city)
+    public List<Server> GetP2PServersByCity(City city)
     {
-        return GetServers(server => server.Features.IsSupported(ServerFeatures.P2P) && server.City == city);
+        return GetServers(server => server.Features.IsSupported(ServerFeatures.P2P) &&
+                                    server.City == city.Name &&
+                                    server.ExitCountry == city.CountryCode);
     }
 
     public List<Server> GetP2PServers()

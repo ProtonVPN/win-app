@@ -59,7 +59,7 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
         return ServerManager.GetP2PCountryCodes();
     }
 
-    protected override List<string> GetCities()
+    protected override List<City> GetCities()
     {
         return ServerManager.GetP2PCities();
     }

@@ -155,7 +155,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <icons:ActiveDot Grid.Column="5"
                                                  Width="16"
                                                  Height="16"
-                                                 Visibility="{x:Bind IsActiveConnection}" />
+                                                 Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             </Grid>
                         </controls:DualCommandsRowControl>
                     </DataTemplate>

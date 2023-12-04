@@ -81,11 +81,12 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
         Countries.SortDescriptions.Add(new(SortDirection.Ascending));
 
         Cities = new AdvancedCollectionView(GetCityViewModels(), true);
-        Cities.SortDescriptions.Add(new(SortDirection.Ascending));
+        Cities.SortDescriptions.Add(new(nameof(CityViewModel.Name), SortDirection.Ascending));
         Cities.Filter = _ => false;
 
         Servers = new AdvancedCollectionView(GetServerViewModels(), true);
-        Servers.SortDescriptions.Add(new(SortDirection.Ascending));
+        Servers.SortDescriptions.Add(new(nameof(ServerViewModel.IsUnderMaintenance), SortDirection.Ascending));
+        Servers.SortDescriptions.Add(new(nameof(ServerViewModel.Load), SortDirection.Ascending));
         Servers.Filter = _ => false;
 
         NotifyPropertyChanges();
@@ -123,7 +124,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
 
     protected abstract List<string> GetCountryCodes();
 
-    protected abstract List<string> GetCities();
+    protected abstract List<City> GetCities();
 
     protected abstract List<Server> GetServers();
 

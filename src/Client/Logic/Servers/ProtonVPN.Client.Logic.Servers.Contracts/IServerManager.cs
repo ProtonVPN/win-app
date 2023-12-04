@@ -24,39 +24,22 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 public interface IServerManager
 {
     Task FetchServersAsync();
-
     List<string> GetCountryCodes();
-    List<string> GetCities();
-
-    List<string> GetCitiesByCountry(string countryCode);
-
-    List<string> GetP2PCities();
-
-    List<string> GetP2PCitiesByCountry(string countryCode);
-
-    List<Server> GetServersByCity(string city);
-
+    List<City> GetCities();
+    List<City> GetCitiesByCountry(string countryCode);
+    List<City> GetP2PCities();
+    List<City> GetP2PCitiesByCountry(string countryCode);
+    List<Server> GetServersByCity(City city);
     List<Server> GetServers(Func<LogicalServerResponse, bool>? filterFunc = null);
-
     List<string> GetSecureCoreCountryCodes();
-
     List<string> GetP2PCountryCodes();
-
     List<string> GetTorCountryCodes();
-
     List<Server> GetSecureCoreServers();
-
     List<Server> GetSecureCoreServersByExitCountry(string countryCode);
-
     List<Server> GetP2PServersByExitCountry(string countryCode);
-
     List<Server> GetTorServers();
-
     List<Server> GetTorServersByExitCountry(string countryCode);
-
-    List<Server> GetP2PServersByCity(string city);
-
+    List<Server> GetP2PServersByCity(City city);
     List<Server> GetP2PServers();
-
     string? GetHostCountryCode(string countryCode);
 }

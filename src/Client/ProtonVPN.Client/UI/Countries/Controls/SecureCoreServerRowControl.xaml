@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+             xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -42,10 +43,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                          EntryCountryCode="{x:Bind ServerViewModel.EntryCountryCode}"
                                          ExitCountryCode="{x:Bind ServerViewModel.ExitCountryCode}"
                                          IsSecureCore="True" />
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="{x:Bind ServerViewModel.ExitCountryName}" />
-                <TextBlock Text="{x:Bind ServerViewModel.EntryCountryName}"
-                           Foreground="{ThemeResource TextWeakColorBrush}" />
+            <StackPanel Grid.Column="1"
+                        Spacing="8"
+                        Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="{x:Bind ServerViewModel.ExitCountryName}" />
+                    <TextBlock Text="{x:Bind ServerViewModel.EntryCountryName}"
+                               Foreground="{ThemeResource TextWeakColorBrush}" />
+                </StackPanel>
+                <icons:ActiveDot Width="16"
+                                 Height="16"
+                                 Visibility="{x:Bind ServerViewModel.IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
         </Grid>
     </controls:DualCommandsRowControl>

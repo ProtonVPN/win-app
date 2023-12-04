@@ -76,21 +76,22 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
         LoadItems(CurrentCountryCode);
     }
 
-    protected CityViewModel GetCity(string city)
+    protected CityViewModel GetCity(City city)
     {
         List<ServerViewModel> servers = GetServersByCity(city);
         return CountryViewModelsFactory.GetCityViewModel(city, servers, CountryFeature);
     }
 
-    private List<ServerViewModel> GetServersByCity(string city)
+    private List<ServerViewModel> GetServersByCity(City city)
     {
         return GetServers(city)
             .Select(CountryViewModelsFactory.GetServerViewModel)
-            .OrderBy(s => s.Load)
+            .OrderBy(s => s.IsUnderMaintenance)
+            .ThenBy(s => s.Load)
             .ToList();
     }
 
-    protected abstract List<Server> GetServers(string city);
+    protected abstract List<Server> GetServers(City city);
 
     protected abstract IList GetItems();
 
