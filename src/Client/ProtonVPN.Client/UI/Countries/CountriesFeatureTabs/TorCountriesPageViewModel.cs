@@ -58,9 +58,9 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
         return ServerManager.GetTorCountryCodes();
     }
 
-    protected override List<string> GetCities()
+    protected override List<City> GetCities()
     {
-        return new List<string>();
+        return new();
     }
 
     protected override List<Server> GetServers()

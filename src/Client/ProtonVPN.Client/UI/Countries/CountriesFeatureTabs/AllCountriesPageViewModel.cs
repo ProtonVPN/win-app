@@ -49,7 +49,7 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
         return ServerManager.GetCountryCodes();
     }
 
-    protected override List<string> GetCities()
+    protected override List<City> GetCities()
     {
         return ServerManager.GetCities();
     }

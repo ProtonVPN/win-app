@@ -29,6 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
                                       xmlns:countries="using:ProtonVPN.Client.UI.Countries"
                                       xmlns:countryControls="using:ProtonVPN.Client.UI.Countries.Controls"
+                                      xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
                                       x:DefaultBindMode="OneWay"
                                       mc:Ignorable="d">
     <StackPanel Spacing="4">
@@ -46,20 +47,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <pathIcons:ThreeDotsVertical Foreground="{ThemeResource TextWeakColorBrush}" />
                         </controls:DualCommandsRowControl.SecondaryCommandIcon>
 
-                        <Grid ColumnSpacing="8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <pathIcons:MapPin Grid.Column="0"
-                                              Foreground="{ThemeResource TextWeakColorBrush}" />
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Name}" />
-                        </Grid>
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="8">
+                            <pathIcons:MapPin Foreground="{ThemeResource TextWeakColorBrush}" />
+                            <TextBlock Text="{x:Bind Name}" />
+                            <icons:ActiveDot Width="16"
+                                             Height="16"
+                                             Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </StackPanel>
 
                         <controls:DualCommandsRowControl.SecondaryCommandFlyout>
                             <Flyout Placement="BottomEdgeAlignedRight">
-                                <StackPanel Width="264"
+                                <StackPanel Width="286"
                                             Spacing="8">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -72,8 +71,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                    VerticalAlignment="Center"
                                                    Text="{x:Bind Localizer.Get('Countries_Server')}" />
                                         <StackPanel Grid.Column="1"
-                                                    Orientation="Horizontal"
-                                                    Spacing="8">
+                                                    HorizontalAlignment="Right"
+                                                    Padding="0,0,16,0"
+                                                    Orientation="Horizontal">
                                             <TextBlock Text="{x:Bind Localizer.Get('Countries_ServerLoad')}"
                                                        Foreground="{ThemeResource TextWeakColorBrush}"
                                                        VerticalAlignment="Center" />

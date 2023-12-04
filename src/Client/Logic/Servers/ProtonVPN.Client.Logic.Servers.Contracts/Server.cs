@@ -36,4 +36,5 @@ public class Server
     public IReadOnlyList<PhysicalServer> Servers { get; init; } = new List<PhysicalServer>();
     public bool IsVirtual { get; init; }
     public bool IsUnderMaintenance { get; init; }
+    public string GatewayName { get; init; } = string.Empty;
 }

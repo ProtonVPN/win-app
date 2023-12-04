@@ -37,12 +37,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_P2PCountries', ViewModel.TotalCountries)}" />
 
         <controls:CityListControl Cities="{x:Bind ViewModel.Cities}"
-                                  Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_CitiesNumber', ViewModel.Cities.Count)}"
+                                  Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfCities', ViewModel.Cities.Count)}"
                                   Visibility="{x:Bind ViewModel.HasCities, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <controls:ServerListControl Servers="{x:Bind ViewModel.Servers}"
                                     Visibility="{x:Bind ViewModel.HasServers, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_ServersNumber', ViewModel.Servers.Count)}" />
+                                    Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfServers', ViewModel.Servers.Count)}" />
 
         <controls:NoSearchResultsView Visibility="{x:Bind ViewModel.HasItems, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
     </StackPanel>

@@ -30,7 +30,7 @@ using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class ServerViewModel : ViewModelBase, IComparable, ISearchableItem
+public partial class ServerViewModel : ViewModelBase, ISearchableItem
 {
     protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IConnectionManager ConnectionManager;
@@ -49,7 +49,7 @@ public partial class ServerViewModel : ViewModelBase, IComparable, ISearchableIt
     public bool SupportsP2P { get; init; }
     public bool IsTor { get; init; }
     public bool IsUnderMaintenance { get; init; }
-    public bool IsActive { get; init; }
+    public bool IsActiveConnection { get; init; }
 
     public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager) : base(localizationProvider)
@@ -71,11 +71,6 @@ public partial class ServerViewModel : ViewModelBase, IComparable, ISearchableIt
     protected async Task NavigateToHomePageAsync()
     {
         await MainViewNavigator.NavigateToAsync<HomeViewModel>();
-    }
-
-    public int CompareTo(object? obj)
-    {
-        return obj is not ServerViewModel server ? 0 : Load.CompareTo(server.Load);
     }
 
     public bool MatchesSearchQuery(string query)

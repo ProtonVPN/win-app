@@ -48,12 +48,12 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
         await MainViewNavigator.ShowOverlayAsync<P2POverlayViewModel>();
     }
 
-    protected override List<string> GetCities()
+    protected override List<City> GetCities()
     {
         return ServerManager.GetP2PCitiesByCountry(CurrentCountryCode);
     }
 
-    protected override List<Server> GetServers(string city)
+    protected override List<Server> GetServers(City city)
     {
         return ServerManager.GetP2PServersByCity(city);
     }

@@ -41,36 +41,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
             </Style>
         </custom:GhostButton.Style>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-
+        <Grid ColumnSpacing="8"
+              ColumnDefinitions="*,16,16,76">
             <StackPanel Grid.Column="0"
-                        Spacing="8"
+                        Spacing="4"
                         Orientation="Horizontal">
                 <TextBlock FontSize="{ThemeResource BodyFontSize}"
                            FontWeight="{ThemeResource BodyFontWeight}"
                            Text="{x:Bind ServerViewModel.Name}"
                            VerticalAlignment="Center" />
-                <icons:ActiveDot Visibility="{x:Bind ServerViewModel.IsActive, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <icons:ActiveDot Visibility="{x:Bind ServerViewModel.IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <pathIcons:Wrench Visibility="{x:Bind ServerViewModel.IsUnderMaintenance, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
 
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal"
-                        Spacing="4">
-                <pathIcons:Globe ToolTipService.ToolTip="{x:Bind ServerViewModel.Localizer.Get('Countries_SmartRouting')}"
-                                 Foreground="{ThemeResource TextWeakColorBrush}"
-                                 Visibility="{x:Bind ServerViewModel.IsVirtual, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <pathIcons:ArrowRightArrowLeft ToolTipService.ToolTip="{x:Bind ServerViewModel.Localizer.Get('Countries_P2P')}"
-                                               Foreground="{ThemeResource TextWeakColorBrush}"
-                                               Visibility="{x:Bind ServerViewModel.SupportsP2P, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            </StackPanel>
+            <pathIcons:Globe Grid.Column="1"
+                             ToolTipService.ToolTip="{x:Bind ServerViewModel.Localizer.Get('Countries_SmartRouting')}"
+                             Foreground="{ThemeResource TextWeakColorBrush}"
+                             Visibility="{x:Bind ServerViewModel.IsVirtual, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <pathIcons:ArrowRightArrowLeft Grid.Column="2"
+                                           ToolTipService.ToolTip="{x:Bind ServerViewModel.Localizer.Get('Countries_P2P')}"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Visibility="{x:Bind ServerViewModel.SupportsP2P, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <StackPanel Grid.Column="2"
+            <StackPanel Grid.Column="3"
                         Spacing="8"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal"

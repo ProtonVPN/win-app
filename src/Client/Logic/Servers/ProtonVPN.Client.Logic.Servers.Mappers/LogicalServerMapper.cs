@@ -53,6 +53,7 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
             Servers = physicalServers,
             IsVirtual = !string.IsNullOrEmpty(leftEntity.HostCountry),
             IsUnderMaintenance = leftEntity.Status == 0,
+            GatewayName = leftEntity.GatewayName,
         };
     }
 

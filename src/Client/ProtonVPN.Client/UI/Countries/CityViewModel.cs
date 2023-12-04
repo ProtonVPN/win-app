@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
@@ -35,6 +36,9 @@ public partial class CityViewModel : ViewModelBase, ISearchableItem
 {
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly IConnectionManager _connectionManager;
+
+    [ObservableProperty]
+    private bool _isActiveConnection;
 
     public string CountryCode => Servers.FirstOrDefault()?.ExitCountryCode ?? string.Empty;
 

@@ -60,7 +60,7 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
         await MainViewNavigator.ShowOverlayAsync<SecureCoreOverlayViewModel>();
     }
 
-    protected override List<Server> GetServers(string city)
+    protected override List<Server> GetServers(City city)
     {
         return new List<Server>();
     }

@@ -77,5 +77,5 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         return new List<SortDescription> { new(nameof(CityViewModel.Name), SortDirection.Ascending) };
     }
 
-    protected abstract List<string> GetCities();
+    protected abstract List<City> GetCities();
 }
