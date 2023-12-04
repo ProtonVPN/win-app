@@ -42,6 +42,8 @@ public class NetworkLogWriter : INetworkLogWriter
     {
         await Task.Run(() =>
         {
+            Directory.CreateDirectory(_config.DiagnosticLogsFolder);
+
             using FileStream fs = new(_config.DiagnosticLogsZipFilePath, FileMode.Create);
             using ZipArchive arch = new(fs, ZipArchiveMode.Create);
 
