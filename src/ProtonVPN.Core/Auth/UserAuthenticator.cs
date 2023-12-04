@@ -77,7 +77,8 @@ namespace ProtonVPN.Core.Auth
 
                 if (!unauthSessionResponse.Success)
                 {
-                    throw new NotSupportedException(unauthSessionResponse.Error);
+                    _logger?.Error<ApiErrorLog>($"Failed to create an unauth session. {unauthSessionResponse.Error}");
+                    return null;
                 }
 
                 return unauthSessionResponse.Value;
@@ -85,7 +86,7 @@ namespace ProtonVPN.Core.Auth
             catch (Exception ex)
             {
                 _logger?.Error<ApiErrorLog>("An error occurred when requesting a new unauth session.", ex);
-                return null;
+                throw;
             }
         }
 

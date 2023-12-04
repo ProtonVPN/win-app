@@ -36,7 +36,8 @@ namespace ProtonVPN.Modals.Upsell
 
         private void OnViewLoaded(object sender, RoutedEventArgs e)
         {
-            if (FlagContainer.Tag is not string countryCode)
+            string countryCode = (DataContext as CountryUpsellModalViewModel)?.CountryCode;
+            if (string.IsNullOrEmpty(countryCode))
             {
                 return;
             }

@@ -38,7 +38,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <DockPanel Margin="0,5,0,0">
+                        <DockPanel Margin="0,5,0,0" 
+                                   Background="{TemplateBinding Background}">
                             <icons:ProtonPlus Width="38"
                                               Margin="0,0,8,0"
                                               VerticalAlignment="Center"
@@ -92,7 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Viewbox Name="PinViewbox" VerticalAlignment="Bottom">
             <Canvas Width="{Binding OrigWidth}" Height="{Binding OrigHeight}" Name="PinCanvas">
                 <Canvas Width="{Binding OrigWidth}" Height="{Binding OrigHeight}">
-                    <Path x:Name="PinPath" SnapsToDevicePixels="True" UseLayoutRounding="True" Stretch="Uniform"/>
+                    <Path x:Name="PinPath" SnapsToDevicePixels="True" UseLayoutRounding="True" Stretch="Uniform" />
                     <Button Name="CountryButton" Style="{StaticResource StandardPinButton}" Command="{Binding ConnectCommand}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewTouchDown">

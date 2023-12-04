@@ -59,8 +59,8 @@ public class CountryUpsellModalViewModel : UpsellModalViewModel
 
     public override void BeforeOpenModal(dynamic countryCode)
     {
-        SendDisplayStatisticalEvent();
-
         CountryCode = countryCode;
+        
+        SendDisplayStatisticalEvent();
     }
 }
