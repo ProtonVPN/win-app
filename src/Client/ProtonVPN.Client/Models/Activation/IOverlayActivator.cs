@@ -17,21 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
 
 namespace ProtonVPN.Client.Models.Activation;
 
-public interface IDialogActivator
+public interface IOverlayActivator
 {
-    void ShowDialog<TPageViewModel>()
-        where TPageViewModel : PageViewModelBase;
+    void Initialize(MainWindow window);
 
-    void ShowDialog(string pageKey);
+    Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters, Window? rootWindow = null);
 
-    void CloseDialog<TPageViewModel>()
-        where TPageViewModel : PageViewModelBase;
+    Task ShowOverlayAsync<TOverlayViewModel>(Window? rootWindow = null)
+        where TOverlayViewModel : OverlayViewModelBase;
 
-    void CloseDialog(string pageKey);
+    Task ShowOverlayAsync(string overlayKey, Window? rootWindow = null);
 
-    void CloseAllDialogs();
+    void CloseOverlay<TOverlayViewModel>(Window? rootWindow = null)
+        where TOverlayViewModel : OverlayViewModelBase;
+
+    void CloseOverlay(string overlayKey, Window? rootWindow = null);
+
+    void CloseAllOverlays(Window? rootWindow = null);
 }

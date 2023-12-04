@@ -22,6 +22,7 @@ using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -75,11 +76,17 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
     public ProtocolViewModel(
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IUrls urls)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
+        : base(viewNavigator, 
+               localizationProvider, 
+               overlayActivator, 
+               settings, 
+               settingsConflictResolver, 
+               connectionManager)
     {
         _urls = urls;
     }

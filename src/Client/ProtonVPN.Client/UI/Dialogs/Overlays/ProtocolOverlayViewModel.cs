@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -37,11 +38,15 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
 
     public string CurrentProtocol => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
-    public ProtocolOverlayViewModel(ILocalizationProvider localizationProvider,
+    public ProtocolOverlayViewModel(
+        ILocalizationProvider localizationProvider,
         IMainViewNavigator viewNavigator,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         IUrls urls)
-        : base(localizationProvider, viewNavigator)
+        : base(localizationProvider,
+               viewNavigator,
+               overlayActivator)
     {
         _settings = settings;
         _urls = urls;

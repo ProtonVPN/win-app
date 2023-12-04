@@ -36,6 +36,7 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IDialogActivator _dialogActivator;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly IServiceManager _serviceManager;
     private readonly IEventMessageSender _eventMessageSender;
 
@@ -46,6 +47,7 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
         ILogger logger,
         IThemeSelector themeSelector,
         IDialogActivator dialogActivator,
+        IOverlayActivator overlayActivator,
         IServiceManager serviceManager,
         IEventMessageSender eventMessageSender)
         : base(logger, themeSelector)
@@ -54,6 +56,7 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
         _dialogActivator = dialogActivator;
+        _overlayActivator = overlayActivator;
         _serviceManager = serviceManager;
         _eventMessageSender = eventMessageSender;
 
@@ -74,6 +77,8 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
 
         // Activate the MainWindow.
         _mainWindow.Activate();
+
+        _overlayActivator.Initialize(_mainWindow);
     }
 
     public void Receive(LoggedInMessage message)
@@ -112,7 +117,10 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
         _mainWindow.Closed -= OnMainWindowClosed;
 
         _eventMessageSender.Send(new MainWindowClosedMessage());
-        _dialogActivator.CloseAll();
+
+        _dialogActivator.CloseAllDialogs();
+        _overlayActivator.CloseAllOverlays();
+
         _serviceManager.Stop();
     }
 

@@ -18,7 +18,6 @@
  */
 
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -30,7 +29,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Messages;
@@ -54,6 +52,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
 {
     private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IUrls _urls;
@@ -128,6 +127,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         IMainViewNavigator viewNavigator,
         ILocalizationService localizationService,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
         IUrls urls,
@@ -139,6 +139,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;
+        _overlayActivator = overlayActivator;
         _settings = settings;
         _settingsRestorer = settingsRestorer;
         _urls = urls;
@@ -153,20 +154,12 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
     }
 
-    private string? GetPortForwardingCurrentActivePort()
-    {
-        int? activePort = _portForwardingManager.ActivePort;
-        return activePort is not null && _settings.IsPortForwardingEnabled && _connectionManager.IsConnected
-            ? $"{Localizer.Get("Settings_Features_PortForwarding_ActivePort")} {activePort}"
-            : null;
-    }
-
     [RelayCommand]
     public async Task RestoreDefaultSettingsAsync()
     {
         bool needReconnection = !_connectionManager.IsDisconnected;
 
-        ContentDialogResult result = await ViewNavigator.ShowMessageAsync(
+        ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
             new MessageDialogParameters
             {
                 Title = Localizer.Get("Settings_RestoreDefault_Confirmation_Title"),
@@ -260,6 +253,16 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         InvalidateAllProperties();
     }
 
+    public void Receive(PortForwardingPortChanged message)
+    {
+        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+    }
+
+    public void Receive(ConnectionStatusChanged message)
+    {
+        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+    }
+
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
@@ -274,13 +277,11 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         OnPropertyChanged(nameof(SelectedTheme));
     }
 
-    public void Receive(PortForwardingPortChanged message)
+    private string? GetPortForwardingCurrentActivePort()
     {
-        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
-    }
-
-    public void Receive(ConnectionStatusChanged message)
-    {
-        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+        int? activePort = _portForwardingManager.ActivePort;
+        return activePort is not null && _settings.IsPortForwardingEnabled && _connectionManager.IsConnected
+            ? $"{Localizer.Get("Settings_Features_PortForwarding_ActivePort")} {activePort}"
+            : null;
     }
 }

@@ -27,6 +27,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
@@ -40,17 +41,21 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>
 {
+    protected readonly IOverlayActivator OverlayActivator;
     protected readonly ISettings Settings;
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
     protected readonly IConnectionManager ConnectionManager;
 
     public SettingsPageViewModelBase(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, 
+               localizationProvider)
     {
+        OverlayActivator = overlayActivator;
         Settings = settings;
         SettingsConflictResolver = settingsConflictResolver;
         ConnectionManager = connectionManager;
@@ -123,7 +128,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
             return true;
         }
 
-        ContentDialogResult result = await ViewNavigator.ShowMessageAsync(
+        ContentDialogResult result = await OverlayActivator.ShowMessageAsync(
             new MessageDialogParameters
             {
                 Title = Localizer.Get("Settings_Common_Discard_Title"),
@@ -179,7 +184,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
 
         if (conflict != null)
         {
-            ContentDialogResult result = await ViewNavigator.ShowMessageAsync(conflict.MessageParameters);
+            ContentDialogResult result = await OverlayActivator.ShowMessageAsync(conflict.MessageParameters);
             if (result != ContentDialogResult.Primary)
             {
                 GetType()?.GetProperty(e.PropertyName)?.SetValue(this, conflict.SettingsResetValue);

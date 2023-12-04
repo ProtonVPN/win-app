@@ -44,6 +44,8 @@ public partial class App
     {
         InitializeComponent();
 
+        UnhandledException += App_UnhandledException;
+
         Host = Microsoft.Extensions.Hosting.Host
             .CreateDefaultBuilder()
             .UseContentRoot(AppContext.BaseDirectory)
@@ -52,8 +54,6 @@ public partial class App
             .ConfigureServices((context, services) =>
                 services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions))))
             .Build();
-
-        UnhandledException += App_UnhandledException;
     }
 
     public static T GetService<T>()

@@ -27,7 +27,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Activation;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
@@ -36,8 +36,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
     private readonly IConnectionManager _connectionManager;
-    private readonly IMainViewNavigator _viewNavigator;
-
+    private readonly IOverlayActivator _overlayActivator;
     private readonly VpnSpeedViewModel _vpnSpeedViewModel;
 
     private readonly DispatcherTimer _refreshTimer;
@@ -76,14 +75,15 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
         ? Localizer.GetVpnProtocol(CurrentConnectionDetails.Protocol)
         : string.Empty;
 
-    public ConnectionDetailsViewModel(ILocalizationProvider localizationProvider,
+    public ConnectionDetailsViewModel(
+        ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
-        IMainViewNavigator viewNavigator,
+        IOverlayActivator overlayActivator,
         VpnSpeedViewModel vpnSpeedViewModel)
         : base(localizationProvider)
     {
         _connectionManager = connectionManager;
-        _viewNavigator = viewNavigator;
+        _overlayActivator = overlayActivator;
         _vpnSpeedViewModel = vpnSpeedViewModel;
 
         _refreshTimer = new()
@@ -96,7 +96,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     [RelayCommand]
     public async Task OpenOverlayAsync(string dialogKey)
     {
-        await _viewNavigator.ShowOverlayAsync(dialogKey);
+        await _overlayActivator.ShowOverlayAsync(dialogKey);
     }
 
     public void Receive(ConnectionStatusChanged message)

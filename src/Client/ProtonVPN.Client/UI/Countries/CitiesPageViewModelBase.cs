@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home;
 
@@ -33,22 +34,26 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
 {
-    private readonly IConnectionManager _connectionManager;
     protected readonly IServerManager ServerManager;
+    private readonly IConnectionManager _connectionManager;
 
     public override IconElement? Icon => null;
 
     protected CitiesPageViewModelBase(
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countryViewModelsFactory,
-        viewNavigator, localizationProvider)
+        ILocalizationProvider localizationProvider)
+        : base(mainViewNavigator,
+               overlayActivator,
+               countryViewModelsFactory,
+               viewNavigator,
+               localizationProvider)
     {
         _connectionManager = connectionManager;
-        MainViewNavigator = mainViewNavigator;
         ServerManager = serverManager;
     }
 
@@ -63,7 +68,7 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
     public override void OnNavigatedTo(object parameter)
     {
         CurrentCountryCode = parameter as string ?? string.Empty;
-        
+
         base.OnNavigatedTo(parameter);
     }
 

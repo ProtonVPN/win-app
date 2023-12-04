@@ -20,15 +20,12 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 public interface IViewNavigator
 {
-    event NavigatedEventHandler Navigated;
-
     bool CanGoBack { get; }
 
     bool CanNavigate { get; set; }
@@ -37,21 +34,14 @@ public interface IViewNavigator
 
     Frame Frame { get; set; }
 
+    event NavigatedEventHandler Navigated;
+
     Task<bool> GoBackAsync();
 
     Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false);
 
     Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
         where TPageViewModel : PageViewModelBase;
-
-    Task ShowOverlayAsync<TOverlayViewModel>()
-        where TOverlayViewModel : OverlayViewModelBase;
-
-    Task ShowOverlayAsync(string overlayKey);
-
-    Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters);
-
-    void CloseOverlay();
 
     void CloseCurrentWindow();
 }

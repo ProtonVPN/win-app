@@ -19,6 +19,7 @@
 
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -26,6 +27,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
@@ -52,18 +54,19 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
     public SsoLoginOverlayViewModel(
         ILocalizationProvider localizationProvider,
         ILoginViewNavigator viewNavigator,
+        IOverlayActivator overlayActivator,
         IUserAuthenticator userAuthenticator,
         ISettings settings,
         IConfiguration configuration,
         ILogger logger)
-        : base(localizationProvider, viewNavigator)
+        : base(localizationProvider, viewNavigator, overlayActivator)
     {
         _userAuthenticator = userAuthenticator;
         _settings = settings;
         _configuration = configuration;
         _logger = logger;
 
-        SsoWebView = new WebView2() { VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Stretch };
+        SsoWebView = new WebView2() { VerticalAlignment = VerticalAlignment.Stretch };
 
         SsoWebView.NavigationStarting += OnNavigationStarting;
         SsoWebView.NavigationCompleted += OnNavigationCompleted;
@@ -99,7 +102,7 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         _ssoResponseToken = null;
         IsLoadingPage = true;
         await InitializeWebViewAsync(ssoChallengeToken);
-        await ViewNavigator.ShowOverlayAsync<SsoLoginOverlayViewModel>();
+        await ShowOverlayAsync();
 
         return await _userAuthenticator.CompleteSsoAuthAsync(_ssoResponseToken ?? string.Empty);
     }

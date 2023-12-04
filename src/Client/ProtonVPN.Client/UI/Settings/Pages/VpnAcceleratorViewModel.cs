@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -39,13 +40,20 @@ public partial class VpnAcceleratorViewModel : SettingsPageViewModelBase
 
     public string LearnMoreUrl => _urls.VpnAcceleratorLearnMore;
 
-    public VpnAcceleratorViewModel(IMainViewNavigator viewNavigator,
+    public VpnAcceleratorViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
         IConnectionManager connectionManager)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
+        : base(viewNavigator, 
+               localizationProvider, 
+               overlayActivator, 
+               settings, 
+               settingsConflictResolver, 
+               connectionManager)
     {
         _urls = urls;
     }

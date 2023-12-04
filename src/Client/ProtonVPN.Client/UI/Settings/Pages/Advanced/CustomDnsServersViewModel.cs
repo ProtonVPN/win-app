@@ -26,6 +26,7 @@ using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -56,10 +57,16 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     public CustomDnsServersViewModel(
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
+        : base(viewNavigator, 
+               localizationProvider, 
+               overlayActivator, 
+               settings, 
+               settingsConflictResolver, 
+               connectionManager)
     {
         _currentIpAddress = string.Empty;
 

@@ -22,6 +22,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Countries;
@@ -29,15 +30,18 @@ namespace ProtonVPN.Client.UI.Countries;
 public class CountryViewModelsFactory
 {
     private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
 
     public CountryViewModelsFactory(
         ILocalizationProvider localizer,
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
         IConnectionManager connectionManager)
     {
         _mainViewNavigator = mainViewNavigator;
+        _overlayActivator = overlayActivator;
         _localizer = localizer;
         _connectionManager = connectionManager;
     }
@@ -79,7 +83,7 @@ public class CountryViewModelsFactory
     {
         ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
 
-        return new(_localizer, _mainViewNavigator, _connectionManager)
+        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager)
         {
             Name = city.Name,
             Servers = servers,

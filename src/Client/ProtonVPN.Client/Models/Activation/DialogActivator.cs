@@ -30,13 +30,14 @@ namespace ProtonVPN.Client.Models.Activation;
 public class DialogActivator : WindowActivatorBase, IDialogActivator
 {
     private readonly IViewMapper _viewMapper;
-
+    private readonly IOverlayActivator _overlayActivator;
     private List<Window> _activeDialogs = new();
 
-    public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
+    public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, IOverlayActivator overlayActivator)
         : base(logger, themeSelector)
     {
         _viewMapper = viewMapper;
+        _overlayActivator = overlayActivator;
     }
 
     public void ShowDialog<TPageViewModel>()
@@ -69,7 +70,7 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
         CloseDialog(dialogType);
     }
 
-    public void CloseAll()
+    public void CloseAllDialogs()
     {
         foreach (Window dialog in _activeDialogs.ToList())
         {
@@ -95,12 +96,10 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
                 dialog = Activator.CreateInstance(dialogType) as Window
                     ?? throw new InvalidCastException($"Type {dialogType} is not recognized as a Window.");
 
-                dialog.Closed += OnDialogClosed;
-
                 dialog.ApplyTheme(ThemeSelector.GetTheme().Theme);
                 dialog.CenterOnScreen();
 
-                _activeDialogs.Add(dialog);
+                RegisterDialog(dialog);
             }
 
             dialog.Activate();
@@ -132,13 +131,27 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
         }
     }
 
+    private void RegisterDialog(Window dialog)
+    {
+        dialog.Closed += OnDialogClosed;
+
+        _activeDialogs.Add(dialog);
+    }
+
+    private void UnregisterDialog(Window dialog)
+    {
+        dialog.Closed -= OnDialogClosed;
+
+        _overlayActivator.CloseAllOverlays(dialog);
+
+        _activeDialogs.Remove(dialog);
+    }
+
     private void OnDialogClosed(object sender, WindowEventArgs args)
     {
         if (sender is Window dialog)
         {
-            dialog.Closed -= OnDialogClosed;
-
-            _activeDialogs.Remove(dialog);
+            UnregisterDialog(dialog);
         }
     }
 }

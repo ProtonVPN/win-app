@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 
@@ -36,16 +37,21 @@ public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
         CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
-        IMainViewNavigator mainViewNavigator) :
-        base(connectionManager, mainViewNavigator, serverManager, viewNavigator, countryViewModelsFactory,
-            localizationProvider)
-    {
-    }
+        IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator)
+        : base(connectionManager, 
+               mainViewNavigator, 
+               overlayActivator,
+               serverManager, 
+               viewNavigator, 
+               countryViewModelsFactory,
+               localizationProvider)
+    { }
 
     [RelayCommand]
     public async Task ShowInfoOverlayAsync()
     {
-        await MainViewNavigator.ShowOverlayAsync<P2POverlayViewModel>();
+        await OverlayActivator.ShowOverlayAsync<P2POverlayViewModel>();
     }
 
     protected override List<City> GetCities()

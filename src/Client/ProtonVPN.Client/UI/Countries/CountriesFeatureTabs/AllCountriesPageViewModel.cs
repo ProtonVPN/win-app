@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries.Controls;
 
@@ -35,14 +36,20 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
 
     public AllCountriesPageViewModel(
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         IServerManager serverManager,
         ILocalizationProvider localizationProvider,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) : base(mainViewNavigator, serverManager,
-        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countryViewModelsFactory)
-    {
-    }
+        CountryViewModelsFactory countryViewModelsFactory) 
+        : base(mainViewNavigator, 
+               overlayActivator,
+               serverManager, 
+               countriesFeatureTabsViewNavigator, 
+               localizationProvider, 
+               noSearchResultsViewModel, 
+               countryViewModelsFactory)
+    { }
 
     protected override List<string> GetCountryCodes()
     {

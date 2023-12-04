@@ -26,6 +26,7 @@ using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Clipboards;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
@@ -34,8 +35,7 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class PortForwardingViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<PortForwardingPortChanged>
+public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEventMessageReceiver<PortForwardingPortChanged>
 {
     private readonly IUrls _urls;
     private readonly IClipboardEditor _clipboardEditor;
@@ -65,13 +65,19 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
     public PortForwardingViewModel(
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
         IClipboardEditor clipboardEditor,
         IConnectionManager connectionManager,
         IPortForwardingManager portForwardingManager)
-        : base(viewNavigator, localizationProvider, settings, settingsConflictResolver, connectionManager)
+        : base(viewNavigator, 
+               localizationProvider, 
+               overlayActivator, 
+               settings, 
+               settingsConflictResolver, 
+               connectionManager)
     {
         _urls = urls;
         _clipboardEditor = clipboardEditor;
