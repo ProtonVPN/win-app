@@ -31,6 +31,8 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.ReportIssue.Models;
 using ProtonVPN.Client.UI.ReportIssue.Models.Fields;
 using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
@@ -38,6 +40,7 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
 {
     private readonly IReportIssueDataProvider _dataProvider;
     private readonly IReportIssueSender _reportIssueSender;
+    private readonly ILogger _logger;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Title))]
@@ -55,11 +58,12 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
 
     public NotifyErrorObservableCollection<IssueInputField> InputFields { get; }
 
-    public ContactFormViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider, IReportIssueSender reportIssueSender)
+    public ContactFormViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider, IReportIssueSender reportIssueSender, ILogger logger)
         : base(viewNavigator, localizationProvider)
     {
         _dataProvider = dataProvider;
         _reportIssueSender = reportIssueSender;
+        _logger = logger;
 
         InputFields = new();
         InputFields.ItemErrorsChanged += OnInputFieldsItemErrorsChanged;
@@ -97,6 +101,10 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
             Result result = await _reportIssueSender.SendAsync(Category!.Key, email, serializedFields, IncludeLogs);
 
             isReportSent = result.Success;
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("An error occured while sending the issue report", e);
         }
         finally
         {

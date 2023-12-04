@@ -66,9 +66,9 @@ public static class DefaultConfiguration
     public static string UpdatesFolder => Path.Combine(_commonAppDataProtonVpnPath.Value, "Updates");
     public static string WebViewFolder => Path.Combine(_localAppDataProtonVpnPath.Value, "WebView2");
 
-    public static string ClientLogsFilePath => Path.Combine(_clientLogsFolder.Value, "client-logs.txt");
-    public static string ServiceLogsFilePath => Path.Combine(_serviceLogsFolder.Value, "service-logs.txt");
-    public static string DiagnosticLogsZipFilePath => Path.Combine(_diagnosticLogsFolder.Value, "diagnostic_logs.zip");
+    public static string ClientLogsFilePath => Path.Combine(ClientLogsFolder, "client-logs.txt");
+    public static string ServiceLogsFilePath => Path.Combine(ServiceLogsFolder, "service-logs.txt");
+    public static string DiagnosticLogsZipFilePath => Path.Combine(DiagnosticLogsFolder, "diagnostic_logs.zip");
     public static string GuestHoleServersJsonFilePath => Path.Combine(_resourcesFolderPath.Value, "GuestHoleServers.json");
     public static string ServiceSettingsFilePath => Path.Combine(_commonAppDataProtonVpnPath.Value, "ServiceSettings.json");
 
