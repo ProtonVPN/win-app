@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Configurations.Contracts;
@@ -29,6 +30,7 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
 {
+    private readonly IOverlayActivator _overlayActivator;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IUrls _urls;
 
@@ -37,10 +39,13 @@ public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
     public DebugLogsViewModel(
         IMainViewNavigator viewNavigator, 
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         IStaticConfiguration staticConfig, 
         IUrls urls)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, 
+               localizationProvider)
     {
+        _overlayActivator = overlayActivator;
         _staticConfig = staticConfig;
         _urls = urls;
     }
@@ -61,7 +66,7 @@ public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
     {
         if (!Directory.Exists(logFolder))
         {
-            await ViewNavigator.ShowMessageAsync(new MessageDialogParameters
+            await _overlayActivator.ShowMessageAsync(new MessageDialogParameters
             {
                 Title = Localizer.Get("Settings_Support_DebugLogs"),
                 Message = $"{Localizer.Get("Settings_Support_DebugLogs_ErrorMessage")}\n({logFolder})",

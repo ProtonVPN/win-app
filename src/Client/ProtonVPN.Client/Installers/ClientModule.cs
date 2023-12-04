@@ -55,6 +55,7 @@ public class ClientModule : Module
         builder.RegisterType<CountriesFeatureTabViewNavigator>().As<ICountriesFeatureTabsViewNavigator>().SingleInstance();
         builder.RegisterType<CountryFeatureTabViewNavigator>().As<ICountryFeatureTabsViewNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
+        builder.RegisterType<OverlayActivator>().As<IOverlayActivator>().SingleInstance();
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
 

@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 
@@ -30,8 +31,14 @@ public class SmartRoutingOverlayViewModel : OverlayViewModelBase
 
     public string LearnMoreUrl => _urls.SmartRoutingLearnMore;
 
-    public SmartRoutingOverlayViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IUrls urls)
-        : base(localizationProvider, viewNavigator)
+    public SmartRoutingOverlayViewModel(
+        ILocalizationProvider localizationProvider,
+        IMainViewNavigator viewNavigator,
+        IOverlayActivator overlayActivator,
+        IUrls urls)
+        : base(localizationProvider,
+               viewNavigator,
+               overlayActivator)
     {
         _urls = urls;
     }

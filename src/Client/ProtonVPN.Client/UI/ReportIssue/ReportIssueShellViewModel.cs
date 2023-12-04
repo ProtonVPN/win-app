@@ -49,7 +49,7 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     public bool IsHeaderVisible => CurrentStep > 0 && CurrentStep <= TotalSteps;
 
     public ReportIssueShellViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-            : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider)
     { }
 
     [RelayCommand(CanExecute = nameof(CanNavigateBackward))]

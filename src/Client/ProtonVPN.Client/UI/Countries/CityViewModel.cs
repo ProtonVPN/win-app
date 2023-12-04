@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.Home;
@@ -35,6 +36,7 @@ namespace ProtonVPN.Client.UI.Countries;
 public partial class CityViewModel : ViewModelBase, ISearchableItem
 {
     private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
@@ -48,10 +50,15 @@ public partial class CityViewModel : ViewModelBase, ISearchableItem
 
     public List<ServerViewModel> Servers { get; init; } = new();
 
-    public CityViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager) : base(localizationProvider)
+    public CityViewModel(
+        ILocalizationProvider localizationProvider, 
+        IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
+        IConnectionManager connectionManager) 
+        : base(localizationProvider)
     {
         _mainViewNavigator = mainViewNavigator;
+        _overlayActivator = overlayActivator;
         _connectionManager = connectionManager;
     }
 
@@ -69,7 +76,7 @@ public partial class CityViewModel : ViewModelBase, ISearchableItem
     [RelayCommand]
     public async Task ShowServerLoadOverlayAsync()
     {
-        await _mainViewNavigator.ShowOverlayAsync<ServerLoadOverlayViewModel>();
+        await _overlayActivator.ShowOverlayAsync<ServerLoadOverlayViewModel>();
     }
 
     public bool MatchesSearchQuery(string query)

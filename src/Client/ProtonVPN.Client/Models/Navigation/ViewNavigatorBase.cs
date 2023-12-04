@@ -22,32 +22,21 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
-using ProtonVPN.Client.Messages;
-using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 // For more information on navigation between pages see
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/navigation.md
-public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<ThemeChangedMessage>
+public abstract class ViewNavigatorBase : IViewNavigator
 {
     private readonly ILogger _logger;
     private readonly IViewMapper _viewMapper;
-    private readonly IThemeSelector _themeSelector;
-
-    private readonly SemaphoreSlim _overlaySemaphore = new(1);
-
     private Window? _window;
     private Frame? _frame;
-
     private object? _lastParameterUsed;
-    private ContentDialog? _activeOverlay;
 
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
@@ -78,11 +67,10 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     protected NavigationTransitionInfo NavigationTransition { get; set; }
 
-    public ViewNavigatorBase(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
+    public ViewNavigatorBase(ILogger logger, IViewMapper viewMapper)
     {
         _logger = logger;
         _viewMapper = viewMapper;
-        _themeSelector = themeSelector;
 
         NavigationTransition = new DrillInNavigationTransitionInfo();
     }
@@ -129,69 +117,9 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         return NavigateToPageAsync(pageType, parameter, clearNavigation);
     }
 
-    public Task ShowOverlayAsync(string overlayKey)
+    public void CloseCurrentWindow()
     {
-        Type overlayType = _viewMapper.GetOverlayType(overlayKey);
-
-        return ShowOverlayAsync(overlayType);
-    }
-
-    public Task ShowOverlayAsync<TOverlayViewModel>()
-        where TOverlayViewModel : OverlayViewModelBase
-    {
-        Type overlayType = _viewMapper.GetOverlayType<TOverlayViewModel>();
-
-        return ShowOverlayAsync(overlayType);
-    }
-
-    public async Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters)
-    {
-        if (Frame.XamlRoot == null)
-        {
-            // Xaml root is set only when the element is loaded in the visual tree. If not already set, give some time for loaded event to trigger
-            await Task.Delay(500);
-        }
-
-        try
-        {
-            await _overlaySemaphore.WaitAsync();
-
-            _activeOverlay = new ContentDialog
-            {
-                Title = parameters.Title,
-                Content = parameters.Message,
-                PrimaryButtonText = parameters.PrimaryButtonText,
-                SecondaryButtonText = parameters.SecondaryButtonText,
-                CloseButtonText = parameters.CloseButtonText,
-                XamlRoot = Frame.XamlRoot,
-                RequestedTheme = _themeSelector.GetTheme().Theme,
-                Style = parameters.UseVerticalLayoutForButtons
-                    ? ResourceHelper.GetContentDialogStyle("VerticalMessageContentDialogStyle")
-                    : ResourceHelper.GetContentDialogStyle("MessageContentDialogStyle")
-            };
-
-            ContentDialogResult result = await _activeOverlay.ShowAsync();
-
-            return result;
-        }
-        finally
-        {
-            _activeOverlay = null;
-            _overlaySemaphore.Release();
-        }
-    }
-
-    public void CloseOverlay()
-    {
-        _activeOverlay?.Hide();
-    }
-
-    public void Receive(ThemeChangedMessage message)
-    {
-        if (_activeOverlay != null)
-        {
-            _activeOverlay.RequestedTheme = _themeSelector.GetTheme().Theme;
-        }
+        _window?.Close();
     }
 
     private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation)
@@ -230,38 +158,6 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         return false;
     }
 
-    private async Task ShowOverlayAsync(Type overlayType)
-    {
-        if (Frame.XamlRoot == null)
-        {
-            // Xaml root is set only when the element is loaded in the visual tree. If not already set, give some time for loaded event to trigger
-            await Task.Delay(500);
-        }
-
-        try
-        {
-            await _overlaySemaphore.WaitAsync();
-
-            _activeOverlay = Activator.CreateInstance(overlayType) as ContentDialog
-                ?? throw new InvalidCastException($"Type {overlayType} is not recognized as a ContentDialog.");
-
-            _activeOverlay.XamlRoot = Frame.XamlRoot;
-            _activeOverlay.RequestedTheme = _themeSelector.GetTheme().Theme;
-
-            await _activeOverlay.ShowAsync();
-        }
-        catch (Exception e)
-        {
-            _logger.Error<AppLog>($"Error when trying to show overlay for '{overlayType}'", e);
-            throw;
-        }
-        finally
-        {
-            _activeOverlay = null;
-            _overlaySemaphore.Release();
-        }
-    }
-
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
         if (sender is Frame frame)
@@ -283,8 +179,6 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
 
     private void OnWindowClosed(object sender, WindowEventArgs e)
     {
-        CloseOverlay();
-
         UnregisterWindowEvents();
         UnregisterFrameEvents();
     }
@@ -319,10 +213,5 @@ public abstract class ViewNavigatorBase : IViewNavigator, IEventMessageReceiver<
         {
             _window.Closed -= OnWindowClosed;
         }
-    }
-
-    public void CloseCurrentWindow()
-    {
-        _window?.Close();
     }
 }

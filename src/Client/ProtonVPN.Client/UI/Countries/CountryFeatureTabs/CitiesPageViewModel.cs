@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
@@ -34,10 +35,16 @@ public class CitiesPageViewModel : CitiesPageViewModelBase
         CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
-        IMainViewNavigator mainViewNavigator) : base(connectionManager, mainViewNavigator, serverManager, viewNavigator,
-        countryViewModelsFactory, localizationProvider)
-    {
-    }
+        IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator) 
+        : base(connectionManager, 
+               mainViewNavigator, 
+               overlayActivator, 
+               serverManager, 
+               viewNavigator,
+               countryViewModelsFactory,
+               localizationProvider)
+    { }
 
     protected override List<City> GetCities()
     {

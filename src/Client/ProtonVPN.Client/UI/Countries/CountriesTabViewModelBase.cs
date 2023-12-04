@@ -23,14 +23,17 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries.Controls;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IViewNavigator>, ICountriesTabViewModelBase
+public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICountriesFeatureTabsViewNavigator>, ICountriesTabViewModelBase
 {
     protected readonly IMainViewNavigator MainViewNavigator;
+
+    protected readonly IOverlayActivator OverlayActivator;
 
     protected readonly IServerManager ServerManager;
 
@@ -61,13 +64,17 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
 
     protected CountriesTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
         IServerManager serverManager,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) : base(countriesFeatureTabsViewNavigator, localizationProvider)
+        CountryViewModelsFactory countryViewModelsFactory) 
+        : base(countriesFeatureTabsViewNavigator, 
+               localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
+        OverlayActivator = overlayActivator;    
         ServerManager = serverManager;
         NoSearchResultsViewModel = noSearchResultsViewModel;
         _countryViewModelsFactory = countryViewModelsFactory;
@@ -103,7 +110,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<IVie
         NotifyPropertyChanges();
     }
 
-    private Predicate<object?> GetCountriesFilter(string query)
+    private Predicate<object>? GetCountriesFilter(string query)
     {
         return string.IsNullOrWhiteSpace(LastSearchQuery) ? null : o => MatchesSearchQuery(o, query);
     }

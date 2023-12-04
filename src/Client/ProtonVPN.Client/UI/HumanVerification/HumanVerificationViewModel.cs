@@ -24,6 +24,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.HumanVerification;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 
@@ -41,8 +42,15 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase, IEventMe
     //TODO: use configuration for api url
     public string Url => $"https://vpn-api.proton.me/core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}";
 
-    public HumanVerificationViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator viewNavigator, IEventMessageSender eventMessageSender, IThemeSelector themeSelector)
-        : base(localizationProvider, viewNavigator)
+    public HumanVerificationViewModel(
+        ILocalizationProvider localizationProvider,
+        IMainViewNavigator viewNavigator,
+        IOverlayActivator overlayActivator,
+        IEventMessageSender eventMessageSender,
+        IThemeSelector themeSelector)
+        : base(localizationProvider,
+               viewNavigator,
+               overlayActivator)
     {
         _eventMessageSender = eventMessageSender;
         _themeSelector = themeSelector;
@@ -52,7 +60,8 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase, IEventMe
     public void TriggerVerificationTokenMessage(string token)
     {
         _eventMessageSender.Send(new ResponseTokenMessage(token));
-        ViewNavigator.CloseOverlay();
+
+        CloseOverlay();
     }
 
     public void Receive(RequestTokenMessage message)

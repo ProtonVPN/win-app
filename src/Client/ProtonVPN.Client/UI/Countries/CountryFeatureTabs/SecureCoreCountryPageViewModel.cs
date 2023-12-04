@@ -23,6 +23,7 @@ using CommunityToolkit.WinUI.UI;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 
@@ -38,11 +39,16 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
 
     public SecureCoreCountryPageViewModel(
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
         IServerManager serverManager,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
-        ILocalizationProvider localizationProvider) : base(mainViewNavigator, countryViewModelsFactory, viewNavigator,
-        localizationProvider)
+        ILocalizationProvider localizationProvider) 
+        : base(mainViewNavigator, 
+               overlayActivator,
+               countryViewModelsFactory, 
+               viewNavigator,
+               localizationProvider)
     {
         _serverManager = serverManager;
     }
@@ -57,7 +63,7 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
     [RelayCommand]
     public async Task ShowInfoOverlayAsync()
     {
-        await MainViewNavigator.ShowOverlayAsync<SecureCoreOverlayViewModel>();
+        await OverlayActivator.ShowOverlayAsync<SecureCoreOverlayViewModel>();
     }
 
     protected override List<Server> GetServers(City city)

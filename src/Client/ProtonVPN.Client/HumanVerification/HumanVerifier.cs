@@ -19,28 +19,28 @@
 
 using ProtonVPN.Api.Contracts.HumanVerification;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.UI.HumanVerification;
 
 namespace ProtonVPN.Client.HumanVerification;
 
 public class HumanVerifier : IHumanVerifier, IEventMessageReceiver<ResponseTokenMessage>
 {
-    private readonly IMainViewNavigator _viewNavigator;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly IEventMessageSender _eventMessageSender;
 
     private string _resolvedToken = string.Empty;
 
-    public HumanVerifier(IMainViewNavigator viewNavigator, IEventMessageSender eventMessageSender)
+    public HumanVerifier(IOverlayActivator overlayActivator, IEventMessageSender eventMessageSender)
     {
-        _viewNavigator = viewNavigator;
+        _overlayActivator = overlayActivator;
         _eventMessageSender = eventMessageSender;
     }
 
     public async Task<string> VerifyAsync(string token)
     {
         _eventMessageSender.Send(new RequestTokenMessage(token));
-        await _viewNavigator.ShowOverlayAsync<HumanVerificationViewModel>();
+        await _overlayActivator.ShowOverlayAsync<HumanVerificationViewModel>();
         return _resolvedToken;
     }
 

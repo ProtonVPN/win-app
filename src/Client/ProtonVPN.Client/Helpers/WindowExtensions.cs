@@ -127,4 +127,10 @@ public static class WindowExtensions
     {
         return activationState != WindowActivationState.Deactivated ? 1.0 : 0.6;
     }
+
+    public static XamlRoot GetXamlRoot(this Window window)
+    {
+        return window.Content?.XamlRoot
+            ?? throw new InvalidOperationException("Cannot proceed, XamlRoot is undefined.");
+    }
 }

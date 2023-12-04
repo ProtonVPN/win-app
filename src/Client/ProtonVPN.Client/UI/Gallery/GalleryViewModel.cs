@@ -36,8 +36,7 @@ public partial class GalleryViewModel : NavigationPageViewModelBase
 
     public GalleryViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
         : base(viewNavigator, localizationProvider)
-    {
-    }
+    { }
 
     [RelayCommand]
     public async Task NavigateToGalleryAsync(string galleryPageKey)

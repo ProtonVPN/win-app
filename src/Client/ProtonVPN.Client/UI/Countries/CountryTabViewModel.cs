@@ -24,6 +24,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
@@ -33,7 +34,7 @@ namespace ProtonVPN.Client.UI.Countries;
 public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
 {
     private readonly IServerManager _serverManager;
-    private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly CitiesPageViewModel _citiesPageViewModel;
     private readonly P2PCitiesPageViewModel _p2pCitiesPageViewModel;
     private readonly SecureCoreCountryPageViewModel _secureCoreCountryPageViewModel;
@@ -65,6 +66,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
         IServerManager serverManager,
         IMainViewNavigator mainViewNavigator,
         ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
         ICountryFeatureTabsViewNavigator countryFeatureTabsViewNavigator,
         CitiesPageViewModel citiesPageViewModel,
         P2PCitiesPageViewModel p2pCitiesPageViewModel,
@@ -73,7 +75,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
         : base(mainViewNavigator, localizationProvider)
     {
         _serverManager = serverManager;
-        _mainViewNavigator = mainViewNavigator;
+        _overlayActivator = overlayActivator;
         _citiesPageViewModel = citiesPageViewModel;
         _p2pCitiesPageViewModel = p2pCitiesPageViewModel;
         _secureCoreCountryPageViewModel = secureCoreCountryPageViewModel;
@@ -146,6 +148,6 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
     [RelayCommand]
     public async Task ShowSmartRoutingOverlayCommandAsync()
     {
-        await _mainViewNavigator.ShowOverlayAsync<SmartRoutingOverlayViewModel>();
+        await _overlayActivator.ShowOverlayAsync<SmartRoutingOverlayViewModel>();
     }
 }

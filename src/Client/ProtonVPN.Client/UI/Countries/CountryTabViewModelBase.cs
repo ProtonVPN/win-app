@@ -24,6 +24,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Common.Legacy.Extensions;
 
@@ -31,8 +32,8 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewNavigator>
 {
-    protected IMainViewNavigator MainViewNavigator;
-
+    protected readonly IMainViewNavigator MainViewNavigator;
+    protected readonly IOverlayActivator OverlayActivator;
     public readonly CountryViewModelsFactory CountryViewModelsFactory;
 
     public abstract IconElement? Icon { get; }
@@ -49,11 +50,15 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
 
     protected CountryTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
         CountryViewModelsFactory countryViewModelsFactory,
         IViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) : base(viewNavigator, localizationProvider)
+        ILocalizationProvider localizationProvider) 
+        : base(viewNavigator, 
+               localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
+        OverlayActivator = overlayActivator;
         CountryViewModelsFactory = countryViewModelsFactory;
     }
 

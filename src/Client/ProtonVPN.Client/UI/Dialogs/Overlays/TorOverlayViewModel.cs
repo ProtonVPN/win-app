@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 
@@ -33,7 +34,11 @@ public class TorOverlayViewModel : OverlayViewModelBase
     public TorOverlayViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator viewNavigator,
-        IUrls urls) : base(localizationProvider, viewNavigator)
+        IOverlayActivator overlayActivator,
+        IUrls urls)
+        : base(localizationProvider,
+               viewNavigator,
+               overlayActivator)
     {
         _urls = urls;
     }

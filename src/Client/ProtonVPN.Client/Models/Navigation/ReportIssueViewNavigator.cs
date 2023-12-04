@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.UI.ReportIssue.Models;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
@@ -27,8 +26,8 @@ namespace ProtonVPN.Client.Models.Navigation;
 
 public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavigator
 {
-    public ReportIssueViewNavigator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
-        : base(logger, viewMapper, themeSelector)
+    public ReportIssueViewNavigator(ILogger logger, IViewMapper viewMapper)
+        : base(logger, viewMapper)
     { }
 
     public async Task NavigateToCategorySelectionAsync()
@@ -52,7 +51,7 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
             await NavigateToContactFormAsync(category);
         }
 
-        // This method can be called by the help component to jump from one category to another. 
+        // This method can be called by the help component to jump from one category to another.
         // Clear back stack so the back button does bring to the category selection page
         Frame?.BackStack.Clear();
     }

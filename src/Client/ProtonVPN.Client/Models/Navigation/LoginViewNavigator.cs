@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Logging.Contracts;
 
@@ -25,10 +24,9 @@ namespace ProtonVPN.Client.Models.Navigation;
 
 public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator
 {
-    public LoginViewNavigator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector) 
-        : base(logger, viewMapper, themeSelector)
-    {
-    }
+    public LoginViewNavigator(ILogger logger, IViewMapper viewMapper)
+        : base(logger, viewMapper)
+    { }
 
     public Task NavigateToLoginAsync()
     {
