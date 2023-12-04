@@ -31,16 +31,18 @@ namespace ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 
 public partial class TorServersPageViewModel : CountryTabViewModelBase
 {
-    private readonly IServerManager _serverManager;
+    private readonly IServersLoader _serversLoader;
 
     public override IconElement? Icon => null;
 
     public override string Title => Localizer.Get("Countries_Tor");
 
+    protected override CountryFeature CountryFeature => CountryFeature.Tor;
+
     public TorServersPageViewModel(
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         CountryViewModelsFactory countryViewModelsFactory,
         ICountryFeatureTabsViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider) 
@@ -50,7 +52,7 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
                viewNavigator,
                localizationProvider)
     {
-        _serverManager = serverManager;
+        _serversLoader = serversLoader;
     }
 
     public override void OnNavigatedTo(object parameter)
@@ -73,8 +75,8 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
 
     protected override IList GetItems()
     {
-        return _serverManager
-            .GetTorServersByExitCountry(CurrentCountryCode)
+        return _serversLoader
+            .GetServersByFeaturesAndExitCountry(ServerFeatures.Tor, CurrentCountryCode)
             .Select(CountryViewModelsFactory.GetServerViewModel)
             .ToList();
     }
@@ -83,6 +85,4 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
     {
         return new List<SortDescription> { new(nameof(ServerViewModel.Load), SortDirection.Ascending) };
     }
-
-    protected override CountryFeature CountryFeature => CountryFeature.Tor;
 }

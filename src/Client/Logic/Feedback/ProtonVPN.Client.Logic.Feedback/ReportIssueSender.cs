@@ -20,12 +20,12 @@
 using System.Text;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
-using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Attachments;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
@@ -93,9 +93,9 @@ public class ReportIssueSender : IReportIssueSender
         return new[]
         {
             new KeyValuePair<string, string>("OS", "Windows"),
-            new KeyValuePair<string, string>("OSVersion", EnvironmentHelper.GetOSVersionDescription()),
+            new KeyValuePair<string, string>("OSVersion", OSVersion.GetString()),
             new KeyValuePair<string, string>("Client", "Windows app"),
-            new KeyValuePair<string, string>("ClientVersion", EnvironmentHelper.GetClientVersionDescription()),
+            new KeyValuePair<string, string>("ClientVersion", AssemblyVersion.Get()),
             new KeyValuePair<string, string>("Title", "Windows app form"),
             new KeyValuePair<string, string>("Description", GetDescription(category, inputFields)),
             new KeyValuePair<string, string>("Username", GetUsername()),

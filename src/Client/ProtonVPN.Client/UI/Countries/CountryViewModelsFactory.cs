@@ -85,7 +85,7 @@ public class CountryViewModelsFactory
 
         return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager)
         {
-            Name = city.Name,
+            City = city,
             Servers = servers,
             CountryFeature = countryFeature,
             IsActiveConnection = connectionDetails != null &&

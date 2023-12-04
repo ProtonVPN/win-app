@@ -34,8 +34,8 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
 {
-    protected readonly IServerManager ServerManager;
     private readonly IConnectionManager _connectionManager;
+    protected readonly IServersLoader ServersLoader;
 
     public override IconElement? Icon => null;
 
@@ -43,7 +43,7 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider)
@@ -54,7 +54,7 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
                localizationProvider)
     {
         _connectionManager = connectionManager;
-        ServerManager = serverManager;
+        ServersLoader = serversLoader;
     }
 
     [RelayCommand]
@@ -82,5 +82,5 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         return new List<SortDescription> { new(nameof(CityViewModel.Name), SortDirection.Ascending) };
     }
 
-    protected abstract List<City> GetCities();
+    protected abstract IEnumerable<City> GetCities();
 }

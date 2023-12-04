@@ -27,19 +27,20 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
 {
     public PhysicalServer Map(PhysicalServerResponse leftEntity)
     {
-        return new(
-            id: leftEntity.Id,
-            entryIp: leftEntity.EntryIp,
-            exitIp: leftEntity.ExitIp,
-            domain: leftEntity.Domain,
-            label: leftEntity.Label,
-            status: leftEntity.Status,
-            x25519PublicKey: leftEntity.X25519PublicKey,
-            signature: leftEntity.Signature);
+        return leftEntity is null
+            ? null
+            : new(id: leftEntity.Id,
+                  entryIp: leftEntity.EntryIp,
+                  exitIp: leftEntity.ExitIp,
+                  domain: leftEntity.Domain,
+                  label: leftEntity.Label,
+                  status: leftEntity.Status,
+                  x25519PublicKey: leftEntity.X25519PublicKey,
+                  signature: leftEntity.Signature);
     }
 
     public PhysicalServerResponse Map(PhysicalServer rightEntity)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException("We don't need to map to API responses.");
     }
 }

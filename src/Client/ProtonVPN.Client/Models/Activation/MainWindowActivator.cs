@@ -18,7 +18,6 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -33,8 +32,6 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
 {
     private readonly MainWindow _mainWindow;
 
-    private readonly IEnumerable<IActivationHandler> _activationHandlers;
-    private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IDialogActivator _dialogActivator;
     private readonly IOverlayActivator _overlayActivator;
     private readonly IServiceManager _serviceManager;
@@ -42,8 +39,6 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
 
     public MainWindowActivator(
         MainWindow mainWindow,
-        ActivationHandler<LaunchActivatedEventArgs> defaultHandler,
-        IEnumerable<IActivationHandler> activationHandlers,
         ILogger logger,
         IThemeSelector themeSelector,
         IDialogActivator dialogActivator,
@@ -53,8 +48,6 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
         : base(logger, themeSelector)
     {
         _mainWindow = mainWindow;
-        _defaultHandler = defaultHandler;
-        _activationHandlers = activationHandlers;
         _dialogActivator = dialogActivator;
         _overlayActivator = overlayActivator;
         _serviceManager = serviceManager;
@@ -68,14 +61,9 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
         _mainWindow.Closed += OnMainWindowClosed;
     }
 
-    public async Task ActivateAsync(LaunchActivatedEventArgs activationArgs)
+    public void Activate()
     {
         _mainWindow.ApplyTheme(ThemeSelector.GetTheme().Theme);
-
-        // Handle activation via ActivationHandlers.
-        await HandleActivationAsync(activationArgs);
-
-        // Activate the MainWindow.
         _mainWindow.Activate();
 
         _overlayActivator.Initialize(_mainWindow);
@@ -122,20 +110,5 @@ public class MainWindowActivator : WindowActivatorBase, IMainWindowActivator, IE
         _overlayActivator.CloseAllOverlays();
 
         _serviceManager.Stop();
-    }
-
-    private async Task HandleActivationAsync(LaunchActivatedEventArgs activationArgs)
-    {
-        IActivationHandler? activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));
-
-        if (activationHandler != null)
-        {
-            await activationHandler.HandleAsync(activationArgs);
-        }
-
-        if (_defaultHandler.CanHandle(activationArgs))
-        {
-            await _defaultHandler.HandleAsync(activationArgs);
-        }
     }
 }

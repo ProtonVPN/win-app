@@ -42,17 +42,13 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
         IOverlayActivator overlayActivator,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) 
-        : base(mainViewNavigator, 
-               overlayActivator,
-               serverManager, 
-               countriesFeatureTabsViewNavigator, 
-               localizationProvider,
-               noSearchResultsViewModel, 
-               countryViewModelsFactory)
-    { }
+        CountryViewModelsFactory countryViewModelsFactory) : base(
+        mainViewNavigator, overlayActivator, serversLoader, countriesFeatureTabsViewNavigator, localizationProvider,
+        noSearchResultsViewModel, countryViewModelsFactory)
+    {
+    }
 
     [RelayCommand]
     public void ShowInfoOverlay()
@@ -60,23 +56,23 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
         OverlayActivator.ShowOverlayAsync<P2POverlayViewModel>();
     }
 
-    protected override List<string> GetCountryCodes()
+    protected override IEnumerable<string> GetCountryCodes()
     {
-        return ServerManager.GetP2PCountryCodes();
+        return ServersLoader.GetCountryCodesByFeatures(ServerFeatures.P2P);
     }
 
-    protected override List<City> GetCities()
+    protected override IEnumerable<City> GetCities()
     {
-        return ServerManager.GetP2PCities();
+        return ServersLoader.GetCitiesByFeatures(ServerFeatures.P2P);
     }
 
-    protected override List<Server> GetServers()
+    protected override IEnumerable<Server> GetServers()
     {
-        return ServerManager.GetP2PServers();
+        return ServersLoader.GetServersByFeatures(ServerFeatures.P2P);
     }
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServerManager.GetP2PServersByExitCountry(countryCode).Count;
+        return ServersLoader.GetServersByFeaturesAndExitCountry(ServerFeatures.P2P, countryCode).Count();
     }
 }

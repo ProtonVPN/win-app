@@ -29,32 +29,27 @@ public class CitiesPageViewModel : CitiesPageViewModelBase
 {
     public override string Title => Localizer.GetFormat("Countries_Cities");
 
+    protected override CountryFeature CountryFeature => CountryFeature.None;
+
     public CitiesPageViewModel(
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
-        IOverlayActivator overlayActivator) 
-        : base(connectionManager, 
-               mainViewNavigator, 
-               overlayActivator, 
-               serverManager, 
-               viewNavigator,
-               countryViewModelsFactory,
-               localizationProvider)
-    { }
-
-    protected override List<City> GetCities()
+        IOverlayActivator overlayActivator) : base(connectionManager, mainViewNavigator, overlayActivator, serversLoader, viewNavigator,
+        countryViewModelsFactory, localizationProvider)
     {
-        return ServerManager.GetCitiesByCountry(CurrentCountryCode);
     }
 
-    protected override List<Server> GetServers(City city)
+    protected override IEnumerable<City> GetCities()
     {
-        return ServerManager.GetServersByCity(city);
+        return ServersLoader.GetCitiesByCountryCode(CurrentCountryCode);
     }
 
-    protected override CountryFeature CountryFeature => CountryFeature.None;
+    protected override IEnumerable<Server> GetServers(City city)
+    {
+        return ServersLoader.GetServersByCity(city);
+    }
 }

@@ -26,8 +26,9 @@ public class Server
     public string City { get; init; } = string.Empty;
     public string EntryCountry { get; init; } = string.Empty;
     public string ExitCountry { get; init; } = string.Empty;
+    public string HostCountry { get; init; } = string.Empty;
     public string Domain { get; init; } = string.Empty;
-    public string ExitIp { get; init; } = string.Empty;
+    public string? ExitIp { get; init; }
     public sbyte Status { get; init; }
     public int Tier { get; init; }
     public ServerFeatures Features { get; init; }

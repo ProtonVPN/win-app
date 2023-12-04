@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using ProtonVPN.Builds.Variables;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.IssueReporting.DiagnosticLogging;
 using ProtonVPN.IssueReporting.HttpHandlers;
@@ -53,7 +54,7 @@ public static class SentryInitializer
     {
         SentryOptions options = new()
         {
-            Release = $"vpn.windows-{GetAppVersion()}",
+            Release = $"vpn.windows-{AssemblyVersion.Get()}",
             AttachStacktrace = true,
             Dsn = GlobalConfig.SentryDsn,
             ReportAssembliesMode = ReportAssembliesMode.None,
@@ -73,11 +74,6 @@ public static class SentryInitializer
         };
 
         return options;
-    }
-
-    private static string GetAppVersion()
-    {
-        return Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
     }
 
     private static void LogSentryEvent(SentryEvent e)

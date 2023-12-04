@@ -39,18 +39,18 @@ public class ConnectionRequestWrapper : ConnectionRequestWrapperBase, IConnectio
     private const int MAX_PHYSICAL_SERVERS = 20;
 
     private readonly IAuthKeyManager _authKeyManager;
-    private readonly IServerManager _serverManager;
+    private readonly IServersLoader _serversLoader;
     private readonly Random _random = new();
 
     public ConnectionRequestWrapper(
         ISettings settings,
         IEntityMapper entityMapper,
         IAuthKeyManager authKeyManager,
-        IServerManager serverManager)
+        IServersLoader serversLoader)
         : base(settings, entityMapper)
     {
         _authKeyManager = authKeyManager;
-        _serverManager = serverManager;
+        _serversLoader = serversLoader;
     }
 
     public ConnectionRequestIpcEntity Wrap(IConnectionIntent connectionIntent)
@@ -87,7 +87,7 @@ public class ConnectionRequestWrapper : ConnectionRequestWrapperBase, IConnectio
 
     private VpnServerIpcEntity[] GetVpnServers(IConnectionIntent connectionIntent)
     {
-        IEnumerable<Server> servers = _serverManager.GetServers();
+        IEnumerable<Server> servers = _serversLoader.GetServers();
         ILocationIntent? locationIntent = connectionIntent.Location;
         IFeatureIntent? featureIntent = connectionIntent.Feature;
 

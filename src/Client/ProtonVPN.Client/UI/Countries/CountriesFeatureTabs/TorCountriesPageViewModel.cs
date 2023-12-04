@@ -42,17 +42,12 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
         IOverlayActivator overlayActivator,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) 
-        : base(mainViewNavigator,
-               overlayActivator,
-               serverManager,       
-               countriesFeatureTabsViewNavigator, 
-               localizationProvider, 
-               noSearchResultsViewModel,
-               countryViewModelsFactory)
-    { }
+        CountryViewModelsFactory countryViewModelsFactory) : base(mainViewNavigator, overlayActivator, serversLoader,
+        countriesFeatureTabsViewNavigator, localizationProvider, noSearchResultsViewModel, countryViewModelsFactory)
+    {
+    }
 
     [RelayCommand]
     public async Task ShowInfoOverlayAsync()
@@ -60,23 +55,23 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
         await OverlayActivator.ShowOverlayAsync<TorOverlayViewModel>();
     }
 
-    protected override List<string> GetCountryCodes()
+    protected override IEnumerable<string> GetCountryCodes()
     {
-        return ServerManager.GetTorCountryCodes();
+        return ServersLoader.GetCountryCodesByFeatures(ServerFeatures.Tor);
     }
 
-    protected override List<City> GetCities()
+    protected override IEnumerable<City> GetCities()
     {
-        return new();
+        return new List<City>();
     }
 
-    protected override List<Server> GetServers()
+    protected override IEnumerable<Server> GetServers()
     {
-        return ServerManager.GetTorServers();
+        return ServersLoader.GetServersByFeatures(ServerFeatures.Tor);
     }
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServerManager.GetTorServersByExitCountry(countryCode).Count;
+        return ServersLoader.GetServersByFeaturesAndExitCountry(ServerFeatures.Tor, countryCode).Count();
     }
 }

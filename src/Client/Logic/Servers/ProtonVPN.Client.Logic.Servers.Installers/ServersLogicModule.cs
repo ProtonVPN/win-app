@@ -19,7 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Client.Logic.Servers.Mappers;
-using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 
 namespace ProtonVPN.Client.Logic.Servers.Installers;
 
@@ -27,11 +27,9 @@ public class ServersLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<ServerManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServersLoader>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
 
-        builder.RegisterAssemblyTypes(typeof(LogicalServerMapper).Assembly)
-            .Where(t => typeof(IMapper).IsAssignableFrom(t))
-            .AsImplementedInterfaces()
-            .SingleInstance();
+        builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
     }
 }

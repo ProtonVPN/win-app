@@ -19,12 +19,10 @@
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Installers;
-using ProtonVPN.Client.Models;
 using UnhandledExceptionEventArgs = Microsoft.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace ProtonVPN.Client;
@@ -51,8 +49,6 @@ public partial class App
             .UseContentRoot(AppContext.BaseDirectory)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<MainModule>())
-            .ConfigureServices((context, services) =>
-                services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions))))
             .Build();
     }
 

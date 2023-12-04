@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
@@ -42,9 +43,10 @@ public partial class CityViewModel : ViewModelBase, ISearchableItem
     [ObservableProperty]
     private bool _isActiveConnection;
 
-    public string CountryCode => Servers.FirstOrDefault()?.ExitCountryCode ?? string.Empty;
+    public required City City { get; init; }
 
-    public string Name { get; init; } = string.Empty;
+    public string Name => City.Name;
+    public string CountryCode => City.CountryCode;
 
     public CountryFeature CountryFeature { get; init; }
 

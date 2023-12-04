@@ -294,3 +294,6 @@ dotnet_diagnostic.CA1416.severity = none
 
 # Disable IDE0058 - Remove unnecessary expression value
 csharp_style_unused_value_expression_statement_preference = discard_variable:none
+
+# Disable IDE0290 - Use primary constructor
+csharp_style_prefer_primary_constructors = false

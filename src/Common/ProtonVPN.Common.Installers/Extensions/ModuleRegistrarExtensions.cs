@@ -21,20 +21,19 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Core.Registration;
 
-namespace ProtonVPN.Common.Installers.Extensions
-{
-    public static class ModuleRegistrarExtensions
-    {
-        public static IModuleRegistrar RegisterAssemblyModule<TModule>(this IModuleRegistrar registrar) 
-            where TModule : IModule
-        {
-            return registrar.RegisterAssemblyModules<TModule>(typeof(TModule).Assembly);
-        }
+namespace ProtonVPN.Common.Installers.Extensions;
 
-        public static IModuleRegistrar RegisterAssemblyModule<TModule>(this ContainerBuilder builder) 
-            where TModule : IModule
-        {
-            return builder.RegisterAssemblyModules<TModule>(typeof(TModule).Assembly);
-        }
+public static class ModuleRegistrarExtensions
+{
+    public static IModuleRegistrar RegisterAssemblyModule<TModule>(this IModuleRegistrar registrar) 
+        where TModule : IModule
+    {
+        return registrar.RegisterAssemblyModules<TModule>(typeof(TModule).Assembly);
+    }
+
+    public static IModuleRegistrar RegisterAssemblyModule<TModule>(this ContainerBuilder builder) 
+        where TModule : IModule
+    {
+        return builder.RegisterAssemblyModules<TModule>(typeof(TModule).Assembly);
     }
 }

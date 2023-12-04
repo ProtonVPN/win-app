@@ -17,11 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Activation;
+using Autofac;
+using ProtonVPN.EntityMapping.Contracts;
 
-public interface IActivationHandler
+namespace ProtonVPN.EntityMapping.Common.Installers.Extensions;
+
+public static class ContainerBuilderExtensions
 {
-    bool CanHandle(object args);
-
-    Task HandleAsync(object args);
+    public static void RegisterAllMappersInAssembly<TMapper>(this ContainerBuilder builder)
+        where TMapper : class, IMapper
+    {
+        builder.RegisterAssemblyTypes(typeof(TMapper).Assembly)
+               .Where(t => typeof(IMapper).IsAssignableFrom(t))
+               .AsImplementedInterfaces()
+               .SingleInstance();
+    }
 }

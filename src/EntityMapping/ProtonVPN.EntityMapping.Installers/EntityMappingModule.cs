@@ -18,7 +18,7 @@
  */
 
 using Autofac;
-using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 using ProtonVPN.EntityMapping.Mappers.Vpn;
 
 namespace ProtonVPN.EntityMapping.Installers;
@@ -29,9 +29,6 @@ public class EntityMappingModule : Module
     {
         builder.RegisterType<EntityMapper>().AsImplementedInterfaces().SingleInstance();
 
-        builder.RegisterAssemblyTypes(typeof(ConnectionStatusMapper).Assembly)
-            .Where(t => typeof(IMapper).IsAssignableFrom(t))
-            .AsImplementedInterfaces()
-            .SingleInstance();
+        builder.RegisterAllMappersInAssembly<ConnectionStatusMapper>();
     }
 }

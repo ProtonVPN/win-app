@@ -17,6 +17,7 @@
         <PackageReference Include="System.Private.ServiceModel" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Common.Installers\ProtonVPN.EntityMapping.Common.Installers.csproj" />
         <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />
         <ProjectReference Include="..\ProtonVPN.ProcessCommunication.EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.csproj" />
     </ItemGroup>

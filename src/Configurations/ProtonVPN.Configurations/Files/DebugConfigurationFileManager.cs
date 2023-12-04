@@ -33,13 +33,13 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
 
     private readonly ILogger _logger;
     private readonly IJsonSerializer _jsonSerializer;
-    private readonly string? _fullFolderPath;
+    private readonly Lazy<string?> _fullFolderPath;
 
     public DebugConfigurationFileManager(ILogger logger, IJsonSerializer jsonSerializer)
     {
         _logger = logger;
         _jsonSerializer = jsonSerializer;
-        _fullFolderPath = GetFullFolderPath();
+        _fullFolderPath = new Lazy<string?>(GetFullFolderPath);
     }
 
     private string? GetFullFolderPath()
@@ -84,7 +84,7 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
 
     private string? GetFullFilePath()
     {
-        return _fullFolderPath is null ? null : Path.Combine(_fullFolderPath, FILE_NAME);
+        return _fullFolderPath.Value is null ? null : Path.Combine(_fullFolderPath.Value, FILE_NAME);
     }
 
     private IDictionary<string, string?> ReadFile(string fullFilePath)

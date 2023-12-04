@@ -84,11 +84,6 @@ internal class Bootstrapper
 
     private void Start()
     {
-        ILogger logger = Resolve<ILogger>();
-
-        logger.Info<AppServiceStartLog>(
-            $"= Booting ProtonVPN Service version: {Resolve<IConfiguration>().ClientVersion} os: {Environment.OSVersion.VersionString} =");
-
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
         RegisterEvents();
@@ -100,7 +95,7 @@ internal class Bootstrapper
         ServiceBase.Run(vpnService);
         vpnService.CancellationToken.WaitHandle.WaitOne();
 
-        logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
+        Resolve<ILogger>().Info<AppServiceStopLog>("=== Proton VPN Service has exited ===");
     }
 
     private void FixNetworkAdapters()

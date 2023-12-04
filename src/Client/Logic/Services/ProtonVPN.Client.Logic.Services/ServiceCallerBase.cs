@@ -81,7 +81,7 @@ public abstract class ServiceCallerBase
 
     private async Task StartServiceIfStoppedAsync()
     {
-        _serviceManager.Start();
+        await _serviceManager.StartAsync();
     }
 
     private void LogError(Exception exception, string callerMemberName, bool isToRetry)

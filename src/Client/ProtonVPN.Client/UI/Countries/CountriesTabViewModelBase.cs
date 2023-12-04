@@ -32,11 +32,8 @@ namespace ProtonVPN.Client.UI.Countries;
 public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICountriesFeatureTabsViewNavigator>, ICountriesTabViewModelBase
 {
     protected readonly IMainViewNavigator MainViewNavigator;
-
     protected readonly IOverlayActivator OverlayActivator;
-
-    protected readonly IServerManager ServerManager;
-
+    protected readonly IServersLoader ServersLoader;
     protected readonly NoSearchResultsViewModel NoSearchResultsViewModel;
 
     private readonly CountryViewModelsFactory _countryViewModelsFactory;
@@ -44,13 +41,9 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     protected string LastSearchQuery = string.Empty;
 
     public int TotalCountries => string.IsNullOrWhiteSpace(LastSearchQuery) ? Countries.Count - 1 : Countries.Count;
-
     public bool HasCountries => TotalCountries > 0;
-
     public bool HasCities => Cities.Count > 0;
-
     public bool HasServers => Servers.Count > 0;
-
     public bool HasItems => HasCountries || HasCities || HasServers;
 
     [ObservableProperty]
@@ -65,7 +58,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     protected CountriesTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
         ILocalizationProvider localizationProvider,
         NoSearchResultsViewModel noSearchResultsViewModel,
@@ -75,7 +68,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     {
         MainViewNavigator = mainViewNavigator;
         OverlayActivator = overlayActivator;    
-        ServerManager = serverManager;
+        ServersLoader = serversLoader;
         NoSearchResultsViewModel = noSearchResultsViewModel;
         _countryViewModelsFactory = countryViewModelsFactory;
     }
@@ -129,11 +122,11 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         OnPropertyChanged(nameof(TotalCountries));
     }
 
-    protected abstract List<string> GetCountryCodes();
+    protected abstract IEnumerable<string> GetCountryCodes();
 
-    protected abstract List<City> GetCities();
+    protected abstract IEnumerable<City> GetCities();
 
-    protected abstract List<Server> GetServers();
+    protected abstract IEnumerable<Server> GetServers();
 
     protected abstract int GetCountryItemsCount(string countryCode);
 
@@ -156,7 +149,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     {
         return GetCities().Select(city =>
         {
-            List<ServerViewModel> servers = ServerManager.GetServersByCity(city)
+            List<ServerViewModel> servers = ServersLoader.GetServersByCity(city)
                 .Select(_countryViewModelsFactory.GetServerViewModel).ToList();
             return _countryViewModelsFactory.GetCityViewModel(city, servers, CountryFeature);
         }).ToList();

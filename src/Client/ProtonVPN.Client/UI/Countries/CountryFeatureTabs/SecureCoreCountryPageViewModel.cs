@@ -31,16 +31,18 @@ namespace ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 
 public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
 {
-    private readonly IServerManager _serverManager;
+    private readonly IServersLoader _serversLoader;
 
     public override IconElement? Icon => null;
 
     public override string Title => Localizer.Get("Countries_SecureCore");
 
+    protected override CountryFeature CountryFeature => CountryFeature.SecureCore;
+
     public SecureCoreCountryPageViewModel(
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
         ILocalizationProvider localizationProvider) 
@@ -50,7 +52,7 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
                viewNavigator,
                localizationProvider)
     {
-        _serverManager = serverManager;
+        _serversLoader = serversLoader;
     }
 
     public override void OnNavigatedTo(object parameter)
@@ -73,8 +75,8 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
 
     protected override IList GetItems()
     {
-        return _serverManager
-            .GetSecureCoreServersByExitCountry(CurrentCountryCode)
+        return _serversLoader
+            .GetServersByFeaturesAndExitCountry(ServerFeatures.SecureCore, CurrentCountryCode)
             .Select(CountryViewModelsFactory.GetServerViewModel)
             .ToList();
     }
@@ -86,6 +88,4 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
             new(nameof(CountryViewModel.EntryCountryCode), SortDirection.Ascending)
         };
     }
-
-    protected override CountryFeature CountryFeature => CountryFeature.SecureCore;
 }

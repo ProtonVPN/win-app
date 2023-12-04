@@ -33,7 +33,7 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
 {
-    private readonly IServerManager _serverManager;
+    private readonly IServersLoader _serversLoader;
     private readonly IOverlayActivator _overlayActivator;
     private readonly CitiesPageViewModel _citiesPageViewModel;
     private readonly P2PCitiesPageViewModel _p2pCitiesPageViewModel;
@@ -63,7 +63,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
     public ICountryFeatureTabsViewNavigator CountryFeatureTabsViewNavigator { get; }
 
     public CountryTabViewModel(
-        IServerManager serverManager,
+        IServersLoader serversLoader,
         IMainViewNavigator mainViewNavigator,
         ILocalizationProvider localizationProvider,
         IOverlayActivator overlayActivator,
@@ -74,7 +74,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
         TorServersPageViewModel torServersPageViewModel)
         : base(mainViewNavigator, localizationProvider)
     {
-        _serverManager = serverManager;
+        _serversLoader = serversLoader;
         _overlayActivator = overlayActivator;
         _citiesPageViewModel = citiesPageViewModel;
         _p2pCitiesPageViewModel = p2pCitiesPageViewModel;
@@ -132,7 +132,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
 
     public void UpdateSmartRouting()
     {
-        string? hostCountryCode = _serverManager.GetHostCountryCode(CurrentCountryCode);
+        string? hostCountryCode = _serversLoader.GetHostCountryCode(CurrentCountryCode);
         if (hostCountryCode is null)
         {
             IsVirtual = false;
