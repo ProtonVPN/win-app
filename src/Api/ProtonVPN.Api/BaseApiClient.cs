@@ -124,17 +124,6 @@ public class BaseApiClient : IClientBase
 
     protected HttpRequestMessage GetRequest(HttpMethod method, string requestUri)
     {
-        HttpRequestMessage request = new(method, requestUri);
-        request.Headers.Add("x-pm-apiversion", _apiVersion);
-        request.Headers.Add("x-pm-appversion", _appVersion.AppVersion);
-        request.Headers.Add("x-pm-locale", Settings.Language);
-        request.Headers.Add("User-Agent", _appVersion.UserAgent);
-
-        return request;
-    }
-
-    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
-    {
         string accessToken = string.IsNullOrEmpty(Settings.AccessToken)
             ? Settings.UnauthAccessToken
             : Settings.AccessToken;
@@ -144,14 +133,30 @@ public class BaseApiClient : IClientBase
 
         return !string.IsNullOrEmpty(accessToken) && !string.IsNullOrEmpty(uniqueSessionId)
             ? GetAuthorizedRequest(method, requestUri, accessToken, uniqueSessionId)
-            : GetRequest(method, requestUri);
+            : GetUnauthorizedRequest(method, requestUri);
+    }
+
+    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri)
+    {
+        return GetAuthorizedRequest(method, requestUri, Settings.AccessToken, Settings.UniqueSessionId);
     }
 
     protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)
     {
-        HttpRequestMessage request = GetRequest(method, requestUri);
+        HttpRequestMessage request = GetUnauthorizedRequest(method, requestUri);
         request.Headers.Add("x-pm-uid", uniqueSessionId);
         request.Headers.Add("Authorization", $"Bearer {accessToken}");
+
+        return request;
+    }
+
+    protected HttpRequestMessage GetUnauthorizedRequest(HttpMethod method, string requestUri)
+    {
+        HttpRequestMessage request = new(method, requestUri);
+        request.Headers.Add("x-pm-apiversion", _apiVersion);
+        request.Headers.Add("x-pm-appversion", _appVersion.AppVersion);
+        request.Headers.Add("x-pm-locale", Settings.Language);
+        request.Headers.Add("User-Agent", _appVersion.UserAgent);
 
         return request;
     }
