@@ -65,22 +65,21 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync()
     {
-        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/v4/sessions");
+        HttpRequestMessage request = GetUnauthorizedRequest(HttpMethod.Post, "auth/v4/sessions");
 
         return await SendRequest<UnauthSessionResponse>(request, "Post unauth sessions");
     }
 
-
     public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth");
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");
         request.Content = GetJsonContent(authRequest);
         return await SendRequest<AuthResponse>(request, "Get auth");
     }
 
     public async Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/info");
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/info");
         request.Content = GetJsonContent(authInfoRequest);
         return await SendRequest<AuthInfoResponse>(request, "Get auth info");
     }
@@ -130,13 +129,13 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData()
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
         return await SendRequest<ReportAnIssueFormResponse>(request, "Get report an issue form data");
     }
 
     public async Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync()
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/location");
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/location");
         return await SendRequestWithNoCache<UserLocationResponse>(request, "Get location data");
     }
 
@@ -159,7 +158,7 @@ public class ApiClient : BaseApiClient, IApiClient
             fileCount++;
         }
 
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "reports/bug");
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "reports/bug");
         request.Content = content;
         return await SendRequest<BaseResponse>(request, "Report bug");
     }
@@ -207,7 +206,7 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "domains/available?Type=login");
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
         return await SendRequest<BaseResponse>(request, "Check authentication server status");
     }
 
@@ -242,7 +241,7 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync()
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "feature/v2/frontend");
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "feature/v2/frontend");
         return await SendRequest<FeatureFlagsResponse>(request, "Get feature flags");
     }
 

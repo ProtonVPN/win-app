@@ -22,13 +22,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class CountriesViewModel : NavigationPageViewModelBase
+public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMessageReceiver<ServerListChangedMessage>
 {
     [ObservableProperty]
     private string _searchQuery = string.Empty;
@@ -75,10 +77,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
     {
         base.OnNavigatedTo(parameter);
 
-        foreach (CountriesTabViewModelBase page in FeatureTabPages)
-        {
-            page.LoadItems();
-        }
+        LoadFeatureTabPages();
 
         CountriesFeatureTabsViewNavigator.NavigateToAsync<AllCountriesPageViewModel>();
         SelectedFeatureTab = FeatureTabPages.First();
@@ -96,6 +95,19 @@ public partial class CountriesViewModel : NavigationPageViewModelBase
         foreach (CountriesTabViewModelBase tab in FeatureTabPages)
         {
             tab.FilterItems(value);
+        }
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        LoadFeatureTabPages();
+    }
+
+    private void LoadFeatureTabPages()
+    {
+        foreach (CountriesTabViewModelBase page in FeatureTabPages)
+        {
+            page.LoadItems();
         }
     }
 }

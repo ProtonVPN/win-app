@@ -20,13 +20,14 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
-public class ServersUpdater : IServersUpdater, IServersCache
+public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IApiClient _apiClient;
     private readonly IEntityMapper _entityMapper;
@@ -67,5 +68,10 @@ public class ServersUpdater : IServersUpdater, IServersCache
     private IReadOnlyList<string> GetCountryCodes(IEnumerable<Server> servers)
     {
         return servers.Select(s => s.ExitCountry).Distinct().ToList();
+    }
+
+    public async void Receive(LoggedInMessage message)
+    {
+        await UpdateAsync();
     }
 }

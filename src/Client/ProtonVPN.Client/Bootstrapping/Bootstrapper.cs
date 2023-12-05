@@ -19,12 +19,10 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -37,57 +35,62 @@ public class Bootstrapper : IBootstrapper
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IServersUpdater _serversUpdater;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
-    private readonly IConfiguration _configuration;
 
     public Bootstrapper(IProcessCommunicationStarter processCommunicationStarter,
         IMainWindowActivator mainWindowActivator,
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
         IUserAuthenticator userAuthenticator,
-        IServersUpdater serversUpdater,
         ISettings settings,
-        ILogger logger,
-        IConfiguration configuration)
+        ILogger logger)
     {
         _processCommunicationStarter = processCommunicationStarter;
         _mainWindowActivator = mainWindowActivator;
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
         _userAuthenticator = userAuthenticator;
-        _serversUpdater = serversUpdater;
         _settings = settings;
         _logger = logger;
-        _configuration = configuration;
     }
 
     public async Task StartAsync(LaunchActivatedEventArgs args)
     {
-        Start();
+        try
+        {
+            ParseAndRunCommandLineArguments();
+
+            _mainWindowActivator.Activate();
+
+            await Task.WhenAll(
+                TryAuthenticateAsync(),
+                StartServiceAsync());
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("Error occured during the app start up process.", e);
+        }
     }
 
-    private void Start()
+    private async Task TryAuthenticateAsync()
     {
-        ParseAndRunCommandLineArguments();
-        CancellationToken cancellationToken = new CancellationTokenSource().Token;
-
         if (string.IsNullOrEmpty(_settings.Username))
         {
-            _userAuthenticator.CreateUnauthSessionAsync();
+            await _userAuthenticator.CreateUnauthSessionAsync();
         }
         else
         {
-            _userAuthenticator.AutoLoginUserAsync();
+            await _userAuthenticator.AutoLoginUserAsync();
         }
+    }
 
-        _mainWindowActivator.Activate();
+    private async Task StartServiceAsync()
+    {
+        CancellationToken cancellationToken = new CancellationTokenSource().Token;
 
-        _serviceManager.StartAsync();
-        _processCommunicationStarter.StartAsync(cancellationToken);
-
-        _serversUpdater.UpdateAsync();
+        await _serviceManager.StartAsync();
+        await _processCommunicationStarter.StartAsync(cancellationToken);
     }
 
     private void ParseAndRunCommandLineArguments()
