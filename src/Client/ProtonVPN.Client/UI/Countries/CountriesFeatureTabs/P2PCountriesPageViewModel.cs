@@ -73,6 +73,6 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServersLoader.GetServersByFeaturesAndExitCountry(ServerFeatures.P2P, countryCode).Count();
+        return ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, countryCode).Count();
     }
 }

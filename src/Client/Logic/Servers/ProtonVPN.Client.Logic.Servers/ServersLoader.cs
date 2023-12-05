@@ -89,7 +89,7 @@ public class ServersLoader : IServersLoader
         return _serversCache.Servers.Where(s => s.Features.IsSupported(serverFeatures));
     }
 
-    public IEnumerable<Server> GetServersByFeaturesAndExitCountry(ServerFeatures serverFeatures, string countryCode)
+    public IEnumerable<Server> GetServersByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode)
     {
         return _serversCache.Servers.Where(s =>
             s.ExitCountry == countryCode &&

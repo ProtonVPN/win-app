@@ -76,7 +76,7 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
     protected override IList GetItems()
     {
         return _serversLoader
-            .GetServersByFeaturesAndExitCountry(ServerFeatures.SecureCore, CurrentCountryCode)
+            .GetServersByFeaturesAndCountryCode(ServerFeatures.SecureCore, CurrentCountryCode)
             .Select(CountryViewModelsFactory.GetServerViewModel)
             .ToList();
     }

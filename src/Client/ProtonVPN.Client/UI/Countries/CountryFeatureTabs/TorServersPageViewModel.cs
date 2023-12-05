@@ -76,7 +76,7 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
     protected override IList GetItems()
     {
         return _serversLoader
-            .GetServersByFeaturesAndExitCountry(ServerFeatures.Tor, CurrentCountryCode)
+            .GetServersByFeaturesAndCountryCode(ServerFeatures.Tor, CurrentCountryCode)
             .Select(CountryViewModelsFactory.GetServerViewModel)
             .ToList();
     }

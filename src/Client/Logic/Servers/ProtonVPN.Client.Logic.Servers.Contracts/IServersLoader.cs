@@ -32,7 +32,7 @@ public interface IServersLoader
     IEnumerable<Server> GetServers();
     IEnumerable<Server> GetServersByCity(City city);
     IEnumerable<Server> GetServersByFeatures(ServerFeatures serverFeatures);
-    IEnumerable<Server> GetServersByFeaturesAndExitCountry(ServerFeatures serverFeatures, string countryCode);
+    IEnumerable<Server> GetServersByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode);
     IEnumerable<Server> GetServersByFeaturesAndCity(ServerFeatures serverFeatures, City city);
 
     string? GetHostCountryCode(string countryCode);
