@@ -76,7 +76,11 @@ public class CountryViewModelsFactory
 
     private string GetCountrySecondaryActionLabel(CountryFeature countryFeature)
     {
-        return countryFeature == CountryFeature.None ? "Countries_City" : "Countries_Server";
+        return countryFeature switch
+        {
+            CountryFeature.None or CountryFeature.P2P => "Countries_City",
+            _ => "Countries_Server",
+        };
     }
 
     public CityViewModel GetCityViewModel(City city, List<ServerViewModel> servers, CountryFeature countryFeature)

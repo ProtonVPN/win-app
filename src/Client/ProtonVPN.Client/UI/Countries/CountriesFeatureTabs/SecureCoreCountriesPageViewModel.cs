@@ -72,6 +72,6 @@ public partial class SecureCoreCountriesPageViewModel : CountriesTabViewModelBas
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServersLoader.GetServersByFeaturesAndExitCountry(ServerFeatures.SecureCore, countryCode).Count();
+        return ServersLoader.GetServersByFeaturesAndCountryCode(ServerFeatures.SecureCore, countryCode).Count();
     }
 }

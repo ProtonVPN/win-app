@@ -72,6 +72,6 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServersLoader.GetServersByFeaturesAndExitCountry(ServerFeatures.Tor, countryCode).Count();
+        return ServersLoader.GetServersByFeaturesAndCountryCode(ServerFeatures.Tor, countryCode).Count();
     }
 }
