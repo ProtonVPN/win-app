@@ -45,13 +45,15 @@ public partial class CountryViewModel : ViewModelBase, IComparable, ISearchableI
 
     public required string EntryCountryCode { get; init; }
 
-    public string SecondaryActionLabel { get; init; }
+    public required string SecondaryActionLabel { get; init; }
 
     public bool IsUnderMaintenance { get; init; }
-
     public bool IsSecureCore => CountryFeature == CountryFeature.SecureCore;
-
     public CountryFeature CountryFeature { get; init; }
+
+    public string ConnectButtonAutomationId => $"Connect_to_{ExitCountryCode}";
+    public string NavigateToCountryButtonAutomationId => $"Navigate_to_{ExitCountryCode}";
+    public string ActiveConnectionAutomationId => $"Active_connection_{ExitCountryCode}";
 
     public CountryViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator, IConnectionManager connectionManager) :
         base(localizationProvider)

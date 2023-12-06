@@ -74,6 +74,7 @@ public class CountryViewModelsFactory
             ExitCountryCode = string.Empty,
             ExitCountryName = fastestCountryLabel,
             CountryFeature = countryFeature,
+            SecondaryActionLabel = string.Empty,
         };
     }
 

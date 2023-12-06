@@ -34,7 +34,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              InfoLabel="{x:Bind InfoLabel}"
                                              ShowInfoOverlayCommand="{x:Bind ShowInfoOverlayCommand, Mode=OneTime}" />
 
-        <ItemsRepeater ItemsSource="{x:Bind Countries}">
+        <ItemsRepeater ItemsSource="{x:Bind Countries}"
+                       TabFocusNavigation="Local">
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate x:DataType="countries:CountryViewModel">
                     <controls:CountryRowControl CountryViewModel="{x:Bind}" />

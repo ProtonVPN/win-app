@@ -32,6 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <custom:GhostButton IsEnabled="{x:Bind ServerViewModel.IsUnderMaintenance, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                        AutomationProperties.Name="ServerConnectButton"
+                        AutomationProperties.AutomationId="{x:Bind ServerViewModel.ConnectButtonAutomationId}"
                         Command="{x:Bind ServerViewModel.ConnectCommand}"
                         HorizontalAlignment="Stretch"
                         CornerRadius="8"
@@ -50,7 +52,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            FontWeight="{ThemeResource BodyFontWeight}"
                            Text="{x:Bind ServerViewModel.Name}"
                            VerticalAlignment="Center" />
-                <icons:ActiveDot Visibility="{x:Bind ServerViewModel.IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <icons:ActiveDot Width="16"
+                                 Height="16"
+                                 AutomationProperties.AutomationId="{x:Bind ServerViewModel.ActiveConnectionAutomationId}"
+                                 Visibility="{x:Bind ServerViewModel.IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <pathIcons:Wrench Visibility="{x:Bind ServerViewModel.IsUnderMaintenance, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
 

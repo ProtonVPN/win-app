@@ -49,6 +49,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              ShowInfoOverlayCommand="{x:Bind ShowInfoOverlayCommand, Mode=OneTime}" />
 
         <ItemsRepeater ItemsSource="{x:Bind Servers}"
-                       ItemTemplate="{StaticResource ServerTemplateSelector}" />
+                       ItemTemplate="{StaticResource ServerTemplateSelector}"
+                       TabFocusNavigation="Local" />
     </StackPanel>
 </controls:ItemsListControlBase>

@@ -34,10 +34,10 @@ namespace ProtonVPN.UI.Tests.Tests;
 public class ConnectionTests : TestSession
 {
     private const string COUNTRIES_PAGE_TITLE = "Countries";
-    private const string COUNTRY = "Lithuania";
-    private const string CITY = "Vilnius";
-    private const string COUNTRY_CODE = "LT";
-    private const int SERVER_NUMBER = 10;
+    private const string COUNTRY = "Australia";
+    private const string CITY = "Melbourne";
+    private const string COUNTRY_CODE = "AU";
+
     private const string SERVER_LOAD_OVERLAY_TITLE = "What is server load?";
     private const string LATENCY_OVERLAY_TITLE = "What is latency?";
     private const string PROTOCOL_OVERLAY_TITLE = "What is a VPN protocol?";
@@ -113,42 +113,80 @@ public class ConnectionTests : TestSession
             .VerifyConnectionCardIsDisconnected();
     }
 
-    // TODO: reintroduce these tests once connecting over countries/servers is implemented
-    // [Test]
-    // public void ConnectToSpecificCity()
-    // {
-    //     _shellRobot
-    //         .DoNavigateToCountriesPage()
-    //         .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
-    //
-    //     _countriesRobot
-    //         .VerifyConnectionFormExists()
-    //         .DoConnectTo(COUNTRY_CODE, CITY);
-    //
-    //     _homeRobot
-    //         .VerifyVpnStatusIsConnecting()
-    //         .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
-    //         .VerifyVpnStatusIsConnected()
-    //         .VerifyConnectionCardIsConnected(COUNTRY, CITY);
-    // }
-    //
-    // [Test]
-    // public void ConnectToSpecificServer()
-    // {
-    //     _shellRobot
-    //         .DoNavigateToCountriesPage()
-    //         .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
-    //
-    //     _countriesRobot
-    //         .VerifyConnectionFormExists()
-    //         .DoConnectTo(COUNTRY_CODE, CITY, SERVER_NUMBER);
-    //
-    //     _homeRobot
-    //         .VerifyVpnStatusIsConnecting()
-    //         .VerifyConnectionCardIsConnecting(COUNTRY, CITY, SERVER_NUMBER)
-    //         .VerifyVpnStatusIsConnected()
-    //         .VerifyConnectionCardIsConnected(COUNTRY, CITY, SERVER_NUMBER);
-    // }
+    [Test]
+    public void ConnectToSpecificCountry()
+    {
+        NavigateToCountriesPage();
+
+        _countriesRobot.DoConnect(COUNTRY_CODE);
+    
+        _homeRobot
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY)
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY);
+
+        NavigateToCountriesPage();
+
+        _countriesRobot.VerifyActiveConnection(COUNTRY_CODE);
+    }
+
+    [Test]
+    public void ConnectToSpecificCity()
+    {
+        NavigateToCountriesPage();
+
+        _countriesRobot
+            .DoNavigateToCountry(COUNTRY_CODE)
+            .DoConnect(CITY);
+
+        _homeRobot
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY, CITY);
+
+        NavigateToCountriesPage();
+        _countriesRobot.DoNavigateToCountry(COUNTRY_CODE);
+
+        _countriesRobot.VerifyActiveConnection(CITY);
+    }
+
+    [Test]
+    public void ConnectToSpecificServer()
+    {
+        NavigateToServers(COUNTRY_CODE, CITY);
+
+        ServerConnectButton serverConnectButton = _countriesRobot.GetServerConnectButton();
+
+        _countriesRobot.DoConnect(serverConnectButton.Name);
+
+        _homeRobot
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY, CITY, serverConnectButton.Number)
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY, CITY, serverConnectButton.Number);
+
+        NavigateToServers(COUNTRY_CODE, CITY);
+
+        _countriesRobot.VerifyActiveConnection(serverConnectButton.Name);
+    }
+
+    private void NavigateToServers(string countryCode, string city)
+    {
+        NavigateToCountriesPage();
+
+        _countriesRobot
+            .DoNavigateToCountry(countryCode)
+            .DoShowServers(city);
+    }
+
+    private void NavigateToCountriesPage()
+    {
+        _shellRobot
+            .DoNavigateToCountriesPage()
+            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
+    }
 
     [Test]
     [Retry(3)]

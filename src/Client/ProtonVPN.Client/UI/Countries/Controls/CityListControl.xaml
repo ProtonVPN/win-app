@@ -24,7 +24,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
                                       xmlns:countries="using:ProtonVPN.Client.UI.Countries"
                                       xmlns:countryControls="using:ProtonVPN.Client.UI.Countries.Controls"
-                                      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
                                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                       xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
                                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -34,12 +33,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel Spacing="4">
         <countryControls:CountryFeatureTitleControl Title="{x:Bind Title}" />
 
-        <ItemsRepeater ItemsSource="{x:Bind Cities}">
+        <ItemsRepeater ItemsSource="{x:Bind Cities}"
+                       TabFocusNavigation="Local">
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate x:DataType="countries:CityViewModel">
                     <controls:DualCommandsRowControl Padding="12,0"
+                                                     PrimaryButtonAutomationId="{x:Bind ConnectButtonAutomationId}"
+                                                     PrimaryButtonAutomationName="{x:Bind Name}"
                                                      PrimaryCommand="{x:Bind ConnectCommand}"
                                                      PrimaryCommandText="{x:Bind Localizer.Get('Countries_Connect')}"
+                                                     SecondaryButtonAutomationId="{x:Bind ShowServersButtonAutomationId}"
                                                      SecondaryCommandText="{x:Bind Localizer.GetPluralFormat('Countries_Server', Servers.Count)}">
 
                         <controls:DualCommandsRowControl.SecondaryCommandIcon>
@@ -52,6 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Text="{x:Bind Name}" />
                             <icons:ActiveDot Width="16"
                                              Height="16"
+                                             AutomationProperties.AutomationId="{x:Bind ActiveConnectionAutomationId}"
                                              Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </StackPanel>
 

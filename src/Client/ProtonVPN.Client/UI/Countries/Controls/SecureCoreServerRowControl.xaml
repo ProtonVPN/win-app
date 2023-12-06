@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <controls:DualCommandsRowControl Padding="12,0"
+                                     PrimaryButtonAutomationName="{x:Bind ServerViewModel.ConnectButtonAutomationName}"
                                      PrimaryCommand="{x:Bind ServerViewModel.ConnectCommand, Mode=OneTime}"
                                      PrimaryCommandParameter="{x:Bind ServerViewModel}"
                                      PrimaryCommandText="{x:Bind ServerViewModel.Localizer.Get('Countries_Connect')}">

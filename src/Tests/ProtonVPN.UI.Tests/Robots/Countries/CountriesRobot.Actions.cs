@@ -17,37 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using FlaUI.Core.AutomationElements;
-
 namespace ProtonVPN.UI.Tests.Robots.Countries;
 
 public partial class CountriesRobot
 {
-    public CountriesRobot DoConnectTo(string entryCountryCode, string cityState = null, int? serverNumber = null)
+    public CountriesRobot DoConnect(string item)
     {
-        if (!string.IsNullOrEmpty(entryCountryCode))
-        {
-            EntryCountryCodeTextBox.Text = entryCountryCode;
-        }
+        GetConnectButton(item).FocusAndClick();
+        return this;
+    }
 
-        if (!string.IsNullOrEmpty(cityState))
-        {
-            CityStateTextBox.WaitUntilEnabled();
-            CityStateTextBox.Text = cityState;
-        }
+    public CountriesRobot DoNavigateToCountry(string countryCode)
+    {
+        GetNavigateToCountryButton(countryCode).FocusAndClick();
+        return this;
+    }
 
-        if (serverNumber != null)
-        {
-            ServerTextBox.WaitUntilEnabled();
-            ServerTextBox.Text = serverNumber.ToString();
-        }
-
-        //Give some time for the app to process configured values.
-        this.Wait(1000);
-        CountriesConnectButton.Focus();
-        CountriesConnectButton.Click();
-
+    public CountriesRobot DoShowServers(string city)
+    {
+        GetShowServersButton(city).FocusAndClick();
         return this;
     }
 }

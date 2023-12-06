@@ -17,18 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using FlaUI.Core.AutomationElements;
+using System;
+using Microsoft.UI.Xaml.Data;
 
-namespace ProtonVPN.UI.Tests.Robots.Overlays;
+namespace ProtonVPN.Client.Common.UI.Converters;
 
-public partial class OverlaysRobot : UIActions
+public class IsStringNotEmptyConverter : IValueConverter
 {
-    protected Button CloseOverlayButton => ElementByAutomationId("CloseContentDialogButton").AsButton();
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        return !string.IsNullOrEmpty((string)value);
+    }
 
-    protected Window OverlayWindow => Window.FindAllDescendants(cf => cf.ByClassName("Popup")).FirstOrDefault(e => e.Name != "Popup").AsWindow();
-
-    protected AutomationElement LearnMoreHyperlink => ElementByAutomationId("LearnMoreHyperlinkButton");
-
-    protected Button ProtocolSettingsCard => ElementByAutomationId("ProtocolSettingsCard").AsButton();
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
+    }
 }

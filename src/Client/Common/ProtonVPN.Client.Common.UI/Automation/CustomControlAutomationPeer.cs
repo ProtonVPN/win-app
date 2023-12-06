@@ -17,18 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using FlaUI.Core.AutomationElements;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace ProtonVPN.UI.Tests.Robots.Overlays;
+namespace ProtonVPN.Client.Common.UI.Automation;
 
-public partial class OverlaysRobot : UIActions
+public class CustomControlAutomationPeer : FrameworkElementAutomationPeer
 {
-    protected Button CloseOverlayButton => ElementByAutomationId("CloseContentDialogButton").AsButton();
+    public CustomControlAutomationPeer(FrameworkElement owner) : base(owner)
+    {
+    }
 
-    protected Window OverlayWindow => Window.FindAllDescendants(cf => cf.ByClassName("Popup")).FirstOrDefault(e => e.Name != "Popup").AsWindow();
-
-    protected AutomationElement LearnMoreHyperlink => ElementByAutomationId("LearnMoreHyperlinkButton");
-
-    protected Button ProtocolSettingsCard => ElementByAutomationId("ProtocolSettingsCard").AsButton();
+    protected override bool IsControlElementCore()
+    {
+        return true;
+    }
 }
