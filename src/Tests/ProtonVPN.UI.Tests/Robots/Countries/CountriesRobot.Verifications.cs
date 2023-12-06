@@ -23,15 +23,8 @@ namespace ProtonVPN.UI.Tests.Robots.Countries;
 
 public partial class CountriesRobot
 {
-    public CountriesRobot VerifyConnectionFormExists()
+    public void VerifyActiveConnection(string item)
     {
-        Assert.IsNotNull(EntryCountryCodeTextBox);
-        Assert.IsNotNull(CityStateTextBox);
-        Assert.IsNotNull(ServerTextBox);
-        Assert.IsNotNull(CountriesConnectButton);
-        Assert.IsNotNull(CountriesFreeConnectButton);
-        Assert.IsNotNull(CountriesAutoConnectButton);
-
-        return this;
+        Assert.IsNotNull(GetActiveConnectionDot(item));
     }
 }

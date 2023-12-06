@@ -52,6 +52,10 @@ public partial class CityViewModel : ViewModelBase, ISearchableItem
 
     public List<ServerViewModel> Servers { get; init; } = new();
 
+    public string ConnectButtonAutomationId => $"Connect_to_{Name}";
+    public string ShowServersButtonAutomationId => $"Show_servers_{Name}";
+    public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
+
     public CityViewModel(
         ILocalizationProvider localizationProvider, 
         IMainViewNavigator mainViewNavigator,

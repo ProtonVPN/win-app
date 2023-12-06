@@ -45,6 +45,12 @@ public sealed partial class DualCommandsRowControl
     public static readonly DependencyProperty PrimaryCommandToolTipProperty =
         DependencyProperty.Register(nameof(PrimaryCommandToolTip), typeof(object), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty PrimaryButtonAutomationIdProperty =
+        DependencyProperty.Register(nameof(PrimaryButtonAutomationId), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty PrimaryButtonAutomationNameProperty =
+        DependencyProperty.Register(nameof(PrimaryButtonAutomationName), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+
     public static readonly DependencyProperty SecondaryCommandProperty =
         DependencyProperty.Register(nameof(SecondaryCommand), typeof(ICommand), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
@@ -62,6 +68,9 @@ public sealed partial class DualCommandsRowControl
 
     public static readonly DependencyProperty SecondaryCommandFlyoutProperty =
         DependencyProperty.Register(nameof(SecondaryCommandFlyout), typeof(FlyoutBase), typeof(DualCommandsRowControl), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty SecondaryButtonAutomationIdProperty =
+        DependencyProperty.Register(nameof(SecondaryButtonAutomationId), typeof(string), typeof(DualCommandsRowControl), new PropertyMetadata(default));
 
     public UIElement RowContent
     {
@@ -99,6 +108,18 @@ public sealed partial class DualCommandsRowControl
         set => SetValue(PrimaryCommandToolTipProperty, value);
     }
 
+    public string PrimaryButtonAutomationId
+    {
+        get => (string)GetValue(PrimaryButtonAutomationIdProperty);
+        set => SetValue(PrimaryButtonAutomationIdProperty, value);
+    }
+
+    public string PrimaryButtonAutomationName
+    {
+        get => (string)GetValue(PrimaryButtonAutomationNameProperty);
+        set => SetValue(PrimaryButtonAutomationNameProperty, value);
+    }
+
     public ICommand SecondaryCommand
     {
         get => (ICommand)GetValue(SecondaryCommandProperty);
@@ -133,6 +154,12 @@ public sealed partial class DualCommandsRowControl
     {
         get => (FlyoutBase)GetValue(SecondaryCommandFlyoutProperty);
         set => SetValue(SecondaryCommandFlyoutProperty, value);
+    }
+
+    public string SecondaryButtonAutomationId
+    {
+        get => (string)GetValue(SecondaryButtonAutomationIdProperty);
+        set => SetValue(SecondaryButtonAutomationIdProperty, value);
     }
 
     public DualCommandsRowControl()

@@ -18,7 +18,6 @@
  */
 
 using System.Linq;
-using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 
 namespace ProtonVPN.UI.Tests.Robots.Overlays;

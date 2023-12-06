@@ -17,13 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Common.UI.Assets.Icons
+using Microsoft.UI.Xaml.Automation.Peers;
+using ProtonVPN.Client.Common.UI.Automation;
+
+namespace ProtonVPN.Client.Common.UI.Assets.Icons;
+
+public partial class ActiveDot
 {
-    public partial class ActiveDot
+    public ActiveDot()
     {
-        public ActiveDot()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    protected override AutomationPeer OnCreateAutomationPeer()
+    {
+        return new CustomControlAutomationPeer(this);
     }
 }

@@ -56,6 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Button x:Name="btnSecondary"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
+                AutomationProperties.AutomationId="{x:Bind SecondaryButtonAutomationId}"
                 AutomationProperties.FullDescription="{x:Bind SecondaryCommandToolTip}"
                 AutomationProperties.Name="{x:Bind SecondaryCommandText}"
                 Command="{x:Bind SecondaryCommand}"
@@ -63,11 +64,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Flyout="{x:Bind SecondaryCommandFlyout}"
                 Style="{StaticResource RowButtonStyle}"
                 TabIndex="2"
+                IsTabStop="{x:Bind SecondaryCommandText, Converter={StaticResource IsStringNotEmptyConverter}}"
                 ToolTipService.ToolTip="{x:Bind SecondaryCommandToolTip}" />
 
         <Button x:Name="btnPrimary"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
+                AutomationProperties.AutomationId="{x:Bind PrimaryButtonAutomationId}"
+                AutomationProperties.Name="{x:Bind PrimaryButtonAutomationName}"
                 AutomationProperties.FullDescription="{x:Bind PrimaryCommandText}"
                 Command="{x:Bind PrimaryCommand}"
                 CommandParameter="{x:Bind PrimaryCommandParameter}"

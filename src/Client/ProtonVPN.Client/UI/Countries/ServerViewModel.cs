@@ -51,6 +51,14 @@ public partial class ServerViewModel : ViewModelBase, ISearchableItem
     public bool IsUnderMaintenance { get; init; }
     public bool IsActiveConnection { get; init; }
 
+    public string ConnectButtonAutomationId => $"Connect_to_{Name}";
+
+    public string ConnectButtonAutomationName => IsSecureCore ?
+        $"{EntryCountryName} {ExitCountryName}" :
+        ExitCountryName;
+
+    public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
+
     public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager) : base(localizationProvider)
     {

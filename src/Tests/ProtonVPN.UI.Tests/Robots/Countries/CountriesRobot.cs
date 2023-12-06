@@ -23,11 +23,38 @@ namespace ProtonVPN.UI.Tests.Robots.Countries;
 
 public partial class CountriesRobot : UIActions
 {
-    protected TextBox EntryCountryCodeTextBox => ElementByAutomationId("EntryCountryCodeTextBox").AsTextBox();
-    protected TextBox CityStateTextBox => ElementByAutomationId("CityStateTextBox").AsTextBox();
-    protected TextBox ServerTextBox => ElementByAutomationId("ServerNumberTextBox").AsTextBox();
+    protected Button GetConnectButton(string item)
+    {
+        return ElementByAutomationId($"Connect_to_{item}").AsButton();
+    }
 
-    protected Button CountriesConnectButton => ElementByAutomationId("CountriesConnectButton").AsButton();
-    protected Button CountriesFreeConnectButton => ElementByAutomationId("CountriesFreeConnectButton").AsButton();
-    protected Button CountriesAutoConnectButton => ElementByAutomationId("CountriesAutoConnectButton").AsButton();
+    protected Button GetNavigateToCountryButton(string countryCode)
+    {
+        return ElementByAutomationId($"Navigate_to_{countryCode}").AsButton();
+    }
+
+    protected Button GetShowServersButton(string city)
+    {
+        return ElementByAutomationId($"Show_servers_{city}").AsButton();
+    }
+
+    protected AutomationElement GetActiveConnectionDot(string item)
+    {
+        return ElementByAutomationId($"Active_connection_{item}").AsButton();
+    }
+
+    public ServerConnectButton GetServerConnectButton()
+    {
+        Button button = ElementByName("ServerConnectButton").AsButton();
+        string serverName = button.AutomationId.Replace("Connect_to_", "");
+        string[] parts = serverName.Split('#');
+        int.TryParse(parts[1], out int serverNumber);
+
+        return new()
+        {
+            Button = button,
+            Number = serverNumber,
+            Name = serverName,
+        };
+    }
 }
