@@ -39,13 +39,13 @@ public partial class CountryViewModel : ViewModelBase, IComparable, ISearchableI
     [ObservableProperty]
     private bool _isActiveConnection;
 
-    public string ExitCountryCode { get; init; } = string.Empty;
+    public required string ExitCountryCode { get; init; }
 
-    public string ExitCountryName { get; init; } = string.Empty;
+    public required string ExitCountryName { get; init; }
 
-    public string EntryCountryCode { get; init; } = string.Empty;
+    public required string EntryCountryCode { get; init; }
 
-    public string SecondaryActionLabel { get; init; } = string.Empty;
+    public string SecondaryActionLabel { get; init; }
 
     public bool IsUnderMaintenance { get; init; }
 

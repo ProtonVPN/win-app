@@ -36,7 +36,7 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
     {
         return leftEntity is null
             ? null
-            : new Server()
+            : new Server
             {
                 Id = leftEntity.Id,
                 Name = leftEntity.Name,

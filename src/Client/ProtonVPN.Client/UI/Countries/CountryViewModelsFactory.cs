@@ -52,6 +52,7 @@ public class CountryViewModelsFactory
 
         return new CountryViewModel (_localizer, _mainViewNavigator, _connectionManager)
         {
+            EntryCountryCode = string.Empty,
             ExitCountryCode = exitCountryCode,
             ExitCountryName = _localizer.GetCountryName(exitCountryCode),
             IsUnderMaintenance = false,
@@ -69,6 +70,8 @@ public class CountryViewModelsFactory
 
         return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
         {
+            EntryCountryCode = string.Empty,
+            ExitCountryCode = string.Empty,
             ExitCountryName = fastestCountryLabel,
             CountryFeature = countryFeature,
         };
