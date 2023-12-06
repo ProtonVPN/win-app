@@ -42,6 +42,7 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<CertificateValidator>().As<ICertificateValidator>().SingleInstance();
             builder.RegisterType<FileDownloadHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateHttpClientFactory>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<OutdatedAppNotifier>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c =>
                     new CachingReportClient(
                         new ReportClient(c.Resolve<IReportClientUriProvider>())))
