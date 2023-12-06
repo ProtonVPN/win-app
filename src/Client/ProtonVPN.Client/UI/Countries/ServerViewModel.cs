@@ -36,12 +36,12 @@ public partial class ServerViewModel : ViewModelBase, ISearchableItem
     protected readonly IConnectionManager ConnectionManager;
 
     public string Id { get; init; }
-    public string ExitCountryCode { get; init; } = string.Empty;
-    public string ExitCountryName { get; init; } = string.Empty;
-    public string EntryCountryCode { get; init; } = string.Empty;
-    public string EntryCountryName { get; init; } = string.Empty;
-    public string Name { get; init; } = string.Empty;
-    public string City { get; init; } = string.Empty;
+    public required string ExitCountryCode { get; init; }
+    public required string ExitCountryName { get; init; }
+    public required string EntryCountryCode { get; init; }
+    public required string EntryCountryName { get; init; }
+    public required string Name { get; init; }
+    public required string City { get; init; }
     public double Load { get; init; }
     public string LoadPercent { get; init; }
     public bool IsVirtual { get; init; }

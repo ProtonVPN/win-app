@@ -29,14 +29,17 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
     {
         return leftEntity is null
             ? null
-            : new(id: leftEntity.Id,
-                  entryIp: leftEntity.EntryIp,
-                  exitIp: leftEntity.ExitIp,
-                  domain: leftEntity.Domain,
-                  label: leftEntity.Label,
-                  status: leftEntity.Status,
-                  x25519PublicKey: leftEntity.X25519PublicKey,
-                  signature: leftEntity.Signature);
+            : new()
+            {
+                Id = leftEntity.Id,
+                EntryIp = leftEntity.EntryIp,
+                ExitIp = leftEntity.ExitIp,
+                Domain = leftEntity.Domain,
+                Label = leftEntity.Label,
+                Status = leftEntity.Status,
+                X25519PublicKey = leftEntity.X25519PublicKey,
+                Signature = leftEntity.Signature,
+            };
     }
 
     public PhysicalServerResponse Map(PhysicalServer rightEntity)

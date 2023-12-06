@@ -21,25 +21,12 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public class PhysicalServer
 {
-    public string Id { get; }
-    public string EntryIp { get; }
-    public string ExitIp { get; }
-    public string Domain { get; }
-    public string Label { get; }
-    public sbyte Status { get; }
-    public string X25519PublicKey { get; }
-    public string Signature { get; }
-
-    public PhysicalServer(string id, string entryIp, string exitIp, string domain, string label, sbyte status,
-        string x25519PublicKey, string signature)
-    {
-        Id = id;
-        EntryIp = entryIp;
-        ExitIp = exitIp;
-        Domain = domain;
-        Label = label;
-        Status = status;
-        X25519PublicKey = x25519PublicKey;
-        Signature = signature;
-    }
+    public required string Id { get; init; }
+    public required string EntryIp { get; init; }
+    public required string ExitIp { get; init; }
+    public required string Domain { get; init; }
+    public required string Label { get; init; }
+    public required sbyte Status { get; init; }
+    public required string X25519PublicKey { get; init; }
+    public required string Signature { get; init; }
 }
