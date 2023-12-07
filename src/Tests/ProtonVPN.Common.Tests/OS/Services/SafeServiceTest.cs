@@ -27,6 +27,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Common.Tests.OS.Services
 {
@@ -37,11 +38,13 @@ namespace ProtonVPN.Common.Tests.OS.Services
         private const int ServiceNotRunning = 1062;
 
         private IService _origin;
+        private ILogger _logger;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _origin = Substitute.For<IService>();
+            _logger = Substitute.For<ILogger>();
         }
 
         [TestMethod]
@@ -50,7 +53,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             // Arrange
             const string name = "My service";
             _origin.Name.Returns(name);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             string result = subject.Name;
@@ -66,7 +69,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
         {
             // Arrange
             _origin.Running().Returns(value);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             bool result = subject.Running();
@@ -82,7 +85,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             // Arrange
             Exception exception = (Exception)Activator.CreateInstance(exceptionType);
             _origin.Running().Throws(exception);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             bool result = subject.Running();
@@ -97,7 +100,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             // Arrange
             Exception exception = new();
             _origin.Running().Throws(exception);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Action action = () => subject.Running();
@@ -113,7 +116,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             Result expected = Result.Ok();
             CancellationToken cancellationToken = new();
             _origin.StartAsync(cancellationToken).Returns(expected);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Result result = await subject.StartAsync(cancellationToken);
@@ -129,7 +132,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             InvalidOperationException exception = new("", new Win32Exception(ServiceAlreadyRunning));
             CancellationToken cancellationToken = CancellationToken.None;
             _origin.StartAsync(cancellationToken).Throws(exception);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Result result = await subject.StartAsync(cancellationToken);
@@ -148,7 +151,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             Exception exception = (Exception)Activator.CreateInstance(exceptionType);
             CancellationToken cancellationToken = CancellationToken.None;
             _origin.StartAsync(cancellationToken).Throws(exception);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Result result = await subject.StartAsync(cancellationToken);
@@ -165,7 +168,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             Result expected = Result.Ok();
             CancellationToken cancellationToken = new();
             _origin.StopAsync(cancellationToken).Returns(expected);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Result result = await subject.StopAsync(cancellationToken);
@@ -181,7 +184,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             InvalidOperationException exception = new("", new Win32Exception(ServiceNotRunning));
             CancellationToken cancellationToken = CancellationToken.None;
             _origin.StopAsync(cancellationToken).Throws(exception);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Result result = await subject.StopAsync(cancellationToken);
@@ -200,7 +203,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             Exception exception = (Exception)Activator.CreateInstance(exceptionType);
             CancellationToken cancellationToken = CancellationToken.None;
             _origin.StopAsync(cancellationToken).Throws(exception);
-            SafeService subject = new(_origin);
+            SafeService subject = new(_origin, _logger);
 
             // Act
             Result result = await subject.StopAsync(cancellationToken);

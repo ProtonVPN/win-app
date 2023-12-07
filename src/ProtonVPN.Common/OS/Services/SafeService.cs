@@ -22,16 +22,20 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 
 namespace ProtonVPN.Common.OS.Services
 {
     public class SafeService : IService
     {
         private readonly IService _origin;
+        private readonly ILogger _logger;
 
-        public SafeService(IService origin)
+        public SafeService(IService origin, ILogger logger)
         {
             _origin = origin;
+            _logger = logger;
         }
 
         public string Name => _origin.Name;
@@ -42,8 +46,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 return _origin.Exists();
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
+                _logger.Error<AppServiceLog>($"Failed to check whether the service {Name} exists.", e);
                 return false;
             }
         }
@@ -54,8 +59,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 _origin.Create(pathAndArgs, unrestricted);
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
+                _logger.Error<AppServiceLog>($"Failed to create {Name} service.", e);
             }
         }
 
@@ -65,8 +71,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 _origin.UpdatePathAndArgs(cmd);
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
+                _logger.Error<AppServiceLog>($"Failed to update path and args for {Name} service.", e);
             }
         }
 
@@ -76,8 +83,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 return _origin.Running();
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
+                _logger.Error<AppServiceLog>($"Failed to check whether the service {Name} is running.", e);
                 return false;
             }
         }
@@ -88,8 +96,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 return _origin.IsStopped();
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
+                _logger.Error<AppServiceLog>($"Failed to check whether the service {Name} is stopped.", e);
                 return false;
             }
         }
@@ -100,8 +109,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 return _origin.Enabled();
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
+                _logger.Error<AppServiceLog>($"Failed to check whether the service {Name} is enabled.", e);
                 return false;
             }
         }
@@ -112,9 +122,9 @@ namespace ProtonVPN.Common.OS.Services
             {
                 _origin.Enable();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // ignored
+                _logger.Error<AppServiceLog>($"Failed to enable {Name} service.", e);
             }
         }
 

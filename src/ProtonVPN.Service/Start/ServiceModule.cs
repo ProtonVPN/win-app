@@ -75,7 +75,8 @@ namespace ProtonVPN.Service.Start
                                 c.Resolve<ILogger>(),
                                 new DriverService(
                                     c.Resolve<IConfiguration>().CalloutServiceName,
-                                    c.Resolve<IOsProcesses>()))))))
+                                    c.Resolve<IOsProcesses>())),
+                            c.Resolve<ILogger>()))))
                 .AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.RegisterType<SettingsFileStorage>().AsImplementedInterfaces().SingleInstance();

@@ -207,7 +207,8 @@ namespace ProtonVPN.Core.Ioc
                                     c.Resolve<ILogger>(),
                                     new SystemService(
                                         c.Resolve<IConfiguration>().ServiceName, // REMOVE THIS CUSTOM REGISTRATION
-                                        c.Resolve<IOsProcesses>())))),
+                                        c.Resolve<IOsProcesses>())),
+                                c.Resolve<ILogger>())),
                         c.Resolve<ILogger>(),
                         c.Resolve<IServiceEnabler>()))
                 .SingleInstance();

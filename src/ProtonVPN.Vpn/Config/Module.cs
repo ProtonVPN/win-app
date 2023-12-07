@@ -147,7 +147,7 @@ namespace ProtonVPN.Vpn.Config
                 new WireGuardConnection(logger, config, gatewayCache,
                     new WireGuardService(logger, config, new SafeService(
                         new LoggingService(logger,
-                            new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
+                            new SystemService(config.WireGuard.ServiceName, c.Resolve<IOsProcesses>())), logger)),
                     new TrafficManager(config.WireGuard.ConfigFileName, logger),
                     new StatusManager(logger, config.WireGuard.LogFilePath),
                     new X25519KeyGenerator()));
