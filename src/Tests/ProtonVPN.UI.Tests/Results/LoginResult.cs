@@ -44,5 +44,14 @@ namespace ProtonVPN.UI.Tests.Results
             WaitUntilElementExistsByName("Assign VPN connections", TestData.MediumTimeout);
             return this;
         }
+
+        public LoginResult CheckIfForceUpdateModalIsDisplayed()
+        {
+            DesktopActions actions = new DesktopActions();
+            actions.WaitUntilExistsByName("Quit", TestData.MediumTimeout);
+            actions.WaitUntilExistsByName("Update", TestData.MediumTimeout);
+            actions.WaitUntilExistsByName("Attention", TestData.ShortTimeout);
+            return this;
+        }
     }
 }
