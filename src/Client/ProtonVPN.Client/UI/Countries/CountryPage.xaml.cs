@@ -47,7 +47,7 @@ public sealed partial class CountryPage
 
         if (!isNavigationCompleted)
         {
-            NavigationViewControl.SelectedItem = ViewModel.SelectedNavigationPage;
+            NavigationViewControl.SelectedItem = ViewModel.SelectedFeatureTab;
         }
     }
 }

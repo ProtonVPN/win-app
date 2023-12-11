@@ -20,7 +20,9 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -58,6 +60,8 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
 
     public ObservableCollection<CountryTabViewModelBase> FeatureTabPages { get; }
 
+    public CountryTabViewModelBase? CurrentTab => CountryFeatureTabsViewNavigator?.Frame?.GetPageViewModel() as CountryTabViewModelBase;
+
     public override string Title => Localizer.GetCountryName(CurrentCountryCode);
 
     public ICountryFeatureTabsViewNavigator CountryFeatureTabsViewNavigator { get; }
@@ -82,6 +86,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
         _torServersPageViewModel = torServersPageViewModel;
 
         CountryFeatureTabsViewNavigator = countryFeatureTabsViewNavigator;
+        CountryFeatureTabsViewNavigator.Navigated += OnNavigated;
 
         FeatureTabPages = new()
         {
@@ -149,5 +154,13 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
     public async Task ShowSmartRoutingOverlayCommandAsync()
     {
         await _overlayActivator.ShowOverlayAsync<SmartRoutingOverlayViewModel>();
+    }
+
+    private void OnNavigated(object sender, NavigationEventArgs e)
+    {
+        OnPropertyChanged(nameof(IsBackEnabled));
+        OnPropertyChanged(nameof(CurrentTab));
+
+        SelectedFeatureTab = CurrentTab ?? FeatureTabPages.FirstOrDefault();
     }
 }

@@ -20,9 +20,11 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
@@ -36,9 +38,6 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
     private string _searchQuery = string.Empty;
 
     [ObservableProperty]
-    private NavigationPageViewModelBase? _selectedNavigationPage;
-
-    [ObservableProperty]
     private PageViewModelBase? _selectedFeatureTab;
 
     public override string Title => Localizer.Get("Countries_Page_Title");
@@ -49,8 +48,9 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
 
     public ICountriesFeatureTabsViewNavigator CountriesFeatureTabsViewNavigator { get; }
 
-    [ObservableProperty]
-    private ObservableCollection<CountriesTabViewModelBase> _featureTabPages;
+    public ObservableCollection<CountriesTabViewModelBase> FeatureTabPages { get; }
+
+    public CountriesTabViewModelBase? CurrentTab => CountriesFeatureTabsViewNavigator?.Frame?.GetPageViewModel() as CountriesTabViewModelBase;
 
     public CountriesViewModel(
         IMainViewNavigator viewNavigator,
@@ -63,24 +63,24 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
         : base(viewNavigator, localizationProvider)
     {
         CountriesFeatureTabsViewNavigator = countriesFeatureTabsViewNavigator;
+        CountriesFeatureTabsViewNavigator.Navigated += OnNavigated;
 
-        _featureTabPages = new()
+        FeatureTabPages = new()
         {
             allCountriesPageViewModel,
             secureCoreCountriesPageViewModel,
             p2PCountriesPageViewModel,
             torCountriesPageViewModel,
         };
+
+        LoadFeatureTabPages();
     }
 
     public override void OnNavigatedTo(object parameter)
     {
         base.OnNavigatedTo(parameter);
 
-        LoadFeatureTabPages();
-
         CountriesFeatureTabsViewNavigator.NavigateToAsync<AllCountriesPageViewModel>();
-        SelectedFeatureTab = FeatureTabPages.First();
     }
 
     public override void OnNavigatedFrom()
@@ -101,6 +101,14 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
     public void Receive(ServerListChangedMessage message)
     {
         LoadFeatureTabPages();
+    }
+
+    private void OnNavigated(object sender, NavigationEventArgs e)
+    {
+        OnPropertyChanged(nameof(IsBackEnabled));
+        OnPropertyChanged(nameof(CurrentTab));
+
+        SelectedFeatureTab = CurrentTab ?? FeatureTabPages.FirstOrDefault();
     }
 
     private void LoadFeatureTabPages()
