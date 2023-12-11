@@ -21,6 +21,7 @@ using System.Collections;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.WinUI.UI;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation;
@@ -33,7 +34,7 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
 {
     private readonly IServersLoader _serversLoader;
 
-    public override IconElement? Icon => null;
+    public override IconElement Icon => new LockLayers();
 
     public override string Title => Localizer.Get("Countries_SecureCore");
 

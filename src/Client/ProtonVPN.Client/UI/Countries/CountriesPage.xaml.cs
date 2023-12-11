@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.UI.Settings;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -47,7 +48,7 @@ public sealed partial class CountriesPage
 
         if (!isNavigationCompleted)
         {
-            NavigationViewControl.SelectedItem = ViewModel.SelectedNavigationPage;
+            NavigationViewControl.SelectedItem = ViewModel.SelectedFeatureTab;
         }
     }
 }

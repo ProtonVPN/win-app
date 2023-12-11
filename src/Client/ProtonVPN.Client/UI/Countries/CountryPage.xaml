@@ -61,14 +61,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
+
                 <TextBlock Grid.Column="0"
                            VerticalAlignment="Center"
                            FontSize="{ThemeResource CaptionFontSize}"
                            Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.SmartRoutingLabel}"
                            TextWrapping="Wrap" />
-                
+
                 <custom:GhostButton Grid.Column="1"
                                     VerticalAlignment="Center"
                                     Command="{Binding ViewModel.ShowSmartRoutingOverlayCommandCommand, ElementName=PageArea, Mode=OneTime}">

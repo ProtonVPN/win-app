@@ -18,6 +18,8 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -29,6 +31,8 @@ namespace ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 
 public partial class P2PCitiesPageViewModel : CitiesPageViewModelBase
 {
+    public override IconElement Icon => new ArrowRightArrowLeft();
+
     public override string Title => Localizer.GetFormat("Countries_P2P");
 
     protected override CountryFeature CountryFeature => CountryFeature.P2P;
