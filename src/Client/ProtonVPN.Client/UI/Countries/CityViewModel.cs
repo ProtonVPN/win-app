@@ -17,66 +17,49 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
-using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class CityViewModel : ViewModelBase, ISearchableItem
+public partial class CityViewModel : LocationViewModelBase, ISearchableItem
 {
-    private readonly IMainViewNavigator _mainViewNavigator;
     private readonly IOverlayActivator _overlayActivator;
-    private readonly IConnectionManager _connectionManager;
-
-    [ObservableProperty]
-    private bool _isActiveConnection;
 
     public required City City { get; init; }
-
     public string Name => City.Name;
     public string CountryCode => City.CountryCode;
-
     public CountryFeature CountryFeature { get; init; }
-
     public List<ServerViewModel> Servers { get; init; } = new();
 
     public string ConnectButtonAutomationId => $"Connect_to_{Name}";
     public string ShowServersButtonAutomationId => $"Show_servers_{Name}";
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
 
+    public override bool IsActiveConnection => ConnectionDetails != null &&
+                                                  !ConnectionDetails.IsGateway &&
+                                                  ConnectionDetails.CountryCode == CountryCode &&
+                                                  ConnectionDetails.CityState == Name;
+
+    protected override ConnectionIntent ConnectionIntent => new(new CityStateLocationIntent(CountryCode, Name),
+        CountryFeature.GetFeatureIntent());
+
     public CityViewModel(
         ILocalizationProvider localizationProvider, 
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
         IConnectionManager connectionManager) 
-        : base(localizationProvider)
+        : base(localizationProvider, mainViewNavigator, connectionManager)
     {
-        _mainViewNavigator = mainViewNavigator;
         _overlayActivator = overlayActivator;
-        _connectionManager = connectionManager;
-    }
-
-    [RelayCommand]
-    public async Task ConnectAsync()
-    {
-        await _mainViewNavigator.NavigateToAsync<HomeViewModel>();
-
-        IFeatureIntent? featureIntent = CountryFeature.GetFeatureIntent();
-        ILocationIntent locationIntent = new CityStateLocationIntent(CountryCode, Name);
-
-        await _connectionManager.ConnectAsync(new ConnectionIntent(locationIntent, featureIntent));
     }
 
     [RelayCommand]
