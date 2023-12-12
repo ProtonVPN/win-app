@@ -17,25 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class ServerViewModel : ViewModelBase, ISearchableItem
+public class ServerViewModel : LocationViewModelBase, ISearchableItem
 {
-    protected readonly IMainViewNavigator MainViewNavigator;
-    protected readonly IConnectionManager ConnectionManager;
-
-    public string Id { get; init; }
+    public required string Id { get; init; }
     public required string ExitCountryCode { get; init; }
     public required string ExitCountryName { get; init; }
     public required string EntryCountryCode { get; init; }
@@ -43,13 +37,12 @@ public partial class ServerViewModel : ViewModelBase, ISearchableItem
     public required string Name { get; init; }
     public required string City { get; init; }
     public double Load { get; init; }
-    public string LoadPercent { get; init; }
+    public required string LoadPercent { get; init; }
     public bool IsVirtual { get; init; }
     public bool IsSecureCore { get; init; }
     public bool SupportsP2P { get; init; }
     public bool IsTor { get; init; }
     public bool IsUnderMaintenance { get; init; }
-    public bool IsActiveConnection { get; init; }
 
     public string ConnectButtonAutomationId => $"Connect_to_{Name}";
 
@@ -59,26 +52,16 @@ public partial class ServerViewModel : ViewModelBase, ISearchableItem
 
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
 
-    public ServerViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager) : base(localizationProvider)
-    {
-        MainViewNavigator = mainViewNavigator;
-        ConnectionManager = connectionManager;
-    }
+    public override bool IsActiveConnection => ConnectionDetails != null && ConnectionDetails.ServerId == Id;
 
-    [RelayCommand]
-    public virtual async Task ConnectAsync()
-    {
-        ILocationIntent locationIntent = new ServerLocationIntent(Id, Name, ExitCountryCode, City);
-        IFeatureIntent? featureIntent = GetFeatureIntent();
+    protected override ConnectionIntent ConnectionIntent => new(new ServerLocationIntent(Id, Name, ExitCountryCode, City),
+        GetFeatureIntent());
 
-        await NavigateToHomePageAsync();
-        await ConnectionManager.ConnectAsync(new ConnectionIntent(locationIntent, featureIntent));
-    }
-
-    protected async Task NavigateToHomePageAsync()
+    public ServerViewModel(
+        ILocalizationProvider localizationProvider,
+        IMainViewNavigator mainViewNavigator,
+        IConnectionManager connectionManager) : base(localizationProvider, mainViewNavigator, connectionManager)
     {
-        await MainViewNavigator.NavigateToAsync<HomeViewModel>();
     }
 
     public bool MatchesSearchQuery(string query)

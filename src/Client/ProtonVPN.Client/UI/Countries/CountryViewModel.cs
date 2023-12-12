@@ -17,65 +17,50 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public partial class CountryViewModel : ViewModelBase, IComparable, ISearchableItem
+public partial class CountryViewModel : LocationViewModelBase, IComparable, ISearchableItem
 {
-    private readonly IMainViewNavigator _mainViewNavigator;
-    private readonly IConnectionManager _connectionManager;
-
-    [ObservableProperty]
-    private bool _isActiveConnection;
-
     public required string ExitCountryCode { get; init; }
-
     public required string ExitCountryName { get; init; }
-
     public required string EntryCountryCode { get; init; }
-
     public required string SecondaryActionLabel { get; init; }
-
     public bool IsUnderMaintenance { get; init; }
-    public bool IsSecureCore => CountryFeature == CountryFeature.SecureCore;
     public CountryFeature CountryFeature { get; init; }
+    public bool IsSecureCore => CountryFeature == CountryFeature.SecureCore;
 
     public string ConnectButtonAutomationId => $"Connect_to_{ExitCountryCode}";
     public string NavigateToCountryButtonAutomationId => $"Navigate_to_{ExitCountryCode}";
     public string ActiveConnectionAutomationId => $"Active_connection_{ExitCountryCode}";
 
-    public CountryViewModel(ILocalizationProvider localizationProvider, IMainViewNavigator mainViewNavigator, IConnectionManager connectionManager) :
-        base(localizationProvider)
-    {
-        _mainViewNavigator = mainViewNavigator;
-        _connectionManager = connectionManager;
-    }
+    public override bool IsActiveConnection => ConnectionDetails is not null &&
+                                               ExitCountryCode == ConnectionDetails.CountryCode &&
+                                               (CountryFeature == CountryFeature.SecureCore) == (ConnectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent);
 
-    [RelayCommand]
-    public async Task ConnectAsync()
-    {
-        ILocationIntent countryLocationIntent = new CountryLocationIntent(ExitCountryCode);
-        IFeatureIntent? featureIntent = CountryFeature.GetFeatureIntent(IsSecureCore ? string.Empty : ExitCountryCode);
+    protected override ConnectionIntent ConnectionIntent => new(new CountryLocationIntent(ExitCountryCode),
+        CountryFeature.GetFeatureIntent(IsSecureCore ? string.Empty : ExitCountryCode));
 
-        await _mainViewNavigator.NavigateToAsync<HomeViewModel>();
-        await _connectionManager.ConnectAsync(new ConnectionIntent(countryLocationIntent, featureIntent));
+    public CountryViewModel(
+        ILocalizationProvider localizationProvider,
+        IMainViewNavigator mainViewNavigator,
+        IConnectionManager connectionManager) :
+        base(localizationProvider, mainViewNavigator, connectionManager)
+    {
     }
 
     [RelayCommand]
     public async Task NavigateToCountryAsync()
     {
-        await _mainViewNavigator.NavigateToAsync<CountryTabViewModel>(this);
+        await MainViewNavigator.NavigateToAsync<CountryTabViewModel>(this);
     }
 
     public int CompareTo(object? obj)

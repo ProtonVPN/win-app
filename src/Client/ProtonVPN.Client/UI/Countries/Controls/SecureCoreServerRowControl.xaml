@@ -31,8 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <controls:DualCommandsRowControl Padding="12,0"
                                      PrimaryButtonAutomationName="{x:Bind ServerViewModel.ConnectButtonAutomationName}"
-                                     PrimaryCommand="{x:Bind ServerViewModel.ConnectCommand, Mode=OneTime}"
-                                     PrimaryCommandParameter="{x:Bind ServerViewModel}"
+                                     PrimaryCommand="{x:Bind ServerViewModel.ConnectCommand}"
                                      PrimaryCommandText="{x:Bind ServerViewModel.Localizer.Get('Countries_Connect')}">
 
         <Grid ColumnSpacing="8" Margin="0,8">

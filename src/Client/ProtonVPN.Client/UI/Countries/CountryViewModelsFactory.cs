@@ -20,7 +20,6 @@
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -48,8 +47,6 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetCountryViewModel(string exitCountryCode, CountryFeature countryFeature, int itemCount)
     {
-        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
-
         return new CountryViewModel (_localizer, _mainViewNavigator, _connectionManager)
         {
             EntryCountryCode = string.Empty,
@@ -58,9 +55,7 @@ public class CountryViewModelsFactory
             IsUnderMaintenance = false,
             SecondaryActionLabel = _localizer.GetPluralFormat(GetCountrySecondaryActionLabel(countryFeature), itemCount),
             CountryFeature = countryFeature,
-            IsActiveConnection = connectionDetails != null &&
-                                 !connectionDetails.IsGateway &&
-                                 connectionDetails.CountryCode == exitCountryCode,
+            ConnectionDetails = _connectionManager.GetConnectionDetails(),
         };
     }
 
@@ -89,17 +84,12 @@ public class CountryViewModelsFactory
 
     public CityViewModel GetCityViewModel(City city, List<ServerViewModel> servers, CountryFeature countryFeature)
     {
-        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
-
         return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager)
         {
             City = city,
             Servers = servers,
             CountryFeature = countryFeature,
-            IsActiveConnection = connectionDetails != null &&
-                                 !connectionDetails.IsGateway &&
-                                 connectionDetails.CountryCode == city.CountryCode &&
-                                 connectionDetails.CityState == city.Name,
+            ConnectionDetails = _connectionManager.GetConnectionDetails(),
         };
     }
 
@@ -121,7 +111,7 @@ public class CountryViewModelsFactory
             EntryCountryName = _localizer.GetFormat("Countries_ViaCountry", _localizer.GetCountryName(server.EntryCountry)),
             ExitCountryCode = server.ExitCountry,
             ExitCountryName = _localizer.GetCountryName(server.ExitCountry),
-            IsActiveConnection = _connectionManager.GetConnectionDetails()?.ServerId == server.Id,
+            ConnectionDetails = _connectionManager.GetConnectionDetails(),
         };
     }
 }
