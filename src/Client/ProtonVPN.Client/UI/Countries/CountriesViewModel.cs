@@ -72,13 +72,13 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
             p2PCountriesPageViewModel,
             torCountriesPageViewModel,
         };
-
-        LoadFeatureTabPages();
     }
 
     public override void OnNavigatedTo(object parameter)
     {
         base.OnNavigatedTo(parameter);
+
+        LoadFeatureTabPages();
 
         CountriesFeatureTabsViewNavigator.NavigateToAsync<AllCountriesPageViewModel>();
     }
