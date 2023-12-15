@@ -33,9 +33,6 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         NetshError,
 
         [EnumMember]
-        AuthorizationError,
-
-        [EnumMember]
         TapAdapterInUseError,
 
         [EnumMember]
@@ -54,13 +51,7 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         PingTimeoutError,
 
         [EnumMember]
-        UserTierTooLowError,
-
-        [EnumMember]
         Unpaid,
-
-        [EnumMember]
-        SessionLimitReached,
 
         [EnumMember]
         PasswordChanged,
@@ -81,12 +72,6 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         RpcServerUnavailable,
 
         [EnumMember]
-        MissingServerPublicKey,
-
-        [EnumMember]
-        IncorrectVpnConfig,
-
-        [EnumMember]
         ServerUnreachable,
 
         [EnumMember]
@@ -103,9 +88,6 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
 
         [EnumMember]
         NoServerValidationPublicKey,
-
-        [EnumMember]
-        GuestSession = 86100,
 
         [EnumMember]
         CertificateExpired = 86101,

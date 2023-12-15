@@ -25,55 +25,187 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
         
         <ResourceDictionary x:Key="Light">
-            <StaticResource x:Key="GhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="GhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="GhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="GhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="GhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="GhostButtonForeground" ResourceKey="TextWeakColorBrush" />
-            <StaticResource x:Key="GhostButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="GhostButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="GhostButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
-            <StaticResource x:Key="GhostButtonBorderBrush" ResourceKey="TransparentColorBrush" />
-            <StaticResource x:Key="GhostButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
-            <StaticResource x:Key="GhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
-            <StaticResource x:Key="GhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForeground" ResourceKey="LinkNormColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForegroundPointerOver" ResourceKey="LinkHoverColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForegroundPressed" ResourceKey="LinkActiveColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonForeground" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
         </ResourceDictionary>
         
         <ResourceDictionary x:Key="Dark">
-            <StaticResource x:Key="GhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="GhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="GhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="GhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="GhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="GhostButtonForeground" ResourceKey="TextWeakColorBrush" />
-            <StaticResource x:Key="GhostButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="GhostButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="GhostButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundDisabled" ResourceKey="TransparentColorBrush" />
 
-            <StaticResource x:Key="GhostButtonBorderBrush" ResourceKey="TransparentColorBrush" />
-            <StaticResource x:Key="GhostButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
-            <StaticResource x:Key="GhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
-            <StaticResource x:Key="GhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForeground" ResourceKey="LinkNormColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForegroundPointerOver" ResourceKey="LinkHoverColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForegroundPressed" ResourceKey="LinkActiveColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonForeground" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
     <Thickness x:Key="GhostButtonPadding">2,4</Thickness>
     <Thickness x:Key="GhostButtonContentSpacing">2,0</Thickness>
-    
-    <Style BasedOn="{StaticResource DefaultGhostButtonStyle}" TargetType="custom:GhostButton" />
 
-    <Style x:Key="DefaultGhostButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="custom:GhostButton">
-        <Setter Property="Foreground" Value="{ThemeResource GhostButtonForeground}" />
-        <Setter Property="Background" Value="{ThemeResource GhostButtonBackground}" />
+    <Style x:Key="PrimaryGhostButtonStyle" BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton">
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryGhostButtonForeground}" />
+        <Setter Property="Background" Value="{ThemeResource PrimaryGhostButtonBackground}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryGhostButtonBorderBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:GhostButton">
+                    <Border x:Name="ContentContainer"
+                            Padding="{TemplateBinding Padding}"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </Border.BackgroundTransition>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <ContentPresenter Grid.Column="0"
+                                              x:Name="PART_LeftIconPresenter"
+                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding LeftIcon}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HighContrastAdjustment="None"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                            <ContentPresenter Grid.Column="1"
+                                              x:Name="PART_ContentPresenter"
+                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                            <ContentPresenter Grid.Column="2"
+                                              x:Name="PART_RightIconPresenter"
+                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding RightIcon}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HighContrastAdjustment="None"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                        </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource PrimaryGhostButtonBackgroundPointerOver}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource PrimaryGhostButtonBorderBrushPointerOver}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPointerOver}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPointerOver}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource PrimaryGhostButtonBackgroundPressed}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource PrimaryGhostButtonBorderBrushPressed}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPressed}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPressed}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource PrimaryGhostButtonBackgroundDisabled}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource PrimaryGhostButtonBorderBrushDisabled}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundDisabled}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundDisabled}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundDisabled}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton" />
+
+    <Style x:Key="SecondaryGhostButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="custom:GhostButton">
+        <Setter Property="Foreground" Value="{ThemeResource SecondaryGhostButtonForeground}" />
+        <Setter Property="Background" Value="{ThemeResource SecondaryGhostButtonBackground}" />
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="BorderBrush" Value="{ThemeResource GhostButtonBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource SecondaryGhostButtonBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
@@ -136,31 +268,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource GhostButtonBackgroundPointerOver}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource GhostButtonBorderBrushPointerOver}" />
-                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundPointerOver}" />
-                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundPointerOver}" />
-                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundPointerOver}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource SecondaryGhostButtonBackgroundPointerOver}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource SecondaryGhostButtonBorderBrushPointerOver}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPointerOver}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPointerOver}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource GhostButtonBackgroundPressed}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource GhostButtonBorderBrushPressed}" />
-                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundPressed}" />
-                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundPressed}" />
-                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundPressed}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource SecondaryGhostButtonBackgroundPressed}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource SecondaryGhostButtonBorderBrushPressed}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPressed}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPressed}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPressed}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource GhostButtonBackgroundDisabled}" />
-                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource GhostButtonBorderBrushDisabled}" />
-                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundDisabled}" />
-                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundDisabled}" />
-                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource GhostButtonForegroundDisabled}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource SecondaryGhostButtonBackgroundDisabled}" />
+                                        <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource SecondaryGhostButtonBorderBrushDisabled}" />
+                                        <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundDisabled}" />
+                                        <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundDisabled}" />
+                                        <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>

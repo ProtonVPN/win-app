@@ -72,6 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Thickness x:Key="CompactTitleBarMargin">1,2</Thickness>
 
             <x:Double x:Key="LoginPageContentWidth">328</x:Double>
+            <x:Double x:Key="MaximumHomePageContentWidth">600.0</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

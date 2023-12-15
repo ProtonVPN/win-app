@@ -41,6 +41,8 @@ public interface IUrls
     string SmartRoutingLearnMore { get; }
     string P2PLearnMore { get; }
     string TorLearnMore { get; }
+    string RpcServerProblemUrl { get; }
+    string TroubleShootingUrl { get; }
 
     void NavigateTo(string url);
 }

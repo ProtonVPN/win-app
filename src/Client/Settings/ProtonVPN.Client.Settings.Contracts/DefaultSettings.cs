@@ -30,6 +30,7 @@ public static class DefaultSettings
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
+    public static bool IsPaid = false;
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
     public static bool IsNotificationEnabled = true;

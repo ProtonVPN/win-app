@@ -131,6 +131,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<NatType>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsPaid
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsPaid;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsVpnAcceleratorEnabled
     {
         get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsVpnAcceleratorEnabled;

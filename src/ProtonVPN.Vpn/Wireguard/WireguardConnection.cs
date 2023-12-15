@@ -97,12 +97,6 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {
-        if (endpoint.Server.X25519PublicKey == null)
-        {
-            InvokeStateChange(VpnStatus.Disconnected, VpnError.MissingServerPublicKey);
-            return;
-        }
-
         _credentials = credentials;
         _endpoint = endpoint;
         _vpnConfig = config;

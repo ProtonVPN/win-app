@@ -25,11 +25,14 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
 
@@ -37,7 +40,8 @@ namespace ProtonVPN.Client.Logic.Connection;
 
 public class ConnectionManager : IConnectionManager,
     IEventMessageReceiver<VpnStateIpcEntity>,
-    IEventMessageReceiver<ConnectionDetailsIpcEntity>
+    IEventMessageReceiver<ConnectionDetailsIpcEntity>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ILogger _logger;
     private readonly IServiceCaller _serviceCaller;
@@ -135,26 +139,36 @@ public class ConnectionManager : IConnectionManager,
     {
         ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
 
-        if (_connectionDetails != null && message.Status == VpnStatusIpcEntity.Connected)
+        if (_connectionDetails != null)
         {
-            Server? server = GetCurrentServer(message);
-            if (server is null)
+            if (message.Status == VpnStatusIpcEntity.Connected)
             {
-                _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
-                                      $"NetworkBlocked: '{message.NetworkBlocked}' " +
-                                      $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
-                                      $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
+                Server? server = GetCurrentServer(message);
+                if (server is null)
+                {
+                    _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
+                                          $"NetworkBlocked: '{message.NetworkBlocked}' " +
+                                          $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
+                                          $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
 
-                // TODO: call reconnection logic excluding the last server
-            }
-            else
-            {
-                VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-                _connectionDetails = new ConnectionDetails(_connectionDetails.OriginalConnectionIntent, server, vpnProtocol);
+                    // TODO: call reconnection logic excluding the last server
+                }
+                else
+                {
+                    VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
+                    _connectionDetails = new ConnectionDetails(_connectionDetails.OriginalConnectionIntent, server, vpnProtocol);
+                }
             }
         }
 
         SetConnectionStatus(connectionStatus);
+    }
+
+    private Server? GetCurrentServer(VpnStateIpcEntity state)
+    {
+        //TODO: instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
+        return _serversLoader.GetServers()
+            .FirstOrDefault(s => s.Servers.Any(physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label));
     }
 
     private void SetConnectionStatus(ConnectionStatus connectionStatus)
@@ -168,10 +182,16 @@ public class ConnectionManager : IConnectionManager,
         _eventMessageSender.Send(new ConnectionStatusChanged(ConnectionStatus));
     }
 
-    private Server? GetCurrentServer(VpnStateIpcEntity state)
+    public async void Receive(SettingChangedMessage message)
     {
-        //TODO: instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
-        return _serversLoader.GetServers()
-            .FirstOrDefault(s => s.Servers.Any(physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label));
+        if (message.PropertyName == nameof(ISettings.AuthenticationCertificatePem) &&
+            ConnectionStatus == ConnectionStatus.Connected &&
+            message.NewValue is not null)
+        {
+            await _serviceCaller.UpdateAuthCertificateAsync(new AuthCertificateIpcEntity
+            {
+                Certificate = (string)message.NewValue
+            });
+        }
     }
 }

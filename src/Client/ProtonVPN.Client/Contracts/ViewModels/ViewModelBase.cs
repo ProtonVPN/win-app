@@ -27,7 +27,7 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 {
     public ILocalizationProvider Localizer { get; }
 
-    public ViewModelBase(ILocalizationProvider localizationProvider)
+    protected ViewModelBase(ILocalizationProvider localizationProvider)
     {
         Localizer = localizationProvider;
     }

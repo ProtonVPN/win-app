@@ -18,18 +18,20 @@
  */
 
 using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Services.Contracts
+namespace ProtonVPN.Client.Logic.Services.Contracts;
+
+public interface IServiceCaller
 {
-    public interface IServiceCaller
-    {
-        Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
+    Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
 
-        Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
+    Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
 
-        Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
+    Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
 
-        Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
-    }
+    Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
+
+    Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate);
 }

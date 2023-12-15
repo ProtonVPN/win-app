@@ -247,27 +247,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
         if (!_avoidDisconnectOnErrors.Contains(e.Error))
         {
-            switch (e.Error)
-            {
-                case VpnError.CertificateRevoked:
-                case VpnError.CertRevokedOrExpired:
-                case VpnError.PlanNeedsToBeUpgraded:
-                    _origin.Disconnect(e.Error);
-                    break;
-                case VpnError.CertificateExpired:
-                    InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
-                    break;
-                case VpnError.SessionLimitReached:
-                case VpnError.SessionKilledDueToMultipleKeys:
-                case VpnError.SessionLimitReachedFree:
-                case VpnError.SessionLimitReachedBasic:
-                case VpnError.SessionLimitReachedPlus:
-                case VpnError.SessionLimitReachedPro:
-                case VpnError.SessionLimitReachedVisionary:
-                case VpnError.SessionLimitReachedUnknown:
-                    _origin.Disconnect(VpnError.AuthorizationError);
-                    break;
-            }
+            _origin.Disconnect(e.Error);
         }
     }
 

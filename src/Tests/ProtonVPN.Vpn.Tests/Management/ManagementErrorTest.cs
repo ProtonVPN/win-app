@@ -42,8 +42,6 @@ namespace ProtonVPN.Vpn.Tests.Management
         }
 
         [DataTestMethod]
-        [DataRow(VpnError.AuthorizationError, ">PASSWORD:Verification Failed: 'Auth'.")]
-        [DataRow(VpnError.AuthorizationError, ">EXITING,auth-failure,,,")]
         [DataRow(VpnError.TapAdapterInUseError, ">LOG:1579682468,F,All TAP-Windows adapters on this system are currently in use.")]
         [DataRow(VpnError.TapAdapterInUseError, ">LOG:1579682468,F,All TAP-Win32 adapters on this system are currently in use.")]
         [DataRow(VpnError.NoTapAdaptersError, ">LOG:1579682468,F,There are no TAP-Windows adapters on this system.")]
