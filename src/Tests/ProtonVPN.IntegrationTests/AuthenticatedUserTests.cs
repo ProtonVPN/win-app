@@ -22,6 +22,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
+using NSubstitute;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Srp;
 using RichardSzalay.MockHttp;
@@ -30,6 +31,7 @@ namespace ProtonVPN.IntegrationTests
 {
     public class AuthenticatedUserTests : TestBase
     {
+        protected const string USERNAME = "username";
         protected const string CORRECT_PASSWORD = "password";
         protected const string WRONG_PASSWORD = "wrong";
         protected const string CERTIFICATE =
@@ -47,21 +49,46 @@ namespace ProtonVPN.IntegrationTests
             "UIfgGDGcNvFTVQBxSNzmGgZ+8YS60asMpo2vlGOyuy1U8vb3PsHSRYIgnJVup0P0\n" +
             "aFJlft9QCg==\n" +
             "-----END CERTIFICATE-----\n";
+        protected const string SSO_RESPONSE_TOKEN = "wfih0367aa7dc0359bf5c42d15a93e6c";
 
         protected void SetApiResponsesForAuth()
         {
+            SetUnauthSessionResponse();
             SetAuthInfoResponse();
             SetAuthResponse();
+            SetUserResponse();
             SetVpnInfoResponse();
             SetAuthCertificateResponse();
             InitializeContainer();
         }
 
+        protected void SetApiResponsesForSsoAuth()
+        {
+            SetUnauthSessionResponse();
+            SetAuthInfoResponse();
+            SetAuthResponse();
+            SetUserResponse();
+            SetVpnInfoResponse();
+            InitializeContainer();
+
+        }
+
         protected void SetApiResponsesForAuthWithTwoFactor()
         {
+            SetUnauthSessionResponse();
             SetAuthInfoResponse();
             SetAuthResponseWithTwoFactorEnabled();
+            SetUserResponse();
             InitializeContainer();
+        }
+
+        private void SetUnauthSessionResponse()
+        {
+            MessageHandler.When(HttpMethod.Post, "/auth/v4/sessions").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("UnauthSessionResponseMock"))
+            });
         }
 
         private void SetAuthInfoResponse()
@@ -109,11 +136,28 @@ namespace ProtonVPN.IntegrationTests
             });
         }
 
-        protected async Task<AuthResult> MakeUserAuth(string password)
+        private void SetUserResponse()
+        {
+            MessageHandler.When(HttpMethod.Post, "/core/v4/users").Respond(_ => new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(GetJsonMock("UserResponseMock"))
+            });
+        }
+
+        protected async Task<AuthResult> MakeUserAuth(string username, string password)
         {
             SrpPInvoke.SetUnitTest();
-            SecureString securePassword = new NetworkCredential("", password).SecurePassword;
-            return await Resolve<IUserAuthenticator>().LoginUserAsync("username", securePassword);
+            SecureString securePassword = new NetworkCredential(username, password).SecurePassword;
+            return await Resolve<IUserAuthenticator>().LoginUserAsync(username, securePassword);
+        }
+
+        protected async Task<AuthResult> MakeUserAuthWithSso(string username)
+        {
+            Resolve<ISsoAuthenticator>().AuthenticateAsync(Arg.Any<AuthSsoSessionInfo>())
+                .Returns(SSO_RESPONSE_TOKEN);
+
+            return await Resolve<IUserAuthenticator>().SingleSignOnUserAsync(username);
         }
     }
 }

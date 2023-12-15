@@ -14,7 +14,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Grpc.Core" Version="2.46.5" />
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />

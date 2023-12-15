@@ -1,0 +1,52 @@
+{
+  "Code": 1000,
+  "User": {
+    "ID": "MJLke8kWh1BBvG95JBIrZvzpgsZ94hNNgjNHVyhXMiv4g9cn6SgvqiIFR5cigpml2LD_iUk_3DkV29oojTt3eA==",
+    "Name": "johndoe",
+    "DisplayName": "John Doe",
+    "Email": "johndoe@protonmail.ch",
+    "Currency": "USD",
+    "Credit": 0,
+    "Type": 0,
+    "CreateTime": 1654615966,
+    "MaxSpace": 10737418240,
+    "MaxUpload": 26214400,
+    "UsedSpace": 70376905,
+    "ProductUsedSpace": {
+      "Calendar": 0,
+      "Contact": 0,
+      "Drive": 0,
+      "Mail": 0,
+      "Pass": 0
+    },
+    "Role": 2,
+    "Private": 1,
+    "ToMigrate": 1,
+    "MnemonicStatus": 1,
+    "Subscribed": 5,
+    "Services": 5,
+    "Delinquent": 0,
+    "Keys": [
+      {
+        "ID": "IlnTbqicN-2HfUGIn-ki8bqZfLqNj5ErUB0z24Qx5g-4NvrrIc6GLvEpj2EPfwGDv28aKYVRRrSgEFhR_zhlkA==",
+        "Version": 3,
+        "PrivateKey": "-----BEGIN PGP PRIVATE KEY BLOCK-----*-----END PGP PRIVATE KEY BLOCK-----",
+        "Fingerprint": "c93f767df53b0ca8395cfde90483475164ec6353",
+        "Primary": 1,
+        "Active": 1,
+        "RecoverySecret": "1H8EGg3J1...Qwk243hf",
+        "RecoverySecretSignature": "-----BEGIN PGP SIGNATURE-----..."
+      }
+    ],
+    "AccountRecovery": {
+      "State": "1",
+      "StartTime": "1686834569",
+      "EndTime": "1687000169",
+      "Reason": "1",
+      "UID": "qmi2ptbz4sefeahddjxghsxtu2orlgyf"
+    }
+  },
+  "VerifyMethods": [
+    "captcha"
+  ]
+}

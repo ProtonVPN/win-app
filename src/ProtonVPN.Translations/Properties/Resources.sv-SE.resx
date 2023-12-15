@@ -1380,7 +1380,7 @@
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Arabrepubliken Syrien</value>
+    <value>Syriska Arabrepubliken</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
@@ -2582,7 +2582,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% Belastning</value>
+    <value>{0}% belastning</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
@@ -2688,7 +2688,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Ger förbättrad systemprestanda och en smidigare upplevelse genom att använda GPU:n för grafisk rendering. Stäng av ifall skärmproblem uppstår.</value>
+    <value>Ger förbättrad systemprestanda och en smidigare upplevelse genom att använda GPU:n för grafikåtergivning. Stäng av om skärmproblem uppstår.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">

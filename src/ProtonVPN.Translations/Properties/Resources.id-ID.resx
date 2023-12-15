@@ -458,7 +458,7 @@
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Authenticating">
-    <value>Mengotentikasi Pengguna</value>
+    <value>Mengautentikasi Pengguna</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Connecting">
@@ -2789,7 +2789,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
-    <value>Aktifkan pilihan ini untuk mendapatkan notifikasi pada saat VPN Accelerator menyambungkan Anda ke server yang lebih cepat.</value>
+    <value>Aktifkan pilihan ini untuk memperoleh notifikasi pada saat VPN Accelerator menyambungkan Anda ke server yang lebih cepat.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect_Info">

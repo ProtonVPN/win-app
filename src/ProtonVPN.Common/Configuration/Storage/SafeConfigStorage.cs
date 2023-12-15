@@ -38,21 +38,36 @@ namespace ProtonVPN.Common.Configuration.Storage
             {
                 return _origin.Value();
             }
-            catch (Exception e) when (e.IsFileAccessException() || e is JsonException)
+            catch (Exception e) when (IsFileAccessOrJsonException(e))
             {
                 return null;
             }
         }
 
-        public void Save(IConfiguration value)
+        private static bool IsFileAccessOrJsonException(Exception e)
+        {
+            return e.IsFileAccessException() || e is JsonException;
+        }
+
+        public void SaveIfNotExists(IConfiguration value)
+        {
+            SafeWrapper(() => _origin.SaveIfNotExists(value));
+        }
+
+        private void SafeWrapper(Action action)
         {
             try
             {
-                _origin.Save(value);
+                action();
             }
-            catch (Exception e) when (e.IsFileAccessException() || e is JsonException)
+            catch (Exception e) when (IsFileAccessOrJsonException(e))
             {
             }
+        }
+
+        public void Save(IConfiguration value)
+        {
+            SafeWrapper(() => _origin.Save(value));
         }
     }
 }

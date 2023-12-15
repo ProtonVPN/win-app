@@ -29,10 +29,7 @@ using FlaUI.UIA3;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-using System.Windows.Automation;
-using System.Threading.Tasks;
-using System.Linq;
+using System.Security.Principal;
 
 namespace ProtonVPN.UI.Tests
 {
@@ -44,11 +41,13 @@ namespace ProtonVPN.UI.Tests
 
         protected static void DeleteUserConfig()
         {
-            string localAppDataFolder = Path.Combine(TestConstants.AppLogsPath, @"..\..\");
+            string localAppDataFolder = Path.Combine(TestData.AppLogsPath, @"..\..\");
             try
             {
                 Directory.Delete(localAppDataFolder, true);
-                Directory.Delete(TestConstants.ServiceLogsPath);
+                Directory.Delete(TestData.ServiceLogsPath);
+                File.Delete(TestData.TestConfigPath);
+                Directory.Delete(TestData.ServiceLogsFolder, true);
             }
             catch (Exception)
             {
@@ -56,7 +55,7 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void Cleanup()
+        protected static void ClientCleanup()
         {
             try
             {
@@ -83,7 +82,7 @@ namespace ProtonVPN.UI.Tests
         protected static void RefreshWindow(TimeSpan? timeout = null)
         {
             Window = null;
-            TimeSpan refreshTimeout = timeout ?? TestConstants.MediumTimeout;
+            TimeSpan refreshTimeout = timeout ?? TestData.MediumTimeout;
             RetryResult<Window> retry = Retry.WhileNull(
                 () => {
                     try
@@ -96,7 +95,7 @@ namespace ProtonVPN.UI.Tests
                     }
                     return Window;
                 },
-                refreshTimeout, TestConstants.RetryInterval);
+                refreshTimeout, TestData.RetryInterval);
 
             if (!retry.Success)
             {
@@ -106,8 +105,7 @@ namespace ProtonVPN.UI.Tests
 
         protected static void LaunchApp()
         {
-            string[] versionFolders = Directory.GetDirectories(TestConstants.AppFolderPath, "v*");
-            string appExecutable = FindNewestVersionFolder(versionFolders) + @"\ProtonVPN.exe";
+            string appExecutable = TestData.AppVersionFolder + @"\ProtonVPN.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo(appExecutable)
             {
                 Arguments = "/DisableAutoUpdate"
@@ -120,8 +118,9 @@ namespace ProtonVPN.UI.Tests
                 //Sometimes app fails to launch on first try due to CI issues.
                 App = Application.Launch(startInfo);
             }
-            RefreshWindow(TestConstants.LongTimeout);
+            RefreshWindow(TestData.LongTimeout);
         }
+
 
         protected static void KillProtonVpnProcess()
         {
@@ -165,6 +164,17 @@ namespace ProtonVPN.UI.Tests
                 process.Start();
             }
         }
+        
+        protected static void GenerateAppConfig()
+        {
+            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal currentPrincipal = new WindowsPrincipal(currentIdentity);
+            bool isAdmin = currentPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
+            Assert.That(isAdmin, Is.True, "User does not have Admin permissions, to generate Configuration file.");
+
+            LaunchApp();
+            App.Close();
+        }
 
         private static void SaveScreenshotAndLogsIfFailed()
         {
@@ -187,20 +197,9 @@ namespace ProtonVPN.UI.Tests
                     Process[] pname = Process.GetProcessesByName("ProtonVPN");
                     return pname.Length > 0;
                 },
-                TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
+                TimeSpan.FromSeconds(30), TestData.RetryInterval);
 
             return retry;
-        }
-
-        private static string FindNewestVersionFolder(string[] versionFolders)
-        {
-            return versionFolders.MaxBy(GetVersion);
-        }
-
-        private static Version GetVersion(string folderPath)
-        {
-            string versionString = Path.GetFileName(folderPath).TrimStart('v');
-            return Version.TryParse(versionString, out Version version) ? version : new();
         }
     }
 }

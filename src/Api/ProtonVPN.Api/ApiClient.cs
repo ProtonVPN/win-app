@@ -40,227 +40,240 @@ using ProtonVPN.Common.StatisticalEvents;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using FeatureFlagsResponse = ProtonVPN.Api.Contracts.Features.FeatureFlagsResponse;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Api;
+
+public class ApiClient : BaseApiClient, IApiClient
 {
-    public class ApiClient : BaseApiClient, IApiClient
+    private const int SERVERS_TIMEOUT_IN_SECONDS = 30;
+    private const int SERVERS_RETRY_COUNT = 3;
+
+    private readonly HttpClient _client;
+    private readonly HttpClient _noCacheClient;
+
+    public ApiClient(
+        IApiHttpClientFactory httpClientFactory,
+        ILogger logger,
+        IAppSettings appSettings,
+        IApiAppVersion appVersion,
+        IAppLanguageCache appLanguageCache,
+        IConfiguration config) : base(logger, appVersion, appSettings, appLanguageCache, config)
     {
-        private const int SERVERS_TIMEOUT_IN_SECONDS = 30;
-        private const int SERVERS_RETRY_COUNT = 3;
+        _client = httpClientFactory.GetApiHttpClientWithCache();
+        _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();
+    }
 
-        private readonly HttpClient _client;
-        private readonly HttpClient _noCacheClient;
+    public async Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync()
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/v4/sessions");
 
-        public ApiClient(
-            IApiHttpClientFactory httpClientFactory,
-            ILogger logger,
-            IAppSettings appSettings,
-            IApiAppVersion appVersion,
-            IAppLanguageCache appLanguageCache,
-            IConfiguration config) : base(logger, appVersion, appSettings, appLanguageCache, config)
+        return await SendRequest<UnauthSessionResponse>(request, "Post unauth sessions");
+    }
+
+    public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest, string unauthSessionAccessToken, string unauthSessionUid)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth", unauthSessionAccessToken, unauthSessionUid);
+        request.Content = GetJsonContent(authRequest);
+        return await SendRequest<AuthResponse>(request, "Get auth");
+    }
+
+    public async Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest, string unauthSessionAccessToken, string unauthSessionUid)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/info", unauthSessionAccessToken, unauthSessionUid);
+        request.Content = GetJsonContent(authInfoRequest);
+        return await SendRequest<AuthInfoResponse>(request, "Get auth info");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/2fa", accessToken, uid);
+        request.Content = GetJsonContent(twoFactorRequest);
+        return await SendRequest<BaseResponse>(request, "Get two factor auth info");
+    }
+
+    public async Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2");
+        return await SendRequest<VpnInfoWrapperResponse>(request, "Get VPN info");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> GetLogoutResponse()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, "auth");
+        return await SendRequest<BaseResponse>(request, "Logout");
+    }
+
+    public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get,
+            "vpn/logicals?SignServer=Server.EntryIP,Server.Label", ip);
+        request.SetRetryCount(SERVERS_RETRY_COUNT);
+        request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
+        return await SendRequest<ServersResponse>(request, "Get servers");
+    }
+
+    public async Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/loads", ip);
+        return await SendRequest<ServersResponse>(request, "Get server loads");
+    }
+
+    public async Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData()
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
+        return await SendRequest<ReportAnIssueFormResponse>(request, "Get report an issue form data");
+    }
+
+    public async Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync()
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/location");
+        return await SendRequestWithNoCache<UserLocationResponse>(request, "Get location data");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> ReportBugAsync(
+        IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files)
+    {
+        MultipartFormDataContent content = new();
+
+        foreach (KeyValuePair<string, string> pair in fields)
         {
-            _client = httpClientFactory.GetApiHttpClientWithCache();
-            _noCacheClient = httpClientFactory.GetApiHttpClientWithoutCache();
+            content.Add(new StringContent(pair.Value ?? "undefined"), $"\"{pair.Key}\"");
         }
 
-        public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest)
+        int fileCount = 0;
+        foreach (File file in files)
         {
-            HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");
-            request.Content = GetJsonContent(authRequest);
-            return await SendRequest<AuthResponse>(request, "Get auth");
+            content.Add(new ByteArrayContent(file.Content),
+                $"\"File{fileCount}\"",
+                $"\"{file.Name}\"");
+            fileCount++;
         }
 
-        public async Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest)
-        {
-            HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth/info");
-            request.Content = GetJsonContent(authInfoRequest);
-            return await SendRequest<AuthInfoResponse>(request, "Get auth info");
-        }
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "reports/bug");
+        request.Content = content;
+        return await SendRequest<BaseResponse>(request, "Report bug");
+    }
 
-        public async Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/2fa", accessToken, uid);
-            request.Content = GetJsonContent(twoFactorRequest);
-            return await SendRequest<BaseResponse>(request, "Get two factor auth info");
-        }
+    public async Task<ApiResponseResult<SessionsResponse>> GetSessions()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/sessions");
+        return await SendRequest<SessionsResponse>(request, "Get sessions");
+    }
 
-        public async Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2");
-            return await SendRequest<VpnInfoWrapperResponse>(request, "Get VPN info");
-        }
+    public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2/clientconfig");
+        return await SendRequest<VpnConfigResponse>(request, "Get VPN config");
+    }
 
-        public async Task<ApiResponseResult<BaseResponse>> GetLogoutResponse()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Delete, "auth");
-            return await SendRequest<BaseResponse>(request, "Logout");
-        }
+    public async Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, $"vpn/servers/{serverId}");
+        return await SendRequest<PhysicalServerWrapperResponse>(request, "Get server status");
+    }
 
-        public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get,
-                "vpn/logicals?SignServer=Server.EntryIP,Server.Label", ip);
-            request.SetRetryCount(SERVERS_RETRY_COUNT);
-            request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
-            return await SendRequest<ServersResponse>(request, "Get servers");
-        }
+    public async Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(
+        AnnouncementsRequest announcementsRequest)
+    {
+        string url = "core/v4/notifications?" +
+                     $"FullScreenImageSupport={announcementsRequest.FullScreenImageSupport}&" +
+                     $"FullScreenImageWidth={announcementsRequest.FullScreenImageWidth}&" +
+                     $"FullScreenImageHeight={announcementsRequest.FullScreenImageHeight}";
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, url);
+        return await SendRequest<AnnouncementsResponse>(request, "Get announcements");
+    }
 
-        public async Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/loads", ip);
-            return await SendRequest<ServersResponse>(request, "Get server loads");
-        }
+    public async Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/streamingservices");
+        return await SendRequest<StreamingServicesResponse>(request, "Get streaming services");
+    }
 
-        public async Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData()
-        {
-            HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/v1/featureconfig/dynamic-bug-reports");
-            return await SendRequest<ReportAnIssueFormResponse>(request, "Get report an issue form data");
-        }
+    public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
+        return await SendRequest<BaseResponse>(request, "Check authentication server status");
+    }
 
-        public async Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync()
-        {
-            HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/location");
-            return await SendRequestWithNoCache<UserLocationResponse>(request, "Get location data");
-        }
+    public async Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(
+        CertificateRequest certificateRequest)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/certificate");
+        request.Content = GetJsonContent(certificateRequest);
+        return await SendRequest<CertificateResponse>(request, "Create auth certificate");
+    }
 
-        public async Task<ApiResponseResult<BaseResponse>> ReportBugAsync(
-            IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files)
-        {
-            MultipartFormDataContent content = new();
+    public async Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "payments/v4/promocode");
+        request.Content = GetJsonContent(promoCodeRequest);
+        return await SendRequest<BaseResponse>(request, "Apply promo code");
+    }
 
-            foreach (KeyValuePair<string, string> pair in fields)
+    public async Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest authForkSessionRequest)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/v4/sessions/forks");
+        request.SetCustomTimeout(TimeSpan.FromSeconds(3));
+        request.Content = GetJsonContent(authForkSessionRequest);
+        return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
+    }
+
+    public async Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/settings");
+        return await SendRequest<SettingsResponse>(request, "Get user settings");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "data/v1/stats/multiple");
+        request.Content = GetJsonContent(statisticalEvents);
+        return await SendRequest<BaseResponse>(request, "Post statistical events batch");
+    }
+
+    public async Task<ApiResponseResult<UsersResponse>> GetUserAsync(string accessToken, string uid)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/users", accessToken, uid);
+        return await SendRequest<UsersResponse>(request, "Get user");
+    }
+
+    public async Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync()
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Get, "feature/v2/frontend");
+        return await SendRequest<FeatureFlagsResponse>(request, "Get feature flags");
+    }
+
+    private async Task<ApiResponseResult<T>> SendRequest<T>(HttpRequestMessage request, string logDescription)
+                where T : BaseResponse
+    {
+        return await SendRequest<T>(_client, request, logDescription);
+    }
+
+    private async Task<ApiResponseResult<T>> SendRequestWithNoCache<T>(HttpRequestMessage request,
+        string logDescription) where T : BaseResponse
+    {
+        return await SendRequest<T>(_noCacheClient, request, logDescription);
+    }
+
+    private async Task<ApiResponseResult<T>> SendRequest<T>(HttpClient httpClient, HttpRequestMessage request,
+        string logDescription) where T : BaseResponse
+    {
+        try
+        {
+            using (HttpResponseMessage response = await httpClient.SendAsync(request).ConfigureAwait(false))
             {
-                content.Add(new StringContent(pair.Value ?? "undefined"), $"\"{pair.Key}\"");
+                return Logged(await GetApiResponseResultAsync<T>(response), logDescription);
             }
-
-            int fileCount = 0;
-            foreach (File file in files)
+        }
+        catch (Exception e)
+        {
+            if (!e.IsApiCommunicationException())
             {
-                content.Add(new ByteArrayContent(file.Content),
-                    $"\"File{fileCount}\"",
-                    $"\"{file.Name}\"");
-                fileCount++;
+                Logger.Error<ApiErrorLog>("An exception occurred in an API request " +
+                    "that is not related with its communication.", e);
             }
-
-            HttpRequestMessage request = GetRequest(HttpMethod.Post, "reports/bug");
-            request.Content = content;
-            return await SendRequest<BaseResponse>(request, "Report bug");
-        }
-
-        public async Task<ApiResponseResult<SessionsResponse>> GetSessions()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/sessions");
-            return await SendRequest<SessionsResponse>(request, "Get sessions");
-        }
-
-        public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2/clientconfig");
-            return await SendRequest<VpnConfigResponse>(request, "Get VPN config");
-        }
-
-        public async Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, $"vpn/servers/{serverId}");
-            return await SendRequest<PhysicalServerWrapperResponse>(request, "Get server status");
-        }
-
-        public async Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(
-            AnnouncementsRequest announcementsRequest)
-        {
-            string url = "core/v4/notifications?" +
-                         $"FullScreenImageSupport={announcementsRequest.FullScreenImageSupport}&" +
-                         $"FullScreenImageWidth={announcementsRequest.FullScreenImageWidth}&" +
-                         $"FullScreenImageHeight={announcementsRequest.FullScreenImageHeight}";
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, url);
-            return await SendRequest<AnnouncementsResponse>(request, "Get announcements");
-        }
-
-        public async Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/streamingservices");
-            return await SendRequest<StreamingServicesResponse>(request, "Get streaming services");
-        }
-
-        public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
-        {
-            HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
-            return await SendRequest<BaseResponse>(request, "Check authentication server status");
-        }
-
-        public async Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(
-            CertificateRequest certificateRequest)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/certificate");
-            request.Content = GetJsonContent(certificateRequest);
-            return await SendRequest<CertificateResponse>(request, "Create auth certificate");
-        }
-
-        public async Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "payments/v4/promocode");
-            request.Content = GetJsonContent(promoCodeRequest);
-            return await SendRequest<BaseResponse>(request, "Apply promo code");
-        }
-
-        public async Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest authForkSessionRequest)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/v4/sessions/forks");
-            request.SetCustomTimeout(TimeSpan.FromSeconds(3));
-            request.Content = GetJsonContent(authForkSessionRequest);
-            return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
-        }
-
-        public async Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/settings");
-            return await SendRequest<SettingsResponse>(request, "Get user settings");
-        }
-
-        public async Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "data/v1/stats/multiple");
-            request.Content = GetJsonContent(statisticalEvents);
-            return await SendRequest<BaseResponse>(request, "Post statistical events batch");
-        }
-
-        public async Task<ApiResponseResult<UsersResponse>> GetUserAsync()
-        {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "core/v4/users");
-            return await SendRequest<UsersResponse>(request, "Get user");
-        }
-
-        private async Task<ApiResponseResult<T>> SendRequest<T>(HttpRequestMessage request, string logDescription)
-            where T : BaseResponse
-        {
-            return await SendRequest<T>(_client, request, logDescription);
-        }
-
-        private async Task<ApiResponseResult<T>> SendRequestWithNoCache<T>(HttpRequestMessage request,
-            string logDescription) where T : BaseResponse
-        {
-            return await SendRequest<T>(_noCacheClient, request, logDescription);
-        }
-
-        private async Task<ApiResponseResult<T>> SendRequest<T>(HttpClient httpClient, HttpRequestMessage request,
-            string logDescription) where T : BaseResponse
-        {
-            try
-            {
-                using (HttpResponseMessage response = await httpClient.SendAsync(request).ConfigureAwait(false))
-                {
-                    return Logged(await GetApiResponseResultAsync<T>(response), logDescription);
-                }
-            }
-            catch (Exception e)
-            {
-                if (!e.IsApiCommunicationException())
-                {
-                    Logger.Error<ApiErrorLog>("An exception occurred in an API request " +
-                        "that is not related with its communication.", e);
-                }
-                throw new HttpRequestException(e.Message, e);
-            }
+            throw new HttpRequestException(e.Message, e);
         }
     }
 }

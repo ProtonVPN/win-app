@@ -145,6 +145,8 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 ClientConfigMinimumUpdateInterval = TimeSpan.FromHours(2),
 
+                FeatureFlagsUpdateInterval = TimeSpan.FromHours(3),
+
                 DefaultCurrency = "USD",
 
                 ReportBugMaxFiles = 10,

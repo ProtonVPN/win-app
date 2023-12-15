@@ -36,6 +36,7 @@ namespace ProtonVPN.Api
     {
         private const int REFRESH_TOKEN_LOG_LENGTH = 5;
         private readonly HttpClient _client;
+        private readonly IConfiguration _config;
 
         public event EventHandler RefreshTokenExpired;
 
@@ -48,6 +49,7 @@ namespace ProtonVPN.Api
             IConfiguration config) : base(logger, appVersion, appSettings, appLanguageCache, config)
         {
             _client = tokenHttpClientFactory.GetTokenHttpClient();
+            _config = config;
         }
 
         public async Task<ApiResponseResult<RefreshTokenResponse>> RefreshTokenAsync(CancellationToken token)
@@ -57,7 +59,7 @@ namespace ProtonVPN.Api
                 ResponseType = "token",
                 RefreshToken = AppSettings.RefreshToken,
                 GrantType = "refresh_token",
-                RedirectUri = "http://api.protonvpn.ch"
+                RedirectUri = _config.Urls.ApiUrl
             };
             ValidateRefreshTokenData(refreshTokenRequest);
 
@@ -103,12 +105,8 @@ namespace ProtonVPN.Api
 
         private void ValidateRequestHeaders(HttpRequestMessage request)
         {
-            string uid = request?.Headers?.GetValues("x-pm-uid")?.FirstOrDefault();
-
-            if (uid == null)
-            {
-                throw new ArgumentNullException("The UID header in the HttpRequest can't be null.");
-            }
+            string uid = (request?.Headers?.GetValues("x-pm-uid")?.FirstOrDefault()) 
+                ?? throw new ArgumentNullException("The UID header in the HttpRequest can't be null.");
         }
     }
 }

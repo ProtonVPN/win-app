@@ -31,7 +31,7 @@ namespace ProtonVPN.UI.Tests.Tests
         public void TestInitialize()
         {
             KillProtonVpnProcess();
-            string dir = Path.GetDirectoryName(TestConstants.AppFolderPath);
+            string dir = Path.GetDirectoryName(TestData.AppFolderPath);
             Directory.SetCurrentDirectory(dir);
             TestsRecorder.StartVideoCapture();
         }

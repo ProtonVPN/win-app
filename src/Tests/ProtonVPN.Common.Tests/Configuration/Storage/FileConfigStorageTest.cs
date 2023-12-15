@@ -76,7 +76,7 @@ namespace ProtonVPN.Common.Tests.Configuration.Storage
             FileConfigStorage storage = new(ConfigFile(filename));
             IConfiguration config = new DefaultConfig().Value();
             // Act
-            storage.Save(config);
+            storage.SaveIfNotExists(config);
             // Assert
             File.Exists($"TestData\\{filename}").Should().BeTrue();
         }

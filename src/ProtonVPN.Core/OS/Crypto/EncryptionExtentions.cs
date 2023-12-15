@@ -33,6 +33,11 @@ namespace ProtonVPN.Core.OS.Crypto
 
         public static string Decrypt(this string data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return data;
+            }
+
             byte[] encryptedBytes = Convert.FromBase64String(data);
             byte[] decryptedBytes = Decrypt(encryptedBytes);
             return Encoding.UTF8.GetString(decryptedBytes);

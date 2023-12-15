@@ -22,5 +22,6 @@ namespace ProtonVPN.Api.Contracts.Auth
     public class AuthInfoRequest
     {
         public string Username { get; set; }
+        public string Intent { get; set; }
     }
 }

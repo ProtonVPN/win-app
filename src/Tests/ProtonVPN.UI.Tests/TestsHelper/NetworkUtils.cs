@@ -38,7 +38,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
                     dnsAddress = GetDnsAddressForAdapterByName(adapterName);
                     return dnsAddress;
                 },
-                TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
+                TestData.VeryShortTimeout, TestData.RetryInterval);
 
             if (!retry.Success)
             {

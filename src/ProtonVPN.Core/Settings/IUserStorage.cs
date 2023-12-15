@@ -36,7 +36,7 @@ namespace ProtonVPN.Core.Settings
         void SaveLocation(UserLocation location);
         UserLocation GetLocation();
 
-        void StoreCreationDateUtc(DateTime creationDateUtc);
+        void StoreCreationDateUtc(DateTime? creationDateUtc);
         DateTime? GetCreationDateUtc();
     }
 }

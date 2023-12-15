@@ -35,6 +35,11 @@ namespace ProtonVPN.Core.Auth
             return new(authError, false, string.Empty);
         }
 
+        public static AuthResult Fail(AuthError authError, string error)
+        {
+            return new(authError, false, error);
+        }
+
         public new static AuthResult Fail(string error)
         {
             return new(AuthError.Unknown, false, error);
@@ -44,9 +49,13 @@ namespace ProtonVPN.Core.Auth
         {
             if (apiResponseResult.Actions.IsNullOrEmpty())
             {
-                return apiResponseResult.Value?.Code == ResponseCodes.NoVpnConnectionsAssigned
-                    ? Fail(AuthError.NoVpnAccess)
-                    : Fail(apiResponseResult.Error);
+                return apiResponseResult.Value?.Code switch
+                {
+                    ResponseCodes.NoVpnConnectionsAssigned => Fail(AuthError.NoVpnAccess),
+                    ResponseCodes.AuthSwitchToSSO => Fail(AuthError.SwitchToSSO, apiResponseResult.Error),
+                    ResponseCodes.AuthSwitchToSRP => Fail(AuthError.SwitchToSRP, apiResponseResult.Error),
+                    _ => Fail(apiResponseResult.Error)
+                };
             }
 
             return Fail();

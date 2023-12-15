@@ -32,11 +32,11 @@ namespace ProtonVPN.UI.Tests.Results
 
         public SettingsResult CheckIfSettingsAreDisplayed()
         {
-            WaitUntilElementExistsByName("Start Minimized", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Start on boot", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Connect on app start", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Show Notifications", TestConstants.VeryShortTimeout);
-            WaitUntilElementExistsByName("Early Access", TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName("Start Minimized", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Start on boot", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Connect on app start", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Show Notifications", TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName("Early Access", TestData.VeryShortTimeout);
             return this;
         }
 
@@ -48,25 +48,25 @@ namespace ProtonVPN.UI.Tests.Results
 
         public SettingsResult CheckIfDnsAddressMatches(string expectedDnsAddress)
         {
-            Assert.IsTrue(DoesContainDnsAddress(expectedDnsAddress), DnsAdressErrorMessage(expectedDnsAddress));
+            Assert.That(DoesContainDnsAddress(expectedDnsAddress), Is.True, DnsAdressErrorMessage(expectedDnsAddress));
             return this;
         }
 
         public SettingsResult CheckIfDnsAddressDoesNotMatch(string expectedDnsAddress)
         {
-            Assert.IsFalse(DoesContainDnsAddress(expectedDnsAddress), DnsAdressErrorMessage(expectedDnsAddress));
+            Assert.That(DoesContainDnsAddress(expectedDnsAddress), Is.False, DnsAdressErrorMessage(expectedDnsAddress));
             return this;
         }
 
         public SettingsResult CheckIfModerateNatIsEnabled()
         {
-            Assert.IsTrue(ModerateNatCheckBox.IsChecked.Value, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
+            Assert.That(ModerateNatCheckBox.IsChecked.Value, Is.True, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
             return this;
         }
 
         public SettingsResult CheckIfModerateNatIsDisabled()
         {
-            Assert.IsFalse(ModerateNatCheckBox.IsChecked.Value, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
+            Assert.That(ModerateNatCheckBox.IsChecked.Value, Is.False, "Moderate NAT checkbox status is: " + ModerateNatCheckBox.IsChecked.Value);
             return this;
         }
 

@@ -142,7 +142,7 @@
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion">
-    <value>Liste des changements de la v.{0}</value>
+    <value>Liste des modifications de la v.{0}</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
   </data>
   <data name="About_lbl_ChangelogVersion_New">
@@ -379,7 +379,7 @@
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Cette adresse e-mail sera utilisée pour vous contacter au sujet de ce problème.</value>
+    <value>Cette adresse e-mail sera utilisée pour vous contacter concernant ce problème.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -1806,7 +1806,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interférence anti-virus&lt;/Bold&gt; : désactivez ou supprimez temporairement votre logiciel antivirus.</value>
+    <value>&lt;Bold&gt;Interférence anti-virus&lt;/Bold&gt; : désactivez ou retirez temporairement votre logiciel antivirus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -1901,7 +1901,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Il manque un fichier nécessaire à l'application.</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Certaines applications de votre PC ont peut-être supprimé des fichiers ou empêché leur installation.</value>
+    <value>Certaines applications de votre PC ont peut-être retiré des fichiers ou empêché leur installation.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
     <value>Corriger</value>
@@ -2094,7 +2094,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <value>Changements dans la sélection des serveurs</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Pour éviter l'encombrement des serveurs et garantir à tous l'accès à une navigation rapide et sécurisée, nous avons supprimé la sélection manuelle des pays et apporté des améliorations majeures à la sélection automatique des serveurs.</value>
+    <value>Pour éviter l'encombrement des serveurs et garantir à tous l'accès à une navigation rapide et sécurisée, nous avons retiré la sélection manuelle des pays et apporté des améliorations majeures à la sélection automatique des serveurs.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Nouveautés</value>
@@ -2630,7 +2630,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>Le serveur auquel vous essayez de vous connecter a été supprimé. choisissez un autre serveur ou un autre profil.</value>
+    <value>Le serveur auquel vous essayez de vous connecter a été retiré. choisissez un autre serveur ou un autre profil.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
@@ -3101,7 +3101,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Commencer à écrire…</value>
+    <value>Commencez à écrire…</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="TimeUnit_val_Day_One">

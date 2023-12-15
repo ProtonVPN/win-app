@@ -28,5 +28,9 @@ namespace ProtonVPN.Api.Contracts.Auth
         [JsonProperty(PropertyName = "SRPSession")]
         public string SrpSession { get; set; }
         public string Username { get; set; }
+
+        [JsonProperty(PropertyName = "SSOResponseToken")]
+        public string SsoResponseToken { get; set; }
+
     }
 }

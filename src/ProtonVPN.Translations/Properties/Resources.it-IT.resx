@@ -150,7 +150,7 @@
     <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
   </data>
   <data name="About_lbl_CurrentVersion">
-    <value>Versione corrente:</value>
+    <value>Versione attuale:</value>
     <comment>The label for current app version number in About window</comment>
   </data>
   <data name="About_lbl_CurrentVersion_EarlyAccess">
@@ -486,7 +486,7 @@
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
-    <value>Inizializzando la connessione</value>
+    <value>Avvio della connessione in corso</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
@@ -1698,7 +1698,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>Disconnetti un altro dispositivo per connettere questo o effettua l'upgrade a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1822,7 +1822,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
-    <value>&lt;Bold&gt;Problema del provider internet (ISP)&lt;/Bold&gt; - Prova a connetterti a Proton da una rete diversa (o usa &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <value>&lt;Bold&gt;Problema del fornitore di servizi Internet (ISP)&lt;/Bold&gt; - Prova a connetterti a Proton da una rete differente (o usa &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
@@ -1838,7 +1838,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Non è ancora possibile trovare una soluzione&lt;/Bold&gt; - Contattaci direttamente attraverso il nostro &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;modulo di supporto&lt;/Hyperlink&gt;, email (support@protonvpn.com), o &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Non riesci ancora a trovare una soluzione&lt;/Bold&gt; - Contattaci direttamente attraverso il nostro &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;modulo di supporto&lt;/Hyperlink&gt;, la nostra email (support@protonvpn.com), o &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
@@ -2142,7 +2142,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Disconnetti un altro dispositivo per collegare questo o aggiorna a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
+    <value>Disconnetti un altro dispositivo per connettere questo o effettua l'upgrade a PLUS per ottenere fino a 10 dispositivi connessi allo stesso tempo.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2302,7 +2302,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Continua modifiche</value>
+    <value>Continua a modificare</value>
     <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Color">
@@ -2582,7 +2582,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% carico</value>
+    <value>Carico al {0}%</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
@@ -2598,7 +2598,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Ottieni una copertura mondiale con VPN Plus</value>
+    <value>Ottieni una copertura globale con VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Non è il paese che vuoi? Effettua l'upgrade per scegliere qualsiasi server</value>
@@ -2626,7 +2626,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Proton VPN non è stato in grado di aggiornare il certificato di autenticazione del client.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Il server al quale stai cercando di connetterti è attualmente offline per manutenzione. Per favore seleziona un altro server o profilo.</value>
+    <value>Il server al quale stai provando a connetterti è attualmente offline per manutenzione. Seleziona un altro server o profilo.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
@@ -2692,11 +2692,11 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
-    <value>Protezione perdita di IPv6</value>
+    <value>Protezione dalla perdita di IPv6</value>
     <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
-    <value>Evita la perdita di indirizzo IPv6.</value>
+    <value>Evita la perdita dell'indirizzo IPv6.</value>
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver">
@@ -2793,7 +2793,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Abilita il Protocollo Smart per usare automaticamente il protocollo e la porta che offrono la connettività migliore.</value>
+    <value>Abilita Smart Protocol per usare automaticamente il protocollo e la porta che offrono la connettività migliore.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
@@ -2960,7 +2960,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Posizioni BASIC ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
-    <value>Posizioni GRATUITE ({0})</value>
+    <value>Località GRATUITE ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
     <value>Server gratuiti</value>
@@ -3006,7 +3006,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Disabilitando Secure Core scollegherai la connessione VPN attiva. Vuoi continuare?</value>
+    <value>Disabilitare Secure Core disconnetterà la connessione VPN attiva. Vuoi continuare?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
@@ -3042,7 +3042,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Streaming</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>I server PLUS supportano lo streaming (Netflix, Disney+, etc) da qualsiasi parte del mondo.</value>
+    <value>I server PLUS supportano lo streaming (Netflix, Disney+, ecc.) da qualsiasi parte del mondo.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Funzionalità</value>
@@ -3159,7 +3159,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Guarda in streaming i tuoi film preferiti</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>Quando effettui l'upgrade a Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
@@ -3234,7 +3234,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Proteggi il tuo dispositivo dai malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>Quando effettui l'upgrade a Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>Goditi la navigazione senza pubblicità con NetShield</value>
@@ -3248,7 +3248,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Hai esigenze di elaborazione avanzate o professionali che richiedono porte non standard? Esegui l'upgrade a VPN Plus per accedere a questa e ad altre funzionalità premium.</value>
+    <value>Hai esigenze di elaborazione avanzate o professionali che richiedono porte non standard? Effettua l'upgrade a VPN Plus per accedere a questa e ad altre funzionalità premium.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
@@ -3299,7 +3299,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Passa attraverso server ultra sicuri in Svizzera, Svezia e Islanda</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Quando esegui l'upgrade a Plus</value>
+    <value>Quando effettui l'upgrade a Plus</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Raddoppia la crittografia con Secure Core</value>

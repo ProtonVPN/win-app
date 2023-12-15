@@ -32,13 +32,15 @@ using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.StatisticalEvents;
+using FeatureFlagsResponse = ProtonVPN.Api.Contracts.Features.FeatureFlagsResponse;
 
 namespace ProtonVPN.Api.Contracts
 {
     public interface IApiClient : IClientBase
     {
-        Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest);
-        Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest);
+        Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync();
+        Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest, string unauthSessionAccessToken, string unauthSessionUid);
+        Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest, string unauthSessionAccessToken, string unauthSessionUid);
         Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid);
         Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId);
         Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse();
@@ -58,6 +60,7 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
         Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync();
         Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
-        Task<ApiResponseResult<UsersResponse>> GetUserAsync();
+        Task<ApiResponseResult<UsersResponse>> GetUserAsync(string accessToken, string uid);
+        Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();
     }
 }

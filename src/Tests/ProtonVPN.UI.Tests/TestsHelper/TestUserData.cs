@@ -27,7 +27,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         public string Username { get; set; }
         public string Password { get; set; }
 
-        private TestUserData(string username, string password)
+        public TestUserData(string username, string password)
         {
             Username = username;
             Password = password;
@@ -76,6 +76,12 @@ namespace ProtonVPN.UI.Tests.TestsHelper
         public static TestUserData GetTwoFactorUser()
         {
             (string username, string password) = GetUsernameAndPassword("TWO_FACTOR_AUTH_USER");
+            return new TestUserData(username, password);
+        }
+
+        public static TestUserData GetPlusUserBTI()
+        {
+            (string username, string password) = GetUsernameAndPassword("PLUS_USER_BTI");
             return new TestUserData(username, password);
         }
 

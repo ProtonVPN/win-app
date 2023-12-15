@@ -29,28 +29,28 @@ namespace ProtonVPN.UI.Tests.Results
         public SysTrayResult CheckIfClientIsClosed()
         {
             Process[] pname = Process.GetProcessesByName("Proton VPN");
-            Assert.IsTrue(pname.Length == 0);
+            Assert.That(pname.Length == 0, Is.True);
             ServiceController service = new ServiceController("ProtonVPN Service");
-            Assert.AreNotEqual(service.Status, ServiceControllerStatus.Running);
+            Assert.That(service.Status, Is.Not.EqualTo(ServiceControllerStatus.Running));
             return this;
         }
 
         public SysTrayResult CheckIfClientIsRunning()
         {
             UIActions actions = new UIActions();
-            actions.WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestConstants.MediumTimeout);
+            actions.WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestData.MediumTimeout);
             return this;
         }
 
         public SysTrayResult WaitUntilConnected()
         {
-            WaitUntilDisplayedByAutomationId("QuickLaunchFlag", TestConstants.MediumTimeout);
+            WaitUntilDisplayedByAutomationId("QuickLaunchFlag", TestData.MediumTimeout);
             return this;
         }
 
         public SysTrayResult WaitUntilDisconnected()
         {
-            WaitUntilDisplayedByName("You are not protected!", TestConstants.MediumTimeout);
+            WaitUntilDisplayedByName("You are not protected!", TestData.MediumTimeout);
             return this;
         }
     }

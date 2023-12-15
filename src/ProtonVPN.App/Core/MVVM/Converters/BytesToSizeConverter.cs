@@ -29,7 +29,7 @@ namespace ProtonVPN.Core.MVVM.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ByteSize bytes = ByteSize.FromBytes((double?)value ?? 0.0);
-            double size = bytes.LargestWholeNumberValue;
+            double size = bytes.LargestWholeNumberBinaryValue;
 
             string format = "0";
             if (bytes.Bytes >= ByteSize.BytesInKiloByte)

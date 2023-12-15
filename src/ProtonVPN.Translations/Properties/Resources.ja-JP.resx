@@ -2018,7 +2018,7 @@
     <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpVolume">
-    <value>DL容量:</value>
+    <value>UP容量:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
@@ -2816,7 +2816,7 @@
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
-    <value>アプリ開始時に接続</value>
+    <value>アプリ起動時に自動接続</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">

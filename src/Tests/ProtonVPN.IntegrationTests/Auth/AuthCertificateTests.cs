@@ -33,7 +33,7 @@ namespace ProtonVPN.IntegrationTests.Auth
         {
             // Arrange
             SetApiResponsesForAuth();
-            await MakeUserAuth(CORRECT_PASSWORD);
+            await MakeUserAuth(USERNAME, CORRECT_PASSWORD);
 
             // Assert
             Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CERTIFICATE);

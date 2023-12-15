@@ -12,7 +12,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Sentry" Version="3.12.3" />
+    <PackageReference Include="Sentry" Version="3.41.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />

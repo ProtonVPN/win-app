@@ -199,7 +199,7 @@
     <value>Беларуская</value>
   </data>
   <data name="Language_ka-GE" xml:space="preserve">
-    <value>ქართული (beta)</value>
+    <value>Ქართული (beta)</value>
   </data>
   <data name="Language_el-GR" xml:space="preserve">
     <value>Ελληνικά</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="Language_ko-KR" xml:space="preserve">
     <value>한국어</value>
+  </data>
+  <data name="Language_sk-SK" xml:space="preserve">
+    <value>Slovenčina</value>
   </data>
 </root>

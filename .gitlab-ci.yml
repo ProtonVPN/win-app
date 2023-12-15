@@ -48,12 +48,29 @@ build-release:
     TYPE: Release
     DEPENDENCIES: publish
     BUILD_PATH: src/bin/win-x64/publish
+    
+build-bti:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: manual
+  extends:
+    - .build-bti-vars  
+    - .build-script
+  when: manual
+  variables:
+    TYPE: Debug
+    DEPENDENCIES: publish-BTI
+    BUILD_PATH: src/bin/win-x64/BTI/publish
   
 build-debug:
   extends: .build-script
   except:
     - master
     - /^release.*$/
+    - schedules
   variables:
     TYPE: Debug
     DEPENDENCIES: publish
@@ -61,17 +78,55 @@ build-debug:
 
 ui-test:
   extends: .test_execution_script
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   variables:
     CATEGORY: "UI"
     
 connection-test:
   extends: .test_execution_script
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   variables:
     CATEGORY: "Connection"
+    
+bti-test:
+  extends: .test_execution_script
+  needs:
+    - build-BTI-installer
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: manual
+  tags:
+    - BTI
+  dependencies:
+    - build-BTI-installer
+  variables:
+    CATEGORY: "BTI"
+  after_script:
+    - ci\test-scripts\alert-failure.ps1
     
 win-11-test:
   extends: .test_execution_script
   when: manual
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   tags:
     - win11
   variables:
@@ -83,11 +138,16 @@ tests:
     - windows-dot-net
   script:
     - cmd.exe /c BuildDependencies.bat bin gosrponly
+    - dotnet build src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj
+    - echo "Injecting CI variables"
+    - src\bin\ProtonVPN.Builds.ConsoleJob.exe
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
-    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
+    - coverlet src\bin --target "dotnet" --targetargs "test ProtonVpn.sln -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance&TestCategory!=BTI"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
+  except:
+    - schedules
   artifacts:
     reports:
       coverage_report:
@@ -96,7 +156,6 @@ tests:
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer:
-  stage: build-installer
   tags:
     - windows-vpn-signer
   dependencies:
@@ -104,41 +163,21 @@ build-installer:
     - build-release
   extends: 
     - .build-installer
+  except:
+    - schedules
   variables:
     BUILD_PATH: src/bin/win-x64/publish
-    FF_USE_FASTZIP: "true"
-    TRANSFER_METER_FREQUENCY: "2s"
-    ARTIFACT_COMPRESSION_LEVEL: "fastest"
-    CACHE_COMPRESSION_LEVEL: "fastest"
-    FASTZIP_ARCHIVER_BUFFER_SIZE: 128
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 4 weeks
 
 build-BTI-installer:
-  stage: build-installer
-  when: manual
-  dependencies: []
-  tags:
-    - windows
-  extends: 
-    - .build-bti-vars
+  needs:
+    - build-bti
   except:
     - master
     - /^release.*$/
-  script:
-    - !reference [.build-script, script]
-    - !reference [.build-installer, script]
+  extends: 
+    - .build-installer
   variables:
-    TYPE: Debug
-    DEPENDENCIES: publish-BTI
     BUILD_PATH: src/bin/win-x64/BTI/publish
-    GIT_SUBMODULE_STRATEGY: normal
-  artifacts:
-    paths:
-      - Setup/Installers/
-    expire_in: 1 weeks
     
 prepare-internal-beta-release:
   stage: internal-beta
@@ -209,6 +248,8 @@ send-slack-notification:
   only:
     refs:
       - develop
+  except:
+    - schedules
   stage: publish-to-slack
   script:
     - python -m pip install -r ci\python-libs.txt

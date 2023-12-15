@@ -55,7 +55,9 @@ namespace ProtonVPN.Common.Threading
         public Task Run()
         {
             if (IsRunning)
+            {
                 return Task;
+            }
 
             var taskCompletion = new TaskCompletionSource<object>();
             var newTask = taskCompletion.Task;
@@ -64,7 +66,9 @@ namespace ProtonVPN.Common.Threading
             var task = Task;
             var previousTask = Interlocked.CompareExchange(ref _task, newExternalTask, task);
             if (previousTask != task)
+            {
                 return previousTask;
+            }
 
             var cancellationToken = _cancellationHandle.Token;
             // ReSharper disable once MethodSupportsCancellation

@@ -23,6 +23,7 @@ namespace ProtonVPN.Common.Configuration.Storage
 {
     public interface IConfigStorage : IConfigSource
     {
+        void SaveIfNotExists(IConfiguration value);
         void Save(IConfiguration value);
     }
 }

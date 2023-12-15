@@ -273,7 +273,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ReconnectManager>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<VpnInfoUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UserSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<UserCreationDateUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PlanChangeHandler>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServicesUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<StreamingServices>().As<IStreamingServices>().SingleInstance();
@@ -297,6 +296,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ColorPalette>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WindowPositionSetter>().As<IWindowPositionSetter>().SingleInstance();
             builder.RegisterType<HumanVerifier>().As<IHumanVerifier>().SingleInstance();
+            builder.RegisterType<SsoAuthenticator>().As<ISsoAuthenticator>().SingleInstance();
             builder.RegisterType<SubscriptionManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetShieldStatsManager>().AsImplementedInterfaces().SingleInstance();

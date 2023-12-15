@@ -252,7 +252,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
-    <value>Suport P2P / BitTorrent</value>
+    <value>Suport P2P/BitTorrent</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info">
@@ -2678,11 +2678,11 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Aplicații / adrese IP excluse din rețeaua VPN</value>
+    <value>Aplicații/adrese IP excluse din rețeaua VPN</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Doar aceste aplicații / adrese IP vor trece prin VPN</value>
+    <value>Doar aceste aplicații/adrese IP vor trece prin VPN</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">

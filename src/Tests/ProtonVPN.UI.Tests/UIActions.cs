@@ -111,53 +111,53 @@ namespace ProtonVPN.UI.Tests
         protected dynamic CheckIfDisplayedByClassName(string className)
         {
             RefreshWindow();
-            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByClassName(className)).IsOffscreen);
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByClassName(className)).IsOffscreen, Is.False);
             return this;
         }
 
         protected dynamic CheckIfDisplayedByName(string name)
         {
             RefreshWindow();
-            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen);
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen, Is.False);
             return this;
         }
 
         protected dynamic CheckIfNotDisplayedByName(string name)
         {
             RefreshWindow();
-            Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen);
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByName(name)).IsOffscreen, Is.True);
             return this;
         }
 
         protected dynamic CheckIfNotDisplayedByAutomationId(string automationId)
         {
             RefreshWindow();
-            Assert.IsTrue(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen, Is.True);
             return this;
         }
 
         protected dynamic CheckIfDisplayedByAutomationId(string automationId)
         {
             RefreshWindow();
-            Assert.IsFalse(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen);
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).IsOffscreen, Is.False);
             return this;
         }
 
         protected dynamic CheckIfDoesNotExistByAutomationId(string automationId)
         {
-            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)));
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)), Is.Null);
             return this;
         }
 
         protected dynamic CheckIfDoesNotExistByName(string name)
         {
-            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName(name)));
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByName(name)), Is.Null);
             return this;
         }
 
         protected dynamic CheckIfDoesNotExistByClassName(string className)
         {
-            Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByClassName(className)));
+            Assert.That(Window.FindFirstDescendant(cf => cf.ByClassName(className)), Is.Null);
             return this;
         }
 
@@ -170,19 +170,19 @@ namespace ProtonVPN.UI.Tests
 
         protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
         {
-            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestData.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
         }
 
         protected AutomationElement ElementByClassName(string className)
         {
-            WaitUntilElementExistsByClassName(className, TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByClassName(className, TestData.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByClassName(className));
         }
 
         protected AutomationElement ElementByName(string name)
         {
-            WaitUntilElementExistsByName(name, TestConstants.VeryShortTimeout);
+            WaitUntilElementExistsByName(name, TestData.VeryShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByName(name));
         }
 
@@ -215,7 +215,7 @@ namespace ProtonVPN.UI.Tests
                         return false;
                     }
                 },
-                time, TestConstants.RetryInterval);
+                time, TestData.RetryInterval);
 
             if (!retry.Success)
             {

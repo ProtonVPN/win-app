@@ -32,6 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="MenuReportBugButton">MenuReportBugButton</system:String>
     <system:String x:Key="MenuLogoutButton">MenuLogoutButton</system:String>
     <system:String x:Key="MenuExitButton">MenuExitButton</system:String>
+    <system:String x:Key="SwitchToSingleSignOnButtonId">SwitchToSingleSignOnButton</system:String>
+    <system:String x:Key="SwitchToUsernameAndPasswordButtonId">SwitchToUsernameAndPasswordButton</system:String>
     <system:String x:Key="SidebarQuickConnectButton">SidebarQuickConnectButton</system:String>
     <system:String x:Key="SidebarChangeServerButton">SidebarChangeServerButton</system:String>
     <system:String x:Key="SidebarCountriesButton">SidebarCountriesButton</system:String>

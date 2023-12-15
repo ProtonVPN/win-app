@@ -2088,7 +2088,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Novos países gratuitos</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>Agora há servidores grátis na polônia e romania.</value>
+    <value>Agora há servidores grátis na Polônia e Romênia.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
     <value>Mudanças na seleção de servidor</value>

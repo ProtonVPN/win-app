@@ -1720,7 +1720,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
-    <value>Wykorzystano limit liczby podłączonych urządzeń</value>
+    <value>Osiągnięto maksymalną liczbę podłączonych urządzeń</value>
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
@@ -2174,7 +2174,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
-    <value>Wykorzystano limit liczby podłączonych urządzeń</value>
+    <value>Osiągnięto maksymalną liczbę podłączonych urządzeń</value>
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">

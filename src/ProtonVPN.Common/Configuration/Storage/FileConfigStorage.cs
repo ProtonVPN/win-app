@@ -41,14 +41,28 @@ namespace ProtonVPN.Common.Configuration.Storage
             }
         }
 
-        public void Save(IConfiguration value)
+        public void SaveIfNotExists(IConfiguration value)
+        {
+            string filePath = _file.Path();
+            if (!File.Exists(filePath))
+            {
+                Save(value, filePath);
+            }
+        }
+
+        private void Save(IConfiguration value, string filePath)
         {
             JsonSerializer serializer = Serializer();
-            using (StreamWriter stream = new(_file.Path()))
+            using (StreamWriter stream = new(filePath))
             using (JsonTextWriter writer = new(stream))
             {
                 serializer.Serialize(writer, value);
             }
+        }
+
+        public void Save(IConfiguration value)
+        {
+            Save(value, _file.Path());
         }
 
         private JsonSerializer Serializer()

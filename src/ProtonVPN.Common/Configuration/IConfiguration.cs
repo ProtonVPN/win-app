@@ -162,6 +162,9 @@ namespace ProtonVPN.Common.Configuration
         TimeSpan ClientConfigMinimumUpdateInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        TimeSpan FeatureFlagsUpdateInterval { get; set; }
+
+        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         TimeSpan P2PCheckInterval { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]

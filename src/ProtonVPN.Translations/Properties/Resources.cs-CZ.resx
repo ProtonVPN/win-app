@@ -2493,7 +2493,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Blokovat pouze malware</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Blokovat malware, reklamy &amp; sledovače</value>
+    <value>Blokovat malware, reklamy a sledovací prvky</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
     <value>Trvalý Kill Switch</value>
@@ -2518,7 +2518,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Zakáže internet při přerušení VPN spojení, čímž zabrání úniku IP adresy.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Procházení internetu bez reklam a malwaru.</value>
+    <value>Procházení internetu bez reklam a malware.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Reklam zablokováno</value>
@@ -2539,7 +2539,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Dat uloženo</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Přibližný počet reklam, trackerů a malwaru, který NetShield zablokoval.</value>
+    <value>Přibližný počet reklam, sledovacích prvků a malware, který NetShield zablokoval.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Sledovacích prvků zastaveno</value>
@@ -3309,13 +3309,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Zvýšení úrovně vašich herních zážitků</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Blokování reklam a sledovačů</value>
+    <value>Blokování reklam a sledovacích prvků</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
     <value>Procházení nejvyšší rychlostí</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
-    <value>Chraňte své zařízení před malwarem</value>
+    <value>Chraňte své zařízení před malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
     <value>Po navýšení na tarif Plus</value>
@@ -3356,7 +3356,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Odblokování &lt;Bold&gt;přesměrování portů&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>Zvyšte výkon svých P2P připojení</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
     <value>Uložit preferovaný server, město nebo zemi.</value>

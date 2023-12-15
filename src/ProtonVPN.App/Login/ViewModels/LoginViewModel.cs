@@ -42,10 +42,12 @@ using ProtonVPN.FlashNotifications;
 using ProtonVPN.Modals;
 using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
+using ProtonVPN.Login.Enums;
+using ProtonVPN.Core.FeatureFlags;
 
 namespace ProtonVPN.Login.ViewModels
 {
-    public class LoginViewModel : ViewModel, ISettingsAware, IVpnStateAware
+    public class LoginViewModel : ViewModel, ISettingsAware, IVpnStateAware, IFeatureFlagsAware
     {
         private readonly ILogger _logger;
         private readonly IConfiguration _appConfig;
@@ -57,8 +59,10 @@ namespace ProtonVPN.Login.ViewModels
         private readonly GuestHoleConnector _guestHoleConnector;
         private readonly GuestHoleState _guestHoleState;
         private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
+        private readonly IFeatureFlagsProvider _featureFlagsProvider;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
+
         public FlashNotificationViewModel FlashNotificationViewModel { get; }
 
         private string _loginText;
@@ -68,20 +72,31 @@ namespace ProtonVPN.Login.ViewModels
         private bool _networkBlocked;
 
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
-        private bool _isToShowUsernameAndPassword = true;
-        private bool _isToShowTwoFactorAuth;
         private string _twoFactorAuthCode;
+        private LoginFormType _formType = LoginFormType.UsernameAndPassword;
 
-        public bool IsToShowUsernameAndPassword
-        {
-            get => _isToShowUsernameAndPassword;
-            set => Set(ref _isToShowUsernameAndPassword, value);
-        }
+        public bool IsToShowUsernameAndPassword => FormType == LoginFormType.UsernameAndPassword;
 
-        public bool IsToShowTwoFactorAuth
+        public bool IsToShowTwoFactorAuth => FormType == LoginFormType.TwoFactorAuthentication;
+
+        public bool IsToShowSingleSignOn => FormType == LoginFormType.SingleSignOn;
+
+        public LoginFormType FormType
         {
-            get => _isToShowTwoFactorAuth;
-            set => Set(ref _isToShowTwoFactorAuth, value);
+            get => _formType;
+            set
+            {
+                if (Set(ref _formType, value))
+                {
+                    OnPropertyChanged(nameof(IsToShowUsernameAndPassword));
+                    OnPropertyChanged(nameof(IsToShowTwoFactorAuth));
+                    OnPropertyChanged(nameof(IsToShowSingleSignOn));
+                    OnPropertyChanged(nameof(IsLoginAllowed));
+
+                    (SwitchToSingleSignOnCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                    (SwitchToUsernameAndPasswordCommand as RelayCommand)?.RaiseCanExecuteChanged();
+                }
+            }
         }
 
         private bool _isToShowSignUpSpinner;
@@ -103,7 +118,8 @@ namespace ProtonVPN.Login.ViewModels
             IModals modals,
             GuestHoleConnector guestHoleConnector,
             GuestHoleState guestHoleState,
-            IApiAvailabilityVerifier apiAvailabilityVerifier)
+            IApiAvailabilityVerifier apiAvailabilityVerifier,
+            IFeatureFlagsProvider featureFlagsProvider)
         {
             _logger = logger;
             _appConfig = appConfig;
@@ -115,6 +131,7 @@ namespace ProtonVPN.Login.ViewModels
             _guestHoleConnector = guestHoleConnector;
             _guestHoleState = guestHoleState;
             _apiAvailabilityVerifier = apiAvailabilityVerifier;
+            _featureFlagsProvider = featureFlagsProvider;
 
             LoginErrorViewModel = loginErrorViewModel;
             LoginErrorViewModel.ClearError();
@@ -129,6 +146,8 @@ namespace ProtonVPN.Login.ViewModels
             ReportAnIssueCommand = new RelayCommand(ReportAnIssueAction);
             OpenSignInIssuesWebPageCommand = new RelayCommand(OpenSignInIssuesWebPageAction);
             DisableKillSwitchCommand = new RelayCommand(DisableKillSwitchAction);
+            SwitchToSingleSignOnCommand = new RelayCommand(SwitchToSingleSignOnAction, CanSwitchToSingleSignOnAction);
+            SwitchToUsernameAndPasswordCommand = new RelayCommand(SwitchToUsernameAndPasswordAction, CanSwitchToUsernameAndPasswordAction);
         }
 
         public ICommand LoginCommand { get; }
@@ -140,6 +159,8 @@ namespace ProtonVPN.Login.ViewModels
         public ICommand ReportAnIssueCommand { get; }
         public ICommand OpenSignInIssuesWebPageCommand { get; }
         public ICommand DisableKillSwitchCommand { get; }
+        public ICommand SwitchToSingleSignOnCommand { get; }
+        public ICommand SwitchToUsernameAndPasswordCommand { get; }
 
         public string AppVersion => $"v.{_appConfig.AppVersion}";
 
@@ -187,12 +208,26 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
-        public bool IsLoginAllowed => !string.IsNullOrEmpty(LoginText?.Trim()) && Password != null && Password.Length != 0;
+        public bool IsLoginAllowed => FormType switch
+        {
+            LoginFormType.UsernameAndPassword => !string.IsNullOrWhiteSpace(LoginText) && Password != null && Password.Length != 0,
+            LoginFormType.TwoFactorAuthentication => !string.IsNullOrWhiteSpace(TwoFactorAuthCode),
+            LoginFormType.SingleSignOn => !string.IsNullOrWhiteSpace(LoginText) && _featureFlagsProvider.IsSsoEnabled,
+            _ => false
+        };
+            
+            
 
         public string TwoFactorAuthCode
         {
             get => _twoFactorAuthCode;
-            set => Set(ref _twoFactorAuthCode, value);
+            set
+            {
+                if (Set(ref _twoFactorAuthCode, value))
+                {
+                    OnPropertyChanged(nameof(IsLoginAllowed));
+                }
+            }
         }
 
         public bool StartAndConnectOnBoot
@@ -258,6 +293,22 @@ namespace ProtonVPN.Login.ViewModels
             _lastVpnStatus = e.State.Status;
         }
 
+        public void OnFeatureFlagsChanged()
+        {
+            App.Current.Dispatcher.Invoke(() => 
+            {
+                OnPropertyChanged(nameof(IsLoginAllowed));
+
+                (SwitchToSingleSignOnCommand as RelayCommand)?.RaiseCanExecuteChanged();
+
+                // If currently on SSO login page but SSO feature flag is not enabled, switch back to User & Password
+                if (!_featureFlagsProvider.IsSsoEnabled && IsToShowSingleSignOn)
+                {
+                    FormType = LoginFormType.UsernameAndPassword;
+                }
+            });
+        }
+
         private void SetKillSwitchActive(bool isNetworkBlocked, VpnStatus vpnStatus)
         {
             if (isNetworkBlocked && vpnStatus == VpnStatus.Disconnecting ||
@@ -298,31 +349,56 @@ namespace ProtonVPN.Login.ViewModels
             await _guestHoleConnector.Connect();
         }
 
-        private bool IsLoginDisallowed(string username, SecureString password)
-        {
-            return string.IsNullOrEmpty(username) || password == null || password.Length == 0;
-        }
-
         private async void LoginAction()
         {
-            if (IsToShowTwoFactorAuth)
+            switch (FormType)
             {
-                await HandleTwoFactorAuthAsync();
-                return;
+                case LoginFormType.UsernameAndPassword:
+                    await HandleLoginAsync();
+                    break;
+                case LoginFormType.TwoFactorAuthentication:
+                    await HandleTwoFactorAuthAsync();
+                    break;
+                case LoginFormType.SingleSignOn:
+                    await HandleSingleSignOnAsync();
+                    break;
+                default:
+                    break;
             }
+        }
 
+        private void SwitchToSingleSignOnAction()
+        {
+            FormType = LoginFormType.SingleSignOn;
+        }
+
+        private bool CanSwitchToSingleSignOnAction()
+        {
+            return IsToShowUsernameAndPassword && _featureFlagsProvider.IsSsoEnabled;
+        }
+
+        private void SwitchToUsernameAndPasswordAction()
+        {
+            FormType = LoginFormType.UsernameAndPassword;
+        }
+
+        private bool CanSwitchToUsernameAndPasswordAction()
+        {
+            return IsToShowSingleSignOn;
+        }
+
+        private async Task HandleLoginAsync()
+        {
             try
             {
-                string username = LoginText?.Trim();
-
-                if (IsLoginDisallowed(username, Password))
+                if (!IsLoginAllowed)
                 {
                     return;
                 }
 
                 LoginErrorViewModel.ClearError();
 
-                AuthResult loginResult = await _userAuthenticator.LoginUserAsync(username, Password);
+                AuthResult loginResult = await _userAuthenticator.LoginUserAsync(LoginText?.Trim(), Password);
                 await HandleLoginResultAsync(loginResult);
             }
             catch
@@ -350,6 +426,24 @@ namespace ProtonVPN.Login.ViewModels
             }
         }
 
+        private async Task HandleSingleSignOnAsync()
+        {
+            try
+            {
+                if (!IsLoginAllowed)
+                {
+                    return;
+                }
+
+                LoginErrorViewModel.ClearError();
+
+                AuthResult loginResult = await _userAuthenticator.SingleSignOnUserAsync(LoginText?.Trim());
+                await HandleLoginResultAsync(loginResult);
+            }
+            catch
+            { }
+        }
+
         private async Task HandleTwoFactorAuthFailureAsync(AuthResult result)
         {
             string error = result.Error;
@@ -359,8 +453,7 @@ namespace ProtonVPN.Login.ViewModels
             {
                 case AuthError.NoVpnAccess:
                     await _modals.ShowAsync<AssignVpnConnectionsModalViewModel>();
-                    IsToShowTwoFactorAuth = false;
-                    IsToShowUsernameAndPassword = true;
+                    FormType = LoginFormType.UsernameAndPassword;
                     ClearPasswordField();
                     ShowLoginForm();
                     return;
@@ -369,8 +462,7 @@ namespace ProtonVPN.Login.ViewModels
                     break;
                 case AuthError.TwoFactorAuthFailed:
                     error = Translation.Get("Login_msg_TwoFactorAuthFailed");
-                    IsToShowTwoFactorAuth = false;
-                    IsToShowUsernameAndPassword = true;
+                    FormType = LoginFormType.UsernameAndPassword;
                     ClearPasswordField();
                     break;
                 case AuthError.Unknown:
@@ -430,6 +522,14 @@ namespace ProtonVPN.Login.ViewModels
                     FatalErrorHandler fatalErrorHandler = new();
                     fatalErrorHandler.Exit("The file \"GoSrp.dll\" is missing.");
                     break;
+                case AuthError.SwitchToSSO:
+                    FormType = _featureFlagsProvider.IsSsoEnabled 
+                        ? LoginFormType.SingleSignOn
+                        : LoginFormType.UsernameAndPassword;
+                    break;
+                case AuthError.SwitchToSRP:
+                    FormType = LoginFormType.UsernameAndPassword;
+                    break;
             }
         }
 
@@ -437,8 +537,7 @@ namespace ProtonVPN.Login.ViewModels
         {
             if (result.Value == AuthError.TwoFactorRequired)
             {
-                IsToShowUsernameAndPassword = false;
-                IsToShowTwoFactorAuth = true;
+                FormType = LoginFormType.TwoFactorAuthentication;
                 ShowLoginForm();
                 return;
             }
@@ -485,8 +584,7 @@ namespace ProtonVPN.Login.ViewModels
             ClearPasswordField();
             LoginErrorViewModel.ClearError();
             _autoAuthFailed = false;
-            IsToShowUsernameAndPassword = true;
-            IsToShowTwoFactorAuth = false;
+            FormType = LoginFormType.UsernameAndPassword;
             TwoFactorAuthCode = string.Empty;
         }
 

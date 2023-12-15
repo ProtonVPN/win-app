@@ -51,6 +51,7 @@ def get_update_json(version, installer_path):
     update_json['ChangeLog'] = get_changelog()
     update_json['ReleaseDate'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     update_json['MinimumOsVersion'] = "10.0.17763"
+    update_json["RolloutPercentage"] = 100
     return update_json
 
 def get_changelog():

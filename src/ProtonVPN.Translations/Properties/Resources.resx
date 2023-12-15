@@ -386,6 +386,14 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Sign in</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
+  <data name="Login_lnk_SwitchToSingleSignOn" xml:space="preserve">
+    <value>Sign in with SSO</value>
+    <comment>The text of hyperlink for switching from username and password to single sign-on (SSO) login</comment>
+  </data>
+  <data name="Login_lnk_SwitchToUsernameAndPassword" xml:space="preserve">
+    <value>Sign in with a password</value>
+    <comment>The text of hyperlink for switching from single sign-on (SSO) to username and password login</comment>
+  </data>
   <data name="Login_lnk_CreateAccount" xml:space="preserve">
     <value>Create Account</value>
     <comment>The text of hyperlink for creating account in Login window</comment>
@@ -3462,5 +3470,21 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   </data>
   <data name="FallbackWelcome_Subtitle" xml:space="preserve">
     <value>You've upgraded your subscription. Enjoy advanced privacy features and next-level performance.</value>
+  </data>
+  <data name="Login_Error_msg_InvalidCredentials" xml:space="preserve">
+    <value>Incorrect login credentials. Please try again.</value>
+    <comment>The message displayed in Login window when the user tries to login with incorrect credentials.</comment>
+  </data>
+  <data name="Login_Error_msg_SsoAuthError" xml:space="preserve">
+    <value>Unable to authenticate. Please try again.</value>
+    <comment>The message displayed in Login window when the user couldn't authenticate using SSO. Either authentication failed or user canceled it.</comment>
+  </data>
+  <data name="Login_Error_msg_SsoRedirectionError" xml:space="preserve">
+    <value>Unable to redirect to the SSO login page. Please try again.</value>
+    <comment>The message displayed in Login window when we could not redirect the user to the SSO login page</comment>
+  </data>
+  <data name="Login_Error_msg_UnauthSessionError" xml:space="preserve">
+    <value>Unauthenticated session not available.</value>
+    <comment>The message displayed in Login window when no unauthenticated session were received to initiate the login process.</comment>
   </data>
 </root>

@@ -10,10 +10,6 @@
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=${CATEGORY}"
     - ci\test-scripts\uninstall-app.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
   artifacts:
     when: always
     name: "result-ui"
@@ -27,11 +23,14 @@
     - windows-dot-net
   script:
     - echo "Building native dependencies..."
-    - 'c:\nuget\nuget.exe restore ProtonVPN.InstallActions.sln'
+    - nuget restore ProtonVPN.InstallActions.sln
     - cmd.exe /c BuildDependencies.bat $DEPENDENCIES
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
-    - python ci\build-scripts\main.py defaultConfig
+    - python ci\build-scripts\main.py defaultConfig    
+    - dotnet build src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj
+    - echo "Injecting CI variables"
+    - src\bin\ProtonVPN.Builds.ConsoleJob.exe
     - echo "Publishing ${TYPE}..."
     - dotnet publish ProtonVpn.sln -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
@@ -44,6 +43,19 @@
     GIT_SUBMODULE_STRATEGY: normal
     
 .build-installer:
+  stage: build-installer
+  tags:
+    - windows-vpn-signer
   script:
     - python ci\build-scripts\main.py update-gh-list
     - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+  artifacts:
+    paths:
+      - Setup/Installers/
+    expire_in: 4 weeks
+  variables:
+    FF_USE_FASTZIP: "true"
+    TRANSFER_METER_FREQUENCY: "2s"
+    ARTIFACT_COMPRESSION_LEVEL: "fastest"
+    CACHE_COMPRESSION_LEVEL: "fastest"
+    FASTZIP_ARCHIVER_BUFFER_SIZE: 128

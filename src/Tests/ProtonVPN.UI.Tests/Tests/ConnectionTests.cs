@@ -75,8 +75,8 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             _homeWindow.NavigateToProfiles();
             _profilesWindow.PressCreateNewProfile()
-                .CreateProfile(TestConstants.ProfileName)
-                .ConnectToProfile(TestConstants.ProfileName);
+                .CreateProfile(TestData.ProfileName)
+                .ConnectToProfile(TestData.ProfileName);
             _homeWindow.WaitUntilConnected();
         }
 
@@ -143,9 +143,9 @@ namespace ProtonVPN.UI.Tests.Tests
         [Test]
         public void ConnectAndDisconnectViaMap()
         {
-            _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
+            _homeWindow.PerformConnectionViaMap(TestData.MapCountry)
                 .WaitUntilConnected();
-            _homeWindow.PerformConnectionViaMap(TestConstants.MapCountry)
+            _homeWindow.PerformConnectionViaMap(TestData.MapCountry)
                 .WaitUntilDisconnected();
         }
 
@@ -242,7 +242,7 @@ namespace ProtonVPN.UI.Tests.Tests
         [TearDown]
         public void TestCleanup()
         {
-            Cleanup();
+            ClientCleanup();
         }
     }
 }

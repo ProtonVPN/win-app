@@ -28,6 +28,11 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Srp;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using ProtonVPN.Translations;
+using ProtonVPN.Api.Contracts.Users;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using System.Net.Http;
 
 namespace ProtonVPN.Core.Auth
 {
@@ -38,18 +43,19 @@ namespace ProtonVPN.Core.Auth
         private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
         private readonly IAuthCertificateManager _authCertificateManager;
-
-        private string _username;
-        private AuthResponse _authResponse;
+        private readonly ISsoAuthenticator _ssoAuthenticator;
+        private SessionBaseResponse _currentSession;
 
         public UserAuthenticator(IApiClient apiClient,
             ILogger logger,
             IUserStorage userStorage,
             IAppSettings appSettings,
-            IAuthCertificateManager authCertificateManager)
+            IAuthCertificateManager authCertificateManager,
+            ISsoAuthenticator ssoAuthenticator)
         {
             _appSettings = appSettings;
             _authCertificateManager = authCertificateManager;
+            _ssoAuthenticator = ssoAuthenticator;
             _apiClient = apiClient;
             _logger = logger;
             _userStorage = userStorage;
@@ -61,12 +67,44 @@ namespace ProtonVPN.Core.Auth
         public event EventHandler<UserLoggedInEventArgs> UserLoggedIn;
         public event EventHandler<EventArgs> UserLoggingIn;
 
+        private async Task<UnauthSessionResponse> CreateUnauthSessionAsync()
+        {
+            try
+            {
+                _logger?.Info<UserLog>("Requesting unauth session to initiate login process.");
+
+                ApiResponseResult<UnauthSessionResponse> unauthSessionResponse = await _apiClient.PostUnauthSessionAsync();
+
+                if (!unauthSessionResponse.Success)
+                {
+                    _logger?.Error<ApiErrorLog>($"Failed to create an unauth session. {unauthSessionResponse.Error}");
+                    return null;
+                }
+
+                return unauthSessionResponse.Value;
+            }
+            catch (Exception ex)
+            {
+                _logger?.Error<ApiErrorLog>("An error occurred when requesting a new unauth session.", ex);
+                throw;
+            }
+        }
+
         public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
         {
             _logger?.Info<UserLog>("Trying to login user");
             InvokeLoggingInEvent();
 
             AuthResult authResult = await AuthAsync(username, password);
+            return authResult.Failure ? authResult : await RefreshVpnInfoAndInvokeLoginAsync();
+        }
+
+        public async Task<AuthResult> SingleSignOnUserAsync(string username)
+        {
+            _logger?.Info<UserLog>("Trying to login user with SSO");
+            InvokeLoggingInEvent();
+
+            AuthResult authResult = await AuthSsoAsync(username);
             return authResult.Failure ? authResult : await RefreshVpnInfoAndInvokeLoginAsync();
         }
 
@@ -84,10 +122,64 @@ namespace ProtonVPN.Core.Auth
             return AuthResult.Ok();
         }
 
+        private async Task<AuthResult> AuthSsoAsync(string username)
+        {
+            UnauthSessionResponse unauthSession = await CreateUnauthSessionAsync();
+            if (unauthSession == null)
+            {
+                return AuthResult.Fail(AuthError.Unknown, Translation.Get("Login_Error_msg_UnauthSessionError"));
+            }
+
+            ApiResponseResult<AuthInfoResponse> authInfoResponse =
+                await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username, Intent = AuthIntent.SSO.ToString() }, unauthSession.AccessToken, unauthSession.Uid);
+            if (!authInfoResponse.Success)
+            {
+                return AuthResult.Fail(authInfoResponse);
+            }
+
+            if (string.IsNullOrEmpty(authInfoResponse.Value?.SsoChallengeToken))
+            {
+                return AuthResult.Fail(AuthError.Unknown, Translation.Get("Login_Error_msg_SsoRedirectionError"));
+            }
+
+            AuthSsoSessionInfo ssoSessionInfo = new()
+            {
+                SsoChallengeToken = authInfoResponse.Value.SsoChallengeToken,
+                UnauthSessionAccessToken = unauthSession.AccessToken,
+                UnauthSessionUid = unauthSession.Uid,
+                Username = username
+            };
+
+            string responseToken = await _ssoAuthenticator.AuthenticateAsync(ssoSessionInfo);
+            if (string.IsNullOrEmpty(responseToken))
+            {
+                return AuthResult.Fail(AuthError.Unknown, Translation.Get("Login_Error_msg_SsoAuthError"));
+            }
+
+            ApiResponseResult<AuthResponse> authResponse = await _apiClient.GetAuthResponse(new AuthRequest { SsoResponseToken = responseToken }, unauthSession.AccessToken, unauthSession.Uid);
+            if (authResponse.Failure)
+            {
+                return AuthResult.Fail(authResponse);
+            }
+
+            // Persist username and replace unauth session with auth session
+            _currentSession = authResponse.Value;
+
+            await StoreSessionDetailsAsync();
+
+            return AuthResult.Ok();
+        }
+
         public async Task<AuthResult> AuthAsync(string username, SecureString password)
         {
+            UnauthSessionResponse unauthSession = await CreateUnauthSessionAsync();
+            if (unauthSession == null)
+            {
+                return AuthResult.Fail(AuthError.Unknown, Translation.Get("Login_Error_msg_UnauthSessionError"));
+            }
+
             ApiResponseResult<AuthInfoResponse> authInfoResponse =
-                await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username });
+                await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username, Intent = AuthIntent.Proton.ToString() }, unauthSession.AccessToken, unauthSession.Uid);
             if (!authInfoResponse.Success)
             {
                 return AuthResult.Fail(authInfoResponse);
@@ -95,7 +187,7 @@ namespace ProtonVPN.Core.Auth
 
             if (authInfoResponse.Value.Salt.IsNullOrEmpty())
             {
-                return AuthResult.Fail("Incorrect login credentials. Please try again");
+                return AuthResult.Fail(Translation.Get("Login_Error_msg_InvalidCredentials"));
             }
 
             try
@@ -104,7 +196,7 @@ namespace ProtonVPN.Core.Auth
                     authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
 
                 AuthRequest authRequest = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
-                ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequest);
+                ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequest, unauthSession.AccessToken, unauthSession.Uid);
                 if (response.Failure)
                 {
                     return AuthResult.Fail(response);
@@ -115,14 +207,16 @@ namespace ProtonVPN.Core.Auth
                     return AuthResult.Fail(AuthError.InvalidServerProof);
                 }
 
+                // Replace unauth session with auth session
+                _currentSession = response.Value;
+
                 if ((response.Value.TwoFactor.Enabled & 1) != 0)
                 {
-                    _username = username;
-                    _authResponse = response.Value;
                     return AuthResult.Fail(AuthError.TwoFactorRequired);
                 }
 
-                StoreUserDetails(username, response.Value);
+                await StoreSessionDetailsAsync();
+
                 return AuthResult.Ok();
             }
             catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
@@ -137,7 +231,7 @@ namespace ProtonVPN.Core.Auth
 
             TwoFactorRequest request = new() { TwoFactorCode = code };
             ApiResponseResult<BaseResponse> response =
-                await _apiClient.GetTwoFactorAuthResponse(request, _authResponse.AccessToken, _authResponse.Uid);
+                await _apiClient.GetTwoFactorAuthResponse(request, _currentSession.AccessToken, _currentSession.Uid);
 
             if (response.Failure)
             {
@@ -146,17 +240,37 @@ namespace ProtonVPN.Core.Auth
                     : AuthError.TwoFactorAuthFailed);
             }
 
-            StoreUserDetails(_username, _authResponse);
+            await StoreSessionDetailsAsync();
 
             return await RefreshVpnInfoAndInvokeLoginAsync();
         }
 
-        private void StoreUserDetails(string username, AuthResponse authResponse)
+        private async Task StoreSessionDetailsAsync()
         {
-            _userStorage.SaveUsername(username);
-            _appSettings.Uid = authResponse.Uid;
-            _appSettings.AccessToken = authResponse.AccessToken;
-            _appSettings.RefreshToken = authResponse.RefreshToken;
+            try
+            {
+                ApiResponseResult<UsersResponse> response = await _apiClient.GetUserAsync(_currentSession.AccessToken, _currentSession.Uid);
+                if (response.Success)
+                {
+                    _userStorage.SaveUsername(response.Value.User.GetUsername());
+                    _userStorage.StoreCreationDateUtc(DateTimeOffset.FromUnixTimeSeconds(response.Value.User.CreateTime).UtcDateTime);
+                }
+
+                _appSettings.Uid = _currentSession.Uid;
+                _appSettings.AccessToken = _currentSession.AccessToken;
+                _appSettings.RefreshToken = _currentSession.RefreshToken;
+            }
+            catch (HttpRequestException e)
+            {
+                _logger.Error<AppLog>("Unable to retrieve user info", e);
+            }
+            catch (Exception e)
+            {
+                _logger.Error<AppLog>("An unexpected exception was thrown when updating the user info.", e);
+            }
+
+            // User logged in, reset local session instance
+            _currentSession = null;
         }
 
         private AuthRequest GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
@@ -184,18 +298,28 @@ namespace ProtonVPN.Core.Auth
             }
             else if (vpnInfo.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
             {
-                ClearAuthData();
+                ClearSessionDetails();
             }
 
             return vpnInfo;
         }
 
-        private void ClearAuthData()
+        private void ClearSessionDetails()
         {
-            _appSettings.Uid = string.Empty;
-            _appSettings.AccessToken = string.Empty;
-            _appSettings.RefreshToken = string.Empty;
-            _userStorage.SaveUsername(string.Empty);
+            try
+            {
+                _appSettings.Uid = string.Empty;
+                _appSettings.AccessToken = string.Empty;
+                _appSettings.RefreshToken = string.Empty;
+
+                _userStorage.SaveUsername(string.Empty);
+                _userStorage.StoreCreationDateUtc(null);
+            }
+            catch (Exception e)
+            {
+                _logger.Error<AppLog>("An unexpected exception was thrown when resetting the user info.", e);
+            }
+
         }
 
         public async Task InvokeAutoLoginEventAsync()

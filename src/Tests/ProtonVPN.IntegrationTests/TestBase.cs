@@ -33,6 +33,7 @@ using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.Threading;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Ioc;
 using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.Logging.Installers;
@@ -99,6 +100,8 @@ namespace ProtonVPN.IntegrationTests
 
             builder.Register(_ => Substitute.For<IScheduler>()).As<IScheduler>().SingleInstance();
             builder.Register(_ => new AnnouncementCacheMock()).As<IAnnouncementCache>().SingleInstance();
+
+            builder.Register(_ => Substitute.For<ISsoAuthenticator>()).As<ISsoAuthenticator>().SingleInstance();
 
             new Update.Config.Module().Load(builder);
 

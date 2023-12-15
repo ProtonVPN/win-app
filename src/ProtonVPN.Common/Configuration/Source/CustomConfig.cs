@@ -46,7 +46,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
             if (_mode == ConfigMode.CustomOrSavedDefault)
             {
-                _storage.Save(value);
+                _storage.SaveIfNotExists(value);
             }
 
             return value;

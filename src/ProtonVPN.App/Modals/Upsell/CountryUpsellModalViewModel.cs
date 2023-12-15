@@ -23,44 +23,44 @@ using ProtonVPN.Core.Servers;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
-namespace ProtonVPN.Modals.Upsell
+namespace ProtonVPN.Modals.Upsell;
+
+public class CountryUpsellModalViewModel : UpsellModalViewModel
 {
-    public class CountryUpsellModalViewModel : UpsellModalViewModel
+    private string _countryCode;
+    public string Title => Translation.Get("Upsell_Country_Title");
+
+    public string Bullet1
     {
-        protected override ModalSources ModalSource { get; } = ModalSources.Countries;
-
-        public string Title => Translation.Get("Upsell_Country_Title");
-
-        public string Bullet1
+        get
         {
-            get
-            {
-                int totalCountries = ServerManager.GetCountries().Count;
-                return string.Format(Translation.GetPlural("Upsell_Country_Bullet1", totalCountries), totalCountries);
-            }
+            int totalCountries = ServerManager.GetCountries().Count;
+            return string.Format(Translation.GetPlural("Upsell_Country_Bullet1", totalCountries), totalCountries);
         }
+    }
 
-        private string _countryCode;
+    public string CountryCode
+    {
+        get => _countryCode;
+        set => Set(ref _countryCode, value);
+    }
 
-        public string CountryCode
-        {
-            get => _countryCode;
-            set => Set(ref _countryCode, value);
-        }
+    protected override ModalSources ModalSource { get; } = ModalSources.Countries;
 
-        public CountryUpsellModalViewModel(ISubscriptionManager subscriptionManager,
-            ServerManager serverManager,
-            IActiveUrls urls,
-            IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
-            IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
-            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
-                  upsellDisplayStatisticalEventSender)
-        {
-        }
+    public CountryUpsellModalViewModel(ISubscriptionManager subscriptionManager,
+        ServerManager serverManager,
+        IActiveUrls urls,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+        : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+              upsellDisplayStatisticalEventSender)
+    {
+    }
 
-        public override void BeforeOpenModal(dynamic countryCode)
-        {
-            CountryCode = countryCode;
-        }
+    public override void BeforeOpenModal(dynamic countryCode)
+    {
+        CountryCode = countryCode;
+        
+        SendDisplayStatisticalEvent();
     }
 }

@@ -1556,8 +1556,8 @@
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Uno de los servicios requeridos por Proton VPN (motor de filtrado de base) no se está ejecutando.&lt;LineBreak/&gt;
-Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas"/&gt;&lt;/Hyperlink&gt; instrucciones para habilitarlo de nuevo y volver a intentarlo.</value>
+    <value>Uno de los servicios requeridos por Proton VPN (motor de filtrado de base) no se está ejecutando.&amp;lt;LineBreak/&amp;gt;
+Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt;&amp;lt;Run Text="estas"/&amp;gt;&amp;lt;/Hyperlink&amp;gt; instrucciones para activarlo de nuevo y volver a intentarlo.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1577,7 +1577,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
-    <value>Habilitar</value>
+    <value>Activar</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore">
     <value>Más información</value>
@@ -1586,13 +1586,13 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Mostrar menos</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Algunas aplicaciones como los antivirus o los optimizadores de PC pueden interferir con los Servicios del Sistema que Proton VPN requiere para asegurar su conexión. Al hacer clic en Habilitar, está permitiendo que Windows reactive los Servicios de Proton VPN.&lt;LineBreak/&gt;Si el problema persiste, intente reiniciar su PC o reinstalar Proton VPN.</value>
+    <value>Algunas aplicaciones como los antivirus o los optimizadores de PC pueden interferir con los Servicios del Sistema que Proton VPN requiere para asegurar su conexión. Al hacer clic en Activar, está permitiendo que Windows reactive los Servicios de Proton VPN.&amp;lt;LineBreak/&amp;gt;Si el problema persiste, intente reiniciar su PC o reinstalar Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Algunos componentes de Proton VPN pueden estar bloqueados o deshabilitados, impidiéndole conectarse. Haga clic en Habilitar para solucionarlo.&lt;LineBreak/&gt;Tenga en cuenta que esta operación requiere privilegios de administrador.</value>
+    <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, impidiéndole conectarse. Haga clic en Activar para solucionarlo.&amp;amp;lt;LineBreak/&amp;amp;gt;Tenga en cuenta que esta operación requiere privilegios de administrador.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Deshabilitar Kill Switch</value>
+    <value>Desactivar Kill Switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1635,11 +1635,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>No volver a mostrar este mensaje</value>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_Enable">
-    <value>Habilitar</value>
+    <value>Activar</value>
     <comment>The text on Enable button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
-    <value>Mantener deshabilitado</value>
+    <value>Mantener desactivado</value>
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
@@ -1647,7 +1647,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
-    <value>Smart Protocol está actualmente deshabilitado</value>
+    <value>Smart Protocol está actualmente desactivado</value>
     <comment>The title of the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_Exit_btn_Cancel">
@@ -1664,7 +1664,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Salir de la aplicación te desconectará de la VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill Switch está bloqueando todas las conexiones para evitar fugas de datos. Salir de la aplicación deshabilitará Kill Switch.</value>
+    <value>Kill Switch está bloqueando todas las conexiones para evitar fugas de datos. Salir de la aplicación desactivará Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>La funcionalidad Kill Switch permanente está activado. Al salir de la aplicación se bloquearán todas las conexiones salientes hasta que Proton VPN se conecte de nuevo.</value>
@@ -1679,7 +1679,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Con Kill Switch permanente, si la VPN no está conectada por algún motivo, no podrás acceder a internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>¿Habilitar Kill Switch permanente?</value>
+    <value>¿Activar Kill Switch permanente?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Entendido</value>
@@ -1730,14 +1730,14 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Tu conexión ha sido deshabilitada porque estás utilizando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Por favor, utiliza un servidor distinto para P2P.</value>
+    <value>Tu conexión ha sido desactivada porque estás utilizando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Por favor, utiliza un servidor distinto para P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Habilita la redirección de puertos solo cuando la necesites para garantizar la mayor protección de privacidad y seguridad. &lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;¿Necesito la redirección de puertos?&lt;/Hyperlink&gt;</value>
+    <value>Activa la redirección de puertos solo cuando la necesites para garantizar la mayor protección de privacidad y seguridad. &amp;lt;LineBreak/&amp;gt;&amp;lt;LineBreak/&amp;gt;&amp;lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&amp;gt;¿Necesito la redirección de puertos?&amp;lt;/Hyperlink&amp;gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
-    <value>¿Habilitar la redirección de puertos?</value>
+    <value>¿Activar la redirección de puertos?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
     <value>Proton VPN ha detectado un servidor proxy configurado en su red local. La aplicación Proton VPN no puede proteger el tráfico que pasa por este proxy. Esto significa que su conexión no estará completamente protegida como se esperaba.</value>
@@ -1753,7 +1753,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Entendido</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Para que la tunelización dividida funcione correctamente, debes deshabilitar Kill Switch.</value>
+    <value>Para que la tunelización dividida funcione correctamente, debes desactivar Kill Switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>Cientos de servidores en {0} país</value>
@@ -1806,7 +1806,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interferencia antivirus&lt;/Bold&gt; - Deshabilitar o eliminar temporalmente su software antivirus.</value>
+    <value>&lt;Bold&gt;Interferencia antivirus&lt;/Bold&gt; - Desactiva o borra temporalmente tu software antivirus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -1834,7 +1834,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Problemas potenciales que podrían causar que su conexión se agotara el tiempo de conexión y su solución</value>
+    <value>Problemas potenciales que podrían causar que tu conexión se agotara el tiempo de conexión y su solución</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
@@ -1863,7 +1863,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text on Continue button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Enable">
-    <value>Habilitar</value>
+    <value>Activar</value>
   </data>
   <data name="Dialogs_btn_NoThanks">
     <value>No, gracias</value>
@@ -1901,7 +1901,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Falta un archivo obligatorio en la aplicación</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Es posible que algunas aplicaciones de su PC hayan eliminado algunos archivos o hayan impedido que se instalen correctamente.</value>
+    <value>Es posible que algunas aplicaciones de su PC hayan borrado algunos archivos o hayan impedido que se instalen correctamente.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
     <value>Reparar</value>
@@ -2094,7 +2094,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Cambios a la selección de servidor</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Para evitar la saturación de servidores y garantizar que todos tengan acceso a una navegación rápida y segura, eliminamos la selección manual de países e hicimos mejoras importantes en la selección automática de servidores.</value>
+    <value>Para evitar la saturación de servidores y garantizar que todos tengan acceso a una navegación rápida y segura, borramos la selección manual de países e hicimos mejoras importantes en la selección automática de servidores.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Novedades</value>
@@ -2122,7 +2122,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
-    <value>Smart Protocol está actualmente deshabilitado</value>
+    <value>Smart Protocol está actualmente desactivado</value>
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
@@ -2194,7 +2194,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
-    <value>Elige qué país y servidor deseas utilizar para tu dirección IP final.</value>
+    <value>Elige qué país y servidor quieres utilizar para tu dirección IP final.</value>
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
@@ -2342,7 +2342,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil no guardados. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Estás seguro de que deseas descartarlos?</value>
+    <value>Hay cambios de perfil no guardados. &amp;lt;LineBreak/&amp;gt;&amp;lt;LineBreak/&amp;gt;¿Estás seguro de que quieres descartarlos?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
@@ -2473,7 +2473,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>MEJORAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Deshabilita internet si la conexión VPN cae para prevenir una filtración accidental de IP.</value>
+    <value>Desactiva internet si la conexión VPN cae para prevenir una filtración accidental de IP.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Navega por internet sin anuncios ni malware.</value>
@@ -2630,7 +2630,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>El servidor al que estás intentando conectarse ha sido eliminado. Por favor, selecciona otro servidor o perfil.</value>
+    <value>El servidor al que estás intentando conectarse ha sido borrado. Selecciona otro servidor o perfil.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
@@ -2672,7 +2672,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Evita que se filtren detalles de consultas DNS a terceros. Siempre habilitada.</value>
+    <value>Evita que se filtren detalles de consultas DNS a terceros. Siempre activada.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
@@ -2773,7 +2773,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Usar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirte a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo use servidores DNS en los que confíe. ¿Desea activar los servidores DNS personalizados?</value>
+    <value>Utilizar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirte a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo utiliza servidores DNS en los que confíes. ¿Deseas activar servidores DNS personalizados?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
@@ -2793,7 +2793,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Habilita Smart Protocol para utilizar automáticamente el protocolo y puerto que ofrecen la mejor conectividad.</value>
+    <value>Activa Smart Protocol para utilizar automáticamente el protocolo y puerto que ofrecen la mejor conectividad.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
@@ -3006,7 +3006,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Deshabilitar Secure Core desconectará la conexión VPN activa. ¿Quieres continuar?</value>
+    <value>Desactivar Secure Core desconectará la conexión VPN activa. ¿Quieres continuar?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
@@ -3089,7 +3089,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>y más</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Deshabilitado</value>
+    <value>Desactivado</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
@@ -3216,7 +3216,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Mejora el rendimiento de los juegos en línea y las videollamadas</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT Tipo 2 (moderada) optimiza la velocidad y estabilidad al habilitar conexiones directas entre los dispositivos.</value>
+    <value>NAT Tipo 2 (moderada) optimiza la velocidad y estabilidad al activar conexiones directas entre los dispositivos.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
     <value>Desbloquea &lt;Bold&gt;NAT Tipo 2&lt;/Bold&gt; con VPN Plus</value>
@@ -3379,7 +3379,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Cancel button in data entry windows</comment>
   </data>
   <data name="Window_btn_Disable">
-    <value>Deshabilitar</value>
+    <value>Desactivar</value>
     <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">

@@ -44,8 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Margin="0,66,0,0">
             <Grid x:Name="FlagContainer"
                   Canvas.Left="24"
-                  Canvas.Top="32"
-                  Tag="{Binding CountryCode}" />
+                  Canvas.Top="32" />
             <Image Source="pack://application:,,,/ProtonVPN.Resource;component/Graphics/Images/stars.png"
                    Width="96" />
         </Canvas>

@@ -265,7 +265,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info">
-    <value>Падтрымка пратаколаў абмену файламі, такіх як BitTorrent.</value>
+    <value>Падтрымка пратаколаў абагулення файлаў, такіх як BitTorrent.</value>
     <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_Plus">
@@ -2658,7 +2658,7 @@
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>VPN Plus забяспечвае пакрыццё ўсяго свету</value>
+    <value>Тарыфны план VPN Plus забяспечвае пакрыццё ўсяго свету</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Не тая краіна, якую хацелі? Палепшыце, каб выбраць любы сервер</value>

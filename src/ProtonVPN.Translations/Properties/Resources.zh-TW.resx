@@ -1613,7 +1613,7 @@
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>驗證 VPN 伺服器憑證的時候發生問題，這可能表示網路連線已遭竄改，又或您嘗試連線的伺服器設置有問題。請傳送&lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="問題報告"/&gt;&lt;/Hyperlink&gt;向我們的客戶支援取得協助。</value>
+    <value>驗證 VPN 伺服器憑證時發生問題，這可能表示網路連線已遭竄改，又或是您嘗試連線的伺服器設定有問題。請傳送&lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="問題回報"/&gt;&lt;/Hyperlink&gt;向我們的客戶支援取得協助。</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">

@@ -89,6 +89,7 @@ namespace ProtonVPN.Core.Settings
         bool DoNotShowDiscourageSecureCoreDialog { get; set; }
         bool FeatureSmartProtocolWireGuardEnabled { get; set; }
         IReadOnlyList<Announcement> Announcements { get; set; }
+        string FeatureFlags { get; set; }
         List<IssueCategoryResponse> ReportAnIssueFormData { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }

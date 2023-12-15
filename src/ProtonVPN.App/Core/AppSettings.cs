@@ -81,6 +81,12 @@ namespace ProtonVPN.Core
             set => SetPerUser(value);
         }
 
+        public string FeatureFlags
+        {
+            get => GetDecrypted();
+            set => SetEncrypted(value);
+        }
+
         public List<IssueCategoryResponse> ReportAnIssueFormData
         {
             get => GetPerUser<List<IssueCategoryResponse>>() ?? new List<IssueCategoryResponse>();
@@ -716,7 +722,22 @@ namespace ProtonVPN.Core
             return _storage.Get<T>(propertyName);
         }
 
+        private string GetDecrypted([CallerMemberName] string propertyName = null)
+        {
+            return _storage.Get<string>(propertyName)?.Decrypt();
+        }
+
         private void Set<T>(T value, [CallerMemberName] string propertyName = null)
+        {
+            SetInner(value, propertyName);
+        }
+
+        private void SetEncrypted(string value, [CallerMemberName] string propertyName = null)
+        {
+            SetInner(value?.Encrypt(), propertyName);
+        }
+
+        private void SetInner<T>(T value, [CallerMemberName] string propertyName = null)
         {
             T oldValue = default;
             Type toType = UnwrapNullable(typeof(T));

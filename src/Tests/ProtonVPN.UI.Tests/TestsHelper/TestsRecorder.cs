@@ -38,7 +38,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
 
             string screenshotDir = CreateTestArtifactFolder();
             string pathToVideo = Path.Combine(screenshotDir, "TestRun.mp4");
-            Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 26, ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
+            Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 26, ffmpegPath = TestData.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
             {
                 string testName = TestContext.CurrentContext.Test.MethodName;
                 CaptureImage img = Capture.Screen(1);
@@ -73,13 +73,13 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             string artifactsDir = CreateTestArtifactFolder();
             string pathToTestArtifact = Path.Combine(artifactsDir, testName);
             Directory.CreateDirectory(pathToTestArtifact);
-            if (File.Exists(TestConstants.AppLogsPath))
+            if (File.Exists(TestData.AppLogsPath))
             {
-                File.Copy(TestConstants.AppLogsPath, pathToTestArtifact + @"\app-logs.txt", true);
+                File.Copy(TestData.AppLogsPath, pathToTestArtifact + @"\app-logs.txt", true);
             }
-            if (File.Exists(TestConstants.ServiceLogsPath))
+            if (File.Exists(TestData.ServiceLogsPath))
             {
-                File.Copy(TestConstants.ServiceLogsPath, pathToTestArtifact + @"\service-logs.txt", true);
+                File.Copy(TestData.ServiceLogsPath, pathToTestArtifact + @"\service-logs.txt", true);
             }
         }
 

@@ -35,14 +35,21 @@ namespace ProtonVPN.UI.Tests.Windows
         public HomeWindow SignIn(TestUserData user)
         {
             EnterCredentials(user);
-            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            WaitUntilElementExistsByName("Skip", TestData.LongTimeout);
             SkipButton.Click();
+            return new HomeWindow();
+        }
+
+        public HomeWindow SignIn(string username, string password)
+        {
+            TestUserData user = new TestUserData(username, password);
+            SignIn(user);
             return new HomeWindow();
         }
 
         public LoginWindow EnterCredentials(TestUserData user)
         {
-            WaitUntilElementExistsByAutomationId("LoginInput", TestConstants.MediumTimeout);
+            WaitUntilElementExistsByAutomationId("LoginInput", TestData.MediumTimeout);
             UsernameInput.Text = user.Username;
             PasswordInput.Text = user.Password;
             LoginButton.Invoke();
@@ -51,10 +58,10 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public HomeWindow EnterTwoFactorCode(string twoFaCode)
         {
-            WaitUntilDisplayedByAutomationId("TwoFactorAuthInput", TestConstants.LongTimeout);
+            WaitUntilDisplayedByAutomationId("TwoFactorAuthInput", TestData.LongTimeout);
             TwoFaInput.Text = twoFaCode;
             LoginButton.Invoke();
-            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            WaitUntilElementExistsByName("Skip", TestData.LongTimeout);
             return new HomeWindow();
         }
 
@@ -67,7 +74,7 @@ namespace ProtonVPN.UI.Tests.Windows
 
         public HomeWindow WaitUntilLoggedIn()
         {
-            WaitUntilElementExistsByName("Skip", TestConstants.LongTimeout);
+            WaitUntilElementExistsByName("Skip", TestData.LongTimeout);
             return new HomeWindow();
         }
     }
