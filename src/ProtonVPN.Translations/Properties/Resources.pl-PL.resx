@@ -3389,7 +3389,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Podwójne szyfrowanie dzięki funkcji Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Podziel ruch na tunele VPN i tunele bez VPN</value>
+    <value>Podziel ruch sieciowy na częściowy tunel VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
     <value>Zezwalaj zaufanym aplikacjom i adresom IP na omijanie połączenia VPN, aby uzyskać większą prędkość</value>

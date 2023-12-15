@@ -391,10 +391,10 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Fornecendo os seguintes detalhes, nossa equipe pode identificar seu problema e uma possível solução com maiores chances e menor tempo:
+    <value>Fornecendo os seguintes detalhes, nossa equipe pode identificar seu problema e uma possível solução com maiores chances e em menor tempo:
 Registro de instalação dos drivers
 Lista de aplicativos instalados
-Registros de serviço do Proton VPN e Proton VPN
+Registros do serviço do Proton VPN e do aplicativo Proton VPN
 Lista de adaptadores de rede
 Informações sobre a tabela de roteamento</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
@@ -1753,7 +1753,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Entendi</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Para que o tunelamento dividido funcione corretamente, você deve desativar a chave de segurança.</value>
+    <value>Para que o tunelamento dividido funcione corretamente, você deve desativar o kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>Centenas de servidores em {0} país</value>
@@ -1774,7 +1774,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Sua assinatura foi rebaixada, então estamos reconectando para o servidor mais rápido disponível.</value>
+    <value>Sua assinatura sofreu downgrade, por isso estamos nos reconectando ao servidor mais rápido disponível.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
@@ -2067,7 +2067,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Obtenha alterações ilimitadas com VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>Por enquanto, você alcançou o número máximo de mudanças de servidor grátis.</value>
+    <value>Você atingiu o número máximo de alterações gratuitas no servidor por enquanto.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Ativar Secure Core</value>
@@ -2150,7 +2150,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Sua assinatura foi rebaixada, então estamos reconectando para o servidor mais rápido disponível.</value>
+    <value>Sua assinatura sofreu downgrade, por isso estamos nos reconectando ao servidor mais rápido disponível. Atualize novamente para aproveitar todos os recursos.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
@@ -2282,7 +2282,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Gateway_Watermark">
-    <value>Selecionar gateway</value>
+    <value>Selecionar Gateway</value>
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
@@ -2739,7 +2739,7 @@ Siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Acelere seus torrents e jogos online permitindo que aplicativos locais suportados sejam acessíveis a partir da internet.</value>
+    <value>Acelere seus torrents e jogos online, permitindo que aplicativos locais compatíveis possam ser acessados pela Internet.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Tunelamento dividido</value>
@@ -2884,7 +2884,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Upgrade para o Plus</value>
+    <value>Faça upgrade para o Plus</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2943,7 +2943,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>O Kill switch está ativado!</value>
+    <value>Kill switch está ativado!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
@@ -3163,7 +3163,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Acesse mais de {0} em {1}</value>
+    <value>Acesso acima de {0} em {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
@@ -3311,7 +3311,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Permita que aplicativos e endereços IP confiáveis ignorem a VPN para obter velocidades mais rápidas</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Acesso conteúdo local e doméstico ao navegar no exterior</value>
+    <value>Acesse conteúdo local e doméstico ao navegar no exterior</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
     <value>Desbloqueie &lt;Bold&gt;tunelamento dividido&lt;/Bold&gt; com VPN Plus</value>

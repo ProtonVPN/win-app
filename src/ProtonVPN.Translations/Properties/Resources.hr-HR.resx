@@ -268,13 +268,13 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; poslužitelj</value>
   </data>
   <data name="Account_lbl_Servers_Few">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; poslužitelja</value>
   </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; poslužitelja</value>
   </data>
   <data name="Account_lbl_Streaming">
     <value>Podrška za streaming usluge</value>
@@ -376,7 +376,7 @@
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Send report</value>
+    <value>Pošaljite izvještaj</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
@@ -2013,7 +2013,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Reset password</value>
+    <value>Ponovno postavljanje lozinke</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
@@ -2115,7 +2115,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>What’s new</value>
+    <value>Što je novo</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
     <value>Razumijem</value>
@@ -2426,7 +2426,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Primijeni</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Coupon code</value>
+    <value>Kôd kupona</value>
   </data>
   <data name="PromoCode_lbl_Success">
     <value>Coupon has been applied successfully.</value>
@@ -2455,11 +2455,11 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>Kill switch isključen</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>Kill switch uključen</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2574,7 +2574,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Fastest</value>
+    <value>Najbrže</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
@@ -2642,7 +2642,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
@@ -2930,11 +2930,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>My Profiles</value>
+    <value>Moji profili</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Recommended</value>
+    <value>Preporučeno</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
@@ -2999,7 +2999,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>Informacije</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>PLUS lokacije ({0})</value>
@@ -3286,7 +3286,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3362,7 +3362,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Get the best of both worlds</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

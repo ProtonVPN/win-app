@@ -1981,7 +1981,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>兩步驟驗證碼不正確</value>
+    <value>兩步驟驗證碼錯誤</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>帳號或密碼錯誤。請再試一次。</value>

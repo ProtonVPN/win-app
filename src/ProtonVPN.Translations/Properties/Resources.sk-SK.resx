@@ -2012,7 +2012,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
-    <value>Zabudnuté uživateľské meno</value>
+    <value>Zabudnuté užívateľské meno</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
   </data>
   <data name="Login_lnk_LoginProblems">

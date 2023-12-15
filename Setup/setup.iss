@@ -113,6 +113,7 @@ Source: "..\{#SourcePath}\sv-SE\ProtonVPN.Translations.resources.dll"; DestDir: 
 Source: "..\{#SourcePath}\ja-JP\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ja-JP"; Flags: signonce;
 Source: "..\{#SourcePath}\sk-SK\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sk-SK"; Flags: signonce;
 Source: "..\{#SourcePath}\nn-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nn-NO"; Flags: signonce;
+Source: "..\{#SourcePath}\nb-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nb-NO"; Flags: signonce;
 
 Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
@@ -148,7 +149,7 @@ Name: "fi_FI"; MessagesFile: "compiler:Languages\Finnish.isl,Strings\Finnish.isl
 Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl,Strings\French.isl"
 Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl,Strings\Dutch.isl"
 Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl,Strings\Italian.isl"
-Name: "nn_NO"; MessagesFile: "compiler:Languages\Norwegian.isl,Strings\Norwegian.isl"
+Name: "nb_NO"; MessagesFile: "compiler:Languages\Norwegian.isl,Strings\Norwegian.isl"
 Name: "pl_PL"; MessagesFile: "compiler:Languages\Polish.isl,Strings\Polish.isl"
 Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl,Strings\BrazilianPortuguese.isl"
 Name: "pt_PT"; MessagesFile: "compiler:Languages\Portuguese.isl,Strings\Portuguese.isl"
