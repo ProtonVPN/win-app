@@ -17,21 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 
-namespace ProtonVPN.Client.Logic.Services.Contracts;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public interface IServiceCaller
+public class ConnectionErrorMessage
 {
-    Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
-
-    Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
-
-    Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
-
-    Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
-
-    Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate);
+    public required VpnError VpnError { get; init; }
 }

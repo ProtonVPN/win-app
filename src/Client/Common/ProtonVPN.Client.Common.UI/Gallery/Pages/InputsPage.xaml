@@ -71,7 +71,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Orientation="Horizontal"
                     Spacing="24">
 
-            <controls:GhostButton Content="Ghost Button">
+            <controls:GhostButton Content="Primary Ghost Button"
+                                  Style="{StaticResource PrimaryGhostButtonStyle}">
+                <controls:GhostButton.LeftIcon>
+                    <pathicons:ChevronRight />
+                </controls:GhostButton.LeftIcon>
+                <controls:GhostButton.RightIcon>
+                    <pathicons:ChevronDown />
+                </controls:GhostButton.RightIcon>
+            </controls:GhostButton>
+
+            <controls:GhostButton Content="Secondary Ghost Button"
+                                  Style="{StaticResource SecondaryGhostButtonStyle}">
                 <controls:GhostButton.LeftIcon>
                     <pathicons:ChevronRight />
                 </controls:GhostButton.LeftIcon>

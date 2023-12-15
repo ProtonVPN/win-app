@@ -17,21 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Validators;
 
-namespace ProtonVPN.Client.Logic.Services.Contracts;
-
-public interface IServiceCaller
+public interface INetworkAdapterValidator
 {
-    Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
-
-    Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
-
-    Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
-
-    Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
-
-    Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate);
+    bool IsOpenVpnAdapterAvailable();
 }

@@ -31,6 +31,7 @@ using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
+using ProtonVPN.Client.UI.Home.ConnectionError;
 using ProtonVPN.Client.UI.Home.Details;
 using ProtonVPN.Client.UI.Home.Help;
 using ProtonVPN.Client.UI.Home.Map;
@@ -103,6 +104,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<TwoFactorFormViewModel>(builder);
         RegisterViewModel<NoSearchResultsViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
+        RegisterViewModel<ConnectionErrorViewModel>(builder);
 
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);

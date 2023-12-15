@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -138,6 +139,42 @@ public static class LocalizationExtensions
             VpnProtocol.OpenVpnUdp => localizer.Get("VpnProtocol_OpenVPN_Udp"),
             VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp"),
             _ => string.Empty
+        };
+    }
+
+    public static string GetVpnError(this ILocalizationProvider localizer, VpnError vpnError, bool isPaidUser)
+    {
+        return vpnError switch
+        {
+            VpnError.WireGuardAdapterInUseError => localizer.Get("Connection_Error_WireGuardAdapterInUse"),
+            VpnError.NoServers => localizer.Get("Connection_Error_NoServers"),
+            VpnError.NoTapAdaptersError => localizer.Get("Connection_Error_NoTapAdapters"),
+            VpnError.TapAdapterInUseError => localizer.Get("Connection_Error_TapAdapterInUse"),
+            VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_TapRequiresUpdate"),
+            VpnError.TlsCertificateError => localizer.Get("Connection_Error_TlsCertificate"),
+            VpnError.RpcServerUnavailable => localizer.Get("Connection_Error_RpcServerUnavailable"),
+            VpnError.SessionLimitReachedBasic or
+                VpnError.SessionLimitReachedFree or
+                VpnError.SessionLimitReachedPlus or
+                VpnError.SessionLimitReachedPro or
+                VpnError.SessionLimitReachedVisionary or
+                VpnError.SessionLimitReachedUnknown => localizer.Get(isPaidUser
+                    ? "Connection_Error_SessionLimitReachedPaidUser"
+                    : "Connection_Error_SessionLimitReachedFreeUser"),
+            _ => localizer.Get("Connection_Error_Unknown")
+        };
+    }
+
+    public static string GetDisconnectErrorActionButtonTitle(this ILocalizationProvider localizer, VpnError vpnError)
+    {
+        return vpnError switch
+        {
+            VpnError.TlsCertificateError => localizer.Get("Connection_Error_ReportAnIssue"),
+            VpnError.RpcServerUnavailable
+                or VpnError.TapAdapterInUseError
+                or VpnError.NoTapAdaptersError
+                or VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_ViewPossibleSolutions"),
+            _ => localizer.Get("Connection_Error_ReportAnIssue")
         };
     }
 }

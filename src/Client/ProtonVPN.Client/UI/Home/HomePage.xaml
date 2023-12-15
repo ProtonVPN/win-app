@@ -31,6 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:map="using:ProtonVPN.Client.UI.Home.Map"
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
       xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
+      xmlns:connectionError="using:ProtonVPN.Client.UI.Home.ConnectionError"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
@@ -43,8 +44,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   MinimumValue="{StaticResource MinimumDetailsPaneWidth}" />
 
             <x:Double x:Key="MapOverlayGradientHeight">82.0</x:Double>
-
-            <x:Double x:Key="MaximumContentWidth">600.0</x:Double>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -136,11 +135,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Map_Landmark')}"
                                           TabIndex="2" />
 
-                        <status:VpnStatusComponent Grid.Row="0"
-                                                   AutomationProperties.AutomationId="VpnStatusComponent"
-                                                   AutomationProperties.LandmarkType="Custom"
-                                                   AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_VpnStatus_Landmark')}"
-                                                   TabIndex="1" />
+                        <Grid Grid.Row="0">
+                            <status:VpnStatusComponent AutomationProperties.AutomationId="VpnStatusComponent"
+                                                       AutomationProperties.LandmarkType="Custom"
+                                                       AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_VpnStatus_Landmark')}"
+                                                       TabIndex="1" />
+
+                            <connectionError:ConnectionErrorComponent MaxWidth="{StaticResource MaximumHomePageContentWidth}"
+                                                                      Margin="16,56,16,0" />
+                        </Grid>
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
                                 VerticalAlignment="Bottom"
@@ -148,14 +151,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid>
 
                     <connectionCard:ConnectionCardComponent Grid.Row="1"
-                                                            MaxWidth="{StaticResource MaximumContentWidth}"
+                                                            MaxWidth="{StaticResource MaximumHomePageContentWidth}"
                                                             AutomationProperties.AutomationId="ConnectionCardComponent"
                                                             AutomationProperties.LandmarkType="Custom"
                                                             AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_Landmark')}"
                                                             TabIndex="3" />
 
                     <recents:RecentsComponent Grid.Row="2"
-                                              MaxWidth="{StaticResource MaximumContentWidth}"
+                                              MaxWidth="{StaticResource MaximumHomePageContentWidth}"
                                               AutomationProperties.AutomationId="RecentsComponent"
                                               AutomationProperties.LandmarkType="Custom"
                                               AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Recents_Landmark')}"
@@ -168,7 +171,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <VisualStateGroup x:Name="PaneDisplayModes">
                 <VisualState x:Name="Inline">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsDetailsPaneInline, Mode=OneWay}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDetailsPaneInline}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SplitViewArea.PaneBackground" Value="Transparent" />
@@ -181,7 +184,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <VisualStateGroup x:Name="NavigationDisplayModes">
                 <VisualState x:Name="Minimal">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsNavigationPaneCollapsed}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SplitViewArea.Margin" Value="0,45,0,0" />

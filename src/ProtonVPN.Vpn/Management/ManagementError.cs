@@ -31,7 +31,6 @@ namespace ProtonVPN.Vpn.Management
     {
         private static readonly Dictionary<VpnError, Predicate<string>> ErrorMap = new()
         {
-            [VpnError.AuthorizationError] = ContainsAuthError,
             [VpnError.TapAdapterInUseError] = ContainsTapInUseError,
             [VpnError.NoTapAdaptersError] = ContainsNoTapError,
             [VpnError.TapRequiresUpdateError] = ContainsTapRequiresUpdateError,
@@ -74,12 +73,6 @@ namespace ProtonVPN.Vpn.Management
         private static bool ContainsNetshError(string message)
         {
             return message.ContainsIgnoringCase("NETSH: command failed");
-        }
-
-        private static bool ContainsAuthError(string message)
-        {
-            return message.ContainsIgnoringCase("PASSWORD:Verification Failed: 'Auth'")
-                || message.ContainsIgnoringCase("EXITING,auth-failure");
         }
 
         private static bool ContainsTapInUseError(string message)

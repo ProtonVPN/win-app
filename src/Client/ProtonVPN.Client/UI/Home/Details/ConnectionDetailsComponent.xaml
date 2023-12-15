@@ -68,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter>
         </Style>
 
-        <Style x:Key="InfoGhostButtonStyle" BasedOn="{StaticResource DefaultGhostButtonStyle}" TargetType="custom:GhostButton">
+        <Style x:Key="InfoGhostButtonStyle" BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton">
             <Setter Property="Margin" Value="0,-54" />
             <Setter Property="ToolTipService.ToolTip" Value="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
             <Setter Property="AutomationProperties.FullDescription" Value="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />

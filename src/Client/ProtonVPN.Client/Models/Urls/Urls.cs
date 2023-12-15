@@ -72,6 +72,10 @@ public class Urls : IUrls
 
     public string TorLearnMore => "https://protonvpn.com/support/tor-vpn";
 
+    public string RpcServerProblemUrl => "https://protonvpn.com/support/rpc-server-unavailable";
+
+    public string TroubleShootingUrl => "https://protonvpn.com/support/windows-vpn-issues";
+
     public void NavigateTo(string url)
     {
         try

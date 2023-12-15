@@ -155,7 +155,7 @@ public class VpnStateChangedEventArgsMapperTest
                 networkAdapterType: OpenVpnAdapter.Tun,
                 label: "Proton VPN"
             ),
-            error: VpnError.IncorrectVpnConfig,
+            error: VpnError.Unknown,
             networkBlocked: true);
 
         VpnStateIpcEntity result = _mapper.Map(entityToTest);

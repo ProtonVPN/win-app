@@ -305,6 +305,7 @@ public class UserAuthenticator : IUserAuthenticator
     private void SaveUserInfo(VpnInfoWrapperResponse response)
     {
         _settings.VpnPlanTitle = response.Vpn.PlanTitle;
+        _settings.IsPaid = !string.IsNullOrEmpty(response.Vpn.PlanName) && response.Vpn.PlanName != "free";
     }
 
     private void ClearAuthSessionDetails()

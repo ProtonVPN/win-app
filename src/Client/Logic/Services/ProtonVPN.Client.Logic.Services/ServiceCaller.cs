@@ -22,6 +22,7 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -51,5 +52,10 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
     public Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync()
     {
          return InvokeAsync(c => c.GetTrafficBytes());
+    }
+
+    public Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate)
+    {
+        return InvokeAsync(c => c.UpdateAuthCertificate(certificate).Wrap());
     }
 }

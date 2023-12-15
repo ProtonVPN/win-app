@@ -39,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         CornerRadius="8"
                         Padding="8">
         <custom:GhostButton.Style>
-            <Style TargetType="custom:GhostButton" BasedOn="{StaticResource DefaultGhostButtonStyle}">
+            <Style TargetType="custom:GhostButton" BasedOn="{StaticResource SecondaryGhostButtonStyle}">
                 <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
             </Style>
         </custom:GhostButton.Style>

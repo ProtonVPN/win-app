@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,21 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+namespace ProtonVPN.Client.UI.Home.ConnectionError;
 
-namespace ProtonVPN.Client.Logic.Services.Contracts;
-
-public interface IServiceCaller
+public sealed partial class ConnectionErrorComponent
 {
-    Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
+    public ConnectionErrorViewModel ViewModel { get; }
 
-    Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
-
-    Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
-
-    Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
-
-    Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate);
+    public ConnectionErrorComponent()
+    {
+        ViewModel = App.GetService<ConnectionErrorViewModel>();
+        InitializeComponent();
+    }
 }

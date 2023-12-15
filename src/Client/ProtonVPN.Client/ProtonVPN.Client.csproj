@@ -66,6 +66,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Home\ConnectionError\ConnectionErrorComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Login\Overlays\SsoLoginOverlayDialog.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -187,6 +190,7 @@
         <None Remove="UI\Dialogs\Windows\ReportIssueWindow.xaml" />
         <None Remove="UI\Gallery\GalleryItemPage.xaml" />
         <None Remove="UI\Gallery\GalleryPage.xaml" />
+        <None Remove="UI\Home\ConnectionError\ConnectionErrorComponent.xaml" />
         <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
         <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
         <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />

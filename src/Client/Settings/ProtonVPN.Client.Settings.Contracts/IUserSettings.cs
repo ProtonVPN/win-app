@@ -42,6 +42,7 @@ public interface IUserSettings
     DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
     DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
     NatType NatType { get; set; }
+    bool IsPaid { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
     bool IsNotificationEnabled { get; set; }
     bool IsBetaAccessEnabled { get; set; }

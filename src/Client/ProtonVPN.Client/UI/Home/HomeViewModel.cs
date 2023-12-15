@@ -50,7 +50,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
     public bool IsDetailsPaneInline => IsDetailsPaneOpen &&
         (DetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
 
-    public override string? Title => Localizer.Get("Home_Page_Title");
+    public override string Title => Localizer.Get("Home_Page_Title");
 
     public override bool IsBackEnabled => false;
 
