@@ -46,6 +46,7 @@ using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Overlays;
+using ProtonVPN.Client.UI.Gateways;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -76,6 +77,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<HelpViewModel>(builder);
         RegisterViewModel<SettingsViewModel>(builder);
         RegisterViewModel<CountriesViewModel>(builder);
+        RegisterViewModel<GatewaysViewModel>(builder);
         RegisterViewModel<AllCountriesPageViewModel>(builder);
         RegisterViewModel<SecureCoreCountriesPageViewModel>(builder);
         RegisterViewModel<SecureCoreCountryPageViewModel>(builder);

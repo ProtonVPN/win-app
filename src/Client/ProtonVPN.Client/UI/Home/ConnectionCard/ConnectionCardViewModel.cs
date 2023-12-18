@@ -25,11 +25,11 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -62,6 +62,7 @@ public partial class ConnectionCardViewModel : ViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsSecureCore))]
     [NotifyPropertyChangedFor(nameof(IsTor))]
     [NotifyPropertyChangedFor(nameof(IsP2P))]
+    [NotifyPropertyChangedFor(nameof(IsB2B))]
     [NotifyPropertyChangedFor(nameof(Title))]
     [NotifyPropertyChangedFor(nameof(Subtitle))]
     [NotifyPropertyChangedFor(nameof(HasSubtitle))]
@@ -81,7 +82,7 @@ public partial class ConnectionCardViewModel : ViewModelBase,
             ConnectionStatus.Connected => Localizer.Get("Home_ConnectionCard_Header_BrowseSafely")
         };
 
-    public string? ExitCountry => (CurrentConnectionIntent?.Location as CountryLocationIntent)?.CountryCode;
+    public string? ExitCountry => CurrentConnectionIntent?.Location?.GetCountryCode();
 
     public string? EntryCountry => (CurrentConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode;
 
@@ -91,6 +92,8 @@ public partial class ConnectionCardViewModel : ViewModelBase,
 
     public bool IsP2P => CurrentConnectionIntent?.Feature is P2PFeatureIntent;
 
+    public bool IsB2B => CurrentConnectionIntent?.Feature is B2BFeatureIntent;
+
     public string Title => Localizer.GetConnectionIntentTitle(CurrentConnectionIntent);
 
     public string Subtitle => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent);
@@ -99,7 +102,8 @@ public partial class ConnectionCardViewModel : ViewModelBase,
 
     public bool HasSubtitleAndFeature => HasSubtitle && (IsTor || IsP2P);
 
-    public ConnectionCardViewModel(IConnectionManager connectionManager,
+    public ConnectionCardViewModel(
+        IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ILocalizationProvider localizationProvider,
         ISettings settings,

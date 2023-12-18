@@ -36,6 +36,7 @@ public class ConnectionDetails
     public TimeSpan? ServerLatency { get; set; }
     public VpnProtocol Protocol { get; set; }
     public bool IsGateway { get; }
+    public string? GatewayName { get; }
 
     public ConnectionDetails(IConnectionIntent connectionIntent, Server? server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart)
     {
@@ -49,5 +50,6 @@ public class ConnectionDetails
         ServerLatency = TimeSpan.FromMilliseconds(46); // TODO: implement real value
         Protocol = vpnProtocol;
         IsGateway = server?.Features.IsSupported(ServerFeatures.B2B) ?? false;
+        GatewayName = server?.GatewayName;
     }
 }

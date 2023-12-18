@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
           Background="{x:Bind Background}"
           CornerRadius="{x:Bind CornerRadius}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="PART_FillColumn" />
+            <ColumnDefinition x:Name="PART_FillColumn" Width="0"/>
             <ColumnDefinition x:Name="PART_EmptyColumn" />
         </Grid.ColumnDefinitions>
 

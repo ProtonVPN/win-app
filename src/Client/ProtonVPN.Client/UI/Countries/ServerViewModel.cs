@@ -18,51 +18,42 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Common.Core.Extensions;
+using WinUI3Localizer;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public class ServerViewModel : LocationViewModelBase, ISearchableItem
+public class ServerViewModel : ServerViewModelBase, ISearchableItem
 {
-    public required string Id { get; init; }
-    public required string ExitCountryCode { get; init; }
-    public required string ExitCountryName { get; init; }
-    public required string EntryCountryCode { get; init; }
-    public required string EntryCountryName { get; init; }
-    public required string Name { get; init; }
-    public required string City { get; init; }
-    public double Load { get; init; }
-    public required string LoadPercent { get; init; }
-    public bool IsVirtual { get; init; }
-    public bool IsSecureCore { get; init; }
-    public bool SupportsP2P { get; init; }
-    public bool IsTor { get; init; }
-    public bool IsUnderMaintenance { get; init; }
+    public string EntryCountryCode { get; private set; }
+    public string EntryCountryName => Localizer.GetFormat("Countries_ViaCountry", Localizer.GetCountryName(EntryCountryCode));
+    public string City { get; private set; }
+    public bool IsVirtual { get; private set; }
+    public bool IsSecureCore { get; private set; }
+    public bool SupportsP2P { get; private set; }
+    public bool IsTor { get; private set; }
 
-    public string ConnectButtonAutomationId => $"Connect_to_{Name}";
+    public override string ConnectButtonAutomationName => IsSecureCore
+        ? $"{EntryCountryName} {ExitCountryName}"
+        : ExitCountryName;
 
-    public string ConnectButtonAutomationName => IsSecureCore ?
-        $"{EntryCountryName} {ExitCountryName}" :
-        ExitCountryName;
-
-    public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
-
-    public override bool IsActiveConnection => ConnectionDetails != null && ConnectionDetails.ServerId == Id;
-
-    protected override ConnectionIntent ConnectionIntent => new(new ServerLocationIntent(Id, Name, ExitCountryCode, City),
-        GetFeatureIntent());
+    protected override ConnectionIntent ConnectionIntent =>
+        new(new ServerLocationIntent(Id, Name, ExitCountryCode, City),
+            GetFeatureIntent());
 
     public ServerViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager) : base(localizationProvider, mainViewNavigator, connectionManager)
-    {
-    }
+        IConnectionManager connectionManager) 
+        : base(localizationProvider, mainViewNavigator, connectionManager)
+    { }
 
     public bool MatchesSearchQuery(string query)
     {
@@ -87,5 +78,17 @@ public class ServerViewModel : LocationViewModelBase, ISearchableItem
         }
 
         return null;
+    }
+
+    public override void CopyPropertiesFromServer(Server server)
+    {
+        base.CopyPropertiesFromServer(server);
+
+        City = server.City;
+        IsVirtual = server.IsVirtual;
+        IsSecureCore = server.Features.IsSupported(ServerFeatures.SecureCore);
+        SupportsP2P = server.Features.IsSupported(ServerFeatures.P2P);
+        IsTor = server.Features.IsSupported(ServerFeatures.Tor);
+        EntryCountryCode = server.EntryCountry;
     }
 }

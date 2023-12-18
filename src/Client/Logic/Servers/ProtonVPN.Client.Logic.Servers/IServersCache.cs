@@ -25,4 +25,5 @@ public interface IServersCache
 {
     IReadOnlyList<Server> Servers { get; }
     IReadOnlyList<string> CountryCodes { get; }
+    IReadOnlyList<string> Gateways { get; }
 }

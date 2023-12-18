@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Text.RegularExpressions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -33,7 +33,7 @@ public class ServerLocationIntent : CityStateLocationIntent
     {
         Id = id;
         Name = name;
-        Number = GetNumber();
+        Number = this.GetServerNumber();
     }
 
     public override bool IsSameAs(ILocationIntent? intent)
@@ -46,17 +46,5 @@ public class ServerLocationIntent : CityStateLocationIntent
     public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
     {
         return servers.Where(s => s.Id == Id);
-    }
-
-    private int GetNumber()
-    {
-        Match match = new Regex(@"#(\d+)").Match(Name);
-        if (match.Success)
-        {
-            string numberString = match.Groups[1].Value;
-            return int.Parse(numberString);
-        }
-
-        return 0;
     }
 }

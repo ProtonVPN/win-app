@@ -37,6 +37,7 @@ using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Login.Overlays;
+using ProtonVPN.Client.UI.Gateways;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -114,6 +115,7 @@ public class ViewMapper : IViewMapper
     {
         ConfigurePage<HomeViewModel, HomePage>();
         ConfigurePage<CountriesViewModel, CountriesPage>();
+        ConfigurePage<GatewaysViewModel, GatewaysPage>();
         ConfigurePage<CountryTabViewModel, CountryPage>();
         ConfigurePage<NetShieldViewModel, NetShieldPage>();
         ConfigurePage<KillSwitchViewModel, KillSwitchPage>();

@@ -29,6 +29,7 @@ using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
+using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Common.Legacy.Extensions;
@@ -50,6 +51,7 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
         ILocalizationProvider localizationProvider,
         IEventMessageSender eventMessageSender,
         HomeViewModel homeViewModel,
+        GatewaysViewModel gatewaysViewModel,
         CountriesViewModel countriesViewModel,
         SettingsViewModel settingsViewModel,
         Lazy<GalleryViewModel> galleryViewModel)
@@ -60,6 +62,7 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
         NavigationPages = new ObservableCollection<NavigationPageViewModelBase>
         {
             homeViewModel,
+            gatewaysViewModel,
             countriesViewModel,
             settingsViewModel,
         };

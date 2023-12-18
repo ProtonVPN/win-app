@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Gateways.Items;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -47,15 +48,14 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetCountryViewModel(string exitCountryCode, CountryFeature countryFeature, int itemCount)
     {
-        return new CountryViewModel (_localizer, _mainViewNavigator, _connectionManager)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = exitCountryCode,
             ExitCountryName = _localizer.GetCountryName(exitCountryCode),
             IsUnderMaintenance = false,
             SecondaryActionLabel = _localizer.GetPluralFormat(GetCountrySecondaryActionLabel(countryFeature), itemCount),
-            CountryFeature = countryFeature,
-            ConnectionDetails = _connectionManager.GetConnectionDetails(),
+            CountryFeature = countryFeature
         };
     }
 
@@ -73,45 +73,31 @@ public class CountryViewModelsFactory
         };
     }
 
-    private string GetCountrySecondaryActionLabel(CountryFeature countryFeature)
-    {
-        return countryFeature switch
-        {
-            CountryFeature.None or CountryFeature.P2P => "Countries_City",
-            _ => "Countries_Server",
-        };
-    }
-
     public CityViewModel GetCityViewModel(City city, List<ServerViewModel> servers, CountryFeature countryFeature)
     {
         return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager)
         {
             City = city,
             Servers = servers,
-            CountryFeature = countryFeature,
-            ConnectionDetails = _connectionManager.GetConnectionDetails(),
+            CountryFeature = countryFeature
         };
     }
 
     public ServerViewModel GetServerViewModel(Server server)
     {
-        return new ServerViewModel(_localizer, _mainViewNavigator, _connectionManager)
+        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager);
+
+        serverViewModel.CopyPropertiesFromServer(server);
+
+        return serverViewModel;
+    }
+
+    private string GetCountrySecondaryActionLabel(CountryFeature countryFeature)
+    {
+        return countryFeature switch
         {
-            Id = server.Id,
-            Name = server.Name,
-            City = server.City,
-            Load = server.Load / 100d,
-            LoadPercent = $"{(double)server.Load / 100:P0}",
-            IsVirtual = server.IsVirtual,
-            IsSecureCore = server.Features.IsSupported(ServerFeatures.SecureCore),
-            SupportsP2P = server.Features.IsSupported(ServerFeatures.P2P),
-            IsTor = server.Features.IsSupported(ServerFeatures.Tor),
-            IsUnderMaintenance = server.IsUnderMaintenance,
-            EntryCountryCode = server.EntryCountry,
-            EntryCountryName = _localizer.GetFormat("Countries_ViaCountry", _localizer.GetCountryName(server.EntryCountry)),
-            ExitCountryCode = server.ExitCountry,
-            ExitCountryName = _localizer.GetCountryName(server.ExitCountry),
-            ConnectionDetails = _connectionManager.GetConnectionDetails(),
+            CountryFeature.None or CountryFeature.P2P => "Countries_City",
+            _ => "Countries_Server",
         };
     }
 }

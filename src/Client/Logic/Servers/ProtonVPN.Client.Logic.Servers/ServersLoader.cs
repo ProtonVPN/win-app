@@ -37,8 +37,8 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures)
     {
-        return _serversCache.Servers
-            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry) && s.Features.IsSupported(serverFeatures))
+        return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry) 
+                                    && s.Features.IsSupported(serverFeatures))
             .Select(s => s.ExitCountry)
             .Distinct();
     }
@@ -50,8 +50,8 @@ public class ServersLoader : IServersLoader
 
     private IEnumerable<City> GetCitiesByFilter(Func<Server, bool>? filterFunc = null)
     {
-        return _serversCache.Servers
-            .Where(s => !string.IsNullOrWhiteSpace(s.City) && (filterFunc is null || filterFunc(s)))
+        return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.City)
+                                    && (filterFunc is null || filterFunc(s)))
             .GroupBy(s => new { Name = s.City, CountryCode = s.ExitCountry })
             .Select(g => new City { Name = g.Key.Name, CountryCode = g.Key.CountryCode });
     }
@@ -68,8 +68,8 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<City> GetCitiesByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode)
     {
-        return GetCitiesByFilter(s => s.ExitCountry == countryCode &&
-                                      s.Features.IsSupported(serverFeatures));
+        return GetCitiesByFilter(s => s.ExitCountry == countryCode 
+                                   && s.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<Server> GetServers()
@@ -77,38 +77,52 @@ public class ServersLoader : IServersLoader
         return _serversCache.Servers;
     }
 
+    private IEnumerable<Server> GetServersByFilter(Func<Server, bool> filterFunc, bool excludeB2BServers = true)
+    {
+        return GetServers()
+            .Where(s => (filterFunc is null || filterFunc(s))
+                     && !(excludeB2BServers && s.Features.IsSupported(ServerFeatures.B2B)));
+    }
+
     public IEnumerable<Server> GetServersByCity(City city)
     {
-        return _serversCache.Servers.Where(s =>
-            s.ExitCountry == city.CountryCode &&
-            s.City == city.Name);
+        return GetServersByFilter(s => s.ExitCountry == city.CountryCode
+                                    && s.City == city.Name);
     }
 
     public IEnumerable<Server> GetServersByFeatures(ServerFeatures serverFeatures)
     {
-        return _serversCache.Servers.Where(s => s.Features.IsSupported(serverFeatures));
+        return GetServersByFilter(s => s.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<Server> GetServersByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode)
     {
-        return _serversCache.Servers.Where(s =>
-            s.ExitCountry == countryCode &&
-            s.Features.IsSupported(serverFeatures));
+        return GetServersByFilter(s => s.ExitCountry == countryCode
+                                    && s.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<Server> GetServersByFeaturesAndCity(ServerFeatures serverFeatures, City city)
     {
-        return _serversCache.Servers.Where(s =>
-            s.ExitCountry == city.CountryCode &&
-            s.City == city.Name &&
-            s.Features.IsSupported(serverFeatures));
+        return GetServersByFilter(s => s.ExitCountry == city.CountryCode
+                                    && s.City == city.Name
+                                    && s.Features.IsSupported(serverFeatures));
+    }
+
+    public IEnumerable<string> GetGateways()
+    {
+        return _serversCache.Gateways;
+    }
+
+    public IEnumerable<Server> GetServersByGateway(string gatewayName)
+    {        
+        return GetServersByFilter(s => s.GatewayName == gatewayName, false);
     }
 
     public string? GetHostCountryCode(string countryCode)
     {
-        return _serversCache.Servers.FirstOrDefault(server =>
-           server.ExitCountry == countryCode &&
-           !string.IsNullOrEmpty(server.HostCountry)
-           )?.HostCountry;
+        return GetServersByFilter(s => s.ExitCountry == countryCode
+                                    && !string.IsNullOrEmpty(s.HostCountry))
+            .FirstOrDefault()?
+            .HostCountry;
     }
 }

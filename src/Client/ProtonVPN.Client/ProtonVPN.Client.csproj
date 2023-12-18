@@ -69,6 +69,15 @@
         <Page Update="UI\Home\ConnectionError\ConnectionErrorComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Gateways\Items\B2BServerItem.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Gateways\Items\GatewayItem.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Gateways\GatewaysPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Login\Overlays\SsoLoginOverlayDialog.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -191,6 +200,9 @@
         <None Remove="UI\Gallery\GalleryItemPage.xaml" />
         <None Remove="UI\Gallery\GalleryPage.xaml" />
         <None Remove="UI\Home\ConnectionError\ConnectionErrorComponent.xaml" />
+        <None Remove="UI\Gateways\GatewaysPage.xaml" />
+        <None Remove="UI\Gateways\Items\B2BServerItem.xaml" />
+        <None Remove="UI\Gateways\Items\GatewayItem.xaml" />
         <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
         <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
         <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />
