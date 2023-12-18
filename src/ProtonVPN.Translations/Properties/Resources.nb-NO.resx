@@ -1806,7 +1806,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Innblanding fra Antivirus&lt;/Bold&gt; - Midlertidig deaktiver eller fjern antivirus-programvaren din.</value>
+    <value>&lt;Bold&gt;Antivirusforstyrrelser&lt;/Bold&gt; - Midlertidig deaktiver eller fjern antivirus-programvaren din.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -2582,7 +2582,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% Belastning</value>
+    <value>{0}% belastning</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
