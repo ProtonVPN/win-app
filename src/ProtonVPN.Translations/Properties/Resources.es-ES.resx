@@ -1556,8 +1556,8 @@
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Uno de los servicios requeridos por Proton VPN (motor de filtrado de base) no se está ejecutando.&amp;lt;LineBreak/&amp;gt;
-Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt;&amp;lt;Run Text="estas"/&amp;gt;&amp;lt;/Hyperlink&amp;gt; instrucciones para activarlo de nuevo y volver a intentarlo.</value>
+    <value>Uno de los servicios requeridos por Proton VPN (motor de filtrado de base) no se está ejecutando.&lt;LineBreak/&gt;
+Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas"/&gt;&lt;/Hyperlink&gt; instrucciones para activarlo de nuevo y volver a intentarlo.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1586,10 +1586,10 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <value>Mostrar menos</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Algunas aplicaciones como los antivirus o los optimizadores de PC pueden interferir con los Servicios del Sistema que Proton VPN requiere para asegurar su conexión. Al hacer clic en Activar, está permitiendo que Windows reactive los Servicios de Proton VPN.&amp;lt;LineBreak/&amp;gt;Si el problema persiste, intente reiniciar su PC o reinstalar Proton VPN.</value>
+    <value>Algunas aplicaciones como los antivirus o los optimizadores de PC pueden interferir con los Servicios del Sistema que Proton VPN requiere para asegurar su conexión. Al hacer clic en Activar, está permitiendo que Windows reactive los Servicios de Proton VPN.&lt;LineBreak/&gt;Si el problema persiste, intente reiniciar su PC o reinstalar Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, impidiéndole conectarse. Haga clic en Activar para solucionarlo.&amp;amp;lt;LineBreak/&amp;amp;gt;Tenga en cuenta que esta operación requiere privilegios de administrador.</value>
+    <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, impidiéndole conectarse. Haga clic en Activar para solucionarlo.&lt;LineBreak/&gt;Tenga en cuenta que esta operación requiere privilegios de administrador.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
     <value>Desactivar Kill Switch</value>
@@ -1734,7 +1734,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Activa la redirección de puertos solo cuando la necesites para garantizar la mayor protección de privacidad y seguridad. &amp;lt;LineBreak/&amp;gt;&amp;lt;LineBreak/&amp;gt;&amp;lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&amp;gt;¿Necesito la redirección de puertos?&amp;lt;/Hyperlink&amp;gt;</value>
+    <value>Activa la redirección de puertos solo cuando la necesites para garantizar la mayor protección de privacidad y seguridad. &lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;¿Necesito la redirección de puertos?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
     <value>¿Activar la redirección de puertos?</value>
@@ -2342,7 +2342,7 @@ Por favor, sigue &amp;lt;Hyperlink Command="{Binding OpenArticleCommand}"&amp;gt
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil no guardados. &amp;lt;LineBreak/&amp;gt;&amp;lt;LineBreak/&amp;gt;¿Estás seguro de que quieres descartarlos?</value>
+    <value>Hay cambios de perfil no guardados. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Estás seguro de que quieres descartarlos?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
