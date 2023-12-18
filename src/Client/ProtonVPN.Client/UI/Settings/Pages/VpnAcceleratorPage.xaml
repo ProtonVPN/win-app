@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
@@ -37,10 +37,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             
             <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
+            <toolkit:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.Description>
+                <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}" />
                         <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
@@ -48,10 +48,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
                     </TextBlock>
-                </labs:SettingsCard.Description>
+                </toolkit:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
         </StackPanel>
     </custom:SettingsPageContentControl>
 </Page>

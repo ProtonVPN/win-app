@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       mc:Ignorable="d">
 
@@ -43,81 +43,81 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="General" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Colors"
                                Header="Colors"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE790;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Typography"
                                Header="Typography"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE8D2;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="Universal Components" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Inputs"
                                Header="Inputs"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE73A;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Fields"
                                Header="Fields"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE929;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Others"
                                Header="Others"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE700;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource GallerySectionHeaderTextBlockStyle}"
                        Text="VPN Components" />
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Custom controls"
                                Header="Custom controls"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE705;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Map controls"
                                Header="Map controls"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE707;" />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
         </StackPanel>
     </custom:PageContentControl>
 </Page>

@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+             xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"

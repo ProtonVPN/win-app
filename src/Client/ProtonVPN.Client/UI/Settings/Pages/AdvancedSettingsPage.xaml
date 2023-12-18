@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
@@ -44,16 +44,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard AutomationProperties.AutomationId="AlternativeRoutingSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AlternativeRoutingSettingsCard"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAlternativeRoutingEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
@@ -62,13 +62,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="NatTypeSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="NatTypeSettingsCard"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
                                IsTabStop="False"
                                Style="{StaticResource VerticalSettingsCardStyle}">
-                <labs:SettingsCard.Description>
+                <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}" />
                         <Hyperlink NavigateUri="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}"
@@ -76,7 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
                     </TextBlock>
-                </labs:SettingsCard.Description>
+                </toolkit:SettingsCard.Description>
                 <StackPanel Spacing="16">
                     <RadioButton AutomationProperties.AutomationId="StrictNatTypeRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsStrictNatType, Mode=TwoWay}"
@@ -103,7 +103,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
         </StackPanel>
     </custom:SettingsPageContentControl>
 </Page>

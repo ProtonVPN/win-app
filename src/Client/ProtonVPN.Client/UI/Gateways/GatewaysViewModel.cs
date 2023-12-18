@@ -18,7 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.WinUI.UI;
+using CommunityToolkit.WinUI.Collections;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;

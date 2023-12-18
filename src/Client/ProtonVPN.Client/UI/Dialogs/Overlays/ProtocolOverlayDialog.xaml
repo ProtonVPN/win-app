@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+               xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
                xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
                Title="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_Title')}"
                x:DefaultBindMode="OneWay"
@@ -42,17 +42,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Spacing="8">
             <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_SwitchHeader')}" />
-            <labs:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
                                Content="{x:Bind ViewModel.CurrentProtocol}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Servers />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
         </StackPanel>
 
         <HyperlinkButton HorizontalAlignment="Center"

@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:local="using:ProtonVPN.Client.UI.Settings.Pages.Advanced"
@@ -39,13 +39,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea"
                     Spacing="16">
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomDnsServersEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
             <StackPanel Spacing="8"
                         Visibility="{x:Bind ViewModel.IsCustomDnsServersEnabled}">
@@ -54,7 +54,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Style="{StaticResource CaptionTextBlockStyle}"
                            Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_Advanced_CustomDnsServers_Header', ViewModel.ActiveCustomDnsServersCount)}" />
 
-                <labs:SettingsCard IsTabStop="False"
+                <toolkit:SettingsCard IsTabStop="False"
                                    Style="{StaticResource VerticalSettingsCardStyle}">
                     <Grid Margin="0,-8,0,0"
                           ColumnSpacing="8">
@@ -109,7 +109,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
                     </Grid>
-                </labs:SettingsCard>
+                </toolkit:SettingsCard>
             </StackPanel>
         </StackPanel>
     </custom:SettingsPageContentControl>

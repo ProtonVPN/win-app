@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
@@ -37,25 +37,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard AutomationProperties.AutomationId="ApplicationLogsSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ApplicationLogsSettingsCard"
                                Command="{x:Bind ViewModel.OpenApplicationLogsCommand, Mode=OneTime}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs_Application')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.ActionIcon>
+                <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ArrowOutSquare />
-                </labs:SettingsCard.ActionIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="ServiceLogsSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ServiceLogsSettingsCard"
                                Command="{x:Bind ViewModel.OpenServiceLogsCommand, Mode=OneTime}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs_Service')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.ActionIcon>
+                <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ArrowOutSquare />
-                </labs:SettingsCard.ActionIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
         </StackPanel>
     </custom:PageContentControl>
 </Page>

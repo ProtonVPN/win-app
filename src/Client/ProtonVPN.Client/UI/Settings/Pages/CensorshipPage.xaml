@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
@@ -38,19 +38,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics_Description')}"
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics')}"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareStatisticsEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports_Description')}"
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports')}"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareCrashReportsEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
             <TextBlock Margin="0,8,0,0"
                        Foreground="{ThemeResource TextWeakColorBrush}"
