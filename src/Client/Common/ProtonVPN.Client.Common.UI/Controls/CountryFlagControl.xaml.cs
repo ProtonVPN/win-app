@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.IO;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -28,7 +29,24 @@ namespace ProtonVPN.Client.Common.UI.Controls;
 [TemplatePart(Name = "PART_EntryCountryFlag", Type = typeof(Image))]
 public sealed partial class CountryFlagControl
 {
-    private const string FASTEST_COUNTRY = "Fastest";
+    private const string ASSETS_FOLDER_PATH = "ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/";
+    private const string ASSETS_FILE_EXTENSION = ".svg";
+    private const string ASSETS_FASTEST_COUNTRY = "Fastest";
+    private const string ASSETS_PLACEHOLDER = "Placeholder"; 
+
+    private const string GATEWAY_OFF_STATE = "NonGateway";
+    private const string GATEWAY_UNKNOWN_COUNTRY_STATE = "GatewayUnknown";
+    private const string GATEWAY_KNOWN_COUNTRY_STATE = "Gateway";
+
+    private const string SECURE_CORE_OFF_STATE = "NonSecureCore";
+    private const string SECURE_CORE_UNKNOWN_COUNTRY_STATE = "SecureCoreUnknown";
+    private const string SECURE_CORE_KNOWN_COUNTRY_STATE = "SecureCore";
+
+    private const string FLAG_SINGLE_STATE = "SingleFlagMode";
+    private const string FLAG_DUAL_STATE = "DualFlagsStandardMode";
+    private const string FLAG_DUAL_COMPACT_STATE = "DualFlagsCompactMode";
+    private const string FLAG_GATEWAY_STATE = "GatewayStandardMode";
+    private const string FLAG_GATEWAY_COMPACT_STATE = "GatewayCompactMode";
 
     public static readonly DependencyProperty ExitCountryCodeProperty =
         DependencyProperty.Register(nameof(ExitCountryCode), typeof(string), typeof(CountryFlagControl), new PropertyMetadata(default, OnExitCountryCodePropertyChanged));
@@ -41,6 +59,9 @@ public sealed partial class CountryFlagControl
 
     public static readonly DependencyProperty IsCompactProperty =
         DependencyProperty.Register(nameof(IsCompact), typeof(bool), typeof(CountryFlagControl), new PropertyMetadata(default, OnIsCompactPropertyChanged));
+
+    public static readonly DependencyProperty IsGatewayProperty =
+        DependencyProperty.Register(nameof(IsGateway), typeof(bool), typeof(CountryFlagControl), new PropertyMetadata(default, OnIsGatewayPropertyChanged));
 
     public string ExitCountryCode
     {
@@ -66,6 +87,12 @@ public sealed partial class CountryFlagControl
         set => SetValue(IsCompactProperty, value);
     }
 
+    public bool IsGateway
+    {
+        get => (bool)GetValue(IsGatewayProperty);
+        set => SetValue(IsGatewayProperty, value);
+    }
+
     public CountryFlagControl()
     {
         InitializeComponent();
@@ -84,6 +111,7 @@ public sealed partial class CountryFlagControl
         if (d is CountryFlagControl control)
         {
             control.UpdateCountryFlag();
+            control.InvalidateFlagsLayout();
         }
     }
 
@@ -91,8 +119,8 @@ public sealed partial class CountryFlagControl
     {
         if (d is CountryFlagControl control)
         {
-            control.InvalidateFlagsLayout();
             control.UpdateEntryCountryFlag();
+            control.InvalidateFlagsLayout();
         }
     }
 
@@ -112,24 +140,47 @@ public sealed partial class CountryFlagControl
         }
     }
 
+    private static void OnIsGatewayPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is CountryFlagControl control)
+        {
+            control.InvalidateFlagsLayout();
+        }
+    }
+
     private void InvalidateFlagsLayout()
     {
+        bool isExitCountryUnknown = string.IsNullOrEmpty(ExitCountryCode);
         bool isEntryCountryUnknown = string.IsNullOrEmpty(EntryCountryCode);
 
-        string secureCoreVisualState = !IsSecureCore
-            ? "NonSecureCore"
-            : isEntryCountryUnknown
-                ? "SecureCoreUnknown"
-                : "SecureCore";
+        string gatewayVisualState = !IsGateway
+            ? GATEWAY_OFF_STATE
+            : isExitCountryUnknown
+                ? GATEWAY_UNKNOWN_COUNTRY_STATE
+                : GATEWAY_KNOWN_COUNTRY_STATE;
 
-        string flagLayoutVisualState = !IsSecureCore || isEntryCountryUnknown
-            ? "SingleFlagMode"
+        string secureCoreVisualState = !IsSecureCore || IsGateway
+            ? SECURE_CORE_OFF_STATE
+            : isEntryCountryUnknown
+                ? SECURE_CORE_UNKNOWN_COUNTRY_STATE
+                : SECURE_CORE_KNOWN_COUNTRY_STATE;
+
+        bool isSingleFlag = gatewayVisualState != GATEWAY_KNOWN_COUNTRY_STATE
+                         && secureCoreVisualState != SECURE_CORE_KNOWN_COUNTRY_STATE;
+
+        string flagLayoutVisualState = isSingleFlag
+            ? FLAG_SINGLE_STATE
             : IsCompact
-                ? "DualFlagsCompactMode"
-                : "DualFlagsStandardMode";
+                ? IsGateway
+                    ? FLAG_GATEWAY_COMPACT_STATE
+                    : FLAG_DUAL_COMPACT_STATE
+                : IsGateway
+                    ? FLAG_GATEWAY_STATE
+                    : FLAG_DUAL_STATE;
 
         VisualStateManager.GoToState(this, secureCoreVisualState, false);
         VisualStateManager.GoToState(this, flagLayoutVisualState, false);
+        VisualStateManager.GoToState(this, gatewayVisualState, false);
     }
 
     private void UpdateCountryFlag()
@@ -142,14 +193,25 @@ public sealed partial class CountryFlagControl
         PART_EntryCountryFlag.Source = GetImageSource(EntryCountryCode);
     }
 
-    private SvgImageSource GetImageSource(string? countryCode)
+    private SvgImageSource GetImageSource(string countryCode)
     {
         if (string.IsNullOrEmpty(countryCode))
         {
-            countryCode = FASTEST_COUNTRY;
+            countryCode = ASSETS_FASTEST_COUNTRY;
         }
 
-        return new SvgImageSource(
-            new Uri($"ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/{countryCode}.svg"));
+        Uri uri = BuildUri(countryCode);
+
+        if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, uri.LocalPath.TrimStart('/', '\\'))))
+        {
+            uri = BuildUri(ASSETS_PLACEHOLDER);
+        }
+
+        return new SvgImageSource(uri);
+    }
+
+    private Uri BuildUri(string resourceName)
+    {
+        return new(Path.Combine(ASSETS_FOLDER_PATH, resourceName + ASSETS_FILE_EXTENSION));
     }
 }

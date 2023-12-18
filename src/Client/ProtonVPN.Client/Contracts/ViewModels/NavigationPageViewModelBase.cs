@@ -30,6 +30,8 @@ public abstract class NavigationPageViewModelBase : PageViewModelBase<IMainViewN
     {
     }
 
+    public virtual bool IsPageEnabled => true;
+
     public abstract IconElement Icon { get; }
 
     public virtual bool IsHostFor(PageViewModelBase? page)

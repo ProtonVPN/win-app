@@ -146,7 +146,11 @@
   </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>
-    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the id of the server (eg. Zurich #20)</comment>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Country_Server" xml:space="preserve">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore" xml:space="preserve">
     <value>via {0}</value>
@@ -1347,6 +1351,9 @@
     <value>Connected for</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
+  <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
+    <value>Gateway</value>
+  </data>
   <data name="Home_ConnectionDetails_Country" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -2234,5 +2241,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Connection_Error_Unknown" xml:space="preserve">
     <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
+  </data>
+  <data name="Gateways_Page_Title" xml:space="preserve">
+    <value>Gateways</value>
+  </data>
+  <data name="Gateways_Server" xml:space="preserve">
+    <value>Dedicated server</value>
   </data>
 </root>

@@ -31,7 +31,7 @@ namespace ProtonVPN.Client.UI.Countries;
 public abstract partial class LocationViewModelBase : ViewModelBase
 {
     protected readonly IMainViewNavigator MainViewNavigator;
-    private readonly IConnectionManager _connectionManager;
+    protected readonly IConnectionManager ConnectionManager;
 
     protected LocationViewModelBase(
         ILocalizationProvider localizationProvider,
@@ -39,10 +39,12 @@ public abstract partial class LocationViewModelBase : ViewModelBase
         IConnectionManager connectionManager) : base(localizationProvider)
     {
         MainViewNavigator = mainViewNavigator;
-        _connectionManager = connectionManager;
+        ConnectionManager = connectionManager;
+
+        ConnectionDetails = ConnectionManager.GetConnectionDetails();
     }
 
-    public ConnectionDetails? ConnectionDetails { get; init; }
+    public ConnectionDetails? ConnectionDetails { get; }
 
     public abstract bool IsActiveConnection { get; }
 
@@ -52,6 +54,6 @@ public abstract partial class LocationViewModelBase : ViewModelBase
     public async Task ConnectAsync()
     {
         await MainViewNavigator.NavigateToAsync<HomeViewModel>();
-        await _connectionManager.ConnectAsync(ConnectionIntent);
+        await ConnectionManager.ConnectAsync(ConnectionIntent);
     }
 }

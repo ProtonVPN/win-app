@@ -44,6 +44,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SessionLength))]
     [NotifyPropertyChangedFor(nameof(FormattedSessionLength))]
+    [NotifyPropertyChangedFor(nameof(Gateway))]
     [NotifyPropertyChangedFor(nameof(Country))]
     [NotifyPropertyChangedFor(nameof(ServerLoad))]
     [NotifyPropertyChangedFor(nameof(FormattedServerLoad))]
@@ -58,6 +59,8 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
     public string? FormattedSessionLength => SessionLength != null
         ? Localizer.GetFormattedTime(SessionLength.Value)
         : null;
+
+    public string? Gateway => CurrentConnectionDetails?.GatewayName;
 
     public string? Country => !string.IsNullOrEmpty(CurrentConnectionDetails?.CountryCode)
         ? Localizer.GetCountryName(CurrentConnectionDetails.CountryCode)

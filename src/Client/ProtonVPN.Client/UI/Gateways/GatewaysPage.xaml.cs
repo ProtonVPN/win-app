@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Client.UI.Gateways;
 
-namespace ProtonVPN.Client.Logic.Servers;
-
-public interface IServersCache
+public sealed partial class GatewaysPage
 {
-    IReadOnlyList<Server> Servers { get; }
-    IReadOnlyList<string> CountryCodes { get; }
-    IReadOnlyList<string> Gateways { get; }
+    public GatewaysViewModel ViewModel { get; }
+
+    public GatewaysPage()
+    {
+        ViewModel = App.GetService<GatewaysViewModel>();
+        InitializeComponent();
+    }
 }

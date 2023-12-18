@@ -372,6 +372,7 @@
         <None Remove="Assets\Flags\CW.svg" />
         <None Remove="Assets\Flags\CY.svg" />
         <None Remove="Assets\Flags\CZ.svg" />
+        <None Remove="Assets\Flags\Dark\Gateway.svg" />
         <None Remove="Assets\Flags\DE.svg" />
         <None Remove="Assets\Flags\DJ.svg" />
         <None Remove="Assets\Flags\DK.svg" />
@@ -443,6 +444,7 @@
         <None Remove="Assets\Flags\LB.svg" />
         <None Remove="Assets\Flags\LC.svg" />
         <None Remove="Assets\Flags\LI.svg" />
+        <None Remove="Assets\Flags\Light\Gateway.svg" />
         <None Remove="Assets\Flags\LK.svg" />
         <None Remove="Assets\Flags\LR.svg" />
         <None Remove="Assets\Flags\LS.svg" />
@@ -625,6 +627,7 @@
         <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
         <None Remove="Styles\Controls\TooltipStyles.xaml" />
         <None Remove="Styles\Converters.xaml" />
+        <None Remove="Styles\Flags.xaml" />
         <None Remove="Styles\Illustrations.xaml" />
         <None Remove="Styles\Typography.xaml" />
     </ItemGroup>
@@ -718,6 +721,9 @@
     <ItemGroup>
         <Page Update="Styles\Controls\CheckBoxStyles.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Styles\Flags.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
     </ItemGroup>
     <ItemGroup>
@@ -828,6 +834,12 @@
         <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Content Update="Assets\Flags\Dark\Gateway.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\Light\Gateway.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Icons\logo-mark.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>

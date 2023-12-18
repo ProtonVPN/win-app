@@ -46,12 +46,12 @@ public static class LocalizationExtensions
 
     public static string GetConnectionIntentTitle(this ILocalizationProvider localizer, IConnectionIntent connectionIntent)
     {
-        if (connectionIntent?.Location is not CountryLocationIntent countryIntent || countryIntent.IsFastest)
+        return connectionIntent?.Location switch
         {
-            return localizer.Get("Country_Fastest");
-        }
-
-        return localizer.GetCountryName(countryIntent.CountryCode);
+            CountryLocationIntent countryIntent => localizer.GetCountryName(countryIntent.CountryCode),
+            GatewayLocationIntent gatewayIntent => gatewayIntent.GatewayName,
+            _ => localizer.Get("Country_Fastest")
+        };
     }
 
     public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent connectionIntent)
@@ -65,6 +65,7 @@ public static class LocalizationExtensions
         {
             ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.Number),
             CityStateLocationIntent cityStateIntent => cityStateIntent.CityState,
+            GatewayServerLocationIntent b2bServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(b2bServerIntent.CountryCode), b2bServerIntent.Number),
             _ => string.Empty,
         };
     }

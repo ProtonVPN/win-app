@@ -63,6 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
                 <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
                                     AutomationProperties.AutomationId="NavigationViewItem"
+                                    Visibility="{x:Bind IsPageEnabled}"
                                     Content="{x:Bind Title}"
                                     Icon="{x:Bind Icon, Mode=OneTime}" />
             </DataTemplate>

@@ -22,6 +22,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
@@ -42,7 +43,7 @@ public partial class RecentItemViewModel : ViewModelBase
 
     public bool IsServerUnderMaintenance => _recentConnection.IsServerUnderMaintenance;
 
-    public string? ExitCountry => (_recentConnection.ConnectionIntent?.Location as CountryLocationIntent)?.CountryCode;
+    public string? ExitCountry => _recentConnection.ConnectionIntent?.Location?.GetCountryCode();
 
     public string? EntryCountry => (_recentConnection.ConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode;
 
@@ -51,6 +52,8 @@ public partial class RecentItemViewModel : ViewModelBase
     public bool IsTor => _recentConnection.ConnectionIntent?.Feature is TorFeatureIntent;
 
     public bool IsP2P => _recentConnection.ConnectionIntent?.Feature is P2PFeatureIntent;
+
+    public bool IsB2B => _recentConnection.ConnectionIntent?.Feature is B2BFeatureIntent;
 
     public bool HasFeature => IsTor || IsP2P;
 

@@ -42,9 +42,10 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
     public string NavigateToCountryButtonAutomationId => $"Navigate_to_{ExitCountryCode}";
     public string ActiveConnectionAutomationId => $"Active_connection_{ExitCountryCode}";
 
-    public override bool IsActiveConnection => ConnectionDetails is not null &&
-                                               ExitCountryCode == ConnectionDetails.CountryCode &&
-                                               (CountryFeature == CountryFeature.SecureCore) == (ConnectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent);
+    public override bool IsActiveConnection => ConnectionDetails is not null
+                                            && !ConnectionDetails.IsGateway
+                                            && ExitCountryCode == ConnectionDetails.CountryCode 
+                                            && (CountryFeature == CountryFeature.SecureCore) == (ConnectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent);
 
     protected override ConnectionIntent ConnectionIntent => new(new CountryLocationIntent(ExitCountryCode),
         CountryFeature.GetFeatureIntent(IsSecureCore ? string.Empty : ExitCountryCode));

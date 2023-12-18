@@ -33,17 +33,20 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
     private readonly IEntityMapper _entityMapper;
     private readonly IEventMessageSender _eventMessageSender;
 
-    private IReadOnlyList<Server> _servers = new List<Server>();
-    public IReadOnlyList<Server> Servers => _servers;
-
-    private IReadOnlyList<string> _countryCodes = new List<string>();
-    public IReadOnlyList<string> CountryCodes => _countryCodes;
+    public IReadOnlyList<Server> Servers { get; private set; } = new List<Server>();
+    public IReadOnlyList<string> CountryCodes { get; private set; } = new List<string>();
+    public IReadOnlyList<string> Gateways { get; private set; } = new List<string>();
 
     public ServersUpdater(IApiClient apiClient, IEntityMapper entityMapper, IEventMessageSender eventMessageSender)
     {
         _apiClient = apiClient;
         _entityMapper = entityMapper;
         _eventMessageSender = eventMessageSender;
+    }
+
+    public async void Receive(LoggedInMessage message)
+    {
+        await UpdateAsync();
     }
 
     public async Task UpdateAsync()
@@ -54,24 +57,50 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
             if (response.Success)
             {
                 IReadOnlyList<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
-                IReadOnlyList<string> countryCodes = GetCountryCodes(servers);
-                _servers = servers;
-                _countryCodes = countryCodes;
+
+                Servers = servers;
+
+                UpdateCountryCodes();
+                UpdateGateways();
+
                 _eventMessageSender.Send(new ServerListChangedMessage());
             }
         }
         catch
+        { }
+    }
+
+    private void UpdateCountryCodes()
+    {
+        CountryCodes = Servers
+            .Where(s => !s.Features.IsSupported(ServerFeatures.B2B) && IsCountryValid(s.ExitCountry))
+            .Select(s => s.ExitCountry)
+            .Distinct()
+            .ToList();
+    }
+
+    private void UpdateGateways()
+    {
+        Gateways = Servers
+            .Where(s => s.Features.IsSupported(ServerFeatures.B2B))
+            .Select(s => s.GatewayName)
+            .Distinct()
+            .ToList();
+    }
+
+    private bool IsCountryValid(string countryCode)
+    {
+        if (countryCode.Equals("AA") || countryCode.Equals("ZZ") || countryCode.StartsWith("X"))
         {
+            return false;
         }
-    }
 
-    private IReadOnlyList<string> GetCountryCodes(IEnumerable<Server> servers)
-    {
-        return servers.Select(s => s.ExitCountry).Distinct().ToList();
-    }
+        string[] letters = { "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+        if (countryCode.StartsWith("Q") && letters.Contains(countryCode.Substring(1, 1)))
+        {
+            return false;
+        }
 
-    public async void Receive(LoggedInMessage message)
-    {
-        await UpdateAsync();
+        return true;
     }
 }

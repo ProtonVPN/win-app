@@ -138,7 +138,7 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
     public void UpdateSmartRouting()
     {
         string? hostCountryCode = _serversLoader.GetHostCountryCode(CurrentCountryCode);
-        if (hostCountryCode is null)
+        if (string.IsNullOrEmpty(hostCountryCode))
         {
             IsVirtual = false;
             SmartRoutingLabel = string.Empty;

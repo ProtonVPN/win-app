@@ -58,7 +58,9 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
 
     protected override IEnumerable<Server> GetServers()
     {
-        return ServersLoader.GetServers().Where(s => !s.Features.IsSupported(ServerFeatures.SecureCore));
+        return ServersLoader.GetServers()
+            .Where(s => !s.Features.IsSupported(ServerFeatures.SecureCore)
+                     && !s.Features.IsSupported(ServerFeatures.B2B));
     }
 
     protected override int GetCountryItemsCount(string countryCode)

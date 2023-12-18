@@ -157,7 +157,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                  toolkit:DockPanel.Dock="Left"
                                                  EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
                                                  ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
-                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" />
+                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" 
+                                                 IsGateway="{x:Bind ViewModel.IsB2B}"/>
                     <StackPanel Margin="12,0,0,0"
                                 Orientation="Vertical"
                                 Spacing="4">

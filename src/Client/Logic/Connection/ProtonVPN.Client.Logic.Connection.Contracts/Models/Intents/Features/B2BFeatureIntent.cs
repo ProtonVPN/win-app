@@ -19,11 +19,12 @@
 
 using ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Client.Logic.Servers;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
-public interface IServersCache
+public class B2BFeatureIntent : FeatureIntentBase
 {
-    IReadOnlyList<Server> Servers { get; }
-    IReadOnlyList<string> CountryCodes { get; }
-    IReadOnlyList<string> Gateways { get; }
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return servers.Where(s => s.Features.IsSupported(ServerFeatures.B2B));
+    }
 }

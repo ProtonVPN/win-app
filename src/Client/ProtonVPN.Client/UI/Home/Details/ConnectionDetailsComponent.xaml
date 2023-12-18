@@ -92,6 +92,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ConnectedFor')}"
                                                 Visibility="{x:Bind ViewModel.FormattedSessionLength, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
+                <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.Gateway}"
+                                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Gateway')}"
+                                                Visibility="{x:Bind ViewModel.Gateway, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
                 <toolkit:HeaderedContentControl Content="{x:Bind ViewModel.Country}"
                                                 Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Country')}"
                                                 Visibility="{x:Bind ViewModel.Country, Converter={StaticResource NotNullToVisibilityConverter}}" />

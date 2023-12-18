@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,13 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
-namespace ProtonVPN.Client.Logic.Servers;
+namespace ProtonVPN.Client.UI.Gateways.Items;
 
-public interface IServersCache
+public sealed partial class B2BServerItem : UserControl
 {
-    IReadOnlyList<Server> Servers { get; }
-    IReadOnlyList<string> CountryCodes { get; }
-    IReadOnlyList<string> Gateways { get; }
+    public static readonly DependencyProperty ViewModelProperty =
+        DependencyProperty.Register(nameof(ViewModel), typeof(B2BServerViewModel), typeof(B2BServerItem), new PropertyMetadata(default));
+
+    public B2BServerViewModel ViewModel
+    {
+        get => (B2BServerViewModel)GetValue(ViewModelProperty);
+        set => SetValue(ViewModelProperty, value);
+    }
+
+    public B2BServerItem()
+    {
+        InitializeComponent();
+    }
 }

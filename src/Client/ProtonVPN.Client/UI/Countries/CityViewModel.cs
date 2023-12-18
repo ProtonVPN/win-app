@@ -44,10 +44,10 @@ public partial class CityViewModel : LocationViewModelBase, ISearchableItem
     public string ShowServersButtonAutomationId => $"Show_servers_{Name}";
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
 
-    public override bool IsActiveConnection => ConnectionDetails != null &&
-                                                  !ConnectionDetails.IsGateway &&
-                                                  ConnectionDetails.CountryCode == CountryCode &&
-                                                  ConnectionDetails.CityState == Name;
+    public override bool IsActiveConnection => ConnectionDetails != null 
+                                            && !ConnectionDetails.IsGateway 
+                                            && ConnectionDetails.CountryCode == CountryCode 
+                                            && ConnectionDetails.CityState == Name;
 
     protected override ConnectionIntent ConnectionIntent => new(new CityStateLocationIntent(CountryCode, Name),
         CountryFeature.GetFeatureIntent());

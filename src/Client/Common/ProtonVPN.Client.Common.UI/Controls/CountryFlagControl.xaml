@@ -44,8 +44,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <x:Double x:Key="SmallShadowHeight">8</x:Double>
         <CornerRadius x:Key="LargeFlagCornerRadius">4</CornerRadius>
         <CornerRadius x:Key="SmallFlagCornerRadius">2.5</CornerRadius>
-        <CornerRadius x:Key="LargeShadowCornerRadius">0,3,0,5</CornerRadius>
-        <CornerRadius x:Key="SmallShadowCornerRadius">0,2,0,4</CornerRadius>
+        <CornerRadius x:Key="LargeSecureCoreShadowCornerRadius">0,3,0,5</CornerRadius>
+        <CornerRadius x:Key="SmallSecureCoreShadowCornerRadius">0,2,0,4</CornerRadius>
+        <CornerRadius x:Key="LargeGatewayShadowCornerRadius">5,0,2,0</CornerRadius>
+        <CornerRadius x:Key="SmallGatewayShadowCornerRadius">4,0,1,0</CornerRadius>
 
         <SolidColorBrush x:Key="ShadowColorBrush"
                          Color="#66000000" />
@@ -67,16 +69,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Height="{StaticResource MediumFlagHeight}"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
-                       Source="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Fastest.svg" />
+                       Source="{ThemeResource FastestCountryFlagSource}" />
 
                 <!--  Casted shadow  -->
-                <Border Name="PART_Shadow"
+                <Border Name="PART_SecureCoreShadow"
                         Width="{StaticResource LargeShadowWidth}"
                         Height="{StaticResource LargeShadowHeight}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Background="{ThemeResource ShadowColorBrush}"
-                        CornerRadius="{StaticResource LargeShadowCornerRadius}" />
+                        CornerRadius="{StaticResource LargeSecureCoreShadowCornerRadius}" />
+            </Grid>
+
+            <Grid x:Name="PART_GatewayContainer"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Visibility="Collapsed">
+
+                <!--  Gateway flag   -->
+                <Image x:Name="PART_GatewayFlag"
+                       Width="{StaticResource LargeFlagWidth}"
+                       Height="{StaticResource LargeFlagHeight}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Source="{ThemeResource GatewayFlagSource}" />
+
+                <!--  Casted shadow  -->
+                <Border Name="PART_GatewayShadow"
+                        Width="{StaticResource LargeShadowWidth}"
+                        Height="{StaticResource LargeShadowHeight}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Background="{ThemeResource ShadowColorBrush}"
+                        CornerRadius="{StaticResource LargeGatewayShadowCornerRadius}" />
             </Grid>
 
             <!--  Exit Country flag  -->
@@ -85,7 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Height="{StaticResource LargeFlagHeight}"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top"
-                   Source="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Fastest.svg" />
+                   Source="{ThemeResource FastestCountryFlagSource}" />
 
             <!--  Secure Core outline  -->
             <icons:SecureCoreFlagOutline x:Name="PART_SecureCoreOutline"
@@ -105,9 +130,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="PART_ExitCountryFlag.Height" Value="{StaticResource MediumFlagHeight}" />
                         <Setter Target="PART_EntryCountryFlag.Width" Value="{StaticResource SmallFlagWidth}" />
                         <Setter Target="PART_EntryCountryFlag.Height" Value="{StaticResource SmallFlagHeight}" />
-                        <Setter Target="PART_Shadow.Width" Value="{StaticResource SmallShadowWidth}" />
-                        <Setter Target="PART_Shadow.Height" Value="{StaticResource SmallShadowHeight}" />
-                        <Setter Target="PART_Shadow.CornerRadius" Value="{StaticResource SmallShadowCornerRadius}" />
+                        <Setter Target="PART_SecureCoreShadow.Width" Value="{StaticResource SmallShadowWidth}" />
+                        <Setter Target="PART_SecureCoreShadow.Height" Value="{StaticResource SmallShadowHeight}" />
+                        <Setter Target="PART_SecureCoreShadow.CornerRadius" Value="{StaticResource SmallSecureCoreShadowCornerRadius}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="DualFlagsStandardMode">
@@ -118,9 +143,37 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="PART_ExitCountryFlag.Height" Value="{StaticResource LargeFlagHeight}" />
                         <Setter Target="PART_EntryCountryFlag.Width" Value="{StaticResource MediumFlagWidth}" />
                         <Setter Target="PART_EntryCountryFlag.Height" Value="{StaticResource MediumFlagHeight}" />
-                        <Setter Target="PART_Shadow.Width" Value="{StaticResource LargeShadowWidth}" />
-                        <Setter Target="PART_Shadow.Height" Value="{StaticResource LargeShadowHeight}" />
-                        <Setter Target="PART_Shadow.CornerRadius" Value="{StaticResource LargeShadowCornerRadius}" />
+                        <Setter Target="PART_SecureCoreShadow.Width" Value="{StaticResource LargeShadowWidth}" />
+                        <Setter Target="PART_SecureCoreShadow.Height" Value="{StaticResource LargeShadowHeight}" />
+                        <Setter Target="PART_SecureCoreShadow.CornerRadius" Value="{StaticResource LargeSecureCoreShadowCornerRadius}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GatewayCompactMode">
+                    <VisualState.Setters>
+                        <Setter Target="PART_Container.Width" Value="{StaticResource SmallContainerWidth}" />
+                        <Setter Target="PART_Container.Height" Value="{StaticResource SmallContainerHeight}" />
+                        <Setter Target="PART_GatewayFlag.Width" Value="{StaticResource MediumFlagWidth}" />
+                        <Setter Target="PART_GatewayFlag.Height" Value="{StaticResource MediumFlagHeight}" />
+                        <Setter Target="PART_ExitCountryFlag.Width" Value="{StaticResource SmallFlagWidth}" />
+                        <Setter Target="PART_ExitCountryFlag.Height" Value="{StaticResource SmallFlagHeight}" />
+                        <Setter Target="PART_ExitCountryFlag.VerticalAlignment" Value="Bottom" />
+                        <Setter Target="PART_GatewayShadow.Width" Value="{StaticResource SmallShadowWidth}" />
+                        <Setter Target="PART_GatewayShadow.Height" Value="{StaticResource SmallShadowHeight}" />
+                        <Setter Target="PART_GatewayShadow.CornerRadius" Value="{StaticResource SmallGatewayShadowCornerRadius}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GatewayStandardMode">
+                    <VisualState.Setters>
+                        <Setter Target="PART_Container.Width" Value="{StaticResource LargeContainerWidth}" />
+                        <Setter Target="PART_Container.Height" Value="{StaticResource LargeContainerHeight}" />
+                        <Setter Target="PART_GatewayFlag.Width" Value="{StaticResource LargeFlagWidth}" />
+                        <Setter Target="PART_GatewayFlag.Height" Value="{StaticResource LargeFlagHeight}" />
+                        <Setter Target="PART_ExitCountryFlag.Width" Value="{StaticResource MediumFlagWidth}" />
+                        <Setter Target="PART_ExitCountryFlag.Height" Value="{StaticResource MediumFlagHeight}" />
+                        <Setter Target="PART_ExitCountryFlag.VerticalAlignment" Value="Bottom" />
+                        <Setter Target="PART_GatewayShadow.Width" Value="{StaticResource LargeShadowWidth}" />
+                        <Setter Target="PART_GatewayShadow.Height" Value="{StaticResource LargeShadowHeight}" />
+                        <Setter Target="PART_GatewayShadow.CornerRadius" Value="{StaticResource LargeGatewayShadowCornerRadius}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -136,6 +189,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <VisualState.Setters>
                         <Setter Target="PART_SecureCoreContainer.Visibility" Value="Collapsed" />
                         <Setter Target="PART_SecureCoreOutline.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="GatewayModes">
+                <VisualState x:Name="NonGateway" />
+                <VisualState x:Name="Gateway">
+                    <VisualState.Setters>
+                        <Setter Target="PART_GatewayContainer.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="GatewayUnknown">
+                    <VisualState.Setters>
+                        <Setter Target="PART_GatewayContainer.Visibility" Value="Visible" />
+                        <Setter Target="PART_GatewayShadow.Visibility" Value="Collapsed" />
+                        <Setter Target="PART_ExitCountryFlag.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

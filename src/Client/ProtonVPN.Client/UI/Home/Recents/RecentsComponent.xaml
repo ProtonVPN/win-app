@@ -101,8 +101,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <controls:CountryFlagControl Grid.Column="1"
                                                              EntryCountryCode="{x:Bind EntryCountry}"
                                                              ExitCountryCode="{x:Bind ExitCountry}"
-                                                             IsCompact="{x:Bind IsSecureCore}"
-                                                             IsSecureCore="{x:Bind IsSecureCore}" />
+                                                             IsCompact="True"
+                                                             IsSecureCore="{x:Bind IsSecureCore}" 
+                                                             IsGateway="{x:Bind IsB2B}"/>
 
                                 <TextBlock Grid.Column="2"
                                            Foreground="{ThemeResource TextWeakColorBrush}"

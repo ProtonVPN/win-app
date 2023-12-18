@@ -19,11 +19,26 @@
 
 using ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Client.Logic.Servers;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public interface IServersCache
+public class GatewayLocationIntent : LocationIntentBase
 {
-    IReadOnlyList<Server> Servers { get; }
-    IReadOnlyList<string> CountryCodes { get; }
-    IReadOnlyList<string> Gateways { get; }
+    public string GatewayName { get; }
+
+    public GatewayLocationIntent(string gatewayName)
+    {
+        GatewayName = gatewayName;
+    }
+
+    public override bool IsSameAs(ILocationIntent? intent)
+    {
+        return base.IsSameAs(intent)
+            && intent is GatewayLocationIntent gatewayIntent
+            && GatewayName == gatewayIntent.GatewayName;
+    }
+
+    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return servers.Where(s => s.GatewayName == GatewayName);
+    }
 }
