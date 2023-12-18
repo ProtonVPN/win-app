@@ -19,7 +19,7 @@
 
 using System.Collections;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.WinUI.UI;
+using CommunityToolkit.WinUI.Collections;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;

@@ -23,9 +23,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:labs="using:CommunityToolkit.Labs.WinUI"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom" 
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -104,157 +104,157 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
 
-            <labs:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Servers />
-                </labs:SettingsCard.HeaderIcon>
+                </toolkit:SettingsCard.HeaderIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.ConnectionProtocolState}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.VpnAcceleratorViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Rocket />
-                </labs:SettingsCard.HeaderIcon>
+                </toolkit:SettingsCard.HeaderIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AdvancedSettingsViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Sliders />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_General')}" />
 
-            <labs:SettingsCard AutomationProperties.AutomationId="AutoStartupSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AutoStartupSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AutoStartupViewModel"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:PowerOff />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="NotificationsSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="NotificationsSettingsCard"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Bell />
-                </labs:SettingsCard.HeaderIcon>
+                </toolkit:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Language')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Language />
-                </labs:SettingsCard.HeaderIcon>
+                </toolkit:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="cbLanguage"
                           ItemsSource="{x:Bind ViewModel.Languages}"
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Theme')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:CircleHalfFilled />
-                </labs:SettingsCard.HeaderIcon>
+                </toolkit:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="themeMode"
                           DisplayMemberPath="Theme"
                           ItemsSource="{x:Bind ViewModel.Themes}"
                           SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="BetaAccessSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="BetaAccessSettingsCard"
                                Description="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess_Description')}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess')}"
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:KeySkeleton />
-                </labs:SettingsCard.HeaderIcon>
+                </toolkit:SettingsCard.HeaderIcon>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsBetaAccessEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </labs:SettingsCard>
+            </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Support')}" />
 
-            <labs:SettingsCard AutomationProperties.AutomationId="SupportCenterSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="SupportCenterSettingsCard"
                                Command="{x:Bind ViewModel.OpenSupportCommand, Mode=OneTime}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_SupportCenter')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:LifeRing />
-                </labs:SettingsCard.HeaderIcon>
-                <labs:SettingsCard.ActionIcon>
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ArrowOutSquare />
-                </labs:SettingsCard.ActionIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="ReportIssueSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ReportIssueSettingsCard"
                                Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_ReportIssue')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Bug />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
-            <labs:SettingsCard AutomationProperties.AutomationId="DebugLogsSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DebugLogsSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DebugLogsViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Code />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Improve')}" />
 
-            <labs:SettingsCard AutomationProperties.AutomationId="CensorshipSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="CensorshipSettingsCard"
                                Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                CommandParameter="ProtonVPN.Client.UI.Settings.Pages.CensorshipViewModel"
                                Header="{x:Bind ViewModel.Localizer.Get('Settings_Improve_Censorship')}"
                                IsClickEnabled="True"
                                Style="{StaticResource DefaultSettingsCardStyle}">
-                <labs:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Users />
-                </labs:SettingsCard.HeaderIcon>
-            </labs:SettingsCard>
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
 
             <Button Margin="0,16,0,0"
                     AutomationProperties.AutomationId="RestoreDefaultSettingsButton"

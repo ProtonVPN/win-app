@@ -44,12 +44,14 @@
     <ItemGroup>
         <PackageReference Include="Autofac" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" />
-        <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" />
         <PackageReference Include="CommunityToolkit.Mvvm" />
-        <PackageReference Include="CommunityToolkit.WinUI" />
-        <PackageReference Include="CommunityToolkit.WinUI.UI" />
-        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" />
-        <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" />
+        <PackageReference Include="CommunityToolkit.WinUI.Collections" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.HeaderedControls" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.RangeSelector" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+        <PackageReference Include="CommunityToolkit.WinUI.Converters" />
+        <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
         <PackageReference Include="Microsoft.WindowsAppSDK" />
