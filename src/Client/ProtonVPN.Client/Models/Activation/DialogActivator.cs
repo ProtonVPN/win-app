@@ -78,6 +78,22 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
         }
     }
 
+    public void HideAllDialogs()
+    {
+        foreach (Window dialog in _activeDialogs.ToList())
+        {
+            dialog.Hide();
+        }
+    }
+
+    public void ActivateAllDialogs()
+    {
+        foreach (Window dialog in _activeDialogs.ToList())
+        {
+            dialog.Activate();
+        }
+    }
+
     protected override void OnThemeChanged(ElementTheme theme)
     {
         foreach (Window dialog in _activeDialogs.ToList())
@@ -102,7 +118,7 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
                 RegisterDialog(dialog);
             }
 
-            dialog.Activate();
+            dialog.Show();
         }
         catch (Exception e)
         {

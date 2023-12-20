@@ -26,8 +26,6 @@ namespace ProtonVPN.Client.Models.Activation;
 
 public interface IOverlayActivator
 {
-    void Initialize(MainWindow window);
-
     Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters, Window? rootWindow = null);
 
     Task ShowOverlayAsync<TOverlayViewModel>(Window? rootWindow = null)

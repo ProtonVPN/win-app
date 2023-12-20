@@ -38,12 +38,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Viewbox Stretch="{x:Bind Stretch, Mode=OneWay}">
         <Grid Width="120" Height="120">
 
-            <Image Stretch="Uniform">
-                <Image.Source>
-                    <SvgImageSource UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/logo-mark.svg"/>
-                </Image.Source>
-            </Image>
-            
+            <Image Stretch="Uniform"
+                   Source="{StaticResource ProtonVpnOnApplicationIconSource}"/>
+
             <!-- TODO: Animate vpn logo? -->
 
         </Grid>

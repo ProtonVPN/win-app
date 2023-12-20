@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Activation;
+using Microsoft.UI.Xaml.Controls;
 
-public interface IMainWindowActivator
+namespace ProtonVPN.Client.UI.Tray;
+
+public sealed partial class TrayIconComponent
 {
-    void Show();
+    public TrayIconViewModel ViewModel { get; }
 
-    void Activate();
-
-    void Hide();
-
-    void Exit();
+    public TrayIconComponent()
+    {
+        ViewModel = App.GetService<TrayIconViewModel>();
+        InitializeComponent();
+    }
 }

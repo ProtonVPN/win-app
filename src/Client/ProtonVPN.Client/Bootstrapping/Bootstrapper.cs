@@ -38,7 +38,8 @@ public class Bootstrapper : IBootstrapper
     private readonly ISettings _settings;
     private readonly ILogger _logger;
 
-    public Bootstrapper(IProcessCommunicationStarter processCommunicationStarter,
+    public Bootstrapper(
+        IProcessCommunicationStarter processCommunicationStarter,
         IMainWindowActivator mainWindowActivator,
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
@@ -61,7 +62,7 @@ public class Bootstrapper : IBootstrapper
         {
             ParseAndRunCommandLineArguments();
 
-            _mainWindowActivator.Activate();
+            _mainWindowActivator.Show();
 
             await Task.WhenAll(
                 TryAuthenticateAsync(),

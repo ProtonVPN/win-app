@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.UI;
 
 namespace ProtonVPN.Client.Helpers;
@@ -59,6 +60,19 @@ public static class ResourceHelper
         return (ImageSource)illustrationsDictionary[resourceKey];
     }
 
+    public static ImageSource GetIcon(string resourceKey)
+    {
+        ResourceDictionary? iconsDictionary = Application.Current.Resources
+            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Icons.xaml"));
+
+        if (iconsDictionary == null || !iconsDictionary.ContainsKey(resourceKey))
+        {
+            return default;
+        }
+
+        return (ImageSource)iconsDictionary[resourceKey];
+    }
+
     public static Style GetContentDialogStyle(string resourceKey)
     {
         ResourceDictionary? contentDialogDictionary = Application.Current.Resources
@@ -70,5 +84,15 @@ public static class ResourceHelper
         }
 
         return (Style)contentDialogDictionary[resourceKey];
+    }
+
+    public static string GetFullImagePath(this ImageSource imageSource)
+    {
+        if (imageSource is BitmapImage image)
+        {
+            return Path.Combine(AppContext.BaseDirectory, image.UriSource.AbsolutePath.Trim('/', '\\'));
+        }
+
+        return string.Empty;
     }
 }

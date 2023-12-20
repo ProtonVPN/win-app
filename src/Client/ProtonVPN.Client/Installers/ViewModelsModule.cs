@@ -47,6 +47,7 @@ using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.Gateways;
+using ProtonVPN.Client.UI.Tray;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -88,6 +89,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<P2PCitiesPageViewModel>(builder);
         RegisterViewModel<HomeViewModel>(builder);
         RegisterViewModel<ShellViewModel>(builder);
+        RegisterViewModel<TrayIconViewModel>(builder);
         RegisterViewModel<CensorshipViewModel>(builder);
         RegisterViewModel<AutoStartupViewModel>(builder);
         RegisterViewModel<CustomDnsServersViewModel>(builder);

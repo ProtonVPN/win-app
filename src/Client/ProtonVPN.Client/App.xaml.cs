@@ -38,6 +38,8 @@ public partial class App
     // https://docs.microsoft.com/dotnet/core/extensions/logging
     public IHost Host { get; }
 
+    public static MainWindow MainWindow { get; } = new MainWindow();
+
     public App()
     {
         InitializeComponent();

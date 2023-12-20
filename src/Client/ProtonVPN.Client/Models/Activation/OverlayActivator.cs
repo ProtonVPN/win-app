@@ -33,8 +33,6 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 {
     private readonly IViewMapper _viewMapper;
 
-    private MainWindow? _mainWindow;
-
     private List<ActiveOverlay> _activeOverlays = new();
 
     public OverlayActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
@@ -43,22 +41,11 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         _viewMapper = viewMapper;
     }
 
-    public void Initialize(MainWindow window)
-    {
-        if (_mainWindow != null)
-        {
-            Logger.Error<AppLog>("Overlay Activator has already been initialized.");
-            return;
-        }
-
-        _mainWindow = window;
-    }
-
     public async Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters, Window? rootWindow = null)
     {
         try
         {
-            rootWindow ??= _mainWindow ?? throw new InvalidOperationException("Cannot show message overlay, root window is undefined.");
+            rootWindow ??= App.MainWindow;
 
             ContentDialog dialog = new()
             {
@@ -121,7 +108,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 
     public void CloseAllOverlays(Window? rootWindow = null)
     {
-        rootWindow ??= _mainWindow ?? throw new InvalidOperationException("Cannot close overlay, root window is undefined.");
+        rootWindow ??= App.MainWindow;
 
         foreach (ContentDialog overlay in _activeOverlays.Where(o => o.BelongsTo(rootWindow)).Select(o => o.Dialog).ToList())
         {
@@ -141,7 +128,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
     {
         try
         {
-            rootWindow ??= _mainWindow ?? throw new InvalidOperationException("Cannot show overlay, root window is undefined.");
+            rootWindow ??= App.MainWindow;
 
             ActiveOverlay? overlay = _activeOverlays.FirstOrDefault(o => o.BelongsTo(rootWindow) && o.IsOfType(overlayType));
             if (overlay == null)
@@ -170,7 +157,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
     {
         try
         {
-            rootWindow ??= _mainWindow ?? throw new InvalidOperationException("Cannot close overlay, root window is undefined.");
+            rootWindow ??= App.MainWindow;
 
             ActiveOverlay? overlay = _activeOverlays.FirstOrDefault(o => o.BelongsTo(rootWindow) && o.IsOfType(overlayType));
             if (overlay == null)

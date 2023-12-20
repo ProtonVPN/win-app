@@ -72,7 +72,7 @@ public static class WindowExtensions
     }
 
     public static void SetPosition(this Window window, WindowPositionParameters parameters)
-    {
+    {      
         if (parameters.XPosition is null || parameters.YPosition is null)
         {
             W32Point? point = MonitorCalculator.CalculateWindowCenteredInCursorMonitor(parameters.Width, parameters.Height);

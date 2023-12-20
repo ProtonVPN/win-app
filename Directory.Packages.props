@@ -27,6 +27,7 @@
     <PackageVersion Include="FlaUI.UIA3" Version="4.0.0" />
     <PackageVersion Include="FluentAssertions" Version="6.11.0" />
     <PackageVersion Include="Grpc.Core" Version="2.46.6" />
+    <PackageVersion Include="H.NotifyIcon.WinUI" Version="2.0.123" />
     <PackageVersion Include="log4net" Version="2.0.15" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />

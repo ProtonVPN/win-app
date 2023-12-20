@@ -42,7 +42,6 @@ public class ClientModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<MainWindow>().AsSelf().SingleInstance();
         builder.RegisterType<Bootstrapper>().As<IBootstrapper>().SingleInstance();
 
         builder.RegisterType<UIThreadDispatcher>().As<IUIThreadDispatcher>().SingleInstance();

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SvgImageSource x:Key="ProtonVpnOnApplicationIconSource"
+                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/proton-vpn-on.svg" />
+    <SvgImageSource x:Key="ProtonVpnOffApplicationIconSource"
+                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/proton-vpn-off.svg" />
+
+    <BitmapImage x:Key="ProtonVpnUnprotectedApplicationIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-off.ico" />
+    <BitmapImage x:Key="ProtonVpnProtectedApplicationIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-on.ico" />
+
+    <BitmapImage x:Key="ProtonVpnErrorTrayIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-error.ico" />
+    <BitmapImage x:Key="ProtonVpnLoggedOutTrayIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-not-logged-in.ico" />
+    <BitmapImage x:Key="ProtonVpnProtectedTrayIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-protected.ico" />
+    <BitmapImage x:Key="ProtonVpnUnprotectedTrayIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-unprotected.ico" />
+    <BitmapImage x:Key="ProtonVpnWarningTrayIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-warning.ico" />
+
+</ResourceDictionary>
