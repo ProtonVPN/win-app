@@ -25,6 +25,7 @@ using ProtonVPN.UI.Tests.Robots.Overlays;
 using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests;
 
@@ -86,7 +87,7 @@ public class SettingsTests : TestSession
 
         _settingsRobot
             .VerifySmartProtocolIsChecked()
-            .DoSelectWireGuardProtocol()
+            .DoSelectProtocol(Protocol.Wireguard)
             .VerifyWireGuardProtocolIsChecked();
 
         _shellRobot

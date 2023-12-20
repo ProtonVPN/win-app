@@ -56,4 +56,8 @@ public partial class SettingsRobot : UIActions
 
     protected RadioButton SmartProtocolRadioButton => ElementByAutomationId("SmartProtocolRadioButton").AsRadioButton();
     protected RadioButton WireGuardProtocolRadioButton => ElementByAutomationId("WireGuardProtocolRadioButton").AsRadioButton();
+    protected RadioButton OpenVpnUdpProtocolRadioButton => ElementByAutomationId("OpenVpnUdpProtocolRadioButton").AsRadioButton();
+    protected RadioButton OpenVpnTcpProtocolRadioButton => ElementByAutomationId("OpenVpnTcpProtocolRadioButton").AsRadioButton();
+
+    protected ToggleButton NetshieldToggle => ElementByAutomationId("NetshieldToggle").AsToggleButton();
 }

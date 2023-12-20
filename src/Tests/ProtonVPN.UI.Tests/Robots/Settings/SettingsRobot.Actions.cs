@@ -19,12 +19,12 @@
 
 using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Robots.Settings;
 
 public partial class SettingsRobot
 {
-
     public SettingsRobot DoNavigateToNetShieldSettingsPage()
     {
         return NavigateToSpecificSettingsPage(NetShieldSettingsCard);
@@ -81,21 +81,32 @@ public partial class SettingsRobot
             .NavigateToSpecificSettingsPage(CustomDnsServersSettingsCard);
     }
 
-    public SettingsRobot DoSelectWireGuardProtocol()
-    {
-        WireGuardProtocolRadioButton.Click();
-        return this;
-    }
-
-    public SettingsRobot DoRestoreSettings()
-    {
-        RestoreDefaultSettingsButton.FocusAndClick();
-        return this;
-    }
-
     public SettingsRobot DoReportAnIssue()
     {
         ReportIssueSettingsCard.FocusAndClick();
+        return this;
+    }
+
+    public SettingsRobot DoSelectNetshield()
+    {
+        NetshieldToggle.Click();
+        return this;
+    }
+
+    public SettingsRobot DoSelectProtocol(Protocol protocol)
+    {
+        switch(protocol)
+        {
+            case Protocol.Wireguard:
+                WireGuardProtocolRadioButton.Click();
+                break;
+            case Protocol.OpenVpnUdp:
+                OpenVpnUdpProtocolRadioButton.Click();
+                break;
+            case Protocol.OpenVpnTcp:
+                OpenVpnTcpProtocolRadioButton.Click();
+                break;
+        }
         return this;
     }
 

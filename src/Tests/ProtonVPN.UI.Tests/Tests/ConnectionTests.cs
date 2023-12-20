@@ -24,8 +24,10 @@ using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.Robots.Overlays;
+using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests;
 
@@ -46,6 +48,7 @@ public class ConnectionTests : TestSession
     private const string SMART_PROTOCOL = "Smart";
 
     private ShellRobot _shellRobot = new();
+    private SettingsRobot _settingsRobot = new();
     private HomeRobot _homeRobot = new();
     private CountriesRobot _countriesRobot = new();
     private OverlaysRobot _overlaysRobot = new();
@@ -71,37 +74,35 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
-    [Retry(3)]
-    //TODO When reconnection logic is implemented remove retry
-    public void Connect()
+    public void ConnectViaWireguard()
     {
-        _homeRobot
-            .DoConnect()
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting()
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected();
+        PerformProtocolConnectionTest(Protocol.Wireguard);
     }
 
     [Test]
-    [Retry(3)]
-    //TODO When reconnection logic is implemented remove retry
+    public void ConnectViaOpenVpnUdp()
+    {
+        PerformProtocolConnectionTest(Protocol.OpenVpnUdp);
+    }
+
+    [Test]
+    public void ConnectViaOpenVpnTcp()
+    {
+        PerformProtocolConnectionTest(Protocol.OpenVpnTcp); 
+    }
+
+    [Test]
     public void ConnectAndDisconnect()
     {
         _homeRobot
             .DoConnect()
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting()
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected()
+            .VerifyAllConnectingStates()
             .DoDisconnect()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected();
     }
 
     [Test]
-    [Retry(3)]
-    //TODO When reconnection logic is implemented remove retry
     public void ConnectAndCancel()
     {
         _homeRobot
@@ -121,10 +122,7 @@ public class ConnectionTests : TestSession
         _countriesRobot.DoConnect(COUNTRY_CODE);
     
         _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY)
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY);
+            .VerifyAllConnectingStates(COUNTRY);
 
         NavigateToCountriesPage();
 
@@ -141,10 +139,7 @@ public class ConnectionTests : TestSession
             .DoConnect(CITY);
 
         _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY, CITY)
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY, CITY);
+            .VerifyAllConnectingStates(COUNTRY, CITY);
 
         NavigateToCountriesPage();
         _countriesRobot.DoNavigateToCountry(COUNTRY_CODE);
@@ -162,43 +157,19 @@ public class ConnectionTests : TestSession
         _countriesRobot.DoConnect(serverConnectButton.Name);
 
         _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY, CITY, serverConnectButton.Number)
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY, CITY, serverConnectButton.Number);
+            .VerifyAllConnectingStates(COUNTRY, CITY, serverConnectButton.Number);
 
         NavigateToServers(COUNTRY_CODE, CITY);
 
         _countriesRobot.VerifyActiveConnection(serverConnectButton.Name);
     }
 
-    private void NavigateToServers(string countryCode, string city)
-    {
-        NavigateToCountriesPage();
-
-        _countriesRobot
-            .DoNavigateToCountry(countryCode)
-            .DoShowServers(city);
-    }
-
-    private void NavigateToCountriesPage()
-    {
-        _shellRobot
-            .DoNavigateToCountriesPage()
-            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
-    }
-
     [Test]
-    [Retry(3)]
-    //TODO When reconnection logic is implemented remove retry
     public void OpenConnectionDetails()
     {
         _homeRobot
             .DoConnect()
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting()
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected()
+            .VerifyAllConnectingStates()
             .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
@@ -232,10 +203,7 @@ public class ConnectionTests : TestSession
     {
         _homeRobot
             .DoConnect()
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting()
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected()
+            .VerifyAllConnectingStates()
             .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
@@ -256,5 +224,36 @@ public class ConnectionTests : TestSession
     public void TestCleanup()
     {
         Cleanup();
+    }
+
+    private void NavigateToServers(string countryCode, string city)
+    {
+        NavigateToCountriesPage();
+
+        _countriesRobot
+            .DoNavigateToCountry(countryCode)
+            .DoShowServers(city);
+    }
+
+    private void NavigateToCountriesPage()
+    {
+        _shellRobot
+            .DoNavigateToCountriesPage()
+            .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false);
+    }
+
+    private void PerformProtocolConnectionTest(Protocol protocol)
+    {
+        _shellRobot
+            .DoNavigateToSettingsPage();
+        _settingsRobot
+            .DoNavigateToProtocolSettingsPage()
+            .DoSelectProtocol(protocol);
+        _shellRobot
+            .DoNavigateToHomePage();
+
+        _homeRobot
+            .DoConnect()
+            .VerifyAllConnectingStates();
     }
 }

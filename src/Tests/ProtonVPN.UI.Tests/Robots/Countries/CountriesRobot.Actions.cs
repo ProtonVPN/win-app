@@ -27,6 +27,12 @@ public partial class CountriesRobot
         return this;
     }
 
+    public CountriesRobot DoConnectSecureCore(string entryCountry, string exitCountry)
+    {
+        GetSecureCoreConnectButton(entryCountry, exitCountry).Click();
+        return this;
+    }
+
     public CountriesRobot DoNavigateToCountry(string countryCode)
     {
         GetNavigateToCountryButton(countryCode).FocusAndClick();
@@ -36,6 +42,12 @@ public partial class CountriesRobot
     public CountriesRobot DoShowServers(string city)
     {
         GetShowServersButton(city).FocusAndClick();
+        return this;
+    }
+
+    public CountriesRobot DoNavigateToSecureCore()
+    {
+        SecureCoreTab.Click();
         return this;
     }
 }

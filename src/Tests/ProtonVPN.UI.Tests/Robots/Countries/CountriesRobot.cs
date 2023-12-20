@@ -23,6 +23,8 @@ namespace ProtonVPN.UI.Tests.Robots.Countries;
 
 public partial class CountriesRobot : UIActions
 {
+    protected AutomationElement SecureCoreTab => ElementByAutomationId("Secure Core");
+
     protected Button GetConnectButton(string item)
     {
         return ElementByAutomationId($"Connect_to_{item}").AsButton();
@@ -41,6 +43,11 @@ public partial class CountriesRobot : UIActions
     protected AutomationElement GetActiveConnectionDot(string item)
     {
         return ElementByAutomationId($"Active_connection_{item}").AsButton();
+    }
+
+    protected Button GetSecureCoreConnectButton(string entryCountry, string exitCountry)
+    {
+        return ElementByName($"via {entryCountry} {exitCountry}").AsButton();
     }
 
     public ServerConnectButton GetServerConnectButton()

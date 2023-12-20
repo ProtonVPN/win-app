@@ -38,4 +38,10 @@ public static class TestConstants
     public static string ServiceLogsPath = @"C:\ProgramData\Proton\Proton VPN\Logs\service-logs.txt";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
+    public enum Protocol
+    {
+        Wireguard,
+        OpenVpnUdp,
+        OpenVpnTcp
+    }
 }
