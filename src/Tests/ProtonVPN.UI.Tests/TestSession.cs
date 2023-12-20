@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.ServiceProcess;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -30,6 +31,7 @@ using Microsoft.Win32;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.TestsHelper;
+using TimeoutException = System.TimeoutException;
 
 namespace ProtonVPN.UI.Tests;
 
@@ -73,6 +75,7 @@ public class TestSession
         try
         {
             Directory.Delete(TestConstants.UserStoragePath, true);
+            Directory.Delete(TestConstants.ServiceLogsFolder, true);
         }
         catch
         {
@@ -89,8 +92,17 @@ public class TestSession
         {
             //Do nothing, since artifact collection shouldn't block cleanup.
         }
-        App.Close();
+        App.Kill();
         App.Dispose();
+        try
+        {
+            ServiceController service = new ServiceController("ProtonVPN Service");
+            service.Stop();
+        }
+        catch (InvalidOperationException)
+        {
+            //Ignore because service might not be started.
+        }
     }
 
     protected static void LaunchApp()

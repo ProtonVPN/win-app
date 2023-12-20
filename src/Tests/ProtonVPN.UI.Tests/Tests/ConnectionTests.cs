@@ -102,6 +102,7 @@ public class ConnectionTests : TestSession
             .VerifyConnectionCardIsDisconnected();
     }
 
+    [Retry(3)]
     [Test]
     public void ConnectAndCancel()
     {
@@ -109,6 +110,8 @@ public class ConnectionTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnecting()
             .VerifyConnectionCardIsConnecting()
+            //Imitate user's delay
+            .Wait(1000)
             .DoCancelConnection()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected();

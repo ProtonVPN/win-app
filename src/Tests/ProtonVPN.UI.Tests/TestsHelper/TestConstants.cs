@@ -36,6 +36,7 @@ public static class TestConstants
     public static string MapCountry = "CA";
     public static string PathToRecorder = @"C:\TestRecorder\ffmpeg.exe";
     public static string ServiceLogsPath = @"C:\ProgramData\Proton\Proton VPN\Logs\service-logs.txt";
+    public static string ServiceLogsFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Proton\Proton VPN\Logs");
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
     public enum Protocol

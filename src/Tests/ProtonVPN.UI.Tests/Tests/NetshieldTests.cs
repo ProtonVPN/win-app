@@ -67,6 +67,8 @@ public class NetshieldTests : TestSession
         _homeRobot
             .DoConnect()
             .VerifyVpnStatusIsConnected()
+            //Give some time for server to setup Netshield.
+            .Wait(2000)
             .VerifyIfDnsIsResolved(NETSHIELD_NO_BLOCK)
             .VerifyIfDnsIsNotResolved(NETSHIELD_LEVEL_ONE)
             .VerifyIfDnsIsNotResolved(NETSHIELD_LEVEL_TWO);
