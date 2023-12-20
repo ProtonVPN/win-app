@@ -24,7 +24,7 @@ namespace ProtonVPN.UI.Tests.Robots.Home;
 
 public partial class HomeRobot : UIActions
 {
-    protected Label VpnStatusTitleLabel => ElementByAutomationId("VpnStatusTitleLabel", TestConstants.ShortTimeout).AsLabel();
+    protected Label VpnStatusTitleLabel => ElementByAutomationId("VpnStatusTitleLabel", TestConstants.MediumTimeout).AsLabel();
     protected Label VpnStatusSubtitleLabel => ElementByAutomationId("VpnStatusSubtitleLabel", TestConstants.MediumTimeout).AsLabel();
 
     protected Label ConnectionCardHeaderLabel => ElementByAutomationId("ConnectionCardHeaderLabel").AsLabel();

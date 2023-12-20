@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
+using System.Net.Sockets;
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Home;
@@ -122,16 +124,37 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot VerifyIfDnsIsResolved(string url)
+    {
+        Assert.IsTrue(TryToResolveDns(url), $"Dns was not resolved for {url}.");
+        return this;
+    }
+
+    public HomeRobot VerifyIfDnsIsNotResolved(string url)
+    {
+        Assert.IsFalse(TryToResolveDns(url), $"DNS was resolved for {url}");
+        return this;
+    }
+
+    public HomeRobot VerifyAllConnectingStates(string countryCode = null, string cityState = null, int? serverNumber = null)
+    {
+        VerifyVpnStatusIsConnecting();
+        VerifyConnectionCardIsConnecting(countryCode, cityState, serverNumber);
+        VerifyVpnStatusIsConnected();
+        VerifyConnectionCardIsConnected(countryCode, cityState, serverNumber);
+        return this;
+    }
+
     private void VerifyVpnStatusLabels(string expectedTitle = null, string expectedSubtitle = null)
     {
         if (!string.IsNullOrEmpty(expectedTitle))
         {
-            WaitUntilTextMatches(() => VpnStatusTitleLabel, TestConstants.VeryShortTimeout, expectedTitle);
+            WaitUntilTextMatches(() => VpnStatusTitleLabel, TestConstants.MediumTimeout, expectedTitle);
         }
 
         if (!string.IsNullOrEmpty(expectedSubtitle))
         {
-            WaitUntilTextMatches(() => VpnStatusSubtitleLabel, TestConstants.VeryShortTimeout, expectedSubtitle);
+            WaitUntilTextMatches(() => VpnStatusSubtitleLabel, TestConstants.MediumTimeout, expectedSubtitle);
         }
     }
 
@@ -182,5 +205,19 @@ public partial class HomeRobot
 
         // Both are set
         return $"{cityState} #{serverNumber}";
+    }
+
+    private static bool TryToResolveDns(string url)
+    {
+        bool isConnected = true;
+        try
+        {
+            Dns.GetHostEntry(url);
+        }
+        catch (SocketException)
+        {
+            isConnected = false;
+        }
+        return isConnected;
     }
 }

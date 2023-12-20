@@ -60,7 +60,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsNetShieldEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                              Style="{StaticResource ToggleSwitchStyle}"
+                              AutomationProperties.AutomationId="NetshieldToggle"/>
             </toolkit:SettingsCard>
 
             <TextBlock Margin="0,8,0,0"

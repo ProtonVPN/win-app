@@ -94,7 +94,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton IsChecked="{x:Bind ViewModel.IsOpenVpnUdpProtocol, Mode=TwoWay}"
+                    <RadioButton AutomationProperties.AutomationId="OpenVpnUdpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsOpenVpnUdpProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
                         <StackPanel>
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
@@ -110,7 +111,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory')}" />
 
-                    <RadioButton IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
+                    <RadioButton AutomationProperties.AutomationId="OpenVpnTcpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
                         <StackPanel>
                             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
