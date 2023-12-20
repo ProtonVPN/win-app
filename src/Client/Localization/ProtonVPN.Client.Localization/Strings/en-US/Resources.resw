@@ -2248,4 +2248,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Gateways_Server" xml:space="preserve">
     <value>Dedicated server</value>
   </data>
+  <data name="Tray_Actions_ExitApplication" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication" xml:space="preserve">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
 </root>

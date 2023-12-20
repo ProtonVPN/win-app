@@ -52,6 +52,7 @@
         <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
         <PackageReference Include="CommunityToolkit.WinUI.Converters" />
         <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
+        <PackageReference Include="H.NotifyIcon.WinUI" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
         <PackageReference Include="Microsoft.WindowsAppSDK" />
@@ -78,6 +79,9 @@
           <Generator>MSBuild:Compile</Generator>
         </Page>
         <Page Update="UI\Gateways\GatewaysPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Tray\TrayIconComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
         <Page Update="UI\Login\Overlays\SsoLoginOverlayDialog.xaml">
@@ -217,6 +221,7 @@
         <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\ContactFormPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
+        <None Remove="UI\Tray\TrayIconComponent.xaml" />
     </ItemGroup>
 
     <ItemGroup>

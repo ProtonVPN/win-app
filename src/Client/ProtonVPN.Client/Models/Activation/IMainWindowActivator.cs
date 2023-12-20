@@ -21,5 +21,11 @@ namespace ProtonVPN.Client.Models.Activation;
 
 public interface IMainWindowActivator
 {
+    void Show();
+
     void Activate();
+
+    void Hide();
+
+    void Exit();
 }

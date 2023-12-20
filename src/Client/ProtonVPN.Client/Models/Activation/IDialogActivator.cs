@@ -34,4 +34,8 @@ public interface IDialogActivator
     void CloseDialog(string pageKey);
 
     void CloseAllDialogs();
+
+    void HideAllDialogs();
+
+    void ActivateAllDialogs();
 }

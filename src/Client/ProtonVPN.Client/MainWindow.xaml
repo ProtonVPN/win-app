@@ -24,13 +24,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
-              xmlns:wex="using:WinUIEx"
+              xmlns:wex="using:WinUIEx" 
+              xmlns:tray="using:ProtonVPN.Client.UI.Tray"
               Width="636"
               Height="589"
               MinWidth="376"
               MinHeight="489"
               Activated="OnActivated"
-              Closed="OnWindowClosed"
               PersistenceId="MainWindow"
               mc:Ignorable="d">
 
@@ -64,7 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Height="16"
                    VerticalAlignment="Center"
                    AutomationProperties.AutomationId="ApplicationIcon"
-                   Source="/Assets/ProtonVPN.ico" />
+                   Source="{StaticResource ProtonVpnOnApplicationIconSource}" />
 
             <TextBlock x:Name="AppTitleBarText"
                        Grid.Column="1"
@@ -75,6 +75,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap" />
         </Grid>
+
+        <tray:TrayIconComponent />
 
         <icons:LoadingLogo x:Name="LoadingLogo"
                            Width="120"

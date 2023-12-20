@@ -563,11 +563,19 @@
         <None Remove="Assets\Flags\ZA.svg" />
         <None Remove="Assets\Flags\ZM.svg" />
         <None Remove="Assets\Flags\ZW.svg" />
+        <None Remove="Assets\Icons\App\proton-vpn-off.svg" />
+        <None Remove="Assets\Icons\App\proton-vpn-on.svg" />
+        <None Remove="Assets\Icons\App\vpn-off.ico" />
+        <None Remove="Assets\Icons\App\vpn-on.ico" />
+        <None Remove="Assets\Icons\App\vpn-tray-error.ico" />
+        <None Remove="Assets\Icons\App\vpn-tray-not-logged-in.ico" />
+        <None Remove="Assets\Icons\App\vpn-tray-protected.ico" />
+        <None Remove="Assets\Icons\App\vpn-tray-unprotected.ico" />
+        <None Remove="Assets\Icons\App\vpn-tray-warning.ico" />
         <None Remove="Assets\Icons\LatencyHigh.xaml" />
         <None Remove="Assets\Icons\LatencyLow.xaml" />
         <None Remove="Assets\Icons\LatencyMedium.xaml" />
         <None Remove="Assets\Icons\LoadingLogo.xaml" />
-        <None Remove="Assets\Icons\logo-mark.svg" />
         <None Remove="Assets\Icons\ProtectedLock.xaml" />
         <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
@@ -587,6 +595,13 @@
         <None Remove="Assets\Illustrations\report-success.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\vpn-off.ico" />
+        <None Remove="Assets\Illustrations\vpn-on.ico" />
+        <None Remove="Assets\Illustrations\vpn-tray-error.ico" />
+        <None Remove="Assets\Illustrations\vpn-tray-not-logged-in.ico" />
+        <None Remove="Assets\Illustrations\vpn-tray-protected.ico" />
+        <None Remove="Assets\Illustrations\vpn-tray-unprotected.ico" />
+        <None Remove="Assets\Illustrations\vpn-tray-warning.ico" />
         <None Remove="Controls\CountryFlagControl.xaml" />
         <None Remove="Controls\DualCommandsRowControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
@@ -628,6 +643,7 @@
         <None Remove="Styles\Controls\TooltipStyles.xaml" />
         <None Remove="Styles\Converters.xaml" />
         <None Remove="Styles\Flags.xaml" />
+        <None Remove="Styles\Icons.xaml" />
         <None Remove="Styles\Illustrations.xaml" />
         <None Remove="Styles\Typography.xaml" />
     </ItemGroup>
@@ -725,6 +741,9 @@
             <Generator>MSBuild:Compile</Generator>
         </Page>
         <Page Update="Styles\Flags.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Styles\Icons.xaml">
           <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
     </ItemGroup>
@@ -842,7 +861,31 @@
         <Content Update="Assets\Flags\Light\Gateway.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Icons\logo-mark.svg">
+        <Content Update="Assets\Icons\App\proton-vpn-off.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\proton-vpn-on.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-off.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-on.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-error.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-not-logged-in.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-protected.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-unprotected.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-warning.ico">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\AD.svg">

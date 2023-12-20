@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Configurations.Files;
 using ProtonVPN.Logging.Contracts;
