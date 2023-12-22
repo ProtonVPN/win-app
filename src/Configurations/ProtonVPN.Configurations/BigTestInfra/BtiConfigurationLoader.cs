@@ -18,8 +18,6 @@
  */
 
 using System.Reflection;
-using ProtonVPN.Builds.Variables;
-using ProtonVPN.Common.Core.OperatingSystems.EnvironmentVariables;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Configurations.BigTestInfra;
@@ -34,9 +32,6 @@ public static class BtiConfigurationLoader
             nameof(IConfiguration.TlsPinning) => BtiTlsPinningLoader.Get(defaultValue),
             nameof(IConfiguration.IsCertificateValidationEnabled) => BtiIsCertificateValidationEnabledLoader.Get(defaultValue),
             nameof(IConfiguration.DohProviders) => BtiDohProvidersLoader.Get(defaultValue),
-            nameof(IConfiguration.ServerValidationPublicKey) =>
-                EnvironmentVariableLoader.GetOrNull("BTI_SERVER_SIGNATURE_PUBLIC_KEY") ??
-                GlobalConfig.BtiServerSignaturePublicKey,
             _ => defaultValue,
         };
     }
