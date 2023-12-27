@@ -25,13 +25,14 @@ using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class ConnectionStatusChangedHandler : IHandler, IEventMessageReceiver<PortForwardingPortChanged>
+public class PortForwardingNotificationHandler : IHandler, IEventMessageReceiver<PortForwardingPortChanged>
 {
     private readonly ISettings _settings;
     private readonly IPortForwardingNewPortNotificationSender _portForwardingNewPortNotificationSender;
     private readonly IPortForwardingManager _portForwardingManager;
 
-    public ConnectionStatusChangedHandler(ISettings settings,
+    public PortForwardingNotificationHandler(
+        ISettings settings,
         IPortForwardingNewPortNotificationSender portForwardingNewPortNotificationSender,
         IPortForwardingManager portForwardingManager)
     {

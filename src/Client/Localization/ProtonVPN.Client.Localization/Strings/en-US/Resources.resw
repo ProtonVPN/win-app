@@ -2248,6 +2248,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Gateways_Server" xml:space="preserve">
     <value>Dedicated server</value>
   </data>
+  <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
+    <value>You'll be disconnected from VPN.</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
+    <value>Sign out from {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
   <data name="Tray_Actions_ExitApplication" xml:space="preserve">
     <value>Exit</value>
   </data>

@@ -78,7 +78,7 @@ public class ClientModule : Module
 
     private void RegisterHandlers(ContainerBuilder builder)
     {
-        builder.RegisterAssemblyTypes(typeof(ConnectionStatusChangedHandler).Assembly)
+        builder.RegisterAssemblyTypes(typeof(PortForwardingNotificationHandler).Assembly)
                .Where(t => typeof(IHandler).IsAssignableFrom(t))
                .AsImplementedInterfaces()
                .SingleInstance()
