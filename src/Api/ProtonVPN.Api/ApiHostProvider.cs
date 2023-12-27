@@ -18,16 +18,14 @@
  */
 
 using System;
-using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Api
 {
-    public class ApiHostProvider : IApiHostProvider, IVpnStateAware
+    public class ApiHostProvider : IApiHostProvider
     {
         private const int MAX_HOURS_WITH_PROXY = 24;
 
@@ -35,10 +33,17 @@ namespace ProtonVPN.Api
         private readonly IAppSettings _appSettings;
         private bool _isDisconnected = true;
 
-        public ApiHostProvider(IAppSettings appSettings, IConfiguration config)
+        public ApiHostProvider(IAppSettings appSettings, IConfiguration config, IVpnStatusNotifier vpnStatusNotifier)
         {
             _appSettings = appSettings;
             _apiHost = new Uri(config.Urls.ApiUrl).Host;
+
+            vpnStatusNotifier.VpnStatusChanged += OnVpnStatusChanged;
+        }
+
+        private void OnVpnStatusChanged(object sender, VpnStatus vpnStatus)
+        {
+            _isDisconnected = vpnStatus == VpnStatus.Disconnected;
         }
 
         public string GetHost()
@@ -52,11 +57,6 @@ namespace ProtonVPN.Api
                    _isDisconnected &&
                    DateTime.UtcNow.Subtract(_appSettings.LastPrimaryApiFailDateUtc).TotalHours < MAX_HOURS_WITH_PROXY &&
                    !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
-        }
-
-        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            _isDisconnected = e.State.Status == VpnStatus.Disconnected;
         }
     }
 }

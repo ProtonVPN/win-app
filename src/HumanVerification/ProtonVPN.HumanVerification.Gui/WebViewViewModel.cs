@@ -67,6 +67,8 @@ namespace ProtonVPN.HumanVerification.Gui
         {
             _requestToken = token;
             RaisePropertyChanged(nameof(Url));
+
+            _logger.Info<AppLog>($"Human verification url changed to: {Url}");
         }
 
         private void OnWebMessageReceived(CoreWebView2WebMessageReceivedEventArgs e)

@@ -332,6 +332,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     "https://dns.google/dns-query",
                 },
 
+                DoHVerifyApiHost = "verify-api.protonvpn.com",
+
                 NtpServerUrl = "time.windows.com",
 
                 ServerValidationPublicKey = "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=",

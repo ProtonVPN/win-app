@@ -410,7 +410,7 @@ namespace ProtonVPN.Core
                 await Resolve<LoginViewModel>().OnVpnStateChanged(e);
                 await Resolve<ReportBugModalViewModel>().OnVpnStateChanged(e);
                 await Resolve<GuestHoleConnector>().OnVpnStateChanged(e);
-                await Resolve<AlternativeHostHandler>().OnVpnStateChanged(e);
+                Resolve<IVpnStatusNotifier>().OnVpnStateChanged(e.State.Status);
             });
 
             vpnServiceManager.RegisterPortForwardingStateCallback((state) =>

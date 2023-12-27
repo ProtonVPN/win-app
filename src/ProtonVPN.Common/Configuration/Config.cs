@@ -205,6 +205,8 @@ namespace ProtonVPN.Common.Configuration
 
         public List<string> DoHProviders { get; set; } = new();
 
+        public string DoHVerifyApiHost { get; set; }
+
         [Required]
         public string DefaultLocale { get; set; }
 
