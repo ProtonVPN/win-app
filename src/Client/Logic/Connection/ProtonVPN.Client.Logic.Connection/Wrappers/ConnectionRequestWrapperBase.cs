@@ -47,7 +47,7 @@ public abstract class ConnectionRequestWrapperBase : RequestWrapperBase
             AllowNonStandardPorts = settings.AllowNonStandardPorts,
             SplitTcp = settings.SplitTcp,
             PreferredProtocols = settings.VpnProtocol == VpnProtocolIpcEntity.Smart
-                ? new List<VpnProtocolIpcEntity> { VpnProtocolIpcEntity.WireGuardUdp, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp }
+                ? [VpnProtocolIpcEntity.WireGuardUdp, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp]
                 : new List<VpnProtocolIpcEntity> { settings.VpnProtocol },
             Ports = new Dictionary<VpnProtocolIpcEntity, int[]>
             {
@@ -55,7 +55,9 @@ public abstract class ConnectionRequestWrapperBase : RequestWrapperBase
                 { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
                 { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
             },
-            CustomDns = Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress).ToList(),
+            CustomDns = Settings.IsCustomDnsServersEnabled
+                ? Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress).ToList()
+                : [],
         };
     }
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -45,29 +45,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea">
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="AlternativeRoutingSettingsCard"
-                               Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_AlternativeRouting')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAlternativeRoutingEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
-                               Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
-                               Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
-                               IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                  Command="{x:Bind ViewModel.NavigateToCommand}"
+                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="NatTypeSettingsCard"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
-                               IsTabStop="False"
-                               Style="{StaticResource VerticalSettingsCardStyle}">
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource VerticalSettingsCardStyle}">
                 <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}" />
