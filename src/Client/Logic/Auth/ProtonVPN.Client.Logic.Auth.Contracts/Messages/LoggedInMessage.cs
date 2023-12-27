@@ -22,4 +22,5 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
 public class LoggedInMessage
 {
+    public required bool IsAutoLogin { get; init; }
 }

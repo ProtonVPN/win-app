@@ -18,6 +18,8 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -25,6 +27,8 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Account;
@@ -33,19 +37,25 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
 {
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IConnectionManager _connectionManager;
+    private readonly IOverlayActivator _overlayActivator;
 
-    public string? Username => _settings.UserDisplayName;
+    public string Username => _settings.UserDisplayName;
 
     public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlanTitle);
 
     public AccountViewModel(
         ILocalizationProvider localizationProvider, 
         ISettings settings, 
-        IUserAuthenticator userAuthenticator)
+        IUserAuthenticator userAuthenticator,
+        IConnectionManager connectionManager,
+        IOverlayActivator overlayActivator)
         : base(localizationProvider)
     {
         _settings = settings;
         _userAuthenticator = userAuthenticator;
+        _connectionManager = connectionManager;
+        _overlayActivator = overlayActivator;
     }
 
     public void Receive(LoggedInMessage message)
@@ -57,6 +67,23 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     [RelayCommand]
     public async Task SignOutAsync()
     {
+        if (!_connectionManager.IsDisconnected)
+        {
+            ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
+                new MessageDialogParameters
+                {
+                    Title = Localizer.GetFormat("Home_Account_SignOut_Confirmation_Title", Username),
+                    Message = Localizer.Get("Home_Account_SignOut_Confirmation_Message"),
+                    PrimaryButtonText = Localizer.Get("Home_Account_SignOut"),
+                    CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+                });
+
+            if (result is not ContentDialogResult.Primary) // Cancel sign out
+            {
+                return;
+            }
+        }
+
         await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
     }
 

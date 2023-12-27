@@ -373,7 +373,7 @@ public class UserAuthenticator : IUserAuthenticator
 
         IsLoggedIn = true;
 
-        _eventMessageSender.Send(new LoggedInMessage());
+        _eventMessageSender.Send(new LoggedInMessage { IsAutoLogin = isAutoLogin });
 
         await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
     }

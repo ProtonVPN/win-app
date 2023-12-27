@@ -39,8 +39,7 @@ namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
 public partial class ConnectionCardViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<RecentConnectionsChanged>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<RecentConnectionsChanged>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
@@ -127,27 +126,6 @@ public partial class ConnectionCardViewModel : ViewModelBase,
     public void Receive(RecentConnectionsChanged message)
     {
         InvalidateCurrentConnectionIntent();
-    }
-
-    public async void Receive(LoggedInMessage message)
-    {
-        // TODO: Auto connect logic should not be part of the viewmodel
-        if (_settings.IsAutoConnectEnabled)
-        {
-            switch (_settings.AutoConnectMode)
-            {
-                case AutoConnectMode.LatestConnection:
-                    await _connectionManager.ConnectAsync(CurrentConnectionIntent ?? ConnectionIntent.Default);
-                    break;
-
-                case AutoConnectMode.FastestConnection:
-                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
-                    break;
-
-                default:
-                    break;
-            }
-        }
     }
 
     protected override void OnLanguageChanged()
