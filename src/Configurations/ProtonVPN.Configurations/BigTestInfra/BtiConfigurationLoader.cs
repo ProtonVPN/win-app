@@ -32,6 +32,7 @@ public static class BtiConfigurationLoader
             nameof(IConfiguration.TlsPinning) => BtiTlsPinningLoader.Get(defaultValue),
             nameof(IConfiguration.IsCertificateValidationEnabled) => BtiIsCertificateValidationEnabledLoader.Get(defaultValue),
             nameof(IConfiguration.DohProviders) => BtiDohProvidersLoader.Get(defaultValue),
+            nameof(IConfiguration.ServerValidationPublicKey) => BtiServerValidationPublicKeyLoader.Get(defaultValue),
             _ => defaultValue,
         };
     }

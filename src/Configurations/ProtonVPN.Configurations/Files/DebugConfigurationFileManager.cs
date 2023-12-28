@@ -20,6 +20,7 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using ProtonVPN.Configurations.BigTestInfra;
 using ProtonVPN.Configurations.Defaults;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
@@ -34,6 +35,7 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
     private readonly ILogger _logger;
     private readonly IJsonSerializer _jsonSerializer;
     private readonly Lazy<string?> _fullFolderPath;
+    private readonly PropertyInfo[] _defaultProperties = typeof(DefaultConfiguration).GetProperties();
 
     public DebugConfigurationFileManager(ILogger logger, IJsonSerializer jsonSerializer)
     {
@@ -127,16 +129,24 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
     private Dictionary<string, object?> GenerateDefaultConfigurationDictionary()
     {
         PropertyInfo[] properties = typeof(Configuration).GetProperties(BindingFlagsConstants.PUBLIC_DECLARED_ONLY);
-        PropertyInfo[] defaultProperties = typeof(DefaultConfiguration).GetProperties();
         Dictionary<string, object?> dictionary = new();
         foreach (PropertyInfo property in properties)
         {
-            PropertyInfo? defaultProperty = defaultProperties.FirstOrDefault(dp => dp.Name == property.Name);
-            if (defaultProperty is not null)
-            {
-                dictionary.Add(property.Name, defaultProperty.GetValue(null));
-            }
+            dictionary.Add(property.Name, GetValueFromBtiOrDefaultConfiguration(property));
         }
         return dictionary;
+    }
+
+    private object? GetValueFromBtiOrDefaultConfiguration(PropertyInfo property)
+    {
+        object? defaultValue = null;
+
+        PropertyInfo? defaultProperty = _defaultProperties.FirstOrDefault(dp => dp.Name == property.Name);
+        if (defaultProperty is not null)
+        {
+            defaultValue = defaultProperty.GetValue(null);
+        }
+
+        return BtiConfigurationLoader.GetValue(property, defaultValue);
     }
 }
