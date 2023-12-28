@@ -39,7 +39,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ScrollViewer MaxHeight="180"
                       Margin="0,0,-8,0"
                       Padding="0,0,8,0"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      AutomationProperties.AutomationId="RecentsPane">
             <ItemsControl IsTabStop="False"
                           ItemsSource="{x:Bind ViewModel.RecentConnections}">
                 <ItemsControl.ItemTemplate>

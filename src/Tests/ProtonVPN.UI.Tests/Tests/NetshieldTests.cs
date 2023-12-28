@@ -37,10 +37,6 @@ public class NetshieldTests : TestSession
     private HomeRobot _homeRobot = new();
     private LoginRobot _loginRobot = new();
 
-    private const string NETSHIELD_NO_BLOCK = "netshield-0.protonvpn.net";
-    private const string NETSHIELD_LEVEL_ONE = "netshield-1.protonvpn.net";
-    private const string NETSHIELD_LEVEL_TWO = "netshield-2.protonvpn.net";
-
     [SetUp]
     public void TestInitialize()
     {
@@ -68,10 +64,8 @@ public class NetshieldTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnected()
             //Give some time for server to setup Netshield.
-            .Wait(2000)
-            .VerifyIfDnsIsResolved(NETSHIELD_NO_BLOCK)
-            .VerifyIfDnsIsNotResolved(NETSHIELD_LEVEL_ONE)
-            .VerifyIfDnsIsNotResolved(NETSHIELD_LEVEL_TWO);
+            .Wait(2000);
+        _settingsRobot.VerifyNetshieldIsBlocking();
     }
 
     [Test]
@@ -84,10 +78,8 @@ public class NetshieldTests : TestSession
         _shellRobot.DoNavigateToHomePage();
         _homeRobot
             .DoConnect()
-            .VerifyVpnStatusIsConnected()
-            .VerifyIfDnsIsResolved(NETSHIELD_NO_BLOCK)
-            .VerifyIfDnsIsResolved(NETSHIELD_LEVEL_ONE)
-            .VerifyIfDnsIsResolved(NETSHIELD_LEVEL_TWO);
+            .VerifyVpnStatusIsConnected();
+        _settingsRobot.VerifyNetshieldIsNotBlocking();
     }
 
     [TearDown]

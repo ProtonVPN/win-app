@@ -93,6 +93,43 @@ public partial class SettingsRobot
         return this;
     }
 
+    public SettingsRobot DoClickCustomDnsToggle()
+    {
+        CustomDnsToggle.Click();
+        return this;
+    }
+
+    public SettingsRobot DoEnableOnWarning()
+    {
+        PrimaryButton.Click();
+        return this;
+    }
+
+    public SettingsRobot DoReconnect()
+    {
+        ReconnectButton.Click();
+        return this;
+    }
+
+    public SettingsRobot DoSetCustomDnsIpAddress(string ipAddress)
+    {
+        CustomDnsIpAddressTextBox.Text = ipAddress;
+        AddButton.Click();
+        return this;
+    }
+
+    public SettingsRobot DoClickCustomDnsAddress(string dnsAddress)
+    {
+        GetCustomDnsCheckBox(dnsAddress).Click();
+        return this;
+    }
+
+    public SettingsRobot DoClickTrashIcon()
+    {
+        TrashIconButton.Click();
+        return this;
+    }
+
     public SettingsRobot DoSelectProtocol(Protocol protocol)
     {
         switch(protocol)

@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
-using System.Net.Sockets;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -124,24 +122,31 @@ public partial class HomeRobot
         return this;
     }
 
-    public HomeRobot VerifyIfDnsIsResolved(string url)
-    {
-        Assert.IsTrue(TryToResolveDns(url), $"Dns was not resolved for {url}.");
-        return this;
-    }
-
-    public HomeRobot VerifyIfDnsIsNotResolved(string url)
-    {
-        Assert.IsFalse(TryToResolveDns(url), $"DNS was resolved for {url}");
-        return this;
-    }
-
-    public HomeRobot VerifyAllConnectingStates(string countryCode = null, string cityState = null, int? serverNumber = null)
+    public HomeRobot VerifyAllStatesUntilConnected(string countryCode = null, string cityState = null, int? serverNumber = null)
     {
         VerifyVpnStatusIsConnecting();
         VerifyConnectionCardIsConnecting(countryCode, cityState, serverNumber);
         VerifyVpnStatusIsConnected();
         VerifyConnectionCardIsConnected(countryCode, cityState, serverNumber);
+        return this;
+    }
+
+    public HomeRobot VerifyRecentsTabIsDisplayed()
+    {
+        Assert.IsNotNull(RecentsTab);
+        return this;
+    }
+
+    public HomeRobot VerifyCountryIsInRecentsList(string country)
+    {
+        Assert.IsNotNull(GetRecentsCountry(country));
+        return this;
+    }
+
+    public HomeRobot VerifyRecentsDoesNotExist(string country)
+    {
+        Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName("Recents")));
+        Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName($"{country} ")));
         return this;
     }
 
@@ -205,19 +210,5 @@ public partial class HomeRobot
 
         // Both are set
         return $"{cityState} #{serverNumber}";
-    }
-
-    private static bool TryToResolveDns(string url)
-    {
-        bool isConnected = true;
-        try
-        {
-            Dns.GetHostEntry(url);
-        }
-        catch (SocketException)
-        {
-            isConnected = false;
-        }
-        return isConnected;
     }
 }

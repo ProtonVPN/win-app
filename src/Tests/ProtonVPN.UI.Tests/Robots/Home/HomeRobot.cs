@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using FlaUI.Core.AutomationElements;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Home;
@@ -48,4 +50,14 @@ public partial class HomeRobot : UIActions
 
     protected Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
     protected MenuItem IssueCategoryMenuItem => ElementByAutomationId("IssueCategoryMenuItem").AsMenuItem();
+
+    protected AutomationElement RecentsTab => ElementByName("Recents");
+    protected AutomationElement PrimaryActionButton => ElementByAutomationId("btnPrimary");
+    protected AutomationElement SecondaryActionButton => ElementByAutomationId("btnSecondary");
+    protected AutomationElement RemoveButton => ElementByName("Remove");
+
+    protected AutomationElement GetRecentsCountry(string countryName)
+    {
+        return ElementByAutomationId("RecentsPane").FindFirstChild(cf => cf.ByName($"{countryName} "));
+    }
 }
