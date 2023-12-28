@@ -17,28 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
-using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
-using System.Threading;
 
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
 [Category("UI")]
-public class NetshieldTests : TestSession
+public class RecentsTests : TestSession
 {
     private ShellRobot _shellRobot = new();
-    private SettingsRobot _settingsRobot = new();
     private HomeRobot _homeRobot = new();
+    private CountriesRobot _countriesRobot = new();
     private LoginRobot _loginRobot = new();
 
-    [SetUp]
-    public void TestInitialize()
+    private const string FIRST_COUNTRY_CODE = "AR";
+    private const string FIRST_COUNTRY_NAME = "Argentina";
+    private const string SECOND_COUNTRY_CODE = "AU";
+    private const string SECOND_COUNTRY_NAME = "Australia";
+
+    [OneTimeSetUp]
+    public void OneTimeSetup()
     {
         LaunchApp();
 
@@ -56,33 +61,50 @@ public class NetshieldTests : TestSession
         Thread.Sleep(2000);
     }
 
-    [Test]
-    //TODO Change this test case to disabling it while connected, when LA logic is implemented
-    public void NetshieldOn()
-    {
-        _homeRobot
-            .DoConnect()
-            .VerifyVpnStatusIsConnected()
-            //Give some time for server to setup Netshield.
-            .Wait(2000);
-        _settingsRobot.VerifyNetshieldIsBlocking();
-    }
-
-    [Test]
-    public void NetshieldOff()
+    [Test, Order(0)]
+    public void RecentIsAddedToTheList()
     {
         _shellRobot
-            .DoNavigateToSettingsPage();
-        _settingsRobot.DoNavigateToNetShieldSettingsPage()
-            .DoSelectNetshield();
-        _shellRobot.DoNavigateToHomePage();
+            .DoNavigateToCountriesPage();
+
+        _countriesRobot
+            .DoConnect(FIRST_COUNTRY_CODE);
         _homeRobot
-            .DoConnect()
-            .VerifyVpnStatusIsConnected();
-        _settingsRobot.VerifyNetshieldIsNotBlocking();
+            .VerifyAllStatesUntilConnected(FIRST_COUNTRY_NAME);
+
+        _shellRobot
+            .DoNavigateToCountriesPage();
+
+        _countriesRobot
+            .DoConnect(SECOND_COUNTRY_CODE);
+        _homeRobot
+            .VerifyAllStatesUntilConnected(SECOND_COUNTRY_NAME)
+            .VerifyRecentsTabIsDisplayed();
+
+        _homeRobot
+            .DoClickOnRecentsTab()
+            .VerifyCountryIsInRecentsList(FIRST_COUNTRY_NAME);
     }
 
-    [TearDown]
+    [Test, Order(1)]
+    public void ConnectionToRecent()
+    {
+        _homeRobot
+            .DoClickOnRecentCountry(FIRST_COUNTRY_NAME)
+            .VerifyAllStatesUntilConnected(FIRST_COUNTRY_NAME)
+            .DoDisconnect()
+            .VerifyVpnStatusIsDisconnected();
+    }
+
+    [Test, Order(2)]
+    public void RemoveRecent()
+    {
+        _homeRobot
+            .RemoveRecent(SECOND_COUNTRY_NAME)
+            .VerifyRecentsDoesNotExist(SECOND_COUNTRY_NAME);
+    }
+
+    [OneTimeTearDown]
     public void TestCleanup()
     {
         Cleanup();

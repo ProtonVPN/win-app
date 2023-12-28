@@ -44,7 +44,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                IsTabStop="False"
                                Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomDnsServersEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                              Style="{StaticResource ToggleSwitchStyle}"
+                              AutomationProperties.AutomationId="CustomDnsToggle"/>
             </toolkit:SettingsCard>
 
             <StackPanel Spacing="8"
@@ -72,12 +73,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Grid.Column="0"
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Watermark')}"
                                  Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}" />
+                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
+                                 AutomationProperties.AutomationId="CustomDnsIpAddressBox"/>
 
                         <Button Grid.Row="0"
                                 Grid.Column="1"
                                 Command="{x:Bind ViewModel.AddDnsServerCommand, Mode=OneTime}"
-                                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}" />
+                                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}"
+                                AutomationProperties.AutomationId="AddButton"/>
 
                         <ItemsRepeater Grid.Row="1"
                                        Grid.Column="0"
@@ -99,9 +102,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Content="{x:Bind IpAddress}"
                                                   IsChecked="{x:Bind IsActive, Mode=TwoWay}" />
                                         <custom:GhostButton Grid.Column="1"
-                                                            Command="{x:Bind RemoveDnsServerCommand, Mode=OneTime}">
+                                                            Command="{x:Bind RemoveDnsServerCommand, Mode=OneTime}"
+                                                            AutomationProperties.AutomationId="TrashIcon">
                                             <custom:GhostButton.LeftIcon>
-                                                <pathicons:Trash />
+                                                <pathicons:Trash/>
                                             </custom:GhostButton.LeftIcon>
                                         </custom:GhostButton>
                                     </Grid>

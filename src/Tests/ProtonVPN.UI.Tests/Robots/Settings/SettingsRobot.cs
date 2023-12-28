@@ -24,40 +24,40 @@ namespace ProtonVPN.UI.Tests.Robots.Settings;
 public partial class SettingsRobot : UIActions
 {
     protected Button GoBackButton => ElementByAutomationId("GoBackButton").AsButton();
-
     protected Button NetShieldSettingsCard => ElementByAutomationId("NetShieldSettingsCard").AsButton();
     protected Button KillSwitchSettingsCard => ElementByAutomationId("KillSwitchSettingsCard").AsButton();
     protected Button PortForwardingSettingsCard => ElementByAutomationId("PortForwardingSettingsCard").AsButton();
     protected Button SplitTunnelingSettingsCard => ElementByAutomationId("SplitTunnelingSettingsCard").AsButton();
-
     protected Button ProtocolSettingsCard => ElementByAutomationId("ProtocolSettingsCard").AsButton();
     protected Button VpnAcceleratorSettingsCard => ElementByAutomationId("VpnAcceleratorSettingsCard").AsButton();
     protected Button AdvancedSettingsCard => ElementByAutomationId("AdvancedSettingsCard").AsButton();
-
     protected Button AutoStartupSettingsCard => ElementByAutomationId("AutoStartupSettingsCard").AsButton();
     protected Button NotificationsSettingsCard => ElementByAutomationId("NotificationsSettingsCard").AsButton();
     protected Button LanguagesSettingsCard => ElementByAutomationId("LanguagesSettingsCard").AsButton();
     protected Button ThemesSettingsCard => ElementByAutomationId("ThemesSettingsCard").AsButton();
     protected Button BetaAccessSettingsCard => ElementByAutomationId("BetaAccessSettingsCard").AsButton();
-
     protected Button SupportCenterSettingsCard => ElementByAutomationId("SupportCenterSettingsCard").AsButton();
     protected Button ReportIssueSettingsCard => ElementByAutomationId("ReportIssueSettingsCard").AsButton();
     protected Button DebugLogsSettingsCard => ElementByAutomationId("DebugLogsSettingsCard").AsButton();
-
     protected Button CensorshipSettingsCard => ElementByAutomationId("CensorshipSettingsCard").AsButton();
-
     protected Button AlternativeRoutingSettingsCard => ElementByAutomationId("AlternativeRoutingSettingsCard").AsButton();
     protected Button CustomDnsServersSettingsCard => ElementByAutomationId("CustomDnsServersSettingsCard").AsButton();
     protected Button NatTypeSettingsCard => ElementByAutomationId("NatTypeSettingsCard").AsButton();
-
-
+    protected ToggleButton CustomDnsToggle => ElementByAutomationId("CustomDnsToggle").AsToggleButton();
     protected Button RestoreDefaultSettingsButton => ElementByAutomationId("RestoreDefaultSettingsButton").AsButton();
-
-
     protected RadioButton SmartProtocolRadioButton => ElementByAutomationId("SmartProtocolRadioButton").AsRadioButton();
     protected RadioButton WireGuardProtocolRadioButton => ElementByAutomationId("WireGuardProtocolRadioButton").AsRadioButton();
     protected RadioButton OpenVpnUdpProtocolRadioButton => ElementByAutomationId("OpenVpnUdpProtocolRadioButton").AsRadioButton();
     protected RadioButton OpenVpnTcpProtocolRadioButton => ElementByAutomationId("OpenVpnTcpProtocolRadioButton").AsRadioButton();
-
     protected ToggleButton NetshieldToggle => ElementByAutomationId("NetshieldToggle").AsToggleButton();
+    protected Button PrimaryButton => ElementByAutomationId("PrimaryButton").AsButton();
+    protected TextBox CustomDnsIpAddressTextBox => ElementByAutomationId("CustomDnsIpAddressBox").AsTextBox();
+    protected Button AddButton => ElementByAutomationId("AddButton").AsButton();
+    protected Button ReconnectButton => ElementByName("Reconnect").AsButton();
+    protected Button TrashIconButton => ElementByAutomationId("TrashIcon").AsButton();
+
+    protected CheckBox GetCustomDnsCheckBox(string dnsAddress)
+    {
+        return ElementByName(dnsAddress).AsCheckBox();
+    }
 }

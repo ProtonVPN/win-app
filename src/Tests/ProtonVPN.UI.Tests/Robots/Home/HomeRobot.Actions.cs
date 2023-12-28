@@ -95,4 +95,24 @@ public partial class HomeRobot
         IssueCategoryMenuItem.Click();
         return this;
     }
+
+    public HomeRobot DoClickOnRecentsTab()
+    {
+        RecentsTab.Click();
+        return this;
+    }
+
+    public HomeRobot DoClickOnRecentCountry(string country)
+    {
+        PrimaryActionButton.Click();
+        return this;
+    }
+
+    public HomeRobot RemoveRecent(string country)
+    {
+        MoveMouseToElement(PrimaryActionButton);
+        SecondaryActionButton.Click();
+        RemoveButton.Click();
+        return this;
+    }
 }

@@ -96,7 +96,7 @@ public class ConnectionTests : TestSession
     {
         _homeRobot
             .DoConnect()
-            .VerifyAllConnectingStates()
+            .VerifyAllStatesUntilConnected()
             .DoDisconnect()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected();
@@ -125,7 +125,7 @@ public class ConnectionTests : TestSession
         _countriesRobot.DoConnect(COUNTRY_CODE);
     
         _homeRobot
-            .VerifyAllConnectingStates(COUNTRY);
+            .VerifyAllStatesUntilConnected(COUNTRY);
 
         NavigateToCountriesPage();
 
@@ -142,7 +142,7 @@ public class ConnectionTests : TestSession
             .DoConnect(CITY);
 
         _homeRobot
-            .VerifyAllConnectingStates(COUNTRY, CITY);
+            .VerifyAllStatesUntilConnected(COUNTRY, CITY);
 
         NavigateToCountriesPage();
         _countriesRobot.DoNavigateToCountry(COUNTRY_CODE);
@@ -160,7 +160,7 @@ public class ConnectionTests : TestSession
         _countriesRobot.DoConnect(serverConnectButton.Name);
 
         _homeRobot
-            .VerifyAllConnectingStates(COUNTRY, CITY, serverConnectButton.Number);
+            .VerifyAllStatesUntilConnected(COUNTRY, CITY, serverConnectButton.Number);
 
         NavigateToServers(COUNTRY_CODE, CITY);
 
@@ -172,7 +172,7 @@ public class ConnectionTests : TestSession
     {
         _homeRobot
             .DoConnect()
-            .VerifyAllConnectingStates()
+            .VerifyAllStatesUntilConnected()
             .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
@@ -206,7 +206,7 @@ public class ConnectionTests : TestSession
     {
         _homeRobot
             .DoConnect()
-            .VerifyAllConnectingStates()
+            .VerifyAllStatesUntilConnected()
             .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
@@ -257,6 +257,6 @@ public class ConnectionTests : TestSession
 
         _homeRobot
             .DoConnect()
-            .VerifyAllConnectingStates();
+            .VerifyAllStatesUntilConnected();
     }
 }
