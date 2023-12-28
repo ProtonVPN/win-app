@@ -167,8 +167,10 @@ i18n-commit-translations:
     - git config --global core.autocrlf false
 
 create-release:
-  image: debian:stable-slim
+  image: harbor.protontech.ch/docker.io/library/python:latest
   stage: release
+  tags:
+    - shared-small
   when: manual
   only:
     refs:
@@ -179,7 +181,7 @@ create-release:
 
 send-slack-notification:
   tags:
-    - windows
+    - windows-dot-net
   only:
     refs:
       - develop
