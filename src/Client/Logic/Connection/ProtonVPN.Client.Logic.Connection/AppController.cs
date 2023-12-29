@@ -95,11 +95,4 @@ public class AppController : IAppController
 
 #warning TODO: Should invoke something
     }
-
-    public async Task OpenWindow()
-    {
-        _logger.Debug<ProcessCommunicationLog>("Another process requested to open the main window.");
-
-#warning TODO: Should invoke something
-    }
 }

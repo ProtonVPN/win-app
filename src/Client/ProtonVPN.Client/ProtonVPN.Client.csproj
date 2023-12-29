@@ -21,6 +21,7 @@
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
         <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+        <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
         <Compile Remove="UI\Dialogs\Infos\**" />

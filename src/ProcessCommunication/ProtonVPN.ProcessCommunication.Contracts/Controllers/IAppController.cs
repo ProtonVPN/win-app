@@ -23,17 +23,14 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
-{
-    [ServiceContract]
-    public interface IAppController
-    {
-        Task VpnStateChange(VpnStateIpcEntity vpnState);
-        Task PortForwardingStateChange(PortForwardingStateIpcEntity portForwardingState);
-        Task ConnectionDetailsChange(ConnectionDetailsIpcEntity connectionDetails);
-        Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic);
-        Task UpdateStateChange(UpdateStateIpcEntity updateState);
+namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-        Task OpenWindow();
-    }
+[ServiceContract]
+public interface IAppController
+{
+    Task VpnStateChange(VpnStateIpcEntity vpnState);
+    Task PortForwardingStateChange(PortForwardingStateIpcEntity portForwardingState);
+    Task ConnectionDetailsChange(ConnectionDetailsIpcEntity connectionDetails);
+    Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic);
+    Task UpdateStateChange(UpdateStateIpcEntity updateState);
 }
