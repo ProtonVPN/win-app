@@ -83,7 +83,6 @@ public class MainWindowActivator :
         _connectionManager = connectionManager;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
-
     }
 
     public void Show()
