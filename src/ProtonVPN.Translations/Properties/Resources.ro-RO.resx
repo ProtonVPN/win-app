@@ -3081,7 +3081,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Direcționează traficul de internet prin rețeaua Tor. Mai lent, dar mai privat.</value>
+    <value>Direcționați traficul de internet prin rețeaua Tor. Mai lent, dar mai privat.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Creare profil</value>

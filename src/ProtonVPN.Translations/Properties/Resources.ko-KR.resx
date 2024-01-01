@@ -230,7 +230,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>엄격한 비로그 방침</value>
+    <value>엄격한 노-로그 방침</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
