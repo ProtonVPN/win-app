@@ -19,6 +19,8 @@
 
 using Autofac;
 using ProtonVPN.Serialization.Json;
+using ProtonVPN.Serialization.Protobuf;
+using ProtonVPN.Serialization.Protobuf.Entities;
 
 namespace ProtonVPN.Serialization.Installers;
 
@@ -27,5 +29,7 @@ public class SerializationModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<JsonSerializer>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ProtobufSerializer>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ProtobufSerializableEntities>().AsImplementedInterfaces().SingleInstance();
     }
 }

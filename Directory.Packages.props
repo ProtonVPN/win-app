@@ -59,6 +59,7 @@
     <PackageVersion Include="PInvoke.Kernel32" Version="0.7.124" />
     <PackageVersion Include="Polly" Version="7.2.0" />
     <PackageVersion Include="Polly.Contrib.WaitAndRetry" Version="1.1.0" />
+    <PackageVersion Include="protobuf-net" Version="3.2.30" />
     <PackageVersion Include="protobuf-net.BuildTools" Version="3.1.25" />
     <PackageVersion Include="protobuf-net.Grpc" Version="1.0.179" />
     <PackageVersion Include="protobuf-net.Grpc.Native" Version="1.0.179" />

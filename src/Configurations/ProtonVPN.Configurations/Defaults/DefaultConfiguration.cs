@@ -41,6 +41,7 @@ public static class DefaultConfiguration
     private static readonly Lazy<string> _localAppDataProtonVpnPath = new(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), PROTON_FOLDER_RELATIVE_PATH));
     private static readonly Lazy<string> _commonAppDataProtonVpnPath = new(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), PROTON_FOLDER_RELATIVE_PATH));
 
+    private static readonly Lazy<string> _storageFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, "Storage"));
     private static readonly Lazy<string> _clientLogsFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, LOGS_FOLDER_NAME));
     private static readonly Lazy<string> _serviceLogsFolder = new(() => Path.Combine(_commonAppDataProtonVpnPath.Value, LOGS_FOLDER_NAME));
     private static readonly Lazy<string> _diagnosticLogsFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, "DiagnosticLogs"));
@@ -59,6 +60,7 @@ public static class DefaultConfiguration
     public static string ClientExePath => Path.Combine(_baseDirectory.Value, "ProtonVPN.Client.exe");
     public static string ServiceExePath => Path.Combine(_baseDirectory.Value, "ProtonVPNService.exe");
 
+    public static string StorageFolder => _storageFolder.Value;
     public static string ClientLogsFolder => _clientLogsFolder.Value;
     public static string ServiceLogsFolder => _serviceLogsFolder.Value;
     public static string DiagnosticLogsFolder => _diagnosticLogsFolder.Value;
