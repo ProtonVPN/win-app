@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.TestsHelper.BTI
+using System;
+
+namespace ProtonVPN.Api.Contracts
 {
-    public class ApiMocks
+    public interface IOutdatedAppNotifier
     {
-        public const string CERTIFICATE_ERROR_503 = @"POST /vpn/v1/certificate:
-  - body:
-      Error: Test scenario
-    status: 503";
+        event EventHandler AppOutdated;
+
+        void TriggerOutdatedAppEvent();
     }
 }

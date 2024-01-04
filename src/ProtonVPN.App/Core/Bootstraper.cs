@@ -508,7 +508,7 @@ namespace ProtonVPN.Core
                 Resolve<ExpiredSessionHandler>().Execute();
             };
 
-            Resolve<OutdatedAppHandler>().AppOutdated += Resolve<OutdatedAppNotification>().OnAppOutdated;
+            Resolve<OutdatedAppNotification>();
             Resolve<IModals>();
             Resolve<InsecureNetworkNotification>();
             Resolve<ActionableFailureApiResultEventHandler>();

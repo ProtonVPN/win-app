@@ -20,8 +20,10 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper.BTI
 {
@@ -29,6 +31,11 @@ namespace ProtonVPN.UI.Tests.TestsHelper.BTI
     {
         public static void Set(string desiredKey, string newValue)
         {
+            if (!File.Exists(TestData.TestConfigPath))
+            {
+                GenerateAppConfig();
+            }
+
             string json = File.ReadAllText(TestData.TestConfigPath);
             JObject jsonObject = JObject.Parse(json);
             string updatedJsonString = UpdateJsonValue(jsonObject, desiredKey, newValue);
@@ -57,6 +64,17 @@ namespace ProtonVPN.UI.Tests.TestsHelper.BTI
             }
 
             return token.ToString(Formatting.None);
+        }
+
+        protected static void GenerateAppConfig()
+        {
+            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal currentPrincipal = new WindowsPrincipal(currentIdentity);
+            bool isAdmin = currentPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
+            Assert.That(isAdmin, Is.True, "User does not have Admin permissions, to generate Configuration file.");
+
+            TestSession.LaunchApp();
+            TestSession.App.Close();
         }
     }
 }

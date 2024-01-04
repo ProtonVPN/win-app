@@ -2598,7 +2598,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Profitez d'une couverture mondiale en passant à VPN Plus.</value>
+    <value>Profitez de serveurs dans le monde entier en passant à VPN Plus.</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Ce n'est pas le pays que vous vouliez ? Changez d'abonnement pour choisir n'importe quel serveur.</value>
@@ -3296,7 +3296,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Protégez-vous des attaques réseau</value>
   </data>
   <data name="Upsell_SecureCore_RouteThrough">
-    <value>Passez par des serveurs ultra sécurisés en Suisse, en Suède et en Islande</value>
+    <value>Passez par des serveurs ultra-sécurisés en Suisse, en Suède et en Islande.</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
     <value>En passant à l'abonnement Plus</value>

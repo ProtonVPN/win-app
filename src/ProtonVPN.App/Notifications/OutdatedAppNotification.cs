@@ -17,8 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading.Tasks;
-using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
@@ -46,16 +47,26 @@ namespace ProtonVPN.Notifications
             IUserAuthenticator userAuthenticator,
             LoginWindow loginWindow,
             IScheduler scheduler,
-            IVpnServiceManager vpnServiceManager)
+            IVpnServiceManager vpnServiceManager,
+            IOutdatedAppNotifier outdatedAppNotifier)
         {
             _modals = modals;
             _userAuthenticator = userAuthenticator;
             _loginWindow = loginWindow;
             _scheduler = scheduler;
             _vpnServiceManager = vpnServiceManager;
+
+            outdatedAppNotifier.AppOutdated += OnAppOutdatedAsync;
         }
 
-        public async void OnAppOutdated(object sender, BaseResponse e)
+        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        {
+            _vpnStatus = e.State.Status;
+
+            return Task.CompletedTask;
+        }
+
+        private async void OnAppOutdatedAsync(object sender, EventArgs e)
         {
             if (_notified)
             {
@@ -74,13 +85,6 @@ namespace ProtonVPN.Notifications
                 _loginWindow.Hide();
                 await _modals.ShowAsync<OutdatedAppModalViewModel>();
             });
-        }
-
-        public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            _vpnStatus = e.State.Status;
-
-            return Task.CompletedTask;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace ProtonVPN.UI.Tests
     {
         protected AutomationElement Desktop;
 
-        protected dynamic WaitUntilExistsByName(string name, TimeSpan time)
+        public dynamic WaitUntilExistsByName(string name, TimeSpan time)
         {
             RetryResult<AutomationElement> retry = Retry.WhileNull(
                 () => {

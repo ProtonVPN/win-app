@@ -35,7 +35,7 @@ namespace ProtonVPN.UI.Tests
 {
     public class TestSession
     {
-        protected static Application App;
+        public static Application App;
         protected static Application Service;
         protected static Window Window;
 
@@ -103,7 +103,7 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        protected static void LaunchApp()
+        public static void LaunchApp()
         {
             string appExecutable = TestData.AppVersionFolder + @"\ProtonVPN.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo(appExecutable)
@@ -163,17 +163,6 @@ namespace ProtonVPN.UI.Tests
                 process.StartInfo.UseShellExecute = true;
                 process.Start();
             }
-        }
-        
-        protected static void GenerateAppConfig()
-        {
-            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
-            WindowsPrincipal currentPrincipal = new WindowsPrincipal(currentIdentity);
-            bool isAdmin = currentPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
-            Assert.That(isAdmin, Is.True, "User does not have Admin permissions, to generate Configuration file.");
-
-            LaunchApp();
-            App.Close();
         }
 
         private static void SaveScreenshotAndLogsIfFailed()

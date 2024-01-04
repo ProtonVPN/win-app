@@ -51,9 +51,13 @@ build-release:
     
 build-bti:
   rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $BTI_SCHEDULED == "true"
       when: always
     - when: manual
   extends:
@@ -107,7 +111,7 @@ bti-test:
       when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $BTI_SCHEDULED == "true"
       when: always
     - when: manual
   tags:

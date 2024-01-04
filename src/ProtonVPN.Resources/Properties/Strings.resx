@@ -216,4 +216,10 @@
   <data name="Language_sk-SK" xml:space="preserve">
     <value>Slovenčina</value>
   </data>
+  <data name="Language_nn-NO" xml:space="preserve">
+    <value>Norsk</value>
+  </data>
+  <data name="Language_nb-NO" xml:space="preserve">
+    <value>Norsk bokmål</value>
+  </data>
 </root>

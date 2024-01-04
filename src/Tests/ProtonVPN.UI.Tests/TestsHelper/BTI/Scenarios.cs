@@ -23,6 +23,8 @@ namespace ProtonVPN.UI.Tests.TestsHelper.BTI
     {
         public const string HARDJAIL_ALL_UNKOWN_ERROR = "enable/sessions_hardjail_all";
         public const string UNHARDJAIL_ALL = "enable/sessions_un_hardjail_all";
+        public const string FORCE_UPDATE = "enable/force_update_auth_endpoint";
+        public const string CERTIFICATE_ENDPOINT_503 = "enable/certificate_endpoint_returns_503";
         public const string RESET = "reset";
         public const string ATLAS_UNJAIL_ALL = "internal/quark/jail:unban";
         public static string SEED_PLUS_USER(string username)

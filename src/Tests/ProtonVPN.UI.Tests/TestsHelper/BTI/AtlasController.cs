@@ -55,12 +55,5 @@ namespace ProtonVPN.UI.Tests.TestsHelper.BTI
             Match match = Regex.Match(response, pattern);
             return match.Groups[1].Value;
         }
-
-        public static async Task MockApiAsync(string mock)
-        {
-            var content = new StringContent("_method=put&mockConfig=" + Uri.EscapeDataString(mock), System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
-            HttpResponseMessage response = await _client.PostAsync("/internal/mock", content);
-            response.EnsureSuccessStatusCode();
-        }
     }
 }

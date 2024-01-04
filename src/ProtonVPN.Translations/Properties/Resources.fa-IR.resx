@@ -530,10 +530,10 @@
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
-    <value>{0} country</value>
+    <value>{0} کشور</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} countries</value>
+    <value>{0} کشورها</value>
   </data>
   <data name="Country_val_AD">
     <value>آندورا</value>
@@ -1549,7 +1549,7 @@
     <value>برای آغاز سفر خود در Proton VPN لطفاً اتصال‌های VPN خود را به حساب کاربری خود یا هر حساب فرعی دیگری اختصاص دهید.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>This step will take just a few minutes. After that you will be able to sign in and protect all your devices.</value>
+    <value>این مرحله فقط چند دقیقه طول می‌کشد. پس از آن شما قادر خواهید بود تا وارد شوید و از همهٔ دستگاه‌های خود حفاظت کنید.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Thanks for upgrading</value>
@@ -1591,7 +1591,7 @@
     <value>برخی بخش های Proton VPN ممکن است مسدود یا غیرفعال شده باشند، که از اتاصل شما جلوگیری میکند. بر روی فعال سازی کلیک کنید تا مشکل رفع شود.&lt;LineBreak/&gt;توجه کنید که این عملیات نیاز به امتیازات ادمین دارد.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>غیرفعال کردن Kill Switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1755,10 +1755,10 @@
     <value>For Split Tunneling to function properly, you must disable kill switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
-    <value>Hundreds of servers in {0} country</value>
+    <value>صدها سرور در {0} کشور</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Hundreds of servers in {0} countries</value>
+    <value>صدها سرور در {0} کشور</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
     <value>همزمان به ۱۰ دستگاه متصل شوید</value>
@@ -1944,7 +1944,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>اینترنت امن در همه جا</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2040,7 +2040,7 @@
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Upgrade to Plus</value>
+    <value>ارتقا به Plus</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>متصل</value>
@@ -2472,10 +2472,10 @@
     <value>ارتقا</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>اگر ارتباط VPN قطع شد اینترنت خود را قطع کنید تا از نشتی تصادفی IP جلوگیری شود.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>اینترنت را بدون آگهی و بدافزار مرور کنید.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
@@ -2517,10 +2517,10 @@
     <value>Secure Core</value>
   </data>
   <data name="Secure_Servers_lbl_One">
-    <value>{0} secure server</value>
+    <value>{0} سرور امن</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} secure servers</value>
+    <value>{0} سرور امن</value>
   </data>
   <data name="ServerType_val_B2B">
     <value>Gateways</value>
@@ -2615,7 +2615,7 @@
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>ارتقا به Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>از طریق</value>
@@ -2719,7 +2719,7 @@
     <value>TUN adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
-    <value>Port Forwarding</value>
+    <value>هدایت درگاه</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
     <value>میانبر Port Forwarding</value>
@@ -2883,7 +2883,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>ارتقا به Plus</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2950,7 +2950,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Plus locations ({0})</value>
+    <value>محل‌های Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>مکان‌های پایه &amp; پلاس ({0})</value>
@@ -2980,7 +2980,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>سرورهای پایه ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Plus servers ({0})</value>
+    <value>سرورهای Plus ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
     <value>سرورهای داخلی</value>
@@ -3050,7 +3050,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Route your internet traffic through the Tor network. Slower, but more private.</value>
+    <value>ترافیک اینترنت خود را از شبکهٔ Tor عبور دهید. کندتر، اما با حریم خصوصی بالاتر.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>ایجاد پروفایل</value>
@@ -3162,7 +3162,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Access over {0} in {1}</value>
+    <value>دسترسی به {0} سرور در {1} کشور</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">

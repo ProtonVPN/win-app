@@ -244,11 +244,11 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Adblocker (NetShield)</value>
+    <value>Bloker oglasa (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Strict no-logs policy</value>
+    <value>Stroga politika ne spremanja zapisa</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -268,16 +268,16 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; server</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; poslužitelj</value>
   </data>
   <data name="Account_lbl_Servers_Few">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; poslužitelja</value>
   </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; servers</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; poslužitelja</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Streaming service support</value>
+    <value>Podrška za streaming usluge</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
@@ -285,7 +285,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Username">
-    <value>Username:</value>
+    <value>Korisničko ime:</value>
     <comment>The label for user login name in Account window</comment>
   </data>
   <data name="Account_ttl">
@@ -320,7 +320,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Sign out</value>
+    <value>Odjava</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -328,7 +328,7 @@
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
   <data name="App_mnu_ReportBug">
-    <value>Report an Issue</value>
+    <value>Prijavite problem</value>
     <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="App_mnu_Settings">
@@ -360,23 +360,23 @@
     <comment>The text on Close button in Issue Report window (closes the window)</comment>
   </data>
   <data name="BugReport_btn_FillOutTheForm">
-    <value>Contact us</value>
+    <value>Kontaktirajte nas</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Update</value>
+    <value>Ažuriraj</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Done</value>
+    <value>Gotovo</value>
   </data>
   <data name="BugReport_btn_LearnMore">
-    <value>Learn More</value>
+    <value>Saznaj više</value>
   </data>
   <data name="BugReport_btn_Retry">
     <value>Pokušaj ponovno</value>
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Send report</value>
+    <value>Pošaljite izvještaj</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
@@ -387,7 +387,7 @@
     <value>Didn’t work?</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>Email</value>
+    <value>E-pošta</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
@@ -418,7 +418,7 @@
     <value>A log is a type of file that shows us the actions you took that led to an error. We’ll only ever use them to help our engineers fix bugs.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Update Proton VPN</value>
+    <value>Ažuriraj Proton VPN</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
     <value>This version of Proton VPN might have already solved your issue!</value>
@@ -430,10 +430,10 @@
     <value>These tips could help to solve your issue faster.</value>
   </data>
   <data name="BugReport_lbl_Step">
-    <value>Step</value>
+    <value>Korak</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Username</value>
+    <value>Korisničko ime</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
@@ -451,7 +451,7 @@
     <value>We’ll get back to you as soon as we can.</value>
   </data>
   <data name="BugReport_lbl_of">
-    <value>of</value>
+    <value>od</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
@@ -470,11 +470,11 @@
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
-    <value>Thanks for your feedback</value>
+    <value>Hvala vam na povratnim informacijama</value>
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Report an issue</value>
+    <value>Prijavite problem</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
@@ -542,13 +542,13 @@
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
-    <value>{0} country</value>
+    <value>{0} država</value>
   </data>
   <data name="Countries_lbl_Few">
-    <value>{0} countries</value>
+    <value>{0} države</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} countries</value>
+    <value>{0} država</value>
   </data>
   <data name="Country_val_AD">
     <value>Andora</value>
@@ -623,7 +623,7 @@
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD">
-    <value>Bangladesh</value>
+    <value>Bangladeš</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE">
@@ -1123,7 +1123,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Macedonia</value>
+    <value>Makedonija</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1607,7 +1607,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Some Proton VPN's components might be blocked or disabled, preventing you to connect. Click on Enable to fix it.&lt;LineBreak/&gt;Note that this operation requires Admin privileges.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Onemogući kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1762,10 +1762,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Introducing Proton’s refreshed look. Many services, one mission. Welcome to an internet where privacy is the default.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Learn more&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
-    <value>Updated Proton, unified protection</value>
+    <value>Ažurirani Proton, jedinstvena zaštita</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Got it</value>
+    <value>Razumijem</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>For Split Tunneling to function properly, you must disable kill switch.</value>
@@ -1951,7 +1951,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Authenticate</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>Prijava</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
@@ -1963,7 +1963,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Secure internet anywhere</value>
+    <value>Siguran internet bilo gdje</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -1978,14 +1978,14 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Two-factor authentication code</value>
+    <value>Kôd dvofaktorske autentikacije</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Korisničko ime</value>
     <comment>The label for Username text box in Login window</comment>
   </data>
   <data name="Login_lnk_CommonSignInIssues">
-    <value>Common sign in issues</value>
+    <value>Najčešći problemi s prijavom</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
@@ -1993,7 +1993,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
-    <value>Forgot username</value>
+    <value>Zaboravili ste korisničko ime</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
   </data>
   <data name="Login_lnk_LoginProblems">
@@ -2005,22 +2005,22 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
   <data name="Login_lnk_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>Prijavite problem</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
-    <value>Report an issue</value>
+    <value>Prijavite problem</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Reset password</value>
+    <value>Ponovno postavljanje lozinke</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
     <value>Incorrect two-factor authentication code</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Incorrect login credentials. Please try again.</value>
+    <value>Nevažeći podaci za prijavu. Molimo pokušajte ponovno.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
@@ -2059,7 +2059,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Upgrade to Plus</value>
+    <value>Nadogradite na Plus plan</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>POVEZANO</value>
@@ -2091,10 +2091,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Activate Secure Core</value>
   </data>
   <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
-    <value>Don’t show again</value>
+    <value>Ne prikazuj ponovno</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>Više informacija</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>Secure Core offers the highest level of security and privacy, but it may reduce your internet speed. If you need more performance, you can disable Secure Core.</value>
@@ -2115,10 +2115,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>What’s new</value>
+    <value>Što je novo</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Got it</value>
+    <value>Razumijem</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2136,7 +2136,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN detected that your current network is preventing a connection to the VPN. Enabling Smart Protocol might bypass these limitations.</value>
+    <value>Proton VPN je otkrio da vaša trenutna mreža spriječava vezu s VPN-om. Omogućavanje pametnog protokola moglo bi zaobići ta ograničenja.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
@@ -2160,7 +2160,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <value>Odspojite drugi uređaj da biste povezali ovaj ili nadogradite na PLUS plan za istovremeno povezivanje 10 uređaja uređaja.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2176,7 +2176,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Restart</value>
+    <value>Ponovno pokreni</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
@@ -2343,7 +2343,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Gateway:</value>
+    <value>Pristupnik</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
@@ -2387,19 +2387,19 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
   </data>
   <data name="Profiles_col_Action">
-    <value>Action</value>
+    <value>Radnja</value>
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection">
-    <value>Connection</value>
+    <value>Veza</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
-    <value>Profile</value>
+    <value>Profil</value>
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Protocol">
-    <value>Protocol</value>
+    <value>Protokol</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
@@ -2423,10 +2423,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The title of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
-    <value>Apply</value>
+    <value>Primijeni</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Coupon code</value>
+    <value>Kôd kupona</value>
   </data>
   <data name="PromoCode_lbl_Success">
     <value>Coupon has been applied successfully.</value>
@@ -2455,11 +2455,11 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>Kill switch isključen</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>Kill switch uključen</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2494,10 +2494,10 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>NADOGRADI</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Disables internet if the VPN connection drops to prevent accidental IP leak.</value>
+    <value>Onemogućuje internet ako VPN veza se prekine, kako bi se spriječilo slučajno curenje IP adrese.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Browse the internet without ads and malware.</value>
+    <value>Pretražujte internet bez oglasa i zlonamjernih programa.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
     <value>Ads blocked</value>
@@ -2536,7 +2536,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>Route your most sensitive data through our safest servers in privacy-friendly countries.</value>
+    <value>Usmjerite svoje najosjetljivije podatke preko naših najsigurnijih poslužitelja u zemljama koje poštuju privatnost.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
     <value>Secure Core može smanjiti brzinu VPN-a</value>
@@ -2554,7 +2554,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>{0} secure servers</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Gateways</value>
+    <value>Pristupnici</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
@@ -2574,7 +2574,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Fastest</value>
+    <value>Najbrže</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
@@ -2634,19 +2634,19 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <value>Not the country you wanted? Upgrade to choose any server</value>
   </data>
   <data name="Servers_btn_Connect">
-    <value>Connect</value>
+    <value>Poveži</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
   </data>
   <data name="Servers_btn_Disconnect">
-    <value>Disconnect</value>
+    <value>Odspoji</value>
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>Nadogradite na Plus plan</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>putem</value>
@@ -2914,7 +2914,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Upgrade to Plus</value>
+    <value>Nadogradite na Plus plan</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2930,11 +2930,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>My Profiles</value>
+    <value>Moji profili</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Recommended</value>
+    <value>Preporučeno</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
@@ -2999,7 +2999,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>Informacije</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>PLUS lokacije ({0})</value>
@@ -3051,13 +3051,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
-    <value>Learn more</value>
+    <value>Više informacija</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
     <value>P2P/BitTorrent</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P_Desc">
-    <value>These servers give the best performance for BitTorrent and file sharing.</value>
+    <value>Ovi poslužitelji pružaju najbolje performanse za BitTorrent i dijeljenje datoteka.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
     <value>PLUS</value>
@@ -3066,7 +3066,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
-    <value>This technology allows Proton VPN to provide higher speed and security in difficult-to-serve countries.</value>
+    <value>Ova tehnologija omogućuje Proton VPN-u da pruža veću brzinu i sigurnost u zemljama koje je teško uslužiti.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
     <value>Streaming</value>
@@ -3075,7 +3075,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>PLUS poslužitelji podržavaju streamanje (Netflix, Disney+, etc) od bilo gdje na svijetu.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
-    <value>Features</value>
+    <value>Značajke</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor">
     <value>Tor</value>
@@ -3088,7 +3088,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
-    <value>Manage</value>
+    <value>Upravljanje</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Sidebar_Profiles_ttl">
@@ -3107,7 +3107,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Streamanje - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
-    <value>Features</value>
+    <value>Značajke</value>
   </data>
   <data name="Sidebar_Streaming_Info">
     <value>Povežite se s Plus poslužiteljem u ovoj državi da biste započeli streamanje.</value>
@@ -3162,7 +3162,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>minuta</value>
   </data>
   <data name="Tooltips_SmartReconnection_Description">
-    <value>You have been switched to a faster server that is similar to the one you selected.</value>
+    <value>Prebačeni ste na brži poslužitelj sličan onome koji ste odabrali.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
@@ -3170,7 +3170,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Notification Settings</value>
+    <value>Postavke obavijesti</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
@@ -3282,11 +3282,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Enjoy ad-free browsing with NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
-    <value>Learn More</value>
+    <value>Više informacija</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3362,7 +3362,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Get the best of both worlds</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3421,7 +3421,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text on Cancel button in data entry windows</comment>
   </data>
   <data name="Window_btn_Disable">
-    <value>Disable</value>
+    <value>Onemogući</value>
     <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">

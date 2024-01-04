@@ -118,154 +118,136 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Сбой проверки наличия обновлений</value>
+    <value>Kunne ikke se etter oppdatering</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Checking">
-    <value>Проверка наличия обновления</value>
+    <value>Ser etter oppdatering</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_DownloadFailed">
-    <value>Сбой загрузки обновления</value>
+    <value>Kunne ikke laste ned oppdatering</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Downloading">
-    <value>Загрузка обновления</value>
+    <value>Laster ned oppdatering</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_None">
-    <value>Последняя версия Proton VPN уже установлена</value>
+    <value>Proton VPN er oppdatert</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Ready">
-    <value>Доступна новая версия приложения!</value>
+    <value>Ny app-versjon tilgjengelig!</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion">
-    <value>Список изменений версии {0}</value>
+    <value>Endringslogg til v.{0}</value>
     <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
   </data>
   <data name="About_lbl_ChangelogVersion_New">
-    <value>Новая</value>
+    <value>Ny</value>
     <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
   </data>
   <data name="About_lbl_CurrentVersion">
-    <value>Текущая версия:</value>
+    <value>Gjeldende versjon:</value>
     <comment>The label for current app version number in About window</comment>
   </data>
   <data name="About_lbl_CurrentVersion_EarlyAccess">
-    <value>Ранний доступ</value>
+    <value>Tidlig tilgang</value>
     <comment>The label displayed next to current app version in About window. Displayed for early access app version.</comment>
   </data>
   <data name="About_lbl_LastUpdate">
-    <value>Последнее обновление:</value>
+    <value>Siste oppdatering:</value>
     <comment>The label for last update date in About window</comment>
   </data>
   <data name="About_lbl_LicensingInformation">
-    <value>Информация о лицензиях:</value>
+    <value>Lisensinformasjon:</value>
     <comment>The label for licensing information in About window</comment>
   </data>
   <data name="About_lnk_ReadLicense">
-    <value>Читать здесь</value>
+    <value>Les her</value>
     <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
   </data>
   <data name="About_lnk_Update">
-    <value>Обновить</value>
+    <value>Oppdater</value>
     <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
   </data>
   <data name="About_ttl">
-    <value>О программе</value>
+    <value>Om</value>
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
-    <value>Управлять подпиской</value>
+    <value>Behandle abonnementet</value>
     <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
-    <value>Обход блокировок</value>
+    <value>Få tilgang til blokkert innhold</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_AccountPlan">
-    <value>Тарифный план:</value>
+    <value>Kontoplan:</value>
     <comment>The label for account plan name in Account window</comment>
   </data>
   <data name="Account_lbl_AccountType">
-    <value>Тип аккаунта:</value>
+    <value>Kontotype:</value>
     <comment>The label for account type in Account window</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures">
-    <value>Все функции тарифа Plus</value>
+    <value>Alle Plus-plan funksjoner</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Connection_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; подключение VPN</value>
-  </data>
-  <data name="Account_lbl_Connection_Few">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; подключения VPN</value>
-  </data>
-  <data name="Account_lbl_Connection_Many">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; подключений VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-tilkobling</value>
   </data>
   <data name="Account_lbl_Connection_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; подключений VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN-tilkoblinger</value>
   </data>
   <data name="Account_lbl_Countries_One">
-    <value>в &lt;Bold&gt;{0}&lt;/Bold&gt; стране</value>
-  </data>
-  <data name="Account_lbl_Countries_Few">
-    <value>в &lt;Bold&gt;{0}&lt;/Bold&gt; странах</value>
-  </data>
-  <data name="Account_lbl_Countries_Many">
-    <value>в &lt;Bold&gt;{0}&lt;/Bold&gt; странах</value>
+    <value>i &lt;Bold&gt;{0}&lt;/Bold&gt; land</value>
   </data>
   <data name="Account_lbl_Countries_Other">
-    <value>в &lt;Bold&gt;{0}&lt;/Bold&gt; странах</value>
+    <value>i &lt;Bold&gt;{0}&lt;/Bold&gt; land</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
-    <value>Текущий тариф</value>
+    <value>Gjeldende plan</value>
   </data>
   <data name="Account_lbl_Device_One">
-    <value>Устройство</value>
-  </data>
-  <data name="Account_lbl_Device_Few">
-    <value>Устройства</value>
-  </data>
-  <data name="Account_lbl_Device_Many">
-    <value>Устройств</value>
+    <value>Enhet</value>
   </data>
   <data name="Account_lbl_Device_Other">
-    <value>Устройств</value>
+    <value>Enheter</value>
   </data>
   <data name="Account_lbl_Free">
     <value>Proton VPN Free</value>
     <comment>The name of VPN subscription plan</comment>
   </data>
   <data name="Account_lbl_HighSpeed">
-    <value>&lt;Bold&gt;Высокая&lt;/Bold&gt; скорость</value>
+    <value>&lt;Bold&gt;Høy&lt;/Bold&gt; hastighet</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Наивысшая&lt;/Bold&gt; скорость (до 10 Гбит/с)</value>
+    <value>&lt;Bold&gt;Høyeste&lt;/Bold&gt; hastighet (opptil 10 Gbps)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
-    <value>&lt;Bold&gt;Средняя&lt;/Bold&gt; скорость</value>
+    <value>&lt;Bold&gt;Middels&lt;/Bold&gt; hastighet</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_NetShield">
-    <value>Блокировщик рекламы (NetShield)</value>
+    <value>Annonseblokkering (NetShield)</value>
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Строгая политика отсутствия журналов активности</value>
+    <value>Streng ingen-loggførings-praksis</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
-    <value>Поддержка P2P/BitTorrent</value>
+    <value>P2P/BitTorrent-støtte</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P_Info">
-    <value>Поддержка протоколов обмена файлами, таких как Bittorrent.</value>
+    <value>Støtte for fildelingsprotokoller, slik som BitTorrent.</value>
     <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
   </data>
   <data name="Account_lbl_Plus">
@@ -277,82 +259,76 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Servers_One">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; сервер</value>
-  </data>
-  <data name="Account_lbl_Servers_Few">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; сервера</value>
-  </data>
-  <data name="Account_lbl_Servers_Many">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; серверов</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; tjener</value>
   </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; сервера</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; tjenere</value>
   </data>
   <data name="Account_lbl_Streaming">
-    <value>Поддержка служб трансляции</value>
+    <value>Støtte for strømmetjenester</value>
     <comment>The text displayed in Account window for Streaming service support</comment>
   </data>
   <data name="Account_lbl_TorOverVpn">
-    <value>TOR через VPN</value>
+    <value>TOR over VPN</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Username">
-    <value>Имя пользователя:</value>
+    <value>Brukernavn:</value>
     <comment>The label for user login name in Account window</comment>
   </data>
   <data name="Account_ttl">
-    <value>Аккаунт</value>
+    <value>Konto</value>
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Ваш запрос не удался. Пожалуйста, попробуйте снова.</value>
+    <value>Forespørselen din mislyktes. Vennligst prøv igjen.</value>
   </data>
   <data name="App_mnu_About">
-    <value>О программе</value>
+    <value>Om</value>
     <comment>The header of About menu item in the main app window (opens About window)</comment>
   </data>
   <data name="App_mnu_Account">
-    <value>Аккаунт</value>
+    <value>Konto</value>
     <comment>The header of Account menu item in the main app window (opens Account window)</comment>
   </data>
   <data name="App_mnu_Connect">
-    <value>Подключиться</value>
+    <value>Koble til</value>
     <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="App_mnu_Disconnect">
-    <value>Отключиться</value>
+    <value>Koble fra</value>
     <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
   </data>
   <data name="App_mnu_Exit">
-    <value>Закрыть приложение</value>
+    <value>Avslutt</value>
     <comment>The header of Exit menu item in the main app window (exits the app)</comment>
   </data>
   <data name="App_mnu_Help">
-    <value>Справка</value>
+    <value>Hjelp</value>
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Выход из аккаунта</value>
+    <value>Logg av</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
-    <value>Профили</value>
+    <value>Profiler</value>
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
   <data name="App_mnu_ReportBug">
-    <value>Сообщить о проблеме</value>
+    <value>Rapporter en feil</value>
     <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="App_mnu_Settings">
-    <value>Настройки</value>
+    <value>Innstillinger</value>
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Выход из приложения отключит активное VPN-соединение. Хотите продолжить?</value>
+    <value>Hvis du avslutter programmet, kobles den aktive VPN-tilkoblingen fra. Vil du fortsette?</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Чтобы завершить процесс обновления, Proton VPN временно прервёт подключение и отключит Постоянный Kill Switch, если что-либо из этого сейчас активно. Хотите продолжить?</value>
+    <value>For å fullføre oppdateringsprosessen vil Proton VPN midlertidig koble fra og deaktivere permanent nødstopp hvis noen av disse er aktive. Vil du fortsette?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -360,173 +336,173 @@
     <comment>The title of main app window. Should not be converted.</comment>
   </data>
   <data name="BugReport_btn_Back">
-    <value>Назад</value>
+    <value>Tilbake</value>
     <comment>The text on Back button in Issue Report window</comment>
   </data>
   <data name="BugReport_btn_Cancel">
-    <value>Отмена</value>
+    <value>Avbryt</value>
     <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
   </data>
   <data name="BugReport_btn_Close">
-    <value>Закрыть</value>
+    <value>Lukk</value>
     <comment>The text on Close button in Issue Report window (closes the window)</comment>
   </data>
   <data name="BugReport_btn_FillOutTheForm">
-    <value>Свяжитесь с нами</value>
+    <value>Kontakt oss</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>Обновить</value>
+    <value>Oppdater</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Готово</value>
+    <value>Ferdig</value>
   </data>
   <data name="BugReport_btn_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
   </data>
   <data name="BugReport_btn_Retry">
-    <value>Повторить</value>
+    <value>Prøv på nytt</value>
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Отправить отчет</value>
+    <value>Send rapport</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
-    <value>Устранение неполадок</value>
+    <value>Feilsøk</value>
     <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
   </data>
   <data name="BugReport_lbl_DidNotHelp">
-    <value>Не работает?</value>
+    <value>Fungerte det ikke?</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>Эл. почта</value>
+    <value>E-post</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Эта эл. почта будет использована, чтобы связаться с Вами по поводу этой проблемы.</value>
+    <value>Denne e-posten vil bli brukt til å kontakte deg angående dette problemet.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
-    <value>Какие именно шаги вы выполняли?</value>
+    <value>Hva er de nøyaktige trinnene du utførte?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
-    <value>Отправить журналы ошибок</value>
+    <value>Send feillogger</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Наша команда сможет надёжнее и быстрее определить вашу проблему и возможное решение, если вы предоставите следующую информацию:
-• Журнал установки драйверов
-• Список установленных приложений
-• Логи приложения и службы Proton VPN
-• Список сетевых адаптеров
-• Таблицу маршрутизации</value>
+    <value>Ved å gi følgende detaljer kan teamet vårt identifisere problemet ditt og en mulig løsning med høyere sjanser og kortere tid:
+• Installasjonslogg for drivere
+• Liste over installerte applikasjoner
+• Proton VPN-app og Proton VPN-tjenestelogger
+• Liste over nettverkskort
+• Informasjon om rutetabell</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Журналы ошибок помогают нам разобраться в сути вашей проблемы. Если вы не приложите их, мы не сможем провести полное исследование.</value>
+    <value>Feillogger hjelper oss med å komme til bunns i problemet ditt. Hvis du ikke inkluderer dem, kan det hende at vi ikke kan undersøke dem fullt ut.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
-    <value>Журнал - это тип файла, который показывает нам действия, которые вы предприняли и которые привели к ошибке. Мы используем их только для того, чтобы помочь нашим инженерам исправить ошибки.</value>
+    <value>En logg er en type fil som viser oss handlingene du utførte som førte til en feil. Vi vil bare bruke dem til å hjelpe ingeniørene våre med å fikse feil.</value>
   </data>
   <data name="BugReport_lbl_NewVersionAvailable">
-    <value>Обновить Proton VPN</value>
+    <value>Oppdater Proton VPN</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>Возможно, эта версия Proton VPN уже решила вашу проблему!</value>
+    <value>Denne versjonen av Proton VPN kan allerede ha løst problemet ditt!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Быстрые исправления</value>
+    <value>Hurtigløsninger</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
-    <value>Эти советы могут помочь быстрее решить вашу проблему.</value>
+    <value>Disse tipsene kan bidra til å løse problemet raskere.</value>
   </data>
   <data name="BugReport_lbl_Step">
-    <value>Шаг</value>
+    <value>Trinn</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Имя пользователя</value>
+    <value>Brukernavn</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Ваше имя пользователя Proton, если у вас уже есть аккаунт.</value>
+    <value>Proton-brukernavnet ditt, i tilfelle du allerede har en konto.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
-    <value>В чем проблема?</value>
+    <value>Hva er problemet?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>Что пошло не так?</value>
+    <value>Hva gikk galt?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
-    <value>Мы свяжемся с вами, как только сможем.</value>
+    <value>Vi kommer tilbake til deg så snart vi kan.</value>
   </data>
   <data name="BugReport_lbl_of">
-    <value>из</value>
+    <value>av</value>
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Эл. почта недействительна</value>
+    <value>E-post ikke gyldig</value>
   </data>
   <data name="BugReport_msg_Sending">
-    <value>Отправка отчёта...</value>
+    <value>Sender rapport...</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>Ваш отчет не был отправлен</value>
+    <value>Rapporten din ble ikke sendt</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Пожалуйста, дождитесь окончания процесса отправки</value>
+    <value>Vennligst vent til sendeprosessen er ferdig</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
-    <value>Благодарим за отзыв</value>
+    <value>Takk for tilbakemeldingen din</value>
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Сообщить о проблеме</value>
+    <value>Rapporter en feil</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>Назначение IP-адреса</value>
+    <value>Tildeler IP</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Authenticating">
-    <value>Аутентификация пользователя</value>
+    <value>Autentiserer bruker</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Connecting">
-    <value>Инициализация подключения</value>
+    <value>Initialiserer tilkobling</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Pinging">
-    <value>Ожидание доступной сети...</value>
+    <value>Venter på brukbart nettverk...</value>
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>Создание VPN-туннеля</value>
+    <value>Etablering av VPN-tunnel</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
-    <value>Инициализация подключения</value>
+    <value>Initialiserer tilkobling</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
-    <value>Отмена</value>
+    <value>Avbryt</value>
     <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
   </data>
   <data name="Connecting_btn_TryAgain">
-    <value>Попробовать снова</value>
+    <value>Prøv igjen</value>
     <comment>The text on retry button in Connecting overlay of main app window (retries connection to VPN)</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1">
-    <value>Подключение к</value>
+    <value>Kobler til</value>
     <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
-    <value>Создание</value>
+    <value>Oppretter</value>
     <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2">
@@ -534,11 +510,11 @@
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
-    <value>подключения</value>
+    <value>tilkobling</value>
     <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1">
-    <value>Подключение к</value>
+    <value>Forbindelse til</value>
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
@@ -546,1553 +522,1541 @@
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>сбой</value>
+    <value>har mislyktes</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>— сбой подключения</value>
+    <value>tilkobling mislyktes</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
-    <value>{0} страна</value>
-  </data>
-  <data name="Countries_lbl_Few">
-    <value>{0} страны</value>
-  </data>
-  <data name="Countries_lbl_Many">
-    <value>{0} стран</value>
+    <value>{0} land</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} страны</value>
+    <value>{0} land</value>
   </data>
   <data name="Country_val_AD">
-    <value>Андорра</value>
+    <value>Andorra</value>
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE">
-    <value>Объединённые Арабские Эмираты</value>
+    <value>Forente Arabiske Emirater</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF">
-    <value>Афганистан</value>
+    <value>Afghanistan</value>
     <comment>The name of AF country</comment>
   </data>
   <data name="Country_val_AG">
-    <value>Антигуа и Барбуда</value>
+    <value>Antigua og Barbuda</value>
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI">
-    <value>Ангилья</value>
+    <value>Anguilla</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL">
-    <value>Албания</value>
+    <value>Albania</value>
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM">
-    <value>Армения</value>
+    <value>Armenia</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO">
-    <value>Ангола</value>
+    <value>Angola</value>
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ">
-    <value>Антарктида</value>
+    <value>Antarktis</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR">
-    <value>Аргентина</value>
+    <value>Argentina</value>
     <comment>The name of AR country</comment>
   </data>
   <data name="Country_val_AS">
-    <value>Американское Самоа</value>
+    <value>Amerikansk Samoa</value>
     <comment>The name of AS country</comment>
   </data>
   <data name="Country_val_AT">
-    <value>Австрия</value>
+    <value>Østerrike</value>
     <comment>The name of AT country</comment>
   </data>
   <data name="Country_val_AU">
-    <value>Австралия</value>
+    <value>Australia</value>
     <comment>The name of AU country</comment>
   </data>
   <data name="Country_val_AW">
-    <value>Аруба</value>
+    <value>Aruba</value>
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX">
-    <value>Аландские острова</value>
+    <value>Ålandsøyene</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
-    <value>Азербайджан</value>
+    <value>Aserbajdsjan</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
-    <value>Босния и Герцеговина</value>
+    <value>Bosnia og Herzegovina</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB">
-    <value>Барбадос</value>
+    <value>Barbados</value>
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD">
-    <value>Бангладеш</value>
+    <value>Bangladesh</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE">
-    <value>Бельгия</value>
+    <value>Belgia</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF">
-    <value>Буркина-Фасо</value>
+    <value>Bukina Faso</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG">
-    <value>Болгария</value>
+    <value>Bulgaria</value>
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH">
-    <value>Бахрейн</value>
+    <value>Bahrain</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI">
-    <value>Бурунди</value>
+    <value>Burundi</value>
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ">
-    <value>Бенин</value>
+    <value>Benin</value>
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL">
-    <value>Сен-Бартелеми</value>
+    <value>Saint-Barthélemy</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM">
-    <value>Бермуды</value>
+    <value>Bermuda</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN">
-    <value>Бруней-Даруссалам</value>
+    <value>Brunei Darussalam</value>
     <comment>The name of BN country</comment>
   </data>
   <data name="Country_val_BO">
-    <value>Боливия</value>
+    <value>Bolivia</value>
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ">
-    <value>Бонэйр, Синт-Эстатиус и Саба</value>
+    <value>Bonaire, Sint Eustatius og Saba</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR">
-    <value>Бразилия</value>
+    <value>Brasil</value>
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS">
-    <value>Багамские Острова</value>
+    <value>Bahamas</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT">
-    <value>Бутан</value>
+    <value>Bhutan</value>
     <comment>The name of BT country</comment>
   </data>
   <data name="Country_val_BV">
-    <value>Остров Буве</value>
+    <value>Bouvetøya</value>
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW">
-    <value>Ботсвана</value>
+    <value>Botswana</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY">
-    <value>Белоруссия</value>
+    <value>Hviterussland</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ">
-    <value>Белиз</value>
+    <value>Belize</value>
     <comment>The name of BZ country</comment>
   </data>
   <data name="Country_val_CA">
-    <value>Канада</value>
+    <value>Canada</value>
     <comment>The name of CA country</comment>
   </data>
   <data name="Country_val_CC">
-    <value>Кокосовые острова или Килинг</value>
+    <value>Cocosøyene (Keeling)</value>
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD">
-    <value>Конго, Демократическая Республика</value>
+    <value>Kongo (Den demokratiske republikken)</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF">
-    <value>Центральноафриканская Республика</value>
+    <value>Den sentralafrikanske republikk</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG">
-    <value>Конго</value>
+    <value>Kongo</value>
     <comment>The name of CG country</comment>
   </data>
   <data name="Country_val_CH">
-    <value>Швейцария</value>
+    <value>Sveits</value>
     <comment>The name of CH country</comment>
   </data>
   <data name="Country_val_CI">
-    <value>Кот-д'Ивуар</value>
+    <value>Elfenbenskysten</value>
     <comment>The name of CI country</comment>
   </data>
   <data name="Country_val_CK">
-    <value>Острова Кука</value>
+    <value>Cookøyene</value>
     <comment>The name of CK country</comment>
   </data>
   <data name="Country_val_CL">
-    <value>Чили</value>
+    <value>Chile</value>
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM">
-    <value>Камерун</value>
+    <value>Kamerun</value>
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN">
-    <value>Китай</value>
+    <value>Kina</value>
     <comment>The name of CN country</comment>
   </data>
   <data name="Country_val_CO">
-    <value>Колумбия</value>
+    <value>Colombia</value>
     <comment>The name of CO country</comment>
   </data>
   <data name="Country_val_CR">
-    <value>Коста-Рика</value>
+    <value>Costa Rica</value>
     <comment>The name of CR country</comment>
   </data>
   <data name="Country_val_CU">
-    <value>Куба</value>
+    <value>Cuba</value>
     <comment>The name of CU country</comment>
   </data>
   <data name="Country_val_CV">
-    <value>Кабо-Верде</value>
+    <value>Kapp Verde</value>
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW">
-    <value>Кюрасао</value>
+    <value>Curaçao</value>
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX">
-    <value>Остров Рождества</value>
+    <value>Christmasøya</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY">
-    <value>Кипр</value>
+    <value>Kypros</value>
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ">
-    <value>Чехия</value>
+    <value>Tsjekkia</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE">
-    <value>Германия</value>
+    <value>Tyskland</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Джибути</value>
+    <value>Djibouti</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
-    <value>Дания</value>
+    <value>Danmark</value>
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM">
-    <value>Доминика</value>
+    <value>Dominica</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO">
-    <value>Доминиканская Республика</value>
+    <value>Den dominikanske republikk</value>
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ">
-    <value>Алжир</value>
+    <value>Algerie</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC">
-    <value>Эквадор</value>
+    <value>Ecuador</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE">
-    <value>Эстония</value>
+    <value>Estland</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG">
-    <value>Египет</value>
+    <value>Egypt</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH">
-    <value>Западная Сахара</value>
+    <value>Vest-Sahara</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER">
-    <value>Эритрея</value>
+    <value>Eritrea</value>
     <comment>The name of ER country</comment>
   </data>
   <data name="Country_val_ES">
-    <value>Испания</value>
+    <value>Spania</value>
     <comment>The name of ES country</comment>
   </data>
   <data name="Country_val_ET">
-    <value>Эфиопия</value>
+    <value>Etiopia</value>
     <comment>The name of ET country</comment>
   </data>
   <data name="Country_val_FI">
-    <value>Финляндия</value>
+    <value>Finland</value>
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ">
-    <value>Фиджи</value>
+    <value>Fiji</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK">
-    <value>Фолклендские (Мальвинские) острова</value>
+    <value>Falklandsøyene (Malvinas)</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM">
-    <value>Микронезия</value>
+    <value>Mikronesiaføderasjonen</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO">
-    <value>Фарерские острова</value>
+    <value>Færøyene</value>
     <comment>The name of FO country</comment>
   </data>
   <data name="Country_val_FR">
-    <value>Франция</value>
+    <value>Frankrike</value>
     <comment>The name of FR country</comment>
   </data>
   <data name="Country_val_GA">
-    <value>Габон</value>
+    <value>Gabon</value>
     <comment>The name of GA country</comment>
   </data>
   <data name="Country_val_GB">
-    <value>Великобритания</value>
+    <value>Storbritannia</value>
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD">
-    <value>Гренада</value>
+    <value>Grenada</value>
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE">
-    <value>Грузия</value>
+    <value>Georgia</value>
     <comment>The name of GE country</comment>
   </data>
   <data name="Country_val_GF">
-    <value>Французская Гвиана</value>
+    <value>Fransk Guyana</value>
     <comment>The name of GF country</comment>
   </data>
   <data name="Country_val_GG">
-    <value>Гернси</value>
+    <value>Guernsey</value>
     <comment>The name of GG country</comment>
   </data>
   <data name="Country_val_GH">
-    <value>Гана</value>
+    <value>Ghana</value>
     <comment>The name of GH country</comment>
   </data>
   <data name="Country_val_GI">
-    <value>Гибралтар</value>
+    <value>Gibraltar</value>
     <comment>The name of GI country</comment>
   </data>
   <data name="Country_val_GL">
-    <value>Гренландия</value>
+    <value>Grønland</value>
     <comment>The name of GL country</comment>
   </data>
   <data name="Country_val_GM">
-    <value>Гамбия</value>
+    <value>Gambia</value>
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN">
-    <value>Гвинея</value>
+    <value>Guinea</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP">
-    <value>Гваделупа</value>
+    <value>Guadeloupe</value>
     <comment>The name of GP country</comment>
   </data>
   <data name="Country_val_GQ">
-    <value>Экваториальная Гвинея</value>
+    <value>Ekvatorial-Guinea</value>
     <comment>The name of GQ country</comment>
   </data>
   <data name="Country_val_GR">
-    <value>Греция</value>
+    <value>Hellas</value>
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS">
-    <value>Южная Георгия и Южные Сандвичевы Острова</value>
+    <value>Sør-Georgia og Sør-Sandwichøyene</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT">
-    <value>Гватемала</value>
+    <value>Guatemala</value>
     <comment>The name of GT country</comment>
   </data>
   <data name="Country_val_GU">
-    <value>Гуам</value>
+    <value>Guam</value>
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW">
-    <value>Гвинея-Бисау</value>
+    <value>Guinea-Bissau</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY">
-    <value>Гайана</value>
+    <value>Guyana</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Гонконг</value>
+    <value>Hongkong</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
-    <value>Остров Херд и острова Макдональд</value>
+    <value>Heardøya og McDonaldøyene</value>
     <comment>The name of HM country</comment>
   </data>
   <data name="Country_val_HN">
-    <value>Гондурас</value>
+    <value>Honduras</value>
     <comment>The name of HN country</comment>
   </data>
   <data name="Country_val_HR">
-    <value>Хорватия</value>
+    <value>Kroatia</value>
     <comment>The name of HR country</comment>
   </data>
   <data name="Country_val_HT">
-    <value>Гаити</value>
+    <value>Haiti</value>
     <comment>The name of HT country</comment>
   </data>
   <data name="Country_val_HU">
-    <value>Венгрия</value>
+    <value>Ungarn</value>
     <comment>The name of HU country</comment>
   </data>
   <data name="Country_val_ID">
-    <value>Индонезия</value>
+    <value>Indonesia</value>
     <comment>The name of ID country</comment>
   </data>
   <data name="Country_val_IE">
-    <value>Ирландия</value>
+    <value>Irland</value>
     <comment>The name of IE country</comment>
   </data>
   <data name="Country_val_IL">
-    <value>Израиль</value>
+    <value>Israel</value>
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM">
-    <value>Остров Мэн</value>
+    <value>Man</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN">
-    <value>Индия</value>
+    <value>India</value>
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO">
-    <value>Британская Территория в Индийском Океане</value>
+    <value>Britisk Indiske hav-territorium</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ">
-    <value>Ирак</value>
+    <value>Irak</value>
     <comment>The name of IQ country</comment>
   </data>
   <data name="Country_val_IR">
-    <value>Иран</value>
+    <value>Iran</value>
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS">
-    <value>Исландия</value>
+    <value>Island</value>
     <comment>The name of IS country</comment>
   </data>
   <data name="Country_val_IT">
-    <value>Италия</value>
+    <value>Italia</value>
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE">
-    <value>Джерси</value>
+    <value>Jersey</value>
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM">
-    <value>Ямайка</value>
+    <value>Jamaica</value>
     <comment>The name of JM country</comment>
   </data>
   <data name="Country_val_JO">
-    <value>Иордания</value>
+    <value>Jordan</value>
     <comment>The name of JO country</comment>
   </data>
   <data name="Country_val_JP">
-    <value>Япония</value>
+    <value>Japan</value>
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE">
-    <value>Кения</value>
+    <value>Kenya</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG">
-    <value>Киргизия</value>
+    <value>Kirgisistan</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH">
-    <value>Камбоджа</value>
+    <value>Kambodsja</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI">
-    <value>Кирибати</value>
+    <value>Kiribati</value>
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM">
-    <value>Коморские острова</value>
+    <value>Komorene</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN">
-    <value>Сент-Китс и Невис</value>
+    <value>Saint Kitts og Nevis</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP">
-    <value>Северная Корея</value>
+    <value>Nord-Korea</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR">
-    <value>Южная Корея</value>
+    <value>Sør-Korea</value>
     <comment>The name of KR country</comment>
   </data>
   <data name="Country_val_KW">
-    <value>Кувейт</value>
+    <value>Kuwait</value>
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY">
-    <value>Острова Кайман</value>
+    <value>Caymanøyene</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ">
-    <value>Казахстан</value>
+    <value>Kasakhstan</value>
     <comment>The name of KZ country</comment>
   </data>
   <data name="Country_val_LA">
-    <value>Лаос</value>
+    <value>Laos</value>
     <comment>The name of LA country</comment>
   </data>
   <data name="Country_val_LB">
-    <value>Ливан</value>
+    <value>Libanon</value>
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC">
-    <value>Сент-Люсия</value>
+    <value>St. Lucia</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI">
-    <value>Лихтенштейн</value>
+    <value>Liechtenstein</value>
     <comment>The name of LI country</comment>
   </data>
   <data name="Country_val_LK">
-    <value>Шри-Ланка</value>
+    <value>Sri Lanka</value>
     <comment>The name of LK country</comment>
   </data>
   <data name="Country_val_LR">
-    <value>Либерия</value>
+    <value>Liberia</value>
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS">
-    <value>Лесото</value>
+    <value>Lesotho</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT">
-    <value>Литва</value>
+    <value>Litauen</value>
     <comment>The name of LT country</comment>
   </data>
   <data name="Country_val_LU">
-    <value>Люксембург</value>
+    <value>Luxemburg</value>
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV">
-    <value>Латвия</value>
+    <value>Latvia</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY">
-    <value>Ливия</value>
+    <value>Libya</value>
     <comment>The name of LY country</comment>
   </data>
   <data name="Country_val_MA">
-    <value>Марокко</value>
+    <value>Marokko</value>
     <comment>The name of MA country</comment>
   </data>
   <data name="Country_val_MC">
-    <value>Монако</value>
+    <value>Monako</value>
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD">
-    <value>Молдова</value>
+    <value>Moldova</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME">
-    <value>Черногория</value>
+    <value>Montenegro</value>
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF">
-    <value>Сен-Мартен (владение Франции)</value>
+    <value>Saint-Martin (fransk del)</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG">
-    <value>Мадагаскар</value>
+    <value>Madagaskar</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH">
-    <value>Маршалловы Острова</value>
+    <value>Marshalløyene</value>
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Македония</value>
+    <value>Makedonia</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
-    <value>Мали</value>
+    <value>Mali</value>
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM">
-    <value>Мьянма</value>
+    <value>Myanmar</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN">
-    <value>Монголия</value>
+    <value>Mongolia</value>
     <comment>The name of MN country</comment>
   </data>
   <data name="Country_val_MO">
-    <value>Макао</value>
+    <value>Macao</value>
     <comment>The name of MO country</comment>
   </data>
   <data name="Country_val_MP">
-    <value>Северные Марианские Острова</value>
+    <value>Nordlige Marianaøyer</value>
     <comment>The name of MP country</comment>
   </data>
   <data name="Country_val_MQ">
-    <value>Мартиника</value>
+    <value>Martinique</value>
     <comment>The name of MQ country</comment>
   </data>
   <data name="Country_val_MR">
-    <value>Мавритания</value>
+    <value>Mauretania</value>
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS">
-    <value>Монтсеррат</value>
+    <value>Montserrat</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT">
-    <value>Мальта</value>
+    <value>Malta</value>
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU">
-    <value>Маврикий</value>
+    <value>Mauritius</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV">
-    <value>Мальдивы</value>
+    <value>Maldivene</value>
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW">
-    <value>Малави</value>
+    <value>Malawi</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX">
-    <value>Мексика</value>
+    <value>Mexico</value>
     <comment>The name of MX country</comment>
   </data>
   <data name="Country_val_MY">
-    <value>Малайзия</value>
+    <value>Malaysia</value>
     <comment>The name of MY country</comment>
   </data>
   <data name="Country_val_MZ">
-    <value>Мозамбик</value>
+    <value>Mozambik</value>
     <comment>The name of MZ country</comment>
   </data>
   <data name="Country_val_NA">
-    <value>Намибия</value>
+    <value>Namibia</value>
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC">
-    <value>Новая Каледония</value>
+    <value>Ny-Kaledonia</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE">
-    <value>Нигер</value>
+    <value>Niger</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF">
-    <value>Остров Норфолк</value>
+    <value>Norfolkøya</value>
     <comment>The name of NF country</comment>
   </data>
   <data name="Country_val_NG">
-    <value>Нигерия</value>
+    <value>Nigeria</value>
     <comment>The name of NG country</comment>
   </data>
   <data name="Country_val_NI">
-    <value>Никарагуа</value>
+    <value>Nicaragua</value>
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL">
-    <value>Нидерланды</value>
+    <value>Nederland</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO">
-    <value>Норвегия</value>
+    <value>Norge</value>
     <comment>The name of NO country</comment>
   </data>
   <data name="Country_val_NP">
-    <value>Непал</value>
+    <value>Nepal</value>
     <comment>The name of NP country</comment>
   </data>
   <data name="Country_val_NR">
-    <value>Науру</value>
+    <value>Nauru</value>
     <comment>The name of NR country</comment>
   </data>
   <data name="Country_val_NU">
-    <value>Ниуэ</value>
+    <value>Niue</value>
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ">
-    <value>Новая Зеландия</value>
+    <value>New Zealand</value>
     <comment>The name of NZ country</comment>
   </data>
   <data name="Country_val_OM">
-    <value>Оман</value>
+    <value>Oman</value>
     <comment>The name of OM country</comment>
   </data>
   <data name="Country_val_PA">
-    <value>Панама</value>
+    <value>Panama</value>
     <comment>The name of PA country</comment>
   </data>
   <data name="Country_val_PE">
-    <value>Перу</value>
+    <value>Peru</value>
     <comment>The name of PE country</comment>
   </data>
   <data name="Country_val_PF">
-    <value>Французская Полинезия</value>
+    <value>Fransk Polynesia</value>
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG">
-    <value>Папуа-Новая Гвинея</value>
+    <value>Papua Ny-Guinea</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH">
-    <value>Филиппины</value>
+    <value>Filippinene</value>
     <comment>The name of PH country</comment>
   </data>
   <data name="Country_val_PK">
-    <value>Пакистан</value>
+    <value>Pakistan</value>
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL">
-    <value>Польша</value>
+    <value>Polen</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM">
-    <value>Сен-Пьер и Микелон</value>
+    <value>St. Pierre og Miquelon</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN">
-    <value>Острова Питкэрн</value>
+    <value>Pitcairn</value>
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR">
-    <value>Пуэрто-Рико</value>
+    <value>Puerto Rico</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS">
-    <value>Палестина</value>
+    <value>Palestina</value>
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT">
-    <value>Португалия</value>
+    <value>Portugal</value>
     <comment>The name of PT country</comment>
   </data>
   <data name="Country_val_PW">
-    <value>Палау</value>
+    <value>Palau</value>
     <comment>The name of PW country</comment>
   </data>
   <data name="Country_val_PY">
-    <value>Парагвай</value>
+    <value>Paraguay</value>
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA">
-    <value>Катар</value>
+    <value>Qatar</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE">
-    <value>Реюньон</value>
+    <value>Réunion</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO">
-    <value>Румыния</value>
+    <value>Romania</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS">
-    <value>Сербия</value>
+    <value>Serbia</value>
     <comment>The name of RS country</comment>
   </data>
   <data name="Country_val_RU">
-    <value>Россия</value>
+    <value>Russland</value>
     <comment>The name of RU country</comment>
   </data>
   <data name="Country_val_RW">
-    <value>Руанда</value>
+    <value>Rwanda</value>
     <comment>The name of RW country</comment>
   </data>
   <data name="Country_val_SA">
-    <value>Саудовская Аравия</value>
+    <value>Saudi-Arabia</value>
     <comment>The name of SA country</comment>
   </data>
   <data name="Country_val_SB">
-    <value>Соломоновы Острова</value>
+    <value>Salomonøyene</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC">
-    <value>Сейшелы</value>
+    <value>Seychellene</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD">
-    <value>Судан</value>
+    <value>Sudan</value>
     <comment>The name of SD country</comment>
   </data>
   <data name="Country_val_SE">
-    <value>Швеция</value>
+    <value>Sverige</value>
     <comment>The name of SE country</comment>
   </data>
   <data name="Country_val_SG">
-    <value>Сингапур</value>
+    <value>Singapore</value>
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH">
-    <value>Острова Святой Елены, Вознесения и Тристан-да-Кунья</value>
+    <value>St. Helena, Ascension og Tristan da Cunha</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI">
-    <value>Словения</value>
+    <value>Slovenia</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ">
-    <value>Шпицберген и Ян-Майен</value>
+    <value>Svalbard og Jan Mayen</value>
     <comment>The name of SJ country</comment>
   </data>
   <data name="Country_val_SK">
-    <value>Словакия</value>
+    <value>Slovakia</value>
     <comment>The name of SK country</comment>
   </data>
   <data name="Country_val_SL">
-    <value>Сьерра-Леоне</value>
+    <value>Sierra Leone</value>
     <comment>The name of SL country</comment>
   </data>
   <data name="Country_val_SM">
-    <value>Сан-Марино</value>
+    <value>San Marino</value>
     <comment>The name of SM country</comment>
   </data>
   <data name="Country_val_SN">
-    <value>Сенегал</value>
+    <value>Senegal</value>
     <comment>The name of SN country</comment>
   </data>
   <data name="Country_val_SO">
-    <value>Сомали</value>
+    <value>Somalia</value>
     <comment>The name of SO country</comment>
   </data>
   <data name="Country_val_SR">
-    <value>Суринам</value>
+    <value>Surinam</value>
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS">
-    <value>Южный Судан</value>
+    <value>Sør-Sudan</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST">
-    <value>Сан-Томе и Принсипи</value>
+    <value>São Tomé og Príncipe</value>
     <comment>The name of ST country</comment>
   </data>
   <data name="Country_val_SV">
-    <value>Сальвадор</value>
+    <value>El Salvador</value>
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Синт-Мартин (Голландская часть)</value>
+    <value>Sint Maarten (nederlandsk del)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Сирийская Арабская Республика</value>
+    <value>Syria</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
-    <value>Эсватини</value>
+    <value>Eswatini</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC">
-    <value>Острова Теркс и Кайкос</value>
+    <value>Turks- og Caicosøyene</value>
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD">
-    <value>Чад</value>
+    <value>Tsjad</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF">
-    <value>Французские Южные территории</value>
+    <value>Franske sørlige territorier</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG">
-    <value>Того</value>
+    <value>Togo</value>
     <comment>The name of TG country</comment>
   </data>
   <data name="Country_val_TH">
-    <value>Таиланд</value>
+    <value>Thailand</value>
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ">
-    <value>Таджикистан</value>
+    <value>Tadsjikistan</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
-    <value>Токелау</value>
+    <value>Tokelau</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Восточный Тимор</value>
+    <value>Øst-Timor</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
-    <value>Туркменистан</value>
+    <value>Turkmenistan</value>
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN">
-    <value>Тунис</value>
+    <value>Tunisia</value>
     <comment>The name of TN country</comment>
   </data>
   <data name="Country_val_TO">
-    <value>Тонга</value>
+    <value>Tonga</value>
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Турция</value>
+    <value>Tyrkia</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
-    <value>Тринидад и Тобаго</value>
+    <value>Trinidad og Tobago</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV">
-    <value>Тувалу</value>
+    <value>Tuvalu</value>
     <comment>The name of TV country</comment>
   </data>
   <data name="Country_val_TW">
-    <value>Тайвань</value>
+    <value>Taiwan</value>
     <comment>The name of TW country</comment>
   </data>
   <data name="Country_val_TZ">
-    <value>Танзания</value>
+    <value>Tanzania</value>
     <comment>The name of TZ country</comment>
   </data>
   <data name="Country_val_UA">
-    <value>Украина</value>
+    <value>Ukraina</value>
     <comment>The name of UA country</comment>
   </data>
   <data name="Country_val_UG">
-    <value>Уганда</value>
+    <value>Uganda</value>
     <comment>The name of UG country</comment>
   </data>
   <data name="Country_val_UK">
-    <value>Великобритания</value>
+    <value>Storbritannia</value>
     <comment>The name of UK country</comment>
   </data>
   <data name="Country_val_UM">
-    <value>Внешние малые острова США</value>
+    <value>Amerikas forente staters ytre småøyer</value>
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US">
-    <value>США</value>
+    <value>Amerikas forente stater</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY">
-    <value>Уругвай</value>
+    <value>Uruguay</value>
     <comment>The name of UY country</comment>
   </data>
   <data name="Country_val_UZ">
-    <value>Узбекистан</value>
+    <value>Usbekistan</value>
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA">
-    <value>Ватикан</value>
+    <value>Vatikanstaten</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC">
-    <value>Сент-Винсент и Гренадины</value>
+    <value>Saint Vincent og Grenadinene</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE">
-    <value>Венесуэла</value>
+    <value>Venezuela</value>
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG">
-    <value>Британские Виргинские острова</value>
+    <value>Jomfruøyene, Britisk</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI">
-    <value>Американские Виргинские острова</value>
+    <value>Jomfruøyene, Amerikas forente stater</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN">
-    <value>Вьетнам</value>
+    <value>Vietnam</value>
     <comment>The name of VN country</comment>
   </data>
   <data name="Country_val_VU">
-    <value>Вануату</value>
+    <value>Vanuatu</value>
     <comment>The name of VU country</comment>
   </data>
   <data name="Country_val_WF">
-    <value>Уоллис и Футуна</value>
+    <value>Wallis og Futuna</value>
     <comment>The name of WF country</comment>
   </data>
   <data name="Country_val_WS">
-    <value>Самоа</value>
+    <value>Samoa</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE">
-    <value>Йемен</value>
+    <value>Jemen</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT">
-    <value>Майотта</value>
+    <value>Mayotte</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA">
-    <value>ЮАР</value>
+    <value>Sør-Afrika</value>
     <comment>The name of ZA country</comment>
   </data>
   <data name="Country_val_ZM">
-    <value>Замбия</value>
+    <value>Zambia</value>
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW">
-    <value>Зимбабве</value>
+    <value>Zimbabwe</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ">
-    <value>Неизвестно</value>
+    <value>Ukjent</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_Assign">
-    <value>Назначить подключения к VPN</value>
+    <value>Tilordne VPN-tilkoblinger</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Войти снова</value>
+    <value>Logg på igjen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Чтобы начать свое путешествие в Proton VPN, пожалуйста, назначьте подключения к VPN для своего аккаунта или любого другого субаккаунта.</value>
+    <value>For å starte reisen din i Proton VPN, vennligst tildel VPN-tilkoblinger til kontoen din eller en hvilken som helst annen underkonto.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Этот шаг займет всего несколько минут. После него вы сможете авторизоваться и защитить все свои устройства.</value>
+    <value>Dette trinnet tar bare noen få minutter. Etter det vil du kunne logge på og beskytte alle enhetene dine.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Спасибо за улучшение тарифа</value>
+    <value>Takk for oppgradering</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Одна из служб, требуемых Proton VPN (Base Filtering Engine) не запущена.&lt;LineBreak/&gt;
-Пожалуйста, следуйте &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="этим"/&gt;&lt;/Hyperlink&gt; инструкциям, чтобы включить её снова и повторить.</value>
+    <value>En av tjenestene som kreves av Proton VPN (Base Filtering Engine) kjører ikke.&lt;LineBreak/&gt;
+Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="disse"/&gt;&lt;/Hyperlink&gt; instruksjonene for å aktivere den igjen og prøv på nytt.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
-    <value>Обновить мои счета</value>
+    <value>Oppdater Min Fakturering</value>
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Вы снова получите доступ к платным функциям, когда эти счета будут оплачены. А пока, мы подключаем вас к самому быстрому доступному бесплатному серверу.</value>
+    <value>Du vil kunne få tilgang til premiumfunksjoner igjen etter at disse er betalt. Foreløpig kobler vi til den raskeste Free-plantjeneren som er tilgjengelig.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Вы снова получите доступ к платным функциям, когда это буден оплачено.</value>
+    <value>Du vil kunne få tilgang til premiumfunksjoner igjen etter at disse er betalt.</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>В вашем аккаунте VPN есть неоплаченные счета</value>
+    <value>VPN-kontoen din har ventende fakturaer</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
-    <value>Включить</value>
+    <value>Aktiver</value>
   </data>
   <data name="Dialogs_DisabledService_btn_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
   </data>
   <data name="Dialogs_DisabledService_btn_ShowLess">
-    <value>Показать меньше</value>
+    <value>Vis mindre</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Некоторые приложения, такие как антивирусы или оптимизаторы ПК, могут вмешиваться в работу системных служб, необходимых Proton VPN для обеспечения безопасности вашего подключения. Нажав кнопку Включить, вы разрешаете Windows повторно активировать службы Proton VPN.&lt;LineBreak/&gt;Если проблема сохраняется, попробуйте перезагрузить компьютер или переустановить Proton VPN.</value>
+    <value>Noen applikasjoner som antivirus- eller PC-optimalisatorer kan forstyrre systemtjenestene som Proton VPN krever for å sikre tilkoblingen din. Ved å klikke på Aktiver, lar du Windows aktivere Proton VPNs tjenester på nytt.&lt;LineBreak/&gt;Hvis problemet vedvarer, kan du prøve å starte PC-en på nytt eller installere Proton VPN på nytt.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Некоторые компоненты Proton VPN могут быть заблокированы или отключены, что мешает вам подключиться. Нажмите на Включить, чтобы исправить это.&lt;LineBreak/&gt;Обратите внимание, что эта операция требует полномочий администратора.</value>
+    <value>Noen Proton VPN-komponenter kan være blokkert eller deaktivert, noe som hindrer deg i å koble til. Klikk på aktiver for å fikse det.&lt;LineBreak/&gt;Vær oppmerksom på at denne operasjonen krever administratorrettigheter.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Отключить kill switch</value>
+    <value>Deaktiver nødstopp</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Улучшить</value>
+    <value>Oppgrader</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
-    <value>Сетевой адаптер в настоящее время используется.</value>
+    <value>Nettverkskortet er i bruk.</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying">
-    <value>Выявление проблемы...</value>
+    <value>Identifiserer problem...</value>
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill switch защищает ваш IP, блокируя все подключения. Если возникнут проблемы, вы можете выключить kill switch.</value>
+    <value>Nødstopp beskytter IP-en din ved å blokkere alle tilkoblinger. I tilfelle problemer kan du deaktivere nødstopp.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
-    <value>Для вашего выбора сейчас нет доступных серверов. Пожалуйста, выберите другой вариант.</value>
+    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Vennligst velg et annet alternativ.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
-    <value>Сетевой адаптер отсутствует.</value>
+    <value>Nettverkskortet mangler.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
-    <value>Текущая версия сетевого адаптера устарела.</value>
+    <value>Nettverksadapterversjonen er utdatert.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
-    <value>Пожалуйста, смотрите эту &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;статью&lt;/Hyperlink&gt; поддержки, чтобы узнать, как это исправить.</value>
+    <value>Vennligst se denne støtte&lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;artikkelen&lt;/Hyperlink&gt; for hvordan du fikser det.</value>
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>C проверкой сертификата сервера VPN есть проблема, которая может указывать на вмешательство в сетевое соединение или проблему с настройками сервера, к которому вы пытаетесь подключиться. Получите помощь нашей службы поддержки, отправив &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="отчет о проблеме"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
-    <value>Больше не показывать это сообщение</value>
+    <value>Ikke vis denne meldingen igjen</value>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_Enable">
-    <value>Включить</value>
+    <value>Aktiver</value>
     <comment>The text on Enable button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
-    <value>Оставить выключенным</value>
+    <value>Hold deaktivert</value>
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN обнаружил, что ваша текущая сеть мешает подключаться к VPN. Включение Smart Protocol может помочь обойти эти ограничения.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Прочитать подробнее о Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN oppdaget at ditt nåværende nettverk hindrer en tilkobling til VPN. Aktivering av Smart Protocol kan omgå disse begrensningene.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Finn ut mer om Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
-    <value>Smart Protocol в настоящее время отключен</value>
+    <value>Smart Protocol er for øyeblikket deaktivert</value>
     <comment>The title of the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_Exit_btn_Cancel">
-    <value>Отмена</value>
+    <value>Avbryt</value>
   </data>
   <data name="Dialogs_Exit_btn_Exit">
-    <value>Выйти</value>
+    <value>Avslutt</value>
   </data>
   <data name="Dialogs_Exit_msg_Confirm">
-    <value>Хотите продолжить?</value>
+    <value>Vil du fortsette?</value>
     <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
-    <value>Выход из приложения отключит Вас от VPN.</value>
+    <value>Hvis du avslutter applikasjonen, kobles du fra VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill switch блокирует все подключения, чтобы избежать утечки данных. Выход из приложения отключит kill switch.</value>
+    <value>Nødstopp blokkerer alle tilkoblinger for å unngå å lekke dataene dine. Hvis du avslutter applikasjonen, deaktiveres nødstopp.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Включён Постоянный kill switch. Выход из приложения заблокирует все исходящие подключения, пока Proton VPN не подключится снова.</value>
+    <value>Permanent nødstopp er aktivert. Hvis du avslutter applikasjonen, blokkeres alle utgående tilkoblinger til Proton VPN er koblet til igjen.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
-    <value>Проверка "Я не робот"</value>
+    <value>Menneskelig verifisering</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>Похоже, что ваши системные часы не синхронизированы, что может препятствовать успешному подключению VPN. Дополнительную информацию смотрите тут: &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;здесь&lt;/Hyperlink&gt;.</value>
+    <value>Systemklokken din ser ut til å være ute av synkronisering, noe som kan forhindre at VPN-et kobles til. Vennligst se &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;her&lt;/Hyperlink&gt; for mer informasjon.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>При Постоянном kill switch, если VPN по какой-либо причине не подключён, у вас не будет доступа в Интернет.</value>
+    <value>Med permanent nødstopp, hvis VPN ikke er tilkoblet av en eller annen grunn, vil du ikke kunne få tilgang til internett.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Включить Постоянный kill switch?</value>
+    <value>Aktivere permanent nødstopp?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
-    <value>Я понял</value>
+    <value>Forstått</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Пожалуйста, отключите другое устройство, чтобы подключить это.</value>
+    <value>Vennligst koble fra en annen enhet for å koble til denne.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
-    <value>Вы достигли максимального лимита устройств</value>
+    <value>Du har nådd den maksimale grensen for enheter</value>
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Улучшить</value>
+    <value>Oppgrader</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Пожалуйста, отключите другое устройство, чтобы подключить текущее, или перейдите на PLUS, чтобы подключать до 10 устройств одновременно.</value>
+    <value>Vennligst koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å få opptil 10 enheter tilkoblet samtidig.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
-    <value>Выход</value>
+    <value>Avslutt</value>
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Downloading">
-    <value>Загрузка</value>
+    <value>Laster ned</value>
     <comment>The text on download button when download is in process in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Error">
-    <value>При загрузке новой версии возникла проблема. Обновите вручную, чтобы получить последнюю.</value>
+    <value>Det oppstod et problem under nedlasting av en nyere versjon. Oppdater manuelt for å få den nyeste.</value>
     <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Update">
-    <value>Обновить</value>
+    <value>Oppdater</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_UpdateManually">
-    <value>Обновить вручную</value>
+    <value>Oppdater manuelt</value>
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>Версия приложения, которую вы используете, больше не поддерживается. Как только появляется обновление, пожалуйста, обновляйтесь до последней версии.</value>
+    <value>Programversjonen du bruker, støttes ikke lenger. Vennligst oppdater til den nyeste versjonen så snart oppdateringen er tilgjengelig.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Обратите внимание, что включён kill switch. Обновление или выход из приложения его отключит.</value>
+    <value>Merk at nødstopp er aktivert. Hvis du oppdaterer eller avslutter programmet, deaktiveres den.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Ваше соединение было отключено, потому что вы используете сервер, не поддерживающий трафик peer-to-peer (P2P). P2P не поддерживается на бесплатных серверах. Пожалуйста, используйте другой сервер для P2P.</value>
+    <value>Tilkoblingen din er deaktivert fordi du bruker en tjener som ikke støtter node-til-node-trafikk (P2P). P2P støttes ikke på gratis tjenere. Vennligst bruk en annen tjener for P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Включайте проброс портов только когда Вам он нужен для максимальной конфиденциальности и защиты безопасности.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Нужен ли мне проброс портов?&lt;/Hyperlink&gt;</value>
+    <value>Aktiver viderekobling av porter bare når du trenger det, for å sikre den sterkeste personvern- og sikkerhetsbeskyttelsen.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Trenger jeg viderekobling av porter?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
-    <value>Включить проброс портов?</value>
+    <value>Aktivere viderekobling av porter?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN обнаружил, что в вашей локальной сети настроен прокси-сервер. Приложение Proton VPN не может защитить трафик, который проходит через этот прокси. Это означает, что ваше соединение не будет полностью защищено, как ожидается.</value>
+    <value>Proton VPN har oppdaget en proxy-tjener konfigurert på ditt lokale nettverk. Proton VPN-appen kan ikke beskytte trafikken som går gjennom denne proxyen. Dette betyr at tilkoblingen din ikke vil være fullstendig beskyttet som forventet.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Представляем обновленный вид Proton. Много услуг, одна миссия. Добро пожаловать в Интернет, где конфиденциальность установлена по умолчанию. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
+    <value>Vi presenterer Protons oppdaterte utseende. Mange tjenester, ett oppdrag. Velkommen til et internett hvor personvern er standarden. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Lær mer&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
-    <value>Обновленный Proton и комплексная защита</value>
+    <value>Oppdaterte Proton, enhetlig beskyttelse</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Понятно</value>
+    <value>Forstått</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Для правильной работы раздельного туннелирования, вам нужно выключить kill switch.</value>
+    <value>For at delt tunnelering skal fungere skikkelig, må du deaktivere nødstopp.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
-    <value>Сотни серверов в {0} стране</value>
-  </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1_Few">
-    <value>Сотни серверов в {0} странах</value>
-  </data>
-  <data name="Dialogs_SubscriptionExpired_ListOption1_Many">
-    <value>Сотни серверов в {0} странах</value>
+    <value>Hundrevis av tjenere i {0} land</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
-    <value>Сотни серверов в {0} страны</value>
+    <value>Hundrevis av tjenere i {0} land</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption2">
-    <value>Подключайте до 10 устройств одновременно</value>
+    <value>Koble til opptil 10 enheter samtidig</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption3">
-    <value>Дополнительные возможности: NetShield, Secure Core, Tor, P2P</value>
+    <value>Avanserte funksjoner: NetShield, Secure Core, Tor, P2P</value>
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Улучшите снова, чтобы пользоваться всеми функциями:</value>
+    <value>Oppgrader igjen for å nyte alle funksjonene:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Вы перешли на более дешевую подписку, поэтому мы переподключаемся к самому быстрому доступному серверу.</value>
+    <value>Abonnementet ditt er nedgradert, så vi kobler til den raskeste tilgjengelige tjeneren på nytt.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Вы перешли на более дешевую версию подписки.</value>
+    <value>Abonnementet ditt er nedgradert.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Срок вашей подписки на VPN истек</value>
+    <value>VPN-abonnementet ditt er utløpt</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Улучшить снова</value>
+    <value>Oppgrader Igjen</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
-    <value>Устранение неполадок Proton VPN</value>
+    <value>Feilsøk Proton VPN</value>
     <comment>The text displayed in Troubleshoot modal window title</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_Close">
-    <value>Закрыть</value>
+    <value>Lukk</value>
     <comment>The button displayed in Troubleshoot modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_btn_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Альтернативная маршрутизация&lt;/Bold&gt; - В случае блокировки сайтов Proton эта настройка позволяет приложению попробовать альтернативную сетевую маршрутизацию, чтобы добраться до Proton, что может быть полезно для обхода брандмауэров или сетевых проблем. Для большей надежности мы рекомендуем оставить эту настройку включенной. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Узнать больше&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;Alternativ Ruting&lt;/Bold&gt; - Denne innstillingen tillater appen å forsøke alternative nettverksruter for å nå Proton dersom Proton-nettsteder er blokkert. Det kan være nyttig for å komme rundt brannmurer og nettverksproblemer. Vi anbefaler å ha denne innstillingen på for mest pålitelighet. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Lær Mer&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Конфликт с антивирусом&lt;/Bold&gt; - Временно отключите или удалите антивирусное программное обеспечение.</value>
+    <value>&lt;Bold&gt;Innblanding fra Antivirus&lt;/Bold&gt; - Midlertidig deaktiver eller fjern antivirus-programvaren din.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Конфликт с прокси-сервером/брандмауэром&lt;/Bold&gt; - Отключите все прокси-серверы или брандмауэры, или обратитесь к своему сетевому администратору.</value>
+    <value>&lt;Bold&gt;Proxy/Brannmur innblanding&lt;/Bold&gt; - Deaktiver eventuelle proxyer eller brannmurer, eller kontakt nettverksadministratoren.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Правительственная блокировка&lt;/Bold&gt; - Возможно, ваша страна блокирует доступ к Proton. Попробуйте использовать &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; чтобы получить доступ к Proton.</value>
+    <value>&lt;Bold&gt;Regjeringen blokkerer tilgang&lt;/Bold&gt; - Landet ditt kan blokkere tilgangen til Proton. Prøv å bruke &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; for å få tilgang til Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Правительственная блокировка&lt;/Bold&gt; - Возможно, ваша страна блокирует доступ к Proton. Попробуйте использовать &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; чтобы получить доступ к Proton.</value>
+    <value>&lt;Bold&gt;Regjeringen blokkerer tilgang&lt;/Bold&gt; - Landet ditt kan blokkere tilgangen til Proton. Prøv å bruke &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; for å få tilgang til Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
-    <value>&lt;Bold&gt;Проблема с интернет-провайдером (ISP)&lt;/Bold&gt; - Попробуйте подключиться к Proton используя другую сеть (или используйте &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <value>&lt;Bold&gt;Problem med internett-leverandøren (ISP)&lt;/Bold&gt; - Prøv å koble til Proton fra et annet nettverk (eller bruk &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Нет подключения к интернету&lt;/Bold&gt; - Пожалуйста, убедитесь, что ваше Интернет-соединение работает.</value>
+    <value>&lt;Bold&gt;Ingen internettforbindelse.&lt;/Bold&gt; - Forsikre deg om at internettilkoblingen din fungerer.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
-    <value>&lt;Bold&gt;Proton недоступен&lt;/Bold&gt; - Проверьте &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Статус Proton&lt;/Hyperlink&gt;, чтобы узнать состояние нашей системы.</value>
+    <value>&lt;Bold&gt;Proton er nede&lt;/Bold&gt; - Undersøk &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; for vår systemstatus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Потенциальные проблемы, которые могли привести к тайм-ауту Вашего подключения, и их решение</value>
+    <value>Potensielle problemer som kan føre til at tilkoblingen blir tidsavbrutt og løsningene</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Все еще не могу найти решение&lt;/Bold&gt; - Свяжитесь с нами напрямую через &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;форму поддержки&lt;/Hyperlink&gt;, эл. почта (support@protonvpn.com), или &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Kan fremdeles ikke finne en løsning?&lt;/Bold&gt; - Kontakt oss direkte gjennom vårt &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;støtteskjema&lt;/Hyperlink&gt; e-post(support@protonvpn.com), eller &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
-    <value>Переключиться на TAP</value>
+    <value>Bytt til TRYKK</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN не смог подключиться, потому что сетевой адаптер TUN уже используется. Пожалуйста, отключите все активные VPN и повторите попытку. Или же переключитесь на адаптер TAP (вы можете снова переключиться на TUN в расширенных настройках).</value>
+    <value>Proton VPN kunne ikke koble til fordi TUN-nettverkskortet allerede er i bruk. Koble fra alle aktive VPN-er og prøv på nytt. Alternativt kan du bytte til TAP-adapteren (du kan endre tilbake til TUN i Avanserte innstillinger).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN не смог подключиться, потому что в данный момент используется сетевой адаптер WireGuard. Пожалуйста, отключите все активные VPN и повторите попытку, или же поменяйте протокол в расширенных настройках.</value>
+    <value>Proton VPN kunne ikke koble til fordi et WireGuard-nettverkskort allerede er i bruk. Koble fra alle aktive VPN-er og prøv på nytt. Alternativt kan du bytte protokoller i avanserte innstillinger.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
-    <value>Отмена</value>
+    <value>Avbryt</value>
     <comment>The text on Cancel button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Close">
-    <value>Закрыть</value>
+    <value>Lukk</value>
     <comment>The text on Close button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Continue">
-    <value>Продолжить</value>
+    <value>Fortsett</value>
     <comment>The text on Continue button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Enable">
-    <value>Включить</value>
+    <value>Aktiver</value>
   </data>
   <data name="Dialogs_btn_NoThanks">
-    <value>Нет, спасибо</value>
+    <value>Nei, takk</value>
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
     <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
-    <value>С сервера:</value>
+    <value>Fra tjener:</value>
     <comment>The label for the previous server in dialog windows</comment>
   </data>
   <data name="Dialogs_reconnection_ToServer">
-    <value>На сервер:</value>
+    <value>Til tjener:</value>
     <comment>The label for the new server in dialog windows</comment>
   </data>
   <data name="Dialogs_ttl_Question">
-    <value>Предупреждение</value>
+    <value>Vær oppmerksom</value>
     <comment>The title of question message window</comment>
   </data>
   <data name="Dialogs_ttl_Warning">
-    <value>Предупреждение</value>
+    <value>Vær oppmerksom</value>
     <comment>The title of warning message window</comment>
   </data>
   <data name="ErrorWindow_lbl_Close">
-    <value>Закрыть</value>
+    <value>Lukk</value>
   </data>
   <data name="ErrorWindow_lbl_Download">
-    <value>Скачать</value>
+    <value>Last ned</value>
   </data>
   <data name="ErrorWindow_lbl_DownloadInfo">
-    <value>Скачайте и установите последнюю версию, чтобы исправить эту проблему.</value>
+    <value>Last ned og installer den nyeste versjonen for å løse problemet.</value>
   </data>
   <data name="ErrorWindow_lbl_MissingHeading">
-    <value>В приложении отсутствует необходимый файл</value>
+    <value>Programmet mangler en nødvendig fil</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Другие приложения на вашем компьютере могли удалить файлы или помешать их успешной установке.</value>
+    <value>Noen programmer på PCen kan ha fjernet noen filer eller forhindret at de ble installert.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
-    <value>Исправить</value>
+    <value>Reparer</value>
   </data>
   <data name="ErrorWindow_lbl_RepairInfo">
-    <value>Пожалуйста, исправьте вашу установку.</value>
+    <value>Vennligst reparer installasjonen.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill switch</value>
+    <value>Nødstopp</value>
     <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
-    <value>Лицензия</value>
+    <value>Lisens</value>
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Ваш сеанс истёк. Пожалуйста, войдите снова.</value>
+    <value>Økten er utløpt. Vennligst logg på nytt.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Недействительный refresh-токен: пожалуйста, войдите снова.</value>
+    <value>Ugyldig oppdateringstoken, vennligst logg på igjen.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
-    <value>Неизвестная ошибка</value>
+    <value>Ukjent feil</value>
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Аутентифицировать</value>
+    <value>Autentiser</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Войти</value>
+    <value>Logg på</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill switch сейчас активен</value>
+    <value>Nødstopp er for øyeblikket aktivert</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
-    <value>Пароль</value>
+    <value>Passord</value>
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Безопасный интернет где угодно</value>
+    <value>Sikkert internett hvor som helst</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
-    <value>Запуск и подключение при загрузке</value>
+    <value>Start og koble til ved oppstart</value>
   </data>
   <data name="Login_lbl_StartWithWindows">
-    <value>Запускать вместе с Windows</value>
+    <value>Start med Windows</value>
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Идет подключение к Proton VPN...</value>
+    <value>Tilkobling til Proton VPN pågår...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Код двухфакторной аутентификации</value>
+    <value>Tofaktorautentiseringskode</value>
   </data>
   <data name="Login_lbl_Username">
-    <value>Имя пользователя</value>
+    <value>Brukernavn</value>
     <comment>The label for Username text box in Login window</comment>
   </data>
   <data name="Login_lnk_CommonSignInIssues">
-    <value>Частые проблемы при входе</value>
+    <value>Vanlige påloggingsutfordringer</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
-    <value>Создать аккаунт</value>
+    <value>Opprett konto</value>
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
-    <value>Забыли имя пользователя</value>
+    <value>Glemt brukernavn</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
   </data>
   <data name="Login_lnk_LoginProblems">
-    <value>Частые проблемы при входе</value>
+    <value>Vanlige påloggingsutfordringer</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
   </data>
   <data name="Login_lnk_NeedHelp">
-    <value>Нужна помощь?</value>
+    <value>Trenger du hjelp?</value>
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
   <data name="Login_lnk_ReportAnIssue">
-    <value>Сообщить о проблеме</value>
+    <value>Rapporter en feil</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
-    <value>Сообщить о проблеме</value>
+    <value>Rapporter en feil</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
-    <value>Сброс пароля</value>
+    <value>Tilbakestill passord</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Неправильный код двухфакторной аутентификации</value>
+    <value>Feil tofaktorautentiseringskode</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Неверные учетные данные для входа. Попробуйте снова.</value>
+    <value>Feil påloggingslegitimasjon. Vennligst prøv på nytt.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
     <comment>The title of Login window. Should not be converted.</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownSpeed">
-    <value>Скорость скачивания:</value>
+    <value>Nedlastningshastighet:</value>
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownVolume">
-    <value>Скачано:</value>
+    <value>Data lastet ned:</value>
     <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Session">
-    <value>Сеанс:</value>
+    <value>Økt:</value>
     <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Speed">
-    <value>Скорость</value>
+    <value>Hastighet</value>
     <comment>The label for overall data transfer speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_TimeUnits">
-    <value>60 секунд</value>
+    <value>60 sekunder</value>
     <comment>The time units of Speed graph in Map of main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Traffic">
-    <value>Трафик сеанса</value>
+    <value>Økttrafikk</value>
     <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpSpeed">
-    <value>Скорость отправки:</value>
+    <value>Opplastningshastighet:</value>
     <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpVolume">
-    <value>Отправлено:</value>
+    <value>Data lastet opp:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Улучшить до Plus</value>
+    <value>Oppgrader til Plus</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
-    <value>ПОДКЛЮЧЕНО</value>
+    <value>TILKOBLET</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
   </data>
   <data name="Map_VpnStatus_val_Disconnected">
-    <value>ОТКЛЮЧЕНО</value>
+    <value>FRAKOBLET</value>
     <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
   </data>
   <data name="Map_btn_Connect">
-    <value>Подключиться</value>
+    <value>Koble til</value>
     <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
   </data>
   <data name="Map_btn_Disconnect">
-    <value>Отключиться</value>
+    <value>Koble fra</value>
     <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
   </data>
   <data name="Map_lbl_SecureCore">
@@ -2100,495 +2064,471 @@
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Получите неограниченное количество изменений с VPN Plus</value>
+    <value>Få ubegrensede bytter med VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>На данный момент вы достигли максимального количества изменений на сервере Free.</value>
+    <value>Du har nådd maksimalt antall gratis tjenerbytter for nå.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
-    <value>Активировать Secure Core</value>
+    <value>Aktiver Secure Core</value>
   </data>
   <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
-    <value>Больше не показывать</value>
+    <value>Ikke vis igjen</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core обеспечивает наивысший уровень безопасности и конфиденциальности, но может снизить скорость вашего подключения к Интернету. Если вам нужна более высокая производительность, вы можете отключить Secure Core.</value>
+    <value>Secure Core tilbyr det høyeste nivået av sikkerhet og personvern, men det kan redusere internetthastigheten din. Hvis du trenger mer ytelse, kan du deaktivere Secure Core.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Замечание о скорости...</value>
+    <value>Et notat om hastighet...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>Новые страны с бесплатными серверами</value>
+    <value>Nye gratis land</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>Теперь бесплатные серверы доступны в Польше и Румынии.</value>
+    <value>Det finnes nå gratis tjenere i Polen og Romania.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Изменения в выборе сервера</value>
+    <value>Endringer til valg av tjener</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Для предотвращения перегрузки серверов и обеспечения быстрой и безопасной работы в интернете для каждого пользователя, мы отказались от ручного выбора страны и значительно улучшили систему автоматического выбора сервера.</value>
+    <value>For å forhindre trengsel på tjenerne og sikre at alle har tilgang til rask og sikker surfing, fjernet vi manuelt valg av land og gjorde store forbedringer i automatisk tjenervalg.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>Что нового</value>
+    <value>Hva er nytt</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Понятно</value>
+    <value>Forstått</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
   </data>
   <data name="Notifications_Delinquency_Description">
-    <value>Вы снова получите доступ к платным функциям, когда это будет оплачено.</value>
+    <value>Du vil kunne få tilgang til premiumfunksjoner igjen etter at disse er betalt.</value>
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Вы снова получите доступ к платным функциям, когда это будет оплачено. А пока мы подключаем вас к самому быстрому доступному бесплатному серверу.</value>
+    <value>Du vil kunne få tilgang til premiumfunksjoner igjen etter at disse er betalt. Foreløpig kobler vi til den raskeste Free-plantjeneren som er tilgjengelig.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>В Вашей учетной записи VPN есть неоплаченные счета</value>
+    <value>VPN-kontoen din har ventende fakturaer</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN обнаружила, что ваша текущая сеть препятствует подключению к VPN. Включение Smart Protocol может помочь в обходе этих ограничений.</value>
+    <value>Proton VPN oppdaget at ditt nåværende nettverk hindrer en tilkobling til VPN. Aktivering av Smart Protocol kan omgå disse begrensningene.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
-    <value>Smart Protocol в настоящее время отключен</value>
+    <value>Smart Protocol er for øyeblikket deaktivert</value>
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Обнаружено небезопасное подключение к Wi-Fi: {0}</value>
+    <value>Usikker WiFi-tilkobling oppdaget: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Пожалуйста, отключите другое устройство, чтобы подключить это.</value>
+    <value>Vennligst koble fra en annen enhet for å koble til denne.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
-    <value>Вы достигли ограничения на количество устройств</value>
+    <value>Du har nådd den maksimale grensen for enheter</value>
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Пожалуйста, отключитесь с другого устройства, чтобы подключить это, или перейдите на PLUS, чтобы подключать до 10 устройств одновременно.</value>
+    <value>Vennligst koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å få opptil 10 enheter tilkoblet samtidig.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Вы перешли на более дешевую подписку. Улучшите её снова, чтобы пользоваться всеми функциями.</value>
+    <value>Abonnementet ditt er nedgradert. Oppgrader igjen for å nyte alle funksjonene.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Ваша подписка была понижена, поэтому мы переподключаемся к самому доступному серверу. Улучшите снова, чтобы наслаждаться всеми функциями.</value>
+    <value>Abonnementet ditt har blitt nedgradert, så vi kobler til den raskeste tilgjengelige tjeneren på nytt. Oppgrader igjen for å nyte alle funksjonene.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Срок вашей подписки на VPN истек</value>
+    <value>VPN-abonnementsplanen din er utløpt</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Перезапустить</value>
+    <value>Start på nytt</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
-    <value>Что нового</value>
+    <value>Hva er nytt</value>
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>Доступна новая версия приложения!</value>
+    <value>En ny appversjon er nå tilgjengelig!</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
-    <value>ПОДКЛЮЧЕНО к {0}</value>
+    <value>KOBLET til {0}</value>
     <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
   </data>
   <data name="Notifications_VpnState_msg_Disconnected">
-    <value>ОТКЛЮЧЕНО</value>
+    <value>FRAKOBLET</value>
     <comment>The message displayed in VPN state system notification when app disconnects from VPN</comment>
   </data>
   <data name="Onboarding_btn_EndTour">
-    <value>Закончить тур</value>
+    <value>Avslutt omvisning</value>
     <comment>The text on End Tour button in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_btn_NextStep">
-    <value>Следующий совет</value>
+    <value>Neste tips</value>
     <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_1">
-    <value>Автоматически подключайтесь к серверу, который обеспечит вам самое быстрое подключение.</value>
+    <value>Koble automatisk til tjeneren som gir deg den raskeste tilkoblingen.</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Сохраните предпочитаемые Вами настройки и серверы для дальнейшего использования.</value>
+    <value>Lagre dine foretrukne innstillinger og tjenere for fremtidig bruk.</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
-    <value>Выберите, какую страну и сервер вы хотели бы использовать для конечного IP-адреса.</value>
+    <value>Velg hvilket land og tjener du vil bruke for din endelige IP-adresse.</value>
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>Адаптируйте ваше VPN-соединение к вашей активности в сети с помощью специальных функций Proton VPN для оптимальной скорости и защиты конфиденциальности.</value>
+    <value>Tilpass VPN-tilkoblingen din til nettaktiviteten din med Proton VPNs spesialfunksjoner for optimal hastighet og personvern.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
-    <value>Быстрое подключение</value>
+    <value>Hurtigtilkobling</value>
     <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_2">
-    <value>Профили</value>
+    <value>Profiler</value>
     <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_3">
-    <value>Страны</value>
+    <value>Land</value>
     <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_4">
-    <value>Быстрые настройки</value>
+    <value>Hurtiginnstillinger</value>
     <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="PortForwarding">
-    <value>Проброс портов</value>
+    <value>Port-Viderekobling</value>
   </data>
   <data name="PortForwarding_lbl_ActivePort">
-    <value>Активный порт:</value>
+    <value>Aktiv port:</value>
   </data>
   <data name="PortForwarding_lbl_CopyValue">
-    <value>Нажмите, чтобы скопировать этот номер порта.</value>
+    <value>Klikk for å kopiere dette portnummeret.</value>
   </data>
   <data name="PortForwarding_lbl_Info">
-    <value>Установите это число в приложении BitTorrent для увеличения скорости.</value>
+    <value>Sett dette nummeret i BitTorrent-appen din for større hastighet.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Чтобы использовать переадресацию портов, пожалуйста &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;подключитесь&lt;/Hyperlink&gt; к серверу, который поддерживает P2P.</value>
+    <value>For å bruke Port-Viderekobling, vennligst &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;koble&lt;/Hyperlink&gt; til en tjener som støtter P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
+    <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
-    <value>Самый быстрый доступный сервер</value>
+    <value>Raskeste tilgjengelige tjener</value>
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Random">
-    <value>Каждый раз разный сервер</value>
+    <value>Forskjellig tjener hver gang</value>
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Профиль не может быть сохранен:</value>
+    <value>Profil kunne ikke lagres:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Пожалуйста, выберите цвет</value>
+    <value>Vennligst velg en farge</value>
     <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Пожалуйста, выберите страну</value>
+    <value>Vennligst velg et land</value>
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Пожалуйста, выберите шлюз</value>
+    <value>Vennligst velg en gateway</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Пожалуйста, выберите название профиля</value>
+    <value>Vennligst velg et profilnavn</value>
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
-    <value>Название профиля уже существует</value>
+    <value>Profilnavnet eksisterer allerede</value>
     <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>Максимальная длина названия профиля - {0} символ. Пожалуйста, выберите более короткое название профиля.</value>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_Few">
-    <value>Максимальная длина названия профиля - {0} символа. Пожалуйста, выберите более короткое название профиля.</value>
-  </data>
-  <data name="Profiles_Profile_Error_msg_NameTooLong_Many">
-    <value>Максимальная длина названия профиля - {0} символов. Пожалуйста, выберите более короткое название профиля.</value>
+    <value>Maksimal profilnavnlengde er {0} symbol. Vennligst velg et kortere profilnavn.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>Максимальная длина названия профиля - {0} символов. Пожалуйста, выберите более короткое название профиля.</value>
+    <value>Maksimal profilnavnlengde er {0} symboler. Vennligst velg et kortere profilnavn.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Пожалуйста, выберите сервер</value>
+    <value>Vennligst velg en tjener</value>
     <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
-    <value>Выберите страну выхода</value>
+    <value>Velg utreiseland</value>
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Gateway_Watermark">
-    <value>Выбрать Шлюз</value>
+    <value>Velg gateway</value>
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
-    <value>Введите название профиля</value>
+    <value>Skriv inn profilnavn</value>
     <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Fastest">
-    <value>Самый быстрый</value>
+    <value>Raskeste</value>
     <comment>The name of Fastest profile</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Random">
-    <value>Случайный</value>
+    <value>Tilfeldig</value>
     <comment>The name of Random profile</comment>
   </data>
   <data name="Profiles_Profile_btn_Discard">
-    <value>Не сохранять</value>
+    <value>Forkast</value>
     <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Продолжить редактирование</value>
+    <value>Fortsett redigering</value>
     <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Color">
-    <value>Цвет:</value>
+    <value>Farge:</value>
     <comment>The label for Color selection in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country">
-    <value>Страна:</value>
+    <value>Land:</value>
     <comment>The label for Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Country_Watermark">
-    <value>Выбор страны</value>
+    <value>Velg land</value>
     <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_ExitCountry">
-    <value>Страна выхода:</value>
+    <value>Utreiseland:</value>
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Шлюз:</value>
+    <value>Gateway:</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
-    <value>Название:</value>
+    <value>Navn:</value>
     <comment>The label for Name text box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Protocol">
-    <value>Протокол:</value>
+    <value>Protokoll:</value>
     <comment>The label for Protocol combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Server">
-    <value>Сервер:</value>
+    <value>Tjener:</value>
     <comment>The label for Server combo box in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Server_Watermark">
-    <value>Выбор сервера</value>
+    <value>Velg tjener</value>
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Изменения профиля не сохранены.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Вы уверены, что хотите отбросить их?</value>
+    <value>Det er ulagrede profilendringer.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Er du sikker på at du vil forkaste?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Создание профиля</value>
+    <value>Opprett profil</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
-    <value>Редактирование профиля</value>
+    <value>Rediger profil</value>
     <comment>The title of Profile window when editing profile</comment>
   </data>
   <data name="Profiles_btn_Close">
-    <value>Закрыть</value>
+    <value>Lukk</value>
     <comment>The text on Close button in Profiles window</comment>
   </data>
   <data name="Profiles_btn_Create">
-    <value>Создать профиль</value>
+    <value>Opprett profil</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
   <data name="Profiles_btn_Troubleshoot">
-    <value>Устранение неполадок</value>
+    <value>Feilsøk</value>
     <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
   </data>
   <data name="Profiles_col_Action">
-    <value>Действие</value>
+    <value>Handling</value>
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection">
-    <value>Подключение</value>
+    <value>Tilkobling</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
-    <value>Профиль</value>
+    <value>Profil</value>
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Protocol">
-    <value>Протокол</value>
+    <value>Protokoll</value>
     <comment>The title of VPN protocol column in Profiles window</comment>
   </data>
   <data name="Profiles_msg_AllServersOffline">
-    <value>В настоящее время серверы отключены для техобслуживания.</value>
+    <value>Tjenere er for øyeblikket frakoblet for vedlikehold.</value>
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>В настоящее время серверы в этой стране отключены для техобслуживания. Пожалуйста, выберите другую страну.</value>
+    <value>Tjenere i dette landet er for øyeblikket frakoblet for vedlikehold. Vennligst velg et annet land.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
-    <value>Этот профиль будет удален. Вы хотите продолжить?</value>
+    <value>Denne profilen vil bli slettet. Vil du fortsette?</value>
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Для вашего выбора нет доступных серверов. Пожалуйста, выберите другой вариант.</value>
+    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Vennligst velg et annet alternativ.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
-    <value>Профили</value>
+    <value>Profiler</value>
     <comment>The title of Profiles window</comment>
   </data>
   <data name="PromoCode_btn_Apply">
-    <value>Применить</value>
+    <value>Anvend</value>
   </data>
   <data name="PromoCode_lbl_CouponCode">
-    <value>Код купона</value>
+    <value>Kupongkode</value>
   </data>
   <data name="PromoCode_lbl_Success">
-    <value>Купон успешно применен.</value>
+    <value>Kupongen er brukt.</value>
   </data>
   <data name="PromoCode_lbl_UseCoupon">
-    <value>Использовать купон</value>
+    <value>Bruk kupong</value>
   </data>
   <data name="QuickLaunch_btn_Connect">
-    <value>Быстрое подключение</value>
+    <value>Hurtigtilkobling</value>
     <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
   </data>
   <data name="QuickLaunch_btn_Disconnect">
-    <value>Отключиться</value>
+    <value>Koble fra</value>
     <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
   </data>
   <data name="QuickLaunch_btn_OpenApp">
-    <value>Открыть Proton VPN</value>
+    <value>Åpne Proton VPN</value>
     <comment>The text on button in Quick Launch window (opens app)</comment>
   </data>
   <data name="QuickLaunch_lbl_Connecting">
-    <value>Подключение к</value>
+    <value>Kobler til</value>
     <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
   </data>
   <data name="QuickLaunch_lbl_Profiles">
-    <value>Профили</value>
+    <value>Profiler</value>
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Выключить Kill switch</value>
+    <value>Nødstopp av</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Включить Kill switch</value>
+    <value>Nødstopp på</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOff">
-    <value>Не блокировать</value>
+    <value>Ikke blokkér</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnFirst">
-    <value>Блокировать только вредоносные программы</value>
+    <value>Blokkér kun skadevare</value>
   </data>
   <data name="QuickSettings_btn_NetshieldOnSecond">
-    <value>Блокировать вредоносные программы, рекламу и трекеры</value>
+    <value>Blokkér skadevare, reklamer &amp; sporere</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Постоянный kill switch</value>
+    <value>Permanent nødstopp</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
-    <value>Проброс портов выкл</value>
+    <value>Port-Viderekobling av</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOn">
-    <value>Проброс портов вкл</value>
+    <value>Port-Viderekobling på</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Secure Core выкл</value>
+    <value>Secure Core av</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core вкл</value>
+    <value>Secure Core på</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>УЛУЧШИТЬ</value>
+    <value>OPPGRADER</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Отключает интернет при обрыве подключения к VPN для предотвращения случайной утечки IP-адресов.</value>
+    <value>Deaktiverer internett hvis VPN-tilkoblingen faller ut for å forhindre utilsiktet IP-lekkasje.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
-    <value>Просматривайте интернет без рекламы и вредоносных программ.</value>
+    <value>Surf internett uten annonser og skadelig programvare.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>Реклам заблокировано</value>
+    <value>Annonser blokkert</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>Реклама заблокирована</value>
-  </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
-    <value>Рекламы заблокировано</value>
-  </data>
-  <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
-    <value>Реклам заблокировано</value>
+    <value>Annonse blokkert</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Рекламные сайты используют файлы cookie и трекеры, чтобы показывать вам персонализированную рекламу.</value>
+    <value>Annonsenettsteder bruker informasjonskapsler og sporere for å målrette deg.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Экономия трафика</value>
+    <value>Data spart</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Примерный объём рекламы, трекеров и вредоносных программ, которые заблокировал NetShield.</value>
+    <value>Anslått størrelse på annonser, sporere og skadelig programvare som NetShield har blokkert.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Трекеров заблокировано</value>
+    <value>Sporere stoppet</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Трекер заблокирован</value>
-  </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
-    <value>Трекера заблокировано</value>
-  </data>
-  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
-    <value>Трекеров заблокировано</value>
+    <value>Sporer stoppet</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Трекеры – это сторонние сайты, которые собирают, хранят и продают информацию о ваших действиях в интернете.</value>
+    <value>Sporere er tredjeparts nettsteder som samler inn, lagrer og selger informasjon om nettaktiviteten din.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
-    <value>Если веб-сайты не загружаются, попробуйте отключить NetShield</value>
+    <value>Hvis nettsteder ikke lastes inn, kan du prøve å deaktivere NetShield</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Ускорьте ваши торренты и онлайн-игры, разрешив интернет-доступ к поддерживаемым локальным приложениям.</value>
+    <value>Få fart på torrent-nedlasting og nettspill ved å la støttede lokale apper være tilgjengelige fra internett.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>Направляйте свои самые чувствительные данные через наши самые безопасные серверы в странах, уважающих конфиденциальность.</value>
+    <value>Rute dine mest sensitive data gjennom våre sikreste tjenere i personvernvennlige land.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
-    <value>Secure Core может снизить скорость VPN</value>
+    <value>Secure Core kan redusere VPN-hastighet</value>
   </data>
   <data name="SecureCore">
     <value>Secure Core</value>
   </data>
   <data name="Secure_Servers_lbl_One">
-    <value>{0} защищённый сервер</value>
-  </data>
-  <data name="Secure_Servers_lbl_Few">
-    <value>{0} защищённых сервера</value>
-  </data>
-  <data name="Secure_Servers_lbl_Many">
-    <value>{0} защищённых серверов</value>
+    <value>{0} sikker tjener</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} защищённого сервера</value>
+    <value>{0} sikre tjenere</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Шлюзы</value>
+    <value>Gatewayer</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
-    <value>Стандартный</value>
+    <value>Standard</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_P2P">
@@ -2604,15 +2544,15 @@
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Самый быстрый</value>
+    <value>Raskeste</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
-    <value>P2P сервер</value>
+    <value>P2P-tjener</value>
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Сервер Plus</value>
+    <value>Plus-tjener</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2620,99 +2560,99 @@
     <comment>The name of Secure Core server feature</comment>
   </data>
   <data name="Servers_Feature_val_Streaming">
-    <value>Трансляция</value>
+    <value>Strømming</value>
   </data>
   <data name="Servers_Feature_val_Tor">
-    <value>Tor сервер</value>
+    <value>Tor-tjener</value>
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Бесплатные подключения (1)</value>
+    <value>Gratis forbindelser (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>IP-адрес сервера:</value>
+    <value>Tjener IP:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
-    <value>Назначается автоматически</value>
+    <value>Tildelt automatisk</value>
     <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_Load">
-    <value>Нагрузка сервера:</value>
+    <value>Tjenerbelastning:</value>
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>Нагрузка: {0}%</value>
+    <value>{0}% Belastning</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
-    <value>Нет данных</value>
+    <value>Ingen data</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Servers_Load_lbl_Status">
-    <value>Состояние сервера:</value>
+    <value>Tjenerstatus:</value>
     <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_ViaCountry">
-    <value>Через {0} в {1}</value>
+    <value>Via {0} til {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Get worldwide coverage with VPN Plus</value>
+    <value>Få verdensomspennende dekning med VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Не та страна, которую вы хотели? Улучшите тариф для выбора любого сервера</value>
+    <value>Ikke det landet du ønsket? Oppgrader for å velge hvilken som helst tjener</value>
   </data>
   <data name="Servers_btn_Connect">
-    <value>Подключить</value>
+    <value>Koble til</value>
     <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
   </data>
   <data name="Servers_btn_Disconnect">
-    <value>Отключить</value>
+    <value>Koble fra</value>
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Улучшить</value>
+    <value>Oppgrader</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Улучшить до Plus</value>
+    <value>Oppgrader til Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
-    <value>через</value>
+    <value>via</value>
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN не смог обновить сертификат аутентификации клиента.</value>
+    <value>Proton VPN klarte ikke å oppdatere klientautentiseringssertifikatet.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Сервер, к которому вы пытаетесь подключиться, в настоящее время отключен для техобслуживания. Пожалуйста, выберите другой сервер или профиль.</value>
+    <value>Tjeneren du prøver å koble til, er for øyeblikket frakoblet for vedlikehold. Vennligst velg en annen tjener eller profil.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>Сервер, к которому вы пытаетесь подключиться, был удален. Пожалуйста, выберите другой сервер или профиль.</value>
+    <value>Tjeneren du prøver å koble til, er fjernet. Vennligst velg en annen tjener eller profil.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN не может подключиться, потому что сервер RPC недоступен в вашей системе. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Посмотреть возможные решения&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN kan ikke koble til fordi RPC-tjeneren ikke er tilgjengelig på systemet ditt. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Se mulige løsninger&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>К сожалению, этот сервер не поддерживает WireGuard.</value>
+    <value>Dessverre støtter ikke denne tjeneren WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
-    <value>Добавить приложение</value>
+    <value>Legg til app</value>
     <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>ПРИЛОЖЕНИЯ:</value>
+    <value>APPER:</value>
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Исключить приложения/IP-адреса из VPN-туннеля</value>
+    <value>Ekskluder apper/IP-er fra å bruke VPN-tunnel</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Только выбранные приложения/IP подключатся через VPN</value>
+    <value>Bare inkluderte apper/IP-er vil gå gjennom VPN-tunnelen</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
@@ -2720,104 +2660,104 @@
     <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
-    <value>Добавить адрес IPv4</value>
+    <value>Legg til IPv4-adresse</value>
     <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
-    <value>IP недействителен</value>
+    <value>IP ikke gyldig</value>
     <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection">
-    <value>Защита от утечки DNS</value>
+    <value>Beskyttelse mot DNS-lekkasje</value>
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Предотвращает утечку информации о DNS запросах третьим лицам. Нельзя отключить.</value>
+    <value>Forhindre lekkasje av detaljer om DNS-spørringer til tredjeparter. Alltid på.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
-    <value>Разрешить альтернативную маршрутизацию</value>
+    <value>Tillat alternativ ruting</value>
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>В случае блокировки сайтов Proton эта настройка позволяет приложению попробовать альтернативную сетевую маршрутизацию, чтобы добраться до Proton, что может быть полезно для обхода брандмауэров или сетевых проблем. Для большей надежности мы рекомендуем оставить эту настройку включенной.</value>
+    <value>Denne innstillingen tillater appen å forsøke alternative nettverksruter for å nå Proton dersom Proton-nettsteder er blokkert. Det kan være nyttig for å komme rundt brannmurer og nettverksproblemer. Vi anbefaler å ha denne innstillingen på for mest pålitelighet.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
-    <value>Аппаратное ускорение</value>
+    <value>Maskinvareakselerasjon</value>
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
-    <value>Обеспечивает повышение производительности системы и плавность работы благодаря использованию графического процессора для рендеринга графики. Отключите в случае сбоев экрана.</value>
+    <value>Gir forbedret systemytelse og en jevnere opplevelse ved å bruke GPU-en til grafikkgjengivelse. Slå av i tilfelle skjermfeil.</value>
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
-    <value>Защита от утечки IPv6</value>
+    <value>IPv6-lekkasjebeskyttelse</value>
     <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
-    <value>Предотвращает утечку адреса IPv6.</value>
+    <value>Forhindre lekkasje av IPv6-adresse.</value>
     <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver">
-    <value>Сетевой драйвер OpenVPN</value>
+    <value>OpenVPN-nettverkdriver</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Сетевые драйверы могут влиять на ваше соединение и скорость. Новый адаптер TUN обеспечивает более высокую скорость, в случае проблем с соединением вернитесь на адаптер TAP.</value>
+    <value>Nettverksdrivere kan påvirke tilkoblingen og hastigheten. Den nye TUN-adapteren gir høyere hastighet og reserveløsning på TAP-adapteren hvis du støter på tilkoblingsproblemer.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
-    <value>Нестандартные порты</value>
+    <value>Ikke-standard porter</value>
     <comment>The label for toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
-    <value>Используйте Proton VPN для любых особых нужд, разрешая трафик на нестандартные порты через VPN.</value>
+    <value>Bruk Proton VPN for ethvert spesielt behov ved å la trafikk til ikke-standardporter gjennom VPN-nettverket.</value>
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>Адаптер TAP</value>
+    <value>TAP-adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>Адаптер TUN</value>
+    <value>TUN-adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
-    <value>Перенаправление портов</value>
+    <value>Port-Viderekobling</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Сочетание клавиш для переадресации портов</value>
+    <value>Port-Viderekobling snarvei</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
-    <value>Доступ к настройкам Переадресации портов из Быстрых настроек</value>
+    <value>Få tilgang til innstillinger for portvideresending fra hurtiginnstillingene</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications">
-    <value>Уведомления Переадресации портов</value>
+    <value>Varsler om viderekobling av porter</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
-    <value>Получать уведомления об изменении номера Переадресации портов</value>
+    <value>Bli varslet når portviderekoblings-nummeret endres</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Ускоряет загрузку торрентов и онлайн игр, разрешая доступ к поддерживаемым локальным приложениям из интернета. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Подробнее&lt;/Hyperlink&gt;</value>
+    <value>Få fart på torrent-nedlasting og nettspill ved å la støttede lokale apper være tilgjengelige fra internett. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Lær mer&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Ускорьте ваши торренты и онлайн-игры, разрешив интернет-доступ к поддерживаемым локальным приложениям.</value>
+    <value>Få fart på torrent-nedlasting og nettspill ved å la støttede lokale apper være tilgjengelige fra internett.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
-    <value>Раздельное туннелирование</value>
+    <value>Delt Tunnelering</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Исключение программ или IP-адресов из VPN трафика, или включение только определенных программ. Невозможно включить одновременно с kill switch.</value>
+    <value>Ekskluder en applikasjon eller en IP-adresse fra VPN-trafikk eller inkluder bare bestemte apper. Kan ikke slås på sammen med nødstopp.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
   </data>
   <data name="Settings_Advanced_ttl">
-    <value>Продвинутые</value>
+    <value>Avansert</value>
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
-    <value>Smart (рекомендуется)</value>
+    <value>Smart (foreslått)</value>
     <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Tcp">
@@ -2833,57 +2773,57 @@
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Использование пользовательских DNS-серверов отключит NetShield. DNS-серверы отвечают за направление вас на правильные веб-сайты. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Используйте только те DNS-серверы, которым вы доверяете. Вы хотите включить пользовательские DNS-серверы?</value>
+    <value>Bruk av egendefinerte DNS-tjenere vil deaktivere NetShield. DNS-tjenere er ansvarlige for å lede deg til de riktige nettstedene. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Bruk bare DNS-tjenere du klarérer. Vil du slå på egendefinerte DNS-tjenere?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Улучшить</value>
+    <value>Oppgrader</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
-    <value>Пользовательские DNS-серверы</value>
+    <value>Egendefinerte DNS-tjenere</value>
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Введите частный DNS-сервер (например, AdGuard DNS) для обработки ваших DNS-запросов. Использование пользовательских DNS-серверов отключит NetShield. DNS-серверы отвечают за направление вас на правильный сайт, поэтому используйте только те серверы, которым вы доверяете.</value>
+    <value>Skriv inn en privat DNS-tjener (for eksempel AdGuard-DNS) for å behandle DNS-forespørslene dine. Bruk av tilpassede DNS-tjenere vil deaktivere NetShield. DNS-tjenere er ansvarlige for å lede deg til riktig nettsted, så bruk bare tjenere du klarérer.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
-    <value>Протокол</value>
+    <value>Protokoll</value>
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Включите Smart Protocol, чтобы автоматически использовать протокол и порт, которые обеспечивают наилучшее подключение.</value>
+    <value>Aktiver Smart Protocol for automatisk å bruke protokollen og porten som gir best tilkobling.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>Умеренный NAT</value>
+    <value>Moderat NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Умеренный NAT отключает случайный выбор сопоставлений локальных адресов, что может несколько снизить уровень безопасности, но позволяет использовать такие методы, как прямое соединение для таких приложений, как онлайн-игры.</value>
+    <value>Moderat NAT deaktiverer randomisering av tilordning av lokale adresser, noe som kan redusere sikkerheten noe, men tillater teknikker som direkte tilkoblinger for programmer som nettspill.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
-    <value>Быстрое подключение</value>
+    <value>Hurtigtilkobling</value>
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Кнопка Быстрого Подключения подключает вас с выбранным профилем.</value>
+    <value>Hurtigtilkoblingsknappen kobler deg til valgt profil.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
-    <value>Автопереподключение</value>
+    <value>Automatisk tilkobling på nytt</value>
     <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications">
-    <value>Уведомления о переподключении</value>
+    <value>Varsler om tilkobling på nytt</value>
     <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
-    <value>Включите, чтобы получать уведомления при подключении VPN Accelerator к более быстрому серверу.</value>
+    <value>Slå på dette for å motta varsler når VPN Accelerator kobler deg til en raskere tjener.</value>
     <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect_Info">
-    <value>Переключитесь автоматически на более быстрый сервер, аналогичный выбранному вами.</value>
+    <value>Bytt automatisk til en raskere tjener som ligner på den du valgte.</value>
     <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator">
@@ -2891,170 +2831,170 @@
     <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info">
-    <value>VPN Accelerator позволяет использовать набор уникальных технологий для улучшения производительности, которые могут увеличить скорость VPN до 400%.</value>
+    <value>VPN Accelerator muliggjør et sett med unike ytelsesforbedrende teknologier som kan øke VPN-hastighetene med opptil 400%.</value>
     <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_ttl">
-    <value>Подключение</value>
+    <value>Tilkobling</value>
     <comment>The title of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate">
-    <value>Автоматические обновления</value>
+    <value>Automatiske oppdateringer</value>
     <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate_Info">
-    <value>Автоматически проверять на наличие и устанавливать обновления Proton VPN.</value>
+    <value>Se automatisk etter og installer oppdateringer til Proton VPN.</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
-    <value>Подключение при запуске приложения</value>
+    <value>Koble til ved oppstart av app</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Автоматически подключаться с профилем «Быстрого подключения» при запуске Proton VPN.</value>
+    <value>Koble automatisk til Hurtigtilkoblings-profilen når Proton VPN starter.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
-    <value>Ранний доступ</value>
+    <value>Tidlig tilgang</value>
     <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess_Info">
-    <value>Первыми получайте самые свежие обновления. Помните, что ранние версии могут быть менее стабильными.</value>
+    <value>Vær den første til å få de siste oppdateringene. Vær oppmerksom på at tidlige versjoner kan være mindre stabile.</value>
     <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_Language">
-    <value>Язык</value>
+    <value>Språk</value>
     <comment>The label for Language combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ShowNotifications">
-    <value>Показывать уведомления</value>
+    <value>Vis varsler</value>
     <comment>The label for Show Notifications toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartMinimized">
-    <value>Запускать в свернутом виде</value>
+    <value>Start minimert</value>
     <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_StartOnBoot">
-    <value>Запуск при загрузке</value>
+    <value>Start ved systemoppstart</value>
     <comment>The label for Start on boot toggle switch in General tab of Settings window.
 This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
   </data>
   <data name="Settings_General_ttl">
-    <value>Общие</value>
+    <value>Generelt</value>
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Улучшить до Plus</value>
+    <value>Oppgrader til Plus</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
-    <value>Переподключиться</value>
+    <value>Koble til på nytt</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
   </data>
   <data name="Settings_msg_ReconnectRequired">
-    <value>Для вступления в силу некоторых изменений, требуется переподключение.</value>
+    <value>Noen endringer krever tilkobling på nytt for å tre i kraft.</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
   </data>
   <data name="Settings_ttl">
-    <value>Настройки</value>
+    <value>Innstillinger</value>
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>Мои профили</value>
+    <value>Mine Profiler</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Рекомендуется</value>
+    <value>Anbefalt</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>VPN-шлюз – это безопасное соединение, предоставляющее контролируемый доступ к данным и сервисам вашей компании через выделенные серверы.</value>
+    <value>En VPN-gateway er en sikker tilkobling som gir kontrollert tilgang til bedriftens data og tjenester gjennom dedikerte tjenere.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
-    <value>Что такое шлюз?</value>
+    <value>Hva er en gateway?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Сменить сервер</value>
+    <value>Endre tjener</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
-    <value>Быстрое подключение</value>
+    <value>Hurtigtilkobling</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Disconnect">
-    <value>Отключиться</value>
+    <value>Koble fra</value>
     <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected">
-    <value>Вы не защищены!</value>
+    <value>Du er ikke beskyttet!</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_Disconnected_Info">
-    <value>Подключитесь к VPN-серверу для того, чтобы иметь безопасное соединение.</value>
+    <value>Koble til en VPN-tjener for å ha en sikker tilkobling.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown">
-    <value>Неизвестен</value>
+    <value>Ukjent</value>
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Не удалось получить ваш IP-адрес из-за проблем с сетью или ограничений на стороне провайдера.</value>
+    <value>Kan ikke hente IP-adressen din på grunn av nettverksproblemer eller begrensninger fra internett-leverandøren din.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill switch активирован!</value>
+    <value>Nødstopp aktivert!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill switch блокирует все соединения, чтобы избежать утечки ваших данных.</value>
+    <value>Nødstopp blokkerer alle tilkoblinger for å unngå å lekke dataene dine.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Местоположения Plus ({0})</value>
+    <value>Plus-plasseringer ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
-    <value>Местоположения BASIC и PLUS ({0})</value>
+    <value>BASIC- &amp; PLUS-plasseringer ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicLocationCount">
-    <value>Местоположения BASIC ({0})</value>
+    <value>BASIC-plasseringer ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
-    <value>Местоположения FREE ({0})</value>
+    <value>Gratis plasseringer ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Бесплатные серверы</value>
+    <value>Gratis tjenere</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Бесплатные серверы не имеют ограничений трафика или скорости передачи данных. Скорость может быть ограничена только из-за большого числа активных пользователей.</value>
+    <value>Gratis tjenere har ingen datagrense eller nettverksstruping. Hastigheten kan være begrenset bare på grunn av det høye antallet tilkoblede brukere.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Информация</value>
+    <value>Informasjon</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
-    <value>Местоположения PLUS ({0})</value>
+    <value>Plus-plasseringer ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier0">
-    <value>Серверы FREE ({0})</value>
+    <value>FREE-tjenere ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier1">
-    <value>Серверы BASIC ({0})</value>
+    <value>BASIC-tjenere ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier2">
-    <value>Серверы Plus ({0})</value>
+    <value>Plus-tjenere ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier3">
-    <value>ВНУТРЕННИЕ серверы</value>
+    <value>INTERNE tjenere</value>
   </data>
   <data name="Sidebar_Countries_info_SmartRouting">
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_Countries_lbl_Maintenance">
-    <value>На техобслуживании</value>
+    <value>Under vedlikehold</value>
     <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
   </data>
   <data name="Sidebar_Countries_lbl_Search_Watermark">
-    <value>Поиск</value>
+    <value>Søk</value>
     <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore">
@@ -3062,32 +3002,32 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore_Info">
-    <value>Предоставляет дополнительную защиту от компрометации VPN-сервера, направляя соединения через нашу безопасную сеть</value>
+    <value>Gir ekstra beskyttelse mot VPN-tjenerkompromittering ved å rute trafikk gjennom vårt sikre nettverk</value>
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Отключение Secure Core разорвет активное соединение VPN. Хотите продолжить?</value>
+    <value>Deaktivering av Secure Core vil koble fra den aktive VPN-tilkoblingen. Vil du fortsette?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
-    <value>Переключение в режим Secure Core приведет к отключению активного VPN-соединения. Вы хотите продолжить?</value>
+    <value>Bytting til Secure Core-modus vil koble fra den aktive VPN-tilkoblingen. Vil du fortsette?</value>
     <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_ttl">
-    <value>Страны</value>
+    <value>Land</value>
     <comment>The title of Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_FeaturesPopup_BasicAndPlus">
     <value>BASIC &amp; PLUS</value>
   </data>
   <data name="Sidebar_FeaturesPopup_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P">
     <value>P2P/BitTorrent</value>
   </data>
   <data name="Sidebar_FeaturesPopup_P2P_Desc">
-    <value>Эти серверы обеспечивают лучшую производительность для BitTorrent и обмена файлами.</value>
+    <value>Disse tjenerne gir best ytelse for BitTorrent og fildeling.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Plus">
     <value>PLUS</value>
@@ -3096,112 +3036,94 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Smart Routing</value>
   </data>
   <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
-    <value>Эта технология позволяет ProtonVPN обеспечивать более высокую скорость и безопасность в трудных для обслуживания странах.</value>
+    <value>Denne teknologien lar Proton VPN gi høyere hastighet og sikkerhet i vanskelige-å betjene-land.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming">
-    <value>Трансляция</value>
+    <value>Strømming</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>Серверы PLUS поддерживают просмотр Netflix, Disney+ и подобных служб из любой точки мира.</value>
+    <value>PLUS-tjenere støtter strømming (Netflix, Disney+, osv) fra hvor som helst i verden.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
-    <value>Функции</value>
+    <value>Funksjoner</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor">
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Направляйте ваш трафик через сеть Tor. Медленнее, но конфиденциальнее.</value>
+    <value>Rute din internetttrafikk gjennom Tor-nettverket. Tregere, men mer privat.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
-    <value>Создать профиль</value>
+    <value>Opprett profil</value>
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
-    <value>Управлять</value>
+    <value>Administrer</value>
     <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
   </data>
   <data name="Sidebar_Profiles_ttl">
-    <value>Профили</value>
+    <value>Profiler</value>
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>Другие</value>
+    <value>Andre</value>
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
-    <value>Сервер Plus</value>
+    <value>Plus-tjener</value>
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Просмотр трансляций - {0}</value>
+    <value>Strømmer - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
-    <value>Функции</value>
+    <value>Funksjoner</value>
   </data>
   <data name="Sidebar_Streaming_Info">
-    <value>Подключитесь к серверу Plus в этой стране, чтобы начать просмотр.</value>
+    <value>Koble til en Plus-tjener i dette landet for å starte strømming.</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
-    <value>Обратите внимание: чтобы появилось новое содержимое, может потребоваться использовать новую вкладку браузера и/или очистить кэш.</value>
+    <value>Merk: Bruk en ny nettleserfane og/eller tøm hurtigbufferen for å sikre at nytt innhold vises.</value>
   </data>
   <data name="Sidebar_Streaming_More">
-    <value>и многое другое</value>
+    <value>og mer</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Отключено</value>
+    <value>Deaktivert</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>В области уведомлений</value>
+    <value>til systemstatusfeltet</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>В панели задач</value>
+    <value>til oppgavelinjen</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Начинайте вводить текст...</value>
+    <value>Begynn å skrive...</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="TimeUnit_val_Day_One">
-    <value>день</value>
-  </data>
-  <data name="TimeUnit_val_Day_Few">
-    <value>дня</value>
-  </data>
-  <data name="TimeUnit_val_Day_Many">
-    <value>дней</value>
+    <value>dag</value>
   </data>
   <data name="TimeUnit_val_Day_Other">
-    <value>дней</value>
+    <value>dager</value>
   </data>
   <data name="TimeUnit_val_Hour_One">
-    <value>час</value>
-  </data>
-  <data name="TimeUnit_val_Hour_Few">
-    <value>часа</value>
-  </data>
-  <data name="TimeUnit_val_Hour_Many">
-    <value>часов</value>
+    <value>time</value>
   </data>
   <data name="TimeUnit_val_Hour_Other">
-    <value>часов</value>
+    <value>timer</value>
   </data>
   <data name="TimeUnit_val_Minute_One">
-    <value>минута</value>
-  </data>
-  <data name="TimeUnit_val_Minute_Few">
-    <value>минуты</value>
-  </data>
-  <data name="TimeUnit_val_Minute_Many">
-    <value>минут</value>
+    <value>minutt</value>
   </data>
   <data name="TimeUnit_val_Minute_Other">
-    <value>минут</value>
+    <value>minutter</value>
   </data>
   <data name="Tooltips_SmartReconnection_Description">
-    <value>Вы были переключены на более быстрый сервер, аналогичный выбранному вами.</value>
+    <value>Du har blitt byttet til en raskere tjener som ligner på den du valgte.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
@@ -3209,202 +3131,196 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
-    <value>Настройки уведомлений</value>
+    <value>Varselinnstillinger</value>
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Access faster, less crowded servers.</value>
+    <value>Få tilgang til raskere, mindre overfylte tjenere.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>Øker forbindelseshastigheter med opptil 400% med &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Improved speed and stability when connected to distant servers.</value>
+    <value>Forbedret hastighet og stabilitet når du er koblet til tjenere langt unna.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+    <value>Surf med enda høyere hastigheter (opptil 10 Gbps)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Access geoblocked content</value>
+    <value>Få tilgang til geoblokkert innhold</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Choose any location</value>
+    <value>Velg en hvilket som helst plassering</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Even higher VPN speed</value>
+    <value>Enda høyere VPN-hastighet</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Смотрите любимые фильмы</value>
+    <value>Strøm favorittfilmene dine</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Когда вы улучшите до Plus</value>
+    <value>Når du oppgraderer til Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Доступ через {0} к {1}</value>
+    <value>Få tilgang til over {0} i {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
-    <value>Connect to {0} country</value>
-  </data>
-  <data name="Upsell_Country_Bullet1_Few">
-    <value>Connect to {0} countries</value>
-  </data>
-  <data name="Upsell_Country_Bullet1_Many">
-    <value>Connect to {0} countries</value>
+    <value>Koble til {0} land</value>
   </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connect to {0} countries</value>
+    <value>Koble til {0} land</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Higher speeds (10 Gbps)</value>
+    <value>Høyere hastigheter (10 Gbps)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Смотрите любимые фильмы</value>
+    <value>Strøm favorittfilmene dine</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Защитите до 10 устройств</value>
+    <value>Beskytt opptil 10 enheter</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>30-дневная гарантия возврата денег</value>
+    <value>30-dagers pengene-tilbake-garanti</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+    <value>Lås opp &lt;Bold&gt;valg av land&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Хотите выбрать определенную страну?</value>
+    <value>Vil du velge et bestemt land?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+    <value>Koble til VPN med ditt &lt;Bold&gt;tilpassede domenenavnsystem (DNS)&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+    <value>Lagre ofte brukte tilkoblinger med &lt;Bold&gt;profiler&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+    <value>Få raskere tilgang til profilene dine med &lt;Bold&gt;Hurtigtilkobling&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Unlock advanced VPN customization</value>
+    <value>Lås opp avansert VPN-tilpasning</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Free server locations ({0})</value>
+    <value>Gratis tjenerplasseringer ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+    <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige tjeneren. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Бесплатные подключения</value>
+    <value>Gratis forbindelser</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Improve online gaming and video call performance</value>
+    <value>Forbedre ytelsen til nettspill og videosamtaler</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
+    <value>NAT type 2 (moderat) optimaliserer hastighet og stabilitet ved å muliggjøre direkte tilkoblinger mellom enheter</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>Lås opp &lt;Bold&gt;NAT type 2&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>Øk spillopplevelsen din</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Блокируйте рекламу и трекеры</value>
+    <value>Blokkér annonser og sporere</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
-    <value>Просматривайте веб-страницы на самых высоких скоростях</value>
+    <value>Surf med de høyeste hastighetene</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
-    <value>Защитите свое устройство от вредоносных программ</value>
+    <value>Beskytt enheten mot skadelig programvare</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Когда вы улучшите до Plus</value>
+    <value>Når du oppgraderer til Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
-    <value>Воспользуйтесь просмотром веб-страниц без рекламы с помощью NetShield</value>
+    <value>Nyt reklamefri surfing med NetShield</value>
   </data>
   <data name="Upsell_NonStandardPorts_btn_LearnMore">
-    <value>Подробнее</value>
+    <value>Lær mer</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Улучшить</value>
+    <value>Oppgrader</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>У вас сложные или профессиональные компьютерные задачи, для которых требуются нестандартные порты? Перейдите на VPN Plus, чтобы получить доступ к этим и другим платным функциям.</value>
+    <value>Har du avanserte eller profesjonelle databehandlingsbehov som krever ikke-standardporter? Oppgrader til VPN Plus for å få dette og andre premiumfunksjoner.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
-    <value>Разрешить трафик на нестандартные порты</value>
+    <value>Tillat trafikk på ikke-standard porter</value>
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Доступно с VPN для бизнеса.</value>
+    <value>Tilgjengelig med VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>Forbedre dine node-til-node nedlastningshastigheter</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>Koble til nettspilltjenere og vær vert for flerspillerspill</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>Konfigurer ekstern tilgang til enheter på det lokale nettverket</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>Lås opp &lt;Bold&gt;viderekobling av porter&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>Få fart på P2P-tilkoblingene dine</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Save your preferred server, city, or country.</value>
+    <value>Lagre din foretrukne tjener, by eller land.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Set custom protocols and premium VPN features.</value>
+    <value>Angi tilpassede protokoller og premium VPN-funksjoner.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Set up auto-connect for even faster access.</value>
+    <value>Sett opp automatisk tilkobling for enda raskere tilgang.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+    <value>Lås opp &lt;Bold&gt;profiler&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Get quick access to your frequent connections</value>
+    <value>Få rask tilgang til dine hyppige tilkoblinger</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Добавьте еще один уровень шифрования к своему подключению к VPN</value>
+    <value>Legg til et ekstra krypteringslag til VPN-tilkoblingen din</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
-    <value>Защитите себя от сетевых атак</value>
+    <value>Beskytt deg mot nettverksangrep</value>
   </data>
   <data name="Upsell_SecureCore_RouteThrough">
-    <value>Направляйте свой трафик через сверхзащищенные серверы в Швейцарии, Швеции и Исландии</value>
+    <value>Rute gjennom ultrasikre tjenere i Sveits, Sverige og Island</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Когда вы улучшите до Plus</value>
+    <value>Når du oppgraderer til Plus</value>
   </data>
   <data name="Upsell_SecureCore_Title">
-    <value>Двойное шифрование с Secure Core</value>
+    <value>Doble krypteringen med Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Split your traffic into VPN and non-VPN tunnels</value>
+    <value>Del trafikken din inn i VPN- og ikke-VPN-tunneler</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+    <value>La pålitelige apper og IP-adresser omgå VPN for høyere hastigheter</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Access both home and local content when browsing from abroad</value>
+    <value>Få tilgang til både hjemmeinnhold og lokalt innhold når du surfer fra utlandet</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+    <value>Lås opp &lt;Bold&gt;delt tunnelering&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Получите лучшее из обоих миров</value>
+    <value>Få det beste fra to verdener</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Улучшить</value>
+    <value>Oppgrader</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">
@@ -3439,19 +3355,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>WireGuard</value>
   </data>
   <data name="Welcome_btn_Skip">
-    <value>Пропустить</value>
+    <value>Hopp over</value>
     <comment>The text on Skip button in Welcome window</comment>
   </data>
   <data name="Welcome_btn_TakeATour">
-    <value>Ознакомительный тур</value>
+    <value>Få en omvisning</value>
     <comment>The text on Take a Tour button in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Thanks">
-    <value>Спасибо за использование Proton VPN. Взгляните на основные возможности приложения.</value>
+    <value>Takk for at du bruker Proton VPN. Ta en rask titt på de viktigste appfunksjonene.</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">
-    <value>ДОБРО ПОЖАЛОВАТЬ НА БОРТ!</value>
+    <value>VELKOMMEN OM BORD!</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_ttl">
@@ -3459,23 +3375,23 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Welcome window</comment>
   </data>
   <data name="Window_btn_Cancel">
-    <value>Отмена</value>
+    <value>Avbryt</value>
     <comment>The text on Cancel button in data entry windows</comment>
   </data>
   <data name="Window_btn_Disable">
-    <value>Отключить</value>
+    <value>Deaktiver</value>
     <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
   </data>
   <data name="Window_btn_Save">
-    <value>Сохранить</value>
+    <value>Lagre</value>
     <comment>The text on Save button in data entry windows</comment>
   </data>
   <data name="Window_lbl_Error">
-    <value>Ошибка:</value>
+    <value>Feil:</value>
     <comment>The label for list of errors on Error Panel of data entry Window</comment>
   </data>
   <data name="Window_lbl_Loading">
-    <value>Загрузка</value>
+    <value>Laster</value>
     <comment>The text displayed while content is loading</comment>
   </data>
   <data name="WireGuard_lbl">

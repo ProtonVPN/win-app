@@ -2342,7 +2342,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil sin guardar. ¿&amp;lt;LineBreak/&amp;gt;&amp;lt;LineBreak/&amp;gt;¿Está seguro que quiere descartarlo?</value>
+    <value>Hay cambios de perfil sin guardar. ¿&lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Está seguro que quiere descartarlo?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
@@ -2461,7 +2461,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Reenvío de puertos activado</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOn">
-    <value>Reenvío de puertos desactivado</value>
+    <value>Reenvío de puertos activado</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
     <value>Secure Core desactivado</value>
@@ -2773,7 +2773,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Usar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirle a los sitios web correctos. &amp;lt;LineBreak/&amp;gt;&amp;lt;LineBreak/&amp;gt;Solo use servidores DNS en los que confíe. ¿Quiere activar los servidores DNS personalizados?</value>
+    <value>Usar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirle a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo use servidores DNS en los que confíe. ¿Quiere activar los servidores DNS personalizados?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">

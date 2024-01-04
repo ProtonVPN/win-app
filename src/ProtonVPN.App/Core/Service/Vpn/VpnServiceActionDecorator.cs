@@ -115,7 +115,7 @@ namespace ProtonVPN.Core.Service.Vpn
 
         private async Task InvokeAction(Func<Task<Result>> action)
         {
-            if (!_baseFilteringEngineService.Running())
+            if (_baseFilteringEngineService.Exists() && !_baseFilteringEngineService.Running())
             {
                 await _modals.ShowAsync<BfeWarningModalViewModel>();
                 return;

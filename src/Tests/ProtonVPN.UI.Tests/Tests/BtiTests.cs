@@ -21,6 +21,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using ProtonVPN.UI.Tests.Results;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.TestsHelper.BTI;
@@ -32,11 +33,14 @@ namespace ProtonVPN.UI.Tests.Tests
     [Category("BTI")]
     public class BtiTests : TestSession
     {
-        private LoginWindow _loginWindow = new LoginWindow();
-        private HomeWindow _homeWindow = new HomeWindow();
-        private LogsResult _logsResult = new LogsResult();
-        private HomeResult _homeResult = new HomeResult();
-        private SysTrayWindow _trayWindow = new SysTrayWindow();
+        private LoginWindow _loginWindow = new();
+        private HomeWindow _homeWindow = new();
+        private LoginResult _loginResult = new();
+        private HomeResult _homeResult = new();
+        private SysTrayWindow _trayWindow = new();
+
+        private TimeSpan _minimalRefreshInterval = TimeSpan.FromSeconds(10);
+        private string _vpnInfoIntervalName = "VpnInfoCheckInterval";
 
         [SetUp]
         public async Task TestInitializeAsync()
@@ -50,14 +54,14 @@ namespace ProtonVPN.UI.Tests.Tests
         {
             LaunchApp();
 
-            await AtlasController.MockApiAsync(ApiMocks.CERTIFICATE_ERROR_503);
+            await BtiController.SetScenarioAsync(Scenarios.CERTIFICATE_ENDPOINT_503);
 
             _loginWindow.SignIn(TestUserData.GetPlusUserBTI());
             _homeWindow.PressQuickConnectButton();
             _homeResult.CertificateErrorIsDisplayed();
             _homeWindow.PressCloseButton();
 
-            await AtlasController.MockApiAsync("");
+            await BtiController.SetScenarioAsync(Scenarios.RESET);
 
             _homeWindow.PressQuickConnectButton()
                 .WaitUntilConnected();
@@ -67,21 +71,16 @@ namespace ProtonVPN.UI.Tests.Tests
         public async Task DowngradeUser()
         {
             string testUser = $"test{new Random().Next()}";
-            TimeSpan refreshInterval = TimeSpan.FromSeconds(10);
-
-            GenerateAppConfig();
-            ConfigHelper.SetInterval("VpnInfoCheckInterval", refreshInterval);
             string userId = await AtlasController.SeedUserAsync(testUser);
+
+            ConfigHelper.SetInterval(_vpnInfoIntervalName, _minimalRefreshInterval);
 
             LaunchApp();
 
             _loginWindow.SignIn(testUser, "a");
             await AtlasController.ExecuteQuarkAsync(Scenarios.DOWNGRADE_USER(userId));
 
-            Thread.Sleep(refreshInterval);
-            _homeWindow.MinimizeApp();
-            Thread.Sleep(1000);
-            _trayWindow.ClickOnProtonIcon();
+            ReopenWindow(_minimalRefreshInterval);
 
             _homeResult.DowngradeModalIsDisplayed();
             _homeWindow.PressNoThanks()
@@ -89,6 +88,37 @@ namespace ProtonVPN.UI.Tests.Tests
             _homeWindow.NavigateToAccount();
             _homeResult.CheckIfUsernameIsDisplayedInAccount(testUser)
                 .CheckIfCorrectPlanIsDisplayed("Proton VPN Free");
+        }
+
+        [Test]
+        public async Task ForceUpgradeOnLogin()
+        {
+            LaunchApp();
+
+            await BtiController.SetScenarioAsync(Scenarios.FORCE_UPDATE);
+
+            _loginWindow.EnterCredentials(TestUserData.GetPlusUserBTI());
+            _loginResult.CheckIfForceUpdateModalIsDisplayed();
+        }
+
+        [Test]
+        public async Task ForceUpdateWhenLoggedIn()
+        {
+            ConfigHelper.SetInterval(_vpnInfoIntervalName, _minimalRefreshInterval);
+
+            LaunchApp();
+            _loginWindow.SignIn(TestUserData.GetPlusUserBTI());
+
+            await BtiController.SetScenarioAsync(Scenarios.FORCE_UPDATE);
+
+            ReopenWindow(_minimalRefreshInterval);
+
+            _loginResult.CheckIfForceUpdateModalIsDisplayed();
+
+            App.Close();
+            LaunchApp();
+
+            _loginResult.CheckIfLoginWindowIsDisplayed();
         }
 
         [TearDown]
@@ -105,7 +135,13 @@ namespace ProtonVPN.UI.Tests.Tests
             await BtiController.SetScenarioAsync(Scenarios.UNHARDJAIL_ALL);
             await BtiController.SetScenarioAsync(Scenarios.RESET);
             await AtlasController.ExecuteQuarkAsync(Scenarios.ATLAS_UNJAIL_ALL);
-            await AtlasController.MockApiAsync("");
+        }
+
+        private void ReopenWindow(TimeSpan refreshInterval)
+        {
+            _homeWindow.MinimizeApp();
+            Thread.Sleep(refreshInterval);
+            _trayWindow.ClickOnProtonIcon();
         }
     } 
 }
