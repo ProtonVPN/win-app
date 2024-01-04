@@ -27,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:local="using:ProtonVPN.Client.UI.Settings.Pages.Advanced"
+      NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
