@@ -18,6 +18,7 @@
  */
 
 using System.Text;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Serialization.Contracts;
@@ -26,16 +27,16 @@ namespace ProtonVPN.Client.Settings.Files;
 
 public class SettingsFileManager : ISettingsFileManager
 {
-    private const string FOLDER_PATH = "Proton/Proton VPN/Storage";
-    private const Environment.SpecialFolder ROOT_FOLDER = Environment.SpecialFolder.LocalApplicationData;
-    private static readonly string _fullFolderPath = Path.Combine(Environment.GetFolderPath(ROOT_FOLDER), FOLDER_PATH);
-
     private readonly ILogger _logger;
+    private readonly IStaticConfiguration _staticConfiguration;
     private readonly IJsonSerializer _jsonSerializer;
 
-    public SettingsFileManager(ILogger logger, IJsonSerializer jsonSerializer)
+    public SettingsFileManager(ILogger logger,
+        IStaticConfiguration staticConfiguration,
+        IJsonSerializer jsonSerializer)
     {
         _logger = logger;
+        _staticConfiguration = staticConfiguration;
         _jsonSerializer = jsonSerializer;
     }
 
@@ -59,16 +60,16 @@ public class SettingsFileManager : ISettingsFileManager
 
     private string GetFullFilePath(string fileName)
     {
-        return Path.Combine(_fullFolderPath, fileName);
+        return Path.Combine(_staticConfiguration.StorageFolder, fileName);
     }
 
     public bool Save(string fileName, IDictionary<string, string?> dictionary)
     {
         try
         {
-            if (!Directory.Exists(_fullFolderPath))
+            if (!Directory.Exists(_staticConfiguration.StorageFolder))
             {
-                Directory.CreateDirectory(_fullFolderPath);
+                Directory.CreateDirectory(_staticConfiguration.StorageFolder);
             }
             string fullFilePath = GetFullFilePath(fileName);
             string fileContent = _jsonSerializer.SerializePretty(dictionary);

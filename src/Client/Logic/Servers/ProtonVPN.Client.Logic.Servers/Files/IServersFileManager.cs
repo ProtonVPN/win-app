@@ -17,21 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
-using ProtonVPN.Client.Logic.Servers.Files;
-using ProtonVPN.Client.Logic.Servers.Mappers;
-using ProtonVPN.EntityMapping.Common.Installers.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Client.Logic.Servers.Installers;
+namespace ProtonVPN.Client.Logic.Servers.Files;
 
-public class ServersLogicModule : Module
+public interface IServersFileManager
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<ServersLoader>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersFileManager>().AsImplementedInterfaces().SingleInstance();
-
-        builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
-    }
+    IReadOnlyList<Server> Read();
+    bool Save(IList<Server> servers);
 }

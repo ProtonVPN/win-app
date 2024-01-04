@@ -17,21 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
-using ProtonVPN.Client.Logic.Servers.Files;
-using ProtonVPN.Client.Logic.Servers.Mappers;
-using ProtonVPN.EntityMapping.Common.Installers.Extensions;
+namespace ProtonVPN.Serialization.Contracts;
 
-namespace ProtonVPN.Client.Logic.Servers.Installers;
-
-public class ServersLogicModule : Module
+public interface IProtobufSerializer
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<ServersLoader>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersFileManager>().AsImplementedInterfaces().SingleInstance();
-
-        builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
-    }
+    MemoryStream Serialize(object? instance);
+    T? Deserialize<T>(MemoryStream memoryStream);
 }

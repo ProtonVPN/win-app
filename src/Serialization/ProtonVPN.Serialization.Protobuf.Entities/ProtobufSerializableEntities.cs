@@ -17,21 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
-using ProtonVPN.Client.Logic.Servers.Files;
-using ProtonVPN.Client.Logic.Servers.Mappers;
-using ProtonVPN.EntityMapping.Common.Installers.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Serialization.Contracts;
 
-namespace ProtonVPN.Client.Logic.Servers.Installers;
+namespace ProtonVPN.Serialization.Protobuf.Entities;
 
-public class ServersLogicModule : Module
+public class ProtobufSerializableEntities : IProtobufSerializableEntities
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<ServersLoader>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersFileManager>().AsImplementedInterfaces().SingleInstance();
+    public List<Type> Types { get; } = CreateTypeList().ToList();
 
-        builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
+    private static IEnumerable<Type> CreateTypeList()
+    {
+        yield return typeof(PhysicalServer);
+        yield return typeof(Server);
+        yield return typeof(ServerFeatures);
     }
 }

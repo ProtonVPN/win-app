@@ -33,6 +33,7 @@ public interface IStaticConfiguration
     string ClientExePath { get; }
     string ServiceExePath { get; }
 
+    string StorageFolder { get; }
     string ClientLogsFolder { get; }
     string ServiceLogsFolder { get; }
     string DiagnosticLogsFolder { get; }

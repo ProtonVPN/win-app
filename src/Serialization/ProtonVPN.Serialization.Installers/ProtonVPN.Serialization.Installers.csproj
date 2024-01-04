@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net8.0-windows</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -15,5 +15,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ProtonVPN.Serialization.Json\ProtonVPN.Serialization.Json.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Serialization.Protobuf.Entities\ProtonVPN.Serialization.Protobuf.Entities.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Serialization.Protobuf\ProtonVPN.Serialization.Protobuf.csproj" />
     </ItemGroup>
 </Project>

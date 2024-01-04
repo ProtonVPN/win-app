@@ -35,6 +35,7 @@ public class StaticConfiguration : IStaticConfiguration
     public string ClientExePath { get; } = DefaultConfiguration.ClientExePath;
     public string ServiceExePath { get; } = DefaultConfiguration.ServiceExePath;
 
+    public string StorageFolder { get; } = DefaultConfiguration.StorageFolder;
     public string ClientLogsFolder { get; } = DefaultConfiguration.ClientLogsFolder;
     public string ServiceLogsFolder { get; } = DefaultConfiguration.ServiceLogsFolder;
     public string DiagnosticLogsFolder { get; } = DefaultConfiguration.DiagnosticLogsFolder;
