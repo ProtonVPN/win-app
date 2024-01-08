@@ -58,7 +58,8 @@ public class RecentsTests : TestSession
 
         //TODO When reconnection logic is implemented remove this sleep.
         //Certificate sometimes takes longer to get and app does not handle it yet
-        Thread.Sleep(2000);
+        //VPNWIN-1952 Country list loading should be improved
+        Thread.Sleep(4000);
     }
 
     [Test, Order(0)]
