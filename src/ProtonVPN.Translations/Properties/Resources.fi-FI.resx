@@ -2860,7 +2860,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess_Info">
-    <value>Saat uusimmat päivitykset ensimmäisten joukossa. Huomoi, että varhaiset kehitysversiot saattavat olla epävakaita.</value>
+    <value>Saat uusimmat päivitykset ensimmäisten joukossa. Huomioi, että varhaiset kehitysversiot saattavat olla epävakaita.</value>
     <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_Language">
