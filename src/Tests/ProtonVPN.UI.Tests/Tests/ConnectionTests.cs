@@ -120,6 +120,9 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificCountry()
     {
+        //VPNWIN-1952 Country list loading should be improved
+        Thread.Sleep(2000);
+
         NavigateToCountriesPage();
 
         _countriesRobot.DoConnect(COUNTRY_CODE);
@@ -135,6 +138,9 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificCity()
     {
+        //VPNWIN-1952 Country list loading should be improved
+        Thread.Sleep(2000);
+
         NavigateToCountriesPage();
 
         _countriesRobot
@@ -153,6 +159,9 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificServer()
     {
+        //VPNWIN-1952 Country list loading should be improved
+        Thread.Sleep(2000);
+
         NavigateToServers(COUNTRY_CODE, CITY);
 
         ServerConnectButton serverConnectButton = _countriesRobot.GetServerConnectButton();
