@@ -37,6 +37,7 @@ public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepos
     private readonly ISettingsFileManager _settingsFileManager;
     private readonly IGlobalSettings _globalSettings;
     private readonly ISha1Calculator _sha1Calculator;
+
     private readonly object _lock = new();
     private Lazy<string?> _fileName;
     private Lazy<ConcurrentDictionary<string, string?>> _cache;
@@ -53,7 +54,7 @@ public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepos
         _globalSettings = globalSettings;
         _sha1Calculator = sha1Calculator;
 
-        _fileName = new(() => GenerateFileName());
+        _fileName = new(GenerateFileName);
         _cache = new(new ConcurrentDictionary<string, string?>());
         GenerateNewCache(_fileName);
     }
@@ -112,7 +113,7 @@ public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepos
         {
             lock (_lock)
             {
-                Lazy<string?> fileName = new(() => GenerateFileName());
+                Lazy<string?> fileName = new(GenerateFileName);
                 _fileName = fileName;
                 GenerateNewCache(fileName);
             }

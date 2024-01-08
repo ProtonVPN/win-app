@@ -18,10 +18,12 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Logic.Connection.EntityMapping;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Validators;
 using ProtonVPN.Client.Logic.Connection.Wrappers;
 using ProtonVPN.Common.Legacy.OS.Net;
+using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Connection.Installers;
@@ -42,5 +44,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<NetworkAdapterValidator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterAllMappersInAssembly<ConnectionIntentMapper>();
     }
 }

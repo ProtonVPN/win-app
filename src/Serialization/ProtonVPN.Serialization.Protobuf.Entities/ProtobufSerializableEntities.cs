@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Serialization.Contracts;
 
@@ -31,5 +33,10 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
         yield return typeof(PhysicalServer);
         yield return typeof(Server);
         yield return typeof(ServerFeatures);
+
+        yield return typeof(SerializableConnectionIntent);
+        yield return typeof(SerializableFeatureIntent);
+        yield return typeof(SerializableLocationIntent);
+        yield return typeof(SerializableRecentConnection);
     }
 }

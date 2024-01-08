@@ -13,6 +13,8 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Client\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
+        <ProjectReference Include="..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
         <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
         <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
         <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />

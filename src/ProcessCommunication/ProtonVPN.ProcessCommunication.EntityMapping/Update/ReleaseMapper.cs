@@ -21,32 +21,31 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.Update.Contracts;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Update
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Update;
+
+public class ReleaseMapper : IMapper<ReleaseContract, ReleaseIpcEntity>
 {
-    public class ReleaseMapper : IMapper<ReleaseContract, ReleaseIpcEntity>
+    public ReleaseIpcEntity Map(ReleaseContract leftEntity)
     {
-        public ReleaseIpcEntity Map(ReleaseContract leftEntity)
+        return new ReleaseIpcEntity
         {
-            return new ReleaseIpcEntity
-            {
-                ChangeLog = leftEntity.ChangeLog.ToArray(),
-                EarlyAccess = leftEntity.EarlyAccess,
-                New = leftEntity.New,
-                Version = leftEntity.Version.ToString(),
-            };
-        }
+            ChangeLog = leftEntity.ChangeLog.ToArray(),
+            EarlyAccess = leftEntity.EarlyAccess,
+            New = leftEntity.New,
+            Version = leftEntity.Version.ToString(),
+        };
+    }
 
-        public ReleaseContract Map(ReleaseIpcEntity rightEntity)
+    public ReleaseContract Map(ReleaseIpcEntity rightEntity)
+    {
+        bool isVersionValid = Version.TryParse(rightEntity.Version, out Version version);
+
+        return new ReleaseContract
         {
-            bool isVersionValid = Version.TryParse(rightEntity.Version, out Version version);
-
-            return new ReleaseContract
-            {
-                ChangeLog = rightEntity.ChangeLog,
-                EarlyAccess = rightEntity.EarlyAccess,
-                New = rightEntity.New,
-                Version = isVersionValid ? version : new Version(),
-            };
-        }
+            ChangeLog = rightEntity.ChangeLog,
+            EarlyAccess = rightEntity.EarlyAccess,
+            New = rightEntity.New,
+            Version = isVersionValid ? version : new Version(),
+        };
     }
 }

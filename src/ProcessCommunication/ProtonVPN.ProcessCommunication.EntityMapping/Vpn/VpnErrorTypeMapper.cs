@@ -21,18 +21,17 @@ using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class VpnErrorTypeMapper : IMapper<VpnError, VpnErrorTypeIpcEntity>
-    {
-        public VpnErrorTypeIpcEntity Map(VpnError leftEntity)
-        {
-            return (VpnErrorTypeIpcEntity)leftEntity;
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public VpnError Map(VpnErrorTypeIpcEntity rightEntity)
-        {
-            return (VpnError)rightEntity;
-        }
+public class VpnErrorTypeMapper : IMapper<VpnError, VpnErrorTypeIpcEntity>
+{
+    public VpnErrorTypeIpcEntity Map(VpnError leftEntity)
+    {
+        return (VpnErrorTypeIpcEntity)leftEntity;
+    }
+
+    public VpnError Map(VpnErrorTypeIpcEntity rightEntity)
+    {
+        return (VpnError)rightEntity;
     }
 }

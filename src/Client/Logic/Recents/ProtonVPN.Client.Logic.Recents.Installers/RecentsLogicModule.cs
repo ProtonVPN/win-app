@@ -18,6 +18,9 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Logic.Recents.EntityMapping;
+using ProtonVPN.Client.Logic.Recents.Files;
+using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 
 namespace ProtonVPN.Client.Logic.Recents.Installers;
 
@@ -26,5 +29,8 @@ public class RecentsLogicModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<RecentConnectionsProvider>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<RecentsFileManager>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterAllMappersInAssembly<RecentConnectionMapper>();
     }
 }

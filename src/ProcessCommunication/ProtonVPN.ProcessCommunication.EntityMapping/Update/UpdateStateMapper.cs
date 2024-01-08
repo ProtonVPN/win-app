@@ -21,43 +21,42 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.Update.Contracts;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Update
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Update;
+
+public class UpdateStateMapper : IMapper<AppUpdateStateContract, UpdateStateIpcEntity>
 {
-    public class UpdateStateMapper : IMapper<AppUpdateStateContract, UpdateStateIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public UpdateStateMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public UpdateStateMapper(IEntityMapper entityMapper)
+    public UpdateStateIpcEntity Map(AppUpdateStateContract leftEntity)
+    {
+        return new UpdateStateIpcEntity
         {
-            _entityMapper = entityMapper;
-        }
+            IsAvailable = leftEntity.IsAvailable,
+            FileArguments = leftEntity.FileArguments,
+            FilePath = leftEntity.FilePath,
+            Version = leftEntity.Version.ToString(),
+            IsReady = leftEntity.IsReady,
+            ReleaseHistory = _entityMapper.Map<ReleaseContract, ReleaseIpcEntity>(leftEntity.ReleaseHistory).ToArray(),
+            Status = (UpdateStatusIpcEntity)leftEntity.Status,
+        };
+    }
 
-        public UpdateStateIpcEntity Map(AppUpdateStateContract leftEntity)
+    public AppUpdateStateContract Map(UpdateStateIpcEntity rightEntity)
+    {
+        return new AppUpdateStateContract
         {
-            return new UpdateStateIpcEntity
-            {
-                IsAvailable = leftEntity.IsAvailable,
-                FileArguments = leftEntity.FileArguments,
-                FilePath = leftEntity.FilePath,
-                Version = leftEntity.Version.ToString(),
-                IsReady = leftEntity.IsReady,
-                ReleaseHistory = _entityMapper.Map<ReleaseContract, ReleaseIpcEntity>(leftEntity.ReleaseHistory).ToArray(),
-                Status = (UpdateStatusIpcEntity)leftEntity.Status,
-            };
-        }
-
-        public AppUpdateStateContract Map(UpdateStateIpcEntity rightEntity)
-        {
-            return new AppUpdateStateContract
-            {
-                IsAvailable = rightEntity.IsAvailable,
-                FileArguments = rightEntity.FileArguments,
-                FilePath = rightEntity.FilePath,
-                Version = new Version(rightEntity.Version),
-                IsReady = rightEntity.IsReady,
-                Status = (AppUpdateStatus)rightEntity.Status,
-                ReleaseHistory = _entityMapper.Map<ReleaseIpcEntity, ReleaseContract>(rightEntity.ReleaseHistory)
-            };
-        }
+            IsAvailable = rightEntity.IsAvailable,
+            FileArguments = rightEntity.FileArguments,
+            FilePath = rightEntity.FilePath,
+            Version = new Version(rightEntity.Version),
+            IsReady = rightEntity.IsReady,
+            Status = (AppUpdateStatus)rightEntity.Status,
+            ReleaseHistory = _entityMapper.Map<ReleaseIpcEntity, ReleaseContract>(rightEntity.ReleaseHistory)
+        };
     }
 }

@@ -17,7 +17,9 @@
         <PackageReference Include="Autofac" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\..\..\EntityMapping\ProtonVPN.EntityMapping.Common.Installers\ProtonVPN.EntityMapping.Common.Installers.csproj" />
         <ProjectReference Include="..\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Connection.EntityMapping\ProtonVPN.Client.Logic.Connection.EntityMapping.csproj" />
         <ProjectReference Include="..\ProtonVPN.Client.Logic.Connection\ProtonVPN.Client.Logic.Connection.csproj" />
     </ItemGroup>
 </Project>
