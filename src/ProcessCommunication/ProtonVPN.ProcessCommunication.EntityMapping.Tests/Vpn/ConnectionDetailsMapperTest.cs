@@ -22,79 +22,78 @@ using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class ConnectionDetailsMapperTest
 {
-    [TestClass]
-    public class ConnectionDetailsMapperTest
+    private ConnectionDetailsMapper _mapper;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private ConnectionDetailsMapper _mapper;
+        _mapper = new();
+    }
 
-        [TestInitialize]
-        public void Initialize()
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _mapper = null;
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WhenNull()
+    {
+        ConnectionDetails entityToTest = null;
+
+        ConnectionDetailsIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight()
+    {
+        ConnectionDetails entityToTest = new()
         {
-            _mapper = new();
-        }
+            ClientIpAddress = $"A {DateTime.UtcNow}",
+            ServerIpAddress = $"B {DateTime.UtcNow}",
+            ClientCountryIsoCode = $"C {DateTime.UtcNow}",
+        };
 
-        [TestCleanup]
-        public void Cleanup()
+        ConnectionDetailsIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.ClientIpAddress, result.ClientIpAddress);
+        Assert.AreEqual(entityToTest.ServerIpAddress, result.ServerIpAddress);
+        Assert.AreEqual(entityToTest.ClientCountryIsoCode, result.ClientCountryIsoCode);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenNull()
+    {
+        ConnectionDetailsIpcEntity entityToTest = null;
+
+        ConnectionDetails result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        ConnectionDetailsIpcEntity entityToTest = new()
         {
-            _mapper = null;
-        }
+            ClientIpAddress = $"A {DateTime.UtcNow}",
+            ServerIpAddress = $"B {DateTime.UtcNow}",
+            ClientCountryIsoCode = $"C {DateTime.UtcNow}",
+        };
 
-        [TestMethod]
-        public void TestMapLeftToRight_WhenNull()
-        {
-            ConnectionDetails entityToTest = null;
+        ConnectionDetails result = _mapper.Map(entityToTest);
 
-            ConnectionDetailsIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight()
-        {
-            ConnectionDetails entityToTest = new()
-            {
-                ClientIpAddress = $"A {DateTime.UtcNow}",
-                ServerIpAddress = $"B {DateTime.UtcNow}",
-                ClientCountryIsoCode = $"C {DateTime.UtcNow}",
-            };
-
-            ConnectionDetailsIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.ClientIpAddress, result.ClientIpAddress);
-            Assert.AreEqual(entityToTest.ServerIpAddress, result.ServerIpAddress);
-            Assert.AreEqual(entityToTest.ClientCountryIsoCode, result.ClientCountryIsoCode);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenNull()
-        {
-            ConnectionDetailsIpcEntity entityToTest = null;
-
-            ConnectionDetails result = _mapper.Map(entityToTest);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            ConnectionDetailsIpcEntity entityToTest = new()
-            {
-                ClientIpAddress = $"A {DateTime.UtcNow}",
-                ServerIpAddress = $"B {DateTime.UtcNow}",
-                ClientCountryIsoCode = $"C {DateTime.UtcNow}",
-            };
-
-            ConnectionDetails result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.ClientIpAddress, result.ClientIpAddress);
-            Assert.AreEqual(entityToTest.ServerIpAddress, result.ServerIpAddress);
-            Assert.AreEqual(entityToTest.ClientCountryIsoCode, result.ClientCountryIsoCode);
-        }
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.ClientIpAddress, result.ClientIpAddress);
+        Assert.AreEqual(entityToTest.ServerIpAddress, result.ServerIpAddress);
+        Assert.AreEqual(entityToTest.ClientCountryIsoCode, result.ClientCountryIsoCode);
     }
 }

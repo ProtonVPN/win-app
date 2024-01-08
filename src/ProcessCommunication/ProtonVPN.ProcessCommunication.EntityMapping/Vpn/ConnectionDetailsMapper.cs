@@ -21,32 +21,31 @@ using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class ConnectionDetailsMapper : IMapper<ConnectionDetails, ConnectionDetailsIpcEntity>
-    {
-        public ConnectionDetailsIpcEntity Map(ConnectionDetails leftEntity)
-        {
-            return leftEntity is null
-                ? null
-                : new ConnectionDetailsIpcEntity()
-                {
-                    ClientIpAddress = leftEntity.ClientIpAddress,
-                    ClientCountryIsoCode = leftEntity.ClientCountryIsoCode,
-                    ServerIpAddress = leftEntity.ServerIpAddress,
-                };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public ConnectionDetails Map(ConnectionDetailsIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? null
-                : new ConnectionDetails
-                {
-                    ClientIpAddress = rightEntity.ClientIpAddress,
-                    ClientCountryIsoCode = rightEntity.ClientCountryIsoCode,
-                    ServerIpAddress = rightEntity.ServerIpAddress,
-                };
-        }
+public class ConnectionDetailsMapper : IMapper<ConnectionDetails, ConnectionDetailsIpcEntity>
+{
+    public ConnectionDetailsIpcEntity Map(ConnectionDetails leftEntity)
+    {
+        return leftEntity is null
+            ? null
+            : new ConnectionDetailsIpcEntity()
+            {
+                ClientIpAddress = leftEntity.ClientIpAddress,
+                ClientCountryIsoCode = leftEntity.ClientCountryIsoCode,
+                ServerIpAddress = leftEntity.ServerIpAddress,
+            };
+    }
+
+    public ConnectionDetails Map(ConnectionDetailsIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? null
+            : new ConnectionDetails
+            {
+                ClientIpAddress = rightEntity.ClientIpAddress,
+                ClientCountryIsoCode = rightEntity.ClientCountryIsoCode,
+                ServerIpAddress = rightEntity.ServerIpAddress,
+            };
     }
 }

@@ -26,91 +26,90 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class VpnServerMapperTest
 {
-    [TestClass]
-    public class VpnServerMapperTest
+    private IEntityMapper _entityMapper;
+    private VpnServerMapper _mapper;
+
+    private ServerPublicKeyIpcEntity _expectedServerPublicKeyIpcEntity;
+    private PublicKey _expectedPublicKey;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private IEntityMapper _entityMapper;
-        private VpnServerMapper _mapper;
+        _entityMapper = Substitute.For<IEntityMapper>();
+        _mapper = new(_entityMapper);
 
-        private ServerPublicKeyIpcEntity _expectedServerPublicKeyIpcEntity;
-        private PublicKey _expectedPublicKey;
+        _expectedServerPublicKeyIpcEntity = new ServerPublicKeyIpcEntity();
+        _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(Arg.Any<PublicKey>())
+            .Returns(_expectedServerPublicKeyIpcEntity);
 
-        [TestInitialize]
-        public void Initialize()
+        _expectedPublicKey = new PublicKey("PVPN", KeyAlgorithm.Unknown);
+        _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(Arg.Any<ServerPublicKeyIpcEntity>())
+            .Returns(_expectedPublicKey);
+    }
+
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _entityMapper = null;
+        _mapper = null;
+
+        _expectedServerPublicKeyIpcEntity = null;
+        _expectedPublicKey = null;
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight()
+    {
+        VpnHost entityToTest = new(
+            name: "protonvpn.com",
+            ip: "192.168.0.0",
+            label: DateTime.UtcNow.Millisecond.ToString(),
+            x25519PublicKey: new PublicKey("PVPN", KeyAlgorithm.Unknown),
+            signature: DateTime.UtcNow.Ticks.ToString());
+
+        VpnServerIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.Name, result.Name);
+        Assert.AreEqual(entityToTest.Ip, result.Ip);
+        Assert.AreEqual(entityToTest.Label, result.Label);
+        Assert.AreEqual(_expectedServerPublicKeyIpcEntity, result.X25519PublicKey);
+        Assert.AreEqual(entityToTest.Signature, result.Signature);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestMapRightToLeft_ThrowsWhenNull()
+    {
+        VpnServerIpcEntity entityToTest = null;
+
+        _mapper.Map(entityToTest);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        VpnServerIpcEntity entityToTest = new()
         {
-            _entityMapper = Substitute.For<IEntityMapper>();
-            _mapper = new(_entityMapper);
+            Name = "protonvpn.com",
+            Ip = "192.168.0.0",
+            Label = DateTime.UtcNow.Millisecond.ToString(),
+            X25519PublicKey = new ServerPublicKeyIpcEntity(),
+            Signature = DateTime.UtcNow.Ticks.ToString()
+        };
 
-            _expectedServerPublicKeyIpcEntity = new ServerPublicKeyIpcEntity();
-            _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(Arg.Any<PublicKey>())
-                .Returns(_expectedServerPublicKeyIpcEntity);
+        VpnHost result = _mapper.Map(entityToTest);
 
-            _expectedPublicKey = new PublicKey("PVPN", KeyAlgorithm.Unknown);
-            _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(Arg.Any<ServerPublicKeyIpcEntity>())
-                .Returns(_expectedPublicKey);
-        }
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _entityMapper = null;
-            _mapper = null;
-
-            _expectedServerPublicKeyIpcEntity = null;
-            _expectedPublicKey = null;
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight()
-        {
-            VpnHost entityToTest = new(
-                name: "protonvpn.com",
-                ip: "192.168.0.0",
-                label: DateTime.UtcNow.Millisecond.ToString(),
-                x25519PublicKey: new PublicKey("PVPN", KeyAlgorithm.Unknown),
-                signature: DateTime.UtcNow.Ticks.ToString());
-
-            VpnServerIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.Name, result.Name);
-            Assert.AreEqual(entityToTest.Ip, result.Ip);
-            Assert.AreEqual(entityToTest.Label, result.Label);
-            Assert.AreEqual(_expectedServerPublicKeyIpcEntity, result.X25519PublicKey);
-            Assert.AreEqual(entityToTest.Signature, result.Signature);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void TestMapRightToLeft_ThrowsWhenNull()
-        {
-            VpnServerIpcEntity entityToTest = null;
-
-            _mapper.Map(entityToTest);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            VpnServerIpcEntity entityToTest = new()
-            {
-                Name = "protonvpn.com",
-                Ip = "192.168.0.0",
-                Label = DateTime.UtcNow.Millisecond.ToString(),
-                X25519PublicKey = new ServerPublicKeyIpcEntity(),
-                Signature = DateTime.UtcNow.Ticks.ToString()
-            };
-
-            VpnHost result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.Name, result.Name);
-            Assert.AreEqual(entityToTest.Ip, result.Ip);
-            Assert.AreEqual(entityToTest.Label, result.Label);
-            Assert.AreEqual(_expectedPublicKey, result.X25519PublicKey);
-            Assert.AreEqual(entityToTest.Signature, result.Signature);
-        }
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.Name, result.Name);
+        Assert.AreEqual(entityToTest.Ip, result.Ip);
+        Assert.AreEqual(entityToTest.Label, result.Label);
+        Assert.AreEqual(_expectedPublicKey, result.X25519PublicKey);
+        Assert.AreEqual(entityToTest.Signature, result.Signature);
     }
 }

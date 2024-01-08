@@ -17,16 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.EntityMapping.Contracts
+namespace ProtonVPN.EntityMapping.Contracts;
+
+public interface IEntityMapper
 {
-    public interface IEntityMapper
-    {
-        TOutput Map<TInput, TOutput>(TInput inputEntity);
+    TOutput Map<TInput, TOutput>(TInput inputEntity);
 
-        TOutput? MapNullableStruct<TInput, TOutput>(TInput? inputEntity)
-            where TInput : struct
-            where TOutput : struct;
+    TOutput? MapNullableStruct<TInput, TOutput>(TInput? inputEntity)
+        where TInput : struct
+        where TOutput : struct;
 
-        List<TOutput> Map<TInput, TOutput>(IEnumerable<TInput> inputEntities);
-    }
+    List<TOutput> Map<TInput, TOutput>(IEnumerable<TInput> inputEntities);
 }

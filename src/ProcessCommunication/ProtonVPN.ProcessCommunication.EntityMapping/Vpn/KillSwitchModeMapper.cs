@@ -17,34 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.KillSwitch;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class KillSwitchModeMapper : IMapper<KillSwitchMode, KillSwitchModeIpcEntity>
-    {
-        public KillSwitchModeIpcEntity Map(KillSwitchMode leftEntity)
-        {
-            return leftEntity switch
-            {
-                KillSwitchMode.Off => KillSwitchModeIpcEntity.Off,
-                KillSwitchMode.Soft => KillSwitchModeIpcEntity.Soft,
-                KillSwitchMode.Hard => KillSwitchModeIpcEntity.Hard,
-                _ => throw new NotImplementedException("KillSwitchMode has an unknown value.")
-            };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public KillSwitchMode Map(KillSwitchModeIpcEntity rightEntity)
+public class KillSwitchModeMapper : IMapper<KillSwitchMode, KillSwitchModeIpcEntity>
+{
+    public KillSwitchModeIpcEntity Map(KillSwitchMode leftEntity)
+    {
+        return leftEntity switch
         {
-            return rightEntity switch
-            {
-                KillSwitchModeIpcEntity.Off => KillSwitchMode.Off,
-                KillSwitchModeIpcEntity.Soft => KillSwitchMode.Soft,
-                KillSwitchModeIpcEntity.Hard => KillSwitchMode.Hard,
-                _ => throw new NotImplementedException("KillSwitchMode has an unknown value.")
-            };
-        }
+            KillSwitchMode.Standard => KillSwitchModeIpcEntity.Soft,
+            KillSwitchMode.Advanced => KillSwitchModeIpcEntity.Hard,
+            _ => throw new NotImplementedException("KillSwitchMode has an unknown value.")
+        };
+    }
+
+    public KillSwitchMode Map(KillSwitchModeIpcEntity rightEntity)
+    {
+        return rightEntity switch
+        {
+            KillSwitchModeIpcEntity.Off => throw new InvalidOperationException("Disabled kill switch is now handled apart by a boolean flag"),
+            KillSwitchModeIpcEntity.Soft => KillSwitchMode.Standard,
+            KillSwitchModeIpcEntity.Hard => KillSwitchMode.Advanced,
+            _ => throw new NotImplementedException("KillSwitchMode has an unknown value.")
+        };
     }
 }

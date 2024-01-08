@@ -11,6 +11,7 @@
 		<Compile Include="..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Client\Logic\Recents\ProtonVPN.Client.Logic.Recents\ProtonVPN.Client.Logic.Recents.csproj" />
 	  <ProjectReference Include="..\..\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj" />
 	</ItemGroup>
 

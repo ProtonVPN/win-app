@@ -21,20 +21,19 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class TrafficBytesMapper : IMapper<TrafficBytes, TrafficBytesIpcEntity>
-    {
-        public TrafficBytesIpcEntity Map(TrafficBytes leftEntity)
-        {
-            return new() { BytesIn = leftEntity.BytesIn, BytesOut = leftEntity.BytesOut };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public TrafficBytes Map(TrafficBytesIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? TrafficBytes.Zero
-                : new(bytesIn: rightEntity.BytesIn, bytesOut: rightEntity.BytesOut);
-        }
+public class TrafficBytesMapper : IMapper<TrafficBytes, TrafficBytesIpcEntity>
+{
+    public TrafficBytesIpcEntity Map(TrafficBytes leftEntity)
+    {
+        return new() { BytesIn = leftEntity.BytesIn, BytesOut = leftEntity.BytesOut };
+    }
+
+    public TrafficBytes Map(TrafficBytesIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? TrafficBytes.Zero
+            : new(bytesIn: rightEntity.BytesIn, bytesOut: rightEntity.BytesOut);
     }
 }

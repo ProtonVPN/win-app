@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Reflection;
 using ProtoBuf;
 using ProtoBuf.Meta;
 using ProtonVPN.Serialization.Contracts;
@@ -30,10 +31,10 @@ public class ProtobufSerializer : IProtobufSerializer
         RuntimeTypeModel.Default.InferTagFromNameDefault = true;
         foreach (Type type in protobufSerializableEntities.Types)
         {
-            MetaType metaType = RuntimeTypeModel.Default.Add(type);
+            MetaType metaType = RuntimeTypeModel.Default.Add(type, applyDefaultBehaviour: false);
             if (type.IsClass || type.IsInterface)
             {
-                metaType.Add(type.GetProperties().Select(p => p.Name).ToArray());
+                metaType.Add(type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(p => p.Name).ToArray());
             }
         }
     }

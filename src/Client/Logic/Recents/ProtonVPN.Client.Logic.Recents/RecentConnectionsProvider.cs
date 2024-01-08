@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -26,25 +27,30 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Client.Logic.Recents.Files;
 
 namespace ProtonVPN.Client.Logic.Recents;
 
-public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessageReceiver<ConnectionStatusChanged>
+public class RecentConnectionsProvider : IRecentConnectionsProvider,
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     private const int MAXIMUM_RECENT_CONNECTIONS = 6;
 
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IRecentsFileManager _recentsFileManager;
     private readonly object _lock = new();
 
-    private List<IRecentConnection> _recentConnections;
+    private List<IRecentConnection> _recentConnections = new();
 
     public RecentConnectionsProvider(IConnectionManager connectionManager,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        IRecentsFileManager recentsFileManager)
     {
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
-        _recentConnections = new List<IRecentConnection>();
+        _recentsFileManager = recentsFileManager;
     }
 
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()
@@ -72,7 +78,24 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessa
             recentConnection.PinTime = DateTime.UtcNow;
         }
 
+        SaveRecentsAndBroadcastChanges();
+    }
+
+    private void SaveRecentsAndBroadcastChanges()
+    {
+        SaveRecentsToFile();
         BroadcastRecentConnectionsChanged();
+    }
+
+    private void SaveRecentsToFile()
+    {
+        List<IRecentConnection> recentConnections = _recentConnections;
+        Task.Run(() => { _recentsFileManager.Save(recentConnections); }).ConfigureAwait(false);
+    }
+
+    private void BroadcastRecentConnectionsChanged()
+    {
+        _eventMessageSender.Send(new RecentConnectionsChanged());
     }
 
     public void Unpin(IRecentConnection recentConnection)
@@ -90,7 +113,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessa
             TrimRecentConnections();
         }
 
-        BroadcastRecentConnectionsChanged();
+        SaveRecentsAndBroadcastChanges();
     }
 
     public void Remove(IRecentConnection recentConnection)
@@ -114,7 +137,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessa
             _recentConnections.Remove(recentConnection);
         }
 
-        BroadcastRecentConnectionsChanged();
+        SaveRecentsAndBroadcastChanges();
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -141,7 +164,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessa
             {
                 SetActiveConnection(connectionDetails?.OriginalConnectionIntent, _connectionManager.ConnectionStatus);
 
-                BroadcastRecentConnectionsChanged();
+                SaveRecentsAndBroadcastChanges();
             }
         }
     }
@@ -191,8 +214,12 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider, IEventMessa
         }
     }
 
-    private void BroadcastRecentConnectionsChanged()
+    public void Receive(LoggedInMessage message)
     {
-        _eventMessageSender.Send(new RecentConnectionsChanged());
+        lock (_lock)
+        {
+            _recentConnections = _recentsFileManager.Read();
+        }
+        BroadcastRecentConnectionsChanged();
     }
 }

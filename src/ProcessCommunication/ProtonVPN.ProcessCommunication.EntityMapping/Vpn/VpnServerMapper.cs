@@ -23,38 +23,37 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+
+public class VpnServerMapper : IMapper<VpnHost, VpnServerIpcEntity>
 {
-    public class VpnServerMapper : IMapper<VpnHost, VpnServerIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public VpnServerMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public VpnServerMapper(IEntityMapper entityMapper)
+    public VpnServerIpcEntity Map(VpnHost leftEntity)
+    {
+        return new()
         {
-            _entityMapper = entityMapper;
-        }
+            Name = leftEntity.Name,
+            Ip = leftEntity.Ip,
+            Label = leftEntity.Label,
+            X25519PublicKey = _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(leftEntity.X25519PublicKey),
+            Signature = leftEntity.Signature,
+        };
+    }
 
-        public VpnServerIpcEntity Map(VpnHost leftEntity)
+    public VpnHost Map(VpnServerIpcEntity rightEntity)
+    {
+        if (rightEntity is null)
         {
-            return new()
-            {
-                Name = leftEntity.Name,
-                Ip = leftEntity.Ip,
-                Label = leftEntity.Label,
-                X25519PublicKey = _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(leftEntity.X25519PublicKey),
-                Signature = leftEntity.Signature,
-            };
+            throw new ArgumentNullException(nameof(VpnServerIpcEntity), 
+                $"The {nameof(VpnServerIpcEntity)} parameter cannot be mapped from null to {nameof(VpnHost)}.");
         }
-
-        public VpnHost Map(VpnServerIpcEntity rightEntity)
-        {
-            if (rightEntity is null)
-            {
-                throw new ArgumentNullException(nameof(VpnServerIpcEntity), 
-                    $"The {nameof(VpnServerIpcEntity)} parameter cannot be mapped from null to {nameof(VpnHost)}.");
-            }
-            return new(rightEntity.Name, rightEntity.Ip, rightEntity.Label,
-                _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(rightEntity.X25519PublicKey), rightEntity.Signature);
-        }
+        return new(rightEntity.Name, rightEntity.Ip, rightEntity.Label,
+            _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(rightEntity.X25519PublicKey), rightEntity.Signature);
     }
 }

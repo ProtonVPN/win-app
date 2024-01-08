@@ -24,14 +24,13 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.PortForwarding
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.PortForwarding;
+
+[TestClass]
+public class PortMappingStatusMapperTest : EnumMapperTestBase<PortMappingStatus, PortMappingStatusIpcEntity>
 {
-    [TestClass]
-    public class PortMappingStatusMapperTest : EnumMapperTestBase<PortMappingStatus, PortMappingStatusIpcEntity>
+    protected override IMapper<PortMappingStatus, PortMappingStatusIpcEntity> CreateMapper()
     {
-        protected override IMapper<PortMappingStatus, PortMappingStatusIpcEntity> CreateMapper()
-        {
-            return new PortMappingStatusMapper();
-        }
+        return new PortMappingStatusMapper();
     }
 }

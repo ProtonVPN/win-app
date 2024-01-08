@@ -26,7 +26,7 @@ namespace ProtonVPN.Configurations.Defaults;
 public static class DefaultConfiguration
 {
     // Constants
-    private const string PROTON_FOLDER_RELATIVE_PATH = "Proton/Proton VPN";
+    private const string PROTON_FOLDER_RELATIVE_PATH = "Proton\\Proton VPN";
     private const string LOGS_FOLDER_NAME = "Logs";
 
     // Auxiliary fields

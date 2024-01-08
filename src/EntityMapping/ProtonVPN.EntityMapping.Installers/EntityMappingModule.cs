@@ -18,8 +18,6 @@
  */
 
 using Autofac;
-using ProtonVPN.EntityMapping.Common.Installers.Extensions;
-using ProtonVPN.EntityMapping.Mappers.Vpn;
 
 namespace ProtonVPN.EntityMapping.Installers;
 
@@ -28,7 +26,5 @@ public class EntityMappingModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<EntityMapper>().AsImplementedInterfaces().SingleInstance();
-
-        builder.RegisterAllMappersInAssembly<ConnectionStatusMapper>();
     }
 }
