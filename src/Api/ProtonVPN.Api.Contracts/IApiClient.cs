@@ -49,7 +49,7 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip);
     Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
     Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip);
-    Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();
+    Task<ApiResponseResult<DeviceLocationResponse>> GetLocationDataAsync();
     Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
     Task<ApiResponseResult<SessionsResponse>> GetSessions();
     Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig();

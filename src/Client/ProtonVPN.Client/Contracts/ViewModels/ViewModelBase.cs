@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Dispatching;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
 
@@ -25,6 +26,8 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 {
+    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+
     public ILocalizationProvider Localizer { get; }
 
     protected ViewModelBase(ILocalizationProvider localizationProvider)
@@ -46,5 +49,10 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
     protected void InvalidateAllProperties()
     {
         OnPropertyChanged(string.Empty);
+    }
+
+    protected void ExecuteOnUIThread(Action callback)
+    {
+        _dispatcherQueue.TryEnqueue(() => callback());
     }
 }

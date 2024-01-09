@@ -96,6 +96,8 @@ public class MainWindowActivator :
 
         App.MainWindow.Show();
         App.MainWindow.BringToFront();
+
+        _eventMessageSender.Send(new ApplicationStartedMessage());
     }
 
     public void Activate()

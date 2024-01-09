@@ -19,32 +19,32 @@
 
 using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.Geographical
-{
-    public class LocationResponse : BaseResponse
-    {
-        private float _lat;
-        public float Lat
-        {
-            get => _lat;
-            set
-            {
-                if (value > 90) { _lat = 90; }
-                else if (value < -90) { _lat = -90; }
-                else { _lat = value; }
-            }
-        }
+namespace ProtonVPN.Api.Contracts.Geographical;
 
-        private float _longitude;
-        public float Long
+public class LocationResponse : BaseResponse
+{
+    private float _lat;
+    private float _longitude;
+
+    public float Lat
+    {
+        get => _lat;
+        set
         {
-            get => _longitude;
-            set
-            {
-                if (value > 180) { _longitude = 180; }
-                else if (value < -180) { _longitude = -180; }
-                else { _longitude = value; }
-            }
+            if (value > 90) { _lat = 90; }
+            else if (value < -90) { _lat = -90; }
+            else { _lat = value; }
+        }
+    }
+
+    public float Long
+    {
+        get => _longitude;
+        set
+        {
+            if (value > 180) { _longitude = 180; }
+            else if (value < -180) { _longitude = -180; }
+            else { _longitude = value; }
         }
     }
 }

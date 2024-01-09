@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
-using ProtonVPN.Core.Users;
+using Newtonsoft.Json;
 
-namespace ProtonVPN.Client.Messages;
+namespace ProtonVPN.Api.Contracts.Geographical;
 
-public class UserLocationChangedMessage : ValueChangedMessage<UserLocation>
+public class DeviceLocationResponse : LocationResponse
 {
-    public UserLocationChangedMessage(UserLocation value)
-        : base(value)
-    {
-    }
+    [JsonProperty(PropertyName = "IP")]
+    public string Ip { get; set; }
+
+    [JsonProperty(PropertyName = "ISP")]
+    public string Isp { get; set; }
+
+    public string Country { get; set; }
 }

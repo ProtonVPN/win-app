@@ -20,16 +20,15 @@
 using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Client.EventMessaging.Contracts;
 
-namespace ProtonVPN.Client.EventMessaging
-{
-    public class EventMessageSender : IEventMessageSender
-    {
-        private readonly IMessenger _messenger = MessengerFactory.Get();
+namespace ProtonVPN.Client.EventMessaging;
 
-        public void Send<TMessage>(TMessage message)
-            where TMessage : class
-        {
-            _messenger.Send(message);
-        }
+public class EventMessageSender : IEventMessageSender
+{
+    private readonly IMessenger _messenger = MessengerFactory.Get();
+
+    public void Send<TMessage>(TMessage message)
+        where TMessage : class
+    {
+        _messenger.Send(message);
     }
 }

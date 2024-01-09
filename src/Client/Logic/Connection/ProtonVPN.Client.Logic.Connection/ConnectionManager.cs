@@ -114,7 +114,12 @@ public class ConnectionManager : IConnectionManager,
 
     public void Receive(ConnectionDetailsIpcEntity message)
     {
-        _eventMessageSender.Send(new ConnectionDetailsChanged(message.ClientIpAddress, message.ServerIpAddress));
+        _eventMessageSender.Send(new ConnectionDetailsChanged()
+        {
+            ClientCountryCode = message.ClientCountryIsoCode,
+            ClientIpAddress = message.ClientIpAddress,
+            ServerIpAddress = message.ServerIpAddress,
+        });
     }
 
     public async void Receive(LoggedOutMessage message)

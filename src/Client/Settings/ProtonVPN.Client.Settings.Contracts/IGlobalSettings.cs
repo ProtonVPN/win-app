@@ -28,6 +28,7 @@ public interface IGlobalSettings
 {
     string Language { get; set; }
     string? Username { get; set; }
+    DeviceLocation? DeviceLocation { get; set; }
     string? AccessToken { get; set; }
     string? RefreshToken { get; set; }
     string? UniqueSessionId { get; set; }

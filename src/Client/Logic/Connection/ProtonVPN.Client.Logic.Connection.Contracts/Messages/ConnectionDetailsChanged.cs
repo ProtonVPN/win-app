@@ -21,12 +21,7 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
 public class ConnectionDetailsChanged
 {
-    public string ClientIpAddress { get; }
-    public string ServerIpAddress { get; }
-
-    public ConnectionDetailsChanged(string clientIpAddress, string serverIpAddress)
-    {
-        ClientIpAddress = clientIpAddress;
-        ServerIpAddress = serverIpAddress;
-    }
+    public required string ClientCountryCode { get; init; }
+    public required string ClientIpAddress { get; init; }
+    public required string ServerIpAddress { get; init; }
 }

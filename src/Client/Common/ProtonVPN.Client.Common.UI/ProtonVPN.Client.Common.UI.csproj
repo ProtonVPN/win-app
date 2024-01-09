@@ -603,9 +603,9 @@
         <None Remove="Assets\Illustrations\vpn-tray-unprotected.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-warning.ico" />
         <None Remove="Controls\CountryFlagControl.xaml" />
+        <None Remove="Controls\DeviceLocationControl.xaml" />
         <None Remove="Controls\DualCommandsRowControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
-        <None Remove="Controls\UserLocationControl.xaml" />
         <None Remove="Assets\Icons\ActiveDot.xaml" />
         <None Remove="Gallery\Controls\ColorsControl.xaml" />
         <None Remove="Gallery\Controls\MapConnectionControl.xaml" />
@@ -676,7 +676,7 @@
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-        <Page Update="Controls\UserLocationControl.xaml">
+        <Page Update="Controls\DeviceLocationControl.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
