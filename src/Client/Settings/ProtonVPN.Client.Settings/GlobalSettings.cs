@@ -42,6 +42,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
+    public DeviceLocation? DeviceLocation
+    {
+        get => _globalRepository.GetValueType<DeviceLocation>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetValueType(value, SettingEncryption.Encrypted);
+    }
+
     public string? AccessToken
     {
         get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);

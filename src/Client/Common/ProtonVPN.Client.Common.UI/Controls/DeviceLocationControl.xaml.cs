@@ -28,22 +28,22 @@ namespace ProtonVPN.Client.Common.UI.Controls;
 [TemplatePart(Name = "PART_ScrambledIpAddress", Type = typeof(Run))]
 [TemplatePart(Name = "PART_Separator", Type = typeof(Run))]
 [TemplatePart(Name = "PART_HiddenSeparator", Type = typeof(Run))]
-public sealed partial class UserLocationControl
+public sealed partial class DeviceLocationControl
 {
     public static readonly DependencyProperty CountryProperty =
-        DependencyProperty.Register(nameof(Country), typeof(string), typeof(UserLocationControl), new PropertyMetadata(default, OnCountryPropertyChanged));
+        DependencyProperty.Register(nameof(Country), typeof(string), typeof(DeviceLocationControl), new PropertyMetadata(default, OnCountryPropertyChanged));
 
     public static readonly DependencyProperty IpAddressProperty =
-        DependencyProperty.Register(nameof(IpAddress), typeof(string), typeof(UserLocationControl), new PropertyMetadata(default, OnIpAddressPropertyChanged));
+        DependencyProperty.Register(nameof(IpAddress), typeof(string), typeof(DeviceLocationControl), new PropertyMetadata(default, OnIpAddressPropertyChanged));
 
     public static readonly DependencyProperty IsLocationHiddenProperty =
-        DependencyProperty.Register(nameof(IsLocationHidden), typeof(bool), typeof(UserLocationControl), new PropertyMetadata(default, OnIsLocationHiddenPropertyChanged));
+        DependencyProperty.Register(nameof(IsLocationHidden), typeof(bool), typeof(DeviceLocationControl), new PropertyMetadata(default, OnIsLocationHiddenPropertyChanged));
 
     public static readonly DependencyProperty IsLocationVisibleProperty =
-        DependencyProperty.Register(nameof(IsLocationVisible), typeof(bool), typeof(UserLocationControl), new PropertyMetadata(default, OnIsLocationVisiblePropertyChanged));
+        DependencyProperty.Register(nameof(IsLocationVisible), typeof(bool), typeof(DeviceLocationControl), new PropertyMetadata(default, OnIsLocationVisiblePropertyChanged));
 
     public static readonly DependencyProperty IsScramblingProperty =
-        DependencyProperty.Register(nameof(IsScrambling), typeof(bool), typeof(UserLocationControl), new PropertyMetadata(default, OnIsScramblingPropertyChanged));
+        DependencyProperty.Register(nameof(IsScrambling), typeof(bool), typeof(DeviceLocationControl), new PropertyMetadata(default, OnIsScramblingPropertyChanged));
 
     private const char SCRAMBLING_CHAR = '*';
     private const string SEPARATOR_STRING = " \u2022 ";
@@ -53,7 +53,7 @@ public sealed partial class UserLocationControl
 
     private readonly DispatcherTimer _scramblingTimer = new();
 
-    public UserLocationControl()
+    public DeviceLocationControl()
     {
         InitializeComponent();
 
@@ -96,50 +96,50 @@ public sealed partial class UserLocationControl
 
     private static void OnCountryPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is UserLocationControl ulc)
+        if (d is DeviceLocationControl dlc)
         {
-            ulc.PART_ScrambledCountry.Text = ulc.Country ?? string.Empty;
-            ulc.InvalidateSeparator();
+            dlc.PART_ScrambledCountry.Text = dlc.Country ?? string.Empty;
+            dlc.InvalidateSeparator();
         }
     }
 
     private static void OnIpAddressPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is UserLocationControl ulc)
+        if (d is DeviceLocationControl dlc)
         {
-            ulc.PART_ScrambledIpAddress.Text = ulc.IpAddress ?? string.Empty;
-            ulc.InvalidateSeparator();
+            dlc.PART_ScrambledIpAddress.Text = dlc.IpAddress ?? string.Empty;
+            dlc.InvalidateSeparator();
         }
     }
 
     private static void OnIsLocationHiddenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is UserLocationControl ulc && ulc.IsLocationHidden)
+        if (d is DeviceLocationControl dlc && dlc.IsLocationHidden)
         {
-            ulc.StopScrambling();
-            ulc.CompleteScrambling();
+            dlc.StopScrambling();
+            dlc.CompleteScrambling();
         }
     }
 
     private static void OnIsLocationVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is UserLocationControl ulc && ulc.IsLocationVisible)
+        if (d is DeviceLocationControl dlc && dlc.IsLocationVisible)
         {
-            ulc.StopScrambling();
-            ulc.ResetScrambling();
+            dlc.StopScrambling();
+            dlc.ResetScrambling();
         }
     }
 
     private static void OnIsScramblingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is UserLocationControl ulc)
+        if (d is DeviceLocationControl dlc)
         {
-            if (ulc.IsScrambling)
+            if (dlc.IsScrambling)
             {
-                ulc.StartScrambling();
+                dlc.StartScrambling();
                 return;
             }
-            ulc.StopScrambling();
+            dlc.StopScrambling();
         }
     }
 
@@ -151,8 +151,8 @@ public sealed partial class UserLocationControl
 
     private void OnScramblingTimerTick(object? sender, object e)
     {
-        string userLocation = PART_ScrambledCountry.Text + PART_ScrambledIpAddress.Text;
-        if (string.IsNullOrEmpty(userLocation) || userLocation.All(c => c == SCRAMBLING_CHAR))
+        string deviceLocation = PART_ScrambledCountry.Text + PART_ScrambledIpAddress.Text;
+        if (string.IsNullOrEmpty(deviceLocation) || deviceLocation.All(c => c == SCRAMBLING_CHAR))
         {
             // Scrambling process complete
             StopScrambling();
@@ -162,13 +162,13 @@ public sealed partial class UserLocationControl
         int index;
         do
         {
-            index = _random.Next(userLocation.Length);
-        } while (userLocation.ElementAt(index) == SCRAMBLING_CHAR);
+            index = _random.Next(deviceLocation.Length);
+        } while (deviceLocation.ElementAt(index) == SCRAMBLING_CHAR);
 
-        userLocation = $"{userLocation.Remove(index)}{SCRAMBLING_CHAR}{userLocation.Remove(0, index + 1)}";
+        deviceLocation = $"{deviceLocation.Remove(index)}{SCRAMBLING_CHAR}{deviceLocation.Remove(0, index + 1)}";
 
-        PART_ScrambledCountry.Text = userLocation.Substring(0, Country.Length);
-        PART_ScrambledIpAddress.Text = userLocation.Substring(Country.Length, IpAddress.Length);
+        PART_ScrambledCountry.Text = deviceLocation.Substring(0, Country.Length);
+        PART_ScrambledIpAddress.Text = deviceLocation.Substring(Country.Length, IpAddress.Length);
     }
 
     private void ResetScrambling()

@@ -17,16 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+namespace ProtonVPN.Client.Settings.Contracts.Models;
 
-namespace ProtonVPN.Api.Contracts.Geographical
+public struct DeviceLocation
 {
-    public class UserLocationResponse : LocationResponse
-    {
-        [JsonProperty(PropertyName = "IP")]
-        public string Ip { get; set; }
-        [JsonProperty(PropertyName = "ISP")]
-        public string Isp { get; set; }
-        public string Country { get; set; }
-    }
+    public string IpAddress { get; init; }
+    public string CountryCode { get; init; }
+    public string Isp { get; init; }
 }

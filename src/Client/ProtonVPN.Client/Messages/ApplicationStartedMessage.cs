@@ -17,15 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
-using ProtonVPN.Core.Vpn;
-
 namespace ProtonVPN.Client.Messages;
 
-public class VpnStateChangedMessage : ValueChangedMessage<VpnState>
+public class ApplicationStartedMessage
 {
-    public VpnStateChangedMessage(VpnState value)
-        : base(value)
-    {
-    }
 }

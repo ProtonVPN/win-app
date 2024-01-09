@@ -19,12 +19,12 @@
 
 using System.Text;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Attachments;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
@@ -60,7 +60,7 @@ public class ReportIssueSender : IReportIssueSender
 
     public async Task<Result> SendAsync(string category, string email, IDictionary<string, string> inputFields, bool includeLogs)
     {
-        KeyValuePair<string, string>[] reportFields = await GetReportFieldsAsync(category, email, inputFields);
+        KeyValuePair<string, string>[] reportFields = GetReportFields(category, email, inputFields);
 
         return includeLogs
              ? await SendWithLogsAsync(reportFields)
@@ -86,9 +86,9 @@ public class ReportIssueSender : IReportIssueSender
         }
     }
 
-    private async Task<KeyValuePair<string, string>[]> GetReportFieldsAsync(string category, string email, IDictionary<string, string> inputFields)
+    private KeyValuePair<string, string>[] GetReportFields(string category, string email, IDictionary<string, string> inputFields)
     {
-        UserLocationResponse? location = await GetUserLocationAsync();
+        DeviceLocation? currentLocation = _settings.DeviceLocation;
 
         return new[]
         {
@@ -101,8 +101,8 @@ public class ReportIssueSender : IReportIssueSender
             new KeyValuePair<string, string>("Username", GetUsername()),
             new KeyValuePair<string, string>("Plan", GetVpnPlanName()),
             new KeyValuePair<string, string>("Email", email),
-            new KeyValuePair<string, string>("Country", location?.Country ?? NOT_PROVIDED_FIELD_VALUE),
-            new KeyValuePair<string, string>("ISP", location?.Isp ?? NOT_PROVIDED_FIELD_VALUE),
+            new KeyValuePair<string, string>("Country", currentLocation?.CountryCode ?? NOT_PROVIDED_FIELD_VALUE),
+            new KeyValuePair<string, string>("ISP", currentLocation?.Isp ?? NOT_PROVIDED_FIELD_VALUE),
             new KeyValuePair<string, string>("ClientType", "2")
         };
     }
@@ -156,21 +156,5 @@ public class ReportIssueSender : IReportIssueSender
             .AppendLine($"DeviceID: {_deviceIdCache.GetDeviceId()}");
 
         return stringBuilder.ToString();
-    }
-
-    private async Task<UserLocationResponse?> GetUserLocationAsync()
-    {
-        try
-        {
-            ApiResponseResult<UserLocationResponse> response = await _apiClient.GetLocationDataAsync();
-
-            return response.Success
-                ? response.Value
-                : null;
-        }
-        catch (Exception)
-        {
-            return null;
-        }
     }
 }

@@ -21,20 +21,24 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.UI.Home.Status;
 
 public partial class VpnStatusViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<UserLocationChangedMessage>
+    IEventMessageReceiver<DeviceLocationChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
+    private readonly ISettings _settings;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsDisconnected))]
@@ -47,12 +51,13 @@ public partial class VpnStatusViewModel : ViewModelBase,
     private ConnectionStatus _currentConnectionStatus;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsUserLocationUnknown))]
-    private string? _userCountry;
+    [NotifyPropertyChangedFor(nameof(IsLocationUnknown))]
+    [NotifyPropertyChangedFor(nameof(Country))]
+    private string? _countryCode;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsUserLocationUnknown))]
-    private string? _userIpAddress;
+    [NotifyPropertyChangedFor(nameof(IsLocationUnknown))]
+    private string? _ipAddress;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNetShieldStatVisible))]
@@ -60,6 +65,8 @@ public partial class VpnStatusViewModel : ViewModelBase,
 
     [ObservableProperty]
     private bool _isSecureCoreConnection;
+
+    public string Country => Localizer.GetCountryName(CountryCode);
 
     public bool IsConnected => CurrentConnectionStatus == ConnectionStatus.Connected;
 
@@ -71,8 +78,7 @@ public partial class VpnStatusViewModel : ViewModelBase,
 
     public bool IsTitleVisible => !string.IsNullOrEmpty(Title);
 
-    public bool IsUserLocationUnknown => string.IsNullOrEmpty(UserCountry) && string.IsNullOrEmpty(UserIpAddress);
-
+    public bool IsLocationUnknown => string.IsNullOrEmpty(CountryCode) && string.IsNullOrEmpty(IpAddress);
 
     public string Subtitle =>
         CurrentConnectionStatus switch
@@ -92,52 +98,62 @@ public partial class VpnStatusViewModel : ViewModelBase,
             _ => string.Empty
         };
 
-    public VpnStatusViewModel(IConnectionManager connectionManager, ILocalizationProvider localizationProvider)
+    public VpnStatusViewModel(IConnectionManager connectionManager, ILocalizationProvider localizationProvider, ISettings settings)
         : base(localizationProvider)
     {
         _connectionManager = connectionManager;
+        _settings = settings;
 
-        _userCountry = "Lithuania";
-        _userIpAddress = "158.6.140.191";
         _currentConnectionStatus = ConnectionStatus.Disconnected;
-        _isNetShieldStatEnabled = true;
+        _isNetShieldStatEnabled = false;
         _isSecureCoreConnection = true;
+
+        InvalidateDeviceLocation();
     }
 
     public void Receive(ConnectionStatusChanged message)
     {
-        if (message?.ConnectionStatus is null)
+        ExecuteOnUIThread(() =>
         {
-            return;
-        }
+            if (message?.ConnectionStatus is null)
+            {
+                return;
+            }
 
-        CurrentConnectionStatus = message.ConnectionStatus;
+            CurrentConnectionStatus = message.ConnectionStatus;
 
-        if (CurrentConnectionStatus != ConnectionStatus.Connected)
-        {
-            IsSecureCoreConnection = false;
-            return;
-        }
+            if (CurrentConnectionStatus != ConnectionStatus.Connected)
+            {
+                IsSecureCoreConnection = false;
+                return;
+            }
 
-        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
+            ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
 
-        IsSecureCoreConnection = connectionDetails?.OriginalConnectionIntent?.Feature is SecureCoreFeatureIntent;
+            IsSecureCoreConnection = connectionDetails?.OriginalConnectionIntent?.Feature is SecureCoreFeatureIntent;
+        });
     }
 
-    public void Receive(UserLocationChangedMessage message)
+    public void Receive(DeviceLocationChangedMessage message)
     {
-        if (message?.Value is null)
+        ExecuteOnUIThread(() =>
         {
-            return;
-        }
-
-        UserCountry = message.Value.Country;
-        UserIpAddress = message.Value.Ip;
+            InvalidateDeviceLocation();
+        });
     }
 
     protected override void OnLanguageChanged()
     {
         OnPropertyChanged(nameof(Title));
         OnPropertyChanged(nameof(Subtitle));
+        OnPropertyChanged(nameof(Country));
+    }
+
+    private void InvalidateDeviceLocation()
+    {
+        DeviceLocation? currentLocation = _settings.DeviceLocation;
+
+        IpAddress = currentLocation?.IpAddress;
+        CountryCode = currentLocation?.CountryCode;
     }
 }

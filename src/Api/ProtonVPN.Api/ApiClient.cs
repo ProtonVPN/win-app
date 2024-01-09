@@ -133,10 +133,10 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<ReportAnIssueFormResponse>(request, "Get report an issue form data");
     }
 
-    public async Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync()
+    public async Task<ApiResponseResult<DeviceLocationResponse>> GetLocationDataAsync()
     {
         HttpRequestMessage request = GetRequest(HttpMethod.Get, "vpn/location");
-        return await SendRequestWithNoCache<UserLocationResponse>(request, "Get location data");
+        return await SendRequestWithNoCache<DeviceLocationResponse>(request, "Get location data");
     }
 
     public async Task<ApiResponseResult<BaseResponse>> ReportBugAsync(

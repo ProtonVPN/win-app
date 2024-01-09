@@ -26,7 +26,7 @@ namespace ProtonVPN.Core.Users
 {
     public interface IUserLocationService
     {
-        Task<ApiResponseResult<UserLocationResponse>> LocationAsync();
+        Task<ApiResponseResult<DeviceLocationResponse>> LocationAsync();
 
         Task Update();
 

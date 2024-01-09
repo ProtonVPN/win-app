@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using CommunityToolkit.Mvvm.Messaging.Messages;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
-public class ConnectionDetailsChanged
+namespace ProtonVPN.Client.Messages;
+
+public class DeviceLocationChangedMessage : ValueChangedMessage<DeviceLocation>
 {
-    public required string ClientCountryCode { get; init; }
-    public required string ClientIpAddress { get; init; }
-    public required string ServerIpAddress { get; init; }
+    public DeviceLocationChangedMessage(DeviceLocation value) 
+        : base(value)
+    { }
 }
