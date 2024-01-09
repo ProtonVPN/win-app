@@ -145,19 +145,13 @@ mirror:
     - git push public master
     - git push public "$(git describe --abbrev=0)"
 
-i18n-sync-crowdin:
+i18n-sync-crowdin-redesign_2024:
+  extends: .i18n-sync-crowdin-common
   when: manual
   variables:
-    I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
-  extends: .i18n-sync-crowdin-common
-
-i18n-manual-sync-crowdin:
-  when: manual
-  only:
-    - branches
-  variables:
-    I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn'
-  extends: .i18n-sync-crowdin-common
+    I18N_SYNC_BRANCH: 'feature/localization'
+    L10N_COMMUNITY_BRANCH_SCOPE: 'Redesign_2024'
+    I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn-redesign'
 
 i18n-commit-translations:
   extends: .i18n-commit-locales-shared
