@@ -176,7 +176,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Assets\Illustrations\latency-desktop.svg" />
         <None Remove="Assets\protonvpn.ico" />
         <None Remove="UI\Account\AccountComponent.xaml" />
         <None Remove="UI\Countries\Controls\CountryFeatureTitleControl.xaml" />
@@ -282,9 +281,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Update="Assets\Illustrations\latency-desktop.svg">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Update="Assets\ProtonVPN.ico">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>

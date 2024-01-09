@@ -2066,10 +2066,10 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Lower latency</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Secure Core VPN connection</value>
+    <value>Secure Core\nVPN connection</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Standard VPN connection</value>
+    <value>Standard\nVPN connection</value>
   </data>
   <data name="Dialogs_SecureCore_Title" xml:space="preserve">
     <value>Secure Core</value>

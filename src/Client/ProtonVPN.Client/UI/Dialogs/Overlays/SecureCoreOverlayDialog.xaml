@@ -38,8 +38,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               HorizontalAlignment="Center"
               RowSpacing="8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="132" />
-                <ColumnDefinition Width="132" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Image Grid.Column="0"
                    Grid.Row="1"
-                   Source="{StaticResource StandardConnectionIllustrationSource}" />
+                   Source="{StaticResource StandardConnectionIllustrationSource}"/>
 
             <Image Grid.Column="1"
                    Grid.Row="1"
