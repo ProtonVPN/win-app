@@ -96,8 +96,6 @@ Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 Source: "..\{#SourcePath}\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFolder}\Microsoft.UI.Xaml\Assets";
 
 Source: "..\{#SourcePath}\Assets\*.ico"; DestDir: "{app}\{#VersionFolder}\Assets";
-Source: "..\{#SourcePath}\Assets\Illustrations\*.svg"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
-Source: "..\{#SourcePath}\Assets\Illustrations\*.png"; DestDir: "{app}\{#VersionFolder}\Assets\Illustrations";
 
 Source: "..\{#SourcePath}\Assets\Illustrations\Dark\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Dark";
 Source: "..\{#SourcePath}\Assets\Illustrations\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations\Light";

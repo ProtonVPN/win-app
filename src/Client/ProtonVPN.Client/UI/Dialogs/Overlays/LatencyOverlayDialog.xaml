@@ -33,10 +33,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel Orientation="Vertical"
                 Spacing="16">
 
-        <!-- TODO: Can this assets be moved to Proton.Client.Common.UI/Assets/Illustrations instead? -->
         <Image Margin="0,-16"
-               Source="../../../Assets/Illustrations/latency-desktop.svg"
-               Stretch="Uniform" />
+               Source="{StaticResource LatencyIllustrationSource}"/>
 
         <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                    Text="{x:Bind ViewModel.Localizer.Get('Dialogs_Latency_Description')}"
