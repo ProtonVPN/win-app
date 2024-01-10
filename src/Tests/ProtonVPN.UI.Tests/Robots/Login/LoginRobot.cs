@@ -18,6 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
 
@@ -26,7 +27,7 @@ public partial class LoginRobot : UIActions
     protected TextBox UsernameTextBox => ElementByAutomationId("UsernameTextBox").AsTextBox();
     protected TextBox PasswordBox => ElementByAutomationId("PasswordBox").AsTextBox();
     protected Button SignInButton => ElementByAutomationId("SignInButton").AsButton();
-    protected TextBox ErrorMessageTextBox => ElementByAutomationId("Message").AsTextBox();
+    protected TextBox ErrorMessageTextBox => ElementByAutomationId("Message", TestConstants.MediumTimeout).AsTextBox();
     protected TextBox AuthenticateButton => ElementByAutomationId("AuthenticateButton").AsTextBox();
     protected TextBox TwoFactorInputField(string position) => ElementByName($"{position} digit").AsTextBox();
 

@@ -43,6 +43,11 @@ public class LoginTests : TestSession
         "The password is not correct.",
     };
 
+    private static readonly List<string> ZERO_VPN_CONNECTIONS_ASSIGNED_MESSAGES = new()
+    {
+        "You need first to assign connections to your account or any other sub-account"
+    };
+
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
 
@@ -91,6 +96,15 @@ public class LoginTests : TestSession
             .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.IncorrectUser)
             .VerifyLoginErrorIsDisplayed(INCORRECT_CREDENTIALS_MESSAGES);
+    }
+
+    [Test]
+    public void LoginWithZeroAssignedConnectionsUser()
+    {
+        _loginRobot
+            .Wait(TestConstants.InitializationDelay)
+            .DoLogin(TestUserData.ZeroAssignedConnectionsUser)
+            .VerifyLoginErrorIsDisplayed(ZERO_VPN_CONNECTIONS_ASSIGNED_MESSAGES);
     }
 
     public void LoginWithUser(TestUserData user, string planName)
