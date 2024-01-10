@@ -71,14 +71,14 @@ public class UserAuthenticator : IUserAuthenticator
         _guestHoleActionExecutor = guestHoleActionExecutor;
         _tokenClient = tokenClient;
 
-        _tokenClient.RefreshTokenExpired += OnTokenExpired;
+        _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
     }
 
     public async Task CreateUnauthSessionAsync()
     {
         try
         {
-            _logger?.Info<UserLog>("Requesting unauth session to initiate login process.");
+            _logger.Info<UserLog>("Requesting unauth session to initiate login process.");
 
             ApiResponseResult<UnauthSessionResponse> unauthSessionResponse = await _apiClient.PostUnauthSessionAsync();
 
@@ -89,7 +89,7 @@ public class UserAuthenticator : IUserAuthenticator
         }
         catch (Exception ex)
         {
-            _logger?.Error<ApiErrorLog>("An error occurred when requesting a new unauth session.", ex);
+            _logger.Error<ApiErrorLog>("An error occurred when requesting a new unauth session.", ex);
         }
     }
 
@@ -118,7 +118,7 @@ public class UserAuthenticator : IUserAuthenticator
 
     public async Task<SsoAuthResult> StartSsoAuthAsync(string username)
     {
-        _logger?.Info<UserLog>("Trying to login user with SSO");
+        _logger.Info<UserLog>("Trying to login user with SSO");
 
         if (!IsUnauthSessionCreated())
         {
@@ -129,7 +129,7 @@ public class UserAuthenticator : IUserAuthenticator
             await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username, Intent = SSO_LOGIN_INTENT });
         if (!authInfoResponse.Success || string.IsNullOrEmpty(authInfoResponse.Value?.SsoChallengeToken))
         {
-            _logger?.Error<UserLog>("Failed to login with SSO.");
+            _logger.Error<UserLog>("Failed to login with SSO.");
             return SsoAuthResult.FromAuthResult(AuthResult.Fail(authInfoResponse));
         }
 
@@ -263,26 +263,27 @@ public class UserAuthenticator : IUserAuthenticator
         }
         else if (vpnInfo.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
         {
+            await CreateUnauthSessionAsync();
             ClearAuthSessionDetails();
         }
 
         return vpnInfo;
     }
 
-    private async void OnTokenExpired(object? sender, EventArgs e)
+    private async void OnTokenExpiredAsync(object? sender, EventArgs e)
     {
         await LogoutAsync(LogoutReason.SessionExpired);
     }
 
     private async Task<AuthResult> RefreshVpnInfoAndInvokeLoginAsync()
     {
-        _eventMessageSender.Send(new LoggingInMessage());
-
         ApiResponseResult<VpnInfoWrapperResponse> vpnInfoResult = await RefreshVpnInfoAsync();
         if (vpnInfoResult.Failure)
         {
             return AuthResult.Fail(vpnInfoResult);
         }
+
+        _eventMessageSender.Send(new LoggingInMessage());
 
         SaveUserInfo(vpnInfoResult.Value);
 

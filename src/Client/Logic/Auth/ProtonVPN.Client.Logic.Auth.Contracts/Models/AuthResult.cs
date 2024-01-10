@@ -53,7 +53,7 @@ public class AuthResult : Result<AuthError>
         {
             return apiResponseResult.Value?.Code switch
             {
-                ResponseCodes.NoVpnConnectionsAssigned => Fail(AuthError.NoVpnAccess),
+                ResponseCodes.NoVpnConnectionsAssigned => Fail(AuthError.NoVpnAccess, apiResponseResult.Error),
                 ResponseCodes.AuthSwitchToSSO => Fail(AuthError.SwitchToSSO, apiResponseResult.Error),
                 ResponseCodes.AuthSwitchToSRP => Fail(AuthError.SwitchToSRP, apiResponseResult.Error),
                 _ => Fail(apiResponseResult.Error)
