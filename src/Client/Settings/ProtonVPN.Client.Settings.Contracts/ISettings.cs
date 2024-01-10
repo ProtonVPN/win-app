@@ -27,5 +27,7 @@ public interface ISettings : IGlobalSettings, IUserSettings
 
     bool AllowNonStandardPorts { get; }
 
+    bool IsDebugModeEnabled { get; }
+
     OpenVpnAdapter OpenVpnAdapter { get; }
 }

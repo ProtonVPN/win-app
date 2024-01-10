@@ -19,13 +19,12 @@
 
 using Autofac;
 
-namespace ProtonVPN.IssueReporting.Installers
+namespace ProtonVPN.IssueReporting.Installers;
+
+public class IssueReportingModule : Module
 {
-    public class IssueReportingModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<IssueReporter>().AsImplementedInterfaces().SingleInstance();
-        }
+        builder.RegisterType<IssueReporter>().AsImplementedInterfaces().SingleInstance().AutoActivate();
     }
 }

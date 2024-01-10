@@ -23,7 +23,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Installers;
-using UnhandledExceptionEventArgs = Microsoft.UI.Xaml.UnhandledExceptionEventArgs;
+using ProtonVPN.IssueReporting.Installers;
 
 namespace ProtonVPN.Client;
 
@@ -42,9 +42,9 @@ public partial class App
 
     public App()
     {
-        InitializeComponent();
+        IssueReportingInitializer.Run();
 
-        UnhandledException += App_UnhandledException;
+        InitializeComponent();
 
         Host = Microsoft.Extensions.Hosting.Host
             .CreateDefaultBuilder()
@@ -70,11 +70,5 @@ public partial class App
         base.OnLaunched(args);
 
         await GetService<IBootstrapper>().StartAsync(args);
-    }
-
-    private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-    {
-        // TODO: Log and handle exceptions as appropriate.
-        // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception
     }
 }

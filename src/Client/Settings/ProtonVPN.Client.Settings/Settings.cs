@@ -31,6 +31,18 @@ public class Settings : UserSettings, ISettings
 
     public OpenVpnAdapter OpenVpnAdapter => DefaultSettings.OpenVpnAdapter;
 
+    public bool IsDebugModeEnabled
+    {
+        get
+        {
+            #if DEBUG
+                return true;
+            #else
+                return false;
+            #endif
+        }
+    }
+
     public Settings(IGlobalSettingsRepository globalSettingsRepository, IUserSettingsRepository userSettingsRepository)
         : base(globalSettingsRepository, userSettingsRepository)
     { }

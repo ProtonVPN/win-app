@@ -65,7 +65,7 @@
     <PackageVersion Include="protobuf-net.Grpc.Native" Version="1.0.179" />
     <PackageVersion Include="ReswPlusLib" Version="2.0.0" />
     <PackageVersion Include="RichardSzalay.MockHttp" Version="6.0.0" />
-    <PackageVersion Include="Sentry" Version="3.12.3" />
+    <PackageVersion Include="Sentry" Version="3.41.3" />
     <PackageVersion Include="System.Collections.Immutable" Version="7.0.0" />
     <PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="7.0.0" />

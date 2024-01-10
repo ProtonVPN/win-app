@@ -18,10 +18,10 @@
  */
 
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -62,6 +62,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly IConnectionManager _connectionManager;
     private readonly IPortForwardingManager _portForwardingManager;
     private readonly Lazy<ObservableCollection<string>> _languages;
+
+
+    public bool IsToShowDeveloperTools => _settings.IsDebugModeEnabled;
 
     public string ClientVersionDescription => $"{App.APPLICATION_NAME} {AssemblyVersion.Get()}";
     public string OperatingSystemVersionDescription => OSVersion.GetString();

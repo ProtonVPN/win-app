@@ -145,6 +145,7 @@ public class ViewMapper : IViewMapper
         ConfigurePage<TorServersPageViewModel, TorServersPage>();
         ConfigurePage<P2PCountriesPageViewModel, P2PCountriesPage>();
         ConfigurePage<TorCountriesPageViewModel, TorCountriesPage>();
+        ConfigurePage<DeveloperToolsViewModel, DeveloperToolsPage>();
 
         ConfigureDebugPages();
     }

@@ -242,6 +242,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsCard.HeaderIcon>
             </toolkit:SettingsCard>
 
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DeveloperToolsSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DeveloperToolsViewModel"
+                                  Header="Developer tools"
+                                  IsClickEnabled="True"
+                                  Visibility="{x:Bind ViewModel.IsToShowDeveloperTools}"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:WindowTerminal />
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
+
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Improve')}" />
 
