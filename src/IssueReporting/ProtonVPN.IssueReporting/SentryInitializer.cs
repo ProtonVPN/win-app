@@ -58,20 +58,22 @@ public static class SentryInitializer
             AttachStacktrace = true,
             Dsn = GlobalConfig.SentryDsn,
             ReportAssembliesMode = ReportAssembliesMode.None,
-            CreateHttpClientHandler = () => new SentryHttpClientHandler(),
+            CreateHttpMessageHandler = () => new SentryHttpClientHandler(),
             AutoSessionTracking = false,
-            Debug = true,
+            Debug = false,
             DiagnosticLogger = _sentryDiagnosticLogger,
-            BeforeSend = e =>
-            {
-                LogSentryEvent(e);
-                e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
-                e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
-                e.SetExtra("logs", GetLogs());
-
-                return e;
-            }
+            IsGlobalModeEnabled = true,
         };
+
+        options.SetBeforeSend(e =>
+        {
+            LogSentryEvent(e);
+            e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
+            e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
+            e.SetExtra("logs", GetLogs());
+
+            return e;
+        });
 
         return options;
     }

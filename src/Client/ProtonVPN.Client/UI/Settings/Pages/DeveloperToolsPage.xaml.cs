@@ -17,14 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
+namespace ProtonVPN.Client.UI.Settings.Pages;
 
-namespace ProtonVPN.IssueReporting.Installers;
-
-public class IssueReportingModule : Module
+public sealed partial class DeveloperToolsPage
 {
-    protected override void Load(ContainerBuilder builder)
+    public DeveloperToolsPage()
     {
-        builder.RegisterType<IssueReporter>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        ViewModel = App.GetService<DeveloperToolsViewModel>();
+        InitializeComponent();
     }
+
+    public DeveloperToolsViewModel ViewModel { get; }
 }

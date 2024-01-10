@@ -82,6 +82,9 @@
         <Page Update="UI\Gateways\GatewaysPage.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Settings\Pages\DeveloperToolsPage.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
         <Page Update="UI\Tray\TrayIconComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -221,6 +224,7 @@
         <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\ContactFormPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
+        <None Remove="UI\Settings\Pages\DeveloperToolsPage.xaml" />
         <None Remove="UI\Tray\TrayIconComponent.xaml" />
     </ItemGroup>
 
@@ -249,6 +253,7 @@
         <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
         <ProjectReference Include="..\..\Dns\ProtonVPN.Dns.Installers\ProtonVPN.Dns.Installers.csproj" />
         <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
+        <ProjectReference Include="..\..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />
         <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
         <ProjectReference Include="..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Installers\ProtonVPN.OperatingSystems.Processes.Installers.csproj" />
         <ProjectReference Include="..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />

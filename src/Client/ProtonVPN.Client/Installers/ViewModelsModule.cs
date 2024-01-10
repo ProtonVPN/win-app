@@ -109,6 +109,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<NoSearchResultsViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
         RegisterViewModel<ConnectionErrorViewModel>(builder);
+        RegisterViewModel<DeveloperToolsViewModel>(builder);
 
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);

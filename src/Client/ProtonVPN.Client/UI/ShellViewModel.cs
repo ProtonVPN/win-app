@@ -18,7 +18,6 @@
  */
 
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -27,6 +26,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Gateways;
@@ -39,11 +39,12 @@ namespace ProtonVPN.Client.UI;
 public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
 {
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly ISettings _settings;
 
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
 
-    public override string? Title => App.APPLICATION_NAME;
+    public override string Title => App.APPLICATION_NAME;
 
     public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
 
@@ -53,11 +54,13 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
         HomeViewModel homeViewModel,
         GatewaysViewModel gatewaysViewModel,
         CountriesViewModel countriesViewModel,
+        ISettings settings,
         SettingsViewModel settingsViewModel,
         Lazy<GalleryViewModel> galleryViewModel)
         : base(viewNavigator, localizationProvider)
     {
         _eventMessageSender = eventMessageSender;
+        _settings = settings;
 
         NavigationPages = new ObservableCollection<NavigationPageViewModelBase>
         {
@@ -90,9 +93,11 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
                               ?? NavigationPages.FirstOrDefault(p => p.IsHostFor(CurrentPage));
     }
 
-    [Conditional("DEBUG")]
     private void AddDebugPages(Lazy<GalleryViewModel> galleryViewModel)
     {
-        NavigationPages.Add(galleryViewModel.Value);
+        if (_settings.IsDebugModeEnabled)
+        {
+            NavigationPages.Add(galleryViewModel.Value);
+        }
     }
 }

@@ -33,6 +33,7 @@ using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
+using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
@@ -78,6 +79,7 @@ public class MainModule : Module
                .RegisterModule<FeedbackLogicModule>()
                .RegisterModule<DnsModule>()
                .RegisterModule<SerializationModule>()
+               .RegisterModule<IssueReportingModule>()
                .RegisterModule<NotificationsModule>();
     }
 }
