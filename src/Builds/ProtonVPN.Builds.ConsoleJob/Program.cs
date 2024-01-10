@@ -61,7 +61,7 @@ public static class Program
 
     private static string GetFileContents()
     {
-        string sentryDsn = GetEnvironmentVariable("SENTRY_DSN_V2");
+        string sentryDsn = GetEnvironmentVariable("SENTRY_DSN_V4");
         string internalReleaseUrl = GetEnvironmentVariable("INTERNAL_RELEASE_URL");
         string btiApiDomain = GetEnvironmentVariable("BTI_API_DOMAIN");
         string btiApiTlsPinningPublicKeyHashes = GetEnvironmentVariable("BTI_API_TLS_PINNINGS");
