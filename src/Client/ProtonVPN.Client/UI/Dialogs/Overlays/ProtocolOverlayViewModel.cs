@@ -62,10 +62,13 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.VpnProtocol))
+        ExecuteOnUIThread(() =>
         {
-            OnPropertyChanged(nameof(CurrentProtocol));
-        }
+            if (message.PropertyName == nameof(ISettings.VpnProtocol))
+            {
+                OnPropertyChanged(nameof(CurrentProtocol));
+            }
+        });
     }
 
     protected override void OnLanguageChanged()

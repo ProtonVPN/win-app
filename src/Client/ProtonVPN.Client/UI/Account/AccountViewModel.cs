@@ -45,8 +45,8 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlanTitle);
 
     public AccountViewModel(
-        ILocalizationProvider localizationProvider, 
-        ISettings settings, 
+        ILocalizationProvider localizationProvider,
+        ISettings settings,
         IUserAuthenticator userAuthenticator,
         IConnectionManager connectionManager,
         IOverlayActivator overlayActivator)
@@ -60,8 +60,11 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
 
     public void Receive(LoggedInMessage message)
     {
-        OnPropertyChanged(nameof(Username));
-        OnPropertyChanged(nameof(VpnPlan));
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(Username));
+            OnPropertyChanged(nameof(VpnPlan));
+        });
     }
 
     [RelayCommand]

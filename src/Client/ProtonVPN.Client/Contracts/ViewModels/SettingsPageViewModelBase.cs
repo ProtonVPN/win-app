@@ -52,7 +52,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(viewNavigator, 
+        : base(viewNavigator,
                localizationProvider)
     {
         OverlayActivator = overlayActivator;
@@ -109,12 +109,18 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
 
     public virtual void Receive(ConnectionStatusChanged message)
     {
-        ReconnectCommand.NotifyCanExecuteChanged();
+        ExecuteOnUIThread(() =>
+        {
+            ReconnectCommand.NotifyCanExecuteChanged();
+        });
     }
 
     public virtual void Receive(SettingChangedMessage message)
     {
-        OnSettingsChanged(message.PropertyName);
+        ExecuteOnUIThread(() =>
+        {
+            OnSettingsChanged(message.PropertyName);
+        });
     }
 
     public override async Task<bool> OnNavigatingFromAsync()

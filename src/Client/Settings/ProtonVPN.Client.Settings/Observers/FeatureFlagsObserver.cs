@@ -32,7 +32,7 @@ using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggedOutMessage>
+public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
 {
     private readonly IEventMessageSender _eventMessageSender;
 
@@ -49,6 +49,8 @@ public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver, IEventM
         : base(settings, apiClient, config, logger)
     {
         _eventMessageSender = eventMessageSender;
+
+        StartTimer();
     }
 
     private bool IsFlagEnabled(string featureFlagName)
@@ -56,16 +58,6 @@ public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver, IEventM
         return Settings.FeatureFlags
             .FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagName), FeatureFlag.Default)
             .IsEnabled;
-    }
-
-    public void Receive(LoggedInMessage message)
-    {
-        StartTimer();
-    }
-
-    public void Receive(LoggedOutMessage message)
-    {
-        StopTimer();
     }
 
     protected override async Task UpdateAsync()
