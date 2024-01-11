@@ -120,12 +120,18 @@ public partial class ConnectionCardViewModel : ViewModelBase,
 
     public void Receive(ConnectionStatusChanged message)
     {
-        InvalidateCurrentConnectionStatus();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateCurrentConnectionStatus();
+        });
     }
 
     public void Receive(RecentConnectionsChanged message)
     {
-        InvalidateCurrentConnectionIntent();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateCurrentConnectionIntent();
+        });
     }
 
     protected override void OnLanguageChanged()

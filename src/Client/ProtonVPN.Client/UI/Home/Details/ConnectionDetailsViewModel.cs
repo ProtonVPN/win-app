@@ -20,8 +20,8 @@
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -31,7 +31,8 @@ using ProtonVPN.Client.Models.Activation;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
-public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRecipient<ConnectionStatusChanged>
+public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
@@ -104,9 +105,12 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase, IRec
 
     public void Receive(ConnectionStatusChanged message)
     {
-        CurrentConnectionDetails = _connectionManager.IsConnected
-            ? _connectionManager.GetConnectionDetails()
-            : null;
+        ExecuteOnUIThread(() =>
+        {
+            CurrentConnectionDetails = _connectionManager.IsConnected
+                ? _connectionManager.GetConnectionDetails()
+                : null;
+        });
     }
 
     protected override void OnActivated()

@@ -45,7 +45,10 @@ using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
-public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<FeatureFlagsChangedMessage>
+public partial class LoginFormViewModel : 
+    PageViewModelBase<ILoginViewNavigator>, 
+    IEventMessageReceiver<LoggedInMessage>, 
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly IEventMessageSender _eventMessageSender;
@@ -53,7 +56,6 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
     private readonly IDialogActivator _dialogActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
-    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
 
@@ -118,7 +120,6 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         IDialogActivator dialogActivator,
         IReportIssueViewNavigator reportIssueViewNavigator,
         IFeatureFlagsObserver featureFlagsObserver,
-        IUIThreadDispatcher uiThreadDispatcher,
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel)
         : base(loginViewNavigator, localizationProvider)
     {
@@ -130,7 +131,6 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
         _featureFlagsObserver = featureFlagsObserver;
-        _uiThreadDispatcher = uiThreadDispatcher;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
     }
 
@@ -251,7 +251,10 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
 
     public void Receive(LoggedInMessage message)
     {
-        ClearInputs();
+        ExecuteOnUIThread(() =>
+        {
+            ClearInputs();
+        });
     }
 
     private void ClearInputs()
@@ -315,8 +318,8 @@ public partial class LoginFormViewModel : PageViewModelBase<ILoginViewNavigator>
 
     public void Receive(FeatureFlagsChangedMessage message)
     {
-        _uiThreadDispatcher.TryEnqueue(() =>
-        {
+        ExecuteOnUIThread(() =>
+        {            
             // If currently on SSO login page but SSO feature flag is not enabled, switch back to SRP login form
             if (!_featureFlagsObserver.IsSsoEnabled && LoginFormType == LoginFormType.SSO)
             {

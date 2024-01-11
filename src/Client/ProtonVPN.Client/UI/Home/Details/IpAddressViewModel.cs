@@ -19,18 +19,23 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
-public partial class IpAddressViewModel : ViewModelBase, IRecipient<ConnectionDetailsChanged>
+public partial class IpAddressViewModel :
+    ViewModelBase,
+    IEventMessageReceiver<DeviceLocationChangedMessage>,
+    IEventMessageReceiver<ConnectionDetailsChanged>
 {
     private const string HIDDEN_IP_ADDRESS = "***.***.***.***";
 
-    private string _hiddenUserIpAddress;
+    private readonly ISettings _settings;
 
     [ObservableProperty]
     private string _userIpAddress;
@@ -43,18 +48,38 @@ public partial class IpAddressViewModel : ViewModelBase, IRecipient<ConnectionDe
     [NotifyCanExecuteChangedFor(nameof(HideUserIPAddressCommand))]
     private bool _isUserIpVisible;
 
-    public IpAddressViewModel(ILocalizationProvider localizationProvider)
+    public IpAddressViewModel(
+        ILocalizationProvider localizationProvider,
+        ISettings settings)
         : base(localizationProvider)
     {
+        _settings = settings;
+
         _userIpAddress = HIDDEN_IP_ADDRESS;
-        _isUserIpVisible = false;
+        _serverIpAddress = string.Empty;
+    }
+
+    public void Receive(DeviceLocationChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateUserIpAddress();
+        });
+    }
+
+    public void Receive(ConnectionDetailsChanged message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            ServerIpAddress = message.ServerIpAddress;
+        });
     }
 
     [RelayCommand(CanExecute = nameof(CanHideUserIPAddress))]
     public void HideUserIPAddress()
     {
-        UserIpAddress = HIDDEN_IP_ADDRESS;
         IsUserIpVisible = false;
+        InvalidateUserIpAddress();
     }
 
     private bool CanHideUserIPAddress()
@@ -65,8 +90,8 @@ public partial class IpAddressViewModel : ViewModelBase, IRecipient<ConnectionDe
     [RelayCommand(CanExecute = nameof(CanShowUserIPAddress))]
     public void ShowUserIPAddress()
     {
-        UserIpAddress = _hiddenUserIpAddress;
         IsUserIpVisible = true;
+        InvalidateUserIpAddress();
     }
 
     private bool CanShowUserIPAddress()
@@ -74,9 +99,10 @@ public partial class IpAddressViewModel : ViewModelBase, IRecipient<ConnectionDe
         return !IsUserIpVisible;
     }
 
-    public void Receive(ConnectionDetailsChanged message)
+    private void InvalidateUserIpAddress()
     {
-        _hiddenUserIpAddress = message.ClientIpAddress;
-        ServerIpAddress = message.ServerIpAddress;
+        UserIpAddress = IsUserIpVisible
+            ? _settings.DeviceLocation?.IpAddress ?? string.Empty
+            : HIDDEN_IP_ADDRESS;
     }
 }

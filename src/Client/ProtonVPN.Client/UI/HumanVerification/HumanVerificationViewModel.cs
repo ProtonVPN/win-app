@@ -30,7 +30,9 @@ using ProtonVPN.Client.Models.Themes;
 
 namespace ProtonVPN.Client.UI.HumanVerification;
 
-public partial class HumanVerificationViewModel : OverlayViewModelBase, IEventMessageReceiver<RequestTokenMessage>, IEventMessageReceiver<ThemeChangedMessage>
+public partial class HumanVerificationViewModel : OverlayViewModelBase, 
+    IEventMessageReceiver<RequestTokenMessage>, 
+    IEventMessageReceiver<ThemeChangedMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IThemeSelector _themeSelector;

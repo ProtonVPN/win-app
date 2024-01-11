@@ -19,6 +19,7 @@
 
 using H.NotifyIcon;
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
@@ -57,7 +58,7 @@ public class MainWindowActivator :
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
-
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private bool _handleClosedEvents = true;
 
     public MainWindowActivator(
@@ -71,7 +72,8 @@ public class MainWindowActivator :
         IUserAuthenticator userAuthenticator,
         IConnectionManager connectionManager,
         ISettings settings,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        IUIThreadDispatcher uIThreadDispatcher)
         : base(logger, themeSelector)
     {
         _dialogActivator = dialogActivator;
@@ -83,6 +85,7 @@ public class MainWindowActivator :
         _connectionManager = connectionManager;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
+        _uiThreadDispatcher = uIThreadDispatcher;
     }
 
     public void Show()
@@ -124,42 +127,57 @@ public class MainWindowActivator :
 
     public void Receive(LoggingInMessage message)
     {
-        App.MainWindow.SwitchToLoadingScreen();
+        _uiThreadDispatcher.TryEnqueue(() =>
+        {
+            App.MainWindow.SwitchToLoadingScreen();
+        });
     }
 
     public void Receive(LoggedInMessage message)
     {
-        InvalidateWindowPosition();
-        InvalidateWindowContent();
+        _uiThreadDispatcher.TryEnqueue(() =>
+        {
+            InvalidateWindowPosition();
+            InvalidateWindowContent();
 
-        InvalidateAppIcon();
+            InvalidateAppIcon();
 
-        // Apply theme based on user settings
-        InvalidateAppTheme();
+            // Apply theme based on user settings
+            InvalidateAppTheme();
+        });
     }
 
     public void Receive(LoggingOutMessage message)
     {
-        App.MainWindow.SwitchToLoadingScreen();
+        _uiThreadDispatcher.TryEnqueue(() =>
+        {
+            App.MainWindow.SwitchToLoadingScreen();
 
-        SaveWindowPosition();
+            SaveWindowPosition();
+        });
     }
 
     public void Receive(LoggedOutMessage message)
     {
-        InvalidateWindowPosition();
-        InvalidateWindowContent();
+        _uiThreadDispatcher.TryEnqueue(() =>
+        {
+            InvalidateWindowPosition();
+            InvalidateWindowContent();
 
-        InvalidateAppIcon();
+            InvalidateAppIcon();
 
-        // Theme is saved in user settings which cannot be retrieved until user logged in.
-        // When user logged out, app applies the default theme (Dark)
-        InvalidateAppTheme();
+            // Theme is saved in user settings which cannot be retrieved until user logged in.
+            // When user logged out, app applies the default theme (Dark)
+            InvalidateAppTheme();
+        });
     }
 
     public void Receive(ConnectionStatusChanged message)
     {
-        InvalidateAppIcon();
+        _uiThreadDispatcher.TryEnqueue(() =>
+        {
+            InvalidateAppIcon();
+        });
     }
 
     protected override void OnThemeChanged(ElementTheme theme)

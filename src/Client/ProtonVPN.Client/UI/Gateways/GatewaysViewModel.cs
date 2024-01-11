@@ -32,7 +32,9 @@ using ProtonVPN.Client.UI.Gateways.Items;
 
 namespace ProtonVPN.Client.UI.Gateways;
 
-public partial class GatewaysViewModel : NavigationPageViewModelBase, IEventMessageReceiver<ServerListChangedMessage>
+public partial class GatewaysViewModel :
+    NavigationPageViewModelBase,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IServersLoader _serversLoader;
     private readonly GatewayViewModelsFactory _gatewayViewModelsFactory;
@@ -71,7 +73,10 @@ public partial class GatewaysViewModel : NavigationPageViewModelBase, IEventMess
 
     public void Receive(ServerListChangedMessage message)
     {
-        LoadItems();
+        ExecuteOnUIThread(() =>
+        {
+            LoadItems();
+        });
     }
 
     private void LoadItems()

@@ -72,11 +72,11 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEvent
         IClipboardEditor clipboardEditor,
         IConnectionManager connectionManager,
         IPortForwardingManager portForwardingManager)
-        : base(viewNavigator, 
-               localizationProvider, 
-               overlayActivator, 
-               settings, 
-               settingsConflictResolver, 
+        : base(viewNavigator,
+               localizationProvider,
+               overlayActivator,
+               settings,
+               settingsConflictResolver,
                connectionManager)
     {
         _urls = urls;
@@ -124,7 +124,7 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEvent
     {
         yield return new(nameof(ISettings.IsPortForwardingEnabled), IsPortForwardingEnabled,
             Settings.IsPortForwardingEnabled != IsPortForwardingEnabled);
-        
+
         yield return new(nameof(ISettings.IsPortForwardingNotificationEnabled), IsPortForwardingNotificationEnabled,
             Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
@@ -136,7 +136,10 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEvent
 
     public void Receive(PortForwardingPortChanged message)
     {
-        InvalidateActivePortNumber();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateActivePortNumber();
+        });
     }
 
     public override void Receive(ConnectionStatusChanged message)

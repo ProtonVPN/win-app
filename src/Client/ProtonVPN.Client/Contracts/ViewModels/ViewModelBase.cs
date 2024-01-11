@@ -37,8 +37,11 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 
     public void Receive(LanguageChangedMessage message)
     {
-        OnPropertyChanged(nameof(Localizer));
-        OnLanguageChanged();
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(Localizer));
+            OnLanguageChanged();
+        });
     }
 
     protected virtual void OnLanguageChanged()

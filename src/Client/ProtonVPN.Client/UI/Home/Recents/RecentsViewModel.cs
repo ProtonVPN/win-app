@@ -28,7 +28,8 @@ using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Home.Recents;
 
-public partial class RecentsViewModel : ViewModelBase, IEventMessageReceiver<RecentConnectionsChanged>
+public partial class RecentsViewModel : ViewModelBase,
+    IEventMessageReceiver<RecentConnectionsChanged>
 {
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
     private readonly IConnectionManager _connectionManager;
@@ -53,7 +54,10 @@ public partial class RecentsViewModel : ViewModelBase, IEventMessageReceiver<Rec
 
     public void Receive(RecentConnectionsChanged message)
     {
-        InvalidateRecentConnections();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateRecentConnections();
+        });
     }
 
     public void InvalidateRecentConnections()

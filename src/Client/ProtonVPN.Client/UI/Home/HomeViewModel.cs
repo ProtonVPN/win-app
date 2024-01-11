@@ -19,10 +19,10 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -32,7 +32,8 @@ using ProtonVPN.Client.UI.Home.Details;
 
 namespace ProtonVPN.Client.UI.Home;
 
-public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<ConnectionStatusChanged>
+public partial class HomeViewModel : NavigationPageViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly ConnectionDetailsViewModel _connectionDetailsViewModel;
@@ -86,29 +87,33 @@ public partial class HomeViewModel : NavigationPageViewModelBase, IRecipient<Con
 
     public void Receive(ConnectionStatusChanged message)
     {
-        OnPropertyChanged(nameof(IsConnecting));
-        OnPropertyChanged(nameof(IsConnected));
-
-        switch (_connectionManager.ConnectionStatus)
+        ExecuteOnUIThread(() =>
         {
-            case ConnectionStatus.Connecting:
-            case ConnectionStatus.Connected:
-                if (_openDetailsPaneAutomatically && !IsDetailsPaneOpen)
-                {
-                    OpenDetailsPane();
-                }
-                break;
+            OnPropertyChanged(nameof(IsConnecting));
+            OnPropertyChanged(nameof(IsConnected));
 
-            default:
-                if (IsDetailsPaneOpen)
-                {
-                    CloseDetailsPane();
+            switch (_connectionManager.ConnectionStatus)
+            {
+                case ConnectionStatus.Connecting:
+                case ConnectionStatus.Connected:
+                    if (_openDetailsPaneAutomatically && !IsDetailsPaneOpen)
+                    {
+                        OpenDetailsPane();
+                    }
+                    break;
 
-                    // When details pane was closed due to disconnection, set flag to reopen it automatically on Connect
-                    _openDetailsPaneAutomatically = true;
-                }
-                break;
-        }
+                default:
+                    if (IsDetailsPaneOpen)
+                    {
+                        CloseDetailsPane();
+
+                        // When details pane was closed due to disconnection, set flag to reopen it automatically on Connect
+                        _openDetailsPaneAutomatically = true;
+                    }
+                    break;
+            }
+        });
+
     }
 
     public override void OnNavigatedFrom()

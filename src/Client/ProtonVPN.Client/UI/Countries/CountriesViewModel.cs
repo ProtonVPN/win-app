@@ -100,7 +100,10 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
 
     public void Receive(ServerListChangedMessage message)
     {
-        LoadFeatureTabPages();
+        ExecuteOnUIThread(() =>
+        {
+            LoadFeatureTabPages();
+        });
     }
 
     private void OnNavigated(object sender, NavigationEventArgs e)

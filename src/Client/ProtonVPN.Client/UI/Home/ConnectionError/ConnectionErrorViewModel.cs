@@ -68,10 +68,13 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     public void Receive(ConnectionErrorMessage message)
     {
-        _vpnError = message.VpnError;
+        ExecuteOnUIThread(() =>
+        {
+            _vpnError = message.VpnError;
 
-        ConnectionErrorMessage = Localizer.GetVpnError(message.VpnError, _settings.IsPaid);
-        ActionButtonTitle = Localizer.GetDisconnectErrorActionButtonTitle(message.VpnError);
+            ConnectionErrorMessage = Localizer.GetVpnError(message.VpnError, _settings.IsPaid);
+            ActionButtonTitle = Localizer.GetDisconnectErrorActionButtonTitle(message.VpnError);
+        });
     }
 
     [RelayCommand]
@@ -112,9 +115,12 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     public void Receive(ConnectionStatusChanged message)
     {
-        if (message.ConnectionStatus == ConnectionStatus.Connecting)
+        ExecuteOnUIThread(() =>
         {
-            CloseError();
-        }
+            if (message.ConnectionStatus == ConnectionStatus.Connecting)
+            {
+                CloseError();
+            }
+        });
     }
 }

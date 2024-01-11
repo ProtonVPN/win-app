@@ -201,69 +201,84 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
 
     public void Receive(SettingChangedMessage message)
     {
-        switch (message.PropertyName)
+        ExecuteOnUIThread(() =>
         {
-            case nameof(ISettings.IsNetShieldEnabled):
-                OnPropertyChanged(nameof(NetShieldFeatureState));
-                OnPropertyChanged(nameof(NetShieldFeatureIconSource));
-                break;
+            switch (message.PropertyName)
+            {
+                case nameof(ISettings.IsNetShieldEnabled):
+                    OnPropertyChanged(nameof(NetShieldFeatureState));
+                    OnPropertyChanged(nameof(NetShieldFeatureIconSource));
+                    break;
 
-            case nameof(ISettings.IsKillSwitchEnabled):
-                OnPropertyChanged(nameof(KillSwitchFeatureState));
-                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
-                break;
+                case nameof(ISettings.IsKillSwitchEnabled):
+                    OnPropertyChanged(nameof(KillSwitchFeatureState));
+                    OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
+                    break;
 
-            case nameof(ISettings.KillSwitchMode):
-                OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
-                break;
+                case nameof(ISettings.KillSwitchMode):
+                    OnPropertyChanged(nameof(KillSwitchFeatureIconSource));
+                    break;
 
-            case nameof(ISettings.IsPortForwardingEnabled):
-                OnPropertyChanged(nameof(PortForwardingFeatureState));
-                OnPropertyChanged(nameof(PortForwardingFeatureIconSource));
-                OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
-                break;
+                case nameof(ISettings.IsPortForwardingEnabled):
+                    OnPropertyChanged(nameof(PortForwardingFeatureState));
+                    OnPropertyChanged(nameof(PortForwardingFeatureIconSource));
+                    OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+                    break;
 
-            case nameof(ISettings.IsSplitTunnelingEnabled):
-                OnPropertyChanged(nameof(SplitTunnelingFeatureState));
-                OnPropertyChanged(nameof(SplitTunnelingFeatureIconSource));
-                break;
+                case nameof(ISettings.IsSplitTunnelingEnabled):
+                    OnPropertyChanged(nameof(SplitTunnelingFeatureState));
+                    OnPropertyChanged(nameof(SplitTunnelingFeatureIconSource));
+                    break;
 
-            case nameof(ISettings.VpnProtocol):
-                OnPropertyChanged(nameof(ConnectionProtocolState));
-                break;
+                case nameof(ISettings.VpnProtocol):
+                    OnPropertyChanged(nameof(ConnectionProtocolState));
+                    break;
 
-            case nameof(ISettings.IsVpnAcceleratorEnabled):
-                OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
-                break;
+                case nameof(ISettings.IsVpnAcceleratorEnabled):
+                    OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
+                    break;
 
-            case nameof(ISettings.IsNotificationEnabled):
-                OnPropertyChanged(nameof(IsNotificationEnabled));
-                break;
+                case nameof(ISettings.IsNotificationEnabled):
+                    OnPropertyChanged(nameof(IsNotificationEnabled));
+                    break;
 
-            case nameof(ISettings.IsBetaAccessEnabled):
-                OnPropertyChanged(nameof(IsBetaAccessEnabled));
-                break;
-        }
+                case nameof(ISettings.IsBetaAccessEnabled):
+                    OnPropertyChanged(nameof(IsBetaAccessEnabled));
+                    break;
+            }
+        });
     }
 
     public void Receive(ThemeChangedMessage message)
     {
-        OnPropertyChanged(nameof(SelectedTheme));
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(SelectedTheme));
+        });
     }
 
     public void Receive(LoggedInMessage message)
     {
-        InvalidateAllProperties();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateAllProperties();
+        });
     }
 
     public void Receive(PortForwardingPortChanged message)
     {
-        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+        });
     }
 
     public void Receive(ConnectionStatusChanged message)
     {
-        OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+        });
     }
 
     protected override void OnLanguageChanged()

@@ -17,11 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.UI.Xaml.Input;
-using ProtonVPN.Client.Messages;
-using ProtonVPN.Core.Users;
-
 namespace ProtonVPN.Client.UI.Home.Status;
 
 public sealed partial class VpnStatusComponent

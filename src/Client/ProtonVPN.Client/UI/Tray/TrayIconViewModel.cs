@@ -85,17 +85,26 @@ public partial class TrayIconViewModel : ViewModelBase, IEventMessageReceiver<Co
 
     public void Receive(ConnectionStatusChanged message)
     {
-        InvalidateTray();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateTray();
+        });
     }
 
     public void Receive(LoggedInMessage message)
     {
-        InvalidateTray();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateTray();
+        });
     }
 
     public void Receive(LoggedOutMessage message)
     {
-        InvalidateTray();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateTray();
+        });
     }
 
     protected override void OnLanguageChanged()
