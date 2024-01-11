@@ -46,4 +46,10 @@ public partial class ShellRobot : UIActions
     protected Label ActivePageTitleLabel => NavigationView.FindFirstChild(c => c.ByControlType(ControlType.Text)).AsLabel();
 
     protected Button GoBackButton => ElementByAutomationId("GoBackButton").AsButton();
+
+    protected AutomationElement OverlayMessage => ElementByAutomationId("OverlayMessage");
+    protected Label OverlayMessageTitle => OverlayMessage.FindFirstDescendant(c => c.ByControlType(ControlType.Text)).AsLabel();
+    protected Button OverlayMessagePrimaryButton => OverlayMessage.FindFirstDescendant(c => c.ByAutomationId("PrimaryButton")).AsButton();
+    protected Button OverlayMessageSecondaryButton => OverlayMessage.FindFirstDescendant(c => c.ByAutomationId("SecondaryButton")).AsButton();
+    protected Button OverlayMessageCloseButton => OverlayMessage.FindFirstDescendant(c => c.ByAutomationId("CloseButton")).AsButton();
 }

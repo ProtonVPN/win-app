@@ -196,6 +196,7 @@ public class TestSession
             }
         }
     }
+
     private static RetryResult<bool> WaitUntilAppIsRunning()
     {
         RetryResult<bool> retry = Retry.WhileFalse(

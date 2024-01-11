@@ -30,7 +30,7 @@ namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
 [Category("UI")]
-public class SecureCore : TestSession
+public class SecureCoreTests : TestSession
 {
     private const string COUNTRY = "Australia";
     private const string EXIT_COUNTRY = "Switzerland";
@@ -47,7 +47,7 @@ public class SecureCore : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
@@ -57,7 +57,8 @@ public class SecureCore : TestSession
 
         //TODO When reconnection logic is implemented remove this sleep.
         //Certificate sometimes takes longer to get and app does not handle it yet
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
 
         _shellRobot
             .DoNavigateToCountriesPage();
@@ -68,7 +69,8 @@ public class SecureCore : TestSession
     [Test]
     public void SecureCoreViaCountry()
     {
-        _countriesRobot.DoConnect(COUNTRY_CODE);
+        _countriesRobot
+            .DoConnect(COUNTRY_CODE);
 
         _homeRobot
             .VerifyVpnStatusIsConnecting()
@@ -97,7 +99,8 @@ public class SecureCore : TestSession
 
         _shellRobot
              .DoNavigateToCountriesPage();
-        _countriesRobot.DoNavigateToSecureCore()
+        _countriesRobot
+            .DoNavigateToSecureCore()
             .VerifyActiveConnection(COUNTRY_CODE);
     }
 

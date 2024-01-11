@@ -45,7 +45,7 @@ public class CustomDnsTests : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
@@ -55,7 +55,8 @@ public class CustomDnsTests : TestSession
 
         //TODO When reconnection logic is implemented remove this sleep.
         //Certificate sometimes takes longer to get and app does not handle it yet
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
 
         _homeRobot
             .DoConnect()
@@ -65,8 +66,10 @@ public class CustomDnsTests : TestSession
     [SetUp]
     public void SetUp()
     {
-        _shellRobot.DoNavigateToSettingsPage();
-        _settingsRobot.DoNavigateToCustomDnsServersSettingsPage();
+        _shellRobot
+            .DoNavigateToSettingsPage();
+        _settingsRobot
+            .DoNavigateToCustomDnsServersSettingsPage();
     }
 
     [Test, Order(0)]
@@ -78,14 +81,18 @@ public class CustomDnsTests : TestSession
             .DoReconnect()
             .VerifyCustomDnsIsEnabled();
 
-        _shellRobot.DoNavigateToHomePage();
-        _homeRobot.VerifyVpnStatusIsConnected();
+        _shellRobot
+            .DoNavigateToHomePage();
+        _homeRobot
+            .VerifyVpnStatusIsConnected();
 
-        _shellRobot.DoNavigateToSettingsPage();
+        _shellRobot
+            .DoNavigateToSettingsPage();
         _settingsRobot
             .DoNavigateToNetShieldSettingsPage()
             .VerifyNetshieldIsDisabled();
-        _settingsRobot.VerifyNetshieldIsNotBlocking();
+        _settingsRobot
+            .VerifyNetshieldIsNotBlocking();
     }
 
     [Test, Order(1)]
@@ -107,7 +114,8 @@ public class CustomDnsTests : TestSession
 
         VerifyIfConnectedAndDnsIsNotSet(CUSTOM_DNS_ADDRESS);
 
-        _shellRobot.DoNavigateToSettingsPage();
+        _shellRobot
+            .DoNavigateToSettingsPage();
         _settingsRobot
             .DoNavigateToCustomDnsServersSettingsPage()
             .DoClickCustomDnsToggle()
@@ -146,16 +154,22 @@ public class CustomDnsTests : TestSession
 
     private void VerifyIfConnectedAndDnsIsNotSet(string dnsAddress)
     {
-        _shellRobot.DoNavigateToHomePage();
-        _homeRobot.VerifyVpnStatusIsConnected();
-        _settingsRobot.VerifyCustomDnsIsNotSet(dnsAddress);
+        _shellRobot
+            .DoNavigateToHomePage();
+        _homeRobot
+            .VerifyVpnStatusIsConnected();
+        _settingsRobot
+            .VerifyCustomDnsIsNotSet(dnsAddress);
     }
 
     private void VerifyIfConnectedAndDnsIsSet(string dnsAddress)
     {
-        _shellRobot.DoNavigateToHomePage();
-        _homeRobot.VerifyVpnStatusIsConnected();
-        _settingsRobot.VerifyCustomDnsIsSet(dnsAddress);
+        _shellRobot
+            .DoNavigateToHomePage();
+        _homeRobot
+            .VerifyVpnStatusIsConnected();
+        _settingsRobot
+            .VerifyCustomDnsIsSet(dnsAddress);
     }
 
     [OneTimeTearDown]

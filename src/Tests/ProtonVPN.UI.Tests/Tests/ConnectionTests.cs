@@ -18,6 +18,7 @@
  */
 
 using System.Threading;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
@@ -60,7 +61,7 @@ public class ConnectionTests : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
@@ -70,7 +71,8 @@ public class ConnectionTests : TestSession
 
         //TODO When reconnection logic is implemented remove this sleep.
         //Certificate sometimes takes longer to get and app does not handle it yet
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test]
@@ -92,20 +94,31 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
-    public void ConnectAndDisconnect()
+    public async Task ConnectAndDisconnectAsync()
     {
+        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnected()
+            .VerifyAllStatesUntilConnected();
+
+        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
+
+        _homeRobot
             .DoDisconnect()
             .VerifyVpnStatusIsDisconnected()
-            .VerifyConnectionCardIsDisconnected();
+            .VerifyConnectionCardIsDisconnected()
+            .Wait(TestConstants.DisconnectionDelay);
+
+        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
     }
 
     [Retry(3)]
     [Test]
-    public void ConnectAndCancel()
+    public async Task ConnectAndCancelAsync()
     {
+        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+
         _homeRobot
             .DoConnect()
             .VerifyVpnStatusIsConnecting()
@@ -114,32 +127,39 @@ public class ConnectionTests : TestSession
             .Wait(1000)
             .DoCancelConnection()
             .VerifyVpnStatusIsDisconnected()
-            .VerifyConnectionCardIsDisconnected();
+            .VerifyConnectionCardIsDisconnected()
+            .Wait(TestConstants.DisconnectionDelay);
+
+        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
     }
 
     [Test]
     public void ConnectToSpecificCountry()
     {
         //VPNWIN-1952 Country list loading should be improved
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
 
         NavigateToCountriesPage();
 
-        _countriesRobot.DoConnect(COUNTRY_CODE);
+        _countriesRobot
+            .DoConnect(COUNTRY_CODE);
     
         _homeRobot
             .VerifyAllStatesUntilConnected(COUNTRY);
 
         NavigateToCountriesPage();
 
-        _countriesRobot.VerifyActiveConnection(COUNTRY_CODE);
+        _countriesRobot
+            .VerifyActiveConnection(COUNTRY_CODE);
     }
 
     [Test]
     public void ConnectToSpecificCity()
     {
         //VPNWIN-1952 Country list loading should be improved
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
 
         NavigateToCountriesPage();
 
@@ -151,29 +171,35 @@ public class ConnectionTests : TestSession
             .VerifyAllStatesUntilConnected(COUNTRY, CITY);
 
         NavigateToCountriesPage();
-        _countriesRobot.DoNavigateToCountry(COUNTRY_CODE);
 
-        _countriesRobot.VerifyActiveConnection(CITY);
+        _countriesRobot
+            .DoNavigateToCountry(COUNTRY_CODE);
+
+        _countriesRobot
+            .VerifyActiveConnection(CITY);
     }
 
     [Test]
     public void ConnectToSpecificServer()
     {
         //VPNWIN-1952 Country list loading should be improved
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
 
         NavigateToServers(COUNTRY_CODE, CITY);
 
         ServerConnectButton serverConnectButton = _countriesRobot.GetServerConnectButton();
 
-        _countriesRobot.DoConnect(serverConnectButton.Name);
+        _countriesRobot
+            .DoConnect(serverConnectButton.Name);
 
         _homeRobot
             .VerifyAllStatesUntilConnected(COUNTRY, CITY, serverConnectButton.Number);
 
         NavigateToServers(COUNTRY_CODE, CITY);
 
-        _countriesRobot.VerifyActiveConnection(serverConnectButton.Name);
+        _countriesRobot
+            .VerifyActiveConnection(serverConnectButton.Name);
     }
 
     [Test]

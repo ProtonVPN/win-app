@@ -48,7 +48,7 @@ public class RecentsTests : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
@@ -58,8 +58,12 @@ public class RecentsTests : TestSession
 
         //TODO When reconnection logic is implemented remove this sleep.
         //Certificate sometimes takes longer to get and app does not handle it yet
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
+
         //VPNWIN-1952 Country list loading should be improved
-        Thread.Sleep(4000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test, Order(0)]

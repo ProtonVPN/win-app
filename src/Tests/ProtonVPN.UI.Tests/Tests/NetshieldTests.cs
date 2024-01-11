@@ -43,7 +43,7 @@ public class NetshieldTests : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
@@ -53,7 +53,8 @@ public class NetshieldTests : TestSession
 
         //TODO When reconnection logic is implemented remove this sleep.
         //Certificate sometimes takes longer to get and app does not handle it yet
-        Thread.Sleep(2000);
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test]
@@ -64,8 +65,9 @@ public class NetshieldTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnected()
             //Give some time for server to setup Netshield.
-            .Wait(2000);
-        _settingsRobot.VerifyNetshieldIsBlocking();
+            .Wait(TestConstants.InitializationDelay);
+        _settingsRobot
+            .VerifyNetshieldIsBlocking();
     }
 
     [Test]
@@ -73,13 +75,17 @@ public class NetshieldTests : TestSession
     {
         _shellRobot
             .DoNavigateToSettingsPage();
-        _settingsRobot.DoNavigateToNetShieldSettingsPage()
+        _settingsRobot
+            .DoNavigateToNetShieldSettingsPage()
             .DoSelectNetshield();
-        _shellRobot.DoNavigateToHomePage();
+        _shellRobot
+            .DoNavigateToHomePage()
+            .Wait(TestConstants.DefaultNavigationDelay);
         _homeRobot
             .DoConnect()
             .VerifyVpnStatusIsConnected();
-        _settingsRobot.VerifyNetshieldIsNotBlocking();
+        _settingsRobot
+            .VerifyNetshieldIsNotBlocking();
     }
 
     [TearDown]

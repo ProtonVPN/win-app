@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Legacy.Abstract;
@@ -49,7 +50,7 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
     private readonly ITokenClient _tokenClient;
-
+    private readonly IConnectionManager _connectionManager;
     private AuthResponse _authResponse;
 
     public bool IsLoggedIn { get; private set; }
@@ -61,7 +62,8 @@ public class UserAuthenticator : IUserAuthenticator
         ISettings settings,
         IEventMessageSender eventMessageSender,
         IGuestHoleActionExecutor guestHoleActionExecutor,
-        ITokenClient tokenClient)
+        ITokenClient tokenClient,
+        IConnectionManager connectionManager)
     {
         _logger = logger;
         _apiClient = apiClient;
@@ -70,6 +72,7 @@ public class UserAuthenticator : IUserAuthenticator
         _eventMessageSender = eventMessageSender;
         _guestHoleActionExecutor = guestHoleActionExecutor;
         _tokenClient = tokenClient;
+        _connectionManager = connectionManager;
 
         _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
     }
@@ -236,15 +239,20 @@ public class UserAuthenticator : IUserAuthenticator
 
     public async Task LogoutAsync(LogoutReason reason)
     {
-        await CreateUnauthSessionAsync();
-
         if (IsLoggedIn)
         {
             _eventMessageSender.Send(new LoggingOutMessage() { Reason = reason });
 
+            if (!_connectionManager.IsDisconnected)
+            {
+                await _connectionManager.DisconnectAsync();
+            }
+
             _authCertificateManager.DeleteKeyPairAndCertificate();
 
             await SendLogoutRequestAsync();
+
+            await CreateUnauthSessionAsync();
 
             ClearAuthSessionDetails();
 
@@ -272,6 +280,12 @@ public class UserAuthenticator : IUserAuthenticator
 
     private async void OnTokenExpiredAsync(object? sender, EventArgs e)
     {
+        if (!IsLoggedIn)
+        {
+            await CreateUnauthSessionAsync();
+            return;
+        }
+
         await LogoutAsync(LogoutReason.SessionExpired);
     }
 
