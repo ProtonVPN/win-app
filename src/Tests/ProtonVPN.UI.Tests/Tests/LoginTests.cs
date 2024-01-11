@@ -79,7 +79,7 @@ public class LoginTests : TestSession
     public void LoginWith2FactorAuthUser()
     {
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.TwoFactorUser)
             .DoEnterTwoFactorCode(TestUserData.GetTwoFactorCode());
 
@@ -93,7 +93,7 @@ public class LoginTests : TestSession
     public void LoginWithIncorrectUser()
     {
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.IncorrectUser)
             .VerifyLoginErrorIsDisplayed(INCORRECT_CREDENTIALS_MESSAGES);
     }
@@ -110,7 +110,7 @@ public class LoginTests : TestSession
     public void LoginWithUser(TestUserData user, string planName)
     {
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
+            .Wait(TestConstants.StartupDelay)
             .DoLogin(user);
 
         _homeRobot

@@ -57,7 +57,7 @@ public class ReportIssueTests : TestSession
         LaunchApp();
 
         _shellRobot
-            .Wait(TestConstants.InitializationDelay);
+            .Wait(TestConstants.StartupDelay);
     }
 
     [Test]
@@ -106,7 +106,6 @@ public class ReportIssueTests : TestSession
     public void ReportIssueFromLoginScreen()
     {
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
             .DoReportAnIssue();
 
         _reportIssueRobot
@@ -153,7 +152,6 @@ public class ReportIssueTests : TestSession
     private void Login()
     {
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot

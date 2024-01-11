@@ -64,4 +64,22 @@ public partial class ShellRobot
         GoBackButton.Click();
         return this;
     }
+
+    public ShellRobot DoClickOverlayMessagePrimaryButton()
+    {
+        OverlayMessagePrimaryButton.Click();
+        return this;
+    }
+
+    public ShellRobot DoClickOverlayMessageSecondaryButton()
+    {
+        OverlayMessageSecondaryButton.Click();
+        return this;
+    }
+
+    public ShellRobot DoClickOverlayMessageCloseButton()
+    {
+        OverlayMessageCloseButton.Click();
+        return this;
+    }
 }

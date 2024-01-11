@@ -189,7 +189,7 @@ public class MainWindowActivator :
     {
         SaveWindowPosition();
 
-        if (_handleClosedEvents)
+        if (_handleClosedEvents && _userAuthenticator.IsLoggedIn)
         {
             // Hide window to tray
             args.Handled = true;

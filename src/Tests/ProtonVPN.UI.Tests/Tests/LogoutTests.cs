@@ -17,9 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
+using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests;
@@ -28,29 +31,79 @@ namespace ProtonVPN.UI.Tests.Tests;
 [Category("UI")]
 public class LogoutTests : TestSession
 {
-    private const string FREE_PLAN_NAME = "Proton VPN Free";
-
-    private LoginTests _loginTests = new();
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
+    private ShellRobot _shellRobot = new();
 
     [SetUp]
     public void TestInitialize()
     {
         LaunchApp();
+
+        _loginRobot
+            .Wait(TestConstants.StartupDelay)
+            .DoLogin(TestUserData.PlusUser);
+
+        _homeRobot
+            .DoWaitForVpnStatusSubtitleLabel()
+            .VerifyVpnStatusIsDisconnected()
+            .VerifyConnectionCardIsInInitalState();
+
+        //TODO When reconnection logic is implemented remove this sleep.
+        //Certificate sometimes takes longer to get and app does not handle it yet
+        _shellRobot
+            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test]
-    public void LogoutFreeUser()
+    public void LogoutUser()
     {
-        _loginTests
-            .LoginWithUser(TestUserData.FreeUser, FREE_PLAN_NAME);
-
         _homeRobot
+            .DoOpenAccount()
             .DoSignOut();
 
         _loginRobot
             .VerifyIsInLoginWindow();
+    }
+
+    [Test]
+    public async Task LogoutWhileConnectedAsync()
+    {
+        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+
+        _homeRobot
+            .DoConnect()
+            .VerifyAllStatesUntilConnected();
+
+        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
+
+        string protectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+
+        _homeRobot
+            .DoOpenAccount()
+            .DoSignOut();
+
+        _shellRobot
+            .VerifySignOutConfirmationMessage(TestUserData.PlusUser)
+            .DoClickOverlayMessageCloseButton();
+
+        // Signout canceled, verify that we are still connected to the VPN
+        await CommonAssertions.AssertIpAddressUnchangedAsync(protectedIpAddress);
+
+        _homeRobot
+            .DoOpenAccount()
+            .DoSignOut();
+
+        _shellRobot
+            .VerifySignOutConfirmationMessage(TestUserData.PlusUser)
+            .DoClickOverlayMessagePrimaryButton()
+            .Wait(TestConstants.DisconnectionDelay);
+
+        _loginRobot
+            .VerifyIsInLoginWindow();
+
+        // Check that we have been properly disconnected from the VPN during signout
+        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
     }
 
     [TearDown]

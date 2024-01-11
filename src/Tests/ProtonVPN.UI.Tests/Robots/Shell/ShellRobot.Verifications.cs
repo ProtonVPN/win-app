@@ -93,6 +93,17 @@ public partial class ShellRobot
         return this;
     }
 
+    public ShellRobot VerifySignOutConfirmationMessage(TestUserData user)
+    {        
+        Assert.IsNotNull(OverlayMessage);
+        WaitUntilTextMatches(() => OverlayMessageTitle, TestConstants.VeryShortTimeout, $"Sign out from {user.Username}?");
+
+        Assert.IsNotNull(OverlayMessagePrimaryButton);
+        Assert.IsNotNull(OverlayMessageCloseButton);
+
+        return this;
+    }
+
     private void VerifySidebarWidth(int expectedWidth)
     {
         Grid sidebar = NavigationSideBar;

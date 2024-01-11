@@ -29,6 +29,7 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -49,6 +50,7 @@ public class UserAuthenticatorTest
     private IEventMessageSender _eventMessageSender;
     private IGuestHoleActionExecutor _guestHoleActionExecutor;
     private ITokenClient _tokenClient;
+    private IConnectionManager _connectionManager;
 
     [TestInitialize]
     public void Initialize()
@@ -60,6 +62,7 @@ public class UserAuthenticatorTest
         _eventMessageSender = Substitute.For<IEventMessageSender>();
         _guestHoleActionExecutor = Substitute.For<IGuestHoleActionExecutor>();
         _tokenClient = Substitute.For<ITokenClient>();
+        _connectionManager = Substitute.For<IConnectionManager>();
     }
 
     [TestCleanup]
@@ -130,6 +133,6 @@ public class UserAuthenticatorTest
 
     private UserAuthenticator GetUserAuthenticator()
     {
-        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender, _guestHoleActionExecutor, _tokenClient);
+        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender, _guestHoleActionExecutor, _tokenClient, _connectionManager);
     }
 }

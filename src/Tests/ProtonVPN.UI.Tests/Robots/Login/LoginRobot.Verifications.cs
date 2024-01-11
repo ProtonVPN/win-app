@@ -42,5 +42,4 @@ public partial class LoginRobot
         Assert.IsNotNull(SignInButton);
         return this;
     }
-
 }

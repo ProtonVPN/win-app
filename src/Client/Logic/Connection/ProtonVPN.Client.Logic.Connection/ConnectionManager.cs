@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -42,8 +41,7 @@ namespace ProtonVPN.Client.Logic.Connection;
 public class ConnectionManager : IConnectionManager,
     IEventMessageReceiver<VpnStateIpcEntity>,
     IEventMessageReceiver<ConnectionDetailsIpcEntity>,
-    IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ILogger _logger;
     private readonly IServiceCaller _serviceCaller;
@@ -120,14 +118,6 @@ public class ConnectionManager : IConnectionManager,
             ClientIpAddress = message.ClientIpAddress,
             ServerIpAddress = message.ServerIpAddress,
         });
-    }
-
-    public async void Receive(LoggedOutMessage message)
-    {
-        if (!IsDisconnected)
-        {
-            await DisconnectAsync();
-        }
     }
 
     public async Task<TrafficBytes> GetTrafficBytesAsync()

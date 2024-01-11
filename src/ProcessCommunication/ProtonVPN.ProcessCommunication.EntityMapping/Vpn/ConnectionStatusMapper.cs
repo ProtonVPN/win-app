@@ -40,6 +40,10 @@ public class ConnectionStatusMapper : IMapper<ConnectionStatus, VpnStatusIpcEnti
     {
         return rightEntity switch
         {
+            // TODO: Mapping Disconnecting to Disconnected state creates some side effects for automation tests.
+            // The Tests believes that the app is fully disconnected from the VPN while we are still Disconnecting from it.
+            // We can't map Disconnecting to Connected neither cause it would be bad in term of UX.
+            // Should we have introduce proper Disconnecting state in the app (would require design changes for the VpnStatus and ConnectionCard components)
             VpnStatusIpcEntity.Disconnected or
             VpnStatusIpcEntity.Disconnecting => ConnectionStatus.Disconnected,
 
