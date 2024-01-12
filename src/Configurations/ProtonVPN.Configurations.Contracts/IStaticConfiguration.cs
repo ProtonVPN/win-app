@@ -46,6 +46,8 @@ public interface IStaticConfiguration
     string DiagnosticLogsZipFilePath { get; }
     string GuestHoleServersJsonFilePath { get; }
     string ServiceSettingsFilePath { get; }
+    string LegacyUserConfigFilePath { get; }
+    string LegacyAppLocalData { get; }
 
     string ServersJsonCacheFilePath { get; }
 

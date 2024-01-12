@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+
 namespace ProtonVPN.Client.Logic.Recents.Contracts;
 
 public interface IRecentConnectionsProvider
@@ -24,6 +26,8 @@ public interface IRecentConnectionsProvider
     IOrderedEnumerable<IRecentConnection> GetRecentConnections();
 
     IRecentConnection? GetMostRecentConnection();
+
+    void SaveRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? recentConnectionIntent = null);
 
     void Pin(IRecentConnection recentConnection);
 

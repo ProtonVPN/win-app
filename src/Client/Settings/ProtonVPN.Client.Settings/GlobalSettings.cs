@@ -132,6 +132,24 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsBetaAccessEnabled
+    {
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsBetaAccessEnabled;
+        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool AreAutomaticUpdatesEnabled
+    {
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.AreAutomaticUpdatesEnabled;
+        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsSettingsMigrationDone
+    {
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSettingsMigrationDone;
+        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public KillSwitchMode KillSwitchMode
     {
         get => _globalRepository.GetValueType<KillSwitchMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.KillSwitchMode;

@@ -2242,6 +2242,24 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Connection_Error_Unknown" xml:space="preserve">
     <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
   </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection" xml:space="preserve">
+    <value>IPv6 leak protection</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description" xml:space="preserve">
+    <value>Prevent leaking IPv6 address.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates" xml:space="preserve">
+    <value>Automatic updates</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description" xml:space="preserve">
+    <value>Automatically check and install Proton VPN updates</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver" xml:space="preserve">
+    <value>OpenVPN network driver</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description" xml:space="preserve">
+    <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
+  </data>
   <data name="Gateways_Page_Title" xml:space="preserve">
     <value>Gateways</value>
   </data>

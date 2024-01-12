@@ -43,6 +43,9 @@ public interface IGlobalSettings
     ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; }
     bool IsDoHEnabled { get; set; }
     bool IsKillSwitchEnabled { get; set; }
+    bool IsBetaAccessEnabled { get; set; }
+    bool AreAutomaticUpdatesEnabled { get; set; }
+    bool IsSettingsMigrationDone { get; set; }
     KillSwitchMode KillSwitchMode { get; set; }
     List<FeatureFlag> FeatureFlags { get; set; }
 }

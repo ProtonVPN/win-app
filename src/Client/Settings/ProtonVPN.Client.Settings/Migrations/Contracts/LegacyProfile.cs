@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Settings.Migrations.Contracts;
 
-public interface ISettings : IGlobalSettings, IUserSettings
+public class LegacyProfile
 {
-    bool AllowNonStandardPorts { get; }
-
-    bool IsDebugModeEnabled { get; }
+    public string? Id { get; set; }
+    public int ProfileType { get; set; }
+    public ulong Features { get; set; }
+    public string? CountryCode { get; set; }
+    public string? GatewayName { get; set; }
+    public string? ServerId { get; set; }
 }

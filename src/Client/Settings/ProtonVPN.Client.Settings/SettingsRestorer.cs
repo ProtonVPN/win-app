@@ -51,5 +51,7 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.IsAlternativeRoutingEnabled = DefaultSettings.IsAlternativeRoutingEnabled;
         _settings.IsCustomDnsServersEnabled = DefaultSettings.IsCustomDnsServersEnabled;
         _settings.CustomDnsServersList = DefaultSettings.CustomDnsServersList;
+        _settings.OpenVpnAdapter = DefaultSettings.OpenVpnAdapter;
+        _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
     }
 }

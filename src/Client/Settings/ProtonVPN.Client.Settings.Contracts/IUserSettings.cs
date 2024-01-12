@@ -33,6 +33,7 @@ public interface IUserSettings
     int? WindowYPosition { get; set; }
     bool IsWindowMaximized { get; set; }
     VpnProtocol VpnProtocol { get; set; }
+    OpenVpnAdapter OpenVpnAdapter { get; set; }
     string? VpnPlanTitle { get; set; }
     string? AuthenticationPublicKey { get; set; }
     string? AuthenticationSecretKey { get; set; }
@@ -45,10 +46,10 @@ public interface IUserSettings
     bool IsPaid { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
     bool IsNotificationEnabled { get; set; }
-    bool IsBetaAccessEnabled { get; set; }
     bool IsShareStatisticsEnabled { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
     bool IsAlternativeRoutingEnabled { get; set; }
+    bool IsIpv6LeakProtectionEnabled { get; set; }
     bool IsCustomDnsServersEnabled { get; set; }
     List<CustomDnsServer> CustomDnsServersList { get; set; }
     bool IsAutoConnectEnabled { get; set; }

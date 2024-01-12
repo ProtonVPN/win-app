@@ -35,6 +35,7 @@ public static class DefaultSettings
     public static bool IsWindowMaximized = false;
     public static bool IsNotificationEnabled = true;
     public static bool IsBetaAccessEnabled = false;
+    public static bool AreAutomaticUpdatesEnabled = true;
     public static bool IsShareStatisticsEnabled = true;
     public static bool IsShareCrashReportsEnabled = true;
     public static bool IsAlternativeRoutingEnabled = true;
@@ -50,13 +51,14 @@ public static class DefaultSettings
     public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;
     public static bool IsNetShieldEnabled = true;
     public static bool IsKillSwitchEnabled = false;
+    public static bool IsSettingsMigrationDone = false;
     public static KillSwitchMode KillSwitchMode = KillSwitchMode.Standard;
     public static bool IsPortForwardingEnabled = false;
     public static bool IsPortForwardingNotificationEnabled = true;
     public static bool IsSplitTunnelingEnabled = false;
     public static SplitTunnelingMode SplitTunnelingMode = SplitTunnelingMode.Standard;
     public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = new();
-    public static bool IsIpv6LeakProtectionEnabled = false;
+    public static bool IsIpv6LeakProtectionEnabled = true;
     public static bool AllowNonStandardPorts = false;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
     public static List<FeatureFlag> FeatureFlags = new();

@@ -1,6 +1,5 @@
 #include <filesystem>
 #include <functional>
-#include <string>
 #include <strsafe.h>
 #include "ServiceManager.h"
 #include "Installer.h"
@@ -10,7 +9,6 @@
 #include "Os.h"
 #include "Utils.h"
 #include "AppSettingsMigration.h"
-#include <string>
 
 #define EXPORT __declspec(dllexport)
 
@@ -123,24 +121,12 @@ extern "C" EXPORT bool IsProcessRunningByPath(const wchar_t* process_path)
     return Os::IsProcessRunningByPath(process_path);
 }
 
-extern "C" EXPORT DWORD SaveOldUserConfigFolder()
+extern "C" EXPORT DWORD SaveOldUserConfigFile()
 {
     return ExecuteAction([]
     {
         AppSettingsMigration app_settings;
-        app_settings.SaveOldUserConfigFolder();
-
-        return 0;
-    });
-}
-
-extern "C" EXPORT DWORD RestoreOldUserConfigFolder(const wchar_t* application_path)
-{
-    return ExecuteAction([application_path]
-    {
-        std::wstring w_path(application_path);
-        AppSettingsMigration app_settings;
-        app_settings.RestoreOldUserConfigFolder(string(w_path.begin(), w_path.end()));
+        app_settings.SaveOldUserConfigFile();
 
         return 0;
     });

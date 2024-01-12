@@ -1,6 +1,7 @@
 #define MyAppVersion "4.0.0"
 #define MyAppName "Proton VPN" 
 #define MyAppExeName "ProtonVPN.Client.exe"
+#define LegacyMyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
 
 #define MyPublisher "Proton AG"
@@ -153,11 +154,8 @@ external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload u
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
-function SaveOldUserConfigFolder(): Integer;
-external 'SaveOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function RestoreOldUserConfigFolder(applicationPath: String): Integer;
-external 'RestoreOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
+function SaveOldUserConfigFile(): Integer;
+external 'SaveOldUserConfigFile@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function InstallWindowsService(name, displayName, path: String): Integer;
 external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
@@ -351,7 +349,7 @@ function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
     DeleteNonRunningVersions(ExpandConstant('{app}'));
     Log('Trying to save user settings for the old ProtonVPN app if it is installed');
-    SaveOldUserConfigFolder();
+    SaveOldUserConfigFile();
     Log('Trying to update taskbar icon path if exists');
     UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
     Log('Trying to uninstall an old version of ProtonVPN app');
@@ -372,10 +370,9 @@ begin
     logfilename := ExtractFileName(logfilepathname);
     newfilepathname := ExpandConstant('{localappdata}') + '\ProtonVPN\DiagnosticLogs\ProtonVPN_install.log';
     FileCopy(logfilepathname, newfilepathname, false);
-    if IsProcessRunning('{#MyAppExeName}') then begin
+    if IsProcessRunning('{#MyAppExeName}') or IsProcessrunning('{#LegacyMyAppExeName}') then begin
       exit;
     end;
-    RestoreOldUserConfigFolder(ExpandConstant('{app}'));
     if not IsToReboot or WizardForm.NoRadio.Checked = True then begin
       launcherArgs := '';
       if WizardSilent() = false then begin

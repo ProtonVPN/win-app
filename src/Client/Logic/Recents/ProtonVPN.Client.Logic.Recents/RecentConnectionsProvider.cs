@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Recents.Files;
@@ -179,19 +178,11 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         IRecentConnection? duplicate = _recentConnections.SingleOrDefault(c => c.ConnectionIntent.IsSameAs(recentIntent));
         if (duplicate != null)
         {
-            // Remove duplicated intent so it can be inserted at the top of the list
+            // Remove duplicated intent, so it can be inserted at the top of the list
             _recentConnections.Remove(duplicate);
         }
 
-        IRecentConnection recentConnection = duplicate ?? new RecentConnection(recentIntent);
-
-        // TODO: TEMPORARY - Simulate server under maintenance when connecting to GB (remove once properly implemented)
-        if (recentConnection.ConnectionIntent.Location is CountryLocationIntent countryIntent && countryIntent.CountryCode == "GB")
-        {
-            recentConnection.IsServerUnderMaintenance = true;
-        }
-
-        _recentConnections.Insert(0, recentConnection);
+        _recentConnections.Insert(0, duplicate ?? new RecentConnection(recentIntent));
 
         return true;
     }
@@ -209,8 +200,8 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         foreach (IRecentConnection connection in _recentConnections)
         {
             connection.IsActiveConnection = activeIntent != null
-                                         && connectionStatus == ConnectionStatus.Connected
-                                         && activeIntent.IsSameAs(connection.ConnectionIntent);
+                                            && connectionStatus == ConnectionStatus.Connected
+                                            && activeIntent.IsSameAs(connection.ConnectionIntent);
         }
     }
 
@@ -220,6 +211,40 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         {
             _recentConnections = _recentsFileManager.Read();
         }
+
         BroadcastRecentConnectionsChanged();
+    }
+
+    public void SaveRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? recentConnectionIntent = null)
+    {
+        List<IRecentConnection> recentConnections = [];
+        foreach (IConnectionIntent connectionIntent in connectionIntents)
+        {
+            if (!recentConnections.Any(c => c.ConnectionIntent.IsSameAs(connectionIntent)))
+            {
+                InsertRecentConnection(recentConnections, connectionIntent);
+            }
+        }
+
+        if (recentConnectionIntent is not null)
+        {
+            IRecentConnection? duplicate = recentConnections.SingleOrDefault(c => c.ConnectionIntent.IsSameAs(recentConnectionIntent));
+            if (duplicate != null)
+            {
+                recentConnections.Remove(duplicate);
+            }
+
+            InsertRecentConnection(recentConnections, recentConnectionIntent);
+        }
+
+        if (recentConnections.Count > 0)
+        {
+            _recentsFileManager.Save(recentConnections);
+        }
+    }
+
+    private void InsertRecentConnection(List<IRecentConnection> recentConnections, IConnectionIntent connectionIntent)
+    {
+        recentConnections.Insert(0, new RecentConnection(connectionIntent) { IsPinned = true });
     }
 }

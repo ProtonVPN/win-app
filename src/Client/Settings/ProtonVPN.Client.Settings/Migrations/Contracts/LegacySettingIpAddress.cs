@@ -17,17 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models;
+namespace ProtonVPN.Client.Settings.Migrations.Contracts;
 
-public class SignInData
+public class LegacySettingIpAddress
 {
-    public SignInData(string username, string password)
-    {
-        Username = username;
-        Password = password;
-    }
-
-    public string Username { get; }
-
-    public string Password { get; }
+    public string? Ip { get; set; }
+    public bool Enabled { get; set; }
 }

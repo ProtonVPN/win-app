@@ -19,17 +19,12 @@
 
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
-using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings;
 
 public class Settings : UserSettings, ISettings
 {
-    public bool IsIpv6LeakProtectionEnabled => DefaultSettings.IsIpv6LeakProtectionEnabled;
-
     public bool AllowNonStandardPorts => DefaultSettings.AllowNonStandardPorts;
-
-    public OpenVpnAdapter OpenVpnAdapter => DefaultSettings.OpenVpnAdapter;
 
     public bool IsDebugModeEnabled
     {
