@@ -38,8 +38,11 @@ public static class DefaultConfiguration
     private static readonly Lazy<string> _launcherDirectoryPath = new(() => Path.GetDirectoryName(_baseDirectory.Value) ?? string.Empty);
     private static readonly Lazy<string> _resourcesFolderPath = new(() => Path.Combine(_baseDirectory.Value, "Resources"));
 
-    private static readonly Lazy<string> _localAppDataProtonVpnPath = new(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), PROTON_FOLDER_RELATIVE_PATH));
-    private static readonly Lazy<string> _commonAppDataProtonVpnPath = new(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), PROTON_FOLDER_RELATIVE_PATH));
+    private static readonly Lazy<string> _localAppDataPath = new(() => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+    private static readonly Lazy<string> _commonAppDataPath = new(() => Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
+    
+    private static readonly Lazy<string> _localAppDataProtonVpnPath = new(() => Path.Combine(_localAppDataPath.Value, PROTON_FOLDER_RELATIVE_PATH));
+    private static readonly Lazy<string> _commonAppDataProtonVpnPath = new(() => Path.Combine(_commonAppDataPath.Value, PROTON_FOLDER_RELATIVE_PATH));
 
     private static readonly Lazy<string> _storageFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, "Storage"));
     private static readonly Lazy<string> _clientLogsFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, LOGS_FOLDER_NAME));
@@ -73,7 +76,9 @@ public static class DefaultConfiguration
     public static string DiagnosticLogsZipFilePath => Path.Combine(DiagnosticLogsFolder, "diagnostic_logs.zip");
     public static string GuestHoleServersJsonFilePath => Path.Combine(_resourcesFolderPath.Value, "GuestHoleServers.json");
     public static string ServiceSettingsFilePath => Path.Combine(_commonAppDataProtonVpnPath.Value, "ServiceSettings.json");
-
+    public static string LegacyUserConfigFilePath => Path.Combine(_commonAppDataProtonVpnPath.Value, "user.config");
+    public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");
+    
     public static string ServersJsonCacheFilePath => Path.Combine(_localAppDataProtonVpnPath.Value, "Servers.json");
 
     public static string WintunDriverPath => Path.Combine(_resourcesFolderPath.Value, "wintun.dll");

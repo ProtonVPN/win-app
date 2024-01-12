@@ -211,6 +211,11 @@ string Os::GetLocalAppDataPath()
     return GetEnvVariable("LOCALAPPDATA");
 }
 
+string Os::GetProgramDataPath()
+{
+    return GetEnvVariable("PROGRAMDATA");
+}
+
 string Os::GetTmpFolderPath()
 {
     return GetEnvVariable("TMP");

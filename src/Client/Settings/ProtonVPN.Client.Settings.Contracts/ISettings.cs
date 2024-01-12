@@ -17,17 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Networking;
-
 namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface ISettings : IGlobalSettings, IUserSettings
 {
-    bool IsIpv6LeakProtectionEnabled { get; }
-
     bool AllowNonStandardPorts { get; }
 
     bool IsDebugModeEnabled { get; }
-
-    OpenVpnAdapter OpenVpnAdapter { get; }
 }

@@ -69,7 +69,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
     private string GenerateFullFilePath()
     {
         string username = _settings.Username;
-        string fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
+        string fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username.ToLower()));
         string fullFilePath = fileName is null ? null : Path.Combine(_staticConfiguration.StorageFolder, fileName);
         return fullFilePath;
     }

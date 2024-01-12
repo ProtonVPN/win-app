@@ -104,6 +104,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </RadioButton>
                 </StackPanel>
             </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="OpenVpnNetworkDriverSettingsCard"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver')}"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver_Description')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <ComboBox ItemsSource="{x:Bind ViewModel.OpenVpnAdapters}"
+                          SelectedItem="{x:Bind ViewModel.SelectedOpenVpnAdapter, Mode=TwoWay}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6LeakProtectionSettingsCard"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6LeakProtectionEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
         </StackPanel>
     </custom:SettingsPageContentControl>
 </Page>

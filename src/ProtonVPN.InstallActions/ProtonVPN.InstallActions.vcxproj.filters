@@ -48,9 +48,6 @@
     <ClInclude Include="WinApiErrorException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sha1.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AppSettingsMigration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,9 +84,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AppSettingsMigration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pugixml\pugixml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -115,6 +115,12 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         set => _settings.IsBetaAccessEnabled = value;
     }
 
+    public bool IsAutomaticUpdatesEnabled
+    {
+        get => _settings.AreAutomaticUpdatesEnabled;
+        set => _settings.AreAutomaticUpdatesEnabled = value;
+    }
+
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
 
     public ObservableCollection<string> Languages => _languages.Value;

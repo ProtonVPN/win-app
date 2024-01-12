@@ -29,6 +29,7 @@ using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -38,6 +39,12 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
 
     [ObservableProperty]
     private bool _isAlternativeRoutingEnabled;
+
+    [ObservableProperty]
+    private bool _isIpv6LeakProtectionEnabled;
+
+    [ObservableProperty]
+    private OpenVpnAdapter _selectedOpenVpnAdapter;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.NatType))]
@@ -50,6 +57,12 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
     public string CustomDnsServersSettingsState => Localizer.GetToggleValue(Settings.IsCustomDnsServersEnabled);
 
     public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
+
+    public List<OpenVpnAdapter> OpenVpnAdapters =
+    [
+        OpenVpnAdapter.Tap,
+        OpenVpnAdapter.Tun
+    ];
 
     public bool IsStrictNatType
     {
@@ -102,12 +115,16 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
     {
         Settings.NatType = CurrentNatType;
         Settings.IsAlternativeRoutingEnabled = IsAlternativeRoutingEnabled;
+        Settings.IsIpv6LeakProtectionEnabled = IsIpv6LeakProtectionEnabled;
+        Settings.OpenVpnAdapter = SelectedOpenVpnAdapter;
     }
 
     protected override void RetrieveSettings()
     {
         CurrentNatType = Settings.NatType;
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
+        IsIpv6LeakProtectionEnabled = Settings.IsIpv6LeakProtectionEnabled;
+        SelectedOpenVpnAdapter = Settings.OpenVpnAdapter;
     }
 
     protected override IEnumerable<ChangedSettingArgs> GetSettings()
@@ -115,6 +132,9 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
         yield return new(nameof(ISettings.NatType), CurrentNatType, Settings.NatType != CurrentNatType);
         yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), IsAlternativeRoutingEnabled,
             Settings.IsAlternativeRoutingEnabled != IsAlternativeRoutingEnabled);
+        yield return new(nameof(ISettings.OpenVpnAdapter), SelectedOpenVpnAdapter, Settings.OpenVpnAdapter != SelectedOpenVpnAdapter);
+        yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), IsIpv6LeakProtectionEnabled,
+            Settings.IsIpv6LeakProtectionEnabled != IsIpv6LeakProtectionEnabled);
     }
 
     private bool IsNatType(NatType natType)

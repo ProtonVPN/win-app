@@ -77,6 +77,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<VpnProtocol>(value, SettingEncryption.Unencrypted);
     }
 
+    public OpenVpnAdapter OpenVpnAdapter
+    {
+        get => _userRepository.GetValueType<OpenVpnAdapter>(SettingEncryption.Unencrypted) ?? DefaultSettings.OpenVpnAdapter;
+        set => _userRepository.SetValueType<OpenVpnAdapter>(value, SettingEncryption.Unencrypted);
+    }
+
     public string? VpnPlanTitle
     {
         get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);
@@ -149,12 +155,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsBetaAccessEnabled
-    {
-        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsBetaAccessEnabled;
-        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsShareStatisticsEnabled
     {
         get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareStatisticsEnabled;
@@ -170,6 +170,12 @@ public class UserSettings : GlobalSettings, IUserSettings
     public bool IsAlternativeRoutingEnabled
     {
         get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAlternativeRoutingEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsIpv6LeakProtectionEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsIpv6LeakProtectionEnabled;
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 

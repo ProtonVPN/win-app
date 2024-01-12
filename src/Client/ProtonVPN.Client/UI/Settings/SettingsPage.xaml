@@ -205,6 +205,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AutomaticUpdatesSettingsCard"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutomaticUpdates_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutomaticUpdates')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:ArrowsRotate />
+                </toolkit:SettingsCard.HeaderIcon>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutomaticUpdatesEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Support')}" />
 

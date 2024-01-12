@@ -22,7 +22,6 @@ using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Messages;
@@ -37,7 +36,6 @@ namespace ProtonVPN.Client.UI.Login;
 public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>, IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly ILogger _logger;
-    private readonly IUserAuthenticator _userAuthenticator;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasError))]
@@ -50,12 +48,10 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
     public LoginShellViewModel(
         ILoginViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IUserAuthenticator userAuthenticator)
+        ILogger logger)
         : base(viewNavigator, localizationProvider)
     {
         _logger = logger;
-        _userAuthenticator = userAuthenticator;
 
         _errorMessage = string.Empty;
     }

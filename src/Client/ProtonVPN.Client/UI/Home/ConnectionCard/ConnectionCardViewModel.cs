@@ -23,17 +23,15 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
