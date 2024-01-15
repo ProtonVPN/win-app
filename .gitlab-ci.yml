@@ -153,10 +153,12 @@ i18n-sync-crowdin-redesign_2024:
     L10N_COMMUNITY_BRANCH_SCOPE: 'Redesign_2024'
     I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn-redesign'
 
-i18n-commit-translations:
+i18n-commit-translations-redesign_2024:
   extends: .i18n-commit-locales-shared
   variables:
-    I18N_COMMIT_CROWDIN_PROJECT: 'windows-vpn'
+    I18N_COMMIT_CROWDIN_PROJECT: 'windows-vpn-redesign'
+    I18N_COMMIT_BRANCH_PUSH: redesign
+    I18N_COMMIT_BRANCH_ALLOWED: redesign
   before_script:
     - git config --global core.autocrlf false
 
