@@ -166,7 +166,7 @@
     <comment>The label for licensing information in About window</comment>
   </data>
   <data name="About_lnk_ReadLicense">
-    <value>더 알아보기</value>
+    <value>읽어보기</value>
     <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
   </data>
   <data name="About_lnk_Update">

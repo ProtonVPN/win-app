@@ -387,7 +387,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
-    <value>Invia log errore</value>
+    <value>Invia i log degli errori</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">

@@ -1628,7 +1628,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="feilmelding"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
