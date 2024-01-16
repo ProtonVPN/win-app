@@ -38,14 +38,12 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Settings
         [DataMember(Order = 5)]
         public bool SplitTcp { get; set; }
         [DataMember(Order = 6)]
-        public bool? AllowNonStandardPorts { get; set; }
-        [DataMember(Order = 7)]
         public bool Ipv6LeakProtection { get; set; }
-        [DataMember(Order = 8)]
+        [DataMember(Order = 7)]
         public VpnProtocolIpcEntity VpnProtocol { get; set; }
-        [DataMember(Order = 9)]
+        [DataMember(Order = 8)]
         public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
-        [DataMember(Order = 10)]
+        [DataMember(Order = 9)]
         public bool PortForwarding { get; set; }
 
         public MainSettingsIpcEntity()

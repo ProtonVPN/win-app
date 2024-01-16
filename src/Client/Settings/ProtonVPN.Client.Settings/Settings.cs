@@ -24,8 +24,6 @@ namespace ProtonVPN.Client.Settings;
 
 public class Settings : UserSettings, ISettings
 {
-    public bool AllowNonStandardPorts => DefaultSettings.AllowNonStandardPorts;
-
     public bool IsDebugModeEnabled
     {
         get

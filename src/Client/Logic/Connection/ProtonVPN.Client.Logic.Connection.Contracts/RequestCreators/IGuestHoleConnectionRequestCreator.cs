@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 
-public interface IConnectionRequestWrapper
+public interface IGuestHoleConnectionRequestCreator
 {
-    ConnectionRequestIpcEntity Wrap(IConnectionIntent connectionIntent);
+    ConnectionRequestIpcEntity Create(IEnumerable<GuestHoleServerContract> servers);
 }

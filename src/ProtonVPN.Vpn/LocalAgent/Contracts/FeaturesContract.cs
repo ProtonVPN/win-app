@@ -35,9 +35,6 @@ namespace ProtonVPN.Vpn.LocalAgent.Contracts
         [JsonProperty(PropertyName = "netshield-level")]
         public int NetShieldLevel { get; set; }
 
-        [JsonProperty(PropertyName = "safe-mode", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SafeMode { get; set; }
-
         [JsonProperty(PropertyName = "port-forwarding")]
         public bool PortForwarding { get; set; }
     }

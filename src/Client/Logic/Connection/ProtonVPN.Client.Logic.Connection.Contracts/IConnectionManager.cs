@@ -36,7 +36,7 @@ public interface IConnectionManager
 
     Task ConnectAsync(IConnectionIntent? connectionIntent);
 
-    Task ReconnectAsync();
+    Task<bool> ReconnectAsync();
 
     Task DisconnectAsync();
 

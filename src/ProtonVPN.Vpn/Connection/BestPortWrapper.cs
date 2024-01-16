@@ -139,7 +139,6 @@ public class BestPortWrapper : ISingleVpnConnection
             SplitTunnelIPs = _config.SplitTunnelIPs,
             SplitTunnelMode = _config.SplitTunnelMode,
             VpnProtocol = vpnProtocol,
-            AllowNonStandardPorts = _config.AllowNonStandardPorts,
             PortForwarding = _config.PortForwarding,
         });
     }

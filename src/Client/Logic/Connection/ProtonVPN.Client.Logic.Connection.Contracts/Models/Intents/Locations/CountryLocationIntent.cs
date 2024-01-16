@@ -43,8 +43,8 @@ public class CountryLocationIntent : LocationIntentBase
             && CountryCode == countryIntent.CountryCode;
     }
 
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public override bool IsSupported(Server server)
     {
-        return IsFastest ? servers : servers.Where(s => s.ExitCountry == CountryCode);
+        return IsFastest || server.ExitCountry == CountryCode;
     }
 }

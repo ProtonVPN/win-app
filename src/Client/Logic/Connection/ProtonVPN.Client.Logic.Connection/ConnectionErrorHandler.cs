@@ -33,7 +33,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection;
 
-public class ConnectionErrorHandler : IConnectionErrorHandler, IEventMessageReceiver<VpnStateIpcEntity>
+public class ConnectionErrorHandler : IConnectionErrorHandler
 {
     private readonly ILogger _logger;
     private readonly ISettings _settings;
@@ -41,6 +41,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler, IEventMessageRece
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAuthCertificateManager _authCertificateManager;
     private readonly INetworkAdapterValidator _networkAdapterValidator;
+    private readonly IConnectionManager _connectionManager;
 
     private VpnErrorTypeIpcEntity _error = VpnErrorTypeIpcEntity.None;
     private string? _lastAuthCertificate;
@@ -51,7 +52,8 @@ public class ConnectionErrorHandler : IConnectionErrorHandler, IEventMessageRece
         IEntityMapper entityMapper,
         IEventMessageSender eventMessageSender,
         IAuthCertificateManager authCertificateManager,
-        INetworkAdapterValidator networkAdapterValidator)
+        INetworkAdapterValidator networkAdapterValidator,
+        IConnectionManager connectionManager)
     {
         _logger = logger;
         _settings = settings;
@@ -59,77 +61,90 @@ public class ConnectionErrorHandler : IConnectionErrorHandler, IEventMessageRece
         _eventMessageSender = eventMessageSender;
         _authCertificateManager = authCertificateManager;
         _networkAdapterValidator = networkAdapterValidator;
+        _connectionManager = connectionManager;
     }
 
-    public async void Receive(VpnStateIpcEntity message)
+    public async Task<ConnectionErrorHandlerResult> HandleAsync(VpnErrorTypeIpcEntity ipcError)
     {
-        if (_error == message.Error)
+        if (_error == ipcError)
         {
-            return;
+            return ConnectionErrorHandlerResult.SameAsLast;
         }
 
-        VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(message.Error);
+        ConnectionErrorHandlerResult response = ConnectionErrorHandlerResult.NoAction;
+        VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(ipcError);
         if (error == VpnError.NoTapAdaptersError)
         {
-            HandleNoTapAdaptersError();
+            response = await HandleNoTapAdaptersErrorAsync();
         }
         else if (error == VpnError.CertificateExpired)
         {
-            await HandleExpiredCertificateAsync();
+            response = await HandleExpiredCertificateAsync();
         }
         else if (error.RequiresCertificateUpdate())
         {
             await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
-            // TODO: reconnect
+            response = await ReconnectAsync();
         }
         else if (error.RequiresInformingUser())
         {
-            SendConnectionErrorMessage(error);
+            response = SendConnectionErrorMessage(error);
         }
         else if (error.RequiresReconnectWithoutLastServer())
         {
-            // TODO: reconnect without last server
+            // TODO: Either (1) Reconnect without last server, or (2) Delete this separation between RequiresReconnectWithoutLastServer and RequiresReconnect
+            response = await ReconnectAsync();
         }
         else if (error.RequiresReconnect())
         {
-            // TODO: reconnect
+            response = await ReconnectAsync();
         }
 
-        _error = message.Error;
+        _error = ipcError;
+        return response;
     }
 
-    private void HandleNoTapAdaptersError()
+    private async Task<ConnectionErrorHandlerResult> HandleNoTapAdaptersErrorAsync()
     {
         if (_networkAdapterValidator.IsOpenVpnAdapterAvailable())
         {
             _logger.Info<ConnectTriggerLog>("Disconnected with NoTapAdaptersError " +
                                             "but currently an OpenVPN adapter is available. Requesting a reconnection.");
-            // TODO: reconnect
+            return await ReconnectAsync();
         }
         else
         {
             _logger.Warn<DisconnectLog>("Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
-            SendConnectionErrorMessage(VpnError.NoTapAdaptersError);
+            return SendConnectionErrorMessage(VpnError.NoTapAdaptersError);
         }
     }
 
-    private async Task HandleExpiredCertificateAsync()
+    private ConnectionErrorHandlerResult SendConnectionErrorMessage(VpnError error)
+    {
+        _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = error });
+        return ConnectionErrorHandlerResult.NoAction;
+    }
+
+    private async Task<ConnectionErrorHandlerResult> ReconnectAsync()
+    {
+        return await _connectionManager.ReconnectAsync()
+            ? ConnectionErrorHandlerResult.Reconnecting
+            : ConnectionErrorHandlerResult.NoAction;
+    }
+
+    private async Task<ConnectionErrorHandlerResult> HandleExpiredCertificateAsync()
     {
         _lastAuthCertificate = _settings.AuthenticationCertificatePem;
         await _authCertificateManager.ForceRequestNewCertificateAsync();
-        if (FailedToUpdateAuthCert())
+        if (IsAuthenticationCertificateUpdated())
         {
-            // TODO: reconnect
+            return await ReconnectAsync();
         }
+        return ConnectionErrorHandlerResult.NoAction;
     }
 
-    private bool FailedToUpdateAuthCert()
+    private bool IsAuthenticationCertificateUpdated()
     {
-        return _lastAuthCertificate == _settings.AuthenticationCertificatePem;
-    }
-
-    private void SendConnectionErrorMessage(VpnError error)
-    {
-        _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = error });
+        return _lastAuthCertificate != _settings.AuthenticationCertificatePem;
     }
 }

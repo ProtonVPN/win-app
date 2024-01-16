@@ -39,8 +39,6 @@ public class VpnConfig
 
     public bool ModerateNat { get; }
 
-    public bool? AllowNonStandardPorts { get; }
-
     public VpnConfig(VpnConfigParameters parameters)
     {
         AssertPortsValid(parameters.Ports);
@@ -56,7 +54,6 @@ public class VpnConfig
         NetShieldMode = parameters.NetShieldMode;
         SplitTcp = parameters.SplitTcp;
         ModerateNat = parameters.ModerateNat;
-        AllowNonStandardPorts = parameters.AllowNonStandardPorts;
         PortForwarding = parameters.PortForwarding;
     }
 

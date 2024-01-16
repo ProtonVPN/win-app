@@ -22,11 +22,14 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Wrappers;
+namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
-public abstract class ConnectionRequestWrapperBase : RequestWrapperBase
+public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
-    protected ConnectionRequestWrapperBase(
+    protected readonly IReadOnlyList<VpnProtocolIpcEntity> SmartPreferredProtocols =
+        [VpnProtocolIpcEntity.WireGuardUdp, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp];
+    
+    protected ConnectionRequestCreatorBase(
         ISettings settings,
         IEntityMapper entityMapper)
         : base(settings, entityMapper)
@@ -44,11 +47,10 @@ public abstract class ConnectionRequestWrapperBase : RequestWrapperBase
             ModerateNat = settings.ModerateNat,
             NetShieldMode = settings.NetShieldMode,
             PortForwarding = settings.PortForwarding,
-            AllowNonStandardPorts = settings.AllowNonStandardPorts,
             SplitTcp = settings.SplitTcp,
             PreferredProtocols = settings.VpnProtocol == VpnProtocolIpcEntity.Smart
-                ? [VpnProtocolIpcEntity.WireGuardUdp, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp]
-                : new List<VpnProtocolIpcEntity> { settings.VpnProtocol },
+                ? SmartPreferredProtocols.ToList()
+                : [settings.VpnProtocol],
             Ports = new Dictionary<VpnProtocolIpcEntity, int[]>
             {
                 { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardPorts },

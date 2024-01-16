@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -33,8 +33,8 @@ public class GuestHoleConnector : IGuestHoleConnector
     private readonly ILogger _logger;
     private readonly IServiceCaller _serviceCaller;
     private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
-    private readonly IGuestHoleConnectionRequestWrapper _connectionRequestWrapper;
-    private readonly IDisconnectionRequestWrapper _disconnectionRequestWrapper;
+    private readonly IGuestHoleConnectionRequestCreator _connectionRequestCreator;
+    private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
 
     public bool AreServersAvailable => GetGuestHoleServers().Any();
 
@@ -42,19 +42,19 @@ public class GuestHoleConnector : IGuestHoleConnector
         ILogger logger,
         IServiceCaller serviceCaller,
         IGuestHoleServersFileStorage guestHoleServersFileStorage,
-        IGuestHoleConnectionRequestWrapper connectionRequestWrapper,
-        IDisconnectionRequestWrapper disconnectionRequestWrapper)
+        IGuestHoleConnectionRequestCreator connectionRequestCreator,
+        IDisconnectionRequestCreator disconnectionRequestCreator)
     {
         _logger = logger;
         _serviceCaller = serviceCaller;
         _guestHoleServersFileStorage = guestHoleServersFileStorage;
-        _connectionRequestWrapper = connectionRequestWrapper;
-        _disconnectionRequestWrapper = disconnectionRequestWrapper;
+        _connectionRequestCreator = connectionRequestCreator;
+        _disconnectionRequestCreator = disconnectionRequestCreator;
     }
 
     public async Task ConnectAsync()
     {
-        ConnectionRequestIpcEntity request = _connectionRequestWrapper.Wrap(GetGuestHoleServers());
+        ConnectionRequestIpcEntity request = _connectionRequestCreator.Create(GetGuestHoleServers());
 
         _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
         await _serviceCaller.ConnectAsync(request);
@@ -63,7 +63,7 @@ public class GuestHoleConnector : IGuestHoleConnector
     public async Task DisconnectAsync()
     {
         // TODO: use VpnError.NoneKeepEnabledKillSwitch for disconnect
-        DisconnectionRequestIpcEntity request = _disconnectionRequestWrapper.Wrap();
+        DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
 
         await _serviceCaller.DisconnectAsync(request);
     }

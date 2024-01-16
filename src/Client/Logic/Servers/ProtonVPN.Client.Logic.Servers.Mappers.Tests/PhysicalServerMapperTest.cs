@@ -41,28 +41,34 @@ public class PhysicalServerMapperTest
     }
 
     [TestMethod]
-    public void TestGetPhysicalServer()
+    [DataRow((sbyte)0, true)]
+    [DataRow((sbyte)1, false)]
+    public void TestGetPhysicalServerUnderMaintenance(sbyte status, bool expectedIsUnderMaintenance)
     {
-        PhysicalServer server = _mapper.Map(PhysicalServerResponse);
+        PhysicalServer server = _mapper.Map(CreatePhysicalServerResponse(status));
 
-        Assert.AreEqual(server.Domain, "host.protonvpn.com");
-        Assert.AreEqual(server.EntryIp, "127.0.0.1");
-        Assert.AreEqual(server.ExitIp, "128.0.0.1");
-        Assert.AreEqual(server.Label, "0");
-        Assert.AreEqual(server.Signature, "signature");
-        Assert.AreEqual(server.Status, 0);
-        Assert.AreEqual(server.X25519PublicKey, "public key");
+        Assert.AreEqual("host.protonvpn.com", server.Domain);
+        Assert.AreEqual("127.0.0.1", server.EntryIp);
+        Assert.AreEqual("128.0.0.1", server.ExitIp);
+        Assert.AreEqual("0", server.Label);
+        Assert.AreEqual("signature", server.Signature);
+        Assert.AreEqual(status, server.Status);
+        Assert.AreEqual(expectedIsUnderMaintenance, server.IsUnderMaintenance);
+        Assert.AreEqual("public key", server.X25519PublicKey);
     }
 
-    private PhysicalServerResponse PhysicalServerResponse => new()
+    private PhysicalServerResponse CreatePhysicalServerResponse(sbyte status)
     {
-        Id = "ID",
-        Domain = "host.protonvpn.com",
-        EntryIp = "127.0.0.1",
-        ExitIp = "128.0.0.1",
-        Label = "0",
-        Signature = "signature",
-        Status = 0,
-        X25519PublicKey = "public key",
-    };
+        return new PhysicalServerResponse()
+        {
+            Id = "ID",
+            Domain = "host.protonvpn.com",
+            EntryIp = "127.0.0.1",
+            ExitIp = "128.0.0.1",
+            Label = "0",
+            Signature = "signature",
+            Status = status,
+            X25519PublicKey = "public key",
+        };
+    }
 }

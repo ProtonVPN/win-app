@@ -27,6 +27,7 @@ public class PhysicalServer
     public required string Domain { get; init; }
     public required string Label { get; init; }
     public required sbyte Status { get; init; }
+    public required bool IsUnderMaintenance { get; init; }
     public required string X25519PublicKey { get; init; }
     public required string Signature { get; init; }
 }

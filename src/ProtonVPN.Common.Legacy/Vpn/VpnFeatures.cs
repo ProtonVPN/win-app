@@ -23,7 +23,6 @@ public class VpnFeatures
 {
     public bool SplitTcp { get; set; }
     public int NetShieldMode { get; set; }
-    public bool? AllowNonStandardPorts { get; set; }
     public bool PortForwarding { get; set; }
     public bool ModerateNat { get; set; }
 }

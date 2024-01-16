@@ -18,20 +18,20 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Wrappers;
+namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
-public class GuestHoleConnectionRequestWrapper : ConnectionRequestWrapperBase, IGuestHoleConnectionRequestWrapper
+public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, IGuestHoleConnectionRequestCreator
 {
     private readonly IConfiguration _config;
 
-    public GuestHoleConnectionRequestWrapper(
+    public GuestHoleConnectionRequestCreator(
         ISettings settings,
         IEntityMapper entityMapper,
         IConfiguration config)
@@ -40,7 +40,7 @@ public class GuestHoleConnectionRequestWrapper : ConnectionRequestWrapperBase, I
         _config = config;
     }
 
-    public ConnectionRequestIpcEntity Wrap(IEnumerable<GuestHoleServerContract> servers)
+    public ConnectionRequestIpcEntity Create(IEnumerable<GuestHoleServerContract> servers)
     {
         MainSettingsIpcEntity settings = GetSettings();
 

@@ -21,7 +21,5 @@ namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface ISettings : IGlobalSettings, IUserSettings
 {
-    bool AllowNonStandardPorts { get; }
-
     bool IsDebugModeEnabled { get; }
 }

@@ -23,8 +23,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class B2BFeatureIntent : FeatureIntentBase
 {
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public override bool IsSupported(Server server)
     {
-        return servers.Where(s => s.Features.IsSupported(ServerFeatures.B2B));
+        return server.Features.IsSupported(ServerFeatures.B2B);
     }
 }

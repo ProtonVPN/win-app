@@ -18,8 +18,11 @@
  */
 
 
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
 public interface IConnectionErrorHandler
 {
+    Task<ConnectionErrorHandlerResult> HandleAsync(VpnErrorTypeIpcEntity ipcError);
 }

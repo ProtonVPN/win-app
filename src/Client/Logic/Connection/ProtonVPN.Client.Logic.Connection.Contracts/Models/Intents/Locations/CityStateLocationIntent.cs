@@ -38,8 +38,8 @@ public class CityStateLocationIntent : CountryLocationIntent
             && CityState == cityStateIntent.CityState;
     }
 
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public override bool IsSupported(Server server)
     {
-        return base.FilterServers(servers).Where(s => s.City == CityState);
+        return base.IsSupported(server) && server.City == CityState;
     }
 }

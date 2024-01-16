@@ -18,11 +18,10 @@
  */
 
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
@@ -38,8 +37,7 @@ using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.Con
 
 namespace ProtonVPN.Client.Logic.Connection;
 
-public class ConnectionManager : IConnectionManager,
-    IEventMessageReceiver<VpnStateIpcEntity>,
+public class ConnectionManager : IInternalConnectionManager,
     IEventMessageReceiver<ConnectionDetailsIpcEntity>,
     IEventMessageReceiver<SettingChangedMessage>
 {
@@ -47,8 +45,9 @@ public class ConnectionManager : IConnectionManager,
     private readonly IServiceCaller _serviceCaller;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEntityMapper _entityMapper;
-    private readonly IConnectionRequestWrapper _connectionRequestWrapper;
-    private readonly IDisconnectionRequestWrapper _disconnectionRequestWrapper;
+    private readonly IConnectionRequestCreator _connectionRequestCreator;
+    private readonly IReconnectionRequestCreator _reconnectionRequestCreator;
+    private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
     private readonly IServersLoader _serversLoader;
 
     private ConnectionDetails? _connectionDetails;
@@ -67,16 +66,18 @@ public class ConnectionManager : IConnectionManager,
         IServiceCaller serviceCaller,
         IEventMessageSender eventMessageSender,
         IEntityMapper entityMapper,
-        IConnectionRequestWrapper connectionRequestWrapper,
-        IDisconnectionRequestWrapper disconnectionRequestWrapper,
+        IConnectionRequestCreator connectionRequestCreator,
+        IReconnectionRequestCreator reconnectionRequestCreator,
+        IDisconnectionRequestCreator disconnectionRequestCreator,
         IServersLoader serversLoader)
     {
         _logger = logger;
         _serviceCaller = serviceCaller;
         _eventMessageSender = eventMessageSender;
         _entityMapper = entityMapper;
-        _connectionRequestWrapper = connectionRequestWrapper;
-        _disconnectionRequestWrapper = disconnectionRequestWrapper;
+        _connectionRequestCreator = connectionRequestCreator;
+        _reconnectionRequestCreator = reconnectionRequestCreator;
+        _disconnectionRequestCreator = disconnectionRequestCreator;
         _serversLoader = serversLoader;
     }
 
@@ -87,20 +88,37 @@ public class ConnectionManager : IConnectionManager,
         _connectionDetails = new ConnectionDetails(connectionIntent);
         SetConnectionStatus(ConnectionStatus.Connecting);
 
-        ConnectionRequestIpcEntity request = _connectionRequestWrapper.Wrap(connectionIntent);
+        ConnectionRequestIpcEntity request = _connectionRequestCreator.Create(connectionIntent);
         
         await _serviceCaller.ConnectAsync(request);
     }
-    public async Task ReconnectAsync()
+
+    /// <summary>Reconnects if the most recent action was a Connect and not a Disconnect.</summary>
+    /// <returns>True if reconnecting. False if not.</returns>
+    public async Task<bool> ReconnectAsync()
     {
-        await ConnectAsync(_connectionDetails?.OriginalConnectionIntent);
+        if (_connectionDetails is null)
+        {
+            await DisconnectAsync();
+            return false;
+        }
+
+        IConnectionIntent connectionIntent = _connectionDetails?.OriginalConnectionIntent ?? ConnectionIntent.Default;
+
+        _connectionDetails = new ConnectionDetails(connectionIntent);
+        SetConnectionStatus(ConnectionStatus.Connecting);
+
+        ConnectionRequestIpcEntity request = _reconnectionRequestCreator.Create(connectionIntent);
+
+        await _serviceCaller.ConnectAsync(request);
+        return true;
     }
 
     public async Task DisconnectAsync()
     {
         _connectionDetails = null;
 
-        DisconnectionRequestIpcEntity request = _disconnectionRequestWrapper.Wrap();
+        DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
 
         await _serviceCaller.DisconnectAsync(request);
     }
@@ -108,16 +126,6 @@ public class ConnectionManager : IConnectionManager,
     public ConnectionDetails? GetConnectionDetails()
     {
         return _connectionDetails;
-    }
-
-    public void Receive(ConnectionDetailsIpcEntity message)
-    {
-        _eventMessageSender.Send(new ConnectionDetailsChanged()
-        {
-            ClientCountryCode = message.ClientCountryIsoCode,
-            ClientIpAddress = message.ClientIpAddress,
-            ServerIpAddress = message.ServerIpAddress,
-        });
     }
 
     public async Task<TrafficBytes> GetTrafficBytesAsync()
@@ -140,7 +148,7 @@ public class ConnectionManager : IConnectionManager,
         return new TrafficBytes(downloadSpeed, uploadSpeed);
     }
 
-    public void Receive(VpnStateIpcEntity message)
+    public async Task HandleAsync(VpnStateIpcEntity message)
     {
         ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
 
@@ -156,7 +164,8 @@ public class ConnectionManager : IConnectionManager,
                                           $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
                                           $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
 
-                    // TODO: call reconnection logic excluding the last server
+                    // TODO: Either (1) Reconnect without last server, or (2) Delete this comment
+                    await ReconnectAsync();
                 }
                 else
                 {
@@ -185,6 +194,16 @@ public class ConnectionManager : IConnectionManager,
 
         ConnectionStatus = connectionStatus;
         _eventMessageSender.Send(new ConnectionStatusChanged(ConnectionStatus));
+    }
+
+    public void Receive(ConnectionDetailsIpcEntity message)
+    {
+        _eventMessageSender.Send(new ConnectionDetailsChanged()
+        {
+            ClientCountryCode = message.ClientCountryIsoCode,
+            ClientIpAddress = message.ClientIpAddress,
+            ServerIpAddress = message.ServerIpAddress,
+        });
     }
 
     public async void Receive(SettingChangedMessage message)
