@@ -24,4 +24,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 public interface IIntent
 {
     IEnumerable<Server> FilterServers(IEnumerable<Server> servers);
+    bool IsSupported(Server server);
 }

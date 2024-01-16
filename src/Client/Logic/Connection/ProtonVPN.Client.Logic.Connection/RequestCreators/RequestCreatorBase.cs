@@ -25,15 +25,15 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Wrappers;
+namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
-public abstract class RequestWrapperBase
+public abstract class RequestCreatorBase
 {
     protected readonly ISettings Settings;
 
     protected readonly IEntityMapper EntityMapper;
 
-    protected RequestWrapperBase(
+    protected RequestCreatorBase(
         ISettings settings,
         IEntityMapper entityMapper)
     {
@@ -59,7 +59,6 @@ public abstract class RequestWrapperBase
             },
             ModerateNat = Settings.NatType == NatType.Moderate,
             NetShieldMode = Settings.IsNetShieldEnabled ? 2 : 0,
-            AllowNonStandardPorts = Settings.AllowNonStandardPorts,
             Ipv6LeakProtection = Settings.IsIpv6LeakProtectionEnabled,
             PortForwarding = Settings.IsPortForwardingEnabled,
             SplitTcp = Settings.IsVpnAcceleratorEnabled,

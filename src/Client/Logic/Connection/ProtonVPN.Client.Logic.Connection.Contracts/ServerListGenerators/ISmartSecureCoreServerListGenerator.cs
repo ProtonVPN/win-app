@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 
-public class P2PFeatureIntent : FeatureIntentBase
+public interface ISmartSecureCoreServerListGenerator
 {
-    public override bool IsSupported(Server server)
-    {
-        return server.Features.IsSupported(ServerFeatures.P2P);
-    }
+    IEnumerable<PhysicalServer> Generate(SecureCoreFeatureIntent secureCoreFeatureIntent, CountryLocationIntent countryLocationIntent);
 }

@@ -111,7 +111,6 @@ public class VpnConfigMapperTest
             NetShieldMode = 2,
             SplitTcp = true,
             ModerateNat = true,
-            AllowNonStandardPorts = true,
             PortForwarding = true,
         });
 
@@ -120,7 +119,6 @@ public class VpnConfigMapperTest
         Assert.IsNotNull(result);
         AssertPortsAreEquivalent(entityToTest, result);
         CollectionAssert.AreEqual(entityToTest.CustomDns.ToList(), result.CustomDns);
-        Assert.AreEqual(entityToTest.AllowNonStandardPorts, result.AllowNonStandardPorts);
         Assert.AreEqual(_expectedSplitTunnelModeIpcEntity, result.SplitTunnelMode);
         CollectionAssert.AreEqual(entityToTest.SplitTunnelIPs.ToList(), result.SplitTunnelIPs);
         Assert.AreEqual(entityToTest.NetShieldMode, result.NetShieldMode);
@@ -175,7 +173,6 @@ public class VpnConfigMapperTest
             PreferredProtocols = new List<VpnProtocolIpcEntity>() { VpnProtocolIpcEntity.OpenVpnTcp },
             SplitTcp = true,
             ModerateNat = true,
-            AllowNonStandardPorts = true,
             PortForwarding = true,
         };
 
@@ -191,7 +188,6 @@ public class VpnConfigMapperTest
         Assert.AreEqual(_expectedVpnProtocols, result.PreferredProtocols);
         Assert.AreEqual(entityToTest.SplitTcp, result.SplitTcp);
         Assert.AreEqual(entityToTest.ModerateNat, result.ModerateNat);
-        Assert.AreEqual(entityToTest.AllowNonStandardPorts, result.AllowNonStandardPorts);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
     }
 

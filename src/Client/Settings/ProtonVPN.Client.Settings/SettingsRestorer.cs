@@ -53,5 +53,6 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.CustomDnsServersList = DefaultSettings.CustomDnsServersList;
         _settings.OpenVpnAdapter = DefaultSettings.OpenVpnAdapter;
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
+        _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
     }
 }

@@ -216,8 +216,6 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
                 _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting");
                 _origin.Disconnect(_disconnectError);
             }
-
-            _disconnectRequested = false;
         }
     }
 

@@ -58,6 +58,7 @@ public interface IUserSettings
     bool IsPortForwardingEnabled { get; set; }
     bool IsPortForwardingNotificationEnabled { get; set; }
     bool IsSplitTunnelingEnabled { get; set; }
+    bool IsSmartReconnectEnabled { get; set; }
     SplitTunnelingMode SplitTunnelingMode { get; set; }
     List<SplitTunnelingApp> SplitTunnelingStandardAppsList { get; set; }
     List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }

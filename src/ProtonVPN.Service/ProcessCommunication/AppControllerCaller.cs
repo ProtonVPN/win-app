@@ -252,7 +252,6 @@ namespace ProtonVPN.Service.ProcessCommunication
             {
                 SplitTcp = settings.SplitTcp,
                 NetShieldMode = settings.NetShieldMode,
-                AllowNonStandardPorts = settings.AllowNonStandardPorts,
                 PortForwarding = settings.PortForwarding,
                 ModerateNat = settings.ModerateNat,
             };

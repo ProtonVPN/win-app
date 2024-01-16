@@ -45,8 +45,8 @@ public class GatewayServerLocationIntent : GatewayLocationIntent
             && Id == serverIntent.Id;
     }
 
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public override bool IsSupported(Server server)
     {
-        return servers.Where(s => s.Id == Id);
+        return server.Id == Id;
     }
 }

@@ -49,7 +49,6 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
         {
             Ports = portConfig,
             CustomDns = leftEntity.CustomDns.ToList(),
-            AllowNonStandardPorts = leftEntity.AllowNonStandardPorts,
             SplitTunnelMode = _entityMapper.Map<SplitTunnelMode, SplitTunnelModeIpcEntity>(leftEntity.SplitTunnelMode),
             SplitTunnelIPs = leftEntity.SplitTunnelIPs.ToList(),
             NetShieldMode = leftEntity.NetShieldMode,
@@ -84,7 +83,6 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
                 ModerateNat = rightEntity.ModerateNat,
                 NetShieldMode = rightEntity.NetShieldMode,
                 SplitTcp = rightEntity.SplitTcp,
-                AllowNonStandardPorts = rightEntity.AllowNonStandardPorts,
                 PortForwarding = rightEntity.PortForwarding,
             });
     }

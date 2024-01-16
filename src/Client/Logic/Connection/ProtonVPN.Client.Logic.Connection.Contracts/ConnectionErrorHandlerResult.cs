@@ -17,14 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-
-public class P2PFeatureIntent : FeatureIntentBase
+public enum ConnectionErrorHandlerResult
 {
-    public override bool IsSupported(Server server)
-    {
-        return server.Features.IsSupported(ServerFeatures.P2P);
-    }
+    SameAsLast,
+    NoAction,
+    Reconnecting
 }

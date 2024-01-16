@@ -227,6 +227,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsSmartReconnectEnabled
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSmartReconnectEnabled;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public SplitTunnelingMode SplitTunnelingMode
     {
         get => _userRepository.GetValueType<SplitTunnelingMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingMode;

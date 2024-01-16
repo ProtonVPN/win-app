@@ -17,14 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 
-public class P2PFeatureIntent : FeatureIntentBase
+public interface IDisconnectionRequestCreator
 {
-    public override bool IsSupported(Server server)
-    {
-        return server.Features.IsSupported(ServerFeatures.P2P);
-    }
+    DisconnectionRequestIpcEntity Create(VpnError vpnError = VpnError.None);
 }

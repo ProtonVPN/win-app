@@ -18,23 +18,23 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Wrappers;
+namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
-public class DisconnectionRequestWrapper : RequestWrapperBase, IDisconnectionRequestWrapper
+public class DisconnectionRequestCreator : RequestCreatorBase, IDisconnectionRequestCreator
 {
-    public DisconnectionRequestWrapper(
+    public DisconnectionRequestCreator(
         ISettings settings,
         IEntityMapper entityMapper)
         : base(settings, entityMapper)
     { }
 
-    public DisconnectionRequestIpcEntity Wrap(VpnError vpnError = VpnError.None)
+    public DisconnectionRequestIpcEntity Create(VpnError vpnError = VpnError.None)
     {
         MainSettingsIpcEntity settings = GetSettings();
 

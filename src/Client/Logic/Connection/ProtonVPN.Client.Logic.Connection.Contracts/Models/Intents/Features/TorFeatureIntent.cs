@@ -23,8 +23,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class TorFeatureIntent : FeatureIntentBase
 {
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public override bool IsSupported(Server server)
     {
-        return servers.Where(s => s.Features.IsSupported(ServerFeatures.Tor));
+        return server.Features.IsSupported(ServerFeatures.Tor);
     }
 }

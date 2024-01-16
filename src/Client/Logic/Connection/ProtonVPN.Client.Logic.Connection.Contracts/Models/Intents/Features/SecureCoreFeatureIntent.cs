@@ -39,14 +39,9 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
             && EntryCountryCode == secureCoreIntent.EntryCountryCode;
     }
 
-    public override IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    public override bool IsSupported(Server server)
     {
-        servers = servers.Where(s => s.Features.IsSupported(ServerFeatures.SecureCore));
-        if (!string.IsNullOrEmpty(EntryCountryCode))
-        {
-            servers = servers.Where(s => s.EntryCountry == EntryCountryCode);
-        }
-
-        return servers;
+        return server.Features.IsSupported(ServerFeatures.SecureCore) && 
+            (string.IsNullOrEmpty(EntryCountryCode) || server.EntryCountry == EntryCountryCode);
     }
 }

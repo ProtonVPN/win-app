@@ -258,7 +258,6 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             Bouncing = _endpoint.Server.Label,
             SplitTcp = _vpnConfig.SplitTcp,
             NetShieldLevel = _vpnConfig.NetShieldMode,
-            SafeMode = !_vpnConfig.AllowNonStandardPorts,
             PortForwarding = _vpnConfig.PortForwarding,
             RandomizedNat = !_vpnConfig.ModerateNat,
         });
@@ -270,7 +269,6 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         {
             SplitTcp = vpnFeatures.SplitTcp,
             NetShieldLevel = vpnFeatures.NetShieldMode,
-            SafeMode = !vpnFeatures.AllowNonStandardPorts,
             PortForwarding = vpnFeatures.PortForwarding,
             RandomizedNat = !vpnFeatures.ModerateNat,
         });

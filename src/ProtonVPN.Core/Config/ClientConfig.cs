@@ -114,7 +114,6 @@ public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware
                 bool smartReconnectFeatureFlag = response.Value.FeatureFlags.SmartReconnect ?? true;
                 _appSettings.FeatureSmartReconnectEnabled = vpnAcceleratorFeatureFlag && smartReconnectFeatureFlag;
 
-                _appSettings.ShowNonStandardPortsToFreeUsers = response.Value.FeatureFlags.SafeMode ?? false;
                 _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                 _appSettings.FeaturePromoCodeEnabled = response.Value.FeatureFlags.PromoCode ?? false;
             }

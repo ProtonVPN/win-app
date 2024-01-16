@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Wrappers;
+namespace ProtonVPN.Client.Logic.Connection;
 
-public interface IDisconnectionRequestWrapper
+public interface IInternalConnectionManager : IConnectionManager
 {
-    DisconnectionRequestIpcEntity Wrap(VpnError vpnError = VpnError.None);
+    Task HandleAsync(VpnStateIpcEntity message);
 }

@@ -56,10 +56,10 @@ public static class DefaultSettings
     public static bool IsPortForwardingEnabled = false;
     public static bool IsPortForwardingNotificationEnabled = true;
     public static bool IsSplitTunnelingEnabled = false;
+    public static bool IsSmartReconnectEnabled = true;
     public static SplitTunnelingMode SplitTunnelingMode = SplitTunnelingMode.Standard;
     public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = new();
     public static bool IsIpv6LeakProtectionEnabled = true;
-    public static bool AllowNonStandardPorts = false;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
     public static List<FeatureFlag> FeatureFlags = new();
 

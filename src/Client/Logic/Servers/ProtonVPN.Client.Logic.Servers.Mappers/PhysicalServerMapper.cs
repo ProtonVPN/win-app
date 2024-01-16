@@ -37,6 +37,7 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
                 Domain = leftEntity.Domain,
                 Label = leftEntity.Label,
                 Status = leftEntity.Status,
+                IsUnderMaintenance = leftEntity.Status == 0,
                 X25519PublicKey = leftEntity.X25519PublicKey,
                 Signature = leftEntity.Signature,
             };

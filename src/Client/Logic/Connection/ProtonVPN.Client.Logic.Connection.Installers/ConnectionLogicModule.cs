@@ -20,8 +20,9 @@
 using Autofac;
 using ProtonVPN.Client.Logic.Connection.EntityMapping;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
+using ProtonVPN.Client.Logic.Connection.RequestCreators;
+using ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 using ProtonVPN.Client.Logic.Connection.Validators;
-using ProtonVPN.Client.Logic.Connection.Wrappers;
 using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -32,9 +33,6 @@ public class ConnectionLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<ConnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<GuestHoleConnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<DisconnectionRequestWrapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<PortForwardingManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AppController>().As<IAppController>().SingleInstance();
@@ -42,9 +40,28 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleActionExecutor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkAdapterValidator>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+        builder.RegisterType<VpnStateIpcEntityHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+        builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
 
+        RegisterRequestCreators(builder);
+        RegisterServerListGenerators(builder);
+
         builder.RegisterAllMappersInAssembly<ConnectionIntentMapper>();
+    }
+
+    private void RegisterRequestCreators(ContainerBuilder builder)
+    {
+        builder.RegisterType<ReconnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ConnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GuestHoleConnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<DisconnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
+    }
+
+    private void RegisterServerListGenerators(ContainerBuilder builder)
+    {
+        builder.RegisterType<IntentServerListGenerator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SmartSecureCoreServerListGenerator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SmartStandardServerListGenerator>().AsImplementedInterfaces().SingleInstance();
     }
 }
