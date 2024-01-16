@@ -351,6 +351,16 @@ begin
   if IsToDisableAutoUpdate = true then begin
     Log('The app will be launched with auto updates disabled.');
   end;
+end;    
+
+// Returns 0 (zero) if versions are equal, -1 (negative one) if version1 is older and 1 (positive one) if version1 is more recent
+function CompareVersions(version1, version2: String): Integer;
+var
+    packVersion1, packVersion2: Int64;
+begin
+    if not StrToVersion(version1, packVersion1) then packVersion1 := 0;
+    if not StrToVersion(version2, packVersion2) then packVersion2 := 0;
+    Result := ComparePackedVersion(packVersion1, packVersion2);
 end;
 
 function InitializeSetup(): Boolean;
@@ -371,7 +381,7 @@ begin
   end;
   if RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion') then begin
     RegQueryStringValue(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion', Version);
-    if Version > '{#MyAppVersion}' then begin
+    if CompareVersions(Version, '{#MyAppVersion}') >= 0 then begin
       if WizardSilent() = false then begin
         MsgBox(ExpandConstant('{#MyAppName} is already installed with the newer version ' + Version + '.'), mbInformation, MB_OK);
       end;
