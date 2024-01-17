@@ -20,11 +20,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <Page x:Class="ProtonVPN.Client.UI.Settings.Pages.AutoStartupPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Enabled"
       mc:Ignorable="d">
@@ -47,10 +47,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
+            <!-- TODO: Auto launch has not been implemented yet. Keep the settings card disabled for now. -->
             <toolkit:SettingsExpander Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Description')}"
-                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch')}"
-                                   IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}"
-                                   IsTabStop="False">
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch')}"
+                                      IsEnabled="False"
+                                      IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}"
+                                      IsTabStop="False">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
                 <toolkit:SettingsExpander.Items>
@@ -69,9 +71,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsExpander>
 
             <toolkit:SettingsExpander Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Description')}"
-                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
-                                   IsExpanded="{x:Bind ViewModel.IsAutoConnectEnabled}"
-                                   IsTabStop="False">
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
+                                      IsExpanded="{x:Bind ViewModel.IsAutoConnectEnabled}"
+                                      IsTabStop="False">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoConnectEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
                 <toolkit:SettingsExpander.Items>

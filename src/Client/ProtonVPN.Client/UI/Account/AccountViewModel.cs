@@ -40,7 +40,7 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     private readonly IConnectionManager _connectionManager;
     private readonly IOverlayActivator _overlayActivator;
 
-    public string Username => _settings.UserDisplayName;
+    public string Username => _settings.Username ?? _settings.UserDisplayName ?? string.Empty;
 
     public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlanTitle);
 

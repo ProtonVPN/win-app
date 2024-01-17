@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Page.Resources>
         <ResourceDictionary>
-            <x:Double x:Key="DetailsPaneWidth">260</x:Double>
+            <x:Double x:Key="ConnectionDetailsPaneWidth">260</x:Double>
 
             <helpers:SliderValueToMarginConverter x:Key="SliderValueToMarginConverter"
                                                   MaximumValue="{StaticResource MaximumDetailsPaneWidth}"
@@ -51,10 +51,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <SplitView x:Name="SplitViewArea"
                    BorderThickness="0"
                    CornerRadius="4,0,0,4"
-                   DisplayMode="{x:Bind ViewModel.DetailsPaneDisplayMode, Mode=TwoWay}"
-                   IsPaneOpen="{x:Bind ViewModel.IsDetailsPaneOpen, Mode=TwoWay}"
+                   DisplayMode="{x:Bind ViewModel.ConnectionDetailsPaneDisplayMode, Mode=TwoWay}"
+                   IsPaneOpen="{x:Bind ViewModel.IsConnectionDetailsPaneOpened, Mode=TwoWay}"
                    IsTabStop="False"
-                   OpenPaneLength="{StaticResource DetailsPaneWidth}"
+                   OpenPaneLength="{StaticResource ConnectionDetailsPaneWidth}"
                    PaneBackground="{ThemeResource PaneOverlayBackgroundColorBrush}"
                    PanePlacement="Right">
             <SplitView.Pane>
@@ -84,7 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Margin="-2"
                                         AutomationProperties.AutomationId="CloseConnectionDetailsButton"
                                         AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
-                                        Command="{x:Bind ViewModel.CloseDetailsPaneCommand, Mode=OneTime}"
+                                        Command="{x:Bind ViewModel.CloseConnectionDetailsPaneCommand, Mode=OneTime}"
                                         TabIndex="7"
                                         ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}">
                         <custom:GhostButton.LeftIcon>
@@ -117,7 +117,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </SplitView.Pane>
 
             <custom:PageContentControl x:Name="PageContainer"
-                                       Padding="0,0,0,-16"
+                                       Padding="0,0,0,-32"
                                        CanContentScroll="False"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                        IsBackButtonVisible="False">
@@ -150,6 +150,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Background="{ThemeResource ReverseGradientFadingColorBrush}" />
                     </Grid>
 
+                    <Border Background="{ThemeResource BackgroundNormColorBrush}"
+                            Grid.Row="1"
+                            Grid.RowSpan="2"/>
+
                     <connectionCard:ConnectionCardComponent Grid.Row="1"
                                                             MaxWidth="{StaticResource MaximumHomePageContentWidth}"
                                                             AutomationProperties.AutomationId="ConnectionCardComponent"
@@ -162,7 +166,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               AutomationProperties.AutomationId="RecentsComponent"
                                               AutomationProperties.LandmarkType="Custom"
                                               AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Recents_Landmark')}"
-                                              TabIndex="4" />
+                                              TabIndex="4"
+                                              Margin="0,0,0,16"/>
                 </Grid>
             </custom:PageContentControl>
         </SplitView>
@@ -171,7 +176,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <VisualStateGroup x:Name="PaneDisplayModes">
                 <VisualState x:Name="Inline">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsDetailsPaneInline}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnectionDetailsPaneInline}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SplitViewArea.PaneBackground" Value="Transparent" />

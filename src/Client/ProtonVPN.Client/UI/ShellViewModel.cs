@@ -24,6 +24,7 @@ using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
@@ -36,13 +37,16 @@ using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Client.UI;
 
-public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
+public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly ISettings _settings;
 
     [ObservableProperty]
     private NavigationPageViewModelBase? _selectedNavigationPage;
+
+    [ObservableProperty]
+    private bool _isNavigationPaneOpened;
 
     public override string Title => App.APPLICATION_NAME;
 
@@ -78,6 +82,14 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
         _eventMessageSender.Send(new NavigationDisplayModeChangedMessage(displayMode));
     }
 
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            IsNavigationPaneOpened = _settings.IsNavigationPaneOpened;
+        });
+    }
+
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
@@ -100,4 +112,10 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>
             NavigationPages.Add(galleryViewModel.Value);
         }
     }
+
+    partial void OnIsNavigationPaneOpenedChanged(bool value)
+    {
+        _settings.IsNavigationPaneOpened = value;
+    }
+
 }

@@ -27,6 +27,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <x:Double x:Key="AccountFlyoutMinWidth">160.0</x:Double>
+        <x:Double x:Key="AccountFlyoutMaxWidth">240.0</x:Double>
+    </UserControl.Resources>
+
     <Button HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             AutomationProperties.AutomationId="AccountButton"
@@ -35,19 +40,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             Style="{StaticResource SidebarButtonStyle}"
             ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}">
         <Button.Flyout>
-            <Flyout x:Name="AccountFlyout">
+            <Flyout x:Name="AccountFlyout" 
+                    Placement="TopEdgeAlignedLeft">
                 <StackPanel Orientation="Vertical"
-                            Spacing="16">
+                            Spacing="16"
+                            MinWidth="{StaticResource AccountFlyoutMinWidth}"
+                            MaxWidth="{StaticResource AccountFlyoutMaxWidth}">
                     <StackPanel>
                         <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Username, Mode=OneWay}" />
+                                   Text="{x:Bind ViewModel.Username, Mode=OneWay}"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap"/>
                         <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.VpnPlan, Mode=OneWay}" />
+                                   Text="{x:Bind ViewModel.VpnPlan, Mode=OneWay}"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap"/>
                     </StackPanel>
-                    <HyperlinkButton Content="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}" />
-                    <Button Width="175"
-                            Height="32"
+                    <!-- TODO: Re-enable 'My Account' hyperlink once implemented -->
+                    <HyperlinkButton Content="{x:Bind ViewModel.Localizer.Get('Home_Account_Title')}" 
+                                     IsEnabled="False"/>
+                    <Button Height="32"
+                            HorizontalAlignment="Stretch"
                             Click="OnSignOutButtonClick"
                             Command="{x:Bind ViewModel.SignOutCommand}"
                             Content="{x:Bind ViewModel.Localizer.Get('Home_Account_SignOut')}" />

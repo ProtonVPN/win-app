@@ -153,7 +153,8 @@ public class SettingsMigrator : ISettingsMigrator
         bool? isNotificationsEnabled = IsGlobalSettingEnabled("ShowNotifications");
         if (isNotificationsEnabled.HasValue)
         {
-            _settings.IsNotificationEnabled = isNotificationsEnabled.Value;
+            // TODO: Notifications are not implemented yet. Keep it disabled for now.
+            _settings.IsNotificationEnabled = DefaultSettings.IsNotificationEnabled; // isNotificationsEnabled.Value;
         }
 
         bool? isVpnAcceleratorEnabled = IsGlobalSettingEnabled("VpnAcceleratorEnabled");
@@ -538,13 +539,15 @@ public class SettingsMigrator : ISettingsMigrator
         bool? isAutoLaunchEnabled = IsGlobalSettingEnabled("StartOnBoot");
         if (isAutoLaunchEnabled.HasValue)
         {
-            _settings.IsAutoLaunchEnabled = isAutoLaunchEnabled.Value;
+            // TODO: Auto launch is not implemented yet. Keep it disabled for now.
+            _settings.IsAutoLaunchEnabled = DefaultSettings.IsAutoLaunchEnabled; // isAutoLaunchEnabled.Value;
         }
 
         string? language = GetSettingValue("Language");
         if (!string.IsNullOrEmpty(language))
         {
-            _settings.Language = language;
+            // TODO: Localization is not ready yet. Force english for now.
+            _settings.Language = DefaultSettings.Language; // language;
         }
 
         bool? isBetaAccessEnabled = IsGlobalSettingEnabled("EarlyAccess");
@@ -553,10 +556,10 @@ public class SettingsMigrator : ISettingsMigrator
             _settings.IsBetaAccessEnabled = isBetaAccessEnabled.Value;
         }
 
-        bool? isAutomaticUpdatesEnabled = IsGlobalSettingEnabled("IsToAutoUpdate");
-        if (isAutomaticUpdatesEnabled.HasValue)
+        bool? areAutomaticUpdatesEnabled = IsGlobalSettingEnabled("IsToAutoUpdate");
+        if (areAutomaticUpdatesEnabled.HasValue)
         {
-            _settings.AreAutomaticUpdatesEnabled = isAutomaticUpdatesEnabled.Value;
+            _settings.AreAutomaticUpdatesEnabled = areAutomaticUpdatesEnabled.Value;
         }
     }
 }

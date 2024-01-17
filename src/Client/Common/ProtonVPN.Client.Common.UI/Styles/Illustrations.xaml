@@ -78,4 +78,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/p2p-download.png" />
     <BitmapImage x:Key="P2PServersIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/p2p-servers.png" />
+
+    <SvgImageSource x:Key="WorldMapIllustrationSource"
+                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/world-map.svg" />
 </ResourceDictionary>

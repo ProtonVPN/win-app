@@ -24,32 +24,36 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Home.Details;
 
 namespace ProtonVPN.Client.UI.Home;
 
 public partial class HomeViewModel : NavigationPageViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChanged>, 
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IConnectionManager _connectionManager;
+    private readonly ISettings _settings;
     private readonly ConnectionDetailsViewModel _connectionDetailsViewModel;
 
-    private bool _openDetailsPaneAutomatically;
+    private bool _reopenDetailsPaneAutomatically;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsDetailsPaneInline))]
-    private bool _isDetailsPaneOpen;
+    [NotifyPropertyChangedFor(nameof(IsConnectionDetailsPaneInline))]
+    private bool _isConnectionDetailsPaneOpened;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsDetailsPaneInline))]
-    private SplitViewDisplayMode _detailsPaneDisplayMode;
+    [NotifyPropertyChangedFor(nameof(IsConnectionDetailsPaneInline))]
+    private SplitViewDisplayMode _connectionDetailsPaneDisplayMode;
 
-    public bool IsDetailsPaneInline => IsDetailsPaneOpen &&
-        (DetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
+    public bool IsConnectionDetailsPaneInline => IsConnectionDetailsPaneOpened &&
+        (ConnectionDetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
 
     public override string Title => Localizer.Get("Home_Page_Title");
 
@@ -64,25 +68,27 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     public HomeViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
+        ISettings settings,
         ConnectionDetailsViewModel connectionDetailsViewModel)
         : base(viewNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
+        _settings = settings;
         _connectionDetailsViewModel = connectionDetailsViewModel;
     }
 
     [RelayCommand]
-    public void CloseDetailsPane()
+    public void CloseConnectionDetailsPane()
     {
-        IsDetailsPaneOpen = false;
+        IsConnectionDetailsPaneOpened = false;
     }
 
-    public void OpenDetailsPane()
+    public void OpenConnectionDetailsPane()
     {
-        IsDetailsPaneOpen = true;
+        // Opening connection details Pane, flag can be reset
+        _reopenDetailsPaneAutomatically = false;
 
-        // Details Pane is opened, reset flag
-        _openDetailsPaneAutomatically = false;
+        IsConnectionDetailsPaneOpened = true;
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -96,24 +102,30 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
             {
                 case ConnectionStatus.Connecting:
                 case ConnectionStatus.Connected:
-                    if (_openDetailsPaneAutomatically && !IsDetailsPaneOpen)
+                    if (_reopenDetailsPaneAutomatically && !IsConnectionDetailsPaneOpened)
                     {
-                        OpenDetailsPane();
+                        OpenConnectionDetailsPane();
                     }
                     break;
 
                 default:
-                    if (IsDetailsPaneOpen)
+                    if (IsConnectionDetailsPaneOpened)
                     {
-                        CloseDetailsPane();
-
                         // When details pane was closed due to disconnection, set flag to reopen it automatically on Connect
-                        _openDetailsPaneAutomatically = true;
+                        _reopenDetailsPaneAutomatically = true;
+
+                        CloseConnectionDetailsPane();
                     }
                     break;
             }
         });
-
+    }
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            _reopenDetailsPaneAutomatically = _settings.IsConnectionDetailsPaneOpened;
+        });
     }
 
     public override void OnNavigatedFrom()
@@ -127,11 +139,13 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     {
         base.OnNavigatedTo(parameter);
 
-        _connectionDetailsViewModel.IsActive = IsDetailsPaneOpen;
+        _connectionDetailsViewModel.IsActive = IsConnectionDetailsPaneOpened;
     }
 
-    partial void OnIsDetailsPaneOpenChanged(bool value)
+    partial void OnIsConnectionDetailsPaneOpenedChanged(bool value)
     {
         _connectionDetailsViewModel.IsActive = value;
+
+        _settings.IsConnectionDetailsPaneOpened = value || _reopenDetailsPaneAutomatically;
     }
 }
