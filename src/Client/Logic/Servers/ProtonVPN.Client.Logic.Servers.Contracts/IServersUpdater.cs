@@ -22,4 +22,5 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 public interface IServersUpdater
 {
     Task UpdateAsync();
+    Task UpdateLoadsAsync();
 }

@@ -13,4 +13,7 @@
     <ItemGroup>
         <Folder Include="Properties\" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+    </ItemGroup>
 </Project>

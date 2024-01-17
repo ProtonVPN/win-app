@@ -17,12 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Common.Core.Threading;
 
-public class ServerTiers
+public class CancellationHandle
 {
-    public const sbyte Free = 0;
-    public const sbyte Basic = 1;
-    public const sbyte Plus = 2;
-    public const sbyte Internal = 3;
+    private volatile CancellationTokenSource _tokenSource = new();
+
+    public CancellationToken Token => _tokenSource.Token;
+
+    public void Cancel()
+    {
+        CancellationTokenSource newSource = new();
+        while (true)
+        {
+            CancellationTokenSource source = _tokenSource;
+            CancellationTokenSource prevSource = Interlocked.CompareExchange(ref _tokenSource, newSource, source);
+            if (prevSource == source)
+            {
+                prevSource.Cancel();
+                prevSource.Dispose();
+                return;
+            }
+        }
+    }
 }

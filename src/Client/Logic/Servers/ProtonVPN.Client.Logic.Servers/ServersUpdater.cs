@@ -20,20 +20,30 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
-public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageReceiver<LoggedInMessage>
+public class ServersUpdater : 
+    IServersUpdater, 
+    IServersCache
 {
     private readonly IApiClient _apiClient;
     private readonly IEntityMapper _entityMapper;
     private readonly IServersFileManager _serversFileManager;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly ISettings _settings;
+    private readonly ILogger _logger;
 
     private readonly ReaderWriterLockSlim _lock = new();
 
@@ -49,12 +59,16 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
     public ServersUpdater(IApiClient apiClient,
         IEntityMapper entityMapper,
         IServersFileManager serversFileManager,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender, 
+        ISettings settings,
+        ILogger logger)
     {
         _apiClient = apiClient;
         _entityMapper = entityMapper;
         _serversFileManager = serversFileManager;
         _eventMessageSender = eventMessageSender;
+        _settings = settings;
+        _logger = logger;
     }
 
     private T GetWithReadLock<T>(Func<T> func)
@@ -70,21 +84,19 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
         }
     }
 
-    public async void Receive(LoggedInMessage message)
-    {
-        await UpdateAsync();
-    }
-
     public async Task UpdateAsync()
     {
-        if (Servers is null || Servers.Count == 0)
+        if (!HasAnyServers())
         {
             IReadOnlyList<Server> servers = _serversFileManager.Read();
             ProcessNewServers(servers);
         }
+
         try
         {
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(string.Empty); // TODO: Use IP address here
+            DeviceLocation? currentLocation = _settings.DeviceLocation;
+
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(currentLocation?.IpAddress ?? string.Empty);
             if (response.Success)
             {
                 List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
@@ -92,8 +104,54 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
                 ProcessNewServers(servers);
             }
         }
-        catch
+        catch(Exception e)
         {
+            _logger.Error<ApiErrorLog>("API: Get servers failed", e);
+        }
+    }
+
+    public async Task UpdateLoadsAsync()
+    {
+        if (!HasAnyServers())
+        {
+            return;
+        }
+
+        try
+        {
+            DeviceLocation? currentLocation = _settings.DeviceLocation;
+
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(currentLocation?.IpAddress ?? string.Empty);
+            if (response.Success)
+            {
+                List<Server> servers = Servers.ToList();
+                List<ServerLoad> serverLoads = _entityMapper.Map<LogicalServerResponse, ServerLoad>(response.Value.Servers);
+
+                foreach (ServerLoad serverLoad in serverLoads)
+                {
+                    Server? server = servers.FirstOrDefault(s => s.Id == serverLoad.Id);
+                    if (server != null)
+                    {
+                        server.Load = serverLoad.Load;
+                        server.Score = serverLoad.Score;
+                        if (serverLoad.Status == 0 || server.Servers.Count <= 1)
+                        {
+                            foreach (PhysicalServer physicalServer in server.Servers)
+                            {
+                                physicalServer.Status = serverLoad.Status;
+                            }
+                            server.Status = serverLoad.Status;
+                        }
+                    }
+                }
+
+                SaveToFile(servers);
+                ProcessNewServers(servers);
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ApiErrorLog>("API: Get servers load failed", e);
         }
     }
 
@@ -127,12 +185,20 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
 
     private IReadOnlyList<string> GetGateways(IReadOnlyList<Server> servers)
     {
-        return servers.Where(s => s.Features.IsSupported(ServerFeatures.B2B) && !string.IsNullOrWhiteSpace(s.GatewayName))
-            .Select(s => s.GatewayName).Distinct().ToList();
+        return servers
+            .Where(s => s.Features.IsSupported(ServerFeatures.B2B) && !string.IsNullOrWhiteSpace(s.GatewayName))
+            .Select(s => s.GatewayName)
+            .Distinct()
+            .ToList();
     }
 
     private void SaveToFile(IList<Server> servers)
     {
         _serversFileManager.Save(servers);
+    }
+
+    private bool HasAnyServers()
+    {
+        return Servers is not null && Servers.Count > 0;
     }
 }

@@ -17,18 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.EntityMapping.Contracts;
 
-public static class ServerFeatureExtensions
+namespace ProtonVPN.Client.Logic.Servers.Mappers;
+
+public class LogicalServerLoadMapper : IMapper<LogicalServerResponse, ServerLoad>
 {
-    public static bool IsSupported(this ulong features, ServerFeatures expectedFeatures)
+    public ServerLoad Map(LogicalServerResponse leftEntity)
     {
-        return ((ServerFeatures)features).IsSupported(expectedFeatures);
+        return leftEntity is null
+            ? null
+            : new ServerLoad
+            {
+                Id = leftEntity.Id,
+                Status = leftEntity.Status,
+                Load = leftEntity.Load,
+                Score = leftEntity.Score,
+            };
     }
 
-    /// <summary>Is at least one of the features supported by one of the expected features.</summary>
-    public static bool IsSupported(this ServerFeatures features, ServerFeatures expectedFeatures)
+    public LogicalServerResponse Map(ServerLoad rightEntity)
     {
-        return features == expectedFeatures || (features & expectedFeatures) > 0;
+        throw new NotImplementedException("We don't need to map to API responses.");
     }
 }

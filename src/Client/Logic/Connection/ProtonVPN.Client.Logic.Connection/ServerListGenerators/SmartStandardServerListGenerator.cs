@@ -22,6 +22,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
@@ -88,7 +91,7 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
             : connectionIntent.Feature.FilterServers(servers);
 
         return SortServers(servers)
-            .Where(s => !s.IsUnderMaintenance)
+            .Where(s => !s.IsUnderMaintenance())
             .Take(MAX_GENERATED_INTENT_PHYSICAL_SERVERS);
     }
 
@@ -101,7 +104,7 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
 
     private IEnumerable<Server> GetUnfilteredServers()
     {
-        return SortServers(_serversLoader.GetServers().Where(s => !s.IsUnderMaintenance));
+        return SortServers(_serversLoader.GetServers().Where(s => !s.IsUnderMaintenance()));
     }
 
     private bool IsSameFeatureAndCountryDifferentCity(Server server,

@@ -19,7 +19,8 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Serialization.Protobuf.Entities;

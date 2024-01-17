@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Attachments;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Helpers;
@@ -47,7 +48,14 @@ public class ReportIssueSender : IReportIssueSender
     private readonly INetworkLogWriter _networkLogWriter;
     private readonly IAttachmentsLoader _attachmentsLoader;
 
-    public ReportIssueSender(ISettings settings, IApiClient apiClient, IUserAuthenticator userAuthenticator, ISystemState systemState, IDeviceIdCache deviceIdCache, INetworkLogWriter networkLogWriter, IAttachmentsLoader attachmentsLoader)
+    public ReportIssueSender(
+        ISettings settings, 
+        IApiClient apiClient, 
+        IUserAuthenticator userAuthenticator, 
+        ISystemState systemState, 
+        IDeviceIdCache deviceIdCache, 
+        INetworkLogWriter networkLogWriter, 
+        IAttachmentsLoader attachmentsLoader)
     {
         _settings = settings;
         _apiClient = apiClient;

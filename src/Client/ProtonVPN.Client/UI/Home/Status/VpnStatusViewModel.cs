@@ -27,7 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 
@@ -98,7 +98,10 @@ public partial class VpnStatusViewModel : ViewModelBase,
             _ => string.Empty
         };
 
-    public VpnStatusViewModel(IConnectionManager connectionManager, ILocalizationProvider localizationProvider, ISettings settings)
+    public VpnStatusViewModel(
+        IConnectionManager connectionManager,
+        ILocalizationProvider localizationProvider,
+        ISettings settings)
         : base(localizationProvider)
     {
         _connectionManager = connectionManager;

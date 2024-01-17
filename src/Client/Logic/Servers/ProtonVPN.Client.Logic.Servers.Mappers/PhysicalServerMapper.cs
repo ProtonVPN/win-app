@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Mappers;
@@ -37,7 +37,6 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
                 Domain = leftEntity.Domain,
                 Label = leftEntity.Label,
                 Status = leftEntity.Status,
-                IsUnderMaintenance = leftEntity.Status == 0,
                 X25519PublicKey = leftEntity.X25519PublicKey,
                 Signature = leftEntity.Signature,
             };

@@ -17,56 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Common.Legacy.Threading;
-using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Logging.Contracts;
 using Timer = System.Timers.Timer;
 
-namespace ProtonVPN.Client.Settings.Observers;
+namespace ProtonVPN.Client.Common.Observers;
 
-public abstract class ObserverBase : IObserver
+public abstract class PollingObserverBase : ObserverBase, IObserver
 {
-    protected readonly ISettings Settings;
-    protected readonly IApiClient ApiClient;
-    protected readonly IConfiguration Config;
-    protected readonly ILogger Logger;
-
     private readonly Timer _timer;
-    private readonly SingleAction _updateAction;
 
     protected abstract TimeSpan PollingInterval { get; }
 
-    public ObserverBase(
-        ISettings settings,
-        IApiClient apiClient,
-        IConfiguration config,
-        ILogger logger)
+    public PollingObserverBase()
+        : base()
     {
-        Settings = settings;
-        ApiClient = apiClient;
-        Config = config;
-        Logger = logger;
-
-        _updateAction = new SingleAction(UpdateAsync);
-
-        _timer = new Timer
-        {
-            Interval = PollingInterval.TotalMilliseconds
-        };
+        _timer = new Timer();
         _timer.Elapsed += OnTimerElapsed;
     }
 
-    protected abstract Task UpdateAsync();
-
-    protected void StartTimer()
+    protected void UpdateAndStartTimer()
     {
         if (!_timer.Enabled)
         {
+            _timer.Interval = PollingInterval.TotalMilliseconds;
+
             _timer.Start();
-            _updateAction.Run();
+            UpdateAction.Run();
         }
     }
 
@@ -78,8 +53,14 @@ public abstract class ObserverBase : IObserver
         }
     }
 
+    protected void UpdateAndRestartTimer()
+    {
+        StopTimer();
+        UpdateAndStartTimer();
+    }
+
     private void OnTimerElapsed(object? sender, EventArgs e)
     {
-        _updateAction.Run();
+        UpdateAction.Run();
     }
 }

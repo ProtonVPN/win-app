@@ -17,14 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
-using ProtonVPN.Client.Settings.Contracts.Models;
+namespace ProtonVPN.Common.Core.Threading;
 
-namespace ProtonVPN.Client.Messages;
-
-public class DeviceLocationChangedMessage : ValueChangedMessage<DeviceLocation>
+public static class TaskCompletionSourceExtensions
 {
-    public DeviceLocationChangedMessage(DeviceLocation value) 
-        : base(value)
-    { }
+    public static Task Wrap(this TaskCompletionSource<object> source, Func<Task> action)
+    {
+        return source.Wrap(async () =>
+        {
+            await action();
+            return null;
+        });
+    }
+
+    public static async Task Wrap<T>(this TaskCompletionSource<T> source, Func<Task<T>> function)
+    {
+        try
+        {
+            source.SetResult(await function());
+        }
+        catch (OperationCanceledException)
+        {
+            source.SetCanceled();
+        }
+        catch (Exception e)
+        {
+            source.SetException(e);
+        }
+    }
 }

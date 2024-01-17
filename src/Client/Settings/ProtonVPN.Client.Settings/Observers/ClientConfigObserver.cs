@@ -19,6 +19,7 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
+using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -29,24 +30,37 @@ using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class ClientConfigObserver : ObserverBase, IClientConfigObserver, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggedOutMessage>
+public class ClientConfigObserver : 
+    PollingObserverBase, 
+    IClientConfigObserver, 
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly List<int> _unsupportedWireGuardPorts = new() { 53 };
 
-    protected override TimeSpan PollingInterval => Config.ClientConfigUpdateInterval;
+    private readonly ISettings _settings;
+    private readonly IApiClient _apiClient;
+    private readonly IConfiguration _config;
+    private readonly ILogger _logger;
+
+    protected override TimeSpan PollingInterval => _config.ClientConfigUpdateInterval;
 
     public ClientConfigObserver(
         ISettings settings,
         IApiClient apiClient,
         IConfiguration config,
         ILogger logger)
-        : base(settings, apiClient, config, logger)
+        : base()
     {
+        _settings = settings;
+        _apiClient = apiClient;
+        _config = config;
+        _logger = logger;
     }
 
     public void Receive(LoggedInMessage message)
     {
-        StartTimer();
+        UpdateAndStartTimer();
     }
 
     public void Receive(LoggedOutMessage message)
@@ -58,21 +72,21 @@ public class ClientConfigObserver : ObserverBase, IClientConfigObserver, IEventM
     {
         try
         {
-            Logger.Info<SettingsLog>("Retrieving Client Config");
+            _logger.Info<SettingsLog>("Retrieving Client Config");
 
-            ApiResponseResult<VpnConfigResponse> response = await ApiClient.GetVpnConfig();
+            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
             if (response.Success)
             {
-                Settings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
-                Settings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
-                Settings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
+                _settings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
+                _settings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
+                _settings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
 
                 // TODO: Retrieve legacy feature flags here?
             }
         }
         catch (Exception e)
         {
-            Logger.Error<SettingsLog>("Failed to retrieve Client Config", e);
+            _logger.Error<SettingsLog>("Failed to retrieve Client Config", e);
         }
     }
 

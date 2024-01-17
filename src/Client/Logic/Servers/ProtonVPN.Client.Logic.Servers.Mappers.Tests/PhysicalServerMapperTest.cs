@@ -19,7 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Servers.Mappers.Tests;
 
@@ -53,7 +53,7 @@ public class PhysicalServerMapperTest
         Assert.AreEqual("0", server.Label);
         Assert.AreEqual("signature", server.Signature);
         Assert.AreEqual(status, server.Status);
-        Assert.AreEqual(expectedIsUnderMaintenance, server.IsUnderMaintenance);
+        Assert.AreEqual(expectedIsUnderMaintenance, server.IsUnderMaintenance());
         Assert.AreEqual("public key", server.X25519PublicKey);
     }
 

@@ -17,17 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Common.Core.Threading;
 
-public class PhysicalServer
+public class TaskCompletedEventArgs
 {
-    public required string Id { get; init; }
-    public required string EntryIp { get; init; }
-    public required string ExitIp { get; init; }
-    public required string Domain { get; init; }
-    public required string Label { get; init; }
-    public required sbyte Status { get; init; }
-    public required bool IsUnderMaintenance { get; init; }
-    public required string X25519PublicKey { get; init; }
-    public required string Signature { get; init; }
+    public Task Task { get; }
+
+    public TaskCompletedEventArgs(Task task)
+    {
+        Task = task;
+    }
+}
+
+public class TaskCompletedEventArgs<TResult>
+{
+    public Task<TResult> Task { get; }
+
+    public TaskCompletedEventArgs(Task<TResult> task)
+    {
+        Task = task;
+    }
 }
