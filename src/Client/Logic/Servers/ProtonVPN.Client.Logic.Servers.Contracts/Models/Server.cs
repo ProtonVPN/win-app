@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 public class Server
 {
@@ -29,13 +31,17 @@ public class Server
     public required string HostCountry { get; init; }
     public required string Domain { get; init; }
     public string? ExitIp { get; init; }
-    public sbyte Status { get; init; }
+    public sbyte Status { get; set; }
     public int Tier { get; init; }
     public ServerFeatures Features { get; init; }
-    public int Load { get; init; }
-    public float Score { get; init; }
+    public int Load { get; set; }
+    public float Score { get; set; }
     public required IReadOnlyList<PhysicalServer> Servers { get; init; }
     public bool IsVirtual { get; init; }
-    public bool IsUnderMaintenance { get; init; }
     public required string GatewayName { get; init; }
+
+    public bool IsUnderMaintenance()
+    {
+        return Status == 0;
+    }
 }

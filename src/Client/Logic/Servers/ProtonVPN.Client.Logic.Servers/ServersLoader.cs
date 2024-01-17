@@ -18,6 +18,9 @@
  */
 
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Servers;
 

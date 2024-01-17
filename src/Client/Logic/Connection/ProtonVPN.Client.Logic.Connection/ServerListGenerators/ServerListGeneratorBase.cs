@@ -19,15 +19,17 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
 public abstract class ServerListGeneratorBase
 {
-    protected abstract int MaxPhysicalServersPerLogical { get; }
-
     private readonly Random _random = new();
+
+    protected abstract int MaxPhysicalServersPerLogical { get; }
 
     protected IEnumerable<PhysicalServer> SelectDistinctPhysicalServers(List<Server> pickedServers)
     {
@@ -38,7 +40,7 @@ public abstract class ServerListGeneratorBase
 
     protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server)
     {
-        return server.Servers.Where(s => !s.IsUnderMaintenance).OrderBy(_ => _random.Next()).Take(MaxPhysicalServersPerLogical);
+        return server.Servers.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => _random.Next()).Take(MaxPhysicalServersPerLogical);
     }
 
     protected bool IsStandardServer(Server server)

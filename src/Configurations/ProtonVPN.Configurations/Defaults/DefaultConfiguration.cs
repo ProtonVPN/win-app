@@ -104,7 +104,8 @@ public static class DefaultConfiguration
     public static TimeSpan ClientConfigUpdateInterval => TimeSpan.FromHours(12);
     public static TimeSpan FeatureFlagsUpdateInterval => TimeSpan.FromHours(2);
     public static TimeSpan AuthCertificateUpdateInterval => TimeSpan.FromMinutes(5);
-    public static TimeSpan ServerUpdateInterval => TimeSpan.FromHours(3);
+    public static TimeSpan ServerUpdateInterval => TimeSpan.FromHours(12);
+    public static TimeSpan ServerLoadUpdateInterval => TimeSpan.FromHours(3);
     public static TimeSpan AnnouncementUpdateInterval => TimeSpan.FromMinutes(150);
     public static TimeSpan AlternativeRoutingCheckInterval => TimeSpan.FromMinutes(30);
     public static TimeSpan ApiUploadTimeout => TimeSpan.FromSeconds(30);

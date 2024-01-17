@@ -18,7 +18,8 @@
  */
 
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Mappers;
@@ -53,7 +54,6 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 Score = leftEntity.Score,
                 Servers = _entityMapper.Map<PhysicalServerResponse, PhysicalServer>(leftEntity.Servers),
                 IsVirtual = !string.IsNullOrEmpty(leftEntity.HostCountry),
-                IsUnderMaintenance = leftEntity.Status == 0,
                 GatewayName = leftEntity.GatewayName,
             };
     }

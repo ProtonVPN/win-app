@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Observers;
+
 namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
 public interface IFeatureFlagsObserver : IObserver

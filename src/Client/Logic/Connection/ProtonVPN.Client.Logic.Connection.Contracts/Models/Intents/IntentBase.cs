@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 

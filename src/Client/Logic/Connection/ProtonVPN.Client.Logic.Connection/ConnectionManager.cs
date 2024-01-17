@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;

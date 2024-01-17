@@ -17,7 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts.Observers;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public interface IObserver
-{ }
+public class City
+{
+    public required string Name { get; init; }
+    public required string CountryCode { get; init; }
+}

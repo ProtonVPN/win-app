@@ -19,8 +19,8 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Features;
+using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -32,11 +32,17 @@ using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
+public class FeatureFlagsObserver : 
+    PollingObserverBase, 
+    IFeatureFlagsObserver
 {
+    private readonly ISettings _settings;
+    private readonly IApiClient _apiClient;
+    private readonly IConfiguration _config;
+    private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
 
-    protected override TimeSpan PollingInterval => Config.FeatureFlagsUpdateInterval;
+    protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
     public bool IsSsoEnabled => IsFlagEnabled("ExternalSSO");
 
@@ -46,16 +52,20 @@ public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
         IConfiguration config,
         ILogger logger,
         IEventMessageSender eventMessageSender)
-        : base(settings, apiClient, config, logger)
+        : base()
     {
+        _settings = settings;
+        _apiClient = apiClient;
+        _config = config;
+        _logger = logger;
         _eventMessageSender = eventMessageSender;
 
-        StartTimer();
+        UpdateAndStartTimer();
     }
 
     private bool IsFlagEnabled(string featureFlagName)
     {
-        return Settings.FeatureFlags
+        return _settings.FeatureFlags
             .FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagName), FeatureFlag.Default)
             .IsEnabled;
     }
@@ -64,19 +74,19 @@ public class FeatureFlagsObserver : ObserverBase, IFeatureFlagsObserver
     {
         try
         {
-            Logger.Info<SettingsLog>("Fetching feature flags");
+            _logger.Info<SettingsLog>("Fetching feature flags");
 
-            ApiResponseResult<FeatureFlagsResponse> response = await ApiClient.GetFeatureFlagsAsync();
+            ApiResponseResult<FeatureFlagsResponse> response = await _apiClient.GetFeatureFlagsAsync();
             if (response.Success)
             {
-                Settings.FeatureFlags = Map(response.Value).ToList();
+                _settings.FeatureFlags = Map(response.Value).ToList();
 
                 _eventMessageSender.Send(new FeatureFlagsChangedMessage());
             }
         }
         catch (Exception e)
         {
-            Logger.Error<SettingsLog>("Failed to retrieve feature flags", e);
+            _logger.Error<SettingsLog>("Failed to retrieve feature flags", e);
         }
     }
 

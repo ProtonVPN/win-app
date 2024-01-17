@@ -21,7 +21,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Mappers.Tests;

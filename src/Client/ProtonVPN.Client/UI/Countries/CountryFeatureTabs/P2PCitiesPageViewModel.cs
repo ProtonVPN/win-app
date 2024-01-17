@@ -23,6 +23,8 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;

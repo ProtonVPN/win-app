@@ -18,26 +18,32 @@
  */
 
 using System.Net.NetworkInformation;
+using System.ServiceModel.Channels;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
-namespace ProtonVPN.Client.Handlers;
+namespace ProtonVPN.Client.Logic.Servers.Observers;
 
-public class DeviceLocationHandler : 
-    IHandler, 
-    IEventMessageReceiver<ConnectionStatusChanged>, 
-    IEventMessageReceiver<ApplicationStartedMessage>,
-    IEventMessageReceiver<ConnectionDetailsChanged>
+public class DeviceLocationObserver :
+    ObserverBase,
+    IDeviceLocationObserver,
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionDetailsChanged>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
-    private const int DISCONNECTING_FETCH_DELAY_IN_MS = 5000;
+    private const int DISCONNECTING_FETCH_DELAY_IN_MS = 8000;
     private const int NETWORK_CHANGED_FETCH_DELAY_IN_MS = 2000;
     private const int APP_START_FETCH_DELAY_IN_MS = 0;
 
@@ -49,7 +55,13 @@ public class DeviceLocationHandler :
 
     private bool _isFetchInProgress = false;
 
-    public DeviceLocationHandler(ILogger logger, IApiClient apiClient, ISettings settings, IConnectionManager connectionManager, IEventMessageSender eventMessageSender)
+    public DeviceLocationObserver(
+        ILogger logger,
+        IApiClient apiClient,
+        ISettings settings,
+        IConnectionManager connectionManager,
+        IEventMessageSender eventMessageSender)
+        : base()
     {
         _logger = logger;
         _apiClient = apiClient;
@@ -58,13 +70,16 @@ public class DeviceLocationHandler :
         _eventMessageSender = eventMessageSender;
 
         NetworkChange.NetworkAddressChanged += OnNetworkAddressChanged;
+
+        Initialize();
     }
+
     public void Receive(ConnectionDetailsChanged message)
     {
         DeviceLocation? currentLocation = _settings.DeviceLocation;
 
         // Connection details does not contain the ISP info. If IP address has not changed, we can assume ISP is the same as previously.
-        string isp = currentLocation != null && message.ClientIpAddress == currentLocation?.IpAddress 
+        string isp = currentLocation != null && message.ClientIpAddress == currentLocation?.IpAddress
             ? currentLocation.Value.Isp
             : string.Empty;
 
@@ -76,10 +91,36 @@ public class DeviceLocationHandler :
         if (_connectionManager.IsDisconnected)
         {
             await FetchDeviceLocationAsync(DISCONNECTING_FETCH_DELAY_IN_MS);
-        };
+        }
     }
 
-    public async void Receive(ApplicationStartedMessage message)
+    protected override async Task UpdateAsync()
+    {
+        try
+        {
+            if (!_connectionManager.IsDisconnected)
+            {
+                // API Location endpoint cannot be called while connected to a VPN server
+                return;
+            }
+
+            _logger.Info<SettingsLog>("Retrieving current device location");
+
+            ApiResponseResult<DeviceLocationResponse> response = await _apiClient.GetLocationDataAsync();
+            if (response.Success)
+            {
+                DeviceLocationResponse currentLocation = response.Value;
+
+                UpdateDeviceLocation(currentLocation.Ip, currentLocation.Country, currentLocation.Isp);
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("Error occured while fetching device location.", e);
+        }
+    }
+
+    private async void Initialize()
     {
         await FetchDeviceLocationAsync(APP_START_FETCH_DELAY_IN_MS);
     }
@@ -91,6 +132,7 @@ public class DeviceLocationHandler :
 
     private async Task FetchDeviceLocationAsync(int delayInMs)
     {
+
         if (_isFetchInProgress)
         {
             return;
@@ -102,32 +144,11 @@ public class DeviceLocationHandler :
 
             await Task.Delay(delayInMs);
 
-            DeviceLocationResponse? response = await GetDeviceLocationAsync();
-            if (response != null)
-            {
-                UpdateDeviceLocation(response.Ip, response.Country, response.Isp);
-            }
+            await UpdateAsync();
         }
         finally
         {
             _isFetchInProgress = false;
-        }
-    }
-
-    private async Task<DeviceLocationResponse?> GetDeviceLocationAsync()
-    {
-        try
-        {
-            ApiResponseResult<DeviceLocationResponse> response = await _apiClient.GetLocationDataAsync();
-
-            return response.Success
-                ? response.Value
-                : null;
-        }
-        catch (Exception e)
-        {
-            _logger.Error<AppLog>("Error occured while fetching user location.", e);
-            return null;
         }
     }
 
@@ -141,7 +162,13 @@ public class DeviceLocationHandler :
         };
 
         _settings.DeviceLocation = deviceLocation;
+    }
 
-        _eventMessageSender.Send(new DeviceLocationChangedMessage(deviceLocation));
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.DeviceLocation))
+        {
+            _eventMessageSender.Send(new DeviceLocationChangedMessage(_settings.DeviceLocation));
+        }
     }
 }

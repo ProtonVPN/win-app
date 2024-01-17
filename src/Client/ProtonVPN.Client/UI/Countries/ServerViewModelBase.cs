@@ -17,14 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Connection;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Resource.Graphics.VectorImages;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -57,7 +54,7 @@ public abstract class ServerViewModelBase : LocationViewModelBase
         Id = server.Id;
         Name = server.Name;
         Load = server.Load / 100d;
-        IsUnderMaintenance = server.IsUnderMaintenance;
+        IsUnderMaintenance = server.IsUnderMaintenance();
         ExitCountryCode = server.ExitCountry;
     }
 }

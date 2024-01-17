@@ -23,7 +23,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -84,7 +84,7 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
 
         if (connectionIntent.Feature is SecureCoreFeatureIntent secureCoreFeatureIntent)
         {
-            CountryLocationIntent countryLocationIntent = connectionIntent.Location is CountryLocationIntent cli ? cli : new CountryLocationIntent();            
+            CountryLocationIntent countryLocationIntent = connectionIntent.Location is CountryLocationIntent cli ? cli : new CountryLocationIntent();
             smartList = SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent).ToList();
         }
         else

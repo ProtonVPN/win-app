@@ -49,6 +49,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan FeatureFlagsUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AuthCertificateUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan ServerUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan ServerLoadUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AnnouncementUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AlternativeRoutingCheckInterval => Get();
     public TimeSpan ApiUploadTimeout => Get();
