@@ -47,6 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     CompactModeThresholdWidth="408"
                     CompactPaneLength="48"
                     DisplayModeChanged="OnNavigationViewDisplayModeChanged"
+                    IsPaneOpen="{x:Bind ViewModel.IsNavigationPaneOpened, Mode=TwoWay}"
                     ExpandedModeThresholdWidth="520"
                     IsBackButtonVisible="Collapsed"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled}"

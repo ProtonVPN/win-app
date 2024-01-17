@@ -33,7 +33,9 @@ public static class DefaultSettings
     public static bool IsPaid = false;
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
-    public static bool IsNotificationEnabled = true;
+    public static bool IsNavigationPaneOpened = true;
+    public static bool IsConnectionDetailsPaneOpened = false;
+    public static bool IsNotificationEnabled = false; // TODO: revert back to be 'true' by default once implemented
     public static bool IsBetaAccessEnabled = false;
     public static bool AreAutomaticUpdatesEnabled = true;
     public static bool IsShareStatisticsEnabled = true;
@@ -45,7 +47,7 @@ public static class DefaultSettings
     public static int[] WireGuardPorts = { 443, 88, 1224, 51820, 500, 4500 };
     public static int[] OpenVpnTcpPorts = { 443, 1194, 4569, 5060, 80 };
     public static int[] OpenVpnUdpPorts = { 443, 3389, 8080, 8443 };
-    public static bool IsAutoLaunchEnabled = true;
+    public static bool IsAutoLaunchEnabled = false; // TODO: revert back to be 'true' by default once implemented
     public static AutoLaunchMode AutoLaunchMode = AutoLaunchMode.MinimizeToSystemTray;
     public static bool IsAutoConnectEnabled = true;
     public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;

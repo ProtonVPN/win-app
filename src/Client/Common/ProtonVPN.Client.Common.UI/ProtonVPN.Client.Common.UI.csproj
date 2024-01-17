@@ -603,6 +603,7 @@
         <None Remove="Assets\Illustrations\vpn-tray-protected.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-unprotected.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-warning.ico" />
+        <None Remove="Assets\Illustrations\world-map.svg" />
         <None Remove="Controls\CountryFlagControl.xaml" />
         <None Remove="Controls\DeviceLocationControl.xaml" />
         <None Remove="Controls\DualCommandsRowControl.xaml" />
@@ -1676,6 +1677,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\standard-connection.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\world-map.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

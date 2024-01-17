@@ -109,7 +109,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <StackPanel Padding="16,16,16,0"
-                Background="{ThemeResource BackgroundNormColorBrush}"
                 Orientation="Vertical"
                 Spacing="12">
         <Grid ColumnSpacing="12">
