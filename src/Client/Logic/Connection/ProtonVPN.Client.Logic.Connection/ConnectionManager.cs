@@ -87,11 +87,25 @@ public class ConnectionManager : IInternalConnectionManager,
         connectionIntent ??= ConnectionIntent.Default;
 
         _connectionDetails = new ConnectionDetails(connectionIntent);
-        SetConnectionStatus(ConnectionStatus.Connecting);
 
         ConnectionRequestIpcEntity request = _connectionRequestCreator.Create(connectionIntent);
-        
-        await _serviceCaller.ConnectAsync(request);
+
+        await SendRequestIfValidAsync(request);
+    }
+
+    private async Task<bool> SendRequestIfValidAsync(ConnectionRequestIpcEntity request)
+    {
+        if (request.Servers.Length > 0)
+        {
+            SetConnectionStatus(ConnectionStatus.Connecting);
+            await _serviceCaller.ConnectAsync(request);
+            return true;
+        }
+        else
+        {
+            _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = VpnError.NoServers });
+            return false;
+        }
     }
 
     /// <summary>Reconnects if the most recent action was a Connect and not a Disconnect.</summary>
@@ -111,8 +125,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
         ConnectionRequestIpcEntity request = _reconnectionRequestCreator.Create(connectionIntent);
 
-        await _serviceCaller.ConnectAsync(request);
-        return true;
+        return await SendRequestIfValidAsync(request);
     }
 
     public async Task DisconnectAsync()
