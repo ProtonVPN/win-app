@@ -48,7 +48,6 @@ public class StaticConfiguration : IStaticConfiguration
     public string DiagnosticLogsZipFilePath { get; } = DefaultConfiguration.DiagnosticLogsZipFilePath;
     public string GuestHoleServersJsonFilePath { get; } = DefaultConfiguration.GuestHoleServersJsonFilePath;
     public string ServiceSettingsFilePath { get; } = DefaultConfiguration.ServiceSettingsFilePath;
-    public string LegacyUserConfigFilePath { get; } = DefaultConfiguration.LegacyUserConfigFilePath;
     public string LegacyAppLocalData { get; } = DefaultConfiguration.LegacyAppLocalData;
 
     public string ServersJsonCacheFilePath { get; } = DefaultConfiguration.ServersJsonCacheFilePath;

@@ -43,6 +43,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<VpnStateIpcEntityHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<VpnServiceSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
 
         RegisterRequestCreators(builder);
         RegisterServerListGenerators(builder);
@@ -56,6 +57,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<ConnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleConnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<DisconnectionRequestCreator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<MainSettingsRequestCreator>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterServerListGenerators(ContainerBuilder builder)

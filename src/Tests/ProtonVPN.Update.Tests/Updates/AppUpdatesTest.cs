@@ -18,15 +18,17 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
@@ -40,6 +42,9 @@ namespace ProtonVPN.Update.Tests.Updates
     [TestClass]
     public class AppUpdatesTest
     {
+        private IConfiguration _configuration;
+        private IDeviceIdCache _deviceIdCache;
+        private IHashGenerator _hashGenerator;
         private ILogger _logger;
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
@@ -52,6 +57,9 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestInitialize]
         public void TestInitialize()
         {
+            _configuration = Substitute.For<IConfiguration>();
+            _deviceIdCache = Substitute.For<IDeviceIdCache>();
+            _hashGenerator = Substitute.For<IHashGenerator>();
             _logger = Substitute.For<ILogger>();
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
@@ -77,7 +85,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
         private IAppUpdates AppUpdates()
         {
-            return new AppUpdates(_config, _launchableFile, _logger);
+            return new AppUpdates(_config, _launchableFile, _logger, _hashGenerator, _deviceIdCache, _configuration);
         }
 
         #endregion
@@ -87,7 +95,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public void AppUpdates_ShouldNotTrow()
         {
-            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
+            Action f = () => AppUpdates();
 
             f.Should().NotThrow<Exception>();
         }
@@ -95,7 +103,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public void AppUpdates_ShouldTrow_WhenConfig_IsNull()
         {
-            Action f = () => new AppUpdates(null, _launchableFile, _logger);
+            Action f = () => new AppUpdates(null, _launchableFile, _logger, _hashGenerator, _deviceIdCache, _configuration);
 
             f.Should().Throw<ArgumentException>();
         }
@@ -105,7 +113,7 @@ namespace ProtonVPN.Update.Tests.Updates
         {
             _config.FeedHttpClient = null;
             _config.FileHttpClient = null;
-            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
+            Action f = () => AppUpdates();
 
             f.Should().Throw<ArgumentException>();
         }
@@ -114,7 +122,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenCurrentVersion_IsNull()
         {
             _config.CurrentVersion = null;
-            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
+            Action f = () => AppUpdates();
 
             f.Should().Throw<ArgumentException>();
         }
@@ -123,7 +131,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenFeedUri_IsNull()
         {
             _config.FeedUriProvider = null;
-            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
+            Action f = () => AppUpdates();
 
             f.Should().Throw<ArgumentException>();
         }
@@ -132,7 +140,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenUpdatesPath_IsNull()
         {
             _config.UpdatesPath = null;
-            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
+            Action f = () => AppUpdates();
 
             f.Should().Throw<ArgumentException>();
         }
@@ -141,7 +149,7 @@ namespace ProtonVPN.Update.Tests.Updates
         public void AppUpdates_ShouldTrow_WhenUpdatesPath_IsEmpty()
         {
             _config.UpdatesPath = "";
-            Action f = () => new AppUpdates(_config, _launchableFile, _logger);
+            Action f = () => AppUpdates();
 
             f.Should().Throw<ArgumentException>();
         }

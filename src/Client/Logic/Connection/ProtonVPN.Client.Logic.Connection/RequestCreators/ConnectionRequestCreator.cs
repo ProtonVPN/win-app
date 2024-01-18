@@ -50,8 +50,9 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         IAuthKeyManager authKeyManager,
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
-        ISmartStandardServerListGenerator smartStandardServerListGenerator)
-        : base(settings, entityMapper)
+        ISmartStandardServerListGenerator smartStandardServerListGenerator,
+        IMainSettingsRequestCreator mainSettingsRequestCreator)
+        : base(settings, entityMapper, mainSettingsRequestCreator)
     {
         IntentServerListGenerator = intentServerListGenerator;
         SmartSecureCoreServerListGenerator = smartSecureCoreServerListGenerator;

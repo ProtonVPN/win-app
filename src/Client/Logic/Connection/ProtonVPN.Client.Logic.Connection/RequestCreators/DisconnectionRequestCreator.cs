@@ -30,8 +30,9 @@ public class DisconnectionRequestCreator : RequestCreatorBase, IDisconnectionReq
 {
     public DisconnectionRequestCreator(
         ISettings settings,
-        IEntityMapper entityMapper)
-        : base(settings, entityMapper)
+        IEntityMapper entityMapper,
+        IMainSettingsRequestCreator mainSettingsRequestCreator)
+        : base(settings, entityMapper, mainSettingsRequestCreator)
     { }
 
     public DisconnectionRequestIpcEntity Create(VpnError vpnError = VpnError.None)

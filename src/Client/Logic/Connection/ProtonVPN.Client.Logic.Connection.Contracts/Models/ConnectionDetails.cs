@@ -33,6 +33,7 @@ public class ConnectionDetails
     public string? CountryCode { get; set; }
     public string? CityState { get; set; }
     public string? ServerId { get; set; }
+    public ServerTiers? ServerTier { get; set; }
     public string? ServerName { get; set; }
     public double? ServerLoad { get; set; }
     public TimeSpan? ServerLatency { get; set; }
@@ -47,6 +48,7 @@ public class ConnectionDetails
         CountryCode = server?.ExitCountry;
         CityState = server?.City;
         ServerId = server?.Id;
+        ServerTier = server is not null ? (ServerTiers)server.Tier : null;
         ServerName = server?.Name;
         ServerLoad = server?.Load / 100D;
         ServerLatency = TimeSpan.FromMilliseconds(46); // TODO: implement real value

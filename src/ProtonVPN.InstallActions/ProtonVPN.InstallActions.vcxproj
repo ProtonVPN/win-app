@@ -202,7 +202,6 @@
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AppSettingsMigration.h" />
     <ClInclude Include="Installer.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Os.h" />
@@ -216,7 +215,6 @@
     <ClInclude Include="WinApiErrorException.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AppSettingsMigration.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Installer.cpp" />
     <ClCompile Include="Os.cpp" />

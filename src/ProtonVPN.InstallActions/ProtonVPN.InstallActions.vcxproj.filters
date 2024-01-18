@@ -48,9 +48,6 @@
     <ClInclude Include="WinApiErrorException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AppSettingsMigration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -81,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WinApiErrorException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AppSettingsMigration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

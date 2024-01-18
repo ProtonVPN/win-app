@@ -206,21 +206,6 @@ string Os::GetEnvVariable(string name)
     return result;
 }
 
-string Os::GetLocalAppDataPath()
-{
-    return GetEnvVariable("LOCALAPPDATA");
-}
-
-string Os::GetProgramDataPath()
-{
-    return GetEnvVariable("PROGRAMDATA");
-}
-
-string Os::GetTmpFolderPath()
-{
-    return GetEnvVariable("TMP");
-}
-
 long Os::ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* target_path)
 {
     HRESULT hr;

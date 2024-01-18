@@ -29,14 +29,14 @@ namespace ProtonVPN.Client.Logic.Services
     {
         private readonly IGrpcServer _grpcServer;
         private readonly ILogger _logger;
-        private readonly IServiceCaller _serviceCaller;
+        private readonly IVpnServiceCaller _vpnServiceCaller;
 
         public ProcessCommunicationStarter(IGrpcServer grpcServer,
-            ILogger logger, IServiceCaller serviceCaller)
+            ILogger logger, IVpnServiceCaller vpnServiceCaller)
         {
             _grpcServer = grpcServer;
             _logger = logger;
-            _serviceCaller = serviceCaller;
+            _vpnServiceCaller = vpnServiceCaller;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -45,7 +45,7 @@ namespace ProtonVPN.Client.Logic.Services
             {
                 int appServerPort = StartGrpcServerAndGetPort();
                 _logger.Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort} to service.");
-                await _serviceCaller.RegisterClientAsync(appServerPort, cancellationToken);
+                await _vpnServiceCaller.RegisterClientAsync(appServerPort, cancellationToken);
             }
             catch (Exception e)
             {

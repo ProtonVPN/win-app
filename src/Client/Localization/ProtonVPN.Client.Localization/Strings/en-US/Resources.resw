@@ -2280,4 +2280,20 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Common_Actions_Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Home_Update_Confirmation_Message" xml:space="preserve">
+    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
+    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  </data>
+  <data name="Home_Update_Confirmation_Title" xml:space="preserve">
+    <value>Update Proton VPN?</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable" xml:space="preserve">
+    <value>Update available</value>
+  </data>
+  <data name="Home_Update_UpdateReady" xml:space="preserve">
+    <value>Update ready</value>
+  </data>
 </root>

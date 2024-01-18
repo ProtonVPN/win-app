@@ -21,7 +21,7 @@ namespace ProtonVPN.Builds.Variables;
 
 public static class GlobalConfig
 {
-    public const string SentryDsn = "https://215b16893fe24a448dba04afaef8dff7@api.protonvpn.ch/core/v4/reports/sentry/23";
+    public const string SentryDsn = "";
     public const string InternalReleaseUpdateUrl = "";
 
     public const string BtiApiDomain = "";

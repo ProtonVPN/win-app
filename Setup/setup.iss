@@ -17,6 +17,7 @@
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
+#define DisableAutoUpdateArg "/DisableAutoUpdate"
 
 #define SourcePath GetEnv("BUILD_PATH")
 #define IsBTISource SourcePath == "BTI/publish"
@@ -154,9 +155,6 @@ external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload u
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
-function SaveOldUserConfigFile(): Integer;
-external 'SaveOldUserConfigFile@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
 function InstallWindowsService(name, displayName, path: String): Integer;
 external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
@@ -182,7 +180,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent: Boolean;
+  IsToReboot, IsVerySilent, IsToDisableAutoUpdate: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -302,6 +300,14 @@ begin
     Result := ComparePackedVersion(packVersion1, packVersion2);
 end;
 
+procedure SetIsToDisableAutoUpdate();
+begin
+  IsToDisableAutoUpdate := Pos('{#DisableAutoUpdateArg}', GetCmdTail()) > 0;
+  if IsToDisableAutoUpdate = true then begin
+    Log('The app will be launched with auto updates disabled.');
+  end;
+end;
+
 function InitializeSetup(): Boolean;
 var
   Version: String;
@@ -309,6 +315,7 @@ var
   WindowsVersion: TWindowsVersion;
 begin
   SetIsVerySilent();
+  SetIsToDisableAutoUpdate();
   if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
     if WizardSilent() = false then begin
       MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
@@ -358,8 +365,6 @@ end;
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
     DeleteNonRunningVersions(ExpandConstant('{app}'));
-    Log('Trying to save user settings for the old ProtonVPN app if it is installed');
-    SaveOldUserConfigFile();
     Log('Trying to update taskbar icon path if exists');
     UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
     Log('Trying to uninstall an old version of ProtonVPN app');
@@ -389,6 +394,9 @@ begin
         langCode := ActiveLanguage();
         StringChangeEx(langCode, '_', '-', True);
         launcherArgs := '/lang ' + langCode;
+      end;
+      if IsToDisableAutoUpdate = true then begin
+        launcherArgs := launcherArgs + ' {#DisableAutoUpdateArg}';
       end;
       if IsVerySilent = false then begin
         ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);

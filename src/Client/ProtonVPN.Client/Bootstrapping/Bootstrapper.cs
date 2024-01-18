@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
@@ -35,6 +36,7 @@ public class Bootstrapper : IBootstrapper
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IUpdatesManager _updatesManager;
     private readonly ISettingsMigrator _settingsMigrator;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
@@ -45,6 +47,7 @@ public class Bootstrapper : IBootstrapper
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
         IUserAuthenticator userAuthenticator,
+        IUpdatesManager updatesManager,
         ISettingsMigrator settingsMigrator,
         ISettings settings,
         ILogger logger)
@@ -54,6 +57,7 @@ public class Bootstrapper : IBootstrapper
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
         _userAuthenticator = userAuthenticator;
+        _updatesManager = updatesManager;
         _settingsMigrator = settingsMigrator;
         _settings = settings;
         _logger = logger;
@@ -68,6 +72,7 @@ public class Bootstrapper : IBootstrapper
             await _settingsMigrator.MigrateSettingsAsync();
 
             _mainWindowActivator.Show();
+            _updatesManager.Initialize();
 
             await Task.WhenAll(
                 TryAuthenticateAsync(),
@@ -107,6 +112,10 @@ public class Bootstrapper : IBootstrapper
             if (arg.EqualsIgnoringCase("-RestoreDefaultSettings"))
             {
                 _settingsRestorer.Restore();
+            }
+            else if (arg.EqualsIgnoringCase("/DisableAutoUpdate"))
+            {
+                _settings.AreAutomaticUpdatesEnabled = false;
             }
         }
     }

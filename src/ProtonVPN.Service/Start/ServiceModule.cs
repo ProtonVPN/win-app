@@ -20,6 +20,7 @@
 using System;
 using Autofac;
 using ProtonVPN.Common.Installers.Extensions;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
@@ -120,6 +121,8 @@ internal class ServiceModule : Module
         builder.RegisterType<HttpClients>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
 
         RegisterModules(builder);
     }

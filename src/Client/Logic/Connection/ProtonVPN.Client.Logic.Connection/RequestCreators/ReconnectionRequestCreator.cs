@@ -39,9 +39,10 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         IAuthKeyManager authKeyManager,
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
-        ISmartStandardServerListGenerator smartStandardServerListGenerator)
+        ISmartStandardServerListGenerator smartStandardServerListGenerator,
+        IMainSettingsRequestCreator mainSettingsRequestCreator)
         : base(settings, entityMapper, authKeyManager, intentServerListGenerator,
-            smartSecureCoreServerListGenerator, smartStandardServerListGenerator)
+            smartSecureCoreServerListGenerator, smartStandardServerListGenerator, mainSettingsRequestCreator)
     {
     }
 
