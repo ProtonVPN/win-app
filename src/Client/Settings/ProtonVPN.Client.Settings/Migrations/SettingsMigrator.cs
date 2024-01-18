@@ -77,14 +77,20 @@ public class SettingsMigrator : ISettingsMigrator
 
     public async Task MigrateSettingsAsync()
     {
-        if (_settings.IsSettingsMigrationDone || !File.Exists(_configuration.LegacyUserConfigFilePath))
+        if (_settings.IsSettingsMigrationDone)
+        {
+            return;
+        }
+
+        string? legacyUserConfigFilePath = GetLegacyUserConfigFilePath();
+        if (legacyUserConfigFilePath is null || !File.Exists(legacyUserConfigFilePath))
         {
             return;
         }
 
         try
         {
-            await MigrateSettingsFileAsync(_configuration.LegacyUserConfigFilePath);
+            await MigrateSettingsFileAsync(legacyUserConfigFilePath);
 
             if (Directory.Exists(_configuration.LegacyAppLocalData))
             {
@@ -95,6 +101,50 @@ public class SettingsMigrator : ISettingsMigrator
         {
             _logger.Error<AppLog>("Failed to migrate user settings.", e);
         }
+    }
+
+    public string? GetLegacyUserConfigFilePath()
+    {
+        string appDataFolderPath = _configuration.LegacyAppLocalData;
+        if (!Directory.Exists(appDataFolderPath))
+        {
+            return null;
+        }
+
+        // v3
+        string? latestVersionFolderPath = GetOldUserConfigPathByFolderPrefix(appDataFolderPath, "ProtonVPN_Url_");
+        if (string.IsNullOrEmpty(latestVersionFolderPath))
+        {
+            // v2
+            latestVersionFolderPath = GetOldUserConfigPathByFolderPrefix(appDataFolderPath, "ProtonVPN.exe_Url_");
+        }
+
+        return string.IsNullOrEmpty(latestVersionFolderPath) ? null : Path.Combine(latestVersionFolderPath, "user.config");
+    }
+
+    public string? GetOldUserConfigPathByFolderPrefix(string appDataFolderPath, string prefix)
+    {
+        DateTime latestVersionTime = DateTime.MinValue;
+        string? latestVersionFolderPath = null;
+
+        foreach (string folderPath in Directory.GetDirectories(appDataFolderPath))
+        {
+            string? folderName = Path.GetFileName(folderPath);
+            if (folderName != null && folderName.StartsWith(prefix))
+            {
+                foreach (string versionFolderPath in Directory.GetDirectories(folderPath))
+                {
+                    DateTime versionFolderLastWriteTime = Directory.GetLastWriteTime(versionFolderPath);
+                    if (versionFolderLastWriteTime > latestVersionTime)
+                    {
+                        latestVersionTime = versionFolderLastWriteTime;
+                        latestVersionFolderPath = versionFolderPath;
+                    }
+                }
+            }
+        }
+
+        return latestVersionFolderPath;
     }
 
     private async Task MigrateSettingsFileAsync(string filePath)

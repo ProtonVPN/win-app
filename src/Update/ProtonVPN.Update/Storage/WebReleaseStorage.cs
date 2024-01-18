@@ -23,13 +23,16 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
+using ProtonVPN.Common.Legacy.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Common.Legacy.OS.Net.Http;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Responses;
-using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonVPN.Update.Storage
 {
@@ -42,11 +45,43 @@ namespace ProtonVPN.Update.Storage
 
         private readonly IAppUpdateConfig _config;
         private readonly ILogger _logger;
+        private readonly IHashGenerator _hashGenerator;
+        private readonly IDeviceIdCache _deviceIdCache;
+        private readonly IConfiguration _configuration;
+        private readonly Lazy<decimal> _deviceRolloutPercentage;
 
-        public WebReleaseStorage(IAppUpdateConfig config, ILogger logger)
+        public WebReleaseStorage(
+            IAppUpdateConfig config,
+            ILogger logger,
+            IHashGenerator hashGenerator,
+            IDeviceIdCache deviceIdCache,
+            IConfiguration configuration)
         {
             _config = config;
             _logger = logger;
+            _hashGenerator = hashGenerator;
+            _deviceIdCache = deviceIdCache;
+            _configuration = configuration;
+            _deviceRolloutPercentage = new(CreateDeviceRolloutPercentage);
+        }
+
+        private decimal CreateDeviceRolloutPercentage()
+        {
+            decimal deviceRolloutPercentage;
+            if (_configuration.DeviceRolloutPercentage.HasValue)
+            {
+                deviceRolloutPercentage = _configuration.DeviceRolloutPercentage.Value;
+                _logger.Info<AppUpdateCheckLog>($"Using device rollout percentage {deviceRolloutPercentage} " +
+                                                $"from configuration.");
+            }
+            else
+            {
+                deviceRolloutPercentage =
+                    _hashGenerator.HashToPercentage(_deviceIdCache.GetDeviceId() + _config.CurrentVersion) * 100M;
+                _logger.Info<AppUpdateCheckLog>($"Generated device rollout percentage {deviceRolloutPercentage} " +
+                                                $"for device Id '{_deviceIdCache.GetDeviceId()}' and version '{_config.CurrentVersion}'.");
+            }
+            return deviceRolloutPercentage;
         }
 
         public async Task<IEnumerable<Release>> Releases()
@@ -78,7 +113,28 @@ namespace ProtonVPN.Update.Storage
             return (r.ReleaseDate is null || r.ReleaseDate.Value <= DateTimeOffset.UtcNow) &&
                    (r.MinimumOsVersion is null ||
                     !Version.TryParse(r.MinimumOsVersion, out Version minimumOsVersion) ||
-                    OSVersion.Get() >= minimumOsVersion);
+                    Environment.OSVersion.Version >= minimumOsVersion) &&
+                   IsCoveredByRollout(r.RolloutPercentage);
+        }
+
+        private bool IsCoveredByRollout(decimal? rolloutPercentage)
+        {
+            if (rolloutPercentage is null || rolloutPercentage.Value >= 100M)
+            {
+                return true;
+            }
+            if (rolloutPercentage.Value <= 0M)
+            {
+                return false;
+            }
+            try
+            {   // deviceRolloutPercentage <= rolloutPercentage
+                return decimal.Compare(_deviceRolloutPercentage.Value, rolloutPercentage.Value) <= 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private async Task<CategoriesResponse> GetAsync(Uri feedUrl)

@@ -82,7 +82,7 @@ public class AppController : IAppController
         _logger.Info<ProcessCommunicationLog>(
             $"Received update state change with status {updateStateDetails.Status}.");
 
-#warning TODO: Should invoke something
+        _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(updateStateDetails));
     }
 
     public async Task NetShieldStatisticChange(NetShieldStatisticIpcEntity netShieldStatistic)

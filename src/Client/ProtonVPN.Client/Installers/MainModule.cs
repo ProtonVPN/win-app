@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Feedback.Installers;
 using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Logic.Servers.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
+using ProtonVPN.Client.Logic.Updates.Installers;
 using ProtonVPN.Client.Notifications.Installers;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Configurations.Installers;
@@ -79,6 +80,7 @@ public class MainModule : Module
                .RegisterModule<FeedbackLogicModule>()
                .RegisterModule<DnsModule>()
                .RegisterModule<SerializationModule>()
+               .RegisterModule<UpdatesLogicModule>()
                .RegisterModule<IssueReportingModule>()
                .RegisterModule<NotificationsModule>();
     }

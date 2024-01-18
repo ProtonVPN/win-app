@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -31,8 +32,9 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
     
     protected ConnectionRequestCreatorBase(
         ISettings settings,
-        IEntityMapper entityMapper)
-        : base(settings, entityMapper)
+        IEntityMapper entityMapper,
+        IMainSettingsRequestCreator mainSettingsRequestCreator)
+        : base(settings, entityMapper, mainSettingsRequestCreator)
     { }
 
     protected abstract VpnCredentialsIpcEntity GetVpnCredentials();

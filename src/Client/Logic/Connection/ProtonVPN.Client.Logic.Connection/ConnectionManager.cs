@@ -43,7 +43,7 @@ public class ConnectionManager : IInternalConnectionManager,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ILogger _logger;
-    private readonly IServiceCaller _serviceCaller;
+    private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEntityMapper _entityMapper;
     private readonly IConnectionRequestCreator _connectionRequestCreator;
@@ -64,7 +64,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public ConnectionManager(
         ILogger logger,
-        IServiceCaller serviceCaller,
+        IVpnServiceCaller vpnServiceCaller,
         IEventMessageSender eventMessageSender,
         IEntityMapper entityMapper,
         IConnectionRequestCreator connectionRequestCreator,
@@ -73,7 +73,7 @@ public class ConnectionManager : IInternalConnectionManager,
         IServersLoader serversLoader)
     {
         _logger = logger;
-        _serviceCaller = serviceCaller;
+        _vpnServiceCaller = vpnServiceCaller;
         _eventMessageSender = eventMessageSender;
         _entityMapper = entityMapper;
         _connectionRequestCreator = connectionRequestCreator;
@@ -98,7 +98,7 @@ public class ConnectionManager : IInternalConnectionManager,
         if (request.Servers.Length > 0)
         {
             SetConnectionStatus(ConnectionStatus.Connecting);
-            await _serviceCaller.ConnectAsync(request);
+            await _vpnServiceCaller.ConnectAsync(request);
             return true;
         }
         else
@@ -134,7 +134,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
 
-        await _serviceCaller.DisconnectAsync(request);
+        await _vpnServiceCaller.DisconnectAsync(request);
     }
 
     public ConnectionDetails? GetConnectionDetails()
@@ -144,7 +144,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task<TrafficBytes> GetTrafficBytesAsync()
     {
-        Result<TrafficBytesIpcEntity> trafficBytes = await _serviceCaller.GetTrafficBytesAsync();
+        Result<TrafficBytesIpcEntity> trafficBytes = await _vpnServiceCaller.GetTrafficBytesAsync();
         return trafficBytes.Success
             ? _entityMapper.Map<TrafficBytesIpcEntity, TrafficBytes>(trafficBytes.Value)
             : TrafficBytes.Zero;
@@ -226,7 +226,7 @@ public class ConnectionManager : IInternalConnectionManager,
             ConnectionStatus == ConnectionStatus.Connected &&
             message.NewValue is not null)
         {
-            await _serviceCaller.UpdateAuthCertificateAsync(new AuthCertificateIpcEntity
+            await _vpnServiceCaller.UpdateAuthCertificateAsync(new AuthCertificateIpcEntity
             {
                 Certificate = (string)message.NewValue
             });

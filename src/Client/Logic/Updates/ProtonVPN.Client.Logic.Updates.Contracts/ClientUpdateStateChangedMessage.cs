@@ -17,21 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.Update.Contracts;
 
-namespace ProtonVPN.Client.Logic.Services.Contracts;
+namespace ProtonVPN.Client.Logic.Updates.Contracts;
 
-public interface IServiceCaller
+public class ClientUpdateStateChangedMessage
 {
-    Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
+    public AppUpdateStateContract? State { get; init; }
 
-    Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
-
-    Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
-
-    Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
-
-    Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate);
+    public required bool IsUpdateAvailable { get; init; }
 }

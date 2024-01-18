@@ -28,7 +28,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public abstract class ServiceCallerBase
+public abstract class ServiceCallerBase<TController> where TController : IServiceController
 {
     private readonly IAppGrpcClient _grpcClient;
     private readonly IServiceManager _serviceManager;
@@ -44,7 +44,7 @@ public abstract class ServiceCallerBase
         _serviceManager = serviceManager;
     }
 
-    protected async Task<Result<T>> InvokeAsync<T>(Func<IVpnController, Task<T>> serviceCall,
+    protected async Task<Result<T>> InvokeAsync<T>(Func<TController, Task<T>> serviceCall,
         [CallerMemberName] string memberName = "")
     {
         int retryCount = 5;
@@ -52,8 +52,8 @@ public abstract class ServiceCallerBase
         {
             try
             {
-                IVpnController serviceController =
-                    await _grpcClient.GetServiceControllerOrThrowAsync<IVpnController>(TimeSpan.FromSeconds(1));
+                TController serviceController =
+                    await _grpcClient.GetServiceControllerOrThrowAsync<TController>(TimeSpan.FromSeconds(1));
                 T result = await serviceCall(serviceController);
                 if (result is Task task)
                 {

@@ -81,4 +81,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <SvgImageSource x:Key="WorldMapIllustrationSource"
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/world-map.svg" />
+    <BitmapImage x:Key="UpdateProtonVpnIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/update-proton-vpn.png" />
 </ResourceDictionary>

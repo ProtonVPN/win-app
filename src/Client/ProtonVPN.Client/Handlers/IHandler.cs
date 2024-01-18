@@ -20,6 +20,4 @@
 namespace ProtonVPN.Client.Handlers;
 
 /// <summary>Handlers are automatically registered and start with the app</summary>
-public interface IHandler
-{
-}
+public interface IHandler;

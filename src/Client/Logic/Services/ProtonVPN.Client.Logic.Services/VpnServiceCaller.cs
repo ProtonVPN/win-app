@@ -22,15 +22,17 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public class ServiceCaller : ServiceCallerBase, IServiceCaller
+public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCaller
 {
-    public ServiceCaller(ILogger logger, IAppGrpcClient grpcClient, IServiceManager serviceManager)
+    public VpnServiceCaller(ILogger logger, IAppGrpcClient grpcClient, IServiceManager serviceManager)
         : base(logger, grpcClient, serviceManager)
     { }
 
@@ -57,5 +59,10 @@ public class ServiceCaller : ServiceCallerBase, IServiceCaller
     public Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate)
     {
         return InvokeAsync(c => c.UpdateAuthCertificate(certificate).Wrap());
+    }
+
+    public Task ApplySettingsAsync(MainSettingsIpcEntity settings)
+    {
+        return InvokeAsync(c => c.ApplySettings(settings).Wrap());
     }
 }

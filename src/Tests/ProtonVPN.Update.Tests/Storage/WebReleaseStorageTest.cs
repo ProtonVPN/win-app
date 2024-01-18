@@ -27,8 +27,11 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
+using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
@@ -40,6 +43,9 @@ namespace ProtonVPN.Update.Tests.Storage
     [TestClass]
     public class WebReleaseStorageTest
     {
+        private IConfiguration _configuration;
+        private IDeviceIdCache _deviceIdCache;
+        private IHashGenerator _hashGenerator;
         private ILogger _logger;
         private IHttpClient _httpClient;
         private IFeedUrlProvider _feedUrlProvider;
@@ -51,6 +57,9 @@ namespace ProtonVPN.Update.Tests.Storage
         [TestInitialize]
         public void TestInitialize()
         {
+            _configuration = Substitute.For<IConfiguration>();
+            _deviceIdCache = Substitute.For<IDeviceIdCache>();
+            _hashGenerator = Substitute.For<IHashGenerator>();
             _logger = Substitute.For<ILogger>();
             _httpClient = Substitute.For<IHttpClient>();
             _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
@@ -80,7 +89,7 @@ namespace ProtonVPN.Update.Tests.Storage
 
         private IReleaseStorage WebReleaseStorage()
         {
-            return new WebReleaseStorage(_config, _logger);
+            return new WebReleaseStorage(_config, _logger, _hashGenerator, _deviceIdCache, _configuration);
         }
 
         #endregion

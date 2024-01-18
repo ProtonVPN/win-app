@@ -596,6 +596,7 @@
         <None Remove="Assets\Illustrations\report-success.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\update-proton-vpn.png" />
         <None Remove="Assets\Illustrations\vpn-off.ico" />
         <None Remove="Assets\Illustrations\vpn-on.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-error.ico" />
@@ -1677,6 +1678,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\standard-connection.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\update-proton-vpn.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\world-map.svg">

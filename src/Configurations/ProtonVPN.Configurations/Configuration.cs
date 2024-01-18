@@ -42,6 +42,8 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public int ApiRetries => Get();
     public int MaxGuestHoleRetries => Get();
 
+    public decimal? DeviceRolloutPercentage => Get();
+
     public bool IsCertificateValidationEnabled => Get();
 
     public TimeSpan ServiceCheckInterval => Get();
@@ -52,6 +54,8 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan ServerLoadUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AnnouncementUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AlternativeRoutingCheckInterval => Get();
+    public TimeSpan UpdateCheckInterval => GetWithRandomizedDeviation();
+    public TimeSpan UpdateRemindInterval => Get();
     public TimeSpan ApiUploadTimeout => Get();
     public TimeSpan ApiTimeout => Get();
     public TimeSpan FailedDnsRequestTimeout => Get();

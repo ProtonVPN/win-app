@@ -34,8 +34,9 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
     public GuestHoleConnectionRequestCreator(
         ISettings settings,
         IEntityMapper entityMapper,
-        IConfiguration config)
-        : base(settings, entityMapper)
+        IConfiguration config,
+        IMainSettingsRequestCreator mainSettingsRequestCreator)
+        : base(settings, entityMapper, mainSettingsRequestCreator)
     {
         _config = config;
     }

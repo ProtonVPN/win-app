@@ -8,7 +8,6 @@
 #include "Logger.h"
 #include "Os.h"
 #include "Utils.h"
-#include "AppSettingsMigration.h"
 
 #define EXPORT __declspec(dllexport)
 
@@ -119,17 +118,6 @@ extern "C" EXPORT bool IsProcessRunning(const wchar_t* process_name)
 extern "C" EXPORT bool IsProcessRunningByPath(const wchar_t* process_path)
 {
     return Os::IsProcessRunningByPath(process_path);
-}
-
-extern "C" EXPORT DWORD SaveOldUserConfigFile()
-{
-    return ExecuteAction([]
-    {
-        AppSettingsMigration app_settings;
-        app_settings.SaveOldUserConfigFile();
-
-        return 0;
-    });
 }
 
 extern "C" EXPORT DWORD UpdateTaskbarIconTarget(const wchar_t* launcher_path)

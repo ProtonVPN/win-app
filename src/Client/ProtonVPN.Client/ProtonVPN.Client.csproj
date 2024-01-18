@@ -70,6 +70,12 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Update\UpdateComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Home\NotificationCard\NotificationCardComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Home\ConnectionError\ConnectionErrorComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -226,6 +232,7 @@
         <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
         <None Remove="UI\Settings\Pages\DeveloperToolsPage.xaml" />
         <None Remove="UI\Tray\TrayIconComponent.xaml" />
+        <None Remove="UI\Update\UpdateComponent.xaml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -277,6 +284,8 @@
         <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj" />
         <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Installers\ProtonVPN.Client.Logic.Servers.Installers.csproj" />
         <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Updates\ProtonVPN.Client.Logic.Updates.Contracts\ProtonVPN.Client.Logic.Updates.Contracts.csproj" />
+        <ProjectReference Include="..\Logic\Updates\ProtonVPN.Client.Logic.Updates.Installers\ProtonVPN.Client.Logic.Updates.Installers.csproj" />
         <ProjectReference Include="..\Notifications\ProtonVPN.Client.Notifications.Installers\ProtonVPN.Client.Notifications.Installers.csproj" />
         <ProjectReference Include="..\Settings\ProtonVPN.Client.Settings.Installers\ProtonVPN.Client.Settings.Installers.csproj" />
     </ItemGroup>

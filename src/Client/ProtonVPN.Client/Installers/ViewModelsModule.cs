@@ -27,8 +27,8 @@ using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
 using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
-using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
+using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
 using ProtonVPN.Client.UI.Home.ConnectionError;
@@ -40,14 +40,15 @@ using ProtonVPN.Client.UI.Home.Status;
 using ProtonVPN.Client.UI.HumanVerification;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Forms;
+using ProtonVPN.Client.UI.Login.Overlays;
+using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Client.UI.ReportIssue.Results;
+using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
-using ProtonVPN.Client.UI.ReportIssue.Steps;
-using ProtonVPN.Client.UI.ReportIssue.Results;
-using ProtonVPN.Client.UI.Login.Overlays;
-using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Tray;
+using ProtonVPN.Client.UI.Update;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -110,6 +111,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<DeveloperToolsViewModel>(builder);
+        RegisterViewModel<UpdateViewModel>(builder);
 
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);

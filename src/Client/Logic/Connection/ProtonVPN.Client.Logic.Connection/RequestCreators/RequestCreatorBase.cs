@@ -17,76 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class RequestCreatorBase
 {
     protected readonly ISettings Settings;
-
     protected readonly IEntityMapper EntityMapper;
 
+    private readonly IMainSettingsRequestCreator _mainSettingsRequestCreator;
     protected RequestCreatorBase(
         ISettings settings,
-        IEntityMapper entityMapper)
+        IEntityMapper entityMapper,
+        IMainSettingsRequestCreator mainSettingsRequestCreator)
     {
         Settings = settings;
         EntityMapper = entityMapper;
+
+        _mainSettingsRequestCreator = mainSettingsRequestCreator;
     }
 
     protected MainSettingsIpcEntity GetSettings()
     {
-        return new MainSettingsIpcEntity()
-        {
-            VpnProtocol = EntityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(Settings.VpnProtocol),
-            KillSwitchMode = Settings.IsKillSwitchEnabled
-                ? EntityMapper.Map<KillSwitchMode, KillSwitchModeIpcEntity>(Settings.KillSwitchMode)
-                : KillSwitchModeIpcEntity.Off,
-            SplitTunnel = new SplitTunnelSettingsIpcEntity
-            {
-                Mode = Settings.IsSplitTunnelingEnabled
-                    ? EntityMapper.Map<SplitTunnelingMode, SplitTunnelModeIpcEntity>(Settings.SplitTunnelingMode)
-                    : SplitTunnelModeIpcEntity.Disabled,
-                AppPaths = GetSplitTunnelingApps(),
-                Ips = GetSplitTunnelingIpAddresses()
-            },
-            ModerateNat = Settings.NatType == NatType.Moderate,
-            NetShieldMode = Settings.IsNetShieldEnabled ? 2 : 0,
-            Ipv6LeakProtection = Settings.IsIpv6LeakProtectionEnabled,
-            PortForwarding = Settings.IsPortForwardingEnabled,
-            SplitTcp = Settings.IsVpnAcceleratorEnabled,
-            OpenVpnAdapter = EntityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(Settings.OpenVpnAdapter),
-        };
-    }
-
-    private string[] GetSplitTunnelingApps()
-    {
-        return Settings.SplitTunnelingMode == SplitTunnelingMode.Standard
-            ? GetSplitTunnelingApps(Settings.SplitTunnelingStandardAppsList)
-            : GetSplitTunnelingApps(Settings.SplitTunnelingInverseAppsList);
-    }
-
-    private string[] GetSplitTunnelingApps(List<SplitTunnelingApp> settingsApps)
-    {
-        return settingsApps.Where(app => app.IsActive).SelectMany(app => app.GetAllAppFilePaths()).ToArray();
-    }
-
-    private string[] GetSplitTunnelingIpAddresses()
-    {
-        return Settings.SplitTunnelingMode == SplitTunnelingMode.Standard
-            ? GetSplitTunnelingIpAddresses(Settings.SplitTunnelingStandardIpAddressesList)
-            : GetSplitTunnelingIpAddresses(Settings.SplitTunnelingInverseIpAddressesList);
-    }
-
-    private string[] GetSplitTunnelingIpAddresses(List<SplitTunnelingIpAddress> settingsIpAddresses)
-    {
-        return settingsIpAddresses.Where(ip => ip.IsActive).Select(ip => ip.IpAddress).ToArray();
+        return _mainSettingsRequestCreator.Create();
     }
 }

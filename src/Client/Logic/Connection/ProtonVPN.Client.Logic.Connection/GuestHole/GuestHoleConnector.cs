@@ -31,7 +31,7 @@ public class GuestHoleConnector : IGuestHoleConnector
     private readonly Random _random = new();
 
     private readonly ILogger _logger;
-    private readonly IServiceCaller _serviceCaller;
+    private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
     private readonly IGuestHoleConnectionRequestCreator _connectionRequestCreator;
     private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
@@ -40,13 +40,13 @@ public class GuestHoleConnector : IGuestHoleConnector
 
     public GuestHoleConnector(
         ILogger logger,
-        IServiceCaller serviceCaller,
+        IVpnServiceCaller vpnServiceCaller,
         IGuestHoleServersFileStorage guestHoleServersFileStorage,
         IGuestHoleConnectionRequestCreator connectionRequestCreator,
         IDisconnectionRequestCreator disconnectionRequestCreator)
     {
         _logger = logger;
-        _serviceCaller = serviceCaller;
+        _vpnServiceCaller = vpnServiceCaller;
         _guestHoleServersFileStorage = guestHoleServersFileStorage;
         _connectionRequestCreator = connectionRequestCreator;
         _disconnectionRequestCreator = disconnectionRequestCreator;
@@ -57,7 +57,7 @@ public class GuestHoleConnector : IGuestHoleConnector
         ConnectionRequestIpcEntity request = _connectionRequestCreator.Create(GetGuestHoleServers());
 
         _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
-        await _serviceCaller.ConnectAsync(request);
+        await _vpnServiceCaller.ConnectAsync(request);
     }
 
     public async Task DisconnectAsync()
@@ -65,7 +65,7 @@ public class GuestHoleConnector : IGuestHoleConnector
         // TODO: use VpnError.NoneKeepEnabledKillSwitch for disconnect
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
 
-        await _serviceCaller.DisconnectAsync(request);
+        await _vpnServiceCaller.DisconnectAsync(request);
     }
 
     private IReadOnlyList<GuestHoleServerContract> GetGuestHoleServers()

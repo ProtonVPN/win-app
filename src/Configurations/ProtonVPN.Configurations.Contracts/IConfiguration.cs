@@ -41,6 +41,8 @@ public interface IConfiguration : IStaticConfiguration
     int ApiRetries { get; }
     int MaxGuestHoleRetries { get; }
 
+    decimal? DeviceRolloutPercentage { get; }
+
     bool IsCertificateValidationEnabled { get; }
 
     TimeSpan ServiceCheckInterval { get; }
@@ -51,6 +53,8 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan ServerLoadUpdateInterval { get; }
     TimeSpan AnnouncementUpdateInterval { get; }
     TimeSpan AlternativeRoutingCheckInterval { get; }
+    TimeSpan UpdateCheckInterval { get; }
+    TimeSpan UpdateRemindInterval { get; }
     TimeSpan ApiUploadTimeout { get; }
     TimeSpan ApiTimeout { get; }
     TimeSpan FailedDnsRequestTimeout { get; }

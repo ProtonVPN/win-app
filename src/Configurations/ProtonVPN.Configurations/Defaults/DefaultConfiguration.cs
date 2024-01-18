@@ -76,7 +76,6 @@ public static class DefaultConfiguration
     public static string DiagnosticLogsZipFilePath => Path.Combine(DiagnosticLogsFolder, "diagnostic_logs.zip");
     public static string GuestHoleServersJsonFilePath => Path.Combine(_resourcesFolderPath.Value, "GuestHoleServers.json");
     public static string ServiceSettingsFilePath => Path.Combine(_commonAppDataProtonVpnPath.Value, "ServiceSettings.json");
-    public static string LegacyUserConfigFilePath => Path.Combine(_commonAppDataProtonVpnPath.Value, "user.config");
     public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");
     
     public static string ServersJsonCacheFilePath => Path.Combine(_localAppDataProtonVpnPath.Value, "Servers.json");
@@ -98,6 +97,8 @@ public static class DefaultConfiguration
     public static int ApiRetries => 2;
     public static int MaxGuestHoleRetries => 5;
 
+    public static decimal? DeviceRolloutPercentage => null;
+
     public static bool IsCertificateValidationEnabled => true;
 
     public static TimeSpan ServiceCheckInterval => TimeSpan.FromSeconds(30);
@@ -108,6 +109,8 @@ public static class DefaultConfiguration
     public static TimeSpan ServerLoadUpdateInterval => TimeSpan.FromHours(3);
     public static TimeSpan AnnouncementUpdateInterval => TimeSpan.FromMinutes(150);
     public static TimeSpan AlternativeRoutingCheckInterval => TimeSpan.FromMinutes(30);
+    public static TimeSpan UpdateCheckInterval => TimeSpan.FromHours(3);
+    public static TimeSpan UpdateRemindInterval => TimeSpan.FromHours(24);
     public static TimeSpan ApiUploadTimeout => TimeSpan.FromSeconds(30);
     public static TimeSpan ApiTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan FailedDnsRequestTimeout => TimeSpan.FromSeconds(5);
