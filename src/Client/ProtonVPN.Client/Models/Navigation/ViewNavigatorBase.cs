@@ -38,6 +38,8 @@ public abstract class ViewNavigatorBase : IViewNavigator
     private Frame? _frame;
     private object? _lastParameterUsed;
 
+    private bool _isRegisteredToFrameEvents = false;
+
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
 
@@ -177,25 +179,33 @@ public abstract class ViewNavigatorBase : IViewNavigator
         }
     }
 
+    private void OnWindowActivated(object sender, WindowActivatedEventArgs args)
+    {
+        RegisterFrameEvents();
+    }
+
     private void OnWindowClosed(object sender, WindowEventArgs e)
     {
-        UnregisterWindowEvents();
         UnregisterFrameEvents();
     }
 
     private void RegisterFrameEvents()
     {
-        if (_frame != null)
+        if (_frame != null && !_isRegisteredToFrameEvents)
         {
             _frame.Navigated += OnNavigated;
+
+            _isRegisteredToFrameEvents = true;
         }
     }
 
     private void UnregisterFrameEvents()
     {
-        if (_frame != null)
+        if (_frame != null && _isRegisteredToFrameEvents)
         {
             _frame.Navigated -= OnNavigated;
+
+            _isRegisteredToFrameEvents = false;
         }
     }
 
@@ -203,6 +213,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
     {
         if (_window != null)
         {
+            _window.Activated += OnWindowActivated;
             _window.Closed += OnWindowClosed;
         }
     }
@@ -211,6 +222,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
     {
         if (_window != null)
         {
+            _window.Activated -= OnWindowActivated;
             _window.Closed -= OnWindowClosed;
         }
     }
