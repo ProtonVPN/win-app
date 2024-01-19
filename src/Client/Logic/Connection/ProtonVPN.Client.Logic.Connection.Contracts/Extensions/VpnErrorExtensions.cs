@@ -48,6 +48,7 @@ public static class VpnErrorExtensions
         VpnError.Unpaid,
         VpnError.PasswordChanged,
         VpnError.ServerUnreachable,
+        VpnError.Unknown,
     ];
 
     private static readonly List<VpnError> _errorsForReconnectWithoutLastServer =
