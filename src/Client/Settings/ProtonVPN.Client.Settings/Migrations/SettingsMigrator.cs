@@ -164,28 +164,18 @@ public class SettingsMigrator : ISettingsMigrator
 
     private List<string> GetUsernames()
     {
-        string? setting = GetSettingValue("UserAccessToken");
-        if (!string.IsNullOrEmpty(setting))
+        string? jsonUserAccessTokens = GetSettingValue("UserAccessToken");
+        if (!string.IsNullOrEmpty(jsonUserAccessTokens))
         {
-            List<LegacyUserSetting>? legacyUserSettings = _jsonSerializer.Deserialize<List<LegacyUserSetting>>(setting);
-            if (legacyUserSettings is not null)
+            List<LegacyUserSetting>? userAccessTokens = _jsonSerializer.Deserialize<List<LegacyUserSetting>>(jsonUserAccessTokens);
+            if (userAccessTokens is not null)
             {
-                List<string> list = legacyUserSettings
-                    .Where(us => !string.IsNullOrEmpty(us.User))
-                    .Select(us => us.User!.ToLower())
+                return userAccessTokens
+                    .Where(uat => !string.IsNullOrEmpty(uat.User))
+                    // Ensure the user with access token is the last, so it remains as the currently logged in user
+                    .OrderBy(uat => !string.IsNullOrEmpty(uat.Value?.Decrypt()))
+                    .Select(uat => uat.User!.ToLower())
                     .ToList();
-
-                string? loggedInUsername = GetSettingValue("Username")?.Decrypt().ToLower();
-                if (string.IsNullOrEmpty(loggedInUsername))
-                {
-                    return list;
-                }
-
-                // Make sure the currently logged-in user is migrated the last
-                list = list.Where(u => u != loggedInUsername).ToList();
-                list.Add(loggedInUsername);
-
-                return list;
             }
         }
 
