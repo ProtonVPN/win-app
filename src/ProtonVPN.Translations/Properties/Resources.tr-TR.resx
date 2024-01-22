@@ -2891,7 +2891,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
   </data>
   <data name="Settings_msg_ReconnectRequired">
-    <value>Bazı değişikliklerin etkili olması için yeniden bağlanılması gerekli.</value>
+    <value>Bazı değişikliklerin etkili olması için bağlantının yeniden kurulması gerekli.</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
   </data>
   <data name="Settings_ttl">

@@ -409,7 +409,7 @@
     <value>Langkah</value>
   </data>
   <data name="BugReport_lbl_Username">
-    <value>Nama Pengguna</value>
+    <value>Nama pengguna</value>
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
@@ -1719,10 +1719,10 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Aktifkan Port Forwarding hanya ketika Anda perlu memastikan perlindungan privasi dan keamanan terkuat.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Apakah saya memerlukan Port Forwarding?&lt;/Hyperlink&gt;</value>
+    <value>Aktifkan Penerusan Port hanya ketika Anda perlu memastikan perlindungan privasi dan keamanan terkuat.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Apakah saya memerlukan Penerusan Port?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
-    <value>Aktifkan Port Forwarding?</value>
+    <value>Aktifkan Penerusan Port?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
     <value>Proton VPN mendeteksi keberadaan server proxy pada jaringan lokal Anda. Aplikasi Proton VPN tidak akan dapat melindungi lalu lintas data yang melintas melalui proxy ini. Dengan kata lain, koneksi Anda tidak akan sepenuhnya terlindungi sebagaimana mestinya.</value>
@@ -2200,7 +2200,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="PortForwarding">
-    <value>Port Forwarding</value>
+    <value>Penerusan Port</value>
   </data>
   <data name="PortForwarding_lbl_ActivePort">
     <value>Port yang aktif:</value>
@@ -2212,7 +2212,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Tentukan nomor port ini pada aplikasi BitTorrent Anda untuk memperoleh kecepatan yang lebih.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Untuk menggunakan Port Forwarding, silakan &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;hubungkan&lt;/Hyperlink&gt; diri Anda ke server yang mendukung P2P.</value>
+    <value>Untuk menggunakan Penerusan Port, silakan &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;hubungkan&lt;/Hyperlink&gt; diri Anda ke server yang mendukung P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
@@ -2246,7 +2246,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
-    <value>Nama profil telah digunakan</value>
+    <value>Nama profil sudah ada</value>
     <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
@@ -2437,10 +2437,10 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
-    <value>Port Forwarding Nonaktif</value>
+    <value>Penerusan Port Nonaktif</value>
   </data>
   <data name="QuickSettings_btn_PortForwardingOn">
-    <value>Port Forwarding Aktif</value>
+    <value>Penerusan Port Aktif</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
     <value>Secure Core Nonaktif</value>
@@ -2690,19 +2690,19 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Adapter TUN</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
-    <value>Port Forwarding</value>
+    <value>Penerusan Port</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
-    <value>Pintasan Port Forwarding</value>
+    <value>Pintasan Penerusan Port</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
-    <value>Akses pengaturan Port Forwarding dari menu Quick Settings</value>
+    <value>Akses pengaturan Penerusan Port dari menu Pengaturan Cepat</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications">
-    <value>Notifikasi Port Forwarding</value>
+    <value>Notifikasi Penerusan Port</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
-    <value>Dapatkan notifikasi pada saat nomor port yang digunakan pada prosedur Port Forwarding diubah</value>
+    <value>Dapatkan notifikasi pada saat nomor port pada prosedur Penerusan Port berubah</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
     <value>Percepat akses torrent dan gaming Anda dengan memberikan izin kepada aplikasi lokal yang didukung untuk dapat dijangkau melalui internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Pelajari lebih lanjut&lt;/Hyperlink&gt;</value>
@@ -3056,7 +3056,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Catatan: Gunakan tab browser baru dan/atau bersihkan cache Anda untuk memastikan konten baru muncul.</value>
   </data>
   <data name="Sidebar_Streaming_More">
-    <value>dan banyak lagi</value>
+    <value>dan masih banyak lagi</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
     <value>Dinonaktifkan</value>
@@ -3227,7 +3227,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Atur akses jarak jauh ke perangkat pada jaringan lokal Anda</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Akses &lt;Bold&gt;port forwarding&lt;/Bold&gt; dengan VPN Plus</value>
+    <value>Akses &lt;Bold&gt;penerusan port&lt;/Bold&gt; dengan VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>Buat koneksi P2P Anda secepat kilat</value>

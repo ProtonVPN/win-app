@@ -563,7 +563,7 @@
     <value>{0} стран</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} страны</value>
+    <value>{0} стран</value>
   </data>
   <data name="Country_val_AD">
     <value>Андорра</value>
@@ -2292,7 +2292,7 @@
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Пожалуйста, выберите шлюз</value>
+    <value>Выберите шлюз</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
@@ -2476,11 +2476,11 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Выключить Kill switch</value>
+    <value>Выключить Kill Switch</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Включить Kill switch</value>
+    <value>Включить Kill Switch</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2581,7 +2581,7 @@
     <value>{0} защищённых серверов</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} защищённого сервера</value>
+    <value>{0} защищённых серверов</value>
   </data>
   <data name="ServerType_val_B2B">
     <value>Шлюзы</value>
