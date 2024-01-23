@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="112" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0"
@@ -78,9 +78,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Border Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
+                Height="112"
                 Background="{ThemeResource InteractionDefaultHoverColorBrush}"
                 BorderBrush="{ThemeResource BorderWeakColorBrush}"
                 BorderThickness="1"
-                Opacity="0.6" />
+                Opacity="0.6" 
+                Visibility="Collapsed"/>
     </Grid>
 </UserControl>

@@ -196,8 +196,7 @@ public class SettingsMigrator : ISettingsMigrator
         bool? isNotificationsEnabled = IsGlobalSettingEnabled("ShowNotifications");
         if (isNotificationsEnabled.HasValue)
         {
-            // TODO: Notifications are not implemented yet. Keep it disabled for now.
-            _settings.IsNotificationEnabled = DefaultSettings.IsNotificationEnabled; // isNotificationsEnabled.Value;
+            _settings.IsNotificationEnabled = isNotificationsEnabled.Value;
         }
 
         bool? isVpnAcceleratorEnabled = IsGlobalSettingEnabled("VpnAcceleratorEnabled");
@@ -582,15 +581,13 @@ public class SettingsMigrator : ISettingsMigrator
         bool? isAutoLaunchEnabled = IsGlobalSettingEnabled("StartOnBoot");
         if (isAutoLaunchEnabled.HasValue)
         {
-            // TODO: Auto launch is not implemented yet. Keep it disabled for now.
-            _settings.IsAutoLaunchEnabled = DefaultSettings.IsAutoLaunchEnabled; // isAutoLaunchEnabled.Value;
+            _settings.IsAutoLaunchEnabled = isAutoLaunchEnabled.Value;
         }
 
         string? language = GetSettingValue("Language");
         if (!string.IsNullOrEmpty(language))
         {
-            // TODO: Localization is not ready yet. Force english for now.
-            _settings.Language = DefaultSettings.Language; // language;
+            _settings.Language = language;
         }
 
         bool? isBetaAccessEnabled = IsGlobalSettingEnabled("EarlyAccess");
