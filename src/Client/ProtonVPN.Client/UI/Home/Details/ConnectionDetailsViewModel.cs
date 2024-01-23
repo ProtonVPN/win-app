@@ -73,7 +73,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
 
     public string? ServerLatency => CurrentConnectionDetails?.ServerLatency != null
         ? Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails.ServerLatency.Value.TotalMilliseconds)
-        : " - ";
+        : null;
 
     public string VpnProtocol => CurrentConnectionDetails is not null
         ? Localizer.GetVpnProtocol(CurrentConnectionDetails.Protocol)
