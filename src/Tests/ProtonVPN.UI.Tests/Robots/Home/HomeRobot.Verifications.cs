@@ -106,7 +106,7 @@ public partial class HomeRobot
         Assert.AreEqual("Connection details", connectionDetailsLabel.Text);
 
         Assert.IsNotNull(ConnectionDetailServerLoadButton);
-        Assert.IsNotNull(ConnectionDetailLatencyButton);
+        //Assert.IsNotNull(ConnectionDetailLatencyButton); // Latency is kept hidden in the connection details panel as it is not implemented yet
         Assert.IsNotNull(ConnectionDetailProtocolButton);
 
         Assert.IsNotNull(ConnectionDetailsCloseButton);

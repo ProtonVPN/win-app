@@ -211,12 +211,13 @@ public class ConnectionTests : TestSession
             .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
-        _homeRobot
-            .DoOpenLatencyOverlay();
+        // TODO: Latency is kept hidden as it is not implemented yet. 
+        //_homeRobot
+        //    .DoOpenLatencyOverlay();
 
-        _overlaysRobot
-            .VerifyOverlayIsOpened(LATENCY_OVERLAY_TITLE, true)
-            .DoCloseOverlay();
+        //_overlaysRobot
+        //    .VerifyOverlayIsOpened(LATENCY_OVERLAY_TITLE, true)
+        //    .DoCloseOverlay();
 
         _homeRobot
             .DoOpenServerLoadOverlay();
