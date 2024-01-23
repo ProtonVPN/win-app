@@ -47,7 +47,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      IsTextPredictionEnabled="False"
                      KeyDown="OnFormBoxKeyDown"
                      Style="{StaticResource DefaultTextBoxStyle}"
-                     Text="{x:Bind ViewModel.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{x:Bind ViewModel.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     x:Name="UsernameTextBox"/>
 
             <PasswordBox Margin="0,16,0,0"
                          AutomationProperties.AutomationId="PasswordBox"

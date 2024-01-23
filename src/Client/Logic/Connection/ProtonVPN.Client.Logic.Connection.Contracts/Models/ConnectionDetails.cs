@@ -51,7 +51,7 @@ public class ConnectionDetails
         ServerTier = server is not null ? (ServerTiers)server.Tier : null;
         ServerName = server?.Name;
         ServerLoad = server?.Load / 100D;
-        ServerLatency = TimeSpan.FromMilliseconds(46); // TODO: implement real value
+        ServerLatency = null; // TODO: implement real value
         Protocol = vpnProtocol;
         IsGateway = server?.Features.IsSupported(ServerFeatures.B2B) ?? false;
         GatewayName = server?.GatewayName;

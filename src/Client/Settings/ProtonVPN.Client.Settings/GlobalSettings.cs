@@ -30,9 +30,10 @@ public class GlobalSettings : IGlobalSettings
 {
     private readonly IGlobalSettingsRepository _globalRepository;
 
+    // TODO: Additional languages are not supported yet.
     public string Language
     {
-        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
+        get => DefaultSettings.Language; // _globalRepository.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
@@ -84,9 +85,10 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
+    // TODO: Auto launch has not been implemented yet.
     public bool IsAutoLaunchEnabled
     {
-        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;
+        get => false; // _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 

@@ -31,12 +31,14 @@ namespace ProtonVPN.Client.Localization;
 public class LocalizationService : ILocalizationService, IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly ISettings _settings;
     private readonly ILocalizer _localizer;
 
     public LocalizationService(IEventMessageSender eventMessageSender,
         ISettings settings, ILocalizerFactory localizerFactory)
     {
         _eventMessageSender = eventMessageSender;
+        _settings = settings;
 
         _localizer = localizerFactory.GetOrCreate();
         _localizer.SetLanguage(settings.Language);
@@ -55,10 +57,9 @@ public class LocalizationService : ILocalizationService, IEventMessageReceiver<S
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.Language) && message.NewValue is not null)
+        if (message.PropertyName == nameof(ISettings.Language))
         {
-            string language = (string)message.NewValue;
-            SetLanguage(language);
+            SetLanguage(_settings.Language);
         }
     }
 }

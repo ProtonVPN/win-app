@@ -161,9 +161,10 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    // TODO: App Notifications have not been implemented yet.  -->
     public bool IsNotificationEnabled
     {
-        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNotificationEnabled;
+        get => false; // _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNotificationEnabled;
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
