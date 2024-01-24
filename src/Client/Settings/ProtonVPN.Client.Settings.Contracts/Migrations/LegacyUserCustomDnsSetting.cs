@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Migrations.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
-public class LegacyUserProfileSettingValue
+public class LegacyUserCustomDnsSetting : LegacyUserSettingBase
 {
-    public List<LegacyProfile>? Local { get; set; }
+    public List<LegacySettingIpAddress>? Value { get; set; }
 }

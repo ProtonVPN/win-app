@@ -239,7 +239,11 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
 
         if (recentConnections.Count > 0)
         {
-            _recentsFileManager.Save(recentConnections);
+            lock (_lock)
+            {
+                _recentConnections = recentConnections;
+            }
+            SaveRecentsAndBroadcastChanges();
         }
     }
 

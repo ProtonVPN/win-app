@@ -54,6 +54,7 @@ public class UserAuthenticator : IUserAuthenticator
     private AuthResponse _authResponse;
 
     public bool IsLoggedIn { get; private set; }
+    public bool? IsAutoLogin { get; private set; }
 
     public UserAuthenticator(
         ILogger logger,
@@ -257,6 +258,7 @@ public class UserAuthenticator : IUserAuthenticator
             ClearAuthSessionDetails();
 
             IsLoggedIn = false;
+            IsAutoLogin = null;
 
             _eventMessageSender.Send(new LoggedOutMessage() { Reason = reason });
         }
@@ -387,6 +389,7 @@ public class UserAuthenticator : IUserAuthenticator
         ClearUnauthSessionDetails();
 
         IsLoggedIn = true;
+        IsAutoLogin = isAutoLogin;
 
         _eventMessageSender.Send(new LoggedInMessage { IsAutoLogin = isAutoLogin });
 

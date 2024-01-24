@@ -18,18 +18,10 @@
  */
 
 using System.Xml;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Logic.Recents.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.Client.Settings.Migrations.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
@@ -42,40 +34,27 @@ namespace ProtonVPN.Client.Settings.Migrations;
 
 public class SettingsMigrator : ISettingsMigrator
 {
-    private const int RANDOM_PROFILE_TYPE = 2;
-    private const string FASTEST_PROFILE_NAME = "Fastest";
-    private const string RANDOM_PROFILE_NAME = "Random";
-
     private readonly ILogger _logger;
     private readonly IConfiguration _configuration;
     private readonly IJsonSerializer _jsonSerializer;
     private readonly ISettings _settings;
-    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
-    private readonly IServersLoader _serversLoader;
-    private readonly IServersUpdater _serversUpdater;
     private readonly Lazy<XmlDocument> _xmlDocument;
 
     public SettingsMigrator(
         ILogger logger,
         IConfiguration configuration,
         IJsonSerializer jsonSerializer,
-        ISettings settings,
-        IRecentConnectionsProvider recentConnectionsProvider,
-        IServersLoader serversLoader,
-        IServersUpdater serversUpdater)
+        ISettings settings)
     {
         _logger = logger;
         _configuration = configuration;
         _jsonSerializer = jsonSerializer;
         _settings = settings;
-        _recentConnectionsProvider = recentConnectionsProvider;
-        _serversLoader = serversLoader;
-        _serversUpdater = serversUpdater;
 
         _xmlDocument = new Lazy<XmlDocument>(() => new XmlDocument());
     }
 
-    public async Task MigrateSettingsAsync()
+    public void Migrate()
     {
         if (_settings.IsSettingsMigrationDone)
         {
@@ -90,7 +69,7 @@ public class SettingsMigrator : ISettingsMigrator
 
         try
         {
-            await MigrateSettingsFileAsync(legacyUserConfigFilePath);
+            MigrateSettingsFile(legacyUserConfigFilePath);
 
             if (Directory.Exists(_configuration.LegacyAppLocalData))
             {
@@ -147,14 +126,14 @@ public class SettingsMigrator : ISettingsMigrator
         return latestVersionFolderPath;
     }
 
-    private async Task MigrateSettingsFileAsync(string filePath)
+    private void MigrateSettingsFile(string filePath)
     {
         _xmlDocument.Value.Load(filePath);
 
         List<string> usernames = GetUsernames();
         foreach (string username in usernames)
         {
-            await MigrateUserAsync(username);
+            MigrateUser(username);
         }
 
         MigrateGlobalSettings();
@@ -188,7 +167,7 @@ public class SettingsMigrator : ISettingsMigrator
         return _xmlDocument.Value.SelectSingleNode(xPath)?.InnerText;
     }
 
-    private async Task MigrateUserAsync(string username)
+    private void MigrateUser(string username)
     {
         // It's important to first set the username, so that all the subsequent settings are migrated for that user
         _settings.Username = username;
@@ -238,7 +217,7 @@ public class SettingsMigrator : ISettingsMigrator
         MigrateOpenVpnNetworkAdapter();
         MigrateVpnProtocol();
 
-        await MigrateProfilesAsync(username, GetUserSetting(username, "UserQuickConnect"));
+        StoreProfilesAndQuickConnectProfileForLaterMigration(username);
     }
 
     private bool? IsGlobalSettingEnabled(string settingName)
@@ -269,115 +248,16 @@ public class SettingsMigrator : ISettingsMigrator
             .FirstOrDefault();
     }
 
-    private async Task MigrateProfilesAsync(string username, string? quickConnectProfile)
+    private void StoreProfilesAndQuickConnectProfileForLaterMigration(string username)
     {
-        LegacyUserProfilesSetting? legacyUserProfilesSetting = GetUserSetting<LegacyUserProfilesSetting>(username, "UserProfiles");
-        if (legacyUserProfilesSetting?.Value?.Local is null)
+        _settings.LegacyQuickConnectProfileId = GetUserSetting(username, "UserQuickConnect");
+
+        List<LegacyProfile>? legacyProfiles = GetUserSetting<LegacyUserProfilesSetting>(username, "UserProfiles")?.Value?.Local;
+        if (legacyProfiles is not null && legacyProfiles.Count == 0)
         {
-            return;
+            legacyProfiles = null;
         }
-
-        Lazy<Task<List<Server>>> servers = new(GetServersAsync);
-        List<IConnectionIntent> connectionIntents = await GetConnectionIntentsAsync(legacyUserProfilesSetting.Value.Local, servers);
-
-        IConnectionIntent? recentConnectionIntent = null;
-        if (!string.IsNullOrEmpty(quickConnectProfile) && quickConnectProfile != FASTEST_PROFILE_NAME &&
-            quickConnectProfile != RANDOM_PROFILE_NAME)
-        {
-            LegacyProfile? profile = legacyUserProfilesSetting.Value.Local.FirstOrDefault(p => p.Id == quickConnectProfile);
-            if (profile is not null)
-            {
-                recentConnectionIntent = await GetConnectionIntentAsync(profile, servers);
-            }
-        }
-
-        _recentConnectionsProvider.SaveRecentConnections(connectionIntents, recentConnectionIntent);
-    }
-
-    private async Task<List<Server>> GetServersAsync()
-    {
-        await _serversUpdater.UpdateAsync();
-        return _serversLoader.GetServers().ToList();
-    }
-
-    private async Task<List<IConnectionIntent>> GetConnectionIntentsAsync(List<LegacyProfile> profiles, Lazy<Task<List<Server>>> servers)
-    {
-        List<IConnectionIntent> connectionIntents = [];
-
-        foreach (LegacyProfile profile in profiles)
-        {
-            if (profile.ProfileType == RANDOM_PROFILE_TYPE)
-            {
-                continue;
-            }
-
-            IConnectionIntent connectionIntent = await GetConnectionIntentAsync(profile, servers);
-            connectionIntents.Add(connectionIntent);
-        }
-
-        return connectionIntents;
-    }
-
-    private async Task<IConnectionIntent> GetConnectionIntentAsync(LegacyProfile profile, Lazy<Task<List<Server>>> servers)
-    {
-        ILocationIntent? locationIntent = null;
-        IFeatureIntent? featureIntent = null;
-
-        if (string.IsNullOrEmpty(profile.ServerId))
-        {
-            if (!string.IsNullOrEmpty(profile.CountryCode))
-            {
-                locationIntent = new CountryLocationIntent(profile.CountryCode);
-            }
-            else if (!string.IsNullOrEmpty(profile.GatewayName))
-            {
-                locationIntent = new GatewayLocationIntent(profile.GatewayName);
-            }
-
-            if (profile.Features.IsSupported(ServerFeatures.SecureCore))
-            {
-                featureIntent = new SecureCoreFeatureIntent();
-            }
-        }
-        else
-        {
-            Server? server = (await servers.Value).FirstOrDefault(s => s.Id == profile.ServerId);
-            if (server is not null)
-            {
-                if (string.IsNullOrEmpty(server.GatewayName))
-                {
-                    locationIntent = new ServerLocationIntent(profile.ServerId, server.Name, server.ExitCountry,
-                        server.City);
-                }
-                else
-                {
-                    locationIntent = new GatewayServerLocationIntent(profile.ServerId, server.Name, server.ExitCountry,
-                        server.GatewayName);
-                }
-
-                if (profile.Features.IsSupported(ServerFeatures.SecureCore))
-                {
-                    featureIntent = new SecureCoreFeatureIntent(server.EntryCountry);
-                }
-            }
-        }
-
-        if (profile.Features.IsSupported(ServerFeatures.P2P))
-        {
-            featureIntent = new P2PFeatureIntent();
-        }
-
-        if (profile.Features.IsSupported(ServerFeatures.Tor))
-        {
-            featureIntent = new TorFeatureIntent();
-        }
-
-        if (profile.Features.IsSupported(ServerFeatures.B2B))
-        {
-            featureIntent = new B2BFeatureIntent();
-        }
-
-        return new ConnectionIntent(locationIntent ?? new CountryLocationIntent(), featureIntent);
+        _settings.LegacyProfiles = legacyProfiles;
     }
 
     private void MigrateUserAuthData(string username)
@@ -452,8 +332,8 @@ public class SettingsMigrator : ISettingsMigrator
         }
 
         _settings.CustomDnsServersList = (from ip in customDnsIpsJson.Value
-            where !string.IsNullOrEmpty(ip.Ip)
-            select new CustomDnsServer(ip.Ip, ip.Enabled)).ToList();
+                                          where !string.IsNullOrEmpty(ip.Ip)
+                                          select new CustomDnsServer(ip.Ip, ip.Enabled)).ToList();
     }
 
     private void MigratePortForwarding(string username)

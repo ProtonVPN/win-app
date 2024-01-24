@@ -61,7 +61,7 @@ public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepos
 
     private string? GenerateFileName()
     {
-        string? username = _globalSettings.Username;
+        string? username = _globalSettings.Username?.ToLower();
         string? fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
         return fileName;
     }

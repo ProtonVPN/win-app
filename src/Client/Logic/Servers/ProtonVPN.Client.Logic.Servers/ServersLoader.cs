@@ -33,6 +33,11 @@ public class ServersLoader : IServersLoader
         _serversCache = serversCache;
     }
 
+    public Server? GetById(string serverId)
+    {
+        return GetServers().FirstOrDefault(s => s.Id == serverId);
+    }
+
     public IEnumerable<string> GetCountryCodes()
     {
         return _serversCache.CountryCodes;
@@ -40,7 +45,7 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures)
     {
-        return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry) 
+        return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                                     && s.Features.IsSupported(serverFeatures))
             .Select(s => s.ExitCountry)
             .Distinct();
@@ -71,7 +76,7 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<City> GetCitiesByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode)
     {
-        return GetCitiesByFilter(s => s.ExitCountry == countryCode 
+        return GetCitiesByFilter(s => s.ExitCountry == countryCode
                                    && s.Features.IsSupported(serverFeatures));
     }
 
@@ -117,7 +122,7 @@ public class ServersLoader : IServersLoader
     }
 
     public IEnumerable<Server> GetServersByGateway(string gatewayName)
-    {        
+    {
         return GetServersByFilter(s => s.GatewayName == gatewayName, false);
     }
 

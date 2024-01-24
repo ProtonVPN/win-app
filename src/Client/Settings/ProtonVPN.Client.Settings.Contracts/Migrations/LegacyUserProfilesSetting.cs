@@ -17,14 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Migrations.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
-public class LegacyProfile
+public class LegacyUserProfilesSetting : LegacyUserSettingBase
 {
-    public string? Id { get; set; }
-    public int ProfileType { get; set; }
-    public ulong Features { get; set; }
-    public string? CountryCode { get; set; }
-    public string? GatewayName { get; set; }
-    public string? ServerId { get; set; }
+    public LegacyUserProfileSettingValue? Value { get; set; }
 }

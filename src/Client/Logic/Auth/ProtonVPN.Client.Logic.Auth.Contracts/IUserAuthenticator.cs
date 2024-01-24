@@ -18,8 +18,6 @@
  */
 
 using System.Security;
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
@@ -28,6 +26,7 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts;
 public interface IUserAuthenticator
 {
     bool IsLoggedIn { get; }
+    bool? IsAutoLogin { get; }
 
     Task CreateUnauthSessionAsync(); 
     Task<SsoAuthResult> StartSsoAuthAsync(string username); 

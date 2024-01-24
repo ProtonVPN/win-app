@@ -68,8 +68,8 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
 
     private string GenerateFullFilePath()
     {
-        string username = _settings.Username;
-        string fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username.ToLower()));
+        string username = _settings.Username?.ToLower();
+        string fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
         string fullFilePath = fileName is null ? null : Path.Combine(_staticConfiguration.StorageFolder, fileName);
         return fullFilePath;
     }
@@ -81,7 +81,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
         {
             try
             {
-                if (fullFilePath is not null && File.Exists(_fullFilePath.Value))
+                if (fullFilePath is not null && File.Exists(fullFilePath))
                 {
                     _logger.Info<AppLog>($"Reading recent connections file '{fullFilePath}'.");
                     List<SerializableRecentConnection> serializableRecentConnections;
@@ -106,7 +106,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
             }
             catch (Exception ex)
             {
-                _logger.Error<SettingsLog>($"Failed to read the recent connections file {FILE_NAME}.", ex);
+                _logger.Error<SettingsLog>($"Failed to read the recent connections file {fullFilePath}.", ex);
             }
             _cache = [];
         }
@@ -162,7 +162,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to write the recent connections file {FILE_NAME}.", ex);
+            _logger.Error<SettingsLog>($"Failed to write the recent connections file {fullFilePath}.", ex);
             return false;
         }
     }

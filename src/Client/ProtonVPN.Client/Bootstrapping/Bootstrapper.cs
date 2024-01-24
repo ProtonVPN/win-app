@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -69,7 +70,7 @@ public class Bootstrapper : IBootstrapper
         {
             ParseAndRunCommandLineArguments();
 
-            await _settingsMigrator.MigrateSettingsAsync();
+            _settingsMigrator.Migrate();
 
             _mainWindowActivator.Show();
             _updatesManager.Initialize();
