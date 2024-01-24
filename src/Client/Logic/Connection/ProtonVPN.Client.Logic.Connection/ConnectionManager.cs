@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Formats.Asn1;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
+using ProtonVPN.Client.Logic.Connection.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -32,6 +35,7 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
@@ -43,12 +47,14 @@ public class ConnectionManager : IInternalConnectionManager,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ILogger _logger;
+    private readonly ISettings _settings;
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEntityMapper _entityMapper;
     private readonly IConnectionRequestCreator _connectionRequestCreator;
     private readonly IReconnectionRequestCreator _reconnectionRequestCreator;
     private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
+    private readonly IAuthCertificateManager _authCertificateManager;
     private readonly IServersLoader _serversLoader;
 
     private ConnectionDetails? _connectionDetails;
@@ -64,21 +70,25 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public ConnectionManager(
         ILogger logger,
+        ISettings settings,
         IVpnServiceCaller vpnServiceCaller,
         IEventMessageSender eventMessageSender,
         IEntityMapper entityMapper,
         IConnectionRequestCreator connectionRequestCreator,
         IReconnectionRequestCreator reconnectionRequestCreator,
         IDisconnectionRequestCreator disconnectionRequestCreator,
+        IAuthCertificateManager authCertificateManager,
         IServersLoader serversLoader)
     {
         _logger = logger;
+        _settings = settings;
         _vpnServiceCaller = vpnServiceCaller;
         _eventMessageSender = eventMessageSender;
         _entityMapper = entityMapper;
         _connectionRequestCreator = connectionRequestCreator;
         _reconnectionRequestCreator = reconnectionRequestCreator;
         _disconnectionRequestCreator = disconnectionRequestCreator;
+        _authCertificateManager = authCertificateManager;
         _serversLoader = serversLoader;
     }
 
@@ -87,23 +97,26 @@ public class ConnectionManager : IInternalConnectionManager,
         connectionIntent ??= ConnectionIntent.Default;
 
         _connectionDetails = new ConnectionDetails(connectionIntent);
+        SetConnectionStatus(ConnectionStatus.Connecting);
 
-        ConnectionRequestIpcEntity request = _connectionRequestCreator.Create(connectionIntent);
+        ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
 
         await SendRequestIfValidAsync(request);
     }
 
     private async Task<bool> SendRequestIfValidAsync(ConnectionRequestIpcEntity request)
     {
-        if (request.Servers.Length > 0)
+        VpnError error = request.GetVpnError();
+        if (error == VpnError.None)
         {
-            SetConnectionStatus(ConnectionStatus.Connecting);
             await _vpnServiceCaller.ConnectAsync(request);
             return true;
         }
         else
         {
-            _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = VpnError.NoServers });
+            SetConnectionStatus(ConnectionStatus.Disconnected);
+
+            _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = error });
             return false;
         }
     }
@@ -123,7 +136,7 @@ public class ConnectionManager : IInternalConnectionManager,
         _connectionDetails = new ConnectionDetails(connectionIntent);
         SetConnectionStatus(ConnectionStatus.Connecting);
 
-        ConnectionRequestIpcEntity request = _reconnectionRequestCreator.Create(connectionIntent);
+        ConnectionRequestIpcEntity request = await _reconnectionRequestCreator.CreateAsync(connectionIntent);
 
         return await SendRequestIfValidAsync(request);
     }

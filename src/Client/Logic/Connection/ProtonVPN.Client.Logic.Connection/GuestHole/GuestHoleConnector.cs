@@ -54,7 +54,7 @@ public class GuestHoleConnector : IGuestHoleConnector
 
     public async Task ConnectAsync()
     {
-        ConnectionRequestIpcEntity request = _connectionRequestCreator.Create(GetGuestHoleServers());
+        ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(GetGuestHoleServers());
 
         _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
         await _vpnServiceCaller.ConnectAsync(request);

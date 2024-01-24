@@ -24,5 +24,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 
 public interface IGuestHoleConnectionRequestCreator
 {
-    ConnectionRequestIpcEntity Create(IEnumerable<GuestHoleServerContract> servers);
+    Task<ConnectionRequestIpcEntity> CreateAsync(IEnumerable<GuestHoleServerContract> servers);
 }

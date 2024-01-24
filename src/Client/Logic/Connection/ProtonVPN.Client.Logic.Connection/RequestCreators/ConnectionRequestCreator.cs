@@ -23,13 +23,13 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -42,12 +42,16 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     protected readonly ISmartSecureCoreServerListGenerator SmartSecureCoreServerListGenerator;
     protected readonly ISmartStandardServerListGenerator SmartStandardServerListGenerator;
 
+    private readonly ILogger _logger;
     private readonly IAuthKeyManager _authKeyManager;
+    private readonly IAuthCertificateManager _authCertificateManager;
 
     public ConnectionRequestCreator(
+        ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
         IAuthKeyManager authKeyManager,
+        IAuthCertificateManager authCertificateManager,
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
         ISmartStandardServerListGenerator smartStandardServerListGenerator,
@@ -58,17 +62,19 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         SmartSecureCoreServerListGenerator = smartSecureCoreServerListGenerator;
         SmartStandardServerListGenerator = smartStandardServerListGenerator;
 
+        _logger = logger;
         _authKeyManager = authKeyManager;
+        _authCertificateManager = authCertificateManager;
     }
 
-    public virtual ConnectionRequestIpcEntity Create(IConnectionIntent connectionIntent)
+    public virtual async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
         MainSettingsIpcEntity settings = GetSettings();
 
         ConnectionRequestIpcEntity request = new()
         {
             Config = GetVpnConfig(settings),
-            Credentials = GetVpnCredentials(),
+            Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,
             Servers = PhysicalServersToVpnServerIpcEntities(GetPhysicalServers(connectionIntent)),
             Settings = settings,
@@ -77,10 +83,16 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         return request;
     }
 
-    protected override VpnCredentialsIpcEntity GetVpnCredentials()
+    protected override async Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync()
     {
         PublicKey publicKey = _authKeyManager.GetPublicKey();
         SecretKey secretKey = _authKeyManager.GetSecretKey();
+
+        if (string.IsNullOrEmpty(Settings.AuthenticationCertificatePem))
+        {
+            _logger.Info<UserCertificateLog>("Auth certificate is missing, requesting a new certificate.");
+            await _authCertificateManager.ForceRequestNewCertificateAsync();
+        }
 
         return new VpnCredentialsIpcEntity
         {

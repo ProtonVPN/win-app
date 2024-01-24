@@ -17,12 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
+namespace ProtonVPN.Client.Logic.Connection.Extensions;
 
-public interface IReconnectionRequestCreator
+public static class ConnectionRequestIpcEntityExtensions
 {
-    Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent);
+    public static VpnError GetVpnError(this ConnectionRequestIpcEntity request)
+    {
+        VpnError error = VpnError.None;
+
+        if (request.Servers.Length <= 0)
+        {
+            error = VpnError.NoServers;
+        }
+        else if (string.IsNullOrEmpty(request.Credentials.ClientCertPem))
+        {
+            error = VpnError.MissingAuthCertificate;
+        }
+
+        return error;
+    }
 }

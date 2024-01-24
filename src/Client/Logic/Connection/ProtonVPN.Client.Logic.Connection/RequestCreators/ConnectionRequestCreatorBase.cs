@@ -37,7 +37,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         : base(settings, entityMapper, mainSettingsRequestCreator)
     { }
 
-    protected abstract VpnCredentialsIpcEntity GetVpnCredentials();
+    protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
 
     protected VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings)
     {
