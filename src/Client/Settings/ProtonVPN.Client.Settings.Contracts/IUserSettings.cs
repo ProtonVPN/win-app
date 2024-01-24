@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 
@@ -66,4 +67,7 @@ public interface IUserSettings
     List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
+
+    string? LegacyQuickConnectProfileId { get; set; }
+    List<LegacyProfile>? LegacyProfiles { get; set; }
 }

@@ -46,6 +46,8 @@ public class SettingsModule : Module
 
         builder.RegisterType<SettingsConflictResolver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
 
+        builder.RegisterType<ProfilesMigrator>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+
         builder.RegisterAssemblyTypes(typeof(ISettingsConflict).Assembly)
                .Where(t => typeof(ISettingsConflict).IsAssignableFrom(t))
                .AsImplementedInterfaces()

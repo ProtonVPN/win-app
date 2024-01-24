@@ -17,23 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Security;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
-
-public interface IUserAuthenticator
+public interface ISettingsMigrator
 {
-    bool IsLoggedIn { get; }
-    bool? IsAutoLogin { get; }
-
-    Task CreateUnauthSessionAsync(); 
-    Task<SsoAuthResult> StartSsoAuthAsync(string username); 
-    Task<AuthResult> CompleteSsoAuthAsync(string ssoResponseToken);
-    Task<AuthResult> LoginUserAsync(string username, SecureString password);
-    Task<AuthResult> AuthAsync(string username, SecureString password);
-    Task<AuthResult> SendTwoFactorCodeAsync(string code);
-    Task AutoLoginUserAsync();
-    Task LogoutAsync(LogoutReason reason);
+    void Migrate();
 }

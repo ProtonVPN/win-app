@@ -20,6 +20,7 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -34,9 +35,7 @@ using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
-public class ServersUpdater : 
-    IServersUpdater, 
-    IServersCache
+public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly IApiClient _apiClient;
     private readonly IEntityMapper _entityMapper;
@@ -200,5 +199,20 @@ public class ServersUpdater :
     private bool HasAnyServers()
     {
         return Servers is not null && Servers.Count > 0;
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        _lock.EnterWriteLock();
+        try
+        {
+            _servers = new List<Server>();
+            _countryCodes = new List<string>();
+            _gateways = new List<string>();
+        }
+        finally
+        {
+            _lock.ExitWriteLock();
+        }
     }
 }

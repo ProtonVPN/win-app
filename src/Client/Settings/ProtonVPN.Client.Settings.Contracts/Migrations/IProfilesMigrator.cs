@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Migrations.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
-public class LegacySplitTunnelApp
+public interface IProfilesMigrator
 {
-    public string? Path { get; set; }
-    public bool Enabled { get; set; }
+    void Migrate();
 }

@@ -40,6 +40,12 @@ public interface ISettingsRepository
     List<T>? GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
 
-    void SetListValueType<T>(List<T> newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    void SetListValueType<T>(List<T>? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct;
+
+    List<T>? GetListReferenceType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+        where T : class;
+
+    void SetListReferenceType<T>(List<T>? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+        where T : class;
 }

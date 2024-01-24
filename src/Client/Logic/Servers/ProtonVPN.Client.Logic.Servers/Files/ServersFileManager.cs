@@ -17,44 +17,65 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Files;
 
-public class ServersFileManager : IServersFileManager
+public class ServersFileManager : IServersFileManager, IEventMessageReceiver<SettingChangedMessage>
 {
-    private const string FILE_NAME = "Servers.bin";
+    private const string FILE_NAME = "Servers.{0}.bin";
 
-    private readonly Lazy<string> _fullFilePath;
+    private readonly object _fullFilePathLock = new();
+    private Lazy<string?> _fullFilePath;
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfiguration;
     private readonly IProtobufSerializer _protobufSerializer;
+    private readonly ISettings _settings;
+    private readonly ISha1Calculator _sha1Calculator;
 
     public ServersFileManager(ILogger logger,
         IStaticConfiguration staticConfiguration,
-        IProtobufSerializer protobufSerializer)
+        IProtobufSerializer protobufSerializer,
+        ISettings settings,
+        ISha1Calculator sha1Calculator)
     {
         _logger = logger;
         _staticConfiguration = staticConfiguration;
         _protobufSerializer = protobufSerializer;
+        _settings = settings;
+        _sha1Calculator = sha1Calculator;
 
-        _fullFilePath = new(() => Path.Combine(_staticConfiguration.StorageFolder, FILE_NAME));
+        _fullFilePath = new(GenerateFullFilePath);
+    }
+
+    private string? GenerateFullFilePath()
+    {
+        string? username = _settings.Username?.ToLower();
+        string? fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
+        string? fullFilePath = fileName is null ? null : Path.Combine(_staticConfiguration.StorageFolder, fileName);
+        return fullFilePath;
     }
 
     public IReadOnlyList<Server> Read()
     {
+        string? fullFilePath = GetFullFilePath();
         try
         {
-            if (File.Exists(_fullFilePath.Value))
+            if (File.Exists(fullFilePath))
             {
                 using (MemoryStream memoryStream = new())
                 {
-                    using (FileStream fileStream = new(_fullFilePath.Value, FileMode.Open, FileAccess.Read))
+                    using (FileStream fileStream = new(fullFilePath, FileMode.Open, FileAccess.Read))
                     {
                         fileStream.CopyTo(memoryStream);
                     }
@@ -64,13 +85,28 @@ public class ServersFileManager : IServersFileManager
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to read the servers file {FILE_NAME}.", ex);
+            _logger.Error<SettingsLog>($"Failed to read the servers file {fullFilePath}.", ex);
         }
         return new List<Server>();
     }
 
+    private string? GetFullFilePath()
+    {
+        lock (_fullFilePathLock)
+        {
+            return _fullFilePath.Value;
+        }
+    }
+
     public bool Save(IList<Server> servers)
     {
+        string? fullFilePath = GetFullFilePath();
+        if (fullFilePath is null)
+        {
+            _logger.Info<AppLog>("Cannot save the servers file because the username is null.");
+            return false;
+        }
+
         try
         {
             if (!Directory.Exists(_staticConfiguration.StorageFolder))
@@ -79,7 +115,7 @@ public class ServersFileManager : IServersFileManager
             }
 
             using (MemoryStream memoryStream = _protobufSerializer.Serialize(servers))
-            using (FileStream fileStream = new(_fullFilePath.Value, FileMode.Create, FileAccess.Write))
+            using (FileStream fileStream = new(fullFilePath, FileMode.Create, FileAccess.Write))
             {
                 memoryStream.CopyTo(fileStream);
             }
@@ -87,8 +123,19 @@ public class ServersFileManager : IServersFileManager
         }
         catch (Exception ex)
         {
-            _logger.Error<SettingsLog>($"Failed to write the servers file {FILE_NAME}.", ex);
+            _logger.Error<SettingsLog>($"Failed to write the servers file {fullFilePath}.", ex);
             return false;
+        }
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.Username))
+        {
+            lock (_fullFilePathLock)
+            {
+                _fullFilePath = new(GenerateFullFilePath);
+            }
         }
     }
 }

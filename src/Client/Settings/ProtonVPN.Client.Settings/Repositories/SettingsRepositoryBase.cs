@@ -178,14 +178,15 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
     }
 
 
-    public void SetListValueType<T>(List<T> newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public void SetListValueType<T>(List<T>? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
         {
             List<T>? oldValue = GetListValueType<T>(encryption, propertyName);
 
-            if (oldValue is not null && oldValue.SequenceEqual(newValue))
+            if ((oldValue is null && newValue is null) ||
+                (oldValue is not null && newValue is not null && oldValue.SequenceEqual(newValue)))
             {
                 return;
             }
@@ -247,5 +248,41 @@ public abstract class SettingsRepositoryBase : ISettingsRepository
         string newValueJson = _jsonSerializer.Serialize(newValue).GetLastChars(64);
         Logger.Info<SettingsChangeLog>($"Setting '{propertyName}' " +
             $"changed from '{oldValueJson}' to '{newValueJson}'.");
+    }
+
+    public List<T>? GetListReferenceType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+        where T : class
+    {
+        try
+        {
+            string? json = GetJson(propertyName, encryption);
+            return Deserialize<List<T>>(json ?? string.Empty);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
+            return new();
+        }
+    }
+
+    public void SetListReferenceType<T>(List<T>? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+        where T : class
+    {
+        try
+        {
+            List<T>? oldValue = GetListReferenceType<T>(encryption, propertyName);
+
+            if ((oldValue is null && newValue is null) || 
+                (oldValue is not null && newValue is not null && oldValue.SequenceEqual(newValue)))
+            {
+                return;
+            }
+
+            Set(propertyName, oldValue, newValue, encryption);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error<SettingsLog>($"Failed to write the setting '{propertyName}'.", ex);
+        }
     }
 }

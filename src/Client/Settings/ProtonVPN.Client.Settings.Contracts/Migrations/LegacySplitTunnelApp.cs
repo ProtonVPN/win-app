@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
-public interface ISettingsMigrator
+public class LegacySplitTunnelApp
 {
-    Task MigrateSettingsAsync();
+    public string? Path { get; set; }
+    public bool Enabled { get; set; }
 }

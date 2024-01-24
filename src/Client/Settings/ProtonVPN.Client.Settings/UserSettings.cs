@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Networking;
@@ -276,8 +277,20 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
     }
 
+    public string? LegacyQuickConnectProfileId
+    {
+        get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<LegacyProfile>? LegacyProfiles
+    {
+        get => _userRepository.GetListReferenceType<LegacyProfile>(SettingEncryption.Unencrypted);
+        set => _userRepository.SetListReferenceType<LegacyProfile>(value, SettingEncryption.Unencrypted);
+    }
+
     public UserSettings(IGlobalSettingsRepository globalSettingsRepository, IUserSettingsRepository userSettingsRepository)
-        : base(globalSettingsRepository)
+            : base(globalSettingsRepository)
     {
         _userRepository = userSettingsRepository;
     }

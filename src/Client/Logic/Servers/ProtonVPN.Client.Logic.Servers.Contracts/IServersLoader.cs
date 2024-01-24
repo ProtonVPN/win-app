@@ -24,6 +24,8 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IServersLoader
 {
+    Server? GetById(string serverId);
+
     IEnumerable<string> GetCountryCodes();
     IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures);
 

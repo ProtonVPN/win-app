@@ -18,68 +18,74 @@
  */
 
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class AutoConnectHandler : IHandler,
-    IEventMessageReceiver<LoggedInMessage>,
+public class InitializedServersListHandler : IHandler,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
     private readonly ISettings _settings;
+    private readonly IServersLoader _serversLoader;
+    private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IProfilesMigrator _profilesMigrator;
 
-    private bool _isUserAutoLoggedIn;
-    private bool _isServersListUpdated;
     private bool _isHandled;
 
-    public AutoConnectHandler(
+    public InitializedServersListHandler(
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
-        ISettings settings)
+        ISettings settings,
+        IServersLoader serversLoader,
+        IUserAuthenticator userAuthenticator,
+        IProfilesMigrator profilesMigrator)
     {
         _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
         _settings = settings;
-    }
-
-    public async void Receive(LoggedInMessage message)
-    {
-        _isUserAutoLoggedIn = message.IsAutoLogin;
-
-        await TryAutoConnectAsync();
-    }
-
-    public async void Receive(ServerListChangedMessage message)
-    {
-        _isServersListUpdated = true;
-
-        await TryAutoConnectAsync();
+        _serversLoader = serversLoader;
+        _userAuthenticator = userAuthenticator;
+        _profilesMigrator = profilesMigrator;
     }
 
     public void Receive(LoggedOutMessage message)
     {
-        // Reset flags
-        _isUserAutoLoggedIn = false;
-        _isServersListUpdated = false;
         _isHandled = false;
     }
 
-    private async Task TryAutoConnectAsync()
+    public async void Receive(ServerListChangedMessage message)
     {
-        if (_isHandled || !_isUserAutoLoggedIn || !_isServersListUpdated)
+        if (_isHandled)
         {
             return;
         }
 
+        if (_serversLoader.GetServers().Any() && _userAuthenticator.IsLoggedIn)
+        {
+            _profilesMigrator.Migrate();
+            if (_userAuthenticator.IsAutoLogin == true)
+            {
+                await AutoConnectAsync();
+            }
+
+            _isHandled = true;
+        }
+    }
+
+    private async Task AutoConnectAsync()
+    {
         if (_settings.IsAutoConnectEnabled && _connectionManager.IsDisconnected)
         {
             switch (_settings.AutoConnectMode)
@@ -93,7 +99,5 @@ public class AutoConnectHandler : IHandler,
                     break;
             }
         }
-
-        _isHandled = true;
     }
 }
