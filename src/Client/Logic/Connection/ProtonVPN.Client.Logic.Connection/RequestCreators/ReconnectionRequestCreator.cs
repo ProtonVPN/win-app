@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -35,18 +36,20 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
 {
     public ReconnectionRequestCreator(
         ISettings settings,
+        ILogger logger,
         IEntityMapper entityMapper,
         IAuthKeyManager authKeyManager,
+        IAuthCertificateManager authCertificateManager,
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
         ISmartStandardServerListGenerator smartStandardServerListGenerator,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(settings, entityMapper, authKeyManager, intentServerListGenerator,
+        : base(logger, settings, entityMapper, authKeyManager, authCertificateManager, intentServerListGenerator,
             smartSecureCoreServerListGenerator, smartStandardServerListGenerator, mainSettingsRequestCreator)
     {
     }
 
-    public override ConnectionRequestIpcEntity Create(IConnectionIntent connectionIntent)
+    public override async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
         MainSettingsIpcEntity settings = GetSettings();
         VpnConfigIpcEntity config = GetVpnConfig(settings);
@@ -63,7 +66,7 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         ConnectionRequestIpcEntity request = new()
         {
             Config = config,
-            Credentials = GetVpnCredentials(),
+            Credentials = await GetVpnCredentialsAsync(),
             Protocol = VpnProtocolIpcEntity.Smart,
             Servers = PhysicalServersToVpnServerIpcEntities(GetReconnectionPhysicalServers(connectionIntent)),
             Settings = settings,

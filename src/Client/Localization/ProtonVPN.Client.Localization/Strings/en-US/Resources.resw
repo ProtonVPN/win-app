@@ -2296,4 +2296,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Home_Update_UpdateReady" xml:space="preserve">
     <value>Update ready</value>
   </data>
+  <data name="Connection_Error_MissingAuthCertificate" xml:space="preserve">
+    <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
+  </data>
 </root>

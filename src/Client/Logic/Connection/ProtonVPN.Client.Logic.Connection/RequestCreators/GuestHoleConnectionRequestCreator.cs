@@ -41,14 +41,14 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         _config = config;
     }
 
-    public ConnectionRequestIpcEntity Create(IEnumerable<GuestHoleServerContract> servers)
+    public async Task<ConnectionRequestIpcEntity> CreateAsync(IEnumerable<GuestHoleServerContract> servers)
     {
         MainSettingsIpcEntity settings = GetSettings();
 
         ConnectionRequestIpcEntity request = new()
         {
             Config = GetVpnConfig(settings),
-            Credentials = GetVpnCredentials(),
+            Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,
             Servers = GetVpnServers(servers),
             Settings = settings,
@@ -57,7 +57,7 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         return request;
     }
 
-    protected override VpnCredentialsIpcEntity GetVpnCredentials()
+    protected override async Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync()
     {
         return new()
         {

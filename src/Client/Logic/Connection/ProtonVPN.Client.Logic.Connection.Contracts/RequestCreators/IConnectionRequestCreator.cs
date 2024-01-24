@@ -24,5 +24,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 
 public interface IConnectionRequestCreator
 {
-    ConnectionRequestIpcEntity Create(IConnectionIntent connectionIntent);
+    Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent);
 }

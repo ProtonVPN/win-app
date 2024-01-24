@@ -154,6 +154,7 @@ public static class LocalizationExtensions
             VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_TapRequiresUpdate"),
             VpnError.TlsCertificateError => localizer.Get("Connection_Error_TlsCertificate"),
             VpnError.RpcServerUnavailable => localizer.Get("Connection_Error_RpcServerUnavailable"),
+            VpnError.MissingAuthCertificate => localizer.Get("Connection_Error_MissingAuthCertificate"),
             VpnError.SessionLimitReachedBasic or
                 VpnError.SessionLimitReachedFree or
                 VpnError.SessionLimitReachedPlus or
@@ -170,7 +171,6 @@ public static class LocalizationExtensions
     {
         return vpnError switch
         {
-            VpnError.TlsCertificateError => localizer.Get("Connection_Error_ReportAnIssue"),
             VpnError.RpcServerUnavailable
                 or VpnError.TapAdapterInUseError
                 or VpnError.NoTapAdaptersError

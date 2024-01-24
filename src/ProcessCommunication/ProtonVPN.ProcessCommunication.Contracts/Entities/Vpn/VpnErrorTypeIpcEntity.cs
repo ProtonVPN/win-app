@@ -91,6 +91,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         NoServerValidationPublicKey,
 
         [EnumMember]
+        MissingAuthCertificate,
+
+        [EnumMember]
         CertificateExpired = 86101,
 
         [EnumMember]
