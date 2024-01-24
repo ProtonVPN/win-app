@@ -17,11 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.LocalAgent
+using System.Collections.Generic;
+
+namespace ProtonVPN.Common.Legacy.Vpn;
+
+public static class VpnErrorExtensions
 {
-    public class LocalAgentStatus
+    private static readonly List<VpnError> _sessionLimitVpnErrors = new()
     {
-        public LocalAgentState State { get; set; }
-        public string ClientIp { get; set; } 
+        VpnError.SessionLimitReachedBasic,
+        VpnError.SessionLimitReachedFree,
+        VpnError.SessionLimitReachedPlus,
+        VpnError.SessionLimitReachedPro,
+        VpnError.SessionLimitReachedVisionary,
+        VpnError.SessionLimitReachedUnknown,
+    };
+
+    public static bool IsSessionLimitError(this VpnError error)
+    {
+        return _sessionLimitVpnErrors.Contains(error);
     }
 }
