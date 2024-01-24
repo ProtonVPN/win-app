@@ -163,14 +163,19 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
                 return true;
             case VpnStatus.Disconnecting:
             case VpnStatus.Disconnected:
-                return state.Error switch
+                if (state.Error == VpnError.PlanNeedsToBeUpgraded)
                 {
                     // Since PlanNeedsToBeUpgraded is received only when connected, we don't want to
                     // disable firewall while reconnecting, so keep the current firewall state.
-                    VpnError.PlanNeedsToBeUpgraded => null,
-                    VpnError.None => _serviceSettings.KillSwitchMode == KillSwitchMode.Hard,
-                    _ => _serviceSettings.KillSwitchMode != KillSwitchMode.Off
-                };
+                    return null;
+                }
+
+                if (state.Error == VpnError.None || state.Error.IsSessionLimitError())
+                {
+                    return _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
+                }
+
+                return _serviceSettings.KillSwitchMode != KillSwitchMode.Off;
         }
 
         return null;
