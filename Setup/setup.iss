@@ -206,22 +206,26 @@ end;
 procedure DeleteNonRunningVersions(const Directory: string);
 var
   VersionFolder: TFindRec;
-  VersionFolderPath: String;
+  VersionFolderPath, ProcessPath: String;
   i: Integer;
   Processes: array of String;
   IsRunningProcessFound: Boolean;
 begin
-  Processes := ['ProtonVPN.exe', 'ProtonVPNService.exe', 'ProtonVPN.WireGuardService.exe'];
+  Log('Using directory ' + Directory + ' to find previous app versions for deletion');
+  Processes := ['ProtonVPN.Client.exe', 'ProtonVPN.exe', 'ProtonVPNService.exe', 'ProtonVPN.WireGuardService.exe'];
   if FindFirst(ExpandConstant(Directory + '\v*'), VersionFolder) then
   try
     repeat
+      Log('Found version folder ' + VersionFolder.Name);
       VersionFolderPath := AddBackslash(Directory) + AddBackslash(VersionFolder.Name)
       IsRunningProcessFound := False;
       for i := 0 to GetArrayLength(Processes) - 1 do
       begin
-        if IsProcessRunningByPath(VersionFolderPath + Processes[i]) then
+        ProcessPath := VersionFolderPath + Processes[i];
+        Log('Checking if the process ' + ProcessPath + ' is running');
+        if IsProcessRunningByPath(ProcessPath) then
         begin
-          Log('Running process detected: ' + VersionFolderPath + Processes[i]);
+          Log('Running process detected: ' + ProcessPath);
           IsRunningProcessFound := True;
           Break;
         end;
