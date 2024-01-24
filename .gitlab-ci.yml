@@ -171,6 +171,7 @@ create-release:
   only:
     refs:
       - develop
+      - redesign
   script:
     - apt-get update && apt-get install -y python3 python3-pip git
     - python3 ci/build-scripts/release.py
