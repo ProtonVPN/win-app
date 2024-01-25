@@ -53,6 +53,8 @@ public enum VpnError
     UnableToVerifyCert = 86104,
     CertRevokedOrExpired = 86105,
     CertificateNotYetProvided = 86106,
+    SessionBeingInstalled = 86107,
+    SystemErrorOnTheServer = 86150,
 
     SessionLimitReachedFree = 86111,
     SessionLimitReachedBasic = 86112,

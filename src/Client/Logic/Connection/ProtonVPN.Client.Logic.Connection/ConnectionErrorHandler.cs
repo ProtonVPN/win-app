@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Validators;
-using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -36,7 +35,6 @@ namespace ProtonVPN.Client.Logic.Connection;
 public class ConnectionErrorHandler : IConnectionErrorHandler
 {
     private readonly ILogger _logger;
-    private readonly ISettings _settings;
     private readonly IEntityMapper _entityMapper;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAuthCertificateManager _authCertificateManager;
@@ -44,11 +42,9 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
     private readonly IConnectionManager _connectionManager;
 
     private VpnErrorTypeIpcEntity _error = VpnErrorTypeIpcEntity.None;
-    private string? _lastAuthCertificate;
 
     public ConnectionErrorHandler(
         ILogger logger,
-        ISettings settings,
         IEntityMapper entityMapper,
         IEventMessageSender eventMessageSender,
         IAuthCertificateManager authCertificateManager,
@@ -56,7 +52,6 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         IConnectionManager connectionManager)
     {
         _logger = logger;
-        _settings = settings;
         _entityMapper = entityMapper;
         _eventMessageSender = eventMessageSender;
         _authCertificateManager = authCertificateManager;
@@ -79,7 +74,10 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         }
         else if (error == VpnError.CertificateExpired)
         {
-            response = await HandleExpiredCertificateAsync();
+            await _authCertificateManager.ForceRequestNewCertificateAsync();
+            // No need to reconnect, if the certificate was updated successfully,
+            // ConnectionManager will inform the service about updated certificate.
+            return ConnectionErrorHandlerResult.NoAction;
         }
         else if (error.RequiresCertificateUpdate())
         {
@@ -130,21 +128,5 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         return await _connectionManager.ReconnectAsync()
             ? ConnectionErrorHandlerResult.Reconnecting
             : ConnectionErrorHandlerResult.NoAction;
-    }
-
-    private async Task<ConnectionErrorHandlerResult> HandleExpiredCertificateAsync()
-    {
-        _lastAuthCertificate = _settings.AuthenticationCertificatePem;
-        await _authCertificateManager.ForceRequestNewCertificateAsync();
-        if (IsAuthenticationCertificateUpdated())
-        {
-            return await ReconnectAsync();
-        }
-        return ConnectionErrorHandlerResult.NoAction;
-    }
-
-    private bool IsAuthenticationCertificateUpdated()
-    {
-        return _lastAuthCertificate != _settings.AuthenticationCertificatePem;
     }
 }

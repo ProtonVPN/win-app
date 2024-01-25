@@ -57,6 +57,8 @@ public static class VpnErrorExtensions
         VpnError.ServerOffline,
         VpnError.ServerRemoved,
         VpnError.NoServerValidationPublicKey,
+        VpnError.SessionBeingInstalled,
+        VpnError.SystemErrorOnTheServer,
     ];
 
     private static readonly List<VpnError> _errorsForCertificateUpdate =
