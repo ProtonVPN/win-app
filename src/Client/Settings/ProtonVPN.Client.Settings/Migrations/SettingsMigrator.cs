@@ -138,6 +138,7 @@ public class SettingsMigrator : ISettingsMigrator
 
         MigrateGlobalSettings();
 
+        _settings.Username = null;
         _settings.IsSettingsMigrationDone = true;
     }
 

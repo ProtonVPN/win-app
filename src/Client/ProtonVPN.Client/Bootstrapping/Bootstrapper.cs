@@ -87,7 +87,7 @@ public class Bootstrapper : IBootstrapper
 
     private async Task TryAuthenticateAsync()
     {
-        if (string.IsNullOrEmpty(_settings.Username))
+        if (string.IsNullOrEmpty(_settings.AccessToken))
         {
             await _userAuthenticator.CreateUnauthSessionAsync();
         }

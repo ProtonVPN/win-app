@@ -33,7 +33,7 @@ public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageRece
     private readonly IAuthCertificateManager _authCertificateManager;
     private readonly ILogger _logger;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
-    private Timer _timer;
+    private Timer? _timer;
 
     public AuthCertificateUpdater(IConfiguration config,
         IAuthCertificateManager authCertificateManager,
@@ -68,6 +68,6 @@ public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageRece
 
     public void Receive(LoggingOutMessage message)
     {
-        _timer.Dispose();
+        _timer?.Dispose();
     }
 }
