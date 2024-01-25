@@ -112,6 +112,12 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         CertificateNotYetProvided = 86106,
 
         [EnumMember]
+        SessionBeingInstalled = 86107,
+
+        [EnumMember]
+        SystemErrorOnTheServer = 86150,
+
+        [EnumMember]
         SessionLimitReachedFree = 86111,
 
         [EnumMember]

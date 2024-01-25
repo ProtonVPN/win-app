@@ -54,11 +54,21 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private readonly IGatewayCache _gatewayCache;
     private readonly IAdapterSingleVpnConnection _origin;
     private readonly ISingleAction _timeoutAction;
-    private readonly List<VpnError> _avoidDisconnectOnErrors = new()
-    {
-        VpnError.UnableToVerifyCert,
-        VpnError.CertificateNotYetProvided,
-    };
+
+    private readonly List<VpnError> _disconnectOnVpnErrors =
+    [
+        VpnError.SessionKilledDueToMultipleKeys,
+        VpnError.CertificateRevoked,
+        VpnError.CertRevokedOrExpired,
+        VpnError.PlanNeedsToBeUpgraded,
+        VpnError.SessionLimitReachedFree,
+        VpnError.SessionLimitReachedBasic,
+        VpnError.SessionLimitReachedPlus,
+        VpnError.SessionLimitReachedVisionary,
+        VpnError.SessionLimitReachedPro,
+        VpnError.SessionLimitReachedUnknown,
+        VpnError.SystemErrorOnTheServer,
+    ];
 
     private VpnStatus _currentStatus;
     private VpnEndpoint _endpoint;
@@ -162,6 +172,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         _clientCertPem = certificate;
         _logger.Info<LocalAgentLog>("Client certificate updated. Closing existing TLS channel and reconnecting.");
         _eventReceiver.Stop();
+        ReconnectToTlsChannel();
+    }
+
+    private void ReconnectToTlsChannel()
+    {
         CloseTlsChannel();
         ConnectToTlsChannel();
     }
@@ -245,9 +260,22 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     {
         _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");
 
-        if (!_avoidDisconnectOnErrors.Contains(e.Error))
+        if (_disconnectOnVpnErrors.Contains(e.Error))
         {
             _origin.Disconnect(e.Error);
+        }
+        else if (e.Error == VpnError.CertificateNotYetProvided)
+        {
+            _logger.Info<LocalAgentErrorLog>("Reconnecting to TLS channel.");
+            ReconnectToTlsChannel();
+        }
+        else if (e.Error == VpnError.CertificateExpired)
+        {
+            InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
+        }
+        else
+        {
+            _logger.Info<LocalAgentErrorLog>("Ignoring error.");
         }
     }
 
