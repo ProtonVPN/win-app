@@ -59,6 +59,9 @@ build-bti:
   extends:
     - .build-bti-vars  
     - .build-script
+  except:
+    - master
+    - /^release.*$/
   when: manual
   variables:
     TYPE: Debug

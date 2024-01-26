@@ -11,9 +11,10 @@ def configure_git(git_email, git_username):
     os.system(f"git config user.email \"{git_email}\"")
     os.system(f"git config user.name \"{git_username}\"")
 
-def checkout_develop():
-    os.system("git fetch origin develop:develop")
-    os.system("git checkout develop")
+def checkout_redesign():
+    BRANCH = "redesign"
+    os.system(f"git fetch origin {BRANCH}:{BRANCH}")
+    os.system(f"git checkout {BRANCH}")
     os.system(f"git remote set-url origin {get_remote_url()}")
 
 def checkout_branch(name):
@@ -34,7 +35,7 @@ def create_debug_branch(version):
     push_branch(branch)
 
 def create_release_branch(version, commit_message):
-    checkout_develop()
+    checkout_redesign()
     branch = f"release/{version}"
     checkout_branch(branch)
     update_app_version(version)
