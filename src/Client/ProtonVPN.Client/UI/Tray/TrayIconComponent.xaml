@@ -28,7 +28,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <tray:TaskbarIcon IconSource="{x:Bind ViewModel.IconSource}"
+    <tray:TaskbarIcon Id="{x:Bind ViewModel.TrayIconGuid, Mode=OneTime}"
+                      IconSource="{x:Bind ViewModel.IconSource}"
                       LeftClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
                       DoubleClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
                       ContextMenuMode="PopupMenu">
