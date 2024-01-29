@@ -2627,7 +2627,7 @@
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Бесплатные подключения (1)</value>
+    <value>Free подключения (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP-адрес сервера:</value>
@@ -3340,7 +3340,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Доступно с VPN для бизнеса.</value>
+    <value>Доступно с VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">

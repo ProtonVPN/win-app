@@ -2661,7 +2661,7 @@
     <value>Тарыфны план VPN Plus забяспечвае пакрыццё ўсяго свету</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Не тая краіна, якую хацелі? Палепшыце, каб выбраць любы сервер</value>
+    <value>Не тая краіна, якую хацелі? Палепшыце свой тарыфны план, каб выбіраць любы сервер</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Падключыцца</value>
@@ -3332,7 +3332,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>У вас дадатковыя або прафесійныя камп'ютарныя патрабаванні, якія патрабуюць нестандартныя парты? Палепшыце да VPN Plus, каб атрымаць доступ да гэтай і іншых прэміяльных функцый.</value>
+    <value>У вас дадатковыя або прафесійныя камп'ютарныя патрабаванні, дзе неабходна выкарыстоўваць нестандартныя порты? Палепшыце да VPN Plus, каб атрымаць доступ да гэтай і іншых прэміяльных функцый.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
