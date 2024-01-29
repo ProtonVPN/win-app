@@ -11,7 +11,6 @@ namespace Os
     std::string GetEnvVariable(std::string name);
     long ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* target_path);
     void RemovePinnedIcons(PCWSTR shortcut_path);
-    void SetFolderPermissions(LPWSTR path, LPCWSTR security_descriptor);
 
     enum DriverState
     {

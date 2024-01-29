@@ -41,10 +41,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
             string localAppDataFolder =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProtonVPN");
-            string commonAppDataFolder =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ProtonVPN");
+            string serviceDataFolder = Path.Combine(baseFolder, "ServiceData");
             string appLogFolder = Path.Combine(localAppDataFolder, "Logs");
-            string serviceLogFolder = Path.Combine(commonAppDataFolder, "Logs");
+            string serviceLogFolder = Path.Combine(serviceDataFolder, "Logs");
             int osBits = Environment.Is64BitOperatingSystem ? 64 : 32;
 
             string wireGuardConfigFilename = "ProtonVPN";
@@ -69,13 +68,15 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DiagnosticsZipPath = Path.Combine(localAppDataFolder, "DiagnosticLogs", "diagnostic_logs.zip"),
 
+                AppInstallLogPath = Path.Combine(Path.GetDirectoryName(baseFolder) ?? string.Empty, "Install.log.txt"),
+
                 TranslationsFolder = baseFolder,
 
                 ServiceName = "ProtonVPN Service",
 
                 ServiceExePath = Path.Combine(baseFolder, "ProtonVPNService.exe"),
 
-                ServiceSettingsFilePath = Path.Combine(commonAppDataFolder, "ServiceSettings.json"),
+                ServiceSettingsFilePath = Path.Combine(serviceDataFolder, "ServiceSettings.json"),
 
                 ServersJsonCacheFilePath = Path.Combine(localAppDataFolder, "Servers.json"),
 
@@ -89,7 +90,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 UpdateFilePath = Path.Combine(localAppDataFolder, "Updates", "update.txt"),
 
-                UpdatesPath = Path.Combine(commonAppDataFolder, "Updates"),
+                UpdatesPath = Path.Combine(serviceDataFolder, "Updates"),
 
                 CalloutServiceName = "ProtonVPNCallout",
 
@@ -234,7 +235,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     TlsVerifyExePath = Path.Combine(baseFolder, "ProtonVPN.TlsVerify.exe"),
 
-                    TlsExportCertFolder = Path.Combine(commonAppDataFolder, "ExportCert"),
+                    TlsExportCertFolder = Path.Combine(serviceDataFolder, "ExportCert"),
 
                     TapAdapterId = "tapprotonvpn",
 
@@ -255,9 +256,9 @@ namespace ProtonVPN.Common.Configuration.Source
 
                     TunAdapterName = "ProtonVPN",
 
-                    LogFilePath = Path.Combine(commonAppDataFolder, "WireGuard", "log.bin"),
+                    LogFilePath = Path.Combine(serviceDataFolder, "WireGuard", "log.bin"),
 
-                    ConfigFilePath = Path.Combine(commonAppDataFolder, "WireGuard", $"{wireGuardConfigFilename}.conf"),
+                    ConfigFilePath = Path.Combine(serviceDataFolder, "WireGuard", $"{wireGuardConfigFilename}.conf"),
 
                     ServiceName = "ProtonVPN WireGuard",
 

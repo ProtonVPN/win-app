@@ -16,11 +16,12 @@
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
 
 #define ProtonDriveDownloaderName "ProtonDrive.Downloader.exe"
+#define InstallLogPath "{app}\Install.log.txt"
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 #define AppFolder "Proton\VPN"
-#define SourcePath GetEnv("BUILD_PATH")
+#define SourcePath GetEnv("BUILD_PATH") 
 #define IsBTISource SourcePath == "src/bin/win-x64/BTI/publish"
 #if IsBTISource
 #define OutputBaseSuffix "_BTI"
@@ -33,9 +34,10 @@
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-DefaultDirName={pf}
+DefaultDirName={autopf}\{#AppFolder}
 DefaultGroupName=Proton
-DisableDirPage=auto
+DisableDirPage=yes
+AlwaysShowDirOnReadyPage=yes
 DisableProgramGroupPage=auto
 AppPublisher={#MyPublisher}
 UninstallDisplayIcon={app}\{#LauncherExeName}
@@ -138,7 +140,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
 Name: "installProtonDrive"; Description: "{cm:InstallProtonDriveTitle}"; Check: ShouldDisplayProtonDriveCheckbox;
 
 [Run]
-Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{code:GetDriveInstallPath}"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
+Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{autopf}\Proton\Drive"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
@@ -159,13 +161,9 @@ Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
-Type: filesandordirs; Name: "{localappdata}\ProtonVPN"
+Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"
 Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
-
-[Dirs]
-Name: "{localappdata}\ProtonVPN\DiagnosticLogs"
-Name: "{commonappdata}\ProtonVPN\Updates"; AfterInstall: SetFolderPermissions;
+Type: files; Name: "{#InstallLogPath}"
 
 [Code]
 function InitLogger(logger: Longword): Integer;
@@ -182,9 +180,6 @@ external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayloa
 
 function IsProductInstalled(upgradeCode: String): Integer;
 external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function SetUpdatesFolderPermission(updatesFolderPath: String): Integer;
-external 'SetUpdatesFolderPermission@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -226,7 +221,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent, IsToDisableAutoUpdate, IsInstallPathModified: Boolean;
+  IsToReboot, IsVerySilent, IsToDisableAutoUpdate: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -246,11 +241,6 @@ begin
     lstrcpyW(line, ptr);
     Log(line);
   end;
-end;
-
-procedure SetFolderPermissions();
-begin
-  SetUpdatesFolderPermission(ExpandConstant('{commonappdata}\ProtonVPN\Updates'));
 end;
 
 procedure DeleteNonRunningVersions(const Directory: string);
@@ -367,7 +357,6 @@ function InitializeSetup(): Boolean;
 var
   Version: String;
   ErrCode: Integer;
-  WindowsVersion: TWindowsVersion;
 begin
   SetIsVerySilent();
   SetIsToDisableAutoUpdate();
@@ -424,24 +413,19 @@ begin
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
-var
-  vpnFolderPath: String;
 begin
-    vpnFolderPath := '{app}';
-    if IsUpgrade = False then
-      vpnFolderPath := vpnFolderPath + '\{#AppFolder}';
-
-    DeleteNonRunningVersions(ExpandConstant(vpnFolderPath));
+    DeleteNonRunningVersions(ExpandConstant('{app}'));
     Log('Trying to save user settings for the old ProtonVPN app if it is installed');
     SaveOldUserConfigFolder();
     Log('Trying to update taskbar icon path if exists');
-    UpdateTaskbarIconTarget(ExpandConstant(vpnFolderPath + '\{#VersionFolder}\{#MyAppExeName}'));
+    UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
     Log('Trying to uninstall an old version of ProtonVPN app');
     UninstallProduct('{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}');
     Log('Trying to uninstall an old version of ProtonVPN TUN adapter');
     UninstallProduct('{FED0679F-A292-4507-AEF5-DD2BB8898A36}');
     Log('Trying to uninstall an old version of ProtonVPN TAP adapter');
     UninstallProduct('{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}');
+    Result := '';
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -452,7 +436,7 @@ begin
   if CurStep = ssDone then begin
     logfilepathname := ExpandConstant('{log}');
     logfilename := ExtractFileName(logfilepathname);
-    newfilepathname := ExpandConstant('{localappdata}') + '\ProtonVPN\DiagnosticLogs\ProtonVPN_install.log';
+    newfilepathname := ExpandConstant('{#InstallLogPath}');
     FileCopy(logfilepathname, newfilepathname, false);
     if IsProcessRunning('{#MyAppExeName}') then begin
       exit;
@@ -498,21 +482,4 @@ end;
 function ShouldDisplayProtonDriveCheckbox: Boolean;
 begin
   Result := IsProductInstalled('{F3B95BD2-1311-4B82-8B4A-B9EB7C0500ED}') = 0;
-end;
-
-function GetDriveInstallPath(value: String): String;
-var
-  path: String;
-begin
-    path := WizardForm.DirEdit.Text;
-    StringChangeEx(path, ExpandConstant('\{#AppFolder}'), '\Proton\Drive', True);
-    Result := '"' + path + '"';
-end;
-
-procedure CurPageChanged(CurPageID: Integer);
-begin
-    if (CurPageID = wpPreparing) and (IsInstallPathModified = False) and (IsUpgrade = False) then begin
-      IsInstallPathModified := true;
-      WizardForm.DirEdit.Text := WizardForm.DirEdit.Text + ExpandConstant('\{#AppFolder}');
-    end;
 end;

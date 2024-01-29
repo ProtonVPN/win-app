@@ -170,33 +170,6 @@ extern "C" EXPORT DWORD UpdateTaskbarIconTarget(const wchar_t* launcher_path)
     return shortcut_path.empty() ? 0 : Os::ChangeShortcutTarget(shortcut_path.c_str(), launcher_path);
 }
 
-extern "C" EXPORT DWORD SetUpdatesFolderPermission(const wchar_t* folder_path)
-{
-    const size_t folder_path_length = wcslen(folder_path);
-    wchar_t* path = new wchar_t[folder_path_length + 1];
-
-    if (wcscpy_s(path, folder_path_length + 1, folder_path) == 0)
-    {
-        wstring securityDescriptor =
-            L"D:(A;;0x1301bf;;;SY)"
-            "(A;OICIIO;GA;;;SY)"
-            "(A;;0x1301bf;;;BA)"
-            "(A;OICIIO;GA;;;BA)"
-            "(A;;0x1200a9;;;BU)"
-            "(A;OICIIO;GXGR;;;BU)"
-            "(A;OICIIO;GA;;;CO)"
-            "(A;;0x1200a9;;;AC)"
-            "(A;OICIIO;GXGR;;;AC)";
-        Os::SetFolderPermissions(path, securityDescriptor.c_str());
-    }
-    else
-    {
-        LogMessage(L"Failed to copy string.");
-    }
-
-    return 0;
-}
-
 extern "C" EXPORT DWORD RemovePinnedIcons(const wchar_t* shortcut_path)
 {
     Os::RemovePinnedIcons(shortcut_path);

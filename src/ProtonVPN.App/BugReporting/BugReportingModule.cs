@@ -44,6 +44,7 @@ namespace ProtonVPN.BugReporting
             builder.RegisterType<UserSettingsLog>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<NetworkAdapterLog>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<RoutingTableLog>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AppInstallLog>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<NetworkLogWriter>().SingleInstance();
             builder.RegisterType<FormElementBuilder>().As<IFormElementBuilder>().SingleInstance();
