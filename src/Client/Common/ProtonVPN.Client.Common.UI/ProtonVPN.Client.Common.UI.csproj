@@ -633,6 +633,7 @@
         <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
         <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
         <None Remove="Styles\Controls\InfoBarStyles.xaml" />
+        <None Remove="Styles\Controls\MessageContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
         <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
         <None Remove="Styles\Controls\PivotStyles.xaml" />
@@ -1686,6 +1687,11 @@
         <Content Update="Assets\Illustrations\world-map.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\MessageContentDialogStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Assets\Icons\LoadingLogo.xaml">

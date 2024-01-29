@@ -83,7 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Height="120"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Stretch="Uniform" />
+                           Stretch="None" />
 
         <ContentControl x:Name="Container"
                         HorizontalContentAlignment="Stretch"

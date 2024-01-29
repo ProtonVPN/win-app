@@ -17,21 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Common.Models;
+using Microsoft.UI.Xaml.Automation.Peers;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
 
-public struct MessageDialogParameters
+namespace ProtonVPN.Client.Common.UI.Automation;
+
+public class MessageContentDialogAutomationPeer : FrameworkElementAutomationPeer
 {
-    public string? Title { get; set; }
+    public MessageContentDialogAutomationPeer(MessageContentDialog owner)
+        : base(owner)
+    {
+    }
 
-    public string? Message { get; set; }
-
-    public string? PrimaryButtonText { get; set; }
-
-    public string? SecondaryButtonText { get; set; }
-
-    public string? CloseButtonText { get; set; }
-
-    public bool UseVerticalLayoutForButtons { get; set; }
-
-    public bool ShowLoadingAnimation { get; set; }
+    protected override bool IsControlElementCore()
+    {
+        return true;
+    }
 }

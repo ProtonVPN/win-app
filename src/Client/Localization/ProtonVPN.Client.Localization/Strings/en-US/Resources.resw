@@ -2299,4 +2299,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Connection_Error_MissingAuthCertificate" xml:space="preserve">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
+  <data name="Dialogs_Welcome_Message" xml:space="preserve">
+    <value>We're getting your new VPN experience ready. This should only take a moment.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title" xml:space="preserve">
+    <value>Welcome to Proton VPN</value>
+  </data>
 </root>
