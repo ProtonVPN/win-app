@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
@@ -47,31 +48,45 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         {
             rootWindow ??= App.MainWindow;
 
-            ContentDialog dialog = new()
-            {
-                Title = parameters.Title,
-                Content = parameters.Message,
-                PrimaryButtonText = parameters.PrimaryButtonText,
-                SecondaryButtonText = parameters.SecondaryButtonText,
-                CloseButtonText = parameters.CloseButtonText,
-                XamlRoot = rootWindow.GetXamlRoot(),
-                RequestedTheme = ThemeSelector.GetTheme().Theme,
-                Style = parameters.UseVerticalLayoutForButtons
-                    ? ResourceHelper.GetContentDialogStyle("VerticalMessageContentDialogStyle")
-                    : ResourceHelper.GetContentDialogStyle("MessageContentDialogStyle")
-            };
-
+            MessageContentDialog dialog = CreateMessageOverlay(parameters, rootWindow);
             ActiveOverlay overlay = new(rootWindow, dialog);
-
             RegisterOverlay(overlay);
 
             ContentDialogResult result = await overlay.Dialog.ShowAsync();
-
             return result;
         }
         catch (Exception e)
         {
             Logger.Error<AppLog>($"Error when trying to show message '{parameters.Title}'", e);
+            throw;
+        }
+    }
+
+    public async Task<ContentDialogResult> ShowLoadingMessageAsync(MessageDialogParameters parameters, Task loadingTask, Window? rootWindow = null)
+    {
+        try
+        {
+            rootWindow ??= App.MainWindow;
+
+            MessageContentDialog dialog = CreateMessageOverlay(parameters, rootWindow);
+            ActiveOverlay overlay = new(rootWindow, dialog);
+            RegisterOverlay(overlay);
+
+            Task<ContentDialogResult> showDialogTask = overlay.Dialog.ShowAsync().AsTask();
+
+            await Task.WhenAny(
+                showDialogTask,
+                loadingTask);
+
+            if (!showDialogTask.IsCompleted)
+            {
+                dialog.Hide();
+            }
+            return ContentDialogResult.None;
+        }
+        catch (Exception e)
+        {
+            Logger.Error<AppLog>($"Error when trying to show loading message '{parameters.Title}'", e);
             throw;
         }
     }
@@ -198,5 +213,21 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         {
             UnregisterOverlay(_activeOverlays.FirstOrDefault(o => o.Dialog == overlay));
         }
+    }
+
+    private MessageContentDialog CreateMessageOverlay(MessageDialogParameters parameters, Window rootWindow)
+    {
+        return new()
+        {
+            Title = parameters.Title,
+            Content = parameters.Message,
+            IsLoading = parameters.ShowLoadingAnimation,
+            IsVerticalLayout = parameters.UseVerticalLayoutForButtons,
+            PrimaryButtonText = parameters.PrimaryButtonText,
+            SecondaryButtonText = parameters.SecondaryButtonText,
+            CloseButtonText = parameters.CloseButtonText,
+            XamlRoot = rootWindow.GetXamlRoot(),
+            RequestedTheme = ThemeSelector.GetTheme().Theme,
+        };
     }
 }

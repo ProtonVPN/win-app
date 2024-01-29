@@ -32,4 +32,6 @@ public struct MessageDialogParameters
     public string? CloseButtonText { get; set; }
 
     public bool UseVerticalLayoutForButtons { get; set; }
+
+    public bool ShowLoadingAnimation { get; set; }
 }

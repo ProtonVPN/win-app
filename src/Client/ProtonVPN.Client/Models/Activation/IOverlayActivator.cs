@@ -28,6 +28,8 @@ public interface IOverlayActivator
 {
     Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters, Window? rootWindow = null);
 
+    Task<ContentDialogResult> ShowLoadingMessageAsync(MessageDialogParameters parameters, Task task, Window? rootWindow = null);
+
     Task ShowOverlayAsync<TOverlayViewModel>(Window? rootWindow = null)
         where TOverlayViewModel : OverlayViewModelBase;
 
