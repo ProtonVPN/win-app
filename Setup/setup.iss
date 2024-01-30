@@ -21,7 +21,7 @@
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 #define AppFolder "Proton\VPN"
-#define SourcePath GetEnv("BUILD_PATH") 
+#define SourcePath GetEnv("BUILD_PATH")
 #define IsBTISource SourcePath == "src/bin/win-x64/BTI/publish"
 #if IsBTISource
 #define OutputBaseSuffix "_BTI"
@@ -140,7 +140,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
 Name: "installProtonDrive"; Description: "{cm:InstallProtonDriveTitle}"; Check: ShouldDisplayProtonDriveCheckbox;
 
 [Run]
-Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{autopf}\Proton\Drive"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
+Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{code:GetDriveInstallPath}"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
@@ -477,6 +477,11 @@ begin
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
   end;
+end;
+
+function GetDriveInstallPath(value: String): String;
+begin
+    Result := '"' + ExpandConstant('{autopf}\Proton\Drive') + '"';
 end;
 
 function ShouldDisplayProtonDriveCheckbox: Boolean;
