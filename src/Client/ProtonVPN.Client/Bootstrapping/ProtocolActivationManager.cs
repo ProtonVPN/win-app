@@ -17,26 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
 using Microsoft.Windows.AppLifecycle;
+using ProtonVPN.Configurations.Defaults;
 
 namespace ProtonVPN.Client.Bootstrapping;
 
 public class ProtocolActivationManager
 {
-    public const string SCHEME = "protonvpn";
+    public const string SCHEME = "proton-vpn";
     public const string DISPLAY_NAME = "Proton VPN";
-
-    private static readonly string? _clientProcessPath = Process.GetCurrentProcess().MainModule?.FileName;
 
     public static void Register()
     {
-        ActivationRegistrationManager.RegisterForProtocolActivation(SCHEME, _clientProcessPath + ",1", DISPLAY_NAME,
-            _clientProcessPath);
+        ActivationRegistrationManager.RegisterForProtocolActivation(SCHEME, DefaultConfiguration.ClientLauncherExePath + ",1", DISPLAY_NAME,
+            DefaultConfiguration.ClientLauncherExePath);
     }
 
     public static void Unregister()
     {
-        ActivationRegistrationManager.UnregisterForProtocolActivation(SCHEME, _clientProcessPath);
+        ActivationRegistrationManager.UnregisterForProtocolActivation(SCHEME, DefaultConfiguration.ClientLauncherExePath);
     }
 }
