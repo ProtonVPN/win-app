@@ -38,7 +38,7 @@ public class Bootstrapper : IBootstrapper
     private readonly IServiceManager _serviceManager;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IUpdatesManager _updatesManager;
-    private readonly ISettingsMigrator _settingsMigrator;
+    private readonly IGlobalSettingsMigrator _globalSettingsMigrator;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
 
@@ -49,7 +49,7 @@ public class Bootstrapper : IBootstrapper
         IServiceManager serviceManager,
         IUserAuthenticator userAuthenticator,
         IUpdatesManager updatesManager,
-        ISettingsMigrator settingsMigrator,
+        IGlobalSettingsMigrator settingsMigrator,
         ISettings settings,
         ILogger logger)
     {
@@ -59,7 +59,7 @@ public class Bootstrapper : IBootstrapper
         _serviceManager = serviceManager;
         _userAuthenticator = userAuthenticator;
         _updatesManager = updatesManager;
-        _settingsMigrator = settingsMigrator;
+        _globalSettingsMigrator = settingsMigrator;
         _settings = settings;
         _logger = logger;
     }
@@ -70,7 +70,7 @@ public class Bootstrapper : IBootstrapper
         {
             ParseAndRunCommandLineArguments();
 
-            _settingsMigrator.Migrate();
+            _globalSettingsMigrator.Migrate();
 
             _mainWindowActivator.Show();
             _updatesManager.Initialize();
@@ -87,13 +87,13 @@ public class Bootstrapper : IBootstrapper
 
     private async Task TryAuthenticateAsync()
     {
-        if (string.IsNullOrEmpty(_settings.AccessToken))
+        if (_userAuthenticator.HasAuthenticatedSessionData())
         {
-            await _userAuthenticator.CreateUnauthSessionAsync();
+            await _userAuthenticator.AutoLoginUserAsync();
         }
         else
         {
-            await _userAuthenticator.AutoLoginUserAsync();
+            await _userAuthenticator.CreateUnauthSessionAsync();
         }
     }
 

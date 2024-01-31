@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
-public interface ISettingsMigrator
+public interface IGlobalSettingsMigrator
 {
     void Migrate();
 }

@@ -23,7 +23,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
               xmlns:wex="using:WinUIEx" 
               xmlns:tray="using:ProtonVPN.Client.UI.Tray"
               Width="636"
@@ -78,12 +77,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <tray:TrayIconComponent />
 
-        <icons:LoadingLogo x:Name="LoadingLogo"
-                           Width="120"
-                           Height="120"
+        <StackPanel x:Name="LoadingLogo" VerticalAlignment="Top">
+
+            <Image Source="{ThemeResource WelcomeIllustrationSource}" />
+
+            <Image Width="173"
+                   HorizontalAlignment="Center"
+                   Source="{ThemeResource ProductLogoIllustrationSource}" />
+
+            <StackPanel Spacing="12"
+                        Margin="0,48,0,0">
+
+                <ProgressRing Width="24"
+                              Height="24"
+                              Foreground="{ThemeResource TextNormColorBrush}" />
+
+                <TextBlock x:Name="LoadingMessage"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Stretch="None" />
+                           Style="{StaticResource CaptionStrongTextBlockStyle}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+        </StackPanel>
 
         <ContentControl x:Name="Container"
                         HorizontalContentAlignment="Stretch"

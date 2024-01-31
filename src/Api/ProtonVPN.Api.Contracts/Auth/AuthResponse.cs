@@ -23,6 +23,9 @@ namespace ProtonVPN.Api.Contracts.Auth;
 
 public class AuthResponse : SessionBaseResponse
 {
+    [JsonProperty(PropertyName = "UserID")]
+    public string UserId { get; set; }
+
     public string Scope { get; set; }
 
     public string ServerProof { get; set; }

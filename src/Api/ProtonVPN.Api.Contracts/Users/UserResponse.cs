@@ -17,10 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Newtonsoft.Json;
+
 namespace ProtonVPN.Api.Contracts.Users;
 
 public class UserResponse
 {
+    [JsonProperty(PropertyName = "ID")]
+    public string UserId { get; set; }
+
     public string Name { get; set; }
 
     public string DisplayName { get; set; }

@@ -37,16 +37,16 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
-    public string? Username
-    {
-        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
     public DeviceLocation? DeviceLocation
     {
         get => _globalRepository.GetValueType<DeviceLocation>(SettingEncryption.Encrypted);
         set => _globalRepository.SetValueType(value, SettingEncryption.Encrypted);
+    }
+
+    public string? UserId
+    {
+        get => _globalRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _globalRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
     public string? AccessToken
@@ -146,9 +146,9 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsSettingsMigrationDone
+    public bool IsGlobalSettingsMigrationDone
     {
-        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSettingsMigrationDone;
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsGlobalSettingsMigrationDone;
         set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
@@ -158,10 +158,16 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetValueType<KillSwitchMode>(value, SettingEncryption.Unencrypted);
     }
 
-    public List<FeatureFlag> FeatureFlags 
+    public List<FeatureFlag> FeatureFlags
     {
         get => _globalRepository.GetListValueType<FeatureFlag>(SettingEncryption.Encrypted) ?? DefaultSettings.FeatureFlags;
         set => _globalRepository.SetListValueType<FeatureFlag>(value, SettingEncryption.Encrypted);
+    }
+
+    public Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername
+    {
+        get => _globalRepository.GetReferenceType<Dictionary<string, Dictionary<string, string?>>>(SettingEncryption.Unencrypted);
+        set => _globalRepository.SetReferenceType<Dictionary<string, Dictionary<string, string?>>>(value, SettingEncryption.Unencrypted);
     }
 
     public GlobalSettings(IGlobalSettingsRepository globalSettingsRepository)

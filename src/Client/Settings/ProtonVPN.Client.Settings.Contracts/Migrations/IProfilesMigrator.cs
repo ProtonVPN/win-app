@@ -21,5 +21,5 @@ namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
 public interface IProfilesMigrator
 {
-    void Migrate();
+    void Migrate(List<LegacyProfile> profiles, string? quickConnectProfileId = null);
 }

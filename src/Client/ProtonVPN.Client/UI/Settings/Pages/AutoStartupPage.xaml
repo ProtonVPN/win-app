@@ -53,8 +53,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       IsEnabled="False"
                                       IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}"
                                       IsTabStop="False">
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=OneWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" /><!--Mode=TwoWay}"-->
                 <toolkit:SettingsExpander.Items>
                     <StackPanel Spacing="16">
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"

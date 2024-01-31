@@ -27,7 +27,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Migrations;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -40,7 +39,6 @@ public class InitializedServersListHandler : IHandler,
     private readonly ISettings _settings;
     private readonly IServersLoader _serversLoader;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IProfilesMigrator _profilesMigrator;
 
     private bool _isHandled;
 
@@ -49,15 +47,13 @@ public class InitializedServersListHandler : IHandler,
         IRecentConnectionsProvider recentConnectionsProvider,
         ISettings settings,
         IServersLoader serversLoader,
-        IUserAuthenticator userAuthenticator,
-        IProfilesMigrator profilesMigrator)
+        IUserAuthenticator userAuthenticator)
     {
         _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
         _settings = settings;
         _serversLoader = serversLoader;
         _userAuthenticator = userAuthenticator;
-        _profilesMigrator = profilesMigrator;
     }
 
     public void Receive(LoggedOutMessage message)
@@ -74,8 +70,7 @@ public class InitializedServersListHandler : IHandler,
 
         if (_serversLoader.GetServers().Any() && _userAuthenticator.IsLoggedIn)
         {
-            _profilesMigrator.Migrate();
-            if (_userAuthenticator.IsAutoLogin == true)
+            if (_userAuthenticator.IsAutoLogin == true && _settings.IsAutoConnectEnabled && _connectionManager.IsDisconnected)
             {
                 await AutoConnectAsync();
             }
@@ -86,18 +81,15 @@ public class InitializedServersListHandler : IHandler,
 
     private async Task AutoConnectAsync()
     {
-        if (_settings.IsAutoConnectEnabled && _connectionManager.IsDisconnected)
+        switch (_settings.AutoConnectMode)
         {
-            switch (_settings.AutoConnectMode)
-            {
-                case AutoConnectMode.LatestConnection:
-                    await _connectionManager.ConnectAsync(_recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent);
-                    break;
+            case AutoConnectMode.LatestConnection:
+                await _connectionManager.ConnectAsync(_recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent);
+                break;
 
-                case AutoConnectMode.FastestConnection:
-                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
-                    break;
-            }
+            case AutoConnectMode.FastestConnection:
+                await _connectionManager.ConnectAsync(ConnectionIntent.Default);
+                break;
         }
     }
 }

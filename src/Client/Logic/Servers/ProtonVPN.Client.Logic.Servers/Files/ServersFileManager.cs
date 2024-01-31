@@ -60,8 +60,8 @@ public class ServersFileManager : IServersFileManager, IEventMessageReceiver<Set
 
     private string? GenerateFullFilePath()
     {
-        string? username = _settings.Username?.ToLower();
-        string? fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
+        string? userId = _settings.UserId;
+        string? fileName = userId is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(userId));
         string? fullFilePath = fileName is null ? null : Path.Combine(_staticConfiguration.StorageFolder, fileName);
         return fullFilePath;
     }
@@ -103,7 +103,7 @@ public class ServersFileManager : IServersFileManager, IEventMessageReceiver<Set
         string? fullFilePath = GetFullFilePath();
         if (fullFilePath is null)
         {
-            _logger.Info<AppLog>("Cannot save the servers file because the username is null.");
+            _logger.Info<AppLog>("Cannot save the servers file because the User ID is null.");
             return false;
         }
 
@@ -130,7 +130,7 @@ public class ServersFileManager : IServersFileManager, IEventMessageReceiver<Set
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.Username))
+        if (message.PropertyName == nameof(ISettings.UserId))
         {
             lock (_fullFilePathLock)
             {

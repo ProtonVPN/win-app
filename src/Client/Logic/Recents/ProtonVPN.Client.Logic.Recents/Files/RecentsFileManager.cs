@@ -68,8 +68,8 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
 
     private string GenerateFullFilePath()
     {
-        string username = _settings.Username?.ToLower();
-        string fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
+        string userId = _settings.UserId;
+        string fileName = userId is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(userId));
         string fullFilePath = fileName is null ? null : Path.Combine(_staticConfiguration.StorageFolder, fileName);
         return fullFilePath;
     }
@@ -100,7 +100,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
                 }
                 else
                 {
-                    string reason = fullFilePath is null ? "the username is null" : "the file does not exist";
+                    string reason = fullFilePath is null ? "the User ID is null" : "the file does not exist";
                     _logger.Info<AppLog>($"Not able to read the recent connections file, because {reason}.");
                 }
             }
@@ -126,7 +126,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
         string fullFilePath = GetFullFilePath();
         if (fullFilePath is null)
         {
-            _logger.Info<AppLog>("Cannot save the recent connections file because the username is null.");
+            _logger.Info<AppLog>("Cannot save the recent connections file because the User ID is null.");
             return false;
         }
 
@@ -169,7 +169,7 @@ public class RecentsFileManager : IRecentsFileManager, IEventMessageReceiver<Set
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.Username))
+        if (message.PropertyName == nameof(ISettings.UserId))
         {
             lock (_fullFilePathLock)
             {

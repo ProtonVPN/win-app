@@ -23,6 +23,7 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -59,6 +60,7 @@ public class MainWindowActivator :
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
+    private readonly ILocalizationProvider _localizationProvider;
     private bool _handleClosedEvents = true;
 
     public MainWindowActivator(
@@ -73,7 +75,8 @@ public class MainWindowActivator :
         IConnectionManager connectionManager,
         ISettings settings,
         IEventMessageSender eventMessageSender,
-        IUIThreadDispatcher uIThreadDispatcher)
+        IUIThreadDispatcher uIThreadDispatcher,
+        ILocalizationProvider localizationProvider)
         : base(logger, themeSelector)
     {
         _dialogActivator = dialogActivator;
@@ -86,6 +89,7 @@ public class MainWindowActivator :
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _uiThreadDispatcher = uIThreadDispatcher;
+        _localizationProvider = localizationProvider;
     }
 
     public void Show()
@@ -129,8 +133,13 @@ public class MainWindowActivator :
     {
         _uiThreadDispatcher.TryEnqueue(() =>
         {
-            App.MainWindow.SwitchToLoadingScreen();
+            App.MainWindow.SwitchToLoadingScreen(GetTranslationOrNull("Main_Loading_SigningIn"));
         });
+    }
+
+    private string? GetTranslationOrNull(string? translationKey)
+    {
+        return translationKey is null ? null : _localizationProvider.Get(translationKey);
     }
 
     public void Receive(LoggedInMessage message)
@@ -151,7 +160,7 @@ public class MainWindowActivator :
     {
         _uiThreadDispatcher.TryEnqueue(() =>
         {
-            App.MainWindow.SwitchToLoadingScreen();
+            App.MainWindow.SwitchToLoadingScreen(GetTranslationOrNull("Main_Loading_SigningOut"));
 
             SaveWindowPosition();
         });

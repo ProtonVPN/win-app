@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -40,34 +39,27 @@ public class ProfilesMigrator : IProfilesMigrator
     private readonly ISettings _settings;
     private readonly IServersLoader _serversLoader;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
-    private readonly IUserAuthenticator _userAuthenticator;
 
     public ProfilesMigrator(ISettings settings,
         IServersLoader serversLoader,
-        IRecentConnectionsProvider recentConnectionsProvider,
-        IUserAuthenticator userAuthenticator)
+        IRecentConnectionsProvider recentConnectionsProvider)
     {
         _settings = settings;
         _serversLoader = serversLoader;
         _recentConnectionsProvider = recentConnectionsProvider;
-        _userAuthenticator = userAuthenticator;
     }
 
-    public void Migrate()
+    public void Migrate(List<LegacyProfile> profiles, string? quickConnectProfileId = null)
     {
-        List<LegacyProfile>? legacyProfiles = _settings.LegacyProfiles;
-
-        if (legacyProfiles is null || !_userAuthenticator.IsLoggedIn || !_serversLoader.GetServers().Any())
+        if (profiles is null)
         {
             return;
         }
 
-        List<IConnectionIntent> connectionIntents = MapProfilesToConnectionIntents(legacyProfiles);
-        IConnectionIntent? firstConnectionIntent = MapQuickConnectProfileToConnectionIntent(legacyProfiles);
+        List<IConnectionIntent> connectionIntents = MapProfilesToConnectionIntents(profiles);
+        IConnectionIntent? firstConnectionIntent = MapQuickConnectProfileToConnectionIntent(profiles, quickConnectProfileId);
 
         _recentConnectionsProvider.SaveRecentConnections(connectionIntents, firstConnectionIntent);
-
-        ClearLegacyProfileSettings();
     }
 
     private List<IConnectionIntent> MapProfilesToConnectionIntents(List<LegacyProfile> profiles)
@@ -150,14 +142,13 @@ public class ProfilesMigrator : IProfilesMigrator
         return new ConnectionIntent(locationIntent ?? new CountryLocationIntent(), featureIntent);
     }
 
-    private IConnectionIntent? MapQuickConnectProfileToConnectionIntent(List<LegacyProfile> legacyProfiles)
+    private IConnectionIntent? MapQuickConnectProfileToConnectionIntent(List<LegacyProfile> profiles, string? quickConnectProfileId)
     {
-        string? legacyQuickConnectProfileId = _settings.LegacyQuickConnectProfileId;
-        if (!string.IsNullOrEmpty(legacyQuickConnectProfileId) &&
-            legacyQuickConnectProfileId != FASTEST_PROFILE_NAME &&
-            legacyQuickConnectProfileId != RANDOM_PROFILE_NAME)
+        if (!string.IsNullOrEmpty(quickConnectProfileId) &&
+            quickConnectProfileId != FASTEST_PROFILE_NAME &&
+            quickConnectProfileId != RANDOM_PROFILE_NAME)
         {
-            LegacyProfile? profile = legacyProfiles.FirstOrDefault(p => p.Id == legacyQuickConnectProfileId);
+            LegacyProfile? profile = profiles.FirstOrDefault(p => p.Id == quickConnectProfileId);
             if (profile is not null)
             {
                 return GetConnectionIntent(profile);
@@ -165,11 +156,5 @@ public class ProfilesMigrator : IProfilesMigrator
         }
 
         return null;
-    }
-
-    private void ClearLegacyProfileSettings()
-    {
-        _settings.LegacyProfiles = null;
-        _settings.LegacyQuickConnectProfileId = null;
     }
 }

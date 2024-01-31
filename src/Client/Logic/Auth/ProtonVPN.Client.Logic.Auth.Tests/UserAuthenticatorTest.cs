@@ -31,7 +31,9 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth.Tests;
@@ -51,6 +53,9 @@ public class UserAuthenticatorTest
     private IGuestHoleActionExecutor _guestHoleActionExecutor;
     private ITokenClient _tokenClient;
     private IConnectionManager _connectionManager;
+    private IServersLoader _serversLoader;
+    private IServersUpdater _serversUpdater;
+    private IUserSettingsMigrator _userSettingsMigrator;
 
     [TestInitialize]
     public void Initialize()
@@ -63,6 +68,9 @@ public class UserAuthenticatorTest
         _guestHoleActionExecutor = Substitute.For<IGuestHoleActionExecutor>();
         _tokenClient = Substitute.For<ITokenClient>();
         _connectionManager = Substitute.For<IConnectionManager>();
+        _serversLoader = Substitute.For<IServersLoader>();
+        _serversUpdater = Substitute.For<IServersUpdater>();
+        _userSettingsMigrator = Substitute.For<IUserSettingsMigrator>();
     }
 
     [TestCleanup]
@@ -74,6 +82,11 @@ public class UserAuthenticatorTest
         _authCertificateManager = null;
         _eventMessageSender = null;
         _guestHoleActionExecutor = null;
+        _tokenClient = null;
+        _connectionManager = null;
+        _serversLoader = null;
+        _serversUpdater = null;
+        _userSettingsMigrator = null;
     }
 
     [TestMethod]
@@ -133,6 +146,8 @@ public class UserAuthenticatorTest
 
     private UserAuthenticator GetUserAuthenticator()
     {
-        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender, _guestHoleActionExecutor, _tokenClient, _connectionManager);
+        return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender,
+            _guestHoleActionExecutor, _tokenClient, _connectionManager, _serversLoader,
+            _serversUpdater, _userSettingsMigrator);
     }
 }
