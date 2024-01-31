@@ -39,14 +39,14 @@ public class SettingsModule : Module
         builder.RegisterType<UserSettingsRepository>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SettingsRestorer>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SettingsMigrator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GlobalSettingsMigrator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UserSettingsMigrator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ProfilesMigrator>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ClientConfigObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<FeatureFlagsObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
 
         builder.RegisterType<SettingsConflictResolver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
-
-        builder.RegisterType<ProfilesMigrator>().AsImplementedInterfaces().AutoActivate().SingleInstance();
 
         builder.RegisterAssemblyTypes(typeof(ISettingsConflict).Assembly)
                .Where(t => typeof(ISettingsConflict).IsAssignableFrom(t))

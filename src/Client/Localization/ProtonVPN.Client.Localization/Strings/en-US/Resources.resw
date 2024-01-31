@@ -1722,6 +1722,14 @@
     <value>Trouble signing in</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
+  <data name="Main_Loading_SigningIn" xml:space="preserve">
+    <value>Signing in, please wait...</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut" xml:space="preserve">
+    <value>Signing out, please wait...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
   <data name="Account_VpnPlan_Free" xml:space="preserve">
     <value>Proton VPN Free</value>
   </data>

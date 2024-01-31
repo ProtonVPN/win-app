@@ -21,6 +21,7 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IServersUpdater
 {
+    void LoadFromFileIfEmpty();
     Task UpdateAsync();
     Task UpdateLoadsAsync();
 }

@@ -61,8 +61,8 @@ public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepos
 
     private string? GenerateFileName()
     {
-        string? username = _globalSettings.Username?.ToLower();
-        string? fileName = username is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(username));
+        string? userId = _globalSettings.UserId;
+        string? fileName = userId is null ? null : string.Format(FILE_NAME, _sha1Calculator.Hash(userId));
         return fileName;
     }
 
@@ -109,7 +109,7 @@ public class UserSettingsRepository : SettingsRepositoryBase, IUserSettingsRepos
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.Username))
+        if (message.PropertyName == nameof(ISettings.UserId))
         {
             lock (_lock)
             {

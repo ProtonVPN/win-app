@@ -32,6 +32,7 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
@@ -83,14 +84,19 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
         }
     }
 
-    public async Task UpdateAsync()
+    public void LoadFromFileIfEmpty()
     {
         if (!HasAnyServers())
         {
+            _logger.Info<AppLog>("Loading servers from file as the user has none.");
             IReadOnlyList<Server> servers = _serversFileManager.Read();
             ProcessNewServers(servers);
         }
+    }
 
+    public async Task UpdateAsync()
+    {
+        LoadFromFileIfEmpty();
         try
         {
             DeviceLocation? currentLocation = _settings.DeviceLocation;

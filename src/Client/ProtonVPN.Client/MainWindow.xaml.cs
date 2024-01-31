@@ -49,12 +49,13 @@ public sealed partial class MainWindow
         UpdateApplicationIcon(false);
     }
 
-    public void SwitchToLoadingScreen()
+    public void SwitchToLoadingScreen(string? loadingMessage = null)
     {
         Container.Content = null;
 
         Container.Visibility = Visibility.Collapsed;
         LoadingLogo.Visibility = Visibility.Visible;
+        LoadingMessage.Text = loadingMessage;
 
         HideTitleBar();
     }

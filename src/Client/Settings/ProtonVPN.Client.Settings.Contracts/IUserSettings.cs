@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 
@@ -26,6 +25,7 @@ namespace ProtonVPN.Client.Settings.Contracts;
 
 public interface IUserSettings
 {
+    string? Username { get; set; }
     string? UserDisplayName { get; set; }
     string Theme { get; set; }
     int? WindowWidth { get; set; }
@@ -62,12 +62,10 @@ public interface IUserSettings
     bool IsPortForwardingNotificationEnabled { get; set; }
     bool IsSplitTunnelingEnabled { get; set; }
     bool IsSmartReconnectEnabled { get; set; }
+    bool IsUserSettingsMigrationDone { get; set; }
     SplitTunnelingMode SplitTunnelingMode { get; set; }
     List<SplitTunnelingApp> SplitTunnelingStandardAppsList { get; set; }
     List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
-
-    string? LegacyQuickConnectProfileId { get; set; }
-    List<LegacyProfile>? LegacyProfiles { get; set; }
 }

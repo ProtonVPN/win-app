@@ -27,8 +27,8 @@ namespace ProtonVPN.Client.Settings.Contracts;
 public interface IGlobalSettings
 {
     string Language { get; set; }
-    string? Username { get; set; }
     DeviceLocation? DeviceLocation { get; set; }
+    string? UserId { get; set; }
     string? AccessToken { get; set; }
     string? RefreshToken { get; set; }
     string? UniqueSessionId { get; set; }
@@ -45,7 +45,9 @@ public interface IGlobalSettings
     bool IsKillSwitchEnabled { get; set; }
     bool IsBetaAccessEnabled { get; set; }
     bool AreAutomaticUpdatesEnabled { get; set; }
-    bool IsSettingsMigrationDone { get; set; }
+    bool IsGlobalSettingsMigrationDone { get; set; }
     KillSwitchMode KillSwitchMode { get; set; }
     List<FeatureFlag> FeatureFlags { get; set; }
+
+    Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

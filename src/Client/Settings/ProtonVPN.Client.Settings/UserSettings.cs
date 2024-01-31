@@ -19,7 +19,6 @@
 
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
 using ProtonVPN.Common.Core.Networking;
@@ -30,10 +29,16 @@ public class UserSettings : GlobalSettings, IUserSettings
 {
     private readonly IUserSettingsRepository _userRepository;
 
+    public string? Username
+    {
+        get => _userRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _userRepository.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
     public string? UserDisplayName
     {
-        get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);
-        set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+        get => _userRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _userRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
     public string Theme
@@ -98,8 +103,8 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public string? VpnPlanTitle
     {
-        get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);
-        set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
+        get => _userRepository.GetReferenceType<string>(SettingEncryption.Encrypted);
+        set => _userRepository.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
     public string? AuthenticationPublicKey
@@ -247,6 +252,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsUserSettingsMigrationDone
+    {
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsUserSettingsMigrationDone;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public SplitTunnelingMode SplitTunnelingMode
     {
         get => _userRepository.GetValueType<SplitTunnelingMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingMode;
@@ -275,18 +286,6 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get => _userRepository.GetListValueType<SplitTunnelingIpAddress>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingIpAddressesList;
         set => _userRepository.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
-    }
-
-    public string? LegacyQuickConnectProfileId
-    {
-        get => _userRepository.GetReferenceType<string>(SettingEncryption.Unencrypted);
-        set => _userRepository.SetReferenceType(value, SettingEncryption.Unencrypted);
-    }
-
-    public List<LegacyProfile>? LegacyProfiles
-    {
-        get => _userRepository.GetListReferenceType<LegacyProfile>(SettingEncryption.Unencrypted);
-        set => _userRepository.SetListReferenceType<LegacyProfile>(value, SettingEncryption.Unencrypted);
     }
 
     public UserSettings(IGlobalSettingsRepository globalSettingsRepository, IUserSettingsRepository userSettingsRepository)

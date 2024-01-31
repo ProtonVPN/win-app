@@ -29,7 +29,9 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
@@ -51,6 +53,9 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
     private readonly ITokenClient _tokenClient;
     private readonly IConnectionManager _connectionManager;
+    private readonly IServersLoader _serversLoader;
+    private readonly IServersUpdater _serversUpdater;
+    private readonly IUserSettingsMigrator _userSettingsMigrator;
     private AuthResponse _authResponse;
 
     public bool IsLoggingIn { get; private set; }
@@ -65,7 +70,10 @@ public class UserAuthenticator : IUserAuthenticator
         IEventMessageSender eventMessageSender,
         IGuestHoleActionExecutor guestHoleActionExecutor,
         ITokenClient tokenClient,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IServersLoader serversLoader,
+        IServersUpdater serversUpdater,
+        IUserSettingsMigrator userSettingsMigrator)
     {
         _logger = logger;
         _apiClient = apiClient;
@@ -75,6 +83,9 @@ public class UserAuthenticator : IUserAuthenticator
         _guestHoleActionExecutor = guestHoleActionExecutor;
         _tokenClient = tokenClient;
         _connectionManager = connectionManager;
+        _serversLoader = serversLoader;
+        _serversUpdater = serversUpdater;
+        _userSettingsMigrator = userSettingsMigrator;
 
         _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
     }
@@ -100,6 +111,7 @@ public class UserAuthenticator : IUserAuthenticator
 
     public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
     {
+        ClearAuthSessionDetails();
         try
         {
             return await AuthAsync(username, password);
@@ -121,6 +133,7 @@ public class UserAuthenticator : IUserAuthenticator
     public async Task<SsoAuthResult> StartSsoAuthAsync(string username)
     {
         _logger.Info<UserLog>("Trying to login user with SSO");
+        ClearAuthSessionDetails();
 
         if (!IsUnauthSessionCreated())
         {
@@ -227,9 +240,9 @@ public class UserAuthenticator : IUserAuthenticator
         return await CompleteLoginAsync(false);
     }
 
-    public async Task AutoLoginUserAsync()
+    public async Task<AuthResult> AutoLoginUserAsync()
     {
-        await CompleteLoginAsync(true);
+        return await CompleteLoginAsync(true);
     }
 
     public async Task LogoutAsync(LogoutReason reason)
@@ -283,14 +296,15 @@ public class UserAuthenticator : IUserAuthenticator
 
     private void ClearAuthSessionDetails()
     {
+        _settings.UserId = null;
         _settings.UniqueSessionId = null;
         _settings.AccessToken = null;
         _settings.RefreshToken = null;
-        _settings.Username = null;
     }
 
     private void SaveAuthSessionDetails(AuthResponse authResponse)
     {
+        _settings.UserId = authResponse.UserId;
         _settings.AccessToken = authResponse.AccessToken;
         _settings.UniqueSessionId = authResponse.UniqueSessionId;
         _settings.RefreshToken = authResponse.RefreshToken;
@@ -304,14 +318,33 @@ public class UserAuthenticator : IUserAuthenticator
             IsLoggedIn = false;
             _eventMessageSender.Send(new LoggingInMessage());
 
+            if (!HasAuthenticatedSessionData())
+            {
+                ClearAuthSessionDetails();
+                await LogoutAsync(LogoutReason.SessionExpired);
+                return AuthResult.Fail(AuthError.GetSessionDetailsFailed);
+            }
+
             Task<ApiResponseResult<UsersResponse>> getUserTask = _apiClient.GetUserAsync();
             Task<ApiResponseResult<VpnInfoWrapperResponse>> getVpnInfoTask = _apiClient.GetVpnInfoResponse();
             await Task.WhenAll(getUserTask, getVpnInfoTask);
 
             if (getUserTask.Result.Success)
             {
+                // After migration from previous version, there is no User ID. Global Settings should be set before User Settings.
+                if (string.IsNullOrWhiteSpace(_settings.UserId))
+                {
+                    _settings.UserId = getUserTask.Result.Value.User.UserId;
+                }
+
                 _settings.Username = getUserTask.Result.Value.User.GetUsername();
                 _settings.UserDisplayName = getUserTask.Result.Value.User.GetDisplayName();
+            }
+
+            if (string.IsNullOrWhiteSpace(_settings.UserId))
+            {
+                await LogoutAsync(LogoutReason.SessionExpired);
+                return AuthResult.Fail(getUserTask.Result);
             }
 
             if (getVpnInfoTask.Result.Success)
@@ -330,23 +363,26 @@ public class UserAuthenticator : IUserAuthenticator
             _logger.Error<AppLog>("An unexpected exception was thrown when updating the user info.", e);
         }
 
-        if (string.IsNullOrEmpty(_settings.Username))            
-        {
-            await LogoutAsync(LogoutReason.SessionExpired);
-            return AuthResult.Fail(AuthError.GetSessionDetailsFailed);
-        }
-
         ClearUnauthSessionDetails();
 
         IsLoggedIn = true;
         IsLoggingIn = false;
         IsAutoLogin = isAutoLogin;
 
+        await MigrateUserSettingsAsync();
+
         _eventMessageSender.Send(new LoggedInMessage { IsAutoLogin = isAutoLogin });
 
         await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
 
         return AuthResult.Ok();
+    }
+
+    public bool HasAuthenticatedSessionData()
+    {
+        return !string.IsNullOrWhiteSpace(_settings.AccessToken) &&
+               !string.IsNullOrWhiteSpace(_settings.RefreshToken) &&
+               !string.IsNullOrWhiteSpace(_settings.UniqueSessionId);
     }
 
     private bool IsUnauthSessionCreated()
@@ -361,6 +397,19 @@ public class UserAuthenticator : IUserAuthenticator
         _settings.UnauthUniqueSessionId = null;
         _settings.UnauthAccessToken = null;
         _settings.UnauthRefreshToken = null;
+    }
+
+    private async Task MigrateUserSettingsAsync()
+    {
+        _serversUpdater.LoadFromFileIfEmpty();
+
+        if (!_serversLoader.GetServers().Any())
+        {
+            _logger.Info<AppLog>("Fetching servers as the user has none.");
+            await _serversUpdater.UpdateAsync();
+        }
+
+        await _userSettingsMigrator.MigrateAsync();
     }
 
     private void SaveUnauthSessionDetails(UnauthSessionResponse response)

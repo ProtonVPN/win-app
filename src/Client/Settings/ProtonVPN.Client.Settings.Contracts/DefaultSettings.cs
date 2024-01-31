@@ -53,7 +53,8 @@ public static class DefaultSettings
     public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;
     public static bool IsNetShieldEnabled = true;
     public static bool IsKillSwitchEnabled = false;
-    public static bool IsSettingsMigrationDone = false;
+    public static bool IsGlobalSettingsMigrationDone = false;
+    public static bool IsUserSettingsMigrationDone = false;
     public static KillSwitchMode KillSwitchMode = KillSwitchMode.Standard;
     public static bool IsPortForwardingEnabled = false;
     public static bool IsPortForwardingNotificationEnabled = true;

@@ -166,8 +166,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Bell />
                 </toolkit:SettingsCard.HeaderIcon>
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=OneWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" /> <!--Mode=TwoWay}"-->
             </toolkit:SettingsCard>
             
             <!--  TODO: Additional languages are not supported yet. Keep the settings card disabled for now.  -->
@@ -181,7 +181,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="cbLanguage"
                           ItemsSource="{x:Bind ViewModel.Languages}"
-                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=OneWay}"/> <!-- , Mode=TwoWay}" /> --> 
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
