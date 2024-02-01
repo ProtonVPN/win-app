@@ -331,7 +331,7 @@ begin
   end;
   if RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion') then begin
     RegQueryStringValue(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion', Version);
-    if CompareVersions(Version, '{#MyAppVersion}') >= 0 then begin
+    if CompareVersions(Version, '{#MyAppVersion}') > 0 then begin
       if WizardSilent() = false then begin
         MsgBox(ExpandConstant('{#MyAppName} is already installed with the newer version ' + Version + '.'), mbInformation, MB_OK);
       end;
