@@ -24,6 +24,7 @@ public static class OSVersion
     private static readonly Lazy<Version> _version = new(CreateVersion);
     private static readonly Lazy<string> _versionString = new(_version.Value.ToString);
     private static readonly Lazy<string> _platformVersionString = new(CreatePlatformVersionString);
+    private static readonly Version _windows11Version = new(10, 0, 22000);
 
     private static Version CreateVersion()
     {
@@ -51,5 +52,10 @@ public static class OSVersion
     public static string GetPlatformString()
     {
         return _platformVersionString.Value;
+    }
+
+    public static bool IsWindows11OrHigher()
+    {
+        return Environment.OSVersion.Version >= _windows11Version;
     }
 }
