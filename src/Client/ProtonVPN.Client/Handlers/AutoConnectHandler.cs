@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -30,9 +31,11 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class InitializedServersListHandler : IHandler,
+public class AutoConnectHandler : IHandler,
     IEventMessageReceiver<LoggedOutMessage>,
-    IEventMessageReceiver<ServerListChangedMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>,
+    IEventMessageReceiver<RecentConnectionsChanged>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
@@ -42,7 +45,10 @@ public class InitializedServersListHandler : IHandler,
 
     private bool _isHandled;
 
-    public InitializedServersListHandler(
+    private bool _isServersListReady;
+    private bool _isRecentsListReady;
+
+    public AutoConnectHandler(
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ISettings settings,
@@ -59,23 +65,41 @@ public class InitializedServersListHandler : IHandler,
     public void Receive(LoggedOutMessage message)
     {
         _isHandled = false;
+        _isServersListReady = false;
+        _isRecentsListReady = false;
     }
 
-    public async void Receive(ServerListChangedMessage message)
+    public void Receive(LoggedInMessage message)
     {
-        if (_isHandled)
+        TryAutoConnectAsync();
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        _isServersListReady = _serversLoader.GetServers().Any();
+
+        TryAutoConnectAsync();
+    }
+
+    public void Receive(RecentConnectionsChanged message)
+    {
+        _isRecentsListReady = true;
+
+        TryAutoConnectAsync();
+    }
+
+    private async void TryAutoConnectAsync()
+    {
+        if (_isHandled || !_isServersListReady || !_isRecentsListReady || !_userAuthenticator.IsLoggedIn)
         {
             return;
         }
 
-        if (_serversLoader.GetServers().Any() && _userAuthenticator.IsLoggedIn)
-        {
-            if (_userAuthenticator.IsAutoLogin == true && _settings.IsAutoConnectEnabled && _connectionManager.IsDisconnected)
-            {
-                await AutoConnectAsync();
-            }
+        _isHandled = true;
 
-            _isHandled = true;
+        if (_userAuthenticator.IsAutoLogin == true && _settings.IsAutoConnectEnabled && _connectionManager.IsDisconnected)
+        {
+            await AutoConnectAsync();
         }
     }
 
