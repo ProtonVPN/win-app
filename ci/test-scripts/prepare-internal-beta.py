@@ -67,7 +67,7 @@ def clone_main_branch():
     os.system(f'git clone https://{os.getenv("INTERNAL_BETA_TOKEN_NAME")}:{os.getenv("INTERNAL_BETA_TOKEN")}@{os.getenv("INTERNAL_BETA_REPO")}')
 
 def move_files_to_beta_folder(win_update_json, installer_path):
-    with open(f'{project_path}\\public\\win-update.json', 'w', encoding='utf-8') as f:
+    with open(f'{project_path}\\public\\windows-releases.json', 'w', encoding='utf-8') as f:
         json.dump(win_update_json, f, ensure_ascii=False, indent=4)
     shutil.copy(installer_path,f'{project_path}\\public')
 
