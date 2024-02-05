@@ -2464,7 +2464,7 @@
     <value>광고 웹사이트는 당신을 대상으로 쿠키와 추적기를 사용합니다.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>데이터 저장됨</value>
+    <value>데이터 절약됨</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>NetShield가 차단한 광고 트래커, 멀웨어의 예상 크기입니다.</value>
