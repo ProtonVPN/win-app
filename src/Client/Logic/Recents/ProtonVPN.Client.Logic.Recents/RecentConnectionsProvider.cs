@@ -39,11 +39,13 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IRecentsFileManager _recentsFileManager;
+
     private readonly object _lock = new();
 
     private List<IRecentConnection> _recentConnections = new();
 
-    public RecentConnectionsProvider(IConnectionManager connectionManager,
+    public RecentConnectionsProvider(
+        IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender,
         IRecentsFileManager recentsFileManager)
     {
@@ -122,7 +124,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
             return;
         }
 
-        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
+        ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
 
         // The current connection cannot be removed, simply unpin it.
         if (connectionDetails != null && recentConnection.ConnectionIntent.IsSameAs(connectionDetails.OriginalConnectionIntent))
@@ -143,7 +145,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     {
         lock (_lock)
         {
-            ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
+            IConnectionIntent connectionIntent = _connectionManager.CurrentConnectionIntent;
 
             try
             {
@@ -152,7 +154,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
                     return;
                 }
 
-                if (!TryInsertRecentConnection(connectionDetails?.OriginalConnectionIntent))
+                if (!TryInsertRecentConnection(connectionIntent))
                 {
                     return;
                 }
@@ -161,14 +163,14 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
             }
             finally
             {
-                SetActiveConnection(connectionDetails?.OriginalConnectionIntent, _connectionManager.ConnectionStatus);
+                SetActiveConnection(connectionIntent, _connectionManager.ConnectionStatus);
 
                 SaveRecentsAndBroadcastChanges();
             }
         }
     }
 
-    private bool TryInsertRecentConnection(IConnectionIntent? recentIntent)
+    private bool TryInsertRecentConnection(IConnectionIntent recentIntent)
     {
         if (recentIntent == null)
         {
@@ -195,7 +197,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         }
     }
 
-    private void SetActiveConnection(IConnectionIntent? activeIntent, ConnectionStatus connectionStatus)
+    private void SetActiveConnection(IConnectionIntent activeIntent, ConnectionStatus connectionStatus)
     {
         foreach (IRecentConnection connection in _recentConnections)
         {

@@ -30,12 +30,14 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Home.Details;
 
 namespace ProtonVPN.Client.UI.Home;
 
 public partial class HomeViewModel : NavigationPageViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>, 
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IConnectionManager _connectionManager;
@@ -59,6 +61,8 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
     public override bool IsBackEnabled => false;
 
+    public bool IsPaidUser => _settings.IsPaid;
+
     public bool IsConnecting => _connectionManager.IsConnecting;
 
     public bool IsConnected => _connectionManager.IsConnected;
@@ -78,17 +82,29 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     }
 
     [RelayCommand]
-    public void CloseConnectionDetailsPane()
+    private void CloseConnectionDetailsPane()
     {
         IsConnectionDetailsPaneOpened = false;
     }
 
-    public void OpenConnectionDetailsPane()
+    private void OpenConnectionDetailsPane()
     {
         // Opening connection details Pane, flag can be reset
         _reopenDetailsPaneAutomatically = false;
 
         IsConnectionDetailsPaneOpened = true;
+    }
+
+    public void ToggleConnectionDetailsPane()
+    {
+        if (IsConnectionDetailsPaneOpened)
+        {
+            CloseConnectionDetailsPane();
+        }
+        else
+        {
+            OpenConnectionDetailsPane();
+        }
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -120,10 +136,25 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
             }
         });
     }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName != nameof(ISettings.IsPaid))
+        {
+            return;
+        }
+
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsPaidUser));
+        });
+    }
+
     public void Receive(LoggedInMessage message)
     {
         ExecuteOnUIThread(() =>
         {
+            OnPropertyChanged(nameof(IsPaidUser));
             _reopenDetailsPaneAutomatically = _settings.IsConnectionDetailsPaneOpened;
         });
     }

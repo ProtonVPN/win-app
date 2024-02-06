@@ -70,6 +70,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Home\ConnectionCard\FreeConnectionCardComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Update\UpdateComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -214,6 +217,7 @@
         <None Remove="UI\Dialogs\Windows\ReportIssueWindow.xaml" />
         <None Remove="UI\Gallery\GalleryItemPage.xaml" />
         <None Remove="UI\Gallery\GalleryPage.xaml" />
+        <None Remove="UI\Home\ConnectionCard\FreeConnectionCardComponent.xaml" />
         <None Remove="UI\Home\ConnectionError\ConnectionErrorComponent.xaml" />
         <None Remove="UI\Gateways\GatewaysPage.xaml" />
         <None Remove="UI\Gateways\Items\B2BServerItem.xaml" />
@@ -240,7 +244,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="UI\Home\ConnectionCard\" />
         <Folder Include="UI\Home\Map\" />
         <Folder Include="UI\Home\Help\" />
         <Folder Include="UI\Login\Forms\" />

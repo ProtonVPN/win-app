@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Text.RegularExpressions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Common.Extensions;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 
@@ -42,17 +42,5 @@ public static class IntentExtensions
     public static int GetServerNumber(this GatewayServerLocationIntent serverIntent)
     {
         return serverIntent.Name.GetServerNumber();
-    }
-
-    private static int GetServerNumber(this string serverName)
-    {
-        Match match = new Regex(@"#(\d+)").Match(serverName);
-        if (match.Success)
-        {
-            string numberString = match.Groups[1].Value;
-            return int.Parse(numberString);
-        }
-
-        return 0;
     }
 }

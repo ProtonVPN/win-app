@@ -41,7 +41,7 @@ public abstract partial class LocationViewModelBase : ViewModelBase
         MainViewNavigator = mainViewNavigator;
         ConnectionManager = connectionManager;
 
-        ConnectionDetails = ConnectionManager.GetConnectionDetails();
+        ConnectionDetails = ConnectionManager.CurrentConnectionDetails;
     }
 
     public ConnectionDetails? ConnectionDetails { get; }

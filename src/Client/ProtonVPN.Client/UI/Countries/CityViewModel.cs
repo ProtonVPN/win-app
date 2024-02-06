@@ -46,7 +46,7 @@ public partial class CityViewModel : LocationViewModelBase, ISearchableItem
 
     public override bool IsActiveConnection => ConnectionDetails != null 
                                             && !ConnectionDetails.IsGateway 
-                                            && ConnectionDetails.CountryCode == CountryCode 
+                                            && ConnectionDetails.ExitCountryCode == CountryCode 
                                             && ConnectionDetails.CityState == Name;
 
     protected override ConnectionIntent ConnectionIntent => new(new CityStateLocationIntent(CountryCode, Name),
