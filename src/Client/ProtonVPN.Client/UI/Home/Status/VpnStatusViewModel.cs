@@ -27,7 +27,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 
@@ -131,9 +133,11 @@ public partial class VpnStatusViewModel : ViewModelBase,
                 return;
             }
 
-            ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
+            ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
 
-            IsSecureCoreConnection = connectionDetails?.OriginalConnectionIntent?.Feature is SecureCoreFeatureIntent;
+            IsSecureCoreConnection = connectionDetails != null
+                                  && connectionDetails?.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent
+                                  && connectionDetails.Server.Features.IsSupported(ServerFeatures.SecureCore);
         });
     }
 

@@ -21,6 +21,7 @@ using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -37,7 +38,17 @@ public static class LocalizationExtensions
            : localizer.Get("Common_States_Off");
     }
 
-    public static string GetCountryName(this ILocalizationProvider localizer, string? countryCode)
+    public static string GetFreeServerName(this ILocalizationProvider localizer, FreeServerType type)
+    {
+        return type switch
+        {
+            FreeServerType.Fastest => localizer.Get("Server_Fastest_Free"),
+            FreeServerType.Random => localizer.Get("Server_Free"),
+            _ => localizer.Get("Server_Fastest_Free")
+        };
+    }
+
+    public static string GetCountryName(this ILocalizationProvider localizer, string countryCode)
     {
         return string.IsNullOrEmpty(countryCode)
             ? localizer.Get("Country_Fastest")
@@ -50,22 +61,71 @@ public static class LocalizationExtensions
         {
             CountryLocationIntent countryIntent => localizer.GetCountryName(countryIntent.CountryCode),
             GatewayLocationIntent gatewayIntent => gatewayIntent.GatewayName,
+            FreeServerLocationIntent freeServerIntent => localizer.GetFreeServerName(freeServerIntent.Type),
             _ => localizer.Get("Country_Fastest")
         };
     }
 
-    public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent connectionIntent)
+    public static string GetConnectionDetailsTitle(this ILocalizationProvider localizer, ConnectionDetails connectionDetails)
     {
-        if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent && !secureCoreIntent.IsFastest)
+        return connectionDetails?.OriginalConnectionIntent.Location switch
         {
-            return localizer.GetFormat("Connection_Via_SecureCore", localizer.Get($"Country_val_{secureCoreIntent.EntryCountryCode}"));
+            CountryLocationIntent countryIntent => countryIntent.IsFastest 
+                ? localizer.Get("Country_Fastest")
+                : localizer.GetCountryName(connectionDetails.ExitCountryCode),
+            GatewayLocationIntent gatewayIntent => connectionDetails.GatewayName,
+            FreeServerLocationIntent freeServerIntent => freeServerIntent.Type switch
+            {
+                FreeServerType.Random => localizer.GetCountryName(connectionDetails.ExitCountryCode),
+                _ => localizer.GetFreeServerName(freeServerIntent.Type)
+            },
+            _ => localizer.Get("Country_Fastest")
+        };
+    }
+    
+    public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent)
+    {
+        if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent)
+        {
+            return secureCoreIntent.IsFastest
+                ? localizer.GetFormat("Connection_Via_SecureCore", localizer.Get("Countries_SecureCore"))
+                : localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(secureCoreIntent.EntryCountryCode));
         }
 
         return connectionIntent?.Location switch
         {
-            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.Number),
+            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.Number).Trim(),
             CityStateLocationIntent cityStateIntent => cityStateIntent.CityState,
-            GatewayServerLocationIntent b2bServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(b2bServerIntent.CountryCode), b2bServerIntent.Number),
+            GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Number).Trim(),
+            FreeServerLocationIntent freeServerIntent => localizer.Get("Connection_Intent_AutoSelected"),
+            _ => string.Empty,
+        };
+    }
+
+    public static string GetConnectionDetailsSubtitle(this ILocalizationProvider localizer, ConnectionDetails? connectionDetails)
+    {
+        if (connectionDetails?.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent secureCoreIntent &&
+            connectionDetails?.OriginalConnectionIntent.Location is CountryLocationIntent locationIntent)
+        {
+            return locationIntent.IsFastest
+                ? $"{localizer.GetCountryName(connectionDetails.ExitCountryCode)} {localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(connectionDetails.EntryCountryCode))}"
+                : localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(connectionDetails.EntryCountryCode));
+        }
+
+        return connectionDetails?.OriginalConnectionIntent.Location switch
+        {
+            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", connectionDetails.CityState, connectionDetails.ServerNumber),
+            CityStateLocationIntent cityStateIntent => connectionDetails.CityState,
+            CountryLocationIntent countryIntent => countryIntent.IsFastest
+                ? localizer.GetCountryName(connectionDetails.ExitCountryCode)
+                : string.Empty,
+            GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerNumber),
+            FreeServerLocationIntent freeServerIntent => freeServerIntent.Type switch
+            {
+                FreeServerType.Fastest => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerNumber),
+                FreeServerType.Random => $"#{connectionDetails.ServerNumber}",
+                _ => string.Empty
+            },
             _ => string.Empty,
         };
     }

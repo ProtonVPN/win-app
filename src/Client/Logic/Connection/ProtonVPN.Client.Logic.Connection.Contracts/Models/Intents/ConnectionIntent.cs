@@ -25,6 +25,7 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 public class ConnectionIntent : IConnectionIntent
 {
     public static IConnectionIntent Default => new ConnectionIntent(new CountryLocationIntent());
+    public static IConnectionIntent FreeDefault => new ConnectionIntent(new FreeServerLocationIntent());
 
     public ILocationIntent? Location { get; }
 

@@ -21,6 +21,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Common.Extensions;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models;
@@ -29,31 +30,29 @@ public class ConnectionDetails
 {
     public IConnectionIntent OriginalConnectionIntent { get; }
 
-    public DateTime EstablishedConnectionTime { get; }
-    public string? CountryCode { get; set; }
-    public string? CityState { get; set; }
-    public string? ServerId { get; set; }
-    public ServerTiers? ServerTier { get; set; }
-    public string? ServerName { get; set; }
-    public double? ServerLoad { get; set; }
-    public TimeSpan? ServerLatency { get; set; }
-    public VpnProtocol Protocol { get; set; }
-    public bool IsGateway { get; }
-    public string? GatewayName { get; }
+    public Server Server { get; }
 
-    public ConnectionDetails(IConnectionIntent connectionIntent, Server? server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart)
+    public VpnProtocol Protocol { get;  }
+
+    public DateTime EstablishedConnectionTimeUtc { get; }
+
+    public string ExitCountryCode => Server.ExitCountry;
+    public string EntryCountryCode => Server.EntryCountry;
+    public string CityState => Server.City;
+    public string ServerId => Server.Id;
+    public int ServerNumber => Server.Name.GetServerNumber();
+    public ServerTiers? ServerTier => (ServerTiers)Server.Tier;
+    public string ServerName => Server.Name;
+    public double ServerLoad => Server.Load / 100D;
+    public TimeSpan? ServerLatency { get; } // TODO: Implement real value
+    public bool IsGateway => Server.Features.IsSupported(ServerFeatures.B2B);
+    public string GatewayName => Server.GatewayName;
+
+    public ConnectionDetails(IConnectionIntent connectionIntent, Server server, VpnProtocol protocol)
     {
-        EstablishedConnectionTime = DateTime.UtcNow;
         OriginalConnectionIntent = connectionIntent;
-        CountryCode = server?.ExitCountry;
-        CityState = server?.City;
-        ServerId = server?.Id;
-        ServerTier = server is not null ? (ServerTiers)server.Tier : null;
-        ServerName = server?.Name;
-        ServerLoad = server?.Load / 100D;
-        ServerLatency = null; // TODO: implement real value
-        Protocol = vpnProtocol;
-        IsGateway = server?.Features.IsSupported(ServerFeatures.B2B) ?? false;
-        GatewayName = server?.GatewayName;
+        EstablishedConnectionTimeUtc = DateTime.UtcNow;
+        Server = server;
+        Protocol = protocol;
     }
 }

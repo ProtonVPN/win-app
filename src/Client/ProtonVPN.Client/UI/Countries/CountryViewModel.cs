@@ -44,7 +44,7 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
 
     public override bool IsActiveConnection => ConnectionDetails is not null
                                             && !ConnectionDetails.IsGateway
-                                            && ExitCountryCode == ConnectionDetails.CountryCode 
+                                            && ExitCountryCode == ConnectionDetails.ExitCountryCode 
                                             && (CountryFeature == CountryFeature.SecureCore) == (ConnectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent);
 
     protected override ConnectionIntent ConnectionIntent => new(new CountryLocationIntent(ExitCountryCode),

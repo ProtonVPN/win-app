@@ -24,7 +24,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-
             <BitmapImage x:Key="WelcomeIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
@@ -32,7 +31,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-
             <BitmapImage x:Key="WelcomeIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
@@ -83,4 +81,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/world-map.svg" />
     <BitmapImage x:Key="UpdateProtonVpnIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/update-proton-vpn.png" />
+    <SvgImageSource x:Key="FreeConnectionFlagsIllustrationSource"
+                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/free-connection-flags.svg" />
 </ResourceDictionary>

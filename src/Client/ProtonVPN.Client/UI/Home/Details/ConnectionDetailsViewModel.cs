@@ -53,31 +53,31 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     [NotifyPropertyChangedFor(nameof(VpnProtocol))]
     private ConnectionDetails? _currentConnectionDetails;
 
-    public TimeSpan? SessionLength => CurrentConnectionDetails != null
-        ? DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTime
-        : null;
+    public TimeSpan? SessionLength => CurrentConnectionDetails is null
+        ? null
+        : DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTimeUtc;
 
-    public string? FormattedSessionLength => SessionLength != null
-        ? Localizer.GetFormattedTime(SessionLength.Value)
-        : null;
+    public string? FormattedSessionLength => SessionLength is null
+        ? null
+        : Localizer.GetFormattedTime(SessionLength.Value);
 
     public string? Gateway => CurrentConnectionDetails?.GatewayName;
 
-    public string? Country => !string.IsNullOrEmpty(CurrentConnectionDetails?.CountryCode)
-        ? Localizer.GetCountryName(CurrentConnectionDetails.CountryCode)
-        : null;
+    public string? Country => string.IsNullOrEmpty(CurrentConnectionDetails?.ExitCountryCode)
+        ? null
+        : Localizer.GetCountryName(CurrentConnectionDetails.ExitCountryCode);
 
     public double ServerLoad => CurrentConnectionDetails?.ServerLoad ?? 0;
 
     public string FormattedServerLoad => $"{ServerLoad:P0}";
 
-    public string? ServerLatency => CurrentConnectionDetails?.ServerLatency != null
-        ? Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails.ServerLatency.Value.TotalMilliseconds)
-        : null;
+    public string? ServerLatency => CurrentConnectionDetails?.ServerLatency is null
+        ? null
+        : Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails.ServerLatency.Value.TotalMilliseconds);
 
-    public string VpnProtocol => CurrentConnectionDetails is not null
-        ? Localizer.GetVpnProtocol(CurrentConnectionDetails.Protocol)
-        : string.Empty;
+    public string VpnProtocol => CurrentConnectionDetails is null
+        ? string.Empty
+        : Localizer.GetVpnProtocol(CurrentConnectionDetails.Protocol);
 
     public ConnectionDetailsViewModel(
         ILocalizationProvider localizationProvider,
@@ -108,7 +108,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
         ExecuteOnUIThread(() =>
         {
             CurrentConnectionDetails = _connectionManager.IsConnected
-                ? _connectionManager.GetConnectionDetails()
+                ? _connectionManager.CurrentConnectionDetails
                 : null;
         });
     }

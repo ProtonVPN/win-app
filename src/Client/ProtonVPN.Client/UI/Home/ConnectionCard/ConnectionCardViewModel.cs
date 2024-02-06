@@ -17,111 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
-using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
-public partial class ConnectionCardViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+public class ConnectionCardViewModel : ConnectionCardViewModelBase,
     IEventMessageReceiver<RecentConnectionsChanged>
 {
-    private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
-    private readonly ISettings _settings;
-    private readonly HomeViewModel _homeViewModel;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Header))]
-    [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
-    [NotifyCanExecuteChangedFor(nameof(CancelConnectionCommand))]
-    [NotifyCanExecuteChangedFor(nameof(DisconnectCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ShowConnectionDetailsCommand))]
-    private ConnectionStatus _currentConnectionStatus;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Header))]
-    [NotifyPropertyChangedFor(nameof(ExitCountry))]
-    [NotifyPropertyChangedFor(nameof(EntryCountry))]
-    [NotifyPropertyChangedFor(nameof(IsSecureCore))]
-    [NotifyPropertyChangedFor(nameof(IsTor))]
-    [NotifyPropertyChangedFor(nameof(IsP2P))]
-    [NotifyPropertyChangedFor(nameof(IsB2B))]
-    [NotifyPropertyChangedFor(nameof(Title))]
-    [NotifyPropertyChangedFor(nameof(Subtitle))]
-    [NotifyPropertyChangedFor(nameof(HasSubtitle))]
-    [NotifyPropertyChangedFor(nameof(HasSubtitleAndFeature))]
-    private IConnectionIntent? _currentConnectionIntent;
-
-    [ObservableProperty]
-    private bool _isServerUnderMaintenance;
-
-    public string Header =>
-        CurrentConnectionStatus switch
-        {
-            ConnectionStatus.Disconnected => CurrentConnectionIntent is null
-                ? Localizer.Get("Home_ConnectionCard_Header_Recommended")
-                : Localizer.Get("Home_ConnectionCard_Header_LastConnectedTo"),
-            ConnectionStatus.Connecting => Localizer.Get("Home_ConnectionCard_Header_ConnectingTo"),
-            ConnectionStatus.Connected => Localizer.Get("Home_ConnectionCard_Header_BrowseSafely")
-        };
-
-    public string? ExitCountry => CurrentConnectionIntent?.Location?.GetCountryCode();
-
-    public string? EntryCountry => (CurrentConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode;
-
-    public bool IsSecureCore => CurrentConnectionIntent?.Feature is SecureCoreFeatureIntent;
-
-    public bool IsTor => CurrentConnectionIntent?.Feature is TorFeatureIntent;
-
-    public bool IsP2P => CurrentConnectionIntent?.Feature is P2PFeatureIntent;
-
-    public bool IsB2B => CurrentConnectionIntent?.Feature is B2BFeatureIntent;
-
-    public string Title => Localizer.GetConnectionIntentTitle(CurrentConnectionIntent);
-
-    public string Subtitle => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent);
-
-    public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
-
-    public bool HasSubtitleAndFeature => HasSubtitle && (IsTor || IsP2P);
 
     public ConnectionCardViewModel(
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ILocalizationProvider localizationProvider,
-        ISettings settings,
         HomeViewModel homeViewModel)
-        : base(localizationProvider)
+        : base(connectionManager, localizationProvider, homeViewModel)
     {
-        _connectionManager = connectionManager;
         _recentConnectionsProvider = recentConnectionsProvider;
-        _settings = settings;
-        _homeViewModel = homeViewModel;
 
         InvalidateCurrentConnectionStatus();
-        InvalidateCurrentConnectionIntent();
-    }
-
-    public void Receive(ConnectionStatusChanged message)
-    {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateCurrentConnectionStatus();
-        });
     }
 
     public void Receive(RecentConnectionsChanged message)
@@ -132,69 +50,19 @@ public partial class ConnectionCardViewModel : ViewModelBase,
         });
     }
 
-    protected override void OnLanguageChanged()
+    protected override void InvalidateCurrentConnectionStatus()
     {
-        OnPropertyChanged(nameof(Header));
-        OnPropertyChanged(nameof(Title));
-        OnPropertyChanged(nameof(Subtitle));
-        OnPropertyChanged(nameof(HasSubtitle));
-    }
-
-    private void InvalidateCurrentConnectionStatus()
-    {
-        CurrentConnectionStatus = _connectionManager.ConnectionStatus;
+        InvalidateCurrentConnectionIntent();
+        base.InvalidateCurrentConnectionStatus();
     }
 
     private void InvalidateCurrentConnectionIntent()
     {
-        IRecentConnection? mostRecentConnection = _recentConnectionsProvider.GetMostRecentConnection();
+        CurrentConnectionIntent =
+            ConnectionManager.CurrentConnectionIntent ??
+            _recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent;
 
-        CurrentConnectionIntent = mostRecentConnection?.ConnectionIntent;
-        IsServerUnderMaintenance = mostRecentConnection?.IsServerUnderMaintenance ?? false;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanConnect))]
-    private async Task ConnectAsync()
-    {
-        await _connectionManager.ConnectAsync(CurrentConnectionIntent);
-    }
-
-    private bool CanConnect()
-    {
-        return CurrentConnectionStatus == ConnectionStatus.Disconnected
-            && !IsServerUnderMaintenance;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanCancelConnection))]
-    private async Task CancelConnectionAsync()
-    {
-        await _connectionManager.DisconnectAsync();
-    }
-
-    private bool CanCancelConnection()
-    {
-        return CurrentConnectionStatus == ConnectionStatus.Connecting;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanDisconnect))]
-    private async Task DisconnectAsync()
-    {
-        await _connectionManager.DisconnectAsync();
-    }
-
-    private bool CanDisconnect()
-    {
-        return CurrentConnectionStatus == ConnectionStatus.Connected;
-    }
-
-    [RelayCommand(CanExecute = nameof(CanShowConnectionDetails))]
-    private void ShowConnectionDetails()
-    {
-        _homeViewModel.OpenConnectionDetailsPane();
-    }
-
-    private bool CanShowConnectionDetails()
-    {
-        return CurrentConnectionStatus == ConnectionStatus.Connected;
+        // TODO: Not sure if server under maintenance means something for an intent
+        //IsServerUnderMaintenance = mostRecentConnection?.IsServerUnderMaintenance ?? false;
     }
 }

@@ -580,12 +580,15 @@
         <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
         <None Remove="Assets\Icons\UnprotectedLock.xaml" />
+        <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
         <None Remove="Assets\Illustrations\Dark\welcome.png" />
+        <None Remove="Assets\Illustrations\free-connection-flags.svg" />
         <None Remove="Assets\Illustrations\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
         <None Remove="Assets\Illustrations\latency.png" />
+        <None Remove="Assets\Illustrations\Light\free-countries.svg" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
         <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\netshield-off.png" />
@@ -626,6 +629,7 @@
         <None Remove="Styles\Controls\ButtonStyles.xaml" />
         <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
         <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
+        <None Remove="Styles\Controls\ConnectionCardStyles.xaml" />
         <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\ExpanderStyles.xaml" />
         <None Remove="Styles\Controls\FlyoutStyles.xaml" />
@@ -1615,11 +1619,17 @@
         <Content Update="Assets\Flags\ZW.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\free-countries.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Dark\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\free-connection-flags.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\kill-switch-off.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1631,6 +1641,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\latency.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\free-countries.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\product-logo.svg">
@@ -1687,6 +1700,11 @@
         <Content Update="Assets\Illustrations\world-map.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ConnectionCardStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\MessageContentDialogStyles.xaml">

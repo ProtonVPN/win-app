@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<UserControl x:Class="ProtonVPN.Client.UI.Home.ConnectionCard.ConnectionCardComponent"
+<UserControl x:Class="ProtonVPN.Client.UI.Home.ConnectionCard.FreeConnectionCardComponent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
@@ -53,20 +53,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <Grid MinHeight="72"
-              Padding="8,8,16,8"
+              Padding="8"
               Background="{ThemeResource BackgroundWeakColorBrush}"
               BorderBrush="{ThemeResource BorderNormColorBrush}"
               BorderThickness="1"
-              ColumnSpacing="8"
-              CornerRadius="8">
+              CornerRadius="8"
+              RowSpacing="8">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
             <custom:GhostButton x:Name="ShowConnectionDetailsButton"
-                                Grid.Column="0"
+                                Grid.Row="0"
                                 AutomationProperties.AutomationId="ShowConnectionDetailsButton"
                                 AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}"
                                 Command="{x:Bind ViewModel.ShowConnectionDetailsCommand}"
@@ -113,59 +113,57 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        TextWrapping="WrapWholeWords"
                                        Visibility="{x:Bind ViewModel.HasSubtitle}" />
 
-                            <TextBlock VerticalAlignment="Center"
-                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="•"
-                                       Visibility="{x:Bind ViewModel.HasSubtitleAndFeature}" />
-
                             <StackPanel Orientation="Horizontal"
-                                        Spacing="4"
-                                        Visibility="{x:Bind ViewModel.IsTor}">
-                                <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
-                                <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureTorLabel"
-                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                        Spacing="6"
+                                        Visibility="{x:Bind ViewModel.ShowFreeConnectionFlags}">
+                                <Image Height="14"
+                                       VerticalAlignment="Center"
+                                       Source="{ThemeResource FreeConnectionFlagsIllustrationSource}" />
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_Tor')}"
-                                           TextTrimming="CharacterEllipsis"
-                                           TextWrapping="WrapWholeWords" />
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="4"
-                                        Visibility="{x:Bind ViewModel.IsP2P}">
-                                <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
-                                <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureP2PLabel"
-                                           Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_P2P')}"
-                                           TextTrimming="CharacterEllipsis"
-                                           TextWrapping="WrapWholeWords" />
+                                           Text="{x:Bind ViewModel.FormattedFreeCountriesCount}"
+                                           TextTrimming="CharacterEllipsis" />
                             </StackPanel>
                         </toolkit:WrapPanel>
                     </StackPanel>
                 </toolkit:DockPanel>
             </custom:GhostButton>
 
-            <Grid Grid.Column="1">
-                <Button AutomationProperties.AutomationId="ConnectionCardConnectButton"
+            <Grid Grid.Row="1"
+                  ColumnDefinitions="*,*"
+                  ColumnSpacing="8">
+                <Button Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        AutomationProperties.AutomationId="ConnectionCardConnectButton"
                         Command="{x:Bind ViewModel.ConnectCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}"
                         IsEnabledChanged="OnButtonIsEnabledChanged"
                         Style="{StaticResource PrimaryButtonStyle}"
                         TabIndex="3"
                         Visibility="{x:Bind ViewModel.IsDisconnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <Button AutomationProperties.AutomationId="ConnectionCardCancelButton"
+                <Button Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        AutomationProperties.AutomationId="ConnectionCardCancelButton"
                         Command="{x:Bind ViewModel.CancelConnectionCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
                         IsEnabledChanged="OnButtonIsEnabledChanged"
                         TabIndex="4"
                         Visibility="{x:Bind ViewModel.IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <Button AutomationProperties.AutomationId="ConnectionCardDisconnectButton"
+                <Button Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        AutomationProperties.AutomationId="ConnectionCardChangeServerButton"
+                        Command="{x:Bind ViewModel.ChangeServerCommand}"
+                        Content="Change server"
+                        IsEnabledChanged="OnButtonIsEnabledChanged"
+                        TabIndex="5"
+                        Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <Button Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        AutomationProperties.AutomationId="ConnectionCardDisconnectButton"
                         Command="{x:Bind ViewModel.DisconnectCommand}"
                         Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"
                         IsEnabledChanged="OnButtonIsEnabledChanged"
-                        TabIndex="5"
+                        TabIndex="6"
                         Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
         </Grid>
@@ -183,6 +181,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <VisualState x:Name="Normal" />
             </VisualStateGroup>
             <VisualStateGroup x:Name="ConnectionStates">
+                <VisualState x:Name="Disconnected">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ShowConnectionDetailsButton.RightIcon">
+                            <Setter.Value>
+                                <pathicons:InfoCircle />
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState x:Name="Connected">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnected, Mode=OneWay}" />
@@ -195,7 +205,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Setter>
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="NotConnected" />
+                <VisualState x:Name="Connecting" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </StackPanel>

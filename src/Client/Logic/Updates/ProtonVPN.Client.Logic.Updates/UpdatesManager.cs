@@ -182,7 +182,7 @@ public class UpdatesManager : IUpdatesManager,
 
     public void Receive(ConnectionStatusChanged message)
     {
-        ConnectionDetails? connectionDetails = _connectionManager.GetConnectionDetails();
+        ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
         FeedType feedType = message.ConnectionStatus == ConnectionStatus.Connected &&
                             connectionDetails?.ServerTier == ServerTiers.Internal
             ? FeedType.Internal

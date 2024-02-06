@@ -57,10 +57,13 @@ public class ConnectionManager : IInternalConnectionManager,
     private readonly IAuthCertificateManager _authCertificateManager;
     private readonly IServersLoader _serversLoader;
 
-    private ConnectionDetails? _connectionDetails;
     private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
+
+    public IConnectionIntent? CurrentConnectionIntent { get; private set; }
+
+    public ConnectionDetails? CurrentConnectionDetails { get; private set; }
 
     public bool IsDisconnected => ConnectionStatus == ConnectionStatus.Disconnected;
 
@@ -96,7 +99,8 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         connectionIntent ??= ConnectionIntent.Default;
 
-        _connectionDetails = new ConnectionDetails(connectionIntent);
+        CurrentConnectionIntent = connectionIntent;
+
         SetConnectionStatus(ConnectionStatus.Connecting);
 
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
@@ -125,15 +129,14 @@ public class ConnectionManager : IInternalConnectionManager,
     /// <returns>True if reconnecting. False if not.</returns>
     public async Task<bool> ReconnectAsync()
     {
-        if (_connectionDetails is null)
+        IConnectionIntent? connectionIntent = CurrentConnectionIntent;
+
+        if (connectionIntent is null)
         {
             await DisconnectAsync();
             return false;
         }
 
-        IConnectionIntent connectionIntent = _connectionDetails?.OriginalConnectionIntent ?? ConnectionIntent.Default;
-
-        _connectionDetails = new ConnectionDetails(connectionIntent);
         SetConnectionStatus(ConnectionStatus.Connecting);
 
         ConnectionRequestIpcEntity request = await _reconnectionRequestCreator.CreateAsync(connectionIntent);
@@ -143,16 +146,12 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task DisconnectAsync()
     {
-        _connectionDetails = null;
+        CurrentConnectionIntent = null;
+        CurrentConnectionDetails = null;
 
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
 
         await _vpnServiceCaller.DisconnectAsync(request);
-    }
-
-    public ConnectionDetails? GetConnectionDetails()
-    {
-        return _connectionDetails;
     }
 
     public async Task<TrafficBytes> GetTrafficBytesAsync()
@@ -177,28 +176,26 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task HandleAsync(VpnStateIpcEntity message)
     {
+        IConnectionIntent connectionIntent = CurrentConnectionIntent ?? ConnectionIntent.Default;
         ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
 
-        if (_connectionDetails != null)
+        if (message.Status == VpnStatusIpcEntity.Connected)
         {
-            if (message.Status == VpnStatusIpcEntity.Connected)
+            Server? server = GetCurrentServer(message);
+            if (server is null)
             {
-                Server? server = GetCurrentServer(message);
-                if (server is null)
-                {
-                    _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
-                                          $"NetworkBlocked: '{message.NetworkBlocked}' " +
-                                          $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
-                                          $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
+                _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
+                                      $"NetworkBlocked: '{message.NetworkBlocked}' " +
+                                      $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
+                                      $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
 
-                    // TODO: Either (1) Reconnect without last server, or (2) Delete this comment
-                    await ReconnectAsync();
-                }
-                else
-                {
-                    VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-                    _connectionDetails = new ConnectionDetails(_connectionDetails.OriginalConnectionIntent, server, vpnProtocol);
-                }
+                // TODO: Either (1) Reconnect without last server, or (2) Delete this comment
+                await ReconnectAsync();
+            }
+            else
+            {
+                VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
+                CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, vpnProtocol);
             }
         }
 

@@ -51,6 +51,14 @@ public class ServersLoader : IServersLoader
             .Distinct();
     }
 
+    public IEnumerable<string> GetCountryCodesByTier(ServerTiers serverTiers)
+    {
+        return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
+                                    && (ServerTiers)s.Tier == serverTiers)
+            .Select(s => s.ExitCountry)
+            .Distinct();
+    }
+
     public IEnumerable<City> GetCities()
     {
         return GetCitiesByFilter();

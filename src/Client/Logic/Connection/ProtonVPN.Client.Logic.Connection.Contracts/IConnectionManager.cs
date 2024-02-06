@@ -28,6 +28,10 @@ public interface IConnectionManager
 {
     ConnectionStatus ConnectionStatus { get; }
 
+    ConnectionDetails? CurrentConnectionDetails { get; }
+
+    IConnectionIntent? CurrentConnectionIntent { get; }
+
     bool IsDisconnected { get; }
 
     bool IsConnecting { get; }
@@ -39,8 +43,6 @@ public interface IConnectionManager
     Task<bool> ReconnectAsync();
 
     Task DisconnectAsync();
-
-    ConnectionDetails? GetConnectionDetails();
 
     Task<TrafficBytes> GetTrafficBytesAsync();
 
