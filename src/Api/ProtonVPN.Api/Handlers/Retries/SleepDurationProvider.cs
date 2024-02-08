@@ -42,8 +42,7 @@ namespace ProtonVPN.Api.Handlers.Retries
 
         public TimeSpan RequestExceptionDurationFunction(int retryCount)
         {
-            return TimeSpan.FromSeconds(Math.Min(MAX_RETRY_DELAY_IN_SECONDS, Math.Pow(2, retryCount - 1)))
-                .RandomizedWithDeviation(0.2);
+            return TimeSpan.FromSeconds(Math.Min(MAX_RETRY_DELAY_IN_SECONDS, Math.Pow(2, retryCount - 1))).AddJitter(0.2);
         }
     }
 }

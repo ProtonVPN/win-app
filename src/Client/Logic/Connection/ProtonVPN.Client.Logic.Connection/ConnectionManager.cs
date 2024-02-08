@@ -173,7 +173,8 @@ public class ConnectionManager : IInternalConnectionManager,
         if (message.Status == VpnStatusIpcEntity.Connected)
         {
             Server? server = GetCurrentServer(message);
-            if (server is null)
+            PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message));
+            if (server is null || physicalServer is null)
             {
                 _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
                                       $"NetworkBlocked: '{message.NetworkBlocked}' " +
@@ -186,7 +187,7 @@ public class ConnectionManager : IInternalConnectionManager,
             else
             {
                 VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-                CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, vpnProtocol);
+                CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
             }
         }
 
@@ -196,8 +197,12 @@ public class ConnectionManager : IInternalConnectionManager,
     private Server? GetCurrentServer(VpnStateIpcEntity state)
     {
         //TODO: instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
-        return _serversLoader.GetServers()
-            .FirstOrDefault(s => s.Servers.Any(physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label));
+        return _serversLoader.GetServers().FirstOrDefault(s => s.Servers.Any(FilterPhysicalServerByVpnState(state)));
+    }
+
+    private Func<PhysicalServer, bool> FilterPhysicalServerByVpnState(VpnStateIpcEntity state)
+    {
+        return physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label;
     }
 
     private void SetConnectionStatus(ConnectionStatus connectionStatus)

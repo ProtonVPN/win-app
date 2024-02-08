@@ -65,6 +65,8 @@ public static class DefaultSettings
     public static bool IsIpv6LeakProtectionEnabled = true;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
     public static List<FeatureFlag> FeatureFlags = new();
+    public static bool IsFeatureConnectedServerCheckEnabled = true;
+    public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
 
     public static List<SplitTunnelingApp> SplitTunnelingAppsList()
     {

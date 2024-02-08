@@ -48,25 +48,40 @@ public abstract class ServerListGeneratorBase
         return !server.Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
     }
 
-    protected string GetCity(List<Server> pickedServers, CityStateLocationIntent? cityStateLocationIntent)
+    protected string? GetCity(List<Server> pickedServers, CityStateLocationIntent? cityStateLocationIntent)
     {
-        return string.IsNullOrWhiteSpace(cityStateLocationIntent?.CityState)
-            ? pickedServers.First().City
-            : cityStateLocationIntent.CityState;
+        string? intentCity = cityStateLocationIntent?.CityState;
+        string? firstPickedServerCity = pickedServers.FirstOrDefault()?.City;
+
+        return string.IsNullOrWhiteSpace(intentCity)
+            ? string.IsNullOrWhiteSpace(firstPickedServerCity) 
+                ? null 
+                : firstPickedServerCity
+            : intentCity;
     }
 
-    protected string GetExitCountry(List<Server> pickedServers, CountryLocationIntent? countryLocationIntent)
+    protected string? GetExitCountry(List<Server> pickedServers, CountryLocationIntent? countryLocationIntent)
     {
-        return string.IsNullOrWhiteSpace(countryLocationIntent?.CountryCode)
-            ? pickedServers.First().ExitCountry
-            : countryLocationIntent.CountryCode;
+        string? intentExitCountry = countryLocationIntent?.CountryCode;
+        string? firstPickedServerExitCountry = pickedServers.FirstOrDefault()?.ExitCountry;
+
+        return string.IsNullOrWhiteSpace(intentExitCountry)
+            ? string.IsNullOrWhiteSpace(firstPickedServerExitCountry)
+                ? null
+                : firstPickedServerExitCountry
+            : intentExitCountry;
     }
 
-    protected string GetEntryCountry(List<Server> pickedServers, SecureCoreFeatureIntent secureCoreFeatureIntent)
+    protected string? GetEntryCountry(List<Server> pickedServers, SecureCoreFeatureIntent secureCoreFeatureIntent)
     {
-        return string.IsNullOrWhiteSpace(secureCoreFeatureIntent.EntryCountryCode)
-            ? pickedServers.First().EntryCountry
-            : secureCoreFeatureIntent.EntryCountryCode;
+        string? intentEntryCountry = secureCoreFeatureIntent?.EntryCountryCode;
+        string? firstPickedServerEntryCountry = pickedServers.FirstOrDefault()?.EntryCountry;
+
+        return string.IsNullOrWhiteSpace(intentEntryCountry)
+            ? string.IsNullOrWhiteSpace(firstPickedServerEntryCountry)
+                ? null
+                : firstPickedServerEntryCountry
+            : intentEntryCountry;
     }
 
     protected void AddServerIfNotAlreadyListed(List<Server> pickedServers, IEnumerable<Server> unfilteredServers, Func<Server, bool> serverFilter)

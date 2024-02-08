@@ -40,7 +40,7 @@ public interface IGlobalSettings
     int[] WireGuardPorts { get; set; }
     int[] OpenVpnTcpPorts { get; set; }
     int[] OpenVpnUdpPorts { get; set; }
-    ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; }
+    ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; } // TODO: Move to its own file
     bool IsDoHEnabled { get; set; }
     bool IsKillSwitchEnabled { get; set; }
     bool IsBetaAccessEnabled { get; set; }
@@ -48,6 +48,8 @@ public interface IGlobalSettings
     bool IsGlobalSettingsMigrationDone { get; set; }
     KillSwitchMode KillSwitchMode { get; set; }
     List<FeatureFlag> FeatureFlags { get; set; }
+    bool IsFeatureConnectedServerCheckEnabled { get; set; }
+    TimeSpan ConnectedServerCheckInterval { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

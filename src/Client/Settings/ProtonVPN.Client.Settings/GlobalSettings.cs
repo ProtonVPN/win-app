@@ -164,6 +164,18 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetListValueType<FeatureFlag>(value, SettingEncryption.Encrypted);
     }
 
+    public bool IsFeatureConnectedServerCheckEnabled
+    {
+        get => _globalRepository.GetValueType<bool>(SettingEncryption.Encrypted) ?? DefaultSettings.IsFeatureConnectedServerCheckEnabled;
+        set => _globalRepository.SetValueType<bool>(value, SettingEncryption.Encrypted);
+    }
+
+    public TimeSpan ConnectedServerCheckInterval
+    {
+        get => _globalRepository.GetValueType<TimeSpan>(SettingEncryption.Encrypted) ?? DefaultSettings.ConnectedServerCheckInterval;
+        set => _globalRepository.SetValueType<TimeSpan>(value, SettingEncryption.Encrypted);
+    }
+
     public Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername
     {
         get => _globalRepository.GetReferenceType<Dictionary<string, Dictionary<string, string?>>>(SettingEncryption.Unencrypted);

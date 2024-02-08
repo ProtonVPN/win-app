@@ -60,7 +60,7 @@ public class ClientConfigObserver :
 
     public void Receive(LoggedInMessage message)
     {
-        UpdateAndStartTimer();
+        StartTimerAndTriggerOnStart();
     }
 
     public void Receive(LoggedOutMessage message)
@@ -68,7 +68,7 @@ public class ClientConfigObserver :
         StopTimer();
     }
 
-    protected override async Task UpdateAsync()
+    protected override async Task OnTriggerAsync()
     {
         try
         {
@@ -77,17 +77,32 @@ public class ClientConfigObserver :
             ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
             if (response.Success)
             {
-                _settings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
-                _settings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
-                _settings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
-
-                // TODO: Retrieve legacy feature flags here?
+                HandleVpnConfigResponse(response.Value);
             }
         }
         catch (Exception e)
         {
             _logger.Error<SettingsLog>("Failed to retrieve Client Config", e);
         }
+    }
+
+    private void HandleVpnConfigResponse(VpnConfigResponse value)
+    {
+        _settings.OpenVpnTcpPorts = value.DefaultPorts.OpenVpn.Tcp;
+        _settings.OpenVpnUdpPorts = value.DefaultPorts.OpenVpn.Udp;
+        _settings.WireGuardPorts = value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
+
+        if (value.FeatureFlags.ServerRefresh.HasValue)
+        {
+            _settings.IsFeatureConnectedServerCheckEnabled = value.FeatureFlags.ServerRefresh.Value;
+        }
+
+        if (value.ServerRefreshInterval.HasValue)
+        {
+            _settings.ConnectedServerCheckInterval = TimeSpan.FromMinutes(value.ServerRefreshInterval.Value);
+        }
+
+        // TODO: Retrieve legacy feature flags here?
     }
 
     private bool IsWireGuardPortSupported(int port)

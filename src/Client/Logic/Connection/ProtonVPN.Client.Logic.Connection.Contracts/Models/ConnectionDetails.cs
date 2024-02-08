@@ -31,6 +31,7 @@ public class ConnectionDetails
     public IConnectionIntent OriginalConnectionIntent { get; }
 
     public Server Server { get; }
+    public PhysicalServer PhysicalServer { get; }
 
     public VpnProtocol Protocol { get;  }
 
@@ -40,6 +41,7 @@ public class ConnectionDetails
     public string EntryCountryCode => Server.EntryCountry;
     public string CityState => Server.City;
     public string ServerId => Server.Id;
+    public string PhysicalServerId => PhysicalServer.Id;
     public int ServerNumber => Server.Name.GetServerNumber();
     public ServerTiers? ServerTier => (ServerTiers)Server.Tier;
     public string ServerName => Server.Name;
@@ -48,11 +50,12 @@ public class ConnectionDetails
     public bool IsGateway => Server.Features.IsSupported(ServerFeatures.B2B);
     public string GatewayName => Server.GatewayName;
 
-    public ConnectionDetails(IConnectionIntent connectionIntent, Server server, VpnProtocol protocol)
+    public ConnectionDetails(IConnectionIntent connectionIntent, Server server, PhysicalServer physicalServer, VpnProtocol protocol)
     {
         OriginalConnectionIntent = connectionIntent;
         EstablishedConnectionTimeUtc = DateTime.UtcNow;
         Server = server;
+        PhysicalServer = physicalServer;
         Protocol = protocol;
     }
 }

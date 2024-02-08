@@ -26,6 +26,7 @@ public static class TimeSpanExtensions
 {
     private static readonly Random Random = new();
 
+    [Obsolete("Use instead TimeSpanExtensions.AddJitter() in ProtonVPN.Common.Core.Extensions")]
     public static TimeSpan RandomizedWithDeviation(this TimeSpan value, double deviation)
     {
         Ensure.IsTrue(value > TimeSpan.Zero, $"{nameof(value)} must be positive");

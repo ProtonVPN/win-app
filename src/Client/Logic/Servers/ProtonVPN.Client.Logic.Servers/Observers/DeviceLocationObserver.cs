@@ -94,7 +94,7 @@ public class DeviceLocationObserver :
         }
     }
 
-    protected override async Task UpdateAsync()
+    protected override async Task OnTriggerAsync()
     {
         try
         {
@@ -144,7 +144,7 @@ public class DeviceLocationObserver :
 
             await Task.Delay(delayInMs);
 
-            await UpdateAsync();
+            await OnTriggerAsync();
         }
         finally
         {

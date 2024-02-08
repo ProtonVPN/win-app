@@ -58,7 +58,7 @@ public class ServersObserver :
         // Reset flag to force servers update on login
         _lastServerUpdate = DateTime.MinValue;
 
-        UpdateAndStartTimer();
+        StartTimerAndTriggerOnStart();
     }
 
     public void Receive(LoggedOutMessage message)
@@ -70,11 +70,11 @@ public class ServersObserver :
     {
         if (_userAuthenticator.IsLoggedIn)
         {
-            UpdateAndRestartTimer();
+            RestartTimerAndTriggerOnStart();
         }
     }
 
-    protected override async Task UpdateAsync()
+    protected override async Task OnTriggerAsync()
     {
         DateTime now = DateTime.UtcNow;
         if (now - _lastServerUpdate >= _config.ServerUpdateInterval)

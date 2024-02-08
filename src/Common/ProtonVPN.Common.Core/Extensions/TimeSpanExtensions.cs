@@ -17,19 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Helpers;
-
 namespace ProtonVPN.Common.Core.Extensions;
 
 public static class TimeSpanExtensions
 {
     private static readonly Random _random = new();
 
-    public static TimeSpan RandomizedWithDeviation(this TimeSpan value, double deviation)
+    public static TimeSpan AddJitter(this TimeSpan value, double deviation)
     {
-        Ensure.IsTrue(value >= TimeSpan.Zero, $"{nameof(value)} must not be negative");
-        Ensure.IsTrue(deviation is >= 0 and < 1, $"{nameof(deviation)} must be between zero and one");
+        if (value == TimeSpan.Zero || deviation == 0d)
+        {
+            return value;
+        }
 
-        return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * (2.0 * _random.NextDouble() - 1.0));
+        return AddJitter(value, deviation, _random.NextDouble());
+    }
+
+    public static TimeSpan AddJitter(TimeSpan value, double deviation, double randomValue)
+    {
+        TimeSpan interval = value * deviation;
+        TimeSpan randomInterval = interval * randomValue;
+        return value + randomInterval;
     }
 }
