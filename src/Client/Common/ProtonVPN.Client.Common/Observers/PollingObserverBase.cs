@@ -27,22 +27,39 @@ public abstract class PollingObserverBase : ObserverBase, IObserver
 
     protected abstract TimeSpan PollingInterval { get; }
 
+    protected bool IsTimerEnabled => _timer.Enabled;
+
     public PollingObserverBase()
         : base()
     {
-        _timer = new Timer();
+        _timer = new Timer
+        {
+            AutoReset = true
+        };
         _timer.Elapsed += OnTimerElapsed;
     }
 
-    protected void UpdateAndStartTimer()
+    protected void StartTimerAndTriggerOnStart()
+    {
+        StartTimerWithTriggerOption(isToTriggerOnStart: true);
+    }
+
+    private void StartTimerWithTriggerOption(bool isToTriggerOnStart)
     {
         if (!_timer.Enabled)
         {
             _timer.Interval = PollingInterval.TotalMilliseconds;
-
             _timer.Start();
-            UpdateAction.Run();
+            if (isToTriggerOnStart)
+            {
+                TriggerAction.Run();
+            }
         }
+    }
+
+    protected void StartTimer()
+    {
+        StartTimerWithTriggerOption(isToTriggerOnStart: false);
     }
 
     protected void StopTimer()
@@ -53,14 +70,20 @@ public abstract class PollingObserverBase : ObserverBase, IObserver
         }
     }
 
-    protected void UpdateAndRestartTimer()
+    protected void RestartTimerAndTriggerOnStart()
     {
         StopTimer();
-        UpdateAndStartTimer();
+        StartTimerAndTriggerOnStart();
+    }
+
+    protected void RestartTimer()
+    {
+        StopTimer();
+        StartTimer();
     }
 
     private void OnTimerElapsed(object? sender, EventArgs e)
     {
-        UpdateAction.Run();
+        TriggerAction.Run();
     }
 }

@@ -353,7 +353,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Conn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Recents.EntityMapping", "src\Client\Logic\Recents\ProtonVPN.Client.Logic.Recents.EntityMapping\ProtonVPN.Client.Logic.Recents.EntityMapping.csproj", "{CD8C1C93-44F7-4B10-811C-5BFA77BA1300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Servers.Tests", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Tests\ProtonVPN.Client.Logic.Servers.Tests.csproj", "{E0902A20-1D77-44AD-B1AD-83E3D3922097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Servers.Tests", "src\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Tests\ProtonVPN.Client.Logic.Servers.Tests.csproj", "{E0902A20-1D77-44AD-B1AD-83E3D3922097}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Common.Core.Tests", "src\Common\ProtonVPN.Common.Core.Tests\ProtonVPN.Common.Core.Tests.csproj", "{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1435,6 +1437,14 @@ Global
 		{E0902A20-1D77-44AD-B1AD-83E3D3922097}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0902A20-1D77-44AD-B1AD-83E3D3922097}.Release|x64.ActiveCfg = Release|Any CPU
 		{E0902A20-1D77-44AD-B1AD-83E3D3922097}.Release|x64.Build.0 = Release|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Debug|x64.Build.0 = Debug|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Release|x64.ActiveCfg = Release|Any CPU
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1578,6 +1588,7 @@ Global
 		{E2FDB10B-060D-403D-87B5-EF7FBF8B0B63} = {46D16C75-29BD-46CC-BAD6-ABADD71B4CC8}
 		{CD8C1C93-44F7-4B10-811C-5BFA77BA1300} = {57AA7550-4DC3-4FBB-8258-A525DB82222A}
 		{E0902A20-1D77-44AD-B1AD-83E3D3922097} = {28DFEF67-6811-40E8-9D5C-4677F66FB7ED}
+		{DFCEC0ED-DC02-4D0B-A509-E84000E733DC} = {56FAE5B5-F1F8-41AF-85E8-54B2CEC2B89E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

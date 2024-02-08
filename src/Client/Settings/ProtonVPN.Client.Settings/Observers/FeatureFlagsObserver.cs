@@ -60,7 +60,7 @@ public class FeatureFlagsObserver :
         _logger = logger;
         _eventMessageSender = eventMessageSender;
 
-        UpdateAndStartTimer();
+        StartTimerAndTriggerOnStart();
     }
 
     private bool IsFlagEnabled(string featureFlagName)
@@ -70,7 +70,7 @@ public class FeatureFlagsObserver :
             .IsEnabled;
     }
 
-    protected override async Task UpdateAsync()
+    protected override async Task OnTriggerAsync()
     {
         try
         {

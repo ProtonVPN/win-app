@@ -53,14 +53,20 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
             return _intentServerListGenerator.Generate(new ConnectionIntent(countryLocationIntent, secureCoreFeatureIntent));
         }
 
-        string entryCountry = GetEntryCountry(pickedServers, secureCoreFeatureIntent);
-        string exitCountry = GetExitCountry(pickedServers, countryLocationIntent);        
+        string? entryCountry = GetEntryCountry(pickedServers, secureCoreFeatureIntent);
+        string? exitCountry = GetExitCountry(pickedServers, countryLocationIntent);
         IEnumerable<Server> unfilteredServers = GetSecureCoreServers();
 
-        AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-            s => IsSameExitDifferentEntry(s, exitCountry: exitCountry, entryCountry: entryCountry));
-        AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-            s => IsDifferentExitSameEntry(s, exitCountry: exitCountry, entryCountry: entryCountry));
+        if (exitCountry is not null)
+        {
+            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
+                s => IsSameExitDifferentEntry(s, exitCountry: exitCountry, entryCountry: entryCountry));
+        }
+        if (entryCountry is not null)
+        {
+            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
+                s => IsDifferentExitSameEntry(s, exitCountry: exitCountry, entryCountry: entryCountry));
+        }
         AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
             s => IsDifferentExitAndEntry(s, exitCountry: exitCountry, entryCountry: entryCountry));
 
@@ -89,17 +95,17 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
         return SortServers(_serversLoader.GetServers().Where(s => !s.IsUnderMaintenance() && s.Features.IsSupported(ServerFeatures.SecureCore)));
     }
 
-    private bool IsSameExitDifferentEntry(Server server, string exitCountry, string entryCountry)
+    private bool IsSameExitDifferentEntry(Server server, string exitCountry, string? entryCountry)
     {
         return server.ExitCountry == exitCountry && server.EntryCountry != entryCountry;
     }
 
-    private bool IsDifferentExitSameEntry(Server server, string exitCountry, string entryCountry)
+    private bool IsDifferentExitSameEntry(Server server, string? exitCountry, string entryCountry)
     {
         return server.ExitCountry != exitCountry && server.EntryCountry == entryCountry;
     }
 
-    private bool IsDifferentExitAndEntry(Server server, string exitCountry, string entryCountry)
+    private bool IsDifferentExitAndEntry(Server server, string? exitCountry, string? entryCountry)
     {
         return server.ExitCountry != exitCountry && server.EntryCountry != entryCountry;
     }

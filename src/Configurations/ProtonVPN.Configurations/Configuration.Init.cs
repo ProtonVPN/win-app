@@ -87,6 +87,6 @@ public partial class Configuration
             throw new InvalidCastException($"Property {propertyName} is not of type TimeSpan");
         }
 
-        return interval.RandomizedWithDeviation(deviation);
+        return interval.AddJitter(deviation);
     }
 }

@@ -23,8 +23,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
@@ -37,40 +37,47 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
 
     private readonly ISettings _settings;
     private readonly IServersLoader _serversLoader;
-    private readonly IIntentServerListGenerator _intentServerListGenerator;
 
     public SmartStandardServerListGenerator(ISettings settings,
-        IServersLoader serversLoader,
-        IIntentServerListGenerator intentServerListGenerator)
+        IServersLoader serversLoader)
     {
         _settings = settings;
         _serversLoader = serversLoader;
-        _intentServerListGenerator = intentServerListGenerator;
     }
 
     public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent)
     {
         List<Server> pickedServers = GenerateIntentServers(connectionIntent).ToList();
-        if (pickedServers.Count == 0)
-        {
-            return _intentServerListGenerator.Generate(connectionIntent);
-        }
 
-        string city = GetCity(pickedServers, connectionIntent.Location as CityStateLocationIntent);
-        string exitCountry = GetExitCountry(pickedServers, connectionIntent.Location as CountryLocationIntent);
+        string? city = GetCity(pickedServers, connectionIntent.Location as CityStateLocationIntent);
+        string? exitCountry = GetExitCountry(pickedServers, connectionIntent.Location as CountryLocationIntent);
         IEnumerable<Server> unfilteredServers = GetUnfilteredServers();
-
-        AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-            s => IsSameFeatureAndCountryDifferentCity(s, connectionIntent.Feature, exitCountry: exitCountry, city: city));
+        
+        if (exitCountry is not null)
+        {
+            if (city is not null)
+            {
+                AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
+                    s => IsSameFeatureAndCountryAndCity(s, connectionIntent.Feature, exitCountry: exitCountry, city: city));
+            }
+            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
+                s => IsSameFeatureAndCountryDifferentCity(s, connectionIntent.Feature, exitCountry: exitCountry, city: city));
+        }
         if (connectionIntent.Feature is not null)
         {
             AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
                 s => IsSameFeatureDifferentCountry(s, connectionIntent.Feature, exitCountry: exitCountry));
         }
-        AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-            s => IsStandardServerSameCity(s, exitCountry: exitCountry, city: city));
-        AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-            s => IsStandardServerSameCountryDifferentCity(s, exitCountry: exitCountry, city: city));
+        if (exitCountry is not null)
+        {
+            if (city is not null)
+            {
+                AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
+                    s => IsStandardServerSameCity(s, exitCountry: exitCountry, city: city));
+            }
+            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
+                s => IsStandardServerSameCountryDifferentCity(s, exitCountry: exitCountry, city: city));
+        }
         AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
             s => IsStandardServerDifferentCountry(s, exitCountry: exitCountry));
 
@@ -107,15 +114,23 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
         return SortServers(_serversLoader.GetServers().Where(s => !s.IsUnderMaintenance()));
     }
 
-    private bool IsSameFeatureAndCountryDifferentCity(Server server,
+    private bool IsSameFeatureAndCountryAndCity(Server server,
         IFeatureIntent? featureIntent, string exitCountry, string city)
+    {
+        return (featureIntent is null ? IsStandardServer(server) : featureIntent.IsSupported(server))
+            && server.ExitCountry == exitCountry
+            && server.City == city;
+    }
+
+    private bool IsSameFeatureAndCountryDifferentCity(Server server,
+        IFeatureIntent? featureIntent, string exitCountry, string? city)
     {
         return (featureIntent is null ? IsStandardServer(server) : featureIntent.IsSupported(server))
             && server.ExitCountry == exitCountry
             && server.City != city;
     }
 
-    private bool IsSameFeatureDifferentCountry(Server server, IFeatureIntent featureIntent, string exitCountry)
+    private bool IsSameFeatureDifferentCountry(Server server, IFeatureIntent featureIntent, string? exitCountry)
     {
         return featureIntent.IsSupported(server) && server.ExitCountry != exitCountry;
     }
@@ -125,12 +140,12 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
         return IsStandardServer(server) && server.ExitCountry == exitCountry && server.City == city;
     }
 
-    private bool IsStandardServerSameCountryDifferentCity(Server server,  string exitCountry, string city)
+    private bool IsStandardServerSameCountryDifferentCity(Server server,  string exitCountry, string? city)
     {
         return IsStandardServer(server) && server.ExitCountry == exitCountry && server.City != city;
     }
 
-    private bool IsStandardServerDifferentCountry(Server server, string exitCountry)
+    private bool IsStandardServerDifferentCountry(Server server, string? exitCountry)
     {
         return IsStandardServer(server) && server.ExitCountry != exitCountry;
     }

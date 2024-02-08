@@ -23,12 +23,12 @@ namespace ProtonVPN.Client.Common.Observers;
 
 public abstract class ObserverBase : IObserver
 {
-    protected readonly SingleAction UpdateAction;
+    protected readonly SingleAction TriggerAction;
 
     public ObserverBase()
     {
-        UpdateAction = new SingleAction(UpdateAsync);
+        TriggerAction = new SingleAction(OnTriggerAsync);
     }
 
-    protected abstract Task UpdateAsync();
+    protected abstract Task OnTriggerAsync();
 }
