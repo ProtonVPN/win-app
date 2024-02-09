@@ -218,12 +218,12 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     }
 
     [RelayCommand(CanExecute = nameof(CanShowConnectionDetails))]
-    protected virtual void ShowConnectionDetails()
+    private void ShowConnectionDetails()
     {
         _homeViewModel.ToggleConnectionDetailsPane();
     }
 
-    protected virtual bool CanShowConnectionDetails()
+    private bool CanShowConnectionDetails()
     {
         return CurrentConnectionStatus == ConnectionStatus.Connected;
     }

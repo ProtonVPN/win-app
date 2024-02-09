@@ -2326,4 +2326,29 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Server_Free" xml:space="preserve">
     <value>Free server</value>
   </data>
+  <data name="Home_FreeConnections_About" xml:space="preserve">
+    <value>More information about free connections</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One" xml:space="preserve">
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <comment>{0} is a placeholder for the number of free countries available (eg. 1 free country). This string is used when the number is 0 or 1.</comment>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other" xml:space="preserve">
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <comment>{0} is a placeholder for the number of free countries available (eg. 5 free countries). This string is used when there are 2 or more countries available.</comment>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One" xml:space="preserve">
+    <value>Free server country ({0})</value>
+    <comment>{0} is a placeholder for the number of free countries available (eg. Free server country (1)). This string is used when the number is 0 or 1.</comment>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other" xml:space="preserve">
+    <value>Free server countries ({0})</value>
+    <comment>{0} is a placeholder for the number of free countries available (eg. Free server countries (5)). This string is used when there are 2 or more countries available.</comment>
+  </data>
+  <data name="Dialogs_FreeConnections_Title" xml:space="preserve">
+    <value>Free connections</value>
+  </data>
+  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell" xml:space="preserve">
+    <value>Get worldwide coverage with VPN Plus</value>
+  </data>
 </root>

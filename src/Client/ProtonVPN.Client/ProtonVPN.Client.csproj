@@ -70,6 +70,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Dialogs\Overlays\FreeConnectionsOverlayDialog.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Home\ConnectionCard\FreeConnectionCardComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -206,6 +209,7 @@
         <None Remove="UI\Countries\CountryFeatureTabs\P2PCitiesPage.xaml" />
         <None Remove="UI\Countries\CountryFeatureTabs\SecureCoreCountryPage.xaml" />
         <None Remove="UI\Countries\CountryFeatureTabs\TorServersPage.xaml" />
+        <None Remove="UI\Dialogs\Overlays\FreeConnectionsOverlayDialog.xaml" />
         <None Remove="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml" />
         <None Remove="UI\Dialogs\Overlays\P2POverlayDialog.xaml" />
         <None Remove="UI\Dialogs\Overlays\ProtocolOverlayDialog.xaml" />
@@ -244,6 +248,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="UI\Home\ConnectionCard\Overlays\" />
         <Folder Include="UI\Home\Map\" />
         <Folder Include="UI\Home\Help\" />
         <Folder Include="UI\Login\Forms\" />

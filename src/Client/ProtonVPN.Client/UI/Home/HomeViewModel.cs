@@ -139,15 +139,13 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName != nameof(ISettings.IsPaid))
+        if (message.PropertyName == nameof(ISettings.IsPaid))
         {
-            return;
+            ExecuteOnUIThread(() =>
+            {
+                OnPropertyChanged(nameof(IsPaidUser));
+            });
         }
-
-        ExecuteOnUIThread(() =>
-        {
-            OnPropertyChanged(nameof(IsPaidUser));
-        });
     }
 
     public void Receive(LoggedInMessage message)

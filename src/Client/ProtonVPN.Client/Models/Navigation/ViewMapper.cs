@@ -38,6 +38,7 @@ using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.Gateways;
+using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -168,6 +169,7 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<SmartRoutingOverlayViewModel, SmartRoutingOverlayDialog>();
         ConfigureOverlay<P2POverlayViewModel, P2POverlayDialog>();
         ConfigureOverlay<TorOverlayViewModel, TorOverlayDialog>();
+        ConfigureOverlay<FreeConnectionsOverlayViewModel, FreeConnectionsOverlayDialog>();
     }
 
     protected void ConfigureDialogs()
