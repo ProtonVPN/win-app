@@ -31,6 +31,7 @@ using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
+using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.Client.UI.Home.ConnectionError;
 using ProtonVPN.Client.UI.Home.Details;
 using ProtonVPN.Client.UI.Home.Help;
@@ -68,6 +69,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<SmartRoutingOverlayViewModel>(builder);
         RegisterViewModel<P2POverlayViewModel>(builder);
         RegisterViewModel<TorOverlayViewModel>(builder);
+        RegisterViewModel<FreeConnectionsOverlayViewModel>(builder);
         RegisterViewModel<VpnSpeedViewModel>(builder);
         RegisterViewModel<IpAddressViewModel>(builder);
         RegisterViewModel<ConnectionDetailsViewModel>(builder);

@@ -26,8 +26,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
@@ -35,9 +36,12 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private const int FREE_COUNTRIES_DISPLAYED_AS_FLAGS = 3;
+
     private readonly IServersLoader _serversLoader;
+    private readonly IOverlayActivator _overlayActivator;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FormattedFreeCountriesCount))]
     private int _freeCountriesCount;
 
     public string FormattedFreeCountriesCount => FreeCountriesCount > FREE_COUNTRIES_DISPLAYED_AS_FLAGS
@@ -50,14 +54,21 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
         IConnectionManager connectionManager,
         ILocalizationProvider localizationProvider,
         IServersLoader serversLoader,
+        IOverlayActivator overlayActivator,
         HomeViewModel homeViewModel)
         : base(connectionManager, localizationProvider, homeViewModel)
     {
         _serversLoader = serversLoader;
+        _overlayActivator = overlayActivator;
 
         CurrentConnectionIntent = ConnectionIntent.FreeDefault;
 
         InvalidateCurrentConnectionStatus();
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateFreeCountriesCount);
     }
 
     protected override void InvalidateCurrentConnectionStatus()
@@ -67,6 +78,7 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
         OnPropertyChanged(nameof(ShowFreeConnectionFlags));
 
         ChangeServerCommand.NotifyCanExecuteChanged();
+        ShowAboutFreeConnectionsCommand.NotifyCanExecuteChanged();
 
         if (ConnectionManager.ConnectionStatus == ConnectionStatus.Disconnected)
         {
@@ -75,19 +87,15 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
         }
     }
 
-    public void Receive(ServerListChangedMessage message)
+    [RelayCommand(CanExecute = nameof(CanShowAboutFreeConnections))]
+    private async Task ShowAboutFreeConnectionsAsync()
     {
-        ExecuteOnUIThread(() => 
-        {
-            InvalidateFreeCountriesCount();
-        });
+        await _overlayActivator.ShowOverlayAsync<FreeConnectionsOverlayViewModel>();
     }
 
-    private void InvalidateFreeCountriesCount()
+    private bool CanShowAboutFreeConnections()
     {
-        List<string> freeCountries = _serversLoader.GetCountryCodesByTier(ServerTiers.Free).ToList();
-
-        FreeCountriesCount = freeCountries.Count;
+        return CurrentConnectionStatus is ConnectionStatus.Disconnected;
     }
 
     [RelayCommand(CanExecute = nameof(CanChangeServer))]
@@ -103,24 +111,10 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
         return CurrentConnectionStatus == ConnectionStatus.Connected;
     }
 
-    protected override void ShowConnectionDetails()
+    private void InvalidateFreeCountriesCount()
     {
-        switch (CurrentConnectionStatus)
-        {
-            case ConnectionStatus.Disconnected:
-                // TODO: Implement free countries overlay
-                break;
-            case ConnectionStatus.Connected:
-                base.ShowConnectionDetails();
-                break;
-            default:
-                break;
-        }
-    }
+        List<string> freeCountries = _serversLoader.GetFreeCountryCodes().ToList();
 
-    protected override bool CanShowConnectionDetails()
-    {
-        return CurrentConnectionStatus == ConnectionStatus.Connected
-            || CurrentConnectionStatus == ConnectionStatus.Disconnected;
+        FreeCountriesCount = freeCountries.Count;
     }
 }

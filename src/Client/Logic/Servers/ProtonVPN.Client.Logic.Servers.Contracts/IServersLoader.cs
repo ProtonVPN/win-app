@@ -28,7 +28,7 @@ public interface IServersLoader
 
     IEnumerable<string> GetCountryCodes();
     IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures);
-    IEnumerable<string> GetCountryCodesByTier(ServerTiers serverTiers);
+    IEnumerable<string> GetFreeCountryCodes();
 
     IEnumerable<City> GetCities();
     IEnumerable<City> GetCitiesByCountryCode(string countryCode);

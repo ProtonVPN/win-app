@@ -69,10 +69,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Grid.Row="0"
                                 AutomationProperties.AutomationId="ShowConnectionDetailsButton"
                                 AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}"
-                                Command="{x:Bind ViewModel.ShowConnectionDetailsCommand}"
                                 Style="{StaticResource ConnectionCardGhostButtonStyle}"
-                                TabIndex="2"
-                                ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}">
+                                TabIndex="2">
                 <toolkit:DockPanel>
                     <controls:CountryFlagControl Width="30"
                                                  Margin="4,0,0,0"
@@ -186,6 +184,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="ShowConnectionDetailsButton.(ToolTipService.ToolTip)" Value="{x:Bind ViewModel.Localizer.Get('Home_FreeConnections_About')}"/>
+                        <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowAboutFreeConnectionsCommand, Mode=OneTime}"/>
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
                                 <pathicons:InfoCircle />
@@ -198,6 +198,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnected, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="ShowConnectionDetailsButton.(ToolTipService.ToolTip)" Value="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}"/>
+                        <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowConnectionDetailsCommand, Mode=OneTime}"/>
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
                                 <pathicons:ChevronRight />
@@ -205,7 +207,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Setter>
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="Connecting" />
+                <VisualState x:Name="Connecting" >
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ShowConnectionDetailsButton.IsEnabled" Value="False"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </StackPanel>

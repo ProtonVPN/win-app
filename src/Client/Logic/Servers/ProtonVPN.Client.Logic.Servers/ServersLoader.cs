@@ -51,10 +51,10 @@ public class ServersLoader : IServersLoader
             .Distinct();
     }
 
-    public IEnumerable<string> GetCountryCodesByTier(ServerTiers serverTiers)
+    public IEnumerable<string> GetFreeCountryCodes()
     {
         return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                                    && (ServerTiers)s.Tier == serverTiers)
+                                    && (ServerTiers)s.Tier == ServerTiers.Free)
             .Select(s => s.ExitCountry)
             .Distinct();
     }
