@@ -43,6 +43,7 @@ public interface IStaticConfiguration
 
     string ClientLogsFilePath { get; }
     string ServiceLogsFilePath { get; }
+    string InstallLogsFilePath { get; }
     string DiagnosticLogsZipFilePath { get; }
     string GuestHoleServersJsonFilePath { get; }
     string ServiceSettingsFilePath { get; }

@@ -43,5 +43,6 @@ public class FeedbackLogicModule : Module
         builder.RegisterType<NetworkAdapterLog>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RoutingTableLog>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkLogWriter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AppInstallLog>().AsImplementedInterfaces().SingleInstance();
     }
 }

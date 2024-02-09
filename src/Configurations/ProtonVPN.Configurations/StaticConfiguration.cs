@@ -45,6 +45,7 @@ public class StaticConfiguration : IStaticConfiguration
 
     public string ClientLogsFilePath { get; } = DefaultConfiguration.ClientLogsFilePath;
     public string ServiceLogsFilePath { get; } = DefaultConfiguration.ServiceLogsFilePath;
+    public string InstallLogsFilePath { get; } = DefaultConfiguration.InstallLogsFilePath;
     public string DiagnosticLogsZipFilePath { get; } = DefaultConfiguration.DiagnosticLogsZipFilePath;
     public string GuestHoleServersJsonFilePath { get; } = DefaultConfiguration.GuestHoleServersJsonFilePath;
     public string ServiceSettingsFilePath { get; } = DefaultConfiguration.ServiceSettingsFilePath;

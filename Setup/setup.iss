@@ -3,6 +3,7 @@
 #define MyAppExeName "ProtonVPN.Client.exe"
 #define LegacyMyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
+#define AppUserModelID "Proton.VPN"
 
 #define MyPublisher "Proton AG"
 
@@ -14,6 +15,8 @@
 
 #define NetworkDriverName "ProtonVPNCallout"
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
+
+#define InstallLogPath "{app}\Install.log.txt"
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
@@ -57,6 +60,10 @@ SignTool=signtool sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /t
 
 [Messages]
 SetupWindowTitle={#MyAppName}
+
+[Registry]
+Root: HKCR; Subkey: "ProtonVPN"; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "AppUserModelId\{#AppUserModelID}"; Flags: uninsdeletekey;
 
 [Files]
 Source: "..\{#SourcePath}\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
@@ -112,7 +119,10 @@ Source: "..\{#SourcePath}\Assets\Flags\*"; DestDir: "{app}\{#VersionFolder}\Prot
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
-Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
+Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks: desktopicon; AppUserModelID: "{#AppUserModelID}";
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl"
@@ -130,12 +140,9 @@ Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl"
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
-Type: filesandordirs; Name: "{commonappdata}\Proton\Proton VPN"
-Type: filesandordirs; Name: "{localappdata}\Proton\Proton VPN"
-
-[Dirs]
-Name: "{localappdata}\ProtonVPN\DiagnosticLogs"
+Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"
+Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
+Type: files; Name: "{#InstallLogPath}"
 
 [Code]
 function InitLogger(logger: Longword): Integer;
@@ -152,6 +159,9 @@ external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayloa
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
+
+function RemovePinnedIcons(shortcutPath: String): Integer;
+external 'RemovePinnedIcons@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
 
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -317,7 +327,6 @@ function InitializeSetup(): Boolean;
 var
   Version: String;
   ErrCode: Integer;
-  WindowsVersion: TWindowsVersion;
 begin
   SetIsVerySilent();
   SetIsToDisableAutoUpdate();
@@ -378,6 +387,7 @@ begin
     UninstallProduct('{FED0679F-A292-4507-AEF5-DD2BB8898A36}');
     Log('Trying to uninstall an old version of ProtonVPN TAP adapter');
     UninstallProduct('{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}');
+    Result := '';
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -388,7 +398,7 @@ begin
   if CurStep = ssDone then begin
     logfilepathname := ExpandConstant('{log}');
     logfilename := ExtractFileName(logfilepathname);
-    newfilepathname := ExpandConstant('{localappdata}') + '\ProtonVPN\DiagnosticLogs\ProtonVPN_install.log';
+    newfilepathname := ExpandConstant('{#InstallLogPath}');
     FileCopy(logfilepathname, newfilepathname, false);
     if IsProcessRunning('{#MyAppExeName}') or IsProcessrunning('{#LegacyMyAppExeName}') then begin
       exit;

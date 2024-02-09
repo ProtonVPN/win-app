@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.InteropServices;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
+using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Common.Core.Extensions;
 using Windows.ApplicationModel.Activation;
-using ProtonVPN.Client.Bootstrapping;
 using WinRT;
 
 namespace ProtonVPN.Client;
@@ -38,12 +40,21 @@ public class Program
     [STAThread]
     static void Main(string[] args)
     {
+        // TODO: launch this process without admin privileges and /DoUninstallActions
+        // command line argument during the uninstallation of the app
+        if (args.ContainsIgnoringCase("/DoUninstallActions"))
+        {
+            UninstallActions.DeleteClientData();
+            return;
+        }
+
         ComWrappersSupport.InitializeComWrappers();
 
         bool isFirstInstance = IsFirstInstanceAsync().Result;
         if (isFirstInstance)
         {
             ProtocolActivationManager.Register();
+            SetCurrentProcessExplicitAppUserModelID("Proton.VPN");
 
             Application.Start(_ =>
             {
@@ -110,4 +121,7 @@ public class Program
             mainWindowActivator.Activate();
         });
     }
+
+    [DllImport("shell32.dll", SetLastError = true)]
+    private static extern void SetCurrentProcessExplicitAppUserModelID([MarshalAs(UnmanagedType.LPWStr)] string appId);
 }

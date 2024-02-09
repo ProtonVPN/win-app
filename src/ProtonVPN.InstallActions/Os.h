@@ -8,6 +8,7 @@ namespace Os
     bool IsProcessRunningByPath(const std::wstring& processPath);
     std::string GetEnvVariable(std::string name);
     long ChangeShortcutTarget(const wchar_t* shortcut_path, const wchar_t* target_path);
+    void RemovePinnedIcons(PCWSTR shortcut_path);
 
     enum DriverState
     {

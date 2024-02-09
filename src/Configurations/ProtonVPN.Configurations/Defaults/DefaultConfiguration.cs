@@ -26,27 +26,41 @@ namespace ProtonVPN.Configurations.Defaults;
 public static class DefaultConfiguration
 {
     // Constants
-    private const string PROTON_FOLDER_RELATIVE_PATH = "Proton\\Proton VPN";
     private const string LOGS_FOLDER_NAME = "Logs";
 
     // Auxiliary fields
-    private static readonly Lazy<string> _baseDirectory = new(() =>
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0</returns>
+    private static readonly Lazy<string> _baseVersionDirectory = new(() =>
     {
         string? location = Assembly.GetEntryAssembly()?.Location;
         return (location is null ? null : new FileInfo(location).DirectoryName) ?? AppDomain.CurrentDomain.BaseDirectory;
     });
-    private static readonly Lazy<string> _launcherDirectoryPath = new(() => Path.GetDirectoryName(_baseDirectory.Value) ?? string.Empty);
-    private static readonly Lazy<string> _resourcesFolderPath = new(() => Path.Combine(_baseDirectory.Value, "Resources"));
 
+    /// <returns>C:\Program Files\Proton\VPN</returns>
+    private static readonly Lazy<string> _baseDirectory = new(() => Path.GetDirectoryName(_baseVersionDirectory.Value) ?? string.Empty);
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\Resources</returns>
+    private static readonly Lazy<string> _resourcesFolderPath = new(() => Path.Combine(_baseVersionDirectory.Value, "Resources"));
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData</returns>
+    private static readonly Lazy<string> _serviceDataPath = new(() => Path.Combine(_baseVersionDirectory.Value, "ServiceData"));
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\Logs</returns>
+    private static readonly Lazy<string> _serviceLogsFolder = new(() => Path.Combine(_serviceDataPath.Value, LOGS_FOLDER_NAME));
+
+    /// <returns>C:\Users\{user}\AppData\Local</returns>
     private static readonly Lazy<string> _localAppDataPath = new(() => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
-    private static readonly Lazy<string> _commonAppDataPath = new(() => Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
-    
-    private static readonly Lazy<string> _localAppDataProtonVpnPath = new(() => Path.Combine(_localAppDataPath.Value, PROTON_FOLDER_RELATIVE_PATH));
-    private static readonly Lazy<string> _commonAppDataProtonVpnPath = new(() => Path.Combine(_commonAppDataPath.Value, PROTON_FOLDER_RELATIVE_PATH));
 
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN</returns>
+    private static readonly Lazy<string> _localAppDataProtonVpnPath = new(() => Path.Combine(_localAppDataPath.Value, "Proton", "Proton VPN"));
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Storage</returns>
     private static readonly Lazy<string> _storageFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, "Storage"));
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Logs</returns>
     private static readonly Lazy<string> _clientLogsFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, LOGS_FOLDER_NAME));
-    private static readonly Lazy<string> _serviceLogsFolder = new(() => Path.Combine(_commonAppDataProtonVpnPath.Value, LOGS_FOLDER_NAME));
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\DiagnosticLogs</returns>
     private static readonly Lazy<string> _diagnosticLogsFolder = new(() => Path.Combine(_localAppDataProtonVpnPath.Value, "DiagnosticLogs"));
 
     // Properties
@@ -58,29 +72,69 @@ public static class DefaultConfiguration
     public static string ServiceName => "ProtonVPN Service";
     public static string CalloutServiceName => "ProtonVPNCallout";
 
-    public static string ClientLauncherExePath => Path.Combine(_launcherDirectoryPath.Value, "ProtonVPN.Launcher.exe");
-    public static string InstallActionsPath => Path.Combine(_resourcesFolderPath.Value, "ProtonVPN.InstallActions.dll");
-    public static string ClientExePath => Path.Combine(_baseDirectory.Value, "ProtonVPN.Client.exe");
-    public static string ServiceExePath => Path.Combine(_baseDirectory.Value, "ProtonVPNService.exe");
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN</returns>
+    public static string LocalAppDataProtonVpnPath => _localAppDataProtonVpnPath.Value;
 
+    /// <returns>C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe</returns>
+    public static string ClientLauncherExePath => Path.Combine(_baseDirectory.Value, "ProtonVPN.Launcher.exe");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\Resources\ProtonVPN.InstallActions.dll</returns>
+    public static string InstallActionsPath => Path.Combine(_resourcesFolderPath.Value, "ProtonVPN.InstallActions.dll");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPN.Client.exe</returns>
+    public static string ClientExePath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPN.Client.exe");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPNService.exe</returns>
+    public static string ServiceExePath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPNService.exe");
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Storage</returns>
     public static string StorageFolder => _storageFolder.Value;
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Logs</returns>
     public static string ClientLogsFolder => _clientLogsFolder.Value;
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\Logs</returns>
     public static string ServiceLogsFolder => _serviceLogsFolder.Value;
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\DiagnosticLogs</returns>
     public static string DiagnosticLogsFolder => _diagnosticLogsFolder.Value;
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Images</returns>
     public static string ImageCacheFolder => Path.Combine(_localAppDataProtonVpnPath.Value, "Images");
-    public static string UpdatesFolder => Path.Combine(_commonAppDataProtonVpnPath.Value, "Updates");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\Updates</returns>
+    public static string UpdatesFolder => Path.Combine(_serviceDataPath.Value, "Updates");
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\WebView2</returns>
     public static string WebViewFolder => Path.Combine(_localAppDataProtonVpnPath.Value, "WebView2");
 
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Logs\client-logs.txt</returns>
     public static string ClientLogsFilePath => Path.Combine(ClientLogsFolder, "client-logs.txt");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\Logs\service-logs.txt</returns>
     public static string ServiceLogsFilePath => Path.Combine(ServiceLogsFolder, "service-logs.txt");
+
+    /// <returns>C:\Program Files\Proton\VPN\Install.log.txt</returns>
+    public static string InstallLogsFilePath => Path.Combine(_baseDirectory.Value, "Install.log.txt");
+
+    /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\DiagnosticLogs\diagnostic_logs.zip</returns>
     public static string DiagnosticLogsZipFilePath => Path.Combine(DiagnosticLogsFolder, "diagnostic_logs.zip");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\Resources\GuestHoleServers.json</returns>
     public static string GuestHoleServersJsonFilePath => Path.Combine(_resourcesFolderPath.Value, "GuestHoleServers.json");
-    public static string ServiceSettingsFilePath => Path.Combine(_commonAppDataProtonVpnPath.Value, "ServiceSettings.json");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\ServiceSettings.json</returns>
+    public static string ServiceSettingsFilePath => Path.Combine(_serviceDataPath.Value, "ServiceSettings.json");
+
+    /// <returns>C:\Users\{user}\AppData\Local\ProtonVPN</returns>
     public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");
-    
+
+    // TODO: remove the property as well as all the code which still uses this property
     public static string ServersJsonCacheFilePath => Path.Combine(_localAppDataProtonVpnPath.Value, "Servers.json");
 
+    // C:\Program Files\Proton\VPN\v4.0.0\Resources\wintun.dll
     public static string WintunDriverPath => Path.Combine(_resourcesFolderPath.Value, "wintun.dll");
+
     public static string WintunAdapterName => "ProtonVPN TUN";
 
     public static string ServerValidationPublicKey => "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=";
@@ -121,12 +175,12 @@ public static class DefaultConfiguration
     public static TimeSpan DohClientTimeout => TimeSpan.FromSeconds(10);
 
     public static IOpenVpnConfigurations OpenVpn => DefaultOpenVpnConfigurationsFactory.Create(
-        baseFolder: _baseDirectory.Value,
+        baseFolder: _baseVersionDirectory.Value,
         resourcesFolderPath: _resourcesFolderPath.Value, 
-        commonAppDataProtonVpnPath: _commonAppDataProtonVpnPath.Value);
+        commonAppDataProtonVpnPath: _serviceDataPath.Value);
     public static IWireGuardConfigurations WireGuard => DefaultWireGuardConfigurationsFactory.Create(
-        baseDirectory: _baseDirectory.Value,
-        commonAppDataProtonVpnPath: _commonAppDataProtonVpnPath.Value);
+        baseDirectory: _baseVersionDirectory.Value,
+        commonAppDataProtonVpnPath: _serviceDataPath.Value);
 
     public static IList<string> DohProviders => DefaultDohProvidersFactory.Create();
     public static IUrlsConfiguration Urls => DefaultUrlsConfigurationFactory.Create();
