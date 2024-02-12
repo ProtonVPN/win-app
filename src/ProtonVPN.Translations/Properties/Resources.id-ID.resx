@@ -1683,7 +1683,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Mohon putuskan perangkat lain untuk menyambungkan perangkat ini atau tingkatkan ke PLUS untuk meyambungkan hingga 5 perangkat sekaligus.</value>
+    <value>Silakan putuskan perangkat lain agar perangkat ini dapat terhubung, atau tingkatkan ke PLUS untuk dapat menghubungkan hingga 10 perangkat secara bersamaan.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -2124,7 +2124,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Mohon putuskan sambungan dari perangkat lain agar perangkat ini dapat tersambung atau tingkatkan akun Anda ke PLUS untuk dapat menyambungkan hingga 10 perangkat dalam satu waktu.</value>
+    <value>Silakan putuskan perangkat lain agar perangkat ini dapat terhubung, atau tingkatkan ke PLUS untuk dapat menghubungkan hingga 10 perangkat secara bersamaan.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">

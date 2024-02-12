@@ -3154,13 +3154,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Valitse mikä tahansa sijainti</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Vielä korkeampi VPN-nopeus</value>
+    <value>Entistä parempi VPN-nopeus</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
     <value>Suoratoista suosikkielokuviasi</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Kun päivität Plus-tilaukseen</value>
+    <value>Päivittämällä Plus-tilaukseen</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
@@ -3235,7 +3235,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Suojaa laitettasi haittaohjelmilta</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Kun päivität Plus-tilaukseen</value>
+    <value>Päivittämällä Plus-tilaukseen</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>Nauti mainosvapaasta selauksesta NetShieldillä</value>
@@ -3300,7 +3300,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelimien kautta</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Kun päivität Plus-tilaukseen</value>
+    <value>Päivittämällä Plus-tilaukseen</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Tuplaa salaus Secure Corella</value>
