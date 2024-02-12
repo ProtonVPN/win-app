@@ -52,7 +52,6 @@ public class CountryViewModelsFactory
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = exitCountryCode,
-            ExitCountryName = _localizer.GetCountryName(exitCountryCode),
             IsUnderMaintenance = false,
             SecondaryActionLabel = _localizer.GetPluralFormat(GetCountrySecondaryActionLabel(countryFeature), itemCount),
             CountryFeature = countryFeature
@@ -61,13 +60,10 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetFastestCountryViewModel(CountryFeature countryFeature)
     {
-        string fastestCountryLabel = _localizer.Get("Countries_Fastest");
-
         return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = string.Empty,
-            ExitCountryName = fastestCountryLabel,
             CountryFeature = countryFeature,
             SecondaryActionLabel = string.Empty,
         };
@@ -90,6 +86,18 @@ public class CountryViewModelsFactory
         serverViewModel.CopyPropertiesFromServer(server);
 
         return serverViewModel;
+    }
+
+    public CountryViewModel GetSecureCoreCountryViewModel(SecureCoreCountryPair countryPair)
+    {
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
+        {
+            EntryCountryCode = countryPair.EntryCountry,
+            ExitCountryCode = countryPair.ExitCountry,
+            IsUnderMaintenance = false,
+            SecondaryActionLabel = string.Empty,
+            CountryFeature = CountryFeature.SecureCore
+        };
     }
 
     private string GetCountrySecondaryActionLabel(CountryFeature countryFeature)

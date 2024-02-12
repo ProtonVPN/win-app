@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
@@ -31,8 +32,19 @@ namespace ProtonVPN.Client.UI.Countries;
 public partial class CountryViewModel : LocationViewModelBase, IComparable, ISearchableItem
 {
     public required string ExitCountryCode { get; init; }
-    public required string ExitCountryName { get; init; }
+
+    public string ExitCountryName => Localizer.GetCountryName(ExitCountryCode);
+
     public required string EntryCountryCode { get; init; }
+
+    public string EntryCountryName => Localizer.GetCountryName(EntryCountryCode);
+
+    public string ViaEntryCountryLabel => Localizer.GetFormat("Countries_ViaCountry", EntryCountryName);
+
+    public string ConnectButtonAutomationName => IsSecureCore && !string.IsNullOrEmpty(EntryCountryCode)
+        ? $"{ExitCountryName} {ViaEntryCountryLabel}"
+        : ExitCountryName;
+
     public required string SecondaryActionLabel { get; init; }
     public bool IsUnderMaintenance { get; init; }
     public CountryFeature CountryFeature { get; init; }
@@ -48,7 +60,7 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
                                             && (CountryFeature == CountryFeature.SecureCore) == (ConnectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent);
 
     protected override ConnectionIntent ConnectionIntent => new(new CountryLocationIntent(ExitCountryCode),
-        CountryFeature.GetFeatureIntent(IsSecureCore ? string.Empty : ExitCountryCode));
+        CountryFeature.GetFeatureIntent(EntryCountryCode));
 
     public CountryViewModel(
         ILocalizationProvider localizationProvider,
@@ -86,6 +98,7 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
 
     public bool MatchesSearchQuery(string query)
     {
-        return !string.IsNullOrWhiteSpace(ExitCountryCode) && ExitCountryName.ContainsIgnoringCase(query);
+        return !string.IsNullOrWhiteSpace(ExitCountryCode) && ExitCountryName.ContainsIgnoringCase(query)
+            || !string.IsNullOrWhiteSpace(EntryCountryCode) && EntryCountryName.ContainsIgnoringCase(query);
     }
 }

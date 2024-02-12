@@ -73,6 +73,11 @@ public partial class P2PCountriesPageViewModel : CountriesTabViewModelBase
         return ServersLoader.GetServersByFeatures(ServerFeatures.P2P);
     }
 
+    protected override IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries()
+    {
+        return new List<SecureCoreCountryPair>();
+    }
+
     protected override int GetCountryItemsCount(string countryCode)
     {
         return ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, countryCode).Count();

@@ -47,7 +47,7 @@ public partial class CountriesRobot : UIActions
 
     protected Button GetSecureCoreConnectButton(string entryCountry, string exitCountry)
     {
-        return ElementByName($"via {entryCountry} {exitCountry}").AsButton();
+        return ElementByName($"{exitCountry} via {entryCountry}").AsButton();
     }
 
     public ServerConnectButton GetServerConnectButton()

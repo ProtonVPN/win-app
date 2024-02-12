@@ -78,6 +78,8 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
 
     protected override void OnLanguageChanged()
     {
+        base.OnLanguageChanged();
+
         LoadItems(CurrentCountryCode);
     }
 

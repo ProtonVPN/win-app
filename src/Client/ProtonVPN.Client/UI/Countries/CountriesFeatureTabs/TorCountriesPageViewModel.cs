@@ -72,6 +72,11 @@ public partial class TorCountriesPageViewModel : CountriesTabViewModelBase
         return ServersLoader.GetServersByFeatures(ServerFeatures.Tor);
     }
 
+    protected override IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries()
+    {
+        return new List<SecureCoreCountryPair>();
+    }
+
     protected override int GetCountryItemsCount(string countryCode)
     {
         return ServersLoader.GetServersByFeaturesAndCountryCode(ServerFeatures.Tor, countryCode).Count();

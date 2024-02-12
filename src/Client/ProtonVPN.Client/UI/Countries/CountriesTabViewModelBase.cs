@@ -45,7 +45,8 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     public bool HasCountries => TotalCountries > 0;
     public bool HasCities => Cities.Count > 0;
     public bool HasServers => Servers.Count > 0;
-    public bool HasItems => HasCountries || HasCities || HasServers;
+    public bool HasSecureCoreCountries => SecureCoreCountries.Count > 0;
+    public bool HasItems => HasCountries || HasCities || HasServers || HasSecureCoreCountries;
 
     [ObservableProperty]
     private AdvancedCollectionView _countries = new();
@@ -55,6 +56,9 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
 
     [ObservableProperty]
     private AdvancedCollectionView _servers = new();
+
+    [ObservableProperty]
+    private AdvancedCollectionView _secureCoreCountries = new();
 
     protected CountriesTabViewModelBase(
         IMainViewNavigator mainViewNavigator,
@@ -90,6 +94,10 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         Servers.SortDescriptions.Add(new(nameof(ServerViewModel.Load), SortDirection.Ascending));
         Servers.Filter = _ => false;
 
+        SecureCoreCountries = new AdvancedCollectionView(GetSecureCoreCountryViewModels(), true);
+        SecureCoreCountries.SortDescriptions.Add(new(SortDirection.Ascending));
+        SecureCoreCountries.Filter = _ => false;
+
         NotifyPropertyChanges();
     }
 
@@ -100,6 +108,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         Countries.Filter = GetCountriesFilter(query);
         Cities.Filter = GetHiddenItemsFilter(query);
         Servers.Filter = GetHiddenItemsFilter(query);
+        SecureCoreCountries.Filter = GetHiddenItemsFilter(query);
 
         NotifyPropertyChanges();
     }
@@ -120,6 +129,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         OnPropertyChanged(nameof(HasCountries));
         OnPropertyChanged(nameof(HasCities));
         OnPropertyChanged(nameof(HasServers));
+        OnPropertyChanged(nameof(HasSecureCoreCountries));
         OnPropertyChanged(nameof(TotalCountries));
     }
 
@@ -128,6 +138,8 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     protected abstract IEnumerable<City> GetCities();
 
     protected abstract IEnumerable<Server> GetServers();
+
+    protected abstract IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries();
 
     protected abstract int GetCountryItemsCount(string countryCode);
 
@@ -160,6 +172,13 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     {
         return GetServers()
             .Select(_countryViewModelsFactory.GetServerViewModel)
+            .ToList();
+    }
+
+    private List<CountryViewModel> GetSecureCoreCountryViewModels()
+    {
+        return GetSecureCoreCountries()
+            .Select(_countryViewModelsFactory.GetSecureCoreCountryViewModel)
             .ToList();
     }
 

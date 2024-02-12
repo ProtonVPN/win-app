@@ -82,6 +82,9 @@
         <Page Update="UI\Home\NotificationCard\NotificationCardComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Countries\Controls\SecureCoreCountryListControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Home\ConnectionError\ConnectionErrorComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -112,7 +115,7 @@
         <Page Update="UI\Countries\Controls\CountryFeatureTitleControl.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
-        <Page Update="UI\Countries\Controls\SecureCoreServerRowControl.xaml">
+        <Page Update="UI\Countries\Controls\SecureCoreCountryRowControl.xaml">
           <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
           <SubType>Designer</SubType>
         </Page>
@@ -197,7 +200,8 @@
         <None Remove="UI\Countries\Controls\CountryListControl.xaml" />
         <None Remove="UI\Countries\Controls\CountryRowControl.xaml" />
         <None Remove="UI\Countries\Controls\NoSearchResultsView.xaml" />
-        <None Remove="UI\Countries\Controls\SecureCoreServerRowControl.xaml" />
+        <None Remove="UI\Countries\Controls\SecureCoreCountryListControl.xaml" />
+        <None Remove="UI\Countries\Controls\SecureCoreCountryRowControl.xaml" />
         <None Remove="UI\Countries\Controls\ServerListControl.xaml" />
         <None Remove="UI\Countries\Controls\ServerRowControl.xaml" />
         <None Remove="UI\Countries\CountriesFeatureTabs\AllCountriesPage.xaml" />

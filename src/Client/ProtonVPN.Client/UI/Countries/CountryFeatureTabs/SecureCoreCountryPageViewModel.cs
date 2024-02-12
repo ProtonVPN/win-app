@@ -24,7 +24,6 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -79,8 +78,8 @@ public partial class SecureCoreCountryPageViewModel : CountryTabViewModelBase
     protected override IList GetItems()
     {
         return _serversLoader
-            .GetServersByFeaturesAndCountryCode(ServerFeatures.SecureCore, CurrentCountryCode)
-            .Select(CountryViewModelsFactory.GetServerViewModel)
+            .GetSecureCoreCountryPairsByExitCountryCode(CurrentCountryCode)
+            .Select(CountryViewModelsFactory.GetSecureCoreCountryViewModel)
             .ToList();
     }
 
