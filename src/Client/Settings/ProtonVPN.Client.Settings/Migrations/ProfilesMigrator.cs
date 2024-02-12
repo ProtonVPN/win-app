@@ -85,61 +85,59 @@ public class ProfilesMigrator : IProfilesMigrator
         ILocationIntent? locationIntent = null;
         IFeatureIntent? featureIntent = null;
 
-        if (string.IsNullOrEmpty(profile.ServerId))
+        Server? server = string.IsNullOrEmpty(profile.ServerId)
+            ? null
+            : _serversLoader.GetById(profile.ServerId);
+
+        if (server is null)
         {
-            if (!string.IsNullOrEmpty(profile.CountryCode))
-            {
-                locationIntent = new CountryLocationIntent(profile.CountryCode);
-            }
-            else if (!string.IsNullOrEmpty(profile.GatewayName))
+            if (!string.IsNullOrEmpty(profile.GatewayName))
             {
                 locationIntent = new GatewayLocationIntent(profile.GatewayName);
             }
-
-            if (profile.Features.IsSupported(ServerFeatures.SecureCore))
+            else if (!string.IsNullOrEmpty(profile.CountryCode))
             {
-                featureIntent = new SecureCoreFeatureIntent();
+                locationIntent = new CountryLocationIntent(profile.CountryCode);
+            }
+            else
+            {
+                locationIntent = new CountryLocationIntent();
             }
         }
         else
         {
-            Server? server = _serversLoader.GetById(profile.ServerId);
-            if (server is not null)
+            if (!string.IsNullOrEmpty(server.GatewayName))
             {
-                if (string.IsNullOrEmpty(server.GatewayName))
-                {
-                    locationIntent = new ServerLocationIntent(profile.ServerId, server.Name, server.ExitCountry,
-                        server.City);
-                }
-                else
-                {
-                    locationIntent = new GatewayServerLocationIntent(profile.ServerId, server.Name, server.ExitCountry,
-                        server.GatewayName);
-                }
-
-                if (profile.Features.IsSupported(ServerFeatures.SecureCore))
-                {
-                    featureIntent = new SecureCoreFeatureIntent(server.EntryCountry);
-                }
+                locationIntent = new GatewayServerLocationIntent(server.Id, server.Name, server.ExitCountry, server.GatewayName);
             }
-        }
-
-        if (profile.Features.IsSupported(ServerFeatures.P2P))
-        {
-            featureIntent = new P2PFeatureIntent();
-        }
-
-        if (profile.Features.IsSupported(ServerFeatures.Tor))
-        {
-            featureIntent = new TorFeatureIntent();
+            else if (profile.Features.IsSupported(ServerFeatures.SecureCore))
+            {
+                locationIntent = new CountryLocationIntent(server.ExitCountry);
+            }
+            else
+            {
+                locationIntent = new ServerLocationIntent(server.Id, server.Name, server.ExitCountry, server.City);
+            }
         }
 
         if (profile.Features.IsSupported(ServerFeatures.B2B))
         {
             featureIntent = new B2BFeatureIntent();
         }
+        else if (profile.Features.IsSupported(ServerFeatures.P2P))
+        {
+            featureIntent = new P2PFeatureIntent();
+        }
+        else if (profile.Features.IsSupported(ServerFeatures.Tor))
+        {
+            featureIntent = new TorFeatureIntent();
+        }
+        else if (profile.Features.IsSupported(ServerFeatures.SecureCore))
+        {
+            featureIntent = new SecureCoreFeatureIntent(server?.EntryCountry);
+        }
 
-        return new ConnectionIntent(locationIntent ?? new CountryLocationIntent(), featureIntent);
+        return new ConnectionIntent(locationIntent, featureIntent);
     }
 
     private IConnectionIntent? MapQuickConnectProfileToConnectionIntent(List<LegacyProfile> profiles, string? quickConnectProfileId)

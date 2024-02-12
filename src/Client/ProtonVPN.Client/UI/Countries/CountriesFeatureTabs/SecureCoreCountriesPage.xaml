@@ -36,9 +36,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Visibility="{x:Bind ViewModel.HasCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
                                      Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_SecureCoreCountries', ViewModel.TotalCountries)}" />
 
-        <controls:ServerListControl Servers="{x:Bind ViewModel.Servers}"
-                                    Visibility="{x:Bind ViewModel.HasServers, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfServers', ViewModel.Servers.Count)}" />
+        <controls:SecureCoreCountryListControl SecureCoreCountries="{x:Bind ViewModel.SecureCoreCountries}"
+                                               Visibility="{x:Bind ViewModel.HasSecureCoreCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                               Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfServers', ViewModel.SecureCoreCountries.Count)}" />
 
         <controls:NoSearchResultsView Visibility="{x:Bind ViewModel.HasItems, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
     </StackPanel>

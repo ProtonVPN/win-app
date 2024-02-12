@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,26 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-namespace ProtonVPN.Client.UI.Countries.Controls;
-
-public sealed partial class SecureCoreServerRowControl
+public class SecureCoreCountryPair : IEquatable<SecureCoreCountryPair>
 {
-    public static readonly DependencyProperty ServerViewModelProperty = DependencyProperty.Register(
-        nameof(ServerViewModel),
-        typeof(ServerViewModel),
-        typeof(SecureCoreServerRowControl),
-        new PropertyMetadata(null));
+    public required string EntryCountry { get; init; }
+    public required string ExitCountry { get; init; }
 
-    public SecureCoreServerRowControl()
+    public bool Equals(SecureCoreCountryPair? other)
     {
-        InitializeComponent();
+        return other != null 
+            && EntryCountry == other.EntryCountry 
+            && ExitCountry == other.ExitCountry;
     }
 
-    public ServerViewModel ServerViewModel
+    public override int GetHashCode()
     {
-        get => (ServerViewModel)GetValue(ServerViewModelProperty);
-        set => SetValue(ServerViewModelProperty, value);
+        return HashCode.Combine(EntryCountry, ExitCountry);
     }
 }

@@ -66,6 +66,11 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
                      && !s.Features.IsSupported(ServerFeatures.B2B));
     }
 
+    protected override IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries()
+    {
+        return new List<SecureCoreCountryPair>();
+    }
+
     protected override int GetCountryItemsCount(string countryCode)
     {
         return ServersLoader.GetCitiesByCountryCode(countryCode).Count();

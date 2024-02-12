@@ -69,11 +69,16 @@ public partial class SecureCoreCountriesPageViewModel : CountriesTabViewModelBas
 
     protected override IEnumerable<Server> GetServers()
     {
-        return ServersLoader.GetServersByFeatures(ServerFeatures.SecureCore);
+        return new List<Server>();
+    }
+
+    protected override IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries()
+    {
+        return ServersLoader.GetSecureCoreCountryPairs();
     }
 
     protected override int GetCountryItemsCount(string countryCode)
     {
-        return ServersLoader.GetServersByFeaturesAndCountryCode(ServerFeatures.SecureCore, countryCode).Count();
+        return ServersLoader.GetSecureCoreCountryPairsByExitCountryCode(countryCode).Count();
     }
 }

@@ -33,7 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <controls:DualCommandsRowControl Padding="12,0"
                                      IsRowContentDisabled="{x:Bind CountryViewModel.IsUnderMaintenance}"
                                      PrimaryButtonAutomationId="{x:Bind CountryViewModel.ConnectButtonAutomationId}"
-                                     PrimaryButtonAutomationName="{x:Bind CountryViewModel.ExitCountryName}"
+                                     PrimaryButtonAutomationName="{x:Bind CountryViewModel.ConnectButtonAutomationName}"
                                      PrimaryCommand="{x:Bind CountryViewModel.ConnectCommand}"
                                      PrimaryCommandText="{x:Bind CountryViewModel.Localizer.Get('Countries_Connect')}"
                                      SecondaryButtonAutomationId="{x:Bind CountryViewModel.NavigateToCountryButtonAutomationId}"
@@ -50,13 +50,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <controls:CountryFlagControl Grid.Column="0"
+                                         EntryCountryCode="{x:Bind CountryViewModel.EntryCountryCode}"
                                          ExitCountryCode="{x:Bind CountryViewModel.ExitCountryCode}"
                                          IsCompact="False"
                                          IsSecureCore="{x:Bind CountryViewModel.IsSecureCore}" />
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"
-                        Spacing="8">
-                <TextBlock Text="{x:Bind CountryViewModel.ExitCountryName}" />
+                        Spacing="8"
+                        Margin="0,8">
+                <StackPanel>
+                    <TextBlock Text="{x:Bind CountryViewModel.ExitCountryName}" />
+                    <TextBlock Text="{x:Bind CountryViewModel.ViaEntryCountryLabel}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Visibility="{x:Bind CountryViewModel.EntryCountryCode, Converter={StaticResource StringVisibilityConverter}}"/>
+                </StackPanel>
                 <icons:ActiveDot Width="16"
                                  Height="16"
                                  AutomationProperties.AutomationId="{x:Bind CountryViewModel.ActiveConnectionAutomationId}"

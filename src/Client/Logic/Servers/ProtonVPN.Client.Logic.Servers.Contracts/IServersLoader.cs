@@ -41,6 +41,9 @@ public interface IServersLoader
     IEnumerable<Server> GetServersByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode);
     IEnumerable<Server> GetServersByFeaturesAndCity(ServerFeatures serverFeatures, City city);
 
+    IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairs();
+    IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairsByExitCountryCode(string exitCountryCode);
+
     IEnumerable<string> GetGateways();
     IEnumerable<Server> GetServersByGateway(string gatewayName);
 

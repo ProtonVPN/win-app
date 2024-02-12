@@ -28,7 +28,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Common.Core.Extensions;
-using WinUI3Localizer;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -43,7 +42,7 @@ public class ServerViewModel : ServerViewModelBase, ISearchableItem
     public bool IsTor { get; private set; }
 
     public override string ConnectButtonAutomationName => IsSecureCore
-        ? $"{EntryCountryName} {ExitCountryName}"
+        ? $"{ExitCountryName} {EntryCountryName}"
         : ExitCountryName;
 
     protected override ConnectionIntent ConnectionIntent =>

@@ -124,6 +124,29 @@ public class ServersLoader : IServersLoader
                                     && s.Features.IsSupported(serverFeatures));
     }
 
+    public IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairs()
+    {
+        return GetServersByFeatures(ServerFeatures.SecureCore)
+            .Select(GetSecureCoreCountryPair)
+            .Distinct();
+    }
+
+    public IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairsByExitCountryCode(string exitCountryCode)
+    {
+        return GetServersByFeaturesAndCountryCode(ServerFeatures.SecureCore, exitCountryCode)
+            .Select(GetSecureCoreCountryPair)
+            .Distinct();
+    }
+
+    private SecureCoreCountryPair GetSecureCoreCountryPair(Server server)
+    {
+        return new()
+        {
+            ExitCountry = server.ExitCountry,
+            EntryCountry = server.EntryCountry,
+        };
+    }
+
     public IEnumerable<string> GetGateways()
     {
         return _serversCache.Gateways;
