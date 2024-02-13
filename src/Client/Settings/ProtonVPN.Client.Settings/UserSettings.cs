@@ -157,8 +157,14 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public bool IsPaid
     {
-        get => _userRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsPaid;
-        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+        get => _userRepository.GetValueType<bool>(SettingEncryption.Encrypted) ?? DefaultSettings.IsPaid;
+        set => _userRepository.SetValueType<bool>(value, SettingEncryption.Encrypted);
+    }
+
+    public sbyte MaxTier
+    {
+        get => _userRepository.GetValueType<sbyte>(SettingEncryption.Encrypted) ?? DefaultSettings.MaxTier;
+        set => _userRepository.SetValueType<sbyte>(value, SettingEncryption.Encrypted);
     }
 
     public bool IsVpnAcceleratorEnabled

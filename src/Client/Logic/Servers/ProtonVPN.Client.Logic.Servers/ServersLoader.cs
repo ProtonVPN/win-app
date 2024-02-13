@@ -53,8 +53,7 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<string> GetFreeCountryCodes()
     {
-        return GetServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                                    && (ServerTiers)s.Tier == ServerTiers.Free)
+        return GetServersByFilter(s => s.Tier == ServerTiers.Free && !string.IsNullOrWhiteSpace(s.ExitCountry))
             .Select(s => s.ExitCountry)
             .Distinct();
     }

@@ -27,7 +27,7 @@ namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
 public abstract class ServerListGeneratorBase
 {
-    private readonly Random _random = new();
+    protected readonly Random Random = new();
 
     protected abstract int MaxPhysicalServersPerLogical { get; }
 
@@ -40,7 +40,7 @@ public abstract class ServerListGeneratorBase
 
     protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server)
     {
-        return server.Servers.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => _random.Next()).Take(MaxPhysicalServersPerLogical);
+        return server.Servers.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical);
     }
 
     protected bool IsStandardServer(Server server)

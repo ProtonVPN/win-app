@@ -31,7 +31,7 @@ namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
 public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartStandardServerListGenerator
 {
-    private const int MAX_GENERATED_INTENT_PHYSICAL_SERVERS = 3;
+    private const int MAX_GENERATED_INTENT_LOGICAL_SERVERS = 3;
 
     protected override int MaxPhysicalServersPerLogical => 1;
 
@@ -98,8 +98,8 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
             : connectionIntent.Feature.FilterServers(servers);
 
         return SortServers(servers)
-            .Where(s => !s.IsUnderMaintenance())
-            .Take(MAX_GENERATED_INTENT_PHYSICAL_SERVERS);
+            .Where(s => s.IsAvailable())
+            .Take(MAX_GENERATED_INTENT_LOGICAL_SERVERS);
     }
 
     private IEnumerable<Server> SortServers(IEnumerable<Server> source)
@@ -111,7 +111,7 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
 
     private IEnumerable<Server> GetUnfilteredServers()
     {
-        return SortServers(_serversLoader.GetServers().Where(s => !s.IsUnderMaintenance()));
+        return SortServers(_serversLoader.GetServers().Where(s => s.IsAvailable()));
     }
 
     private bool IsSameFeatureAndCountryAndCity(Server server,

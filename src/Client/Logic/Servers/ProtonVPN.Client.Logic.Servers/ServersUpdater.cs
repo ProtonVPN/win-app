@@ -47,8 +47,10 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
 
     private readonly ReaderWriterLockSlim _lock = new();
 
-    private IReadOnlyList<Server> _servers = new List<Server>();
-    public IReadOnlyList<Server> Servers => GetWithReadLock(() => _servers);
+    private IReadOnlyList<Server> _originalServers = new List<Server>();
+
+    private IReadOnlyList<Server> _filteredServers = new List<Server>();
+    public IReadOnlyList<Server> Servers => GetWithReadLock(() => _filteredServers);
 
     private IReadOnlyList<string> _countryCodes = new List<string>();
     public IReadOnlyList<string> CountryCodes => GetWithReadLock(() => _countryCodes);
@@ -59,7 +61,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
     public ServersUpdater(IApiClient apiClient,
         IEntityMapper entityMapper,
         IServersFileManager serversFileManager,
-        IEventMessageSender eventMessageSender, 
+        IEventMessageSender eventMessageSender,
         ISettings settings,
         ILogger logger)
     {
@@ -109,7 +111,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
                 ProcessNewServers(servers);
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             _logger.Error<ApiErrorLog>("API: Get servers failed", e);
         }
@@ -166,11 +168,13 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
         {
             IReadOnlyList<string> countryCodes = GetCountryCodes(servers);
             IReadOnlyList<string> gateways = GetGateways(servers);
+            IReadOnlyList<Server> filteredServers = GetFilteredServers(servers);
 
             _lock.EnterWriteLock();
             try
             {
-                _servers = servers;
+                _originalServers = servers;
+                _filteredServers = filteredServers;
                 _countryCodes = countryCodes;
                 _gateways = gateways;
             }
@@ -197,6 +201,25 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
             .ToList();
     }
 
+    private IReadOnlyList<Server> GetFilteredServers(IReadOnlyList<Server> servers)
+    {
+        List<Server> filteredServers = [];
+        foreach (Server server in servers)
+        {
+            // TODO: Listen to changes to MaxTier setting and process the servers again through here
+            // (This should be done when we have a regular or triggered call to fetch user data)
+            if (_settings.MaxTier >= (sbyte)server.Tier)
+            {
+                filteredServers.Add(server);
+            }
+            else if (server.Tier <= ServerTiers.Plus)
+            {
+                filteredServers.Add(server.CopyWithoutPhysicalServers());
+            }
+        }
+        return filteredServers;
+    }
+
     private void SaveToFile(IList<Server> servers)
     {
         _serversFileManager.Save(servers);
@@ -212,7 +235,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
         _lock.EnterWriteLock();
         try
         {
-            _servers = new List<Server>();
+            _filteredServers = new List<Server>();
             _countryCodes = new List<string>();
             _gateways = new List<string>();
         }
