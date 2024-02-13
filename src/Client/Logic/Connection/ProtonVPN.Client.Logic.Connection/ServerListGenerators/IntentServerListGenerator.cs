@@ -17,14 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
@@ -54,22 +55,29 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
         if (locationIntent is not null)
         {
             servers = locationIntent.FilterServers(servers);
+
+            if (locationIntent is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random)
+            {
+                servers = servers.Where(s => s.Id != fsli.ExcludedLogicalServerId);
+            }
         }
 
         servers = featureIntent is null
             ? servers.Where(s => !s.Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor))
             : featureIntent.FilterServers(servers);
 
-        return SortServers(servers)
+        return SortServers(servers, locationIntent)
             .SelectMany(SelectPhysicalServers)
             .DistinctBy(s => new { s.EntryIp, s.Label })
             .Take(MAX_GENERATED_PHYSICAL_SERVERS);
     }
 
-    private IEnumerable<Server> SortServers(IEnumerable<Server> source)
+    private IEnumerable<Server> SortServers(IEnumerable<Server> source, ILocationIntent? locationIntent)
     {
-        return _settings.IsPortForwardingEnabled
-            ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(s => s.Score)
-            : source.OrderBy(s => s.Score);
+        return locationIntent is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random
+            ? source.OrderBy(_ => Random.Next())
+            : _settings.IsPortForwardingEnabled
+                ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(s => s.Score)
+                : source.OrderBy(s => s.Score);
     }
 }

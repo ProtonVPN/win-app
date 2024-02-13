@@ -351,6 +351,7 @@ public class UserAuthenticator : IUserAuthenticator
             {
                 _settings.VpnPlanTitle = getVpnInfoTask.Result.Value.Vpn.PlanTitle;
                 _settings.IsPaid = getVpnInfoTask.Result.Value.Vpn.MaxTier > 0;
+                _settings.MaxTier = getVpnInfoTask.Result.Value.Vpn.MaxTier;
             }
             else if (getVpnInfoTask.Result.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
             {

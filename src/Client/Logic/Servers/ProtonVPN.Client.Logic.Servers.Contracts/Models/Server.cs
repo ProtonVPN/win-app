@@ -32,7 +32,7 @@ public class Server
     public required string Domain { get; init; }
     public string? ExitIp { get; init; }
     public sbyte Status { get; set; }
-    public int Tier { get; init; }
+    public ServerTiers Tier { get; init; }
     public ServerFeatures Features { get; init; }
     public int Load { get; set; }
     public float Score { get; set; }
@@ -43,5 +43,33 @@ public class Server
     public bool IsUnderMaintenance()
     {
         return Status == 0;
+    }
+
+    public bool IsAvailable()
+    {
+        return !IsUnderMaintenance() && Servers.Any(s => !s.IsUnderMaintenance());
+    }
+
+    public Server CopyWithoutPhysicalServers()
+    {
+        return new()
+        {
+            Id = Id,
+            Name = Name,
+            City = City,
+            EntryCountry = EntryCountry,
+            ExitCountry = ExitCountry,
+            HostCountry = HostCountry,
+            Domain = Domain,
+            ExitIp = ExitIp,
+            Status = Status,
+            Tier = Tier,
+            Features = Features,
+            Load = Load,
+            Score = Score,
+            Servers = new List<PhysicalServer>(),
+            IsVirtual = IsVirtual,
+            GatewayName = GatewayName,
+        };
     }
 }

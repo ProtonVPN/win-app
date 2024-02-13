@@ -43,7 +43,7 @@ public class ConnectionDetails
     public string ServerId => Server.Id;
     public string PhysicalServerId => PhysicalServer.Id;
     public int ServerNumber => Server.Name.GetServerNumber();
-    public ServerTiers? ServerTier => (ServerTiers)Server.Tier;
+    public ServerTiers? ServerTier => Server.Tier;
     public string ServerName => Server.Name;
     public double ServerLoad => Server.Load / 100D;
     public TimeSpan? ServerLatency { get; } // TODO: Implement real value

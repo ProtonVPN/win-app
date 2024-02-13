@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -107,7 +108,8 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
     protected IEnumerable<PhysicalServer> GetPhysicalServers(IConnectionIntent connectionIntent)
     {
-        if (connectionIntent.Feature is B2BFeatureIntent || !Settings.IsSmartReconnectEnabled)
+        if (!Settings.IsSmartReconnectEnabled || connectionIntent.Feature is B2BFeatureIntent ||
+            (connectionIntent.Location is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random))
         {
             return IntentServerListGenerator.Generate(connectionIntent);
         }

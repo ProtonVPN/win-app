@@ -26,25 +26,30 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 public class FreeServerLocationIntent : LocationIntentBase
 {
     public FreeServerType Type { get; }
+    public string? ExcludedLogicalServerId { get; }
 
-    public FreeServerLocationIntent(FreeServerType type)
+    public FreeServerLocationIntent(string excludedLogicalServerId)
     {
-        Type = type;
+        Type = FreeServerType.Random;
+        ExcludedLogicalServerId = excludedLogicalServerId;
     }
 
     public FreeServerLocationIntent()
-        : this(FreeServerType.Fastest)
-    { }
+    {
+        Type = FreeServerType.Fastest;
+        ExcludedLogicalServerId = null;
+    }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
             && intent is FreeServerLocationIntent freeServerIntent
-            && Type == freeServerIntent.Type;
+            && Type == freeServerIntent.Type
+            && ExcludedLogicalServerId == freeServerIntent.ExcludedLogicalServerId;
     }
 
     public override bool IsSupported(Server server)
     {
-        return server.Tier == (int)ServerTiers.Free;
+        return server.Tier == ServerTiers.Free;
     }
 }

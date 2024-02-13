@@ -30,7 +30,7 @@ namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
 public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmartSecureCoreServerListGenerator
 {
-    private const int MAX_GENERATED_INTENT_PHYSICAL_SERVERS = 3;
+    private const int MAX_GENERATED_INTENT_LOGICAL_SERVERS = 3;
 
     protected override int MaxPhysicalServersPerLogical => 1;
 
@@ -81,8 +81,8 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
         servers = secureCoreFeatureIntent.FilterServers(servers);
 
         return SortServers(servers)
-            .Where(s => !s.IsUnderMaintenance())
-            .Take(MAX_GENERATED_INTENT_PHYSICAL_SERVERS);
+            .Where(s => s.IsAvailable())
+            .Take(MAX_GENERATED_INTENT_LOGICAL_SERVERS);
     }
 
     private IEnumerable<Server> SortServers(IEnumerable<Server> source)
@@ -92,7 +92,7 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
 
     private IEnumerable<Server> GetSecureCoreServers()
     {
-        return SortServers(_serversLoader.GetServers().Where(s => !s.IsUnderMaintenance() && s.Features.IsSupported(ServerFeatures.SecureCore)));
+        return SortServers(_serversLoader.GetServers().Where(s => s.IsAvailable() && s.Features.IsSupported(ServerFeatures.SecureCore)));
     }
 
     private bool IsSameExitDifferentEntry(Server server, string exitCountry, string? entryCountry)

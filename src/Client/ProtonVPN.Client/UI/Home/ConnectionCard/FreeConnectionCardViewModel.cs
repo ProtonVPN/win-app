@@ -101,7 +101,10 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
     [RelayCommand(CanExecute = nameof(CanChangeServer))]
     private async Task ChangeServerAsync()
     {
-        CurrentConnectionIntent = new ConnectionIntent(new FreeServerLocationIntent(FreeServerType.Random));
+        string? logicalServerId = ConnectionManager.CurrentConnectionDetails?.ServerId;
+        CurrentConnectionIntent = logicalServerId is null
+            ? ConnectionIntent.FreeDefault
+            : new ConnectionIntent(new FreeServerLocationIntent(logicalServerId));
 
         await ConnectionManager.ConnectAsync(CurrentConnectionIntent);
     }
