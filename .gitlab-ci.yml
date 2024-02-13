@@ -152,7 +152,7 @@ i18n-sync-crowdin-redesign_2024:
   extends: .i18n-sync-crowdin-common
   when: manual
   variables:
-    I18N_SYNC_BRANCH: 'feature/localization'
+    I18N_SYNC_BRANCH: 'redesign'
     L10N_COMMUNITY_BRANCH_SCOPE: 'Redesign_2024'
     I18N_SYNC_CROWDIN_PROJECT: 'windows-vpn-redesign'
 
