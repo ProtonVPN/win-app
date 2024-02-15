@@ -90,7 +90,8 @@ public class CustomDnsTests : TestSession
             .DoNavigateToSettingsPage();
         _settingsRobot
             .DoNavigateToNetShieldSettingsPage()
-            .VerifyNetshieldIsDisabled();
+            .VerifyNetshieldIsDisabled()
+            .Wait(TestConstants.VeryShortTimeout);
         _settingsRobot
             .VerifyNetshieldIsNotBlocking();
     }
