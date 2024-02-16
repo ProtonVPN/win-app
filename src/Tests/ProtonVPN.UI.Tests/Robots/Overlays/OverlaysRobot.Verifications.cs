@@ -31,9 +31,13 @@ public partial class OverlaysRobot
         Window overlay = OverlayWindow;
 
         Assert.IsNotNull(overlay);
-        Assert.AreEqual(expectedTitle, overlay.Name);
 
-        if(hasHyperlink)
+        if (!string.IsNullOrEmpty(expectedTitle))
+        {
+            Assert.AreEqual(expectedTitle, overlay.Name);
+        }
+
+        if (hasHyperlink)
         {
             Assert.IsNotNull(LearnMoreHyperlink);
         }
@@ -48,6 +52,13 @@ public partial class OverlaysRobot
         Assert.IsNotNull(settingsCard);
 
         Assert.IsNotNull(settingsCard.FindFirstChild(cf => cf.ByText(expectedProtocol)));
+
+        return this;
+    }
+
+    public OverlaysRobot VerifyChangeServerCountdownProgressRing()
+    {
+        Assert.IsNotNull(ChangeServerCountdownProgressRing);
 
         return this;
     }

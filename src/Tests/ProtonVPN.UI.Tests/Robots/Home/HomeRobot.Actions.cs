@@ -41,6 +41,12 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot DoChangeServer()
+    { 
+        ConnectionCardChangeServerButton.Invoke();
+        return this;
+    }
+
     public HomeRobot DoOpenConnectionDetails()
     {
         ConnectionCardShowConnectionDetailsButton.Click();
@@ -55,19 +61,19 @@ public partial class HomeRobot
 
     public HomeRobot DoOpenServerLoadOverlay()
     {
-        ConnectionDetailServerLoadButton.Click();
+        ConnectionDetailServerLoadButton.Invoke();
         return this;
     }
 
     public HomeRobot DoOpenLatencyOverlay()
     {
-        ConnectionDetailLatencyButton.Click();
+        ConnectionDetailLatencyButton.Invoke();
         return this;
     }
 
     public HomeRobot DoOpenProtocolOverlay()
     {
-        ConnectionDetailProtocolButton.Click();
+        ConnectionDetailProtocolButton.Invoke();
         return this;
     }
 

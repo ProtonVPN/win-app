@@ -102,6 +102,13 @@ public class ClientConfigObserver :
             _settings.ConnectedServerCheckInterval = TimeSpan.FromMinutes(value.ServerRefreshInterval.Value);
         }
 
+        _settings.ChangeServerSettings = new()
+        {
+            AttemptsLimit = value.ChangeServerAttemptLimit,
+            ShortDelay = TimeSpan.FromSeconds(value.ChangeServerShortDelayInSeconds),
+            LongDelay = TimeSpan.FromSeconds(value.ChangeServerLongDelayInSeconds)
+        };
+
         // TODO: Retrieve legacy feature flags here?
     }
 

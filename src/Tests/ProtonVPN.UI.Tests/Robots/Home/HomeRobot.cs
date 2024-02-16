@@ -37,6 +37,7 @@ public partial class HomeRobot : UIActions
     protected Button ConnectionCardConnectButton => ElementByAutomationId("ConnectionCardConnectButton").AsButton();
     protected Button ConnectionCardCancelButton => ElementByAutomationId("ConnectionCardCancelButton").AsButton();
     protected Button ConnectionCardDisconnectButton => ElementByAutomationId("ConnectionCardDisconnectButton").AsButton();
+    protected Button ConnectionCardChangeServerButton => ElementByAutomationId("ConnectionCardChangeServerButton").AsButton();
     protected Button ConnectionCardShowConnectionDetailsButton => ElementByAutomationId("ShowConnectionDetailsButton").AsButton();
     
     protected Button ConnectionDetailsCloseButton => ElementByAutomationId("CloseConnectionDetailsButton").AsButton();

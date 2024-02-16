@@ -48,8 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <ProgressRing Width="{StaticResource ProgressRingSize}"
                           Height="{StaticResource ProgressRingSize}"
-                          Margin="0,0,0,-280"
-                          Foreground="{ThemeResource TextNormColorBrush}" />
+                          Margin="0,0,0,-280"/>
 
             <!--  TODO: Animate vpn logo?  -->
 

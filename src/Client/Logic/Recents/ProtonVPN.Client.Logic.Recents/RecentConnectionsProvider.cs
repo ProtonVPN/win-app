@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Recents.Files;
@@ -172,7 +173,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
 
     private bool TryInsertRecentConnection(IConnectionIntent recentIntent)
     {
-        if (recentIntent == null)
+        if (recentIntent == null || recentIntent.Location is FreeServerLocationIntent)
         {
             return false;
         }

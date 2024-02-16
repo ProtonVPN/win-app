@@ -66,7 +66,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ProgressRing x:Name="VpnStatusIconConnecting"
                                   Width="24"
                                   Height="24"
-                                  Foreground="{ThemeResource TextNormColorBrush}"
                                   IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
                     <Grid Visibility="{x:Bind ViewModel.IsConnected, Mode=OneWay}">
                         <icons:ProtectedLock x:Name="VpnStatusIconConnected"

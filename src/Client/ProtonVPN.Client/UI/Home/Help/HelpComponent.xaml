@@ -48,7 +48,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ProgressRing Width="24"
                                   Height="24"
                                   Margin="0,16,0,0"
-                                  Foreground="{ThemeResource TextNormColorBrush}"
                                   IsActive="{x:Bind ViewModel.HasCategories, Converter={StaticResource NotBooleanToBooleanConverter}}"
                                   Visibility="{x:Bind ViewModel.HasCategories, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                     <ItemsRepeater Margin="-16,8,-16,-15"

@@ -182,6 +182,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalRepository.SetReferenceType<Dictionary<string, Dictionary<string, string?>>>(value, SettingEncryption.Unencrypted);
     }
 
+    public ChangeServerSettings ChangeServerSettings
+    {
+        get => _globalRepository.GetValueType<ChangeServerSettings>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerSettings;
+        set => _globalRepository.SetValueType<ChangeServerSettings>(value, SettingEncryption.Encrypted);
+    }
+
     public GlobalSettings(IGlobalSettingsRepository globalSettingsRepository)
     {
         _globalRepository = globalSettingsRepository;

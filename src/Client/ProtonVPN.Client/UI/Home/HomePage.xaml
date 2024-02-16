@@ -125,7 +125,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ProgressRing Width="24"
                                           Height="24"
                                           HorizontalAlignment="Center"
-                                          Foreground="{ThemeResource TextNormColorBrush}"
                                           IsActive="{x:Bind ViewModel.IsConnecting}" />
                             <TextBlock HorizontalAlignment="Center"
                                        Text="{x:Bind ViewModel.Localizer.Get('Common_Message_Loading')}" />

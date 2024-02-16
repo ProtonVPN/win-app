@@ -68,6 +68,17 @@ public static class DefaultSettings
     public static List<FeatureFlag> FeatureFlags = new();
     public static bool IsFeatureConnectedServerCheckEnabled = true;
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
+    public static ChangeServerSettings ChangeServerSettings = new()
+    {
+        AttemptsLimit = 4,
+        ShortDelay = TimeSpan.FromSeconds(90),
+        LongDelay = TimeSpan.FromSeconds(1200),
+    };
+    public static ChangeServerAttempts ChangeServerAttempts = new()
+    {
+        LastAttemptUtcDate = DateTimeOffset.MinValue,
+        AttemptsCount = 0        
+    };
 
     public static List<SplitTunnelingApp> SplitTunnelingAppsList()
     {

@@ -50,6 +50,8 @@ public interface IGlobalSettings
     List<FeatureFlag> FeatureFlags { get; set; }
     bool IsFeatureConnectedServerCheckEnabled { get; set; }
     TimeSpan ConnectedServerCheckInterval { get; set; }
+    ChangeServerSettings ChangeServerSettings { get; set; }
+
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

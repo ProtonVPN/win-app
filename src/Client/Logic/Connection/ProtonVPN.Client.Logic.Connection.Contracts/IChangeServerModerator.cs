@@ -17,20 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using FlaUI.Core.AutomationElements;
+namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
-namespace ProtonVPN.UI.Tests.Robots.Overlays;
-
-public partial class OverlaysRobot : UIActions
+public interface IChangeServerModerator
 {
-    protected Button CloseOverlayButton => ElementByAutomationId("CloseContentDialogButton").AsButton();
+    bool CanChangeServer();
 
-    protected Window OverlayWindow => ElementByAutomationId("OverlayMessage").AsWindow();
+    bool IsAttemptsLimitReached();
+    
+    TimeSpan GetDelayUntilNextAttempt();
 
-    protected AutomationElement LearnMoreHyperlink => ElementByAutomationId("LearnMoreHyperlinkButton");
-
-    protected Button ProtocolSettingsCard => ElementByAutomationId("ProtocolSettingsCard").AsButton();
-
-    protected AutomationElement ChangeServerCountdownProgressRing => ElementByAutomationId("ChangeServerCountdownProgressRing");
+    TimeSpan GetRemainingDelayUntilNextAttempt();
 }

@@ -170,6 +170,7 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<P2POverlayViewModel, P2POverlayDialog>();
         ConfigureOverlay<TorOverlayViewModel, TorOverlayDialog>();
         ConfigureOverlay<FreeConnectionsOverlayViewModel, FreeConnectionsOverlayDialog>();
+        ConfigureOverlay<ChangeServerOverlayViewModel, ChangeServerOverlayDialog>();
     }
 
     protected void ConfigureDialogs()

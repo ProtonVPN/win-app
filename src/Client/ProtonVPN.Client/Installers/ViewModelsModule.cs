@@ -70,6 +70,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<P2POverlayViewModel>(builder);
         RegisterViewModel<TorOverlayViewModel>(builder);
         RegisterViewModel<FreeConnectionsOverlayViewModel>(builder);
+        RegisterViewModel<ChangeServerOverlayViewModel>(builder);
         RegisterViewModel<VpnSpeedViewModel>(builder);
         RegisterViewModel<IpAddressViewModel>(builder);
         RegisterViewModel<ConnectionDetailsViewModel>(builder);

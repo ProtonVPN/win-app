@@ -70,6 +70,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Home\ConnectionCard\Overlays\ChangeServerOverlayDialog.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Dialogs\Overlays\FreeConnectionsOverlayDialog.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -226,6 +229,7 @@
         <None Remove="UI\Gallery\GalleryItemPage.xaml" />
         <None Remove="UI\Gallery\GalleryPage.xaml" />
         <None Remove="UI\Home\ConnectionCard\FreeConnectionCardComponent.xaml" />
+        <None Remove="UI\Home\ConnectionCard\Overlays\ChangeServerOverlayDialog.xaml" />
         <None Remove="UI\Home\ConnectionError\ConnectionErrorComponent.xaml" />
         <None Remove="UI\Gateways\GatewaysPage.xaml" />
         <None Remove="UI\Gateways\Items\B2BServerItem.xaml" />

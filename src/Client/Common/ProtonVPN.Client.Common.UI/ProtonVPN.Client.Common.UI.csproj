@@ -643,6 +643,7 @@
         <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
         <None Remove="Styles\Controls\PivotStyles.xaml" />
         <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
+        <None Remove="Styles\Controls\ProgressRingStyles.xaml" />
         <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
         <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
         <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
@@ -1704,6 +1705,11 @@
         <Content Update="Assets\Illustrations\worldwide-coverage.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ProgressRingStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ConnectionCardStyles.xaml">
