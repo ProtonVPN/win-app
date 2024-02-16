@@ -145,7 +145,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ProgressRing Width="16"
                               Height="16"
                               HorizontalAlignment="Right"
-                              Foreground="{ThemeResource TextNormColorBrush}"
                               IsActive="{x:Bind ViewModel.IsSendingReport}" />
             </Grid>
         </Button>

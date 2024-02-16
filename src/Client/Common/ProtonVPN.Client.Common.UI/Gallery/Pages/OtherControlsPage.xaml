@@ -97,6 +97,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Orientation="Vertical" Spacing="8">
             <ProgressBar Minimum="0" Maximum="10" Value="4" />
             <ProgressBar IsIndeterminate="True"/>
+
+            <ProgressRing Style="{StaticResource CountdownProgressRingStyle}" 
+                          Minimum="0" 
+                          Maximum="10" 
+                          Value="4" 
+                          Height="90" 
+                          Width="90" 
+                          IsActive="True" 
+                          IsIndeterminate="False"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

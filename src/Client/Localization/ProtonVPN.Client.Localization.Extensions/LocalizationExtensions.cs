@@ -137,17 +137,28 @@ public static class LocalizationExtensions
             TimeSpan when time < TimeSpan.Zero => null,
             TimeSpan when time < TimeSpan.FromMinutes(1) => localizer.GetFormat("Format_Time_Seconds", time.Seconds),
             TimeSpan when time < TimeSpan.FromHours(1) => time.Seconds == 0
-                                ? localizer.GetFormat("Format_Time_Minutes", time.Minutes)
-                                : localizer.GetFormat("Format_Time_MinutesSeconds", time.Minutes, time.Seconds),
+                ? localizer.GetFormat("Format_Time_Minutes", time.Minutes)
+                : localizer.GetFormat("Format_Time_MinutesSeconds", time.Minutes, time.Seconds),
             TimeSpan when time < TimeSpan.FromDays(1) => time.Minutes == 0
-                                ? localizer.GetFormat("Format_Time_Hours", time.Hours)
-                                : localizer.GetFormat("Format_Time_HoursMinutes", time.Hours, time.Minutes),
+                ? localizer.GetFormat("Format_Time_Hours", time.Hours)
+                : localizer.GetFormat("Format_Time_HoursMinutes", time.Hours, time.Minutes),
             TimeSpan when time < TimeSpan.FromDays(2) => time.Hours == 0
-                                ? localizer.GetFormat("Format_Time_Day", time.Days)
-                                : localizer.GetFormat("Format_Time_DayHours", time.Days, time.Hours),
+                ? localizer.GetFormat("Format_Time_Day", time.Days)
+                : localizer.GetFormat("Format_Time_DayHours", time.Days, time.Hours),
             _ => time.Hours == 0
-                                ? localizer.GetFormat("Format_Time_Days", time.Days)
-                                : localizer.GetFormat("Format_Time_DaysHours", time.Days, time.Hours),
+                ? localizer.GetFormat("Format_Time_Days", time.Days)
+                : localizer.GetFormat("Format_Time_DaysHours", time.Days, time.Hours),
+        };
+    }
+
+    public static string? GetFormattedShortTime(this ILocalizationProvider localizer, TimeSpan time)
+    {
+        return time switch
+        {
+            TimeSpan when time < TimeSpan.Zero => null,
+            TimeSpan when time < TimeSpan.FromHours(1) => time.ToString(localizer.Get("Format_Time_MinutesSeconds_Short")),
+            TimeSpan when time < TimeSpan.FromDays(1) => time.ToString(localizer.Get("Format_Time_HoursMinutesSeconds_Short")),
+            _ => time.ToString(),
         };
     }
 

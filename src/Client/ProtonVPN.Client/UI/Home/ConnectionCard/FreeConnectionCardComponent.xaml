@@ -147,11 +147,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         IsEnabledChanged="OnButtonIsEnabledChanged"
                         TabIndex="4"
                         Visibility="{x:Bind ViewModel.IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <Button Grid.Column="0"
+                <Button x:Name="ConnectionCardChangeServerButton"
+                        Grid.Column="0"
                         HorizontalAlignment="Stretch"
                         AutomationProperties.AutomationId="ConnectionCardChangeServerButton"
                         Command="{x:Bind ViewModel.ChangeServerCommand}"
-                        Content="Change server"
+                        Content="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeServer')}"
                         IsEnabledChanged="OnButtonIsEnabledChanged"
                         TabIndex="5"
                         Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -184,8 +185,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ShowConnectionDetailsButton.(ToolTipService.ToolTip)" Value="{x:Bind ViewModel.Localizer.Get('Home_FreeConnections_About')}"/>
-                        <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowAboutFreeConnectionsCommand, Mode=OneTime}"/>
+                        <Setter Target="ShowConnectionDetailsButton.(ToolTipService.ToolTip)" Value="{x:Bind ViewModel.Localizer.Get('Home_FreeConnections_About')}" />
+                        <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowAboutFreeConnectionsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
                                 <pathicons:InfoCircle />
@@ -198,8 +199,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnected, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ShowConnectionDetailsButton.(ToolTipService.ToolTip)" Value="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}"/>
-                        <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowConnectionDetailsCommand, Mode=OneTime}"/>
+                        <Setter Target="ShowConnectionDetailsButton.(ToolTipService.ToolTip)" Value="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}" />
+                        <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowConnectionDetailsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
                                 <pathicons:ChevronRight />
@@ -207,12 +208,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Setter>
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="Connecting" >
+                <VisualState x:Name="Connecting">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ShowConnectionDetailsButton.IsEnabled" Value="False"/>
+                        <Setter Target="ShowConnectionDetailsButton.IsEnabled" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState />
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="ChangeServerStates">
+                <VisualState x:Name="UnderChangeServerDelay">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsChangeServerTimerVisible, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ConnectionCardChangeServerButton.Content">
+                            <Setter.Value>
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Grid.Column="0"
+                                               Foreground="{ThemeResource TextHintColorBrush}"
+                                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeServer')}"
+                                               TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="{x:Bind ViewModel.FormattedRemainingTime}"
+                                               Margin="8,0,0,0"/>
+                                </Grid>
+                            </Setter.Value>
+                        </Setter>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState />

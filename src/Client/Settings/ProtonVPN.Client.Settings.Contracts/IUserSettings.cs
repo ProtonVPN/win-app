@@ -69,4 +69,5 @@ public interface IUserSettings
     List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
+    ChangeServerAttempts ChangeServerAttempts { get; set; }
 }

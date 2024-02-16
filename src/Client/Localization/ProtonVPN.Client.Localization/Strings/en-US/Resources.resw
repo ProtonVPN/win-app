@@ -132,6 +132,9 @@
   <data name="Common_Actions_Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="Common_Actions_Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+  </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
@@ -1322,6 +1325,14 @@
     <value>{0} sec</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
+  <data name="Format_Time_MinutesSeconds_Short" xml:space="preserve">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. mm\:ss -> 05:36).</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short" xml:space="preserve">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. hh\:mm\:ss -> 01:05:36).</comment>
+  </data>
   <data name="Home_Account_SignOut" xml:space="preserve">
     <value>Sign out</value>
   </data>
@@ -2097,7 +2108,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
 
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
 
 Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
@@ -2329,6 +2340,9 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Home_FreeConnections_About" xml:space="preserve">
     <value>More information about free connections</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeServer" xml:space="preserve">
+    <value>Change server</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One" xml:space="preserve">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
     <comment>{0} is a placeholder for the number of free countries available (eg. 1 free country). This string is used when the number is 0 or 1.</comment>
@@ -2350,5 +2364,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell" xml:space="preserve">
     <value>Get worldwide coverage with VPN Plus</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached" xml:space="preserve">
+    <value>You've reached the maximum number of free server changes for now</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges" xml:space="preserve">
+    <value>Get unlimited server changes with VPN Plus.</value>
   </data>
 </root>

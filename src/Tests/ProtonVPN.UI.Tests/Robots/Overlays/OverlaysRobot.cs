@@ -26,9 +26,11 @@ public partial class OverlaysRobot : UIActions
 {
     protected Button CloseOverlayButton => ElementByAutomationId("CloseContentDialogButton").AsButton();
 
-    protected Window OverlayWindow => Window.FindAllDescendants(cf => cf.ByClassName("Popup")).FirstOrDefault(e => e.Name != "Popup").AsWindow();
+    protected Window OverlayWindow => ElementByAutomationId("OverlayMessage").AsWindow();
 
     protected AutomationElement LearnMoreHyperlink => ElementByAutomationId("LearnMoreHyperlinkButton");
 
     protected Button ProtocolSettingsCard => ElementByAutomationId("ProtocolSettingsCard").AsButton();
+
+    protected AutomationElement ChangeServerCountdownProgressRing => ElementByAutomationId("ChangeServerCountdownProgressRing");
 }

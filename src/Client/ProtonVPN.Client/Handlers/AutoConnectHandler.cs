@@ -105,15 +105,22 @@ public class AutoConnectHandler : IHandler,
 
     private async Task AutoConnectAsync()
     {
-        switch (_settings.AutoConnectMode)
+        if (_settings.IsPaid)
         {
-            case AutoConnectMode.LatestConnection:
-                await _connectionManager.ConnectAsync(_recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent);
-                break;
+            switch (_settings.AutoConnectMode)
+            {
+                case AutoConnectMode.LatestConnection:
+                    await _connectionManager.ConnectAsync(_recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent);
+                    break;
 
-            case AutoConnectMode.FastestConnection:
-                await _connectionManager.ConnectAsync(ConnectionIntent.Default);
-                break;
+                case AutoConnectMode.FastestConnection:
+                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
+                    break;
+            }
+        }
+        else
+        {
+            await _connectionManager.ConnectAsync(ConnectionIntent.FreeDefault);
         }
     }
 }

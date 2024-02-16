@@ -138,7 +138,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
                            HorizontalAlignment="Center" />
                 <ProgressRing IsActive="{x:Bind ViewModel.IsAuthenticating}"
-                              Foreground="{ThemeResource TextNormColorBrush}"
                               HorizontalAlignment="Right"
                               Width="16"
                               Height="16" />

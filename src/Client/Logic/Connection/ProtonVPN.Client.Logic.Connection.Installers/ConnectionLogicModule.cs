@@ -45,6 +45,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnServiceSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectedServerChecker>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+        builder.RegisterType<ChangeServerModerator>().AsImplementedInterfaces().SingleInstance();
 
         RegisterRequestCreators(builder);
         RegisterServerListGenerators(builder);

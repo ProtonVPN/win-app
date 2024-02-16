@@ -33,8 +33,10 @@ public partial class HomeRobot
     private const string CONNECTION_CARD_DISCONNECTED_HEADER = "Last connected to";
     private const string CONNECTION_CARD_CONNECTING_HEADER = "Connecting to...";
     private const string CONNECTION_CARD_CONNECTED_HEADER = "Browsing safely from";
+    private const string CONNECTION_CARD_DEFAULT_FREE_HEADER = "Free connection";
 
     private const string CONNECTION_CARD_DEFAULT_TITLE = "Fastest country";
+    private const string CONNECTION_CARD_DEFAULT_FREE_TITLE = "Fastest free server";
 
     public HomeRobot VerifyVpnStatusIsDisconnected()
     {
@@ -53,6 +55,14 @@ public partial class HomeRobot
     public HomeRobot VerifyVpnStatusIsConnected()
     {
         VerifyVpnStatusLabels(PROTECTED_STATUS_TITLE, null);
+
+        return this;
+    }
+
+    public HomeRobot VerifyConnectionCardIsInInitalStateForFreeUser()
+    {
+        VerifyConnectionCardLabels(CONNECTION_CARD_DEFAULT_FREE_HEADER, CONNECTION_CARD_DEFAULT_FREE_TITLE);
+        Assert.IsNotNull(ConnectionCardConnectButton);
 
         return this;
     }
@@ -87,12 +97,29 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot VerifyConnectionCardIsConnectingToFreeServer()
+    {
+        VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTING_HEADER, CONNECTION_CARD_DEFAULT_FREE_TITLE);
+        Assert.IsNotNull(ConnectionCardCancelButton);
+
+        return this;
+    }
+
     public HomeRobot VerifyConnectionCardIsConnected(string countryCode = null, string cityState = null, int? serverNumber = null)
     {
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
         string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTED_HEADER, expectedTitle, expectedSubtitle);
+        Assert.IsNotNull(ConnectionCardDisconnectButton);
+
+        return this;
+    }
+
+    public HomeRobot VerifyConnectionCardIsConnectedToFreeServer()
+    {
+        VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTED_HEADER, CONNECTION_CARD_DEFAULT_FREE_TITLE);
+        Assert.IsNotNull(ConnectionCardChangeServerButton);
         Assert.IsNotNull(ConnectionCardDisconnectButton);
 
         return this;
@@ -128,6 +155,15 @@ public partial class HomeRobot
         VerifyConnectionCardIsConnecting(countryCode, cityState, serverNumber);
         VerifyVpnStatusIsConnected();
         VerifyConnectionCardIsConnected(countryCode, cityState, serverNumber);
+        return this;
+    }
+
+    public HomeRobot VerifyAllStatesUntilConnectedToFreeServer()
+    {
+        VerifyVpnStatusIsConnecting();
+        VerifyConnectionCardIsConnectingToFreeServer();
+        VerifyVpnStatusIsConnected();
+        VerifyConnectionCardIsConnectedToFreeServer();
         return this;
     }
 

@@ -294,6 +294,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userRepository.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
     }
 
+    public ChangeServerAttempts ChangeServerAttempts
+    {
+        get => _userRepository.GetValueType<ChangeServerAttempts>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerAttempts;
+        set => _userRepository.SetValueType<ChangeServerAttempts>(value, SettingEncryption.Encrypted);
+    }
+
     public UserSettings(IGlobalSettingsRepository globalSettingsRepository, IUserSettingsRepository userSettingsRepository)
             : base(globalSettingsRepository)
     {

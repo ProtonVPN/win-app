@@ -30,5 +30,11 @@ namespace ProtonVPN.Api.Contracts.VpnConfig
         public ConfigFlagsResponse FeatureFlags { get; set; }
 
         public SmartProtocolResponse SmartProtocol { get; set; }
+
+        public int ChangeServerAttemptLimit { get; set; }
+
+        public int ChangeServerShortDelayInSeconds { get; set; }
+
+        public int ChangeServerLongDelayInSeconds { get; set; }
     }
 }
