@@ -19,10 +19,10 @@
 
 using System;
 using System.Collections;
-using System.IO;
 using System.Linq;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.Helpers;
+using ProtonVPN.Files.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Serialization.Contracts;
@@ -31,17 +31,17 @@ namespace ProtonVPN.Common.Legacy.FileStoraging;
 
 public abstract class FileStorageBase<T> : IFileStorageBase<T>
 {
-    private readonly IJsonSerializer _jsonSerializer;
+    private readonly IFileReaderWriter _fileReaderWriter;
     private readonly ILogger _logger;
     private readonly string _fileName;
 
-    protected FileStorageBase(ILogger logger, IJsonSerializer jsonSerializer, string fileName)
+    protected FileStorageBase(ILogger logger, IFileReaderWriter fileReaderWriter, string fileName)
     {
         Ensure.NotEmpty(fileName, nameof(fileName));
 
         _logger = logger;
         _fileName = fileName;
-        _jsonSerializer = jsonSerializer;
+        _fileReaderWriter = fileReaderWriter;
     }
 
     public T Get()
@@ -76,10 +76,7 @@ public abstract class FileStorageBase<T> : IFileStorageBase<T>
 
     private T ExecuteGet()
     {
-        using (StreamReader reader = new(_fileName))
-        {
-            return _jsonSerializer.Deserialize<T>(reader);
-        }
+        return _fileReaderWriter.ReadOrNull<T>(_fileName, Serializers.Json);
     }
 
     private static string NameOf(Type type)
@@ -123,9 +120,6 @@ public abstract class FileStorageBase<T> : IFileStorageBase<T>
 
     private void ExecuteSet(T value)
     {
-        using (StreamWriter writer = new(_fileName))
-        {
-            _jsonSerializer.Serialize(value, writer);
-        }
+        _fileReaderWriter.Write(value, _fileName, Serializers.Json);
     }
 }

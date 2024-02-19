@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NSubstitute;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 using ProtonVPN.Serialization.Tests.Mocks;
 
 namespace ProtonVPN.Serialization.Tests;
@@ -30,30 +31,28 @@ namespace ProtonVPN.Serialization.Tests;
 public class JsonSerializerTest
 {
     [TestMethod]
-    public void Serialize_ShouldSerialize_ToJson()
+    public void SerializeToString_ShouldSerialize_ToJson()
     {
         // Arrange
         SampleContract value = new() { Number = 34, Name = "ZgD" };
         IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
-        StringWriter writer = new();
 
         // Act
-        serializer.Serialize(value, writer);
+        string result = serializer.SerializeToString(value);
 
         // Assert
-        string result = writer.GetStringBuilder().ToString();
         result.Should().Be("{\"Number\":34,\"Name\":\"ZgD\"}");
     }
 
     [TestMethod]
-    public void Deserialize_ShouldHave_ExpectedPropertyValues()
+    public void DeserializeFromString_ShouldHave_ExpectedPropertyValues()
     {
         // Arrange
-        StringReader reader = new("{\"Number\":199,\"Name\":\"Super Mario\"}");
+        string json = "{\"Number\":199,\"Name\":\"Super Mario\"}";
         IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
 
         // Act
-        SampleContract? result = serializer.Deserialize<SampleContract>(reader);
+        SampleContract? result = serializer.DeserializeFromString<SampleContract>(json);
 
         // Assert
         result?.Number.Should().Be(199);
@@ -61,24 +60,24 @@ public class JsonSerializerTest
     }
 
     [TestMethod]
-    public void Deserialize_ShouldThrow_ExpectedException_WhenNotCorrectJson()
+    public void DeserializeFromString_ShouldThrow_ExpectedException_WhenNotCorrectJson()
     {
         // Arrange
-        StringReader reader = new("{Segment");
+        string json = "{Segment";
         IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
 
         // Act
-        Action action = () => serializer.Deserialize<SampleContract>(reader);
+        Action action = () => serializer.DeserializeFromString<SampleContract>(json);
 
         // Assert
         action.Should().Throw<JsonException>();
     }
 
     [TestMethod]
-    public void Deserialize_ShouldDeserializeExplicitContracts()
+    public void DeserializeFromString_ShouldDeserializeExplicitContracts()
     {
         // Arrange
-        StringReader reader = new("{\"Name\":\"Hulk\"}");
+        string json = "{\"Name\":\"Hulk\"}";
 
         List<InterfaceImplementation> interfaceImplementations = new() { InterfaceImplementation.Create<IUser,User>() };
         IJsonContractDeserializer jsonContractDeserializer = Substitute.For<IJsonContractDeserializer>();
@@ -86,21 +85,21 @@ public class JsonSerializerTest
         IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>() { jsonContractDeserializer });
 
         // Act
-        IUser user = serializer.Deserialize<IUser>(reader)!;
+        IUser user = serializer.DeserializeFromString<IUser>(json)!;
 
         // Assert
         user!.Name.Should().Be("Hulk");
     }
 
     [TestMethod]
-    public void Deserialize_ShouldNotDeserializeNonExplicitContracts()
+    public void DeserializeFromString_ShouldNotDeserializeNonExplicitContracts()
     {
         // Arrange
-        StringReader reader = new("{\"Name\":\"Hulk\"}");
+        string json = "{\"Name\":\"Hulk\"}";
         IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
 
         // Act
-        Exception exception = Assert.ThrowsException<JsonSerializationException>(() => serializer.Deserialize<IUser>(reader));
+        Exception exception = Assert.ThrowsException<JsonSerializationException>(() => serializer.DeserializeFromString<IUser>(json));
         Assert.IsTrue(exception.Message.Contains($"Could not create an instance of type {typeof(IUser).FullName}. " +
             $"Type is an interface or abstract class and cannot be instantiated."));
     }

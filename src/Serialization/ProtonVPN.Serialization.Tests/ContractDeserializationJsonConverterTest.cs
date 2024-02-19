@@ -20,6 +20,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 using ProtonVPN.Serialization.Json;
 using ProtonVPN.Serialization.Tests.Mocks;
 

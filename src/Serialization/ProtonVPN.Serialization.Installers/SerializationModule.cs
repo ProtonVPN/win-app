@@ -28,6 +28,7 @@ public class SerializationModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<PrettyJsonSerializer>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<JsonSerializer>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProtobufSerializer>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProtobufSerializableEntities>().AsImplementedInterfaces().SingleInstance();

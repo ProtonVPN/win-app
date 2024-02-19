@@ -48,6 +48,7 @@
         <ProjectReference Include="..\Crypto\ProtonVPN.Crypto.Installers\ProtonVPN.Crypto.Installers.csproj" />
         <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
         <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Installers\ProtonVPN.EntityMapping.Installers.csproj" />
+        <ProjectReference Include="..\Files\ProtonVPN.Files.Installers\ProtonVPN.Files.Installers.csproj" />
         <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />
         <ProjectReference Include="..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />

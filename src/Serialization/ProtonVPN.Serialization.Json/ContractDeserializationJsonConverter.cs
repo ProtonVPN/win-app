@@ -19,6 +19,7 @@
 
 using Newtonsoft.Json;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Serialization.Json;
 

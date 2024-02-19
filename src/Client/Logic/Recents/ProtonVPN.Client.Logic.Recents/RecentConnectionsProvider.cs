@@ -39,7 +39,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
 
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly IRecentsFileManager _recentsFileManager;
+    private readonly IRecentsFileReaderWriter _recentsFileReaderWriter;
 
     private readonly object _lock = new();
 
@@ -48,11 +48,11 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     public RecentConnectionsProvider(
         IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender,
-        IRecentsFileManager recentsFileManager)
+        IRecentsFileReaderWriter recentsFileReaderWriter)
     {
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
-        _recentsFileManager = recentsFileManager;
+        _recentsFileReaderWriter = recentsFileReaderWriter;
     }
 
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()
@@ -92,7 +92,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     private void SaveRecentsToFile()
     {
         List<IRecentConnection> recentConnections = _recentConnections;
-        Task.Run(() => { _recentsFileManager.Save(recentConnections); }).ConfigureAwait(false);
+        Task.Run(() => { _recentsFileReaderWriter.Save(recentConnections); }).ConfigureAwait(false);
     }
 
     private void BroadcastRecentConnectionsChanged()
@@ -212,7 +212,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     {
         lock (_lock)
         {
-            _recentConnections = _recentsFileManager.Read();
+            _recentConnections = _recentsFileReaderWriter.Read();
         }
 
         BroadcastRecentConnectionsChanged();

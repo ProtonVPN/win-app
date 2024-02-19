@@ -28,7 +28,7 @@ using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Crypto.Contracts.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Client.Settings.Migrations;
 
@@ -159,7 +159,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
         string? jsonUserAccessTokens = GetSettingValue("UserAccessToken");
         if (!string.IsNullOrEmpty(jsonUserAccessTokens))
         {
-            List<LegacyUserSetting>? userAccessTokens = _jsonSerializer.Deserialize<List<LegacyUserSetting>>(jsonUserAccessTokens);
+            List<LegacyUserSetting>? userAccessTokens = _jsonSerializer.DeserializeFromString<List<LegacyUserSetting>>(jsonUserAccessTokens);
             if (userAccessTokens is not null)
             {
                 return userAccessTokens
@@ -242,7 +242,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
                 return default;
             }
 
-            return _jsonSerializer.Deserialize<List<T>>(userSetting)?
+            return _jsonSerializer.DeserializeFromString<List<T>>(userSetting)?
                 .Where(s => s.User != null && s.User.EqualsIgnoringCase(username))
                 .FirstOrDefault();
         }
@@ -267,7 +267,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
                 .Select(lsip => new CustomDnsServer(lsip.Ip!, lsip.Enabled))
                 .ToList();
 
-            return customDnsServersList is null ? null : _jsonSerializer.Serialize(customDnsServersList);
+            return customDnsServersList is null ? null : _jsonSerializer.SerializeToString(customDnsServersList);
         }
         catch
         {
@@ -285,7 +285,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
                 return null;
             }
 
-            List<LegacySplitTunnelApp>? splitTunnelingAllowApps = _jsonSerializer.Deserialize<List<LegacySplitTunnelApp>>(splitTunnelingAllowAppsJson);
+            List<LegacySplitTunnelApp>? splitTunnelingAllowApps = _jsonSerializer.DeserializeFromString<List<LegacySplitTunnelApp>>(splitTunnelingAllowAppsJson);
             if (splitTunnelingAllowApps is null)
             {
                 return null;
@@ -296,7 +296,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
                 .Select(sta => new SplitTunnelingApp(sta.Path!, sta.Enabled))
                 .ToList();
 
-            return splitTunnelingApps is null ? null : _jsonSerializer.Serialize(splitTunnelingApps);
+            return splitTunnelingApps is null ? null : _jsonSerializer.SerializeToString(splitTunnelingApps);
         }
         catch
         {
@@ -314,7 +314,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
                 return null;
             }
 
-            List<LegacySettingIpAddress>? splitTunnelingAllowIps = _jsonSerializer.Deserialize<List<LegacySettingIpAddress>>(splitTunnelingAllowIpsJson);
+            List<LegacySettingIpAddress>? splitTunnelingAllowIps = _jsonSerializer.DeserializeFromString<List<LegacySettingIpAddress>>(splitTunnelingAllowIpsJson);
             if (splitTunnelingAllowIps is null)
             {
                 return null;
@@ -325,7 +325,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
                 .Select(sti => new SplitTunnelingIpAddress(sti.Ip!, sti.Enabled))
                 .ToList();
 
-            return splitTunnelingIpAddresses is null ? null : _jsonSerializer.Serialize(splitTunnelingIpAddresses);
+            return splitTunnelingIpAddresses is null ? null : _jsonSerializer.SerializeToString(splitTunnelingIpAddresses);
         }
         catch
         {
@@ -364,7 +364,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
             {
                 legacyProfiles = null;
             }
-            return legacyProfiles is null ? null : _jsonSerializer.Serialize(legacyProfiles);
+            return legacyProfiles is null ? null : _jsonSerializer.SerializeToString(legacyProfiles);
         }
         catch
         {

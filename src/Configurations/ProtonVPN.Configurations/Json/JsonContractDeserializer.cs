@@ -20,6 +20,7 @@
 using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Configurations.Entities;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Configurations.Json;
 

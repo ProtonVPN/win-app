@@ -20,6 +20,7 @@
 using Autofac;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.Client.EventMessaging.Installers;
+using ProtonVPN.Client.Files.Installers;
 using ProtonVPN.Client.Localization.Installers;
 using ProtonVPN.Client.Logic.Auth.Installers;
 using ProtonVPN.Client.Logic.Connection.Installers;
@@ -34,6 +35,7 @@ using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
+using ProtonVPN.Files.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
@@ -82,6 +84,8 @@ public class MainModule : Module
                .RegisterModule<SerializationModule>()
                .RegisterModule<UpdatesLogicModule>()
                .RegisterModule<IssueReportingModule>()
-               .RegisterModule<NotificationsModule>();
+               .RegisterModule<NotificationsModule>()
+               .RegisterModule<FilesModule>()
+               .RegisterModule<ClientFilesModule>();
     }
 }

@@ -26,6 +26,8 @@ namespace ProtonVPN.Serialization.Protobuf;
 
 public class ProtobufSerializer : IProtobufSerializer
 {
+    public Serializers Type => Serializers.Protobuf;
+
     public ProtobufSerializer(IProtobufSerializableEntities protobufSerializableEntities)
     {
         RuntimeTypeModel.Default.InferTagFromNameDefault = true;
@@ -45,7 +47,7 @@ public class ProtobufSerializer : IProtobufSerializer
         return Serializer.Deserialize<T>(memoryStream);
     }
 
-    public MemoryStream Serialize(object? instance)
+    public MemoryStream Serialize<T>(T? instance)
     {
         MemoryStream memoryStream = new();
         Serializer.Serialize(memoryStream, instance);
