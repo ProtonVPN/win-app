@@ -40,7 +40,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
 {
     private readonly IApiClient _apiClient;
     private readonly IEntityMapper _entityMapper;
-    private readonly IServersFileManager _serversFileManager;
+    private readonly IServersFileReaderWriter _serversFileReaderWriter;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
@@ -60,14 +60,14 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
 
     public ServersUpdater(IApiClient apiClient,
         IEntityMapper entityMapper,
-        IServersFileManager serversFileManager,
-        IEventMessageSender eventMessageSender,
+        IServersFileReaderWriter serversFileReaderWriter,
+        IEventMessageSender eventMessageSender, 
         ISettings settings,
         ILogger logger)
     {
         _apiClient = apiClient;
         _entityMapper = entityMapper;
-        _serversFileManager = serversFileManager;
+        _serversFileReaderWriter = serversFileReaderWriter;
         _eventMessageSender = eventMessageSender;
         _settings = settings;
         _logger = logger;
@@ -91,7 +91,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
         if (!HasAnyServers())
         {
             _logger.Info<AppLog>("Loading servers from file as the user has none.");
-            IReadOnlyList<Server> servers = _serversFileManager.Read();
+            IReadOnlyList<Server> servers = _serversFileReaderWriter.Read();
             ProcessNewServers(servers);
         }
     }
@@ -222,7 +222,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
 
     private void SaveToFile(IList<Server> servers)
     {
-        _serversFileManager.Save(servers);
+        _serversFileReaderWriter.Save(servers);
     }
 
     private bool HasAnyServers()

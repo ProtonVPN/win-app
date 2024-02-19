@@ -17,83 +17,61 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Serialization.Json;
 
-public class JsonSerializer : IJsonSerializer
+public class JsonSerializer : JsonSerializerBase, IJsonSerializer
 {
-    private readonly Newtonsoft.Json.JsonSerializer _serializer;
-    private readonly JsonSerializerSettings _serializationSettings;
-    private readonly JsonSerializerSettings _prettySerializationSettings;
-    private readonly ContractDeserializationJsonConverter _contractDeserializationJsonConverter;
+    public Serializers Type => Serializers.Json;
 
     public JsonSerializer(IEnumerable<IJsonContractDeserializer> jsonContractDeserializers)
+        : base(jsonContractDeserializers)
     {
-        _contractDeserializationJsonConverter = new(jsonContractDeserializers);
-        _serializationSettings = CreateSerializationSettings();
-        _prettySerializationSettings = CreatePrettySerializationSettings();
-        _serializer = Newtonsoft.Json.JsonSerializer.Create(_serializationSettings);
     }
 
-    private JsonSerializerSettings CreateSerializationSettings()
+    protected override JsonSerializerSettings CreateSerializerSettings()
     {
-        JsonSerializerSettings jsonSerializerSettings = new()
+        return new JsonSerializerSettings()
         {
             NullValueHandling = NullValueHandling.Ignore
         };
-        jsonSerializerSettings.Converters.Add(_contractDeserializationJsonConverter);
-        return jsonSerializerSettings;
     }
 
-    private JsonSerializerSettings CreatePrettySerializationSettings()
+    public string SerializeToString<T>(T? json)
     {
-        JsonSerializerSettings settings = CreateSerializationSettings();
-        settings.Formatting = Formatting.Indented;
-        return settings;
+        using (MemoryStream memoryStream = Serialize(json))
+        using (StreamReader streamReader = new(memoryStream))
+        {
+            return streamReader.ReadToEnd();
+        }
     }
 
-    public string Serialize(object? json)
+    public T? DeserializeFromString<T>(string json)
     {
-        return JsonConvert.SerializeObject(json, _serializationSettings);
+        using (MemoryStream memoryStream = new(Encoding.UTF8.GetBytes(json ?? string.Empty)))
+        {
+            return Deserialize<T>(memoryStream);
+        }
     }
 
-    public string SerializePretty(object? json)
+    public object? DeserializeFromStringAndType(string json, Type type)
     {
-        return JsonConvert.SerializeObject(json, _prettySerializationSettings);
-    }
-
-    public void Serialize<T>(T json, TextWriter writer)
-    {
-        using JsonTextWriter jsonWriter = new(writer);
-        _serializer.Serialize(jsonWriter, json);
-    }
-
-    public T? Deserialize<T>(string json)
-    {
-        using JsonTextReader jsonReader = new(new StringReader(json));
-        return _serializer.Deserialize<T>(jsonReader);
-    }
-
-    public T? Deserialize<T>(TextReader source)
-    {
-        using JsonTextReader jsonReader = new(source);
-        return _serializer.Deserialize<T>(jsonReader);
-    }
-
-    public object? Deserialize(string json, Type type)
-    {
-        using JsonTextReader jsonReader = new(new StringReader(json));
-        return _serializer.Deserialize(jsonReader, type);
+        using (JsonTextReader jsonReader = new(new StringReader(json)))
+        {
+            return Serializer.Deserialize(jsonReader, type);
+        }
     }
 
     public IDictionary<string, string?> DeserializeFirstLevel(string json)
     {
         return JObject.Parse(json)
                       .Children<JProperty>()
-                      .ToDictionary(p => p.Name, 
+                      .ToDictionary(p => p.Name,
                                     p => p.Value?.ToString(Formatting.None));
     }
 }

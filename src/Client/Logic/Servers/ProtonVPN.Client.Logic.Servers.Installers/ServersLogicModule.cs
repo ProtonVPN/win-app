@@ -31,7 +31,7 @@ public class ServersLogicModule : Module
     {
         builder.RegisterType<ServersLoader>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersFileManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServersFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DeviceLocationObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ServersObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();

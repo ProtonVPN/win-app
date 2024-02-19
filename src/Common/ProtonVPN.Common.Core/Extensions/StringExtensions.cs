@@ -26,7 +26,7 @@ namespace ProtonVPN.Common.Core.Extensions;
 
 public static class StringExtensions
 {
-    private static readonly Regex Base64KeyRegex = new("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+    private static readonly Regex _base64KeyRegex = new("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
 
     public static bool IsNullOrEmpty(this string value)
     {
@@ -114,7 +114,7 @@ public static class StringExtensions
 
     public static bool IsValidBase64Key(this string key)
     {
-        return Base64KeyRegex.IsMatch(key);
+        return _base64KeyRegex.IsMatch(key);
     }
 
     public static uint ToIPAddressBytes(this string value)

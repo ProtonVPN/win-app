@@ -36,7 +36,7 @@ public class Settings : UserSettings, ISettings
         }
     }
 
-    public Settings(IGlobalSettingsRepository globalSettingsRepository, IUserSettingsRepository userSettingsRepository)
-        : base(globalSettingsRepository, userSettingsRepository)
+    public Settings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
+        : base(globalSettingsCache, userSettingsCache)
     { }
 }

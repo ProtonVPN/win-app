@@ -22,9 +22,11 @@ using System.Reflection;
 using System.Text;
 using ProtonVPN.Configurations.BigTestInfra;
 using ProtonVPN.Configurations.Defaults;
+using ProtonVPN.Files.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Configurations.Files;
 
@@ -34,13 +36,16 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
 
     private readonly ILogger _logger;
     private readonly IJsonSerializer _jsonSerializer;
+    private readonly IFileReaderWriter _fileReaderWriter;
+
     private readonly Lazy<string?> _fullFolderPath;
     private readonly PropertyInfo[] _defaultProperties = typeof(DefaultConfiguration).GetProperties();
 
-    public DebugConfigurationFileManager(ILogger logger, IJsonSerializer jsonSerializer)
+    public DebugConfigurationFileManager(ILogger logger, IJsonSerializer jsonSerializer, IFileReaderWriter fileReaderWriter)
     {
         _logger = logger;
         _jsonSerializer = jsonSerializer;
+        _fileReaderWriter = fileReaderWriter;
         _fullFolderPath = new Lazy<string?>(GetFullFolderPath);
     }
 
@@ -103,27 +108,8 @@ public class DebugConfigurationFileManager : IConfigurationFileManager
 
     private bool SaveFileIfNotExists(string fullFilePath)
     {
-        try
-        {
-            using (FileStream fileStream = new(fullFilePath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-            {
-                _logger.Info<SettingsLog>($"Saving the configuration file {fullFilePath}.");
-                string fileContent = _jsonSerializer.SerializePretty(GenerateDefaultConfigurationDictionary());
-                byte[] fileBytes = new UTF8Encoding(true).GetBytes(fileContent);
-                fileStream.Write(fileBytes, 0, fileBytes.Length);
-                _logger.Info<SettingsLog>($"Saved the configuration file {fullFilePath}.");
-                return true;
-            }
-        }
-        catch (IOException ex) when (ex.HResult == -2147024816) // 0x80070050 - The file already exists
-        {
-            _logger.Info<SettingsLog>($"The configuration file already exists ({fullFilePath}).");
-        }
-        catch (Exception ex)
-        {
-            _logger.Error<SettingsLog>($"Failed to write the configuration file {fullFilePath}.", ex);
-        }
-        return false;
+        Dictionary<string, object?> configurations = GenerateDefaultConfigurationDictionary();
+        return _fileReaderWriter.CreateNew(configurations, fullFilePath, Serializers.PrettyJson) == FileOperationResult.Success;
     }
 
     private Dictionary<string, object?> GenerateDefaultConfigurationDictionary()

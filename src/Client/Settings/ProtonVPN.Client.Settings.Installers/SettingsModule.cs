@@ -34,9 +34,10 @@ public class SettingsModule : Module
         builder.RegisterType<Settings>().As<ISettings>().SingleInstance();
         builder.RegisterType<GlobalSettings>().As<IGlobalSettings>().SingleInstance();
 
-        builder.RegisterType<SettingsFileManager>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<GlobalSettingsRepository>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<UserSettingsRepository>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UserSettingsFileReaderWriter>().As<IUserSettingsFileReaderWriter>().SingleInstance();
+        builder.RegisterType<GlobalSettingsFileReaderWriter>().As<IGlobalSettingsFileReaderWriter>().SingleInstance();
+        builder.RegisterType<GlobalSettingsCache>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UserSettingsCache>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SettingsRestorer>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GlobalSettingsMigrator>().AsImplementedInterfaces().SingleInstance();

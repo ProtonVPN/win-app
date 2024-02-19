@@ -29,6 +29,7 @@ using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Installers;
+using ProtonVPN.Files.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Registries.Installers;
@@ -134,6 +135,7 @@ internal class ServiceModule : Module
                .RegisterAssemblyModule<ProcessCommunicationModule>()
                .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
                .RegisterAssemblyModule<SerializationModule>()
+               .RegisterAssemblyModule<FilesModule>()
                .RegisterAssemblyModule<IssueReportingModule>();
     }
 

@@ -21,7 +21,7 @@ using System.Runtime.CompilerServices;
 using ProtonVPN.Configurations.Files;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
-using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Configurations.Repositories;
 
@@ -105,7 +105,7 @@ public class ConfigurationRepository : IConfigurationRepository
 
     private T? Deserialize<T>(string json)
     {
-        return _jsonSerializer.Deserialize<T>(json);
+        return _jsonSerializer.DeserializeFromString<T>(json);
     }
 
     public object? GetByType(Type type, [CallerMemberName] string propertyName = "")
@@ -124,6 +124,6 @@ public class ConfigurationRepository : IConfigurationRepository
 
     private object? Deserialize(string json, Type type)
     {
-        return _jsonSerializer.Deserialize(json, type);
+        return _jsonSerializer.DeserializeFromStringAndType(json, type);
     }
 }

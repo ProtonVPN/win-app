@@ -16,6 +16,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Builds\ProtonVPN.Builds.Variables\ProtonVPN.Builds.Variables.csproj" />
         <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+        <ProjectReference Include="..\..\Files\ProtonVPN.Files.Contracts\ProtonVPN.Files.Contracts.csproj" />
         <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
         <ProjectReference Include="..\..\Serialization\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />

@@ -22,7 +22,7 @@ using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Files;
 using ProtonVPN.Configurations.Json;
 using ProtonVPN.Configurations.Repositories;
-using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Configurations.Installers;
 

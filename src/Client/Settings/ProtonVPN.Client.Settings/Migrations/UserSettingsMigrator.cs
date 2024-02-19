@@ -25,7 +25,7 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Crypto.Contracts.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Client.Settings.Migrations;
 
@@ -214,7 +214,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         {
             try
             {
-                T? deserializedValue = _jsonSerializer.Deserialize<T>(rawSettingValue);
+                T? deserializedValue = _jsonSerializer.DeserializeFromString<T>(rawSettingValue);
                 if (deserializedValue is not null)
                 {
                     setter(deserializedValue);
@@ -276,7 +276,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         {
             try
             {
-                List<LegacyProfile>? deserializedValue = _jsonSerializer.Deserialize<List<LegacyProfile>?>(rawSettingValue);
+                List<LegacyProfile>? deserializedValue = _jsonSerializer.DeserializeFromString<List<LegacyProfile>?>(rawSettingValue);
                 if (deserializedValue is not null)
                 {
                     _logger.Info<AppLog>("Migrating profiles.");
