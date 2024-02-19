@@ -30,6 +30,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -40,7 +41,6 @@ public class ConnectedServerChecker : PollingObserverBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>
 {
-    private readonly ILogger _logger;
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
     private readonly IServersLoader _serversLoader;
@@ -50,13 +50,14 @@ public class ConnectedServerChecker : PollingObserverBase,
     protected override TimeSpan PollingInterval => _settings.ConnectedServerCheckInterval.AddJitter(0.2);
 
     public ConnectedServerChecker(ILogger logger,
+        IIssueReporter issueReporter,
         ISettings settings,
         IConnectionManager connectionManager,
         IServersLoader serversLoader,
         IApiClient apiClient,
-        IServersUpdater serversUpdater)
+        IServersUpdater serversUpdater) 
+        : base(logger, issueReporter)
     {
-        _logger = logger;
         _settings = settings;
         _connectionManager = connectionManager;
         _serversLoader = serversLoader;
@@ -73,9 +74,9 @@ public class ConnectedServerChecker : PollingObserverBase,
     {
         if (IsTimerEnabled && await IsToReconnectAsync())
         {
-            _logger.Info<ConnectTriggerLog>($"Refreshing the server list due to the current connected server being no longer available.");
+            Logger.Info<ConnectTriggerLog>($"Refreshing the server list due to the current connected server being no longer available.");
             await _serversUpdater.UpdateAsync();
-            _logger.Info<ConnectTriggerLog>($"Reconnecting due to the current connected server being no longer available.");
+            Logger.Info<ConnectTriggerLog>($"Reconnecting due to the current connected server being no longer available.");
             await _connectionManager.ReconnectAsync();
         }
     }
@@ -85,17 +86,17 @@ public class ConnectedServerChecker : PollingObserverBase,
         ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
         if (connectionDetails is null)
         {
-            _logger.Info<AppLog>("There are no connection details for the connected server.");
+            Logger.Info<AppLog>("There are no connection details for the connected server.");
             return false;
         }
         if (connectionDetails.ServerId is null)
         {
-            _logger.Info<AppLog>("There is no Server ID in the connection details of the connected server.");
+            Logger.Info<AppLog>("There is no Server ID in the connection details of the connected server.");
             return false;
         }
         if (connectionDetails.PhysicalServerId is null)
         {
-            _logger.Info<AppLog>("There is no Physical Server ID in the connection details of the connected server.");
+            Logger.Info<AppLog>("There is no Physical Server ID in the connection details of the connected server.");
             return false;
         }
 
@@ -106,7 +107,7 @@ public class ConnectedServerChecker : PollingObserverBase,
             Server? server = _serversLoader.GetById(serverId);
             if (server is null)
             {
-                _logger.Info<AppLog>($"The connected server doesn't exist in the server list. " +
+                Logger.Info<AppLog>($"The connected server doesn't exist in the server list. " +
                     $"Reconnecting. (Server ID '{serverId}')");
                 return true;
             }
@@ -114,7 +115,7 @@ public class ConnectedServerChecker : PollingObserverBase,
             PhysicalServer? physicalServer = server.Servers.FirstOrDefault(ps => ps.Id == physicalServerId);
             if (physicalServer is null)
             {
-                _logger.Info<AppLog>($"The connected physical server doesn't exist in the server list. " +
+                Logger.Info<AppLog>($"The connected physical server doesn't exist in the server list. " +
                     $"Reconnecting. (Physical Server ID '{physicalServerId}', Server ID '{serverId}')");
                 return true;
             }
@@ -122,7 +123,7 @@ public class ConnectedServerChecker : PollingObserverBase,
             ApiResponseResult<PhysicalServerWrapperResponse> result = await _apiClient.GetServerAsync(physicalServerId);
             if (result.Failure)
             {
-                _logger.Error<AppLog>($"Failed to check the connected server through the API. " +
+                Logger.Error<AppLog>($"Failed to check the connected server through the API. " +
                     $"(Physical Server ID '{physicalServerId}').");
                 return false;
             }
@@ -130,7 +131,7 @@ public class ConnectedServerChecker : PollingObserverBase,
             bool isServerUnderMaintenance = result.Value.Server.Status == 0;
             if (isServerUnderMaintenance)
             {
-                _logger.Info<AppLog>($"The connected server is under maintenance. " +
+                Logger.Info<AppLog>($"The connected server is under maintenance. " +
                     $"Reconnecting. (Physical Server ID '{physicalServerId}')");
                 MarkServerAsUnderMaintenance(server, result.Value.Server);
             }
@@ -138,7 +139,7 @@ public class ConnectedServerChecker : PollingObserverBase,
         }
         catch (Exception ex)
         {
-            _logger.Info<AppLog>($"An unexpected exception occurred when checking the connected server. " +
+            Logger.Info<AppLog>($"An unexpected exception occurred when checking the connected server. " +
                 $"(Server ID '{serverId}' Physical Server ID '{physicalServerId}')", ex);
             return false;
         }

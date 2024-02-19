@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net8.0-windows</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputPath>..\..\..\bin</OutputPath>
@@ -15,5 +15,7 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+      <ProjectReference Include="..\..\..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
+      <ProjectReference Include="..\..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
     </ItemGroup>
 </Project>

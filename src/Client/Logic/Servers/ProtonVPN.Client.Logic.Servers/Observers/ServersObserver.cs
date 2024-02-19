@@ -25,6 +25,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Observers;
 
@@ -43,10 +45,12 @@ public class ServersObserver :
 
     protected override TimeSpan PollingInterval => _config.ServerLoadUpdateInterval;
 
-    public ServersObserver(
+    public ServersObserver(ILogger logger,
+        IIssueReporter issueReporter,
         IServersUpdater serversUpdater,
         IUserAuthenticator userAuthenticator,
         IConfiguration config)
+        : base(logger, issueReporter)
     {
         _serversUpdater = serversUpdater;
         _userAuthenticator = userAuthenticator;

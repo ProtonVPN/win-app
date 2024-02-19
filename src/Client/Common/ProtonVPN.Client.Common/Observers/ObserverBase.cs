@@ -18,16 +18,37 @@
  */
 
 using ProtonVPN.Common.Core.Threading;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Common.Observers;
 
 public abstract class ObserverBase : IObserver
 {
+    protected readonly ILogger Logger;
+    protected readonly IIssueReporter IssueReporter;
     protected readonly SingleAction TriggerAction;
 
-    public ObserverBase()
+    public ObserverBase(ILogger logger, IIssueReporter issueReporter)
     {
-        TriggerAction = new SingleAction(OnTriggerAsync);
+        Logger = logger;
+        IssueReporter = issueReporter;
+
+        TriggerAction = new SingleAction(OnSafeTriggerAsync);
+    }
+
+    private void OnSafeTriggerAsync()
+    {
+        try
+        {
+            OnTriggerAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error<AppLog>("A loose exception was caught from a triggered task of Observer.", ex);
+            IssueReporter.CaptureError(ex);
+        }
     }
 
     protected abstract Task OnTriggerAsync();

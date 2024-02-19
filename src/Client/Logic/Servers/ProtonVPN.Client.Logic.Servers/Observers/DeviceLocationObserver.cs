@@ -30,6 +30,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
@@ -47,7 +48,6 @@ public class DeviceLocationObserver :
     private const int NETWORK_CHANGED_FETCH_DELAY_IN_MS = 2000;
     private const int APP_START_FETCH_DELAY_IN_MS = 0;
 
-    private readonly ILogger _logger;
     private readonly IApiClient _apiClient;
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
@@ -57,13 +57,13 @@ public class DeviceLocationObserver :
 
     public DeviceLocationObserver(
         ILogger logger,
+        IIssueReporter issueReporter,
         IApiClient apiClient,
         ISettings settings,
         IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender)
-        : base()
+        : base(logger, issueReporter)
     {
-        _logger = logger;
         _apiClient = apiClient;
         _settings = settings;
         _connectionManager = connectionManager;
@@ -104,7 +104,7 @@ public class DeviceLocationObserver :
                 return;
             }
 
-            _logger.Info<SettingsLog>("Retrieving current device location");
+            Logger.Info<SettingsLog>("Retrieving current device location");
 
             ApiResponseResult<DeviceLocationResponse> response = await _apiClient.GetLocationDataAsync();
             if (response.Success)
@@ -116,7 +116,7 @@ public class DeviceLocationObserver :
         }
         catch (Exception e)
         {
-            _logger.Error<AppLog>("Error occured while fetching device location.", e);
+            Logger.Error<AppLog>("Error occured while fetching device location.", e);
         }
     }
 
