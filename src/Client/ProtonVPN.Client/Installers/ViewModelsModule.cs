@@ -79,7 +79,6 @@ public class ViewModelsModule : Module
         RegisterViewModel<NetShieldStatsViewModel>(builder);
         RegisterViewModel<ConnectionCardViewModel>(builder);
         RegisterViewModel<FreeConnectionCardViewModel>(builder);
-        RegisterViewModel<MapViewModel>(builder);
         RegisterViewModel<HelpViewModel>(builder);
         RegisterViewModel<SettingsViewModel>(builder);
         RegisterViewModel<CountriesViewModel>(builder);

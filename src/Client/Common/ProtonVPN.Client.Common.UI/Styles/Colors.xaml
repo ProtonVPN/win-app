@@ -85,6 +85,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientProtectedEndColor">#001C9C7C</Color>
             <Color x:Key="GradientConnectionLineStartColor">#6D4AFF</Color>
             <Color x:Key="GradientConnectionLineEndColor">#1C9C7C</Color>
+            <Color x:Key="GradientDisconnectedPinStop1Color">#00DC3251</Color>
+            <Color x:Key="GradientDisconnectedPinStop2Color">#80DC3251</Color>
+            <Color x:Key="GradientDisconnectedPinStop3Color">#DC3251</Color>
+            <Color x:Key="GradientConnectedPinStop1Color">#001C9C7C</Color>
+            <Color x:Key="GradientConnectedPinStop2Color">#801C9C7C</Color>
+            <Color x:Key="GradientConnectedPinStop3Color">#1C9C7C</Color>
 
             <!--  Composite Colors  -->
 
@@ -161,6 +167,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientProtectedEndColor">#0027DDB1</Color>
             <Color x:Key="GradientConnectionLineStartColor">#8A6EFF</Color>
             <Color x:Key="GradientConnectionLineEndColor">#27DDB1</Color>
+            <Color x:Key="GradientDisconnectedPinStop1Color">#00F7607B</Color>
+            <Color x:Key="GradientDisconnectedPinStop2Color">#80F7607B</Color>
+            <Color x:Key="GradientDisconnectedPinStop3Color">#F7607B</Color>
+            <Color x:Key="GradientConnectedPinStop1Color">#0027DDB1</Color>
+            <Color x:Key="GradientConnectedPinStop2Color">#8027DDB1</Color>
+            <Color x:Key="GradientConnectedPinStop3Color">#27DDB1</Color>
 
             <!--  Composite Colors  -->
 

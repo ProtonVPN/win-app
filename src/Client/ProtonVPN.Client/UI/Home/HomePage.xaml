@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:selectors="using:ProtonVPN.Client.UI.Home.Selectors"
       xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -152,6 +153,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <map:MapComponent AutomationProperties.AutomationId="MapComponent"
                                           AutomationProperties.LandmarkType="Custom"
                                           AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Map_Landmark')}"
+                                          InactiveFillColorBrush="{ThemeResource BackgroundWeakColorBrush}"
+                                          ActiveFillColorBrush="{ThemeResource BackgroundStrongColorBrush}"
+                                          IsConnected="{x:Bind ViewModel.IsConnected}"
+                                          IsConnecting="{x:Bind ViewModel.IsConnecting}"
+                                          ActiveCountryCode="{x:Bind ViewModel.ActiveCountryCode}"
                                           TabIndex="2" />
 
                         <Grid Grid.Row="0">

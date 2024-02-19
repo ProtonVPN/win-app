@@ -73,6 +73,9 @@
         <Page Update="UI\Home\ConnectionCard\Overlays\ChangeServerOverlayDialog.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Home\Map\CountryPin.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Dialogs\Overlays\FreeConnectionsOverlayDialog.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -237,6 +240,7 @@
         <None Remove="UI\Home\Details\ConnectionDetailsComponent.xaml" />
         <None Remove="UI\Home\Details\IpAddressComponent.xaml" />
         <None Remove="UI\Home\Details\VpnSpeedComponent.xaml" />
+        <None Remove="UI\Home\Map\CountryPin.xaml" />
         <None Remove="UI\HumanVerification\HumanVerificationDialog.xaml" />
         <None Remove="UI\Login\LoginForm.xaml" />
         <None Remove="UI\Login\LoginPage.xaml" />
