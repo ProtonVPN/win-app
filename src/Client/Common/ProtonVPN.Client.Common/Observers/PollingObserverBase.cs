@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Client.Common.Observers;
@@ -29,8 +31,8 @@ public abstract class PollingObserverBase : ObserverBase, IObserver
 
     protected bool IsTimerEnabled => _timer.Enabled;
 
-    public PollingObserverBase()
-        : base()
+    public PollingObserverBase(ILogger logger, IIssueReporter issueReporter)
+        : base(logger, issueReporter)
     {
         _timer = new Timer
         {

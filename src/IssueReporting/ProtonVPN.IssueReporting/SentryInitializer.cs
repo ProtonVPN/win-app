@@ -19,7 +19,6 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
 using System.Text;
 using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Core.Helpers;

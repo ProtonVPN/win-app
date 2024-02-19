@@ -27,6 +27,7 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
@@ -39,7 +40,6 @@ public class FeatureFlagsObserver :
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
     private readonly IConfiguration _config;
-    private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
@@ -47,17 +47,17 @@ public class FeatureFlagsObserver :
     public bool IsSsoEnabled => IsFlagEnabled("ExternalSSO");
 
     public FeatureFlagsObserver(
+        ILogger logger,
+        IIssueReporter issueReporter,
         ISettings settings,
         IApiClient apiClient,
         IConfiguration config,
-        ILogger logger,
         IEventMessageSender eventMessageSender)
-        : base()
+        : base(logger, issueReporter)
     {
         _settings = settings;
         _apiClient = apiClient;
         _config = config;
-        _logger = logger;
         _eventMessageSender = eventMessageSender;
 
         StartTimerAndTriggerOnStart();
@@ -74,7 +74,7 @@ public class FeatureFlagsObserver :
     {
         try
         {
-            _logger.Info<SettingsLog>("Fetching feature flags");
+            Logger.Info<SettingsLog>("Fetching feature flags");
 
             ApiResponseResult<FeatureFlagsResponse> response = await _apiClient.GetFeatureFlagsAsync();
             if (response.Success)
@@ -86,7 +86,7 @@ public class FeatureFlagsObserver :
         }
         catch (Exception e)
         {
-            _logger.Error<SettingsLog>("Failed to retrieve feature flags", e);
+            Logger.Error<SettingsLog>("Failed to retrieve feature flags", e);
         }
     }
 

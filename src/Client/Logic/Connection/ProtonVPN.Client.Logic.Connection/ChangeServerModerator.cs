@@ -27,6 +27,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection;
 
@@ -46,10 +48,12 @@ public class ChangeServerModerator :
 
     protected override TimeSpan PollingInterval { get; } = TimeSpan.FromSeconds(1);
 
-    public ChangeServerModerator(
+    public ChangeServerModerator(ILogger logger,
+        IIssueReporter issueReporter,
         ISettings settings,
         IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender)
+        : base(logger, issueReporter)
     {
         _settings = settings;
         _connectionManager = connectionManager;

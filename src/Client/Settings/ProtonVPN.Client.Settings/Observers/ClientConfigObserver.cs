@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
@@ -41,21 +42,20 @@ public class ClientConfigObserver :
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
     private readonly IConfiguration _config;
-    private readonly ILogger _logger;
 
     protected override TimeSpan PollingInterval => _config.ClientConfigUpdateInterval;
 
     public ClientConfigObserver(
+        ILogger logger,
+        IIssueReporter issueReporter,
         ISettings settings,
         IApiClient apiClient,
-        IConfiguration config,
-        ILogger logger)
-        : base()
+        IConfiguration config)
+        : base(logger, issueReporter)
     {
         _settings = settings;
         _apiClient = apiClient;
         _config = config;
-        _logger = logger;
     }
 
     public void Receive(LoggedInMessage message)
@@ -72,7 +72,7 @@ public class ClientConfigObserver :
     {
         try
         {
-            _logger.Info<SettingsLog>("Retrieving Client Config");
+            Logger.Info<SettingsLog>("Retrieving Client Config");
 
             ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
             if (response.Success)
@@ -82,7 +82,7 @@ public class ClientConfigObserver :
         }
         catch (Exception e)
         {
-            _logger.Error<SettingsLog>("Failed to retrieve Client Config", e);
+            Logger.Error<SettingsLog>("Failed to retrieve Client Config", e);
         }
     }
 
