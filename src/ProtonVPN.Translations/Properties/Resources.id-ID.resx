@@ -2226,7 +2226,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Profil tidak bisa disimpan:</value>
+    <value>Profil tidak dapat disimpan:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
@@ -2349,7 +2349,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection">
-    <value>Hubungan</value>
+    <value>Server Tujuan</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
@@ -2770,7 +2770,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>NAT Moderat</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Pengaturan NAT moderat menonaktifkan pengacakan alamat IP lokal, yang dapat membuat Anda sedikit lebih rentan namun memungkinkan hubungan langsung antar aplikasi untuk berbagai program seperti game online.</value>
+    <value>NAT moderat menonaktifkan pengacakan alamat IP lokal, yang dapat membuat Anda lebih rentan namun memungkinkan aplikasi tertentu seperti game online untuk terhubung secara langsung ke internet.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Quick Connect</value>
