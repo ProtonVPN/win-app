@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Configurations.Files;
 using ProtonVPN.Logging.Contracts;
@@ -48,7 +47,7 @@ public class ConfigurationRepository : IConfigurationRepository
 #if DEBUG
         return new Lazy<IDictionary<string, string?>>(() => _fileManager.Read());
 #else
-        return new(new ConcurrentDictionary<string, string?>());
+        return new(new Dictionary<string, string?>());
 #endif
     }
 
