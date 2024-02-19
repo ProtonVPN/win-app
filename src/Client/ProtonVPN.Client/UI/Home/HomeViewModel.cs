@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
@@ -27,8 +28,11 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Home.Details;
@@ -38,10 +42,12 @@ namespace ProtonVPN.Client.UI.Home;
 public partial class HomeViewModel : NavigationPageViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<ThemeChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
+    private readonly IThemeSelector _themeSelector;
     private readonly ConnectionDetailsViewModel _connectionDetailsViewModel;
 
     private bool _reopenDetailsPaneAutomatically;
@@ -53,6 +59,9 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsConnectionDetailsPaneInline))]
     private SplitViewDisplayMode _connectionDetailsPaneDisplayMode;
+
+    [ObservableProperty]
+    private string _activeCountryCode;
 
     public bool IsConnectionDetailsPaneInline => IsConnectionDetailsPaneOpened &&
         (ConnectionDetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
@@ -69,15 +78,19 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
     public override IconElement Icon { get; } = new House();
 
+    public ElementTheme Theme => _themeSelector.GetTheme().Theme;
+
     public HomeViewModel(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         ISettings settings,
+        IThemeSelector themeSelector,
         ConnectionDetailsViewModel connectionDetailsViewModel)
         : base(viewNavigator, localizationProvider)
     {
         _connectionManager = connectionManager;
         _settings = settings;
+        _themeSelector = themeSelector;
         _connectionDetailsViewModel = connectionDetailsViewModel;
     }
 
@@ -122,9 +135,19 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
                     {
                         OpenConnectionDetailsPane();
                     }
+
+                    if (_connectionManager.ConnectionStatus == ConnectionStatus.Connected)
+                    {
+                        string? countryCode = _connectionManager.CurrentConnectionDetails?.ExitCountryCode;
+                        if (!string.IsNullOrEmpty(countryCode))
+                        {
+                            ActiveCountryCode = countryCode;
+                        }
+                    }
+
                     break;
 
-                default:
+                case ConnectionStatus.Disconnected:
                     if (IsConnectionDetailsPaneOpened)
                     {
                         // When details pane was closed due to disconnection, set flag to reopen it automatically on Connect
@@ -132,6 +155,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
                         CloseConnectionDetailsPane();
                     }
+                    InvalidateActiveCountryCode();
                     break;
             }
         });
@@ -139,13 +163,18 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.IsPaid))
+        ExecuteOnUIThread(() =>
         {
-            ExecuteOnUIThread(() =>
+            if (message.PropertyName == nameof(ISettings.IsPaid))
             {
                 OnPropertyChanged(nameof(IsPaidUser));
-            });
-        }
+            }
+
+            if (message.PropertyName == nameof(ISettings.DeviceLocation))
+            {
+                InvalidateActiveCountryCode();
+            }
+        });
     }
 
     public void Receive(LoggedInMessage message)
@@ -154,7 +183,16 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         {
             OnPropertyChanged(nameof(IsPaidUser));
             _reopenDetailsPaneAutomatically = _settings.IsConnectionDetailsPaneOpened;
+            InvalidateActiveCountryCode();
         });
+    }
+
+    private void InvalidateActiveCountryCode()
+    {
+        if (_connectionManager.ConnectionStatus == ConnectionStatus.Disconnected)
+        {
+            ActiveCountryCode = _settings.DeviceLocation?.CountryCode ?? string.Empty;
+        }
     }
 
     public override void OnNavigatedFrom()
@@ -176,5 +214,10 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         _connectionDetailsViewModel.IsActive = value;
 
         _settings.IsConnectionDetailsPaneOpened = value || _reopenDetailsPaneAutomatically;
+    }
+
+    public void Receive(ThemeChangedMessage message)
+    {
+        OnPropertyChanged(nameof(Theme));
     }
 }
