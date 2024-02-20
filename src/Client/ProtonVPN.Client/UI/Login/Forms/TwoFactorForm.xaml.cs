@@ -18,22 +18,25 @@
  */
 
 using System.Text;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
 public sealed partial class TwoFactorForm
 {
+    private const int NUM_OF_DIGITS = 6;
+
     private VirtualKey _lastKey;
 
     public TwoFactorForm()
     {
         ViewModel = App.GetService<TwoFactorFormViewModel>();
+        ViewModel.OnTwoFactorFailure += OnTwoFactorFailure;
         InitializeComponent();
     }
 
@@ -92,6 +95,7 @@ public sealed partial class TwoFactorForm
             }
 
             TwoFactorCode = GetTwoFactorCode();
+            SubmitTwoFactorCodeIfPossible();
         }
     }
 
@@ -105,6 +109,15 @@ public sealed partial class TwoFactorForm
         }
 
         return filteredText.ToString();
+    }
+
+    private void SubmitTwoFactorCodeIfPossible()
+    {
+        string twoFactorCode = TwoFactorCode;
+        if (AuthenticateButton.Command.CanExecute(twoFactorCode))
+        {
+            AuthenticateButton.Command.Execute(twoFactorCode);
+        }
     }
 
     private void OnDigitBoxKeyDown(object sender, KeyRoutedEventArgs e)
@@ -121,15 +134,15 @@ public sealed partial class TwoFactorForm
                     }
 
                     TwoFactorCode = GetTwoFactorCode();
-
                     break;
+
                 case VirtualKey.Enter:
-                    if (textBox.Name == LastDigit.Name && AuthenticateButton.Command.CanExecute(TwoFactorCode))
+                    if (textBox.Name == LastDigit.Name)
                     {
-                        AuthenticateButton.Command.Execute(TwoFactorCode);
+                        SubmitTwoFactorCodeIfPossible();
                     }
-
                     break;
+
                 default:
                     _lastKey = e.Key;
                     break;
@@ -161,7 +174,7 @@ public sealed partial class TwoFactorForm
 
         string text = await GetClipboardStringAsync();
         text = FilterNonDigits(text);
-        text = text.Substring(0, Math.Min(text.Length, 6));
+        text = text.Substring(0, Math.Min(text.Length, NUM_OF_DIGITS));
 
         int i = 0;
         foreach (UIElement? child in DigitsContainer.Children)
@@ -207,5 +220,22 @@ public sealed partial class TwoFactorForm
         base.OnNavigatedTo(e);
 
         FirstDigit.Focus(FocusState.Programmatic);
+    }
+
+    private void OnTwoFactorFailure(object? sender, EventArgs e)
+    {
+        ClearAllDigits();
+        FirstDigit.Focus(FocusState.Programmatic);
+    }
+
+    private void ClearAllDigits()
+    {
+        foreach (UIElement? child in DigitsContainer.Children)
+        {
+            if (child is TextBox textBox)
+            {
+                textBox.Text = string.Empty;
+            }
+        }
     }
 }

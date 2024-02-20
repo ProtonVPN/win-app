@@ -90,7 +90,6 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
                         ShowErrorMessage(message.ErrorMessage);
                         break;
                 }
-
                 break;
 
             case LoginState.Error:
@@ -99,7 +98,6 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
         }
     }
 
-
     public void Receive(LoggedOutMessage message)
     {
         switch (message.Reason)
@@ -107,7 +105,7 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
             case LogoutReason.UserAction:
                 break;
             case LogoutReason.SessionExpired:
-                ShowErrorMessage(Localizer.Get("Login_Error_SessionExpired"));
+                ExecuteOnUIThread(() => ShowErrorMessage(Localizer.Get("Login_Error_SessionExpired")));
                 break;
         }
     }

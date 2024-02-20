@@ -32,7 +32,7 @@ using ProtonVPN.Client.Models.Navigation;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
-public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNavigator>
+public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -45,6 +45,8 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
     public IRelayCommand<string> AuthenticateCommand { get; }
 
     public override bool IsBackEnabled => true;
+
+    public event EventHandler OnTwoFactorFailure;
 
     public TwoFactorFormViewModel(
         ILoginViewNavigator loginViewNavigator, 
@@ -97,5 +99,13 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
     private bool CanAuthenticate(string twoFactorCode)
     {
         return twoFactorCode is { Length: 6 } && !IsAuthenticating;
+    }
+
+    public void Receive(LoginStateChangedMessage message)
+    {
+        if (message.Value == LoginState.TwoFactorFailed)
+        {
+            OnTwoFactorFailure?.Invoke(this, new EventArgs());
+        }
     }
 }
