@@ -42,7 +42,11 @@ public partial class HelpViewModel : ViewModelBase
 
     public ObservableCollection<IssueCategory> Categories { get; } = new();
 
-    public HelpViewModel(ILocalizationProvider localizationProvider, IDialogActivator dialogActivator, IReportIssueViewNavigator reportIssueViewNavigator, IReportIssueDataProvider dataProvider)
+    public HelpViewModel(
+        ILocalizationProvider localizationProvider, 
+        IDialogActivator dialogActivator, 
+        IReportIssueViewNavigator reportIssueViewNavigator, 
+        IReportIssueDataProvider dataProvider)
         : base(localizationProvider)
     {
         _dialogActivator = dialogActivator;
@@ -72,6 +76,17 @@ public partial class HelpViewModel : ViewModelBase
         _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
 
         await _reportIssueViewNavigator.NavigateToCategoryAsync(category);
+    }
+
+    [RelayCommand]
+    public async Task ReportIssueAsync()
+    {
+        // Flyouts are causing issues with resize (WinUI framework issue). 
+        // In the meanwhile, clicking on the help button will open the Report issue dialog directly.
+
+        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
+
+        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
     }
 
     private void OnCategoriesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

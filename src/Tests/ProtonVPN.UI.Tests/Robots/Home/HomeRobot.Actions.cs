@@ -108,6 +108,12 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot DoReportAnIssue()
+    {
+        HelpButton.FocusAndClick();
+        return this;
+    }
+
     public HomeRobot DoClickOnRecentsTab()
     {
         RecentsTab.Click();

@@ -34,12 +34,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:GhostButton x:Name="gbHelp"
                         Margin="-4,-8"
                         AutomationProperties.AutomationId="HelpButton"
-                        Command="{x:Bind ViewModel.ShowCategoriesCommand, Mode=OneTime}"
+                        Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}"
                         Content="{x:Bind ViewModel.Localizer.Get('Home_Help_Title'), Mode=OneWay}">
         <custom:GhostButton.RightIcon>
             <pathicons:QuestionCircle />
         </custom:GhostButton.RightIcon>
-        <custom:GhostButton.Flyout>
+
+        <!--Command="{x:Bind ViewModel.ShowCategoriesCommand, Mode=OneTime}"-->
+
+        <!--<custom:GhostButton.Flyout>
             <Flyout Placement="TopEdgeAlignedRight">
                 <StackPanel>
                     <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
@@ -70,6 +73,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </ItemsRepeater>
                 </StackPanel>
             </Flyout>
-        </custom:GhostButton.Flyout>
+        </custom:GhostButton.Flyout>-->
     </custom:GhostButton>
 </UserControl>
