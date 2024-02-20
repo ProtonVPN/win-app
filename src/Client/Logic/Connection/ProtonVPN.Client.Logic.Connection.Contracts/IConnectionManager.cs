@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
@@ -27,24 +28,19 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts;
 public interface IConnectionManager
 {
     ConnectionStatus ConnectionStatus { get; }
-
+    VpnErrorTypeIpcEntity CurrentError { get; }
     ConnectionDetails? CurrentConnectionDetails { get; }
-
     IConnectionIntent? CurrentConnectionIntent { get; }
 
     bool IsDisconnected { get; }
-
     bool IsConnecting { get; }
-
     bool IsConnected { get; }
+    bool HasError { get; }
 
     Task ConnectAsync(IConnectionIntent? connectionIntent);
-
     Task<bool> ReconnectAsync();
-
     Task DisconnectAsync();
 
     Task<TrafficBytes> GetTrafficBytesAsync();
-
     Task<TrafficBytes> GetCurrentSpeedAsync();
 }

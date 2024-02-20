@@ -144,6 +144,8 @@ public partial class TrayIconViewModel : ViewModelBase, IEventMessageReceiver<Co
             ? ResourceHelper.GetIcon("ProtonVpnLoggedOutTrayIcon")
             : _connectionManager.IsConnected
                 ? ResourceHelper.GetIcon("ProtonVpnProtectedTrayIcon")
-                : ResourceHelper.GetIcon("ProtonVpnUnprotectedTrayIcon");
+                : _connectionManager.HasError
+                    ? ResourceHelper.GetIcon("ProtonVpnErrorTrayIcon")
+                    : ResourceHelper.GetIcon("ProtonVpnUnprotectedTrayIcon");
     }
 }

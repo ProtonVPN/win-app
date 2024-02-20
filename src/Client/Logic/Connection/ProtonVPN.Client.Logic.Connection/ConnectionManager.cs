@@ -55,16 +55,14 @@ public class ConnectionManager : IInternalConnectionManager,
     private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
-
+    public VpnErrorTypeIpcEntity CurrentError { get; private set; }
     public IConnectionIntent? CurrentConnectionIntent { get; private set; }
-
     public ConnectionDetails? CurrentConnectionDetails { get; private set; }
 
     public bool IsDisconnected => ConnectionStatus == ConnectionStatus.Disconnected;
-
     public bool IsConnecting => ConnectionStatus == ConnectionStatus.Connecting;
-
     public bool IsConnected => ConnectionStatus == ConnectionStatus.Connected;
+    public bool HasError => CurrentError is not VpnErrorTypeIpcEntity.None and not VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch;
 
     public ConnectionManager(
         ILogger logger,
@@ -191,7 +189,7 @@ public class ConnectionManager : IInternalConnectionManager,
             }
         }
 
-        SetConnectionStatus(connectionStatus);
+        SetConnectionStatus(connectionStatus, message.Error);
     }
 
     private Server? GetCurrentServer(VpnStateIpcEntity state)
@@ -205,15 +203,16 @@ public class ConnectionManager : IInternalConnectionManager,
         return physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label;
     }
 
-    private void SetConnectionStatus(ConnectionStatus connectionStatus)
+    private void SetConnectionStatus(ConnectionStatus connectionStatus, VpnErrorTypeIpcEntity error = VpnErrorTypeIpcEntity.None)
     {
-        if (ConnectionStatus == connectionStatus)
+        if (ConnectionStatus == connectionStatus && CurrentError == error)
         {
             return;
         }
 
         ConnectionStatus = connectionStatus;
-        _eventMessageSender.Send(new ConnectionStatusChanged(ConnectionStatus));
+        CurrentError = error;
+        _eventMessageSender.Send(new ConnectionStatusChanged(connectionStatus));
     }
 
     public void Receive(ConnectionDetailsIpcEntity message)
