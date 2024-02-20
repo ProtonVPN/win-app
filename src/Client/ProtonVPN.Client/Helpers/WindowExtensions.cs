@@ -34,7 +34,7 @@ public static class WindowExtensions
 {
     public static void ApplyTheme(this Window window, ElementTheme theme)
     {
-        window.AppWindow.TitleBar.BackgroundColor = Colors.Red;
+        window.AppWindow.TitleBar.BackgroundColor = Colors.Transparent;
         window.AppWindow.TitleBar.InactiveBackgroundColor = Colors.Transparent;
 
         window.AppWindow.TitleBar.ForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
