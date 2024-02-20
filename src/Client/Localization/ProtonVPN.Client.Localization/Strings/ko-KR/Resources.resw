@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Common_Actions_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>추가</value>
   </data>
   <data name="Common_Actions_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>취소</value>
   </data>
   <data name="Common_Actions_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>연결</value>
   </data>
   <data name="Common_Actions_Disconnect" xml:space="preserve">
-    <value>Disconnect</value>
+    <value>연결 해제</value>
   </data>
   <data name="Common_Actions_Remove" xml:space="preserve">
-    <value>Remove</value>
+    <value>제거</value>
   </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
-    <value>Learn more</value>
+    <value>더 알아보기</value>
   </data>
   <data name="Common_Message_Loading" xml:space="preserve">
-    <value>Loading...</value>
+    <value>불러오는 중...</value>
   </data>
   <data name="Common_States_Off" xml:space="preserve">
-    <value>Off</value>
+    <value>끄기</value>
   </data>
   <data name="Common_States_On" xml:space="preserve">
-    <value>On</value>
+    <value>켜기</value>
   </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>
@@ -153,1081 +153,1081 @@
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore" xml:space="preserve">
-    <value>via {0}</value>
+    <value>{0} 경유중</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_Page_Title" xml:space="preserve">
-    <value>Countries</value>
+    <value>국가</value>
   </data>
   <data name="Country_Fastest" xml:space="preserve">
-    <value>Fastest country</value>
+    <value>가장 빠른 국가</value>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
-    <value>Andorra</value>
+    <value>안도라</value>
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE" xml:space="preserve">
-    <value>Emirados Árabes Unidos</value>
+    <value>아랍에미리트</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF" xml:space="preserve">
-    <value>Afeganistão</value>
+    <value>아프가니스탄</value>
     <comment>The name of AF country</comment>
   </data>
   <data name="Country_val_AG" xml:space="preserve">
-    <value>Antígua e Barbuda</value>
+    <value>앤티가 바부다</value>
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI" xml:space="preserve">
-    <value>Anguilla</value>
+    <value>앵귈라</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL" xml:space="preserve">
-    <value>Albânia</value>
+    <value>알바니아</value>
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM" xml:space="preserve">
-    <value>Arménia</value>
+    <value>아르메니아</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO" xml:space="preserve">
-    <value>Angola</value>
+    <value>앙골라</value>
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ" xml:space="preserve">
-    <value>Antárctica</value>
+    <value>남극</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR" xml:space="preserve">
-    <value>Argentina</value>
+    <value>아르헨티나</value>
     <comment>The name of AR country</comment>
   </data>
   <data name="Country_val_AS" xml:space="preserve">
-    <value>Samoa Americana</value>
+    <value>미국령 사모아</value>
     <comment>The name of AS country</comment>
   </data>
   <data name="Country_val_AT" xml:space="preserve">
-    <value>Áustria</value>
+    <value>오스트리아</value>
     <comment>The name of AT country</comment>
   </data>
   <data name="Country_val_AU" xml:space="preserve">
-    <value>Austrália</value>
+    <value>호주</value>
     <comment>The name of AU country</comment>
   </data>
   <data name="Country_val_AW" xml:space="preserve">
-    <value>Aruba</value>
+    <value>아루바</value>
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX" xml:space="preserve">
-    <value>Ilhas Aland</value>
+    <value>올란드 제도</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ" xml:space="preserve">
-    <value>Azerbaijão</value>
+    <value>아제르바이잔</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA" xml:space="preserve">
-    <value>Bósnia e Herzegovina</value>
+    <value>보스니아 헤르체고비나</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB" xml:space="preserve">
-    <value>Barbados</value>
+    <value>바베이도스</value>
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD" xml:space="preserve">
-    <value>Bangladesh</value>
+    <value>방글라데시</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE" xml:space="preserve">
-    <value>Bélgica</value>
+    <value>벨기에</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF" xml:space="preserve">
-    <value>Burquina Faso</value>
+    <value>부르키나파소</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG" xml:space="preserve">
-    <value>Bulgária</value>
+    <value>불가리아</value>
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH" xml:space="preserve">
-    <value>Barém</value>
+    <value>바레인</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI" xml:space="preserve">
-    <value>Burundi</value>
+    <value>부룬디</value>
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ" xml:space="preserve">
-    <value>Benim</value>
+    <value>베냉</value>
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL" xml:space="preserve">
-    <value>São Bartolomeu</value>
+    <value>생바르텔레미</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM" xml:space="preserve">
-    <value>Bermuda</value>
+    <value>버뮤다</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN" xml:space="preserve">
-    <value>Brunei Darussalam</value>
+    <value>브루나이 다루살람</value>
     <comment>The name of BN country</comment>
   </data>
   <data name="Country_val_BO" xml:space="preserve">
-    <value>Bolívia</value>
+    <value>볼리비아</value>
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ" xml:space="preserve">
-    <value>Bonaire, Santo Eustáquio e Saba</value>
+    <value>보네르, 신트외스타티위스, 사바</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR" xml:space="preserve">
-    <value>Brasil</value>
+    <value>브라질</value>
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS" xml:space="preserve">
-    <value>Baamas</value>
+    <value>바하마</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT" xml:space="preserve">
-    <value>Butão</value>
+    <value>부탄</value>
     <comment>The name of BT country</comment>
   </data>
   <data name="Country_val_BV" xml:space="preserve">
-    <value>Ilha Bouvet</value>
+    <value>부베 섬</value>
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW" xml:space="preserve">
-    <value>Botsuana</value>
+    <value>보츠와나</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY" xml:space="preserve">
-    <value>Bielorrússia</value>
+    <value>벨라루스</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ" xml:space="preserve">
-    <value>Belize</value>
+    <value>벨리즈</value>
     <comment>The name of BZ country</comment>
   </data>
   <data name="Country_val_CA" xml:space="preserve">
-    <value>Canadá</value>
+    <value>캐나다</value>
     <comment>The name of CA country</comment>
   </data>
   <data name="Country_val_CC" xml:space="preserve">
-    <value>Ilhas Cocos (Keeling)</value>
+    <value>코코스 제도</value>
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD" xml:space="preserve">
-    <value>Congo (República Democrática do)</value>
+    <value>콩고민주공화국</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF" xml:space="preserve">
-    <value>República Central Africana</value>
+    <value>중앙아프리카 공화국</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG" xml:space="preserve">
-    <value>Congo</value>
+    <value>콩고</value>
     <comment>The name of CG country</comment>
   </data>
   <data name="Country_val_CH" xml:space="preserve">
-    <value>Suíça</value>
+    <value>스위스</value>
     <comment>The name of CH country</comment>
   </data>
   <data name="Country_val_CI" xml:space="preserve">
-    <value>Costa do Marfim</value>
+    <value>코트디부아르</value>
     <comment>The name of CI country</comment>
   </data>
   <data name="Country_val_CK" xml:space="preserve">
-    <value>Ilhas Cook</value>
+    <value>쿡 제도</value>
     <comment>The name of CK country</comment>
   </data>
   <data name="Country_val_CL" xml:space="preserve">
-    <value>Chile</value>
+    <value>칠레</value>
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM" xml:space="preserve">
-    <value>Camarões</value>
+    <value>카메룬</value>
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN" xml:space="preserve">
-    <value>China</value>
+    <value>중국</value>
     <comment>The name of CN country</comment>
   </data>
   <data name="Country_val_CO" xml:space="preserve">
-    <value>Colômbia</value>
+    <value>콜롬비아</value>
     <comment>The name of CO country</comment>
   </data>
   <data name="Country_val_CR" xml:space="preserve">
-    <value>Costa Rica</value>
+    <value>코스타리카</value>
     <comment>The name of CR country</comment>
   </data>
   <data name="Country_val_CU" xml:space="preserve">
-    <value>Cuba</value>
+    <value>쿠바</value>
     <comment>The name of CU country</comment>
   </data>
   <data name="Country_val_CV" xml:space="preserve">
-    <value>Cabo Verde</value>
+    <value>카보베르데</value>
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW" xml:space="preserve">
-    <value>Curacao</value>
+    <value>퀴라소</value>
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX" xml:space="preserve">
-    <value>Ilha Natal</value>
+    <value>크리스마스 섬</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY" xml:space="preserve">
-    <value>Chipre</value>
+    <value>키프로스</value>
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ" xml:space="preserve">
-    <value>Tchéquia</value>
+    <value>체코</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE" xml:space="preserve">
-    <value>Alemanha</value>
+    <value>독일</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ" xml:space="preserve">
-    <value>Djibuti</value>
+    <value>지부티</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK" xml:space="preserve">
-    <value>Dinamarca</value>
+    <value>덴마크</value>
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM" xml:space="preserve">
-    <value>Dominica</value>
+    <value>도미니카 연방</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO" xml:space="preserve">
-    <value>República Dominicana</value>
+    <value>도미니카 공화국</value>
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ" xml:space="preserve">
-    <value>Algéria</value>
+    <value>알제리</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC" xml:space="preserve">
-    <value>Equador</value>
+    <value>에콰도르</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE" xml:space="preserve">
-    <value>Estónia</value>
+    <value>에스토니아</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG" xml:space="preserve">
-    <value>Egipto</value>
+    <value>이집트</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH" xml:space="preserve">
-    <value>Saará Ocidental</value>
+    <value>서사하라</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER" xml:space="preserve">
-    <value>Eritreia</value>
+    <value>에리트레아</value>
     <comment>The name of ER country</comment>
   </data>
   <data name="Country_val_ES" xml:space="preserve">
-    <value>Espanha</value>
+    <value>스페인</value>
     <comment>The name of ES country</comment>
   </data>
   <data name="Country_val_ET" xml:space="preserve">
-    <value>Etiópia</value>
+    <value>에티오피아</value>
     <comment>The name of ET country</comment>
   </data>
   <data name="Country_val_FI" xml:space="preserve">
-    <value>Finlândia</value>
+    <value>핀란드</value>
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ" xml:space="preserve">
-    <value>Ilhas Fiji</value>
+    <value>피지</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK" xml:space="preserve">
-    <value>Ilhas Falkland (Malvinas)</value>
+    <value>포클랜드 제도 (말비나스)</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM" xml:space="preserve">
-    <value>Micronésia</value>
+    <value>미크로네시아</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO" xml:space="preserve">
-    <value>Ilhas Faroé</value>
+    <value>페로 제도</value>
     <comment>The name of FO country</comment>
   </data>
   <data name="Country_val_FR" xml:space="preserve">
-    <value>França</value>
+    <value>프랑스</value>
     <comment>The name of FR country</comment>
   </data>
   <data name="Country_val_GA" xml:space="preserve">
-    <value>Gabão</value>
+    <value>가봉</value>
     <comment>The name of GA country</comment>
   </data>
   <data name="Country_val_GB" xml:space="preserve">
-    <value>Reino Unido</value>
+    <value>영국</value>
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD" xml:space="preserve">
-    <value>Grenada</value>
+    <value>그레나다</value>
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE" xml:space="preserve">
-    <value>Geórgia</value>
+    <value>조지아</value>
     <comment>The name of GE country</comment>
   </data>
   <data name="Country_val_GF" xml:space="preserve">
-    <value>Guiana Francesa</value>
+    <value>프랑스령 기아나</value>
     <comment>The name of GF country</comment>
   </data>
   <data name="Country_val_GG" xml:space="preserve">
-    <value>Guernsey</value>
+    <value>건지 섬</value>
     <comment>The name of GG country</comment>
   </data>
   <data name="Country_val_GH" xml:space="preserve">
-    <value>Gana</value>
+    <value>가나</value>
     <comment>The name of GH country</comment>
   </data>
   <data name="Country_val_GI" xml:space="preserve">
-    <value>Gibraltar</value>
+    <value>지브롤터</value>
     <comment>The name of GI country</comment>
   </data>
   <data name="Country_val_GL" xml:space="preserve">
-    <value>Gronelândia</value>
+    <value>그린란드</value>
     <comment>The name of GL country</comment>
   </data>
   <data name="Country_val_GM" xml:space="preserve">
-    <value>Gâmbia</value>
+    <value>감비아</value>
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN" xml:space="preserve">
-    <value>Guiné</value>
+    <value>기니</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP" xml:space="preserve">
-    <value>Guadalupe</value>
+    <value>과들루프</value>
     <comment>The name of GP country</comment>
   </data>
   <data name="Country_val_GQ" xml:space="preserve">
-    <value>Guiné Equatorial</value>
+    <value>적도 기니</value>
     <comment>The name of GQ country</comment>
   </data>
   <data name="Country_val_GR" xml:space="preserve">
-    <value>Grécia</value>
+    <value>그리스</value>
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS" xml:space="preserve">
-    <value>Geórgia do Sul e Ilhas Sandwich do Sul</value>
+    <value>사우스조지아 사우스샌드위치 제도</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT" xml:space="preserve">
-    <value>Guatemala</value>
+    <value>과테말라</value>
     <comment>The name of GT country</comment>
   </data>
   <data name="Country_val_GU" xml:space="preserve">
-    <value>Guam</value>
+    <value>괌</value>
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW" xml:space="preserve">
-    <value>Guiné-Bissau</value>
+    <value>기니비사우</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY" xml:space="preserve">
-    <value>Guiana</value>
+    <value>가이아나</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK" xml:space="preserve">
-    <value>Hong Kong</value>
+    <value>홍콩</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM" xml:space="preserve">
-    <value>Ilha Heard e Ilhas McDonald</value>
+    <value>허드 맥도널드 제도</value>
     <comment>The name of HM country</comment>
   </data>
   <data name="Country_val_HN" xml:space="preserve">
-    <value>Honduras</value>
+    <value>온두라스</value>
     <comment>The name of HN country</comment>
   </data>
   <data name="Country_val_HR" xml:space="preserve">
-    <value>Croácia</value>
+    <value>크로아티아</value>
     <comment>The name of HR country</comment>
   </data>
   <data name="Country_val_HT" xml:space="preserve">
-    <value>Haiti</value>
+    <value>아이티</value>
     <comment>The name of HT country</comment>
   </data>
   <data name="Country_val_HU" xml:space="preserve">
-    <value>Hungria</value>
+    <value>헝가리</value>
     <comment>The name of HU country</comment>
   </data>
   <data name="Country_val_ID" xml:space="preserve">
-    <value>Indonésia</value>
+    <value>인도네시아</value>
     <comment>The name of ID country</comment>
   </data>
   <data name="Country_val_IE" xml:space="preserve">
-    <value>Irlanda</value>
+    <value>아일랜드</value>
     <comment>The name of IE country</comment>
   </data>
   <data name="Country_val_IL" xml:space="preserve">
-    <value>Israel</value>
+    <value>이스라엘</value>
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM" xml:space="preserve">
-    <value>Ilha de Man</value>
+    <value>맨섬</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN" xml:space="preserve">
-    <value>Índia</value>
+    <value>인도</value>
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO" xml:space="preserve">
-    <value>Território Britânico no Oceano Índico</value>
+    <value>영국령 인도양 지역</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ" xml:space="preserve">
-    <value>Iraque</value>
+    <value>이라크</value>
     <comment>The name of IQ country</comment>
   </data>
   <data name="Country_val_IR" xml:space="preserve">
-    <value>Irão</value>
+    <value>이란</value>
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS" xml:space="preserve">
-    <value>Islândia</value>
+    <value>아이슬란드</value>
     <comment>The name of IS country</comment>
   </data>
   <data name="Country_val_IT" xml:space="preserve">
-    <value>Itália</value>
+    <value>이탈리아</value>
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE" xml:space="preserve">
-    <value>Jersey</value>
+    <value>저지 섬</value>
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM" xml:space="preserve">
-    <value>Jamaica</value>
+    <value>자메이카</value>
     <comment>The name of JM country</comment>
   </data>
   <data name="Country_val_JO" xml:space="preserve">
-    <value>Jordânia</value>
+    <value>요르단</value>
     <comment>The name of JO country</comment>
   </data>
   <data name="Country_val_JP" xml:space="preserve">
-    <value>Japão</value>
+    <value>일본</value>
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE" xml:space="preserve">
-    <value>Quénia</value>
+    <value>케냐</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG" xml:space="preserve">
-    <value>Quirguistão</value>
+    <value>키르기스스탄</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH" xml:space="preserve">
-    <value>Cambodja</value>
+    <value>캄보디아</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI" xml:space="preserve">
-    <value>Quiribati</value>
+    <value>키리바시</value>
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM" xml:space="preserve">
-    <value>Comores</value>
+    <value>코모로</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN" xml:space="preserve">
-    <value>Saint Kitts e Nevis</value>
+    <value>세인트키츠 네비스</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP" xml:space="preserve">
-    <value>Coreia do Norte</value>
+    <value>북한</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR" xml:space="preserve">
-    <value>Coreia do Sul</value>
+    <value>대한민국</value>
     <comment>The name of KR country</comment>
   </data>
   <data name="Country_val_KW" xml:space="preserve">
-    <value>Kuwait</value>
+    <value>쿠웨이트</value>
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY" xml:space="preserve">
-    <value>Ilhas Cayman</value>
+    <value>케이맨 제도</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ" xml:space="preserve">
-    <value>Cazaquistão</value>
+    <value>카자흐스탄</value>
     <comment>The name of KZ country</comment>
   </data>
   <data name="Country_val_LA" xml:space="preserve">
-    <value>Laos</value>
+    <value>라오스</value>
     <comment>The name of LA country</comment>
   </data>
   <data name="Country_val_LB" xml:space="preserve">
-    <value>Líbano</value>
+    <value>레바논</value>
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC" xml:space="preserve">
-    <value>Santa Lúcia</value>
+    <value>세인트루시아</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI" xml:space="preserve">
-    <value>Liechtenstein</value>
+    <value>리히텐슈타인</value>
     <comment>The name of LI country</comment>
   </data>
   <data name="Country_val_LK" xml:space="preserve">
-    <value>Sri Lanka</value>
+    <value>스리랑카</value>
     <comment>The name of LK country</comment>
   </data>
   <data name="Country_val_LR" xml:space="preserve">
-    <value>Libéria</value>
+    <value>라이베리아</value>
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS" xml:space="preserve">
-    <value>Lesoto</value>
+    <value>레소토</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT" xml:space="preserve">
-    <value>Lituânia</value>
+    <value>리투아니아</value>
     <comment>The name of LT country</comment>
   </data>
   <data name="Country_val_LU" xml:space="preserve">
-    <value>Luxemburgo</value>
+    <value>룩셈부르크</value>
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV" xml:space="preserve">
-    <value>Látvia</value>
+    <value>라트비아</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY" xml:space="preserve">
-    <value>Líbia</value>
+    <value>리비아</value>
     <comment>The name of LY country</comment>
   </data>
   <data name="Country_val_MA" xml:space="preserve">
-    <value>Marrocos</value>
+    <value>모로코</value>
     <comment>The name of MA country</comment>
   </data>
   <data name="Country_val_MC" xml:space="preserve">
-    <value>Mónaco</value>
+    <value>모나코</value>
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD" xml:space="preserve">
-    <value>Moldávia</value>
+    <value>몰도바</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME" xml:space="preserve">
-    <value>Montenegro</value>
+    <value>몬테네그로</value>
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF" xml:space="preserve">
-    <value>Saint Martin (parte francesa)</value>
+    <value>세인트 마틴 (프랑스령)</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG" xml:space="preserve">
-    <value>Madagáscar</value>
+    <value>마다가스카르</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH" xml:space="preserve">
-    <value>Ilhas Marshall</value>
+    <value>마셜 제도</value>
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK" xml:space="preserve">
-    <value>Macedónia do Norte</value>
+    <value>북마케도니아</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML" xml:space="preserve">
-    <value>Mali</value>
+    <value>말리</value>
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM" xml:space="preserve">
-    <value>Mianmar</value>
+    <value>미얀마</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN" xml:space="preserve">
-    <value>Mongólia</value>
+    <value>몽골</value>
     <comment>The name of MN country</comment>
   </data>
   <data name="Country_val_MO" xml:space="preserve">
-    <value>Macau</value>
+    <value>마카오</value>
     <comment>The name of MO country</comment>
   </data>
   <data name="Country_val_MP" xml:space="preserve">
-    <value>Ilhas Marianas do Norte</value>
+    <value>북마리아나 제도</value>
     <comment>The name of MP country</comment>
   </data>
   <data name="Country_val_MQ" xml:space="preserve">
-    <value>Martinica</value>
+    <value>마르티니크</value>
     <comment>The name of MQ country</comment>
   </data>
   <data name="Country_val_MR" xml:space="preserve">
-    <value>Mauritânia</value>
+    <value>모리타니</value>
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS" xml:space="preserve">
-    <value>Monserrate</value>
+    <value>몬트세랫</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT" xml:space="preserve">
-    <value>Malta</value>
+    <value>몰타</value>
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU" xml:space="preserve">
-    <value>Maurícia</value>
+    <value>모리셔스</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV" xml:space="preserve">
-    <value>Maldivas</value>
+    <value>몰디브</value>
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW" xml:space="preserve">
-    <value>Malawi</value>
+    <value>말라위</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX" xml:space="preserve">
-    <value>México</value>
+    <value>멕시코</value>
     <comment>The name of MX country</comment>
   </data>
   <data name="Country_val_MY" xml:space="preserve">
-    <value>Malásia</value>
+    <value>말레이시아</value>
     <comment>The name of MY country</comment>
   </data>
   <data name="Country_val_MZ" xml:space="preserve">
-    <value>Moçambique</value>
+    <value>모잠비크</value>
     <comment>The name of MZ country</comment>
   </data>
   <data name="Country_val_NA" xml:space="preserve">
-    <value>Namíbia</value>
+    <value>나미비아</value>
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC" xml:space="preserve">
-    <value>Nova Caledónia</value>
+    <value>누벨칼레도니</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE" xml:space="preserve">
-    <value>Níger</value>
+    <value>니제르</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF" xml:space="preserve">
-    <value>Ilha Norfolk</value>
+    <value>노퍽섬</value>
     <comment>The name of NF country</comment>
   </data>
   <data name="Country_val_NG" xml:space="preserve">
-    <value>Nigéria</value>
+    <value>나이지리아</value>
     <comment>The name of NG country</comment>
   </data>
   <data name="Country_val_NI" xml:space="preserve">
-    <value>Nicarágua</value>
+    <value>니카라과</value>
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL" xml:space="preserve">
-    <value>Países-Baixos</value>
+    <value>네덜란드</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO" xml:space="preserve">
-    <value>Noruega</value>
+    <value>노르웨이</value>
     <comment>The name of NO country</comment>
   </data>
   <data name="Country_val_NP" xml:space="preserve">
-    <value>Nepal</value>
+    <value>네팔</value>
     <comment>The name of NP country</comment>
   </data>
   <data name="Country_val_NR" xml:space="preserve">
-    <value>Nauru</value>
+    <value>나우루</value>
     <comment>The name of NR country</comment>
   </data>
   <data name="Country_val_NU" xml:space="preserve">
-    <value>Niue</value>
+    <value>니우에</value>
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ" xml:space="preserve">
-    <value>Nova Zelândia</value>
+    <value>뉴질랜드</value>
     <comment>The name of NZ country</comment>
   </data>
   <data name="Country_val_OM" xml:space="preserve">
-    <value>Omã</value>
+    <value>오만</value>
     <comment>The name of OM country</comment>
   </data>
   <data name="Country_val_PA" xml:space="preserve">
-    <value>Panamá</value>
+    <value>파나마</value>
     <comment>The name of PA country</comment>
   </data>
   <data name="Country_val_PE" xml:space="preserve">
-    <value>Peru</value>
+    <value>페루</value>
     <comment>The name of PE country</comment>
   </data>
   <data name="Country_val_PF" xml:space="preserve">
-    <value>Polinésia Francesa</value>
+    <value>프랑스령 폴리네시아</value>
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG" xml:space="preserve">
-    <value>Papua Nova Guiné</value>
+    <value>파푸아뉴기니</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH" xml:space="preserve">
-    <value>Filipinas</value>
+    <value>필리핀</value>
     <comment>The name of PH country</comment>
   </data>
   <data name="Country_val_PK" xml:space="preserve">
-    <value>Paquistão</value>
+    <value>파키스탄</value>
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL" xml:space="preserve">
-    <value>Polónia</value>
+    <value>폴란드</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM" xml:space="preserve">
-    <value>Saint Pierre e Miquelon</value>
+    <value>생 피에르와 미클롱</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN" xml:space="preserve">
-    <value>Pitcairn</value>
+    <value>피트케언</value>
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR" xml:space="preserve">
-    <value>Porto Rico</value>
+    <value>미 자치령 푸에르토리코섬</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS" xml:space="preserve">
-    <value>Palestina</value>
+    <value>팔레스타인</value>
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT" xml:space="preserve">
-    <value>Portugal</value>
+    <value>포르투갈</value>
     <comment>The name of PT country</comment>
   </data>
   <data name="Country_val_PW" xml:space="preserve">
-    <value>Palau</value>
+    <value>팔라우</value>
     <comment>The name of PW country</comment>
   </data>
   <data name="Country_val_PY" xml:space="preserve">
-    <value>Paraguai</value>
+    <value>파라과이</value>
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA" xml:space="preserve">
-    <value>Qatar</value>
+    <value>카타르</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE" xml:space="preserve">
-    <value>Reunião</value>
+    <value>리유니언</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO" xml:space="preserve">
-    <value>Roménia</value>
+    <value>루마니아</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS" xml:space="preserve">
-    <value>Sérvia</value>
+    <value>세르비아</value>
     <comment>The name of RS country</comment>
   </data>
   <data name="Country_val_RU" xml:space="preserve">
-    <value>Rússia</value>
+    <value>러시아</value>
     <comment>The name of RU country</comment>
   </data>
   <data name="Country_val_RW" xml:space="preserve">
-    <value>Ruanda</value>
+    <value>르완다</value>
     <comment>The name of RW country</comment>
   </data>
   <data name="Country_val_SA" xml:space="preserve">
-    <value>Arábia Saudita</value>
+    <value>사우디아라비아</value>
     <comment>The name of SA country</comment>
   </data>
   <data name="Country_val_SB" xml:space="preserve">
-    <value>Ilhas Salomão</value>
+    <value>솔로몬 제도</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC" xml:space="preserve">
-    <value>Seicheles</value>
+    <value>세이셸</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD" xml:space="preserve">
-    <value>Sudão</value>
+    <value>수단</value>
     <comment>The name of SD country</comment>
   </data>
   <data name="Country_val_SE" xml:space="preserve">
-    <value>Suécia</value>
+    <value>스웨덴</value>
     <comment>The name of SE country</comment>
   </data>
   <data name="Country_val_SG" xml:space="preserve">
-    <value>Singapura</value>
+    <value>싱가포르</value>
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH" xml:space="preserve">
-    <value>Santa Helena, Ascenção e Tristão da Cunha</value>
+    <value>세인트 헬레나, 어센션 및 트리스탄 다 쿠나</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI" xml:space="preserve">
-    <value>Eslovénia</value>
+    <value>슬로베니아</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ" xml:space="preserve">
-    <value>Svalbard e Jan Mayen</value>
+    <value>스발바르와 얀마옌</value>
     <comment>The name of SJ country</comment>
   </data>
   <data name="Country_val_SK" xml:space="preserve">
-    <value>Eslováquia</value>
+    <value>슬로바키아</value>
     <comment>The name of SK country</comment>
   </data>
   <data name="Country_val_SL" xml:space="preserve">
-    <value>Serra Leoa</value>
+    <value>시에나 르오네</value>
     <comment>The name of SL country</comment>
   </data>
   <data name="Country_val_SM" xml:space="preserve">
-    <value>São Marino</value>
+    <value>샌 마리노</value>
     <comment>The name of SM country</comment>
   </data>
   <data name="Country_val_SN" xml:space="preserve">
-    <value>Senegal</value>
+    <value>세네갈</value>
     <comment>The name of SN country</comment>
   </data>
   <data name="Country_val_SO" xml:space="preserve">
-    <value>Somália</value>
+    <value>소말리아</value>
     <comment>The name of SO country</comment>
   </data>
   <data name="Country_val_SR" xml:space="preserve">
-    <value>Suriname</value>
+    <value>수리남</value>
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS" xml:space="preserve">
-    <value>Sudão Sul</value>
+    <value>남수단</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST" xml:space="preserve">
-    <value>São Tomé e Príncipe</value>
+    <value>상투메 프린시페</value>
     <comment>The name of ST country</comment>
   </data>
   <data name="Country_val_SV" xml:space="preserve">
-    <value>El Salvador</value>
+    <value>엘살바도르</value>
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX" xml:space="preserve">
-    <value>Sint Maarten (parte holandesa)</value>
+    <value>신트마르텐(네덜란드 영역)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY" xml:space="preserve">
-    <value>Síria</value>
+    <value>시리아 아랍 공화국</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ" xml:space="preserve">
-    <value>Suazilândia</value>
+    <value>에스와티니</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC" xml:space="preserve">
-    <value>Ilhas Turcas e Caicos</value>
+    <value>터크스 카이코스 군도</value>
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD" xml:space="preserve">
-    <value>Chade</value>
+    <value>차드</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF" xml:space="preserve">
-    <value>Territórios franceses do Sul</value>
+    <value>프랑스령 남방 지역</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG" xml:space="preserve">
-    <value>Togo</value>
+    <value>토고</value>
     <comment>The name of TG country</comment>
   </data>
   <data name="Country_val_TH" xml:space="preserve">
-    <value>Tailândia</value>
+    <value>태국</value>
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ" xml:space="preserve">
-    <value>Tajiquistão</value>
+    <value>타지키스탄</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK" xml:space="preserve">
-    <value>Toquelau</value>
+    <value>토켈라우</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL" xml:space="preserve">
-    <value>Timor-Leste</value>
+    <value>동티모르</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM" xml:space="preserve">
-    <value>Turquemenistão</value>
+    <value>투르크메니스탄</value>
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN" xml:space="preserve">
-    <value>Tunísia</value>
+    <value>튀니지</value>
     <comment>The name of TN country</comment>
   </data>
   <data name="Country_val_TO" xml:space="preserve">
-    <value>Tonga</value>
+    <value>통가</value>
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR" xml:space="preserve">
-    <value>Turquia</value>
+    <value>터키</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT" xml:space="preserve">
-    <value>Trinidad e Tobago</value>
+    <value>트리니다드 토바고</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV" xml:space="preserve">
-    <value>Tuvalu</value>
+    <value>투발루</value>
     <comment>The name of TV country</comment>
   </data>
   <data name="Country_val_TW" xml:space="preserve">
-    <value>Taiwan</value>
+    <value>타이완</value>
     <comment>The name of TW country</comment>
   </data>
   <data name="Country_val_TZ" xml:space="preserve">
-    <value>Tanzânia</value>
+    <value>탄자니아</value>
     <comment>The name of TZ country</comment>
   </data>
   <data name="Country_val_UA" xml:space="preserve">
-    <value>Ucrânia</value>
+    <value>우크라이나</value>
     <comment>The name of UA country</comment>
   </data>
   <data name="Country_val_UG" xml:space="preserve">
-    <value>Uganda</value>
+    <value>우간다</value>
     <comment>The name of UG country</comment>
   </data>
   <data name="Country_val_UK" xml:space="preserve">
-    <value>Reino Unido</value>
+    <value>영국</value>
     <comment>The name of UK country</comment>
   </data>
   <data name="Country_val_UM" xml:space="preserve">
-    <value>Ilhas Menores Distantes dos Estados Unidos</value>
+    <value>미국령 군소 제도</value>
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US" xml:space="preserve">
-    <value>Estados Unidos</value>
+    <value>미국</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY" xml:space="preserve">
-    <value>Uruguai</value>
+    <value>우루과이</value>
     <comment>The name of UY country</comment>
   </data>
   <data name="Country_val_UZ" xml:space="preserve">
-    <value>Uzbequistão</value>
+    <value>우즈베키스탄</value>
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA" xml:space="preserve">
-    <value>Vaticano</value>
+    <value>바티칸 시국</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC" xml:space="preserve">
-    <value>Saint Vincent e Grenadines</value>
+    <value>세인트빈센트 그레나딘</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE" xml:space="preserve">
-    <value>Venezuela</value>
+    <value>베네수엘라</value>
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG" xml:space="preserve">
-    <value>Ilhas Virgens, Inglesas</value>
+    <value>영국령 버진 아일랜드</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI" xml:space="preserve">
-    <value>Virgin Islands, USA</value>
+    <value>미국령 버진 아일랜드</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN" xml:space="preserve">
-    <value>Vietname</value>
+    <value>베트남</value>
     <comment>The name of VN country</comment>
   </data>
   <data name="Country_val_VU" xml:space="preserve">
-    <value>Vanuatu</value>
+    <value>바누타우</value>
     <comment>The name of VU country</comment>
   </data>
   <data name="Country_val_WF" xml:space="preserve">
-    <value>Wallis e Futuna</value>
+    <value>월리스 푸투나</value>
     <comment>The name of WF country</comment>
   </data>
   <data name="Country_val_WS" xml:space="preserve">
-    <value>Samoa</value>
+    <value>사모아 제도</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE" xml:space="preserve">
-    <value>Yemen</value>
+    <value>예멘</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT" xml:space="preserve">
-    <value>Maiote</value>
+    <value>마요테</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA" xml:space="preserve">
-    <value>África do Sul</value>
+    <value>남아프리카 공화국</value>
     <comment>The name of ZA country</comment>
   </data>
   <data name="Country_val_ZM" xml:space="preserve">
-    <value>Zâmbia</value>
+    <value>잠비아</value>
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW" xml:space="preserve">
-    <value>Zimbabué</value>
+    <value>짐바브웨</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ" xml:space="preserve">
-    <value>Desconhecido</value>
+    <value>알 수 없음</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_Latency_Description" xml:space="preserve">
-    <value>Latency shows how long it takes for a server to respond to requests.\n\nHigh latency can slow down your connection.</value>
+    <value>레이턴시는 서버가 요청에 응답하기까지 얼마나 걸리는가를 보여줍니다.\n\n높은 레이턴시는 연결의 속도를 늦출 수 있습니다.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>VPN may run slower than normal</value>
+    <value>VPN이 평소보다 느릴 수 있습니다</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
-    <value>High (150ms+)</value>
+    <value>높음 (150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>Lightning fast speeds</value>
+    <value>번개처럼 빠르게</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
-    <value>Low (1ms - 50ms)</value>
+    <value>낮음 (1ms - 50ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>Unlikely to affect VPN speed</value>
+    <value>웬만해서는 VPN 속도에 문제 없음</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
-    <value>Medium (50ms - 150ms)</value>
+    <value>보통 (50ms - 150ms)</value>
   </data>
   <data name="Dialogs_Latency_Title" xml:space="preserve">
-    <value>What is latency?</value>
+    <value>레이턴시라는 것은?</value>
   </data>
   <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
+    <value>프로토콜은 여러분의 기기가 서버에 접속하고 통신하기 위해 따를 일련의 지침을 말합니다.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
-    <value>Switch VPN Protocol</value>
+    <value>VPN 프로토콜 전환</value>
   </data>
   <data name="Dialogs_Protocol_Title" xml:space="preserve">
-    <value>What is a VPN protocol?</value>
+    <value>VPN 프로토콜이라는 것은?</value>
   </data>
   <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
-    <value>Qual é o problema?</value>
+    <value>문제가 무엇인가요?</value>
   </data>
   <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
-    <value>Server load shows how close a server is to its maximum capacity.\n\nA high server load can slow down your connection.</value>
+    <value>서버 부하는 서버가 최대 수용량에 얼마나 근접했는지 보여줍니다.\n\n높은 서버 부하는 연결 속도를 늦출 수 있습니다.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>VPN may run slower than normal</value>
+    <value>VPN이 평소보다 느릴 수 있습니다</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>High (91-100%)</value>
+    <value>높음 (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>Lightning fast speeds</value>
+    <value>번개처럼 빠르게</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>Low (1-75%)</value>
+    <value>낮음 (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>Unlikely to affect VPN speed</value>
+    <value>왠만해서는 VPN 속도에 문제 없음</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>Medium (76-90%)</value>
+    <value>보통 (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>What is server load?</value>
+    <value>서버 부하라는 것은?</value>
   </data>
   <data name="Format_Milliseconds" xml:space="preserve">
-    <value>{0}ms</value>
+    <value>{0} ms</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes" xml:space="preserve">
@@ -1259,212 +1259,212 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
-    <value>{0} B/s</value>
+    <value>{0} B/초</value>
     <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
   </data>
   <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
-    <value>{0} EB/s</value>
+    <value>{0} EB/초</value>
     <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
   </data>
   <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
-    <value>{0} GB/s</value>
+    <value>{0} GB/초</value>
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
-    <value>{0} KB/s</value>
+    <value>{0} KB/초</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
-    <value>{0} MB/s</value>
+    <value>{0} MB/초</value>
     <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
   </data>
   <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
-    <value>{0} PB/s</value>
+    <value>{0} PB/초</value>
     <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
   </data>
   <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
-    <value>{0} TB/s</value>
+    <value>{0} TB/초</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day" xml:space="preserve">
-    <value>{0} day</value>
+    <value>{0}일</value>
     <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} day {1} hr</value>
+    <value>{0}일 {1}시간</value>
     <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Days" xml:space="preserve">
-    <value>{0} days</value>
+    <value>{0}일</value>
     <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DaysHours" xml:space="preserve">
-    <value>{0} days {1} hr</value>
+    <value>{0}일 {1}시간</value>
     <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours" xml:space="preserve">
-    <value>{0} hr</value>
+    <value>{0}시간</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes" xml:space="preserve">
-    <value>{0} hr {1} min</value>
+    <value>{0}시간 {1}분</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_Minutes" xml:space="preserve">
-    <value>{0} min</value>
+    <value>{0}분</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds" xml:space="preserve">
-    <value>{0} min {1} sec</value>
+    <value>{0}분 {1}초</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_Seconds" xml:space="preserve">
-    <value>{0} sec</value>
+    <value>{0}초</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Home_Account_SignOut" xml:space="preserve">
-    <value>Sign out</value>
+    <value>로그아웃</value>
   </data>
   <data name="Home_Account_Title" xml:space="preserve">
-    <value>My account</value>
+    <value>내 계정</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>Browsing safely from</value>
+    <value>안전하게 다음 위치에서 탐색 중:</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>A ligar a...</value>
+    <value>연결 중...</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>Last connected to</value>
+    <value>마지막 연결은</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>Recommended</value>
+    <value>추천</value>
   </data>
   <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
-    <value>Connection card</value>
+    <value>연결 카드</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City" xml:space="preserve">
-    <value>City</value>
+    <value>시/군/구</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
-    <value>Connected for</value>
+    <value>연결된 시간</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
-    <value>Gateway</value>
+    <value>게이트웨이</value>
   </data>
   <data name="Home_ConnectionDetails_Country" xml:space="preserve">
-    <value>Country</value>
+    <value>국가</value>
   </data>
   <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>Download</value>
+    <value>다운로드</value>
   </data>
   <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
-    <value>Hide connection details</value>
+    <value>연결 세부사항 숨기기</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
-    <value>Hide</value>
+    <value>숨기기</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
-    <value>Hide user IP address</value>
+    <value>내 IP 주소 숨기기</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>Connection details</value>
+    <value>연결 세부 사항</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>Latency</value>
+    <value>레이턴시</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
-    <value>My IP</value>
+    <value>내 IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
-    <value>Protocol</value>
+    <value>프로토콜</value>
   </data>
   <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>Server</value>
+    <value>서버</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
-    <value>Server load</value>
+    <value>서버 부하</value>
   </data>
   <data name="Home_ConnectionDetails_Show" xml:space="preserve">
-    <value>Show connection details</value>
+    <value>연결 상세 사항 보기</value>
   </data>
   <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
-    <value>Show</value>
+    <value>보이기</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
-    <value>Show user IP address</value>
+    <value>내 IP 주소 보이기</value>
   </data>
   <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>Connection details</value>
+    <value>연결 세부사항</value>
   </data>
   <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>Upload</value>
+    <value>업로드</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
     <value>VPN IP</value>
   </data>
   <data name="Home_Help_Title" xml:space="preserve">
-    <value>Help</value>
+    <value>도움말</value>
   </data>
   <data name="Home_Map_Landmark" xml:space="preserve">
-    <value>Map</value>
+    <value>지도</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>Ads\nblocked</value>
+    <value>차단한\n광고들</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>Data\nsaved</value>
+    <value>절약한\n데이터</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_Landmark" xml:space="preserve">
-    <value>NetShield statistics</value>
+    <value>NetShield 통계</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>Rastreadores\nparados</value>
+    <value>트래커\n멈춤</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title" xml:space="preserve">
-    <value>Home</value>
+    <value>홈</value>
   </data>
   <data name="Home_Recents_Landmark" xml:space="preserve">
-    <value>Recent connections</value>
+    <value>최근 연결</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin" xml:space="preserve">
-    <value>Pin</value>
+    <value>고정</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
-    <value>Actions</value>
+    <value>동작</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
-    <value>Server is under maintenance</value>
+    <value>서버를 점검하고 있습니다</value>
   </data>
   <data name="Home_Recents_Title" xml:space="preserve">
-    <value>Recents</value>
+    <value>최근</value>
   </data>
   <data name="Home_Recents_Unpin" xml:space="preserve">
-    <value>Unpin</value>
+    <value>고정 해제</value>
   </data>
   <data name="Home_VpnStatus_Landmark" xml:space="preserve">
-    <value>VPN status</value>
+    <value>VPN 상태</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>A proteger a sua identidade digital</value>
+    <value>당신의 디지털 신원을 보호하고 있습니다</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>Não está protegido.</value>
+    <value>노출됨</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
-    <value>Protected</value>
+    <value>보호됨</value>
   </data>
   <data name="Server_Feature_P2P" xml:space="preserve">
     <value>P2P</value>
@@ -1473,189 +1473,189 @@
     <value>Tor</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>Palavra-passe incorreta. Tente novamente.</value>
+    <value>잘못된 코드입니다. 다시 시도해 주세요.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>As credenciais de início de sessão estão incorretas. Tente novamente.</value>
+    <value>이메일 (사용자 이름) 또는 비밀번호가 잘못되었습니다. 다시 시도하세요.</value>
   </data>
   <data name="Settings_About" xml:space="preserve">
-    <value>About</value>
+    <value>정보</value>
   </data>
   <data name="Settings_AppVersion" xml:space="preserve">
-    <value>App version</value>
+    <value>앱 버전</value>
   </data>
   <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>Estas estatísticas não contêm o seu endereço IP e não podem ser utilizadas para o identificar. Nunca as partilharemos com terceiros.</value>
+    <value>이러한 통계에는 IP 주소가 포함되어 있지 않으며 귀하를 식별하는 데 사용할 수 없습니다. 이 정보를 다른 사람에게 공유하지 않습니다.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>Partilhar relatórios anónimos de falhas</value>
+    <value>익명 충돌 보고서 공유</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>Os relatórios de falhas ajudam-nos a corrigir erros, a detetar firewalls e a evitar bloqueios de VPN.</value>
+    <value>충돌 보고서는 버그를 수정하고 방화벽을 감지하며 VPN 차단을 방지하는 데 도움이 됩니다.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>Partilhar estatísticas anónimas de utilização</value>
+    <value>익명 사용 통계 공유</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>Os dados de utilização ajudam-nos a ultrapassar bloqueios de VPN e a melhorar a aplicação.</value>
+    <value>사용 데이터는 VPN 차단을 무력화하고 앱 성능을 개선하는 데 도움이 됩니다.</value>
   </data>
   <data name="Settings_Connection" xml:space="preserve">
-    <value>Connection</value>
+    <value>연결</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>Definições avançadas</value>
+    <value>고급 설정</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>Redirecionamento alternativo</value>
+    <value>대체 라우팅</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
-    <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
+    <value>Proton 서비스가 네트워크 제한으로 막혔다면, 대체 네트워크 라우딩을 이용해서 연결해보세요.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
-    <value>Custom DNS servers</value>
+    <value>커스텀 DNS 서버</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
-    <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
+    <value>Proton VPN에 원하는 도메인 네임 시스템(DNS)을 통해 접속하게 됩니다. 신뢰하는 DNS 서버만을 사용하십시오.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
-    <value>DNS servers ({0})</value>
+    <value>DNS 서버 ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
-    <value>Adicionar endereço IPv4</value>
+    <value>IPv4 주소 추가</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>Ligações LAN</value>
+    <value>LAN 연결</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>Allows you to connect to printers, speakers, and other devices in your device's local network.</value>
+    <value>로컬 네트워크에 있는 프린터, 스피커 및 기타 기기에 연결할 수 있게 합니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
-    <value>NAT type</value>
+    <value>NAT 방식</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
-    <value>Select a network address translation type for your connection.</value>
+    <value>네트워크 주소 변환 방식을 선택하십시오.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
-    <value>Moderate (type 2)</value>
+    <value>일반형 (type 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
-    <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
+    <value>네트워크에 들어오는 데이터를 약간 통제합니다. 온라인 비디오 게이밍에 최적입니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
-    <value>Strict (type 3)</value>
+    <value>엄격하게 (3번)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
-    <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
+    <value>네트워크에 들어오는 데이터를 통제합니다. 확실한 만큼 피어 투 피어 게이밍 접속이 어려워질 수 있습니다.</value>
   </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
-    <value>Protocol</value>
+    <value>프로토콜</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>Acelerador VPN</value>
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features" xml:space="preserve">
-    <value>Features</value>
+    <value>기능</value>
   </data>
   <data name="Settings_Features_KillSwitch" xml:space="preserve">
-    <value>Kill switch</value>
+    <value>킬 스위치</value>
   </data>
   <data name="Settings_Features_NetShield" xml:space="preserve">
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_PortForwarding" xml:space="preserve">
-    <value>Port forwarding</value>
+    <value>포트 포워딩</value>
   </data>
   <data name="Settings_Features_SplitTunneling" xml:space="preserve">
-    <value>Tunelamento dividido</value>
+    <value>분할 터널링</value>
   </data>
   <data name="Settings_General" xml:space="preserve">
-    <value>General</value>
+    <value>일반</value>
   </data>
   <data name="Settings_General_AutoStartup" xml:space="preserve">
-    <value>Auto startup</value>
+    <value>자동 시작</value>
   </data>
   <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>Auto launch, auto connect</value>
+    <value>자동 실행 및 연결</value>
   </data>
   <data name="Settings_General_BetaAccess" xml:space="preserve">
-    <value>Beta access</value>
+    <value>베타 엑세스</value>
   </data>
   <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
-    <value>Get early access and help us test new versions of Proton VPN</value>
+    <value>얼리 엑세스를 받아서 Proton VPN의 새 버전 테스트를 도와주세요</value>
   </data>
   <data name="Settings_General_Language" xml:space="preserve">
-    <value>Language</value>
+    <value>언어</value>
   </data>
   <data name="Settings_General_Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>알림</value>
   </data>
   <data name="Settings_General_Notifications_Description" xml:space="preserve">
-    <value>Get notified about on-going Proton VPN activities</value>
+    <value>Proton VPN이 수행중인 활동에 대한 알림을 받으세요</value>
   </data>
   <data name="Settings_General_Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>테마</value>
   </data>
   <data name="Settings_General_Theme_Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>어둡게</value>
   </data>
   <data name="Settings_General_Theme_Default" xml:space="preserve">
-    <value>Default</value>
+    <value>표준</value>
   </data>
   <data name="Settings_General_Theme_Light" xml:space="preserve">
-    <value>Light</value>
+    <value>밝게</value>
   </data>
   <data name="Settings_Improve" xml:space="preserve">
-    <value>Improve Proton</value>
+    <value>Proton 개선하기</value>
   </data>
   <data name="Settings_Improve_Censorship" xml:space="preserve">
-    <value>Ajude-nos a combater a censura</value>
+    <value>검열에 맞서도록 도와주세요</value>
   </data>
   <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Operating System version</value>
+    <value>운영 체제 버전</value>
   </data>
   <data name="Settings_Page_Title" xml:space="preserve">
-    <value>Settings</value>
+    <value>설정</value>
   </data>
   <data name="Settings_Protocols_Explanation" xml:space="preserve">
-    <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
+    <value>VPN 프로토콜은 서버와 여러분의 장치 사이에서 데이터가 이동하는 방식을 정의합니다.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
-    <value>Established, well-tested, and secure. OpenVPN is reliable in poor network conditions, but may not be as fast as other protocols.</value>
+    <value>확립되었고, 잘 시험되었으며 안전합니다. OpenVPN은 부족한 네트워크 컨디션에서도 안정적이지만 다른 프로토콜만큼 빠르지는 않습니다.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
-    <value>Established, well-tested, and secure. OpenVPN is less battery-efficient than some other protocols.</value>
+    <value>확립되었고, 잘 시험되었으며 안전합니다. OpenVPN은 다른 프로토콜만큼 배터리 효율이 좋지는 않습니다.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>Recommended</value>
+    <value>추천</value>
   </data>
   <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
-    <value>Auto-selects the best protocol for your connection.</value>
+    <value>연결 상태에 가장 알맞은 프로토콜을 자동으로 선택합니다.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
     <value>Smart</value>
   </data>
   <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
-    <value>Reliability (TCP)</value>
+    <value>안정성 (TCP)</value>
   </data>
   <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
-    <value>Speed (UDP)</value>
+    <value>속도 (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
+    <value>빠르고, 안전하며 효율적입니다. WireGuard는 다른 프로토콜보다 배터리 효율이 좋습니다.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>Restore default settings</value>
+    <value>기본 설정값 복원</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -1670,349 +1670,349 @@
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support" xml:space="preserve">
-    <value>Support</value>
+    <value>지원</value>
   </data>
   <data name="Settings_Support_DebugLogs" xml:space="preserve">
-    <value>Debug logs</value>
+    <value>디버그 로그</value>
   </data>
   <data name="Settings_Support_ReportIssue" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>문제 보고하기</value>
   </data>
   <data name="Login_Form_CreateAccount" xml:space="preserve">
-    <value>Create account</value>
+    <value>계정 만들기</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>비밀번호</value>
   </data>
   <data name="Login_Form_SignIn" xml:space="preserve">
-    <value>Sign in</value>
+    <value>로그인</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Username" xml:space="preserve">
-    <value>E-mail ou nome de utilizador</value>
+    <value>이메일 또는 사용자 이름</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
-    <value>Authenticate</value>
+    <value>인증</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Introduza o código da sua aplicação de autenticação.</value>
+    <value>인증 앱의 코드를 입력하세요</value>
   </data>
   <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>Autenticação em dois fatores</value>
+    <value>2단계 인증</value>
   </data>
   <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>Esqueci-me do nome de utilizador</value>
+    <value>사용자명을 잊었습니다</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help" xml:space="preserve">
-    <value>Help</value>
+    <value>지원</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ReportAnIssue" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>문제 보고하기</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword" xml:space="preserve">
-    <value>Reset password</value>
+    <value>비밀번호 재설정</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Problemas em iniciar sessão</value>
+    <value>로그인에 문제가 있습니다</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Account_VpnPlan_Free" xml:space="preserve">
     <value>Proton VPN Free</value>
   </data>
   <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
-    <value>Two factor authentication failed. Please sign in again.</value>
+    <value>2단계 인증에 실패했습니다. 다시 로그인해주세요.</value>
   </data>
   <data name="Settings_Support_SupportCenter" xml:space="preserve">
-    <value>Support center</value>
+    <value>지원 센터</value>
   </data>
   <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
-    <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
+    <value>성능 강화 기술을 통해 연결 속도가 400%까지 빨라집니다.</value>
   </data>
   <data name="Login_Form" xml:space="preserve">
-    <value>Sign in form</value>
+    <value>로그인 양식</value>
   </data>
   <data name="Login_TwoFactor_Digit1" xml:space="preserve">
-    <value>First digit</value>
+    <value>첫 자리</value>
   </data>
   <data name="Login_TwoFactor_Digit2" xml:space="preserve">
-    <value>Second digit</value>
+    <value>2번째 자리</value>
   </data>
   <data name="Login_TwoFactor_Digit3" xml:space="preserve">
-    <value>Third digit</value>
+    <value>3번째 자리</value>
   </data>
   <data name="Login_TwoFactor_Digit4" xml:space="preserve">
-    <value>Fourth digit</value>
+    <value>4자리 수</value>
   </data>
   <data name="Login_TwoFactor_Digit5" xml:space="preserve">
-    <value>Fifth digit</value>
+    <value>다섯 자리 수</value>
   </data>
   <data name="Login_TwoFactor_Digit6" xml:space="preserve">
-    <value>Sixth digit</value>
+    <value>여섯 자리 수</value>
   </data>
   <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>문제 보고하기</value>
   </data>
   <data name="Common_Actions_ContactUs" xml:space="preserve">
-    <value>Contact us</value>
+    <value>문의</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
-    <value>Quick fixes</value>
+    <value>빠른 수정</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
-    <value>Didn't work?</value>
+    <value>작동하지 않나요?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>Estas dicas poderão ajudá-lo a resolver o seu problema mais rapidamente.</value>
+    <value>이 팁들이 문제를 더 빨리 해결하는데 도움이 될 수 있습니다.</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
-    <value>Step {0} of {1}</value>
+    <value>{1} 단계 중 {0} 번째</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>이메일</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>exemplo@domínio.com</value>
+    <value>example@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>Enviar registos de erro</value>
+    <value>오류 로그 보내기</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>Error logs show us what went wrong, and which actions led to your issue. We'll only ever use them to help our engineers fix bugs.</value>
+    <value>에러 로그는 무엇이 잘못되었고 어떤 작업이 이슈로 이어졌는지를 보여줍니다. 엔지니어들이 버그를 고치는 데만 사용합니다.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
-    <value>Send report</value>
+    <value>보고서 보내기</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
-    <value>Done</value>
+    <value>완료</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>Ocorreu um erro</value>
+    <value>문제가 발생했습니다</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>We couldn't send your report. Please check your connection and try again.</value>
+    <value>보고서 보내기에 실패했습니다. 인터넷 연결을 확인하시고 다시 시도해주세요.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>Try again</value>
+    <value>다시 시도</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
-    <value>Report sent</value>
+    <value>보고서 보내짐</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>Thanks for your feedback. We'll get back to you as soon as we can.</value>
+    <value>피드백에 감사드립니다. 최대한 빨리 답해드리겠습니다.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
-    <value>Auto connect</value>
+    <value>자동 연결</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>You will be connected to a server as soon as Proton VPN opens</value>
+    <value>Proton VPN이 실행되는 대로 서버에 연결될 것입니다.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
-    <value>Fastest connection</value>
+    <value>가장 빠른 연결</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
-    <value>Last connected</value>
+    <value>마지막 연결</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
-    <value>Auto launch</value>
+    <value>자동 실행</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
-    <value>Proton VPN will automatically open when you sign in to your device</value>
+    <value>Proton VPN이 장치에 로그인할 때 자동으로 실행됩니다.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
-    <value>Open on desktop</value>
+    <value>바탕 화면으로 열어놓기</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
-    <value>Minimize to System Tray</value>
+    <value>시스템 트레이로 최소화하기</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
-    <value>Minimize to Taskbar</value>
+    <value>작업 표시줄로 최소화하기</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>Registos da aplicação</value>
+    <value>어플리케이션 로그</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
-    <value>Service logs</value>
+    <value>서비스 로그</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Restore default settings</value>
+    <value>기본 설정값 복원</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
-    <value>Restore and reconnect</value>
+    <value>복원하고 다시 연결하기</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
-    <value>This will reset your Proton VPN settings to their original state.</value>
+    <value>당신의 Proton VPN 설정값을 원래대로 복원하게 됩니다.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>Restore default settings?</value>
+    <value>기본 설정값으로 복원하시겠습니까?</value>
   </data>
   <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Close</value>
+    <value>닫기</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
-    <value>The logs folder could not be found.</value>
+    <value>로그 폴더를 찾지 못했습니다.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>고급</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>Proton VPN에 연결되어야 인터넷을 사용할 수 있게 됩니다. 고급 킬 스위치는 장치를 재시작하여도 계속 작동합니다.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>VPN 연결이 끊어지면 인터넷 연결을 차단하여 당신의 IP 주소를 보호합니다.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>킬 스위치가 켜져 있으면 분할 터널링에서 제외된 웹사이트와 앱을 이용할 수 없게 됩니다.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
-    <value>Standard</value>
+    <value>일반</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>VPN 연결이 끊어지면 인터넷 연결을 자동으로 차단합니다.</value>
   </data>
   <data name="Settings_Features_NetShield_Description" xml:space="preserve">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>광고, 멀웨어 그리고 웹사이트와 앱의 트래커에서 보호받으십시오.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>일부 웹사이트는 광고 그리고 트래커 차단 중에 제대로 로드되지 않을 수도 있습니다.</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
-    <value>Active port:</value>
+    <value>활동 포트:</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
-    <value>Copy port number</value>
+    <value>포트 번호 복사</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>방화벽을 우회하여 P2P 서버와 로컬 네트워크의 장치에 연결하십시오.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
+    <value>포트 포워딩을 사용하려면 P2P를 지원하는 서버에 연결하셔야 합니다.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>알림</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Seja notificado quando o número de porta muda</value>
+    <value>포트포워딩 번호가 변경되면 알림을 받습니다</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
-    <value>Add app</value>
+    <value>앱 추가</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
-    <value>Selected apps ({0})</value>
+    <value>선택한 앱 ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
-    <value>Remove app</value>
+    <value>앱 제거</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>VPN이 보호할 앱과 IP 주소를 지정하여 연결을 커스텀할 수 있습니다.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
-    <value>Inverse</value>
+    <value>반전하기</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>선택된 앱과 IP 주소만이 VPN에 연결되고 그 외 트래픽은 보호되지 않습니다.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
-    <value>Add IP</value>
+    <value>IP 추가</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
-    <value>Selected IP addresses ({0})</value>
+    <value>선택한 IP 주소 ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
-    <value>Remove IP</value>
+    <value>IP 제거</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
-    <value>Adicionar endereço IPv4</value>
+    <value>IPv4 주소 추가</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
-    <value>Standard</value>
+    <value>표준</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>선택된 앱 및 IP 주소가 VPN 연결에서 제외됩니다.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
-    <value>App files</value>
+    <value>앱 파일</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>Reconnect</value>
+    <value>재연결</value>
   </data>
   <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>Apply and reconnect</value>
+    <value>적용 및 재연결</value>
   </data>
   <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>Discard</value>
+    <value>저장 안 함</value>
   </data>
   <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>Discard settings changes?</value>
+    <value>설정값 변경을 취소합니까?</value>
   </data>
   <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>활성화</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
+    <value>커스텀 DNS 서버가 활성화되면 NetShield는 사용할 수 없습니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
-    <value>Enable custom DNS servers?</value>
+    <value>커스텀 DNS 서버를 활성화합니까?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>This will disable split tunneling.</value>
+    <value>분할 터널링이 비활성화됩니다.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Enable kill switch?</value>
+    <value>킬 스위치를 활성화합니까?</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>NetShield가 활성화되면 커스텀 DNS 서버에 연결할 수 없게 됩니다.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
-    <value>Enable NetShield?</value>
+    <value>NetShield를 활성화합니까?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>This will disable kill switch.</value>
+    <value>킬 스위치가 비활성화됩니다.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>Enable split tunneling?</value>
+    <value>분할 터널링을 활성화합니까?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to use port forwarding with Moderate NAT.</value>
+    <value>일반형 NAT으로 포트 포워딩 사용이 불가합니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
-    <value>Ativar NAT moderado?</value>
+    <value>일반형 NAT를 활성화하시겠어요?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>포트 포워딩 활성화 상태일 때 일반형 NAT은 사용할 수 없습니다.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
-    <value>Enable port forwarding?</value>
+    <value>포트 포워딩을 활성화합니까?</value>
   </data>
   <data name="Cities" xml:space="preserve">
-    <value>Cities</value>
+    <value>도시</value>
   </data>
   <data name="Countries_All" xml:space="preserve">
-    <value>All</value>
+    <value>전체</value>
   </data>
   <data name="Countries_City_One" xml:space="preserve">
-    <value>{0} city</value>
+    <value>{0}개 도시</value>
     <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
   </data>
   <data name="Countries_City_Other" xml:space="preserve">
-    <value>{0} cities</value>
+    <value>{0}개 도시</value>
     <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
   </data>
   <data name="Countries_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>연결</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_P2P" xml:space="preserve">
@@ -2025,159 +2025,159 @@
     <value>Tor</value>
   </data>
   <data name="Countries_Cities" xml:space="preserve">
-    <value>Cities</value>
+    <value>도시</value>
   </data>
   <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} server</value>
+    <value>{0}개 서버</value>
   </data>
   <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} servers</value>
+    <value>{0}개 서버</value>
   </data>
   <data name="Countries_NumberOfCities" xml:space="preserve">
-    <value>Cities ({0})</value>
+    <value>도시 ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries" xml:space="preserve">
-    <value>Países ({0})</value>
+    <value>국가 ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Países do Secure Core ({0})</value>
+    <value>Secure Core 도시 ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_Info" xml:space="preserve">
-    <value>Info</value>
+    <value>정보</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>Advanced privacy</value>
+    <value>진보한 프라이버시</value>
   </data>
   <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+    <value>Secure Core는 최대의 보안을 갖는 두 번째 VPN 서버를 경유하여 목적지 서버로 연결합니다.
 
-This higher level of protection may cause higher latency and slower speeds.</value>
+이런 높은 수준의 보호는 높아진 레이턴시와 느려진 속도를 유발할 수 있습니다.</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>Higher latency</value>
+    <value>더 높은 레이턴시</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>High privacy</value>
+    <value>높은 프라이버시</value>
   </data>
   <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>Lower latency</value>
+    <value>더 낮은 레이턴시</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Secure Core VPN connection</value>
+    <value>Secure Core VPN 연결</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Standard VPN connection</value>
+    <value>표준 VPN 연결</value>
   </data>
   <data name="Dialogs_SecureCore_Title" xml:space="preserve">
     <value>Secure Core</value>
   </data>
   <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Secure Core servers ({0})</value>
+    <value>Secure Core 서버 ({0})</value>
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_ViaCountry" xml:space="preserve">
-    <value>via {0}</value>
+    <value>{0} 경유중</value>
     <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}.</value>
+    <value>{0}에 위치한 서버지만, {1}에서 브라우징하는 것으로 보일 것입니다.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing은 가상 서버를 이용하여 접근이 어려운 국가에 VPN 커버리지를 제공합니다.
 
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Smart Routing 서버에 접속했다면 물리적 서버의 위치와 상관없이 목적지 국가에서 탐색하는 것으로 보이게 됩니다.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열을 우회하는 데 쓸모가 있습니다.</value>
   </data>
   <data name="Countries_P2PCountries" xml:space="preserve">
-    <value>P2P countries ({0})</value>
+    <value>P2P 국가 ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorCountries" xml:space="preserve">
-    <value>Tor countries ({0})</value>
+    <value>Tor 국가 ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
-    <value>How to torrent with P2P</value>
+    <value>P2P를 이용해 토렌트하는 방법</value>
   </data>
   <data name="Dialogs_P2P_Title" xml:space="preserve">
     <value>P2P</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
-    <value>What is a P2P server?</value>
+    <value>P2P 서버라는 것은?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
-    <value>P2P (peer-to-peer) VPN servers unblock torrent sites.</value>
+    <value>P2P (피어 투 피어) VPN 서버는 토렌트 사이트의 차단을 풀어줍니다.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
-    <value>What is torrenting?</value>
+    <value>토렌트한다는 것은?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
-    <value>The fast sharing and downloading of large files over a peer-to-peer (P2P) network.</value>
+    <value>피어 투 피어 (P2P) 네트워크를 통하여 대용량 파일을 빠르게 공유하고 다운로드함을 말합니다.</value>
   </data>
   <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
-    <value>Why use a P2P server when torrenting?</value>
+    <value>토렌트에 P2P 서버를 쓰는 이유라면?</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
-    <value>• Increased upload and download speeds
-• No activity logs
-• Hide your IP address from your service provider and peers</value>
+    <value>• 업로드와 다운로드 속도가 늘어납니다
+• 활동에 노 로그
+• 인터넷 서비스 제공자와 피어로부터 당신의 IP 주소를 숨겨줍니다</value>
   </data>
   <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
     <value>Smart Routing</value>
   </data>
   <data name="Countries_Fastest" xml:space="preserve">
-    <value>Fastest country</value>
+    <value>가장 빠른 국가</value>
   </data>
   <data name="Dialogs_Tor_Description" xml:space="preserve">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Tor 서버에 접속하면 히든 서비스와 어니언 사이트에 어느 브라우저를 사용해도 접근할 수 있습니다.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
-    <value>How to access the Tor network</value>
+    <value>Tor 네트워크에 접속하는 방법</value>
   </data>
   <data name="Dialogs_Tor_Title" xml:space="preserve">
     <value>Tor</value>
   </data>
   <data name="Countries_SearchPlaceholder" xml:space="preserve">
-    <value>I want to browse from...</value>
+    <value>다음에서 브라우징 하고자 합니다...</value>
   </data>
   <data name="Countries_P2P_Cities" xml:space="preserve">
-    <value>P2P cities ({0})</value>
+    <value>P2P 도시 ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_TorServers" xml:space="preserve">
-    <value>Tor servers ({0})</value>
+    <value>Tor 서버 ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_Server" xml:space="preserve">
-    <value>Server</value>
+    <value>서버</value>
   </data>
   <data name="Countries_ServerLoad" xml:space="preserve">
-    <value>Server load</value>
+    <value>서버 부하</value>
   </data>
   <data name="Countries_SmartRouting" xml:space="preserve">
-    <value>Smart routing</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>Não foram encontrados resultados.</value>
+    <value>검색 결과가 없습니다.</value>
   </data>
   <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>Por favor, tente uma palavra-chave diferente</value>
+    <value>다른 키워드를 입력해주세요</value>
   </data>
   <data name="Countries_NumberOfServers" xml:space="preserve">
-    <value>Servers ({0})</value>
+    <value>서버 ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>A sua sessão expirou. Inicie sessão novamente.</value>
+    <value>세션이 만료되었습니다. 다시 로그인하십시오.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>Introduza este número na sua aplicação BitTorrent para aumentar a velocidade.</value>
+    <value>더 빠른 속도를 위해 BitTorrent 앱에서 이 번호로 설정하세요.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -2192,74 +2192,74 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Login_Form_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>이메일</value>
   </data>
   <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>Iniciar sessão com uma palavra-passe</value>
+    <value>비밀번호로 로그인</value>
   </data>
   <data name="Login_Form_SignInWithSso" xml:space="preserve">
-    <value>Iniciar sessão com SSO</value>
+    <value>SSO로 로그인</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
-    <value>An error occured when retrieving the session details. Please try again.</value>
+    <value>세션의 세부사항을 받아오는 중 오류가 발생했습니다. 다시 시도해주십시오.</value>
   </data>
   <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
-    <value>SSO Authentication failed. Please try again.</value>
+    <value>SSO 인증에 실패하였습니다. 다시 시도해주십시오.</value>
   </data>
   <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>De momento não há servidores disponíveis para a sua seleção. Selecione uma opção diferente.</value>
+    <value>현재 선택 가능한 서버가 없습니다. 다른 옵션을 선택하세요.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>O adaptador de rede está a ser utilizado.</value>
+    <value>네트워크 어댑터가 이미 사용 중입니다.</value>
   </data>
   <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>Versão do adaptador de rede desatualizada.</value>
+    <value>네트워크 어댑터 드라이버 버전이 오래되었습니다.</value>
   </data>
   <data name="Connection_Error_TlsCertificate" xml:space="preserve">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending an Issue Report.</value>
+    <value>VPN 서버 인증서의 유효성을 검사하는 데 문제가 있으며, 이는 네트워크 연결이 변조되었거나 연결하려는 서버에 구성 문제가 있음을 나타낼 수 있습니다. 문제 보고서를 보내서 지원팀의 도움을 받으실 수 있습니다.</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>O Proton VPN não consegue conectar-se à VPN porque um outro adaptador de rede WireGuard está em utilização. Desligue quaisquer VPN que tenha ativa e tente novamente. Em alternativa, pode mudar o protocolo nas definições avançadas.</value>
+    <value>WireGuard 네트워크 어뎁터가 이미 사용 중이기 대문에 Proton VPN이 연결할 수 없습니다. 다른 VPN을 연결 해제하고 다시 시도해 주세요. 또는, 프로토콜을 고급 설정에서 변경할 수 있습니다.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>Adaptador de rede em falta.</value>
+    <value>네트워크 어댑터가 없습니다.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>문제 보고하기</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
-    <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
+    <value>사용자의 시스템에서 RPC 서버를 사용할 수 없기에 Proton VPN이 연결 불가합니다.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>View possible solutions</value>
+    <value>가능한 솔루션 보기</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <value>최대 기기 제한 수에 도달했습니다. 이 기기에서 연결하기 위해 다른 기기에서 연결 해제하거나 PLUS로 업그레이드하여 최대 10개의 기기에서 동시에 연결하세요.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser" xml:space="preserve">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one.</value>
+    <value>최대 기기 개수에 도달했습니다. 이 기기를 연결하기 위해 타 기기에서 비활성화 해주세요.</value>
   </data>
   <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
+    <value>현재 무슨 증상인지 알 수 없습니다. 재시도 하거나 고객 지원 팀에 연락해 주십시오.</value>
   </data>
   <data name="Gateways_Page_Title" xml:space="preserve">
-    <value>Gateways</value>
+    <value>게이트웨이</value>
   </data>
   <data name="Gateways_Server" xml:space="preserve">
-    <value>Dedicated server</value>
+    <value>전용 서버</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
-    <value>You'll be disconnected from VPN.</value>
+    <value>VPN 연결이 끊어질 것입니다.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
-    <value>Sign out from {0}?</value>
+    <value>{0}에서 로그아웃하시겠어요?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Tray_Actions_ExitApplication" xml:space="preserve">
-    <value>Exit</value>
+    <value>닫기</value>
   </data>
   <data name="Tray_Actions_OpenApplication" xml:space="preserve">
-    <value>Open {0}</value>
+    <value>{0} 열기</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
 </root>

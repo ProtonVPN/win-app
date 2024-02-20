@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Common_Actions_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Додати</value>
   </data>
   <data name="Common_Actions_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Скасувати</value>
   </data>
   <data name="Common_Actions_Connect" xml:space="preserve">
     <value>Connect</value>
@@ -130,7 +130,7 @@
     <value>Disconnect</value>
   </data>
   <data name="Common_Actions_Remove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Вилучити</value>
   </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
@@ -160,966 +160,966 @@
     <value>Countries</value>
   </data>
   <data name="Country_Fastest" xml:space="preserve">
-    <value>Fastest country</value>
+    <value>Найшвидша країна</value>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
-    <value>Andorra</value>
+    <value>Андорра</value>
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE" xml:space="preserve">
-    <value>Emirados Árabes Unidos</value>
+    <value>Об'єднані Арабські Емірати</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF" xml:space="preserve">
-    <value>Afeganistão</value>
+    <value>Афганістан</value>
     <comment>The name of AF country</comment>
   </data>
   <data name="Country_val_AG" xml:space="preserve">
-    <value>Antígua e Barbuda</value>
+    <value>Антигуа і Барбуда</value>
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI" xml:space="preserve">
-    <value>Anguilla</value>
+    <value>Ангілья</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL" xml:space="preserve">
-    <value>Albânia</value>
+    <value>Албанія</value>
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM" xml:space="preserve">
-    <value>Arménia</value>
+    <value>Вірменія</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO" xml:space="preserve">
-    <value>Angola</value>
+    <value>Ангола</value>
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ" xml:space="preserve">
-    <value>Antárctica</value>
+    <value>Антарктида</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR" xml:space="preserve">
-    <value>Argentina</value>
+    <value>Аргентина</value>
     <comment>The name of AR country</comment>
   </data>
   <data name="Country_val_AS" xml:space="preserve">
-    <value>Samoa Americana</value>
+    <value>Американське Самоа</value>
     <comment>The name of AS country</comment>
   </data>
   <data name="Country_val_AT" xml:space="preserve">
-    <value>Áustria</value>
+    <value>Австрія</value>
     <comment>The name of AT country</comment>
   </data>
   <data name="Country_val_AU" xml:space="preserve">
-    <value>Austrália</value>
+    <value>Австралія</value>
     <comment>The name of AU country</comment>
   </data>
   <data name="Country_val_AW" xml:space="preserve">
-    <value>Aruba</value>
+    <value>Аруба</value>
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX" xml:space="preserve">
-    <value>Ilhas Aland</value>
+    <value>Аландські острови</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ" xml:space="preserve">
-    <value>Azerbaijão</value>
+    <value>Азербайджан</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA" xml:space="preserve">
-    <value>Bósnia e Herzegovina</value>
+    <value>Боснія і Герцеговина</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB" xml:space="preserve">
-    <value>Barbados</value>
+    <value>Барбадос</value>
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD" xml:space="preserve">
-    <value>Bangladesh</value>
+    <value>Бангладеш</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE" xml:space="preserve">
-    <value>Bélgica</value>
+    <value>Бельгія</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF" xml:space="preserve">
-    <value>Burquina Faso</value>
+    <value>Буркіна-Фасо</value>
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG" xml:space="preserve">
-    <value>Bulgária</value>
+    <value>Болгарія</value>
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH" xml:space="preserve">
-    <value>Barém</value>
+    <value>Бахрейн</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI" xml:space="preserve">
-    <value>Burundi</value>
+    <value>Бурунді</value>
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ" xml:space="preserve">
-    <value>Benim</value>
+    <value>Бенін</value>
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL" xml:space="preserve">
-    <value>São Bartolomeu</value>
+    <value>Сен-Бартельмі</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM" xml:space="preserve">
-    <value>Bermuda</value>
+    <value>Бермудські острови</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN" xml:space="preserve">
-    <value>Brunei Darussalam</value>
+    <value>Бруней-Даруссалам</value>
     <comment>The name of BN country</comment>
   </data>
   <data name="Country_val_BO" xml:space="preserve">
-    <value>Bolívia</value>
+    <value>Болівія</value>
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ" xml:space="preserve">
-    <value>Bonaire, Santo Eustáquio e Saba</value>
+    <value>Бонайре, Сінт-Естатіус і Саба</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR" xml:space="preserve">
-    <value>Brasil</value>
+    <value>Бразилія</value>
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS" xml:space="preserve">
-    <value>Baamas</value>
+    <value>Багамські острови</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT" xml:space="preserve">
-    <value>Butão</value>
+    <value>Бутан</value>
     <comment>The name of BT country</comment>
   </data>
   <data name="Country_val_BV" xml:space="preserve">
-    <value>Ilha Bouvet</value>
+    <value>Острів Буве́</value>
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW" xml:space="preserve">
-    <value>Botsuana</value>
+    <value>Ботсвана</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY" xml:space="preserve">
-    <value>Bielorrússia</value>
+    <value>Білорусь</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ" xml:space="preserve">
-    <value>Belize</value>
+    <value>Беліз</value>
     <comment>The name of BZ country</comment>
   </data>
   <data name="Country_val_CA" xml:space="preserve">
-    <value>Canadá</value>
+    <value>Канада</value>
     <comment>The name of CA country</comment>
   </data>
   <data name="Country_val_CC" xml:space="preserve">
-    <value>Ilhas Cocos (Keeling)</value>
+    <value>Кокосові острови (Кілінг)</value>
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD" xml:space="preserve">
-    <value>Congo (República Democrática do)</value>
+    <value>Конго (Демократична Республіка)</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF" xml:space="preserve">
-    <value>República Central Africana</value>
+    <value>Центральноафриканська Республіка</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG" xml:space="preserve">
-    <value>Congo</value>
+    <value>Конго</value>
     <comment>The name of CG country</comment>
   </data>
   <data name="Country_val_CH" xml:space="preserve">
-    <value>Suíça</value>
+    <value>Швейцарія</value>
     <comment>The name of CH country</comment>
   </data>
   <data name="Country_val_CI" xml:space="preserve">
-    <value>Costa do Marfim</value>
+    <value>Кот-д'Івуар</value>
     <comment>The name of CI country</comment>
   </data>
   <data name="Country_val_CK" xml:space="preserve">
-    <value>Ilhas Cook</value>
+    <value>Острови Кука</value>
     <comment>The name of CK country</comment>
   </data>
   <data name="Country_val_CL" xml:space="preserve">
-    <value>Chile</value>
+    <value>Чилі</value>
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM" xml:space="preserve">
-    <value>Camarões</value>
+    <value>Камерун</value>
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN" xml:space="preserve">
-    <value>China</value>
+    <value>Китай</value>
     <comment>The name of CN country</comment>
   </data>
   <data name="Country_val_CO" xml:space="preserve">
-    <value>Colômbia</value>
+    <value>Колумбія</value>
     <comment>The name of CO country</comment>
   </data>
   <data name="Country_val_CR" xml:space="preserve">
-    <value>Costa Rica</value>
+    <value>Коста-Рика</value>
     <comment>The name of CR country</comment>
   </data>
   <data name="Country_val_CU" xml:space="preserve">
-    <value>Cuba</value>
+    <value>Куба</value>
     <comment>The name of CU country</comment>
   </data>
   <data name="Country_val_CV" xml:space="preserve">
-    <value>Cabo Verde</value>
+    <value>Кабо-Верде</value>
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW" xml:space="preserve">
-    <value>Curacao</value>
+    <value>Кюрасао</value>
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX" xml:space="preserve">
-    <value>Ilha Natal</value>
+    <value>Острів Різдва</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY" xml:space="preserve">
-    <value>Chipre</value>
+    <value>Кіпр</value>
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ" xml:space="preserve">
-    <value>Tchéquia</value>
+    <value>Чехія</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE" xml:space="preserve">
-    <value>Alemanha</value>
+    <value>Німеччина</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ" xml:space="preserve">
-    <value>Djibuti</value>
+    <value>Джибуті</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK" xml:space="preserve">
-    <value>Dinamarca</value>
+    <value>Данія</value>
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM" xml:space="preserve">
-    <value>Dominica</value>
+    <value>Домініка</value>
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO" xml:space="preserve">
-    <value>República Dominicana</value>
+    <value>Домініканська Республіка</value>
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ" xml:space="preserve">
-    <value>Algéria</value>
+    <value>Алжир</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC" xml:space="preserve">
-    <value>Equador</value>
+    <value>Еквадор</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE" xml:space="preserve">
-    <value>Estónia</value>
+    <value>Естонія</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG" xml:space="preserve">
-    <value>Egipto</value>
+    <value>Єгипет</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH" xml:space="preserve">
-    <value>Saará Ocidental</value>
+    <value>Західна Сахара</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER" xml:space="preserve">
-    <value>Eritreia</value>
+    <value>Еритрея</value>
     <comment>The name of ER country</comment>
   </data>
   <data name="Country_val_ES" xml:space="preserve">
-    <value>Espanha</value>
+    <value>Іспанія</value>
     <comment>The name of ES country</comment>
   </data>
   <data name="Country_val_ET" xml:space="preserve">
-    <value>Etiópia</value>
+    <value>Ефіопія</value>
     <comment>The name of ET country</comment>
   </data>
   <data name="Country_val_FI" xml:space="preserve">
-    <value>Finlândia</value>
+    <value>Фінляндія</value>
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ" xml:space="preserve">
-    <value>Ilhas Fiji</value>
+    <value>Фіджі</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK" xml:space="preserve">
-    <value>Ilhas Falkland (Malvinas)</value>
+    <value>Фолклендські острови (Мальвінські)</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM" xml:space="preserve">
-    <value>Micronésia</value>
+    <value>Мікронезія</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO" xml:space="preserve">
-    <value>Ilhas Faroé</value>
+    <value>Фарерські острови</value>
     <comment>The name of FO country</comment>
   </data>
   <data name="Country_val_FR" xml:space="preserve">
-    <value>França</value>
+    <value>Франція</value>
     <comment>The name of FR country</comment>
   </data>
   <data name="Country_val_GA" xml:space="preserve">
-    <value>Gabão</value>
+    <value>Габон</value>
     <comment>The name of GA country</comment>
   </data>
   <data name="Country_val_GB" xml:space="preserve">
-    <value>Reino Unido</value>
+    <value>Велика Британія</value>
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD" xml:space="preserve">
-    <value>Grenada</value>
+    <value>Гренада</value>
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE" xml:space="preserve">
-    <value>Geórgia</value>
+    <value>Грузія</value>
     <comment>The name of GE country</comment>
   </data>
   <data name="Country_val_GF" xml:space="preserve">
-    <value>Guiana Francesa</value>
+    <value>Французька Гвіана</value>
     <comment>The name of GF country</comment>
   </data>
   <data name="Country_val_GG" xml:space="preserve">
-    <value>Guernsey</value>
+    <value>Гернсі</value>
     <comment>The name of GG country</comment>
   </data>
   <data name="Country_val_GH" xml:space="preserve">
-    <value>Gana</value>
+    <value>Гана</value>
     <comment>The name of GH country</comment>
   </data>
   <data name="Country_val_GI" xml:space="preserve">
-    <value>Gibraltar</value>
+    <value>Гібралтар</value>
     <comment>The name of GI country</comment>
   </data>
   <data name="Country_val_GL" xml:space="preserve">
-    <value>Gronelândia</value>
+    <value>Гренландія</value>
     <comment>The name of GL country</comment>
   </data>
   <data name="Country_val_GM" xml:space="preserve">
-    <value>Gâmbia</value>
+    <value>Гамбія</value>
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN" xml:space="preserve">
-    <value>Guiné</value>
+    <value>Гвінея</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP" xml:space="preserve">
-    <value>Guadalupe</value>
+    <value>Гваделупа</value>
     <comment>The name of GP country</comment>
   </data>
   <data name="Country_val_GQ" xml:space="preserve">
-    <value>Guiné Equatorial</value>
+    <value>Екваторіальна Гвінея</value>
     <comment>The name of GQ country</comment>
   </data>
   <data name="Country_val_GR" xml:space="preserve">
-    <value>Grécia</value>
+    <value>Греція</value>
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS" xml:space="preserve">
-    <value>Geórgia do Sul e Ilhas Sandwich do Sul</value>
+    <value>Південна Джорджія і Південні Сандвічеві острови</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT" xml:space="preserve">
-    <value>Guatemala</value>
+    <value>Гватемала</value>
     <comment>The name of GT country</comment>
   </data>
   <data name="Country_val_GU" xml:space="preserve">
-    <value>Guam</value>
+    <value>Гуам</value>
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW" xml:space="preserve">
-    <value>Guiné-Bissau</value>
+    <value>Гвінея-Бісау</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY" xml:space="preserve">
-    <value>Guiana</value>
+    <value>Гаяна</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK" xml:space="preserve">
-    <value>Hong Kong</value>
+    <value>Гонконг</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM" xml:space="preserve">
-    <value>Ilha Heard e Ilhas McDonald</value>
+    <value>Острови Герд і Макдональд</value>
     <comment>The name of HM country</comment>
   </data>
   <data name="Country_val_HN" xml:space="preserve">
-    <value>Honduras</value>
+    <value>Гондурас</value>
     <comment>The name of HN country</comment>
   </data>
   <data name="Country_val_HR" xml:space="preserve">
-    <value>Croácia</value>
+    <value>Хорватія</value>
     <comment>The name of HR country</comment>
   </data>
   <data name="Country_val_HT" xml:space="preserve">
-    <value>Haiti</value>
+    <value>Гаїті</value>
     <comment>The name of HT country</comment>
   </data>
   <data name="Country_val_HU" xml:space="preserve">
-    <value>Hungria</value>
+    <value>Угорщина</value>
     <comment>The name of HU country</comment>
   </data>
   <data name="Country_val_ID" xml:space="preserve">
-    <value>Indonésia</value>
+    <value>Індонезія</value>
     <comment>The name of ID country</comment>
   </data>
   <data name="Country_val_IE" xml:space="preserve">
-    <value>Irlanda</value>
+    <value>Ірландія</value>
     <comment>The name of IE country</comment>
   </data>
   <data name="Country_val_IL" xml:space="preserve">
-    <value>Israel</value>
+    <value>Ізраїль</value>
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM" xml:space="preserve">
-    <value>Ilha de Man</value>
+    <value>Острів Мен</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN" xml:space="preserve">
-    <value>Índia</value>
+    <value>Індія</value>
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO" xml:space="preserve">
-    <value>Território Britânico no Oceano Índico</value>
+    <value>Британська територія в Індійському океані</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ" xml:space="preserve">
-    <value>Iraque</value>
+    <value>Ірак</value>
     <comment>The name of IQ country</comment>
   </data>
   <data name="Country_val_IR" xml:space="preserve">
-    <value>Irão</value>
+    <value>Іран</value>
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS" xml:space="preserve">
-    <value>Islândia</value>
+    <value>Ісландія</value>
     <comment>The name of IS country</comment>
   </data>
   <data name="Country_val_IT" xml:space="preserve">
-    <value>Itália</value>
+    <value>Італія</value>
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE" xml:space="preserve">
-    <value>Jersey</value>
+    <value>Джерсі</value>
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM" xml:space="preserve">
-    <value>Jamaica</value>
+    <value>Ямайка</value>
     <comment>The name of JM country</comment>
   </data>
   <data name="Country_val_JO" xml:space="preserve">
-    <value>Jordânia</value>
+    <value>Йорданія</value>
     <comment>The name of JO country</comment>
   </data>
   <data name="Country_val_JP" xml:space="preserve">
-    <value>Japão</value>
+    <value>Японія</value>
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE" xml:space="preserve">
-    <value>Quénia</value>
+    <value>Кенія</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG" xml:space="preserve">
-    <value>Quirguistão</value>
+    <value>Киргизстан</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH" xml:space="preserve">
-    <value>Cambodja</value>
+    <value>Камбоджа</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI" xml:space="preserve">
-    <value>Quiribati</value>
+    <value>Кірибаті</value>
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM" xml:space="preserve">
-    <value>Comores</value>
+    <value>Коморські Острови</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN" xml:space="preserve">
-    <value>Saint Kitts e Nevis</value>
+    <value>Сент-Кіттс і Невіс</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP" xml:space="preserve">
-    <value>Coreia do Norte</value>
+    <value>КНДР</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR" xml:space="preserve">
-    <value>Coreia do Sul</value>
+    <value>Південна Корея</value>
     <comment>The name of KR country</comment>
   </data>
   <data name="Country_val_KW" xml:space="preserve">
-    <value>Kuwait</value>
+    <value>Кувейт</value>
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY" xml:space="preserve">
-    <value>Ilhas Cayman</value>
+    <value>Кайманові острови</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ" xml:space="preserve">
-    <value>Cazaquistão</value>
+    <value>Казахстан</value>
     <comment>The name of KZ country</comment>
   </data>
   <data name="Country_val_LA" xml:space="preserve">
-    <value>Laos</value>
+    <value>Лаос</value>
     <comment>The name of LA country</comment>
   </data>
   <data name="Country_val_LB" xml:space="preserve">
-    <value>Líbano</value>
+    <value>Ліван</value>
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC" xml:space="preserve">
-    <value>Santa Lúcia</value>
+    <value>Сент-Люсія</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI" xml:space="preserve">
-    <value>Liechtenstein</value>
+    <value>Ліхтенштейн</value>
     <comment>The name of LI country</comment>
   </data>
   <data name="Country_val_LK" xml:space="preserve">
-    <value>Sri Lanka</value>
+    <value>Шрі-Ланка</value>
     <comment>The name of LK country</comment>
   </data>
   <data name="Country_val_LR" xml:space="preserve">
-    <value>Libéria</value>
+    <value>Ліберія</value>
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS" xml:space="preserve">
-    <value>Lesoto</value>
+    <value>Лесото</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT" xml:space="preserve">
-    <value>Lituânia</value>
+    <value>Литва</value>
     <comment>The name of LT country</comment>
   </data>
   <data name="Country_val_LU" xml:space="preserve">
-    <value>Luxemburgo</value>
+    <value>Люксембург</value>
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV" xml:space="preserve">
-    <value>Látvia</value>
+    <value>Латвія</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY" xml:space="preserve">
-    <value>Líbia</value>
+    <value>Лівія</value>
     <comment>The name of LY country</comment>
   </data>
   <data name="Country_val_MA" xml:space="preserve">
-    <value>Marrocos</value>
+    <value>Марокко</value>
     <comment>The name of MA country</comment>
   </data>
   <data name="Country_val_MC" xml:space="preserve">
-    <value>Mónaco</value>
+    <value>Монако</value>
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD" xml:space="preserve">
-    <value>Moldávia</value>
+    <value>Молдова</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME" xml:space="preserve">
-    <value>Montenegro</value>
+    <value>Чорногорія</value>
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF" xml:space="preserve">
-    <value>Saint Martin (parte francesa)</value>
+    <value>Сен-Мартен (Франція)</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG" xml:space="preserve">
-    <value>Madagáscar</value>
+    <value>Мадагаскар</value>
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH" xml:space="preserve">
-    <value>Ilhas Marshall</value>
+    <value>Маршаллові острови</value>
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK" xml:space="preserve">
-    <value>Macedónia do Norte</value>
+    <value>Північна Македонія</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML" xml:space="preserve">
-    <value>Mali</value>
+    <value>Малі</value>
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM" xml:space="preserve">
-    <value>Mianmar</value>
+    <value>М'янма</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN" xml:space="preserve">
-    <value>Mongólia</value>
+    <value>Монголія</value>
     <comment>The name of MN country</comment>
   </data>
   <data name="Country_val_MO" xml:space="preserve">
-    <value>Macau</value>
+    <value>Макао</value>
     <comment>The name of MO country</comment>
   </data>
   <data name="Country_val_MP" xml:space="preserve">
-    <value>Ilhas Marianas do Norte</value>
+    <value>Північні Маріанські острови</value>
     <comment>The name of MP country</comment>
   </data>
   <data name="Country_val_MQ" xml:space="preserve">
-    <value>Martinica</value>
+    <value>Мартиніка</value>
     <comment>The name of MQ country</comment>
   </data>
   <data name="Country_val_MR" xml:space="preserve">
-    <value>Mauritânia</value>
+    <value>Мавританія</value>
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS" xml:space="preserve">
-    <value>Monserrate</value>
+    <value>Монтсеррат</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT" xml:space="preserve">
-    <value>Malta</value>
+    <value>Мальта</value>
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU" xml:space="preserve">
-    <value>Maurícia</value>
+    <value>Маврикій</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV" xml:space="preserve">
-    <value>Maldivas</value>
+    <value>Мальдіви</value>
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW" xml:space="preserve">
-    <value>Malawi</value>
+    <value>Малаві</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX" xml:space="preserve">
-    <value>México</value>
+    <value>Мексика</value>
     <comment>The name of MX country</comment>
   </data>
   <data name="Country_val_MY" xml:space="preserve">
-    <value>Malásia</value>
+    <value>Малайзія</value>
     <comment>The name of MY country</comment>
   </data>
   <data name="Country_val_MZ" xml:space="preserve">
-    <value>Moçambique</value>
+    <value>Мозамбік</value>
     <comment>The name of MZ country</comment>
   </data>
   <data name="Country_val_NA" xml:space="preserve">
-    <value>Namíbia</value>
+    <value>Намібія</value>
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC" xml:space="preserve">
-    <value>Nova Caledónia</value>
+    <value>Нова Каледонія</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE" xml:space="preserve">
-    <value>Níger</value>
+    <value>Нігер</value>
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF" xml:space="preserve">
-    <value>Ilha Norfolk</value>
+    <value>Острів Норфолк</value>
     <comment>The name of NF country</comment>
   </data>
   <data name="Country_val_NG" xml:space="preserve">
-    <value>Nigéria</value>
+    <value>Нігерія</value>
     <comment>The name of NG country</comment>
   </data>
   <data name="Country_val_NI" xml:space="preserve">
-    <value>Nicarágua</value>
+    <value>Нікарагуа</value>
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL" xml:space="preserve">
-    <value>Países-Baixos</value>
+    <value>Нідерланди</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO" xml:space="preserve">
-    <value>Noruega</value>
+    <value>Норвегія</value>
     <comment>The name of NO country</comment>
   </data>
   <data name="Country_val_NP" xml:space="preserve">
-    <value>Nepal</value>
+    <value>Непал</value>
     <comment>The name of NP country</comment>
   </data>
   <data name="Country_val_NR" xml:space="preserve">
-    <value>Nauru</value>
+    <value>Науру</value>
     <comment>The name of NR country</comment>
   </data>
   <data name="Country_val_NU" xml:space="preserve">
-    <value>Niue</value>
+    <value>Ніуе</value>
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ" xml:space="preserve">
-    <value>Nova Zelândia</value>
+    <value>Нова Зеландія</value>
     <comment>The name of NZ country</comment>
   </data>
   <data name="Country_val_OM" xml:space="preserve">
-    <value>Omã</value>
+    <value>Оман</value>
     <comment>The name of OM country</comment>
   </data>
   <data name="Country_val_PA" xml:space="preserve">
-    <value>Panamá</value>
+    <value>Панама</value>
     <comment>The name of PA country</comment>
   </data>
   <data name="Country_val_PE" xml:space="preserve">
-    <value>Peru</value>
+    <value>Перу</value>
     <comment>The name of PE country</comment>
   </data>
   <data name="Country_val_PF" xml:space="preserve">
-    <value>Polinésia Francesa</value>
+    <value>Французька Полінезія</value>
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG" xml:space="preserve">
-    <value>Papua Nova Guiné</value>
+    <value>Папуа Нова Гвінея</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH" xml:space="preserve">
-    <value>Filipinas</value>
+    <value>Філіппіни</value>
     <comment>The name of PH country</comment>
   </data>
   <data name="Country_val_PK" xml:space="preserve">
-    <value>Paquistão</value>
+    <value>Пакистан</value>
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL" xml:space="preserve">
-    <value>Polónia</value>
+    <value>Польща</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM" xml:space="preserve">
-    <value>Saint Pierre e Miquelon</value>
+    <value>Сен-П'єр і Мікелон</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN" xml:space="preserve">
-    <value>Pitcairn</value>
+    <value>Піткерн</value>
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR" xml:space="preserve">
-    <value>Porto Rico</value>
+    <value>Пуерто-Ріко</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS" xml:space="preserve">
-    <value>Palestina</value>
+    <value>Палестина</value>
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT" xml:space="preserve">
-    <value>Portugal</value>
+    <value>Португалія</value>
     <comment>The name of PT country</comment>
   </data>
   <data name="Country_val_PW" xml:space="preserve">
-    <value>Palau</value>
+    <value>Палау</value>
     <comment>The name of PW country</comment>
   </data>
   <data name="Country_val_PY" xml:space="preserve">
-    <value>Paraguai</value>
+    <value>Парагвай</value>
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA" xml:space="preserve">
-    <value>Qatar</value>
+    <value>Катар</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE" xml:space="preserve">
-    <value>Reunião</value>
+    <value>Реюньйон</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO" xml:space="preserve">
-    <value>Roménia</value>
+    <value>Румунія</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS" xml:space="preserve">
-    <value>Sérvia</value>
+    <value>Сербія</value>
     <comment>The name of RS country</comment>
   </data>
   <data name="Country_val_RU" xml:space="preserve">
-    <value>Rússia</value>
+    <value>Російська Федерація</value>
     <comment>The name of RU country</comment>
   </data>
   <data name="Country_val_RW" xml:space="preserve">
-    <value>Ruanda</value>
+    <value>Руанда</value>
     <comment>The name of RW country</comment>
   </data>
   <data name="Country_val_SA" xml:space="preserve">
-    <value>Arábia Saudita</value>
+    <value>Саудівська Аравія</value>
     <comment>The name of SA country</comment>
   </data>
   <data name="Country_val_SB" xml:space="preserve">
-    <value>Ilhas Salomão</value>
+    <value>Соломонові острови</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC" xml:space="preserve">
-    <value>Seicheles</value>
+    <value>Сейшельські острови</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD" xml:space="preserve">
-    <value>Sudão</value>
+    <value>Судан</value>
     <comment>The name of SD country</comment>
   </data>
   <data name="Country_val_SE" xml:space="preserve">
-    <value>Suécia</value>
+    <value>Швеція</value>
     <comment>The name of SE country</comment>
   </data>
   <data name="Country_val_SG" xml:space="preserve">
-    <value>Singapura</value>
+    <value>Сінґапур</value>
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH" xml:space="preserve">
-    <value>Santa Helena, Ascenção e Tristão da Cunha</value>
+    <value>Острови Святої Єлени, Вознесіння і Тристан-да-Кунья</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI" xml:space="preserve">
-    <value>Eslovénia</value>
+    <value>Словенія</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ" xml:space="preserve">
-    <value>Svalbard e Jan Mayen</value>
+    <value>Свальбард і Ян-Маєн</value>
     <comment>The name of SJ country</comment>
   </data>
   <data name="Country_val_SK" xml:space="preserve">
-    <value>Eslováquia</value>
+    <value>Словаччина</value>
     <comment>The name of SK country</comment>
   </data>
   <data name="Country_val_SL" xml:space="preserve">
-    <value>Serra Leoa</value>
+    <value>Сьєрра-Леоне</value>
     <comment>The name of SL country</comment>
   </data>
   <data name="Country_val_SM" xml:space="preserve">
-    <value>São Marino</value>
+    <value>Сан-Марино</value>
     <comment>The name of SM country</comment>
   </data>
   <data name="Country_val_SN" xml:space="preserve">
-    <value>Senegal</value>
+    <value>Сенегал</value>
     <comment>The name of SN country</comment>
   </data>
   <data name="Country_val_SO" xml:space="preserve">
-    <value>Somália</value>
+    <value>Сомалі</value>
     <comment>The name of SO country</comment>
   </data>
   <data name="Country_val_SR" xml:space="preserve">
-    <value>Suriname</value>
+    <value>Суринам</value>
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS" xml:space="preserve">
-    <value>Sudão Sul</value>
+    <value>Південний Судан</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST" xml:space="preserve">
-    <value>São Tomé e Príncipe</value>
+    <value>Сан-Томе і Принсіпі</value>
     <comment>The name of ST country</comment>
   </data>
   <data name="Country_val_SV" xml:space="preserve">
-    <value>El Salvador</value>
+    <value>Сальвадор</value>
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX" xml:space="preserve">
-    <value>Sint Maarten (parte holandesa)</value>
+    <value>Сінт-Мартен (Нідерландська частина)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY" xml:space="preserve">
-    <value>Síria</value>
+    <value>Сирійська Арабська Республіка</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ" xml:space="preserve">
-    <value>Suazilândia</value>
+    <value>Есватіні</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC" xml:space="preserve">
-    <value>Ilhas Turcas e Caicos</value>
+    <value>Острови Теркс і Кайкос</value>
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD" xml:space="preserve">
-    <value>Chade</value>
+    <value>Чад</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF" xml:space="preserve">
-    <value>Territórios franceses do Sul</value>
+    <value>Французькі Південні і Антарктичні території</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG" xml:space="preserve">
-    <value>Togo</value>
+    <value>Того</value>
     <comment>The name of TG country</comment>
   </data>
   <data name="Country_val_TH" xml:space="preserve">
-    <value>Tailândia</value>
+    <value>Таїланд</value>
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ" xml:space="preserve">
-    <value>Tajiquistão</value>
+    <value>Таджикистан</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK" xml:space="preserve">
-    <value>Toquelau</value>
+    <value>Токелау</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL" xml:space="preserve">
-    <value>Timor-Leste</value>
+    <value>Східний Тимор</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM" xml:space="preserve">
-    <value>Turquemenistão</value>
+    <value>Туркменістан</value>
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN" xml:space="preserve">
-    <value>Tunísia</value>
+    <value>Туніс</value>
     <comment>The name of TN country</comment>
   </data>
   <data name="Country_val_TO" xml:space="preserve">
-    <value>Tonga</value>
+    <value>Тонга</value>
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR" xml:space="preserve">
-    <value>Turquia</value>
+    <value>Туреччина</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT" xml:space="preserve">
-    <value>Trinidad e Tobago</value>
+    <value>Тринідад і Тобаго</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV" xml:space="preserve">
-    <value>Tuvalu</value>
+    <value>Тувалу</value>
     <comment>The name of TV country</comment>
   </data>
   <data name="Country_val_TW" xml:space="preserve">
-    <value>Taiwan</value>
+    <value>Тайвань</value>
     <comment>The name of TW country</comment>
   </data>
   <data name="Country_val_TZ" xml:space="preserve">
-    <value>Tanzânia</value>
+    <value>Танзанія</value>
     <comment>The name of TZ country</comment>
   </data>
   <data name="Country_val_UA" xml:space="preserve">
-    <value>Ucrânia</value>
+    <value>Україна</value>
     <comment>The name of UA country</comment>
   </data>
   <data name="Country_val_UG" xml:space="preserve">
-    <value>Uganda</value>
+    <value>Уганда</value>
     <comment>The name of UG country</comment>
   </data>
   <data name="Country_val_UK" xml:space="preserve">
-    <value>Reino Unido</value>
+    <value>Велика Британія</value>
     <comment>The name of UK country</comment>
   </data>
   <data name="Country_val_UM" xml:space="preserve">
-    <value>Ilhas Menores Distantes dos Estados Unidos</value>
+    <value>Зовнішні малі острови США</value>
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US" xml:space="preserve">
-    <value>Estados Unidos</value>
+    <value>Сполучені Штати Америки</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY" xml:space="preserve">
-    <value>Uruguai</value>
+    <value>Уругвай</value>
     <comment>The name of UY country</comment>
   </data>
   <data name="Country_val_UZ" xml:space="preserve">
-    <value>Uzbequistão</value>
+    <value>Узбекистан</value>
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA" xml:space="preserve">
-    <value>Vaticano</value>
+    <value>Ватикан</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC" xml:space="preserve">
-    <value>Saint Vincent e Grenadines</value>
+    <value>Сент-Вінсент і Гренадини</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE" xml:space="preserve">
-    <value>Venezuela</value>
+    <value>Венесуела</value>
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG" xml:space="preserve">
-    <value>Ilhas Virgens, Inglesas</value>
+    <value>Британські Віргінські острови</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI" xml:space="preserve">
@@ -1127,62 +1127,62 @@
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN" xml:space="preserve">
-    <value>Vietname</value>
+    <value>В'єтнам</value>
     <comment>The name of VN country</comment>
   </data>
   <data name="Country_val_VU" xml:space="preserve">
-    <value>Vanuatu</value>
+    <value>Вануату</value>
     <comment>The name of VU country</comment>
   </data>
   <data name="Country_val_WF" xml:space="preserve">
-    <value>Wallis e Futuna</value>
+    <value>Волліс і Футуна</value>
     <comment>The name of WF country</comment>
   </data>
   <data name="Country_val_WS" xml:space="preserve">
-    <value>Samoa</value>
+    <value>Самоа</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE" xml:space="preserve">
-    <value>Yemen</value>
+    <value>Ємен</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT" xml:space="preserve">
-    <value>Maiote</value>
+    <value>Майотта</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA" xml:space="preserve">
-    <value>África do Sul</value>
+    <value>Південна Африка</value>
     <comment>The name of ZA country</comment>
   </data>
   <data name="Country_val_ZM" xml:space="preserve">
-    <value>Zâmbia</value>
+    <value>Замбія</value>
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW" xml:space="preserve">
-    <value>Zimbabué</value>
+    <value>Зімбабве</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ" xml:space="preserve">
-    <value>Desconhecido</value>
+    <value>Невідомо</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_Latency_Description" xml:space="preserve">
     <value>Latency shows how long it takes for a server to respond to requests.\n\nHigh latency can slow down your connection.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>VPN may run slower than normal</value>
+    <value>VPN може працювати повільніше</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
     <value>High (150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>Lightning fast speeds</value>
+    <value>Блискавична швидкість</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
     <value>Low (1ms - 50ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>Unlikely to affect VPN speed</value>
+    <value>Майже не впливає на швидкість VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
     <value>Medium (50ms - 150ms)</value>
@@ -1191,7 +1191,7 @@
     <value>What is latency?</value>
   </data>
   <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
+    <value>Протокол – це набір інструкцій, яких дотримується ваш пристрій для з'єднання й обміну даними з сервером.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
     <value>Switch VPN Protocol</value>
@@ -1200,31 +1200,31 @@
     <value>What is a VPN protocol?</value>
   </data>
   <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
-    <value>Qual é o problema?</value>
+    <value>Що сталося?</value>
   </data>
   <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
     <value>Server load shows how close a server is to its maximum capacity.\n\nA high server load can slow down your connection.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>VPN may run slower than normal</value>
+    <value>VPN може працювати повільніше</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
     <value>High (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>Lightning fast speeds</value>
+    <value>Блискавична швидкість</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
     <value>Low (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>Unlikely to affect VPN speed</value>
+    <value>Майже не впливає на швидкість VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
     <value>Medium (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>What is server load?</value>
+    <value>Що таке навантаження сервера?</value>
   </data>
   <data name="Format_Milliseconds" xml:space="preserve">
     <value>{0}ms</value>
@@ -1329,13 +1329,13 @@
     <value>My account</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>Browsing safely from</value>
+    <value>Безпечний перегляд з</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>A ligar a...</value>
+    <value>З'єднання з...</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>Last connected to</value>
+    <value>Востаннє під'єднано до</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
     <value>Recommended</value>
@@ -1371,7 +1371,7 @@
     <value>Hide user IP address</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>Connection details</value>
+    <value>Подробиці з'єднання</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
@@ -1384,7 +1384,7 @@
     <value>Protocol</value>
   </data>
   <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>Server</value>
+    <value>Сервер</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
     <value>Server load</value>
@@ -1400,7 +1400,7 @@
     <value>Show user IP address</value>
   </data>
   <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>Connection details</value>
+    <value>Подробиці з'єднання</value>
   </data>
   <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
     <value>Upload</value>
@@ -1428,7 +1428,7 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>Rastreadores\nparados</value>
+    <value>Зупинені\nвистежувачі</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title" xml:space="preserve">
@@ -1458,10 +1458,10 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>A proteger a sua identidade digital</value>
+    <value>Захист ваших цифрових особистих даних</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>Não está protegido.</value>
+    <value>Ви незахищені</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
     <value>Protected</value>
@@ -1473,40 +1473,40 @@
     <value>Tor</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>Palavra-passe incorreta. Tente novamente.</value>
+    <value>Неправильний код. Повторіть спробу.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>As credenciais de início de sessão estão incorretas. Tente novamente.</value>
+    <value>Неправильні дані входу. Спробуйте ще раз.</value>
   </data>
   <data name="Settings_About" xml:space="preserve">
-    <value>About</value>
+    <value>Про програму</value>
   </data>
   <data name="Settings_AppVersion" xml:space="preserve">
     <value>App version</value>
   </data>
   <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>Estas estatísticas não contêm o seu endereço IP e não podem ser utilizadas para o identificar. Nunca as partilharemos com terceiros.</value>
+    <value>Ця статистика не містить вашої IP-адреси та не може бути використана для вашої ідентифікації. Ми ніколи не передаємо ці дані третім сторонам.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>Partilhar relatórios anónimos de falhas</value>
+    <value>Надсилати анонімні звіти про збої</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>Os relatórios de falhas ajudam-nos a corrigir erros, a detetar firewalls e a evitar bloqueios de VPN.</value>
+    <value>Звіти про збої допомагають нам виправляти помилки, виявляти мережеві екрани та уникати блокування VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>Partilhar estatísticas anónimas de utilização</value>
+    <value>Анонімна статистика використання</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>Os dados de utilização ajudam-nos a ultrapassar bloqueios de VPN e a melhorar a aplicação.</value>
+    <value>Дані про використання допомагають нам обходити блокування VPN і вдосконалювати швидкодію програми.</value>
   </data>
   <data name="Settings_Connection" xml:space="preserve">
     <value>Connection</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>Definições avançadas</value>
+    <value>Додаткові налаштування</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>Redirecionamento alternativo</value>
+    <value>Альтернативна маршрутизація</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
     <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
@@ -1522,11 +1522,11 @@
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
-    <value>Adicionar endereço IPv4</value>
+    <value>Додати адресу IPv4</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>Ligações LAN</value>
+    <value>LAN-з'єднання</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
     <value>Allows you to connect to printers, speakers, and other devices in your device's local network.</value>
@@ -1553,7 +1553,7 @@
     <value>Protocol</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>Acelerador VPN</value>
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features" xml:space="preserve">
     <value>Features</value>
@@ -1568,7 +1568,7 @@
     <value>Port forwarding</value>
   </data>
   <data name="Settings_Features_SplitTunneling" xml:space="preserve">
-    <value>Tunelamento dividido</value>
+    <value>Роздільне тунелювання</value>
   </data>
   <data name="Settings_General" xml:space="preserve">
     <value>General</value>
@@ -1595,7 +1595,7 @@
     <value>Get notified about on-going Proton VPN activities</value>
   </data>
   <data name="Settings_General_Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Тема</value>
   </data>
   <data name="Settings_General_Theme_Dark" xml:space="preserve">
     <value>Dark</value>
@@ -1610,7 +1610,7 @@
     <value>Improve Proton</value>
   </data>
   <data name="Settings_Improve_Censorship" xml:space="preserve">
-    <value>Ajude-nos a combater a censura</value>
+    <value>Допоможіть нам протистояти цензурі</value>
   </data>
   <data name="Settings_OperatingSystemVersion" xml:space="preserve">
     <value>Operating System version</value>
@@ -1655,7 +1655,7 @@
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>Restore default settings</value>
+    <value>Відновити типові налаштування</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -1676,7 +1676,7 @@
     <value>Debug logs</value>
   </data>
   <data name="Settings_Support_ReportIssue" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>Повідомити про проблему</value>
   </data>
   <data name="Login_Form_CreateAccount" xml:space="preserve">
     <value>Create account</value>
@@ -1690,20 +1690,20 @@
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Username" xml:space="preserve">
-    <value>E-mail ou nome de utilizador</value>
+    <value>Е-пошта чи ім'я користувача</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
     <value>Authenticate</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Introduza o código da sua aplicação de autenticação.</value>
+    <value>Введіть код з програми автентифікації</value>
   </data>
   <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>Autenticação em dois fatores</value>
+    <value>Двоетапна перевірка</value>
   </data>
   <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>Esqueci-me do nome de utilizador</value>
+    <value>Забули ім'я користувача</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help" xml:space="preserve">
@@ -1711,7 +1711,7 @@
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ReportAnIssue" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>Повідомити про проблему</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword" xml:space="preserve">
@@ -1719,7 +1719,7 @@
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Problemas em iniciar sessão</value>
+    <value>Проблеми з входом</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Account_VpnPlan_Free" xml:space="preserve">
@@ -1756,7 +1756,7 @@
     <value>Sixth digit</value>
   </data>
   <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>Повідомити про проблему</value>
   </data>
   <data name="Common_Actions_ContactUs" xml:space="preserve">
     <value>Contact us</value>
@@ -1768,22 +1768,22 @@
     <value>Didn't work?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>Estas dicas poderão ajudá-lo a resolver o seu problema mais rapidamente.</value>
+    <value>Ці поради можуть допомогти швидше розвʼязати вашу проблему.</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
     <value>Step {0} of {1}</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Е-пошта</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>exemplo@domínio.com</value>
+    <value>example@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>Enviar registos de erro</value>
+    <value>Надіслати журнали помилок</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
@@ -1797,7 +1797,7 @@
     <value>Done</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>Ocorreu um erro</value>
+    <value>Виникла проблема</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
     <value>We couldn't send your report. Please check your connection and try again.</value>
@@ -1839,13 +1839,13 @@
     <value>Minimize to Taskbar</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>Registos da aplicação</value>
+    <value>Журнали програми</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
     <value>Service logs</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Restore default settings</value>
+    <value>Відновити типові налаштування</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
     <value>Restore and reconnect</value>
@@ -1854,10 +1854,10 @@
     <value>This will reset your Proton VPN settings to their original state.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>Restore default settings?</value>
+    <value>Відновити типові налаштування?</value>
   </data>
   <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Закрити</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
     <value>The logs folder could not be found.</value>
@@ -1902,7 +1902,7 @@
     <value>Notifications</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Seja notificado quando o número de porta muda</value>
+    <value>Отримувати сповіщення, коли кількість портів переспрямування змінюється</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
     <value>Add app</value>
@@ -1934,7 +1934,7 @@
     <value>Remove IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
-    <value>Adicionar endereço IPv4</value>
+    <value>Додати адресу IPv4</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
     <value>Standard</value>
@@ -1989,7 +1989,7 @@
     <value>You won't be able to use port forwarding with Moderate NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
-    <value>Ativar NAT moderado?</value>
+    <value>Увімкнути помірне NAT?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
     <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
@@ -2001,7 +2001,7 @@
     <value>Cities</value>
   </data>
   <data name="Countries_All" xml:space="preserve">
-    <value>All</value>
+    <value>Всі</value>
   </data>
   <data name="Countries_City_One" xml:space="preserve">
     <value>{0} city</value>
@@ -2038,11 +2038,11 @@
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries" xml:space="preserve">
-    <value>Países ({0})</value>
+    <value>Країни ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Países do Secure Core ({0})</value>
+    <value>Країни Secure Core ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_Info" xml:space="preserve">
@@ -2131,7 +2131,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Smart Routing</value>
   </data>
   <data name="Countries_Fastest" xml:space="preserve">
-    <value>Fastest country</value>
+    <value>Найшвидша країна</value>
   </data>
   <data name="Dialogs_Tor_Description" xml:space="preserve">
     <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
@@ -2163,21 +2163,21 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Smart routing</value>
   </data>
   <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>Não foram encontrados resultados.</value>
+    <value>Нічого не знайдено</value>
   </data>
   <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>Por favor, tente uma palavra-chave diferente</value>
+    <value>Спробуйте інше ключове слово</value>
   </data>
   <data name="Countries_NumberOfServers" xml:space="preserve">
     <value>Servers ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>A sua sessão expirou. Inicie sessão novamente.</value>
+    <value>Термін дії вашого сеансу завершився. Увійдіть знову.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>Introduza este número na sua aplicação BitTorrent para aumentar a velocidade.</value>
+    <value>Встановіть це значення у вашій програмі BitTorrent для вищої швидкості.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -2192,13 +2192,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Login_Form_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Е-пошта</value>
   </data>
   <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>Iniciar sessão com uma palavra-passe</value>
+    <value>Увійти за допомогою пароля</value>
   </data>
   <data name="Login_Form_SignInWithSso" xml:space="preserve">
-    <value>Iniciar sessão com SSO</value>
+    <value>Увійти за допомогою SSO</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
     <value>An error occured when retrieving the session details. Please try again.</value>
@@ -2207,25 +2207,25 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>SSO Authentication failed. Please try again.</value>
   </data>
   <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>De momento não há servidores disponíveis para a sua seleção. Selecione uma opção diferente.</value>
+    <value>Наразі немає доступних серверів для вашого вибору. Будь ласка, виберіть інший варіант.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>O adaptador de rede está a ser utilizado.</value>
+    <value>Ваш мережевий адаптер зараз використовується.</value>
   </data>
   <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>Versão do adaptador de rede desatualizada.</value>
+    <value>Версія мережевого адаптера застаріла.</value>
   </data>
   <data name="Connection_Error_TlsCertificate" xml:space="preserve">
     <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending an Issue Report.</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>O Proton VPN não consegue conectar-se à VPN porque um outro adaptador de rede WireGuard está em utilização. Desligue quaisquer VPN que tenha ativa e tente novamente. Em alternativa, pode mudar o protocolo nas definições avançadas.</value>
+    <value>Proton VPN не може під'єднатися, оскільки мережевий адаптер WireGuard зараз використовується. Від'єднайте будь-які активні VPN і повторіть спробу. Або ж ви можете змінити протокол у розширених налаштуваннях.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>Adaptador de rede em falta.</value>
+    <value>Мережевий адаптер відсутній.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
-    <value>Reportar um problema</value>
+    <value>Повідомити про проблему</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
     <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
@@ -2249,7 +2249,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Dedicated server</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
-    <value>You'll be disconnected from VPN.</value>
+    <value>Ви будете від'єднані від VPN.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
     <value>Sign out from {0}?</value>

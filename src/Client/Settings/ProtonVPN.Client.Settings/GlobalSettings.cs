@@ -30,10 +30,9 @@ public class GlobalSettings : IGlobalSettings
 {
     private readonly IGlobalSettingsCache _globalCache;
 
-    // TODO: Additional languages are not supported yet.
     public string Language
     {
-        get => DefaultSettings.Language; // _globalRepository.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
+        get => _globalCache.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Language;
         set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 

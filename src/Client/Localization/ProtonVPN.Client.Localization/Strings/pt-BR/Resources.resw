@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Common_Actions_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Adicionar</value>
   </data>
   <data name="Common_Actions_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Common_Actions_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>Conectar</value>
   </data>
   <data name="Common_Actions_Disconnect" xml:space="preserve">
-    <value>Disconnect</value>
+    <value>Desconectar</value>
   </data>
   <data name="Common_Actions_Remove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Remover</value>
   </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
-    <value>Learn more</value>
+    <value>Saiba mais</value>
   </data>
   <data name="Common_Message_Loading" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Carregando...</value>
   </data>
   <data name="Common_States_Off" xml:space="preserve">
-    <value>Off</value>
+    <value>Desativado</value>
   </data>
   <data name="Common_States_On" xml:space="preserve">
-    <value>On</value>
+    <value>Ativado</value>
   </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>
@@ -157,10 +157,10 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_Page_Title" xml:space="preserve">
-    <value>Countries</value>
+    <value>Países</value>
   </data>
   <data name="Country_Fastest" xml:space="preserve">
-    <value>Fastest country</value>
+    <value>País mais rápido</value>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
@@ -179,7 +179,7 @@
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI" xml:space="preserve">
-    <value>Anguilla</value>
+    <value>Anguila</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL" xml:space="preserve">
@@ -187,7 +187,7 @@
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM" xml:space="preserve">
-    <value>Arménia</value>
+    <value>Armênia</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO" xml:space="preserve">
@@ -195,7 +195,7 @@
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ" xml:space="preserve">
-    <value>Antárctica</value>
+    <value>Antártica</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR" xml:space="preserve">
@@ -219,7 +219,7 @@
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX" xml:space="preserve">
-    <value>Ilhas Aland</value>
+    <value>Ilhas de Aland</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ" xml:space="preserve">
@@ -235,7 +235,7 @@
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD" xml:space="preserve">
-    <value>Bangladesh</value>
+    <value>Banglasdesh</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE" xml:space="preserve">
@@ -255,7 +255,7 @@
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI" xml:space="preserve">
-    <value>Burundi</value>
+    <value>Burúndi</value>
     <comment>The name of BI country</comment>
   </data>
   <data name="Country_val_BJ" xml:space="preserve">
@@ -267,7 +267,7 @@
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM" xml:space="preserve">
-    <value>Bermuda</value>
+    <value>Bermudas</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN" xml:space="preserve">
@@ -279,7 +279,7 @@
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ" xml:space="preserve">
-    <value>Bonaire, Santo Eustáquio e Saba</value>
+    <value>Países Baixos Caribenhos</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR" xml:space="preserve">
@@ -287,7 +287,7 @@
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS" xml:space="preserve">
-    <value>Baamas</value>
+    <value>Bahamas</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT" xml:space="preserve">
@@ -319,11 +319,11 @@
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD" xml:space="preserve">
-    <value>Congo (República Democrática do)</value>
+    <value>República Democrática do Congo</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF" xml:space="preserve">
-    <value>República Central Africana</value>
+    <value>República Centro-Africana</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG" xml:space="preserve">
@@ -347,7 +347,7 @@
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM" xml:space="preserve">
-    <value>Camarões</value>
+    <value>Camerões</value>
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN" xml:space="preserve">
@@ -371,11 +371,11 @@
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW" xml:space="preserve">
-    <value>Curacao</value>
+    <value>Curaçao</value>
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX" xml:space="preserve">
-    <value>Ilha Natal</value>
+    <value>Ilha Christmas</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY" xml:space="preserve">
@@ -407,7 +407,7 @@
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ" xml:space="preserve">
-    <value>Algéria</value>
+    <value>Argélia</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC" xml:space="preserve">
@@ -415,15 +415,15 @@
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE" xml:space="preserve">
-    <value>Estónia</value>
+    <value>Estônia</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG" xml:space="preserve">
-    <value>Egipto</value>
+    <value>Egito</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH" xml:space="preserve">
-    <value>Saará Ocidental</value>
+    <value>Saara Ocidental</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER" xml:space="preserve">
@@ -443,11 +443,11 @@
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ" xml:space="preserve">
-    <value>Ilhas Fiji</value>
+    <value>Fiji</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK" xml:space="preserve">
-    <value>Ilhas Falkland (Malvinas)</value>
+    <value>Ilhas Falkland (Ilhas Malvinas)</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM" xml:space="preserve">
@@ -471,7 +471,7 @@
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD" xml:space="preserve">
-    <value>Grenada</value>
+    <value>Granada</value>
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE" xml:space="preserve">
@@ -519,7 +519,7 @@
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS" xml:space="preserve">
-    <value>Geórgia do Sul e Ilhas Sandwich do Sul</value>
+    <value>Ilhas Geórgia do Sul e Sandwich do Sul</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT" xml:space="preserve">
@@ -583,7 +583,7 @@
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO" xml:space="preserve">
-    <value>Território Britânico no Oceano Índico</value>
+    <value>Território do Oceano Índico Britânico</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ" xml:space="preserve">
@@ -591,7 +591,7 @@
     <comment>The name of IQ country</comment>
   </data>
   <data name="Country_val_IR" xml:space="preserve">
-    <value>Irão</value>
+    <value>Irã</value>
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS" xml:space="preserve">
@@ -603,7 +603,7 @@
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE" xml:space="preserve">
-    <value>Jersey</value>
+    <value>Jérsia</value>
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM" xml:space="preserve">
@@ -619,11 +619,11 @@
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE" xml:space="preserve">
-    <value>Quénia</value>
+    <value>Quênia</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG" xml:space="preserve">
-    <value>Quirguistão</value>
+    <value>Quirziguistão</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH" xml:space="preserve">
@@ -639,11 +639,11 @@
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN" xml:space="preserve">
-    <value>Saint Kitts e Nevis</value>
+    <value>São Cristóvão e Névis</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP" xml:space="preserve">
-    <value>Coreia do Norte</value>
+    <value>Coréia do Norte</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR" xml:space="preserve">
@@ -655,7 +655,7 @@
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY" xml:space="preserve">
-    <value>Ilhas Cayman</value>
+    <value>Ilhas Caiman</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ" xml:space="preserve">
@@ -699,7 +699,7 @@
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV" xml:space="preserve">
-    <value>Látvia</value>
+    <value>Letônia</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY" xml:space="preserve">
@@ -711,7 +711,7 @@
     <comment>The name of MA country</comment>
   </data>
   <data name="Country_val_MC" xml:space="preserve">
-    <value>Mónaco</value>
+    <value>Mônaco</value>
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD" xml:space="preserve">
@@ -723,7 +723,7 @@
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF" xml:space="preserve">
-    <value>Saint Martin (parte francesa)</value>
+    <value>São Martim (parte Francesa)</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG" xml:space="preserve">
@@ -735,7 +735,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK" xml:space="preserve">
-    <value>Macedónia do Norte</value>
+    <value>Macedônia do Norte</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML" xml:space="preserve">
@@ -743,7 +743,7 @@
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM" xml:space="preserve">
-    <value>Mianmar</value>
+    <value>Myanmar</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN" xml:space="preserve">
@@ -775,7 +775,7 @@
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU" xml:space="preserve">
-    <value>Maurícia</value>
+    <value>Ilhas Maurício</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV" xml:space="preserve">
@@ -783,7 +783,7 @@
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW" xml:space="preserve">
-    <value>Malawi</value>
+    <value>Malaui</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX" xml:space="preserve">
@@ -803,7 +803,7 @@
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC" xml:space="preserve">
-    <value>Nova Caledónia</value>
+    <value>Nova Caledônia</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE" xml:space="preserve">
@@ -823,7 +823,7 @@
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL" xml:space="preserve">
-    <value>Países-Baixos</value>
+    <value>Países baixos</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO" xml:space="preserve">
@@ -839,7 +839,7 @@
     <comment>The name of NR country</comment>
   </data>
   <data name="Country_val_NU" xml:space="preserve">
-    <value>Niue</value>
+    <value>Niuê</value>
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ" xml:space="preserve">
@@ -863,7 +863,7 @@
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG" xml:space="preserve">
-    <value>Papua Nova Guiné</value>
+    <value>Papua-Nova Guiné</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH" xml:space="preserve">
@@ -875,15 +875,15 @@
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL" xml:space="preserve">
-    <value>Polónia</value>
+    <value>Polônia</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM" xml:space="preserve">
-    <value>Saint Pierre e Miquelon</value>
+    <value>São Pedro e Miquelão</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN" xml:space="preserve">
-    <value>Pitcairn</value>
+    <value>Ilhas Pitcairn</value>
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR" xml:space="preserve">
@@ -907,15 +907,15 @@
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA" xml:space="preserve">
-    <value>Qatar</value>
+    <value>Catar</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE" xml:space="preserve">
-    <value>Reunião</value>
+    <value>Ilha da Reunião</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO" xml:space="preserve">
-    <value>Roménia</value>
+    <value>Romênia</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS" xml:space="preserve">
@@ -955,11 +955,11 @@
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH" xml:space="preserve">
-    <value>Santa Helena, Ascenção e Tristão da Cunha</value>
+    <value>Santa Helena, Ascensão e Tristão da Cunha</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI" xml:space="preserve">
-    <value>Eslovénia</value>
+    <value>Eslovênia</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ" xml:space="preserve">
@@ -991,7 +991,7 @@
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS" xml:space="preserve">
-    <value>Sudão Sul</value>
+    <value>Sudão do Sul</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST" xml:space="preserve">
@@ -1003,11 +1003,11 @@
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX" xml:space="preserve">
-    <value>Sint Maarten (parte holandesa)</value>
+    <value>São Martim (Parte Holandesa)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY" xml:space="preserve">
-    <value>Síria</value>
+    <value>República Árabe da Síria</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ" xml:space="preserve">
@@ -1023,7 +1023,7 @@
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF" xml:space="preserve">
-    <value>Territórios franceses do Sul</value>
+    <value>Terras Austrais e Antárticas Francesas</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG" xml:space="preserve">
@@ -1043,11 +1043,11 @@
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL" xml:space="preserve">
-    <value>Timor-Leste</value>
+    <value>Timor Leste</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM" xml:space="preserve">
-    <value>Turquemenistão</value>
+    <value>Turcomenistão</value>
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN" xml:space="preserve">
@@ -1063,7 +1063,7 @@
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT" xml:space="preserve">
-    <value>Trinidad e Tobago</value>
+    <value>Trindade e Tobago</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV" xml:space="preserve">
@@ -1107,11 +1107,11 @@
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA" xml:space="preserve">
-    <value>Vaticano</value>
+    <value>Cidade do Vaticano</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC" xml:space="preserve">
-    <value>Saint Vincent e Grenadines</value>
+    <value>São Vicente e Granadinas</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE" xml:space="preserve">
@@ -1119,15 +1119,15 @@
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG" xml:space="preserve">
-    <value>Ilhas Virgens, Inglesas</value>
+    <value>Ilhas Virgens Britânicas</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI" xml:space="preserve">
-    <value>Virgin Islands, USA</value>
+    <value>Ilhas Virgens Americanas, EUA</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN" xml:space="preserve">
-    <value>Vietname</value>
+    <value>Vietnã</value>
     <comment>The name of VN country</comment>
   </data>
   <data name="Country_val_VU" xml:space="preserve">
@@ -1143,11 +1143,11 @@
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE" xml:space="preserve">
-    <value>Yemen</value>
+    <value>Iêmen</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT" xml:space="preserve">
-    <value>Maiote</value>
+    <value>Mayotte</value>
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA" xml:space="preserve">
@@ -1159,7 +1159,7 @@
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW" xml:space="preserve">
-    <value>Zimbabué</value>
+    <value>Zimbábue</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ" xml:space="preserve">
@@ -1167,64 +1167,64 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_Latency_Description" xml:space="preserve">
-    <value>Latency shows how long it takes for a server to respond to requests.\n\nHigh latency can slow down your connection.</value>
+    <value>A latência mostra quanto tempo leva para um servidor responder às requisições.\n\nLatências altas podem reduzir a velocidade da conexão.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>VPN may run slower than normal</value>
+    <value>A VPN pode funcionar mais lentamente que o normal</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
-    <value>High (150ms+)</value>
+    <value>Alta (150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>Lightning fast speeds</value>
+    <value>Velocidade ultrarrápida</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
-    <value>Low (1ms - 50ms)</value>
+    <value>Baixa (1ms - 50ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>Unlikely to affect VPN speed</value>
+    <value>É improvável que afete a velocidade da VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
-    <value>Medium (50ms - 150ms)</value>
+    <value>Média (50ms - 150ms)</value>
   </data>
   <data name="Dialogs_Latency_Title" xml:space="preserve">
-    <value>What is latency?</value>
+    <value>O que é latência?</value>
   </data>
   <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
+    <value>Um protocolo é um conjunto de instruções que o seu dispositivo segue para se conectar e se comunicar com um servidor.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
-    <value>Switch VPN Protocol</value>
+    <value>Trocar protocolo VPN</value>
   </data>
   <data name="Dialogs_Protocol_Title" xml:space="preserve">
-    <value>What is a VPN protocol?</value>
+    <value>O que é um protocolo VPN?</value>
   </data>
   <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
     <value>Qual é o problema?</value>
   </data>
   <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
-    <value>Server load shows how close a server is to its maximum capacity.\n\nA high server load can slow down your connection.</value>
+    <value>A carga do servidor mostra o quão próximo um servidor está da capacidade máxima.\n\nUma carga alta do servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>VPN may run slower than normal</value>
+    <value>A VPN pode funcionar mais lentamente que o normal</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>High (91-100%)</value>
+    <value>Alta (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>Lightning fast speeds</value>
+    <value>Velocidade ultrarrápida</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>Low (1-75%)</value>
+    <value>Baixo (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>Unlikely to affect VPN speed</value>
+    <value>É improvável que afete a velocidade da VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>Medium (76-90%)</value>
+    <value>Média (76–90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>What is server load?</value>
+    <value>O que é carga do servidor?</value>
   </data>
   <data name="Format_Milliseconds" xml:space="preserve">
     <value>{0}ms</value>
@@ -1287,27 +1287,27 @@
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day" xml:space="preserve">
-    <value>{0} day</value>
+    <value>{0} dia</value>
     <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} day {1} hr</value>
+    <value>{0} dia {1} h</value>
     <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Days" xml:space="preserve">
-    <value>{0} days</value>
+    <value>{0} dias</value>
     <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DaysHours" xml:space="preserve">
-    <value>{0} days {1} hr</value>
+    <value>{0} dias {1} h</value>
     <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours" xml:space="preserve">
-    <value>{0} hr</value>
+    <value>{0} h</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes" xml:space="preserve">
-    <value>{0} hr {1} min</value>
+    <value>{0} h {1} min</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_Minutes" xml:space="preserve">
@@ -1315,116 +1315,116 @@
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds" xml:space="preserve">
-    <value>{0} min {1} sec</value>
+    <value>{0} min {1} s</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_Seconds" xml:space="preserve">
-    <value>{0} sec</value>
+    <value>{0} s</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Home_Account_SignOut" xml:space="preserve">
-    <value>Sign out</value>
+    <value>Encerrar sessão</value>
   </data>
   <data name="Home_Account_Title" xml:space="preserve">
-    <value>My account</value>
+    <value>Minha conta</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>Browsing safely from</value>
+    <value>Navegando com segurança de</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>A ligar a...</value>
+    <value>Conectando com...</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>Last connected to</value>
+    <value>Última conexão com</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>Recommended</value>
+    <value>Recomendado</value>
   </data>
   <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
-    <value>Connection card</value>
+    <value>Cartão de conexão</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City" xml:space="preserve">
-    <value>City</value>
+    <value>Cidade</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
-    <value>Connected for</value>
+    <value>Conectado para</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
     <value>Gateway</value>
   </data>
   <data name="Home_ConnectionDetails_Country" xml:space="preserve">
-    <value>Country</value>
+    <value>País</value>
   </data>
   <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>Download</value>
+    <value>Baixar</value>
   </data>
   <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
-    <value>Hide connection details</value>
+    <value>Ocultar detalhes da conexão</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
-    <value>Hide</value>
+    <value>Ocultar</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
-    <value>Hide user IP address</value>
+    <value>Esconder endereço IP do usuário</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>Connection details</value>
+    <value>Detalhes da conexão</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>Latency</value>
+    <value>Latência</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
-    <value>My IP</value>
+    <value>Meu IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
-    <value>Protocol</value>
+    <value>Protocolo</value>
   </data>
   <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>Server</value>
+    <value>Servidor</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
-    <value>Server load</value>
+    <value>Carga do servidor</value>
   </data>
   <data name="Home_ConnectionDetails_Show" xml:space="preserve">
-    <value>Show connection details</value>
+    <value>Mostrar detalhes da conexão</value>
   </data>
   <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
-    <value>Show</value>
+    <value>Mostrar</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
-    <value>Show user IP address</value>
+    <value>Mostrar endereço IP do usuário</value>
   </data>
   <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>Connection details</value>
+    <value>Detalhes da conexão</value>
   </data>
   <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>Upload</value>
+    <value>Enviar</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
-    <value>VPN IP</value>
+    <value>IP VPN</value>
   </data>
   <data name="Home_Help_Title" xml:space="preserve">
-    <value>Help</value>
+    <value>Ajuda</value>
   </data>
   <data name="Home_Map_Landmark" xml:space="preserve">
-    <value>Map</value>
+    <value>Mapa</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>Ads\nblocked</value>
+    <value>Anúncios\nbloqueados</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>Data\nsaved</value>
+    <value>Dados\neconomizados</value>
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_Landmark" xml:space="preserve">
-    <value>NetShield statistics</value>
+    <value>Estatísticas NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
@@ -1432,39 +1432,39 @@
     <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title" xml:space="preserve">
-    <value>Home</value>
+    <value>Início</value>
   </data>
   <data name="Home_Recents_Landmark" xml:space="preserve">
-    <value>Recent connections</value>
+    <value>Conexões recentes</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin" xml:space="preserve">
-    <value>Pin</value>
+    <value>Fixar</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
-    <value>Actions</value>
+    <value>Ações</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
-    <value>Server is under maintenance</value>
+    <value>O servidor está em manutenção</value>
   </data>
   <data name="Home_Recents_Title" xml:space="preserve">
-    <value>Recents</value>
+    <value>Recentes</value>
   </data>
   <data name="Home_Recents_Unpin" xml:space="preserve">
-    <value>Unpin</value>
+    <value>Desafixar</value>
   </data>
   <data name="Home_VpnStatus_Landmark" xml:space="preserve">
-    <value>VPN status</value>
+    <value>Status de VPN</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>A proteger a sua identidade digital</value>
+    <value>Protegendo sua identidade digital</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>Não está protegido.</value>
+    <value>Você está sem proteção</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
-    <value>Protected</value>
+    <value>Protegido</value>
   </data>
   <data name="Server_Feature_P2P" xml:space="preserve">
     <value>P2P</value>
@@ -1473,52 +1473,52 @@
     <value>Tor</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>Palavra-passe incorreta. Tente novamente.</value>
+    <value>Código incorreto. Tente novamente.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>As credenciais de início de sessão estão incorretas. Tente novamente.</value>
+    <value>As credenciais de início de sessão não são válidas. Tente novamente.</value>
   </data>
   <data name="Settings_About" xml:space="preserve">
-    <value>About</value>
+    <value>Sobre</value>
   </data>
   <data name="Settings_AppVersion" xml:space="preserve">
-    <value>App version</value>
+    <value>Versão do aplicativo</value>
   </data>
   <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>Estas estatísticas não contêm o seu endereço IP e não podem ser utilizadas para o identificar. Nunca as partilharemos com terceiros.</value>
+    <value>Essas estatísticas não contêm seu endereço IP e não podem ser usadas para identificá-lo. Nunca as compartilharemos com terceiros.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>Partilhar relatórios anónimos de falhas</value>
+    <value>Compartilhar relatórios de erros anônimos</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>Os relatórios de falhas ajudam-nos a corrigir erros, a detetar firewalls e a evitar bloqueios de VPN.</value>
+    <value>Os relatórios de erros nos ajudam a corrigir erros, detectar firewalls e evitar bloqueios de VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>Partilhar estatísticas anónimas de utilização</value>
+    <value>Compartilhar estatísticas anônimas de uso</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>Os dados de utilização ajudam-nos a ultrapassar bloqueios de VPN e a melhorar a aplicação.</value>
+    <value>Dados de uso nos ajudam a superar bloqueios de VPN e a melhorar o aplicativo.</value>
   </data>
   <data name="Settings_Connection" xml:space="preserve">
-    <value>Connection</value>
+    <value>Conexão</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>Definições avançadas</value>
+    <value>Configurações avançadas</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>Redirecionamento alternativo</value>
+    <value>Roteamento alternativo</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
-    <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
+    <value>Se os serviços Proton forem bloqueados devido a restrições de rede, tentaremos usar roteamento de rede alternativo para conectar você aos nossos sites.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
-    <value>Custom DNS servers</value>
+    <value>Servidores de DNS personalizado</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
-    <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
+    <value>Conecte-se ao Proton VPN usando seu próprio sistema de nomes de domínio (DNS). Use apenas servidores DNS em que você confia.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
-    <value>DNS servers ({0})</value>
+    <value>Servidores de DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
@@ -1526,37 +1526,37 @@
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>Ligações LAN</value>
+    <value>Conexões LAN</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>Allows you to connect to printers, speakers, and other devices in your device's local network.</value>
+    <value>Permite que você se conecte a impressoras, alto-falantes e outros dispositivos na rede local do seu dispositivo.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
-    <value>NAT type</value>
+    <value>NAT tipo</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
-    <value>Select a network address translation type for your connection.</value>
+    <value>Selecione um tipo de tradução de endereço de rede para sua conexão.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
-    <value>Moderate (type 2)</value>
+    <value>Moderado (tipo 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
-    <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
+    <value>Alguma restrição na entrada de dados na sua rede. Esta opção é melhor para videogames online.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
-    <value>Strict (type 3)</value>
+    <value>Estrito (tipo 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
-    <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
+    <value>Restringe a entrada de dados na sua rede. Esta opção é mais segura, mas pode dificultar as conexões de jogos ponta a ponta.</value>
   </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
-    <value>Protocol</value>
+    <value>Protocolo</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>Acelerador VPN</value>
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features" xml:space="preserve">
-    <value>Features</value>
+    <value>Recursos</value>
   </data>
   <data name="Settings_Features_KillSwitch" xml:space="preserve">
     <value>Kill switch</value>
@@ -1565,97 +1565,97 @@
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_PortForwarding" xml:space="preserve">
-    <value>Port forwarding</value>
+    <value>Redirecionamento de porta</value>
   </data>
   <data name="Settings_Features_SplitTunneling" xml:space="preserve">
     <value>Tunelamento dividido</value>
   </data>
   <data name="Settings_General" xml:space="preserve">
-    <value>General</value>
+    <value>Geral</value>
   </data>
   <data name="Settings_General_AutoStartup" xml:space="preserve">
-    <value>Auto startup</value>
+    <value>Inicialização automática</value>
   </data>
   <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>Auto launch, auto connect</value>
+    <value>Lançamento automático, conexão automática</value>
   </data>
   <data name="Settings_General_BetaAccess" xml:space="preserve">
-    <value>Beta access</value>
+    <value>Acesso beta</value>
   </data>
   <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
-    <value>Get early access and help us test new versions of Proton VPN</value>
+    <value>Obtenha acesso antecipado e nos ajude a testar novas versões do Proton VPN</value>
   </data>
   <data name="Settings_General_Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Idioma</value>
   </data>
   <data name="Settings_General_Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>Notificações</value>
   </data>
   <data name="Settings_General_Notifications_Description" xml:space="preserve">
-    <value>Get notified about on-going Proton VPN activities</value>
+    <value>Seja notificado sobre atividades contínuas do Proton VPN</value>
   </data>
   <data name="Settings_General_Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Tema</value>
   </data>
   <data name="Settings_General_Theme_Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Escuro</value>
   </data>
   <data name="Settings_General_Theme_Default" xml:space="preserve">
-    <value>Default</value>
+    <value>Padrão</value>
   </data>
   <data name="Settings_General_Theme_Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Claro</value>
   </data>
   <data name="Settings_Improve" xml:space="preserve">
-    <value>Improve Proton</value>
+    <value>Melhorar o Proton</value>
   </data>
   <data name="Settings_Improve_Censorship" xml:space="preserve">
     <value>Ajude-nos a combater a censura</value>
   </data>
   <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Operating System version</value>
+    <value>Versão do sistema operacional</value>
   </data>
   <data name="Settings_Page_Title" xml:space="preserve">
-    <value>Settings</value>
+    <value>Configurações</value>
   </data>
   <data name="Settings_Protocols_Explanation" xml:space="preserve">
-    <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
+    <value>Um protocolo VPN determina como os dados se movem entre um servidor VPN e o seu dispositivo.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
-    <value>Established, well-tested, and secure. OpenVPN is reliable in poor network conditions, but may not be as fast as other protocols.</value>
+    <value>Estabelecido, bem testado e seguro. O OpenVPN é confiável em condições de rede ruins, mas pode não ser tão rápido quanto outros protocolos.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
-    <value>Established, well-tested, and secure. OpenVPN is less battery-efficient than some other protocols.</value>
+    <value>Estabelecido, bem testado e seguro. OpenVPN consome menos bateria do que alguns outros protocolos.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>Recommended</value>
+    <value>Recomendado</value>
   </data>
   <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
-    <value>Auto-selects the best protocol for your connection.</value>
+    <value>Seleciona automaticamente o melhor protocolo para sua conexão.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
     <value>Smart</value>
   </data>
   <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
-    <value>Reliability (TCP)</value>
+    <value>Confiabilidade (TCP)</value>
   </data>
   <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
-    <value>Speed (UDP)</value>
+    <value>Velocidade (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
+    <value>Rápido, seguro e eficiente. WireGuard é mais eficiente em termos de bateria do que outros protocolos.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>Restore default settings</value>
+    <value>Restaurar configurações padrão</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -1670,44 +1670,44 @@
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support" xml:space="preserve">
-    <value>Support</value>
+    <value>Suporte</value>
   </data>
   <data name="Settings_Support_DebugLogs" xml:space="preserve">
-    <value>Debug logs</value>
+    <value>Registros de depuração</value>
   </data>
   <data name="Settings_Support_ReportIssue" xml:space="preserve">
     <value>Reportar um problema</value>
   </data>
   <data name="Login_Form_CreateAccount" xml:space="preserve">
-    <value>Create account</value>
+    <value>Criar conta</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Senha</value>
   </data>
   <data name="Login_Form_SignIn" xml:space="preserve">
-    <value>Sign in</value>
+    <value>Iniciar sessão</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Username" xml:space="preserve">
-    <value>E-mail ou nome de utilizador</value>
+    <value>E-mail ou nome de usuário</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
-    <value>Authenticate</value>
+    <value>Autenticar</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Introduza o código da sua aplicação de autenticação.</value>
+    <value>Insira o código do seu aplicativo autenticador</value>
   </data>
   <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>Autenticação em dois fatores</value>
+    <value>Autenticação de dois fatores</value>
   </data>
   <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>Esqueci-me do nome de utilizador</value>
+    <value>Esqueci meu nome de usuário</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Ajuda</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ReportAnIssue" xml:space="preserve">
@@ -1715,304 +1715,304 @@
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword" xml:space="preserve">
-    <value>Reset password</value>
+    <value>Redefinir senha</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Problemas em iniciar sessão</value>
+    <value>Problemas para iniciar sessão</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Account_VpnPlan_Free" xml:space="preserve">
     <value>Proton VPN Free</value>
   </data>
   <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
-    <value>Two factor authentication failed. Please sign in again.</value>
+    <value>Falha na autenticação de dois fatores. Faça login novamente.</value>
   </data>
   <data name="Settings_Support_SupportCenter" xml:space="preserve">
-    <value>Support center</value>
+    <value>Centro de ajuda</value>
   </data>
   <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
-    <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
+    <value>Aumente a velocidade da sua conexão em até 400% com tecnologias de melhoria de desempenho.</value>
   </data>
   <data name="Login_Form" xml:space="preserve">
-    <value>Sign in form</value>
+    <value>Formulário de inscrição</value>
   </data>
   <data name="Login_TwoFactor_Digit1" xml:space="preserve">
-    <value>First digit</value>
+    <value>Primeiro dígito</value>
   </data>
   <data name="Login_TwoFactor_Digit2" xml:space="preserve">
-    <value>Second digit</value>
+    <value>Segundo dígito</value>
   </data>
   <data name="Login_TwoFactor_Digit3" xml:space="preserve">
-    <value>Third digit</value>
+    <value>Terceiro dígito</value>
   </data>
   <data name="Login_TwoFactor_Digit4" xml:space="preserve">
-    <value>Fourth digit</value>
+    <value>Quarto dígito</value>
   </data>
   <data name="Login_TwoFactor_Digit5" xml:space="preserve">
-    <value>Fifth digit</value>
+    <value>Quinto dígito</value>
   </data>
   <data name="Login_TwoFactor_Digit6" xml:space="preserve">
-    <value>Sixth digit</value>
+    <value>Sexto dígito</value>
   </data>
   <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
     <value>Reportar um problema</value>
   </data>
   <data name="Common_Actions_ContactUs" xml:space="preserve">
-    <value>Contact us</value>
+    <value>Fale conosco</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
-    <value>Quick fixes</value>
+    <value>Correções rápidas</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
-    <value>Didn't work?</value>
+    <value>Não funcionou?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>Estas dicas poderão ajudá-lo a resolver o seu problema mais rapidamente.</value>
+    <value>Essas dicas podem ajudar a resolver mais rapidamente seu problema.</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
-    <value>Step {0} of {1}</value>
+    <value>Passo {0} de {1}</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>exemplo@domínio.com</value>
+    <value>exemplo@dominio.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>Enviar registos de erro</value>
+    <value>Enviar registros de erro</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>Error logs show us what went wrong, and which actions led to your issue. We'll only ever use them to help our engineers fix bugs.</value>
+    <value>Os registros de erros nos mostram o que deu errado e quais ações levaram ao seu problema. Nós só os usaremos para ajudar nossos engenheiros a corrigir bugs.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
-    <value>Send report</value>
+    <value>Enviar relatório</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
-    <value>Done</value>
+    <value>Concluído</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>Ocorreu um erro</value>
+    <value>Algo deu errado</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>We couldn't send your report. Please check your connection and try again.</value>
+    <value>Não foi possível enviar seu relatório. Por favor, verifique sua conexão e tente novamente.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>Try again</value>
+    <value>Tentar novamente</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
-    <value>Report sent</value>
+    <value>Relatório enviado</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>Thanks for your feedback. We'll get back to you as soon as we can.</value>
+    <value>Obrigado pela sua opinião. Entraremos em contato com você assim que possível.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
-    <value>Auto connect</value>
+    <value>Conexão automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>You will be connected to a server as soon as Proton VPN opens</value>
+    <value>Você estará conectado a um servidor assim que o Proton VPN abrir</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
-    <value>Fastest connection</value>
+    <value>Conexão mais rápida</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
-    <value>Last connected</value>
+    <value>Última conexão</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
-    <value>Auto launch</value>
+    <value>Abrir automaticamente</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
-    <value>Proton VPN will automatically open when you sign in to your device</value>
+    <value>O Proton VPN será aberto automaticamente quando você fizer login no seu dispositivo</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
-    <value>Open on desktop</value>
+    <value>Abrir no desktop</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
-    <value>Minimize to System Tray</value>
+    <value>Minimizar para a Bandeja de Sistema</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
-    <value>Minimize to Taskbar</value>
+    <value>Minimizar para Barra de Tarefas</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>Registos da aplicação</value>
+    <value>Registros do aplicativo</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
-    <value>Service logs</value>
+    <value>Registros do serviço</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Restore default settings</value>
+    <value>Restaurar configurações padrão</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
-    <value>Restore and reconnect</value>
+    <value>Restaurar e reconectar</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
-    <value>This will reset your Proton VPN settings to their original state.</value>
+    <value>Isso redefinirá as configurações do Proton VPN para o estado original.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>Restore default settings?</value>
+    <value>Restaurar configurações padrão?</value>
   </data>
   <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Fechar</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
-    <value>The logs folder could not be found.</value>
+    <value>A pasta de registros não pode ser encontrada.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Avançado</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>Permitir acesso à Internet apenas quando conectado ao Proton VPN. O kill-switch avançado permanecerá ativo mesmo quando você reiniciar o dispositivo.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>Protege seu endereço IP, desconectando você da Internet caso você perca sua conexão VPN.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>Quando o kill-switch estiver ativado, você não conseguirá se conectar a sites e aplicativos excluídos da sua conexão VPN por meio do túnel dividido.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
-    <value>Standard</value>
+    <value>Padrão</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>Desconecte-se automaticamente da Internet se a conexão VPN for perdida.</value>
   </data>
   <data name="Settings_Features_NetShield_Description" xml:space="preserve">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>Proteja-se contra anúncios, malware e rastreadores em sites e aplicativos.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>Alguns sites podem não carregar corretamente quando anúncios e rastreadores são bloqueados.</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
-    <value>Active port:</value>
+    <value>Porta ativa:</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
-    <value>Copy port number</value>
+    <value>Copiar número da porta</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>Ignore firewalls para conectar-se a servidores e dispositivos P2P em sua rede local.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
+    <value>Para usar o encaminhamento de porta, conecte-se a um servidor que suporte P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>Notificações</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Seja notificado quando o número de porta muda</value>
+    <value>Seja notificado quando o número do encaminhamento de porta for alterado</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
-    <value>Add app</value>
+    <value>Adicionar aplicativo</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
-    <value>Selected apps ({0})</value>
+    <value>Aplicativos selecionados ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
-    <value>Remove app</value>
+    <value>Remover aplicativo</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>Personalize sua conexão decidindo quais aplicativos e endereços IP são protegidos por VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
-    <value>Inverse</value>
+    <value>Inverso</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>Apenas aplicativos e endereços IP selecionados se conectam via VPN, o restante do tráfego fica desprotegido</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
-    <value>Add IP</value>
+    <value>Adicionar IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
-    <value>Selected IP addresses ({0})</value>
+    <value>Endereços IP selecionados ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
-    <value>Remove IP</value>
+    <value>Remover IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
     <value>Adicionar endereço IPv4</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
-    <value>Standard</value>
+    <value>Padrão</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>Aplicativos e endereços IP selecionados são excluídos da conexão VPN</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
-    <value>App files</value>
+    <value>Arquivos do aplicativo</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>Reconnect</value>
+    <value>Reconectar</value>
   </data>
   <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>Apply and reconnect</value>
+    <value>Aplicar e reconectar</value>
   </data>
   <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>Discard</value>
+    <value>Descartar</value>
   </data>
   <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>Discard settings changes?</value>
+    <value>Descartar alterações nas configurações?</value>
   </data>
   <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>Habilitar</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
+    <value>Você não poderá usar o NetShield quando estiver conectado a um servidor DNS personalizado.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
-    <value>Enable custom DNS servers?</value>
+    <value>Ativar servidor de DNS personalizado?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>This will disable split tunneling.</value>
+    <value>Isso desativará o tunelamento dividido.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Enable kill switch?</value>
+    <value>Ativar kill switch?</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>Você não conseguirá se conectar a um servidor DNS personalizado quando o NetShield estiver ativado.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
-    <value>Enable NetShield?</value>
+    <value>Ativar NetShield?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>This will disable kill switch.</value>
+    <value>Isso desativará o kill switch.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>Enable split tunneling?</value>
+    <value>Ativar tunelamento dividido?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to use port forwarding with Moderate NAT.</value>
+    <value>Você não poderá usar o encaminhamento de porta com NAT moderado.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
     <value>Ativar NAT moderado?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>Você não poderá usar NAT moderado quando o encaminhamento de porta estiver ativado.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
-    <value>Enable port forwarding?</value>
+    <value>Ativar encaminhamento de porta?</value>
   </data>
   <data name="Cities" xml:space="preserve">
-    <value>Cities</value>
+    <value>Cidades</value>
   </data>
   <data name="Countries_All" xml:space="preserve">
-    <value>All</value>
+    <value>Todos</value>
   </data>
   <data name="Countries_City_One" xml:space="preserve">
-    <value>{0} city</value>
+    <value>{0} cidade</value>
     <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
   </data>
   <data name="Countries_City_Other" xml:space="preserve">
-    <value>{0} cities</value>
+    <value>{0} cidades</value>
     <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
   </data>
   <data name="Countries_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>Conectar</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_P2P" xml:space="preserve">
@@ -2025,16 +2025,16 @@
     <value>Tor</value>
   </data>
   <data name="Countries_Cities" xml:space="preserve">
-    <value>Cities</value>
+    <value>Cidades</value>
   </data>
   <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} server</value>
+    <value>{0} servidor</value>
   </data>
   <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} servers</value>
+    <value>{0} servidor</value>
   </data>
   <data name="Countries_NumberOfCities" xml:space="preserve">
-    <value>Cities ({0})</value>
+    <value>Cidades ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries" xml:space="preserve">
@@ -2046,36 +2046,34 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_Info" xml:space="preserve">
-    <value>Info</value>
+    <value>Informações</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>Advanced privacy</value>
+    <value>Privacidade avançada</value>
   </data>
   <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
-
-This higher level of protection may cause higher latency and slower speeds.</value>
+    <value>O Secure Core conecta você ao seu servidor de destino através de um segundo servidor VPN de segurança máxima.</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>Higher latency</value>
+    <value>Latência alta</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>High privacy</value>
+    <value>Latência alta</value>
   </data>
   <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>Lower latency</value>
+    <value>Baixa latência</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Secure Core VPN connection</value>
+    <value>Conexão VPN Secure Core</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Standard VPN connection</value>
+    <value>Conexão VPN padrão</value>
   </data>
   <data name="Dialogs_SecureCore_Title" xml:space="preserve">
     <value>Secure Core</value>
   </data>
   <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Secure Core servers ({0})</value>
+    <value>Servidores Secure Core ({0})</value>
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_ViaCountry" xml:space="preserve">
@@ -2083,101 +2081,101 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}.</value>
+    <value>Os servidores estão localizados fisicamente em {0}, mas você parece estar navegando em {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>O Smart Routing utiliza servidores virtuais para fornecer cobertura VPN em países de difícil acesso.
 
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Ao se conectar a um servidor Smart Routing, você parecerá estar navegando no seu país de destino, mesmo que o servidor físico esteja localizado em outro lugar.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e outras formas de censura.</value>
   </data>
   <data name="Countries_P2PCountries" xml:space="preserve">
-    <value>P2P countries ({0})</value>
+    <value>Países P2P ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorCountries" xml:space="preserve">
-    <value>Tor countries ({0})</value>
+    <value>Países Tor ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
-    <value>How to torrent with P2P</value>
+    <value>Como fazer torrent com P2P</value>
   </data>
   <data name="Dialogs_P2P_Title" xml:space="preserve">
     <value>P2P</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
-    <value>What is a P2P server?</value>
+    <value>Oque é um servidor P2P?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
-    <value>P2P (peer-to-peer) VPN servers unblock torrent sites.</value>
+    <value>Servidores VPN P2P (ponto a ponto) desbloqueiam sites de torrent.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
-    <value>What is torrenting?</value>
+    <value>O que é torrent?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
-    <value>The fast sharing and downloading of large files over a peer-to-peer (P2P) network.</value>
+    <value>O compartilhamento e download rápido de arquivos grandes em uma rede ponto a ponto (P2P).</value>
   </data>
   <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
-    <value>Why use a P2P server when torrenting?</value>
+    <value>Por que usar um servidor P2P ao fazer torrent?</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
-    <value>• Increased upload and download speeds
-• No activity logs
-• Hide your IP address from your service provider and peers</value>
+    <value>• Maiores velocidades de upload e download
+• Sem registros de atividades
+• Oculte seu endereço IP do seu provedor de serviços e de seus pares</value>
   </data>
   <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
     <value>Smart Routing</value>
   </data>
   <data name="Countries_Fastest" xml:space="preserve">
-    <value>Fastest country</value>
+    <value>País mais rápido</value>
   </data>
   <data name="Dialogs_Tor_Description" xml:space="preserve">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Conecte-se a um servidor Tor para acessar serviços ocultos e sites da rede onion usando qualquer navegador.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
-    <value>How to access the Tor network</value>
+    <value>Como acesas a rede Tor</value>
   </data>
   <data name="Dialogs_Tor_Title" xml:space="preserve">
     <value>Tor</value>
   </data>
   <data name="Countries_SearchPlaceholder" xml:space="preserve">
-    <value>I want to browse from...</value>
+    <value>Quero navegar de...</value>
   </data>
   <data name="Countries_P2P_Cities" xml:space="preserve">
-    <value>P2P cities ({0})</value>
+    <value>Cidades P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_TorServers" xml:space="preserve">
-    <value>Tor servers ({0})</value>
+    <value>Servidores Tor ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_Server" xml:space="preserve">
-    <value>Server</value>
+    <value>Servidor</value>
   </data>
   <data name="Countries_ServerLoad" xml:space="preserve">
-    <value>Server load</value>
+    <value>Carga do servidor</value>
   </data>
   <data name="Countries_SmartRouting" xml:space="preserve">
     <value>Smart routing</value>
   </data>
   <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>Não foram encontrados resultados.</value>
+    <value>Nenhum resultado encontrado</value>
   </data>
   <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>Por favor, tente uma palavra-chave diferente</value>
+    <value>Tente uma palavra-chave diferente</value>
   </data>
   <data name="Countries_NumberOfServers" xml:space="preserve">
-    <value>Servers ({0})</value>
+    <value>Servidores ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>A sua sessão expirou. Inicie sessão novamente.</value>
+    <value>Sua sessão expirou. Inicie sessão novamente.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>Introduza este número na sua aplicação BitTorrent para aumentar a velocidade.</value>
+    <value>Defina este número em seu aplicativo BitTorrent para maior velocidade.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -2192,74 +2190,74 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Login_Form_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>Iniciar sessão com uma palavra-passe</value>
+    <value>Iniciar sessão com senha</value>
   </data>
   <data name="Login_Form_SignInWithSso" xml:space="preserve">
     <value>Iniciar sessão com SSO</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
-    <value>An error occured when retrieving the session details. Please try again.</value>
+    <value>Ocorreu um erro ao recuperar os detalhes da sessão. Por favor, tente novamente.</value>
   </data>
   <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
-    <value>SSO Authentication failed. Please try again.</value>
+    <value>Falha na autenticação SSO. Por favor, tente novamente.</value>
   </data>
   <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>De momento não há servidores disponíveis para a sua seleção. Selecione uma opção diferente.</value>
+    <value>Não há servidores disponíveis neste momento para opção selecionada. Selecione uma opção diferente.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>O adaptador de rede está a ser utilizado.</value>
+    <value>Seu adaptador de rede está em uso no momento.</value>
   </data>
   <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>Versão do adaptador de rede desatualizada.</value>
+    <value>A versão do adaptador de rede está desatualizada.</value>
   </data>
   <data name="Connection_Error_TlsCertificate" xml:space="preserve">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending an Issue Report.</value>
+    <value>Há um problema ao validar o certificado do servidor VPN, o que pode indicar que a conexão de rede está sendo violada ou que o servidor ao qual você está tentando se conectar tem um problema de configuração. Obtenha ajuda do nosso suporte ao cliente enviando um Relatório de Problemas.</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>O Proton VPN não consegue conectar-se à VPN porque um outro adaptador de rede WireGuard está em utilização. Desligue quaisquer VPN que tenha ativa e tente novamente. Em alternativa, pode mudar o protocolo nas definições avançadas.</value>
+    <value>Proton VPN não pôde se conectar porque um adaptador de rede WireGuard já está em uso. Desconecte todas as VPNs ativas e tente novamente. Como alternativa, você pode alternar os protocolos nas Configurações avançadas.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>Adaptador de rede em falta.</value>
+    <value>Está faltando o adaptador de rede.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
     <value>Reportar um problema</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
-    <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
+    <value>O Proton VPN não consegue se conectar porque o servidor RPC não está disponível em seu sistema.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>View possible solutions</value>
+    <value>Ver soluções possíveis</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <value>Você atingiu seu limite máximo de dispositivos. Desconecte outro dispositivo para conectar este ou atualize para PLUS para conectar até 10 dispositivos ao mesmo tempo.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser" xml:space="preserve">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one.</value>
+    <value>Você atingiu seu limite máximo de dispositivos. Por favor, desconecte outro dispositivo para conectar este.</value>
   </data>
   <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
+    <value>Não temos certeza do que aconteceu aqui. Tente novamente ou entre em contato com nossa equipe de suporte ao cliente.</value>
   </data>
   <data name="Gateways_Page_Title" xml:space="preserve">
     <value>Gateways</value>
   </data>
   <data name="Gateways_Server" xml:space="preserve">
-    <value>Dedicated server</value>
+    <value>Servidor dedicado</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
-    <value>You'll be disconnected from VPN.</value>
+    <value>Você será desconectado da VPN.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
-    <value>Sign out from {0}?</value>
+    <value>Encerrar sessão de {0}</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Tray_Actions_ExitApplication" xml:space="preserve">
-    <value>Exit</value>
+    <value>Sair</value>
   </data>
   <data name="Tray_Actions_OpenApplication" xml:space="preserve">
-    <value>Open {0}</value>
+    <value>Abrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
 </root>

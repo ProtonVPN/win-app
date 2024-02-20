@@ -160,7 +160,7 @@
     <value>Italiano</value>
   </data>
   <data name="Language_ja-JP" xml:space="preserve">
-    <value>日本人</value>
+    <value>日本語</value>
   </data>
   <data name="Language_lt-LT" xml:space="preserve">
     <value>Lietuvių</value>
@@ -197,5 +197,26 @@
   </data>
   <data name="Language_be-BY" xml:space="preserve">
     <value>Беларуская</value>
+  </data>
+  <data name="Language_el-GR" xml:space="preserve">
+    <value>Ελληνικά</value>
+  </data>
+  <data name="Language_fi-FI" xml:space="preserve">
+    <value>Suomi</value>
+  </data>
+  <data name="Language_ko-KR" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="Language_sk-SK" xml:space="preserve">
+    <value>Slovenčina</value>
+  </data>
+  <data name="Language_sv-SE" xml:space="preserve">
+    <value>Svenska</value>
+  </data>
+  <data name="Language_nb-NO" xml:space="preserve">
+    <value>Norsk bokmål</value>
+  </data>
+  <data name="Language_ka-GE" xml:space="preserve">
+    <value>Ქართული (beta)</value>
   </data>
 </root>
