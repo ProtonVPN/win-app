@@ -169,19 +169,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=OneWay}"
                               Style="{StaticResource ToggleSwitchStyle}" /> <!--Mode=TwoWay}"-->
             </toolkit:SettingsCard>
-            
-            <!--  TODO: Additional languages are not supported yet. Keep the settings card disabled for now.  -->
+
             <toolkit:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Language')}"
-                                  IsTabStop="False"
-                                  IsEnabled="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Language />
                 </toolkit:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="cbLanguage"
                           ItemsSource="{x:Bind ViewModel.Languages}"
-                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=OneWay}"/> <!-- , Mode=TwoWay}" /> --> 
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"/>
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
