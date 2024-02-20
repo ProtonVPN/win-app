@@ -24,30 +24,25 @@ using Newtonsoft.Json.Linq;
 
 namespace ProtonVPN.UI.Tests.ApiClient
 {
-    public class TestsApiClient
+    public class ProtonTestApiClient
     {
         private readonly HttpClient _client;
 
-        public TestsApiClient(string baseAddress)
+        public ProtonTestApiClient()
         {
             _client = new HttpClient
             {
-                BaseAddress = new Uri(baseAddress)
+                BaseAddress = new Uri("https://api.protonvpn.ch")
             };
         }
 
-        public async Task<string> GetIpAddress()
+        public async Task<JArray> GetLogicalServers()
         {
-            return await GetConnectionInfo("ip");
-        }
-
-        private async Task<string> GetConnectionInfo(string jsonKey)
-        {
-            HttpResponseMessage response = await _client.GetAsync("?format=json");
+            HttpResponseMessage response = await _client.GetAsync("/vpn/logicals");
             response.EnsureSuccessStatusCode();
             string responseBody = response.Content.ReadAsStringAsync().Result;
             JObject json = JObject.Parse(responseBody);
-            return json[jsonKey].ToString();
+            return (JArray)json["LogicalServers"];
         }
     }
 }
