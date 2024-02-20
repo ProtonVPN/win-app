@@ -87,9 +87,7 @@ public static class LocalizationExtensions
     {
         if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent)
         {
-            return secureCoreIntent.IsFastest
-                ? localizer.GetFormat("Connection_Via_SecureCore", localizer.Get("Countries_SecureCore"))
-                : localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(secureCoreIntent.EntryCountryCode));
+            return localizer.GetSecureCoreLabel(secureCoreIntent.EntryCountryCode);
         }
 
         return connectionIntent?.Location switch
@@ -108,8 +106,8 @@ public static class LocalizationExtensions
             connectionDetails?.OriginalConnectionIntent.Location is CountryLocationIntent locationIntent)
         {
             return locationIntent.IsFastest
-                ? $"{localizer.GetCountryName(connectionDetails.ExitCountryCode)} {localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(connectionDetails.EntryCountryCode))}"
-                : localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(connectionDetails.EntryCountryCode));
+                ? $"{localizer.GetCountryName(connectionDetails.ExitCountryCode)} {localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode)}"
+                : localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode);
         }
 
         return connectionDetails?.OriginalConnectionIntent.Location switch
@@ -128,6 +126,13 @@ public static class LocalizationExtensions
             },
             _ => string.Empty,
         };
+    }
+
+    public static string GetSecureCoreLabel(this ILocalizationProvider localizer, string? entryCountryCode)
+    {
+        return string.IsNullOrEmpty(entryCountryCode)
+            ? localizer.GetFormat("Connection_Via_SecureCore", localizer.Get("Countries_SecureCore"))
+            : localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(entryCountryCode));
     }
 
     public static string? GetFormattedTime(this ILocalizationProvider localizer, TimeSpan time)

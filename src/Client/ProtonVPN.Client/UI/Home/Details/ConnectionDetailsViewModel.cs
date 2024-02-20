@@ -47,6 +47,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     [NotifyPropertyChangedFor(nameof(FormattedSessionLength))]
     [NotifyPropertyChangedFor(nameof(Gateway))]
     [NotifyPropertyChangedFor(nameof(Country))]
+    [NotifyPropertyChangedFor(nameof(SecureCoreLabel))]
     [NotifyPropertyChangedFor(nameof(ServerLoad))]
     [NotifyPropertyChangedFor(nameof(FormattedServerLoad))]
     [NotifyPropertyChangedFor(nameof(ServerLatency))]
@@ -66,6 +67,10 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     public string? Country => string.IsNullOrEmpty(CurrentConnectionDetails?.ExitCountryCode)
         ? null
         : Localizer.GetCountryName(CurrentConnectionDetails.ExitCountryCode);
+
+    public string? SecureCoreLabel => string.IsNullOrEmpty(CurrentConnectionDetails?.EntryCountryCode)
+        ? null
+        : Localizer.GetSecureCoreLabel(CurrentConnectionDetails.EntryCountryCode);
 
     public double ServerLoad => CurrentConnectionDetails?.ServerLoad ?? 0;
 
@@ -127,7 +132,9 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     {
         OnPropertyChanged(nameof(FormattedSessionLength));
         OnPropertyChanged(nameof(Country));
+        OnPropertyChanged(nameof(SecureCoreLabel));
         OnPropertyChanged(nameof(ServerLatency));
+        OnPropertyChanged(nameof(VpnProtocol));
     }
 
     private void StartAutoRefresh()
