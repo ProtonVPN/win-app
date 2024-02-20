@@ -50,4 +50,10 @@ public partial class CountriesRobot
         SecureCoreTab.Click();
         return this;
     }
+
+    public CountriesRobot SearchFor(string query)
+    {
+        SearchTextBox.Text = query;
+        return this;
+    }
 }

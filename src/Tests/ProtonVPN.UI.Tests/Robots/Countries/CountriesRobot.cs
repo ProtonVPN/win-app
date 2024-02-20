@@ -24,6 +24,7 @@ namespace ProtonVPN.UI.Tests.Robots.Countries;
 public partial class CountriesRobot : UIActions
 {
     protected AutomationElement SecureCoreTab => ElementByAutomationId("Secure Core");
+    protected TextBox SearchTextBox => ElementByName("I want to browse from...").AsTextBox();
 
     protected Button GetConnectButton(string item)
     {
