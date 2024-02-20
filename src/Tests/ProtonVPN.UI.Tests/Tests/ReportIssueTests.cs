@@ -94,10 +94,14 @@ public class ReportIssueTests : TestSession
         Login();
 
         _homeRobot
-            .DoReportBrowsingSpeedIssue();
+            .DoReportAnIssue();
 
         _reportIssueRobot
             .VerifyReportIssueWindowIsOpened()
+            .VerifyReportIssueStep(1, 3)
+            .VerifyReportIssueWindowTitle(REPORT_ISSUE_WINDOW_TITLE)
+            .DoSelectBrowsingSpeedCategory()
+            .Wait(TestConstants.DefaultNavigationDelay)
             .VerifyReportIssueStep(2, 3)
             .VerifyReportIssueWindowTitle($"{REPORT_ISSUE_WINDOW_TITLE} - {BROWSING_SPEED_PAGE_TITLE}");
     }
