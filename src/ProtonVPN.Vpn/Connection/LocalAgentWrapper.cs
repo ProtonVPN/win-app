@@ -124,6 +124,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     public void Disconnect(VpnError error)
     {
         _logger.Info<LocalAgentLog>("Disconnect action started");
+        _isConnectRequested = false;
         StopTimeoutAction();
         _eventReceiver.Stop();
         CloseTlsChannel();
@@ -370,6 +371,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void ConnectToTlsChannel()
     {
+        if (!_isConnectRequested)
+        {
+            return;
+        }
+
         IPAddress gatewayIPAddress = _gatewayCache.Get();
         if (gatewayIPAddress == null)
         {
