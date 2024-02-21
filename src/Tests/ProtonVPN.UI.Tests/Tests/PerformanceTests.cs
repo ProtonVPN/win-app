@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.ApiClient;
@@ -147,6 +148,7 @@ public class PerformanceTests : TestSession
     {
         Cleanup();
         await _lokiHelper.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs");
-        await _lokiHelper.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_service_logs");
+        string serviceLogsPath = Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
+        await _lokiHelper.PushLogsAsync(serviceLogsPath, _runId, "windows_service_logs");
     }
 }
