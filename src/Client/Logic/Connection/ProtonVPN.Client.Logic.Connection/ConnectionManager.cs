@@ -228,7 +228,6 @@ public class ConnectionManager : IInternalConnectionManager,
     public async void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.AuthenticationCertificatePem) &&
-            ConnectionStatus == ConnectionStatus.Connected &&
             message.NewValue is not null)
         {
             await _vpnServiceCaller.UpdateAuthCertificateAsync(new AuthCertificateIpcEntity
