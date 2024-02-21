@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,2149 +117,2273 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Common_Actions_Add" xml:space="preserve">
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Cities">
+    <value>Orașe</value>
+  </data>
+  <data name="Common_Actions_Add">
     <value>Adăugare</value>
   </data>
-  <data name="Common_Actions_Cancel" xml:space="preserve">
+  <data name="Common_Actions_Cancel">
     <value>Anulare</value>
   </data>
-  <data name="Common_Actions_Connect" xml:space="preserve">
+  <data name="Common_Actions_Close">
+    <value>Închidere</value>
+  </data>
+  <data name="Common_Actions_Connect">
     <value>Conectare</value>
   </data>
-  <data name="Common_Actions_Disconnect" xml:space="preserve">
+  <data name="Common_Actions_ContactUs">
+    <value>Contactați-ne</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
     <value>Deconectare</value>
   </data>
-  <data name="Common_Actions_Remove" xml:space="preserve">
+  <data name="Common_Actions_Enable">
+    <value>Activare</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Reconectare</value>
+  </data>
+  <data name="Common_Actions_Remove">
     <value>Eliminare</value>
   </data>
-  <data name="Common_Links_LearnMore" xml:space="preserve">
+  <data name="Common_Actions_Update">
+    <value>Actualizare</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Upgrade</value>
+  </data>
+  <data name="Common_Links_LearnMore">
     <value>Detalii</value>
   </data>
-  <data name="Common_Message_Loading" xml:space="preserve">
+  <data name="Common_Message_Loading">
     <value>Se încarcă…</value>
   </data>
-  <data name="Common_States_Off" xml:space="preserve">
+  <data name="Common_States_Off">
     <value>Oprit</value>
   </data>
-  <data name="Common_States_On" xml:space="preserve">
+  <data name="Common_States_On">
     <value>Pornit</value>
   </data>
-  <data name="Connection_Intent_City_Server" xml:space="preserve">
+  <data name="Connection_Error_MissingAuthCertificate">
+    <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Adaptorul de rețea lipsește.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Raportare o problemă</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN nu se poate conecta, deoarece serverul RPC nu este disponibil în sistemul de operare.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Ați atins limita maximă de dispozitive. Deconectați alt dispozitiv pentru a-l conecta pe acesta sau treceți la planul PLUS pentru a putea conecta până la 10 dispozitive simultan.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Ați atins limita maximă de dispozitive. Deconectați un alt dispozitiv pentru a-l conecta pe acesta.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Adaptorul de rețea este momentan în uz.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Versiunea adaptorului de rețea este depășită.</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Există o problemă la validarea certificatului de server VPN, care ar putea indica modificarea conexiunii la rețea sau că serverul la care încercați să vă conectați are o problemă de configurare. Obțineți ajutor de la asistența noastră pentru clienți trimițând un raport de erori.</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Nu suntem siguri ce s-a întâmplat aici. Reîncercați sau contactați echipa noastră de asistență pentru clienți.</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Vedeți soluții posibile</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Proton VPN nu s-a putut conecta deoarece un adaptor de rețea WireGuard este deja utilizat. Deconectați orice VPN activ și reîncercați. Alternativ, puteți schimba protocolul în „Setări avansate”.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Autoselectată din</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
   </data>
-  <data name="Connection_Intent_Country_Server" xml:space="preserve">
+  <data name="Connection_Intent_Country_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
-  <data name="Connection_Via_SecureCore" xml:space="preserve">
+  <data name="Connection_Via_SecureCore">
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
-  <data name="Countries_Page_Title" xml:space="preserve">
-    <value>Țări</value>
-  </data>
-  <data name="Country_Fastest" xml:space="preserve">
-    <value>Cea mai rapidă țară</value>
-  </data>
-  <data name="Country_val_AD" xml:space="preserve">
-    <value>Andorra</value>
-    <comment>The name of AD country</comment>
-  </data>
-  <data name="Country_val_AE" xml:space="preserve">
-    <value>Emiratele Arabe Unite</value>
-    <comment>The name of AE country</comment>
-  </data>
-  <data name="Country_val_AF" xml:space="preserve">
-    <value>Afganistan</value>
-    <comment>The name of AF country</comment>
-  </data>
-  <data name="Country_val_AG" xml:space="preserve">
-    <value>Antigua și Barbuda</value>
-    <comment>The name of AG country</comment>
-  </data>
-  <data name="Country_val_AI" xml:space="preserve">
-    <value>Anguilla</value>
-    <comment>The name of AI country</comment>
-  </data>
-  <data name="Country_val_AL" xml:space="preserve">
-    <value>Albania</value>
-    <comment>The name of AL country</comment>
-  </data>
-  <data name="Country_val_AM" xml:space="preserve">
-    <value>Armenia</value>
-    <comment>The name of AM country</comment>
-  </data>
-  <data name="Country_val_AO" xml:space="preserve">
-    <value>Angola</value>
-    <comment>The name of AO country</comment>
-  </data>
-  <data name="Country_val_AQ" xml:space="preserve">
-    <value>Antarctica</value>
-    <comment>The name of AQ country</comment>
-  </data>
-  <data name="Country_val_AR" xml:space="preserve">
-    <value>Argentina</value>
-    <comment>The name of AR country</comment>
-  </data>
-  <data name="Country_val_AS" xml:space="preserve">
-    <value>Samoa Americană</value>
-    <comment>The name of AS country</comment>
-  </data>
-  <data name="Country_val_AT" xml:space="preserve">
-    <value>Austria</value>
-    <comment>The name of AT country</comment>
-  </data>
-  <data name="Country_val_AU" xml:space="preserve">
-    <value>Australia</value>
-    <comment>The name of AU country</comment>
-  </data>
-  <data name="Country_val_AW" xml:space="preserve">
-    <value>Aruba</value>
-    <comment>The name of AW country</comment>
-  </data>
-  <data name="Country_val_AX" xml:space="preserve">
-    <value>Insulele Aland</value>
-    <comment>The name of AX country</comment>
-  </data>
-  <data name="Country_val_AZ" xml:space="preserve">
-    <value>Azerbaidjan</value>
-    <comment>The name of AZ country</comment>
-  </data>
-  <data name="Country_val_BA" xml:space="preserve">
-    <value>Bosnia și Herțegovina</value>
-    <comment>The name of BA country</comment>
-  </data>
-  <data name="Country_val_BB" xml:space="preserve">
-    <value>Barbados</value>
-    <comment>The name of BB country</comment>
-  </data>
-  <data name="Country_val_BD" xml:space="preserve">
-    <value>Bangladeș</value>
-    <comment>The name of BD country</comment>
-  </data>
-  <data name="Country_val_BE" xml:space="preserve">
-    <value>Belgia</value>
-    <comment>The name of BE country</comment>
-  </data>
-  <data name="Country_val_BF" xml:space="preserve">
-    <value>Burkina Faso</value>
-    <comment>The name of BF country</comment>
-  </data>
-  <data name="Country_val_BG" xml:space="preserve">
-    <value>Bulgaria</value>
-    <comment>The name of BG country</comment>
-  </data>
-  <data name="Country_val_BH" xml:space="preserve">
-    <value>Bahrain</value>
-    <comment>The name of BH country</comment>
-  </data>
-  <data name="Country_val_BI" xml:space="preserve">
-    <value>Burundi</value>
-    <comment>The name of BI country</comment>
-  </data>
-  <data name="Country_val_BJ" xml:space="preserve">
-    <value>Benin</value>
-    <comment>The name of BJ country</comment>
-  </data>
-  <data name="Country_val_BL" xml:space="preserve">
-    <value>Sfântul Bartolomeu</value>
-    <comment>The name of BL country</comment>
-  </data>
-  <data name="Country_val_BM" xml:space="preserve">
-    <value>Bermuda</value>
-    <comment>The name of BM country</comment>
-  </data>
-  <data name="Country_val_BN" xml:space="preserve">
-    <value>Brunei Darussalam</value>
-    <comment>The name of BN country</comment>
-  </data>
-  <data name="Country_val_BO" xml:space="preserve">
-    <value>Bolivia</value>
-    <comment>The name of BO country</comment>
-  </data>
-  <data name="Country_val_BQ" xml:space="preserve">
-    <value>Bonaire, Sint Eustatius și Saba</value>
-    <comment>The name of BQ country</comment>
-  </data>
-  <data name="Country_val_BR" xml:space="preserve">
-    <value>Brazilia</value>
-    <comment>The name of BR country</comment>
-  </data>
-  <data name="Country_val_BS" xml:space="preserve">
-    <value>Bahamas</value>
-    <comment>The name of BS country</comment>
-  </data>
-  <data name="Country_val_BT" xml:space="preserve">
-    <value>Butan</value>
-    <comment>The name of BT country</comment>
-  </data>
-  <data name="Country_val_BV" xml:space="preserve">
-    <value>Insula Bouvet</value>
-    <comment>The name of BV country</comment>
-  </data>
-  <data name="Country_val_BW" xml:space="preserve">
-    <value>Botswana</value>
-    <comment>The name of BW country</comment>
-  </data>
-  <data name="Country_val_BY" xml:space="preserve">
-    <value>Belarus</value>
-    <comment>The name of BY country</comment>
-  </data>
-  <data name="Country_val_BZ" xml:space="preserve">
-    <value>Belize</value>
-    <comment>The name of BZ country</comment>
-  </data>
-  <data name="Country_val_CA" xml:space="preserve">
-    <value>Canada</value>
-    <comment>The name of CA country</comment>
-  </data>
-  <data name="Country_val_CC" xml:space="preserve">
-    <value>Insulele Cocos (Keeling)</value>
-    <comment>The name of CC country</comment>
-  </data>
-  <data name="Country_val_CD" xml:space="preserve">
-    <value>Congo (Republica Democrată)</value>
-    <comment>The name of CD country</comment>
-  </data>
-  <data name="Country_val_CF" xml:space="preserve">
-    <value>Republica Central Africană</value>
-    <comment>The name of CF country</comment>
-  </data>
-  <data name="Country_val_CG" xml:space="preserve">
-    <value>Congo</value>
-    <comment>The name of CG country</comment>
-  </data>
-  <data name="Country_val_CH" xml:space="preserve">
-    <value>Elveția</value>
-    <comment>The name of CH country</comment>
-  </data>
-  <data name="Country_val_CI" xml:space="preserve">
-    <value>Costa de Fildeș</value>
-    <comment>The name of CI country</comment>
-  </data>
-  <data name="Country_val_CK" xml:space="preserve">
-    <value>Insulele Cook</value>
-    <comment>The name of CK country</comment>
-  </data>
-  <data name="Country_val_CL" xml:space="preserve">
-    <value>Cile</value>
-    <comment>The name of CL country</comment>
-  </data>
-  <data name="Country_val_CM" xml:space="preserve">
-    <value>Camerun</value>
-    <comment>The name of CM country</comment>
-  </data>
-  <data name="Country_val_CN" xml:space="preserve">
-    <value>China</value>
-    <comment>The name of CN country</comment>
-  </data>
-  <data name="Country_val_CO" xml:space="preserve">
-    <value>Columbia</value>
-    <comment>The name of CO country</comment>
-  </data>
-  <data name="Country_val_CR" xml:space="preserve">
-    <value>Costa Rica</value>
-    <comment>The name of CR country</comment>
-  </data>
-  <data name="Country_val_CU" xml:space="preserve">
-    <value>Cuba</value>
-    <comment>The name of CU country</comment>
-  </data>
-  <data name="Country_val_CV" xml:space="preserve">
-    <value>Capul Verde</value>
-    <comment>The name of CV country</comment>
-  </data>
-  <data name="Country_val_CW" xml:space="preserve">
-    <value>Curaçao</value>
-    <comment>The name of CW country</comment>
-  </data>
-  <data name="Country_val_CX" xml:space="preserve">
-    <value>Insula Crăciunului</value>
-    <comment>The name of CX country</comment>
-  </data>
-  <data name="Country_val_CY" xml:space="preserve">
-    <value>Cipru</value>
-    <comment>The name of CY country</comment>
-  </data>
-  <data name="Country_val_CZ" xml:space="preserve">
-    <value>Cehia</value>
-    <comment>The name of CZ country</comment>
-  </data>
-  <data name="Country_val_DE" xml:space="preserve">
-    <value>Germania</value>
-    <comment>The name of DE country</comment>
-  </data>
-  <data name="Country_val_DJ" xml:space="preserve">
-    <value>Djibouti</value>
-    <comment>The name of DJ country</comment>
-  </data>
-  <data name="Country_val_DK" xml:space="preserve">
-    <value>Danemarca</value>
-    <comment>The name of DK country</comment>
-  </data>
-  <data name="Country_val_DM" xml:space="preserve">
-    <value>Republica Dominicană</value>
-    <comment>The name of DM country</comment>
-  </data>
-  <data name="Country_val_DO" xml:space="preserve">
-    <value>Republica Dominicană</value>
-    <comment>The name of DO country</comment>
-  </data>
-  <data name="Country_val_DZ" xml:space="preserve">
-    <value>Algeria</value>
-    <comment>The name of DZ country</comment>
-  </data>
-  <data name="Country_val_EC" xml:space="preserve">
-    <value>Ecuador</value>
-    <comment>The name of EC country</comment>
-  </data>
-  <data name="Country_val_EE" xml:space="preserve">
-    <value>Estonia</value>
-    <comment>The name of EE country</comment>
-  </data>
-  <data name="Country_val_EG" xml:space="preserve">
-    <value>Egipt</value>
-    <comment>The name of EG country</comment>
-  </data>
-  <data name="Country_val_EH" xml:space="preserve">
-    <value>Sahara de Vest</value>
-    <comment>The name of EH country</comment>
-  </data>
-  <data name="Country_val_ER" xml:space="preserve">
-    <value>Eritrea</value>
-    <comment>The name of ER country</comment>
-  </data>
-  <data name="Country_val_ES" xml:space="preserve">
-    <value>Spania</value>
-    <comment>The name of ES country</comment>
-  </data>
-  <data name="Country_val_ET" xml:space="preserve">
-    <value>Etiopia</value>
-    <comment>The name of ET country</comment>
-  </data>
-  <data name="Country_val_FI" xml:space="preserve">
-    <value>Finlanda</value>
-    <comment>The name of FI country</comment>
-  </data>
-  <data name="Country_val_FJ" xml:space="preserve">
-    <value>Fiji</value>
-    <comment>The name of FJ country</comment>
-  </data>
-  <data name="Country_val_FK" xml:space="preserve">
-    <value>Insulele Falkland (Malvine)</value>
-    <comment>The name of FK country</comment>
-  </data>
-  <data name="Country_val_FM" xml:space="preserve">
-    <value>Micronezia</value>
-    <comment>The name of FM country</comment>
-  </data>
-  <data name="Country_val_FO" xml:space="preserve">
-    <value>Insulele Feroe</value>
-    <comment>The name of FO country</comment>
-  </data>
-  <data name="Country_val_FR" xml:space="preserve">
-    <value>Franța</value>
-    <comment>The name of FR country</comment>
-  </data>
-  <data name="Country_val_GA" xml:space="preserve">
-    <value>Gabon</value>
-    <comment>The name of GA country</comment>
-  </data>
-  <data name="Country_val_GB" xml:space="preserve">
-    <value>Regatul Unit</value>
-    <comment>The name of GB country</comment>
-  </data>
-  <data name="Country_val_GD" xml:space="preserve">
-    <value>Grenada</value>
-    <comment>The name of GD country</comment>
-  </data>
-  <data name="Country_val_GE" xml:space="preserve">
-    <value>Georgia</value>
-    <comment>The name of GE country</comment>
-  </data>
-  <data name="Country_val_GF" xml:space="preserve">
-    <value>Guiana Franceză</value>
-    <comment>The name of GF country</comment>
-  </data>
-  <data name="Country_val_GG" xml:space="preserve">
-    <value>Guernsey</value>
-    <comment>The name of GG country</comment>
-  </data>
-  <data name="Country_val_GH" xml:space="preserve">
-    <value>Gana</value>
-    <comment>The name of GH country</comment>
-  </data>
-  <data name="Country_val_GI" xml:space="preserve">
-    <value>Gibraltar</value>
-    <comment>The name of GI country</comment>
-  </data>
-  <data name="Country_val_GL" xml:space="preserve">
-    <value>Groenlanda</value>
-    <comment>The name of GL country</comment>
-  </data>
-  <data name="Country_val_GM" xml:space="preserve">
-    <value>Gambia</value>
-    <comment>The name of GM country</comment>
-  </data>
-  <data name="Country_val_GN" xml:space="preserve">
-    <value>Guineea</value>
-    <comment>The name of GN country</comment>
-  </data>
-  <data name="Country_val_GP" xml:space="preserve">
-    <value>Guadalupe</value>
-    <comment>The name of GP country</comment>
-  </data>
-  <data name="Country_val_GQ" xml:space="preserve">
-    <value>Guineea Ecuatorială</value>
-    <comment>The name of GQ country</comment>
-  </data>
-  <data name="Country_val_GR" xml:space="preserve">
-    <value>Grecia</value>
-    <comment>The name of GR country</comment>
-  </data>
-  <data name="Country_val_GS" xml:space="preserve">
-    <value>Georgia de Sud și Insulele Sandwich de Sud</value>
-    <comment>The name of GS country</comment>
-  </data>
-  <data name="Country_val_GT" xml:space="preserve">
-    <value>Guatemala</value>
-    <comment>The name of GT country</comment>
-  </data>
-  <data name="Country_val_GU" xml:space="preserve">
-    <value>Guam</value>
-    <comment>The name of GU country</comment>
-  </data>
-  <data name="Country_val_GW" xml:space="preserve">
-    <value>Guineea-Bissau</value>
-    <comment>The name of GW country</comment>
-  </data>
-  <data name="Country_val_GY" xml:space="preserve">
-    <value>Guiana</value>
-    <comment>The name of GY country</comment>
-  </data>
-  <data name="Country_val_HK" xml:space="preserve">
-    <value>Hong Kong</value>
-    <comment>The name of HK country</comment>
-  </data>
-  <data name="Country_val_HM" xml:space="preserve">
-    <value>Insula Heard și Insulele McDonald</value>
-    <comment>The name of HM country</comment>
-  </data>
-  <data name="Country_val_HN" xml:space="preserve">
-    <value>Honduras</value>
-    <comment>The name of HN country</comment>
-  </data>
-  <data name="Country_val_HR" xml:space="preserve">
-    <value>Croația</value>
-    <comment>The name of HR country</comment>
-  </data>
-  <data name="Country_val_HT" xml:space="preserve">
-    <value>Haiti</value>
-    <comment>The name of HT country</comment>
-  </data>
-  <data name="Country_val_HU" xml:space="preserve">
-    <value>Ungaria</value>
-    <comment>The name of HU country</comment>
-  </data>
-  <data name="Country_val_ID" xml:space="preserve">
-    <value>Indonezia</value>
-    <comment>The name of ID country</comment>
-  </data>
-  <data name="Country_val_IE" xml:space="preserve">
-    <value>Irlanda</value>
-    <comment>The name of IE country</comment>
-  </data>
-  <data name="Country_val_IL" xml:space="preserve">
-    <value>Israel</value>
-    <comment>The name of IL country</comment>
-  </data>
-  <data name="Country_val_IM" xml:space="preserve">
-    <value>Insula Man</value>
-    <comment>The name of IM country</comment>
-  </data>
-  <data name="Country_val_IN" xml:space="preserve">
-    <value>India</value>
-    <comment>The name of IN country</comment>
-  </data>
-  <data name="Country_val_IO" xml:space="preserve">
-    <value>Teritoriul Britanic al Oceanului Indian</value>
-    <comment>The name of IO country</comment>
-  </data>
-  <data name="Country_val_IQ" xml:space="preserve">
-    <value>Irak</value>
-    <comment>The name of IQ country</comment>
-  </data>
-  <data name="Country_val_IR" xml:space="preserve">
-    <value>Iran</value>
-    <comment>The name of IR country</comment>
-  </data>
-  <data name="Country_val_IS" xml:space="preserve">
-    <value>Islanda</value>
-    <comment>The name of IS country</comment>
-  </data>
-  <data name="Country_val_IT" xml:space="preserve">
-    <value>Italia</value>
-    <comment>The name of IT country</comment>
-  </data>
-  <data name="Country_val_JE" xml:space="preserve">
-    <value>Jersey</value>
-    <comment>The name of JE country</comment>
-  </data>
-  <data name="Country_val_JM" xml:space="preserve">
-    <value>Jamaica</value>
-    <comment>The name of JM country</comment>
-  </data>
-  <data name="Country_val_JO" xml:space="preserve">
-    <value>Iordan</value>
-    <comment>The name of JO country</comment>
-  </data>
-  <data name="Country_val_JP" xml:space="preserve">
-    <value>Japonia</value>
-    <comment>The name of JP country</comment>
-  </data>
-  <data name="Country_val_KE" xml:space="preserve">
-    <value>Kenya</value>
-    <comment>The name of KE country</comment>
-  </data>
-  <data name="Country_val_KG" xml:space="preserve">
-    <value>Kârgâzstan</value>
-    <comment>The name of KG country</comment>
-  </data>
-  <data name="Country_val_KH" xml:space="preserve">
-    <value>Cambogia</value>
-    <comment>The name of KH country</comment>
-  </data>
-  <data name="Country_val_KI" xml:space="preserve">
-    <value>Kiribati</value>
-    <comment>The name of KI country</comment>
-  </data>
-  <data name="Country_val_KM" xml:space="preserve">
-    <value>Comore</value>
-    <comment>The name of KM country</comment>
-  </data>
-  <data name="Country_val_KN" xml:space="preserve">
-    <value>Sfântul Cristofor și Nevis</value>
-    <comment>The name of KN country</comment>
-  </data>
-  <data name="Country_val_KP" xml:space="preserve">
-    <value>Coreea de Nord</value>
-    <comment>The name of KP country</comment>
-  </data>
-  <data name="Country_val_KR" xml:space="preserve">
-    <value>Coreea de Sud</value>
-    <comment>The name of KR country</comment>
-  </data>
-  <data name="Country_val_KW" xml:space="preserve">
-    <value>Kuweit</value>
-    <comment>The name of KW country</comment>
-  </data>
-  <data name="Country_val_KY" xml:space="preserve">
-    <value>Insulele Caiman</value>
-    <comment>The name of KY country</comment>
-  </data>
-  <data name="Country_val_KZ" xml:space="preserve">
-    <value>Kazahstan</value>
-    <comment>The name of KZ country</comment>
-  </data>
-  <data name="Country_val_LA" xml:space="preserve">
-    <value>Laos</value>
-    <comment>The name of LA country</comment>
-  </data>
-  <data name="Country_val_LB" xml:space="preserve">
-    <value>Liban</value>
-    <comment>The name of LB country</comment>
-  </data>
-  <data name="Country_val_LC" xml:space="preserve">
-    <value>Sfânta Lucia</value>
-    <comment>The name of LC country</comment>
-  </data>
-  <data name="Country_val_LI" xml:space="preserve">
-    <value>Liechtenstein</value>
-    <comment>The name of LI country</comment>
-  </data>
-  <data name="Country_val_LK" xml:space="preserve">
-    <value>Sri Lanka</value>
-    <comment>The name of LK country</comment>
-  </data>
-  <data name="Country_val_LR" xml:space="preserve">
-    <value>Liberia</value>
-    <comment>The name of LR country</comment>
-  </data>
-  <data name="Country_val_LS" xml:space="preserve">
-    <value>Lesotho</value>
-    <comment>The name of LS country</comment>
-  </data>
-  <data name="Country_val_LT" xml:space="preserve">
-    <value>Lituania</value>
-    <comment>The name of LT country</comment>
-  </data>
-  <data name="Country_val_LU" xml:space="preserve">
-    <value>Luxemburg</value>
-    <comment>The name of LU country</comment>
-  </data>
-  <data name="Country_val_LV" xml:space="preserve">
-    <value>Letonia</value>
-    <comment>The name of LV country</comment>
-  </data>
-  <data name="Country_val_LY" xml:space="preserve">
-    <value>Libia</value>
-    <comment>The name of LY country</comment>
-  </data>
-  <data name="Country_val_MA" xml:space="preserve">
-    <value>Maroc</value>
-    <comment>The name of MA country</comment>
-  </data>
-  <data name="Country_val_MC" xml:space="preserve">
-    <value>Monaco</value>
-    <comment>The name of MC country</comment>
-  </data>
-  <data name="Country_val_MD" xml:space="preserve">
-    <value>Republica Moldova</value>
-    <comment>The name of MD country</comment>
-  </data>
-  <data name="Country_val_ME" xml:space="preserve">
-    <value>Muntenegru</value>
-    <comment>The name of ME country</comment>
-  </data>
-  <data name="Country_val_MF" xml:space="preserve">
-    <value>Saint Martin (Franța)</value>
-    <comment>The name of MF country</comment>
-  </data>
-  <data name="Country_val_MG" xml:space="preserve">
-    <value>Madagascar</value>
-    <comment>The name of MG country</comment>
-  </data>
-  <data name="Country_val_MH" xml:space="preserve">
-    <value>Insulele Marshall</value>
-    <comment>The name of MH country</comment>
-  </data>
-  <data name="Country_val_MK" xml:space="preserve">
-    <value>Macedonia de Nord</value>
-    <comment>The name of MK country</comment>
-  </data>
-  <data name="Country_val_ML" xml:space="preserve">
-    <value>Mali</value>
-    <comment>The name of ML country</comment>
-  </data>
-  <data name="Country_val_MM" xml:space="preserve">
-    <value>Myanmar</value>
-    <comment>The name of MM country</comment>
-  </data>
-  <data name="Country_val_MN" xml:space="preserve">
-    <value>Mongolia</value>
-    <comment>The name of MN country</comment>
-  </data>
-  <data name="Country_val_MO" xml:space="preserve">
-    <value>Macao</value>
-    <comment>The name of MO country</comment>
-  </data>
-  <data name="Country_val_MP" xml:space="preserve">
-    <value>Insulele Mariane de Nord</value>
-    <comment>The name of MP country</comment>
-  </data>
-  <data name="Country_val_MQ" xml:space="preserve">
-    <value>Martinica</value>
-    <comment>The name of MQ country</comment>
-  </data>
-  <data name="Country_val_MR" xml:space="preserve">
-    <value>Mauritania</value>
-    <comment>The name of MR country</comment>
-  </data>
-  <data name="Country_val_MS" xml:space="preserve">
-    <value>Montserrat</value>
-    <comment>The name of MS country</comment>
-  </data>
-  <data name="Country_val_MT" xml:space="preserve">
-    <value>Malta</value>
-    <comment>The name of MT country</comment>
-  </data>
-  <data name="Country_val_MU" xml:space="preserve">
-    <value>Mauritius</value>
-    <comment>The name of MU country</comment>
-  </data>
-  <data name="Country_val_MV" xml:space="preserve">
-    <value>Maldive</value>
-    <comment>The name of MV country</comment>
-  </data>
-  <data name="Country_val_MW" xml:space="preserve">
-    <value>Malawi</value>
-    <comment>The name of MW country</comment>
-  </data>
-  <data name="Country_val_MX" xml:space="preserve">
-    <value>Mexic</value>
-    <comment>The name of MX country</comment>
-  </data>
-  <data name="Country_val_MY" xml:space="preserve">
-    <value>Malaezia</value>
-    <comment>The name of MY country</comment>
-  </data>
-  <data name="Country_val_MZ" xml:space="preserve">
-    <value>Mozambic</value>
-    <comment>The name of MZ country</comment>
-  </data>
-  <data name="Country_val_NA" xml:space="preserve">
-    <value>Namibia</value>
-    <comment>The name of NA country</comment>
-  </data>
-  <data name="Country_val_NC" xml:space="preserve">
-    <value>Noua Caledonie</value>
-    <comment>The name of NC country</comment>
-  </data>
-  <data name="Country_val_NE" xml:space="preserve">
-    <value>Nigeria</value>
-    <comment>The name of NE country</comment>
-  </data>
-  <data name="Country_val_NF" xml:space="preserve">
-    <value>Insula Norfolk</value>
-    <comment>The name of NF country</comment>
-  </data>
-  <data name="Country_val_NG" xml:space="preserve">
-    <value>Nigeria</value>
-    <comment>The name of NG country</comment>
-  </data>
-  <data name="Country_val_NI" xml:space="preserve">
-    <value>Nicaragua</value>
-    <comment>The name of NI country</comment>
-  </data>
-  <data name="Country_val_NL" xml:space="preserve">
-    <value>Țările de Jos</value>
-    <comment>The name of NL country</comment>
-  </data>
-  <data name="Country_val_NO" xml:space="preserve">
-    <value>Norvegia</value>
-    <comment>The name of NO country</comment>
-  </data>
-  <data name="Country_val_NP" xml:space="preserve">
-    <value>Nepal</value>
-    <comment>The name of NP country</comment>
-  </data>
-  <data name="Country_val_NR" xml:space="preserve">
-    <value>Nauru</value>
-    <comment>The name of NR country</comment>
-  </data>
-  <data name="Country_val_NU" xml:space="preserve">
-    <value>Niue</value>
-    <comment>The name of NU country</comment>
-  </data>
-  <data name="Country_val_NZ" xml:space="preserve">
-    <value>Noua Zeelandă</value>
-    <comment>The name of NZ country</comment>
-  </data>
-  <data name="Country_val_OM" xml:space="preserve">
-    <value>Oman</value>
-    <comment>The name of OM country</comment>
-  </data>
-  <data name="Country_val_PA" xml:space="preserve">
-    <value>Panama</value>
-    <comment>The name of PA country</comment>
-  </data>
-  <data name="Country_val_PE" xml:space="preserve">
-    <value>Peru</value>
-    <comment>The name of PE country</comment>
-  </data>
-  <data name="Country_val_PF" xml:space="preserve">
-    <value>Polinezia Franceză</value>
-    <comment>The name of PF country</comment>
-  </data>
-  <data name="Country_val_PG" xml:space="preserve">
-    <value>Papua Noua Guinee</value>
-    <comment>The name of PG country</comment>
-  </data>
-  <data name="Country_val_PH" xml:space="preserve">
-    <value>Filipine</value>
-    <comment>The name of PH country</comment>
-  </data>
-  <data name="Country_val_PK" xml:space="preserve">
-    <value>Pakistan</value>
-    <comment>The name of PK country</comment>
-  </data>
-  <data name="Country_val_PL" xml:space="preserve">
-    <value>Polonia</value>
-    <comment>The name of PL country</comment>
-  </data>
-  <data name="Country_val_PM" xml:space="preserve">
-    <value>Saint Pierre și Miquelon</value>
-    <comment>The name of PM country</comment>
-  </data>
-  <data name="Country_val_PN" xml:space="preserve">
-    <value>Pitcairn</value>
-    <comment>The name of PN country</comment>
-  </data>
-  <data name="Country_val_PR" xml:space="preserve">
-    <value>Porto Rico</value>
-    <comment>The name of PR country</comment>
-  </data>
-  <data name="Country_val_PS" xml:space="preserve">
-    <value>Palestina</value>
-    <comment>The name of PS country</comment>
-  </data>
-  <data name="Country_val_PT" xml:space="preserve">
-    <value>Portugalia</value>
-    <comment>The name of PT country</comment>
-  </data>
-  <data name="Country_val_PW" xml:space="preserve">
-    <value>Palau</value>
-    <comment>The name of PW country</comment>
-  </data>
-  <data name="Country_val_PY" xml:space="preserve">
-    <value>Paraguay</value>
-    <comment>The name of PY country</comment>
-  </data>
-  <data name="Country_val_QA" xml:space="preserve">
-    <value>Qatar</value>
-    <comment>The name of QA country</comment>
-  </data>
-  <data name="Country_val_RE" xml:space="preserve">
-    <value>Réunion</value>
-    <comment>The name of RE country</comment>
-  </data>
-  <data name="Country_val_RO" xml:space="preserve">
-    <value>România</value>
-    <comment>The name of RO country</comment>
-  </data>
-  <data name="Country_val_RS" xml:space="preserve">
-    <value>Serbia</value>
-    <comment>The name of RS country</comment>
-  </data>
-  <data name="Country_val_RU" xml:space="preserve">
-    <value>Rusia</value>
-    <comment>The name of RU country</comment>
-  </data>
-  <data name="Country_val_RW" xml:space="preserve">
-    <value>Ruanda</value>
-    <comment>The name of RW country</comment>
-  </data>
-  <data name="Country_val_SA" xml:space="preserve">
-    <value>Arabia Saudită</value>
-    <comment>The name of SA country</comment>
-  </data>
-  <data name="Country_val_SB" xml:space="preserve">
-    <value>Insula Solomon</value>
-    <comment>The name of SB country</comment>
-  </data>
-  <data name="Country_val_SC" xml:space="preserve">
-    <value>Seychelles</value>
-    <comment>The name of SC country</comment>
-  </data>
-  <data name="Country_val_SD" xml:space="preserve">
-    <value>Sudan</value>
-    <comment>The name of SD country</comment>
-  </data>
-  <data name="Country_val_SE" xml:space="preserve">
-    <value>Suedia</value>
-    <comment>The name of SE country</comment>
-  </data>
-  <data name="Country_val_SG" xml:space="preserve">
-    <value>Singapore</value>
-    <comment>The name of SG country</comment>
-  </data>
-  <data name="Country_val_SH" xml:space="preserve">
-    <value>Sfânta Elena, Ascension și Tristan da Cunha</value>
-    <comment>The name of SH country</comment>
-  </data>
-  <data name="Country_val_SI" xml:space="preserve">
-    <value>Slovenia</value>
-    <comment>The name of SI country</comment>
-  </data>
-  <data name="Country_val_SJ" xml:space="preserve">
-    <value>Svalbard și Jan Mayen</value>
-    <comment>The name of SJ country</comment>
-  </data>
-  <data name="Country_val_SK" xml:space="preserve">
-    <value>Slovacia</value>
-    <comment>The name of SK country</comment>
-  </data>
-  <data name="Country_val_SL" xml:space="preserve">
-    <value>Sierra Leone</value>
-    <comment>The name of SL country</comment>
-  </data>
-  <data name="Country_val_SM" xml:space="preserve">
-    <value>San Marino</value>
-    <comment>The name of SM country</comment>
-  </data>
-  <data name="Country_val_SN" xml:space="preserve">
-    <value>Senegal</value>
-    <comment>The name of SN country</comment>
-  </data>
-  <data name="Country_val_SO" xml:space="preserve">
-    <value>Somalia</value>
-    <comment>The name of SO country</comment>
-  </data>
-  <data name="Country_val_SR" xml:space="preserve">
-    <value>Surinam</value>
-    <comment>The name of SR country</comment>
-  </data>
-  <data name="Country_val_SS" xml:space="preserve">
-    <value>Sudanul de Sud</value>
-    <comment>The name of SS country</comment>
-  </data>
-  <data name="Country_val_ST" xml:space="preserve">
-    <value>Sao Tome și Principe</value>
-    <comment>The name of ST country</comment>
-  </data>
-  <data name="Country_val_SV" xml:space="preserve">
-    <value>El Salvador</value>
-    <comment>The name of SV country</comment>
-  </data>
-  <data name="Country_val_SX" xml:space="preserve">
-    <value>Sint Maarten (partea olandeză)</value>
-    <comment>The name of SX country</comment>
-  </data>
-  <data name="Country_val_SY" xml:space="preserve">
-    <value>Republica Arabă Siriană</value>
-    <comment>The name of SY country</comment>
-  </data>
-  <data name="Country_val_SZ" xml:space="preserve">
-    <value>Eswatini</value>
-    <comment>The name of SZ country</comment>
-  </data>
-  <data name="Country_val_TC" xml:space="preserve">
-    <value>Insulele Turks și Caicos</value>
-    <comment>The name of TC country</comment>
-  </data>
-  <data name="Country_val_TD" xml:space="preserve">
-    <value>Ciad</value>
-    <comment>The name of TD country</comment>
-  </data>
-  <data name="Country_val_TF" xml:space="preserve">
-    <value>Teritoriile Franceze de Sud</value>
-    <comment>The name of TF country</comment>
-  </data>
-  <data name="Country_val_TG" xml:space="preserve">
-    <value>Togo</value>
-    <comment>The name of TG country</comment>
-  </data>
-  <data name="Country_val_TH" xml:space="preserve">
-    <value>Tailanda</value>
-    <comment>The name of TH country</comment>
-  </data>
-  <data name="Country_val_TJ" xml:space="preserve">
-    <value>Tadjikistan</value>
-    <comment>The name of TJ country</comment>
-  </data>
-  <data name="Country_val_TK" xml:space="preserve">
-    <value>Tokelau</value>
-    <comment>The name of TK country</comment>
-  </data>
-  <data name="Country_val_TL" xml:space="preserve">
-    <value>Timorul De Est</value>
-    <comment>The name of TL country</comment>
-  </data>
-  <data name="Country_val_TM" xml:space="preserve">
-    <value>Turkmenistan</value>
-    <comment>The name of TM country</comment>
-  </data>
-  <data name="Country_val_TN" xml:space="preserve">
-    <value>Tunisia</value>
-    <comment>The name of TN country</comment>
-  </data>
-  <data name="Country_val_TO" xml:space="preserve">
-    <value>Tonga</value>
-    <comment>The name of TO country</comment>
-  </data>
-  <data name="Country_val_TR" xml:space="preserve">
-    <value>Turcia</value>
-    <comment>The name of TR country</comment>
-  </data>
-  <data name="Country_val_TT" xml:space="preserve">
-    <value>Trinidad și Tobago</value>
-    <comment>The name of TT country</comment>
-  </data>
-  <data name="Country_val_TV" xml:space="preserve">
-    <value>Tuvalu</value>
-    <comment>The name of TV country</comment>
-  </data>
-  <data name="Country_val_TW" xml:space="preserve">
-    <value>Taiwan</value>
-    <comment>The name of TW country</comment>
-  </data>
-  <data name="Country_val_TZ" xml:space="preserve">
-    <value>Tanzania</value>
-    <comment>The name of TZ country</comment>
-  </data>
-  <data name="Country_val_UA" xml:space="preserve">
-    <value>Ucraina</value>
-    <comment>The name of UA country</comment>
-  </data>
-  <data name="Country_val_UG" xml:space="preserve">
-    <value>Uganda</value>
-    <comment>The name of UG country</comment>
-  </data>
-  <data name="Country_val_UK" xml:space="preserve">
-    <value>Regatul Unit</value>
-    <comment>The name of UK country</comment>
-  </data>
-  <data name="Country_val_UM" xml:space="preserve">
-    <value>Insulele Minore Îndepărtate ale Statelor Unite</value>
-    <comment>The name of UM country</comment>
-  </data>
-  <data name="Country_val_US" xml:space="preserve">
-    <value>SUA</value>
-    <comment>The name of US country</comment>
-  </data>
-  <data name="Country_val_UY" xml:space="preserve">
-    <value>Uruguai</value>
-    <comment>The name of UY country</comment>
-  </data>
-  <data name="Country_val_UZ" xml:space="preserve">
-    <value>Uzbekistan</value>
-    <comment>The name of UZ country</comment>
-  </data>
-  <data name="Country_val_VA" xml:space="preserve">
-    <value>Orașul Vatican</value>
-    <comment>The name of VA country</comment>
-  </data>
-  <data name="Country_val_VC" xml:space="preserve">
-    <value>Sfântul Vincențiu și Grenadinele</value>
-    <comment>The name of VC country</comment>
-  </data>
-  <data name="Country_val_VE" xml:space="preserve">
-    <value>Venezuela</value>
-    <comment>The name of VE country</comment>
-  </data>
-  <data name="Country_val_VG" xml:space="preserve">
-    <value>Insulele Virgine, Britania</value>
-    <comment>The name of VG country</comment>
-  </data>
-  <data name="Country_val_VI" xml:space="preserve">
-    <value>Insulele Virgine, S.U.A.</value>
-    <comment>The name of VI country</comment>
-  </data>
-  <data name="Country_val_VN" xml:space="preserve">
-    <value>Vietnam</value>
-    <comment>The name of VN country</comment>
-  </data>
-  <data name="Country_val_VU" xml:space="preserve">
-    <value>Vanuatu</value>
-    <comment>The name of VU country</comment>
-  </data>
-  <data name="Country_val_WF" xml:space="preserve">
-    <value>Wallis și Futuna</value>
-    <comment>The name of WF country</comment>
-  </data>
-  <data name="Country_val_WS" xml:space="preserve">
-    <value>Samoa</value>
-    <comment>The name of WS country</comment>
-  </data>
-  <data name="Country_val_YE" xml:space="preserve">
-    <value>Yemen</value>
-    <comment>The name of YE country</comment>
-  </data>
-  <data name="Country_val_YT" xml:space="preserve">
-    <value>Mayotte</value>
-    <comment>The name of YT country</comment>
-  </data>
-  <data name="Country_val_ZA" xml:space="preserve">
-    <value>Africa de Sud</value>
-    <comment>The name of ZA country</comment>
-  </data>
-  <data name="Country_val_ZM" xml:space="preserve">
-    <value>Zambia</value>
-    <comment>The name of ZM country</comment>
-  </data>
-  <data name="Country_val_ZW" xml:space="preserve">
-    <value>Zimbabwe</value>
-    <comment>The name of ZW country</comment>
-  </data>
-  <data name="Country_val_ZZ" xml:space="preserve">
-    <value>Necunoscută</value>
-    <comment>The name of ZZ (unknown or not specified) country</comment>
-  </data>
-  <data name="Dialogs_Latency_Description" xml:space="preserve">
-    <value>Latența arată cât durează ca un server să răspundă solicitărilor.\n\nLatența mare vă poate încetini conexiunea.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>Viteza prin VPN ar putea fi mai redusă decât normal</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
-    <value>Mare (peste 150 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>Viteză foarte mare</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
-    <value>Mică (1 ms - 50 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>Improbabil să afecteze viteza prin VPN</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
-    <value>Medie (50 ms - 150 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_Title" xml:space="preserve">
-    <value>Ce este latența?</value>
-  </data>
-  <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>Un protocol este un set de instrucțiuni pe care dispozitivul personal urmează să se conecteze și să comunice cu un server.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
-    <value>Comutare protocol VPN</value>
-  </data>
-  <data name="Dialogs_Protocol_Title" xml:space="preserve">
-    <value>Ce este un protocol VPN</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
-    <value>Care este problema?</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
-    <value>Încărcarea serverului arată cât de aproape este un server de capacitatea sa maximă.\n\nO sarcină mare a serverului vă poate încetini conexiunea.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>Viteza prin VPN ar putea fi mai redusă decât normal</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>Mare (91-100%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>Viteză foarte mare</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>Mică (1-75%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>Improbabil să afecteze viteza prin VPN</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>Medie (76-90%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>Care este solicitarea serverului?</value>
-  </data>
-  <data name="Format_Milliseconds" xml:space="preserve">
-    <value>{0} ms</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
-  </data>
-  <data name="Format_Size_Bytes" xml:space="preserve">
-    <value>{0} B</value>
-    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
-  </data>
-  <data name="Format_Size_Exabytes" xml:space="preserve">
-    <value>{0} EiB</value>
-    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
-  </data>
-  <data name="Format_Size_Gigabytes" xml:space="preserve">
-    <value>{0} GiB</value>
-    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
-  </data>
-  <data name="Format_Size_Kilobytes" xml:space="preserve">
-    <value>{0} KiB</value>
-    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
-  </data>
-  <data name="Format_Size_Megabytes" xml:space="preserve">
-    <value>{0} MiB</value>
-    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
-  </data>
-  <data name="Format_Size_Petabytes" xml:space="preserve">
-    <value>{0} PiB</value>
-    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
-  </data>
-  <data name="Format_Size_Terabytes" xml:space="preserve">
-    <value>{0} TiB</value>
-    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
-  </data>
-  <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
-    <value>{0} B/s</value>
-    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
-  </data>
-  <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
-    <value>{0} EiB/s</value>
-    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
-  </data>
-  <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
-    <value>{0} GiB/s</value>
-    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
-  </data>
-  <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
-    <value>{0} KiB/s</value>
-    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
-  </data>
-  <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
-    <value>{0} MiB/s</value>
-    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
-  </data>
-  <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
-    <value>{0} PiB/s</value>
-    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
-  </data>
-  <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
-    <value>{0} TiB/s</value>
-    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
-  </data>
-  <data name="Format_Time_Day" xml:space="preserve">
-    <value>{0} zi</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} zi {1} h</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days" xml:space="preserve">
-    <value>{0} zile</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DaysHours" xml:space="preserve">
-    <value>{0} zile {1} h</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Hours" xml:space="preserve">
-    <value>{0} h</value>
-    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_HoursMinutes" xml:space="preserve">
-    <value>{0} h {1} min</value>
-    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Minutes" xml:space="preserve">
-    <value>{0} min</value>
-    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_MinutesSeconds" xml:space="preserve">
-    <value>{0} min {1} sec</value>
-    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Seconds" xml:space="preserve">
-    <value>{0} sec</value>
-    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
-  </data>
-  <data name="Home_Account_SignOut" xml:space="preserve">
-    <value>Deconectare</value>
-  </data>
-  <data name="Home_Account_Title" xml:space="preserve">
-    <value>Contul meu</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>Navigare sigură prin</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>Se conectează la...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>Ultima conexiune la</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>Recomandat</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
-    <value>Card conexiune</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_City" xml:space="preserve">
-    <value>Oraș</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
-    <value>Conectat timp de</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
-    <value>Poartă de acces</value>
-  </data>
-  <data name="Home_ConnectionDetails_Country" xml:space="preserve">
-    <value>Țara</value>
-  </data>
-  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>Descărcare</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
-    <value>Ascundere detalii conexiune</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
-    <value>Ascundere</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
-    <value>Ascundere adresă IP</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>Detalii conexiune</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>Latență</value>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
-    <value>IP personal</value>
-  </data>
-  <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
-    <value>Protocol</value>
-  </data>
-  <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
-    <value>Solicitare server</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show" xml:space="preserve">
-    <value>Afișare detalii conexiune</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
-    <value>Afișare</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
-    <value>Afișare adresă IP utilizator</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>Detalii conexiune</value>
-  </data>
-  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>Încărcare</value>
-  </data>
-  <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
-    <value>IP VPN</value>
-  </data>
-  <data name="Home_Help_Title" xml:space="preserve">
-    <value>Ajutor</value>
-  </data>
-  <data name="Home_Map_Landmark" xml:space="preserve">
-    <value>Harta</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>Reclame\nblocate</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>Date\nsalvate</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_Landmark" xml:space="preserve">
-    <value>Statistici Netshield</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>urmăritori\nopriți</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_Page_Title" xml:space="preserve">
-    <value>Început</value>
-  </data>
-  <data name="Home_Recents_Landmark" xml:space="preserve">
-    <value>Conexiuni recente</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_Recents_Pin" xml:space="preserve">
-    <value>Fixare</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
-    <value>Acțiuni</value>
-  </data>
-  <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
-    <value>Serverul se află în mentenanță</value>
-  </data>
-  <data name="Home_Recents_Title" xml:space="preserve">
-    <value>Recente</value>
-  </data>
-  <data name="Home_Recents_Unpin" xml:space="preserve">
-    <value>Anulare fixare</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark" xml:space="preserve">
-    <value>Stare VPN</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>Protejare identitate digitală</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>Nu există protecție</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
-    <value>Protejat</value>
-  </data>
-  <data name="Server_Feature_P2P" xml:space="preserve">
-    <value>P2P</value>
-  </data>
-  <data name="Server_Feature_Tor" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>Cod incorect. Reîncercați.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>Date de conectare incorecte. Reîncercați.</value>
-  </data>
-  <data name="Settings_About" xml:space="preserve">
-    <value>Despre</value>
-  </data>
-  <data name="Settings_AppVersion" xml:space="preserve">
-    <value>Versiune aplicație</value>
-  </data>
-  <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>Aceste statistici nu conțin adresa dvs. IP și nu pot fi utilizate să vă identifice. Nu le vom partaja cu terțe părți.</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>Partajare anonimă rapoarte de erori</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>Rapoartele de erori ne ajută să reparăm erorile, să detectăm paravanele de protecție și să evităm blocările VPN-ului.</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>Partajare anonimă statistici de utilizare</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>Datele de utilizare ne ajută să depășim blocările VPN-ului și să îmbunătățim performanța aplicației.</value>
-  </data>
-  <data name="Settings_Connection" xml:space="preserve">
-    <value>Conexiune</value>
-  </data>
-  <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>Setări avansate</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>Rută alternativă</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
-    <value>Dacă serviciile Proton sunt blocate din cauza restricțiilor de rețea, vom încerca să utilizăm o direcționarea alternativă de rețea pentru a vă conecta la site-urile noastre.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
-    <value>Servere DNS personale</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
-    <value>Conectați-vă la Proton VPN folosind propriul sistem de nume de domeniu (DNS). Utilizați numai servere DNS în care aveți încredere.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
-    <value>Servere DNS ({0})</value>
-    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
-    <value>Adăugare adrese IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>Conexiuni LAN</value>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>Vă permite să vă conectați la imprimante, boxe și alte dispozitive din rețeaua locală a dispozitivului.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
-    <value>Tip NAT</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
-    <value>Selectați un tip de traducere a adreselor de rețea pentru conexiunea proprie.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
-    <value>Moderat (tip 2)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
-    <value>O anumită restricție la datele care intră în rețeaua personală. Această opțiune este cea mai bună pentru jocurile video online.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
-    <value>Strict (tip 3)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
-    <value>Restricționează datele care intră în rețeaua proprie. Această opțiune este mai sigură, dar poate face mai dificilă conexiunile jocurilor cu utilizatori multipli.</value>
-  </data>
-  <data name="Settings_Connection_Protocol" xml:space="preserve">
-    <value>Protocol</value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>VPN Accelerator</value>
-  </data>
-  <data name="Settings_Features" xml:space="preserve">
-    <value>Funcții</value>
-  </data>
-  <data name="Settings_Features_KillSwitch" xml:space="preserve">
-    <value>Blocare conexiune</value>
-  </data>
-  <data name="Settings_Features_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-  </data>
-  <data name="Settings_Features_PortForwarding" xml:space="preserve">
-    <value>Redirecționare port</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling" xml:space="preserve">
-    <value>Divizare trafic</value>
-  </data>
-  <data name="Settings_General" xml:space="preserve">
-    <value>Generale</value>
-  </data>
-  <data name="Settings_General_AutoStartup" xml:space="preserve">
-    <value>Autopornire</value>
-  </data>
-  <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>Autopornire, autoconectare</value>
-  </data>
-  <data name="Settings_General_BetaAccess" xml:space="preserve">
-    <value>Acces la Beta</value>
-  </data>
-  <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
-    <value>Obțineți acces timpuriu și ajutați-ne să testăm noi versiuni ale Proton VPN</value>
-  </data>
-  <data name="Settings_General_Language" xml:space="preserve">
-    <value>Limba</value>
-  </data>
-  <data name="Settings_General_Notifications" xml:space="preserve">
-    <value>Notificări</value>
-  </data>
-  <data name="Settings_General_Notifications_Description" xml:space="preserve">
-    <value>Primiți notificări despre activitățile în curs ale Proton VPN</value>
-  </data>
-  <data name="Settings_General_Theme" xml:space="preserve">
-    <value>Tema</value>
-  </data>
-  <data name="Settings_General_Theme_Dark" xml:space="preserve">
-    <value>Neagră</value>
-  </data>
-  <data name="Settings_General_Theme_Default" xml:space="preserve">
-    <value>Implicită</value>
-  </data>
-  <data name="Settings_General_Theme_Light" xml:space="preserve">
-    <value>Albă</value>
-  </data>
-  <data name="Settings_Improve" xml:space="preserve">
-    <value>Îmbunătățire Proton</value>
-  </data>
-  <data name="Settings_Improve_Censorship" xml:space="preserve">
-    <value>Ajutați-ne să luptăm cu cenzura</value>
-  </data>
-  <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Versiune sistem de operare</value>
-  </data>
-  <data name="Settings_Page_Title" xml:space="preserve">
-    <value>Setări</value>
-  </data>
-  <data name="Settings_Protocols_Explanation" xml:space="preserve">
-    <value>Un protocol VPN determină modul în care datele se mută între un server VPN și dispozitivul personal.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
-    <value>Răspândit, bine testat și sigur. OpenVPN este fiabil în condiții de rețea precare, dar poate să nu fie la fel de rapid ca alte protocoale.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
-    <value>Răspândit, bine testat și sigur. OpenVPN este mai puțin eficient din punct de vedere al bateriei decât alte protocoale.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>Recomandat</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
-    <value>Autoselectează cel mai bun protocol pentru conexiune.</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
-    <value>Fiabilitate (TCP)</value>
-  </data>
-  <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
-    <value>Viteză (UDP)</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>Rapid, sigur și eficient. WireGuard este mai eficient din punct de vedere al bateriei decât alte protocoale.</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>Restaurare setări implicite</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnUdp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_Support" xml:space="preserve">
-    <value>Asistență</value>
-  </data>
-  <data name="Settings_Support_DebugLogs" xml:space="preserve">
-    <value>Jurnalele de depanare</value>
-  </data>
-  <data name="Settings_Support_ReportIssue" xml:space="preserve">
-    <value>Raportare o problemă</value>
-  </data>
-  <data name="Login_Form_CreateAccount" xml:space="preserve">
-    <value>Creare cont</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Password" xml:space="preserve">
-    <value>Parolă</value>
-  </data>
-  <data name="Login_Form_SignIn" xml:space="preserve">
-    <value>Înscriere</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Username" xml:space="preserve">
-    <value>E-mail sau utilizator</value>
-  </data>
-  <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
-    <value>Autentificare</value>
-    <comment>Authenticate button inside two factor form during login</comment>
-  </data>
-  <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Introduceți codul din aplicația Authenticator.</value>
-  </data>
-  <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>Autentificare cu doi factori</value>
-  </data>
-  <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>Am uitat numele de utilizator</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Help" xml:space="preserve">
-    <value>Ajutor</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ReportAnIssue" xml:space="preserve">
-    <value>Raportare o problemă</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ResetPassword" xml:space="preserve">
-    <value>Resetare parolă</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Aveți probleme la autentificare</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Account_VpnPlan_Free" xml:space="preserve">
-    <value>Proton VPN Free</value>
-  </data>
-  <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
-    <value>Autentificarea cu doi factori a eșuat. Reîncercați.</value>
-  </data>
-  <data name="Settings_Support_SupportCenter" xml:space="preserve">
-    <value>Centrul de asistență</value>
-  </data>
-  <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
-    <value>Măriți viteza de conectare cu până la 400% cu tehnologii de îmbunătățire a performanței.</value>
-  </data>
-  <data name="Login_Form" xml:space="preserve">
-    <value>Formular de înscriere</value>
-  </data>
-  <data name="Login_TwoFactor_Digit1" xml:space="preserve">
-    <value>Prima cifră</value>
-  </data>
-  <data name="Login_TwoFactor_Digit2" xml:space="preserve">
-    <value>A doua cifră</value>
-  </data>
-  <data name="Login_TwoFactor_Digit3" xml:space="preserve">
-    <value>A treia cifră</value>
-  </data>
-  <data name="Login_TwoFactor_Digit4" xml:space="preserve">
-    <value>A patra cifră</value>
-  </data>
-  <data name="Login_TwoFactor_Digit5" xml:space="preserve">
-    <value>A cincea cifră</value>
-  </data>
-  <data name="Login_TwoFactor_Digit6" xml:space="preserve">
-    <value>A șasea cifră</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
-    <value>Raportare o problemă</value>
-  </data>
-  <data name="Common_Actions_ContactUs" xml:space="preserve">
-    <value>Contactați-ne</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
-    <value>Remedieri rapide</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
-    <value>Nu a funcționat?</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>Aceste sfaturi ar putea ajuta la rezolvarea mai rapidă a problemei.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
-    <value>Pasul {0} din {1}</value>
-    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>E-mail</value>
-    <comment>The label for user e-mail address in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>exemplu@domeniu.com</value>
-    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>Trimitere jurnale erori</value>
-    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>Jurnalele de eroare ne arată ce nu a funcționat și ce acțiuni au dus la problema apărută. Le vom folosi doar pentru a ajuta inginerii noștri să remedieze erorile.</value>
-    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
-    <value>Trimitere raport</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
-    <value>Gata</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>Ceva a mers prost.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>Nu s-a putut trimite raportul. Verificați-vă conexiunea și reîncercați.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>Reîncercare</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
-    <value>Raport trimis</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>Vă mulțumim pentru informații. Vom reveni cât de repede putem.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
-    <value>Autoconectare</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>Se va conecta la un server imediat ce se deschide Proton VPN</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
-    <value>Cea mai rapidă conexiune</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
-    <value>Ultima conexiune</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
-    <value>Autolansare</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
-    <value>Proton VPN se va deschide automat atunci când vă conectați la dispozitiv.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
-    <value>Deschidere pe desktop</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
-    <value>Minimizare în zona de notificare</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
-    <value>Minimizare în bara de sarcini</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>Jurnale aplicație</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
-    <value>Jurnale serviciu</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Restaurare setări implicite</value>
-  </data>
-  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
-    <value>Restaurare și reconectare</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
-    <value>Aceasta va reseta setările Proton VPN la starea originală.</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>Restabiliți setările implicite?</value>
-  </data>
-  <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Închidere</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
-    <value>Folderul cu jurnale nu a fost găsit.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
-    <value>Avansat</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
-    <value>Permiteți accesul la internet numai atunci când este conectat la VPN Proton. Comutatorul avansat de blocare a conexiunii va rămâne activ chiar și atunci când reporniți dispozitivul.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
-    <value>Vă protejează adresa IP deconectându-vă de la internet dacă se pierde conexiunea prin VPN.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>Când comutatorul de blocare a conexiunii este activ, nu vă veți putea conecta la site-uri web și aplicații excluse din conexiunea VPN prin tunelarea divizată.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
-    <value>Standard</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
-    <value>Deconectare automată de la internet dacă se pierde conexiunea prin VPN.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Description" xml:space="preserve">
-    <value>Protejați-vă de reclame, malware și instrumente de urmărire de pe site-uri și aplicații.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
-    <value>Este posibil ca unele site-uri web să nu se încarce corect atunci când anunțurile și instrumentele de urmărire sunt blocate.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
-    <value>Port activ:</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
-    <value>Copier număr port</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
-    <value>Depășiți paravanele de protecție pentru a vă conecta la serverele P2P și dispozitivele din rețeaua locală.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>Pentru a utiliza redirecționarea portului, conectați-vă la un server care acceptă P2P.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
-    <value>Notificări</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Primiți notificări când numărul porturilor redirecționate se modifică</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
-    <value>Adăugare aplicație</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
-    <value>Aplicații selectate ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
-    <value>Eliminare aplicație</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
-    <value>Personalizați-vă conexiunea decizând ce aplicații și adrese IP sunt protejate de VPN.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
-    <value>Inversare</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
-    <value>Doar aplicațiile selectate și adresele IP se conectează prin VPN, orice alt trafic nefiind protejat.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
-    <value>Adăugare IP</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
-    <value>Adrese IP selectate ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
-    <value>Eliminare IP</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
-    <value>Adăugare adrese IPv4</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
-    <value>Standard</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
-    <value>Aplicațiile selectate și adresele IP sunt excluse din conexiunea VPN</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
-    <value>Fișiere aplicație</value>
-    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
-  </data>
-  <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>Reconectare</value>
-  </data>
-  <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>Aplicare și reconectare</value>
-  </data>
-  <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>Ignorare</value>
-  </data>
-  <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>Ignorați modificările setărilor?</value>
-  </data>
-  <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>Activare</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
-    <value>Nu veți putea utiliza NetShield atunci când v-ați conectat cu un server DNS personal.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
-    <value>Activați serverele DNS personale?</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>Aceasta va dezactiva divizarea traficului.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Activați blocarea conexiunii?</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
-    <value>Nu vă veți putea conecta cu un server DNS personal atunci când NetShield este activat.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
-    <value>Activați NetShield?</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>Aceasta va dezactiva funcția de blocare a conexiunii.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>Activați divizarea traficului?</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
-    <value>Nu veți putea utiliza redirecționarea portului cu NAT moderat.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
-    <value>Activare NAT moderat?</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
-    <value>Nu veți putea utiliza NAT moderat atunci când este activată redirecționarea portului.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
-    <value>Activați redirecționarea portului?</value>
-  </data>
-  <data name="Cities" xml:space="preserve">
-    <value>Orașe</value>
-  </data>
-  <data name="Countries_All" xml:space="preserve">
+  <data name="Countries_All">
     <value>Toate</value>
   </data>
-  <data name="Countries_City_One" xml:space="preserve">
+  <data name="Countries_Cities">
+    <value>Orașe</value>
+  </data>
+  <data name="Countries_City_One">
     <value>{0} oraș</value>
-    <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
   </data>
-  <data name="Countries_City_Other" xml:space="preserve">
+  <data name="Countries_City_Few">
     <value>{0} orașe</value>
-    <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
   </data>
-  <data name="Countries_Connect" xml:space="preserve">
+  <data name="Countries_City_Other">
+    <value>{0} de orașe</value>
+  </data>
+  <data name="Countries_Connect">
     <value>Conectare</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
-  <data name="Countries_P2P" xml:space="preserve">
-    <value>P2P</value>
+  <data name="Countries_Fastest">
+    <value>Cea mai rapidă țară</value>
   </data>
-  <data name="Countries_SecureCore" xml:space="preserve">
-    <value>Secure Core</value>
+  <data name="Countries_Info">
+    <value>Informații</value>
   </data>
-  <data name="Countries_Tor" xml:space="preserve">
-    <value>Tor</value>
+  <data name="Countries_NoSearchResults">
+    <value>Nu s-au găsit rezultate.</value>
   </data>
-  <data name="Countries_Cities" xml:space="preserve">
-    <value>Orașe</value>
-  </data>
-  <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} server</value>
-  </data>
-  <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} servere</value>
-  </data>
-  <data name="Countries_NumberOfCities" xml:space="preserve">
+  <data name="Countries_NumberOfCities">
     <value>Orașe ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
-  <data name="Countries_NumberOfCountries" xml:space="preserve">
+  <data name="Countries_NumberOfCountries">
     <value>Țări ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Țări cu Secure Core ({0})</value>
-    <comment>{0} represents the number of countries</comment>
+  <data name="Countries_NumberOfServers">
+    <value>Servere ({0})</value>
+    <comment>{0} represents a number of servers</comment>
   </data>
-  <data name="Countries_Info" xml:space="preserve">
-    <value>Informații</value>
+  <data name="Countries_P2P">
+    <value>P2P</value>
   </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>Intimitate avansată</value>
-  </data>
-  <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core vă conectează la serverul de destinație printr-un al doilea server VPN de securitate maximă.
-
-Acest nivel mai mare de protecție poate provoca latență mai mare și viteze mai mici.</value>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>Latență mai mare</value>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>Intimitate mai mare</value>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>Latență scăzută</value>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Conexiune VPN Secure Core</value>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Conexiune VPN standard</value>
-  </data>
-  <data name="Dialogs_SecureCore_Title" xml:space="preserve">
-    <value>Secure Core</value>
-  </data>
-  <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Servere Secure Core ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
-  <data name="Countries_ViaCountry" xml:space="preserve">
-    <value>via {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
-  </data>
-  <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>Serverele se află fizic în {0}, dar se pare că navigați din {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
-  <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing folosește servere virtuale pentru a oferi acoperire VPN în țările greu accesibile.
-
-Când vă conectați la un server Smart Routing, veți părea că navigați în țara de destinație, chiar dacă serverul fizic este situat în altă parte.
-
-Smart Routing este de obicei folosit pentru a evita legile anti-confidențialitate și alte forme de cenzură.</value>
-  </data>
-  <data name="Countries_P2PCountries" xml:space="preserve">
+  <data name="Countries_P2PCountries">
     <value>Țări P2P ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_TorCountries" xml:space="preserve">
+  <data name="Countries_P2P_Cities">
+    <value>Orașe P2P ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_Page_Title">
+    <value>Țări</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>Vreau să navighez din...</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCoreCountries">
+    <value>Țări cu Secure Core ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_SecureCoreServers">
+    <value>Servere Secure Core ({0})</value>
+    <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_Server_One">
+    <value>{0} server</value>
+  </data>
+  <data name="Countries_Server_Few">
+    <value>{0} servere</value>
+  </data>
+  <data name="Countries_Server_Other">
+    <value>{0} de servere</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Solicitare server</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart routing</value>
+  </data>
+  <data name="Countries_SmartRouting_Description">
+    <value>Serverele se află fizic în {0}, dar se pare că navigați din {1}.</value>
+    <comment>{0} and {1} represent country names.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorCountries">
     <value>Țări Tor ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
+  <data name="Countries_TorServers">
+    <value>Servere Tor ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>Încercați alt cuvânt cheie.</value>
+  </data>
+  <data name="Countries_ViaCountry">
+    <value>via {0}</value>
+    <comment>{0} represents country name. For example: via Australia.</comment>
+  </data>
+  <data name="Country_Fastest">
+    <value>Cea mai rapidă țară</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Emiratele Arabe Unite</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afganistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua și Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Samoa Americană</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Insulele Aland</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaidjan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia și Herțegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladeș</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgia</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Sfântul Bartolomeu</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius și Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazilia</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Butan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Insula Bouvet</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Insulele Cocos (Keeling)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Congo (Republica Democrată)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Republica Central Africană</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Elveția</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Costa de Fildeș</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Insulele Cook</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Cile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Camerun</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Columbia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Capul Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Insula Crăciunului</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cipru</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Cehia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Germania</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Danemarca</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Republica Dominicană</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Republica Dominicană</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egipt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Sahara de Vest</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spania</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Etiopia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finlanda</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Insulele Falkland (Malvine)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Micronezia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Insulele Feroe</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Franța</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Regatul Unit</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Guiana Franceză</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Gana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Groenlanda</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guineea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadalupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Guineea Ecuatorială</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Grecia</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Georgia de Sud și Insulele Sandwich de Sud</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guineea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guiana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Insula Heard și Insulele McDonald</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Croația</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Ungaria</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonezia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Irlanda</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Insula Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Teritoriul Britanic al Oceanului Indian</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irak</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Islanda</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italia</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Iordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japonia</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kârgâzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Cambogia</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comore</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Sfântul Cristofor și Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Coreea de Nord</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Coreea de Sud</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuweit</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Insulele Caiman</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazahstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Liban</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Sfânta Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lituania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxemburg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Letonia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libia</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Maroc</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Republica Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Muntenegru</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (Franța)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagascar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Insulele Marshall</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Macedonia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Insulele Mariane de Nord</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinica</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldive</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexic</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaezia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambic</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Noua Caledonie</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Nigeria</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Insula Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Țările de Jos</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norvegia</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Noua Zeelandă</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Polinezia Franceză</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua Noua Guinee</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filipine</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Polonia</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre și Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Porto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugalia</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>România</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Ruanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Arabia Saudită</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Insula Solomon</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Suedia</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Sfânta Elena, Ascension și Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard și Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovacia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Surinam</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Sudanul de Sud</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome și Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (partea olandeză)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Republica Arabă Siriană</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Insulele Turks și Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Ciad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Teritoriile Franceze de Sud</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Tailanda</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tadjikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timorul De Est</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Turcia</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad și Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ucraina</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Regatul Unit</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Insulele Minore Îndepărtate ale Statelor Unite</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>SUA</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguai</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Orașul Vatican</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Sfântul Vincențiu și Grenadinele</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Insulele Virgine, Britania</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Insulele Virgine, S.U.A.</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis și Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Africa de Sud</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Necunoscută</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Get unlimited server changes with VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>You've reached the maximum number of free server changes for now</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free vă conectează automat la cel mai rapid server din {0} țară disponibilă. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Few">
+    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din cele {0} țări disponibile. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din cele {0} de țări disponibile. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Țări servere gratuite ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Few">
+    <value>Țări servere gratuite ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Țări servere gratuite ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Conexiuni gratuite</value>
+  </data>
+  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
+    <value>Obțineți acoperire la nivel mondial cu VPN Plus</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>Latența arată cât durează ca un server să răspundă solicitărilor.
+
+Latența mare vă poate încetini conexiunea.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>Viteza prin VPN ar putea fi mai redusă decât normal</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>Mare (peste 150 ms)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>Viteză foarte mare</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>Mică (1 ms - 50 ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>Improbabil să afecteze viteza prin VPN</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>Medie (50 ms - 150 ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>Ce este latența?</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Cum se folosește partajarea fișierelor prin torrent cu P2P</value>
   </data>
-  <data name="Dialogs_P2P_Title" xml:space="preserve">
+  <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer">
     <value>Ce este un server P2P?</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
     <value>Serverele VPN P2P (persoană la persoană) deblochează transferurile de tip torrent.</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting">
     <value>Ce este partajarea prin fișiere torrent?</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
     <value>Partajarea și descărcarea rapidă a fișierelor mari printr-o rețea persoană-la-persoană (P2P).</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse">
     <value>De să folosiți un server P2P când utilizați fișiere torrent?</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Viteze crescute de încărcare și descărcare.
 • Nu există jurnalele de activitate.
 • Vă ascundeți adresa IP față de furnizorul de servicii și partenerii de partajare.</value>
   </data>
-  <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
-    <value>Smart Routing</value>
+  <data name="Dialogs_Protocol_Description">
+    <value>Un protocol este un set de instrucțiuni pe care dispozitivul personal urmează să se conecteze și să comunice cu un server.</value>
   </data>
-  <data name="Countries_Fastest" xml:space="preserve">
-    <value>Cea mai rapidă țară</value>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>Comutare protocol VPN</value>
   </data>
-  <data name="Dialogs_Tor_Description" xml:space="preserve">
-    <value>Conectați-vă la un server Tor pentru a accesa servicii ascunse și site-uri de tip onion folosind orice navigator web.</value>
+  <data name="Dialogs_Protocol_Title">
+    <value>Ce este un protocol VPN</value>
   </data>
-  <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
-    <value>Cum se accesează rețeaua Tor?</value>
-  </data>
-  <data name="Dialogs_Tor_Title" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Countries_SearchPlaceholder" xml:space="preserve">
-    <value>Vreau să navighez din...</value>
-  </data>
-  <data name="Countries_P2P_Cities" xml:space="preserve">
-    <value>Orașe P2P ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
-  <data name="Countries_TorServers" xml:space="preserve">
-    <value>Servere Tor ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
-  <data name="Countries_Server" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="Countries_ServerLoad" xml:space="preserve">
-    <value>Solicitare server</value>
-  </data>
-  <data name="Countries_SmartRouting" xml:space="preserve">
-    <value>Smart routing</value>
-  </data>
-  <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>Nu s-au găsit rezultate.</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>Încercați alt cuvânt cheie.</value>
-  </data>
-  <data name="Countries_NumberOfServers" xml:space="preserve">
-    <value>Servere ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
-  <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>Sesiunea a expirat. Reutentificați-vă.</value>
-    <comment>The message displayed in Login window when expired session is detected</comment>
-  </data>
-  <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>Setați acest număr în aplicația BitTorrent pentru o viteză sporită.</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Udp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="VpnProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Login_Form_Email" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E-mail</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>Autentificare cu e-mail și parolă</value>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>exemplu@domeniu.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithSso" xml:space="preserve">
-    <value>Autentificare cu SSO</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Trimitere jurnale erori</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
-    <value>A apărut o eroare la preluarea detaliilor sesiunii. Reîncercați.</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Jurnalele de eroare ne arată ce nu a funcționat și ce acțiuni au dus la problema apărută. Le vom folosi doar pentru a ajuta inginerii noștri să remedieze erorile.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
-    <value>Autentificarea unică (SSO) a eșuat. Reîncercați.</value>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Care este problema?</value>
   </data>
-  <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Remedieri rapide</value>
   </data>
-  <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>Adaptorul de rețea este momentan în uz.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Nu a funcționat?</value>
   </data>
-  <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>Versiunea adaptorului de rețea este depășită.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Aceste sfaturi ar putea ajuta la rezolvarea mai rapidă a problemei.</value>
   </data>
-  <data name="Connection_Error_TlsCertificate" xml:space="preserve">
-    <value>Există o problemă la validarea certificatului de server VPN, care ar putea indica modificarea conexiunii la rețea sau că serverul la care încercați să vă conectați are o problemă de configurare. Obțineți ajutor de la asistența noastră pentru clienți trimițând un raport de erori.</value>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Gata</value>
   </data>
-  <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>Proton VPN nu s-a putut conecta deoarece un adaptor de rețea WireGuard este deja utilizat. Deconectați orice VPN activ și reîncercați. Alternativ, puteți schimba protocolul în „Setări avansate”.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Ceva a mers prost.</value>
   </data>
-  <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>Adaptorul de rețea lipsește.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Nu s-a putut trimite raportul. Verificați-vă conexiunea și reîncercați.</value>
   </data>
-  <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_Result_RetryAction">
+    <value>Reîncercare</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Raport trimis</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Vă mulțumim pentru informații. Vom reveni cât de repede putem.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Trimitere raport</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Pasul {0} din {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
     <value>Raportare o problemă</value>
   </data>
-  <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
-    <value>Proton VPN nu se poate conecta, deoarece serverul RPC nu este disponibil în sistemul de operare.</value>
+  <data name="Dialogs_SecureCore_AdvancedPrivacy">
+    <value>Intimitate avansată</value>
   </data>
-  <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>Vedeți soluții posibile</value>
+  <data name="Dialogs_SecureCore_Description">
+    <value>Secure Core vă conectează la serverul de destinație printr-un al doilea server VPN de securitate maximă.
+
+Acest nivel mai mare de protecție poate provoca latență mai mare și viteze mai mici.</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
-    <value>Ați atins limita maximă de dispozitive. Deconectați alt dispozitiv pentru a-l conecta pe acesta sau treceți la planul PLUS pentru a putea conecta până la 10 dispozitive simultan.</value>
+  <data name="Dialogs_SecureCore_HighPrivacy">
+    <value>Intimitate mai mare</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedPaidUser" xml:space="preserve">
-    <value>Ați atins limita maximă de dispozitive. Deconectați un alt dispozitiv pentru a-l conecta pe acesta.</value>
+  <data name="Dialogs_SecureCore_HigherLatency">
+    <value>Latență mai mare</value>
   </data>
-  <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>Nu suntem siguri ce s-a întâmplat aici. Reîncercați sau contactați echipa noastră de asistență pentru clienți.</value>
+  <data name="Dialogs_SecureCore_LowerLatency">
+    <value>Latență scăzută</value>
   </data>
-  <data name="Gateways_Page_Title" xml:space="preserve">
+  <data name="Dialogs_SecureCore_SecureCoreConnection">
+    <value>Conexiune VPN
+Secure Core</value>
+  </data>
+  <data name="Dialogs_SecureCore_StandardConnection">
+    <value>Conexiune VPN
+standard</value>
+  </data>
+  <data name="Dialogs_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>Încărcarea serverului arată cât de aproape este un server de capacitatea sa maximă.
+
+O sarcină mare a serverului vă poate încetini conexiunea.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>Viteza prin VPN ar putea fi mai redusă decât normal</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>Mare (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>Viteză foarte mare</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>Mică (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>Improbabil să afecteze viteza prin VPN</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>Medie (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>Care este solicitarea serverului?</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Description">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+
+Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>Conectați-vă la un server Tor pentru a accesa servicii ascunse și site-uri de tip onion folosind orice navigator web.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>Cum se accesează rețeaua Tor?</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>Vă pregătim noua experiență VPN. Acest lucru ar trebui să dureze doar un moment.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>Bun venit la Proton VPN</value>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0} ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EiB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GiB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KiB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MiB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PiB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TiB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EiB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GiB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KiB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MiB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PiB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TiB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day">
+    <value>{0} zi</value>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DayHours">
+    <value>{0} zi {1} h</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Days">
+    <value>{0} zile</value>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DaysHours">
+    <value>{0} zile {1} h</value>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} h</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} h {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} min {1} sec</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} sec</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Gateways_Page_Title">
     <value>Porți de acces</value>
   </data>
-  <data name="Gateways_Server" xml:space="preserve">
+  <data name="Gateways_Server">
     <value>Server dedicat</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
+  <data name="Home_Account_SignOut">
+    <value>Deconectare</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Message">
     <value>Se va întrerupe conexiunea prin VPN.</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
+  <data name="Home_Account_SignOut_Confirmation_Title">
     <value>Vă deconectați de la {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Tray_Actions_ExitApplication" xml:space="preserve">
+  <data name="Home_Account_Title">
+    <value>Contul meu</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Change server</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>Navigare sigură prin</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>Se conectează la...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>Conexiune gratuită</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>Ultima conexiune la</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended">
+    <value>Recomandat</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>Card conexiune</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>Oraș</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>Conectat timp de</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Țara</value>
+  </data>
+  <data name="Home_ConnectionDetails_Download">
+    <value>Descărcare</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>Poartă de acces</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>Ascundere detalii conexiune</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>Ascundere</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>Ascundere adresă IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>Detalii conexiune</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Latency">
+    <value>Latență</value>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>IP personal</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protocol</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>Server</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Solicitare server</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>Afișare detalii conexiune</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>Afișare</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>Afișare adresă IP utilizator</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>Detalii conexiune</value>
+  </data>
+  <data name="Home_ConnectionDetails_Upload">
+    <value>Încărcare</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>IP VPN</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Mai multe informații despre conexiunile gratuite</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>Ajutor</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>Harta</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked">
+    <value>Reclame
+blocate</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Date
+salvate</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>Statistici Netshield</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_TrackersStopped">
+    <value>urmăritori
+opriți</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_Page_Title">
+    <value>Început</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>Conexiuni recente</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Fixare</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>Acțiuni</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Serverul se află în mentenanță</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Recente</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Anulare fixare</value>
+  </data>
+  <data name="Home_Update_Confirmation_Message">
+    <value>Pentru a finaliza procesul de actualizare, Proton VPN va deconecta și dezactiva temporar opțiunea de blocare permanentă a conexiunii dacă este activă. Continuați?</value>
+    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  </data>
+  <data name="Home_Update_Confirmation_Title">
+    <value>Actualizați Proton VPN?</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>Actualizare disponibilă</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>Actualizare pregătită</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>Stare VPN</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>Protejare identitate digitală</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>Nu există protecție</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>Protejat</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>A apărut o eroare la preluarea detaliilor sesiunii. Reîncercați.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Cod incorect. Reîncercați.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Sesiunea a expirat. Reutentificați-vă.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>Autentificarea unică (SSO) a eșuat. Reîncercați.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>Date de conectare incorecte. Reîncercați.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Autentificarea cu doi factori a eșuat. Reîncercați.</value>
+  </data>
+  <data name="Login_Form">
+    <value>Formular de înscriere</value>
+  </data>
+  <data name="Login_Form_CreateAccount">
+    <value>Creare cont</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_Email">
+    <value>E-mail</value>
+  </data>
+  <data name="Login_Form_ForgotUsername">
+    <value>Am uitat numele de utilizator</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Help">
+    <value>Ajutor</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Password">
+    <value>Parolă</value>
+  </data>
+  <data name="Login_Form_ReportAnIssue">
+    <value>Raportare o problemă</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_ResetPassword">
+    <value>Resetare parolă</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_SignIn">
+    <value>Înscriere</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_SignInWithPassword">
+    <value>Autentificare cu e-mail și parolă</value>
+  </data>
+  <data name="Login_Form_SignInWithSso">
+    <value>Autentificare cu SSO</value>
+  </data>
+  <data name="Login_Form_TroubleSigningIn">
+    <value>Aveți probleme la autentificare</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Username">
+    <value>E-mail sau utilizator</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Autentificare</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Introduceți codul din aplicația Authenticator.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Autentificare cu doi factori</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Prima cifră</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>A doua cifră</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>A treia cifră</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>A patra cifră</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>A cincea cifră</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>A șasea cifră</value>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Se conectează, așteptați...</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Se deconectează, așteptați...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Setați acest număr în aplicația BitTorrent pentru o viteză sporită.</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Cel mai rapid server gratuit</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Server gratuit</value>
+  </data>
+  <data name="Settings_About">
+    <value>Despre</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Versiune aplicație</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Aceste statistici nu conțin adresa dvs. IP și nu pot fi utilizate să vă identifice. Nu le vom partaja cu terțe părți.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Partajare anonimă rapoarte de erori</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Rapoartele de erori ne ajută să reparăm erorile, să detectăm paravanele de protecție și să evităm blocările VPN-ului.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Partajare anonimă statistici de utilizare</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Datele de utilizare ne ajută să depășim blocările VPN-ului și să îmbunătățim performanța aplicației.</value>
+  </data>
+  <data name="Settings_Common_ApplyAndReconnect">
+    <value>Aplicare și reconectare</value>
+  </data>
+  <data name="Settings_Common_Discard">
+    <value>Ignorare</value>
+  </data>
+  <data name="Settings_Common_Discard_Title">
+    <value>Ignorați modificările setărilor?</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>Conexiune</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Setări avansate</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Rută alternativă</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Dacă serviciile Proton sunt blocate din cauza restricțiilor de rețea, vom încerca să utilizăm o direcționarea alternativă de rețea pentru a vă conecta la site-urile noastre.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Servere DNS personale</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Nu veți putea utiliza NetShield atunci când v-ați conectat cu un server DNS personal.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Activați serverele DNS personale?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Conectați-vă la Proton VPN folosind propriul sistem de nume de domeniu (DNS). Utilizați numai servere DNS în care aveți încredere.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>Servere DNS ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
+    <value>Adăugare adrese IPv4</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Protecție divulgări prin IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Prevenire divulgare adresă IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Conexiuni LAN</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Vă permite să vă conectați la imprimante, boxe și alte dispozitive din rețeaua locală a dispozitivului.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Tip NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Nu veți putea utiliza redirecționarea portului cu NAT moderat.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Activare NAT moderat?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Selectați un tip de traducere a adreselor de rețea pentru conexiunea proprie.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Moderat (tip 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>O anumită restricție la datele care intră în rețeaua personală. Această opțiune este cea mai bună pentru jocurile video online.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Strict (tip 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Restricționează datele care intră în rețeaua proprie. Această opțiune este mai sigură, dar poate face mai dificilă conexiunile jocurilor cu utilizatori multipli.</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protocol</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_Features">
+    <value>Funcții</value>
+  </data>
+  <data name="Settings_Features_KillSwitch">
+    <value>Blocare conexiune</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced">
+    <value>Avansat</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced_Description">
+    <value>Permiteți accesul la internet numai atunci când este conectat la VPN Proton. Comutatorul avansat de blocare a conexiunii va rămâne activ chiar și atunci când reporniți dispozitivul.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Description">
+    <value>Aceasta va dezactiva divizarea traficului.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Title">
+    <value>Activați blocarea conexiunii?</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Description">
+    <value>Vă protejează adresa IP deconectându-vă de la internet dacă se pierde conexiunea prin VPN.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Footer">
+    <value>Când comutatorul de blocare a conexiunii este activ, nu vă veți putea conecta la site-uri web și aplicații excluse din conexiunea VPN prin tunelarea divizată.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard_Description">
+    <value>Deconectare automată de la internet dacă se pierde conexiunea prin VPN.</value>
+  </data>
+  <data name="Settings_Features_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Description">
+    <value>Nu vă veți putea conecta cu un server DNS personal atunci când NetShield este activat.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Title">
+    <value>Activați NetShield?</value>
+  </data>
+  <data name="Settings_Features_NetShield_Description">
+    <value>Protejați-vă de reclame, malware și instrumente de urmărire de pe site-uri și aplicații.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Footer">
+    <value>Este posibil ca unele site-uri web să nu se încarce corect atunci când anunțurile și instrumentele de urmărire sunt blocate.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding">
+    <value>Redirecționare port</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort">
+    <value>Port activ:</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort_Copy">
+    <value>Copier număr port</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Description">
+    <value>Nu veți putea utiliza NAT moderat atunci când este activată redirecționarea portului.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Title">
+    <value>Activați redirecționarea portului?</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Description">
+    <value>Depășiți paravanele de protecție pentru a vă conecta la serverele P2P și dispozitivele din rețeaua locală.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Footer">
+    <value>Pentru a utiliza redirecționarea portului, conectați-vă la un server care acceptă P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications">
+    <value>Notificări</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications_Description">
+    <value>Primiți notificări când numărul porturilor redirecționate se modifică</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling">
+    <value>Divizare trafic</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Add">
+    <value>Adăugare aplicație</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
+    <value>Fișiere aplicație</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Header">
+    <value>Aplicații selectate ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Remove">
+    <value>Eliminare aplicație</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Description">
+    <value>Aceasta va dezactiva funcția de blocare a conexiunii.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Title">
+    <value>Activați divizarea traficului?</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Description">
+    <value>Personalizați-vă conexiunea decizând ce aplicații și adrese IP sunt protejate de VPN.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse">
+    <value>Inversare</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse_Description">
+    <value>Doar aplicațiile selectate și adresele IP se conectează prin VPN, orice alt trafic nefiind protejat.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
+    <value>Adăugare IP</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
+    <value>Adrese IP selectate ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
+    <value>Eliminare IP</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
+    <value>Adăugare adrese IPv4</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard_Description">
+    <value>Aplicațiile selectate și adresele IP sunt excluse din conexiunea VPN</value>
+  </data>
+  <data name="Settings_General">
+    <value>Generale</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Autopornire</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Autoconectare</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Se va conecta la un server imediat ce se deschide Proton VPN</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>Cea mai rapidă conexiune</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>Ultima conexiune</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Autolansare</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN se va deschide automat atunci când vă conectați la dispozitiv.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Deschidere pe desktop</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Minimizare în zona de notificare</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Minimizare în bara de sarcini</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Autopornire, autoconectare</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Actualizări automate</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Verificare și instalare automată actualizări Proton VPN</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Acces la Beta</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Obțineți acces timpuriu și ajutați-ne să testăm noi versiuni ale Proton VPN</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Limba</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Notificări</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Primiți notificări despre activitățile în curs ale Proton VPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>Driver rețea OpenVPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>Driverele de rețea vă pot afecta viteza conexiunii. Noul adaptor TUN oferă viteză mai mare și redă controlul adaptorului TAP dacă întâmpină orice problemă de conectivitate.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>Neagră</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>Implicită</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>Albă</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Îmbunătățire Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Ajutați-ne să luptăm cu cenzura</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Versiune sistem de operare</value>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Setări</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>Un protocol VPN determină modul în care datele se mută între un server VPN și dispozitivul personal.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Răspândit, bine testat și sigur. OpenVPN este fiabil în condiții de rețea precare, dar poate să nu fie la fel de rapid ca alte protocoale.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Răspândit, bine testat și sigur. OpenVPN este mai puțin eficient din punct de vedere al bateriei decât alte protocoale.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended">
+    <value>Recomandat</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Autoselectează cel mai bun protocol pentru conexiune.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Fiabilitate (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Viteză (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Rapid, sigur și eficient. WireGuard este mai eficient din punct de vedere al bateriei decât alte protocoale.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Restaurare setări implicite</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Restaurare și reconectare</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Restaurare setări implicite</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Aceasta va reseta setările Proton VPN la starea originală.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Restabiliți setările implicite?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Asistență</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Jurnalele de depanare</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Jurnale aplicație</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Folderul cu jurnale nu a fost găsit.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Jurnale serviciu</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Raportare o problemă</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Centrul de asistență</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Măriți viteza de conectare cu până la 400% cu tehnologii de îmbunătățire a performanței.</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Ieșire</value>
   </data>
-  <data name="Tray_Actions_OpenApplication" xml:space="preserve">
+  <data name="Tray_Actions_OpenApplication">
     <value>Deschidere {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard</value>
   </data>
 </root>

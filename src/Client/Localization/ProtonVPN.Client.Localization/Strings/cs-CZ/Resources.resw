@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,2149 +117,2285 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Common_Actions_Add" xml:space="preserve">
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Cities">
+    <value>Města</value>
+  </data>
+  <data name="Common_Actions_Add">
     <value>Přidat</value>
   </data>
-  <data name="Common_Actions_Cancel" xml:space="preserve">
+  <data name="Common_Actions_Cancel">
     <value>Zrušit</value>
   </data>
-  <data name="Common_Actions_Connect" xml:space="preserve">
+  <data name="Common_Actions_Close">
+    <value>Zavřít</value>
+  </data>
+  <data name="Common_Actions_Connect">
     <value>Připojit</value>
   </data>
-  <data name="Common_Actions_Disconnect" xml:space="preserve">
+  <data name="Common_Actions_ContactUs">
+    <value>Kontaktujte nás</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
     <value>Odpojit</value>
   </data>
-  <data name="Common_Actions_Remove" xml:space="preserve">
+  <data name="Common_Actions_Enable">
+    <value>Povolit</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Znovu připojit</value>
+  </data>
+  <data name="Common_Actions_Remove">
     <value>Odebrat</value>
   </data>
-  <data name="Common_Links_LearnMore" xml:space="preserve">
+  <data name="Common_Actions_Update">
+    <value>Aktualizovat</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Upgrade</value>
+  </data>
+  <data name="Common_Links_LearnMore">
     <value>Zjistit více</value>
   </data>
-  <data name="Common_Message_Loading" xml:space="preserve">
+  <data name="Common_Message_Loading">
     <value>Načítání...</value>
   </data>
-  <data name="Common_States_Off" xml:space="preserve">
+  <data name="Common_States_Off">
     <value>Vypnuto</value>
   </data>
-  <data name="Common_States_On" xml:space="preserve">
+  <data name="Common_States_On">
     <value>Zapnuto</value>
   </data>
-  <data name="Connection_Intent_City_Server" xml:space="preserve">
+  <data name="Connection_Error_MissingAuthCertificate">
+    <value>Proton VPN se nepodařilo načíst ověřovací certifikát kvůli problému se sítí.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Momentálně nejsou pro váš výběr k dispozici žádné servery. Vyberte jinou možnost.</value>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Chybějící síťový adaptér.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Nahlásit problém</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN se nemůže připojit, protože RPC server není ve vašem systému dostupný.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Dosáhli jste maximálního počtu zařízení. Chcete-li se připojit, odpojte jiné zařízení nebo přejděte na tarif PLUS, abyste mohli připojit až 10 zařízení současně.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Dosáhli jste maximálního počtu zařízení. Chcete-li se připojit s tímto zařízením, odpojte jiné.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Váš síťový adaptér je právě používán.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Verze síťového adaptéru je zastaralá.</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Nastal problém s ověřením certifikátu serveru VPN, což by mohlo naznačovat, že došlo k neoprávněné manipulaci se síťovým připojením nebo že se u serveru, ke kterému se pokoušíte připojit vyskytl problém s konfigurací. Získejte pomoc od naší zákaznické podpory odesláním chybového hlášení.</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Nejsme si jisti, co se stalo. Zkuste to prosím znovu nebo kontaktujte náš tým zákaznické podpory.</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Zobrazit možná řešení</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Proton VPN se nemohla připojit, protože síťový adaptér WireGuard je již používán. Odpojte prosím všechny aktivní sítě VPN a zkuste to znovu. Případně můžete protokoly přepínat také v pokročilých nastaveních.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Auto-selected from</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
   </data>
-  <data name="Connection_Intent_Country_Server" xml:space="preserve">
+  <data name="Connection_Intent_Country_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
-  <data name="Connection_Via_SecureCore" xml:space="preserve">
+  <data name="Connection_Via_SecureCore">
     <value>přes {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
-  <data name="Countries_Page_Title" xml:space="preserve">
-    <value>Země</value>
-  </data>
-  <data name="Country_Fastest" xml:space="preserve">
-    <value>Nejrychlejší země</value>
-  </data>
-  <data name="Country_val_AD" xml:space="preserve">
-    <value>Andora</value>
-    <comment>The name of AD country</comment>
-  </data>
-  <data name="Country_val_AE" xml:space="preserve">
-    <value>Spojené arabské emiráty</value>
-    <comment>The name of AE country</comment>
-  </data>
-  <data name="Country_val_AF" xml:space="preserve">
-    <value>Afghánistán</value>
-    <comment>The name of AF country</comment>
-  </data>
-  <data name="Country_val_AG" xml:space="preserve">
-    <value>Antigua a Barbuda</value>
-    <comment>The name of AG country</comment>
-  </data>
-  <data name="Country_val_AI" xml:space="preserve">
-    <value>Anquilla</value>
-    <comment>The name of AI country</comment>
-  </data>
-  <data name="Country_val_AL" xml:space="preserve">
-    <value>Albánie</value>
-    <comment>The name of AL country</comment>
-  </data>
-  <data name="Country_val_AM" xml:space="preserve">
-    <value>Arménie</value>
-    <comment>The name of AM country</comment>
-  </data>
-  <data name="Country_val_AO" xml:space="preserve">
-    <value>Angola</value>
-    <comment>The name of AO country</comment>
-  </data>
-  <data name="Country_val_AQ" xml:space="preserve">
-    <value>Antarktida</value>
-    <comment>The name of AQ country</comment>
-  </data>
-  <data name="Country_val_AR" xml:space="preserve">
-    <value>Argentina</value>
-    <comment>The name of AR country</comment>
-  </data>
-  <data name="Country_val_AS" xml:space="preserve">
-    <value>Americká Samoa</value>
-    <comment>The name of AS country</comment>
-  </data>
-  <data name="Country_val_AT" xml:space="preserve">
-    <value>Rakousko</value>
-    <comment>The name of AT country</comment>
-  </data>
-  <data name="Country_val_AU" xml:space="preserve">
-    <value>Austrálie</value>
-    <comment>The name of AU country</comment>
-  </data>
-  <data name="Country_val_AW" xml:space="preserve">
-    <value>Aruba</value>
-    <comment>The name of AW country</comment>
-  </data>
-  <data name="Country_val_AX" xml:space="preserve">
-    <value>Alandské ostrovy</value>
-    <comment>The name of AX country</comment>
-  </data>
-  <data name="Country_val_AZ" xml:space="preserve">
-    <value>Ázerbájdžán</value>
-    <comment>The name of AZ country</comment>
-  </data>
-  <data name="Country_val_BA" xml:space="preserve">
-    <value>Bosna a Hercegovina</value>
-    <comment>The name of BA country</comment>
-  </data>
-  <data name="Country_val_BB" xml:space="preserve">
-    <value>Barbados</value>
-    <comment>The name of BB country</comment>
-  </data>
-  <data name="Country_val_BD" xml:space="preserve">
-    <value>Bangladéš</value>
-    <comment>The name of BD country</comment>
-  </data>
-  <data name="Country_val_BE" xml:space="preserve">
-    <value>Belgie</value>
-    <comment>The name of BE country</comment>
-  </data>
-  <data name="Country_val_BF" xml:space="preserve">
-    <value>Burkina Faso</value>
-    <comment>The name of BF country</comment>
-  </data>
-  <data name="Country_val_BG" xml:space="preserve">
-    <value>Bulharsko</value>
-    <comment>The name of BG country</comment>
-  </data>
-  <data name="Country_val_BH" xml:space="preserve">
-    <value>Bahrajn</value>
-    <comment>The name of BH country</comment>
-  </data>
-  <data name="Country_val_BI" xml:space="preserve">
-    <value>Burundi</value>
-    <comment>The name of BI country</comment>
-  </data>
-  <data name="Country_val_BJ" xml:space="preserve">
-    <value>Benin</value>
-    <comment>The name of BJ country</comment>
-  </data>
-  <data name="Country_val_BL" xml:space="preserve">
-    <value>Svatý Bartoloměj</value>
-    <comment>The name of BL country</comment>
-  </data>
-  <data name="Country_val_BM" xml:space="preserve">
-    <value>Bermudy</value>
-    <comment>The name of BM country</comment>
-  </data>
-  <data name="Country_val_BN" xml:space="preserve">
-    <value>Brunej</value>
-    <comment>The name of BN country</comment>
-  </data>
-  <data name="Country_val_BO" xml:space="preserve">
-    <value>Bolívie</value>
-    <comment>The name of BO country</comment>
-  </data>
-  <data name="Country_val_BQ" xml:space="preserve">
-    <value>Bonaire, Svatý Eustach a Saba</value>
-    <comment>The name of BQ country</comment>
-  </data>
-  <data name="Country_val_BR" xml:space="preserve">
-    <value>Brazílie</value>
-    <comment>The name of BR country</comment>
-  </data>
-  <data name="Country_val_BS" xml:space="preserve">
-    <value>Bahamy</value>
-    <comment>The name of BS country</comment>
-  </data>
-  <data name="Country_val_BT" xml:space="preserve">
-    <value>Bhútán</value>
-    <comment>The name of BT country</comment>
-  </data>
-  <data name="Country_val_BV" xml:space="preserve">
-    <value>Bouvetův ostrov</value>
-    <comment>The name of BV country</comment>
-  </data>
-  <data name="Country_val_BW" xml:space="preserve">
-    <value>Botswana</value>
-    <comment>The name of BW country</comment>
-  </data>
-  <data name="Country_val_BY" xml:space="preserve">
-    <value>Bělorusko</value>
-    <comment>The name of BY country</comment>
-  </data>
-  <data name="Country_val_BZ" xml:space="preserve">
-    <value>Belize</value>
-    <comment>The name of BZ country</comment>
-  </data>
-  <data name="Country_val_CA" xml:space="preserve">
-    <value>Kanada</value>
-    <comment>The name of CA country</comment>
-  </data>
-  <data name="Country_val_CC" xml:space="preserve">
-    <value>Kokosové (Keelingovy) ostrovy</value>
-    <comment>The name of CC country</comment>
-  </data>
-  <data name="Country_val_CD" xml:space="preserve">
-    <value>Konžská demokratická republika</value>
-    <comment>The name of CD country</comment>
-  </data>
-  <data name="Country_val_CF" xml:space="preserve">
-    <value>Středoafrická republika</value>
-    <comment>The name of CF country</comment>
-  </data>
-  <data name="Country_val_CG" xml:space="preserve">
-    <value>Kongo</value>
-    <comment>The name of CG country</comment>
-  </data>
-  <data name="Country_val_CH" xml:space="preserve">
-    <value>Švýcarsko</value>
-    <comment>The name of CH country</comment>
-  </data>
-  <data name="Country_val_CI" xml:space="preserve">
-    <value>Pobřeží slonoviny</value>
-    <comment>The name of CI country</comment>
-  </data>
-  <data name="Country_val_CK" xml:space="preserve">
-    <value>Cookovy ostrovy</value>
-    <comment>The name of CK country</comment>
-  </data>
-  <data name="Country_val_CL" xml:space="preserve">
-    <value>Chile</value>
-    <comment>The name of CL country</comment>
-  </data>
-  <data name="Country_val_CM" xml:space="preserve">
-    <value>Kamerun</value>
-    <comment>The name of CM country</comment>
-  </data>
-  <data name="Country_val_CN" xml:space="preserve">
-    <value>Čína</value>
-    <comment>The name of CN country</comment>
-  </data>
-  <data name="Country_val_CO" xml:space="preserve">
-    <value>Kolumbie</value>
-    <comment>The name of CO country</comment>
-  </data>
-  <data name="Country_val_CR" xml:space="preserve">
-    <value>Kostarika</value>
-    <comment>The name of CR country</comment>
-  </data>
-  <data name="Country_val_CU" xml:space="preserve">
-    <value>Kuba</value>
-    <comment>The name of CU country</comment>
-  </data>
-  <data name="Country_val_CV" xml:space="preserve">
-    <value>Kapverdy</value>
-    <comment>The name of CV country</comment>
-  </data>
-  <data name="Country_val_CW" xml:space="preserve">
-    <value>Curaçao</value>
-    <comment>The name of CW country</comment>
-  </data>
-  <data name="Country_val_CX" xml:space="preserve">
-    <value>Vánoční ostrov</value>
-    <comment>The name of CX country</comment>
-  </data>
-  <data name="Country_val_CY" xml:space="preserve">
-    <value>Kypr</value>
-    <comment>The name of CY country</comment>
-  </data>
-  <data name="Country_val_CZ" xml:space="preserve">
-    <value>Česko</value>
-    <comment>The name of CZ country</comment>
-  </data>
-  <data name="Country_val_DE" xml:space="preserve">
-    <value>Německo</value>
-    <comment>The name of DE country</comment>
-  </data>
-  <data name="Country_val_DJ" xml:space="preserve">
-    <value>Džibutsko</value>
-    <comment>The name of DJ country</comment>
-  </data>
-  <data name="Country_val_DK" xml:space="preserve">
-    <value>Dánsko</value>
-    <comment>The name of DK country</comment>
-  </data>
-  <data name="Country_val_DM" xml:space="preserve">
-    <value>Dominika</value>
-    <comment>The name of DM country</comment>
-  </data>
-  <data name="Country_val_DO" xml:space="preserve">
-    <value>Dominikánská republika</value>
-    <comment>The name of DO country</comment>
-  </data>
-  <data name="Country_val_DZ" xml:space="preserve">
-    <value>Alžírsko</value>
-    <comment>The name of DZ country</comment>
-  </data>
-  <data name="Country_val_EC" xml:space="preserve">
-    <value>Ekvádor</value>
-    <comment>The name of EC country</comment>
-  </data>
-  <data name="Country_val_EE" xml:space="preserve">
-    <value>Estonsko</value>
-    <comment>The name of EE country</comment>
-  </data>
-  <data name="Country_val_EG" xml:space="preserve">
-    <value>Egypt</value>
-    <comment>The name of EG country</comment>
-  </data>
-  <data name="Country_val_EH" xml:space="preserve">
-    <value>Západní Sahara</value>
-    <comment>The name of EH country</comment>
-  </data>
-  <data name="Country_val_ER" xml:space="preserve">
-    <value>Eritrea</value>
-    <comment>The name of ER country</comment>
-  </data>
-  <data name="Country_val_ES" xml:space="preserve">
-    <value>Španělsko</value>
-    <comment>The name of ES country</comment>
-  </data>
-  <data name="Country_val_ET" xml:space="preserve">
-    <value>Etiopie</value>
-    <comment>The name of ET country</comment>
-  </data>
-  <data name="Country_val_FI" xml:space="preserve">
-    <value>Finsko</value>
-    <comment>The name of FI country</comment>
-  </data>
-  <data name="Country_val_FJ" xml:space="preserve">
-    <value>Fidži</value>
-    <comment>The name of FJ country</comment>
-  </data>
-  <data name="Country_val_FK" xml:space="preserve">
-    <value>Falklandské ostrovy (Malvíny)</value>
-    <comment>The name of FK country</comment>
-  </data>
-  <data name="Country_val_FM" xml:space="preserve">
-    <value>Mikronésie</value>
-    <comment>The name of FM country</comment>
-  </data>
-  <data name="Country_val_FO" xml:space="preserve">
-    <value>Faerské ostrovy</value>
-    <comment>The name of FO country</comment>
-  </data>
-  <data name="Country_val_FR" xml:space="preserve">
-    <value>Francie</value>
-    <comment>The name of FR country</comment>
-  </data>
-  <data name="Country_val_GA" xml:space="preserve">
-    <value>Gabon</value>
-    <comment>The name of GA country</comment>
-  </data>
-  <data name="Country_val_GB" xml:space="preserve">
-    <value>Velká Británie</value>
-    <comment>The name of GB country</comment>
-  </data>
-  <data name="Country_val_GD" xml:space="preserve">
-    <value>Grenada</value>
-    <comment>The name of GD country</comment>
-  </data>
-  <data name="Country_val_GE" xml:space="preserve">
-    <value>Gruzie</value>
-    <comment>The name of GE country</comment>
-  </data>
-  <data name="Country_val_GF" xml:space="preserve">
-    <value>Francouzská Guyana</value>
-    <comment>The name of GF country</comment>
-  </data>
-  <data name="Country_val_GG" xml:space="preserve">
-    <value>Guernsey</value>
-    <comment>The name of GG country</comment>
-  </data>
-  <data name="Country_val_GH" xml:space="preserve">
-    <value>Ghana</value>
-    <comment>The name of GH country</comment>
-  </data>
-  <data name="Country_val_GI" xml:space="preserve">
-    <value>Gibraltar</value>
-    <comment>The name of GI country</comment>
-  </data>
-  <data name="Country_val_GL" xml:space="preserve">
-    <value>Grónsko</value>
-    <comment>The name of GL country</comment>
-  </data>
-  <data name="Country_val_GM" xml:space="preserve">
-    <value>Gambie</value>
-    <comment>The name of GM country</comment>
-  </data>
-  <data name="Country_val_GN" xml:space="preserve">
-    <value>Guinea</value>
-    <comment>The name of GN country</comment>
-  </data>
-  <data name="Country_val_GP" xml:space="preserve">
-    <value>Guadeloupe</value>
-    <comment>The name of GP country</comment>
-  </data>
-  <data name="Country_val_GQ" xml:space="preserve">
-    <value>Rovníková Guinea</value>
-    <comment>The name of GQ country</comment>
-  </data>
-  <data name="Country_val_GR" xml:space="preserve">
-    <value>Řecko</value>
-    <comment>The name of GR country</comment>
-  </data>
-  <data name="Country_val_GS" xml:space="preserve">
-    <value>Jižní Georgie a Jižní Sandwichovy ostrovy</value>
-    <comment>The name of GS country</comment>
-  </data>
-  <data name="Country_val_GT" xml:space="preserve">
-    <value>Guatemala</value>
-    <comment>The name of GT country</comment>
-  </data>
-  <data name="Country_val_GU" xml:space="preserve">
-    <value>Guam</value>
-    <comment>The name of GU country</comment>
-  </data>
-  <data name="Country_val_GW" xml:space="preserve">
-    <value>Guinea-Bissau</value>
-    <comment>The name of GW country</comment>
-  </data>
-  <data name="Country_val_GY" xml:space="preserve">
-    <value>Guayana</value>
-    <comment>The name of GY country</comment>
-  </data>
-  <data name="Country_val_HK" xml:space="preserve">
-    <value>Hong Kong</value>
-    <comment>The name of HK country</comment>
-  </data>
-  <data name="Country_val_HM" xml:space="preserve">
-    <value>Heardův ostrov a McDonaldovy ostrovy</value>
-    <comment>The name of HM country</comment>
-  </data>
-  <data name="Country_val_HN" xml:space="preserve">
-    <value>Honduras</value>
-    <comment>The name of HN country</comment>
-  </data>
-  <data name="Country_val_HR" xml:space="preserve">
-    <value>Chorvatsko</value>
-    <comment>The name of HR country</comment>
-  </data>
-  <data name="Country_val_HT" xml:space="preserve">
-    <value>Haiti</value>
-    <comment>The name of HT country</comment>
-  </data>
-  <data name="Country_val_HU" xml:space="preserve">
-    <value>Maďarsko</value>
-    <comment>The name of HU country</comment>
-  </data>
-  <data name="Country_val_ID" xml:space="preserve">
-    <value>Indonésie</value>
-    <comment>The name of ID country</comment>
-  </data>
-  <data name="Country_val_IE" xml:space="preserve">
-    <value>Irsko</value>
-    <comment>The name of IE country</comment>
-  </data>
-  <data name="Country_val_IL" xml:space="preserve">
-    <value>Izrael</value>
-    <comment>The name of IL country</comment>
-  </data>
-  <data name="Country_val_IM" xml:space="preserve">
-    <value>Ostrov Man</value>
-    <comment>The name of IM country</comment>
-  </data>
-  <data name="Country_val_IN" xml:space="preserve">
-    <value>Indie</value>
-    <comment>The name of IN country</comment>
-  </data>
-  <data name="Country_val_IO" xml:space="preserve">
-    <value>Britské území v Indickém oceánu</value>
-    <comment>The name of IO country</comment>
-  </data>
-  <data name="Country_val_IQ" xml:space="preserve">
-    <value>Irák</value>
-    <comment>The name of IQ country</comment>
-  </data>
-  <data name="Country_val_IR" xml:space="preserve">
-    <value>Írán</value>
-    <comment>The name of IR country</comment>
-  </data>
-  <data name="Country_val_IS" xml:space="preserve">
-    <value>Island</value>
-    <comment>The name of IS country</comment>
-  </data>
-  <data name="Country_val_IT" xml:space="preserve">
-    <value>Itálie</value>
-    <comment>The name of IT country</comment>
-  </data>
-  <data name="Country_val_JE" xml:space="preserve">
-    <value>Ostrov Jersey</value>
-    <comment>The name of JE country</comment>
-  </data>
-  <data name="Country_val_JM" xml:space="preserve">
-    <value>Jamajka</value>
-    <comment>The name of JM country</comment>
-  </data>
-  <data name="Country_val_JO" xml:space="preserve">
-    <value>Jordánsko</value>
-    <comment>The name of JO country</comment>
-  </data>
-  <data name="Country_val_JP" xml:space="preserve">
-    <value>Japonsko</value>
-    <comment>The name of JP country</comment>
-  </data>
-  <data name="Country_val_KE" xml:space="preserve">
-    <value>Keňa</value>
-    <comment>The name of KE country</comment>
-  </data>
-  <data name="Country_val_KG" xml:space="preserve">
-    <value>Kyrgyzstán</value>
-    <comment>The name of KG country</comment>
-  </data>
-  <data name="Country_val_KH" xml:space="preserve">
-    <value>Kambodža</value>
-    <comment>The name of KH country</comment>
-  </data>
-  <data name="Country_val_KI" xml:space="preserve">
-    <value>Kiribati</value>
-    <comment>The name of KI country</comment>
-  </data>
-  <data name="Country_val_KM" xml:space="preserve">
-    <value>Komory</value>
-    <comment>The name of KM country</comment>
-  </data>
-  <data name="Country_val_KN" xml:space="preserve">
-    <value>Svatý Kryštof a Nevis</value>
-    <comment>The name of KN country</comment>
-  </data>
-  <data name="Country_val_KP" xml:space="preserve">
-    <value>Severní Korea</value>
-    <comment>The name of KP country</comment>
-  </data>
-  <data name="Country_val_KR" xml:space="preserve">
-    <value>Jižní Korea</value>
-    <comment>The name of KR country</comment>
-  </data>
-  <data name="Country_val_KW" xml:space="preserve">
-    <value>Kuvajt</value>
-    <comment>The name of KW country</comment>
-  </data>
-  <data name="Country_val_KY" xml:space="preserve">
-    <value>Kajmanské ostrovy</value>
-    <comment>The name of KY country</comment>
-  </data>
-  <data name="Country_val_KZ" xml:space="preserve">
-    <value>Kazachstán</value>
-    <comment>The name of KZ country</comment>
-  </data>
-  <data name="Country_val_LA" xml:space="preserve">
-    <value>Laos</value>
-    <comment>The name of LA country</comment>
-  </data>
-  <data name="Country_val_LB" xml:space="preserve">
-    <value>Libanon</value>
-    <comment>The name of LB country</comment>
-  </data>
-  <data name="Country_val_LC" xml:space="preserve">
-    <value>Svatá Lucie</value>
-    <comment>The name of LC country</comment>
-  </data>
-  <data name="Country_val_LI" xml:space="preserve">
-    <value>Lichtenštejnsko</value>
-    <comment>The name of LI country</comment>
-  </data>
-  <data name="Country_val_LK" xml:space="preserve">
-    <value>Srí Lanka</value>
-    <comment>The name of LK country</comment>
-  </data>
-  <data name="Country_val_LR" xml:space="preserve">
-    <value>Libérie</value>
-    <comment>The name of LR country</comment>
-  </data>
-  <data name="Country_val_LS" xml:space="preserve">
-    <value>Lesotho</value>
-    <comment>The name of LS country</comment>
-  </data>
-  <data name="Country_val_LT" xml:space="preserve">
-    <value>Litva</value>
-    <comment>The name of LT country</comment>
-  </data>
-  <data name="Country_val_LU" xml:space="preserve">
-    <value>Lucembursko</value>
-    <comment>The name of LU country</comment>
-  </data>
-  <data name="Country_val_LV" xml:space="preserve">
-    <value>Lotyšsko</value>
-    <comment>The name of LV country</comment>
-  </data>
-  <data name="Country_val_LY" xml:space="preserve">
-    <value>Libye</value>
-    <comment>The name of LY country</comment>
-  </data>
-  <data name="Country_val_MA" xml:space="preserve">
-    <value>Maroko</value>
-    <comment>The name of MA country</comment>
-  </data>
-  <data name="Country_val_MC" xml:space="preserve">
-    <value>Monako</value>
-    <comment>The name of MC country</comment>
-  </data>
-  <data name="Country_val_MD" xml:space="preserve">
-    <value>Moldavsko</value>
-    <comment>The name of MD country</comment>
-  </data>
-  <data name="Country_val_ME" xml:space="preserve">
-    <value>Černá Hora</value>
-    <comment>The name of ME country</comment>
-  </data>
-  <data name="Country_val_MF" xml:space="preserve">
-    <value>Svatý Martin (francouzská část)</value>
-    <comment>The name of MF country</comment>
-  </data>
-  <data name="Country_val_MG" xml:space="preserve">
-    <value>Madagaskar</value>
-    <comment>The name of MG country</comment>
-  </data>
-  <data name="Country_val_MH" xml:space="preserve">
-    <value>Marshallovy ostrovy</value>
-    <comment>The name of MH country</comment>
-  </data>
-  <data name="Country_val_MK" xml:space="preserve">
-    <value>Severní Makedonie</value>
-    <comment>The name of MK country</comment>
-  </data>
-  <data name="Country_val_ML" xml:space="preserve">
-    <value>Mali</value>
-    <comment>The name of ML country</comment>
-  </data>
-  <data name="Country_val_MM" xml:space="preserve">
-    <value>Myanmar</value>
-    <comment>The name of MM country</comment>
-  </data>
-  <data name="Country_val_MN" xml:space="preserve">
-    <value>Mongolsko</value>
-    <comment>The name of MN country</comment>
-  </data>
-  <data name="Country_val_MO" xml:space="preserve">
-    <value>Macao</value>
-    <comment>The name of MO country</comment>
-  </data>
-  <data name="Country_val_MP" xml:space="preserve">
-    <value>Severní Mariany</value>
-    <comment>The name of MP country</comment>
-  </data>
-  <data name="Country_val_MQ" xml:space="preserve">
-    <value>Martinik</value>
-    <comment>The name of MQ country</comment>
-  </data>
-  <data name="Country_val_MR" xml:space="preserve">
-    <value>Mauretánie</value>
-    <comment>The name of MR country</comment>
-  </data>
-  <data name="Country_val_MS" xml:space="preserve">
-    <value>Montserrat</value>
-    <comment>The name of MS country</comment>
-  </data>
-  <data name="Country_val_MT" xml:space="preserve">
-    <value>Malta</value>
-    <comment>The name of MT country</comment>
-  </data>
-  <data name="Country_val_MU" xml:space="preserve">
-    <value>Mauricius</value>
-    <comment>The name of MU country</comment>
-  </data>
-  <data name="Country_val_MV" xml:space="preserve">
-    <value>Maledivy</value>
-    <comment>The name of MV country</comment>
-  </data>
-  <data name="Country_val_MW" xml:space="preserve">
-    <value>Malawi</value>
-    <comment>The name of MW country</comment>
-  </data>
-  <data name="Country_val_MX" xml:space="preserve">
-    <value>Mexiko</value>
-    <comment>The name of MX country</comment>
-  </data>
-  <data name="Country_val_MY" xml:space="preserve">
-    <value>Malajsie</value>
-    <comment>The name of MY country</comment>
-  </data>
-  <data name="Country_val_MZ" xml:space="preserve">
-    <value>Mosambik</value>
-    <comment>The name of MZ country</comment>
-  </data>
-  <data name="Country_val_NA" xml:space="preserve">
-    <value>Namibie</value>
-    <comment>The name of NA country</comment>
-  </data>
-  <data name="Country_val_NC" xml:space="preserve">
-    <value>Nová Kaledonie</value>
-    <comment>The name of NC country</comment>
-  </data>
-  <data name="Country_val_NE" xml:space="preserve">
-    <value>Nigérie</value>
-    <comment>The name of NE country</comment>
-  </data>
-  <data name="Country_val_NF" xml:space="preserve">
-    <value>Norfolk</value>
-    <comment>The name of NF country</comment>
-  </data>
-  <data name="Country_val_NG" xml:space="preserve">
-    <value>Nigérie</value>
-    <comment>The name of NG country</comment>
-  </data>
-  <data name="Country_val_NI" xml:space="preserve">
-    <value>Nikaragua</value>
-    <comment>The name of NI country</comment>
-  </data>
-  <data name="Country_val_NL" xml:space="preserve">
-    <value>Nizozemsko</value>
-    <comment>The name of NL country</comment>
-  </data>
-  <data name="Country_val_NO" xml:space="preserve">
-    <value>Norsko</value>
-    <comment>The name of NO country</comment>
-  </data>
-  <data name="Country_val_NP" xml:space="preserve">
-    <value>Nepál</value>
-    <comment>The name of NP country</comment>
-  </data>
-  <data name="Country_val_NR" xml:space="preserve">
-    <value>Nauru</value>
-    <comment>The name of NR country</comment>
-  </data>
-  <data name="Country_val_NU" xml:space="preserve">
-    <value>Niue</value>
-    <comment>The name of NU country</comment>
-  </data>
-  <data name="Country_val_NZ" xml:space="preserve">
-    <value>Nový Zéland</value>
-    <comment>The name of NZ country</comment>
-  </data>
-  <data name="Country_val_OM" xml:space="preserve">
-    <value>Omán</value>
-    <comment>The name of OM country</comment>
-  </data>
-  <data name="Country_val_PA" xml:space="preserve">
-    <value>Panama</value>
-    <comment>The name of PA country</comment>
-  </data>
-  <data name="Country_val_PE" xml:space="preserve">
-    <value>Peru</value>
-    <comment>The name of PE country</comment>
-  </data>
-  <data name="Country_val_PF" xml:space="preserve">
-    <value>Francouzská Polynésie</value>
-    <comment>The name of PF country</comment>
-  </data>
-  <data name="Country_val_PG" xml:space="preserve">
-    <value>Papua-Nová Guinea</value>
-    <comment>The name of PG country</comment>
-  </data>
-  <data name="Country_val_PH" xml:space="preserve">
-    <value>Filipíny</value>
-    <comment>The name of PH country</comment>
-  </data>
-  <data name="Country_val_PK" xml:space="preserve">
-    <value>Pákistán</value>
-    <comment>The name of PK country</comment>
-  </data>
-  <data name="Country_val_PL" xml:space="preserve">
-    <value>Polsko</value>
-    <comment>The name of PL country</comment>
-  </data>
-  <data name="Country_val_PM" xml:space="preserve">
-    <value>Saint-Pierre a Miquelon</value>
-    <comment>The name of PM country</comment>
-  </data>
-  <data name="Country_val_PN" xml:space="preserve">
-    <value>Pitcairn</value>
-    <comment>The name of PN country</comment>
-  </data>
-  <data name="Country_val_PR" xml:space="preserve">
-    <value>Portoriko</value>
-    <comment>The name of PR country</comment>
-  </data>
-  <data name="Country_val_PS" xml:space="preserve">
-    <value>Palestina</value>
-    <comment>The name of PS country</comment>
-  </data>
-  <data name="Country_val_PT" xml:space="preserve">
-    <value>Portugalsko</value>
-    <comment>The name of PT country</comment>
-  </data>
-  <data name="Country_val_PW" xml:space="preserve">
-    <value>Palau</value>
-    <comment>The name of PW country</comment>
-  </data>
-  <data name="Country_val_PY" xml:space="preserve">
-    <value>Paraguay</value>
-    <comment>The name of PY country</comment>
-  </data>
-  <data name="Country_val_QA" xml:space="preserve">
-    <value>Katar</value>
-    <comment>The name of QA country</comment>
-  </data>
-  <data name="Country_val_RE" xml:space="preserve">
-    <value>Réunion</value>
-    <comment>The name of RE country</comment>
-  </data>
-  <data name="Country_val_RO" xml:space="preserve">
-    <value>Rumunsko</value>
-    <comment>The name of RO country</comment>
-  </data>
-  <data name="Country_val_RS" xml:space="preserve">
-    <value>Srbsko</value>
-    <comment>The name of RS country</comment>
-  </data>
-  <data name="Country_val_RU" xml:space="preserve">
-    <value>Rusko</value>
-    <comment>The name of RU country</comment>
-  </data>
-  <data name="Country_val_RW" xml:space="preserve">
-    <value>Rwanda</value>
-    <comment>The name of RW country</comment>
-  </data>
-  <data name="Country_val_SA" xml:space="preserve">
-    <value>Saúdská Arábie</value>
-    <comment>The name of SA country</comment>
-  </data>
-  <data name="Country_val_SB" xml:space="preserve">
-    <value>Šalamounovy ostrovy</value>
-    <comment>The name of SB country</comment>
-  </data>
-  <data name="Country_val_SC" xml:space="preserve">
-    <value>Seychely</value>
-    <comment>The name of SC country</comment>
-  </data>
-  <data name="Country_val_SD" xml:space="preserve">
-    <value>Súdán</value>
-    <comment>The name of SD country</comment>
-  </data>
-  <data name="Country_val_SE" xml:space="preserve">
-    <value>Švédsko</value>
-    <comment>The name of SE country</comment>
-  </data>
-  <data name="Country_val_SG" xml:space="preserve">
-    <value>Singapur</value>
-    <comment>The name of SG country</comment>
-  </data>
-  <data name="Country_val_SH" xml:space="preserve">
-    <value>Svatá Helena, Ascension a Tristan da Cunha</value>
-    <comment>The name of SH country</comment>
-  </data>
-  <data name="Country_val_SI" xml:space="preserve">
-    <value>Slovinsko</value>
-    <comment>The name of SI country</comment>
-  </data>
-  <data name="Country_val_SJ" xml:space="preserve">
-    <value>Špicberky a Jan Mayen</value>
-    <comment>The name of SJ country</comment>
-  </data>
-  <data name="Country_val_SK" xml:space="preserve">
-    <value>Slovensko</value>
-    <comment>The name of SK country</comment>
-  </data>
-  <data name="Country_val_SL" xml:space="preserve">
-    <value>Sierra Leone</value>
-    <comment>The name of SL country</comment>
-  </data>
-  <data name="Country_val_SM" xml:space="preserve">
-    <value>San Marino</value>
-    <comment>The name of SM country</comment>
-  </data>
-  <data name="Country_val_SN" xml:space="preserve">
-    <value>Senegal</value>
-    <comment>The name of SN country</comment>
-  </data>
-  <data name="Country_val_SO" xml:space="preserve">
-    <value>Somálsko</value>
-    <comment>The name of SO country</comment>
-  </data>
-  <data name="Country_val_SR" xml:space="preserve">
-    <value>Surinam</value>
-    <comment>The name of SR country</comment>
-  </data>
-  <data name="Country_val_SS" xml:space="preserve">
-    <value>Jižní Súdán</value>
-    <comment>The name of SS country</comment>
-  </data>
-  <data name="Country_val_ST" xml:space="preserve">
-    <value>Svatý Tomáš a Princův ostrov</value>
-    <comment>The name of ST country</comment>
-  </data>
-  <data name="Country_val_SV" xml:space="preserve">
-    <value>Salvador</value>
-    <comment>The name of SV country</comment>
-  </data>
-  <data name="Country_val_SX" xml:space="preserve">
-    <value>Svatý Martin (holandská část)</value>
-    <comment>The name of SX country</comment>
-  </data>
-  <data name="Country_val_SY" xml:space="preserve">
-    <value>Sýrie</value>
-    <comment>The name of SY country</comment>
-  </data>
-  <data name="Country_val_SZ" xml:space="preserve">
-    <value>Svazijsko</value>
-    <comment>The name of SZ country</comment>
-  </data>
-  <data name="Country_val_TC" xml:space="preserve">
-    <value>Ostrovy Turks a Caicos</value>
-    <comment>The name of TC country</comment>
-  </data>
-  <data name="Country_val_TD" xml:space="preserve">
-    <value>Čad</value>
-    <comment>The name of TD country</comment>
-  </data>
-  <data name="Country_val_TF" xml:space="preserve">
-    <value>Francouzská jižní území</value>
-    <comment>The name of TF country</comment>
-  </data>
-  <data name="Country_val_TG" xml:space="preserve">
-    <value>Togo</value>
-    <comment>The name of TG country</comment>
-  </data>
-  <data name="Country_val_TH" xml:space="preserve">
-    <value>Thajsko</value>
-    <comment>The name of TH country</comment>
-  </data>
-  <data name="Country_val_TJ" xml:space="preserve">
-    <value>Tádžikistán</value>
-    <comment>The name of TJ country</comment>
-  </data>
-  <data name="Country_val_TK" xml:space="preserve">
-    <value>Tokelau</value>
-    <comment>The name of TK country</comment>
-  </data>
-  <data name="Country_val_TL" xml:space="preserve">
-    <value>Východní Timor</value>
-    <comment>The name of TL country</comment>
-  </data>
-  <data name="Country_val_TM" xml:space="preserve">
-    <value>Turkmenistán</value>
-    <comment>The name of TM country</comment>
-  </data>
-  <data name="Country_val_TN" xml:space="preserve">
-    <value>Tunisko</value>
-    <comment>The name of TN country</comment>
-  </data>
-  <data name="Country_val_TO" xml:space="preserve">
-    <value>Tonga</value>
-    <comment>The name of TO country</comment>
-  </data>
-  <data name="Country_val_TR" xml:space="preserve">
-    <value>Turecko</value>
-    <comment>The name of TR country</comment>
-  </data>
-  <data name="Country_val_TT" xml:space="preserve">
-    <value>Trinidad a Tobago</value>
-    <comment>The name of TT country</comment>
-  </data>
-  <data name="Country_val_TV" xml:space="preserve">
-    <value>Tuvalu</value>
-    <comment>The name of TV country</comment>
-  </data>
-  <data name="Country_val_TW" xml:space="preserve">
-    <value>Tchaj-wan</value>
-    <comment>The name of TW country</comment>
-  </data>
-  <data name="Country_val_TZ" xml:space="preserve">
-    <value>Tanzánie</value>
-    <comment>The name of TZ country</comment>
-  </data>
-  <data name="Country_val_UA" xml:space="preserve">
-    <value>Ukrajina</value>
-    <comment>The name of UA country</comment>
-  </data>
-  <data name="Country_val_UG" xml:space="preserve">
-    <value>Uganda</value>
-    <comment>The name of UG country</comment>
-  </data>
-  <data name="Country_val_UK" xml:space="preserve">
-    <value>Velká Británie</value>
-    <comment>The name of UK country</comment>
-  </data>
-  <data name="Country_val_UM" xml:space="preserve">
-    <value>Menší odlehlé ostrovy Spojených států amerických</value>
-    <comment>The name of UM country</comment>
-  </data>
-  <data name="Country_val_US" xml:space="preserve">
-    <value>Spojené státy americké</value>
-    <comment>The name of US country</comment>
-  </data>
-  <data name="Country_val_UY" xml:space="preserve">
-    <value>Uruguay</value>
-    <comment>The name of UY country</comment>
-  </data>
-  <data name="Country_val_UZ" xml:space="preserve">
-    <value>Uzbekistán</value>
-    <comment>The name of UZ country</comment>
-  </data>
-  <data name="Country_val_VA" xml:space="preserve">
-    <value>Vatikán</value>
-    <comment>The name of VA country</comment>
-  </data>
-  <data name="Country_val_VC" xml:space="preserve">
-    <value>Svatý Vincent a Grenadiny</value>
-    <comment>The name of VC country</comment>
-  </data>
-  <data name="Country_val_VE" xml:space="preserve">
-    <value>Venezuela</value>
-    <comment>The name of VE country</comment>
-  </data>
-  <data name="Country_val_VG" xml:space="preserve">
-    <value>Panenské ostrovy (Britské)</value>
-    <comment>The name of VG country</comment>
-  </data>
-  <data name="Country_val_VI" xml:space="preserve">
-    <value>Panenské ostrovy, USA</value>
-    <comment>The name of VI country</comment>
-  </data>
-  <data name="Country_val_VN" xml:space="preserve">
-    <value>Vietnam</value>
-    <comment>The name of VN country</comment>
-  </data>
-  <data name="Country_val_VU" xml:space="preserve">
-    <value>Vanuatu</value>
-    <comment>The name of VU country</comment>
-  </data>
-  <data name="Country_val_WF" xml:space="preserve">
-    <value>Wallis a Futuna</value>
-    <comment>The name of WF country</comment>
-  </data>
-  <data name="Country_val_WS" xml:space="preserve">
-    <value>Samoa</value>
-    <comment>The name of WS country</comment>
-  </data>
-  <data name="Country_val_YE" xml:space="preserve">
-    <value>Jemen</value>
-    <comment>The name of YE country</comment>
-  </data>
-  <data name="Country_val_YT" xml:space="preserve">
-    <value>Mayotte</value>
-    <comment>The name of YT country</comment>
-  </data>
-  <data name="Country_val_ZA" xml:space="preserve">
-    <value>Jihoafrická republika</value>
-    <comment>The name of ZA country</comment>
-  </data>
-  <data name="Country_val_ZM" xml:space="preserve">
-    <value>Zambie</value>
-    <comment>The name of ZM country</comment>
-  </data>
-  <data name="Country_val_ZW" xml:space="preserve">
-    <value>Zimbabwe</value>
-    <comment>The name of ZW country</comment>
-  </data>
-  <data name="Country_val_ZZ" xml:space="preserve">
-    <value>Není známo</value>
-    <comment>The name of ZZ (unknown or not specified) country</comment>
-  </data>
-  <data name="Dialogs_Latency_Description" xml:space="preserve">
-    <value>Latence ukazuje, jak dlouho server odpovídá na vaše požadavky. \n\n Vysoká latence může zpomalovat vaše připojení.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>VPN může fungovat pomaleji, než je zvykem</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
-    <value>Vysoká (150 ms+)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>Bleskové rychlosti</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
-    <value>Nízká (1 ms - 50 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>Pravděpodobně neovlivňuje rychlost VPN</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
-    <value>Střední (50 ms - 150 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_Title" xml:space="preserve">
-    <value>Co je to latence?</value>
-  </data>
-  <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>Protokol je sada pokynů, kterými se vaše zařízení řídí při připojování a komunikaci se serverem.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
-    <value>Přepnout protokol VPN</value>
-  </data>
-  <data name="Dialogs_Protocol_Title" xml:space="preserve">
-    <value>Co je to protokol VPN?</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
-    <value>V čem je problém?</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
-    <value>Vytížení serveru ukazuje, kolik kapacity serveru je využito.\n\nVysoké vytížení serveru může zpomalit vaše připojení.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>VPN může fungovat pomaleji, než je zvykem</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>Vysoké (91-100%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>Bleskové rychlosti</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>Nízké (1-75%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>Pravděpodobně neovlivňuje rychlost VPN</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>Střední (76-90%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>Co je vytížení serveru?</value>
-  </data>
-  <data name="Format_Milliseconds" xml:space="preserve">
-    <value>{0} ms</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
-  </data>
-  <data name="Format_Size_Bytes" xml:space="preserve">
-    <value>{0} B</value>
-    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
-  </data>
-  <data name="Format_Size_Exabytes" xml:space="preserve">
-    <value>{0} EB</value>
-    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
-  </data>
-  <data name="Format_Size_Gigabytes" xml:space="preserve">
-    <value>{0} GB</value>
-    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
-  </data>
-  <data name="Format_Size_Kilobytes" xml:space="preserve">
-    <value>{0} KB</value>
-    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
-  </data>
-  <data name="Format_Size_Megabytes" xml:space="preserve">
-    <value>{0} MB</value>
-    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
-  </data>
-  <data name="Format_Size_Petabytes" xml:space="preserve">
-    <value>{0} PB</value>
-    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
-  </data>
-  <data name="Format_Size_Terabytes" xml:space="preserve">
-    <value>{0} TB</value>
-    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
-  </data>
-  <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
-    <value>{0} B/s</value>
-    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
-  </data>
-  <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
-    <value>{0} EB/s</value>
-    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
-  </data>
-  <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
-    <value>{0} GB/s</value>
-    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
-  </data>
-  <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
-    <value>{0} KB/s</value>
-    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
-  </data>
-  <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
-    <value>{0} MB/s</value>
-    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
-  </data>
-  <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
-    <value>{0} PB/s</value>
-    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
-  </data>
-  <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
-    <value>{0} TB/s</value>
-    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
-  </data>
-  <data name="Format_Time_Day" xml:space="preserve">
-    <value>{0} den</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} den {1} h</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days" xml:space="preserve">
-    <value>{0} dní</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DaysHours" xml:space="preserve">
-    <value>{0} dní {1} h</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Hours" xml:space="preserve">
-    <value>{0} hod.</value>
-    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_HoursMinutes" xml:space="preserve">
-    <value>{0} hod. {1} min.</value>
-    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Minutes" xml:space="preserve">
-    <value>{0} min.</value>
-    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_MinutesSeconds" xml:space="preserve">
-    <value>{0} min. {1} sek.</value>
-    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Seconds" xml:space="preserve">
-    <value>{0} sek.</value>
-    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
-  </data>
-  <data name="Home_Account_SignOut" xml:space="preserve">
-    <value>Odhlásit se</value>
-  </data>
-  <data name="Home_Account_Title" xml:space="preserve">
-    <value>Můj účet</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>Bezpečné prohlížení z</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>Připojování k...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>Naposledy připojeno k</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>Doporučeno</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
-    <value>Karta připojení</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_City" xml:space="preserve">
-    <value>Město</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
-    <value>Připojeno</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
-    <value>Brána</value>
-  </data>
-  <data name="Home_ConnectionDetails_Country" xml:space="preserve">
-    <value>Země</value>
-  </data>
-  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>Stáhnout</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
-    <value>Skrýt podrobnosti o připojení</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
-    <value>Skrýt</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
-    <value>Skrýt IP adresu uživatele</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>Podrobnosti o připojení</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>Latence</value>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
-    <value>Moje IP</value>
-  </data>
-  <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
-    <value>Protokol</value>
-  </data>
-  <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
-    <value>Vytížení serveru</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show" xml:space="preserve">
-    <value>Zobrazit podrobnosti o připojení</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
-    <value>Zobrazit</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
-    <value>Zobrazit IP adresu uživatele</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>Podrobnosti o připojení</value>
-  </data>
-  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>Nahrát</value>
-  </data>
-  <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
-    <value>VPN IP</value>
-  </data>
-  <data name="Home_Help_Title" xml:space="preserve">
-    <value>Nápověda</value>
-  </data>
-  <data name="Home_Map_Landmark" xml:space="preserve">
-    <value>Mapa</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>Reklam\nzablokováno</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>Dat\nuloženo</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_Landmark" xml:space="preserve">
-    <value>NetShield statistika</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>Sledovacích prvků\nzastaveno</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_Page_Title" xml:space="preserve">
-    <value>Domov</value>
-  </data>
-  <data name="Home_Recents_Landmark" xml:space="preserve">
-    <value>Nedávná připojení</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_Recents_Pin" xml:space="preserve">
-    <value>Připnout</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
-    <value>Akce</value>
-  </data>
-  <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
-    <value>Na serveru probíhá údržba</value>
-  </data>
-  <data name="Home_Recents_Title" xml:space="preserve">
-    <value>Nedávné</value>
-  </data>
-  <data name="Home_Recents_Unpin" xml:space="preserve">
-    <value>Odepnout</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark" xml:space="preserve">
-    <value>Stav VPN</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>Vaše digitální identita je chráněna</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>Nejste chráněni</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
-    <value>Chráněno</value>
-  </data>
-  <data name="Server_Feature_P2P" xml:space="preserve">
-    <value>P2P</value>
-  </data>
-  <data name="Server_Feature_Tor" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>Nesprávný kód. Zkuste to znovu.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>Nesprávné přihlašovací údaje. Zkuste to znovu.</value>
-  </data>
-  <data name="Settings_About" xml:space="preserve">
-    <value>O aplikaci</value>
-  </data>
-  <data name="Settings_AppVersion" xml:space="preserve">
-    <value>Verze aplikace</value>
-  </data>
-  <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>Tyto statistiky neobsahují vaši IP adresu a nelze je použít k vaší identifikaci. Nikdy je nebudeme sdílet se třetími stranami.</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>Sdílejte anonymní hlášení o pádech</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>Hlášení o pádech nám pomáhají opravovat chyby, rozpoznat firewally a předcházet blokování VPN.</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>Sdílejte anonymní statistiky o používání</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>Údaje o používání nám pomáhají obcházet blokování VPN a vylepšovat výkon aplikace.</value>
-  </data>
-  <data name="Settings_Connection" xml:space="preserve">
-    <value>Připojení</value>
-  </data>
-  <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>Pokročilá nastavení</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>Alternativní směrování</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
-    <value>Pokud jsou služby Protonu blokovány poskytovatelem síťového připojení, pokusíme se vás připojit k našim stránkám pomocí alternativního síťového směrování.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
-    <value>Vlastní servery DNS</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
-    <value>Připojení k Proton VPN pomocí vlastního DNS serveru. Používejte pouze DNS servery, kterým důvěřujete.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
-    <value>DNS servery ({0})</value>
-    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
-    <value>Přidat adresu IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>LAN připojení</value>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>Umožňuje připojit tiskárny, reproduktory a ostatní zařízení ve vaší LAN.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
-    <value>Typ NAT</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
-    <value>Vyberte typ překladu síťových adres (NAT) vašeho připojení.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
-    <value>Moderate (type 2)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
-    <value>Nějaké omezení dat vstupujících do vaší sítě. Toto je nejlepší volba pro hraní online video her.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
-    <value>Strict (type 3)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
-    <value>Omezuje data vstupující do vaší sítě. Tato volba je bezpečnější, ale může ztížit herní připojení typu peer-to-peer.</value>
-  </data>
-  <data name="Settings_Connection_Protocol" xml:space="preserve">
-    <value>Protokol</value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>VPN Accelerator</value>
-  </data>
-  <data name="Settings_Features" xml:space="preserve">
-    <value>Funkce</value>
-  </data>
-  <data name="Settings_Features_KillSwitch" xml:space="preserve">
-    <value>Kill Switch</value>
-  </data>
-  <data name="Settings_Features_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-  </data>
-  <data name="Settings_Features_PortForwarding" xml:space="preserve">
-    <value>Přesměrování portů</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling" xml:space="preserve">
-    <value>Split tunneling</value>
-  </data>
-  <data name="Settings_General" xml:space="preserve">
-    <value>Obecné</value>
-  </data>
-  <data name="Settings_General_AutoStartup" xml:space="preserve">
-    <value>Automatické spuštění</value>
-  </data>
-  <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>Automatické spuštění, automatické připojení</value>
-  </data>
-  <data name="Settings_General_BetaAccess" xml:space="preserve">
-    <value>Beta přístup</value>
-  </data>
-  <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
-    <value>Získejte předběžný přístup a pomozte nám testovat nové verze Proton VPN</value>
-  </data>
-  <data name="Settings_General_Language" xml:space="preserve">
-    <value>Jazyk</value>
-  </data>
-  <data name="Settings_General_Notifications" xml:space="preserve">
-    <value>Upozornění</value>
-  </data>
-  <data name="Settings_General_Notifications_Description" xml:space="preserve">
-    <value>Získejte upozornění o probíhajících aktivitách Proton VPN</value>
-  </data>
-  <data name="Settings_General_Theme" xml:space="preserve">
-    <value>Motiv</value>
-  </data>
-  <data name="Settings_General_Theme_Dark" xml:space="preserve">
-    <value>Tmavý</value>
-  </data>
-  <data name="Settings_General_Theme_Default" xml:space="preserve">
-    <value>Výchozí</value>
-  </data>
-  <data name="Settings_General_Theme_Light" xml:space="preserve">
-    <value>Světlý</value>
-  </data>
-  <data name="Settings_Improve" xml:space="preserve">
-    <value>Zlepšit Proton</value>
-  </data>
-  <data name="Settings_Improve_Censorship" xml:space="preserve">
-    <value>Pomozte nám v boji proti cenzuře</value>
-  </data>
-  <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Verze operačního systému</value>
-  </data>
-  <data name="Settings_Page_Title" xml:space="preserve">
-    <value>Nastavení</value>
-  </data>
-  <data name="Settings_Protocols_Explanation" xml:space="preserve">
-    <value>VPN protokol určuje způsob přenosu dat mezi VPN serverem a vaším zařízením.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
-    <value>Zavedený, dobře otestovaný a bezpečný. OpenVPN je spolehlivý ve špatných síťových podmínkách, ale nemusí být tak rychlý jako jiné protokoly.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
-    <value>Zavedený, dobře otestovaný a bezpečný. Oproti jiným protokolům je OpenVPN méně energeticky úsporný.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>Doporučeno</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
-    <value>Automaticky vybere nejlepší protokol pro vaše připojení.</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
-    <value>Spolehlivost (TCP)</value>
-  </data>
-  <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
-    <value>Rychlost (UDP)</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>Rychlý, bezpečný a efektivní. WireGuard je energeticky účinnější než ostatní protokoly.</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>Obnovit výchozí nastavení</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnUdp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_Support" xml:space="preserve">
-    <value>Podpora</value>
-  </data>
-  <data name="Settings_Support_DebugLogs" xml:space="preserve">
-    <value>Logy ladění</value>
-  </data>
-  <data name="Settings_Support_ReportIssue" xml:space="preserve">
-    <value>Nahlásit problém</value>
-  </data>
-  <data name="Login_Form_CreateAccount" xml:space="preserve">
-    <value>Vytvořit účet</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Password" xml:space="preserve">
-    <value>Heslo</value>
-  </data>
-  <data name="Login_Form_SignIn" xml:space="preserve">
-    <value>Přihlásit se</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Username" xml:space="preserve">
-    <value>E-mail nebo uživatelské jméno</value>
-  </data>
-  <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
-    <value>Ověřit</value>
-    <comment>Authenticate button inside two factor form during login</comment>
-  </data>
-  <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Zadejte kód z vaší ověřovací aplikace</value>
-  </data>
-  <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>Dvoufázové ověření</value>
-  </data>
-  <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>Zapomenuté uživatelské jméno</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Help" xml:space="preserve">
-    <value>Nápověda</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ReportAnIssue" xml:space="preserve">
-    <value>Nahlásit problém</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ResetPassword" xml:space="preserve">
-    <value>Resetovat heslo</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Potíže s přihlášením</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Account_VpnPlan_Free" xml:space="preserve">
-    <value>Proton VPN Free</value>
-  </data>
-  <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
-    <value>Dvoufázové ověření selhalo. Přihlaste se prosím znovu.</value>
-  </data>
-  <data name="Settings_Support_SupportCenter" xml:space="preserve">
-    <value>Centrum podpory</value>
-  </data>
-  <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
-    <value>Zvyšte rychlost vašeho připojení až o 400% pomocí technologií zvyšujících výkon.</value>
-  </data>
-  <data name="Login_Form" xml:space="preserve">
-    <value>Přihlašovací formulář</value>
-  </data>
-  <data name="Login_TwoFactor_Digit1" xml:space="preserve">
-    <value>První číslice</value>
-  </data>
-  <data name="Login_TwoFactor_Digit2" xml:space="preserve">
-    <value>Druhá číslice</value>
-  </data>
-  <data name="Login_TwoFactor_Digit3" xml:space="preserve">
-    <value>Třetí číslice</value>
-  </data>
-  <data name="Login_TwoFactor_Digit4" xml:space="preserve">
-    <value>Čtvrtá číslice</value>
-  </data>
-  <data name="Login_TwoFactor_Digit5" xml:space="preserve">
-    <value>Pátá číslice</value>
-  </data>
-  <data name="Login_TwoFactor_Digit6" xml:space="preserve">
-    <value>Šestá číslice</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
-    <value>Nahlásit problém</value>
-  </data>
-  <data name="Common_Actions_ContactUs" xml:space="preserve">
-    <value>Kontaktujte nás</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
-    <value>Rychlé opravy</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
-    <value>Nefungovalo to?</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>Tyto tipy by mohly pomoci rychleji vyřešit váš problém.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
-    <value>Krok {0} z {1}</value>
-    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>E-mail</value>
-    <comment>The label for user e-mail address in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>priklad@domena.cz</value>
-    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>Odeslat logy chyb</value>
-    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>Protokoly chyb nám ukazují, co se pokazilo a jaké akce vedly k vašemu problému. Použijeme je pouze k tomu, abychom našim inženýrům pomohli opravit chyby.</value>
-    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
-    <value>Odeslat hlášení</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
-    <value>Hotovo</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>Něco se pokazilo</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>Nemohli jsme odeslat vaši zprávu. Zkontrolujte vaše připojení a zkuste to znovu.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>Zkusit znovu</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
-    <value>Hlášení odesláno</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>Děkujeme za vaši zpětnou vazbu. Ozveme se vám, jakmile to bude možné.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
-    <value>Automatické připojení</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>Jakmile se Proton VPN spustí, budete připojeni k serveru</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
-    <value>Nejrychlejší připojení</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
-    <value>Naposledy připojeno</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
-    <value>Automatické spuštění</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
-    <value>Proton VPN se automaticky spustí, jakmile se přihlásíte do svého zařízení</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
-    <value>Otevřít na ploše</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
-    <value>Minimalizovat do systémové lišty</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
-    <value>Minimalizovat do panelu úloh</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>Logy aplikace</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
-    <value>Servisní logy</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Obnovit výchozí nastavení</value>
-  </data>
-  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
-    <value>Obnovit a znovu připojit</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
-    <value>Tímto resetujete nastavení Proton VPN do původního stavu.</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>Obnovit výchozí nastavení?</value>
-  </data>
-  <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Zavřít</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
-    <value>Nelze nalézt složku s logy.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
-    <value>Pokročilé</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
-    <value>Povolte přístup k internetu pouze při připojení k Proton VPN. Pokročilý kill switch zůstane aktivní, i když restartujete zařízení.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
-    <value>Chrání vaši IP adresu tím, že vás odpojí od internetu, pokud je přerušeno připojení k VPN.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>Když je kill switch zapnutý, nebudete se moci připojit k webům a aplikacím vyloučeným z vašeho připojení VPN prostřednictvím split tunnelingu.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
-    <value>Standardní</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
-    <value>Automaticky se odpojte od internetu, pokud se přeruší připojení k VPN.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Description" xml:space="preserve">
-    <value>Chraňte se před reklamou, malware a sledovacími prvky na webech a v aplikacích.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
-    <value>Některé webové stránky se nemusí správně načíst, pokud je blokována reklama a sledovací prvky.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
-    <value>Aktivní port:</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
-    <value>Kopírovat číslo portu</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
-    <value>Obejděte firewally a připojte se k P2P serverům a zařízením ve vaší místní síti.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>Chcete-li použít přesměrování portů, připojte se k serveru, který podporuje P2P.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
-    <value>Upozornění</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Dostat upozornění při změně čísla přesměrovaného portu</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
-    <value>Přidat aplikaci</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
-    <value>Vybrané aplikace ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
-    <value>Odstranit aplikaci</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
-    <value>Přizpůsobte si připojení tím, že se rozhodnete, které aplikace a IP adresy budou chráněny pomocí VPN.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
-    <value>Obrátit</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
-    <value>Přes VPN se připojují pouze vybrané aplikace a IP adresy, veškerý další provoz je nechráněný</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
-    <value>Přidat IP</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
-    <value>Vybrané IP adresy ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
-    <value>Odstranit IP</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
-    <value>Přidat adresu IPv4</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
-    <value>Standardní</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
-    <value>Vybrané aplikace a IP adresy jsou vyloučeny z připojení VPN</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
-    <value>Soubory aplikace</value>
-    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
-  </data>
-  <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>Znovu připojit</value>
-  </data>
-  <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>Použít a znovu připojit</value>
-  </data>
-  <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>Zahodit</value>
-  </data>
-  <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>Zrušit změny nastavení?</value>
-  </data>
-  <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>Povolit</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
-    <value>Při připojení k vlastnímu DNS serveru nebudete moci používat NetShield.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
-    <value>Povolit vlastní DNS servery?</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>Tímto zakážete split tunneling.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Povolit Kill Switch?</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
-    <value>Pokud je povolen NetShield, nebudete se moci připojit k vlastnímu DNS serveru.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
-    <value>Povolit NetShield?</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>Toto vypne kill switch.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>Povolit split tunneling?</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
-    <value>Nebudete moci používat přesměrování portů s Moderate NAT.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
-    <value>Povolit Moderate NAT?</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
-    <value>Pokud je povoleno přesměrování portů, nebudete moci používat Moderate NAT.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
-    <value>Zapnout přesměrování portů?</value>
-  </data>
-  <data name="Cities" xml:space="preserve">
-    <value>Města</value>
-  </data>
-  <data name="Countries_All" xml:space="preserve">
+  <data name="Countries_All">
     <value>Vše</value>
   </data>
-  <data name="Countries_City_One" xml:space="preserve">
+  <data name="Countries_Cities">
+    <value>Města</value>
+  </data>
+  <data name="Countries_City_One">
     <value>{0} město</value>
-    <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
   </data>
-  <data name="Countries_City_Other" xml:space="preserve">
+  <data name="Countries_City_Few">
+    <value>{0} města</value>
+  </data>
+  <data name="Countries_City_Many">
     <value>{0} měst</value>
-    <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
   </data>
-  <data name="Countries_Connect" xml:space="preserve">
+  <data name="Countries_City_Other">
+    <value>{0} měst</value>
+  </data>
+  <data name="Countries_Connect">
     <value>Připojit</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
-  <data name="Countries_P2P" xml:space="preserve">
-    <value>P2P</value>
+  <data name="Countries_Fastest">
+    <value>Nejrychlejší země</value>
   </data>
-  <data name="Countries_SecureCore" xml:space="preserve">
-    <value>Secure Core</value>
+  <data name="Countries_Info">
+    <value>Informace</value>
   </data>
-  <data name="Countries_Tor" xml:space="preserve">
-    <value>Tor</value>
+  <data name="Countries_NoSearchResults">
+    <value>Nebyly nalezeny žádné výsledky</value>
   </data>
-  <data name="Countries_Cities" xml:space="preserve">
-    <value>Města</value>
-  </data>
-  <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} server</value>
-  </data>
-  <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} serverů</value>
-  </data>
-  <data name="Countries_NumberOfCities" xml:space="preserve">
+  <data name="Countries_NumberOfCities">
     <value>Města ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
-  <data name="Countries_NumberOfCountries" xml:space="preserve">
+  <data name="Countries_NumberOfCountries">
     <value>Země ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Secure Core země ({0})</value>
-    <comment>{0} represents the number of countries</comment>
+  <data name="Countries_NumberOfServers">
+    <value>Servery ({0})</value>
+    <comment>{0} represents a number of servers</comment>
   </data>
-  <data name="Countries_Info" xml:space="preserve">
-    <value>Informace</value>
+  <data name="Countries_P2P">
+    <value>P2P</value>
   </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>Pokročilé soukromí</value>
-  </data>
-  <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core vás připojí k cílovému serveru prostřednictvím druhého serveru VPN s maximálním zabezpečením.
-
-Tato vyšší úroveň ochrany může způsobit vyšší latenci a nižší rychlosti.</value>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>Vyšší latence</value>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>Vysoký stupeň soukromí</value>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>Nižší latence</value>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Secure Core VPN připojení</value>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Standardní VPN připojení</value>
-  </data>
-  <data name="Dialogs_SecureCore_Title" xml:space="preserve">
-    <value>Secure Core</value>
-  </data>
-  <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Secure Core servery ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
-  <data name="Countries_ViaCountry" xml:space="preserve">
-    <value>přes {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
-  </data>
-  <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>Fyzické umístění serverů je {0}, ale bude to vypadat, že procházení internetu probíhá ze země {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
-  <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing využívá virtuální servery k poskytování VPN v těžko dostupných zemích.
-
-Když se připojíte k serveru Smart Routing, bude se zdát, že prohlížíte ve své cílové zemi, i když je fyzický server umístěn jinde.
-
-Smart Routing se obvykle používá k obcházení zákonů potlačujících ochranu soukromí a jiných forem cenzury.</value>
-  </data>
-  <data name="Countries_P2PCountries" xml:space="preserve">
+  <data name="Countries_P2PCountries">
     <value>P2P země ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_TorCountries" xml:space="preserve">
+  <data name="Countries_P2P_Cities">
+    <value>P2P města ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_Page_Title">
+    <value>Země</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>Chci procházet z...</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCoreCountries">
+    <value>Secure Core země ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_SecureCoreServers">
+    <value>Secure Core servery ({0})</value>
+    <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_Server_One">
+    <value>{0} server</value>
+  </data>
+  <data name="Countries_Server_Few">
+    <value>{0} servery</value>
+  </data>
+  <data name="Countries_Server_Many">
+    <value>{0} serverů</value>
+  </data>
+  <data name="Countries_Server_Other">
+    <value>{0} serverů</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Vytížení serveru</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Chytré směrování</value>
+  </data>
+  <data name="Countries_SmartRouting_Description">
+    <value>Fyzické umístění serverů je {0}, ale bude to vypadat, že procházení internetu probíhá ze země {1}.</value>
+    <comment>{0} and {1} represent country names.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorCountries">
     <value>Tor země ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
+  <data name="Countries_TorServers">
+    <value>Tor servery ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>Prosím zkuste jiné klíčové slovo</value>
+  </data>
+  <data name="Countries_ViaCountry">
+    <value>přes {0}</value>
+    <comment>{0} represents country name. For example: via Australia.</comment>
+  </data>
+  <data name="Country_Fastest">
+    <value>Nejrychlejší země</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andora</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Spojené arabské emiráty</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghánistán</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua a Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anquilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albánie</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Arménie</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarktida</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Americká Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Rakousko</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Austrálie</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Alandské ostrovy</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Ázerbájdžán</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosna a Hercegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladéš</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgie</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulharsko</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrajn</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Svatý Bartoloměj</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermudy</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunej</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolívie</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Svatý Eustach a Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazílie</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamy</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhútán</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvetův ostrov</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Bělorusko</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Kanada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Kokosové (Keelingovy) ostrovy</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Konžská demokratická republika</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Středoafrická republika</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Kongo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Švýcarsko</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Pobřeží slonoviny</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cookovy ostrovy</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kamerun</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>Čína</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Kolumbie</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Kostarika</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Kuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Kapverdy</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Vánoční ostrov</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Kypr</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Česko</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Německo</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Džibutsko</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Dánsko</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominika</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominikánská republika</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Alžírsko</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ekvádor</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonsko</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egypt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Západní Sahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Španělsko</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Etiopie</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finsko</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fidži</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falklandské ostrovy (Malvíny)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Mikronésie</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Faerské ostrovy</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Francie</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Velká Británie</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Gruzie</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Francouzská Guyana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Grónsko</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambie</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Rovníková Guinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Řecko</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Jižní Georgie a Jižní Sandwichovy ostrovy</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guayana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heardův ostrov a McDonaldovy ostrovy</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Chorvatsko</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Maďarsko</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonésie</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Irsko</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Izrael</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Ostrov Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>Indie</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Britské území v Indickém oceánu</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irák</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Írán</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Island</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Itálie</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Ostrov Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamajka</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordánsko</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japonsko</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Keňa</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kyrgyzstán</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Kambodža</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Komory</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Svatý Kryštof a Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Severní Korea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Jižní Korea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuvajt</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Kajmanské ostrovy</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazachstán</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Libanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Svatá Lucie</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Lichtenštejnsko</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Srí Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Libérie</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Litva</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Lucembursko</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Lotyšsko</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libye</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Maroko</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monako</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldavsko</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Černá Hora</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Svatý Martin (francouzská část)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagaskar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshallovy ostrovy</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Makedonie</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolsko</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Severní Mariany</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinik</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauretánie</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauricius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maledivy</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexiko</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malajsie</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mosambik</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibie</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Nová Kaledonie</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Nigérie</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigérie</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nikaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Nizozemsko</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norsko</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepál</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Nový Zéland</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Omán</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Francouzská Polynésie</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua-Nová Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filipíny</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pákistán</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Polsko</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint-Pierre a Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Portoriko</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugalsko</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Katar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Rumunsko</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Srbsko</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusko</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saúdská Arábie</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Šalamounovy ostrovy</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychely</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Súdán</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Švédsko</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapur</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Svatá Helena, Ascension a Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovinsko</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Špicberky a Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovensko</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somálsko</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Surinam</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Jižní Súdán</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Svatý Tomáš a Princův ostrov</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Svatý Martin (holandská část)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Sýrie</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Svazijsko</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Ostrovy Turks a Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Čad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Francouzská jižní území</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thajsko</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tádžikistán</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Východní Timor</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistán</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisko</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Turecko</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad a Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Tchaj-wan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzánie</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukrajina</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Velká Británie</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Menší odlehlé ostrovy Spojených států amerických</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Spojené státy americké</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistán</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vatikán</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Svatý Vincent a Grenadiny</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Panenské ostrovy (Britské)</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Panenské ostrovy, USA</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis a Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Jemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Jihoafrická republika</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambie</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Není známo</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Get unlimited server changes with VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>You've reached the maximum number of free server changes for now</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Few">
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Many">
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Země se servery Free ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Few">
+    <value>Země se servery Free ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Many">
+    <value>Zemí se servery Free ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Zemí se servery Free ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Připojení Free</value>
+  </data>
+  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
+    <value>Získejte celosvětové pokrytí díky VPN Plus</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>Latence ukazuje, jak dlouho server odpovídá na vaše požadavky. 
+
+ Vysoká latence může zpomalovat vaše připojení.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>VPN může fungovat pomaleji, než je zvykem</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>Vysoká (150 ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>Bleskové rychlosti</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>Nízká (1 ms - 50 ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>Pravděpodobně neovlivňuje rychlost VPN</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>Střední (50 ms - 150 ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>Co je to latence?</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Jak používat torrenty pomocí P2P</value>
   </data>
-  <data name="Dialogs_P2P_Title" xml:space="preserve">
+  <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer">
     <value>Co je P2P server?</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
     <value>P2P (peer-to-peer) VPN servery odblokují torrentové stránky.</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting">
     <value>Co jsou torrenty?</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
     <value>Rychlé sdílení a stahování velkých souborů přes síť peer-to-peer (P2P).</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse">
     <value>Proč používat P2P server při používání torrentů?</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Zvýšená rychlost odesílání a stahování
 • Žádné logování aktivity
 • Skryjte svou IP adresu před poskytovatelem připojení a peery</value>
   </data>
-  <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
-    <value>Smart Routing</value>
+  <data name="Dialogs_Protocol_Description">
+    <value>Protokol je sada pokynů, kterými se vaše zařízení řídí při připojování a komunikaci se serverem.</value>
   </data>
-  <data name="Countries_Fastest" xml:space="preserve">
-    <value>Nejrychlejší země</value>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>Přepnout protokol VPN</value>
   </data>
-  <data name="Dialogs_Tor_Description" xml:space="preserve">
-    <value>Připojte se k serveru Tor a získejte přístup ke skrytým službám a onion webům pomocí libovolného prohlížeče.</value>
+  <data name="Dialogs_Protocol_Title">
+    <value>Co je to protokol VPN?</value>
   </data>
-  <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
-    <value>Jak získat přístup k síti Tor</value>
-  </data>
-  <data name="Dialogs_Tor_Title" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Countries_SearchPlaceholder" xml:space="preserve">
-    <value>Chci procházet z...</value>
-  </data>
-  <data name="Countries_P2P_Cities" xml:space="preserve">
-    <value>P2P města ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
-  <data name="Countries_TorServers" xml:space="preserve">
-    <value>Tor servery ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
-  <data name="Countries_Server" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="Countries_ServerLoad" xml:space="preserve">
-    <value>Vytížení serveru</value>
-  </data>
-  <data name="Countries_SmartRouting" xml:space="preserve">
-    <value>Chytré směrování</value>
-  </data>
-  <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>Nebyly nalezeny žádné výsledky</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>Prosím zkuste jiné klíčové slovo</value>
-  </data>
-  <data name="Countries_NumberOfServers" xml:space="preserve">
-    <value>Servery ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
-  <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>Vaše relace vypršela. Přihlaste se prosím znovu.</value>
-    <comment>The message displayed in Login window when expired session is detected</comment>
-  </data>
-  <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>Nastavte toto číslo ve vaší aplikaci BitTorrent pro nejvyšší rychlosti.</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Udp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="VpnProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Login_Form_Email" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E-mail</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>Přihlásit se pomocí hesla</value>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>priklad@domena.cz</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithSso" xml:space="preserve">
-    <value>Přihlásit se pomocí SSO</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Odeslat logy chyb</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
-    <value>Při načítání podrobností relace došlo k chybě. Prosíme zkuste to znovu.</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Protokoly chyb nám ukazují, co se pokazilo a jaké akce vedly k vašemu problému. Použijeme je pouze k tomu, abychom našim inženýrům pomohli opravit chyby.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
-    <value>SSO přihlášení selhalo. Prosíme zkuste to znovu.</value>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>V čem je problém?</value>
   </data>
-  <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>Momentálně nejsou pro váš výběr k dispozici žádné servery. Vyberte jinou možnost.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Rychlé opravy</value>
   </data>
-  <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>Váš síťový adaptér je právě používán.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Nefungovalo to?</value>
   </data>
-  <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>Verze síťového adaptéru je zastaralá.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Tyto tipy by mohly pomoci rychleji vyřešit váš problém.</value>
   </data>
-  <data name="Connection_Error_TlsCertificate" xml:space="preserve">
-    <value>Nastal problém s ověřením certifikátu serveru VPN, což by mohlo naznačovat, že došlo k neoprávněné manipulaci se síťovým připojením nebo že se u serveru, ke kterému se pokoušíte připojit vyskytl problém s konfigurací. Získejte pomoc od naší zákaznické podpory odesláním chybového hlášení.</value>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Hotovo</value>
   </data>
-  <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>Proton VPN se nemohla připojit, protože síťový adaptér WireGuard je již používán. Odpojte prosím všechny aktivní sítě VPN a zkuste to znovu. Případně můžete protokoly přepínat také v pokročilých nastaveních.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Něco se pokazilo</value>
   </data>
-  <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>Chybějící síťový adaptér.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Nemohli jsme odeslat vaši zprávu. Zkontrolujte vaše připojení a zkuste to znovu.</value>
   </data>
-  <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_Result_RetryAction">
+    <value>Zkusit znovu</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Hlášení odesláno</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Děkujeme za vaši zpětnou vazbu. Ozveme se vám, jakmile to bude možné.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Odeslat hlášení</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Krok {0} z {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
     <value>Nahlásit problém</value>
   </data>
-  <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
-    <value>Proton VPN se nemůže připojit, protože RPC server není ve vašem systému dostupný.</value>
+  <data name="Dialogs_SecureCore_AdvancedPrivacy">
+    <value>Pokročilé soukromí</value>
   </data>
-  <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>Zobrazit možná řešení</value>
+  <data name="Dialogs_SecureCore_Description">
+    <value>Secure Core vás připojí k cílovému serveru prostřednictvím druhého serveru VPN s maximálním zabezpečením.
+
+Tato vyšší úroveň ochrany může způsobit vyšší latenci a nižší rychlosti.</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
-    <value>Dosáhli jste maximálního počtu zařízení. Chcete-li se připojit, odpojte jiné zařízení nebo přejděte na tarif PLUS, abyste mohli připojit až 10 zařízení současně.</value>
+  <data name="Dialogs_SecureCore_HighPrivacy">
+    <value>Vysoký stupeň soukromí</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedPaidUser" xml:space="preserve">
-    <value>Dosáhli jste maximálního počtu zařízení. Chcete-li se připojit s tímto zařízením, odpojte jiné.</value>
+  <data name="Dialogs_SecureCore_HigherLatency">
+    <value>Vyšší latence</value>
   </data>
-  <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>Nejsme si jisti, co se stalo. Zkuste to prosím znovu nebo kontaktujte náš tým zákaznické podpory.</value>
+  <data name="Dialogs_SecureCore_LowerLatency">
+    <value>Nižší latence</value>
   </data>
-  <data name="Gateways_Page_Title" xml:space="preserve">
+  <data name="Dialogs_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN připojení</value>
+  </data>
+  <data name="Dialogs_SecureCore_StandardConnection">
+    <value>Standardní
+VPN připojení</value>
+  </data>
+  <data name="Dialogs_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>Vytížení serveru ukazuje, kolik kapacity serveru je využito.
+
+Vysoké vytížení serveru může zpomalit vaše připojení.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>VPN může fungovat pomaleji, než je zvykem</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>Vysoké (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>Bleskové rychlosti</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>Nízké (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>Pravděpodobně neovlivňuje rychlost VPN</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>Střední (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>Co je vytížení serveru?</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Description">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+
+Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>Připojte se k serveru Tor a získejte přístup ke skrytým službám a onion webům pomocí libovolného prohlížeče.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>Jak získat přístup k síti Tor</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>We're getting your new VPN experience ready. This should only take a moment.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>Vítejte v Proton VPN</value>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0} ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day">
+    <value>{0} den</value>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DayHours">
+    <value>{0} den {1} h</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Days">
+    <value>{0} dní</value>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DaysHours">
+    <value>{0} dní {1} h</value>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} hod.</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} hod. {1} min.</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min.</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} min. {1} sek.</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} sek.</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Gateways_Page_Title">
     <value>Brány</value>
   </data>
-  <data name="Gateways_Server" xml:space="preserve">
+  <data name="Gateways_Server">
     <value>Dedikovaný server</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
+  <data name="Home_Account_SignOut">
+    <value>Odhlásit se</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Message">
     <value>Budete odpojeni od VPN.</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
+  <data name="Home_Account_SignOut_Confirmation_Title">
     <value>Odhlásit {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Tray_Actions_ExitApplication" xml:space="preserve">
+  <data name="Home_Account_Title">
+    <value>Můj účet</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Change server</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>Bezpečné prohlížení z</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>Připojování k...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>Bezplatné připojení</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>Naposledy připojeno k</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended">
+    <value>Doporučeno</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>Karta připojení</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>Město</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>Připojeno</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Země</value>
+  </data>
+  <data name="Home_ConnectionDetails_Download">
+    <value>Stáhnout</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>Brána</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>Skrýt podrobnosti o připojení</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>Skrýt</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>Skrýt IP adresu uživatele</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>Podrobnosti o připojení</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Latency">
+    <value>Latence</value>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>Moje IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protokol</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>Server</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Vytížení serveru</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>Zobrazit podrobnosti o připojení</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>Zobrazit</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>Zobrazit IP adresu uživatele</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>Podrobnosti o připojení</value>
+  </data>
+  <data name="Home_ConnectionDetails_Upload">
+    <value>Nahrát</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Více informací o bezplatných připojeních</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>Nápověda</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>Mapa</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked">
+    <value>Reklam
+zablokováno</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Dat
+uloženo</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>NetShield statistika</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_TrackersStopped">
+    <value>Sledovacích prvků
+zastaveno</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_Page_Title">
+    <value>Domov</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>Nedávná připojení</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Připnout</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>Akce</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Na serveru probíhá údržba</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Nedávné</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Odepnout</value>
+  </data>
+  <data name="Home_Update_Confirmation_Message">
+    <value>Pro dokončení procesu aktualizace se Proton VPN dočasně odpojí a vypne se Pokročilý Kill Switch, pokud jsou aktivní. Chcete pokračovat?</value>
+    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  </data>
+  <data name="Home_Update_Confirmation_Title">
+    <value>Aktualizovat Proton VPN?</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>Aktualizace k dispozici</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>Aktualizace je připravena</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>Stav VPN</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>Vaše digitální identita je chráněna</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>Nejste chráněni</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>Chráněno</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Při načítání podrobností relace došlo k chybě. Prosíme zkuste to znovu.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Nesprávný kód. Zkuste to znovu.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Vaše relace vypršela. Přihlaste se prosím znovu.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>SSO přihlášení selhalo. Prosíme zkuste to znovu.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>Nesprávné přihlašovací údaje. Zkuste to znovu.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Dvoufázové ověření selhalo. Přihlaste se prosím znovu.</value>
+  </data>
+  <data name="Login_Form">
+    <value>Přihlašovací formulář</value>
+  </data>
+  <data name="Login_Form_CreateAccount">
+    <value>Vytvořit účet</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_Email">
+    <value>E-mail</value>
+  </data>
+  <data name="Login_Form_ForgotUsername">
+    <value>Zapomenuté uživatelské jméno</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Help">
+    <value>Nápověda</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Password">
+    <value>Heslo</value>
+  </data>
+  <data name="Login_Form_ReportAnIssue">
+    <value>Nahlásit problém</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_ResetPassword">
+    <value>Resetovat heslo</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_SignIn">
+    <value>Přihlásit se</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_SignInWithPassword">
+    <value>Přihlásit se pomocí hesla</value>
+  </data>
+  <data name="Login_Form_SignInWithSso">
+    <value>Přihlásit se pomocí SSO</value>
+  </data>
+  <data name="Login_Form_TroubleSigningIn">
+    <value>Potíže s přihlášením</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Username">
+    <value>E-mail nebo uživatelské jméno</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Ověřit</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Zadejte kód z vaší ověřovací aplikace</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Dvoufázové ověření</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>První číslice</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Druhá číslice</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Třetí číslice</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Čtvrtá číslice</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Pátá číslice</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Šestá číslice</value>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Přihlašuji, počkejte prosím...</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Odhlašuji, počkejte prosím...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Nastavte toto číslo ve vaší aplikaci BitTorrent pro nejvyšší rychlosti.</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Nejrychlejší bezplatný server</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Server Free</value>
+  </data>
+  <data name="Settings_About">
+    <value>O aplikaci</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Verze aplikace</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Tyto statistiky neobsahují vaši IP adresu a nelze je použít k vaší identifikaci. Nikdy je nebudeme sdílet se třetími stranami.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Sdílejte anonymní hlášení o pádech</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Hlášení o pádech nám pomáhají opravovat chyby, rozpoznat firewally a předcházet blokování VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Sdílejte anonymní statistiky o používání</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Údaje o používání nám pomáhají obcházet blokování VPN a vylepšovat výkon aplikace.</value>
+  </data>
+  <data name="Settings_Common_ApplyAndReconnect">
+    <value>Použít a znovu připojit</value>
+  </data>
+  <data name="Settings_Common_Discard">
+    <value>Zahodit</value>
+  </data>
+  <data name="Settings_Common_Discard_Title">
+    <value>Zrušit změny nastavení?</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>Připojení</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Pokročilá nastavení</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Alternativní směrování</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Pokud jsou služby Protonu blokovány poskytovatelem síťového připojení, pokusíme se vás připojit k našim stránkám pomocí alternativního síťového směrování.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Vlastní servery DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Při připojení k vlastnímu DNS serveru nebudete moci používat NetShield.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Povolit vlastní DNS servery?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Připojení k Proton VPN pomocí vlastního DNS serveru. Používejte pouze DNS servery, kterým důvěřujete.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS servery ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
+    <value>Přidat adresu IPv4</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Ochrana proti úniku IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Zabránit úniku adresy IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>LAN připojení</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Umožňuje připojit tiskárny, reproduktory a ostatní zařízení ve vaší LAN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Typ NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Nebudete moci používat přesměrování portů s Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Povolit Moderate NAT?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Vyberte typ překladu síťových adres (NAT) vašeho připojení.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Moderate (type 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>Nějaké omezení dat vstupujících do vaší sítě. Toto je nejlepší volba pro hraní online video her.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Strict (type 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Omezuje data vstupující do vaší sítě. Tato volba je bezpečnější, ale může ztížit herní připojení typu peer-to-peer.</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protokol</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_Features">
+    <value>Funkce</value>
+  </data>
+  <data name="Settings_Features_KillSwitch">
+    <value>Kill Switch</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced">
+    <value>Pokročilé</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced_Description">
+    <value>Povolte přístup k internetu pouze při připojení k Proton VPN. Pokročilý kill switch zůstane aktivní, i když restartujete zařízení.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Description">
+    <value>Tímto zakážete split tunneling.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Title">
+    <value>Povolit Kill Switch?</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Description">
+    <value>Chrání vaši IP adresu tím, že vás odpojí od internetu, pokud je přerušeno připojení k VPN.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Footer">
+    <value>Když je kill switch zapnutý, nebudete se moci připojit k webům a aplikacím vyloučeným z vašeho připojení VPN prostřednictvím split tunnelingu.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard">
+    <value>Standardní</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard_Description">
+    <value>Automaticky se odpojte od internetu, pokud se přeruší připojení k VPN.</value>
+  </data>
+  <data name="Settings_Features_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Description">
+    <value>Pokud je povolen NetShield, nebudete se moci připojit k vlastnímu DNS serveru.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Title">
+    <value>Povolit NetShield?</value>
+  </data>
+  <data name="Settings_Features_NetShield_Description">
+    <value>Chraňte se před reklamou, malware a sledovacími prvky na webech a v aplikacích.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Footer">
+    <value>Některé webové stránky se nemusí správně načíst, pokud je blokována reklama a sledovací prvky.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding">
+    <value>Přesměrování portů</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort">
+    <value>Aktivní port:</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort_Copy">
+    <value>Kopírovat číslo portu</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Description">
+    <value>Pokud je povoleno přesměrování portů, nebudete moci používat Moderate NAT.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Title">
+    <value>Zapnout přesměrování portů?</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Description">
+    <value>Obejděte firewally a připojte se k P2P serverům a zařízením ve vaší místní síti.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Footer">
+    <value>Chcete-li použít přesměrování portů, připojte se k serveru, který podporuje P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications">
+    <value>Upozornění</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications_Description">
+    <value>Dostat upozornění při změně čísla přesměrovaného portu</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling">
+    <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Add">
+    <value>Přidat aplikaci</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
+    <value>Soubory aplikace</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Header">
+    <value>Vybrané aplikace ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Remove">
+    <value>Odstranit aplikaci</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Description">
+    <value>Toto vypne kill switch.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Title">
+    <value>Povolit split tunneling?</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Description">
+    <value>Přizpůsobte si připojení tím, že se rozhodnete, které aplikace a IP adresy budou chráněny pomocí VPN.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse">
+    <value>Obrátit</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse_Description">
+    <value>Přes VPN se připojují pouze vybrané aplikace a IP adresy, veškerý další provoz je nechráněný</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
+    <value>Přidat IP</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
+    <value>Vybrané IP adresy ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
+    <value>Odstranit IP</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
+    <value>Přidat adresu IPv4</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard">
+    <value>Standardní</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard_Description">
+    <value>Vybrané aplikace a IP adresy jsou vyloučeny z připojení VPN</value>
+  </data>
+  <data name="Settings_General">
+    <value>Obecné</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Automatické spuštění</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Automatické připojení</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Jakmile se Proton VPN spustí, budete připojeni k serveru</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>Nejrychlejší připojení</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>Naposledy připojeno</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Automatické spuštění</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN se automaticky spustí, jakmile se přihlásíte do svého zařízení</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Otevřít na ploše</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Minimalizovat do systémové lišty</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Minimalizovat do panelu úloh</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Automatické spuštění, automatické připojení</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Automatické aktualizace</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Automatická kontrola a instalace aktualizací Proton VPN</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Beta přístup</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Získejte předběžný přístup a pomozte nám testovat nové verze Proton VPN</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Jazyk</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Upozornění</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Získejte upozornění o probíhajících aktivitách Proton VPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>Síťový ovladač OpenVPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>Síťové ovladače mohou ovlivnit rychlost připojení. Nový adaptér TUN poskytuje vyšší rychlost a v případě problémů s připojením se vrátí k adaptéru TAP.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Motiv</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>Tmavý</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>Výchozí</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>Světlý</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Zlepšit Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Pomozte nám v boji proti cenzuře</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Verze operačního systému</value>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Nastavení</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>VPN protokol určuje způsob přenosu dat mezi VPN serverem a vaším zařízením.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Zavedený, dobře otestovaný a bezpečný. OpenVPN je spolehlivý ve špatných síťových podmínkách, ale nemusí být tak rychlý jako jiné protokoly.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Zavedený, dobře otestovaný a bezpečný. Oproti jiným protokolům je OpenVPN méně energeticky úsporný.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended">
+    <value>Doporučeno</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Automaticky vybere nejlepší protokol pro vaše připojení.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Spolehlivost (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Rychlost (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Rychlý, bezpečný a efektivní. WireGuard je energeticky účinnější než ostatní protokoly.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Obnovit výchozí nastavení</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Obnovit a znovu připojit</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Obnovit výchozí nastavení</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Tímto resetujete nastavení Proton VPN do původního stavu.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Obnovit výchozí nastavení?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Podpora</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Logy ladění</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Logy aplikace</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Nelze nalézt složku s logy.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Servisní logy</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Nahlásit problém</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Centrum podpory</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Zvyšte rychlost vašeho připojení až o 400% pomocí technologií zvyšujících výkon.</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Ukončit</value>
   </data>
-  <data name="Tray_Actions_OpenApplication" xml:space="preserve">
+  <data name="Tray_Actions_OpenApplication">
     <value>Otevřít {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard</value>
   </data>
 </root>
