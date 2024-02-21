@@ -22,5 +22,6 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 public enum LogoutReason
 {
     UserAction,
-    SessionExpired
+    SessionExpired,
+    NoVpnConnectionsAssigned,
 }

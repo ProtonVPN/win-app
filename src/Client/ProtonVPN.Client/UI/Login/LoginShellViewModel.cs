@@ -103,6 +103,7 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
         switch (message.Reason)
         {
             case LogoutReason.UserAction:
+            case LogoutReason.NoVpnConnectionsAssigned:
                 break;
             case LogoutReason.SessionExpired:
                 ExecuteOnUIThread(() => ShowErrorMessage(Localizer.Get("Login_Error_SessionExpired")));

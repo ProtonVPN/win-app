@@ -355,7 +355,7 @@ public class UserAuthenticator : IUserAuthenticator
             }
             else if (getVpnInfoTask.Result.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
             {
-                await LogoutAsync(LogoutReason.SessionExpired);
+                await LogoutAsync(LogoutReason.NoVpnConnectionsAssigned);
                 return AuthResult.Fail(getVpnInfoTask.Result);
             }
         }
