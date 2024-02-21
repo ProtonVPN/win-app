@@ -56,17 +56,20 @@ public class LokiApiClient
     private JObject AddLogsToRequestJson(string pathToLogs, string runId, string lokiLabel)
     {
         List<JArray> logs = new List<JArray>();
-        string[] lines = File.ReadAllLines(pathToLogs);
-
-        foreach (string line in lines)
+        FileStream fileStream = new FileStream(pathToLogs, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using (StreamReader sr = new StreamReader(fileStream))
         {
-            List<string> logLines = new List<string>(line.Split(" | "));
-            logLines.Insert(0, $" | {runId}");
-            logLines.RemoveAt(1);
-            string formattedLogs = string.Join(" | ", logLines);
-            string timestamp = ConvertTimeToUnixNanosecond(logLines.First());
-            JArray element = new JArray(timestamp, formattedLogs);
-            logs.Add(element);
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                List<string> logLines = new List<string>(line.Split(" | "));
+                string timestamp = ConvertTimeToUnixNanosecond(logLines.First());
+                logLines.Insert(0, $" | {runId}");
+                logLines.RemoveAt(1);
+                string formattedLogs = string.Join(" | ", logLines);
+                JArray element = new JArray(timestamp, formattedLogs);
+                logs.Add(element);
+            }
         }
         return BaseLokiRequestJsonBody(logs, lokiLabel);
     }

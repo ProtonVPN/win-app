@@ -154,7 +154,12 @@ public class TestSession
         }
     }
 
-    private static string GetProtonClientFolder()
+    protected static string GetServiceLogsPath()
+    {
+        return Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
+    }
+
+    protected static string GetProtonClientFolder()
     {
         string registryKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
         RegistryKey localMachineRegistry = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
@@ -186,7 +191,7 @@ public class TestSession
             string testName = TestContext.CurrentContext.Test.MethodName;
             if (status == TestStatus.Failed)
             {
-                TestsRecorder.SaveScreenshotAndLogs(testName, GetProtonClientFolder());
+                TestsRecorder.SaveScreenshotAndLogs(testName, GetServiceLogsPath());
             }
         }
     }
