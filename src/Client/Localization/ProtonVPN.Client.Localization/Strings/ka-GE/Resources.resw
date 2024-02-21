@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,2147 +117,2259 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Common_Actions_Add" xml:space="preserve">
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Cities">
+    <value>ქალაქები</value>
+  </data>
+  <data name="Common_Actions_Add">
     <value>დამატება</value>
   </data>
-  <data name="Common_Actions_Cancel" xml:space="preserve">
+  <data name="Common_Actions_Cancel">
     <value>გაუქმება</value>
   </data>
-  <data name="Common_Actions_Connect" xml:space="preserve">
+  <data name="Common_Actions_Close">
+    <value>დახურვა</value>
+  </data>
+  <data name="Common_Actions_Connect">
     <value>დაკავშირება</value>
   </data>
-  <data name="Common_Actions_Disconnect" xml:space="preserve">
+  <data name="Common_Actions_ContactUs">
+    <value>დაგვიკავშირდით</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
     <value>გათიშვა</value>
   </data>
-  <data name="Common_Actions_Remove" xml:space="preserve">
+  <data name="Common_Actions_Enable">
+    <value>ჩართვა</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>თავიდან დაკავშირება</value>
+  </data>
+  <data name="Common_Actions_Remove">
     <value>წაშლა</value>
   </data>
-  <data name="Common_Links_LearnMore" xml:space="preserve">
+  <data name="Common_Actions_Update">
+    <value>განახლება</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Upgrade</value>
+  </data>
+  <data name="Common_Links_LearnMore">
     <value>გაიგეთ მეტი</value>
   </data>
-  <data name="Common_Message_Loading" xml:space="preserve">
+  <data name="Common_Message_Loading">
     <value>ჩატვირთვა...</value>
   </data>
-  <data name="Common_States_Off" xml:space="preserve">
+  <data name="Common_States_Off">
     <value>გამორთ</value>
   </data>
-  <data name="Common_States_On" xml:space="preserve">
+  <data name="Common_States_On">
     <value>ჩართ</value>
   </data>
-  <data name="Connection_Intent_City_Server" xml:space="preserve">
+  <data name="Connection_Error_MissingAuthCertificate">
+    <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>ამჟამად თქვენი არჩეული სერვერები მიუწვდომელია. აირჩიეთ სხვა პარამეტრი.</value>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>ქსელის ადაპტერი ვერ ვიპოვე.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN-ს მიერთება არ შეუძლია, რადგან თქვენს სისტემაზე RPC სერვერი ხელმიუწვდომელია.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>მიაღწიეთ მოწყობლობების მაქსიმალურ დასაშვებ რაოდენობას. გათიშეთ სხვა მოწყობილობა, რომ ეს მიაერთოთ ან, 10 მოწყობილობის ერთდროულად მისაერთებლად, PLUS ტარიფამდე განახლდით.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>მიაღწიეთ მოწყობილობების რაოდენობის ლიმიტს. ამ მოწყობილობის მისაერთებლად სხვა მოწყობილობის გათიშვა მოგიწევთ.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>ქსელის თქვენი ადაპტერი ამჟამად გამოიყენება.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>ქსელის ადაპტერის ვერსია მოძველებულია.</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>არსებობს პრობლემა VPN სერვერის სერტიფიკატის გადამოწმებასთან, რაც შეიძლება ნიშნავდეს, რომ თქვენი ქსელური შეერთება გზაში იცვლება, ან სერვერს, რომელთან მიერთებასაც ცდილობთ, პრობლემები აქვს. დაუკავშირდით ჩვენი მხარდაჭერის გუნდს ანგარიშის გაგზავნით.</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>დარწმუნებულები არ ვართ, აქ რა მოხდა. თავიდან სცადეთ ან დაუკავშირდით მომხმარებლი მხარდაჭერის გუნდს.</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>შესაძლო გადაწყვეტების ნახვა</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Proton VPN-ით მიერთება შეუძლებელია, რადგან WireGuard-ის ქსელის ინტერფეისი უკე გამოიყენება. გათიშეთ ყველა აქტიური VPN- და თავიდან სცადეთ. ან, შეგიძლიათ, პროტოკოლი გადართოთ დამატებითი პარამეტრებიდან.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>ავტომატურადაა არჩეული წყაროდან</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
   </data>
-  <data name="Connection_Intent_Country_Server" xml:space="preserve">
+  <data name="Connection_Intent_Country_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
-  <data name="Connection_Via_SecureCore" xml:space="preserve">
+  <data name="Connection_Via_SecureCore">
     <value>{0}-ის გავლით</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
-  <data name="Countries_Page_Title" xml:space="preserve">
-    <value>ქვეყნები</value>
-  </data>
-  <data name="Country_Fastest" xml:space="preserve">
-    <value>უსწრაფესი ქვეყანა</value>
-  </data>
-  <data name="Country_val_AD" xml:space="preserve">
-    <value>ანდორა</value>
-    <comment>The name of AD country</comment>
-  </data>
-  <data name="Country_val_AE" xml:space="preserve">
-    <value>არაბეთის გაერთიანებული ემირატები</value>
-    <comment>The name of AE country</comment>
-  </data>
-  <data name="Country_val_AF" xml:space="preserve">
-    <value>ავღანეთი</value>
-    <comment>The name of AF country</comment>
-  </data>
-  <data name="Country_val_AG" xml:space="preserve">
-    <value>ანტიგუა და ბარბუდა</value>
-    <comment>The name of AG country</comment>
-  </data>
-  <data name="Country_val_AI" xml:space="preserve">
-    <value>ანგვილა</value>
-    <comment>The name of AI country</comment>
-  </data>
-  <data name="Country_val_AL" xml:space="preserve">
-    <value>ალბანეთი</value>
-    <comment>The name of AL country</comment>
-  </data>
-  <data name="Country_val_AM" xml:space="preserve">
-    <value>სომხეთი</value>
-    <comment>The name of AM country</comment>
-  </data>
-  <data name="Country_val_AO" xml:space="preserve">
-    <value>ანგოლა</value>
-    <comment>The name of AO country</comment>
-  </data>
-  <data name="Country_val_AQ" xml:space="preserve">
-    <value>ანტარქტიკა</value>
-    <comment>The name of AQ country</comment>
-  </data>
-  <data name="Country_val_AR" xml:space="preserve">
-    <value>არგენტინა</value>
-    <comment>The name of AR country</comment>
-  </data>
-  <data name="Country_val_AS" xml:space="preserve">
-    <value>ამერიკული სამოა</value>
-    <comment>The name of AS country</comment>
-  </data>
-  <data name="Country_val_AT" xml:space="preserve">
-    <value>ავსტრია</value>
-    <comment>The name of AT country</comment>
-  </data>
-  <data name="Country_val_AU" xml:space="preserve">
-    <value>ავსტრალია</value>
-    <comment>The name of AU country</comment>
-  </data>
-  <data name="Country_val_AW" xml:space="preserve">
-    <value>არუბა</value>
-    <comment>The name of AW country</comment>
-  </data>
-  <data name="Country_val_AX" xml:space="preserve">
-    <value>ალანდის კუნძულები</value>
-    <comment>The name of AX country</comment>
-  </data>
-  <data name="Country_val_AZ" xml:space="preserve">
-    <value>აზერბაიჯანი</value>
-    <comment>The name of AZ country</comment>
-  </data>
-  <data name="Country_val_BA" xml:space="preserve">
-    <value>ბოსნია და ჰერცოგოვინა</value>
-    <comment>The name of BA country</comment>
-  </data>
-  <data name="Country_val_BB" xml:space="preserve">
-    <value>ბარბადოსი</value>
-    <comment>The name of BB country</comment>
-  </data>
-  <data name="Country_val_BD" xml:space="preserve">
-    <value>ბანგლადეში</value>
-    <comment>The name of BD country</comment>
-  </data>
-  <data name="Country_val_BE" xml:space="preserve">
-    <value>ბელგია</value>
-    <comment>The name of BE country</comment>
-  </data>
-  <data name="Country_val_BF" xml:space="preserve">
-    <value>ბურკინა ფასო</value>
-    <comment>The name of BF country</comment>
-  </data>
-  <data name="Country_val_BG" xml:space="preserve">
-    <value>ბულგარეთი</value>
-    <comment>The name of BG country</comment>
-  </data>
-  <data name="Country_val_BH" xml:space="preserve">
-    <value>ბაჰრეინი</value>
-    <comment>The name of BH country</comment>
-  </data>
-  <data name="Country_val_BI" xml:space="preserve">
-    <value>ბურუნდი</value>
-    <comment>The name of BI country</comment>
-  </data>
-  <data name="Country_val_BJ" xml:space="preserve">
-    <value>ბენინი</value>
-    <comment>The name of BJ country</comment>
-  </data>
-  <data name="Country_val_BL" xml:space="preserve">
-    <value>სენ-ბართელმი</value>
-    <comment>The name of BL country</comment>
-  </data>
-  <data name="Country_val_BM" xml:space="preserve">
-    <value>ბერმუდა</value>
-    <comment>The name of BM country</comment>
-  </data>
-  <data name="Country_val_BN" xml:space="preserve">
-    <value>ბრუნეი-დარუსსალამი</value>
-    <comment>The name of BN country</comment>
-  </data>
-  <data name="Country_val_BO" xml:space="preserve">
-    <value>ბოლივია</value>
-    <comment>The name of BO country</comment>
-  </data>
-  <data name="Country_val_BQ" xml:space="preserve">
-    <value>კარიბის ნიდერლანდები</value>
-    <comment>The name of BQ country</comment>
-  </data>
-  <data name="Country_val_BR" xml:space="preserve">
-    <value>ბრაზილია</value>
-    <comment>The name of BR country</comment>
-  </data>
-  <data name="Country_val_BS" xml:space="preserve">
-    <value>ბაჰამები</value>
-    <comment>The name of BS country</comment>
-  </data>
-  <data name="Country_val_BT" xml:space="preserve">
-    <value>ბუტანი</value>
-    <comment>The name of BT country</comment>
-  </data>
-  <data name="Country_val_BV" xml:space="preserve">
-    <value>ბუვეტის კუნძული</value>
-    <comment>The name of BV country</comment>
-  </data>
-  <data name="Country_val_BW" xml:space="preserve">
-    <value>ბოტსვანა</value>
-    <comment>The name of BW country</comment>
-  </data>
-  <data name="Country_val_BY" xml:space="preserve">
-    <value>ბელარუსი</value>
-    <comment>The name of BY country</comment>
-  </data>
-  <data name="Country_val_BZ" xml:space="preserve">
-    <value>ბელიზი</value>
-    <comment>The name of BZ country</comment>
-  </data>
-  <data name="Country_val_CA" xml:space="preserve">
-    <value>კანადა</value>
-    <comment>The name of CA country</comment>
-  </data>
-  <data name="Country_val_CC" xml:space="preserve">
-    <value>ქოქოსის კუნძულები</value>
-    <comment>The name of CC country</comment>
-  </data>
-  <data name="Country_val_CD" xml:space="preserve">
-    <value>დემოკრატიული რესპუბლიკა კონგო</value>
-    <comment>The name of CD country</comment>
-  </data>
-  <data name="Country_val_CF" xml:space="preserve">
-    <value>ცენტრალური აფრიკის რესპუბლიკა</value>
-    <comment>The name of CF country</comment>
-  </data>
-  <data name="Country_val_CG" xml:space="preserve">
-    <value>კონგო</value>
-    <comment>The name of CG country</comment>
-  </data>
-  <data name="Country_val_CH" xml:space="preserve">
-    <value>შვეიცარია</value>
-    <comment>The name of CH country</comment>
-  </data>
-  <data name="Country_val_CI" xml:space="preserve">
-    <value>კოტ-დ’ივუარი</value>
-    <comment>The name of CI country</comment>
-  </data>
-  <data name="Country_val_CK" xml:space="preserve">
-    <value>კუკის კუნძულები</value>
-    <comment>The name of CK country</comment>
-  </data>
-  <data name="Country_val_CL" xml:space="preserve">
-    <value>ჩილე</value>
-    <comment>The name of CL country</comment>
-  </data>
-  <data name="Country_val_CM" xml:space="preserve">
-    <value>კამერუნი</value>
-    <comment>The name of CM country</comment>
-  </data>
-  <data name="Country_val_CN" xml:space="preserve">
-    <value>ჩინეთი</value>
-    <comment>The name of CN country</comment>
-  </data>
-  <data name="Country_val_CO" xml:space="preserve">
-    <value>კოლუმბია</value>
-    <comment>The name of CO country</comment>
-  </data>
-  <data name="Country_val_CR" xml:space="preserve">
-    <value>კოსტა რიკა</value>
-    <comment>The name of CR country</comment>
-  </data>
-  <data name="Country_val_CU" xml:space="preserve">
-    <value>კუბა</value>
-    <comment>The name of CU country</comment>
-  </data>
-  <data name="Country_val_CV" xml:space="preserve">
-    <value>კაბო-ვერდე</value>
-    <comment>The name of CV country</comment>
-  </data>
-  <data name="Country_val_CW" xml:space="preserve">
-    <value>კიურასაო</value>
-    <comment>The name of CW country</comment>
-  </data>
-  <data name="Country_val_CX" xml:space="preserve">
-    <value>შობის კუნძული</value>
-    <comment>The name of CX country</comment>
-  </data>
-  <data name="Country_val_CY" xml:space="preserve">
-    <value>კვიპროსი</value>
-    <comment>The name of CY country</comment>
-  </data>
-  <data name="Country_val_CZ" xml:space="preserve">
-    <value>ჩეხეთი</value>
-    <comment>The name of CZ country</comment>
-  </data>
-  <data name="Country_val_DE" xml:space="preserve">
-    <value>გერმანია</value>
-    <comment>The name of DE country</comment>
-  </data>
-  <data name="Country_val_DJ" xml:space="preserve">
-    <value>ჯიბუტი</value>
-    <comment>The name of DJ country</comment>
-  </data>
-  <data name="Country_val_DK" xml:space="preserve">
-    <value>დანია</value>
-    <comment>The name of DK country</comment>
-  </data>
-  <data name="Country_val_DM" xml:space="preserve">
-    <value>დომინიკა</value>
-    <comment>The name of DM country</comment>
-  </data>
-  <data name="Country_val_DO" xml:space="preserve">
-    <value>დომენიკის რესპუბლიკა</value>
-    <comment>The name of DO country</comment>
-  </data>
-  <data name="Country_val_DZ" xml:space="preserve">
-    <value>ალჟირი</value>
-    <comment>The name of DZ country</comment>
-  </data>
-  <data name="Country_val_EC" xml:space="preserve">
-    <value>ეკვადორი</value>
-    <comment>The name of EC country</comment>
-  </data>
-  <data name="Country_val_EE" xml:space="preserve">
-    <value>ესტონეთი</value>
-    <comment>The name of EE country</comment>
-  </data>
-  <data name="Country_val_EG" xml:space="preserve">
-    <value>ეგვიპტე</value>
-    <comment>The name of EG country</comment>
-  </data>
-  <data name="Country_val_EH" xml:space="preserve">
-    <value>დასავლეთ საჰარა</value>
-    <comment>The name of EH country</comment>
-  </data>
-  <data name="Country_val_ER" xml:space="preserve">
-    <value>ერიტრეა</value>
-    <comment>The name of ER country</comment>
-  </data>
-  <data name="Country_val_ES" xml:space="preserve">
-    <value>ესპანეთი</value>
-    <comment>The name of ES country</comment>
-  </data>
-  <data name="Country_val_ET" xml:space="preserve">
-    <value>ეთიოპია</value>
-    <comment>The name of ET country</comment>
-  </data>
-  <data name="Country_val_FI" xml:space="preserve">
-    <value>ფინეთი</value>
-    <comment>The name of FI country</comment>
-  </data>
-  <data name="Country_val_FJ" xml:space="preserve">
-    <value>ფიჯი</value>
-    <comment>The name of FJ country</comment>
-  </data>
-  <data name="Country_val_FK" xml:space="preserve">
-    <value>ფელკლენდის კუნძულები</value>
-    <comment>The name of FK country</comment>
-  </data>
-  <data name="Country_val_FM" xml:space="preserve">
-    <value>მიკრონეზია</value>
-    <comment>The name of FM country</comment>
-  </data>
-  <data name="Country_val_FO" xml:space="preserve">
-    <value>ფაროს კუნძულები</value>
-    <comment>The name of FO country</comment>
-  </data>
-  <data name="Country_val_FR" xml:space="preserve">
-    <value>საფრანგეთი</value>
-    <comment>The name of FR country</comment>
-  </data>
-  <data name="Country_val_GA" xml:space="preserve">
-    <value>გაბონი</value>
-    <comment>The name of GA country</comment>
-  </data>
-  <data name="Country_val_GB" xml:space="preserve">
-    <value>გაერთიანებული სამეფო</value>
-    <comment>The name of GB country</comment>
-  </data>
-  <data name="Country_val_GD" xml:space="preserve">
-    <value>გრენადა</value>
-    <comment>The name of GD country</comment>
-  </data>
-  <data name="Country_val_GE" xml:space="preserve">
-    <value>საქართველო</value>
-    <comment>The name of GE country</comment>
-  </data>
-  <data name="Country_val_GF" xml:space="preserve">
-    <value>ფრანგული გუიანა</value>
-    <comment>The name of GF country</comment>
-  </data>
-  <data name="Country_val_GG" xml:space="preserve">
-    <value>გერნსი</value>
-    <comment>The name of GG country</comment>
-  </data>
-  <data name="Country_val_GH" xml:space="preserve">
-    <value>განა</value>
-    <comment>The name of GH country</comment>
-  </data>
-  <data name="Country_val_GI" xml:space="preserve">
-    <value>გიბრალტარი</value>
-    <comment>The name of GI country</comment>
-  </data>
-  <data name="Country_val_GL" xml:space="preserve">
-    <value>გრინლანდია</value>
-    <comment>The name of GL country</comment>
-  </data>
-  <data name="Country_val_GM" xml:space="preserve">
-    <value>გამბია</value>
-    <comment>The name of GM country</comment>
-  </data>
-  <data name="Country_val_GN" xml:space="preserve">
-    <value>გვინეა</value>
-    <comment>The name of GN country</comment>
-  </data>
-  <data name="Country_val_GP" xml:space="preserve">
-    <value>გვადელუპა</value>
-    <comment>The name of GP country</comment>
-  </data>
-  <data name="Country_val_GQ" xml:space="preserve">
-    <value>ეკვატორული გვინეა</value>
-    <comment>The name of GQ country</comment>
-  </data>
-  <data name="Country_val_GR" xml:space="preserve">
-    <value>საბერძნეთი</value>
-    <comment>The name of GR country</comment>
-  </data>
-  <data name="Country_val_GS" xml:space="preserve">
-    <value>სამხრეთ ჯორჯია და სამხრეთ სენდვიჩის კუნძულები</value>
-    <comment>The name of GS country</comment>
-  </data>
-  <data name="Country_val_GT" xml:space="preserve">
-    <value>გვატემალა</value>
-    <comment>The name of GT country</comment>
-  </data>
-  <data name="Country_val_GU" xml:space="preserve">
-    <value>გუამი</value>
-    <comment>The name of GU country</comment>
-  </data>
-  <data name="Country_val_GW" xml:space="preserve">
-    <value>გვინეა-ბისაუ</value>
-    <comment>The name of GW country</comment>
-  </data>
-  <data name="Country_val_GY" xml:space="preserve">
-    <value>გაიანა</value>
-    <comment>The name of GY country</comment>
-  </data>
-  <data name="Country_val_HK" xml:space="preserve">
-    <value>ჰონგ კონგი</value>
-    <comment>The name of HK country</comment>
-  </data>
-  <data name="Country_val_HM" xml:space="preserve">
-    <value>ჰერდის კუნძული და მაკდონალდის კუნძულები</value>
-    <comment>The name of HM country</comment>
-  </data>
-  <data name="Country_val_HN" xml:space="preserve">
-    <value>ჰონდურასი</value>
-    <comment>The name of HN country</comment>
-  </data>
-  <data name="Country_val_HR" xml:space="preserve">
-    <value>ხორვატია</value>
-    <comment>The name of HR country</comment>
-  </data>
-  <data name="Country_val_HT" xml:space="preserve">
-    <value>ჰაიტი</value>
-    <comment>The name of HT country</comment>
-  </data>
-  <data name="Country_val_HU" xml:space="preserve">
-    <value>უნგრეთი</value>
-    <comment>The name of HU country</comment>
-  </data>
-  <data name="Country_val_ID" xml:space="preserve">
-    <value>ინდონეზია</value>
-    <comment>The name of ID country</comment>
-  </data>
-  <data name="Country_val_IE" xml:space="preserve">
-    <value>ირლანდია</value>
-    <comment>The name of IE country</comment>
-  </data>
-  <data name="Country_val_IL" xml:space="preserve">
-    <value>ისრაელი</value>
-    <comment>The name of IL country</comment>
-  </data>
-  <data name="Country_val_IM" xml:space="preserve">
-    <value>მენის კუნძული</value>
-    <comment>The name of IM country</comment>
-  </data>
-  <data name="Country_val_IN" xml:space="preserve">
-    <value>ინდოეთი</value>
-    <comment>The name of IN country</comment>
-  </data>
-  <data name="Country_val_IO" xml:space="preserve">
-    <value>ბრიტანეთის ინდოეთის ოკეანის ტერიტორია</value>
-    <comment>The name of IO country</comment>
-  </data>
-  <data name="Country_val_IQ" xml:space="preserve">
-    <value>ერაყი</value>
-    <comment>The name of IQ country</comment>
-  </data>
-  <data name="Country_val_IR" xml:space="preserve">
-    <value>ირანი</value>
-    <comment>The name of IR country</comment>
-  </data>
-  <data name="Country_val_IS" xml:space="preserve">
-    <value>ისლანდია</value>
-    <comment>The name of IS country</comment>
-  </data>
-  <data name="Country_val_IT" xml:space="preserve">
-    <value>იტალია</value>
-    <comment>The name of IT country</comment>
-  </data>
-  <data name="Country_val_JE" xml:space="preserve">
-    <value>ჯერსი</value>
-    <comment>The name of JE country</comment>
-  </data>
-  <data name="Country_val_JM" xml:space="preserve">
-    <value>იამაიკა</value>
-    <comment>The name of JM country</comment>
-  </data>
-  <data name="Country_val_JO" xml:space="preserve">
-    <value>იორდანია</value>
-    <comment>The name of JO country</comment>
-  </data>
-  <data name="Country_val_JP" xml:space="preserve">
-    <value>იაპონია</value>
-    <comment>The name of JP country</comment>
-  </data>
-  <data name="Country_val_KE" xml:space="preserve">
-    <value>კენია</value>
-    <comment>The name of KE country</comment>
-  </data>
-  <data name="Country_val_KG" xml:space="preserve">
-    <value>ყირგიზეთი</value>
-    <comment>The name of KG country</comment>
-  </data>
-  <data name="Country_val_KH" xml:space="preserve">
-    <value>კამბოჯა</value>
-    <comment>The name of KH country</comment>
-  </data>
-  <data name="Country_val_KI" xml:space="preserve">
-    <value>კირიბატი</value>
-    <comment>The name of KI country</comment>
-  </data>
-  <data name="Country_val_KM" xml:space="preserve">
-    <value>კომოროსი</value>
-    <comment>The name of KM country</comment>
-  </data>
-  <data name="Country_val_KN" xml:space="preserve">
-    <value>სენტ კიტსი და ნევისი</value>
-    <comment>The name of KN country</comment>
-  </data>
-  <data name="Country_val_KP" xml:space="preserve">
-    <value>ჩრდილო კორეა</value>
-    <comment>The name of KP country</comment>
-  </data>
-  <data name="Country_val_KR" xml:space="preserve">
-    <value>სამხრეთ კორეა</value>
-    <comment>The name of KR country</comment>
-  </data>
-  <data name="Country_val_KW" xml:space="preserve">
-    <value>ქუვეითი</value>
-    <comment>The name of KW country</comment>
-  </data>
-  <data name="Country_val_KY" xml:space="preserve">
-    <value>კაიმანის კუნძულები</value>
-    <comment>The name of KY country</comment>
-  </data>
-  <data name="Country_val_KZ" xml:space="preserve">
-    <value>ყაზახეთი</value>
-    <comment>The name of KZ country</comment>
-  </data>
-  <data name="Country_val_LA" xml:space="preserve">
-    <value>ლაოსი</value>
-    <comment>The name of LA country</comment>
-  </data>
-  <data name="Country_val_LB" xml:space="preserve">
-    <value>ლებანონი</value>
-    <comment>The name of LB country</comment>
-  </data>
-  <data name="Country_val_LC" xml:space="preserve">
-    <value>სანტა ლუჩია</value>
-    <comment>The name of LC country</comment>
-  </data>
-  <data name="Country_val_LI" xml:space="preserve">
-    <value>ლიხტენშტეინი</value>
-    <comment>The name of LI country</comment>
-  </data>
-  <data name="Country_val_LK" xml:space="preserve">
-    <value>შრი ლანკა</value>
-    <comment>The name of LK country</comment>
-  </data>
-  <data name="Country_val_LR" xml:space="preserve">
-    <value>ლიბერია</value>
-    <comment>The name of LR country</comment>
-  </data>
-  <data name="Country_val_LS" xml:space="preserve">
-    <value>ლესოტო</value>
-    <comment>The name of LS country</comment>
-  </data>
-  <data name="Country_val_LT" xml:space="preserve">
-    <value>ლიეტუვა</value>
-    <comment>The name of LT country</comment>
-  </data>
-  <data name="Country_val_LU" xml:space="preserve">
-    <value>ლუქსემბურგი</value>
-    <comment>The name of LU country</comment>
-  </data>
-  <data name="Country_val_LV" xml:space="preserve">
-    <value>ლატვია</value>
-    <comment>The name of LV country</comment>
-  </data>
-  <data name="Country_val_LY" xml:space="preserve">
-    <value>ლიბია</value>
-    <comment>The name of LY country</comment>
-  </data>
-  <data name="Country_val_MA" xml:space="preserve">
-    <value>მოროკო</value>
-    <comment>The name of MA country</comment>
-  </data>
-  <data name="Country_val_MC" xml:space="preserve">
-    <value>მონაკო</value>
-    <comment>The name of MC country</comment>
-  </data>
-  <data name="Country_val_MD" xml:space="preserve">
-    <value>მოლდოვა</value>
-    <comment>The name of MD country</comment>
-  </data>
-  <data name="Country_val_ME" xml:space="preserve">
-    <value>მონტენეგრო</value>
-    <comment>The name of ME country</comment>
-  </data>
-  <data name="Country_val_MF" xml:space="preserve">
-    <value>სენტ მარტინი (ფრანგული ნაწილი)</value>
-    <comment>The name of MF country</comment>
-  </data>
-  <data name="Country_val_MG" xml:space="preserve">
-    <value>მადაგასკარი</value>
-    <comment>The name of MG country</comment>
-  </data>
-  <data name="Country_val_MH" xml:space="preserve">
-    <value>მარშალის კუნძულები</value>
-    <comment>The name of MH country</comment>
-  </data>
-  <data name="Country_val_MK" xml:space="preserve">
-    <value>ჩრდილო მაკედონია</value>
-    <comment>The name of MK country</comment>
-  </data>
-  <data name="Country_val_ML" xml:space="preserve">
-    <value>მალი</value>
-    <comment>The name of ML country</comment>
-  </data>
-  <data name="Country_val_MM" xml:space="preserve">
-    <value>მიანმარი</value>
-    <comment>The name of MM country</comment>
-  </data>
-  <data name="Country_val_MN" xml:space="preserve">
-    <value>მონღოლეთი</value>
-    <comment>The name of MN country</comment>
-  </data>
-  <data name="Country_val_MO" xml:space="preserve">
-    <value>მაკაო</value>
-    <comment>The name of MO country</comment>
-  </data>
-  <data name="Country_val_MP" xml:space="preserve">
-    <value>ჩრდილოეთ მარიანას კუნძულები</value>
-    <comment>The name of MP country</comment>
-  </data>
-  <data name="Country_val_MQ" xml:space="preserve">
-    <value>მარტინიკა</value>
-    <comment>The name of MQ country</comment>
-  </data>
-  <data name="Country_val_MR" xml:space="preserve">
-    <value>მავრიტანია</value>
-    <comment>The name of MR country</comment>
-  </data>
-  <data name="Country_val_MS" xml:space="preserve">
-    <value>მონსერატი</value>
-    <comment>The name of MS country</comment>
-  </data>
-  <data name="Country_val_MT" xml:space="preserve">
-    <value>მალტა</value>
-    <comment>The name of MT country</comment>
-  </data>
-  <data name="Country_val_MU" xml:space="preserve">
-    <value>მავრიკი</value>
-    <comment>The name of MU country</comment>
-  </data>
-  <data name="Country_val_MV" xml:space="preserve">
-    <value>მალდივები</value>
-    <comment>The name of MV country</comment>
-  </data>
-  <data name="Country_val_MW" xml:space="preserve">
-    <value>მალავი</value>
-    <comment>The name of MW country</comment>
-  </data>
-  <data name="Country_val_MX" xml:space="preserve">
-    <value>მექსიკა</value>
-    <comment>The name of MX country</comment>
-  </data>
-  <data name="Country_val_MY" xml:space="preserve">
-    <value>მალაიზია</value>
-    <comment>The name of MY country</comment>
-  </data>
-  <data name="Country_val_MZ" xml:space="preserve">
-    <value>მოზამბიკი</value>
-    <comment>The name of MZ country</comment>
-  </data>
-  <data name="Country_val_NA" xml:space="preserve">
-    <value>ნამიბია</value>
-    <comment>The name of NA country</comment>
-  </data>
-  <data name="Country_val_NC" xml:space="preserve">
-    <value>ახალი კალედონია</value>
-    <comment>The name of NC country</comment>
-  </data>
-  <data name="Country_val_NE" xml:space="preserve">
-    <value>ნიგერია</value>
-    <comment>The name of NE country</comment>
-  </data>
-  <data name="Country_val_NF" xml:space="preserve">
-    <value>ნორფოლკის კუნძული</value>
-    <comment>The name of NF country</comment>
-  </data>
-  <data name="Country_val_NG" xml:space="preserve">
-    <value>ნიგერია</value>
-    <comment>The name of NG country</comment>
-  </data>
-  <data name="Country_val_NI" xml:space="preserve">
-    <value>ნიკარაგუა</value>
-    <comment>The name of NI country</comment>
-  </data>
-  <data name="Country_val_NL" xml:space="preserve">
-    <value>ჰოლანდია</value>
-    <comment>The name of NL country</comment>
-  </data>
-  <data name="Country_val_NO" xml:space="preserve">
-    <value>ნორვეგია</value>
-    <comment>The name of NO country</comment>
-  </data>
-  <data name="Country_val_NP" xml:space="preserve">
-    <value>ნეპალი</value>
-    <comment>The name of NP country</comment>
-  </data>
-  <data name="Country_val_NR" xml:space="preserve">
-    <value>ნაურუ</value>
-    <comment>The name of NR country</comment>
-  </data>
-  <data name="Country_val_NU" xml:space="preserve">
-    <value>ნიუე</value>
-    <comment>The name of NU country</comment>
-  </data>
-  <data name="Country_val_NZ" xml:space="preserve">
-    <value>ახალი ზელანდია</value>
-    <comment>The name of NZ country</comment>
-  </data>
-  <data name="Country_val_OM" xml:space="preserve">
-    <value>ომანი</value>
-    <comment>The name of OM country</comment>
-  </data>
-  <data name="Country_val_PA" xml:space="preserve">
-    <value>პანამა</value>
-    <comment>The name of PA country</comment>
-  </data>
-  <data name="Country_val_PE" xml:space="preserve">
-    <value>პერუ</value>
-    <comment>The name of PE country</comment>
-  </data>
-  <data name="Country_val_PF" xml:space="preserve">
-    <value>ფრანგული პოლინეზია</value>
-    <comment>The name of PF country</comment>
-  </data>
-  <data name="Country_val_PG" xml:space="preserve">
-    <value>პაპუა ახალი გვინეა</value>
-    <comment>The name of PG country</comment>
-  </data>
-  <data name="Country_val_PH" xml:space="preserve">
-    <value>ფილიპინები</value>
-    <comment>The name of PH country</comment>
-  </data>
-  <data name="Country_val_PK" xml:space="preserve">
-    <value>პაკისტანი</value>
-    <comment>The name of PK country</comment>
-  </data>
-  <data name="Country_val_PL" xml:space="preserve">
-    <value>პოლონეთი</value>
-    <comment>The name of PL country</comment>
-  </data>
-  <data name="Country_val_PM" xml:space="preserve">
-    <value>წმინდა პიერი და მიქელონი</value>
-    <comment>The name of PM country</comment>
-  </data>
-  <data name="Country_val_PN" xml:space="preserve">
-    <value>პიტკერნი</value>
-    <comment>The name of PN country</comment>
-  </data>
-  <data name="Country_val_PR" xml:space="preserve">
-    <value>პუერტო რიკო</value>
-    <comment>The name of PR country</comment>
-  </data>
-  <data name="Country_val_PS" xml:space="preserve">
-    <value>პალესტინა</value>
-    <comment>The name of PS country</comment>
-  </data>
-  <data name="Country_val_PT" xml:space="preserve">
-    <value>პორტუგალია</value>
-    <comment>The name of PT country</comment>
-  </data>
-  <data name="Country_val_PW" xml:space="preserve">
-    <value>პალაუ</value>
-    <comment>The name of PW country</comment>
-  </data>
-  <data name="Country_val_PY" xml:space="preserve">
-    <value>პარაგვაი</value>
-    <comment>The name of PY country</comment>
-  </data>
-  <data name="Country_val_QA" xml:space="preserve">
-    <value>ყატარი</value>
-    <comment>The name of QA country</comment>
-  </data>
-  <data name="Country_val_RE" xml:space="preserve">
-    <value>რეიუნიონი</value>
-    <comment>The name of RE country</comment>
-  </data>
-  <data name="Country_val_RO" xml:space="preserve">
-    <value>რუმინეთი</value>
-    <comment>The name of RO country</comment>
-  </data>
-  <data name="Country_val_RS" xml:space="preserve">
-    <value>სერბეთი</value>
-    <comment>The name of RS country</comment>
-  </data>
-  <data name="Country_val_RU" xml:space="preserve">
-    <value>რუსეთი</value>
-    <comment>The name of RU country</comment>
-  </data>
-  <data name="Country_val_RW" xml:space="preserve">
-    <value>რუანდა</value>
-    <comment>The name of RW country</comment>
-  </data>
-  <data name="Country_val_SA" xml:space="preserve">
-    <value>საუდის არაბეთი</value>
-    <comment>The name of SA country</comment>
-  </data>
-  <data name="Country_val_SB" xml:space="preserve">
-    <value>სოლომონის კუნძულები</value>
-    <comment>The name of SB country</comment>
-  </data>
-  <data name="Country_val_SC" xml:space="preserve">
-    <value>სეიშელი</value>
-    <comment>The name of SC country</comment>
-  </data>
-  <data name="Country_val_SD" xml:space="preserve">
-    <value>სუდანი</value>
-    <comment>The name of SD country</comment>
-  </data>
-  <data name="Country_val_SE" xml:space="preserve">
-    <value>შვედეთი</value>
-    <comment>The name of SE country</comment>
-  </data>
-  <data name="Country_val_SG" xml:space="preserve">
-    <value>სინგაპური</value>
-    <comment>The name of SG country</comment>
-  </data>
-  <data name="Country_val_SH" xml:space="preserve">
-    <value>წმინდა ელენე, ამაღლება და ტრისტანი-და-კუნია</value>
-    <comment>The name of SH country</comment>
-  </data>
-  <data name="Country_val_SI" xml:space="preserve">
-    <value>სლოვენია</value>
-    <comment>The name of SI country</comment>
-  </data>
-  <data name="Country_val_SJ" xml:space="preserve">
-    <value>სვალბარდი და ან-მაიენი</value>
-    <comment>The name of SJ country</comment>
-  </data>
-  <data name="Country_val_SK" xml:space="preserve">
-    <value>სლოვაკეთი</value>
-    <comment>The name of SK country</comment>
-  </data>
-  <data name="Country_val_SL" xml:space="preserve">
-    <value>სიერა ლეონე</value>
-    <comment>The name of SL country</comment>
-  </data>
-  <data name="Country_val_SM" xml:space="preserve">
-    <value>სან მარინო</value>
-    <comment>The name of SM country</comment>
-  </data>
-  <data name="Country_val_SN" xml:space="preserve">
-    <value>სენეგალი</value>
-    <comment>The name of SN country</comment>
-  </data>
-  <data name="Country_val_SO" xml:space="preserve">
-    <value>სომალი</value>
-    <comment>The name of SO country</comment>
-  </data>
-  <data name="Country_val_SR" xml:space="preserve">
-    <value>სურინამი</value>
-    <comment>The name of SR country</comment>
-  </data>
-  <data name="Country_val_SS" xml:space="preserve">
-    <value>სამხრეთ სუდანი</value>
-    <comment>The name of SS country</comment>
-  </data>
-  <data name="Country_val_ST" xml:space="preserve">
-    <value>საო ტომე და პრინციპე</value>
-    <comment>The name of ST country</comment>
-  </data>
-  <data name="Country_val_SV" xml:space="preserve">
-    <value>ელ სალვადორი</value>
-    <comment>The name of SV country</comment>
-  </data>
-  <data name="Country_val_SX" xml:space="preserve">
-    <value>სინტ მაარტენი</value>
-    <comment>The name of SX country</comment>
-  </data>
-  <data name="Country_val_SY" xml:space="preserve">
-    <value>სირია</value>
-    <comment>The name of SY country</comment>
-  </data>
-  <data name="Country_val_SZ" xml:space="preserve">
-    <value>ესვატინი</value>
-    <comment>The name of SZ country</comment>
-  </data>
-  <data name="Country_val_TC" xml:space="preserve">
-    <value>ტერქსისა და კაიკოსის კუნძულები</value>
-    <comment>The name of TC country</comment>
-  </data>
-  <data name="Country_val_TD" xml:space="preserve">
-    <value>ჩადი</value>
-    <comment>The name of TD country</comment>
-  </data>
-  <data name="Country_val_TF" xml:space="preserve">
-    <value>ფრანგული სამხრეთ ტერიტორიები</value>
-    <comment>The name of TF country</comment>
-  </data>
-  <data name="Country_val_TG" xml:space="preserve">
-    <value>ტოგო</value>
-    <comment>The name of TG country</comment>
-  </data>
-  <data name="Country_val_TH" xml:space="preserve">
-    <value>ტაილანდი</value>
-    <comment>The name of TH country</comment>
-  </data>
-  <data name="Country_val_TJ" xml:space="preserve">
-    <value>ტაჯიკეთი</value>
-    <comment>The name of TJ country</comment>
-  </data>
-  <data name="Country_val_TK" xml:space="preserve">
-    <value>ტოკელაუ</value>
-    <comment>The name of TK country</comment>
-  </data>
-  <data name="Country_val_TL" xml:space="preserve">
-    <value>აღმოსავლეთ ტიმორი</value>
-    <comment>The name of TL country</comment>
-  </data>
-  <data name="Country_val_TM" xml:space="preserve">
-    <value>თურქმენეთი</value>
-    <comment>The name of TM country</comment>
-  </data>
-  <data name="Country_val_TN" xml:space="preserve">
-    <value>ტუნისი</value>
-    <comment>The name of TN country</comment>
-  </data>
-  <data name="Country_val_TO" xml:space="preserve">
-    <value>ტონგა</value>
-    <comment>The name of TO country</comment>
-  </data>
-  <data name="Country_val_TR" xml:space="preserve">
-    <value>თურქეთი</value>
-    <comment>The name of TR country</comment>
-  </data>
-  <data name="Country_val_TT" xml:space="preserve">
-    <value>ტრინიდადი და ტობაგო</value>
-    <comment>The name of TT country</comment>
-  </data>
-  <data name="Country_val_TV" xml:space="preserve">
-    <value>ტუვალუ</value>
-    <comment>The name of TV country</comment>
-  </data>
-  <data name="Country_val_TW" xml:space="preserve">
-    <value>ტაივანი</value>
-    <comment>The name of TW country</comment>
-  </data>
-  <data name="Country_val_TZ" xml:space="preserve">
-    <value>ტანზანია</value>
-    <comment>The name of TZ country</comment>
-  </data>
-  <data name="Country_val_UA" xml:space="preserve">
-    <value>უკრაინა</value>
-    <comment>The name of UA country</comment>
-  </data>
-  <data name="Country_val_UG" xml:space="preserve">
-    <value>უგანდა</value>
-    <comment>The name of UG country</comment>
-  </data>
-  <data name="Country_val_UK" xml:space="preserve">
-    <value>გაერთიანებული სამეფო</value>
-    <comment>The name of UK country</comment>
-  </data>
-  <data name="Country_val_UM" xml:space="preserve">
-    <value>შეერთებული შტატების მცირე გარემდებარე კუნძულები</value>
-    <comment>The name of UM country</comment>
-  </data>
-  <data name="Country_val_US" xml:space="preserve">
-    <value>შეერთებული შტატები</value>
-    <comment>The name of US country</comment>
-  </data>
-  <data name="Country_val_UY" xml:space="preserve">
-    <value>ურუგვაი</value>
-    <comment>The name of UY country</comment>
-  </data>
-  <data name="Country_val_UZ" xml:space="preserve">
-    <value>უზბეკეთი</value>
-    <comment>The name of UZ country</comment>
-  </data>
-  <data name="Country_val_VA" xml:space="preserve">
-    <value>ვატიკანი სითი</value>
-    <comment>The name of VA country</comment>
-  </data>
-  <data name="Country_val_VC" xml:space="preserve">
-    <value>სენტ ვინცენტი და გრენადინები</value>
-    <comment>The name of VC country</comment>
-  </data>
-  <data name="Country_val_VE" xml:space="preserve">
-    <value>ვენესუელა</value>
-    <comment>The name of VE country</comment>
-  </data>
-  <data name="Country_val_VG" xml:space="preserve">
-    <value>ბრიტანეთის ვირჯინის კუნძულები</value>
-    <comment>The name of VG country</comment>
-  </data>
-  <data name="Country_val_VI" xml:space="preserve">
-    <value>ვირჯინიის კუნძულები, აშშ</value>
-    <comment>The name of VI country</comment>
-  </data>
-  <data name="Country_val_VN" xml:space="preserve">
-    <value>ვიეტნამი</value>
-    <comment>The name of VN country</comment>
-  </data>
-  <data name="Country_val_VU" xml:space="preserve">
-    <value>ვანუატუ</value>
-    <comment>The name of VU country</comment>
-  </data>
-  <data name="Country_val_WF" xml:space="preserve">
-    <value>ვალისი და ფუტუნა</value>
-    <comment>The name of WF country</comment>
-  </data>
-  <data name="Country_val_WS" xml:space="preserve">
-    <value>სამოა</value>
-    <comment>The name of WS country</comment>
-  </data>
-  <data name="Country_val_YE" xml:space="preserve">
-    <value>იემენი</value>
-    <comment>The name of YE country</comment>
-  </data>
-  <data name="Country_val_YT" xml:space="preserve">
-    <value>მაიოტი</value>
-    <comment>The name of YT country</comment>
-  </data>
-  <data name="Country_val_ZA" xml:space="preserve">
-    <value>სამხრეთ აფრიკა</value>
-    <comment>The name of ZA country</comment>
-  </data>
-  <data name="Country_val_ZM" xml:space="preserve">
-    <value>ზამბია</value>
-    <comment>The name of ZM country</comment>
-  </data>
-  <data name="Country_val_ZW" xml:space="preserve">
-    <value>ზიმბაბვე</value>
-    <comment>The name of ZW country</comment>
-  </data>
-  <data name="Country_val_ZZ" xml:space="preserve">
-    <value>უცნობი</value>
-    <comment>The name of ZZ (unknown or not specified) country</comment>
-  </data>
-  <data name="Dialogs_Latency_Description" xml:space="preserve">
-    <value>დაყოვნება აჩვენებს, რამდენი დრო მიაქვს სერვერს, რომ მოთხოვნებზე გიპასუხოთ.\n\nმაღალი დაყოვნება თქვენს მიერთებას ანელებს.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>VPN-მა, შეიძლება, ნორმალურზე ნელა იმუშაოს</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
-    <value>მაღალი (150მწმ+)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>სინათლის სიჩქარე</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
-    <value>დაბალი (1მწმ- 50მწმ)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>VPN-ის სიჩქარეზე გავლენა, ალბათ, არ ექნება</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
-    <value>საშუალო (50მწმ - 150 მწმ)</value>
-  </data>
-  <data name="Dialogs_Latency_Title" xml:space="preserve">
-    <value>რა არის დაყოვნება?</value>
-  </data>
-  <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>პროტოკოლი ინსტრუქციების სეტია, რომელსაც თქვენი მოწყობილობა მიჰყვება სერვერთან დაკავშირებისა და ურთიერთობისათვის.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
-    <value>VPN-ის პროტოკოლის გადართვა</value>
-  </data>
-  <data name="Dialogs_Protocol_Title" xml:space="preserve">
-    <value>რა არის VPN პროტოკოლი?</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
-    <value>რა პრობლემა გაქვთ?</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
-    <value>სერვერის დატვირთვა გაჩვენებთ, რამდენად ახლოსაა სერვერი მის მაქსიმალურ ტევადობასთან.\n\nსერვერის მაღალ დატვირთვას თქვენი მიერთების შენელება შეუძლია.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>VPN-მა, შეიძლება, ნორმალურზე ნელა იმუშაოს</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>მაღალი (91–100%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>სინათლის სიჩქარე</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>დაბალი (1–75%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>VPN-ის სიჩქარეზე გავლენა, ალბათ, არ ექნება</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>საშუალო (76–90%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>რა არის სერვერის დატვირთვა?</value>
-  </data>
-  <data name="Format_Milliseconds" xml:space="preserve">
-    <value>{0}მწმ</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
-  </data>
-  <data name="Format_Size_Bytes" xml:space="preserve">
-    <value>{0} ბ</value>
-    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
-  </data>
-  <data name="Format_Size_Exabytes" xml:space="preserve">
-    <value>{0} ებ</value>
-    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
-  </data>
-  <data name="Format_Size_Gigabytes" xml:space="preserve">
-    <value>{0} გბ</value>
-    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
-  </data>
-  <data name="Format_Size_Kilobytes" xml:space="preserve">
-    <value>{0} კბ</value>
-    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
-  </data>
-  <data name="Format_Size_Megabytes" xml:space="preserve">
-    <value>{0} მბ</value>
-    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
-  </data>
-  <data name="Format_Size_Petabytes" xml:space="preserve">
-    <value>{0} პბ</value>
-    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
-  </data>
-  <data name="Format_Size_Terabytes" xml:space="preserve">
-    <value>{0} ტბ</value>
-    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
-  </data>
-  <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
-    <value>{0} ბ/წმ</value>
-    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
-  </data>
-  <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
-    <value>{0} ებ/წმ</value>
-    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
-  </data>
-  <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
-    <value>{0} გბ/წმ</value>
-    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
-  </data>
-  <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
-    <value>{0} კბ/წმ</value>
-    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
-  </data>
-  <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
-    <value>{0} მბ/წმ</value>
-    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
-  </data>
-  <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
-    <value>{0} პბ/წმ</value>
-    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
-  </data>
-  <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
-    <value>{0} ტბ/წმ</value>
-    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
-  </data>
-  <data name="Format_Time_Day" xml:space="preserve">
-    <value>{0} დღე</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} დღე {1} სთ</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days" xml:space="preserve">
-    <value>{0} დღე</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DaysHours" xml:space="preserve">
-    <value>{0} დღე {1} სთ</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Hours" xml:space="preserve">
-    <value>{0} სთ</value>
-    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_HoursMinutes" xml:space="preserve">
-    <value>{0} სთ {1} წთ</value>
-    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Minutes" xml:space="preserve">
-    <value>{0} წთ</value>
-    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_MinutesSeconds" xml:space="preserve">
-    <value>{0} წთ {1} წმ</value>
-    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Seconds" xml:space="preserve">
-    <value>{0} წმ</value>
-    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
-  </data>
-  <data name="Home_Account_SignOut" xml:space="preserve">
-    <value>გასვლა</value>
-  </data>
-  <data name="Home_Account_Title" xml:space="preserve">
-    <value>ჩემი ანგარიში</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>მუშაობთ ინტერნეტში უსაფრთხოდ ქვეყნიდან</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>დაკავშირება...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>ბოლოს მიუერთდით</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>რეკომენდებულია</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
-    <value>მიერთების ბარათი</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_City" xml:space="preserve">
-    <value>ქალაქი</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
-    <value>დაკავშირებულია</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
-    <value>რაუტერი</value>
-  </data>
-  <data name="Home_ConnectionDetails_Country" xml:space="preserve">
-    <value>ქვეყანა</value>
-  </data>
-  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>გადმოწერა</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
-    <value>მიერთების დეტალების დამალვა</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
-    <value>დამალვა</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
-    <value>მომხმარებლის IP მისამართის დამალვა</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>მიერთების დეტალები</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>დაყოვნება</value>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
-    <value>ჩემი IP</value>
-  </data>
-  <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
-    <value>პროტოკოლი</value>
-  </data>
-  <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>სერვერი</value>
-  </data>
-  <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
-    <value>სერვერის დატვირთვა</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show" xml:space="preserve">
-    <value>მიერთების დეტალების ჩვენება</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
-    <value>ჩვენება</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
-    <value>მომხმარებლის IP მისამართის ჩვენება</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>მიერთების დეტალები</value>
-  </data>
-  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>ატვირთვა</value>
-  </data>
-  <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
-    <value>VPN IP</value>
-  </data>
-  <data name="Home_Help_Title" xml:space="preserve">
-    <value>დახმარება</value>
-  </data>
-  <data name="Home_Map_Landmark" xml:space="preserve">
-    <value>რუკა</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>რეკლამა\nდაიბლოკა</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>მინაცემები\nშენახულია</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_Landmark" xml:space="preserve">
-    <value>NetShield-ის სტატისტიკა</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>ტრეკერი\nშეჩერებულია</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_Page_Title" xml:space="preserve">
-    <value>მთავარი</value>
-  </data>
-  <data name="Home_Recents_Landmark" xml:space="preserve">
-    <value>უახლესი მიერთებები</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_Recents_Pin" xml:space="preserve">
-    <value>მიმაგრება</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
-    <value>ქმედებები</value>
-  </data>
-  <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
-    <value>სერვერი ტექმომსახურებაშია</value>
-  </data>
-  <data name="Home_Recents_Title" xml:space="preserve">
-    <value>ახლახან გამოყენებულები</value>
-  </data>
-  <data name="Home_Recents_Unpin" xml:space="preserve">
-    <value>მოხსნა</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark" xml:space="preserve">
-    <value>VPN-ის სტატუსი</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>ვიცავთ თქვენს ციფრულ მონაცემებს</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>დაცული არ ბრძანდებით</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
-    <value>დაცულია</value>
-  </data>
-  <data name="Server_Feature_P2P" xml:space="preserve">
-    <value>P2P</value>
-  </data>
-  <data name="Server_Feature_Tor" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>კოდი არასწორია. თავიდან სცადეთ.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>არასწორი შესვლის პარამეტრები. თავიდან სცადეთ.</value>
-  </data>
-  <data name="Settings_About" xml:space="preserve">
-    <value>შესახებ</value>
-  </data>
-  <data name="Settings_AppVersion" xml:space="preserve">
-    <value>აპის ვერსია</value>
-  </data>
-  <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>ეს სტატისტიკა არ შეიცავს თქვენს IP მისამართს და მათი იდენტიფიცირებისთვის შეუძლებელია. ჩვენ არასდროს გავუზიარებთ მათ მესამე მხარეებს.</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>ავარიის ანგარიშების ანონიმურად გაზიარება</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>ავარიის ანგარიშები გვეხმარება შეცდომების გამოსწორებაში, ფეიერვოლების აღმოჩენაში და VPN ბლოკების თავიდან აცილებაში.</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>გამოყენების ანონიმური სტატისტიკის გაზიარება</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>გამოყენების მონაცემები გვეხმარება VPN ბლოკების დაძლევაში და აპლიკაციის მუშაობის გაუმჯობესებაში.</value>
-  </data>
-  <data name="Settings_Connection" xml:space="preserve">
-    <value>კავშირი</value>
-  </data>
-  <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>დამატებითი პარამეტრები</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>ალტერნატიული რაუტინგი</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
-    <value>თუ Proton-ის სერვისები დაბლოკილია ქსელის შეზღუდვების გამო, ჩვენ ალტერნატიულ ქსელის რაუტინგს ვცდით, რომ ჩვენს საიტებთან დაგაკავშიროთ.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
-    <value>DNS სერვერების ხელით მითითება</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
-    <value>მიუერთდით Proton VPN-ს თქვენი საკუთარი DNS-ით. გამოიყენეთ, მხოლოდ, DNS სერვერები, რომლებსაც ენდობით.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
-    <value>DNS სერვერები ({0})</value>
-    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
-    <value>IPv4 მისამართის დამატება</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>LAN შეერთებები</value>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>საშუალებას გაძლევთ, დაუკავშირდეთ პრინტერებს, დინამიკებს და სხვა მოწყობილობებს თქვენი მოწყობილობის ლოკალურ ქსელში.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
-    <value>NAT-ის ტიპი</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
-    <value>აირჩიეთ ქსელის თარგმანის ტიპი თქვენი მიერთებისთვის.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
-    <value>საშუალო (ტიპი 2)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
-    <value>მცირე შეზღუდვები თქვენს ქსელში შემომავალი მონაცემებისთვის. ეს პარამეტრი საუკეთესოა ონლაინ-თამაშებისთვის.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
-    <value>მკაცრი (ტიპი 3)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
-    <value>ზღუდავს თქვენს ქსელში შემომავალ ინფორმაციას. ეს პარამეტრი ფრო დაცულია, მაგრამ გამჭოლი მიერთების გამომყენებელი თამაშების მუშაობა უფრო ძნელი იქნება.</value>
-  </data>
-  <data name="Settings_Connection_Protocol" xml:space="preserve">
-    <value>პროტოკოლი</value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>VPN Accelerator</value>
-  </data>
-  <data name="Settings_Features" xml:space="preserve">
-    <value>ფუნქციები</value>
-  </data>
-  <data name="Settings_Features_KillSwitch" xml:space="preserve">
-    <value>Kill switch</value>
-  </data>
-  <data name="Settings_Features_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-  </data>
-  <data name="Settings_Features_PortForwarding" xml:space="preserve">
-    <value>პორტის გადამისამართება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling" xml:space="preserve">
-    <value>Split Tunneling</value>
-  </data>
-  <data name="Settings_General" xml:space="preserve">
-    <value>ზოგადი</value>
-  </data>
-  <data name="Settings_General_AutoStartup" xml:space="preserve">
-    <value>ავტოგაშვება</value>
-  </data>
-  <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>ავტოგაშვება, ავტომიერთება</value>
-  </data>
-  <data name="Settings_General_BetaAccess" xml:space="preserve">
-    <value>წვდომა ბეტა ვერსიებზე</value>
-  </data>
-  <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
-    <value>მიიღეთ ადრეული წვდომა და დაგვეხმარეთ, Proton VPN-ის ახალი ვერსიები დავტესტოთ</value>
-  </data>
-  <data name="Settings_General_Language" xml:space="preserve">
-    <value>ენა</value>
-  </data>
-  <data name="Settings_General_Notifications" xml:space="preserve">
-    <value>გაფრთხილებები</value>
-  </data>
-  <data name="Settings_General_Notifications_Description" xml:space="preserve">
-    <value>მიიღეთ შეტყობინებები Proton VPN-ის მიმდინარე აქტივობების შესახებ</value>
-  </data>
-  <data name="Settings_General_Theme" xml:space="preserve">
-    <value>თემა</value>
-  </data>
-  <data name="Settings_General_Theme_Dark" xml:space="preserve">
-    <value>ბნელი</value>
-  </data>
-  <data name="Settings_General_Theme_Default" xml:space="preserve">
-    <value>ნაგულისხმევი</value>
-  </data>
-  <data name="Settings_General_Theme_Light" xml:space="preserve">
-    <value>ღია</value>
-  </data>
-  <data name="Settings_Improve" xml:space="preserve">
-    <value>გააუმჯობესეთ Proton</value>
-  </data>
-  <data name="Settings_Improve_Censorship" xml:space="preserve">
-    <value>დაგვეხმარეთ, ვებრძოლოთ ცენზურას</value>
-  </data>
-  <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>ოპერაციული სისტემის ვერსია</value>
-  </data>
-  <data name="Settings_Page_Title" xml:space="preserve">
-    <value>მორგება</value>
-  </data>
-  <data name="Settings_Protocols_Explanation" xml:space="preserve">
-    <value>VPN პროტოკოლი განსაზღვრავს, როგორ მოძრაობს მონაცემები VPN სერვერსა და თქვენს მოწყობილობას შორის.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
-    <value>გამოცდილი, დატესტილი და დაცული. OpenVPN სანდოა ნელი ქსელის პირობებში, მაგრამ ის ისეთი სწრაფი არაა, როგორც სხვა პროტოკოლები.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
-    <value>ცნობილი, დატესტილი და დაცული. OpenVPN ნაკლებად მეგობრობს ელემენტთან, ვიდრე სხვა პროტოკოლები.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>რეკომენდებულია</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
-    <value>ავტომატურად აირჩევს საუკეთესო პროტოკოლს თქვენი მიერთებისთვის.</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
-    <value>საიმედოობა (TCP)</value>
-  </data>
-  <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
-    <value>სიჩქარე (UDP)</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>სწრაფი, დაცული და ეფექტური. WireGuard უფრო ნაკლებ ელემენტს ხარჯავს, ვიდრე სხვა პროტოკოლები.</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>ნაგულისხმევი პარამეტრების აღდგენა</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnUdp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_Support" xml:space="preserve">
-    <value>მხარდაჭერა</value>
-  </data>
-  <data name="Settings_Support_DebugLogs" xml:space="preserve">
-    <value>გამართვის ჟურნალი</value>
-  </data>
-  <data name="Settings_Support_ReportIssue" xml:space="preserve">
-    <value>პრობლემის ანგარიშის გადაგზავნა</value>
-  </data>
-  <data name="Login_Form_CreateAccount" xml:space="preserve">
-    <value>ანგარიშის შექმნა</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Password" xml:space="preserve">
-    <value>პაროლი</value>
-  </data>
-  <data name="Login_Form_SignIn" xml:space="preserve">
-    <value>შესვლა</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Username" xml:space="preserve">
-    <value>ელფოსტა ან მომხმარებლის სახელი</value>
-  </data>
-  <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
-    <value>ავთენტიკაცია</value>
-    <comment>Authenticate button inside two factor form during login</comment>
-  </data>
-  <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>შეიყვანეთ კოდი თქვენი ავთენტიკატორი აპიდან</value>
-  </data>
-  <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>2FA</value>
-  </data>
-  <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>დაგავიწყდათ თქვენი მომხმარებლის სახელი</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Help" xml:space="preserve">
-    <value>დახმარება</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ReportAnIssue" xml:space="preserve">
-    <value>პრობლემის ანგარიშის გადაგზავნა</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ResetPassword" xml:space="preserve">
-    <value>პაროლის ჩამოყრა</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>შესვლის პრობლემები გაქვთ</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Account_VpnPlan_Free" xml:space="preserve">
-    <value>Proton VPN Free</value>
-  </data>
-  <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
-    <value>2FA ჩავარდა. თავიდან შედით.</value>
-  </data>
-  <data name="Settings_Support_SupportCenter" xml:space="preserve">
-    <value>მხარდაჭერის ცენტრი</value>
-  </data>
-  <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
-    <value>გაზარდეთ თქვენი მიერთების სიჩქარე 400%-ით წარმადობის გაუმჯობესების ტექნოლოგიების საშუალებით.</value>
-  </data>
-  <data name="Login_Form" xml:space="preserve">
-    <value>შესვლის ფორმა</value>
-  </data>
-  <data name="Login_TwoFactor_Digit1" xml:space="preserve">
-    <value>პირველი ციფრი</value>
-  </data>
-  <data name="Login_TwoFactor_Digit2" xml:space="preserve">
-    <value>მეორე ციფრი</value>
-  </data>
-  <data name="Login_TwoFactor_Digit3" xml:space="preserve">
-    <value>მესამე ციფრი</value>
-  </data>
-  <data name="Login_TwoFactor_Digit4" xml:space="preserve">
-    <value>მეოთხე ციფრი</value>
-  </data>
-  <data name="Login_TwoFactor_Digit5" xml:space="preserve">
-    <value>მეხუთე ციფრი</value>
-  </data>
-  <data name="Login_TwoFactor_Digit6" xml:space="preserve">
-    <value>მეექვსე ციფრი</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
-    <value>პრობლემის ანგარიშის გადაგზავნა</value>
-  </data>
-  <data name="Common_Actions_ContactUs" xml:space="preserve">
-    <value>დაგვიკავშირდით</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
-    <value>სწრაფი ჩასწორებები</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
-    <value>არ იმუშავა?</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>ეს მინიშნებები დაგეხმარებათ, თქვენი პრობლემა უსწრაფესად გადაჭრათ.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
-    <value>ნაბიჯი {0} {1}-დან</value>
-    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>ელფოსტა</value>
-    <comment>The label for user e-mail address in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>example@domain.com</value>
-    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>შეცდომის ჟურნალის გაგზავნა</value>
-    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>შეცდომის ჟურნალი გვაჩვენებს, რა წავიდა არასწორად და რომელმა ქმედებებმა მიგვიყვანა აქამდე. ჩვენ მათ, მხოლოდ, ჩევნი ინჟინრებისთვის პროგრამის შეცდომის გასწორების გასაადვილებად ვიყენებთ.</value>
-    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
-    <value>ანგარიშის გაგზავნა</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
-    <value>დასრულებული</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>რაღაც არასწორად წავიდა</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>თქვენი ანგარიში ვერ გავგზავნე. შეამოწმეთ ინტერნეტკავშირი და თავიდან სცადეთ.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>კიდევ სცადეთ</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
-    <value>ანგარიში გაგზავნილია</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>მადლობა გამოხმაურებისთვის. დაგიკავშირდებით მაშინვე, როგორც კი შევძლებთ.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
-    <value>ავტომატური დაკავშირება</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>მიუერთდებით სერვერს მაშინვე, როცა Proton VPN გაიხსნება</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
-    <value>უსწრაფესი შეერთება</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
-    <value>ბოლოს მიუერთდით</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
-    <value>ავტოგაშვება</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
-    <value>Proton VPN ავტომატურად გაიხსნება, როცა თქვენს მოწყობილობაზე შეხვალთ</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
-    <value>კომპიუტერზე გახსნა</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
-    <value>სისტემურ არეში ჩაკეცვა</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
-    <value>ჩაკეცვა ამოცანების პანელზე</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>აპლიკაციის ჟურნალი</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
-    <value>სერვისის ჟურნალი</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>ნაგულისხმევი პარამეტრების აღდგენა</value>
-  </data>
-  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
-    <value>აღდგენა და თავიდან დაკავშირება</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
-    <value>ეს ჩამოყრის თქვენს Proton VPN-ის პარამეტრებს მათ საწყის მდგომარეობაზე.</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>ნაგულისხმევი პარამეტრების აღდგენა?</value>
-  </data>
-  <data name="Common_Actions_Close" xml:space="preserve">
-    <value>დახურვა</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
-    <value>ჟურნალის საქაღალდე ვერ ვიპოვე.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
-    <value>დამატებით</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
-    <value>ინტერნეტთან წვდომის, მხოლოდ, Proton VPN-თან ერთად დაშვება. Kill Switch აქტიური დარჩება მაშინაც კი, როცა თქვენს მოწყობილობას გადატვირთავთ.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
-    <value>იცავს თქვენს IP მისამართს VPN კავშირის გაწყვეტის შემთხვევაში ინტერნეტის გათიშვის საშუალებით.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>როცა KIll Switch ჩართულია, ვებსაიტებზე და აპებზე, რომლებიც თქვენი VPN მიერთებიდან Split Tunneling-ითაა ამოღებული, წვდომა არ გექნებათ.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
-    <value>სტანდარტული</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
-    <value>ინტერნეტის ავტომატური გათიშვა, თუ VPN კავშირი გაწყდება.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Description" xml:space="preserve">
-    <value>დაიცავით თავი რეკლამებისგან, მავნე პროგრამებისგან და ტრეკერებისგან აპებში და ვებგვერდებზე.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
-    <value>ზოგიერთი ვებგვერდი, შეიძლება, სწორად არ ჩაიტვირთოს, თუ რეკლამას და ტრეკერებს დაბლოკავთ.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
-    <value>აქტიური პორტი:</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
-    <value>პორტის ნომრის კოპირება</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
-    <value>აუარეთ გვერდი ბარნდმაუერებს, რომ მიუერთდეთ P2P სერვერებს და მოწყობილობებს თქვენს ლოკალურ ქსელში.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>იმისათვის, რომ გამოიყენოთ პორტის გადამისამართება, დაუკავშირდით სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
-    <value>გაფრთხილებები</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>გაფრთხილება, როცა პორტის გადამისამართების რიცხვი შეიცვლება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
-    <value>აპის დამატება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
-    <value>არჩეულია აპები ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
-    <value>აპის წაშლა</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
-    <value>მოირგეთ თქვენი მიერთება, გადაწყვიტეთ, რომელი აპები და IP მისამართები იქნებიან VPN-ით დაცული.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
-    <value>შებრუნება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
-    <value>მხოლოდ, არჩეული აპები და IP მისამართები გამოიყენებენ VPN-ს. დანარჩენი ყველაფერი დაუცველი იქნება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
-    <value>IP-ის დამატება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
-    <value>არჩეულია IP მისამართები ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
-    <value>IP-ის წაშლა</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
-    <value>IPv4 მისამართის დამატება</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
-    <value>სტანდარტული</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
-    <value>მონიშნული აპები და IP მისამართები ამოღებულია VPN მიერთებიდან</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
-    <value>აპის ფაილები</value>
-    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
-  </data>
-  <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>თავიდან დაკავშირება</value>
-  </data>
-  <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>გადატარება და თავიდან დაკავშირება</value>
-  </data>
-  <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>მოცილება</value>
-  </data>
-  <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>მოვაცილო პარამეტრის ცვლილებები?</value>
-  </data>
-  <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>ჩართვა</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
-    <value>როცა მიერთებისას თქვენს DNS სერვერი გაქვთ მითითებული, NetShield-ს ვერ გამოიყენებთ.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
-    <value>ჩავრთო მომხმარებლის DNS სერვერები?</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>ეს Splt Tunneling-ს გათიშავს.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Kill Switch-ის ჩართვა?</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
-    <value>თქვენ ვერ დაუკავშირდებით, როცა თქვენი DNS სერვერი გაქვთ მითითებულიი, როცა NetShield ჩართულია.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
-    <value>ჩავრთო NetShield?</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>ეს გათიშავს Kill Switch-ს.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>ჩავრთო Split Tunneling?</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
-    <value>თქვენ ვერ გამოიყენებთ პორტის გადამისამართებას საშუალო NAT-ით.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
-    <value>საშუალო NAT-ის ჩართვა?</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
-    <value>საშუალო NAT-ს ვერ გამოიყენებთ, როცა პორტის გადამისამართება ჩართულია.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
-    <value>ჩავრთო პორტის გადამისამართება?</value>
-  </data>
-  <data name="Cities" xml:space="preserve">
-    <value>ქალაქები</value>
-  </data>
-  <data name="Countries_All" xml:space="preserve">
+  <data name="Countries_All">
     <value>ყველა</value>
   </data>
-  <data name="Countries_City_One" xml:space="preserve">
-    <value>{0} ქალაქი</value>
-    <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
+  <data name="Countries_Cities">
+    <value>ქალაქები</value>
   </data>
-  <data name="Countries_City_Other" xml:space="preserve">
+  <data name="Countries_City_One">
     <value>{0} ქალაქი</value>
-    <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
   </data>
-  <data name="Countries_Connect" xml:space="preserve">
+  <data name="Countries_City_Other">
+    <value>{0} ქალაქი</value>
+  </data>
+  <data name="Countries_Connect">
     <value>დაკავშირება</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
-  <data name="Countries_P2P" xml:space="preserve">
-    <value>P2P</value>
+  <data name="Countries_Fastest">
+    <value>უსწრაფესი ქვეყანა</value>
   </data>
-  <data name="Countries_SecureCore" xml:space="preserve">
-    <value>Secure Core</value>
+  <data name="Countries_Info">
+    <value>ინფო</value>
   </data>
-  <data name="Countries_Tor" xml:space="preserve">
-    <value>Tor</value>
+  <data name="Countries_NoSearchResults">
+    <value>შედეგების გარეშე</value>
   </data>
-  <data name="Countries_Cities" xml:space="preserve">
-    <value>ქალაქები</value>
-  </data>
-  <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} სერვერი</value>
-  </data>
-  <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} სერვერი</value>
-  </data>
-  <data name="Countries_NumberOfCities" xml:space="preserve">
+  <data name="Countries_NumberOfCities">
     <value>ქალაქები ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
-  <data name="Countries_NumberOfCountries" xml:space="preserve">
+  <data name="Countries_NumberOfCountries">
     <value>ქვეყნები ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Secure Core-ის ქვეყნები ({0})</value>
-    <comment>{0} represents the number of countries</comment>
+  <data name="Countries_NumberOfServers">
+    <value>სერვერები ({0})</value>
+    <comment>{0} represents a number of servers</comment>
   </data>
-  <data name="Countries_Info" xml:space="preserve">
-    <value>ინფო</value>
+  <data name="Countries_P2P">
+    <value>P2P</value>
   </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>დამატებითი პირადულობა</value>
-  </data>
-  <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core თქვენს სამიზნე სერვერთან მეორე, მაქსიმალური უსაფრთხოების მქონე VPN სერვერით მიგაერთებთ.</value>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>მაღალი დაყოვნება</value>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>მაღალი კონფიდენციალობა</value>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>დაბალი შეყოვნება</value>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Secure Core VPN მიერთება</value>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>სტანდარტული VPN მიერთება</value>
-  </data>
-  <data name="Dialogs_SecureCore_Title" xml:space="preserve">
-    <value>Secure Core</value>
-  </data>
-  <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Secure Core-ის სერვერები ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
-  <data name="Countries_ViaCountry" xml:space="preserve">
-    <value>{0}-ის გავლით</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
-  </data>
-  <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>სერვერები ფიზიკურად განთავსებულია ქვეყანაში {0}, მაგრამ თქვენ გამოჩნდება, რომ {1}-დან მუშაობთ.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
-  <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing იყენებს ვირტუალურ სერვერბს, რომ  VPN დაფარვა ძნელად ხელმსაწვდომ ქვეყნებშიც იყო ხელმისაწვდომი.
-
-როცა უერთდებით Smart Routing სერვერს, გამოჩნდება, რომ თქვენ სამიზნე ქვეყანაში ხართ მაშინაც კი, თუ ფიზიკური სერვერი სადმე სხვაგანაა.  
-
-Smart Routing, ჩვეულებრივ, ანტი-კონფიდენციალობის კანონებისა და სხვა ფორმის ცენზურის თავის დასაღწევად გამოიყენება.</value>
-  </data>
-  <data name="Countries_P2PCountries" xml:space="preserve">
+  <data name="Countries_P2PCountries">
     <value>P2P ქვეყნები ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_TorCountries" xml:space="preserve">
+  <data name="Countries_P2P_Cities">
+    <value>P2P ქალაქები ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_Page_Title">
+    <value>ქვეყნები</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>მე მინდა ვიმუშაო ქვეყნიდან...</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCoreCountries">
+    <value>Secure Core-ის ქვეყნები ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_SecureCoreServers">
+    <value>Secure Core-ის სერვერები ({0})</value>
+    <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_Server_One">
+    <value>{0} სერვერი</value>
+  </data>
+  <data name="Countries_Server_Other">
+    <value>{0} სერვერი</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>სერვერის დატვირთვა</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_SmartRouting_Description">
+    <value>სერვერები ფიზიკურად განთავსებულია ქვეყანაში {0}, მაგრამ თქვენ გამოჩნდება, რომ {1}-დან მუშაობთ.</value>
+    <comment>{0} and {1} represent country names.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorCountries">
     <value>Tor ქვეყნები ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
+  <data name="Countries_TorServers">
+    <value>Tor-ის სერვერები ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>სცადეთ სხვა სიტყვა</value>
+  </data>
+  <data name="Countries_ViaCountry">
+    <value>{0}-ის გავლით</value>
+    <comment>{0} represents country name. For example: via Australia.</comment>
+  </data>
+  <data name="Country_Fastest">
+    <value>უსწრაფესი ქვეყანა</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>ანდორა</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>არაბეთის გაერთიანებული ემირატები</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>ავღანეთი</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>ანტიგუა და ბარბუდა</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>ანგვილა</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>ალბანეთი</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>სომხეთი</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>ანგოლა</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>ანტარქტიკა</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>არგენტინა</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>ამერიკული სამოა</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>ავსტრია</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>ავსტრალია</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>არუბა</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>ალანდის კუნძულები</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>აზერბაიჯანი</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>ბოსნია და ჰერცოგოვინა</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>ბარბადოსი</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>ბანგლადეში</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>ბელგია</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>ბურკინა ფასო</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>ბულგარეთი</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>ბაჰრეინი</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>ბურუნდი</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>ბენინი</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>სენ-ბართელმი</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>ბერმუდა</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>ბრუნეი-დარუსსალამი</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>ბოლივია</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>კარიბის ნიდერლანდები</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>ბრაზილია</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>ბაჰამები</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>ბუტანი</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>ბუვეტის კუნძული</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>ბოტსვანა</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>ბელარუსი</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>ბელიზი</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>კანადა</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>ქოქოსის კუნძულები</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>დემოკრატიული რესპუბლიკა კონგო</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>ცენტრალური აფრიკის რესპუბლიკა</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>კონგო</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>შვეიცარია</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>კოტ-დ’ივუარი</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>კუკის კუნძულები</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>ჩილე</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>კამერუნი</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>ჩინეთი</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>კოლუმბია</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>კოსტა რიკა</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>კუბა</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>კაბო-ვერდე</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>კიურასაო</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>შობის კუნძული</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>კვიპროსი</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>ჩეხეთი</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>გერმანია</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>ჯიბუტი</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>დანია</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>დომინიკა</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>დომენიკის რესპუბლიკა</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>ალჟირი</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>ეკვადორი</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>ესტონეთი</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>ეგვიპტე</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>დასავლეთ საჰარა</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>ერიტრეა</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>ესპანეთი</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>ეთიოპია</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>ფინეთი</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>ფიჯი</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>ფელკლენდის კუნძულები</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>მიკრონეზია</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>ფაროს კუნძულები</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>საფრანგეთი</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>გაბონი</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>გაერთიანებული სამეფო</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>გრენადა</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>საქართველო</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>ფრანგული გუიანა</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>გერნსი</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>განა</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>გიბრალტარი</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>გრინლანდია</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>გამბია</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>გვინეა</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>გვადელუპა</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>ეკვატორული გვინეა</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>საბერძნეთი</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>სამხრეთ ჯორჯია და სამხრეთ სენდვიჩის კუნძულები</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>გვატემალა</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>გუამი</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>გვინეა-ბისაუ</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>გაიანა</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>ჰონგ კონგი</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>ჰერდის კუნძული და მაკდონალდის კუნძულები</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>ჰონდურასი</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>ხორვატია</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>ჰაიტი</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>უნგრეთი</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>ინდონეზია</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>ირლანდია</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>ისრაელი</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>მენის კუნძული</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>ინდოეთი</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>ბრიტანეთის ინდოეთის ოკეანის ტერიტორია</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>ერაყი</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>ირანი</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>ისლანდია</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>იტალია</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>ჯერსი</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>იამაიკა</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>იორდანია</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>იაპონია</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>კენია</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>ყირგიზეთი</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>კამბოჯა</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>კირიბატი</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>კომოროსი</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>სენტ კიტსი და ნევისი</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>ჩრდილო კორეა</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>სამხრეთ კორეა</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>ქუვეითი</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>კაიმანის კუნძულები</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>ყაზახეთი</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>ლაოსი</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>ლებანონი</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>სანტა ლუჩია</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>ლიხტენშტეინი</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>შრი ლანკა</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>ლიბერია</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>ლესოტო</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>ლიეტუვა</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>ლუქსემბურგი</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>ლატვია</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>ლიბია</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>მოროკო</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>მონაკო</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>მოლდოვა</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>მონტენეგრო</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>სენტ მარტინი (ფრანგული ნაწილი)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>მადაგასკარი</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>მარშალის კუნძულები</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>მაკედონია</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>მალი</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>მიანმარი</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>მონღოლეთი</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>მაკაო</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>ჩრდილოეთ მარიანას კუნძულები</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>მარტინიკა</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>მავრიტანია</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>მონსერატი</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>მალტა</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>მავრიკი</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>მალდივები</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>მალავი</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>მექსიკა</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>მალაიზია</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>მოზამბიკი</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>ნამიბია</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>ახალი კალედონია</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>ნიგერია</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>ნორფოლკის კუნძული</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>ნიგერია</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>ნიკარაგუა</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>ჰოლანდია</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>ნორვეგია</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>ნეპალი</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>ნაურუ</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>ნიუე</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>ახალი ზელანდია</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>ომანი</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>პანამა</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>პერუ</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>ფრანგული პოლინეზია</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>პაპუა ახალი გვინეა</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>ფილიპინები</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>პაკისტანი</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>პოლონეთი</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>წმინდა პიერი და მიქელონი</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>პიტკერნი</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>პუერტო რიკო</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>პალესტინა</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>პორტუგალია</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>პალაუ</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>პარაგვაი</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>ყატარი</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>რეიუნიონი</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>რუმინეთი</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>სერბეთი</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>რუსეთი</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>რუანდა</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>საუდის არაბეთი</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>სოლომონის კუნძულები</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>სეიშელი</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>სუდანი</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>შვედეთი</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>სინგაპური</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>წმინდა ელენე, ამაღლება და ტრისტანი-და-კუნია</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>სლოვენია</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>სვალბარდი და ან-მაიენი</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>სლოვაკეთი</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>სიერა ლეონე</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>სან მარინო</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>სენეგალი</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>სომალი</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>სურინამი</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>სამხრეთ სუდანი</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>საო ტომე და პრინციპე</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>ელ სალვადორი</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>სინტ მაარტენი</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>სირია</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>ესვატინი</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>ტერქსისა და კაიკოსის კუნძულები</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>ჩადი</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>ფრანგული სამხრეთ ტერიტორიები</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>ტოგო</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>ტაილანდი</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>ტაჯიკეთი</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>ტოკელაუ</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>აღმოსავლეთ ტიმორი</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>თურქმენეთი</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>ტუნისი</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>ტონგა</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>თურქეთი</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>ტრინიდადი და ტობაგო</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>ტუვალუ</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>ტაივანი</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>ტანზანია</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>უკრაინა</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>უგანდა</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>გაერთიანებული სამეფო</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>შეერთებული შტატების მცირე გარემდებარე კუნძულები</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>შეერთებული შტატები</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>ურუგვაი</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>უზბეკეთი</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>ვატიკანი სითი</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>სენტ ვინცენტი და გრენადინები</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>ვენესუელა</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>ბრიტანეთის ვირჯინის კუნძულები</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>ვირჯინიის კუნძულები, აშშ</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>ვიეტნამი</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>ვანუატუ</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>ვალისი და ფუტუნა</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>სამოა</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>იემენი</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>მაიოტი</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>სამხრეთ აფრიკა</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>ზამბია</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>ზიმბაბვე</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>უცნობი</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Get unlimited server changes with VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>You've reached the maximum number of free server changes for now</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს უფასო ხელმისაწვდომ სერვერს ჩვენი {0} უფასო ქვეყნიდან. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს უფასო ხელმისაწვდომ სერვერს ჩვენი {0} უფასო ქვეყნიდან. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>უფასო სერვერის ქვეყანა ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>უფასო სერვერის ქვეყნები ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>უფასო მიერთებები</value>
+  </data>
+  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
+    <value>იქონიეთ წვდომა ყველაფერზე VPN Plus-თან ერთად</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>დაყოვნება აჩვენებს, რამდენი დრო მიაქვს სერვერს, რომ მოთხოვნებზე გიპასუხოთ.
+
+მაღალი დაყოვნება თქვენს მიერთებას ანელებს.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>VPN-მა, შეიძლება, ნორმალურზე ნელა იმუშაოს</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>მაღალი (150მწმ+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>სინათლის სიჩქარე</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>დაბალი (1მწმ- 50მწმ)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>VPN-ის სიჩქარეზე გავლენა, ალბათ, არ ექნება</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>საშუალო (50მწმ - 150 მწმ)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>რა არის დაყოვნება?</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
     <value>როგორ ვიმუშაოთ ტორენტებთან P2P-ით</value>
   </data>
-  <data name="Dialogs_P2P_Title" xml:space="preserve">
+  <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer">
     <value>რა არის P2P სერვერი?</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
     <value>P2P (გამჭოლი) VPN სერვერები ტორენტის საიტებს განბლოკავენ.</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting">
     <value>რა არის ტორენტი?</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
     <value>სწრაფი გაზიარება და დიდი ფაილების გადმოწერ P2P ქსელით.</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse">
     <value>რატომ გამოვიყენო P2P სერვერი ტორენტებთან მუშაობისას?</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse_Description">
     <value>• გაზრდლი ატვირთვისა და გადმოწერის სიჩქარე
 • აქტივობის ჟურნალის გარეშე
 • დამალეთ თქვენი IP მისამართი თქვენი სერვისის მომწოდებლებისგან და პარტნიორებისგან</value>
   </data>
-  <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
-    <value>Smart Routing</value>
+  <data name="Dialogs_Protocol_Description">
+    <value>პროტოკოლი ინსტრუქციების სეტია, რომელსაც თქვენი მოწყობილობა მიჰყვება სერვერთან დაკავშირებისა და ურთიერთობისათვის.</value>
   </data>
-  <data name="Countries_Fastest" xml:space="preserve">
-    <value>უსწრაფესი ქვეყანა</value>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>VPN-ის პროტოკოლის გადართვა</value>
   </data>
-  <data name="Dialogs_Tor_Description" xml:space="preserve">
-    <value>მიუერთდით Tor სერვერს, რომ იქონიოთ წვდომა დამალულ სერვისებთან და .onlion ვებგვერდებთან ნებისმიერი ბრაუზერით.</value>
+  <data name="Dialogs_Protocol_Title">
+    <value>რა არის VPN პროტოკოლი?</value>
   </data>
-  <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
-    <value>როგორ შევიდე Tor-ის ქსელში</value>
-  </data>
-  <data name="Dialogs_Tor_Title" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Countries_SearchPlaceholder" xml:space="preserve">
-    <value>მე მინდა ვიმუშაო ქვეყნიდან...</value>
-  </data>
-  <data name="Countries_P2P_Cities" xml:space="preserve">
-    <value>P2P ქალაქები ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
-  <data name="Countries_TorServers" xml:space="preserve">
-    <value>Tor-ის სერვერები ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
-  <data name="Countries_Server" xml:space="preserve">
-    <value>სერვერი</value>
-  </data>
-  <data name="Countries_ServerLoad" xml:space="preserve">
-    <value>სერვერის დატვირთვა</value>
-  </data>
-  <data name="Countries_SmartRouting" xml:space="preserve">
-    <value>Smart Routing</value>
-  </data>
-  <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>შედეგების გარეშე</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>სცადეთ სხვა სიტყვა</value>
-  </data>
-  <data name="Countries_NumberOfServers" xml:space="preserve">
-    <value>სერვერები ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
-  <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>თქვენს სესიას ვადა გაუვიდა. თავიდან შედით.</value>
-    <comment>The message displayed in Login window when expired session is detected</comment>
-  </data>
-  <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>დააყენეთ ეს რიცხვი BitTorrent-ის თქვენ აპლიკაციაში უფრო მეტი სიჩქარის მისაღებად.</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Udp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="VpnProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Login_Form_Email" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>ელფოსტა</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>პაროლით შესვლა</value>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithSso" xml:space="preserve">
-    <value>Sign in with SSO</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>შეცდომის ჟურნალის გაგზავნა</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
-    <value>შეცდომა სესიის დეტალების მიღებისას. კიდევ სცადეთ.</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>შეცდომის ჟურნალი გვაჩვენებს, რა წავიდა არასწორად და რომელმა ქმედებებმა მიგვიყვანა აქამდე. ჩვენ მათ, მხოლოდ, ჩევნი ინჟინრებისთვის პროგრამის შეცდომის გასწორების გასაადვილებად ვიყენებთ.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
-    <value>SSO ავთენტიკაცია ჩავარდა. თავიდან სცადეთ.</value>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>რა პრობლემა გაქვთ?</value>
   </data>
-  <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>ამჟამად თქვენი არჩეული სერვერები მიუწვდომელია. აირჩიეთ სხვა პარამეტრი.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>სწრაფი ჩასწორებები</value>
   </data>
-  <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>ქსელის თქვენი ადაპტერი ამჟამად გამოიყენება.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>არ იმუშავა?</value>
   </data>
-  <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>ქსელის ადაპტერის ვერსია მოძველებულია.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>ეს მინიშნებები დაგეხმარებათ, თქვენი პრობლემა უსწრაფესად გადაჭრათ.</value>
   </data>
-  <data name="Connection_Error_TlsCertificate" xml:space="preserve">
-    <value>არსებობს პრობლემა VPN სერვერის სერტიფიკატის გადამოწმებასთან, რაც შეიძლება ნიშნავდეს, რომ თქვენი ქსელური შეერთება გზაში იცვლება, ან სერვერს, რომელთან მიერთებასაც ცდილობთ, პრობლემები აქვს. დაუკავშირდით ჩვენი მხარდაჭერის გუნდს ანგარიშის გაგზავნით.</value>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>დასრულებული</value>
   </data>
-  <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>Proton VPN-ით მიერთება შეუძლებელია, რადგან WireGuard-ის ქსელის ინტერფეისი უკე გამოიყენება. გათიშეთ ყველა აქტიური VPN- და თავიდან სცადეთ. ან, შეგიძლიათ, პროტოკოლი გადართოთ დამატებითი პარამეტრებიდან.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>რაღაც არასწორად წავიდა</value>
   </data>
-  <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>ქსელის ადაპტერი ვერ ვიპოვე.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>თქვენი ანგარიში ვერ გავგზავნე. შეამოწმეთ ინტერნეტკავშირი და თავიდან სცადეთ.</value>
   </data>
-  <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_Result_RetryAction">
+    <value>კიდევ სცადეთ</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>ანგარიში გაგზავნილია</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>მადლობა გამოხმაურებისთვის. დაგიკავშირდებით მაშინვე, როგორც კი შევძლებთ.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>ანგარიშის გაგზავნა</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>ნაბიჯი {0} {1}-დან</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
     <value>პრობლემის ანგარიშის გადაგზავნა</value>
   </data>
-  <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
-    <value>Proton VPN-ს მიერთება არ შეუძლია, რადგან თქვენს სისტემაზე RPC სერვერი ხელმიუწვდომელია.</value>
+  <data name="Dialogs_SecureCore_AdvancedPrivacy">
+    <value>დამატებითი პირადულობა</value>
   </data>
-  <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>შესაძლო გადაწყვეტების ნახვა</value>
+  <data name="Dialogs_SecureCore_Description">
+    <value>Secure Core თქვენს სამიზნე სერვერთან მეორე, მაქსიმალური უსაფრთხოების მქონე VPN სერვერით მიგაერთებთ.</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
-    <value>მიაღწიეთ მოწყობლობების მაქსიმალურ დასაშვებ რაოდენობას. გათიშეთ სხვა მოწყობილობა, რომ ეს მიაერთოთ ან, 10 მოწყობილობის ერთდროულად მისაერთებლად, PLUS ტარიფამდე განახლდით.</value>
+  <data name="Dialogs_SecureCore_HighPrivacy">
+    <value>მაღალი კონფიდენციალობა</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedPaidUser" xml:space="preserve">
-    <value>მიაღწიეთ მოწყობილობების რაოდენობის ლიმიტს. ამ მოწყობილობის მისაერთებლად სხვა მოწყობილობის გათიშვა მოგიწევთ.</value>
+  <data name="Dialogs_SecureCore_HigherLatency">
+    <value>მაღალი დაყოვნება</value>
   </data>
-  <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>დარწმუნებულები არ ვართ, აქ რა მოხდა. თავიდან სცადეთ ან დაუკავშირდით მომხმარებლი მხარდაჭერის გუნდს.</value>
+  <data name="Dialogs_SecureCore_LowerLatency">
+    <value>დაბალი შეყოვნება</value>
   </data>
-  <data name="Gateways_Page_Title" xml:space="preserve">
+  <data name="Dialogs_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN მიერთება</value>
+  </data>
+  <data name="Dialogs_SecureCore_StandardConnection">
+    <value>სტანდარტული
+VPN მიერთება</value>
+  </data>
+  <data name="Dialogs_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>სერვერის დატვირთვა გაჩვენებთ, რამდენად ახლოსაა სერვერი მის მაქსიმალურ ტევადობასთან.
+
+სერვერის მაღალ დატვირთვას თქვენი მიერთების შენელება შეუძლია.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>VPN-მა, შეიძლება, ნორმალურზე ნელა იმუშაოს</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>მაღალი (91–100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>სინათლის სიჩქარე</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>დაბალი (1–75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>VPN-ის სიჩქარეზე გავლენა, ალბათ, არ ექნება</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>საშუალო (76–90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>რა არის სერვერის დატვირთვა?</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Description">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+
+Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>მიუერთდით Tor სერვერს, რომ იქონიოთ წვდომა დამალულ სერვისებთან და .onlion ვებგვერდებთან ნებისმიერი ბრაუზერით.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>როგორ შევიდე Tor-ის ქსელში</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>მიმდინარეობს თქვენი VPN მიერთების მორგება. ამას რამდენიმე წუთი შეიძლება დასჭირდეს.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>მოგესალმებით Proton VPN-ში</value>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}მწმ</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} ბ</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} ებ</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} გბ</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} კბ</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} მბ</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} პბ</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} ტბ</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} ბ/წმ</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} ებ/წმ</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} გბ/წმ</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} კბ/წმ</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} მბ/წმ</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} პბ/წმ</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} ტბ/წმ</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day">
+    <value>{0} დღე</value>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DayHours">
+    <value>{0} დღე {1} სთ</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Days">
+    <value>{0} დღე</value>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DaysHours">
+    <value>{0} დღე {1} სთ</value>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} სთ</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} სთ {1} წთ</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} წთ</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} წთ {1} წმ</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} წმ</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Gateways_Page_Title">
     <value>რაუტერები</value>
   </data>
-  <data name="Gateways_Server" xml:space="preserve">
+  <data name="Gateways_Server">
     <value>გამოყოფილი სერვერი</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
+  <data name="Home_Account_SignOut">
+    <value>გასვლა</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Message">
     <value>VPN გაითიშება.</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
+  <data name="Home_Account_SignOut_Confirmation_Title">
     <value>გავიდე {0}-დან?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Tray_Actions_ExitApplication" xml:space="preserve">
+  <data name="Home_Account_Title">
+    <value>ჩემი ანგარიში</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Change server</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>მუშაობთ ინტერნეტში უსაფრთხოდ ქვეყნიდან</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>დაკავშირება...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>უფასო მიერთება</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>ბოლოს მიუერთდით</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended">
+    <value>რეკომენდებულია</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>მიერთების ბარათი</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>ქალაქი</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>დაკავშირებულია</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>ქვეყანა</value>
+  </data>
+  <data name="Home_ConnectionDetails_Download">
+    <value>გადმოწერა</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>რაუტერი</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>მიერთების დეტალების დამალვა</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>დამალვა</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>მომხმარებლის IP მისამართის დამალვა</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>მიერთების დეტალები</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Latency">
+    <value>დაყოვნება</value>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>ჩემი IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>პროტოკოლი</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>სერვერი</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>სერვერის დატვირთვა</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>მიერთების დეტალების ჩვენება</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>ჩვენება</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>მომხმარებლის IP მისამართის ჩვენება</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>მიერთების დეტალები</value>
+  </data>
+  <data name="Home_ConnectionDetails_Upload">
+    <value>ატვირთვა</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>მეტი ინფორმაცია უფასო მიერთებების შესახებ</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>დახმარება</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>რუკა</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked">
+    <value>რეკლამა
+დაიბლოკა</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>მინაცემები
+შენახულია</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>NetShield-ის სტატისტიკა</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_TrackersStopped">
+    <value>ტრეკერი
+შეჩერებულია</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_Page_Title">
+    <value>მთავარი</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>უახლესი მიერთებები</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>მიმაგრება</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>ქმედებები</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>სერვერი ტექმომსახურებაშია</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>ახლახან გამოყენებულები</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>მოხსნა</value>
+  </data>
+  <data name="Home_Update_Confirmation_Message">
+    <value>განახლების პროცესის დასასრულებლად Proton VPN დროებით გათიშავს დამატებით Kill Switch-ს, თუ რომელიმე აქტიურია. გნებავთ გააგრძელოთ?</value>
+    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  </data>
+  <data name="Home_Update_Confirmation_Title">
+    <value>Proton VPN-ის განახლება?</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>განახლება ხელმისაწვდომია</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>განახლება მზადაა</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>VPN-ის სტატუსი</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>ვიცავთ თქვენს ციფრულ მონაცემებს</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>დაცული არ ბრძანდებით</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>დაცულია</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>შეცდომა სესიის დეტალების მიღებისას. კიდევ სცადეთ.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>კოდი არასწორია. თავიდან სცადეთ.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>თქვენს სესიას ვადა გაუვიდა. თავიდან შედით.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>SSO ავთენტიკაცია ჩავარდა. თავიდან სცადეთ.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>არასწორი შესვლის პარამეტრები. თავიდან სცადეთ.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>2FA ჩავარდა. თავიდან შედით.</value>
+  </data>
+  <data name="Login_Form">
+    <value>შესვლის ფორმა</value>
+  </data>
+  <data name="Login_Form_CreateAccount">
+    <value>ანგარიშის შექმნა</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_Email">
+    <value>ელფოსტა</value>
+  </data>
+  <data name="Login_Form_ForgotUsername">
+    <value>დაგავიწყდათ თქვენი მომხმარებლის სახელი</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Help">
+    <value>დახმარება</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Password">
+    <value>პაროლი</value>
+  </data>
+  <data name="Login_Form_ReportAnIssue">
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_ResetPassword">
+    <value>პაროლის ჩამოყრა</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_SignIn">
+    <value>შესვლა</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_SignInWithPassword">
+    <value>პაროლით შესვლა</value>
+  </data>
+  <data name="Login_Form_SignInWithSso">
+    <value>Sign in with SSO</value>
+  </data>
+  <data name="Login_Form_TroubleSigningIn">
+    <value>შესვლის პრობლემები გაქვთ</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Username">
+    <value>ელფოსტა ან მომხმარებლის სახელი</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>ავთენტიკაცია</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>შეიყვანეთ კოდი თქვენი ავთენტიკატორი აპიდან</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>2FA</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>პირველი ციფრი</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>მეორე ციფრი</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>მესამე ციფრი</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>მეოთხე ციფრი</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>მეხუთე ციფრი</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>მეექვსე ციფრი</value>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>მიმდინარეობს შესვლა. გთხოვთ, მოითმინეთ...</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>გასვლა. მოითმინეთ...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>დააყენეთ ეს რიცხვი BitTorrent-ის თქვენ აპლიკაციაში უფრო მეტი სიჩქარის მისაღებად.</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>ყველაზე სწრაფი უფასო სერვერი</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>უფასო სერვერი</value>
+  </data>
+  <data name="Settings_About">
+    <value>შესახებ</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>აპის ვერსია</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>ეს სტატისტიკა არ შეიცავს თქვენს IP მისამართს და მათი იდენტიფიცირებისთვის შეუძლებელია. ჩვენ არასდროს გავუზიარებთ მათ მესამე მხარეებს.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>ავარიის ანგარიშების ანონიმურად გაზიარება</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>ავარიის ანგარიშები გვეხმარება შეცდომების გამოსწორებაში, ფეიერვოლების აღმოჩენაში და VPN ბლოკების თავიდან აცილებაში.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>გამოყენების ანონიმური სტატისტიკის გაზიარება</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>გამოყენების მონაცემები გვეხმარება VPN ბლოკების დაძლევაში და აპლიკაციის მუშაობის გაუმჯობესებაში.</value>
+  </data>
+  <data name="Settings_Common_ApplyAndReconnect">
+    <value>გადატარება და თავიდან დაკავშირება</value>
+  </data>
+  <data name="Settings_Common_Discard">
+    <value>მოცილება</value>
+  </data>
+  <data name="Settings_Common_Discard_Title">
+    <value>მოვაცილო პარამეტრის ცვლილებები?</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>კავშირი</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>დამატებითი პარამეტრები</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>ალტერნატიული რაუტინგი</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>თუ Proton-ის სერვისები დაბლოკილია ქსელის შეზღუდვების გამო, ჩვენ ალტერნატიულ ქსელის რაუტინგს ვცდით, რომ ჩვენს საიტებთან დაგაკავშიროთ.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>DNS სერვერების ხელით მითითება</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>როცა მიერთებისას თქვენს DNS სერვერი გაქვთ მითითებული, NetShield-ს ვერ გამოიყენებთ.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>ჩავრთო მომხმარებლის DNS სერვერები?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>მიუერთდით Proton VPN-ს თქვენი საკუთარი DNS-ით. გამოიყენეთ, მხოლოდ, DNS სერვერები, რომლებსაც ენდობით.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS სერვერები ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
+    <value>IPv4 მისამართის დამატება</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>IPv6 გაპარებისგან დაცვა</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>IPv6 მისამართის გაჟონვის ხელის შეშლა.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>LAN შეერთებები</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>საშუალებას გაძლევთ, დაუკავშირდეთ პრინტერებს, დინამიკებს და სხვა მოწყობილობებს თქვენი მოწყობილობის ლოკალურ ქსელში.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>NAT-ის ტიპი</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>თქვენ ვერ გამოიყენებთ პორტის გადამისამართებას საშუალო NAT-ით.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>საშუალო NAT-ის ჩართვა?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>აირჩიეთ ქსელის თარგმანის ტიპი თქვენი მიერთებისთვის.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>საშუალო (ტიპი 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>მცირე შეზღუდვები თქვენს ქსელში შემომავალი მონაცემებისთვის. ეს პარამეტრი საუკეთესოა ონლაინ-თამაშებისთვის.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>მკაცრი (ტიპი 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>ზღუდავს თქვენს ქსელში შემომავალ ინფორმაციას. ეს პარამეტრი ფრო დაცულია, მაგრამ გამჭოლი მიერთების გამომყენებელი თამაშების მუშაობა უფრო ძნელი იქნება.</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>პროტოკოლი</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_Features">
+    <value>ფუნქციები</value>
+  </data>
+  <data name="Settings_Features_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced">
+    <value>დამატებით</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced_Description">
+    <value>ინტერნეტთან წვდომის, მხოლოდ, Proton VPN-თან ერთად დაშვება. Kill Switch აქტიური დარჩება მაშინაც კი, როცა თქვენს მოწყობილობას გადატვირთავთ.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Description">
+    <value>ეს Splt Tunneling-ს გათიშავს.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Title">
+    <value>Kill Switch-ის ჩართვა?</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Description">
+    <value>იცავს თქვენს IP მისამართს VPN კავშირის გაწყვეტის შემთხვევაში ინტერნეტის გათიშვის საშუალებით.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Footer">
+    <value>როცა KIll Switch ჩართულია, ვებსაიტებზე და აპებზე, რომლებიც თქვენი VPN მიერთებიდან Split Tunneling-ითაა ამოღებული, წვდომა არ გექნებათ.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard">
+    <value>სტანდარტული</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard_Description">
+    <value>ინტერნეტის ავტომატური გათიშვა, თუ VPN კავშირი გაწყდება.</value>
+  </data>
+  <data name="Settings_Features_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Description">
+    <value>თქვენ ვერ დაუკავშირდებით, როცა თქვენი DNS სერვერი გაქვთ მითითებულიი, როცა NetShield ჩართულია.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Title">
+    <value>ჩავრთო NetShield?</value>
+  </data>
+  <data name="Settings_Features_NetShield_Description">
+    <value>დაიცავით თავი რეკლამებისგან, მავნე პროგრამებისგან და ტრეკერებისგან აპებში და ვებგვერდებზე.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Footer">
+    <value>ზოგიერთი ვებგვერდი, შეიძლება, სწორად არ ჩაიტვირთოს, თუ რეკლამას და ტრეკერებს დაბლოკავთ.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding">
+    <value>პორტის გადამისამართება</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort">
+    <value>აქტიური პორტი:</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort_Copy">
+    <value>პორტის ნომრის კოპირება</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Description">
+    <value>საშუალო NAT-ს ვერ გამოიყენებთ, როცა პორტის გადამისამართება ჩართულია.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Title">
+    <value>ჩავრთო პორტის გადამისამართება?</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Description">
+    <value>აუარეთ გვერდი ბარნდმაუერებს, რომ მიუერთდეთ P2P სერვერებს და მოწყობილობებს თქვენს ლოკალურ ქსელში.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Footer">
+    <value>იმისათვის, რომ გამოიყენოთ პორტის გადამისამართება, დაუკავშირდით სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications">
+    <value>გაფრთხილებები</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications_Description">
+    <value>გაფრთხილება, როცა პორტის გადამისამართების რიცხვი შეიცვლება</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling">
+    <value>Split Tunneling</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Add">
+    <value>აპის დამატება</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
+    <value>აპის ფაილები</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Header">
+    <value>არჩეულია აპები ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Remove">
+    <value>აპის წაშლა</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Description">
+    <value>ეს გათიშავს Kill Switch-ს.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Title">
+    <value>ჩავრთო Split Tunneling?</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Description">
+    <value>მოირგეთ თქვენი მიერთება, გადაწყვიტეთ, რომელი აპები და IP მისამართები იქნებიან VPN-ით დაცული.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse">
+    <value>შებრუნება</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse_Description">
+    <value>მხოლოდ, არჩეული აპები და IP მისამართები გამოიყენებენ VPN-ს. დანარჩენი ყველაფერი დაუცველი იქნება</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
+    <value>IP-ის დამატება</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
+    <value>არჩეულია IP მისამართები ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
+    <value>IP-ის წაშლა</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
+    <value>IPv4 მისამართის დამატება</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard">
+    <value>სტანდარტული</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard_Description">
+    <value>მონიშნული აპები და IP მისამართები ამოღებულია VPN მიერთებიდან</value>
+  </data>
+  <data name="Settings_General">
+    <value>ზოგადი</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>ავტოგაშვება</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>ავტომატური დაკავშირება</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>მიუერთდებით სერვერს მაშინვე, როცა Proton VPN გაიხსნება</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>უსწრაფესი შეერთება</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>ბოლოს მიუერთდით</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>ავტოგაშვება</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN ავტომატურად გაიხსნება, როცა თქვენს მოწყობილობაზე შეხვალთ</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>კომპიუტერზე გახსნა</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>სისტემურ არეში ჩაკეცვა</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>ჩაკეცვა ამოცანების პანელზე</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>ავტოგაშვება, ავტომიერთება</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>ავტომატური განახლებები</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Proton VPN-ის განახლებების ავტომატური შემოწმება და დაყენება</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>წვდომა ბეტა ვერსიებზე</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>მიიღეთ ადრეული წვდომა და დაგვეხმარეთ, Proton VPN-ის ახალი ვერსიები დავტესტოთ</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>ენა</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>გაფრთხილებები</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>მიიღეთ შეტყობინებები Proton VPN-ის მიმდინარე აქტივობების შესახებ</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN-ის ქსელის დრაივერი</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>ქსელის დრაივერებს თქვენს შეერთებაზე და მის სიჩქარეზე დიდი ეფექტის მოხდენა შეუძლიათ. ახალი TUN ტიპის ადაპტერს უფრო დიდი წარმადობა გააჩნია. თუ რაიმე პრობლემას შეამჩნევთ, ძველ, TAP ადაპტერზე გადაერთეთ.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>თემა</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>ბნელი</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>ნაგულისხმევი</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>ღია</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>გააუმჯობესეთ Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>დაგვეხმარეთ, ვებრძოლოთ ცენზურას</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>ოპერაციული სისტემის ვერსია</value>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>მორგება</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>VPN პროტოკოლი განსაზღვრავს, როგორ მოძრაობს მონაცემები VPN სერვერსა და თქვენს მოწყობილობას შორის.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>გამოცდილი, დატესტილი და დაცული. OpenVPN სანდოა ნელი ქსელის პირობებში, მაგრამ ის ისეთი სწრაფი არაა, როგორც სხვა პროტოკოლები.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>ცნობილი, დატესტილი და დაცული. OpenVPN ნაკლებად მეგობრობს ელემენტთან, ვიდრე სხვა პროტოკოლები.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended">
+    <value>რეკომენდებულია</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>ავტომატურად აირჩევს საუკეთესო პროტოკოლს თქვენი მიერთებისთვის.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>საიმედოობა (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>სიჩქარე (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>სწრაფი, დაცული და ეფექტური. WireGuard უფრო ნაკლებ ელემენტს ხარჯავს, ვიდრე სხვა პროტოკოლები.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>ნაგულისხმევი პარამეტრების აღდგენა</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>აღდგენა და თავიდან დაკავშირება</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>ნაგულისხმევი პარამეტრების აღდგენა</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>ეს ჩამოყრის თქვენს Proton VPN-ის პარამეტრებს მათ საწყის მდგომარეობაზე.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>ნაგულისხმევი პარამეტრების აღდგენა?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Support">
+    <value>მხარდაჭერა</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>გამართვის ჟურნალი</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>აპლიკაციის ჟურნალი</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>ჟურნალის საქაღალდე ვერ ვიპოვე.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>სერვისის ჟურნალი</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>პრობლემის ანგარიშის გადაგზავნა</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>მხარდაჭერის ცენტრი</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>გაზარდეთ თქვენი მიერთების სიჩქარე 400%-ით წარმადობის გაუმჯობესების ტექნოლოგიების საშუალებით.</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>გასვლა</value>
   </data>
-  <data name="Tray_Actions_OpenApplication" xml:space="preserve">
+  <data name="Tray_Actions_OpenApplication">
     <value>{0}-ის გახსნა</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard</value>
   </data>
 </root>

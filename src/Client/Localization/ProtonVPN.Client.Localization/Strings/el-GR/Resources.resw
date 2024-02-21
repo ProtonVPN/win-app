@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,2149 +117,2261 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Common_Actions_Add" xml:space="preserve">
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Δωρεάν</value>
+  </data>
+  <data name="Cities">
+    <value>Πόλεις</value>
+  </data>
+  <data name="Common_Actions_Add">
     <value>Προσθήκη</value>
   </data>
-  <data name="Common_Actions_Cancel" xml:space="preserve">
+  <data name="Common_Actions_Cancel">
     <value>Ακύρωση</value>
   </data>
-  <data name="Common_Actions_Connect" xml:space="preserve">
+  <data name="Common_Actions_Close">
+    <value>Κλείσιμο</value>
+  </data>
+  <data name="Common_Actions_Connect">
     <value>Σύνδεση</value>
   </data>
-  <data name="Common_Actions_Disconnect" xml:space="preserve">
+  <data name="Common_Actions_ContactUs">
+    <value>Επικοινωνήστε μαζί μας</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
     <value>Αποσύνδεση</value>
   </data>
-  <data name="Common_Actions_Remove" xml:space="preserve">
+  <data name="Common_Actions_Enable">
+    <value>Ενεργοποίηση</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Επανασύνδεση</value>
+  </data>
+  <data name="Common_Actions_Remove">
     <value>Αφαίρεση</value>
   </data>
-  <data name="Common_Links_LearnMore" xml:space="preserve">
+  <data name="Common_Actions_Update">
+    <value>Ενημέρωση</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Upgrade</value>
+  </data>
+  <data name="Common_Links_LearnMore">
     <value>Μάθετε περισσότερα</value>
   </data>
-  <data name="Common_Message_Loading" xml:space="preserve">
+  <data name="Common_Message_Loading">
     <value>Φόρτωση...</value>
   </data>
-  <data name="Common_States_Off" xml:space="preserve">
+  <data name="Common_States_Off">
     <value>Ανενεργό</value>
   </data>
-  <data name="Common_States_On" xml:space="preserve">
+  <data name="Common_States_On">
     <value>Ενεργό</value>
   </data>
-  <data name="Connection_Intent_City_Server" xml:space="preserve">
+  <data name="Connection_Error_MissingAuthCertificate">
+    <value>Το Proton VPN απέτυχε να ανακτήσει το πιστοποιητικό ελέγχου ταυτότητας λόγω προβλήματος δικτύου.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Δεν υπάρχουν διακομιστές που να είναι διαθέσιμοι τώρα για την επιλογή σας. Επιλέξτε μια άλλη επιλογή.</value>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Απουσία προσαρμογέα δικτύου.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Αναφορά προβλήματος</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Το Proton VPN δεν μπορεί να συνδεθεί επειδή ο διακομιστής RPC δεν είναι διαθέσιμος στο σύστημά σας.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Παρακαλούμε αποσυνδέστε μια άλλη συσκευή για να τη συνδέσετε ή αναβαθμίστε σε PLUS για να συνδέσετε έως και 10 συσκευές ταυτόχρονα.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Παρακαλούμε αποσυνδέστε μια άλλη συσκευή για να συνδέσετε αυτήν.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Ο προσαρμογέας δικτύου σας χρησιμοποιείται αυτήν τη στιγμή.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Η έκδοση του προσαρμογέα δικτύου είναι ξεπερασμένη.</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Υπάρχει πρόβλημα με την επικύρωση του πιστοποιητικού διακομιστή VPN, το οποίο μπορεί να υποδεικνύει ότι η σύνδεση δικτύου έχει αλλοιωθεί ή ότι ο διακομιστής στον οποίο προσπαθείτε να συνδεθείτε έχει πρόβλημα ρύθμισης παραμέτρων. Λάβετε βοήθεια από την υποστήριξη πελατών μας στέλνοντας μια αναφορά ζητήματος.</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Δεν είμαστε σίγουροι τι συνέβη εδώ. Παρακαλούμε δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα υποστήριξης πελατών μας.</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Δείτε πιθανές λύσεις</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Το Proton VPN δεν μπόρεσε να συνδεθεί επειδή ο προσαρμογέας δικτύου WireGuard είναι ήδη σε χρήση. Αποσυνδέστε τυχόν ενεργά VPN και δοκιμάστε ξανά. Εναλλακτικά, μπορείτε να αλλάξετε πρωτόκολλα στις Ρυθμίσεις για Προχωρημένους.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Επιλέχθηκε αυτόματα από</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
   </data>
-  <data name="Connection_Intent_Country_Server" xml:space="preserve">
+  <data name="Connection_Intent_Country_Server">
     <value>{0} #{1}</value>
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
-  <data name="Connection_Via_SecureCore" xml:space="preserve">
+  <data name="Connection_Via_SecureCore">
     <value>μέσω {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
-  <data name="Countries_Page_Title" xml:space="preserve">
-    <value>Χώρες</value>
-  </data>
-  <data name="Country_Fastest" xml:space="preserve">
-    <value>Ταχύτερη χώρα</value>
-  </data>
-  <data name="Country_val_AD" xml:space="preserve">
-    <value>Ανδόρα</value>
-    <comment>The name of AD country</comment>
-  </data>
-  <data name="Country_val_AE" xml:space="preserve">
-    <value>Ηνωμένα Αραβικά Εμιράτα</value>
-    <comment>The name of AE country</comment>
-  </data>
-  <data name="Country_val_AF" xml:space="preserve">
-    <value>Αφγανιστάν</value>
-    <comment>The name of AF country</comment>
-  </data>
-  <data name="Country_val_AG" xml:space="preserve">
-    <value>Αντίγκουα και Μπαρμπούντα</value>
-    <comment>The name of AG country</comment>
-  </data>
-  <data name="Country_val_AI" xml:space="preserve">
-    <value>Ανγκουίλα</value>
-    <comment>The name of AI country</comment>
-  </data>
-  <data name="Country_val_AL" xml:space="preserve">
-    <value>Αλβανία</value>
-    <comment>The name of AL country</comment>
-  </data>
-  <data name="Country_val_AM" xml:space="preserve">
-    <value>Αρμενία</value>
-    <comment>The name of AM country</comment>
-  </data>
-  <data name="Country_val_AO" xml:space="preserve">
-    <value>Αγκόλα</value>
-    <comment>The name of AO country</comment>
-  </data>
-  <data name="Country_val_AQ" xml:space="preserve">
-    <value>Ανταρκτική</value>
-    <comment>The name of AQ country</comment>
-  </data>
-  <data name="Country_val_AR" xml:space="preserve">
-    <value>Αργεντινή</value>
-    <comment>The name of AR country</comment>
-  </data>
-  <data name="Country_val_AS" xml:space="preserve">
-    <value>Αμερικανική Σαμόα</value>
-    <comment>The name of AS country</comment>
-  </data>
-  <data name="Country_val_AT" xml:space="preserve">
-    <value>Αυστρία</value>
-    <comment>The name of AT country</comment>
-  </data>
-  <data name="Country_val_AU" xml:space="preserve">
-    <value>Αυστραλία</value>
-    <comment>The name of AU country</comment>
-  </data>
-  <data name="Country_val_AW" xml:space="preserve">
-    <value>Αρούμπα</value>
-    <comment>The name of AW country</comment>
-  </data>
-  <data name="Country_val_AX" xml:space="preserve">
-    <value>Νησιά Άλαντ</value>
-    <comment>The name of AX country</comment>
-  </data>
-  <data name="Country_val_AZ" xml:space="preserve">
-    <value>Αζερμπαϊτζάν</value>
-    <comment>The name of AZ country</comment>
-  </data>
-  <data name="Country_val_BA" xml:space="preserve">
-    <value>Βοσνία Ερζεγοβίνη</value>
-    <comment>The name of BA country</comment>
-  </data>
-  <data name="Country_val_BB" xml:space="preserve">
-    <value>Μπαρμπάντος</value>
-    <comment>The name of BB country</comment>
-  </data>
-  <data name="Country_val_BD" xml:space="preserve">
-    <value>Μπαγκλαντές</value>
-    <comment>The name of BD country</comment>
-  </data>
-  <data name="Country_val_BE" xml:space="preserve">
-    <value>Βέλγιο</value>
-    <comment>The name of BE country</comment>
-  </data>
-  <data name="Country_val_BF" xml:space="preserve">
-    <value>Μπουρκίνα Φάσο</value>
-    <comment>The name of BF country</comment>
-  </data>
-  <data name="Country_val_BG" xml:space="preserve">
-    <value>Βουλγαρία</value>
-    <comment>The name of BG country</comment>
-  </data>
-  <data name="Country_val_BH" xml:space="preserve">
-    <value>Μπαχρέιν</value>
-    <comment>The name of BH country</comment>
-  </data>
-  <data name="Country_val_BI" xml:space="preserve">
-    <value>Μπουρούντι</value>
-    <comment>The name of BI country</comment>
-  </data>
-  <data name="Country_val_BJ" xml:space="preserve">
-    <value>Μπενίν</value>
-    <comment>The name of BJ country</comment>
-  </data>
-  <data name="Country_val_BL" xml:space="preserve">
-    <value>Άγιος Βαρθολομαίος</value>
-    <comment>The name of BL country</comment>
-  </data>
-  <data name="Country_val_BM" xml:space="preserve">
-    <value>Βερμούδες</value>
-    <comment>The name of BM country</comment>
-  </data>
-  <data name="Country_val_BN" xml:space="preserve">
-    <value>Μπρουνέι</value>
-    <comment>The name of BN country</comment>
-  </data>
-  <data name="Country_val_BO" xml:space="preserve">
-    <value>Βολιβία</value>
-    <comment>The name of BO country</comment>
-  </data>
-  <data name="Country_val_BQ" xml:space="preserve">
-    <value>Μπονέρ, Άγιος Ευστάθιος και Σάμπα</value>
-    <comment>The name of BQ country</comment>
-  </data>
-  <data name="Country_val_BR" xml:space="preserve">
-    <value>Βραζιλία</value>
-    <comment>The name of BR country</comment>
-  </data>
-  <data name="Country_val_BS" xml:space="preserve">
-    <value>Μπαχάμες</value>
-    <comment>The name of BS country</comment>
-  </data>
-  <data name="Country_val_BT" xml:space="preserve">
-    <value>Μπουτάν</value>
-    <comment>The name of BT country</comment>
-  </data>
-  <data name="Country_val_BV" xml:space="preserve">
-    <value>Νήσος Μπουβέ</value>
-    <comment>The name of BV country</comment>
-  </data>
-  <data name="Country_val_BW" xml:space="preserve">
-    <value>Μποτσουάνα</value>
-    <comment>The name of BW country</comment>
-  </data>
-  <data name="Country_val_BY" xml:space="preserve">
-    <value>Λευκορωσία</value>
-    <comment>The name of BY country</comment>
-  </data>
-  <data name="Country_val_BZ" xml:space="preserve">
-    <value>Μπελίζ</value>
-    <comment>The name of BZ country</comment>
-  </data>
-  <data name="Country_val_CA" xml:space="preserve">
-    <value>Καναδάς</value>
-    <comment>The name of CA country</comment>
-  </data>
-  <data name="Country_val_CC" xml:space="preserve">
-    <value>Νήσοι Κόκος</value>
-    <comment>The name of CC country</comment>
-  </data>
-  <data name="Country_val_CD" xml:space="preserve">
-    <value>Κονγκό-Κινσάσα</value>
-    <comment>The name of CD country</comment>
-  </data>
-  <data name="Country_val_CF" xml:space="preserve">
-    <value>Κεντροαφρικανική Δημοκρατία</value>
-    <comment>The name of CF country</comment>
-  </data>
-  <data name="Country_val_CG" xml:space="preserve">
-    <value>Κονγκό-Μπραζαβίλ</value>
-    <comment>The name of CG country</comment>
-  </data>
-  <data name="Country_val_CH" xml:space="preserve">
-    <value>Ελβετία</value>
-    <comment>The name of CH country</comment>
-  </data>
-  <data name="Country_val_CI" xml:space="preserve">
-    <value>Ακτή Ελεφαντοστού</value>
-    <comment>The name of CI country</comment>
-  </data>
-  <data name="Country_val_CK" xml:space="preserve">
-    <value>Νήσοι Κουκ</value>
-    <comment>The name of CK country</comment>
-  </data>
-  <data name="Country_val_CL" xml:space="preserve">
-    <value>Χιλή</value>
-    <comment>The name of CL country</comment>
-  </data>
-  <data name="Country_val_CM" xml:space="preserve">
-    <value>Καμερούν</value>
-    <comment>The name of CM country</comment>
-  </data>
-  <data name="Country_val_CN" xml:space="preserve">
-    <value>Κίνα</value>
-    <comment>The name of CN country</comment>
-  </data>
-  <data name="Country_val_CO" xml:space="preserve">
-    <value>Κολομβία</value>
-    <comment>The name of CO country</comment>
-  </data>
-  <data name="Country_val_CR" xml:space="preserve">
-    <value>Κόστα Ρίκα</value>
-    <comment>The name of CR country</comment>
-  </data>
-  <data name="Country_val_CU" xml:space="preserve">
-    <value>Κούβα</value>
-    <comment>The name of CU country</comment>
-  </data>
-  <data name="Country_val_CV" xml:space="preserve">
-    <value>Πράσινο Ακρωτήριo</value>
-    <comment>The name of CV country</comment>
-  </data>
-  <data name="Country_val_CW" xml:space="preserve">
-    <value>Κουρασάο</value>
-    <comment>The name of CW country</comment>
-  </data>
-  <data name="Country_val_CX" xml:space="preserve">
-    <value>Νήσος Χριστουγέννων</value>
-    <comment>The name of CX country</comment>
-  </data>
-  <data name="Country_val_CY" xml:space="preserve">
-    <value>Κύπρος</value>
-    <comment>The name of CY country</comment>
-  </data>
-  <data name="Country_val_CZ" xml:space="preserve">
-    <value>Τσεχία</value>
-    <comment>The name of CZ country</comment>
-  </data>
-  <data name="Country_val_DE" xml:space="preserve">
-    <value>Γερμανία</value>
-    <comment>The name of DE country</comment>
-  </data>
-  <data name="Country_val_DJ" xml:space="preserve">
-    <value>Τζιμπουτί</value>
-    <comment>The name of DJ country</comment>
-  </data>
-  <data name="Country_val_DK" xml:space="preserve">
-    <value>Δανία</value>
-    <comment>The name of DK country</comment>
-  </data>
-  <data name="Country_val_DM" xml:space="preserve">
-    <value>Δομινίκα</value>
-    <comment>The name of DM country</comment>
-  </data>
-  <data name="Country_val_DO" xml:space="preserve">
-    <value>Δομινικανή Δημοκρατία</value>
-    <comment>The name of DO country</comment>
-  </data>
-  <data name="Country_val_DZ" xml:space="preserve">
-    <value>Αλγερία</value>
-    <comment>The name of DZ country</comment>
-  </data>
-  <data name="Country_val_EC" xml:space="preserve">
-    <value>Ισημερινός</value>
-    <comment>The name of EC country</comment>
-  </data>
-  <data name="Country_val_EE" xml:space="preserve">
-    <value>Εσθονία</value>
-    <comment>The name of EE country</comment>
-  </data>
-  <data name="Country_val_EG" xml:space="preserve">
-    <value>Αίγυπτος</value>
-    <comment>The name of EG country</comment>
-  </data>
-  <data name="Country_val_EH" xml:space="preserve">
-    <value>Δυτική Σαχάρα</value>
-    <comment>The name of EH country</comment>
-  </data>
-  <data name="Country_val_ER" xml:space="preserve">
-    <value>Ερυθραία</value>
-    <comment>The name of ER country</comment>
-  </data>
-  <data name="Country_val_ES" xml:space="preserve">
-    <value>Ισπανία</value>
-    <comment>The name of ES country</comment>
-  </data>
-  <data name="Country_val_ET" xml:space="preserve">
-    <value>Αιθιοπία</value>
-    <comment>The name of ET country</comment>
-  </data>
-  <data name="Country_val_FI" xml:space="preserve">
-    <value>Φινλανδία</value>
-    <comment>The name of FI country</comment>
-  </data>
-  <data name="Country_val_FJ" xml:space="preserve">
-    <value>Φίτζι</value>
-    <comment>The name of FJ country</comment>
-  </data>
-  <data name="Country_val_FK" xml:space="preserve">
-    <value>Νησιά Φώκλαντ (Μαλβίνες)</value>
-    <comment>The name of FK country</comment>
-  </data>
-  <data name="Country_val_FM" xml:space="preserve">
-    <value>Μικρονησία</value>
-    <comment>The name of FM country</comment>
-  </data>
-  <data name="Country_val_FO" xml:space="preserve">
-    <value>Νήσοι Φερόες</value>
-    <comment>The name of FO country</comment>
-  </data>
-  <data name="Country_val_FR" xml:space="preserve">
-    <value>Γαλλία</value>
-    <comment>The name of FR country</comment>
-  </data>
-  <data name="Country_val_GA" xml:space="preserve">
-    <value>Γκαμπόν</value>
-    <comment>The name of GA country</comment>
-  </data>
-  <data name="Country_val_GB" xml:space="preserve">
-    <value>Ηνωμένο Βασίλειο</value>
-    <comment>The name of GB country</comment>
-  </data>
-  <data name="Country_val_GD" xml:space="preserve">
-    <value>Γρενάδα</value>
-    <comment>The name of GD country</comment>
-  </data>
-  <data name="Country_val_GE" xml:space="preserve">
-    <value>Γεωργία</value>
-    <comment>The name of GE country</comment>
-  </data>
-  <data name="Country_val_GF" xml:space="preserve">
-    <value>Γαλλική Γουιάνα</value>
-    <comment>The name of GF country</comment>
-  </data>
-  <data name="Country_val_GG" xml:space="preserve">
-    <value>Γκέρνζι</value>
-    <comment>The name of GG country</comment>
-  </data>
-  <data name="Country_val_GH" xml:space="preserve">
-    <value>Γκάνα</value>
-    <comment>The name of GH country</comment>
-  </data>
-  <data name="Country_val_GI" xml:space="preserve">
-    <value>Γιβραλτάρ</value>
-    <comment>The name of GI country</comment>
-  </data>
-  <data name="Country_val_GL" xml:space="preserve">
-    <value>Γροιλανδία</value>
-    <comment>The name of GL country</comment>
-  </data>
-  <data name="Country_val_GM" xml:space="preserve">
-    <value>Γκάμπια</value>
-    <comment>The name of GM country</comment>
-  </data>
-  <data name="Country_val_GN" xml:space="preserve">
-    <value>Γουινέα</value>
-    <comment>The name of GN country</comment>
-  </data>
-  <data name="Country_val_GP" xml:space="preserve">
-    <value>Γουαδελούπη</value>
-    <comment>The name of GP country</comment>
-  </data>
-  <data name="Country_val_GQ" xml:space="preserve">
-    <value>Ισημερινή Γουινέα</value>
-    <comment>The name of GQ country</comment>
-  </data>
-  <data name="Country_val_GR" xml:space="preserve">
-    <value>Ελλάδα</value>
-    <comment>The name of GR country</comment>
-  </data>
-  <data name="Country_val_GS" xml:space="preserve">
-    <value>Νήσοι Νότια Γεωργία και Νότιες Σάντουιτς</value>
-    <comment>The name of GS country</comment>
-  </data>
-  <data name="Country_val_GT" xml:space="preserve">
-    <value>Γουατεμάλα</value>
-    <comment>The name of GT country</comment>
-  </data>
-  <data name="Country_val_GU" xml:space="preserve">
-    <value>Γκουάμ</value>
-    <comment>The name of GU country</comment>
-  </data>
-  <data name="Country_val_GW" xml:space="preserve">
-    <value>Γουινέα-Μπισάου</value>
-    <comment>The name of GW country</comment>
-  </data>
-  <data name="Country_val_GY" xml:space="preserve">
-    <value>Γουιάνα</value>
-    <comment>The name of GY country</comment>
-  </data>
-  <data name="Country_val_HK" xml:space="preserve">
-    <value>Χονγκ Κονγκ</value>
-    <comment>The name of HK country</comment>
-  </data>
-  <data name="Country_val_HM" xml:space="preserve">
-    <value>Νήσοι Χερντ και Μακντόναλντ</value>
-    <comment>The name of HM country</comment>
-  </data>
-  <data name="Country_val_HN" xml:space="preserve">
-    <value>Ονδούρα</value>
-    <comment>The name of HN country</comment>
-  </data>
-  <data name="Country_val_HR" xml:space="preserve">
-    <value>Κροατία</value>
-    <comment>The name of HR country</comment>
-  </data>
-  <data name="Country_val_HT" xml:space="preserve">
-    <value>Αϊτή</value>
-    <comment>The name of HT country</comment>
-  </data>
-  <data name="Country_val_HU" xml:space="preserve">
-    <value>Ουγγαρία</value>
-    <comment>The name of HU country</comment>
-  </data>
-  <data name="Country_val_ID" xml:space="preserve">
-    <value>Ινδονησία</value>
-    <comment>The name of ID country</comment>
-  </data>
-  <data name="Country_val_IE" xml:space="preserve">
-    <value>Ιρλανδία</value>
-    <comment>The name of IE country</comment>
-  </data>
-  <data name="Country_val_IL" xml:space="preserve">
-    <value>Ισραήλ</value>
-    <comment>The name of IL country</comment>
-  </data>
-  <data name="Country_val_IM" xml:space="preserve">
-    <value>Νήσος Μαν</value>
-    <comment>The name of IM country</comment>
-  </data>
-  <data name="Country_val_IN" xml:space="preserve">
-    <value>Ινδία</value>
-    <comment>The name of IN country</comment>
-  </data>
-  <data name="Country_val_IO" xml:space="preserve">
-    <value>Βρετανικό Έδαφος Ινδικού Ωκεανού</value>
-    <comment>The name of IO country</comment>
-  </data>
-  <data name="Country_val_IQ" xml:space="preserve">
-    <value>Ιράκ</value>
-    <comment>The name of IQ country</comment>
-  </data>
-  <data name="Country_val_IR" xml:space="preserve">
-    <value>Ιράν</value>
-    <comment>The name of IR country</comment>
-  </data>
-  <data name="Country_val_IS" xml:space="preserve">
-    <value>Ισλανδία</value>
-    <comment>The name of IS country</comment>
-  </data>
-  <data name="Country_val_IT" xml:space="preserve">
-    <value>Ιταλία</value>
-    <comment>The name of IT country</comment>
-  </data>
-  <data name="Country_val_JE" xml:space="preserve">
-    <value>Βαϊλάτο του Τζέρσεϊ</value>
-    <comment>The name of JE country</comment>
-  </data>
-  <data name="Country_val_JM" xml:space="preserve">
-    <value>Τζαμάικα</value>
-    <comment>The name of JM country</comment>
-  </data>
-  <data name="Country_val_JO" xml:space="preserve">
-    <value>Ιορδανία</value>
-    <comment>The name of JO country</comment>
-  </data>
-  <data name="Country_val_JP" xml:space="preserve">
-    <value>Ιαπωνία</value>
-    <comment>The name of JP country</comment>
-  </data>
-  <data name="Country_val_KE" xml:space="preserve">
-    <value>Κένυα</value>
-    <comment>The name of KE country</comment>
-  </data>
-  <data name="Country_val_KG" xml:space="preserve">
-    <value>Κιργιστάν</value>
-    <comment>The name of KG country</comment>
-  </data>
-  <data name="Country_val_KH" xml:space="preserve">
-    <value>Καμπότζη</value>
-    <comment>The name of KH country</comment>
-  </data>
-  <data name="Country_val_KI" xml:space="preserve">
-    <value>Κιριμπάτι</value>
-    <comment>The name of KI country</comment>
-  </data>
-  <data name="Country_val_KM" xml:space="preserve">
-    <value>Κομόρες</value>
-    <comment>The name of KM country</comment>
-  </data>
-  <data name="Country_val_KN" xml:space="preserve">
-    <value>Άγιος Χριστόφορος</value>
-    <comment>The name of KN country</comment>
-  </data>
-  <data name="Country_val_KP" xml:space="preserve">
-    <value>Βόρεια Κορέα</value>
-    <comment>The name of KP country</comment>
-  </data>
-  <data name="Country_val_KR" xml:space="preserve">
-    <value>Νότια Κορέα</value>
-    <comment>The name of KR country</comment>
-  </data>
-  <data name="Country_val_KW" xml:space="preserve">
-    <value>Κουβέιτ</value>
-    <comment>The name of KW country</comment>
-  </data>
-  <data name="Country_val_KY" xml:space="preserve">
-    <value>Νήσοι Κέιμαν</value>
-    <comment>The name of KY country</comment>
-  </data>
-  <data name="Country_val_KZ" xml:space="preserve">
-    <value>Καζακστάν</value>
-    <comment>The name of KZ country</comment>
-  </data>
-  <data name="Country_val_LA" xml:space="preserve">
-    <value>Λάος</value>
-    <comment>The name of LA country</comment>
-  </data>
-  <data name="Country_val_LB" xml:space="preserve">
-    <value>Λίβανος</value>
-    <comment>The name of LB country</comment>
-  </data>
-  <data name="Country_val_LC" xml:space="preserve">
-    <value>Αγία Λουκία</value>
-    <comment>The name of LC country</comment>
-  </data>
-  <data name="Country_val_LI" xml:space="preserve">
-    <value>Λιχτενστάιν</value>
-    <comment>The name of LI country</comment>
-  </data>
-  <data name="Country_val_LK" xml:space="preserve">
-    <value>Σρι Λάνκα</value>
-    <comment>The name of LK country</comment>
-  </data>
-  <data name="Country_val_LR" xml:space="preserve">
-    <value>Λιβερία</value>
-    <comment>The name of LR country</comment>
-  </data>
-  <data name="Country_val_LS" xml:space="preserve">
-    <value>Λεσότο</value>
-    <comment>The name of LS country</comment>
-  </data>
-  <data name="Country_val_LT" xml:space="preserve">
-    <value>Λιθουανία</value>
-    <comment>The name of LT country</comment>
-  </data>
-  <data name="Country_val_LU" xml:space="preserve">
-    <value>Λουξεμβούργο</value>
-    <comment>The name of LU country</comment>
-  </data>
-  <data name="Country_val_LV" xml:space="preserve">
-    <value>Λετονία</value>
-    <comment>The name of LV country</comment>
-  </data>
-  <data name="Country_val_LY" xml:space="preserve">
-    <value>Λιβύη</value>
-    <comment>The name of LY country</comment>
-  </data>
-  <data name="Country_val_MA" xml:space="preserve">
-    <value>Μαρόκο</value>
-    <comment>The name of MA country</comment>
-  </data>
-  <data name="Country_val_MC" xml:space="preserve">
-    <value>Μονακό</value>
-    <comment>The name of MC country</comment>
-  </data>
-  <data name="Country_val_MD" xml:space="preserve">
-    <value>Μολδαβία</value>
-    <comment>The name of MD country</comment>
-  </data>
-  <data name="Country_val_ME" xml:space="preserve">
-    <value>Μαυροβούνιο</value>
-    <comment>The name of ME country</comment>
-  </data>
-  <data name="Country_val_MF" xml:space="preserve">
-    <value>Άγιος Μαρτίνος (Γαλλικό τμήμα)</value>
-    <comment>The name of MF country</comment>
-  </data>
-  <data name="Country_val_MG" xml:space="preserve">
-    <value>Μαδαγασκάρη</value>
-    <comment>The name of MG country</comment>
-  </data>
-  <data name="Country_val_MH" xml:space="preserve">
-    <value>Νήσοι Μάρσαλ</value>
-    <comment>The name of MH country</comment>
-  </data>
-  <data name="Country_val_MK" xml:space="preserve">
-    <value>Σκόπια</value>
-    <comment>The name of MK country</comment>
-  </data>
-  <data name="Country_val_ML" xml:space="preserve">
-    <value>Μάλι</value>
-    <comment>The name of ML country</comment>
-  </data>
-  <data name="Country_val_MM" xml:space="preserve">
-    <value>Μιανμάρ</value>
-    <comment>The name of MM country</comment>
-  </data>
-  <data name="Country_val_MN" xml:space="preserve">
-    <value>Μογγολία</value>
-    <comment>The name of MN country</comment>
-  </data>
-  <data name="Country_val_MO" xml:space="preserve">
-    <value>Μακάο</value>
-    <comment>The name of MO country</comment>
-  </data>
-  <data name="Country_val_MP" xml:space="preserve">
-    <value>Βόρειες Μαριάνες</value>
-    <comment>The name of MP country</comment>
-  </data>
-  <data name="Country_val_MQ" xml:space="preserve">
-    <value>Μαρτινίκα</value>
-    <comment>The name of MQ country</comment>
-  </data>
-  <data name="Country_val_MR" xml:space="preserve">
-    <value>Μαυριτανία</value>
-    <comment>The name of MR country</comment>
-  </data>
-  <data name="Country_val_MS" xml:space="preserve">
-    <value>Μονσεράτ</value>
-    <comment>The name of MS country</comment>
-  </data>
-  <data name="Country_val_MT" xml:space="preserve">
-    <value>Μάλτα</value>
-    <comment>The name of MT country</comment>
-  </data>
-  <data name="Country_val_MU" xml:space="preserve">
-    <value>Μαυρίκιος</value>
-    <comment>The name of MU country</comment>
-  </data>
-  <data name="Country_val_MV" xml:space="preserve">
-    <value>Μαλδίβες</value>
-    <comment>The name of MV country</comment>
-  </data>
-  <data name="Country_val_MW" xml:space="preserve">
-    <value>Μαλάουι</value>
-    <comment>The name of MW country</comment>
-  </data>
-  <data name="Country_val_MX" xml:space="preserve">
-    <value>Μεξικό</value>
-    <comment>The name of MX country</comment>
-  </data>
-  <data name="Country_val_MY" xml:space="preserve">
-    <value>Μαλαισία</value>
-    <comment>The name of MY country</comment>
-  </data>
-  <data name="Country_val_MZ" xml:space="preserve">
-    <value>Μοζαμβίκη</value>
-    <comment>The name of MZ country</comment>
-  </data>
-  <data name="Country_val_NA" xml:space="preserve">
-    <value>Ναμίμπια</value>
-    <comment>The name of NA country</comment>
-  </data>
-  <data name="Country_val_NC" xml:space="preserve">
-    <value>Νέα Καληδονία</value>
-    <comment>The name of NC country</comment>
-  </data>
-  <data name="Country_val_NE" xml:space="preserve">
-    <value>Νίγηρας</value>
-    <comment>The name of NE country</comment>
-  </data>
-  <data name="Country_val_NF" xml:space="preserve">
-    <value>Νήσος Νόρφολκ</value>
-    <comment>The name of NF country</comment>
-  </data>
-  <data name="Country_val_NG" xml:space="preserve">
-    <value>Νιγηρία</value>
-    <comment>The name of NG country</comment>
-  </data>
-  <data name="Country_val_NI" xml:space="preserve">
-    <value>Νικαράγουα</value>
-    <comment>The name of NI country</comment>
-  </data>
-  <data name="Country_val_NL" xml:space="preserve">
-    <value>Ολλανδία</value>
-    <comment>The name of NL country</comment>
-  </data>
-  <data name="Country_val_NO" xml:space="preserve">
-    <value>Νορβηγία</value>
-    <comment>The name of NO country</comment>
-  </data>
-  <data name="Country_val_NP" xml:space="preserve">
-    <value>Νεπάλ</value>
-    <comment>The name of NP country</comment>
-  </data>
-  <data name="Country_val_NR" xml:space="preserve">
-    <value>Ναούρου</value>
-    <comment>The name of NR country</comment>
-  </data>
-  <data name="Country_val_NU" xml:space="preserve">
-    <value>Νιούε</value>
-    <comment>The name of NU country</comment>
-  </data>
-  <data name="Country_val_NZ" xml:space="preserve">
-    <value>Νέα Ζηλανδία</value>
-    <comment>The name of NZ country</comment>
-  </data>
-  <data name="Country_val_OM" xml:space="preserve">
-    <value>Ομάν</value>
-    <comment>The name of OM country</comment>
-  </data>
-  <data name="Country_val_PA" xml:space="preserve">
-    <value>Παναμάς</value>
-    <comment>The name of PA country</comment>
-  </data>
-  <data name="Country_val_PE" xml:space="preserve">
-    <value>Περού</value>
-    <comment>The name of PE country</comment>
-  </data>
-  <data name="Country_val_PF" xml:space="preserve">
-    <value>Γαλλική Πολυνησία</value>
-    <comment>The name of PF country</comment>
-  </data>
-  <data name="Country_val_PG" xml:space="preserve">
-    <value>Παπούα Νέα Γουινέα</value>
-    <comment>The name of PG country</comment>
-  </data>
-  <data name="Country_val_PH" xml:space="preserve">
-    <value>Φιλιππίνες</value>
-    <comment>The name of PH country</comment>
-  </data>
-  <data name="Country_val_PK" xml:space="preserve">
-    <value>Πακιστάν</value>
-    <comment>The name of PK country</comment>
-  </data>
-  <data name="Country_val_PL" xml:space="preserve">
-    <value>Πολωνία</value>
-    <comment>The name of PL country</comment>
-  </data>
-  <data name="Country_val_PM" xml:space="preserve">
-    <value>Νήσοι Αγίου Πέτρου και Μιχαήλ</value>
-    <comment>The name of PM country</comment>
-  </data>
-  <data name="Country_val_PN" xml:space="preserve">
-    <value>Πίτκερν</value>
-    <comment>The name of PN country</comment>
-  </data>
-  <data name="Country_val_PR" xml:space="preserve">
-    <value>Πουέρτο Ρίκο</value>
-    <comment>The name of PR country</comment>
-  </data>
-  <data name="Country_val_PS" xml:space="preserve">
-    <value>Παλαιστίνη</value>
-    <comment>The name of PS country</comment>
-  </data>
-  <data name="Country_val_PT" xml:space="preserve">
-    <value>Πορτογαλία</value>
-    <comment>The name of PT country</comment>
-  </data>
-  <data name="Country_val_PW" xml:space="preserve">
-    <value>Παλάου</value>
-    <comment>The name of PW country</comment>
-  </data>
-  <data name="Country_val_PY" xml:space="preserve">
-    <value>Παραγουάη</value>
-    <comment>The name of PY country</comment>
-  </data>
-  <data name="Country_val_QA" xml:space="preserve">
-    <value>Κατάρ</value>
-    <comment>The name of QA country</comment>
-  </data>
-  <data name="Country_val_RE" xml:space="preserve">
-    <value>Ρεϋνιόν</value>
-    <comment>The name of RE country</comment>
-  </data>
-  <data name="Country_val_RO" xml:space="preserve">
-    <value>Ρουμανία</value>
-    <comment>The name of RO country</comment>
-  </data>
-  <data name="Country_val_RS" xml:space="preserve">
-    <value>Σερβία</value>
-    <comment>The name of RS country</comment>
-  </data>
-  <data name="Country_val_RU" xml:space="preserve">
-    <value>Ρωσία</value>
-    <comment>The name of RU country</comment>
-  </data>
-  <data name="Country_val_RW" xml:space="preserve">
-    <value>Ρουάντα</value>
-    <comment>The name of RW country</comment>
-  </data>
-  <data name="Country_val_SA" xml:space="preserve">
-    <value>Σαουδική Αραβία</value>
-    <comment>The name of SA country</comment>
-  </data>
-  <data name="Country_val_SB" xml:space="preserve">
-    <value>Νήσοι Σολομώντος</value>
-    <comment>The name of SB country</comment>
-  </data>
-  <data name="Country_val_SC" xml:space="preserve">
-    <value>Σεϊχέλες</value>
-    <comment>The name of SC country</comment>
-  </data>
-  <data name="Country_val_SD" xml:space="preserve">
-    <value>Σουδάν</value>
-    <comment>The name of SD country</comment>
-  </data>
-  <data name="Country_val_SE" xml:space="preserve">
-    <value>Σουηδία</value>
-    <comment>The name of SE country</comment>
-  </data>
-  <data name="Country_val_SG" xml:space="preserve">
-    <value>Σιγκαπούρη</value>
-    <comment>The name of SG country</comment>
-  </data>
-  <data name="Country_val_SH" xml:space="preserve">
-    <value>Αγία Ελένη, της Αναλήψεως και Τριστάν ντα Κούνια</value>
-    <comment>The name of SH country</comment>
-  </data>
-  <data name="Country_val_SI" xml:space="preserve">
-    <value>Σλοβενία</value>
-    <comment>The name of SI country</comment>
-  </data>
-  <data name="Country_val_SJ" xml:space="preserve">
-    <value>Σβάλμπαρντ</value>
-    <comment>The name of SJ country</comment>
-  </data>
-  <data name="Country_val_SK" xml:space="preserve">
-    <value>Σλοβακία</value>
-    <comment>The name of SK country</comment>
-  </data>
-  <data name="Country_val_SL" xml:space="preserve">
-    <value>Σιέρα Λεόνε</value>
-    <comment>The name of SL country</comment>
-  </data>
-  <data name="Country_val_SM" xml:space="preserve">
-    <value>Άγιος Μαρίνος</value>
-    <comment>The name of SM country</comment>
-  </data>
-  <data name="Country_val_SN" xml:space="preserve">
-    <value>Σενεγάλη</value>
-    <comment>The name of SN country</comment>
-  </data>
-  <data name="Country_val_SO" xml:space="preserve">
-    <value>Σομαλία</value>
-    <comment>The name of SO country</comment>
-  </data>
-  <data name="Country_val_SR" xml:space="preserve">
-    <value>Σουρινάμ</value>
-    <comment>The name of SR country</comment>
-  </data>
-  <data name="Country_val_SS" xml:space="preserve">
-    <value>Νότιο Σουδάν</value>
-    <comment>The name of SS country</comment>
-  </data>
-  <data name="Country_val_ST" xml:space="preserve">
-    <value>Άγιος Θωμάς</value>
-    <comment>The name of ST country</comment>
-  </data>
-  <data name="Country_val_SV" xml:space="preserve">
-    <value>Ελ Σαλβαδόρ</value>
-    <comment>The name of SV country</comment>
-  </data>
-  <data name="Country_val_SX" xml:space="preserve">
-    <value>Άγιος Μαρτίνος (Ολλανδικό τμήμα)</value>
-    <comment>The name of SX country</comment>
-  </data>
-  <data name="Country_val_SY" xml:space="preserve">
-    <value>Αραβική Δημοκρατία της Συρίας</value>
-    <comment>The name of SY country</comment>
-  </data>
-  <data name="Country_val_SZ" xml:space="preserve">
-    <value>Εσουατίνη</value>
-    <comment>The name of SZ country</comment>
-  </data>
-  <data name="Country_val_TC" xml:space="preserve">
-    <value>Νήσοι Τερκς και Κάικος</value>
-    <comment>The name of TC country</comment>
-  </data>
-  <data name="Country_val_TD" xml:space="preserve">
-    <value>Τσαντ</value>
-    <comment>The name of TD country</comment>
-  </data>
-  <data name="Country_val_TF" xml:space="preserve">
-    <value>Νότια Γαλλικά Εδάφη</value>
-    <comment>The name of TF country</comment>
-  </data>
-  <data name="Country_val_TG" xml:space="preserve">
-    <value>Τόγκο</value>
-    <comment>The name of TG country</comment>
-  </data>
-  <data name="Country_val_TH" xml:space="preserve">
-    <value>Ταϊλάνδη</value>
-    <comment>The name of TH country</comment>
-  </data>
-  <data name="Country_val_TJ" xml:space="preserve">
-    <value>Τατζικιστάν</value>
-    <comment>The name of TJ country</comment>
-  </data>
-  <data name="Country_val_TK" xml:space="preserve">
-    <value>Τοκελάου</value>
-    <comment>The name of TK country</comment>
-  </data>
-  <data name="Country_val_TL" xml:space="preserve">
-    <value>Ανατολικό Τιμόρ</value>
-    <comment>The name of TL country</comment>
-  </data>
-  <data name="Country_val_TM" xml:space="preserve">
-    <value>Τουρκμενιστάν</value>
-    <comment>The name of TM country</comment>
-  </data>
-  <data name="Country_val_TN" xml:space="preserve">
-    <value>Τυνησία</value>
-    <comment>The name of TN country</comment>
-  </data>
-  <data name="Country_val_TO" xml:space="preserve">
-    <value>Τόνγκα</value>
-    <comment>The name of TO country</comment>
-  </data>
-  <data name="Country_val_TR" xml:space="preserve">
-    <value>Τουρκία</value>
-    <comment>The name of TR country</comment>
-  </data>
-  <data name="Country_val_TT" xml:space="preserve">
-    <value>Τρινιντάντ</value>
-    <comment>The name of TT country</comment>
-  </data>
-  <data name="Country_val_TV" xml:space="preserve">
-    <value>Τουβαλού</value>
-    <comment>The name of TV country</comment>
-  </data>
-  <data name="Country_val_TW" xml:space="preserve">
-    <value>Ταϊβάν</value>
-    <comment>The name of TW country</comment>
-  </data>
-  <data name="Country_val_TZ" xml:space="preserve">
-    <value>Τανζανία</value>
-    <comment>The name of TZ country</comment>
-  </data>
-  <data name="Country_val_UA" xml:space="preserve">
-    <value>Ουκρανία</value>
-    <comment>The name of UA country</comment>
-  </data>
-  <data name="Country_val_UG" xml:space="preserve">
-    <value>Ουγκάντα</value>
-    <comment>The name of UG country</comment>
-  </data>
-  <data name="Country_val_UK" xml:space="preserve">
-    <value>Ηνωμένο Βασίλειο</value>
-    <comment>The name of UK country</comment>
-  </data>
-  <data name="Country_val_UM" xml:space="preserve">
-    <value>Απομακρυσμένες Νησίδες των Ηνωμένων Πολιτειών</value>
-    <comment>The name of UM country</comment>
-  </data>
-  <data name="Country_val_US" xml:space="preserve">
-    <value>Ηνωμένες Πολιτείες</value>
-    <comment>The name of US country</comment>
-  </data>
-  <data name="Country_val_UY" xml:space="preserve">
-    <value>Ουρουγουάη</value>
-    <comment>The name of UY country</comment>
-  </data>
-  <data name="Country_val_UZ" xml:space="preserve">
-    <value>Ουζμπεκιστάν</value>
-    <comment>The name of UZ country</comment>
-  </data>
-  <data name="Country_val_VA" xml:space="preserve">
-    <value>Πόλη του Βατικανού</value>
-    <comment>The name of VA country</comment>
-  </data>
-  <data name="Country_val_VC" xml:space="preserve">
-    <value>Άγιος Βικέντιος</value>
-    <comment>The name of VC country</comment>
-  </data>
-  <data name="Country_val_VE" xml:space="preserve">
-    <value>Βενεζουέλα</value>
-    <comment>The name of VE country</comment>
-  </data>
-  <data name="Country_val_VG" xml:space="preserve">
-    <value>Βρετανικές Παρθένες Νήσοι</value>
-    <comment>The name of VG country</comment>
-  </data>
-  <data name="Country_val_VI" xml:space="preserve">
-    <value>Παρθένοι Νήσοι, ΗΠΑ.</value>
-    <comment>The name of VI country</comment>
-  </data>
-  <data name="Country_val_VN" xml:space="preserve">
-    <value>Βιετνάμ</value>
-    <comment>The name of VN country</comment>
-  </data>
-  <data name="Country_val_VU" xml:space="preserve">
-    <value>Βανουάτου</value>
-    <comment>The name of VU country</comment>
-  </data>
-  <data name="Country_val_WF" xml:space="preserve">
-    <value>Ουαλίς και Φουτουνά</value>
-    <comment>The name of WF country</comment>
-  </data>
-  <data name="Country_val_WS" xml:space="preserve">
-    <value>Σαμόα</value>
-    <comment>The name of WS country</comment>
-  </data>
-  <data name="Country_val_YE" xml:space="preserve">
-    <value>Υεμένη</value>
-    <comment>The name of YE country</comment>
-  </data>
-  <data name="Country_val_YT" xml:space="preserve">
-    <value>Μαγιότ</value>
-    <comment>The name of YT country</comment>
-  </data>
-  <data name="Country_val_ZA" xml:space="preserve">
-    <value>Νότια Αφρική</value>
-    <comment>The name of ZA country</comment>
-  </data>
-  <data name="Country_val_ZM" xml:space="preserve">
-    <value>Ζάμπια</value>
-    <comment>The name of ZM country</comment>
-  </data>
-  <data name="Country_val_ZW" xml:space="preserve">
-    <value>Ζιμπάμπουε</value>
-    <comment>The name of ZW country</comment>
-  </data>
-  <data name="Country_val_ZZ" xml:space="preserve">
-    <value>Άγνωστο</value>
-    <comment>The name of ZZ (unknown or not specified) country</comment>
-  </data>
-  <data name="Dialogs_Latency_Description" xml:space="preserve">
-    <value>Ο χρόνος αδράνειας δείχνει πόσος χρόνος χρειάζεται για να ανταποκριθεί ένας διακομιστής σε αιτήματα.\n\nΟ υψηλός χρόνος αδράνειας μπορεί να επιβραδύνει τη σύνδεσή σας.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description" xml:space="preserve">
-    <value>Το VPN μπορεί να λειτουργεί πιο αργά από το κανονικό</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title" xml:space="preserve">
-    <value>Υψηλή (150ms+)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description" xml:space="preserve">
-    <value>Αστραπιαίες ταχύτητες</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title" xml:space="preserve">
-    <value>Χαμηλή (1ms - 50ms)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description" xml:space="preserve">
-    <value>Απίθανο να επηρεάσει την ταχύτητα VPN</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title" xml:space="preserve">
-    <value>Μεσαία (50ms - 150ms)</value>
-  </data>
-  <data name="Dialogs_Latency_Title" xml:space="preserve">
-    <value>Τι είναι ο χρόνος αδράνειας;</value>
-  </data>
-  <data name="Dialogs_Protocol_Description" xml:space="preserve">
-    <value>Το πρωτόκολλο είναι ένα σύνολο οδηγιών που ακολουθεί η συσκευή σας για να συνδεθεί και να επικοινωνήσει με έναν διακομιστή.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader" xml:space="preserve">
-    <value>Εναλλαγή πρωτοκόλλου VPN</value>
-  </data>
-  <data name="Dialogs_Protocol_Title" xml:space="preserve">
-    <value>Τι είναι το πρωτόκολλο VPN;</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Header" xml:space="preserve">
-    <value>Τι πρόβλημα αντιμετωπίζεται;</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Description" xml:space="preserve">
-    <value>Το φορτίο διακομιστή δείχνει πόσο κοντά βρίσκεται ένας διακομιστής στη μέγιστη χωρητικότητά του.\n\nΈνα υψηλό φορτίο διακομιστή μπορεί να επιβραδύνει τη σύνδεσή σας.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description" xml:space="preserve">
-    <value>Το VPN μπορεί να λειτουργεί πιο αργά από το κανονικό</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title" xml:space="preserve">
-    <value>Υψηλό (91-100%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description" xml:space="preserve">
-    <value>Αστραπιαίες ταχύτητες</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title" xml:space="preserve">
-    <value>Χαμηλό (1-75%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description" xml:space="preserve">
-    <value>Απίθανο να επηρεάσει την ταχύτητα VPN</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title" xml:space="preserve">
-    <value>Μεσαίο (76-90%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
-    <value>Τι είναι το φορτίο διακομιστή;</value>
-  </data>
-  <data name="Format_Milliseconds" xml:space="preserve">
-    <value>{0}ms</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
-  </data>
-  <data name="Format_Size_Bytes" xml:space="preserve">
-    <value>{0} B</value>
-    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
-  </data>
-  <data name="Format_Size_Exabytes" xml:space="preserve">
-    <value>{0} EB</value>
-    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
-  </data>
-  <data name="Format_Size_Gigabytes" xml:space="preserve">
-    <value>{0} GB</value>
-    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
-  </data>
-  <data name="Format_Size_Kilobytes" xml:space="preserve">
-    <value>{0} KB</value>
-    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
-  </data>
-  <data name="Format_Size_Megabytes" xml:space="preserve">
-    <value>{0} MB</value>
-    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
-  </data>
-  <data name="Format_Size_Petabytes" xml:space="preserve">
-    <value>{0} PB</value>
-    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
-  </data>
-  <data name="Format_Size_Terabytes" xml:space="preserve">
-    <value>{0} TB</value>
-    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
-  </data>
-  <data name="Format_Speed_BytesPerSecond" xml:space="preserve">
-    <value>{0} B/δλ</value>
-    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
-  </data>
-  <data name="Format_Speed_ExabytesPerSecond" xml:space="preserve">
-    <value>{0} EB/δλ</value>
-    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
-  </data>
-  <data name="Format_Speed_GigabytesPerSecond" xml:space="preserve">
-    <value>{0} GB/δλ</value>
-    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
-  </data>
-  <data name="Format_Speed_KilobytesPerSecond" xml:space="preserve">
-    <value>{0} KB/δλ</value>
-    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
-  </data>
-  <data name="Format_Speed_MegabytesPerSecond" xml:space="preserve">
-    <value>{0} MB/δλ</value>
-    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
-  </data>
-  <data name="Format_Speed_PetabytesPerSecond" xml:space="preserve">
-    <value>{0} PB/δλ</value>
-    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
-  </data>
-  <data name="Format_Speed_TerabytesPerSecond" xml:space="preserve">
-    <value>{0} TB/δλ</value>
-    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
-  </data>
-  <data name="Format_Time_Day" xml:space="preserve">
-    <value>{0} ημέρα</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} ημ {1} ώρ</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days" xml:space="preserve">
-    <value>{0} ημέρες</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DaysHours" xml:space="preserve">
-    <value>{0} ημέρες {1} ώρ</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Hours" xml:space="preserve">
-    <value>{0} ώρ</value>
-    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_HoursMinutes" xml:space="preserve">
-    <value>{0} ώρ {1} λεπ</value>
-    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Minutes" xml:space="preserve">
-    <value>{0} λεπ</value>
-    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_MinutesSeconds" xml:space="preserve">
-    <value>{0} λεπ {1} δλ</value>
-    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Seconds" xml:space="preserve">
-    <value>{0} δλ</value>
-    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
-  </data>
-  <data name="Home_Account_SignOut" xml:space="preserve">
-    <value>Αποσύνδεση</value>
-  </data>
-  <data name="Home_Account_Title" xml:space="preserve">
-    <value>Ο λογαριασμός μου</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely" xml:space="preserve">
-    <value>Ασφαλής περιήγηση από</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo" xml:space="preserve">
-    <value>Σύνδεση σε...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
-    <value>Τελευταία σύνδεση στη</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>Προτεινόμενη</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
-    <value>Κάρτα σύνδεσης</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_City" xml:space="preserve">
-    <value>Πόλη</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor" xml:space="preserve">
-    <value>Συνδεδεμένο για</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Gateway" xml:space="preserve">
-    <value>Πύλη</value>
-  </data>
-  <data name="Home_ConnectionDetails_Country" xml:space="preserve">
-    <value>Χώρα</value>
-  </data>
-  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>Λήψη</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
-    <value>Απόκρυψη λεπτομερειών σύνδεσης</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP" xml:space="preserve">
-    <value>Απόκρυψη</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description" xml:space="preserve">
-    <value>Απόκρυψη διεύθυνσης IP χρήστη</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark" xml:space="preserve">
-    <value>Λεπτομέρειες σύνδεσης</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>Αδράνεια</value>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
-    <value>Η IP μου</value>
-  </data>
-  <data name="Home_ConnectionDetails_Protocol" xml:space="preserve">
-    <value>Πρωτόκολλο</value>
-  </data>
-  <data name="Home_ConnectionDetails_Server" xml:space="preserve">
-    <value>Διακομιστής</value>
-  </data>
-  <data name="Home_ConnectionDetails_ServerLoad" xml:space="preserve">
-    <value>Φορτίο διακομιστή</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show" xml:space="preserve">
-    <value>Εμφάνιση λεπτομερειών σύνδεσης</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP" xml:space="preserve">
-    <value>Εμφάνιση</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description" xml:space="preserve">
-    <value>Εμφάνιση διεύθυνσης IP χρήστη</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title" xml:space="preserve">
-    <value>Λεπτομέρειες σύνδεσης</value>
-  </data>
-  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>Ανέβασμα</value>
-  </data>
-  <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
-    <value>VPN IP</value>
-  </data>
-  <data name="Home_Help_Title" xml:space="preserve">
-    <value>Βοήθεια</value>
-  </data>
-  <data name="Home_Map_Landmark" xml:space="preserve">
-    <value>Χάρτης</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>Διαφημίσεις\nαποκλείστηκαν</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>Δεδομένα\nσωθήκαν</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_NetShield_Landmark" xml:space="preserve">
-    <value>Στατιστικά NetShield</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>Ιχνηλάτες\nσταματήθηκαν</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
-  </data>
-  <data name="Home_Page_Title" xml:space="preserve">
-    <value>Αρχική</value>
-  </data>
-  <data name="Home_Recents_Landmark" xml:space="preserve">
-    <value>Πρόσφατες συνδέσεις</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_Recents_Pin" xml:space="preserve">
-    <value>Καρφίτσωμα</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip" xml:space="preserve">
-    <value>Ενέργειες</value>
-  </data>
-  <data name="Home_Recents_ServerUnderMaintenance" xml:space="preserve">
-    <value>Ο διακομιστής είναι υπό συντήρηση</value>
-  </data>
-  <data name="Home_Recents_Title" xml:space="preserve">
-    <value>Πρόσφατες</value>
-  </data>
-  <data name="Home_Recents_Unpin" xml:space="preserve">
-    <value>Ξεκαρφίτσωμα</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark" xml:space="preserve">
-    <value>Κατάσταση VPN</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting" xml:space="preserve">
-    <value>Προστασία της ψηφιακής σας ταυτότητας</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected" xml:space="preserve">
-    <value>Είστε απροστάτευτοι</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
-    <value>Προστατευμένο</value>
-  </data>
-  <data name="Server_Feature_P2P" xml:space="preserve">
-    <value>P2P</value>
-  </data>
-  <data name="Server_Feature_Tor" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
-    <value>Λανθασμένος κωδικός. Παρακαλούμε δοκιμάστε ξανά.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
-    <value>Λανθασμένα διαπιστευτήρια εισόδου. Παρακαλούμε δοκιμάστε ξανά.</value>
-  </data>
-  <data name="Settings_About" xml:space="preserve">
-    <value>Σχετικά</value>
-  </data>
-  <data name="Settings_AppVersion" xml:space="preserve">
-    <value>Έκδοση εφαρμογής</value>
-  </data>
-  <data name="Settings_Censorship_Footer" xml:space="preserve">
-    <value>Αυτά τα στατιστικά στοιχεία δεν περιέχουν τη διεύθυνση IP σας και δεν μπορούν να χρησιμοποιηθούν για την αναγνώρισή σας. Δε θα τα μοιραστούμε ποτέ με τρίτους.</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports" xml:space="preserve">
-    <value>Κοινοποιήστε ανώνυμες αναφορές σφαλμάτων</value>
-  </data>
-  <data name="Settings_Censorship_ShareCrashReports_Description" xml:space="preserve">
-    <value>Οι αναφορές σφαλμάτων μάς βοηθούν να διορθώνουμε σφάλματα, να εντοπίζουμε τείχη προστασίας και να αποφεύγουμε τα μπλοκαρίσματα VPN.</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics" xml:space="preserve">
-    <value>Κοινοποιήστε ανώνυμα στατιστικά χρήσης</value>
-  </data>
-  <data name="Settings_Censorship_ShareStatistics_Description" xml:space="preserve">
-    <value>Τα δεδομένα χρήσης μας βοηθούν να ξεπεράσουμε τα μπλοκαρίσματα VPN και να βελτιώσουμε την απόδοση των εφαρμογών.</value>
-  </data>
-  <data name="Settings_Connection" xml:space="preserve">
-    <value>Σύνδεση</value>
-  </data>
-  <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
-    <value>Προηγμένες ρυθμίσεις</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
-    <value>Εναλλακτική δρομολόγηση</value>
-  </data>
-  <data name="Settings_Connection_Advanced_AlternativeRouting_Description" xml:space="preserve">
-    <value>Εάν οι υπηρεσίες Proton αποκλειστούν λόγω περιορισμών δικτύου, θα προσπαθήσουμε να χρησιμοποιήσουμε εναλλακτική δρομολόγηση δικτύου για να σας συνδέσουμε στους ιστότοπούς μας.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers" xml:space="preserve">
-    <value>Προσαρμοσμένοι διακομιστές DNS</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
-    <value>Συνδεθείτε στο Proton VPN χρησιμοποιώντας το δικό σας σύστημα ονομάτων τομέα (DNS). Χρησιμοποιείτε μόνο διακομιστές DNS που εμπιστεύεστε.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
-    <value>Διακομιστές DNS ({0})</value>
-    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark" xml:space="preserve">
-    <value>Προσθήκη διεύθυνσης IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>Τοπικές συνδέσεις (LAN)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>Σας επιτρέπει να συνδέεστε σε εκτυπωτές, ηχεία και άλλες συσκευές στο τοπικό δίκτυο της συσκευής σας.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
-    <value>Τύπος NAT</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Description" xml:space="preserve">
-    <value>Επιλέξτε έναν τύπο μετάφρασης διεύθυνσης δικτύου για τη σύνδεσή σας.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate" xml:space="preserve">
-    <value>Μέτρια (τύπος 2)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Moderate_Description" xml:space="preserve">
-    <value>Ορισμένοι περιορισμοί στα δεδομένα που εισέρχονται στο δίκτυό σας. Αυτή η επιλογή είναι καλύτερη για διαδικτυακά βιντεοπαιχνίδια.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict" xml:space="preserve">
-    <value>Αυστηρή (τύπος 3)</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
-    <value>Περιορίζει τα δεδομένα που εισέρχονται στο δίκτυό σας. Αυτή η επιλογή είναι πιο ασφαλής, αλλά μπορεί να δυσκολέψει τις ομότιμες συνδέσεις παιχνιδιών.</value>
-  </data>
-  <data name="Settings_Connection_Protocol" xml:space="preserve">
-    <value>Πρωτόκολλο</value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>VPN Accelerator</value>
-  </data>
-  <data name="Settings_Features" xml:space="preserve">
-    <value>Χαρακτηριστικά</value>
-  </data>
-  <data name="Settings_Features_KillSwitch" xml:space="preserve">
-    <value>Kill switch</value>
-  </data>
-  <data name="Settings_Features_NetShield" xml:space="preserve">
-    <value>NetShield</value>
-  </data>
-  <data name="Settings_Features_PortForwarding" xml:space="preserve">
-    <value>Προώθηση θυρών</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling" xml:space="preserve">
-    <value>Διαίρεση σήραγγας</value>
-  </data>
-  <data name="Settings_General" xml:space="preserve">
-    <value>Γενικά</value>
-  </data>
-  <data name="Settings_General_AutoStartup" xml:space="preserve">
-    <value>Αυτόματη εκκίνηση</value>
-  </data>
-  <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>Αυτόματη εκκίνηση, αυτόματη σύνδεση</value>
-  </data>
-  <data name="Settings_General_BetaAccess" xml:space="preserve">
-    <value>Πρόσβαση Beta</value>
-  </data>
-  <data name="Settings_General_BetaAccess_Description" xml:space="preserve">
-    <value>Αποκτήστε πρώιμη πρόσβαση και βοηθήστε μας να δοκιμάσουμε νέες εκδόσεις του Proton VPN</value>
-  </data>
-  <data name="Settings_General_Language" xml:space="preserve">
-    <value>Γλώσσα</value>
-  </data>
-  <data name="Settings_General_Notifications" xml:space="preserve">
-    <value>Ειδοποιήσεις</value>
-  </data>
-  <data name="Settings_General_Notifications_Description" xml:space="preserve">
-    <value>Λάβετε ειδοποιήσεις σχετικά με τις τρέχουσες δραστηριότητες του Proton VPN</value>
-  </data>
-  <data name="Settings_General_Theme" xml:space="preserve">
-    <value>Θέμα</value>
-  </data>
-  <data name="Settings_General_Theme_Dark" xml:space="preserve">
-    <value>Σκοτεινό</value>
-  </data>
-  <data name="Settings_General_Theme_Default" xml:space="preserve">
-    <value>Προεπιλεγμένο</value>
-  </data>
-  <data name="Settings_General_Theme_Light" xml:space="preserve">
-    <value>Φωτεινό</value>
-  </data>
-  <data name="Settings_Improve" xml:space="preserve">
-    <value>Βελτιώστε το Proton</value>
-  </data>
-  <data name="Settings_Improve_Censorship" xml:space="preserve">
-    <value>Βοηθήστε μας να καταπολεμήσουμε τη λογοκρισία</value>
-  </data>
-  <data name="Settings_OperatingSystemVersion" xml:space="preserve">
-    <value>Έκδοση Λειτουργικού Συστήματος</value>
-  </data>
-  <data name="Settings_Page_Title" xml:space="preserve">
-    <value>Ρυθμίσεις</value>
-  </data>
-  <data name="Settings_Protocols_Explanation" xml:space="preserve">
-    <value>Ένα πρωτόκολλο VPN καθορίζει τον τρόπο με τον οποίο μετακινούνται τα δεδομένα μεταξύ ενός διακομιστή VPN και της συσκευής σας.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Description" xml:space="preserve">
-    <value>Καθιερωμένο, καλά δοκιμασμένο και ασφαλές. Το OpenVPN είναι αξιόπιστο σε κακές συνθήκες δικτύου, αλλά μπορεί να μην είναι τόσο γρήγορο όσο άλλα πρωτόκολλα.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnTcp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Description" xml:space="preserve">
-    <value>Καθιερωμένο, καλά δοκιμασμένο και ασφαλές. Το OpenVPN είναι λιγότερο αποδοτικό στην μπαταρία από ορισμένα άλλα πρωτόκολλα.</value>
-  </data>
-  <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
-    <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>Προτεινόμενη</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
-    <value>Επιλέγει αυτόματα το καλύτερο πρωτόκολλο για τη σύνδεσή σας.</value>
-  </data>
-  <data name="Settings_Protocols_Smart_Title" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_Protocols_TcpCategory" xml:space="preserve">
-    <value>Αξιοπιστία (TCP)</value>
-  </data>
-  <data name="Settings_Protocols_UdpCategory" xml:space="preserve">
-    <value>Ταχύτητα (UDP)</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>Γρήγορο, ασφαλές και αποτελεσματικό. Το WireGuard είναι πιο αποδοτικό για την μπαταρία από άλλα πρωτόκολλα.</value>
-  </data>
-  <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_RestoreDefault" xml:space="preserve">
-    <value>Επαναφορά προεπιλεγμένων ρυθμίσεων</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnTcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_OpenVpnUdp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="Settings_SelectedProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Settings_Support" xml:space="preserve">
-    <value>Υποστήριξη</value>
-  </data>
-  <data name="Settings_Support_DebugLogs" xml:space="preserve">
-    <value>Αρχείο Καταγραφής Σφαλμάτων</value>
-  </data>
-  <data name="Settings_Support_ReportIssue" xml:space="preserve">
-    <value>Αναφορά προβλήματος</value>
-  </data>
-  <data name="Login_Form_CreateAccount" xml:space="preserve">
-    <value>Δημιουργία λογαριασμού</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Password" xml:space="preserve">
-    <value>Κωδικός</value>
-  </data>
-  <data name="Login_Form_SignIn" xml:space="preserve">
-    <value>Σύνδεση</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_Username" xml:space="preserve">
-    <value>Διεύθυνση ή όνομα χρήστη</value>
-  </data>
-  <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
-    <value>Ταυτοποίηση</value>
-    <comment>Authenticate button inside two factor form during login</comment>
-  </data>
-  <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Πληκτρολογήστε τον κωδικό από την εφαρμογή ταυτοποίησης</value>
-  </data>
-  <data name="Login_TwoFactorForm_Title" xml:space="preserve">
-    <value>Ταυτοποίηση δύο παραγόντων</value>
-  </data>
-  <data name="Login_Form_ForgotUsername" xml:space="preserve">
-    <value>Ξέχασα το όνομα χρήστη μου</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Help" xml:space="preserve">
-    <value>Βοήθεια</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ReportAnIssue" xml:space="preserve">
-    <value>Αναφορά προβλήματος</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ResetPassword" xml:space="preserve">
-    <value>Επαναφορά κωδικού πρόσβασης</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Πρόβλημα σύνδεσης</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Account_VpnPlan_Free" xml:space="preserve">
-    <value>Proton VPN Δωρεάν</value>
-  </data>
-  <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
-    <value>Ο έλεγχος ταυτότητας δύο παραγόντων απέτυχε. Παρακαλούμε συνδεθείτε ξανά.</value>
-  </data>
-  <data name="Settings_Support_SupportCenter" xml:space="preserve">
-    <value>Κέντρο υποστήριξης</value>
-  </data>
-  <data name="Settings_VpnAccelerator_Description" xml:space="preserve">
-    <value>Αυξήστε την ταχύτητα σύνδεσής σας έως και 400% με τεχνολογίες βελτίωσης της απόδοσης.</value>
-  </data>
-  <data name="Login_Form" xml:space="preserve">
-    <value>Φόρμα σύνδεσης</value>
-  </data>
-  <data name="Login_TwoFactor_Digit1" xml:space="preserve">
-    <value>Πρώτο ψηφίο</value>
-  </data>
-  <data name="Login_TwoFactor_Digit2" xml:space="preserve">
-    <value>Δεύτερο ψηφίο</value>
-  </data>
-  <data name="Login_TwoFactor_Digit3" xml:space="preserve">
-    <value>Τρίτο ψηφίο</value>
-  </data>
-  <data name="Login_TwoFactor_Digit4" xml:space="preserve">
-    <value>Τέταρτο ψηφίο</value>
-  </data>
-  <data name="Login_TwoFactor_Digit5" xml:space="preserve">
-    <value>Πέμπτο ψηφίο</value>
-  </data>
-  <data name="Login_TwoFactor_Digit6" xml:space="preserve">
-    <value>Έκτο ψηφίο</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Title" xml:space="preserve">
-    <value>Αναφορά προβλήματος</value>
-  </data>
-  <data name="Common_Actions_ContactUs" xml:space="preserve">
-    <value>Επικοινωνήστε μαζί μας</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
-    <value>Πρόχειρες λύσεις</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Footer" xml:space="preserve">
-    <value>Δε δούλεψε;</value>
-  </data>
-  <data name="Dialogs_ReportIssue_QuickFixes_Header" xml:space="preserve">
-    <value>Αυτές οι υποδείξεις μπορεί να βοηθήσουν στην ταχύτερη επίλυση του προβλήματός σας.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Steps" xml:space="preserve">
-    <value>Βήμα {0} από {1}</value>
-    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email" xml:space="preserve">
-    <value>Ηλεκτρονικό ταχυδρομείο</value>
-    <comment>The label for user e-mail address in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_Email_Description" xml:space="preserve">
-    <value>example@domain.com</value>
-    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs" xml:space="preserve">
-    <value>Αποστολή καταχωρήσεων σφαλμάτων</value>
-    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description" xml:space="preserve">
-    <value>Τα αρχεία καταγραφής σφαλμάτων μας δείχνουν τι πήγε στραβά και ποιες ενέργειες οδήγησαν στο πρόβλημά σας. Θα τα χρησιμοποιήσουμε μόνο για να βοηθήσουμε τους μηχανικούς μας να διορθώσουν σφάλματα.</value>
-    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
-  </data>
-  <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
-    <value>Αποστολή αναφοράς</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_DoneAction" xml:space="preserve">
-    <value>Έτοιμο</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail" xml:space="preserve">
-    <value>Κάτι πήγε στραβά</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
-    <value>Αδυναμία αποστολής της αναφοράς σας. Παρακαλούμε ελέγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>Δοκιμάστε ξανά</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
-    <value>Αναφορά αποστάλθηκε</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_Success_Description" xml:space="preserve">
-    <value>Ευχαριστούμε για τα σχόλιά σας. Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect" xml:space="preserve">
-    <value>Αυτόματη σύνδεση</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>Θα συνδεθείτε σε έναν διακομιστή μόλις ανοίξει το Proton VPN</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
-    <value>Η γρηγορότερη σύνδεση</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest" xml:space="preserve">
-    <value>Τελευταία σύνδεση</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch" xml:space="preserve">
-    <value>Αυτόματη εκκίνηση</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Description" xml:space="preserve">
-    <value>Το Proton VPN θα ανοίξει αυτόματα όταν συνδεθείτε στη συσκευή σας</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop" xml:space="preserve">
-    <value>Άνοιγμα στην επιφάνεια εργασίας</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray" xml:space="preserve">
-    <value>Ελαχιστοποίηση στη γραμμή ειδοποιήσεων</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar" xml:space="preserve">
-    <value>Ελαχιστοποίηση στη Γραμμή Εργασιών</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Application" xml:space="preserve">
-    <value>Αρχεία καταγραφών εφαρμογής</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_Service" xml:space="preserve">
-    <value>Αρχεία καταγραφής υπηρεσιών</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Action" xml:space="preserve">
-    <value>Επαναφορά προεπιλεγμένων ρυθμίσεων</value>
-  </data>
-  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action" xml:space="preserve">
-    <value>Επαναφορά και επανασύνδεση</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Message" xml:space="preserve">
-    <value>Αυτό θα επαναφέρει τις ρυθμίσεις του Proton VPN στην αρχική τους κατάσταση.</value>
-  </data>
-  <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
-    <value>Επαναφορά προεπιλεγμένων ρυθμίσεων?</value>
-  </data>
-  <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Κλείσιμο</value>
-  </data>
-  <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
-    <value>Δεν ήταν δυνατή η εύρεση του φακέλου αρχείων καταγραφής.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
-    <value>Για προχωρημένους</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
-    <value>Επιτρέψτε την πρόσβαση στο διαδίκτυο μόνο όταν είστε συνδεδεμένοι στο Proton VPN. Η προηγμένη λειτουργία kill switch θα παραμείνει ενεργή ακόμα και όταν επανεκκινήσετε τη συσκευή σας.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
-    <value>Προστατεύει τη διεύθυνση IP σας αποσυνδέοντάς σας από το διαδίκτυο εάν χάσετε τη σύνδεσή σας VPN.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
-    <value>Όταν είναι ενεργοποιημένη η λειτουργία kill switch, δε θα μπορείτε να συνδεθείτε σε ιστότοπους και εφαρμογές που εξαιρούνται από τη σύνδεσή σας VPN μέσω διαίρεσης σήραγγας.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
-    <value>Τυπικό</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
-    <value>Αυτόματη αποσύνδεση από το διαδίκτυο εάν χαθεί η σύνδεση VPN.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Description" xml:space="preserve">
-    <value>Προστατευτείτε από διαφημίσεις, κακόβουλο λογισμικό και ιχνηλάτες σε ιστότοπους και εφαρμογές.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
-    <value>Ορισμένοι ιστότοποι ενδέχεται να μη φορτώνουν σωστά όταν αποκλείονται διαφημίσεις και ιχνηλάτες.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
-    <value>Ενεργή θύρα:</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
-    <value>Αντιγραφή αριθμού θύρας</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
-    <value>Παρακάμψτε τα τείχη προστασίας για να συνδεθείτε σε διακομιστές και συσκευές P2P στο τοπικό σας δίκτυο.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>Για να χρησιμοποιήσετε την Προώθηση Θυρών, συνδεθείτε σε έναν διακομιστή που υποστηρίζει P2P.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
-    <value>Ειδοποιήσεις</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Ειδοποιηθείτε όταν αλλάζει ο αριθμός Προώθησης Θύρας</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
-    <value>Προσθήκη εφαρμογής</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
-    <value>Επιλεγμένες εφαρμογές ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
-    <value>Κατάργηση εφαρμογής</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
-    <value>Προσαρμόστε τη σύνδεσή σας αποφασίζοντας ποιες εφαρμογές και διευθύνσεις IP προστατεύονται από VPN.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
-    <value>Αντίστροφο</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
-    <value>Μόνο επιλεγμένες εφαρμογές και διευθύνσεις IP συνδέονται μέσω VPN, όλη η άλλη κίνηση δεν προστατεύεται</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
-    <value>Προσθήκη IP</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
-    <value>Επιλεγμένες διευθύνσεις IP ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
-    <value>Κατάργηση IP</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
-    <value>Προσθήκη διεύθυνσης IPv4</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
-    <value>Τυπικό</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
-    <value>Επιλεγμένες εφαρμογές και διευθύνσεις IP εξαιρούνται από τη σύνδεση VPN</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
-    <value>Αρχεία εφαρμογής</value>
-    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
-  </data>
-  <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>Επανασύνδεση</value>
-  </data>
-  <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>Εφαρμογή και επανασύνδεση</value>
-  </data>
-  <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>Απόρριψη</value>
-  </data>
-  <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>Απόρριψη αλλαγών ρυθμίσεων;</value>
-  </data>
-  <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>Ενεργοποίηση</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
-    <value>Δε θα μπορείτε να χρησιμοποιήσετε το NetShield όταν είστε συνδεδεμένοι με έναν προσαρμοσμένο διακομιστή DNS.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
-    <value>Ενεργοποίηση προσαρμοσμένων διακομιστών DNS;</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>Αυτό θα απενεργοποιήσει τη διαίρεση σήραγγας.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Ενεργοποίηση kill switch;</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
-    <value>Δε θα μπορείτε να συνδεθείτε με έναν προσαρμοσμένο διακομιστή DNS όταν είναι ενεργοποιημένο το NetShield.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
-    <value>Ενεργοποίηση NetShield;</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>Αυτό θα απενεργοποιήσει το kill switch.</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>Ενεργοποίηση διαίρεσης σήραγγας;</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
-    <value>Δε θα μπορείτε να χρησιμοποιήσετε την προώθηση θυρών με Moderate NAT.</value>
-  </data>
-  <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
-    <value>Ενεργοποιήστε το Μέτριο NAT?</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
-    <value>Δε θα μπορείτε να χρησιμοποιήσετε Moderate NAT όταν είναι ενεργοποιημένη η προώθηση θυρών.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
-    <value>Ενεργοποίηση προώθησης θυρών;</value>
-  </data>
-  <data name="Cities" xml:space="preserve">
-    <value>Πόλεις</value>
-  </data>
-  <data name="Countries_All" xml:space="preserve">
+  <data name="Countries_All">
     <value>Όλες</value>
   </data>
-  <data name="Countries_City_One" xml:space="preserve">
+  <data name="Countries_Cities">
+    <value>Πόλεις</value>
+  </data>
+  <data name="Countries_City_One">
     <value>{0} πόλη</value>
-    <comment>{0} is a placeholder for a single city (eg. 1 city)</comment>
   </data>
-  <data name="Countries_City_Other" xml:space="preserve">
+  <data name="Countries_City_Other">
     <value>{0} πόλεις</value>
-    <comment>{0} is a placeholder for multiple cities (eg. 25 cities)</comment>
   </data>
-  <data name="Countries_Connect" xml:space="preserve">
+  <data name="Countries_Connect">
     <value>Σύνδεση</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
-  <data name="Countries_P2P" xml:space="preserve">
-    <value>P2P</value>
+  <data name="Countries_Fastest">
+    <value>Ταχύτερη χώρα</value>
   </data>
-  <data name="Countries_SecureCore" xml:space="preserve">
-    <value>Secure Core</value>
+  <data name="Countries_Info">
+    <value>Πληροφορίες</value>
   </data>
-  <data name="Countries_Tor" xml:space="preserve">
-    <value>Tor</value>
+  <data name="Countries_NoSearchResults">
+    <value>Δε βρέθηκαν αποτελέσματα</value>
   </data>
-  <data name="Countries_Cities" xml:space="preserve">
-    <value>Πόλεις</value>
-  </data>
-  <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} διακομιστής</value>
-  </data>
-  <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} διακομιστές</value>
-  </data>
-  <data name="Countries_NumberOfCities" xml:space="preserve">
+  <data name="Countries_NumberOfCities">
     <value>Πόλεις ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
-  <data name="Countries_NumberOfCountries" xml:space="preserve">
+  <data name="Countries_NumberOfCountries">
     <value>Χώρες ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Χώρες Secure Core ({0})</value>
-    <comment>{0} represents the number of countries</comment>
+  <data name="Countries_NumberOfServers">
+    <value>Διακομιστές ({0})</value>
+    <comment>{0} represents a number of servers</comment>
   </data>
-  <data name="Countries_Info" xml:space="preserve">
-    <value>Πληροφορίες</value>
+  <data name="Countries_P2P">
+    <value>P2P</value>
   </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>Προηγμένο απόρρητο</value>
-  </data>
-  <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Το Secure Core σας συνδέει με τον διακομιστή προορισμού σας μέσω ενός δεύτερου, μέγιστης ασφάλειας διακομιστή VPN.
-
-Αυτό το υψηλότερο επίπεδο προστασίας μπορεί να προκαλέσει υψηλότερο χρόνο αδράνειας και χαμηλότερες ταχύτητες.</value>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>Υψηλότερη αδράνεια</value>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>Υψηλή ιδιωτικότητα</value>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>Χαμηλότερη αδράνεια</value>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Σύνδεση VPN Secure Core</value>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Τυπική σύνδεση VPN</value>
-  </data>
-  <data name="Dialogs_SecureCore_Title" xml:space="preserve">
-    <value>Secure Core</value>
-  </data>
-  <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Διακομιστές Secure Core ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
-  <data name="Countries_ViaCountry" xml:space="preserve">
-    <value>μέσω {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
-  </data>
-  <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>Οι διακομιστές βρίσκονται σε {0}, αλλά θα φαίνεται ότι περιηγείστε από {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
-  <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Το Smart Routing χρησιμοποιεί εικονικούς διακομιστές για να παρέχει κάλυψη VPN σε δυσπρόσιτες χώρες.
-
-Όταν συνδέεστε σε ένα Smart Routing διακομιστή, θα φαίνεται ότι περιηγείστε στη χώρα προορισμού σας, παρόλο που ο φυσικός διακομιστής βρίσκεται αλλού.  
-
-Το Smart Routing χρησιμοποιείται συνήθως για την παράκαμψη των νόμων κατά της ιδιωτικότητας και άλλων μορφών λογοκρισίας.</value>
-  </data>
-  <data name="Countries_P2PCountries" xml:space="preserve">
+  <data name="Countries_P2PCountries">
     <value>P2P χώρες ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Countries_TorCountries" xml:space="preserve">
+  <data name="Countries_P2P_Cities">
+    <value>P2P πόλεις ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_Page_Title">
+    <value>Χώρες</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>Θέλω να περιηγηθώ από...</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCoreCountries">
+    <value>Χώρες Secure Core ({0})</value>
+    <comment>{0} represents the number of countries</comment>
+  </data>
+  <data name="Countries_SecureCoreServers">
+    <value>Διακομιστές Secure Core ({0})</value>
+    <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_Server_One">
+    <value>{0} διακομιστής</value>
+  </data>
+  <data name="Countries_Server_Other">
+    <value>{0} διακομιστές</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Φορτίο διακομιστή</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart routing</value>
+  </data>
+  <data name="Countries_SmartRouting_Description">
+    <value>Οι διακομιστές βρίσκονται σε {0}, αλλά θα φαίνεται ότι περιηγείστε από {1}.</value>
+    <comment>{0} and {1} represent country names.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorCountries">
     <value>Tor χώρες ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
-  <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
+  <data name="Countries_TorServers">
+    <value>Διακομιστές Tor ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>Παρακαλούμε δοκιμάστε διαφορετική λέξη</value>
+  </data>
+  <data name="Countries_ViaCountry">
+    <value>μέσω {0}</value>
+    <comment>{0} represents country name. For example: via Australia.</comment>
+  </data>
+  <data name="Country_Fastest">
+    <value>Ταχύτερη χώρα</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Ανδόρα</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Ηνωμένα Αραβικά Εμιράτα</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Αφγανιστάν</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Αντίγκουα και Μπαρμπούντα</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Ανγκουίλα</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Αλβανία</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Αρμενία</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Αγκόλα</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Ανταρκτική</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Αργεντινή</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Αμερικανική Σαμόα</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Αυστρία</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Αυστραλία</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Αρούμπα</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Νησιά Άλαντ</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Αζερμπαϊτζάν</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Βοσνία Ερζεγοβίνη</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Μπαρμπάντος</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Μπαγκλαντές</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Βέλγιο</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Μπουρκίνα Φάσο</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Βουλγαρία</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Μπαχρέιν</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Μπουρούντι</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Μπενίν</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Άγιος Βαρθολομαίος</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Βερμούδες</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Μπρουνέι</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Βολιβία</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Μπονέρ, Άγιος Ευστάθιος και Σάμπα</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Βραζιλία</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Μπαχάμες</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Μπουτάν</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Νήσος Μπουβέ</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Μποτσουάνα</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Λευκορωσία</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Μπελίζ</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Καναδάς</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Νήσοι Κόκος</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Κονγκό-Κινσάσα</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Κεντροαφρικανική Δημοκρατία</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Κονγκό-Μπραζαβίλ</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Ελβετία</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Ακτή Ελεφαντοστού</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Νήσοι Κουκ</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Χιλή</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Καμερούν</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>Κίνα</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Κολομβία</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Κόστα Ρίκα</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Κούβα</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Πράσινο Ακρωτήριo</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Κουρασάο</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Νήσος Χριστουγέννων</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Κύπρος</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Τσεχία</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Γερμανία</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Τζιμπουτί</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Δανία</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Δομινίκα</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Δομινικανή Δημοκρατία</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Αλγερία</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ισημερινός</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Εσθονία</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Αίγυπτος</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Δυτική Σαχάρα</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Ερυθραία</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Ισπανία</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Αιθιοπία</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Φινλανδία</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Φίτζι</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Νησιά Φώκλαντ (Μαλβίνες)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Μικρονησία</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Νήσοι Φερόες</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Γαλλία</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Γκαμπόν</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Ηνωμένο Βασίλειο</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Γρενάδα</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Γεωργία</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Γαλλική Γουιάνα</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Γκέρνζι</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Γκάνα</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Γιβραλτάρ</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Γροιλανδία</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Γκάμπια</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Γουινέα</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Γουαδελούπη</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Ισημερινή Γουινέα</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Ελλάδα</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Νήσοι Νότια Γεωργία και Νότιες Σάντουιτς</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Γουατεμάλα</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Γκουάμ</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Γουινέα-Μπισάου</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Γουιάνα</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Χονγκ Κονγκ</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Νήσοι Χερντ και Μακντόναλντ</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Ονδούρα</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Κροατία</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Αϊτή</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Ουγγαρία</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Ινδονησία</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Ιρλανδία</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Ισραήλ</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Νήσος Μαν</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>Ινδία</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Βρετανικό Έδαφος Ινδικού Ωκεανού</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Ιράκ</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Ιράν</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Ισλανδία</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Ιταλία</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Βαϊλάτο του Τζέρσεϊ</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Τζαμάικα</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Ιορδανία</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Ιαπωνία</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Κένυα</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Κιργιστάν</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Καμπότζη</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Κιριμπάτι</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Κομόρες</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Άγιος Χριστόφορος</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Βόρεια Κορέα</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Νότια Κορέα</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Κουβέιτ</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Νήσοι Κέιμαν</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Καζακστάν</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Λάος</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Λίβανος</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Αγία Λουκία</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Λιχτενστάιν</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Σρι Λάνκα</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Λιβερία</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Λεσότο</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Λιθουανία</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Λουξεμβούργο</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Λετονία</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Λιβύη</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Μαρόκο</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Μονακό</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Μολδαβία</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Μαυροβούνιο</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Άγιος Μαρτίνος (Γαλλικό τμήμα)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Μαδαγασκάρη</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Νήσοι Μάρσαλ</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Σκόπια</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Μάλι</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Μιανμάρ</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Μογγολία</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Μακάο</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Βόρειες Μαριάνες</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Μαρτινίκα</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Μαυριτανία</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Μονσεράτ</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Μάλτα</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Μαυρίκιος</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Μαλδίβες</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Μαλάουι</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Μεξικό</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Μαλαισία</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Μοζαμβίκη</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Ναμίμπια</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Νέα Καληδονία</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Νίγηρας</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Νήσος Νόρφολκ</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Νιγηρία</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Νικαράγουα</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Ολλανδία</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Νορβηγία</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Νεπάλ</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Ναούρου</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Νιούε</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Νέα Ζηλανδία</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Ομάν</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Παναμάς</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Περού</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Γαλλική Πολυνησία</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Παπούα Νέα Γουινέα</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Φιλιππίνες</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Πακιστάν</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Πολωνία</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Νήσοι Αγίου Πέτρου και Μιχαήλ</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Πίτκερν</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Πουέρτο Ρίκο</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Παλαιστίνη</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Πορτογαλία</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Παλάου</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Παραγουάη</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Κατάρ</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Ρεϋνιόν</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Ρουμανία</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Σερβία</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Ρωσία</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Ρουάντα</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Σαουδική Αραβία</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Νήσοι Σολομώντος</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Σεϊχέλες</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Σουδάν</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Σουηδία</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Σιγκαπούρη</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Αγία Ελένη, της Αναλήψεως και Τριστάν ντα Κούνια</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Σλοβενία</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Σβάλμπαρντ</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Σλοβακία</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Σιέρα Λεόνε</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>Άγιος Μαρίνος</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Σενεγάλη</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Σομαλία</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Σουρινάμ</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Νότιο Σουδάν</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Άγιος Θωμάς</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>Ελ Σαλβαδόρ</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Άγιος Μαρτίνος (Ολλανδικό τμήμα)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Αραβική Δημοκρατία της Συρίας</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Εσουατίνη</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Νήσοι Τερκς και Κάικος</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Τσαντ</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Νότια Γαλλικά Εδάφη</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Τόγκο</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Ταϊλάνδη</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Τατζικιστάν</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Τοκελάου</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Ανατολικό Τιμόρ</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Τουρκμενιστάν</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Τυνησία</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Τόνγκα</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Τουρκία</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Τρινιντάντ</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Τουβαλού</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Ταϊβάν</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Τανζανία</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ουκρανία</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Ουγκάντα</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Ηνωμένο Βασίλειο</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Απομακρυσμένες Νησίδες των Ηνωμένων Πολιτειών</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Ηνωμένες Πολιτείες</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Ουρουγουάη</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Ουζμπεκιστάν</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Πόλη του Βατικανού</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Άγιος Βικέντιος</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Βενεζουέλα</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Βρετανικές Παρθένες Νήσοι</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Παρθένοι Νήσοι, ΗΠΑ.</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Βιετνάμ</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Βανουάτου</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Ουαλίς και Φουτουνά</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Σαμόα</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Υεμένη</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Μαγιότ</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Νότια Αφρική</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Ζάμπια</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Ζιμπάμπουε</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Άγνωστο</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Get unlimited server changes with VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>You've reached the maximum number of free server changes for now</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Το Proton Free σας συνδέει αυτόματα με τον ταχύτερο διαθέσιμο δωρεάν διακομιστή από τη {0} δωρεάν χώρα μας. Αυτός θα είναι συνήθως ο πλησιέστερος διακομιστής στην τοποθεσία σας.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Το Proton Free σας συνδέει αυτόματα με τον ταχύτερο διαθέσιμο δωρεάν διακομιστή από τη {0} δωρεάν χώρες μας. Αυτός θα είναι συνήθως ο πλησιέστερος διακομιστής στην τοποθεσία σας.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Χώρα δωρεάν διακομιστών ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Χώρες δωρεάν διακομιστών ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Δωρεάν συνδέσεις</value>
+  </data>
+  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
+    <value>Αποκτήστε παγκόσμια κάλυψη με το VPN Plus</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>Ο χρόνος αδράνειας δείχνει πόσος χρόνος χρειάζεται για να ανταποκριθεί ένας διακομιστής σε αιτήματα.
+
+Ο υψηλός χρόνος αδράνειας μπορεί να επιβραδύνει τη σύνδεσή σας.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>Το VPN μπορεί να λειτουργεί πιο αργά από το κανονικό</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>Υψηλή (150ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>Αστραπιαίες ταχύτητες</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>Χαμηλή (1ms - 50ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>Απίθανο να επηρεάσει την ταχύτητα VPN</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>Μεσαία (50ms - 150ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>Τι είναι ο χρόνος αδράνειας;</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Πώς να κάνετε torrent με P2P</value>
   </data>
-  <data name="Dialogs_P2P_Title" xml:space="preserve">
+  <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer">
     <value>Τι είναι ένας διακομιστής P2P;</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
     <value>Οι διακομιστές VPN P2P (peer-to-peer) ξεμπλοκάρουν ιστότοπους torrent.</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting">
     <value>Τι είναι το torrenting;</value>
   </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
     <value>Η γρήγορη κοινή χρήση και λήψη μεγάλων αρχείων μέσω δικτύου peer-to-peer (P2P).</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse">
     <value>Γιατί να χρησιμοποιήσετε έναν διακομιστή P2P όταν χρησιμοποιείτε torrents;</value>
   </data>
-  <data name="Dialogs_P2P_WhyUse_Description" xml:space="preserve">
+  <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Αυξημένες ταχύτητες μεταφόρτωσης και λήψης
 • Δεν υπάρχουν αρχεία καταγραφής δραστηριότητας
 • Απόκρυψη της διεύθυνσης IP σας από τον πάροχο υπηρεσιών και τους ομότιμους σας</value>
   </data>
-  <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
-    <value>Smart Routing</value>
+  <data name="Dialogs_Protocol_Description">
+    <value>Το πρωτόκολλο είναι ένα σύνολο οδηγιών που ακολουθεί η συσκευή σας για να συνδεθεί και να επικοινωνήσει με έναν διακομιστή.</value>
   </data>
-  <data name="Countries_Fastest" xml:space="preserve">
-    <value>Ταχύτερη χώρα</value>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>Εναλλαγή πρωτοκόλλου VPN</value>
   </data>
-  <data name="Dialogs_Tor_Description" xml:space="preserve">
-    <value>Συνδεθείτε σε έναν διακομιστή Tor για να αποκτήσετε πρόσβαση σε κρυφές υπηρεσίες και ιστότοπους onion χρησιμοποιώντας οποιοδήποτε πρόγραμμα περιήγησης.</value>
+  <data name="Dialogs_Protocol_Title">
+    <value>Τι είναι το πρωτόκολλο VPN;</value>
   </data>
-  <data name="Dialogs_Tor_LearnMore" xml:space="preserve">
-    <value>Πώς να αποκτήσετε πρόσβαση στο δίκτυο Tor</value>
-  </data>
-  <data name="Dialogs_Tor_Title" xml:space="preserve">
-    <value>Tor</value>
-  </data>
-  <data name="Countries_SearchPlaceholder" xml:space="preserve">
-    <value>Θέλω να περιηγηθώ από...</value>
-  </data>
-  <data name="Countries_P2P_Cities" xml:space="preserve">
-    <value>P2P πόλεις ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
-  <data name="Countries_TorServers" xml:space="preserve">
-    <value>Διακομιστές Tor ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
-  <data name="Countries_Server" xml:space="preserve">
-    <value>Διακομιστής</value>
-  </data>
-  <data name="Countries_ServerLoad" xml:space="preserve">
-    <value>Φορτίο διακομιστή</value>
-  </data>
-  <data name="Countries_SmartRouting" xml:space="preserve">
-    <value>Smart routing</value>
-  </data>
-  <data name="Countries_NoSearchResults" xml:space="preserve">
-    <value>Δε βρέθηκαν αποτελέσματα</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword" xml:space="preserve">
-    <value>Παρακαλούμε δοκιμάστε διαφορετική λέξη</value>
-  </data>
-  <data name="Countries_NumberOfServers" xml:space="preserve">
-    <value>Διακομιστές ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
-  <data name="Login_Error_SessionExpired" xml:space="preserve">
-    <value>Η συνεδρία σας έχει λήξει. Παρακαλούμε εισέλθετε ξανά.</value>
-    <comment>The message displayed in Login window when expired session is detected</comment>
-  </data>
-  <data name="Notifications_PortForwarding_Description" xml:space="preserve">
-    <value>Για μεγαλύτερη ταχύτητα, ρυθμίστε αυτόν τον αριθμό στην εφαρμογή σας BitTorrent.</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
-    <value>OpenVPN (TCP)</value>
-  </data>
-  <data name="VpnProtocol_OpenVPN_Udp" xml:space="preserve">
-    <value>OpenVPN (UDP)</value>
-  </data>
-  <data name="VpnProtocol_Smart" xml:space="preserve">
-    <value>Smart</value>
-  </data>
-  <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
-    <value>WireGuard</value>
-  </data>
-  <data name="Login_Form_Email" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>Ηλεκτρονικό ταχυδρομείο</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithPassword" xml:space="preserve">
-    <value>Σύνδεση με κωδικό</value>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
-  <data name="Login_Form_SignInWithSso" xml:space="preserve">
-    <value>Συνδεθείτε με SSO</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Αποστολή καταχωρήσεων σφαλμάτων</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_GetSessionDetailsFailed" xml:space="preserve">
-    <value>Παρουσιάστηκε σφάλμα κατά την ανάκτηση των λεπτομερειών της συνεδρίας. Παρακαλούμε προσπαθήστε ξανά.</value>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Τα αρχεία καταγραφής σφαλμάτων μας δείχνουν τι πήγε στραβά και ποιες ενέργειες οδήγησαν στο πρόβλημά σας. Θα τα χρησιμοποιήσουμε μόνο για να βοηθήσουμε τους μηχανικούς μας να διορθώσουν σφάλματα.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
-  <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
-    <value>Ο έλεγχος ταυτότητας SSO απέτυχε. Παρακαλούμε προσπαθήστε ξανά.</value>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Τι πρόβλημα αντιμετωπίζεται;</value>
   </data>
-  <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>Δεν υπάρχουν διακομιστές που να είναι διαθέσιμοι τώρα για την επιλογή σας. Επιλέξτε μια άλλη επιλογή.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Πρόχειρες λύσεις</value>
   </data>
-  <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
-    <value>Ο προσαρμογέας δικτύου σας χρησιμοποιείται αυτήν τη στιγμή.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Δε δούλεψε;</value>
   </data>
-  <data name="Connection_Error_TapRequiresUpdate" xml:space="preserve">
-    <value>Η έκδοση του προσαρμογέα δικτύου είναι ξεπερασμένη.</value>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Αυτές οι υποδείξεις μπορεί να βοηθήσουν στην ταχύτερη επίλυση του προβλήματός σας.</value>
   </data>
-  <data name="Connection_Error_TlsCertificate" xml:space="preserve">
-    <value>Υπάρχει πρόβλημα με την επικύρωση του πιστοποιητικού διακομιστή VPN, το οποίο μπορεί να υποδεικνύει ότι η σύνδεση δικτύου έχει αλλοιωθεί ή ότι ο διακομιστής στον οποίο προσπαθείτε να συνδεθείτε έχει πρόβλημα ρύθμισης παραμέτρων. Λάβετε βοήθεια από την υποστήριξη πελατών μας στέλνοντας μια αναφορά ζητήματος.</value>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Έτοιμο</value>
   </data>
-  <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>Το Proton VPN δεν μπόρεσε να συνδεθεί επειδή ο προσαρμογέας δικτύου WireGuard είναι ήδη σε χρήση. Αποσυνδέστε τυχόν ενεργά VPN και δοκιμάστε ξανά. Εναλλακτικά, μπορείτε να αλλάξετε πρωτόκολλα στις Ρυθμίσεις για Προχωρημένους.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Κάτι πήγε στραβά</value>
   </data>
-  <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
-    <value>Απουσία προσαρμογέα δικτύου.</value>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Αδυναμία αποστολής της αναφοράς σας. Παρακαλούμε ελέγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</value>
   </data>
-  <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
+  <data name="Dialogs_ReportIssue_Result_RetryAction">
+    <value>Δοκιμάστε ξανά</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Αναφορά αποστάλθηκε</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Ευχαριστούμε για τα σχόλιά σας. Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Αποστολή αναφοράς</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Βήμα {0} από {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
     <value>Αναφορά προβλήματος</value>
   </data>
-  <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
-    <value>Το Proton VPN δεν μπορεί να συνδεθεί επειδή ο διακομιστής RPC δεν είναι διαθέσιμος στο σύστημά σας.</value>
+  <data name="Dialogs_SecureCore_AdvancedPrivacy">
+    <value>Προηγμένο απόρρητο</value>
   </data>
-  <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>Δείτε πιθανές λύσεις</value>
+  <data name="Dialogs_SecureCore_Description">
+    <value>Το Secure Core σας συνδέει με τον διακομιστή προορισμού σας μέσω ενός δεύτερου, μέγιστης ασφάλειας διακομιστή VPN.
+
+Αυτό το υψηλότερο επίπεδο προστασίας μπορεί να προκαλέσει υψηλότερο χρόνο αδράνειας και χαμηλότερες ταχύτητες.</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
-    <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Παρακαλούμε αποσυνδέστε μια άλλη συσκευή για να τη συνδέσετε ή αναβαθμίστε σε PLUS για να συνδέσετε έως και 10 συσκευές ταυτόχρονα.</value>
+  <data name="Dialogs_SecureCore_HighPrivacy">
+    <value>Υψηλή ιδιωτικότητα</value>
   </data>
-  <data name="Connection_Error_SessionLimitReachedPaidUser" xml:space="preserve">
-    <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Παρακαλούμε αποσυνδέστε μια άλλη συσκευή για να συνδέσετε αυτήν.</value>
+  <data name="Dialogs_SecureCore_HigherLatency">
+    <value>Υψηλότερη αδράνεια</value>
   </data>
-  <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>Δεν είμαστε σίγουροι τι συνέβη εδώ. Παρακαλούμε δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα υποστήριξης πελατών μας.</value>
+  <data name="Dialogs_SecureCore_LowerLatency">
+    <value>Χαμηλότερη αδράνεια</value>
   </data>
-  <data name="Gateways_Page_Title" xml:space="preserve">
+  <data name="Dialogs_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+Σύνδεση VPN</value>
+  </data>
+  <data name="Dialogs_SecureCore_StandardConnection">
+    <value>Τυπική
+Σύνδεση VPN</value>
+  </data>
+  <data name="Dialogs_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>Το φορτίο διακομιστή δείχνει πόσο κοντά βρίσκεται ένας διακομιστής στη μέγιστη χωρητικότητά του.
+
+Ένα υψηλό φορτίο διακομιστή μπορεί να επιβραδύνει τη σύνδεσή σας.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>Το VPN μπορεί να λειτουργεί πιο αργά από το κανονικό</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>Υψηλό (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>Αστραπιαίες ταχύτητες</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>Χαμηλό (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>Απίθανο να επηρεάσει την ταχύτητα VPN</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>Μεσαίο (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>Τι είναι το φορτίο διακομιστή;</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Description">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+
+Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>Συνδεθείτε σε έναν διακομιστή Tor για να αποκτήσετε πρόσβαση σε κρυφές υπηρεσίες και ιστότοπους onion χρησιμοποιώντας οποιοδήποτε πρόγραμμα περιήγησης.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>Πώς να αποκτήσετε πρόσβαση στο δίκτυο Tor</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>Ετοιμάζουμε τη νέα σας εμπειρία VPN. Αυτό θα πρέπει να διαρκέσει μόνο μια στιγμή.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>Καλώς ήρθατε στο Proton VPN</value>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/δλ</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/δλ</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/δλ</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/δλ</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/δλ</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/δλ</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/δλ</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day">
+    <value>{0} ημέρα</value>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DayHours">
+    <value>{0} ημ {1} ώρ</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Days">
+    <value>{0} ημέρες</value>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  </data>
+  <data name="Format_Time_DaysHours">
+    <value>{0} ημέρες {1} ώρ</value>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} ώρ</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} ώρ {1} λεπ</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} λεπ</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} λεπ {1} δλ</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} δλ</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Gateways_Page_Title">
     <value>Πύλες</value>
   </data>
-  <data name="Gateways_Server" xml:space="preserve">
+  <data name="Gateways_Server">
     <value>Αφοσιωμένος διακομιστής</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Message" xml:space="preserve">
+  <data name="Home_Account_SignOut">
+    <value>Αποσύνδεση</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Message">
     <value>Θα αποσυνδεθείτε από το VPN.</value>
   </data>
-  <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
+  <data name="Home_Account_SignOut_Confirmation_Title">
     <value>Αποσύνδεση από {0};</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Tray_Actions_ExitApplication" xml:space="preserve">
+  <data name="Home_Account_Title">
+    <value>Ο λογαριασμός μου</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Change server</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>Ασφαλής περιήγηση από</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>Σύνδεση σε...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>Δωρεάν σύνδεση</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>Τελευταία σύνδεση στη</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended">
+    <value>Προτεινόμενη</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>Κάρτα σύνδεσης</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>Πόλη</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>Συνδεδεμένο για</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Χώρα</value>
+  </data>
+  <data name="Home_ConnectionDetails_Download">
+    <value>Λήψη</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>Πύλη</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>Απόκρυψη λεπτομερειών σύνδεσης</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>Απόκρυψη</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>Απόκρυψη διεύθυνσης IP χρήστη</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>Λεπτομέρειες σύνδεσης</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Latency">
+    <value>Αδράνεια</value>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>Η IP μου</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Πρωτόκολλο</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>Διακομιστής</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Φορτίο διακομιστή</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>Εμφάνιση λεπτομερειών σύνδεσης</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>Εμφάνιση</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>Εμφάνιση διεύθυνσης IP χρήστη</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>Λεπτομέρειες σύνδεσης</value>
+  </data>
+  <data name="Home_ConnectionDetails_Upload">
+    <value>Ανέβασμα</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Περισσότερες πληροφορίες σχετικά με τις δωρεάν συνδέσεις</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>Βοήθεια</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>Χάρτης</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked">
+    <value>Διαφημίσεις
+αποκλείστηκαν</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Δεδομένα
+σωθήκαν</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>Στατιστικά NetShield</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_TrackersStopped">
+    <value>Ιχνηλάτες
+σταματήθηκαν</value>
+    <comment>Use 
+ to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  </data>
+  <data name="Home_Page_Title">
+    <value>Αρχική</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>Πρόσφατες συνδέσεις</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Καρφίτσωμα</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>Ενέργειες</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Ο διακομιστής είναι υπό συντήρηση</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Πρόσφατες</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Ξεκαρφίτσωμα</value>
+  </data>
+  <data name="Home_Update_Confirmation_Message">
+    <value>Για να ολοκληρωθεί η διαδικασία ενημέρωσης, το Proton VPN θα αποσυνδέθει προσωρινά και θα απενεργοποιήσει το Advanced Kill Switch εάν κάποιο από αυτά είναι ενεργό. Θέλετε να συνεχίσετε;</value>
+    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  </data>
+  <data name="Home_Update_Confirmation_Title">
+    <value>Ενημέρωση Proton VPN?</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>Υπάρχει διαθέσιμη ενημέρωση</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>Ενημέρωση έτοιμη</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>Κατάσταση VPN</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>Προστασία της ψηφιακής σας ταυτότητας</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>Είστε απροστάτευτοι</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>Προστατευμένο</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Παρουσιάστηκε σφάλμα κατά την ανάκτηση των λεπτομερειών της συνεδρίας. Παρακαλούμε προσπαθήστε ξανά.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Λανθασμένος κωδικός. Παρακαλούμε δοκιμάστε ξανά.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Η συνεδρία σας έχει λήξει. Παρακαλούμε εισέλθετε ξανά.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>Ο έλεγχος ταυτότητας SSO απέτυχε. Παρακαλούμε προσπαθήστε ξανά.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>Λανθασμένα διαπιστευτήρια εισόδου. Παρακαλούμε δοκιμάστε ξανά.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Ο έλεγχος ταυτότητας δύο παραγόντων απέτυχε. Παρακαλούμε συνδεθείτε ξανά.</value>
+  </data>
+  <data name="Login_Form">
+    <value>Φόρμα σύνδεσης</value>
+  </data>
+  <data name="Login_Form_CreateAccount">
+    <value>Δημιουργία λογαριασμού</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_Email">
+    <value>Ηλεκτρονικό ταχυδρομείο</value>
+  </data>
+  <data name="Login_Form_ForgotUsername">
+    <value>Ξέχασα το όνομα χρήστη μου</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Help">
+    <value>Βοήθεια</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Password">
+    <value>Κωδικός</value>
+  </data>
+  <data name="Login_Form_ReportAnIssue">
+    <value>Αναφορά προβλήματος</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_ResetPassword">
+    <value>Επαναφορά κωδικού πρόσβασης</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_SignIn">
+    <value>Σύνδεση</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_SignInWithPassword">
+    <value>Σύνδεση με κωδικό</value>
+  </data>
+  <data name="Login_Form_SignInWithSso">
+    <value>Συνδεθείτε με SSO</value>
+  </data>
+  <data name="Login_Form_TroubleSigningIn">
+    <value>Πρόβλημα σύνδεσης</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="Login_Form_Username">
+    <value>Διεύθυνση ή όνομα χρήστη</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Ταυτοποίηση</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Πληκτρολογήστε τον κωδικό από την εφαρμογή ταυτοποίησης</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Ταυτοποίηση δύο παραγόντων</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Πρώτο ψηφίο</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Δεύτερο ψηφίο</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Τρίτο ψηφίο</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Τέταρτο ψηφίο</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Πέμπτο ψηφίο</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Έκτο ψηφίο</value>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Σύνδεση, παρακαλούμε περιμένετε...</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Αποσύνδεση, παρακαλούμε περιμένετε...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Για μεγαλύτερη ταχύτητα, ρυθμίστε αυτόν τον αριθμό στην εφαρμογή σας BitTorrent.</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Ο ταχύτερος δωρεάν διακομιστής</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Δωρεάν διακομιστής</value>
+  </data>
+  <data name="Settings_About">
+    <value>Σχετικά</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Έκδοση εφαρμογής</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Αυτά τα στατιστικά στοιχεία δεν περιέχουν τη διεύθυνση IP σας και δεν μπορούν να χρησιμοποιηθούν για την αναγνώρισή σας. Δε θα τα μοιραστούμε ποτέ με τρίτους.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Κοινοποιήστε ανώνυμες αναφορές σφαλμάτων</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Οι αναφορές σφαλμάτων μάς βοηθούν να διορθώνουμε σφάλματα, να εντοπίζουμε τείχη προστασίας και να αποφεύγουμε τα μπλοκαρίσματα VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Κοινοποιήστε ανώνυμα στατιστικά χρήσης</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Τα δεδομένα χρήσης μας βοηθούν να ξεπεράσουμε τα μπλοκαρίσματα VPN και να βελτιώσουμε την απόδοση των εφαρμογών.</value>
+  </data>
+  <data name="Settings_Common_ApplyAndReconnect">
+    <value>Εφαρμογή και επανασύνδεση</value>
+  </data>
+  <data name="Settings_Common_Discard">
+    <value>Απόρριψη</value>
+  </data>
+  <data name="Settings_Common_Discard_Title">
+    <value>Απόρριψη αλλαγών ρυθμίσεων;</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>Σύνδεση</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Προηγμένες ρυθμίσεις</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Εναλλακτική δρομολόγηση</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Εάν οι υπηρεσίες Proton αποκλειστούν λόγω περιορισμών δικτύου, θα προσπαθήσουμε να χρησιμοποιήσουμε εναλλακτική δρομολόγηση δικτύου για να σας συνδέσουμε στους ιστότοπούς μας.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Προσαρμοσμένοι διακομιστές DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Δε θα μπορείτε να χρησιμοποιήσετε το NetShield όταν είστε συνδεδεμένοι με έναν προσαρμοσμένο διακομιστή DNS.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Ενεργοποίηση προσαρμοσμένων διακομιστών DNS;</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Συνδεθείτε στο Proton VPN χρησιμοποιώντας το δικό σας σύστημα ονομάτων τομέα (DNS). Χρησιμοποιείτε μόνο διακομιστές DNS που εμπιστεύεστε.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>Διακομιστές DNS ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
+    <value>Προσθήκη διεύθυνσης IPv4</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Προστασία διαρροής IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Αποτρέψτε τη διαρροή διεύθυνσης IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Τοπικές συνδέσεις (LAN)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Σας επιτρέπει να συνδέεστε σε εκτυπωτές, ηχεία και άλλες συσκευές στο τοπικό δίκτυο της συσκευής σας.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Τύπος NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Δε θα μπορείτε να χρησιμοποιήσετε την προώθηση θυρών με Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Ενεργοποιήστε το Μέτριο NAT?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Επιλέξτε έναν τύπο μετάφρασης διεύθυνσης δικτύου για τη σύνδεσή σας.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Μέτρια (τύπος 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>Ορισμένοι περιορισμοί στα δεδομένα που εισέρχονται στο δίκτυό σας. Αυτή η επιλογή είναι καλύτερη για διαδικτυακά βιντεοπαιχνίδια.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Αυστηρή (τύπος 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Περιορίζει τα δεδομένα που εισέρχονται στο δίκτυό σας. Αυτή η επιλογή είναι πιο ασφαλής, αλλά μπορεί να δυσκολέψει τις ομότιμες συνδέσεις παιχνιδιών.</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Πρωτόκολλο</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_Features">
+    <value>Χαρακτηριστικά</value>
+  </data>
+  <data name="Settings_Features_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced">
+    <value>Για προχωρημένους</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Advanced_Description">
+    <value>Επιτρέψτε την πρόσβαση στο διαδίκτυο μόνο όταν είστε συνδεδεμένοι στο Proton VPN. Η προηγμένη λειτουργία kill switch θα παραμείνει ενεργή ακόμα και όταν επανεκκινήσετε τη συσκευή σας.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Description">
+    <value>Αυτό θα απενεργοποιήσει τη διαίρεση σήραγγας.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Conflict_Title">
+    <value>Ενεργοποίηση kill switch;</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Description">
+    <value>Προστατεύει τη διεύθυνση IP σας αποσυνδέοντάς σας από το διαδίκτυο εάν χάσετε τη σύνδεσή σας VPN.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Footer">
+    <value>Όταν είναι ενεργοποιημένη η λειτουργία kill switch, δε θα μπορείτε να συνδεθείτε σε ιστότοπους και εφαρμογές που εξαιρούνται από τη σύνδεσή σας VPN μέσω διαίρεσης σήραγγας.</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard">
+    <value>Τυπικό</value>
+  </data>
+  <data name="Settings_Features_KillSwitch_Standard_Description">
+    <value>Αυτόματη αποσύνδεση από το διαδίκτυο εάν χαθεί η σύνδεση VPN.</value>
+  </data>
+  <data name="Settings_Features_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Description">
+    <value>Δε θα μπορείτε να συνδεθείτε με έναν προσαρμοσμένο διακομιστή DNS όταν είναι ενεργοποιημένο το NetShield.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Conflict_Title">
+    <value>Ενεργοποίηση NetShield;</value>
+  </data>
+  <data name="Settings_Features_NetShield_Description">
+    <value>Προστατευτείτε από διαφημίσεις, κακόβουλο λογισμικό και ιχνηλάτες σε ιστότοπους και εφαρμογές.</value>
+  </data>
+  <data name="Settings_Features_NetShield_Footer">
+    <value>Ορισμένοι ιστότοποι ενδέχεται να μη φορτώνουν σωστά όταν αποκλείονται διαφημίσεις και ιχνηλάτες.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding">
+    <value>Προώθηση θυρών</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort">
+    <value>Ενεργή θύρα:</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_ActivePort_Copy">
+    <value>Αντιγραφή αριθμού θύρας</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Description">
+    <value>Δε θα μπορείτε να χρησιμοποιήσετε Moderate NAT όταν είναι ενεργοποιημένη η προώθηση θυρών.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Conflict_Title">
+    <value>Ενεργοποίηση προώθησης θυρών;</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Description">
+    <value>Παρακάμψτε τα τείχη προστασίας για να συνδεθείτε σε διακομιστές και συσκευές P2P στο τοπικό σας δίκτυο.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Footer">
+    <value>Για να χρησιμοποιήσετε την Προώθηση Θυρών, συνδεθείτε σε έναν διακομιστή που υποστηρίζει P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications">
+    <value>Ειδοποιήσεις</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Notifications_Description">
+    <value>Ειδοποιηθείτε όταν αλλάζει ο αριθμός Προώθησης Θύρας</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling">
+    <value>Διαίρεση σήραγγας</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Add">
+    <value>Προσθήκη εφαρμογής</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
+    <value>Αρχεία εφαρμογής</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Header">
+    <value>Επιλεγμένες εφαρμογές ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Apps_Remove">
+    <value>Κατάργηση εφαρμογής</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Description">
+    <value>Αυτό θα απενεργοποιήσει το kill switch.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Conflict_Title">
+    <value>Ενεργοποίηση διαίρεσης σήραγγας;</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Description">
+    <value>Προσαρμόστε τη σύνδεσή σας αποφασίζοντας ποιες εφαρμογές και διευθύνσεις IP προστατεύονται από VPN.</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse">
+    <value>Αντίστροφο</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Inverse_Description">
+    <value>Μόνο επιλεγμένες εφαρμογές και διευθύνσεις IP συνδέονται μέσω VPN, όλη η άλλη κίνηση δεν προστατεύεται</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
+    <value>Προσθήκη IP</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
+    <value>Επιλεγμένες διευθύνσεις IP ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
+    <value>Κατάργηση IP</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
+    <value>Προσθήκη διεύθυνσης IPv4</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard">
+    <value>Τυπικό</value>
+  </data>
+  <data name="Settings_Features_SplitTunneling_Standard_Description">
+    <value>Επιλεγμένες εφαρμογές και διευθύνσεις IP εξαιρούνται από τη σύνδεση VPN</value>
+  </data>
+  <data name="Settings_General">
+    <value>Γενικά</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Αυτόματη εκκίνηση</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Αυτόματη σύνδεση</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Θα συνδεθείτε σε έναν διακομιστή μόλις ανοίξει το Proton VPN</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>Η γρηγορότερη σύνδεση</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>Τελευταία σύνδεση</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Αυτόματη εκκίνηση</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Το Proton VPN θα ανοίξει αυτόματα όταν συνδεθείτε στη συσκευή σας</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Άνοιγμα στην επιφάνεια εργασίας</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Ελαχιστοποίηση στη γραμμή ειδοποιήσεων</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Ελαχιστοποίηση στη Γραμμή Εργασιών</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Αυτόματη εκκίνηση, αυτόματη σύνδεση</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Αυτόματες ενημερώσεις</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Ελέγξτε και εγκαταστήστε αυτόματα τις ενημερώσεις Proton VPN</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Πρόσβαση Beta</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Αποκτήστε πρώιμη πρόσβαση και βοηθήστε μας να δοκιμάσουμε νέες εκδόσεις του Proton VPN</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Γλώσσα</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Ειδοποιήσεις</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Λάβετε ειδοποιήσεις σχετικά με τις τρέχουσες δραστηριότητες του Proton VPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>Οδηγός δικτύου OpenVPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>Τα προγράμματα οδήγησης δικτύου μπορούν να επηρεάσουν την ταχύτητα σύνδεσής σας. Ο νέος προσαρμογέας TUN παρέχει υψηλότερη ταχύτητα και επιστρέφει στον προσαρμογέα TAP εάν αντιμετωπίσει προβλήματα συνδεσιμότητας.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Θέμα</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>Σκοτεινό</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>Προεπιλεγμένο</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>Φωτεινό</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Βελτιώστε το Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Βοηθήστε μας να καταπολεμήσουμε τη λογοκρισία</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Έκδοση Λειτουργικού Συστήματος</value>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>Ένα πρωτόκολλο VPN καθορίζει τον τρόπο με τον οποίο μετακινούνται τα δεδομένα μεταξύ ενός διακομιστή VPN και της συσκευής σας.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Καθιερωμένο, καλά δοκιμασμένο και ασφαλές. Το OpenVPN είναι αξιόπιστο σε κακές συνθήκες δικτύου, αλλά μπορεί να μην είναι τόσο γρήγορο όσο άλλα πρωτόκολλα.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Καθιερωμένο, καλά δοκιμασμένο και ασφαλές. Το OpenVPN είναι λιγότερο αποδοτικό στην μπαταρία από ορισμένα άλλα πρωτόκολλα.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended">
+    <value>Προτεινόμενη</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Επιλέγει αυτόματα το καλύτερο πρωτόκολλο για τη σύνδεσή σας.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Αξιοπιστία (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Ταχύτητα (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Γρήγορο, ασφαλές και αποτελεσματικό. Το WireGuard είναι πιο αποδοτικό για την μπαταρία από άλλα πρωτόκολλα.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Επαναφορά προεπιλεγμένων ρυθμίσεων</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Επαναφορά και επανασύνδεση</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Επαναφορά προεπιλεγμένων ρυθμίσεων</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Αυτό θα επαναφέρει τις ρυθμίσεις του Proton VPN στην αρχική τους κατάσταση.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Επαναφορά προεπιλεγμένων ρυθμίσεων?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Υποστήριξη</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Αρχείο Καταγραφής Σφαλμάτων</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Αρχεία καταγραφών εφαρμογής</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Δεν ήταν δυνατή η εύρεση του φακέλου αρχείων καταγραφής.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Αρχεία καταγραφής υπηρεσιών</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Αναφορά προβλήματος</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Κέντρο υποστήριξης</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Αυξήστε την ταχύτητα σύνδεσής σας έως και 400% με τεχνολογίες βελτίωσης της απόδοσης.</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Έξοδος</value>
   </data>
-  <data name="Tray_Actions_OpenApplication" xml:space="preserve">
+  <data name="Tray_Actions_OpenApplication">
     <value>Άνοιγμα {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard</value>
   </data>
 </root>
