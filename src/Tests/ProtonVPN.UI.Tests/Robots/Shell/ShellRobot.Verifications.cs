@@ -19,7 +19,7 @@
 
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Shell;
@@ -34,7 +34,7 @@ public partial class ShellRobot
         Label applicationTitle = ApplicationTitleLabel;
 
         Assert.IsNotNull(applicationTitle);
-        Assert.AreEqual("Proton VPN", applicationTitle.Text, false);
+        Assert.AreEqual("Proton VPN", applicationTitle.Text);
 
         Assert.IsNotNull(ApplicationIcon);
 
@@ -81,14 +81,14 @@ public partial class ShellRobot
 
     public ShellRobot VerifySidebarIsCollapsed()
     {
-        VerifySidebarWidth(SIDEBAR_COLLAPSED_WIDTH);
+        AssertSidebarWidthIsCorrect(SIDEBAR_COLLAPSED_WIDTH);
 
         return this;
     }
 
     public ShellRobot VerifySidebarIsExpanded()
     {
-        VerifySidebarWidth(SIDEBAR_EXPANDED_WIDTH);
+        AssertSidebarWidthIsCorrect(SIDEBAR_EXPANDED_WIDTH);
 
         return this;
     }
@@ -104,15 +104,18 @@ public partial class ShellRobot
         return this;
     }
 
-    private void VerifySidebarWidth(int expectedWidth)
+    private void AssertSidebarWidthIsCorrect(int expectedWidth)
     {
         Grid sidebar = NavigationSideBar;
 
         Assert.IsNotNull(sidebar);
 
-        Retry.WhileException(() =>
+        RetryResult<bool> retry = Retry.WhileFalse(() =>
         {
-            Assert.AreEqual(expectedWidth, sidebar.ActualWidth, $"Side bar width: {sidebar.ActualWidth}px (expected: {expectedWidth}px)");
+            double currentWidth = sidebar.ActualWidth;
+            return currentWidth == expectedWidth;
         }, TestConstants.VeryShortTimeout, TestConstants.DefaultAnimationDelay);
+
+        Assert.IsTrue(retry.Result, $"Side bar does not have the expected width ({expectedWidth}px)");
     }
 }

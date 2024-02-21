@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
 public partial class LoginRobot

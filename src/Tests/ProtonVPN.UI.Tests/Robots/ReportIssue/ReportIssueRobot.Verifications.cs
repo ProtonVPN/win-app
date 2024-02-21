@@ -18,7 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.ReportIssue;
@@ -90,7 +90,7 @@ public partial class ReportIssueRobot
                 break;
 
             default:
-                throw new AssertFailedException($"Step '{step}' is out of range");
+                throw new AssertionException($"Step '{step}' is out of range");
         }
     }
 }

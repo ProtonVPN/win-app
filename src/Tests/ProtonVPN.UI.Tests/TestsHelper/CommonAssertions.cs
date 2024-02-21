@@ -17,31 +17,75 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
-public class CommonAssertions
+public static class CommonAssertions
 {
-    public static async Task<string> GetCurrentIpAddressAsync()
+    public static void AssertDnsIsResolved(string url)
     {
-        string currentIpAddress = await NetworkUtils.GetExternalIpAddressAsync();
-        Assert.IsNotNull(currentIpAddress);
-        Assert.IsNotEmpty(currentIpAddress);
+        RetryResult<bool> retry = Retry.WhileFalse(() =>
+        {
+            return TryToResolveDns(url);
+        },
+        TestConstants.ShortTimeout, TestConstants.RetryInterval);
 
-        return currentIpAddress;
+        Assert.IsTrue(retry.Result, $"Dns was not resolved for {url}.");
     }
 
-    public static async Task AssertIpAddressChangedAsync(string previousIpAddress)
+    public static void AssertDnsIsNotResolved(string url)
     {
-        string currentIpAddress = await GetCurrentIpAddressAsync();
-        Assert.AreNotEqual(previousIpAddress, currentIpAddress);
+        RetryResult<bool> retry = Retry.WhileTrue(() =>
+        {
+            return TryToResolveDns(url);
+        },
+        TestConstants.ShortTimeout, TestConstants.RetryInterval);
+
+        Assert.IsTrue(retry.Result, $"DNS was resolved for {url}");
     }
 
-    public static async Task AssertIpAddressUnchangedAsync(string previousIpAddress)
+    public static void AssertIpAddressChanged(string previousIpAddress)
     {
-        string currentIpAddress = await GetCurrentIpAddressAsync();
-        Assert.AreEqual(previousIpAddress, currentIpAddress);
+        RetryResult<bool> retry = Retry.WhileTrue(() =>
+        {
+            string currentIpAddress = NetworkUtils.GetIpAddress();
+            return currentIpAddress == previousIpAddress;
+        },
+        TestConstants.ShortTimeout, TestConstants.RetryInterval);
+
+        Assert.IsTrue(retry.Result, $"IP Address has not changed from {previousIpAddress}");
+    }
+
+    public static void AssertIpAddressUnchanged(string previousIpAddress)
+    {
+        RetryResult<bool> retry = Retry.WhileFalse(() =>
+        {
+            string currentIpAddress = NetworkUtils.GetIpAddress();
+            return currentIpAddress == previousIpAddress;
+        },
+        TestConstants.ShortTimeout, TestConstants.RetryInterval);
+
+        Assert.IsTrue(retry.Result, $"IP Address has changed from {previousIpAddress}");
+    }
+
+    private static bool TryToResolveDns(string url)
+    {
+        try
+        {
+            Dns.GetHostEntry(url);
+
+            return true;
+        }
+        catch (SocketException)
+        {
+            return false;
+        }
     }
 }

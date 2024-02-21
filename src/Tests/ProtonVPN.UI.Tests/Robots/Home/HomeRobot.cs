@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Home;

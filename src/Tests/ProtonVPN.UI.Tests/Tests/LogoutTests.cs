@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
@@ -67,17 +66,16 @@ public class LogoutTests : TestSession
     }
 
     [Test]
-    public async Task LogoutWhileConnectedAsync()
+    public void LogoutWhileConnected()
     {
-        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string unprotectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnected();
+            .VerifyAllStatesUntilConnected()
+            .Wait(TestConstants.ConnectionDelay);
 
-        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
-
-        string protectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
         _homeRobot
             .DoOpenAccount()
@@ -88,7 +86,8 @@ public class LogoutTests : TestSession
             .DoClickOverlayMessageCloseButton();
 
         // Signout canceled, verify that we are still connected to the VPN
-        await CommonAssertions.AssertIpAddressUnchangedAsync(protectedIpAddress);
+        _homeRobot
+            .VerifyVpnStatusIsConnected();
 
         _homeRobot
             .DoOpenAccount()
@@ -103,7 +102,7 @@ public class LogoutTests : TestSession
             .VerifyIsInLoginWindow();
 
         // Check that we have been properly disconnected from the VPN during signout
-        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
 
     [TearDown]

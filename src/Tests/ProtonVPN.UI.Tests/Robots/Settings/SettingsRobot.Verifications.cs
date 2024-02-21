@@ -17,10 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net.Sockets;
-using System.Net;
 using FlaUI.Core.AutomationElements;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Settings;
@@ -104,28 +102,18 @@ public partial class SettingsRobot
 
     public SettingsRobot VerifyNetshieldIsNotBlocking()
     {
-        VerifyIfDnsIsResolved(NETSHIELD_NO_BLOCK);
-        VerifyIfDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
-        VerifyIfDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
+        CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
+        CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
+        CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
         return this;
     }
 
     public SettingsRobot VerifyNetshieldIsBlocking()
     {
-        VerifyIfDnsIsResolved(NETSHIELD_NO_BLOCK);
-        VerifyIfDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
-        VerifyIfDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+        CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
+        CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+        CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
         return this;
-    }
-
-    private void VerifyIfDnsIsResolved(string url)
-    {
-        Assert.IsTrue(TryToResolveDns(url), $"Dns was not resolved for {url}.");
-    }
-
-    private void VerifyIfDnsIsNotResolved(string url)
-    {
-        Assert.IsFalse(TryToResolveDns(url), $"DNS was resolved for {url}");
     }
 
     private string DnsAdressErrorMessage(string expectedDnsAddress)
@@ -136,19 +124,5 @@ public partial class SettingsRobot
     private bool DoesContainDnsAddress(string expectedDnsAddress)
     {
         return WireguardDnsAddress == expectedDnsAddress || OpenVpnDnsAddress == expectedDnsAddress;
-    }
-
-    private static bool TryToResolveDns(string url)
-    {
-        bool isConnected = true;
-        try
-        {
-            Dns.GetHostEntry(url);
-        }
-        catch (SocketException)
-        {
-            isConnected = false;
-        }
-        return isConnected;
     }
 }

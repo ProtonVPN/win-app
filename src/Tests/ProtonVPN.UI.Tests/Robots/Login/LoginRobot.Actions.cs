@@ -41,8 +41,6 @@ public partial class LoginRobot
         TwoFactorInputField("Fourth").Text = (code[3].ToString());
         TwoFactorInputField("Fifth").Text = (code[4].ToString());
         TwoFactorInputField("Sixth").Text = (code[5].ToString());
-        AuthenticateButton.WaitUntilEnabled();
-        AuthenticateButton.Click();
         return this;
     }
 

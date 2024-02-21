@@ -29,6 +29,8 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class NetworkUtils
 {
+    private static HttpClient _httpClient = new();
+
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
     public static extern uint DnsFlushResolverCache();
 
@@ -60,6 +62,34 @@ public class NetworkUtils
             .FirstOrDefault(a => a != null);
     }
 
+    public static string GetIpAddress()
+    {
+        RetryResult<string> retry = Retry.WhileEmpty(
+            () => GetExternalIpAddressAsync().Result,
+            TestConstants.ShortTimeout, TestConstants.RetryInterval);
+
+        return retry.Result;
+    }
+
+    private static async Task<string> GetExternalIpAddressAsync()
+    {
+        try
+        {
+            string externalIpString = await _httpClient.GetStringAsync("https://api.ipify.org/");
+
+            string ipAddress = externalIpString
+                .Replace("\\r\\n", "")
+                .Replace("\\n", "")
+                .Trim();
+
+            return ipAddress;
+        }
+        catch (HttpRequestException)
+        {
+            return null;
+        }
+    }
+
     private static string GetDnsAddressForAdapterByName(string adapterName)
     {
         string dnsAddress = null;
@@ -77,15 +107,5 @@ public class NetworkUtils
             }
         }
         return dnsAddress;
-    }
-
-    public static async Task<string> GetExternalIpAddressAsync()
-    {
-        string externalIpString = await new HttpClient().GetStringAsync("https://api.ipify.org/");
-
-        return externalIpString
-            .Replace("\\r\\n", "")
-            .Replace("\\n", "")
-            .Trim();
     }
 }

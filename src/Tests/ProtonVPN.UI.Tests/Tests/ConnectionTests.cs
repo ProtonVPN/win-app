@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
@@ -94,15 +92,16 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
-    public async Task ConnectAndDisconnectAsync()
+    public void ConnectAndDisconnect()
     {
-        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string unprotectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnected();
+            .VerifyAllStatesUntilConnected()
+            .Wait(TestConstants.ConnectionDelay);
 
-        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
         _homeRobot
             .DoDisconnect()
@@ -110,27 +109,27 @@ public class ConnectionTests : TestSession
             .VerifyConnectionCardIsDisconnected()
             .Wait(TestConstants.DisconnectionDelay);
 
-        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
 
     [Retry(3)]
     [Test]
-    public async Task ConnectAndCancelAsync()
+    public void ConnectAndCancel()
     {
-        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string unprotectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoConnect()
             .VerifyVpnStatusIsConnecting()
             .VerifyConnectionCardIsConnecting()
             //Imitate user's delay
-            .Wait(1000)
+            .Wait(500)
             .DoCancelConnection()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected()
             .Wait(TestConstants.DisconnectionDelay);
 
-        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
 
     [Test]

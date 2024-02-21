@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
@@ -64,15 +64,16 @@ public class FreeConnectionTests : TestSession
     }
 
     [Test]
-    public async Task FreeConnectAndDisconnectAsync()
+    public void FreeConnectAndDisconnect()
     {
-        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string unprotectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnectedToFreeServer();
+            .VerifyAllStatesUntilConnectedToFreeServer()
+            .Wait(TestConstants.ConnectionDelay);
 
-        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
         _homeRobot
             .DoDisconnect()
@@ -80,49 +81,51 @@ public class FreeConnectionTests : TestSession
             .VerifyConnectionCardIsInInitalStateForFreeUser()
             .Wait(TestConstants.DisconnectionDelay);
 
-        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
 
     [Retry(3)]
     [Test]
-    public async Task FreeConnectAndCancelAsync()
+    public void FreeConnectAndCancel()
     {
-        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string unprotectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoConnect()
             .VerifyVpnStatusIsConnecting()
             .VerifyConnectionCardIsConnectingToFreeServer()
             //Imitate user's delay
-            .Wait(1000)
+            .Wait(500)
             .DoCancelConnection()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalStateForFreeUser()
             .Wait(TestConstants.DisconnectionDelay);
 
-        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
 
     [Test]
-    public async Task FreeConnectAndChangeServerAsync()
+    public void FreeConnectAndChangeServer()
     {
-        string unprotectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string unprotectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnectedToFreeServer();
+            .VerifyAllStatesUntilConnectedToFreeServer()
+            .Wait(TestConstants.ConnectionDelay);
 
-        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
-        string protectedIpAddress = await CommonAssertions.GetCurrentIpAddressAsync();
+        string protectedIpAddress = NetworkUtils.GetIpAddress();
 
         _homeRobot
             .DoChangeServer()
             .VerifyVpnStatusIsConnecting()
-            .VerifyVpnStatusIsConnected();
+            .VerifyVpnStatusIsConnected()
+            .Wait(TestConstants.ConnectionDelay);
 
-        await CommonAssertions.AssertIpAddressChangedAsync(unprotectedIpAddress);
-        await CommonAssertions.AssertIpAddressChangedAsync(protectedIpAddress);
+        CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressChanged(protectedIpAddress);
 
         _homeRobot
             .DoChangeServer();
@@ -138,7 +141,7 @@ public class FreeConnectionTests : TestSession
             .VerifyConnectionCardIsInInitalStateForFreeUser()
             .Wait(TestConstants.DisconnectionDelay);
 
-        await CommonAssertions.AssertIpAddressUnchangedAsync(unprotectedIpAddress);
+        CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
 
     [Test]
