@@ -21,7 +21,6 @@ using System;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;

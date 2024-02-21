@@ -60,7 +60,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             Recorder.Stop();
         }
 
-        public static void SaveScreenshotAndLogs(string testName)
+        public static void SaveScreenshotAndLogs(string testName, string serviceLogsFolder)
         {
             CreateTestFailureFolder();
             string screenshotName = $"{testName} {DateTime.Now}.png".Replace("/", "-").Replace(":", "-");
@@ -68,10 +68,11 @@ namespace ProtonVPN.UI.Tests.TestsHelper
             string pathToScreenshot = Path.Combine(pathToScreenshotFolder, screenshotName);
             Directory.CreateDirectory(pathToScreenshotFolder);
             Capture.Screen().ToFile(pathToScreenshot);
+            string serviceLogsPath = Path.Combine(serviceLogsFolder, "ServiceData", "Logs", "service-logs.txt");
             if (File.Exists(TestConstants.ClientLogsPath))
             {
                 File.Copy(TestConstants.ClientLogsPath, pathToScreenshotFolder + @"\client-logs.txt", true);
-                File.Copy(TestConstants.ServiceLogsPath, pathToScreenshotFolder + @"\service-logs.txt", true);
+                File.Copy(serviceLogsPath, pathToScreenshotFolder + @"\service-logs.txt", true);
             }
         }
 

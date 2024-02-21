@@ -75,7 +75,7 @@ public class TestSession
         try
         {
             Directory.Delete(TestConstants.UserStoragePath, true);
-            Directory.Delete(TestConstants.ServiceLogsFolder, true);
+            Directory.Delete(Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs"), true);
         }
         catch
         {
@@ -114,9 +114,8 @@ public class TestSession
             LaunchDevelopmentApp();
             return;
         }
-
-        string versionFolder = $"v{GetAppVersion()}";
-        string installedClientPath = Path.Combine(TestConstants.AppFolderPath, versionFolder, CLIENT_NAME);
+        
+        string installedClientPath = Path.Combine(GetProtonClientFolder(), CLIENT_NAME);
         App = Application.Launch(installedClientPath);
         RetryResult<bool> result = WaitUntilAppIsRunning();
         if (!result.Success)
@@ -162,14 +161,16 @@ public class TestSession
         }
     }
 
-    private static string GetAppVersion()
+    private static string GetProtonClientFolder()
     {
         string registryKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
         RegistryKey localMachineRegistry = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
         RegistryKey key = localMachineRegistry.OpenSubKey(registryKeyPath);
 
         object displayVersionObject = key?.GetValue("DisplayVersion");
-        return displayVersionObject?.ToString();
+        displayVersionObject?.ToString();
+        string versionFolder = $"v{displayVersionObject?.ToString()}";
+        return Path.Combine(TestConstants.AppFolderPath, versionFolder);
     }
 
     private static void LaunchDevelopmentApp()
@@ -192,7 +193,7 @@ public class TestSession
             string testName = TestContext.CurrentContext.Test.MethodName;
             if (status == TestStatus.Failed)
             {
-                TestsRecorder.SaveScreenshotAndLogs(testName);
+                TestsRecorder.SaveScreenshotAndLogs(testName, GetProtonClientFolder());
             }
         }
     }

@@ -28,7 +28,8 @@ public static class TestConstants
     public static TimeSpan DefaultAnimationDelay => TimeSpan.FromMilliseconds(200);
     public static TimeSpan DefaultNavigationDelay => TimeSpan.FromSeconds(1);
     public static TimeSpan InitializationDelay => TimeSpan.FromSeconds(2);
-    public static TimeSpan DisconnectionDelay => TimeSpan.FromSeconds(5);
+    public static TimeSpan ConnectionDelay => TimeSpan.Zero;
+    public static TimeSpan DisconnectionDelay => TimeSpan.Zero;
     public static TimeSpan VeryShortTimeout => TimeSpan.FromSeconds(5);
     public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
@@ -37,8 +38,6 @@ public static class TestConstants
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
     public static string MapCountry = "CA";
     public static string PathToRecorder = @"C:\TestRecorder\ffmpeg.exe";
-    public static string ServiceLogsPath = @"C:\ProgramData\Proton\Proton VPN\Logs\service-logs.txt";
-    public static string ServiceLogsFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Proton\Proton VPN\Logs");
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
     public enum Protocol
