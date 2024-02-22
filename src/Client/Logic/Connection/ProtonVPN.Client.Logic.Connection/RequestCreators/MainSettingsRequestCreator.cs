@@ -64,7 +64,6 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
         };
     }
 
-
     private string[] GetSplitTunnelingApps()
     {
         return _settings.SplitTunnelingMode == SplitTunnelingMode.Standard

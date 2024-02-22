@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
 public interface IVpnServiceSettingsUpdater
 {
-    Task DisableKillSwitchAsync();
-    Task EnableAdvancedKillSwitchAsync();
+    Task SendAsync();
+    Task SendAsync(KillSwitchModeIpcEntity killSwitchMode);
 }

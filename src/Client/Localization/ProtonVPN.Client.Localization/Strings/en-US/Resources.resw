@@ -1908,6 +1908,9 @@
   <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
     <value>Active port:</value>
   </data>
+  <data name="Settings_Features_PortForwarding_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
   <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
     <value>Copy port number</value>
   </data>

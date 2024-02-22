@@ -83,7 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:FeatureSettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
                                         Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                         CommandParameter="ProtonVPN.Client.UI.Settings.Pages.PortForwardingViewModel"
-                                        Description="{x:Bind ViewModel.PortForwardingCurrentActivePort}"
+                                        Description="{x:Bind ViewModel.PortForwardingStatusMessage}"
                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
                                         IsClickEnabled="True"
                                         Style="{StaticResource FeatureSettingsCardStyle}">

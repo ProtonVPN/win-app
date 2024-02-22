@@ -17,9 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Legacy.PortForwarding;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
 public interface IPortForwardingManager
 {
-    public int? ActivePort { get; }
+    int? ActivePort { get; }
+    PortMappingStatus Status { get; }
+    bool IsFetchingPort { get; }
 }

@@ -18,7 +18,6 @@
  */
 
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -49,6 +48,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<PortForwardingPortChanged>,
+    IEventMessageReceiver<PortForwardingStatusChanged>,
     IEventMessageReceiver<ConnectionStatusChanged>
 {
     private readonly IThemeSelector _themeSelector;
@@ -95,7 +95,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
 
     public string PortForwardingFeatureState => Localizer.GetToggleValue(_settings.IsPortForwardingEnabled);
 
-    public string? PortForwardingCurrentActivePort => GetPortForwardingCurrentActivePort();
+    public string? PortForwardingStatusMessage => GetPortForwardingStatusMessage();
 
     public ImageSource SplitTunnelingFeatureIconSource => SplitTunnelingViewModel.GetFeatureIconSource(_settings.IsSplitTunnelingEnabled);
 
@@ -228,7 +228,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
                 case nameof(ISettings.IsPortForwardingEnabled):
                     OnPropertyChanged(nameof(PortForwardingFeatureState));
                     OnPropertyChanged(nameof(PortForwardingFeatureIconSource));
-                    OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+                    OnPropertyChanged(nameof(PortForwardingStatusMessage));
                     break;
 
                 case nameof(ISettings.IsSplitTunnelingEnabled):
@@ -275,7 +275,15 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     {
         ExecuteOnUIThread(() =>
         {
-            OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+            OnPropertyChanged(nameof(PortForwardingStatusMessage));
+        });
+    }
+
+    public void Receive(PortForwardingStatusChanged message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(PortForwardingStatusMessage));
         });
     }
 
@@ -283,7 +291,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     {
         ExecuteOnUIThread(() =>
         {
-            OnPropertyChanged(nameof(PortForwardingCurrentActivePort));
+            OnPropertyChanged(nameof(PortForwardingStatusMessage));
         });
     }
 
@@ -301,11 +309,22 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         OnPropertyChanged(nameof(SelectedTheme));
     }
 
-    private string? GetPortForwardingCurrentActivePort()
+    private string? GetPortForwardingStatusMessage()
     {
+        if (!_connectionManager.IsConnected || !_settings.IsPortForwardingEnabled)
+        {
+            return null;
+        }
+
         int? activePort = _portForwardingManager.ActivePort;
-        return activePort is not null && _settings.IsPortForwardingEnabled && _connectionManager.IsConnected
-            ? $"{Localizer.Get("Settings_Features_PortForwarding_ActivePort")} {activePort}"
+        if (activePort is not null)
+        {
+            return $"{Localizer.Get("Settings_Features_PortForwarding_ActivePort")} {activePort}";
+        }
+
+        return _portForwardingManager.IsFetchingPort
+            ? $"{Localizer.Get("Settings_Features_PortForwarding_ActivePort")} " +
+              $"{Localizer.Get("Settings_Features_PortForwarding_Loading")}" 
             : null;
     }
 }

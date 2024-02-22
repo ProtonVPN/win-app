@@ -37,6 +37,7 @@ using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.Client.UI.Update;
@@ -170,7 +171,7 @@ public partial class UpdateViewModel : ViewModelBase,
 
         if (_settings.KillSwitchMode == KillSwitchMode.Advanced)
         {
-            await _vpnServiceSettingsUpdater.DisableKillSwitchAsync();
+            await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Off);
         }
 
         try
@@ -183,7 +184,7 @@ public partial class UpdateViewModel : ViewModelBase,
             // Privileges were not granted
             if (_settings.KillSwitchMode == KillSwitchMode.Advanced)
             {
-                await _vpnServiceSettingsUpdater.EnableAdvancedKillSwitchAsync();
+                await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Hard);
             }
 
             IsUpdating = false;

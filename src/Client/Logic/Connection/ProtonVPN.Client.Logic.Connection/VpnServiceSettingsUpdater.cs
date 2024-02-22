@@ -36,17 +36,16 @@ public class VpnServiceSettingsUpdater : IVpnServiceSettingsUpdater
         _mainSettingsRequestCreator = mainSettingsRequestCreator;
     }
 
-    public async Task DisableKillSwitchAsync()
+    public async Task SendAsync()
     {
         MainSettingsIpcEntity settings = _mainSettingsRequestCreator.Create();
-        settings.KillSwitchMode = KillSwitchModeIpcEntity.Off;
         await _vpnServiceCaller.ApplySettingsAsync(settings);
     }
 
-    public async Task EnableAdvancedKillSwitchAsync()
+    public async Task SendAsync(KillSwitchModeIpcEntity killSwitchMode)
     {
         MainSettingsIpcEntity settings = _mainSettingsRequestCreator.Create();
-        settings.KillSwitchMode = KillSwitchModeIpcEntity.Hard;
+        settings.KillSwitchMode = killSwitchMode;
         await _vpnServiceCaller.ApplySettingsAsync(settings);
     }
 }

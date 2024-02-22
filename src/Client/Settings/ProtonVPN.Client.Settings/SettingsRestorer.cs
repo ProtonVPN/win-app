@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Settings;
@@ -24,10 +25,13 @@ namespace ProtonVPN.Client.Settings;
 public class SettingsRestorer : ISettingsRestorer
 {
     private readonly ISettings _settings;
+    private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
-    public SettingsRestorer(ISettings settings)
+    public SettingsRestorer(ISettings settings,
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
     {
         _settings = settings;
+        _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
     }
 
     public void Restore()
@@ -54,5 +58,7 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.OpenVpnAdapter = DefaultSettings.OpenVpnAdapter;
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
         _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
+
+        _vpnServiceSettingsUpdater.SendAsync();
     }
 }
