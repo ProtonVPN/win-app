@@ -27,11 +27,14 @@ using Windows.Foundation;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Helpers;
 
 public static class WindowExtensions
 {
+    private static readonly List<string> _rightToLeftLanguages = ["fa-IR"];
+
     public static void ApplyTheme(this Window window, ElementTheme theme)
     {
         window.AppWindow.TitleBar.BackgroundColor = Colors.Transparent;
@@ -56,6 +59,40 @@ public static class WindowExtensions
         }
     }
 
+    public static void ApplyFlowDirection(this Window window, string language)
+    {
+        FlowDirection flowDirection = GetFlowDirection(language);
+        ExtendedWindowStyle windowStyle = window.GetExtendedWindowStyle();
+
+        if (flowDirection == FlowDirection.RightToLeft)
+        {
+            windowStyle |= ExtendedWindowStyle.LayoutRtl;
+        }
+        else
+        {
+            windowStyle &= ~ExtendedWindowStyle.LayoutRtl;
+        }
+
+        window.SetExtendedWindowStyle(windowStyle);
+
+        if (window.Content is FrameworkElement element)
+        {
+            element.FlowDirection = flowDirection;
+        }
+    }
+
+    private static FlowDirection GetFlowDirection(string language)
+    {
+        return _rightToLeftLanguages.Contains(language)
+            ? FlowDirection.RightToLeft
+            : FlowDirection.LeftToRight;
+    }
+
+    public static void ApplyFlowDirection(this ContentDialog contentDialog, string language)
+    {
+        contentDialog.FlowDirection = GetFlowDirection(language);
+    }
+
     public static void SetDragAreaFromTitleBar(this Window window, FrameworkElement titleBar)
     {
         double scaleAdjustment = window.GetDpiForWindow() / 96.0;
@@ -67,7 +104,7 @@ public static class WindowExtensions
         dragRect.X = (int)(relativeFromWindow.X * scaleAdjustment);
         dragRect.Y = (int)(relativeFromWindow.Y * scaleAdjustment);
 
-        RectInt32[] gripArray = new[] { dragRect };
+        RectInt32[] gripArray = [dragRect];
         window.AppWindow.TitleBar.SetDragRectangles(gripArray);
     }
 

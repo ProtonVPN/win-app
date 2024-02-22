@@ -156,15 +156,22 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string? GetFormattedShortTime(this ILocalizationProvider localizer, TimeSpan time)
+    public static string GetFormattedShortTime(this ILocalizationProvider localizer, TimeSpan time)
     {
-        return time switch
+        try
         {
-            TimeSpan when time < TimeSpan.Zero => null,
-            TimeSpan when time < TimeSpan.FromHours(1) => time.ToString(localizer.Get("Format_Time_MinutesSeconds_Short")),
-            TimeSpan when time < TimeSpan.FromDays(1) => time.ToString(localizer.Get("Format_Time_HoursMinutesSeconds_Short")),
-            _ => time.ToString(),
-        };
+            return time switch
+            {
+                TimeSpan when time < TimeSpan.Zero => null,
+                TimeSpan when time < TimeSpan.FromHours(1) => time.ToString(localizer.Get("Format_Time_MinutesSeconds_Short")),
+                TimeSpan when time < TimeSpan.FromDays(1) => time.ToString(localizer.Get("Format_Time_HoursMinutesSeconds_Short")),
+                _ => time.ToString(),
+            };
+        }
+        catch (FormatException)
+        {
+            return time.ToString();
+        }
     }
 
     public static string GetFormattedSize(this ILocalizationProvider localizer, long sizeInBytes)

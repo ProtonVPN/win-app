@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -97,12 +97,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border x:Name="proxy"
                                     aprop:AncestorSource.AncestorType="ItemsRepeater" />
                             <toolkit:SettingsCard AutomationProperties.AutomationId="IssueSuggestionSettingsCard"
-                                               Command="{Binding DataContext.DataContext.BrowseLinkCommand, ElementName=proxy}"
-                                               CommandParameter="{x:Bind Link}"
-                                               Header="{x:Bind Name}"
-                                               IsClickEnabled="{x:Bind HasLink}"
-                                               IsTabStop="{x:Bind HasLink}"
-                                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                                  Command="{Binding DataContext.DataContext.BrowseLinkCommand, ElementName=proxy}"
+                                                  CommandParameter="{x:Bind Link}"
+                                                  Header="{x:Bind Name}"
+                                                  IsClickEnabled="{x:Bind HasLink}"
+                                                  IsTabStop="{x:Bind HasLink}"
+                                                  Style="{StaticResource DefaultSettingsCardStyle}">
                                 <toolkit:SettingsCard.HeaderIcon>
                                     <pathicons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
                                 </toolkit:SettingsCard.HeaderIcon>

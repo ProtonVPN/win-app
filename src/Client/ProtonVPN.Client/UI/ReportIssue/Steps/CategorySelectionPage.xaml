@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:aprop="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       xmlns:models="using:ProtonVPN.Client.UI.ReportIssue.Models"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -62,7 +63,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                Header="{x:Bind Name}"
                                                HeaderIcon="{x:Bind Icon}"
                                                IsClickEnabled="True"
-                                               Style="{StaticResource DefaultSettingsCardStyle}" />
+                                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                <toolkit:SettingsCard.ActionIcon>
+                                    <pathicons:ChevronRight />
+                                </toolkit:SettingsCard.ActionIcon>
+                            </toolkit:SettingsCard>
                         </Grid>
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>

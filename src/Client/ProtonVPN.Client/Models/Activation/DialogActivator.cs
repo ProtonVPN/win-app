@@ -22,6 +22,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -31,13 +32,15 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
 {
     private readonly IViewMapper _viewMapper;
     private readonly IOverlayActivator _overlayActivator;
+    private readonly ISettings _settings;
     private List<Window> _activeDialogs = new();
 
-    public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, IOverlayActivator overlayActivator)
+    public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, IOverlayActivator overlayActivator, ISettings settings)
         : base(logger, themeSelector)
     {
         _viewMapper = viewMapper;
         _overlayActivator = overlayActivator;
+        _settings = settings;
     }
 
     public void ShowDialog<TPageViewModel>()
@@ -113,6 +116,7 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
                     ?? throw new InvalidCastException($"Type {dialogType} is not recognized as a Window.");
 
                 dialog.ApplyTheme(ThemeSelector.GetTheme().Theme);
+                dialog.ApplyFlowDirection(_settings.Language);
                 dialog.CenterOnScreen();
 
                 RegisterDialog(dialog);

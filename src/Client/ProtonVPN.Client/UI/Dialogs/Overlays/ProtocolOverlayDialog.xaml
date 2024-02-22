@@ -52,6 +52,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Servers />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
         </StackPanel>
 

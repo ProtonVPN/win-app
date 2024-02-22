@@ -33,19 +33,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                              DefaultPaneContentMargin="16" />
 
         <Thickness x:Key="NavigationViewHeaderMargin">16,16,16,0</Thickness>
-        <Thickness x:Key="NavigationViewContentMargin">0,45,0,0</Thickness>
         <Thickness x:Key="NavigationViewItemContentPresenterMargin">4,-1,8,-1</Thickness>
         <Thickness x:Key="NavigationViewItemOnLeftIconBoxMargin">2,0,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
     </Page.Resources>
 
     <NavigationView x:Name="NavigationViewControl"
-                    Margin="0,-1,-1,0"
+                    Margin="0,45,-1,0"
                     AlwaysShowHeader="False"
                     AutomationProperties.AutomationId="NavigationView"
                     AutomationProperties.LandmarkType="Navigation"
                     Canvas.ZIndex="0"
-                    CompactModeThresholdWidth="408"
+                    CompactModeThresholdWidth="0"
                     CompactPaneLength="48"
                     DisplayModeChanged="OnNavigationViewDisplayModeChanged"
                     IsPaneOpen="{x:Bind ViewModel.IsNavigationPaneOpened, Mode=TwoWay}"

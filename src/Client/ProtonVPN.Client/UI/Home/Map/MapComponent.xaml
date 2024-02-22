@@ -34,7 +34,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <Grid>
-        <Viewbox x:Name="Viewbox">
+        <Viewbox x:Name="Viewbox"
+                 FlowDirection="LeftToRight">
             <Canvas Width="1539" Height="700" x:Name="MapCanvas">
                 <Canvas.RenderTransform>
                     <TransformGroup>

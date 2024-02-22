@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -32,8 +31,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                               PageHeader="{x:Bind ViewModel.Title}">
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
+
+        <custom:PageContentControl.PageHeader>
+            <TextBlock Text="{x:Bind ViewModel.Title}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       TextWrapping="Wrap" />
+        </custom:PageContentControl.PageHeader>
 
         <StackPanel>
 

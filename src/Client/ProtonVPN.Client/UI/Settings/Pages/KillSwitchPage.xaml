@@ -41,14 +41,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
                                        ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
 
-            <custom:PageContentControl.PageHeader>
-            <StackPanel Orientation="Horizontal"
-                        Spacing="16">
-                <Image Width="32"
+        <custom:PageContentControl.PageHeader>
+            <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="16">
+                <Image Grid.Column="0"
+                       Width="32"
                        Height="32"
+                       VerticalAlignment="Top"
                        Source="{x:Bind ViewModel.KillSwitchFeatureIconSource}" />
-                <TextBlock Text="{x:Bind ViewModel.Title}" />
-            </StackPanel>
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Title}"
+                           TextWrapping="Wrap" />
+            </Grid>
         </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
