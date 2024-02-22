@@ -35,7 +35,7 @@ public static class DefaultSettings
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
     public static bool IsNavigationPaneOpened = true;
-    public static bool IsConnectionDetailsPaneOpened = false;
+    public static bool IsConnectionDetailsPaneOpened = true;
     public static bool IsNotificationEnabled = true;
     public static bool IsBetaAccessEnabled = false;
     public static bool AreAutomaticUpdatesEnabled = true;

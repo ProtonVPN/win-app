@@ -22,13 +22,13 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
@@ -63,8 +63,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     [ObservableProperty]
     private string _activeCountryCode;
 
-    public bool IsConnectionDetailsPaneInline => IsConnectionDetailsPaneOpened &&
-        (ConnectionDetailsPaneDisplayMode is SplitViewDisplayMode.Inline or SplitViewDisplayMode.CompactInline);
+    public bool IsConnectionDetailsPaneInline => IsConnectionDetailsPaneOpened && ConnectionDetailsPaneDisplayMode.IsInline();
 
     public override string Title => Localizer.Get("Home_Page_Title");
 
@@ -129,9 +128,11 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
             switch (_connectionManager.ConnectionStatus)
             {
-                case ConnectionStatus.Connecting:
                 case ConnectionStatus.Connected:
-                    if (_reopenDetailsPaneAutomatically && !IsConnectionDetailsPaneOpened)
+                case ConnectionStatus.Connecting:
+                    if (_reopenDetailsPaneAutomatically &&
+                    ConnectionDetailsPaneDisplayMode.IsInline() &&
+                    !IsConnectionDetailsPaneOpened)
                     {
                         OpenConnectionDetailsPane();
                     }
@@ -213,7 +214,10 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     {
         _connectionDetailsViewModel.IsActive = value;
 
-        _settings.IsConnectionDetailsPaneOpened = value || _reopenDetailsPaneAutomatically;
+        if (ConnectionDetailsPaneDisplayMode.IsInline())
+        {
+            _settings.IsConnectionDetailsPaneOpened = value || _reopenDetailsPaneAutomatically;
+        }
     }
 
     public void Receive(ThemeChangedMessage message)
