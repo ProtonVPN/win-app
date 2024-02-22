@@ -24,11 +24,14 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 
@@ -36,6 +39,8 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IServersLoader _serversLoader;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUrls _urls;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FreeCountriesCount))]
@@ -47,10 +52,14 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
         ILocalizationProvider localizationProvider,
         IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator,
-        IServersLoader serversLoader)
+        IServersLoader serversLoader,
+        IWebAuthenticator webAuthenticator,
+        IUrls urls)
         : base(localizationProvider, viewNavigator, overlayActivator)
     {
         _serversLoader = serversLoader;
+        _webAuthenticator = webAuthenticator;
+        _urls = urls;
         _freeCountries = [];
 
         InvalidateFreeCountries();
@@ -62,9 +71,9 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
     }
 
     [RelayCommand]
-    private void UpgradePlan()
+    private async Task UpgradePlanAsync()
     {
-        // TODO: Trigger upgrade plan process
+        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Countries));
     }
 
     private void InvalidateFreeCountries()

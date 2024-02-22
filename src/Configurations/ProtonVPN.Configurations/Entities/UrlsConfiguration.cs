@@ -31,6 +31,7 @@ public class UrlsConfiguration : IUrlsConfiguration
     public string DownloadUrl { get; set; } = string.Empty;
     public string TlsReportUrl { get; set; } = string.Empty;
     public string HelpUrl { get; set; } = string.Empty;
+    public string AutoLoginBaseUrl { get; set; } = string.Empty;
     public string AccountUrl { get; set; } = string.Empty;
     public string AboutSecureCoreUrl { get; set; } = string.Empty;
     public string RegisterUrl { get; set; } = string.Empty;

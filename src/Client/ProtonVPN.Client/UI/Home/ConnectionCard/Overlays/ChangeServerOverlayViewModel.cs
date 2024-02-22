@@ -18,17 +18,19 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 
@@ -38,6 +40,8 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
 {
     private readonly IChangeServerModerator _changeServerModerator;
     private readonly IConnectionManager _connectionManager;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUrls _urls;
 
     public bool IsChangeServerTimerVisible => !_changeServerModerator.CanChangeServer();
 
@@ -54,13 +58,17 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
         IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator,
         IChangeServerModerator changeServerModerator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IWebAuthenticator webAuthenticator,
+        IUrls urls)
         : base(localizationProvider,
                viewNavigator,
                overlayActivator)
     {
         _changeServerModerator = changeServerModerator;
         _connectionManager = connectionManager;
+        _webAuthenticator = webAuthenticator;
+        _urls = urls;
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -70,6 +78,7 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
             ExecuteOnUIThread(CloseOverlay);
         }
     }
+
     public void Receive(ChangeServerAttemptInvalidatedMessage message)
     {
         ExecuteOnUIThread(() =>
@@ -105,9 +114,9 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
     }
 
     [RelayCommand]
-    private void UpgradePlan()
+    private async Task UpgradePlanAsync()
     {
-        // TODO: Trigger upgrade plan process
+        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.ChangeServer));
     }
 
     private bool CanUpgradePlan()
