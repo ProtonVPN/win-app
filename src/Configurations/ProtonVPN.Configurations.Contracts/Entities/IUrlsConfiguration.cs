@@ -29,6 +29,7 @@ public interface IUrlsConfiguration
     string DownloadUrl { get; }
     string TlsReportUrl { get; }
     string HelpUrl { get; }
+    string AutoLoginBaseUrl { get; }
     string AccountUrl { get; }
     string AboutSecureCoreUrl { get; }
     string RegisterUrl { get; }

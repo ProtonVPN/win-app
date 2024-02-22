@@ -27,14 +27,19 @@ public class ProtocolActivationManager
     public const string SCHEME = "proton-vpn";
     public const string DISPLAY_NAME = "Proton VPN";
 
+#if DEBUG
+    public static readonly string ClientExePath = DefaultConfiguration.ClientExePath;
+#else
+    public static readonly string ClientExePath = DefaultConfiguration.ClientLauncherExePath;
+#endif
+
     public static void Register()
     {
-        ActivationRegistrationManager.RegisterForProtocolActivation(SCHEME, DefaultConfiguration.ClientLauncherExePath + ",1", DISPLAY_NAME,
-            DefaultConfiguration.ClientLauncherExePath);
+        ActivationRegistrationManager.RegisterForProtocolActivation(SCHEME, ClientExePath + ",1", DISPLAY_NAME, ClientExePath);
     }
 
     public static void Unregister()
     {
-        ActivationRegistrationManager.UnregisterForProtocolActivation(SCHEME, DefaultConfiguration.ClientLauncherExePath);
+        ActivationRegistrationManager.UnregisterForProtocolActivation(SCHEME, ClientExePath);
     }
 }

@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Account;
@@ -39,6 +40,8 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IOverlayActivator _overlayActivator;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUrls _urls;
 
     public string Username => _settings.Username ?? _settings.UserDisplayName ?? string.Empty;
 
@@ -49,13 +52,17 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
         ISettings settings,
         IUserAuthenticator userAuthenticator,
         IConnectionManager connectionManager,
-        IOverlayActivator overlayActivator)
+        IOverlayActivator overlayActivator,
+        IWebAuthenticator webAuthenticator,
+        IUrls urls)
         : base(localizationProvider)
     {
         _settings = settings;
         _userAuthenticator = userAuthenticator;
         _connectionManager = connectionManager;
         _overlayActivator = overlayActivator;
+        _webAuthenticator = webAuthenticator;
+        _urls = urls;
     }
 
     public void Receive(LoggedInMessage message)
@@ -88,6 +95,12 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
         }
 
         await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
+    }
+
+    [RelayCommand]
+    public async Task GoToMyAccountAsync()
+    {
+        _urls.NavigateTo(await _webAuthenticator.GetMyAccountUrlAsync());
     }
 
     protected override void OnLanguageChanged()

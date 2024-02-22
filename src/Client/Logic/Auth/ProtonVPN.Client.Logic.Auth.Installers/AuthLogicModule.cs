@@ -30,5 +30,6 @@ public class AuthLogicModule : Module
         builder.RegisterType<AuthKeyManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AuthCertificateUpdater>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<UserHashGenerator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
     }
 }

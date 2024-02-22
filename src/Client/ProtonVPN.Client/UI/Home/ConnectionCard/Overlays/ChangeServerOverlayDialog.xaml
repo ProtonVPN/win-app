@@ -91,10 +91,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button Command="{x:Bind ViewModel.UpgradePlanCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Upgrade')}"
                     Style="{StaticResource PrimaryButtonStyle}"
-                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                    Visibility="{x:Bind ViewModel.IsChangeServerTimerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Button Command="{x:Bind ViewModel.ChangeServerCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeServer')}"
-                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                    Visibility="{x:Bind ViewModel.IsChangeServerTimerVisible, Converter={StaticResource NotBooleanToVisibilityConverter}}"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
