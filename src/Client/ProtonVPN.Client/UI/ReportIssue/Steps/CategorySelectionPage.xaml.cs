@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
-
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
-public sealed partial class CategorySelectionPage : Page
+public sealed partial class CategorySelectionPage
 {
     public CategorySelectionViewModel ViewModel { get; }
 

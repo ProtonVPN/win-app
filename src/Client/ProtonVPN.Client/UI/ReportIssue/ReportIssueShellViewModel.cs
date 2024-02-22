@@ -104,7 +104,7 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
         OnPropertyChanged(nameof(BaseTitle));
         OnPropertyChanged(nameof(Title));
 
-        if (ViewNavigator.Window != null)
+        if (ViewNavigator.Window.AppWindow != null)
         {
             ViewNavigator.Window.Title = Title;
             ViewNavigator.Window.AppWindow.Title = Title;

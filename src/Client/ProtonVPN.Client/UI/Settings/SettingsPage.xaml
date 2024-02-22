@@ -57,6 +57,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:FeatureSettingsCard.FeatureIcon>
                     <Image Source="{x:Bind ViewModel.NetShieldFeatureIconSource}" />
                 </custom:FeatureSettingsCard.FeatureIcon>
+                <custom:FeatureSettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </custom:FeatureSettingsCard.ActionIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.NetShieldFeatureState}" />
             </custom:FeatureSettingsCard>
@@ -70,6 +73,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:FeatureSettingsCard.FeatureIcon>
                     <Image Source="{x:Bind ViewModel.KillSwitchFeatureIconSource}" />
                 </custom:FeatureSettingsCard.FeatureIcon>
+                <custom:FeatureSettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </custom:FeatureSettingsCard.ActionIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.KillSwitchFeatureState}" />
             </custom:FeatureSettingsCard>
@@ -84,6 +90,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:FeatureSettingsCard.FeatureIcon>
                     <Image Source="{x:Bind ViewModel.PortForwardingFeatureIconSource}" />
                 </custom:FeatureSettingsCard.FeatureIcon>
+                <custom:FeatureSettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </custom:FeatureSettingsCard.ActionIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.PortForwardingFeatureState}" />
             </custom:FeatureSettingsCard>
@@ -97,6 +106,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:FeatureSettingsCard.FeatureIcon>
                     <Image Source="{x:Bind ViewModel.SplitTunnelingFeatureIconSource}" />
                 </custom:FeatureSettingsCard.FeatureIcon>
+                <custom:FeatureSettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </custom:FeatureSettingsCard.ActionIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.SplitTunnelingFeatureState}" />
             </custom:FeatureSettingsCard>
@@ -113,6 +125,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Servers />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.ConnectionProtocolState}" />
             </toolkit:SettingsCard>
@@ -126,6 +141,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Rocket />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}" />
             </toolkit:SettingsCard>
@@ -139,6 +157,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Sliders />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
@@ -154,6 +175,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:PowerOff />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
             <!--  TODO: App Notifications have not been implemented yet. Keep the settings card disabled for now.  -->
@@ -242,6 +266,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Bug />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="DebugLogsSettingsCard"
@@ -253,6 +280,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Code />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="DeveloperToolsSettingsCard"
@@ -265,6 +295,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:WindowTerminal />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
@@ -279,6 +312,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Users />
                 </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
             <Button Margin="0,16,0,0"

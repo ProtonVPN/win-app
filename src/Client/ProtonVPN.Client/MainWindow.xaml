@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:tray="using:ProtonVPN.Client.UI.Tray"
               Width="636"
               Height="589"
-              MinWidth="376"
+              MinWidth="424"
               MinHeight="489"
               Activated="OnActivated"
               PersistenceId="MainWindow"

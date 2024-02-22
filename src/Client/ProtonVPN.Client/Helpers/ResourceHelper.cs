@@ -28,13 +28,18 @@ public static class ResourceHelper
 {
     public static Color GetColor(ElementTheme theme, string resourceKey)
     {
-        string themeKey = theme switch
+        string? themeKey = theme switch
         {
             ElementTheme.Light or ElementTheme.Dark => theme.ToString(),
-            _ => Application.Current.RequestedTheme.ToString()
+            _ => Application.Current?.RequestedTheme.ToString()
         };
 
-        ResourceDictionary? colorsDictionary = Application.Current.Resources
+        if (themeKey is null)
+        {
+            return default;
+        }
+
+        ResourceDictionary? colorsDictionary = Application.Current?.Resources
             .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Colors.xaml"));
 
         ResourceDictionary? themeDictionary = colorsDictionary?.ThemeDictionaries[themeKey] as ResourceDictionary;
@@ -49,7 +54,7 @@ public static class ResourceHelper
 
     public static ImageSource GetIllustration(string resourceKey)
     {
-        ResourceDictionary? illustrationsDictionary = Application.Current.Resources
+        ResourceDictionary? illustrationsDictionary = Application.Current?.Resources
             .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Illustrations.xaml"));
 
         if (illustrationsDictionary == null || !illustrationsDictionary.ContainsKey(resourceKey))
@@ -62,7 +67,7 @@ public static class ResourceHelper
 
     public static ImageSource GetIcon(string resourceKey)
     {
-        ResourceDictionary? iconsDictionary = Application.Current.Resources
+        ResourceDictionary? iconsDictionary = Application.Current?.Resources
             .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Icons.xaml"));
 
         if (iconsDictionary == null || !iconsDictionary.ContainsKey(resourceKey))
@@ -75,7 +80,7 @@ public static class ResourceHelper
 
     public static Style GetContentDialogStyle(string resourceKey)
     {
-        ResourceDictionary? contentDialogDictionary = Application.Current.Resources
+        ResourceDictionary? contentDialogDictionary = Application.Current?.Resources
             .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Controls/ContentDialogStyles.xaml"));
 
         if (contentDialogDictionary == null || !contentDialogDictionary.ContainsKey(resourceKey))

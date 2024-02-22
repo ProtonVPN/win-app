@@ -34,8 +34,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                CanContentScroll="False"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                               PageHeader="{x:Bind ViewModel.Title}" 
                                Padding="16,16,4,16">
+
+        <custom:PageContentControl.PageHeader>
+            <TextBlock Text="{x:Bind ViewModel.Title}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       TextWrapping="Wrap" />
+        </custom:PageContentControl.PageHeader>
 
         <Grid Margin="0,4,0,-24"
               RowDefinitions="Auto,*"

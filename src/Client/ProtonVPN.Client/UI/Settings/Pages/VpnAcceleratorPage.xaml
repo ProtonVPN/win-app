@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -31,15 +31,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                       PageHeader="{x:Bind ViewModel.Title}"
                                        ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
                                        ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
-            
-            <StackPanel x:Name="ContentArea">
+
+        <custom:PageContentControl.PageHeader>
+            <TextBlock Text="{x:Bind ViewModel.Title}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       TextWrapping="Wrap" />
+        </custom:PageContentControl.PageHeader>
+
+        <StackPanel x:Name="ContentArea">
 
             <toolkit:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_VpnAccelerator_Description')}" />

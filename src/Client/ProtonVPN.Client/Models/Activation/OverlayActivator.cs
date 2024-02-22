@@ -25,6 +25,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -33,13 +34,15 @@ namespace ProtonVPN.Client.Models.Activation;
 public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 {
     private readonly IViewMapper _viewMapper;
+    private readonly ISettings _settings;
 
     private List<ActiveOverlay> _activeOverlays = new();
 
-    public OverlayActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector)
+    public OverlayActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, ISettings settings)
         : base(logger, themeSelector)
     {
         _viewMapper = viewMapper;
+        _settings = settings;
     }
 
     public async Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters, Window? rootWindow = null)
@@ -153,7 +156,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 
                 dialog.XamlRoot = rootWindow.GetXamlRoot();
                 dialog.RequestedTheme = ThemeSelector.GetTheme().Theme;
-
+                dialog.ApplyFlowDirection(_settings.Language);
                 overlay = new(rootWindow, dialog);
 
                 RegisterOverlay(overlay);
@@ -217,7 +220,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 
     private MessageContentDialog CreateMessageOverlay(MessageDialogParameters parameters, Window rootWindow)
     {
-        return new()
+        MessageContentDialog dialog = new()
         {
             Title = parameters.Title,
             Content = parameters.Message,
@@ -229,5 +232,9 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
             XamlRoot = rootWindow.GetXamlRoot(),
             RequestedTheme = ThemeSelector.GetTheme().Theme,
         };
+
+        dialog.ApplyFlowDirection(_settings.Language);
+
+        return dialog;
     }
 }

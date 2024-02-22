@@ -60,7 +60,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.ColumnDefinitions>
 
                             <custom:GhostButton Grid.Column="0"
-                                                Margin="0,4,16,0"
+                                                VerticalAlignment="Top"
+                                                Margin="0,0,16,0"
                                                 AutomationProperties.AutomationId="GoBackButton"
                                                 Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                 CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -72,6 +73,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="PART_HeaderPresenter"
                                               Grid.Column="1"
+                                              VerticalAlignment="Top"
                                               AutomationProperties.AutomationId="PageTitleLabel"
                                               AutomationProperties.HeadingLevel="Level1"
                                               Content="{TemplateBinding PageHeader}"
@@ -142,7 +144,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.ColumnDefinitions>
 
                             <custom:GhostButton Grid.Column="0"
-                                                Margin="0,4,16,0"
+                                                VerticalAlignment="Top"
+                                                Margin="0,0,16,0"
                                                 AutomationProperties.AutomationId="GoBackButton"
                                                 Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                 CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -154,6 +157,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="PART_HeaderPresenter"
                                               Grid.Column="1"
+                                              VerticalAlignment="Top"
                                               AutomationProperties.AutomationId="PageTitleLabel"
                                               AutomationProperties.HeadingLevel="Level1"
                                               Content="{TemplateBinding PageHeader}"
