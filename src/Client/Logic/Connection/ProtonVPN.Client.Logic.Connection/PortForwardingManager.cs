@@ -32,6 +32,9 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
     private readonly IEntityMapper _entityMapper;
 
     public int? ActivePort { get; private set; }
+    public PortMappingStatus Status { get; private set; }
+    public bool IsFetchingPort => Status is not PortMappingStatus.Stopped or
+        PortMappingStatus.Error or PortMappingStatus.DestroyPortMappingCommunication;
 
     public PortForwardingManager(IEventMessageSender eventMessageSender,
         IEntityMapper entityMapper)
@@ -43,17 +46,29 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
     public void Receive(PortForwardingStateIpcEntity message)
     {
         PortForwardingState portForwardingState = _entityMapper.Map<PortForwardingStateIpcEntity, PortForwardingState>(message);
-        int? newActivePort = portForwardingState.MappedPort?.MappedPort?.ExternalPort;
 
+        int? newActivePort = portForwardingState.MappedPort?.MappedPort?.ExternalPort;
         if (ActivePort != newActivePort)
         {
             ActivePort = newActivePort;
             NotifyPortChange(newActivePort);
+        }
+
+        PortMappingStatus newStatus = portForwardingState.Status;
+        if (Status != newStatus)
+        {
+            Status = newStatus;
+            NotifyStatusChange(newStatus);
         }
     }
 
     private void NotifyPortChange(int? newActivePort)
     {
         _eventMessageSender.Send(new PortForwardingPortChanged(newActivePort));
+    }
+
+    private void NotifyStatusChange(PortMappingStatus newStatus)
+    {
+        _eventMessageSender.Send(new PortForwardingStatusChanged(newStatus));
     }
 }

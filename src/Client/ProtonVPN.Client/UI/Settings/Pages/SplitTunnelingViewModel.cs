@@ -46,6 +46,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
     private const string EXE_FILE_EXTENSION = ".exe";
 
     private readonly IUrls _urls;
+    private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddIpAddressCommand))]
@@ -118,7 +119,8 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IUrls urls)
+        IUrls urls,
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
@@ -127,6 +129,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
                connectionManager)
     {
         _urls = urls;
+        _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
 
         StandardApps = new();
         StandardApps.CollectionChanged += OnAppsCollectionChanged;
@@ -232,6 +235,8 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         Settings.SplitTunnelingInverseAppsList = GetSplitTunnelingAppsList(InverseApps);
         Settings.SplitTunnelingStandardIpAddressesList = GetSplitTunnelingIpAddressesList(StandardIpAddresses);
         Settings.SplitTunnelingInverseIpAddressesList = GetSplitTunnelingIpAddressesList(InverseIpAddresses);
+
+        _vpnServiceSettingsUpdater.SendAsync();
     }
 
     private List<SplitTunnelingApp> GetSplitTunnelingAppsList(ObservableCollection<SplitTunnelingAppViewModel> apps)

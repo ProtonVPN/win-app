@@ -17,11 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Common.Legacy.PortForwarding;
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public interface IAuthCredentialManager
+public class PortForwardingStatusChanged
 {
-    Task<AuthCredential> GenerateAsync();
+    public PortMappingStatus Status { get; }
+
+    public PortForwardingStatusChanged(PortMappingStatus status)
+    {
+        Status = status;
+    }
 }

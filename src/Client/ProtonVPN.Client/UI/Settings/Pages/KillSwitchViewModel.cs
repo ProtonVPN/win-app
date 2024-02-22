@@ -36,6 +36,7 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 public partial class KillSwitchViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
+    private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
@@ -73,7 +74,8 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
@@ -82,6 +84,7 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
                connectionManager)
     {
         _urls = urls;
+        _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled, KillSwitchMode mode)
@@ -103,6 +106,8 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
     {
         Settings.IsKillSwitchEnabled = IsKillSwitchEnabled;
         Settings.KillSwitchMode = CurrentKillSwitchMode;
+
+        _vpnServiceSettingsUpdater.SendAsync();
     }
 
     protected override void RetrieveSettings()

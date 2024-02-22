@@ -35,7 +35,9 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEventMessageReceiver<PortForwardingPortChanged>
+public partial class PortForwardingViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<PortForwardingPortChanged>,
+    IEventMessageReceiver<PortForwardingStatusChanged>
 {
     private readonly IUrls _urls;
     private readonly IClipboardEditor _clipboardEditor;
@@ -44,23 +46,40 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEvent
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CopyPortNumberCommand))]
     [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
+    [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
+    [NotifyPropertyChangedFor(nameof(IsExpanded))]
+    [NotifyPropertyChangedFor(nameof(ActivePortNumberOrStatusMessage))]
     private int? _activePortNumber;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
     [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
+    [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
+    [NotifyPropertyChangedFor(nameof(IsExpanded))]
     private bool _isPortForwardingEnabled;
 
     [ObservableProperty]
     private bool _isPortForwardingNotificationEnabled;
 
+    public bool IsExpanded => HasActivePortNumber || HasStatusMessage;
+
     public bool HasActivePortNumber => ActivePortNumber.HasValue && IsPortForwardingEnabled && ConnectionManager.IsConnected;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
+    [NotifyPropertyChangedFor(nameof(IsExpanded))]
+    [NotifyPropertyChangedFor(nameof(ActivePortNumberOrStatusMessage))]
+    private string? _statusMessage;
+
+    public bool HasStatusMessage => !HasActivePortNumber && StatusMessage is not null;
 
     public override string? Title => Localizer.Get("Settings_Features_PortForwarding");
 
     public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(IsPortForwardingEnabled);
 
     public string LearnMoreUrl => _urls.PortForwardingLearnMore;
+
+    public string? ActivePortNumberOrStatusMessage => ActivePortNumber?.ToString() ?? StatusMessage;
 
     public PortForwardingViewModel(
         IMainViewNavigator viewNavigator,
@@ -83,7 +102,7 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEvent
         _clipboardEditor = clipboardEditor;
         _portForwardingManager = portForwardingManager;
 
-        InvalidateActivePortNumber();
+        InvalidateStatusMessageAndActivePortNumber();
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled)
@@ -129,17 +148,31 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase, IEvent
             Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
 
-    private void InvalidateActivePortNumber()
+    public void Receive(PortForwardingStatusChanged message)
     {
-        ActivePortNumber = _portForwardingManager.ActivePort;
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateStatusMessageAndActivePortNumber();
+        });
     }
 
     public void Receive(PortForwardingPortChanged message)
     {
         ExecuteOnUIThread(() =>
         {
-            InvalidateActivePortNumber();
+            InvalidateStatusMessageAndActivePortNumber();
         });
+    }
+
+    private void InvalidateStatusMessageAndActivePortNumber()
+    {
+        int? activePort = _portForwardingManager.ActivePort;
+
+        ActivePortNumber = activePort;
+
+        StatusMessage = activePort is null && _portForwardingManager.IsFetchingPort
+            ? Localizer.Get("Settings_Features_PortForwarding_Loading")
+            : null;
     }
 
     public override void Receive(ConnectionStatusChanged message)
