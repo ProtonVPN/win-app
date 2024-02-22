@@ -16,6 +16,7 @@
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
 
 #define ProtonDriveDownloaderName "ProtonDrive.Downloader.exe"
+#define InstallLogPath "{app}\Install.log.txt"
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
@@ -33,9 +34,10 @@
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-DefaultDirName={pf}
+DefaultDirName={autopf}\{#AppFolder}
 DefaultGroupName=Proton
-DisableDirPage=auto
+DisableDirPage=yes
+AlwaysShowDirOnReadyPage=yes
 DisableProgramGroupPage=auto
 AppPublisher={#MyPublisher}
 UninstallDisplayIcon={app}\{#LauncherExeName}
@@ -159,13 +161,9 @@ Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{commonappdata}\ProtonVPN"
-Type: filesandordirs; Name: "{localappdata}\ProtonVPN"
+Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"
 Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
-
-[Dirs]
-Name: "{localappdata}\ProtonVPN\DiagnosticLogs"
-Name: "{commonappdata}\ProtonVPN\Updates"; AfterInstall: SetFolderPermissions;
+Type: files; Name: "{#InstallLogPath}"
 
 [Code]
 function InitLogger(logger: Longword): Integer;
@@ -182,9 +180,6 @@ external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayloa
 
 function IsProductInstalled(upgradeCode: String): Integer;
 external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function SetUpdatesFolderPermission(updatesFolderPath: String): Integer;
-external 'SetUpdatesFolderPermission@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function UninstallTapAdapter(tapFilesPath: String): Integer;
 external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
@@ -226,7 +221,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent, IsToDisableAutoUpdate, IsInstallPathModified: Boolean;
+  IsToReboot, IsVerySilent, IsToDisableAutoUpdate: Boolean;
 
 function NeedRestart(): Boolean;
 begin
@@ -246,11 +241,6 @@ begin
     lstrcpyW(line, ptr);
     Log(line);
   end;
-end;
-
-procedure SetFolderPermissions();
-begin
-  SetUpdatesFolderPermission(ExpandConstant('{commonappdata}\ProtonVPN\Updates'));
 end;
 
 procedure DeleteNonRunningVersions(const Directory: string);
@@ -351,13 +341,22 @@ begin
   if IsToDisableAutoUpdate = true then begin
     Log('The app will be launched with auto updates disabled.');
   end;
+end;    
+
+// Returns 0 (zero) if versions are equal, -1 (negative one) if version1 is older and 1 (positive one) if version1 is more recent
+function CompareVersions(version1, version2: String): Integer;
+var
+    packVersion1, packVersion2: Int64;
+begin
+    if not StrToVersion(version1, packVersion1) then packVersion1 := 0;
+    if not StrToVersion(version2, packVersion2) then packVersion2 := 0;
+    Result := ComparePackedVersion(packVersion1, packVersion2);
 end;
 
 function InitializeSetup(): Boolean;
 var
   Version: String;
   ErrCode: Integer;
-  WindowsVersion: TWindowsVersion;
 begin
   SetIsVerySilent();
   SetIsToDisableAutoUpdate();
@@ -371,7 +370,7 @@ begin
   end;
   if RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion') then begin
     RegQueryStringValue(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppName}_is1', 'DisplayVersion', Version);
-    if Version > '{#MyAppVersion}' then begin
+    if CompareVersions(Version, '{#MyAppVersion}') > 0 then begin
       if WizardSilent() = false then begin
         MsgBox(ExpandConstant('{#MyAppName} is already installed with the newer version ' + Version + '.'), mbInformation, MB_OK);
       end;
@@ -414,24 +413,19 @@ begin
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
-var
-  vpnFolderPath: String;
 begin
-    vpnFolderPath := '{app}';
-    if IsUpgrade = False then
-      vpnFolderPath := vpnFolderPath + '\{#AppFolder}';
-
-    DeleteNonRunningVersions(ExpandConstant(vpnFolderPath));
+    DeleteNonRunningVersions(ExpandConstant('{app}'));
     Log('Trying to save user settings for the old ProtonVPN app if it is installed');
     SaveOldUserConfigFolder();
     Log('Trying to update taskbar icon path if exists');
-    UpdateTaskbarIconTarget(ExpandConstant(vpnFolderPath + '\{#VersionFolder}\{#MyAppExeName}'));
+    UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
     Log('Trying to uninstall an old version of ProtonVPN app');
     UninstallProduct('{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}');
     Log('Trying to uninstall an old version of ProtonVPN TUN adapter');
     UninstallProduct('{FED0679F-A292-4507-AEF5-DD2BB8898A36}');
     Log('Trying to uninstall an old version of ProtonVPN TAP adapter');
     UninstallProduct('{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}');
+    Result := '';
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -442,7 +436,7 @@ begin
   if CurStep = ssDone then begin
     logfilepathname := ExpandConstant('{log}');
     logfilename := ExtractFileName(logfilepathname);
-    newfilepathname := ExpandConstant('{localappdata}') + '\ProtonVPN\DiagnosticLogs\ProtonVPN_install.log';
+    newfilepathname := ExpandConstant('{#InstallLogPath}');
     FileCopy(logfilepathname, newfilepathname, false);
     if IsProcessRunning('{#MyAppExeName}') then begin
       exit;
@@ -485,24 +479,12 @@ begin
   end;
 end;
 
+function GetDriveInstallPath(value: String): String;
+begin
+    Result := '"' + ExpandConstant('{autopf}\Proton\Drive') + '"';
+end;
+
 function ShouldDisplayProtonDriveCheckbox: Boolean;
 begin
   Result := IsProductInstalled('{F3B95BD2-1311-4B82-8B4A-B9EB7C0500ED}') = 0;
-end;
-
-function GetDriveInstallPath(value: String): String;
-var
-  path: String;
-begin
-    path := WizardForm.DirEdit.Text;
-    StringChangeEx(path, ExpandConstant('\{#AppFolder}'), '\Proton\Drive', True);
-    Result := '"' + path + '"';
-end;
-
-procedure CurPageChanged(CurPageID: Integer);
-begin
-    if (CurPageID = wpPreparing) and (IsInstallPathModified = False) and (IsUpgrade = False) then begin
-      IsInstallPathModified := true;
-      WizardForm.DirEdit.Text := WizardForm.DirEdit.Text + ExpandConstant('\{#AppFolder}');
-    end;
 end;

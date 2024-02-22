@@ -1586,10 +1586,10 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Mostrar menos</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Algunas aplicaciones como los antivirus o los optimizadores de PC pueden interferir con los Servicios del Sistema que Proton VPN requiere para asegurar su conexión. Al hacer clic en Activar, está permitiendo que Windows reactive los Servicios de Proton VPN.&lt;LineBreak/&gt;Si el problema persiste, intente reiniciar su PC o reinstalar Proton VPN.</value>
+    <value>Algunas aplicaciones como los antivirus o los optimizadores de PC pueden interferir con los servicios del sistema que Proton VPN requiere para asegurar tu conexión. Al hacer clic en Activar, estás permitiendo que Windows reactiva los servicios de Proton VPN.&lt;LineBreak/&gt;Si el problema persiste, intenta reiniciar tu PC o reinstalar Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, impidiéndole conectarse. Haga clic en Activar para solucionarlo.&lt;LineBreak/&gt;Tenga en cuenta que esta operación requiere privilegios de administrador.</value>
+    <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, impidiéndote conectarte. Haz clic en Activar para solucionarlo.&lt;LineBreak/&gt;Ten en cuenta que esta operación requiere privilegios de administrador.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
     <value>Desactivar Kill Switch</value>
@@ -2342,7 +2342,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil no guardados. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Estás seguro de que quieres descartarlos?</value>
+    <value>Hay cambios de perfil sin guardar. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Estás seguro que quieres descartarlos?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">

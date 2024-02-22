@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Para completar el proceso de actualización, Proton VPN se desconectará temporalmente y desactivará el interruptor de apagado permanente si alguno de estos está activo. ¿Quiere continuar?</value>
+    <value>Para completar el proceso de actualización, Proton VPN se desconectará temporalmente y desactivará el interruptor de bloqueo permanente si alguno de estos está activo. ¿Quiere continuar?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1592,7 +1592,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, lo que le impide conectarse. Haga clic en Activar para resolverlo.&lt;LineBreak/&gt;Tome en cuenta que esta operación requiere privilegios de administrador.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Desactivar el interruptor de apagado</value>
+    <value>Desactivar el interruptor de bloqueo</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1608,7 +1608,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>El interruptor de apagado está protegiendo su IP bloqueando todas las conexiones. En caso de problemas, puede desactivarlo.</value>
+    <value>El interruptor de bloqueo está protegiendo su IP bloqueando todas las conexiones. En caso de problemas, puede desactivarlo.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1664,10 +1664,10 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Salir de la aplicación le desconectará de la VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>El interruptor de apagado está bloqueando todas las conexiones para evitar fugas de datos. Salir de la aplicación desactivará el interruptor.</value>
+    <value>El interruptor de bloqueo está bloqueando todas las conexiones para evitar fugas de datos. Salir de la aplicación desactivará el interruptor.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>El interruptor de apagado permanente está activado. Al salir de la aplicación bloqueará todas las conexiones salientes hasta que Proton VPN se conecte de nuevo.</value>
+    <value>El interruptor de bloqueo permanente está activado. Al salir de la aplicación bloqueará todas las conexiones salientes hasta que Proton VPN se conecte de nuevo.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Verificación humana</value>
@@ -1676,10 +1676,10 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>El reloj de su sistema parece no estar sincronizado lo que podría evitar que la VPN se conecte correctamente. Consulte &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Con el interruptor de apagado permanente, si la VPN no está conectada por alguna razón, no podrá acceder a Internet.</value>
+    <value>Con el interruptor de bloqueo permanente, si la VPN no está conectada por alguna razón, no podrá acceder a Internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>¿Activar el interruptor de apagado permanente?</value>
+    <value>¿Activar el interruptor de bloqueo permanente?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Entendido</value>
@@ -1726,7 +1726,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Tenga en cuenta que el interruptor de apagado está activado. Actualizar o salir de la aplicación lo desactivará.</value>
+    <value>Tenga en cuenta que el interruptor de bloqueo está activado. Actualizar o salir de la aplicación lo desactivará.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1753,7 +1753,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Entendido</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Para que la tunelización dividida funcione correctamente, debe desactivar el interruptor de apagado.</value>
+    <value>Para que la tunelización dividida funcione correctamente, debe desactivar el interruptor de bloqueo.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>Cientos de servidores en {0} país</value>
@@ -1910,7 +1910,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Repare su instalación.</value>
   </data>
   <data name="KillSwitch">
-    <value>Interruptor de apagado</value>
+    <value>Interruptor de bloqueo</value>
     <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
@@ -1937,7 +1937,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>El interruptor de apagado está activado</value>
+    <value>El interruptor de bloqueo está activado</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -2342,7 +2342,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil sin guardar. ¿&lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Está seguro que quiere descartarlo?</value>
+    <value>Hay cambios de perfil sin guardar. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿En verdad desea descartarlos?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
@@ -2434,11 +2434,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Interruptor de apagado desactivado</value>
+    <value>Interruptor de bloqueo desactivado</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Interruptor de apagado activado</value>
+    <value>Interruptor de bloqueo activado</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2454,7 +2454,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Bloquear malware, anuncios y rastreadores</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Interruptor de apagado permanente</value>
+    <value>Interruptor de bloqueo permanente</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
@@ -2746,7 +2746,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Excluye una aplicación o una dirección IP del tráfico VPN o incluye solo aplicaciones específicas. No se puede activar junto con el interruptor de apagado.</value>
+    <value>Excluye una aplicación o una dirección IP del tráfico VPN o incluye solo aplicaciones específicas. No se puede activar junto con el interruptor de bloqueo.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2773,7 +2773,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Usar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirle a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo use servidores DNS en los que confíe. ¿Quiere activar los servidores DNS personalizados?</value>
+    <value>Usar servidores DNS personalizados desactivará NetShield. Los servidores DNS son responsables de dirigirle a los sitios web correctos. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Solo use servidores DNS en los que confíe. ¿Desea activar los servidores DNS personalizados?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
@@ -2943,11 +2943,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>¡Interruptor de apagado activado!</value>
+    <value>¡Interruptor de bloqueo activado!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>El interruptor de apagado está bloqueando todas las conexiones para evitar que se filtren sus datos.</value>
+    <value>El interruptor de bloqueo está bloqueando todas las conexiones para evitar que se filtren sus datos.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">

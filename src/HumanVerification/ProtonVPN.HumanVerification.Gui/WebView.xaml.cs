@@ -18,28 +18,46 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Web.WebView2.Core;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers.TlsPinning;
+using ProtonVPN.Common.Configuration;
+using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.HumanVerification.Contracts;
 
 namespace ProtonVPN.HumanVerification.Gui
 {
     public partial class WebView
     {
+        private const string CSP_HEADER = "Content-Security-Policy";
+
+        private readonly IConfiguration _config;
+        private readonly IApiHostProvider _apiHostProvider;
         private readonly ICertificateValidator _certificateValidator;
         private readonly IHumanVerificationConfig _humanVerificationConfig;
         private readonly ILogger _logger;
+        private readonly HttpClient _httpClient;
 
-        public WebView(ICertificateValidator certificateValidator,
+        public WebView(
+            IConfiguration config,
+            IApiHostProvider apiHostProvider,
+            ICertificateValidator certificateValidator,
             IHumanVerificationConfig humanVerificationConfig,
-            ILogger logger)
+            ILogger logger,
+            TlsPinnedCertificateHandler tlsPinnedCertificateHandler)
         {
+            _config = config;
+            _apiHostProvider = apiHostProvider;
             _certificateValidator = certificateValidator;
             _humanVerificationConfig = humanVerificationConfig;
             _logger = logger;
+            _httpClient = new HttpClient(tlsPinnedCertificateHandler);
+
             InitializeComponent();
             InitializeWebView();
         }
@@ -68,6 +86,9 @@ namespace ProtonVPN.HumanVerification.Gui
                 {
                     await WebView2.CoreWebView2.ClearServerCertificateErrorActionsAsync();
                     WebView2.CoreWebView2.ServerCertificateErrorDetected += OnServerCertificateErrorDetected;
+
+                    WebView2.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
+                    WebView2.CoreWebView2.WebResourceRequested += OnWebResourceRequested;
                 }
                 else
                 {
@@ -78,6 +99,51 @@ namespace ProtonVPN.HumanVerification.Gui
             {
                 _logger.Error<AppLog>("Failed to initialize CoreWebView2 server certificate handler.", ex);
             }
+        }
+
+        private void OnWebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
+        {
+            HttpRequestMessage request = new(new HttpMethod(e.Request.Method), e.Request.Uri);
+            foreach (KeyValuePair<string, string> pair in e.Request.Headers)
+            {
+                request.Headers.Add(pair.Key, pair.Value);
+            }
+
+            if (_apiHostProvider.IsProxyActive())
+            {
+                request.Headers.Add("X-PM-DoH-Host", _config.DoHVerifyApiHost);
+            }
+
+            try
+            {
+                HttpResponseMessage response = _httpClient.Send(request);
+                e.Response = ModifyResponseMessage(response);
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.Error<AppLog>("Failed to fetch webview resource.", ex);
+            }
+        }
+
+        private CoreWebView2WebResourceResponse ModifyResponseMessage(HttpResponseMessage response)
+        {
+            CoreWebView2WebResourceResponse modifiedResponse =
+                WebView2.CoreWebView2.Environment.CreateWebResourceResponse(
+                    response.Content.ReadAsStream(),
+                    (int)response.StatusCode,
+                    response.ReasonPhrase,
+                    string.Empty);
+
+            IEnumerable<KeyValuePair<string, IEnumerable<string>>> headers = response.Headers
+                .Where(h => h.Key != CSP_HEADER)
+                .Concat(response.Content.Headers);
+
+            foreach (KeyValuePair<string, IEnumerable<string>> header in headers)
+            {
+                modifiedResponse.Headers.AppendHeader(header.Key, string.Join(",", header.Value));
+            }
+
+            return modifiedResponse;
         }
 
         private void LogWebViewInitializationException(Exception e)

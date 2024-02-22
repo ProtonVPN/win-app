@@ -1582,7 +1582,7 @@
     <value>Ayrıntılı bilgi alın</value>
   </data>
   <data name="Dialogs_DisabledService_btn_ShowLess">
-    <value>Daha az göster</value>
+    <value>Daha az görüntüle</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
     <value>Antivirüs ya da bilgisayar iyileştirici gibi bazı uygulamalar, Proton VPN uygulamasının bağlantınızın güvenliğini sağlamak için kullandığı sistem hizmetlerini etkileyebilir. Aç düğmesine tıkladığınızda, Windows'un Proton VPN hizmetlerini yeniden açmasına izin vermiş olursunuz.&lt;LineBreak/&gt;Sorun sürerse, bilgisayarınızı yeniden başlatmayı ya da Proton VPN uygulamasını yeniden kurmayı deneyin.</value>
@@ -1631,7 +1631,7 @@
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
-    <value>Bu iletiyi bir daha gösterme</value>
+    <value>Bu ileti bir daha görüntülenmesin</value>
   </data>
   <data name="Dialogs_EnableSmartProtocol_btn_Enable">
     <value>Aç</value>
@@ -2072,7 +2072,7 @@
     <value>Secure Core kullanılsın</value>
   </data>
   <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
-    <value>Bir daha gösterme</value>
+    <value>Bir daha görüntülenmesin</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
     <value>Ayrıntılı bilgi alın</value>
@@ -2891,7 +2891,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
   </data>
   <data name="Settings_msg_ReconnectRequired">
-    <value>Bazı değişikliklerin etkili olması için yeniden bağlanılması gerekli.</value>
+    <value>Bazı değişikliklerin etkili olması için bağlantının yeniden kurulması gerekli.</value>
     <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
   </data>
   <data name="Settings_ttl">

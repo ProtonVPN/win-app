@@ -300,25 +300,3 @@ void Os::RemovePinnedIcons(PCWSTR shortcut_path)
 
     CoUninitialize();
 }
-
-void Os::SetFolderPermissions(LPWSTR path, LPCWSTR security_descriptor)
-{
-    PSECURITY_DESCRIPTOR pSD = nullptr;
-    if (ConvertStringSecurityDescriptorToSecurityDescriptorW(security_descriptor, SDDL_REVISION_1, &pSD, nullptr))
-    {
-        if (SetFileSecurity(path, DACL_SECURITY_INFORMATION, pSD))
-        {
-            LogMessage(format(L"Folder {0} permissions changed successfully.", path));
-        }
-        else
-        {
-            LogMessage(format(L"Failed to change folder {0} permissions.", path), GetLastError());
-        }
-
-        LocalFree(pSD);
-    }
-    else
-    {
-        LogMessage(format(L"Failed to convert security descriptor {0}", security_descriptor), GetLastError());
-    }
-}

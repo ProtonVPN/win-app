@@ -25,7 +25,7 @@ type
 var
   Dependency_Memo: String;
   Dependency_List: array of TDependency_Entry;
-  Dependency_NeedRestart, Dependency_ForceX86: Boolean;
+  Dependency_NeedRestart: Boolean;
   Dependency_DownloadPage: TDownloadWizardPage;
 
 procedure Dependency_Add(const Filename, Parameters, Title, URL, Checksum: String; const ForceSuccess, RestartAfter: Boolean);

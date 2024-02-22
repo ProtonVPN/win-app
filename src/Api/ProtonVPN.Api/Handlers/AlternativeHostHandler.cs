@@ -24,19 +24,19 @@ using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 using Polly.Timeout;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 using ProtonVPN.Dns.Contracts.Exceptions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers
 {
@@ -68,6 +68,7 @@ namespace ProtonVPN.Api.Handlers
             IAlternativeHostsManager alternativeHostsManager,
             IAppSettings appSettings,
             GuestHoleState guestHoleState,
+            IVpnStatusNotifier vpnStatusNotifier,
             IConfiguration configuration)
         {
             _logger = logger;
@@ -78,11 +79,13 @@ namespace ProtonVPN.Api.Handlers
             _guestHoleState = guestHoleState;
             _defaultApiHost = new Uri(configuration.Urls.ApiUrl).Host;
             _alternativeRoutingCheckInterval = configuration.AlternativeRoutingCheckInterval;
+
+            vpnStatusNotifier.VpnStatusChanged += OnVpnStatusChanged;
         }
 
-        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+        private void OnVpnStatusChanged(object sender, VpnStatus vpnStatus)
         {
-            _isDisconnected = e.State.Status == VpnStatus.Disconnected;
+            _isDisconnected = vpnStatus == VpnStatus.Disconnected;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -308,6 +311,9 @@ namespace ProtonVPN.Api.Handlers
             {
                 _lastAlternativeRoutingCheckDateUtc = null;
                 _activeAlternativeHost = null;
+
+                _appSettings.LastPrimaryApiFailDateUtc = DateTime.MaxValue;
+                _appSettings.ActiveAlternativeApiBaseUrl = string.Empty;
             }
             finally
             {
@@ -398,6 +404,9 @@ namespace ProtonVPN.Api.Handlers
             {
                 _lastAlternativeRoutingCheckDateUtc = DateTime.UtcNow;
                 _activeAlternativeHost = alternativeHost;
+
+                _appSettings.LastPrimaryApiFailDateUtc = DateTime.UtcNow;
+                _appSettings.ActiveAlternativeApiBaseUrl = alternativeHost;
             }
             finally
             {

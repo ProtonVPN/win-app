@@ -387,7 +387,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
-    <value>Invia log errore</value>
+    <value>Invia i log degli errori</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
@@ -2500,7 +2500,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Tracker fermato</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>I Trackers sono siti di terze parti che collezionano, memorizzano e vendono informazioni riguardanti la tua attività sul web.</value>
+    <value>I tracker sono siti di terze parti che raccolgono, memorizzano e vendono informazioni riguardanti la tua attività sul web.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Se i siti web non si caricano, prova a disabilitare NetShield</value>

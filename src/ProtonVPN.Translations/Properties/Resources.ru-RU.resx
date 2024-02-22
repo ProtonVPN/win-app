@@ -563,7 +563,7 @@
     <value>{0} стран</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} страны</value>
+    <value>{0} стран</value>
   </data>
   <data name="Country_val_AD">
     <value>Андорра</value>
@@ -2292,7 +2292,7 @@
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Пожалуйста, выберите шлюз</value>
+    <value>Выберите шлюз</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
@@ -2476,11 +2476,11 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Выключить Kill switch</value>
+    <value>Выключить Kill Switch</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Включить Kill switch</value>
+    <value>Включить Kill Switch</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2581,7 +2581,7 @@
     <value>{0} защищённых серверов</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} защищённого сервера</value>
+    <value>{0} защищённых серверов</value>
   </data>
   <data name="ServerType_val_B2B">
     <value>Шлюзы</value>
@@ -2627,7 +2627,7 @@
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Бесплатные подключения (1)</value>
+    <value>Free подключения (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP-адрес сервера:</value>
@@ -2658,7 +2658,7 @@
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Get worldwide coverage with VPN Plus</value>
+    <value>Получите всемирное покрытие с помощью VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Не та страна, которую вы хотели? Улучшите тариф для выбора любого сервера</value>
@@ -3213,25 +3213,25 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Access faster, less crowded servers.</value>
+    <value>Получите доступ к более быстрым и менее загруженным серверам.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>Увеличьте скорость подключения до 400 % с помощью &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Improved speed and stability when connected to distant servers.</value>
+    <value>Повышенная скорость и стабильность при подключении к удаленным серверам.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+    <value>Просматривайте веб-страницы на еще более высоких скоростях (до 10 Гбит/с).</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Access geoblocked content</value>
+    <value>Получите доступ к содержимому, заблокированному по географическому признаку</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Choose any location</value>
+    <value>Выберите любое местоположение</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Even higher VPN speed</value>
+    <value>Еще более высокая скорость VPN</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
     <value>Смотрите любимые фильмы</value>
@@ -3245,19 +3245,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
-    <value>Connect to {0} country</value>
+    <value>Подключайтесь к {0} стране</value>
   </data>
   <data name="Upsell_Country_Bullet1_Few">
-    <value>Connect to {0} countries</value>
+    <value>Подключайтесь к {0} странам</value>
   </data>
   <data name="Upsell_Country_Bullet1_Many">
-    <value>Connect to {0} countries</value>
+    <value>Подключайтесь к {0} странам</value>
   </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connect to {0} countries</value>
+    <value>Подключайтесь к {0} странам</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Higher speeds (10 Gbps)</value>
+    <value>Более высокие скорости (10 Гбит/с)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
     <value>Смотрите любимые фильмы</value>
@@ -3269,44 +3269,44 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>30-дневная гарантия возврата денег</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+    <value>Разблокируйте &lt;Bold&gt;выбор страны&lt;/Bold&gt; с VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
     <value>Хотите выбрать определенную страну?</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+    <value>Подключайтесь к VPN с помощью своей &lt;Bold&gt;системы пользовательских доменных имен (DNS)&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+    <value>Сохраняйте часто используемые подключения с помощью &lt;Bold&gt;профилей&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+    <value>Получите более быстрый доступ к своим профилям с помощью &lt;Bold&gt;Быстрого подключения&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Unlock advanced VPN customization</value>
+    <value>Разблокируйте расширенные настройки VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Free server locations ({0})</value>
+    <value>Месторасположение серверов Free ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматически подключает вас к самому быстрому из доступных серверов. Обычно это ближайший к вашему местоположению сервер.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
     <value>Бесплатные подключения</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Improve online gaming and video call performance</value>
+    <value>Повысьте качество онлайн-игр и видеозвонков</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
+    <value>NAT2 (умеренное) оптимизирует скорость и стабильность, обеспечивая прямое соединение между устройствами</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>Разблокируйте &lt;Bold&gt;NAT2&lt;/Bold&gt; с помощью VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>Повысьте уровень своего игрового опыта</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Блокируйте рекламу и трекеры</value>
@@ -3340,38 +3340,38 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Доступно с VPN для бизнеса.</value>
+    <value>Доступно с VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>Повысьте скорость одноранговых загрузок.</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>Подключайтесь к игровым онлайн-серверам и организуйте многопользовательские игры</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>Настройте удаленный доступ к устройствам в локальной сети</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>Разблокируйте &lt;Bold&gt;переадресацию портов&lt;/Bold&gt; с VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>Повысьте эффективность своих подключений P2P</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Save your preferred server, city, or country.</value>
+    <value>Сохраните предпочитаемый сервер, город или страну.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Set custom protocols and premium VPN features.</value>
+    <value>Настройка пользовательских протоколов и платных функций VPN.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Set up auto-connect for even faster access.</value>
+    <value>Настройте автоподключение для еще более быстрого доступа.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+    <value>Разблокировать &lt;Bold&gt;профили&lt;/Bold&gt; с VPN Plus</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Get quick access to your frequent connections</value>
+    <value>Получите быстрый доступ к своим частым подключениям</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>Добавьте еще один уровень шифрования к своему подключению к VPN</value>
@@ -3389,16 +3389,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Двойное шифрование с Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Split your traffic into VPN and non-VPN tunnels</value>
+    <value>Разделите трафик на тунели VPN и тунели без VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+    <value>Позволяйте доверенным приложениям и адресам IP обходить VPN для повышения скорости.</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Access both home and local content when browsing from abroad</value>
+    <value>Получайте доступ к домашнему и местному содержимому при просмотре сайтов из-за границы</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+    <value>Разблокируйте &lt;Bold&gt;раздельное туннелирование&lt;/Bold&gt; с VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>Получите лучшее из обоих миров</value>

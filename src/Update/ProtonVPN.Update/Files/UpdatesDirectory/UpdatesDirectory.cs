@@ -18,11 +18,9 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.Win32;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Helpers;
 using SysPath = System.IO.Path;
@@ -34,9 +32,6 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
     /// </summary>
     internal class UpdatesDirectory : IUpdatesDirectory
     {
-        private const string LOCAL_APP_DATA_REGISTRY_KEY = "Local AppData";
-        private const string LOCAL_APP_DATA_REGISTRY_PATH = @"HKEY_USERS\{0}\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders";
-
         private readonly string _path;
         private readonly Version _currentVersion;
 
@@ -60,10 +55,6 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
         public void Cleanup()
         {
             PathCleanup(_path);
-            foreach (string localAppDataFolder in GetAllLocalAppDataPaths())
-            {
-                DeletePath(SysPath.Combine(localAppDataFolder, "ProtonVPN", "Updates"));
-            }
         }
 
         public void PathCleanup(string path)
@@ -106,55 +97,6 @@ namespace ProtonVPN.Update.Files.UpdatesDirectory
             return hasVersion && version != null
                 ? version.Normalized()
                 : new Version(0, 0, 0);
-        }
-
-        private IEnumerable<string> GetAllLocalAppDataPaths()
-        {
-            List<string> localAppDataFolders = new();
-            try
-            {
-                string[] systemUserIds = Registry.Users.GetSubKeyNames();
-                foreach (string systemUserId in systemUserIds)
-                {
-                    string localAppDataFolder = GetUserLocalAppDataPath(systemUserId);
-                    if (!string.IsNullOrWhiteSpace(localAppDataFolder))
-                    {
-                        localAppDataFolders.Add(localAppDataFolder);
-                    }
-                }
-            }
-            catch
-            {
-            }
-            return localAppDataFolders;
-        }
-
-        private string GetUserLocalAppDataPath(string systemUserId)
-        {
-            try
-            {
-                return (string)Registry.GetValue(
-                    string.Format(LOCAL_APP_DATA_REGISTRY_PATH, systemUserId), LOCAL_APP_DATA_REGISTRY_KEY, null);
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private void DeletePath(string path)
-        {
-            try
-            {
-                bool pathExists = Directory.Exists(path);
-                if (pathExists)
-                {
-                    Directory.Delete(path, recursive: true);
-                }
-            }
-            catch
-            {
-            }
         }
     }
 }

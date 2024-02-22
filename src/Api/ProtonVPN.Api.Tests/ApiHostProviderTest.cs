@@ -18,14 +18,13 @@
  */
 
 using System;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Api.Tests
 {
@@ -37,12 +36,14 @@ namespace ProtonVPN.Api.Tests
         private const string PROXY_HOST = "alternative.api.url";
         private IConfiguration _config;
         private IAppSettings _appSettings;
+        private IVpnStatusNotifier _vpnStatusNotifier;
 
         [TestInitialize]
         public void Initialize()
         {
-            _config = new Config() { Urls = { ApiUrl = API_URL } };
+            _config = new Config { Urls = { ApiUrl = API_URL } };
             _appSettings = Substitute.For<IAppSettings>();
+            _vpnStatusNotifier = Substitute.For<IVpnStatusNotifier>();
         }
 
         [TestCleanup]
@@ -50,64 +51,62 @@ namespace ProtonVPN.Api.Tests
         {
             _config = null;
             _appSettings = null;
+            _vpnStatusNotifier = null;
         }
 
         [TestMethod]
-        public async Task ItShouldReturnAlternativeApiHostWhenProxyIsActivated()
+        public void ItShouldReturnAlternativeApiHostWhenProxyIsActivated()
         {
             // Arrange
             _appSettings.DoHEnabled.Returns(true);
             _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(2)));
             _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-            ApiHostProvider sut = new(_appSettings, _config);
-            await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None,
-                false));
+
+            ApiHostProvider sut = new(_appSettings, _config, _vpnStatusNotifier);
+            RaiseVpnStatusEvent(VpnStatus.Disconnected);
 
             // Assert
             sut.IsProxyActive().Should().BeTrue();
         }
 
         [TestMethod]
-        public async Task ProxyShouldBeDisabledWhenConnectedToVpn()
+        public void ProxyShouldBeDisabledWhenConnectedToVpn()
         {
             // Arrange
             _appSettings.DoHEnabled.Returns(true);
             _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(2)));
             _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-            ApiHostProvider sut = new(_appSettings, _config);
-            await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Connected), VpnError.None,
-                false));
+            ApiHostProvider sut = new(_appSettings, _config, _vpnStatusNotifier);
+            RaiseVpnStatusEvent(VpnStatus.Connected);
 
             // Assert
             sut.IsProxyActive().Should().BeFalse();
         }
 
         [TestMethod]
-        public async Task ProxyShouldBeDisabledAfter24Hours()
+        public void ProxyShouldBeDisabledAfter24Hours()
         {
             // Arrange
             _appSettings.DoHEnabled.Returns(true);
             _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(25)));
             _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-            ApiHostProvider sut = new(_appSettings, _config);
-            await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None,
-                false));
+            ApiHostProvider sut = new(_appSettings, _config, _vpnStatusNotifier);
+            RaiseVpnStatusEvent(VpnStatus.Disconnected);
 
             // Assert
             sut.IsProxyActive().Should().BeFalse();
         }
 
         [TestMethod]
-        public async Task ItShouldReturnAlternativeHostWhenProxyIsActive()
+        public void ItShouldReturnAlternativeHostWhenProxyIsActive()
         {
             // Arrange
             _config.Urls.ApiUrl = API_URL;
             _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
             _appSettings.DoHEnabled.Returns(true);
             _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(2)));
-            ApiHostProvider sut = new(_appSettings, _config);
-            await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None,
-                false));
+            ApiHostProvider sut = new(_appSettings, _config, _vpnStatusNotifier);
+            RaiseVpnStatusEvent(VpnStatus.Disconnected);
 
             // Assert
             sut.GetHost().Should().Be(PROXY_HOST);
@@ -120,10 +119,15 @@ namespace ProtonVPN.Api.Tests
             _config.Urls.ApiUrl = API_URL;
             _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
             _appSettings.DoHEnabled.Returns(false);
-            ApiHostProvider sut = new(_appSettings, _config);
+            ApiHostProvider sut = new(_appSettings, _config, _vpnStatusNotifier);
 
             // Assert
             sut.GetHost().Should().Be(API_HOST);
+        }
+
+        private void RaiseVpnStatusEvent(VpnStatus status)
+        {
+            _vpnStatusNotifier.VpnStatusChanged += Raise.Event<EventHandler<VpnStatus>>(this, status);
         }
     }
 }

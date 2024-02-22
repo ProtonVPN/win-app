@@ -1628,7 +1628,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="feilmelding"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -1806,7 +1806,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Innblanding fra Antivirus&lt;/Bold&gt; - Midlertidig deaktiver eller fjern antivirus-programvaren din.</value>
+    <value>&lt;Bold&gt;Antivirusforstyrrelser&lt;/Bold&gt; - Midlertidig deaktiver eller fjern antivirus-programvaren din.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -2582,7 +2582,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% Belastning</value>
+    <value>{0}% belastning</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">

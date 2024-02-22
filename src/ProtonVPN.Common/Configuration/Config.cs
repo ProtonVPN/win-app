@@ -55,6 +55,9 @@ namespace ProtonVPN.Common.Configuration
         public string DiagnosticsZipPath { get; set; }
 
         [Required]
+        public string AppInstallLogPath { get; set; }
+
+        [Required]
         public string TranslationsFolder { get; set; }
 
         [Required]
@@ -204,6 +207,8 @@ namespace ProtonVPN.Common.Configuration
         public TlsPinningConfig TlsPinningConfig { get; set; } = new();
 
         public List<string> DoHProviders { get; set; } = new();
+
+        public string DoHVerifyApiHost { get; set; }
 
         [Required]
         public string DefaultLocale { get; set; }

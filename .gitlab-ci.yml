@@ -197,7 +197,7 @@ prepare-internal-beta-release:
 mirror:
   stage: mirror
   tags:
-    - windows
+    - windows-dot-net
   only:
     refs:
       - tags
@@ -248,7 +248,7 @@ create-release:
 
 send-slack-notification:
   tags:
-    - windows
+    - windows-dot-net
   only:
     refs:
       - develop

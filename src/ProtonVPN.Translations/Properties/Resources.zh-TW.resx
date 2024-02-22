@@ -178,7 +178,7 @@
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
-    <value>管理訂閱</value>
+    <value>管理訂購授權</value>
     <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
   </data>
   <data name="Account_lbl_AccessContent">
@@ -470,7 +470,7 @@
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>建立VPN隧道</value>
+    <value>創建VPN隧道</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
@@ -490,7 +490,7 @@
     <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
-    <value>建立中</value>
+    <value>創建中</value>
     <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2">
@@ -1756,15 +1756,15 @@
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>您的訂閱已降級，因此我們正重新連線到最快速的可用伺服器。</value>
+    <value>您的訂購授權已降級，因此我們正重新連線到最快速的可用伺服器。</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>您的訂閱已降級。</value>
+    <value>您的訂購授權已降級。</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>您的 VPN 訂閱方案已到期</value>
+    <value>您的 VPN 訂購授權已到期</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
@@ -1953,7 +1953,7 @@
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
-    <value>建立帳號</value>
+    <value>創建帳號</value>
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
@@ -2128,15 +2128,15 @@
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>您的訂閱已降級。再次升級以享用所有功能。</value>
+    <value>您的訂購授權已降級。再次升級以享用所有功能。</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>您的訂閱已降級，因此我們正重新連線到最快速的可用伺服器。再次升級以享用所有功能。</value>
+    <value>您的訂購授權已降級，因此我們正重新連線到最快速的可用伺服器。再次升級以享用所有功能。</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>您的 VPN 訂閱已逾期</value>
+    <value>您的 VPN 訂購授權已逾期</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
@@ -2325,7 +2325,7 @@
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>建立設定檔</value>
+    <value>創建設定檔</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
@@ -2337,7 +2337,7 @@
     <comment>The text on Close button in Profiles window</comment>
   </data>
   <data name="Profiles_btn_Create">
-    <value>建立配置檔</value>
+    <value>創建配置檔</value>
     <comment>The text on create profile button on Profile window (opens new profile window)</comment>
   </data>
   <data name="Profiles_btn_Troubleshoot">
@@ -3024,7 +3024,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>一鍵將您的網路流量路由改為經由 Tor 網路傳送。速度較慢，但更隱密。</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
-    <value>建立設定檔</value>
+    <value>創建設定檔</value>
     <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
   </data>
   <data name="Sidebar_Profiles_lnk_Manage">
@@ -3111,7 +3111,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>存取地理封鎖內容</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>選擇任何地址</value>
+    <value>選擇任何位址</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
     <value>甚至更快虛擬私有網速度</value>
@@ -3266,7 +3266,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>將您的流量分為 VPN 與非 VPN 通道</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>讓受信任的應用程式與 IP 地址繞過 VPN 以取得更快的速度</value>
+    <value>讓受信任的應用程式與 IP 位址繞過 VPN 以取得更快的速度</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
     <value>從國外瀏覽時可以存取家庭與區域內容</value>

@@ -166,7 +166,7 @@
     <comment>The label for licensing information in About window</comment>
   </data>
   <data name="About_lnk_ReadLicense">
-    <value>더 알아보기</value>
+    <value>읽어보기</value>
     <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
   </data>
   <data name="About_lnk_Update">
@@ -230,7 +230,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>엄격한 비로그 방침</value>
+    <value>엄격한 노-로그 방침</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
