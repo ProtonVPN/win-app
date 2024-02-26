@@ -94,15 +94,8 @@ public class TestSession
         }
         App.Kill();
         App.Dispose();
-        try
-        {
-            ServiceController service = new ServiceController("ProtonVPN Service");
-            service.Stop();
-        }
-        catch (InvalidOperationException)
-        {
-            //Ignore because service might not be started.
-        }
+        StopService("ProtonVPN Service");
+        StopService("ProtonVPN Wireguard");
     }
 
     protected static void LaunchApp()
@@ -208,5 +201,18 @@ public class TestSession
             TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
 
         return retry;
+    }
+
+    private static void StopService(string serviceName)
+    {
+        try
+        {
+            ServiceController service = new ServiceController(serviceName);
+            service.Stop();
+        }
+        catch (InvalidOperationException)
+        {
+            //Ignore because service might not be started.
+        }
     }
 }
