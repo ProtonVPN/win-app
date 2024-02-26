@@ -154,7 +154,7 @@
     <value>Aktualizovat</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Navýšit tarif</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Zjistit více</value>
@@ -1342,13 +1342,13 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Získejte neomezený počet změn serverů s VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>V této chvíli jste dosáhli maximálního počtu změn serverů Free</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému bezplatnému serveru z naší {0} bezplatné země. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
@@ -1549,11 +1549,11 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Co je vytížení serveru?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing využívá virtuální servery k poskytování pokrytí VPN v těžko dostupných zemích.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Když se připojíte k serveru Smart Routing, bude se zdát, že prohlížíte ve své cílové zemi, i když je fyzický server umístěn jinde.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing se obvykle používá k obcházení zákonů potlačujících ochranu soukromí a jiných forem cenzury.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1697,7 +1697,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Můj účet</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Změnit server</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Bezpečné prohlížení z</value>

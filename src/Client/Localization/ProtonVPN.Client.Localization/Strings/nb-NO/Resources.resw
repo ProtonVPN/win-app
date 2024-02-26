@@ -154,7 +154,7 @@
     <value>Oppdater</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Oppgrader</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Lær mer</value>
@@ -1330,10 +1330,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Få ubegrensede tjenerbytter med VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Du har nådd maksimalt antall gratis tjenerbytter for nå</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige tjeneren fra {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
@@ -1525,11 +1525,11 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Hva er tjenerbelastning?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing bruker virtuelle tjenere for å gi VPN-dekning i vanskelig tilgjengelige land.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Når du kobler til en Smart Routing-tjener, ser det ut til at du surfer i destinasjonslandet ditt, selv om den fysiske tjeneren befinner seg et annet sted.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing brukes vanligvis til å omgå personvernlover og andre former for sensur.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1634,7 +1634,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
-    <value>hh\:mm\:ss</value>
+    <value>tt\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
@@ -1673,7 +1673,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Min konto</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Endre tjener</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Surfer trygt fra</value>

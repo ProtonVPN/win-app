@@ -154,7 +154,7 @@
     <value>업데이트</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>업그레이드</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>더 알아보기</value>
@@ -1324,10 +1324,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>VPN Plus로 무제한 서버 변경을 이용하십시오.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>무료 서버 변경 횟수의 최대치에 달했습니다</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free가 {0}개 무료 국가 내의 가능한 빠른 서버로 자동으로 연결해 줍니다. 사용자의 위치에서 가장 가까운 곳으로 연결됩니다.</value>
@@ -1513,11 +1513,11 @@ VPN 연결</value>
     <value>서버 부하라는 것은?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing은 가상 서버를 이용하여 접근이 어려운 국가에 VPN 커버리지를 제공합니다.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Smart Routing 서버에 접속했다면 물리적 서버의 위치와 상관없이 목적지 국가에서 탐색하는 것으로 보이게 됩니다.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열을 우회하는 데 쓸모가 있습니다.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1661,7 +1661,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>내 계정</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>서버 번경</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>안전하게 다음 위치에서 탐색 중:</value>
