@@ -81,6 +81,7 @@ public class SecureCoreTests : TestSession
         _shellRobot
             .DoNavigateToCountriesPage();
         _countriesRobot.DoNavigateToSecureCore()
+            .Wait(TestConstants.DefaultAnimationDelay)
             .VerifyActiveConnection(COUNTRY_CODE);
     }
 
