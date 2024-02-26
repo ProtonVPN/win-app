@@ -154,7 +154,7 @@
     <value>განახლება</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>გაუმჯობესება</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>გაიგეთ მეტი</value>
@@ -1330,10 +1330,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>მიიღეთ განუსაზღვრელი სერვერის ცვლილება VPN Plus-თან ერთად.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>მიაღწიეთ ამ დროისთვის დაშვებული უფასო სერვერების ცვლილების მაქსიმალურ რაოდენობას</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს უფასო ხელმისაწვდომ სერვერს ჩვენი {0} უფასო ქვეყნიდან. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
@@ -1523,11 +1523,11 @@ VPN მიერთება</value>
     <value>რა არის სერვერის დატვირთვა?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing იყენებს ვირტუალურ სერვერბს, რომ  VPN დაფარვა ძნელად ხელმსაწვდომ ქვეყნებშიც იყო ხელმისაწვდომი.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+როცა უერთდებით Smart Routing სერვერს, გამოჩნდება, რომ თქვენ სამიზნე ქვეყანაში ხართ მაშინაც კი, თუ ფიზიკური სერვერი სადმე სხვაგანაა.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing, ჩვეულებრივ, ანტი-კონფიდენციალობის კანონებისა და სხვა ფორმის ცენზურის თავის დასაღწევად გამოიყენება.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1632,7 +1632,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
-    <value>hh\:mm\:ss</value>
+    <value>სს\:წწ\:წწ</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
@@ -1644,7 +1644,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
-    <value>mm\:ss</value>
+    <value>მმ\:წწ</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
@@ -1671,7 +1671,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>ჩემი ანგარიში</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>სერვერის შეცვლა</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>მუშაობთ ინტერნეტში უსაფრთხოდ ქვეყნიდან</value>

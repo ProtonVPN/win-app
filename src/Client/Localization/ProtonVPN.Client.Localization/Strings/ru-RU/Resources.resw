@@ -151,10 +151,10 @@
     <value>Удалить</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Update</value>
+    <value>Обновить</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Улучшить</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Подробнее</value>
@@ -233,7 +233,7 @@
     <value>{0} город</value>
   </data>
   <data name="Countries_City_Few">
-    <value>{0} городов</value>
+    <value>{0} города</value>
   </data>
   <data name="Countries_City_Many">
     <value>{0} городов</value>
@@ -298,7 +298,7 @@
     <value>{0} сервер</value>
   </data>
   <data name="Countries_Server_Few">
-    <value>{0} серверов</value>
+    <value>{0} сервера</value>
   </data>
   <data name="Countries_Server_Many">
     <value>{0} серверов</value>
@@ -1360,16 +1360,16 @@
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Free server country ({0})</value>
+    <value>Страна с серверами Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Few">
-    <value>Free server countries ({0})</value>
+    <value>Страны с серверами Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Many">
-    <value>Free server countries ({0})</value>
+    <value>Страны с серверами Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free server countries ({0})</value>
+    <value>Страны с серверами Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Бесплатные подключения</value>
@@ -1513,11 +1513,11 @@
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+подключение к VPN</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>Стандартное
+подключение к VPN</value>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
@@ -1658,7 +1658,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
-    <value>hh\:mm\:ss</value>
+    <value>чч\:мм\:сс</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
@@ -1670,7 +1670,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
-    <value>mm\:ss</value>
+    <value>мм\:сс</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
@@ -1697,7 +1697,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Мой аккаунт</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Сменить сервер</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Безопасный сёрфинг из</value>
@@ -1847,7 +1847,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Доступно обновление</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Update ready</value>
+    <value>Обновление готово</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
     <value>Состояние VPN</value>
@@ -1976,7 +1976,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Free server</value>
+    <value>Free сервер</value>
   </data>
   <data name="Settings_About">
     <value>О программе</value>

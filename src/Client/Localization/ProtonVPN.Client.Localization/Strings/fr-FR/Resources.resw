@@ -1330,10 +1330,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Changer de serveur de façon illimité avec l'offre VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Vous avez atteint le nombre de changements maximal de serveurs Free pour le moment</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide dans {0} pays disponible. C'est en général le serveur le plus proche de votre localisation.</value>
@@ -1525,11 +1525,11 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Qu'est-ce que la charge d'un serveur ?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>L'option Smart Routing utilise des serveurs virtuels pour fournir un acces VPN dans les pays difficiles d'accès.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Lorsque vous vous connectez à un serveur Smart Routing, vous naviguerez sur internet comme depuis votre pays de destination, même si le serveur physique est situé ailleurs.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing est généralement utilisé pour contourner les lois de privation de la vie privée et les autres formes de censure.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>

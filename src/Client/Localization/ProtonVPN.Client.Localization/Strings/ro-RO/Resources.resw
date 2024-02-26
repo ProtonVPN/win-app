@@ -154,7 +154,7 @@
     <value>Actualizare</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Modificare</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Detalii</value>
@@ -1336,10 +1336,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Obțineți schimbări nelimitate ale serverului cu VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Momentan ați atins numărul maxim de schimbări de servere gratuite.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vă conectează automat la cel mai rapid server din {0} țară disponibilă. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
@@ -1537,11 +1537,11 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Care este solicitarea serverului?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing folosește servere virtuale pentru a oferi acoperire VPN în țările greu accesibile.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Când vă conectați la un server Smart Routing, veți părea că navigați în țara de destinație, chiar dacă serverul fizic este situat în altă parte.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitate și alte forme de cenzură.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1685,7 +1685,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Contul meu</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Schimbare server</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Navigare sigură prin</value>

@@ -154,7 +154,7 @@
     <value>Perbarui</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Tingkatkan</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Pelajari lebih lanjut</value>
@@ -1324,10 +1324,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Dapatkan perubahan server tanpa batas dengan VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Anda sudah mencapai batas angka dari pengubahan server untuk sekarang</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free menghubungkan Anda ke server gratis secara otomatis dari {0} negara gratis kami. Ini biasanya adalah server yang terdekat dengan lokasi Anda.</value>
@@ -1513,11 +1513,11 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Apa itu muatan server?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing menggunakan server virtual untuk menyediakan VPN di negara-negara yang susah dijangkau.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Ketika anda menyambungkan ke Smart Routing server, anda akan tampak menjelajah di negara tujuan, meskipun server fisik berada di tempat lain.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing biasanya digunakan untuk mengindari dari undang-undang anti-privasi dan bentuk sensor lainnya.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1661,7 +1661,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Akun saya</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Ubah server</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Menjelajah internet secara aman dari</value>

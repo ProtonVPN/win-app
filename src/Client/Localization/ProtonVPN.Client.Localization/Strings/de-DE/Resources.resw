@@ -154,7 +154,7 @@
     <value>Update</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Upgraden</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Mehr erfahren</value>
@@ -1330,10 +1330,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Hol dir unbegrenzte Serverwechsel mit VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Du hast die maximale Anzahl an kostenlosen Serverwechseln erreicht</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren freien Server aus unserem {0} freien Land. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
@@ -1525,11 +1525,11 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Was ist die Serverauslastung?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing verwendet virtuelle Server, um VPN-Abdeckung in schwer zugänglichen Ländern zu bieten.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Wenn du dich mit einem Smart Routing-Server verbindest, scheint es, als würdest du in deinem Zielland surfen, obwohl sich der physische Server anderswo befindet.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1673,7 +1673,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Mein Konto</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Server wechseln</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Sicheres Surfen von</value>

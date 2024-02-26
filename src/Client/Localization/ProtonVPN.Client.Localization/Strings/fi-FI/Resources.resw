@@ -154,7 +154,7 @@
     <value>Päivitä</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Päivitä</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Lue lisää</value>
@@ -1330,10 +1330,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Hanki rajattomasti palvelinvaihtoja VPN Plus -tilauksella.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Olet saavuttanut tällä erää käytettävissä olevan ilmaisten palvelinvaihdosten enimmäismäärän</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free yhdistää sinut automaattisesti nopeimpaan saatavilla olevaan ilmaiseen palvelimeen {0} ilmaisessa maassa. Yleensä tämä on lähinnä sijaintiasi oleva palvelin.</value>
@@ -1525,11 +1525,11 @@ Palvelimen korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Mitä on palvelimen kuormitus?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing käyttää virtuaalipalvelimia VPN-verkon kattavuuden tarjoamiseksi vaikeasti saavutettavissa maissa.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Kun muodostat yhteyden Smart Routing -palvelimeen, näytät selaavasi kohdemaastasi, vaikka fyysinen palvelin sijaitsee muualla.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja muunlaisen sensuurin kiertämiseen.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
