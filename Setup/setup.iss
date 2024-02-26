@@ -1,6 +1,7 @@
 #define MyAppVersion "4.0.0"
 #define MyAppName "Proton VPN" 
-#define MyAppExeName "ProtonVPN.Client.exe"
+#define ClientName "ProtonVPN.Client"
+#define MyAppExeName ClientName + ".exe"
 #define LegacyMyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
 #define AppUserModelID "Proton.VPN"
@@ -21,6 +22,8 @@
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
 #define DisableAutoUpdateArg "/DisableAutoUpdate"
+#define RegistryRunPath "Software\Microsoft\Windows\CurrentVersion\Run"
+#define LegacyClientName "ProtonVPN"
 
 #define SourcePath GetEnv("BUILD_PATH")
 #define IsBTISource SourcePath == "BTI/publish"
@@ -376,17 +379,36 @@ begin
   Log('Service uninstall returned: ' + IntToStr(Result));
 end;
 
+procedure DeleteStartupApp(name: String);
+begin
+    if RegValueExists(HKEY_CURRENT_USER, ExpandConstant('{#RegistryRunPath}'), name) then
+      if RegDeleteValue(HKEY_CURRENT_USER, ExpandConstant('{#RegistryRunPath}'), name) then
+        Log(name + ' startup record was removed successfully.')
+      else
+        Log('Failed to remove ' + name + 'startup record')
+    else
+      Log(name + ' startup record does not exist.');
+end;
+
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
     DeleteNonRunningVersions(ExpandConstant('{app}'));
+
     Log('Trying to update taskbar icon path if exists');
     UpdateTaskbarIconTarget(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'));
+
     Log('Trying to uninstall an old version of ProtonVPN app');
     UninstallProduct('{2B10124D-2F81-4BB1-9165-4F9B1B1BA0F9}');
+
     Log('Trying to uninstall an old version of ProtonVPN TUN adapter');
     UninstallProduct('{FED0679F-A292-4507-AEF5-DD2BB8898A36}');
+
     Log('Trying to uninstall an old version of ProtonVPN TAP adapter');
     UninstallProduct('{E23B9F7F-AA0A-481A-8ECA-FA69794BF50A}');
+
+    Log('Trying to delete a legacy app startup record if exists');
+    DeleteStartupApp(ExpandConstant('{#LegacyClientName}'));
+
     Result := '';
 end;
 
@@ -436,5 +458,8 @@ begin
     Log('TAP uninstallation returned: ' + IntToStr(res));
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
+
+    Log('Trying to delete client startup record if exists');
+    DeleteStartupApp(ExpandConstant('{#ClientName}'));
   end;
 end;

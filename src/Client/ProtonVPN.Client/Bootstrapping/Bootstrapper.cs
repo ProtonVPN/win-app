@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
@@ -72,7 +73,7 @@ public class Bootstrapper : IBootstrapper
 
             _globalSettingsMigrator.Migrate();
 
-            _mainWindowActivator.Show();
+            HandleMainWindow();
             _updatesManager.Initialize();
 
             await Task.WhenAll(
@@ -82,6 +83,14 @@ public class Bootstrapper : IBootstrapper
         catch (Exception e)
         {
             _logger.Error<AppLog>("Error occured during the app start up process.", e);
+        }
+    }
+
+    private void HandleMainWindow()
+    {
+        if (!_userAuthenticator.HasAuthenticatedSessionData() || !_settings.IsAutoLaunchEnabled || _settings.AutoLaunchMode == AutoLaunchMode.OpenOnDesktop)
+        {
+            _mainWindowActivator.Show();
         }
     }
 
