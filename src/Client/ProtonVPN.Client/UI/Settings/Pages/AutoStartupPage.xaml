@@ -52,33 +52,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <!-- TODO: Auto launch has not been implemented yet. Keep the settings card disabled for now. -->
             <toolkit:SettingsExpander Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Description')}"
                                       Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch')}"
-                                      IsEnabled="False"
-                                      IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}"
-                                      IsTabStop="False">
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=OneWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" /><!--Mode=TwoWay}"-->
+                                      IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
                 <toolkit:SettingsExpander.Items>
                     <StackPanel Spacing="16">
-                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"
-                                     IsChecked="{x:Bind ViewModel.IsAutoLaunchOpenOnDesktop, Mode=TwoWay}"
-                                     Style="{StaticResource AutoLaunchRadioButtonStyle}" />
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_SystemTray')}"
                                      IsChecked="{x:Bind ViewModel.IsAutoLaunchMinimizeToSystemTray, Mode=TwoWay}"
                                      Style="{StaticResource AutoLaunchRadioButtonStyle}" />
-                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Taskbar')}"
-                                     IsChecked="{x:Bind ViewModel.IsAutoLaunchMinimizeToTaskbar, Mode=TwoWay}"
+                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"
+                                     IsChecked="{x:Bind ViewModel.IsAutoLaunchOpenOnDesktop, Mode=TwoWay}"
                                      Style="{StaticResource AutoLaunchRadioButtonStyle}" />
+                        <!-- <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Taskbar')}" -->
+                        <!--              IsChecked="{x:Bind ViewModel.IsAutoLaunchMinimizeToTaskbar, Mode=TwoWay}" -->
+                        <!--              Style="{StaticResource AutoLaunchRadioButtonStyle}" /> -->
                     </StackPanel>
                 </toolkit:SettingsExpander.Items>
             </toolkit:SettingsExpander>
 
             <toolkit:SettingsExpander Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Description')}"
                                       Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
-                                      IsExpanded="{x:Bind ViewModel.IsAutoConnectEnabled}"
-                                      IsTabStop="False">
+                                      IsExpanded="{x:Bind ViewModel.IsAutoConnectEnabled}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoConnectEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
                 <toolkit:SettingsExpander.Items>

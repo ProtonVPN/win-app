@@ -20,7 +20,6 @@
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Common.UI.Assets.Icons;
 using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.UI;

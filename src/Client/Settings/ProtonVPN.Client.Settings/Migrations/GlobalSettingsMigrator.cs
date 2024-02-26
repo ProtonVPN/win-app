@@ -453,7 +453,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
         _globalSettings.AutoLaunchMode = GetSettingValue("StartMinimized") switch
         {
             "0" => AutoLaunchMode.OpenOnDesktop,
-            "1" => AutoLaunchMode.MinimizeToTaskbar,
+            // "1" => AutoLaunchMode.MinimizeToTaskbar (not yet supported)
             "2" => AutoLaunchMode.MinimizeToSystemTray,
             _ => DefaultSettings.AutoLaunchMode,
         };

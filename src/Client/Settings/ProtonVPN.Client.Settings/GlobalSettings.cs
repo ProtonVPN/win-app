@@ -84,10 +84,9 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
-    // TODO: Auto launch has not been implemented yet.
     public bool IsAutoLaunchEnabled
     {
-        get => false; // _globalRepository.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;
+        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAutoLaunchEnabled;
         set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 

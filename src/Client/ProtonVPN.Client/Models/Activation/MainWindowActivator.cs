@@ -64,6 +64,7 @@ public class MainWindowActivator :
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly ILocalizationProvider _localizationProvider;
     private bool _handleClosedEvents = true;
+    private bool _wasWindowShown;
 
     public MainWindowActivator(
         ILogger logger,
@@ -107,6 +108,7 @@ public class MainWindowActivator :
         App.MainWindow.Show();
         App.MainWindow.BringToFront();
 
+        _wasWindowShown = true;
         _eventMessageSender.Send(new ApplicationStartedMessage());
     }
 
@@ -117,6 +119,11 @@ public class MainWindowActivator :
 
     public void Activate()
     {
+        if (!_wasWindowShown)
+        {
+            Show();
+        }
+
         App.MainWindow.Activate();
         App.MainWindow.BringToFront();
 
@@ -223,6 +230,7 @@ public class MainWindowActivator :
 
         _serviceManager.Stop();
     }
+
     private void OnMainWindowStateChanged(object? sender, WindowState e)
     {
         SaveWindowState();

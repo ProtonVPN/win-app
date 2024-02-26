@@ -19,6 +19,4 @@
 
 namespace ProtonVPN.Client.Messages;
 
-public class ApplicationStartedMessage
-{
-}
+public class ApplicationStartedMessage;
