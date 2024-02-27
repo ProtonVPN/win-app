@@ -18,12 +18,12 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Gateways.Items;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -33,22 +33,28 @@ public class CountryViewModelsFactory
     private readonly IOverlayActivator _overlayActivator;
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
+    private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
 
     public CountryViewModelsFactory(
         ILocalizationProvider localizer,
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
     {
         _mainViewNavigator = mainViewNavigator;
         _overlayActivator = overlayActivator;
         _localizer = localizer;
         _connectionManager = connectionManager;
+        _logger = logger;
+        _issueReporter = issueReporter;
     }
 
     public CountryViewModel GetCountryViewModel(string exitCountryCode, CountryFeature countryFeature, int itemCount)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = exitCountryCode,
@@ -60,7 +66,7 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetFastestCountryViewModel(CountryFeature countryFeature)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = string.Empty,
@@ -71,7 +77,7 @@ public class CountryViewModelsFactory
 
     public CityViewModel GetCityViewModel(City city, List<ServerViewModel> servers, CountryFeature countryFeature)
     {
-        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager)
+        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager, _logger, _issueReporter)
         {
             City = city,
             Servers = servers,
@@ -81,7 +87,7 @@ public class CountryViewModelsFactory
 
     public ServerViewModel GetServerViewModel(Server server)
     {
-        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager);
+        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter);
 
         serverViewModel.CopyPropertiesFromServer(server);
 
@@ -90,7 +96,7 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetSecureCoreCountryViewModel(SecureCoreCountryPair countryPair)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter)
         {
             EntryCountryCode = countryPair.EntryCountry,
             ExitCountryCode = countryPair.ExitCountry,

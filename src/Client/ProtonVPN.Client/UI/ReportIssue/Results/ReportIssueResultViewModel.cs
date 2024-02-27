@@ -23,6 +23,8 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Results;
 
@@ -45,8 +47,12 @@ public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssue
         ? Localizer.Get("Dialogs_ReportIssue_Result_Success_Description")
         : Localizer.Get("Dialogs_ReportIssue_Result_Fail_Description");
 
-    public ReportIssueResultViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IDialogActivator dialogActivator)
-        : base(viewNavigator, localizationProvider)
+    public ReportIssueResultViewModel(IReportIssueViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        IDialogActivator dialogActivator,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _dialogActivator = dialogActivator;
     }

@@ -25,6 +25,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Recents;
 
@@ -43,8 +45,10 @@ public partial class RecentsViewModel : ViewModelBase,
 
     public RecentsViewModel(IRecentConnectionsProvider recentConnectionsProvider,
         IConnectionManager connectionManager,
-        ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _recentConnectionsProvider = recentConnectionsProvider;
         _connectionManager = connectionManager;
@@ -74,7 +78,8 @@ public partial class RecentsViewModel : ViewModelBase,
                 continue;
             }
 
-            RecentConnections.Add(new RecentItemViewModel(_connectionManager, _recentConnectionsProvider, recentConnection, Localizer));
+            RecentConnections.Add(new RecentItemViewModel(_connectionManager, _recentConnectionsProvider,
+                recentConnection, Localizer, Logger, IssueReporter));
         }
 
         OnPropertyChanged(nameof(HasRecentConnections));

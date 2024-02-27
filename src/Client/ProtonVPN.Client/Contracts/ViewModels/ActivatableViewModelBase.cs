@@ -18,6 +18,8 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -47,8 +49,10 @@ public abstract partial class ActivatableViewModelBase : ViewModelBase
         }
     }
 
-    public ActivatableViewModelBase(ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
+    public ActivatableViewModelBase(ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     { }
 
     /// <summary>

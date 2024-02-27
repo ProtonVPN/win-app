@@ -29,6 +29,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 
@@ -48,12 +50,16 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
         IServersLoader serversLoader,
         CountryViewModelsFactory countryViewModelsFactory,
         ICountryFeatureTabsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) 
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter) 
         : base(mainViewNavigator, 
                overlayActivator,
                countryViewModelsFactory, 
                viewNavigator,
-               localizationProvider)
+               localizationProvider,
+               logger,
+               issueReporter)
     {
         _serversLoader = serversLoader;
     }

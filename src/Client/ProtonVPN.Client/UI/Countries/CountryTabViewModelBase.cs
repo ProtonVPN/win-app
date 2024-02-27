@@ -27,6 +27,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -53,9 +55,10 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
         IOverlayActivator overlayActivator,
         CountryViewModelsFactory countryViewModelsFactory,
         IViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider) 
-        : base(viewNavigator, 
-               localizationProvider)
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter) 
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         MainViewNavigator = mainViewNavigator;
         OverlayActivator = overlayActivator;

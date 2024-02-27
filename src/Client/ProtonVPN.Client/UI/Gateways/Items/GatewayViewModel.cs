@@ -28,6 +28,8 @@ using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Gateways.Items;
 
@@ -56,8 +58,10 @@ public partial class GatewayViewModel : LocationViewModelBase, IComparable
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager,
-        IOverlayActivator overlayActivator)
-        : base(localizationProvider, mainViewNavigator, connectionManager)
+        IOverlayActivator overlayActivator,
+        ILogger logger,
+        IIssueReporter issueReporter) :
+        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
     {
         _overlayActivator = overlayActivator;
     }

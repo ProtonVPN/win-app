@@ -21,6 +21,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Status;
 
@@ -36,8 +38,10 @@ public partial class NetShieldStatsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(DataSaved))]
     private long _dataSavedInBytes;
 
-    public NetShieldStatsViewModel(ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
+    public NetShieldStatsViewModel(ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _numberOfTrackersStopped = 14;
         _numberOfAdsBlocked = 21;

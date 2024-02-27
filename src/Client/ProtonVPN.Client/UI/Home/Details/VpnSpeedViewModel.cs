@@ -23,6 +23,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
@@ -42,8 +44,11 @@ public partial class VpnSpeedViewModel : ViewModelBase
 
     public string FormattedUploadSpeed => Localizer.GetFormattedSpeed(UploadSpeed);
 
-    public VpnSpeedViewModel(ILocalizationProvider localizationProvider, IConnectionManager connectionManager)
-        : base(localizationProvider)
+    public VpnSpeedViewModel(ILocalizationProvider localizationProvider,
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _connectionManager = connectionManager;
 

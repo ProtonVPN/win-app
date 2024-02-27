@@ -30,6 +30,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Common.Core.Helpers;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Tray;
 
@@ -52,8 +54,10 @@ public partial class TrayIconViewModel : ViewModelBase, IEventMessageReceiver<Co
         IMainWindowActivator mainWindowActivator,
         IRecentConnectionsProvider recentConnectionsProvider,
         IConnectionManager connectionManager,
-        IUserAuthenticator userAuthenticator)
-        : base(localizationProvider)
+        IUserAuthenticator userAuthenticator,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _mainWindowActivator = mainWindowActivator;
         _recentConnectionsProvider = recentConnectionsProvider;

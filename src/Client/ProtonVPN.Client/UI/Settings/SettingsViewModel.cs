@@ -40,6 +40,8 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Common.Core.Helpers;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings;
 
@@ -143,8 +145,10 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         IDialogActivator dialogActivator,
         IReportIssueViewNavigator reportIssueViewNavigator,
         IConnectionManager connectionManager,
-        IPortForwardingManager portForwardingManager)
-        : base(viewNavigator, localizationProvider)
+        IPortForwardingManager portForwardingManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;

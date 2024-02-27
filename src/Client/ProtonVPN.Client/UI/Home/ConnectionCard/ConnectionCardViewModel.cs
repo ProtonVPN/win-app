@@ -22,6 +22,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
@@ -34,8 +36,10 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter,
         HomeViewModel homeViewModel)
-        : base(connectionManager, localizationProvider, homeViewModel)
+        : base(connectionManager, localizationProvider, logger, issueReporter, homeViewModel)
     {
         _recentConnectionsProvider = recentConnectionsProvider;
 

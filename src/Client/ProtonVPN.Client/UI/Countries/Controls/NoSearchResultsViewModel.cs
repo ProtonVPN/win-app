@@ -19,12 +19,15 @@
 
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries.Controls;
 
 public class NoSearchResultsViewModel : ViewModelBase
 {
-    public NoSearchResultsViewModel(ILocalizationProvider localizer) : base(localizer)
+    public NoSearchResultsViewModel(ILocalizationProvider localizer, ILogger logger, IIssueReporter issueReporter)
+        : base(localizer, logger, issueReporter)
     {
     }
 }

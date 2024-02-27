@@ -86,6 +86,7 @@ public class MainModule : Module
                .RegisterModule<IssueReportingModule>()
                .RegisterModule<NotificationsModule>()
                .RegisterModule<FilesModule>()
-               .RegisterModule<ClientFilesModule>();
+               .RegisterModule<ClientFilesModule>()
+               .RegisterModule<PowerEventsModule>();
     }
 }

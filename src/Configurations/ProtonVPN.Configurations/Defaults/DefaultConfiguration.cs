@@ -173,6 +173,7 @@ public static class DefaultConfiguration
     public static TimeSpan DefaultDnsTimeToLive => TimeSpan.FromMinutes(20);
     public static TimeSpan DnsOverHttpsPerProviderTimeout => TimeSpan.FromSeconds(20);
     public static TimeSpan DohClientTimeout => TimeSpan.FromSeconds(10);
+    public static TimeSpan VpnStatePollingInterval => TimeSpan.FromSeconds(3);
 
     public static IOpenVpnConfigurations OpenVpn => DefaultOpenVpnConfigurationsFactory.Create(
         baseFolder: _baseVersionDirectory.Value,

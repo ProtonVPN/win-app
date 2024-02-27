@@ -31,7 +31,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class AutoConnectHandler : IHandler,
+public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
@@ -48,7 +48,7 @@ public class AutoConnectHandler : IHandler,
     private bool _isServersListReady;
     private bool _isRecentsListReady;
 
-    public AutoConnectHandler(
+    public AutoConnectTriggerHandler(
         IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         ISettings settings,

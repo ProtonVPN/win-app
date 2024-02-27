@@ -21,6 +21,8 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -32,8 +34,10 @@ public abstract partial class OverlayViewModelBase : ViewModelBase
     protected OverlayViewModelBase(
         ILocalizationProvider localizationProvider, 
         IViewNavigator viewNavigator, 
-        IOverlayActivator overlayActivator)
-        : base(localizationProvider)
+        IOverlayActivator overlayActivator,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         ViewNavigator = viewNavigator;
         OverlayActivator = overlayActivator;

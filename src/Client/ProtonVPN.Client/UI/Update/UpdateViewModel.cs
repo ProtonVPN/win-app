@@ -35,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -49,7 +50,6 @@ public partial class UpdateViewModel : ViewModelBase,
 {
     private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
 
-    private readonly ILogger _logger;
     private readonly IOsProcesses _osProcesses;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ISettings _settings;
@@ -84,14 +84,15 @@ public partial class UpdateViewModel : ViewModelBase,
     public UpdateViewModel(
         ILocalizationProvider localizationProvider,
         ILogger logger,
+        IIssueReporter issueReporter,
         IOsProcesses osProcesses,
         IMainWindowActivator mainWindowActivator,
         ISettings settings,
         IConfiguration config,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
-        IOverlayActivator overlayActivator) : base(localizationProvider)
+        IOverlayActivator overlayActivator)
+        : base(localizationProvider, logger, issueReporter)
     {
-        _logger = logger;
         _osProcesses = osProcesses;
         _mainWindowActivator = mainWindowActivator;
         _settings = settings;
@@ -197,7 +198,7 @@ public partial class UpdateViewModel : ViewModelBase,
         string message = $"Closing the app and starting installer '{fileName}'. " +
                          $"Current app version: {_config.ClientVersion}, OS: {Environment.OSVersion.VersionString}";
 
-        _logger.Info<AppUpdateStartLog>(message);
+        Logger.Info<AppUpdateStartLog>(message);
     }
 
     private string GetUpdateFileName()
@@ -210,7 +211,7 @@ public partial class UpdateViewModel : ViewModelBase,
         }
         catch (Exception e)
         {
-            _logger.Error<AppUpdateLog>($"Failed to parse file name of path '{filePath}'.", e);
+            Logger.Error<AppUpdateLog>($"Failed to parse file name of path '{filePath}'.", e);
             fileName = filePath;
         }
 

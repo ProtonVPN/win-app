@@ -32,6 +32,8 @@ using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 
@@ -54,8 +56,14 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
         IOverlayActivator overlayActivator,
         IServersLoader serversLoader,
         IWebAuthenticator webAuthenticator,
-        IUrls urls)
-        : base(localizationProvider, viewNavigator, overlayActivator)
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider,
+               viewNavigator,
+               overlayActivator,
+               logger,
+               issueReporter)
     {
         _serversLoader = serversLoader;
         _webAuthenticator = webAuthenticator;

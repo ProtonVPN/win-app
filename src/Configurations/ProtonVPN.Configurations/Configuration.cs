@@ -64,6 +64,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan DefaultDnsTimeToLive => Get();
     public TimeSpan DnsOverHttpsPerProviderTimeout => Get();
     public TimeSpan DohClientTimeout => Get();
+    public TimeSpan VpnStatePollingInterval => Get();
 
     public IList<string> DohProviders => Get();
     public IUrlsConfiguration Urls => Get();

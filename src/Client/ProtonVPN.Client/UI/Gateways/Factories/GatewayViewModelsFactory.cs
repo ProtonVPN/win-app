@@ -23,6 +23,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Gateways.Items;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Gateways.Factories;
 
@@ -32,24 +34,30 @@ public class GatewayViewModelsFactory
     private readonly IOverlayActivator _overlayActivator;
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
+    private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
 
     public GatewayViewModelsFactory(
         ILocalizationProvider localizer,
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
     {
         _mainViewNavigator = mainViewNavigator;
         _overlayActivator = overlayActivator;
         _localizer = localizer;
         _connectionManager = connectionManager;
+        _logger = logger;
+        _issueReporter = issueReporter;
     }
 
     public GatewayViewModel GetGatewayViewModel(string gatewayName, List<Server> servers)
     {
         List<B2BServerViewModel> gatewayServers = servers.Select(GetB2BServerViewModel).ToList();
 
-        return new GatewayViewModel(_localizer, _mainViewNavigator, _connectionManager, _overlayActivator)
+        return new GatewayViewModel(_localizer, _mainViewNavigator, _connectionManager, _overlayActivator, _logger, _issueReporter)
         {
             GatewayName = gatewayName,
             Servers = gatewayServers,
@@ -59,7 +67,7 @@ public class GatewayViewModelsFactory
 
     public B2BServerViewModel GetB2BServerViewModel(Server server)
     {
-        B2BServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager);
+        B2BServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter);
 
         serverViewModel.CopyPropertiesFromServer(server);
 

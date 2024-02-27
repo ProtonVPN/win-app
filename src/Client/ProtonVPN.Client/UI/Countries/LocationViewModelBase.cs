@@ -25,6 +25,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -36,7 +38,10 @@ public abstract partial class LocationViewModelBase : ViewModelBase
     protected LocationViewModelBase(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager) : base(localizationProvider)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         MainViewNavigator = mainViewNavigator;
         ConnectionManager = connectionManager;

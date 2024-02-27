@@ -19,7 +19,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
@@ -32,6 +31,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
@@ -65,8 +66,10 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
         IServersLoader serversLoader,
         IOverlayActivator overlayActivator,
         IChangeServerModerator changeServerModerator,
+        ILogger logger,
+        IIssueReporter issueReporter,
         HomeViewModel homeViewModel)
-        : base(connectionManager, localizationProvider, homeViewModel)
+        : base(connectionManager, localizationProvider, logger, issueReporter, homeViewModel)
     {
         _serversLoader = serversLoader;
         _overlayActivator = overlayActivator;

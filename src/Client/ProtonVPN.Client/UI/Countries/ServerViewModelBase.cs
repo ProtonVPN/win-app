@@ -22,6 +22,8 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -45,8 +47,10 @@ public abstract class ServerViewModelBase : LocationViewModelBase
     protected ServerViewModelBase(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager)
-        : base(localizationProvider, mainViewNavigator, connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter) :
+        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
     { }
 
     public virtual void CopyPropertiesFromServer(Server server)

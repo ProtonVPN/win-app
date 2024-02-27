@@ -53,8 +53,7 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
             return;
         }
 
-        _logger.Info<ConnectionStateChangeLog>($"The VPN state with Status '{message.Status}' " +
-            $"and Error '{message.Error}' was handled with '{connectionErrorHandlerResponse}'.");
+        LogHandlerResponse(message, connectionErrorHandlerResponse);
 
         if (connectionErrorHandlerResponse == ConnectionErrorHandlerResult.Reconnecting)
         {
@@ -64,5 +63,21 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
         }
 
         await _connectionManager.HandleAsync(message);
+    }
+
+    private void LogHandlerResponse(VpnStateIpcEntity message,
+        ConnectionErrorHandlerResult connectionErrorHandlerResponse)
+    {
+        string logMessage = $"The VPN state with Status '{message.Status}' and " +
+            $"Error '{message.Error}' was handled with '{connectionErrorHandlerResponse}'.";
+
+        if (connectionErrorHandlerResponse == ConnectionErrorHandlerResult.SameAsLast)
+        {
+            _logger.Debug<ConnectionStateChangeLog>(logMessage);
+        }
+        else
+        {
+            _logger.Info<ConnectionStateChangeLog>(logMessage);
+        }
     }
 }

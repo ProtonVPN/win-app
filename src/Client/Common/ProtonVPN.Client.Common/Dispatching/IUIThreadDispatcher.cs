@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Common.Dispatching
+using System.Runtime.CompilerServices;
+
+namespace ProtonVPN.Client.Common.Dispatching;
+
+public interface IUIThreadDispatcher
 {
-    public interface IUIThreadDispatcher
-    {
-        bool TryEnqueue(Action callback);
-    }
+    bool TryEnqueue(Action callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0);
 }

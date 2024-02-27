@@ -29,6 +29,8 @@ using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.ReportIssue.Models;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Help;
 
@@ -46,8 +48,10 @@ public partial class HelpViewModel : ViewModelBase
         ILocalizationProvider localizationProvider, 
         IDialogActivator dialogActivator, 
         IReportIssueViewNavigator reportIssueViewNavigator, 
-        IReportIssueDataProvider dataProvider)
-        : base(localizationProvider)
+        IReportIssueDataProvider dataProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _dialogActivator = dialogActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;

@@ -36,6 +36,8 @@ using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Home.Details;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home;
 
@@ -84,8 +86,10 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         IConnectionManager connectionManager,
         ISettings settings,
         IThemeSelector themeSelector,
+        ILogger logger,
+        IIssueReporter issueReporter,
         ConnectionDetailsViewModel connectionDetailsViewModel)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _settings = settings;

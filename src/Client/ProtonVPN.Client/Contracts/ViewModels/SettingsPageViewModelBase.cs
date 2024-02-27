@@ -34,6 +34,8 @@ using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -51,9 +53,13 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator,
-               localizationProvider)
+               localizationProvider,
+               logger,
+               issueReporter)
     {
         OverlayActivator = overlayActivator;
         Settings = settings;

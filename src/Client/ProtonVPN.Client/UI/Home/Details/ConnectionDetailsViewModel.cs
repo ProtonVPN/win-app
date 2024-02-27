@@ -28,6 +28,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
@@ -88,8 +90,10 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
         ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         IOverlayActivator overlayActivator,
+        ILogger logger,
+        IIssueReporter issueReporter,
         VpnSpeedViewModel vpnSpeedViewModel)
-        : base(localizationProvider)
+        : base(localizationProvider, logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _overlayActivator = overlayActivator;

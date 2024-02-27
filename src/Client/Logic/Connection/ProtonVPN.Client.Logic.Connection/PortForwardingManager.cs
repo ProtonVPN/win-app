@@ -22,6 +22,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Common.Legacy.PortForwarding;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 
 namespace ProtonVPN.Client.Logic.Connection;
@@ -30,6 +32,7 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEntityMapper _entityMapper;
+    private readonly ILogger _logger;
 
     public int? ActivePort { get; private set; }
     public PortMappingStatus Status { get; private set; }
@@ -37,10 +40,11 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
         PortMappingStatus.Error or PortMappingStatus.DestroyPortMappingCommunication;
 
     public PortForwardingManager(IEventMessageSender eventMessageSender,
-        IEntityMapper entityMapper)
+        IEntityMapper entityMapper, ILogger logger)
     {
         _eventMessageSender = eventMessageSender;
         _entityMapper = entityMapper;
+        _logger = logger;
     }
 
     public void Receive(PortForwardingStateIpcEntity message)
@@ -50,6 +54,7 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
         int? newActivePort = portForwardingState.MappedPort?.MappedPort?.ExternalPort;
         if (ActivePort != newActivePort)
         {
+            _logger.Info<AppLog>($"Port forwarding port changed from '{ActivePort}' to '{newActivePort}'.");
             ActivePort = newActivePort;
             NotifyPortChange(newActivePort);
         }
@@ -57,6 +62,7 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
         PortMappingStatus newStatus = portForwardingState.Status;
         if (Status != newStatus)
         {
+            _logger.Info<AppLog>($"Port forwarding status changed from '{Status}' to '{newStatus}'.");
             Status = newStatus;
             NotifyStatusChange(newStatus);
         }

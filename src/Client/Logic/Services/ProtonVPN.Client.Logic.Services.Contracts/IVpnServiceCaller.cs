@@ -29,7 +29,6 @@ public interface IVpnServiceCaller
     Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
 
     Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
-
     Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
 
     Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
@@ -37,4 +36,7 @@ public interface IVpnServiceCaller
     Task UpdateAuthCertificateAsync(AuthCertificateIpcEntity certificate);
 
     Task ApplySettingsAsync(MainSettingsIpcEntity settings);
+
+    Task RepeatStateAsync();
+    Task RepeatPortForwardingStateAsync();
 }

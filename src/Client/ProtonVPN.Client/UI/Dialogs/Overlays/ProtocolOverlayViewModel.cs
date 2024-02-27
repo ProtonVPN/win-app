@@ -26,6 +26,8 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
@@ -43,10 +45,14 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
         IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator,
         ISettings settings,
-        IUrls urls)
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(localizationProvider,
                viewNavigator,
-               overlayActivator)
+               overlayActivator,
+               logger,
+               issueReporter)
     {
         _settings = settings;
         _urls = urls;

@@ -33,6 +33,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
@@ -154,8 +156,10 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     protected ConnectionCardViewModelBase(
         IConnectionManager connectionManager,
         ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter,
         HomeViewModel homeViewModel)
-        : base(localizationProvider)
+        : base(localizationProvider, logger, issueReporter)
     {
         ConnectionManager = connectionManager;
         _homeViewModel = homeViewModel;

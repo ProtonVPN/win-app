@@ -31,6 +31,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 
@@ -60,10 +62,14 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
         IChangeServerModerator changeServerModerator,
         IConnectionManager connectionManager,
         IWebAuthenticator webAuthenticator,
-        IUrls urls)
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(localizationProvider,
                viewNavigator,
-               overlayActivator)
+               overlayActivator,
+               logger,
+               issueReporter)
     {
         _changeServerModerator = changeServerModerator;
         _connectionManager = connectionManager;

@@ -25,6 +25,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
@@ -50,8 +52,10 @@ public partial class IpAddressViewModel :
 
     public IpAddressViewModel(
         ILocalizationProvider localizationProvider,
-        ISettings settings)
-        : base(localizationProvider)
+        ISettings settings,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _settings = settings;
 

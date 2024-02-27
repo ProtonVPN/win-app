@@ -29,6 +29,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
@@ -53,8 +55,10 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
         ILocalizationProvider localizationProvider, 
         IEventMessageSender eventMessageSender,
         IUserAuthenticator userAuthenticator, 
-        IGuestHoleActionExecutor guestHoleActionExecutor) 
-        : base(loginViewNavigator, localizationProvider)
+        IGuestHoleActionExecutor guestHoleActionExecutor,
+        ILogger logger,
+        IIssueReporter issueReporter) 
+        : base(loginViewNavigator, localizationProvider, logger, issueReporter)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;

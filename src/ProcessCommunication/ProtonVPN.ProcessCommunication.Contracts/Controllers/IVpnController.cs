@@ -23,22 +23,21 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
+namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
+
+[ServiceContract]
+public interface IVpnController : IServiceController
 {
-    [ServiceContract]
-    public interface IVpnController : IServiceController
-    {
-        Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer);
+    Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer);
 
-        Task Connect(ConnectionRequestIpcEntity connectionRequest);
-        Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest);
-        Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate);
-        Task<TrafficBytesIpcEntity> GetTrafficBytes();
-        Task ApplySettings(MainSettingsIpcEntity settings);
+    Task Connect(ConnectionRequestIpcEntity connectionRequest);
+    Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest);
+    Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate);
+    Task<TrafficBytesIpcEntity> GetTrafficBytes();
+    Task ApplySettings(MainSettingsIpcEntity settings);
 
-        Task RepeatState();
-        Task RepeatPortForwardingState();
+    Task RepeatState();
+    Task RepeatPortForwardingState();
 
-        Task RequestNetShieldStats();
-    }
+    Task RequestNetShieldStats();
 }
